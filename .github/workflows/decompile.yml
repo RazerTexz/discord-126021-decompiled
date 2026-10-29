@@ -38,11 +38,9 @@ jobs:
       - name: Commit and push
         run: |
           git init
-          git fetch https://github.com/RazerTexz/discord-126021-decomp main
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
+          git fetch https://github.com/RazerTexz/discord-126021-decomp main
           git add resources sources
           git commit -m "chore: decompile"
           git push -f https://github.com/RazerTexz/discord-126021-decomp main
