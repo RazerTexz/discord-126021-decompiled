@@ -24,7 +24,7 @@ jobs:
 
       - name: Decompile
         run: |
-          curl -fsSLOJ https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk
+          curl -fsSLOJ "https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk"
           sh */bin/jadx \
             --fs-case-sensitive \
             --respect-bytecode-access-modifiers \
@@ -40,7 +40,8 @@ jobs:
           git init
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch https://github.com/RazerTexz/discord-126021-decomp main
+          git fetch "https://github.com/RazerTexz/discord-126021-decomp" main
+          git reset FETCH_HEAD
           git add resources sources
           git commit -m "chore: decompile"
-          git push -f https://github.com/RazerTexz/discord-126021-decomp main
+          git push -f "https://x:${{ github.token }}@github.com/RazerTexz/discord-126021-decomp" main
