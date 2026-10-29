@@ -2,6 +2,7 @@ package androidx.work.impl.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -10,7 +11,7 @@ import com.discord.models.domain.ModelAuditLogEntry;
 
 /* JADX INFO: loaded from: classes.dex */
 @Entity(foreignKeys = {@ForeignKey(childColumns = {"work_spec_id"}, entity = WorkSpec.class, onDelete = 5, onUpdate = 5, parentColumns = {ModelAuditLogEntry.CHANGE_KEY_ID})})
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class SystemIdInfo {
 
     @ColumnInfo(name = "system_id")

@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import com.discord.app.AppComponent;
 import com.discord.app.AppPermissionsRequests;
 import com.discord.widgets.voice.call.PrivateCallLaunchUtilsKt;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: PrivateCallLauncher.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,10 +16,10 @@ public final class PrivateCallLauncher {
     private final FragmentManager fragmentManager;
 
     public PrivateCallLauncher(AppPermissionsRequests appPermissionsRequests, AppComponent appComponent, Context context, FragmentManager fragmentManager) {
-        C12238m.checkNotNullParameter(appPermissionsRequests, "appPermissionsRequests");
-        C12238m.checkNotNullParameter(appComponent, "appComponent");
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+        m.checkNotNullParameter(appPermissionsRequests, "appPermissionsRequests");
+        m.checkNotNullParameter(appComponent, "appComponent");
+        m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(fragmentManager, "fragmentManager");
         this.appPermissionsRequests = appPermissionsRequests;
         this.appComponent = appComponent;
         this.context = context;

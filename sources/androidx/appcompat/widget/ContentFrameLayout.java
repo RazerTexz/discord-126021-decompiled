@@ -5,18 +5,19 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.View;
+import android.view.View$MeasureSpec;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class ContentFrameLayout extends FrameLayout {
-    private OnAttachListener mAttachListener;
+    private ContentFrameLayout$OnAttachListener mAttachListener;
     private final Rect mDecorPadding;
     private TypedValue mFixedHeightMajor;
     private TypedValue mFixedHeightMinor;
@@ -25,17 +26,11 @@ public class ContentFrameLayout extends FrameLayout {
     private TypedValue mMinWidthMajor;
     private TypedValue mMinWidthMinor;
 
-    public interface OnAttachListener {
-        void onAttachedFromWindow();
-
-        void onDetachedFromWindow();
-    }
-
     public ContentFrameLayout(@NonNull Context context) {
         this(context, null);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void dispatchFitSystemWindows(Rect rect) {
         fitSystemWindows(rect);
     }
@@ -85,18 +80,18 @@ public class ContentFrameLayout extends FrameLayout {
     @Override // android.view.ViewGroup, android.view.View
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        OnAttachListener onAttachListener = this.mAttachListener;
-        if (onAttachListener != null) {
-            onAttachListener.onAttachedFromWindow();
+        ContentFrameLayout$OnAttachListener contentFrameLayout$OnAttachListener = this.mAttachListener;
+        if (contentFrameLayout$OnAttachListener != null) {
+            contentFrameLayout$OnAttachListener.onAttachedFromWindow();
         }
     }
 
     @Override // android.view.ViewGroup, android.view.View
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        OnAttachListener onAttachListener = this.mAttachListener;
-        if (onAttachListener != null) {
-            onAttachListener.onDetachedFromWindow();
+        ContentFrameLayout$OnAttachListener contentFrameLayout$OnAttachListener = this.mAttachListener;
+        if (contentFrameLayout$OnAttachListener != null) {
+            contentFrameLayout$OnAttachListener.onDetachedFromWindow();
         }
     }
 
@@ -121,8 +116,8 @@ public class ContentFrameLayout extends FrameLayout {
         DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
         boolean z3 = true;
         boolean z4 = displayMetrics.widthPixels < displayMetrics.heightPixels;
-        int mode = View.MeasureSpec.getMode(i);
-        int mode2 = View.MeasureSpec.getMode(i2);
+        int mode = View$MeasureSpec.getMode(i);
+        int mode2 = View$MeasureSpec.getMode(i2);
         if (mode != Integer.MIN_VALUE) {
             z2 = false;
         } else {
@@ -141,7 +136,7 @@ public class ContentFrameLayout extends FrameLayout {
                     }
                     if (i8 > 0) {
                         Rect rect = this.mDecorPadding;
-                        i = View.MeasureSpec.makeMeasureSpec(Math.min(i8 - (rect.left + rect.right), View.MeasureSpec.getSize(i)), BasicMeasure.EXACTLY);
+                        i = View$MeasureSpec.makeMeasureSpec(Math.min(i8 - (rect.left + rect.right), View$MeasureSpec.getSize(i)), BasicMeasure.EXACTLY);
                         z2 = true;
                     } else {
                         z2 = false;
@@ -150,7 +145,7 @@ public class ContentFrameLayout extends FrameLayout {
                 i8 = (int) fraction3;
                 if (i8 > 0) {
                     Rect rect2 = this.mDecorPadding;
-                    i = View.MeasureSpec.makeMeasureSpec(Math.min(i8 - (rect2.left + rect2.right), View.MeasureSpec.getSize(i)), BasicMeasure.EXACTLY);
+                    i = View$MeasureSpec.makeMeasureSpec(Math.min(i8 - (rect2.left + rect2.right), View$MeasureSpec.getSize(i)), BasicMeasure.EXACTLY);
                     z2 = true;
                 } else {
                     z2 = false;
@@ -171,19 +166,19 @@ public class ContentFrameLayout extends FrameLayout {
                     }
                     if (i6 > 0) {
                         Rect rect3 = this.mDecorPadding;
-                        i2 = View.MeasureSpec.makeMeasureSpec(Math.min(i6 - (rect3.top + rect3.bottom), View.MeasureSpec.getSize(i2)), BasicMeasure.EXACTLY);
+                        i2 = View$MeasureSpec.makeMeasureSpec(Math.min(i6 - (rect3.top + rect3.bottom), View$MeasureSpec.getSize(i2)), BasicMeasure.EXACTLY);
                     }
                 }
                 i6 = (int) fraction2;
                 if (i6 > 0) {
                     Rect rect4 = this.mDecorPadding;
-                    i2 = View.MeasureSpec.makeMeasureSpec(Math.min(i6 - (rect4.top + rect4.bottom), View.MeasureSpec.getSize(i2)), BasicMeasure.EXACTLY);
+                    i2 = View$MeasureSpec.makeMeasureSpec(Math.min(i6 - (rect4.top + rect4.bottom), View$MeasureSpec.getSize(i2)), BasicMeasure.EXACTLY);
                 }
             }
         }
         super.onMeasure(i, i2);
         int measuredWidth = getMeasuredWidth();
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth, BasicMeasure.EXACTLY);
+        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(measuredWidth, BasicMeasure.EXACTLY);
         if (z2 || mode != Integer.MIN_VALUE) {
             z3 = false;
         } else {
@@ -205,7 +200,7 @@ public class ContentFrameLayout extends FrameLayout {
                         i4 -= rect5.left + rect5.right;
                     }
                     if (measuredWidth < i4) {
-                        iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i4, BasicMeasure.EXACTLY);
+                        iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(i4, BasicMeasure.EXACTLY);
                     } else {
                         z3 = false;
                     }
@@ -216,7 +211,7 @@ public class ContentFrameLayout extends FrameLayout {
                     i4 -= rect6.left + rect6.right;
                 }
                 if (measuredWidth < i4) {
-                    iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i4, BasicMeasure.EXACTLY);
+                    iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(i4, BasicMeasure.EXACTLY);
                 } else {
                     z3 = false;
                 }
@@ -227,11 +222,11 @@ public class ContentFrameLayout extends FrameLayout {
         }
     }
 
-    public void setAttachListener(OnAttachListener onAttachListener) {
-        this.mAttachListener = onAttachListener;
+    public void setAttachListener(ContentFrameLayout$OnAttachListener contentFrameLayout$OnAttachListener) {
+        this.mAttachListener = contentFrameLayout$OnAttachListener;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void setDecorPadding(int i, int i2, int i3, int i4) {
         this.mDecorPadding.set(i, i2, i3, i4);
         if (ViewCompat.isLaidOut(this)) {

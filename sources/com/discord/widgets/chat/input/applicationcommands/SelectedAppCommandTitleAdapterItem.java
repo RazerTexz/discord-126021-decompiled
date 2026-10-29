@@ -1,21 +1,23 @@
 package com.discord.widgets.chat.input.applicationcommands;
 
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.view.View;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.C5419R;
+import b.d.b.a.a;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.databinding.ViewAppcommandsOptiontitleListitemBinding;
 import com.discord.models.commands.Application;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
+import com.discord.utilities.images.MGImages$ChangeDetector;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.facebook.drawee.view.SimpleDraweeView;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: SelectedApplicationCommandAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -24,17 +26,17 @@ public final class SelectedAppCommandTitleAdapterItem extends MGRecyclerViewHold
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SelectedAppCommandTitleAdapterItem(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter) {
-        super(C5419R.layout.view_appcommands_optiontitle_listitem, selectedApplicationCommandAdapter);
-        C12238m.checkNotNullParameter(selectedApplicationCommandAdapter, "adapter");
+        super(R$layout.view_appcommands_optiontitle_listitem, selectedApplicationCommandAdapter);
+        m.checkNotNullParameter(selectedApplicationCommandAdapter, "adapter");
         View view = this.itemView;
-        int i = C5419R.id.appcommands_optiontitle;
-        TextView textView = (TextView) view.findViewById(C5419R.id.appcommands_optiontitle);
+        int i = R$id.appcommands_optiontitle;
+        TextView textView = (TextView) view.findViewById(R$id.appcommands_optiontitle);
         if (textView != null) {
-            i = C5419R.id.appcommands_optiontitle_avatar;
-            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(C5419R.id.appcommands_optiontitle_avatar);
+            i = R$id.appcommands_optiontitle_avatar;
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.appcommands_optiontitle_avatar);
             if (simpleDraweeView != null) {
                 ViewAppcommandsOptiontitleListitemBinding viewAppcommandsOptiontitleListitemBinding = new ViewAppcommandsOptiontitleListitemBinding((ConstraintLayout) view, textView, simpleDraweeView);
-                C12238m.checkNotNullExpressionValue(viewAppcommandsOptiontitleListitemBinding, "ViewAppcommandsOptiontit…temBinding.bind(itemView)");
+                m.checkNotNullExpressionValue(viewAppcommandsOptiontitleListitemBinding, "ViewAppcommandsOptiontit…temBinding.bind(itemView)");
                 this.binding = viewAppcommandsOptiontitleListitemBinding;
                 return;
             }
@@ -43,31 +45,36 @@ public final class SelectedAppCommandTitleAdapterItem extends MGRecyclerViewHold
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public void onConfigure(int position, SelectedApplicationCommandItem data) {
-        C12238m.checkNotNullParameter(data, "data");
+    public /* bridge */ /* synthetic */ void onConfigure(int i, SelectedApplicationCommandItem selectedApplicationCommandItem) {
+        onConfigure2(i, selectedApplicationCommandItem);
+    }
+
+    /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+    public void onConfigure2(int position, SelectedApplicationCommandItem data) {
+        m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
-        StringBuilder sbM829Q = C1643a.m829Q(MentionUtilsKt.SLASH_CHAR);
-        sbM829Q.append(data.getTitle());
-        String string = sbM829Q.toString();
-        TextView textView = this.binding.f15372b;
-        C12238m.checkNotNullExpressionValue(textView, "binding.appcommandsOptiontitle");
+        StringBuilder sbQ = a.Q(MentionUtilsKt.SLASH_CHAR);
+        sbQ.append(data.getTitle());
+        String string = sbQ.toString();
+        TextView textView = this.binding.f2173b;
+        m.checkNotNullExpressionValue(textView, "binding.appcommandsOptiontitle");
         textView.setText(string);
-        this.binding.f15373c.setImageURI((String) null);
-        this.binding.f15373c.clearColorFilter();
+        this.binding.c.setImageURI((String) null);
+        this.binding.c.clearColorFilter();
         Application application = data.getApplication();
         if (application != null) {
-            SimpleDraweeView simpleDraweeView = this.binding.f15373c;
-            C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.appcommandsOptiontitleAvatar");
+            SimpleDraweeView simpleDraweeView = this.binding.c;
+            m.checkNotNullExpressionValue(simpleDraweeView, "binding.appcommandsOptiontitleAvatar");
             IconUtils.setApplicationIcon(simpleDraweeView, application);
             return;
         }
-        ConstraintLayout constraintLayout = this.binding.f15371a;
-        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-        int themedColor = ColorCompat.getThemedColor(constraintLayout, C5419R.attr.colorTextMuted);
+        ConstraintLayout constraintLayout = this.binding.a;
+        m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+        int themedColor = ColorCompat.getThemedColor(constraintLayout, 2130969056);
         MGImages mGImages = MGImages.INSTANCE;
-        SimpleDraweeView simpleDraweeView2 = this.binding.f15373c;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.appcommandsOptiontitleAvatar");
-        MGImages.setImage$default(mGImages, simpleDraweeView2, C5419R.drawable.ic_slash_command_24dp, (MGImages.ChangeDetector) null, 4, (Object) null);
-        this.binding.f15373c.setColorFilter(themedColor, PorterDuff.Mode.SRC_ATOP);
+        SimpleDraweeView simpleDraweeView2 = this.binding.c;
+        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.appcommandsOptiontitleAvatar");
+        MGImages.setImage$default(mGImages, simpleDraweeView2, 2131232129, (MGImages$ChangeDetector) null, 4, (Object) null);
+        this.binding.c.setColorFilter(themedColor, PorterDuff$Mode.SRC_ATOP);
     }
 }

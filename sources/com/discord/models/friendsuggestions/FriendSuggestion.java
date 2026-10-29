@@ -1,8 +1,8 @@
 package com.discord.models.friendsuggestions;
 
+import b.d.b.a.a;
 import com.discord.models.user.User;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: FriendSuggestion.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class FriendSuggestion {
     private final User user;
 
     public FriendSuggestion(User user, String str) {
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(user, "user");
         this.user = user;
         this.publicName = str;
     }
@@ -27,7 +27,7 @@ public final /* data */ class FriendSuggestion {
     }
 
     public final FriendSuggestion copy(User user, String publicName) {
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(user, "user");
         return new FriendSuggestion(user, publicName);
     }
 
@@ -39,7 +39,7 @@ public final /* data */ class FriendSuggestion {
             return false;
         }
         FriendSuggestion friendSuggestion = (FriendSuggestion) other;
-        return C12238m.areEqual(this.user, friendSuggestion.user) && C12238m.areEqual(this.publicName, friendSuggestion.publicName);
+        return m.areEqual(this.user, friendSuggestion.user) && m.areEqual(this.publicName, friendSuggestion.publicName);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -68,9 +68,9 @@ public final /* data */ class FriendSuggestion {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("FriendSuggestion(user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", publicName=");
-        return C1643a.m822J(sbM833U, this.publicName, ")");
+        StringBuilder sbU = a.U("FriendSuggestion(user=");
+        sbU.append(this.user);
+        sbU.append(", publicName=");
+        return a.J(sbU, this.publicName, ")");
     }
 }

@@ -1,12 +1,10 @@
 package androidx.core.widget;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.os.Bundle;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -16,31 +14,30 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup$MarginLayoutParams;
 import android.view.ViewParent;
-import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.AnimationUtils;
 import android.widget.EdgeEffect;
 import android.widget.FrameLayout;
+import android.widget.FrameLayout$LayoutParams;
 import android.widget.OverScroller;
-import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import androidx.core.C0205R;
-import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.NestedScrollingChild3;
 import androidx.core.view.NestedScrollingChildHelper;
 import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.NestedScrollingParentHelper;
 import androidx.core.view.ScrollingView;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.core.view.accessibility.AccessibilityRecordCompat;
+import b.d.b.a.a;
 import java.util.ArrayList;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class NestedScrollView extends FrameLayout implements NestedScrollingParent3, NestedScrollingChild3, ScrollingView {
@@ -64,9 +61,9 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     private int mMaximumVelocity;
     private int mMinimumVelocity;
     private int mNestedYOffset;
-    private OnScrollChangeListener mOnScrollChangeListener;
+    private NestedScrollView$OnScrollChangeListener mOnScrollChangeListener;
     private final NestedScrollingParentHelper mParentHelper;
-    private SavedState mSavedState;
+    private NestedScrollView$SavedState mSavedState;
     private final int[] mScrollConsumed;
     private final int[] mScrollOffset;
     private OverScroller mScroller;
@@ -75,116 +72,8 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     private int mTouchSlop;
     private VelocityTracker mVelocityTracker;
     private float mVerticalScrollFactor;
-    private static final AccessibilityDelegate ACCESSIBILITY_DELEGATE = new AccessibilityDelegate();
-    private static final int[] SCROLLVIEW_STYLEABLE = {R.attr.fillViewport};
-
-    public class AccessibilityDelegate extends AccessibilityDelegateCompat {
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
-            NestedScrollView nestedScrollView = (NestedScrollView) view;
-            accessibilityEvent.setClassName(ScrollView.class.getName());
-            accessibilityEvent.setScrollable(nestedScrollView.getScrollRange() > 0);
-            accessibilityEvent.setScrollX(nestedScrollView.getScrollX());
-            accessibilityEvent.setScrollY(nestedScrollView.getScrollY());
-            AccessibilityRecordCompat.setMaxScrollX(accessibilityEvent, nestedScrollView.getScrollX());
-            AccessibilityRecordCompat.setMaxScrollY(accessibilityEvent, nestedScrollView.getScrollRange());
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            int scrollRange;
-            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
-            NestedScrollView nestedScrollView = (NestedScrollView) view;
-            accessibilityNodeInfoCompat.setClassName(ScrollView.class.getName());
-            if (!nestedScrollView.isEnabled() || (scrollRange = nestedScrollView.getScrollRange()) <= 0) {
-                return;
-            }
-            accessibilityNodeInfoCompat.setScrollable(true);
-            if (nestedScrollView.getScrollY() > 0) {
-                accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_BACKWARD);
-                accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_UP);
-            }
-            if (nestedScrollView.getScrollY() < scrollRange) {
-                accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_FORWARD);
-                accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_DOWN);
-            }
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public boolean performAccessibilityAction(View view, int i, Bundle bundle) {
-            if (super.performAccessibilityAction(view, i, bundle)) {
-                return true;
-            }
-            NestedScrollView nestedScrollView = (NestedScrollView) view;
-            if (!nestedScrollView.isEnabled()) {
-                return false;
-            }
-            if (i != 4096) {
-                if (i == 8192 || i == 16908344) {
-                    int iMax = Math.max(nestedScrollView.getScrollY() - ((nestedScrollView.getHeight() - nestedScrollView.getPaddingBottom()) - nestedScrollView.getPaddingTop()), 0);
-                    if (iMax == nestedScrollView.getScrollY()) {
-                        return false;
-                    }
-                    nestedScrollView.smoothScrollTo(0, iMax, true);
-                    return true;
-                }
-                if (i != 16908346) {
-                    return false;
-                }
-            }
-            int iMin = Math.min(nestedScrollView.getScrollY() + ((nestedScrollView.getHeight() - nestedScrollView.getPaddingBottom()) - nestedScrollView.getPaddingTop()), nestedScrollView.getScrollRange());
-            if (iMin == nestedScrollView.getScrollY()) {
-                return false;
-            }
-            nestedScrollView.smoothScrollTo(0, iMin, true);
-            return true;
-        }
-    }
-
-    public interface OnScrollChangeListener {
-        void onScrollChange(NestedScrollView nestedScrollView, int i, int i2, int i3, int i4);
-    }
-
-    public class SavedState extends View.BaseSavedState {
-        public int scrollPosition;
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.core.widget.NestedScrollView.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        @NonNull
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("HorizontalScrollView.SavedState{");
-            sbM833U.append(Integer.toHexString(System.identityHashCode(this)));
-            sbM833U.append(" scrollPosition=");
-            return C1643a.m814B(sbM833U, this.scrollPosition, "}");
-        }
-
-        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.scrollPosition);
-        }
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.scrollPosition = parcel.readInt();
-        }
-    }
+    private static final NestedScrollView$AccessibilityDelegate ACCESSIBILITY_DELEGATE = new NestedScrollView$AccessibilityDelegate();
+    private static final int[] SCROLLVIEW_STYLEABLE = {R$attr.fillViewport};
 
     public NestedScrollView(@NonNull Context context) {
         this(context, null);
@@ -215,7 +104,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
                 maxScrollAmount = getScrollY();
             } else if (i == 130 && getChildCount() > 0) {
                 View childAt = getChildAt(0);
-                maxScrollAmount = Math.min((childAt.getBottom() + ((FrameLayout.LayoutParams) childAt.getLayoutParams()).bottomMargin) - ((getHeight() + getScrollY()) - getPaddingBottom()), maxScrollAmount);
+                maxScrollAmount = Math.min((childAt.getBottom() + ((FrameLayout$LayoutParams) childAt.getLayoutParams()).bottomMargin) - ((getHeight() + getScrollY()) - getPaddingBottom()), maxScrollAmount);
             }
             if (maxScrollAmount == 0) {
                 return false;
@@ -245,8 +134,8 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             return false;
         }
         View childAt = getChildAt(0);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
-        return (childAt.getHeight() + layoutParams.topMargin) + layoutParams.bottomMargin > (getHeight() - getPaddingTop()) - getPaddingBottom();
+        FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
+        return (childAt.getHeight() + frameLayout$LayoutParams.topMargin) + frameLayout$LayoutParams.bottomMargin > (getHeight() - getPaddingTop()) - getPaddingBottom();
     }
 
     private static int clamp(int i, int i2, int i3) {
@@ -257,19 +146,19 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     }
 
     @Override // android.view.View, androidx.core.view.ScrollingView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public int computeHorizontalScrollExtent() {
         return super.computeHorizontalScrollExtent();
     }
 
     @Override // android.view.View, androidx.core.view.ScrollingView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public int computeHorizontalScrollOffset() {
         return super.computeHorizontalScrollOffset();
     }
 
     @Override // android.view.View, androidx.core.view.ScrollingView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public int computeHorizontalScrollRange() {
         return super.computeHorizontalScrollRange();
     }
@@ -335,11 +224,11 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             scrollY += verticalFadingEdgeLength;
         }
         View childAt = getChildAt(0);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
-        int i2 = rect.bottom < (childAt.getHeight() + layoutParams.topMargin) + layoutParams.bottomMargin ? i - verticalFadingEdgeLength : i;
+        FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
+        int i2 = rect.bottom < (childAt.getHeight() + frameLayout$LayoutParams.topMargin) + frameLayout$LayoutParams.bottomMargin ? i - verticalFadingEdgeLength : i;
         int i3 = rect.bottom;
         if (i3 > i2 && rect.top > scrollY) {
-            return Math.min((rect.height() > height ? rect.top - scrollY : rect.bottom - i2) + 0, (childAt.getBottom() + layoutParams.bottomMargin) - i);
+            return Math.min((rect.height() > height ? rect.top - scrollY : rect.bottom - i2) + 0, (childAt.getBottom() + frameLayout$LayoutParams.bottomMargin) - i);
         }
         if (rect.top >= scrollY || i3 >= i2) {
             return 0;
@@ -348,19 +237,19 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     }
 
     @Override // android.view.View, androidx.core.view.ScrollingView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public int computeVerticalScrollExtent() {
         return super.computeVerticalScrollExtent();
     }
 
     @Override // android.view.View, androidx.core.view.ScrollingView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public int computeVerticalScrollOffset() {
         return Math.max(0, super.computeVerticalScrollOffset());
     }
 
     @Override // android.view.View, androidx.core.view.ScrollingView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public int computeVerticalScrollRange() {
         int childCount = getChildCount();
         int height = (getHeight() - getPaddingBottom()) - getPaddingTop();
@@ -368,7 +257,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             return height;
         }
         View childAt = getChildAt(0);
-        int bottom = childAt.getBottom() + ((FrameLayout.LayoutParams) childAt.getLayoutParams()).bottomMargin;
+        int bottom = childAt.getBottom() + ((FrameLayout$LayoutParams) childAt.getLayoutParams()).bottomMargin;
         int scrollY = getScrollY();
         int iMax = Math.max(0, bottom - height);
         if (scrollY < 0) {
@@ -567,7 +456,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
         rect.bottom = height;
         if (z2 && (childCount = getChildCount()) > 0) {
             View childAt = getChildAt(childCount - 1);
-            this.mTempRect.bottom = getPaddingBottom() + childAt.getBottom() + ((FrameLayout.LayoutParams) childAt.getLayoutParams()).bottomMargin;
+            this.mTempRect.bottom = getPaddingBottom() + childAt.getBottom() + ((FrameLayout$LayoutParams) childAt.getLayoutParams()).bottomMargin;
             Rect rect2 = this.mTempRect;
             rect2.top = rect2.bottom - height;
         }
@@ -581,9 +470,9 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             return 0.0f;
         }
         View childAt = getChildAt(0);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+        FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
         int verticalFadingEdgeLength = getVerticalFadingEdgeLength();
-        int bottom = ((childAt.getBottom() + layoutParams.bottomMargin) - getScrollY()) - (getHeight() - getPaddingBottom());
+        int bottom = ((childAt.getBottom() + frameLayout$LayoutParams.bottomMargin) - getScrollY()) - (getHeight() - getPaddingBottom());
         if (bottom < verticalFadingEdgeLength) {
             return bottom / verticalFadingEdgeLength;
         }
@@ -604,8 +493,8 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             return 0;
         }
         View childAt = getChildAt(0);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
-        return Math.max(0, ((childAt.getHeight() + layoutParams.topMargin) + layoutParams.bottomMargin) - ((getHeight() - getPaddingTop()) - getPaddingBottom()));
+        FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
+        return Math.max(0, ((childAt.getHeight() + frameLayout$LayoutParams.topMargin) + frameLayout$LayoutParams.bottomMargin) - ((getHeight() - getPaddingTop()) - getPaddingBottom()));
     }
 
     @Override // android.view.View
@@ -625,7 +514,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
         if (this.mVerticalScrollFactor == 0.0f) {
             TypedValue typedValue = new TypedValue();
             Context context = getContext();
-            if (!context.getTheme().resolveAttribute(R.attr.listPreferredItemHeight, typedValue, true)) {
+            if (!context.getTheme().resolveAttribute(R$attr.listPreferredItemHeight, typedValue, true)) {
                 throw new IllegalStateException("Expected theme to define listPreferredItemHeight.");
             }
             this.mVerticalScrollFactor = typedValue.getDimension(context.getResources().getDisplayMetrics());
@@ -706,14 +595,14 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
 
     @Override // android.view.ViewGroup
     public void measureChild(View view, int i, int i2) {
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        view.measure(FrameLayout.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft(), layoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
+        ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
+        view.measure(FrameLayout.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft(), layoutParams.width), View$MeasureSpec.makeMeasureSpec(0, 0));
     }
 
     @Override // android.view.ViewGroup
     public void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-        view.measure(FrameLayout.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(marginLayoutParams.topMargin + marginLayoutParams.bottomMargin, 0));
+        ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) view.getLayoutParams();
+        view.measure(FrameLayout.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + viewGroup$MarginLayoutParams.leftMargin + viewGroup$MarginLayoutParams.rightMargin + i2, viewGroup$MarginLayoutParams.width), View$MeasureSpec.makeMeasureSpec(viewGroup$MarginLayoutParams.topMargin + viewGroup$MarginLayoutParams.bottomMargin, 0));
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -828,8 +717,8 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             }
             if (getChildCount() > 0) {
                 View childAt = getChildAt(0);
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
-                measuredHeight = childAt.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
+                FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
+                measuredHeight = childAt.getMeasuredHeight() + frameLayout$LayoutParams.topMargin + frameLayout$LayoutParams.bottomMargin;
             }
             int paddingTop = ((i4 - i2) - getPaddingTop()) - getPaddingBottom();
             int scrollY = getScrollY();
@@ -845,13 +734,13 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     @Override // android.widget.FrameLayout, android.view.View
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        if (this.mFillViewport && View.MeasureSpec.getMode(i2) != 0 && getChildCount() > 0) {
+        if (this.mFillViewport && View$MeasureSpec.getMode(i2) != 0 && getChildCount() > 0) {
             View childAt = getChildAt(0);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+            FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
             int measuredHeight = childAt.getMeasuredHeight();
-            int measuredHeight2 = (((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - layoutParams.topMargin) - layoutParams.bottomMargin;
+            int measuredHeight2 = (((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - frameLayout$LayoutParams.topMargin) - frameLayout$LayoutParams.bottomMargin;
             if (measuredHeight < measuredHeight2) {
-                childAt.measure(FrameLayout.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + layoutParams.leftMargin + layoutParams.rightMargin, layoutParams.width), View.MeasureSpec.makeMeasureSpec(measuredHeight2, BasicMeasure.EXACTLY));
+                childAt.measure(FrameLayout.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + frameLayout$LayoutParams.leftMargin + frameLayout$LayoutParams.rightMargin, frameLayout$LayoutParams.width), View$MeasureSpec.makeMeasureSpec(measuredHeight2, BasicMeasure.EXACTLY));
             }
         }
     }
@@ -918,29 +807,29 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
 
     @Override // android.view.View
     public void onRestoreInstanceState(Parcelable parcelable) {
-        if (!(parcelable instanceof SavedState)) {
+        if (!(parcelable instanceof NestedScrollView$SavedState)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        SavedState savedState = (SavedState) parcelable;
-        super.onRestoreInstanceState(savedState.getSuperState());
-        this.mSavedState = savedState;
+        NestedScrollView$SavedState nestedScrollView$SavedState = (NestedScrollView$SavedState) parcelable;
+        super.onRestoreInstanceState(nestedScrollView$SavedState.getSuperState());
+        this.mSavedState = nestedScrollView$SavedState;
         requestLayout();
     }
 
     @Override // android.view.View
     public Parcelable onSaveInstanceState() {
-        SavedState savedState = new SavedState(super.onSaveInstanceState());
-        savedState.scrollPosition = getScrollY();
-        return savedState;
+        NestedScrollView$SavedState nestedScrollView$SavedState = new NestedScrollView$SavedState(super.onSaveInstanceState());
+        nestedScrollView$SavedState.scrollPosition = getScrollY();
+        return nestedScrollView$SavedState;
     }
 
     @Override // android.view.View
     public void onScrollChanged(int i, int i2, int i3, int i4) {
         super.onScrollChanged(i, i2, i3, i4);
-        OnScrollChangeListener onScrollChangeListener = this.mOnScrollChangeListener;
-        if (onScrollChangeListener != null) {
-            onScrollChangeListener.onScrollChange(this, i, i2, i3, i4);
+        NestedScrollView$OnScrollChangeListener nestedScrollView$OnScrollChangeListener = this.mOnScrollChangeListener;
+        if (nestedScrollView$OnScrollChangeListener != null) {
+            nestedScrollView$OnScrollChangeListener.onScrollChange(this, i, i2, i3, i4);
         }
     }
 
@@ -1015,10 +904,10 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             } else if (actionMasked == 2) {
                 int iFindPointerIndex = motionEvent.findPointerIndex(this.mActivePointerId);
                 if (iFindPointerIndex == -1) {
-                    StringBuilder sbM833U = C1643a.m833U("Invalid pointerId=");
-                    sbM833U.append(this.mActivePointerId);
-                    sbM833U.append(" in onTouchEvent");
-                    Log.e(TAG, sbM833U.toString());
+                    StringBuilder sbU = a.U("Invalid pointerId=");
+                    sbU.append(this.mActivePointerId);
+                    sbU.append(" in onTouchEvent");
+                    Log.e(TAG, sbU.toString());
                 } else {
                     int y2 = (int) motionEvent.getY(iFindPointerIndex);
                     int i2 = this.mLastMotionY - y2;
@@ -1195,7 +1084,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
             int childCount = getChildCount();
             if (childCount > 0) {
                 View childAt = getChildAt(childCount - 1);
-                int paddingBottom = getPaddingBottom() + childAt.getBottom() + ((FrameLayout.LayoutParams) childAt.getLayoutParams()).bottomMargin;
+                int paddingBottom = getPaddingBottom() + childAt.getBottom() + ((FrameLayout$LayoutParams) childAt.getLayoutParams()).bottomMargin;
                 Rect rect = this.mTempRect;
                 if (rect.top + height > paddingBottom) {
                     rect.top = paddingBottom - height;
@@ -1287,11 +1176,11 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     public void scrollTo(int i, int i2) {
         if (getChildCount() > 0) {
             View childAt = getChildAt(0);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+            FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
             int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
-            int width2 = childAt.getWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
+            int width2 = childAt.getWidth() + frameLayout$LayoutParams.leftMargin + frameLayout$LayoutParams.rightMargin;
             int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
-            int height2 = childAt.getHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
+            int height2 = childAt.getHeight() + frameLayout$LayoutParams.topMargin + frameLayout$LayoutParams.bottomMargin;
             int iClamp = clamp(i, width, width2);
             int iClamp2 = clamp(i2, height, height2);
             if (iClamp == getScrollX() && iClamp2 == getScrollY()) {
@@ -1335,8 +1224,8 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
         this.mChildHelper.setNestedScrollingEnabled(z2);
     }
 
-    public void setOnScrollChangeListener(@Nullable OnScrollChangeListener onScrollChangeListener) {
-        this.mOnScrollChangeListener = onScrollChangeListener;
+    public void setOnScrollChangeListener(@Nullable NestedScrollView$OnScrollChangeListener nestedScrollView$OnScrollChangeListener) {
+        this.mOnScrollChangeListener = nestedScrollView$OnScrollChangeListener;
     }
 
     public void setSmoothScrollingEnabled(boolean z2) {
@@ -1367,7 +1256,7 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     }
 
     public NestedScrollView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0205R.attr.nestedScrollViewStyle);
+        this(context, attributeSet, androidx.core.R$attr.nestedScrollViewStyle);
     }
 
     @Override // android.view.View, androidx.core.view.NestedScrollingChild
@@ -1460,8 +1349,8 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
         }
         if (AnimationUtils.currentAnimationTimeMillis() - this.mLastScroll > 250) {
             View childAt = getChildAt(0);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
-            int height = childAt.getHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
+            FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) childAt.getLayoutParams();
+            int height = childAt.getHeight() + frameLayout$LayoutParams.topMargin + frameLayout$LayoutParams.bottomMargin;
             int height2 = (getHeight() - getPaddingTop()) - getPaddingBottom();
             int scrollY = getScrollY();
             this.mScroller.startScroll(getScrollX(), scrollY, 0, Math.max(0, Math.min(i2 + scrollY, Math.max(0, height - height2))) - scrollY, i3);
@@ -1493,18 +1382,18 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingPare
     }
 
     @Override // android.view.ViewGroup, android.view.ViewManager
-    public void addView(View view, ViewGroup.LayoutParams layoutParams) {
+    public void addView(View view, ViewGroup$LayoutParams viewGroup$LayoutParams) {
         if (getChildCount() <= 0) {
-            super.addView(view, layoutParams);
+            super.addView(view, viewGroup$LayoutParams);
             return;
         }
         throw new IllegalStateException("ScrollView can host only one direct child");
     }
 
     @Override // android.view.ViewGroup
-    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
+    public void addView(View view, int i, ViewGroup$LayoutParams viewGroup$LayoutParams) {
         if (getChildCount() <= 0) {
-            super.addView(view, i, layoutParams);
+            super.addView(view, i, viewGroup$LayoutParams);
             return;
         }
         throw new IllegalStateException("ScrollView can host only one direct child");

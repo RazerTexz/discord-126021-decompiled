@@ -1,620 +1,46 @@
 package com.discord.widgets.user;
 
-import com.discord.api.guild.PruneCountResponse;
+import android.content.Context;
+import b.a.d.d0;
 import com.discord.models.guild.Guild;
-import com.discord.models.user.MeUser;
-import com.discord.restapi.RestAPIParams;
+import com.discord.restapi.RestAPIParams$PruneGuild;
 import com.discord.stores.StoreGuilds;
-import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreStream;
+import com.discord.stores.StoreStream$Companion;
 import com.discord.stores.StoreUser;
 import com.discord.stores.updates.ObservationDeck;
 import com.discord.stores.updates.ObservationDeckProvider;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
-import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.m;
 import java.util.Objects;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p008a.p018d.AbstractC0859d0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p641k.InterfaceC12589b;
-import p658rx.Observable;
-import p658rx.Subscription;
-import p658rx.functions.Action1;
-import p658rx.subjects.PublishSubject;
+import rx.Observable;
+import rx.Subscription;
+import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-    private final PublishSubject<Event> eventSubject;
+public final class WidgetPruneUsersViewModel extends d0<WidgetPruneUsersViewModel$ViewState> {
+    public static final WidgetPruneUsersViewModel$Companion Companion = new WidgetPruneUsersViewModel$Companion(null);
+    private final PublishSubject<WidgetPruneUsersViewModel$Event> eventSubject;
     private final long guildId;
     private final String guildName;
     private Subscription pruneCountRequest;
     private final RestAPI restAPI;
     private final StoreGuilds storeGuilds;
     private final StoreUser storeUsers;
-    private PruneDays whichPruneDays;
-    private static final PruneDays DEFAULT_DAYS = PruneDays.Thirty;
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$2 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final class C101972 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public C101972() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke2(bool);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Boolean bool) {
-            C12238m.checkNotNullExpressionValue(bool, "canKick");
-            if (bool.booleanValue()) {
-                WidgetPruneUsersViewModel.this.getUpdatedPruneCount();
-            } else {
-                WidgetPruneUsersViewModel.this.updateViewState(new ViewState.LoadFailed(true));
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$getUpdatedPruneCount$5 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final class C102025 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C102025() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "request");
-            Subscription subscription2 = WidgetPruneUsersViewModel.this.pruneCountRequest;
-            if (subscription2 != null) {
-                subscription2.unsubscribe();
-            }
-            WidgetPruneUsersViewModel.this.pruneCountRequest = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$getUpdatedPruneCount$6 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final /* synthetic */ class C102036 extends C12236k implements Function1<ViewState, Unit> {
-        public C102036(WidgetPruneUsersViewModel widgetPruneUsersViewModel) {
-            super(1, widgetPruneUsersViewModel, WidgetPruneUsersViewModel.class, "updateViewState", "updateViewState(Ljava/lang/Object;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetPruneUsersViewModel) this.receiver).updateViewState(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$1 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final class C102041 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C102041() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r2) {
-            WidgetPruneUsersViewModel.this.eventSubject.f27650k.onNext((T) Event.Dismiss.INSTANCE);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$2 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final class C102052 extends AbstractC12240o implements Function0<Unit> {
-        public C102052() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetPruneUsersViewModel.this.pruneInProgress(false);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetPruneUsersViewModel$pruneClicked$3 */
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final class C102063 extends AbstractC12240o implements Function1<Error, Unit> {
-        public C102063() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-            invoke2(error);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Error error) {
-            C12238m.checkNotNullParameter(error, "it");
-            PublishSubject publishSubject = WidgetPruneUsersViewModel.this.eventSubject;
-            Throwable throwable = error.getThrowable();
-            C12238m.checkNotNullExpressionValue(throwable, "it.throwable");
-            publishSubject.f27650k.onNext((T) new Event.RestClientFailed(throwable));
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final Observable<StoreData> observeStoreState(long guildId, ObservationDeck observationDeck, StorePermissions storePermissions, StoreGuilds storeGuilds, StoreUser storeUsers) {
-            C12238m.checkNotNullParameter(observationDeck, "observationDeck");
-            C12238m.checkNotNullParameter(storePermissions, "storePermissions");
-            C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-            C12238m.checkNotNullParameter(storeUsers, "storeUsers");
-            return ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{storePermissions, storeGuilds, storeUsers}, false, null, null, new WidgetPruneUsersViewModel$Companion$observeStoreState$1(storePermissions, guildId, storeGuilds, storeUsers), 14, null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public abstract class Event {
-
-        /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public final class Dismiss extends Event {
-            public static final Dismiss INSTANCE = new Dismiss();
-
-            private Dismiss() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public final /* data */ class RestClientFailed extends Event {
-            private final Throwable throwable;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public RestClientFailed(Throwable th) {
-                super(null);
-                C12238m.checkNotNullParameter(th, "throwable");
-                this.throwable = th;
-            }
-
-            public static /* synthetic */ RestClientFailed copy$default(RestClientFailed restClientFailed, Throwable th, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    th = restClientFailed.throwable;
-                }
-                return restClientFailed.copy(th);
-            }
-
-            public final RestClientFailed copy(Throwable throwable) {
-                C12238m.checkNotNullParameter(throwable, "throwable");
-                return new RestClientFailed(throwable);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof RestClientFailed) && C12238m.areEqual(this.throwable, ((RestClientFailed) other).throwable);
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Throwable getThrowable() {
-                return this.throwable;
-            }
-
-            public final Throwable getThrowable() {
-                return this.throwable;
-            }
-
-            public int hashCode() {
-                Throwable th = this.throwable;
-                if (th != null) {
-                    return th.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("RestClientFailed(throwable=");
-                sbM833U.append(this.throwable);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        private Event() {
-        }
-
-        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public enum PruneDays {
-        Seven(7),
-        Thirty(30);
-
-        private final int count;
-
-        PruneDays(int i) {
-            this.count = i;
-        }
-
-        public final int getCount() {
-            return this.count;
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public final /* data */ class StoreData {
-        private final Guild guild;
-        private final Long permission;
-        private final MeUser user;
-
-        public StoreData(Long l, Guild guild, MeUser meUser) {
-            this.permission = l;
-            this.guild = guild;
-            this.user = meUser;
-        }
-
-        public static /* synthetic */ StoreData copy$default(StoreData storeData, Long l, Guild guild, MeUser meUser, int i, Object obj) {
-            if ((i & 1) != 0) {
-                l = storeData.permission;
-            }
-            if ((i & 2) != 0) {
-                guild = storeData.guild;
-            }
-            if ((i & 4) != 0) {
-                meUser = storeData.user;
-            }
-            return storeData.copy(l, guild, meUser);
-        }
-
-        public final StoreData copy(Long permission, Guild guild, MeUser user) {
-            return new StoreData(permission, guild, user);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof StoreData)) {
-                return false;
-            }
-            StoreData storeData = (StoreData) other;
-            return C12238m.areEqual(this.permission, storeData.permission) && C12238m.areEqual(this.guild, storeData.guild) && C12238m.areEqual(this.user, storeData.user);
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Long getPermission() {
-            return this.permission;
-        }
-
-        public final Long getPermission() {
-            return this.permission;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final MeUser getUser() {
-            return this.user;
-        }
-
-        public final MeUser getUser() {
-            return this.user;
-        }
-
-        public int hashCode() {
-            Long l = this.permission;
-            int iHashCode = (l != null ? l.hashCode() : 0) * 31;
-            Guild guild = this.guild;
-            int iHashCode2 = (iHashCode + (guild != null ? guild.hashCode() : 0)) * 31;
-            MeUser meUser = this.user;
-            return iHashCode2 + (meUser != null ? meUser.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("StoreData(permission=");
-            sbM833U.append(this.permission);
-            sbM833U.append(", guild=");
-            sbM833U.append(this.guild);
-            sbM833U.append(", user=");
-            sbM833U.append(this.user);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-    public abstract class ViewState {
-
-        /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public final /* data */ class LoadFailed extends ViewState {
-            private final boolean dismiss;
-
-            public LoadFailed(boolean z2) {
-                super(null);
-                this.dismiss = z2;
-            }
-
-            public static /* synthetic */ LoadFailed copy$default(LoadFailed loadFailed, boolean z2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    z2 = loadFailed.dismiss;
-                }
-                return loadFailed.copy(z2);
-            }
-
-            public final LoadFailed copy(boolean dismiss) {
-                return new LoadFailed(dismiss);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof LoadFailed) && this.dismiss == ((LoadFailed) other).dismiss;
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getDismiss() {
-                return this.dismiss;
-            }
-
-            public final boolean getDismiss() {
-                return this.dismiss;
-            }
-
-            public int hashCode() {
-                boolean z2 = this.dismiss;
-                if (z2) {
-                    return 1;
-                }
-                return z2 ? 1 : 0;
-            }
-
-            public String toString() {
-                return C1643a.m827O(C1643a.m833U("LoadFailed(dismiss="), this.dismiss, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public final /* data */ class Loaded extends ViewState {
-            private final int pruneCount;
-            private final PruneDays pruneDays;
-            private final boolean pruneInProgress;
-
-            public /* synthetic */ Loaded(PruneDays pruneDays, int i, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-                this(pruneDays, i, (i2 & 4) != 0 ? false : z2);
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, PruneDays pruneDays, int i, boolean z2, int i2, Object obj) {
-                if ((i2 & 1) != 0) {
-                    pruneDays = loaded.pruneDays;
-                }
-                if ((i2 & 2) != 0) {
-                    i = loaded.pruneCount;
-                }
-                if ((i2 & 4) != 0) {
-                    z2 = loaded.pruneInProgress;
-                }
-                return loaded.copy(pruneDays, i, z2);
-            }
-
-            public final Loaded copy(PruneDays pruneDays, int pruneCount, boolean pruneInProgress) {
-                C12238m.checkNotNullParameter(pruneDays, "pruneDays");
-                return new Loaded(pruneDays, pruneCount, pruneInProgress);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Loaded)) {
-                    return false;
-                }
-                Loaded loaded = (Loaded) other;
-                return C12238m.areEqual(this.pruneDays, loaded.pruneDays) && this.pruneCount == loaded.pruneCount && this.pruneInProgress == loaded.pruneInProgress;
-            }
-
-            public final boolean getPruneButtonEnabled() {
-                return this.pruneCount > 0 && !this.pruneInProgress;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getPruneCount() {
-                return this.pruneCount;
-            }
-
-            public final int getPruneCount() {
-                return this.pruneCount;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final PruneDays getPruneDays() {
-                return this.pruneDays;
-            }
-
-            public final PruneDays getPruneDays() {
-                return this.pruneDays;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            private final boolean getPruneInProgress() {
-                return this.pruneInProgress;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v2, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v3 */
-            /* JADX WARN: Type inference failed for: r1v4 */
-            public int hashCode() {
-                PruneDays pruneDays = this.pruneDays;
-                int iHashCode = (((pruneDays != null ? pruneDays.hashCode() : 0) * 31) + this.pruneCount) * 31;
-                boolean z2 = this.pruneInProgress;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                return iHashCode + r1;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(pruneDays=");
-                sbM833U.append(this.pruneDays);
-                sbM833U.append(", pruneCount=");
-                sbM833U.append(this.pruneCount);
-                sbM833U.append(", pruneInProgress=");
-                return C1643a.m827O(sbM833U, this.pruneInProgress, ")");
-            }
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(PruneDays pruneDays, int i, boolean z2) {
-                super(null);
-                C12238m.checkNotNullParameter(pruneDays, "pruneDays");
-                this.pruneDays = pruneDays;
-                this.pruneCount = i;
-                this.pruneInProgress = z2;
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetPruneUsersViewModel.kt */
-        public final /* data */ class Loading extends ViewState {
-            private final String guildName;
-            private final PruneDays whichPruneDays;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loading(PruneDays pruneDays, String str) {
-                super(null);
-                C12238m.checkNotNullParameter(pruneDays, "whichPruneDays");
-                C12238m.checkNotNullParameter(str, "guildName");
-                this.whichPruneDays = pruneDays;
-                this.guildName = str;
-            }
-
-            public static /* synthetic */ Loading copy$default(Loading loading, PruneDays pruneDays, String str, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    pruneDays = loading.whichPruneDays;
-                }
-                if ((i & 2) != 0) {
-                    str = loading.guildName;
-                }
-                return loading.copy(pruneDays, str);
-            }
-
-            public final Loading copy(PruneDays whichPruneDays, String guildName) {
-                C12238m.checkNotNullParameter(whichPruneDays, "whichPruneDays");
-                C12238m.checkNotNullParameter(guildName, "guildName");
-                return new Loading(whichPruneDays, guildName);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Loading)) {
-                    return false;
-                }
-                Loading loading = (Loading) other;
-                return C12238m.areEqual(this.whichPruneDays, loading.whichPruneDays) && C12238m.areEqual(this.guildName, loading.guildName);
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final PruneDays getWhichPruneDays() {
-                return this.whichPruneDays;
-            }
-
-            public final PruneDays getWhichPruneDays() {
-                return this.whichPruneDays;
-            }
-
-            public int hashCode() {
-                PruneDays pruneDays = this.whichPruneDays;
-                int iHashCode = (pruneDays != null ? pruneDays.hashCode() : 0) * 31;
-                String str = this.guildName;
-                return iHashCode + (str != null ? str.hashCode() : 0);
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loading(whichPruneDays=");
-                sbM833U.append(this.whichPruneDays);
-                sbM833U.append(", guildName=");
-                return C1643a.m822J(sbM833U, this.guildName, ")");
-            }
-        }
-
-        private ViewState() {
-        }
-
-        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private WidgetPruneUsersViewModel$PruneDays whichPruneDays;
+    private static final WidgetPruneUsersViewModel$PruneDays DEFAULT_DAYS = WidgetPruneUsersViewModel$PruneDays.Thirty;
 
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ WidgetPruneUsersViewModel(long j, StoreGuilds storeGuilds, StoreUser storeUser, String str, RestAPI restAPI, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         String str2;
         Observable observableObserveStoreState;
-        StoreGuilds guilds = (i & 2) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds;
-        StoreUser users = (i & 4) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser;
+        StoreGuilds guilds = (i & 2) != 0 ? StoreStream.Companion.getGuilds() : storeGuilds;
+        StoreUser users = (i & 4) != 0 ? StoreStream.Companion.getUsers() : storeUser;
         if ((i & 8) != 0) {
             Guild guild = guilds.getGuilds().get(Long.valueOf(j));
             String name = guild != null ? guild.getName() : null;
@@ -622,107 +48,112 @@ public final class WidgetPruneUsersViewModel extends AbstractC0859d0<ViewState> 
         } else {
             str2 = str;
         }
-        RestAPI api = (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI;
+        RestAPI api = (i & 16) != 0 ? RestAPI.Companion.getApi() : restAPI;
         if ((i & 32) != 0) {
-            Companion companion = INSTANCE;
+            WidgetPruneUsersViewModel$Companion widgetPruneUsersViewModel$Companion = Companion;
             ObservationDeck observationDeck = ObservationDeckProvider.get();
-            StoreStream.Companion companion2 = StoreStream.INSTANCE;
-            observableObserveStoreState = companion.observeStoreState(j, observationDeck, companion2.getPermissions(), companion2.getGuilds(), users);
+            StoreStream$Companion storeStream$Companion = StoreStream.Companion;
+            observableObserveStoreState = widgetPruneUsersViewModel$Companion.observeStoreState(j, observationDeck, storeStream$Companion.getPermissions(), storeStream$Companion.getGuilds(), users);
         } else {
             observableObserveStoreState = observable;
         }
         this(j, guilds, users, str2, api, observableObserveStoreState);
     }
 
-    private final ViewState.Loading getLoadingState() {
-        return new ViewState.Loading(this.whichPruneDays, this.guildName);
+    public static final /* synthetic */ PublishSubject access$getEventSubject$p(WidgetPruneUsersViewModel widgetPruneUsersViewModel) {
+        return widgetPruneUsersViewModel.eventSubject;
+    }
+
+    public static final /* synthetic */ Subscription access$getPruneCountRequest$p(WidgetPruneUsersViewModel widgetPruneUsersViewModel) {
+        return widgetPruneUsersViewModel.pruneCountRequest;
+    }
+
+    public static final /* synthetic */ void access$getUpdatedPruneCount(WidgetPruneUsersViewModel widgetPruneUsersViewModel) {
+        widgetPruneUsersViewModel.getUpdatedPruneCount();
+    }
+
+    public static final /* synthetic */ WidgetPruneUsersViewModel$PruneDays access$getWhichPruneDays$p(WidgetPruneUsersViewModel widgetPruneUsersViewModel) {
+        return widgetPruneUsersViewModel.whichPruneDays;
+    }
+
+    public static final /* synthetic */ void access$pruneInProgress(WidgetPruneUsersViewModel widgetPruneUsersViewModel, boolean z2) {
+        widgetPruneUsersViewModel.pruneInProgress(z2);
+    }
+
+    public static final /* synthetic */ void access$setPruneCountRequest$p(WidgetPruneUsersViewModel widgetPruneUsersViewModel, Subscription subscription) {
+        widgetPruneUsersViewModel.pruneCountRequest = subscription;
+    }
+
+    public static final /* synthetic */ void access$setWhichPruneDays$p(WidgetPruneUsersViewModel widgetPruneUsersViewModel, WidgetPruneUsersViewModel$PruneDays widgetPruneUsersViewModel$PruneDays) {
+        widgetPruneUsersViewModel.whichPruneDays = widgetPruneUsersViewModel$PruneDays;
+    }
+
+    public static final /* synthetic */ void access$updateViewState(WidgetPruneUsersViewModel widgetPruneUsersViewModel, WidgetPruneUsersViewModel$ViewState widgetPruneUsersViewModel$ViewState) {
+        widgetPruneUsersViewModel.updateViewState(widgetPruneUsersViewModel$ViewState);
+    }
+
+    private final WidgetPruneUsersViewModel$ViewState$Loading getLoadingState() {
+        return new WidgetPruneUsersViewModel$ViewState$Loading(this.whichPruneDays, this.guildName);
     }
 
     private final void getUpdatedPruneCount() {
         updateViewState(getLoadingState());
-        Observable observableM11087M = ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getPruneCount(this.guildId, this.whichPruneDays.getCount()), false, 1, null).m11083G(new InterfaceC12589b<PruneCountResponse, Integer>() { // from class: com.discord.widgets.user.WidgetPruneUsersViewModel.getUpdatedPruneCount.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Integer call(PruneCountResponse pruneCountResponse) {
-                return Integer.valueOf(pruneCountResponse.getPruned());
-            }
-        }).m11083G(new InterfaceC12589b<Integer, ViewState>() { // from class: com.discord.widgets.user.WidgetPruneUsersViewModel.getUpdatedPruneCount.2
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final ViewState call(Integer num) {
-                PruneDays pruneDays = WidgetPruneUsersViewModel.this.whichPruneDays;
-                C12238m.checkNotNullExpressionValue(num, "count");
-                return new ViewState.Loaded(pruneDays, num.intValue(), false, 4, null);
-            }
-        }).m11114t(new Action1<Throwable>() { // from class: com.discord.widgets.user.WidgetPruneUsersViewModel.getUpdatedPruneCount.3
-            @Override // p658rx.functions.Action1
-            public final void call(Throwable th) {
-                PublishSubject publishSubject = WidgetPruneUsersViewModel.this.eventSubject;
-                C12238m.checkNotNullExpressionValue(th, "it");
-                publishSubject.f27650k.onNext(new Event.RestClientFailed(th));
-            }
-        }).m11087M(new InterfaceC12589b<Throwable, ViewState>() { // from class: com.discord.widgets.user.WidgetPruneUsersViewModel.getUpdatedPruneCount.4
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final ViewState call(Throwable th) {
-                return new ViewState.LoadFailed(false);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11087M, "restAPI.getPruneCount(gu…Failed(dismiss = false) }");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11087M, this, null, 2, null), (Class<?>) WidgetPruneUsersViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C102025()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C102036(this));
+        Observable observableM = ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.getPruneCount(this.guildId, this.whichPruneDays.getCount()), false, 1, null).G(WidgetPruneUsersViewModel$getUpdatedPruneCount$1.INSTANCE).G(new WidgetPruneUsersViewModel$getUpdatedPruneCount$2(this)).t(new WidgetPruneUsersViewModel$getUpdatedPruneCount$3(this)).M(WidgetPruneUsersViewModel$getUpdatedPruneCount$4.INSTANCE);
+        m.checkNotNullExpressionValue(observableM, "restAPI.getPruneCount(gu…Failed(dismiss = false) }");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableM, this, null, 2, null), WidgetPruneUsersViewModel.class, (Context) null, new WidgetPruneUsersViewModel$getUpdatedPruneCount$5(this), (Function1) null, (Function0) null, (Function0) null, new WidgetPruneUsersViewModel$getUpdatedPruneCount$6(this), 58, (Object) null);
     }
 
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+    public final Observable<WidgetPruneUsersViewModel$Event> observeEvents() {
+        PublishSubject<WidgetPruneUsersViewModel$Event> publishSubject = this.eventSubject;
+        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     public final void pruneClicked() {
         pruneInProgress(true);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.pruneMembers(this.guildId, new RestAPIParams.PruneGuild(Integer.valueOf(this.whichPruneDays.getCount()), Boolean.FALSE)), false, 1, null), this, null, 2, null), (Class<?>) WidgetPruneUsersViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C102063()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C102052()), new C102041());
+        Observable observableUi$default = ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.pruneMembers(this.guildId, new RestAPIParams$PruneGuild(Integer.valueOf(this.whichPruneDays.getCount()), Boolean.FALSE)), false, 1, null), this, null, 2, null);
+        WidgetPruneUsersViewModel$pruneClicked$1 widgetPruneUsersViewModel$pruneClicked$1 = new WidgetPruneUsersViewModel$pruneClicked$1(this);
+        ObservableExtensionsKt.appSubscribe$default(observableUi$default, WidgetPruneUsersViewModel.class, (Context) null, (Function1) null, new WidgetPruneUsersViewModel$pruneClicked$3(this), (Function0) null, new WidgetPruneUsersViewModel$pruneClicked$2(this), widgetPruneUsersViewModel$pruneClicked$1, 22, (Object) null);
     }
 
-    public final void pruneDaysSelected(PruneDays days) {
-        C12238m.checkNotNullParameter(days, "days");
+    public final void pruneDaysSelected(WidgetPruneUsersViewModel$PruneDays days) {
+        m.checkNotNullParameter(days, "days");
         this.whichPruneDays = days;
         getUpdatedPruneCount();
     }
 
     private final void pruneInProgress(boolean inProgress) {
-        ViewState.Loaded loadedCopy$default;
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
+        WidgetPruneUsersViewModel$ViewState$Loaded widgetPruneUsersViewModel$ViewState$LoadedCopy$default;
+        WidgetPruneUsersViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetPruneUsersViewModel$ViewState$Loaded)) {
             viewState = null;
         }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded == null || (loadedCopy$default = ViewState.Loaded.copy$default(loaded, null, 0, inProgress, 3, null)) == null) {
+        WidgetPruneUsersViewModel$ViewState$Loaded widgetPruneUsersViewModel$ViewState$Loaded = (WidgetPruneUsersViewModel$ViewState$Loaded) viewState;
+        if (widgetPruneUsersViewModel$ViewState$Loaded == null || (widgetPruneUsersViewModel$ViewState$LoadedCopy$default = WidgetPruneUsersViewModel$ViewState$Loaded.copy$default(widgetPruneUsersViewModel$ViewState$Loaded, null, 0, inProgress, 3, null)) == null) {
             return;
         }
-        updateViewState(loadedCopy$default);
+        updateViewState(widgetPruneUsersViewModel$ViewState$LoadedCopy$default);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetPruneUsersViewModel(long j, StoreGuilds storeGuilds, StoreUser storeUser, String str, RestAPI restAPI, Observable<StoreData> observable) {
-        super(new ViewState.Loading(DEFAULT_DAYS, str));
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        C12238m.checkNotNullParameter(storeUser, "storeUsers");
-        C12238m.checkNotNullParameter(str, "guildName");
-        C12238m.checkNotNullParameter(restAPI, "restAPI");
-        C12238m.checkNotNullParameter(observable, "storeDataObservable");
+    public WidgetPruneUsersViewModel(long j, StoreGuilds storeGuilds, StoreUser storeUser, String str, RestAPI restAPI, Observable<WidgetPruneUsersViewModel$StoreData> observable) {
+        super(new WidgetPruneUsersViewModel$ViewState$Loading(DEFAULT_DAYS, str));
+        m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        m.checkNotNullParameter(storeUser, "storeUsers");
+        m.checkNotNullParameter(str, "guildName");
+        m.checkNotNullParameter(restAPI, "restAPI");
+        m.checkNotNullParameter(observable, "storeDataObservable");
         this.guildId = j;
         this.storeGuilds = storeGuilds;
         this.storeUsers = storeUser;
         this.guildName = str;
         this.restAPI = restAPI;
-        this.eventSubject = PublishSubject.m11133k0();
-        ViewState viewState = getViewState();
+        this.eventSubject = PublishSubject.k0();
+        WidgetPruneUsersViewModel$ViewState viewState = getViewState();
         Objects.requireNonNull(viewState, "null cannot be cast to non-null type com.discord.widgets.user.WidgetPruneUsersViewModel.ViewState.Loading");
-        this.whichPruneDays = ((ViewState.Loading) viewState).getWhichPruneDays();
-        Observable observableM11112r = observable.m11083G(new InterfaceC12589b<StoreData, Boolean>() { // from class: com.discord.widgets.user.WidgetPruneUsersViewModel.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Boolean call(StoreData storeData) {
-                return Boolean.valueOf((storeData.getPermission() == null || storeData.getUser() == null || storeData.getGuild() == null || !PermissionUtils.canAndIsElevated(2L, storeData.getPermission(), storeData.getUser().getMfaEnabled(), storeData.getGuild().getMfaLevel())) ? false : true);
-            }
-        }).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "storeDataObservable\n    …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableM11112r), this, null, 2, null), (Class<?>) WidgetPruneUsersViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101972());
+        this.whichPruneDays = ((WidgetPruneUsersViewModel$ViewState$Loading) viewState).getWhichPruneDays();
+        Observable observableR = observable.G(WidgetPruneUsersViewModel$1.INSTANCE).r();
+        m.checkNotNullExpressionValue(observableR, "storeDataObservable\n    …  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), WidgetPruneUsersViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetPruneUsersViewModel$2(this), 62, (Object) null);
     }
 }

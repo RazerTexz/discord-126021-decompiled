@@ -1,13 +1,13 @@
 package com.discord.stores;
 
-import android.content.SharedPreferences;
+import android.content.SharedPreferences$Editor;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreNotices.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreNotices$firstUseTimestamp$2 extends AbstractC12240o implements Function0<Long> {
+public final class StoreNotices$firstUseTimestamp$2 extends o implements Function0<Long> {
     public final /* synthetic */ StoreNotices this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -27,11 +27,11 @@ public final class StoreNotices$firstUseTimestamp$2 extends AbstractC12240o impl
         if (j != -1) {
             return j;
         }
-        long jCurrentTimeMillis = this.this$0.clock.currentTimeMillis();
-        SharedPreferences.Editor editorEdit = this.this$0.getPrefsSessionDurable().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-        editorEdit.putLong("CACHE_KEY_FIRST_USE", jCurrentTimeMillis);
-        editorEdit.apply();
+        long jCurrentTimeMillis = StoreNotices.access$getClock$p(this.this$0).currentTimeMillis();
+        SharedPreferences$Editor sharedPreferences$EditorEdit = this.this$0.getPrefsSessionDurable().edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        sharedPreferences$EditorEdit.putLong("CACHE_KEY_FIRST_USE", jCurrentTimeMillis);
+        sharedPreferences$EditorEdit.apply();
         return jCurrentTimeMillis;
     }
 }

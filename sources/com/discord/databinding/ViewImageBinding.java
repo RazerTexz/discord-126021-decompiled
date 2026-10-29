@@ -8,17 +8,16 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewImageBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final SimpleDraweeView f15498a;
+    public final SimpleDraweeView a;
 
     public ViewImageBinding(@NonNull SimpleDraweeView simpleDraweeView) {
-        this.f15498a = simpleDraweeView;
+        this.a = simpleDraweeView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15498a;
+        return this.a;
     }
 }

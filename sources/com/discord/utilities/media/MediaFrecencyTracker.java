@@ -1,18 +1,16 @@
 package com.discord.utilities.media;
 
 import com.discord.utilities.frecency.FrecencyTracker;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MediaFrecencyTracker.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class MediaFrecencyTracker extends FrecencyTracker<String> {
-    /* JADX WARN: Illegal instructions before constructor call */
     public MediaFrecencyTracker() {
-        int i = 0;
-        this(i, i, 3, null);
+        this(0, 0, 3, null);
     }
 
     public MediaFrecencyTracker(int i, int i2) {
@@ -21,7 +19,7 @@ public final class MediaFrecencyTracker extends FrecencyTracker<String> {
 
     @Override // com.discord.utilities.frecency.FrecencyTracker
     public int computeScore(List<Long> list, long j) {
-        C12238m.checkNotNullParameter(list, "$this$computeScore");
+        m.checkNotNullParameter(list, "$this$computeScore");
         Iterator<T> it = list.iterator();
         int daysWeight = 0;
         while (it.hasNext()) {

@@ -3,11 +3,14 @@ package com.discord.widgets.guild_role_subscriptions.tier;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import p507d0.p592z.p594d.C12238m;
+import androidx.recyclerview.widget.RecyclerView$Adapter;
+import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
+import androidx.recyclerview.widget.RecyclerView$State;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionTierItemDecoration.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildRoleSubscriptionTierItemDecoration extends RecyclerView.ItemDecoration {
+public final class GuildRoleSubscriptionTierItemDecoration extends RecyclerView$ItemDecoration {
     private final int horizontalSpacing;
     private final int verticalSpacing;
 
@@ -16,15 +19,15 @@ public final class GuildRoleSubscriptionTierItemDecoration extends RecyclerView.
         this.horizontalSpacing = i2;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        C12238m.checkNotNullParameter(outRect, "outRect");
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(parent, "parent");
-        C12238m.checkNotNullParameter(state, "state");
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView$State state) {
+        m.checkNotNullParameter(outRect, "outRect");
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(parent, "parent");
+        m.checkNotNullParameter(state, "state");
         super.getItemOffsets(outRect, view, parent, state);
         int childAdapterPosition = parent.getChildAdapterPosition(view);
-        RecyclerView.Adapter adapter = parent.getAdapter();
+        RecyclerView$Adapter adapter = parent.getAdapter();
         Integer numValueOf = adapter != null ? Integer.valueOf(adapter.getItemViewType(childAdapterPosition)) : null;
         if (numValueOf != null && numValueOf.intValue() == 1) {
             int i = this.verticalSpacing;

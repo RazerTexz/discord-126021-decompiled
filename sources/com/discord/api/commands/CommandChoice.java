@@ -1,8 +1,8 @@
 package com.discord.api.commands;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: CommandChoice.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class CommandChoice {
     private final String value;
 
     public CommandChoice(String str, String str2) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(str2, "value");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str2, "value");
         this.name = str;
         this.value = str2;
     }
@@ -25,7 +25,7 @@ public final /* data */ class CommandChoice {
             return false;
         }
         CommandChoice commandChoice = (CommandChoice) other;
-        return C12238m.areEqual(this.name, commandChoice.name) && C12238m.areEqual(this.value, commandChoice.value);
+        return m.areEqual(this.name, commandChoice.name) && m.areEqual(this.value, commandChoice.value);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,9 +46,9 @@ public final /* data */ class CommandChoice {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("CommandChoice(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", value=");
-        return C1643a.m822J(sbM833U, this.value, ")");
+        StringBuilder sbU = a.U("CommandChoice(name=");
+        sbU.append(this.name);
+        sbU.append(", value=");
+        return a.J(sbU, this.value, ")");
     }
 }

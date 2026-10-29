@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStoreListingViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -58,7 +58,7 @@ public final /* data */ class TrackStoreListingViewed implements AnalyticsSchema
             return false;
         }
         TrackStoreListingViewed trackStoreListingViewed = (TrackStoreListingViewed) other;
-        return C12238m.areEqual(this.loadId, trackStoreListingViewed.loadId) && C12238m.areEqual(this.hasDescription, trackStoreListingViewed.hasDescription) && C12238m.areEqual(this.hasStaffReview, trackStoreListingViewed.hasStaffReview) && C12238m.areEqual(this.carouselImageCount, trackStoreListingViewed.carouselImageCount) && C12238m.areEqual(this.carouselVideoCount, trackStoreListingViewed.carouselVideoCount) && C12238m.areEqual(this.hasNews, trackStoreListingViewed.hasNews) && C12238m.areEqual(this.hasSinglePlayer, trackStoreListingViewed.hasSinglePlayer) && C12238m.areEqual(this.hasOnlineMultiplayer, trackStoreListingViewed.hasOnlineMultiplayer) && C12238m.areEqual(this.hasLocalMultiplayer, trackStoreListingViewed.hasLocalMultiplayer) && C12238m.areEqual(this.hasPvpFeatures, trackStoreListingViewed.hasPvpFeatures) && C12238m.areEqual(this.hasCoop, trackStoreListingViewed.hasCoop) && C12238m.areEqual(this.hasLocalCoop, trackStoreListingViewed.hasLocalCoop) && C12238m.areEqual(this.hasOnlineCoop, trackStoreListingViewed.hasOnlineCoop) && C12238m.areEqual(this.hasCrossPlatform, trackStoreListingViewed.hasCrossPlatform) && C12238m.areEqual(this.hasRichPresence, trackStoreListingViewed.hasRichPresence) && C12238m.areEqual(this.hasGameInvites, trackStoreListingViewed.hasGameInvites) && C12238m.areEqual(this.hasSpectatorMode, trackStoreListingViewed.hasSpectatorMode) && C12238m.areEqual(this.hasControllerSupport, trackStoreListingViewed.hasControllerSupport) && C12238m.areEqual(this.hasCloudSaves, trackStoreListingViewed.hasCloudSaves) && C12238m.areEqual(this.hasSecureNetworking, trackStoreListingViewed.hasSecureNetworking) && C12238m.areEqual(this.promotionId, trackStoreListingViewed.promotionId) && C12238m.areEqual(this.listIndex, trackStoreListingViewed.listIndex) && C12238m.areEqual(this.listSearched, trackStoreListingViewed.listSearched) && C12238m.areEqual(this.listSort, trackStoreListingViewed.listSort) && C12238m.areEqual(this.listFilterDistributionType, trackStoreListingViewed.listFilterDistributionType) && C12238m.areEqual(this.source, trackStoreListingViewed.source);
+        return m.areEqual(this.loadId, trackStoreListingViewed.loadId) && m.areEqual(this.hasDescription, trackStoreListingViewed.hasDescription) && m.areEqual(this.hasStaffReview, trackStoreListingViewed.hasStaffReview) && m.areEqual(this.carouselImageCount, trackStoreListingViewed.carouselImageCount) && m.areEqual(this.carouselVideoCount, trackStoreListingViewed.carouselVideoCount) && m.areEqual(this.hasNews, trackStoreListingViewed.hasNews) && m.areEqual(this.hasSinglePlayer, trackStoreListingViewed.hasSinglePlayer) && m.areEqual(this.hasOnlineMultiplayer, trackStoreListingViewed.hasOnlineMultiplayer) && m.areEqual(this.hasLocalMultiplayer, trackStoreListingViewed.hasLocalMultiplayer) && m.areEqual(this.hasPvpFeatures, trackStoreListingViewed.hasPvpFeatures) && m.areEqual(this.hasCoop, trackStoreListingViewed.hasCoop) && m.areEqual(this.hasLocalCoop, trackStoreListingViewed.hasLocalCoop) && m.areEqual(this.hasOnlineCoop, trackStoreListingViewed.hasOnlineCoop) && m.areEqual(this.hasCrossPlatform, trackStoreListingViewed.hasCrossPlatform) && m.areEqual(this.hasRichPresence, trackStoreListingViewed.hasRichPresence) && m.areEqual(this.hasGameInvites, trackStoreListingViewed.hasGameInvites) && m.areEqual(this.hasSpectatorMode, trackStoreListingViewed.hasSpectatorMode) && m.areEqual(this.hasControllerSupport, trackStoreListingViewed.hasControllerSupport) && m.areEqual(this.hasCloudSaves, trackStoreListingViewed.hasCloudSaves) && m.areEqual(this.hasSecureNetworking, trackStoreListingViewed.hasSecureNetworking) && m.areEqual(this.promotionId, trackStoreListingViewed.promotionId) && m.areEqual(this.listIndex, trackStoreListingViewed.listIndex) && m.areEqual(this.listSearched, trackStoreListingViewed.listSearched) && m.areEqual(this.listSort, trackStoreListingViewed.listSort) && m.areEqual(this.listFilterDistributionType, trackStoreListingViewed.listFilterDistributionType) && m.areEqual(this.source, trackStoreListingViewed.source);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -123,57 +123,57 @@ public final /* data */ class TrackStoreListingViewed implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStoreListingViewed(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", hasDescription=");
-        sbM833U.append(this.hasDescription);
-        sbM833U.append(", hasStaffReview=");
-        sbM833U.append(this.hasStaffReview);
-        sbM833U.append(", carouselImageCount=");
-        sbM833U.append(this.carouselImageCount);
-        sbM833U.append(", carouselVideoCount=");
-        sbM833U.append(this.carouselVideoCount);
-        sbM833U.append(", hasNews=");
-        sbM833U.append(this.hasNews);
-        sbM833U.append(", hasSinglePlayer=");
-        sbM833U.append(this.hasSinglePlayer);
-        sbM833U.append(", hasOnlineMultiplayer=");
-        sbM833U.append(this.hasOnlineMultiplayer);
-        sbM833U.append(", hasLocalMultiplayer=");
-        sbM833U.append(this.hasLocalMultiplayer);
-        sbM833U.append(", hasPvpFeatures=");
-        sbM833U.append(this.hasPvpFeatures);
-        sbM833U.append(", hasCoop=");
-        sbM833U.append(this.hasCoop);
-        sbM833U.append(", hasLocalCoop=");
-        sbM833U.append(this.hasLocalCoop);
-        sbM833U.append(", hasOnlineCoop=");
-        sbM833U.append(this.hasOnlineCoop);
-        sbM833U.append(", hasCrossPlatform=");
-        sbM833U.append(this.hasCrossPlatform);
-        sbM833U.append(", hasRichPresence=");
-        sbM833U.append(this.hasRichPresence);
-        sbM833U.append(", hasGameInvites=");
-        sbM833U.append(this.hasGameInvites);
-        sbM833U.append(", hasSpectatorMode=");
-        sbM833U.append(this.hasSpectatorMode);
-        sbM833U.append(", hasControllerSupport=");
-        sbM833U.append(this.hasControllerSupport);
-        sbM833U.append(", hasCloudSaves=");
-        sbM833U.append(this.hasCloudSaves);
-        sbM833U.append(", hasSecureNetworking=");
-        sbM833U.append(this.hasSecureNetworking);
-        sbM833U.append(", promotionId=");
-        sbM833U.append(this.promotionId);
-        sbM833U.append(", listIndex=");
-        sbM833U.append(this.listIndex);
-        sbM833U.append(", listSearched=");
-        sbM833U.append(this.listSearched);
-        sbM833U.append(", listSort=");
-        sbM833U.append(this.listSort);
-        sbM833U.append(", listFilterDistributionType=");
-        sbM833U.append(this.listFilterDistributionType);
-        sbM833U.append(", source=");
-        return C1643a.m817E(sbM833U, this.source, ")");
+        StringBuilder sbU = a.U("TrackStoreListingViewed(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", hasDescription=");
+        sbU.append(this.hasDescription);
+        sbU.append(", hasStaffReview=");
+        sbU.append(this.hasStaffReview);
+        sbU.append(", carouselImageCount=");
+        sbU.append(this.carouselImageCount);
+        sbU.append(", carouselVideoCount=");
+        sbU.append(this.carouselVideoCount);
+        sbU.append(", hasNews=");
+        sbU.append(this.hasNews);
+        sbU.append(", hasSinglePlayer=");
+        sbU.append(this.hasSinglePlayer);
+        sbU.append(", hasOnlineMultiplayer=");
+        sbU.append(this.hasOnlineMultiplayer);
+        sbU.append(", hasLocalMultiplayer=");
+        sbU.append(this.hasLocalMultiplayer);
+        sbU.append(", hasPvpFeatures=");
+        sbU.append(this.hasPvpFeatures);
+        sbU.append(", hasCoop=");
+        sbU.append(this.hasCoop);
+        sbU.append(", hasLocalCoop=");
+        sbU.append(this.hasLocalCoop);
+        sbU.append(", hasOnlineCoop=");
+        sbU.append(this.hasOnlineCoop);
+        sbU.append(", hasCrossPlatform=");
+        sbU.append(this.hasCrossPlatform);
+        sbU.append(", hasRichPresence=");
+        sbU.append(this.hasRichPresence);
+        sbU.append(", hasGameInvites=");
+        sbU.append(this.hasGameInvites);
+        sbU.append(", hasSpectatorMode=");
+        sbU.append(this.hasSpectatorMode);
+        sbU.append(", hasControllerSupport=");
+        sbU.append(this.hasControllerSupport);
+        sbU.append(", hasCloudSaves=");
+        sbU.append(this.hasCloudSaves);
+        sbU.append(", hasSecureNetworking=");
+        sbU.append(this.hasSecureNetworking);
+        sbU.append(", promotionId=");
+        sbU.append(this.promotionId);
+        sbU.append(", listIndex=");
+        sbU.append(this.listIndex);
+        sbU.append(", listSearched=");
+        sbU.append(this.listSearched);
+        sbU.append(", listSort=");
+        sbU.append(this.listSort);
+        sbU.append(", listFilterDistributionType=");
+        sbU.append(this.listFilterDistributionType);
+        sbU.append(", source=");
+        return a.E(sbU, this.source, ")");
     }
 }

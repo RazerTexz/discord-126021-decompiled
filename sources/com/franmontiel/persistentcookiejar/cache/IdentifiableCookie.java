@@ -1,16 +1,14 @@
 package com.franmontiel.persistentcookiejar.cache;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p600f0.C12370n;
+import b.d.b.a.a;
+import f0.n;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class IdentifiableCookie {
+    public n a;
 
-    /* JADX INFO: renamed from: a */
-    public C12370n f19667a;
-
-    public IdentifiableCookie(C12370n c12370n) {
-        this.f19667a = c12370n;
+    public IdentifiableCookie(n nVar) {
+        this.a = nVar;
     }
 
     public boolean equals(Object obj) {
@@ -18,18 +16,18 @@ public class IdentifiableCookie {
             return false;
         }
         IdentifiableCookie identifiableCookie = (IdentifiableCookie) obj;
-        if (!identifiableCookie.f19667a.f25947f.equals(this.f19667a.f25947f) || !identifiableCookie.f19667a.f25950i.equals(this.f19667a.f25950i) || !identifiableCookie.f19667a.f25951j.equals(this.f19667a.f25951j)) {
+        if (!identifiableCookie.a.f.equals(this.a.f) || !identifiableCookie.a.i.equals(this.a.i) || !identifiableCookie.a.j.equals(this.a.j)) {
             return false;
         }
-        C12370n c12370n = identifiableCookie.f19667a;
-        boolean z2 = c12370n.f25952k;
-        C12370n c12370n2 = this.f19667a;
-        return z2 == c12370n2.f25952k && c12370n.f25955n == c12370n2.f25955n;
+        n nVar = identifiableCookie.a;
+        boolean z2 = nVar.k;
+        n nVar2 = this.a;
+        return z2 == nVar2.k && nVar.n == nVar2.n;
     }
 
     public int hashCode() {
-        int iM863m = C1643a.m863m(this.f19667a.f25951j, C1643a.m863m(this.f19667a.f25950i, C1643a.m863m(this.f19667a.f25947f, 527, 31), 31), 31);
-        C12370n c12370n = this.f19667a;
-        return ((iM863m + (!c12370n.f25952k ? 1 : 0)) * 31) + (!c12370n.f25955n ? 1 : 0);
+        int iM = a.m(this.a.j, a.m(this.a.i, a.m(this.a.f, 527, 31), 31), 31);
+        n nVar = this.a;
+        return ((iM + (!nVar.k ? 1 : 0)) * 31) + (!nVar.n ? 1 : 0);
     }
 }

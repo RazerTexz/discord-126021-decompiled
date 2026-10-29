@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionBugReportSubmit.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +20,11 @@ public final /* data */ class TrackNetworkActionBugReportSubmit implements Analy
     private TrackNetworkMetadata trackNetworkMetadata;
     private final transient String analyticsSchemaTypeName = "network_action_bug_report_submit";
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,7 +33,7 @@ public final /* data */ class TrackNetworkActionBugReportSubmit implements Analy
             return false;
         }
         TrackNetworkActionBugReportSubmit trackNetworkActionBugReportSubmit = (TrackNetworkActionBugReportSubmit) other;
-        return C12238m.areEqual(this.priority, trackNetworkActionBugReportSubmit.priority) && C12238m.areEqual(this.asanaInboxId, trackNetworkActionBugReportSubmit.asanaInboxId);
+        return m.areEqual(this.priority, trackNetworkActionBugReportSubmit.priority) && m.areEqual(this.asanaInboxId, trackNetworkActionBugReportSubmit.asanaInboxId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -44,16 +49,10 @@ public final /* data */ class TrackNetworkActionBugReportSubmit implements Analy
         return iHashCode + (charSequence != null ? charSequence.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionBugReportSubmit(priority=");
-        sbM833U.append(this.priority);
-        sbM833U.append(", asanaInboxId=");
-        return C1643a.m817E(sbM833U, this.asanaInboxId, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionBugReportSubmit(priority=");
+        sbU.append(this.priority);
+        sbU.append(", asanaInboxId=");
+        return a.E(sbU, this.asanaInboxId, ")");
     }
 }

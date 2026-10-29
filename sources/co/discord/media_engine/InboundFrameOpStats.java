@@ -1,9 +1,9 @@
 package co.discord.media_engine;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.adjust.sdk.Constants;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: VoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -68,7 +68,7 @@ public final /* data */ class InboundFrameOpStats {
             return false;
         }
         InboundFrameOpStats inboundFrameOpStats = (InboundFrameOpStats) other;
-        return C12238m.areEqual(this.silent, inboundFrameOpStats.silent) && C12238m.areEqual(this.normal, inboundFrameOpStats.normal) && C12238m.areEqual(this.merged, inboundFrameOpStats.merged) && C12238m.areEqual(this.expanded, inboundFrameOpStats.expanded) && C12238m.areEqual(this.accelerated, inboundFrameOpStats.accelerated) && C12238m.areEqual(this.preemptiveExpanded, inboundFrameOpStats.preemptiveExpanded) && C12238m.areEqual(this.cng, inboundFrameOpStats.cng);
+        return m.areEqual(this.silent, inboundFrameOpStats.silent) && m.areEqual(this.normal, inboundFrameOpStats.normal) && m.areEqual(this.merged, inboundFrameOpStats.merged) && m.areEqual(this.expanded, inboundFrameOpStats.expanded) && m.areEqual(this.accelerated, inboundFrameOpStats.accelerated) && m.areEqual(this.preemptiveExpanded, inboundFrameOpStats.preemptiveExpanded) && m.areEqual(this.cng, inboundFrameOpStats.cng);
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -152,19 +152,19 @@ public final /* data */ class InboundFrameOpStats {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InboundFrameOpStats(silent=");
-        sbM833U.append(this.silent);
-        sbM833U.append(", normal=");
-        sbM833U.append(this.normal);
-        sbM833U.append(", merged=");
-        sbM833U.append(this.merged);
-        sbM833U.append(", expanded=");
-        sbM833U.append(this.expanded);
-        sbM833U.append(", accelerated=");
-        sbM833U.append(this.accelerated);
-        sbM833U.append(", preemptiveExpanded=");
-        sbM833U.append(this.preemptiveExpanded);
-        sbM833U.append(", cng=");
-        return C1643a.m819G(sbM833U, this.cng, ")");
+        StringBuilder sbU = a.U("InboundFrameOpStats(silent=");
+        sbU.append(this.silent);
+        sbU.append(", normal=");
+        sbU.append(this.normal);
+        sbU.append(", merged=");
+        sbU.append(this.merged);
+        sbU.append(", expanded=");
+        sbU.append(this.expanded);
+        sbU.append(", accelerated=");
+        sbU.append(this.accelerated);
+        sbU.append(", preemptiveExpanded=");
+        sbU.append(this.preemptiveExpanded);
+        sbU.append(", cng=");
+        return a.G(sbU, this.cng, ")");
     }
 }

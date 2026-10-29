@@ -2,19 +2,19 @@ package com.discord.widgets.notice;
 
 import android.content.Context;
 import android.view.View;
-import com.discord.C5419R;
+import b.i.c.m.d.k.h;
+import com.discord.R$id;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.google.android.material.textfield.TextInputLayout;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
-import p007b.p225i.p361c.p369m.p370d.p373k.C4628h;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetNoticeDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetNoticeDialog$Companion$showInputModal$1 extends AbstractC12240o implements Function1<View, Unit> {
+public final class WidgetNoticeDialog$Companion$showInputModal$1 extends o implements Function1<View, Unit> {
     public final /* synthetic */ Function2 $onOKClicked;
     public final /* synthetic */ boolean $shouldHideKeyboard;
 
@@ -28,20 +28,20 @@ public final class WidgetNoticeDialog$Companion$showInputModal$1 extends Abstrac
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(View view) {
         invoke2(view);
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         Function2 function2 = this.$onOKClicked;
         Context context = view.getContext();
-        C12238m.checkNotNullExpressionValue(context, "view.context");
-        View viewFindViewById = view.findViewById(C5419R.id.view_input);
-        C12238m.checkNotNullExpressionValue(viewFindViewById, "view.findViewById<TextIn…tLayout>(R.id.view_input)");
+        m.checkNotNullExpressionValue(context, "view.context");
+        View viewFindViewById = view.findViewById(R$id.view_input);
+        m.checkNotNullExpressionValue(viewFindViewById, "view.findViewById<TextIn…tLayout>(R.id.view_input)");
         function2.invoke(context, ViewExtensions.getTextOrEmpty((TextInputLayout) viewFindViewById));
         if (this.$shouldHideKeyboard) {
-            C4628h.m6424r(view.getContext(), view);
+            h.r(view.getContext(), view);
         }
     }
 }

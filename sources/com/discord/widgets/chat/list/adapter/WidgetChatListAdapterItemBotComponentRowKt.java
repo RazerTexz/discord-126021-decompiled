@@ -4,22 +4,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.discord.models.botuikit.MessageComponent;
 import com.discord.widgets.botuikit.views.ComponentView;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Objects;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemBotComponentRow.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListAdapterItemBotComponentRowKt {
     public static final void replaceViews(ViewGroup viewGroup, List<? extends ComponentView<? extends MessageComponent>> list) {
-        C12238m.checkNotNullParameter(viewGroup, "$this$replaceViews");
-        C12238m.checkNotNullParameter(list, "views");
+        m.checkNotNullParameter(viewGroup, "$this$replaceViews");
+        m.checkNotNullParameter(list, "views");
         int i = 0;
         for (Object obj : list) {
             int i2 = i + 1;
             if (i < 0) {
-                C12147n.throwIndexOverflow();
+                n.throwIndexOverflow();
             }
             Object obj2 = (ComponentView) obj;
             if (i >= viewGroup.getChildCount()) {

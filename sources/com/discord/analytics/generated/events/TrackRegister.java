@@ -1,6 +1,7 @@
 package com.discord.analytics.generated.events;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGiftCodeMetadata;
@@ -8,8 +9,7 @@ import com.discord.analytics.generated.traits.TrackGiftCodeMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackGuildTemplate;
 import com.discord.analytics.generated.traits.TrackGuildTemplateReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackRegister.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -46,7 +46,7 @@ public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBas
             return false;
         }
         TrackRegister trackRegister = (TrackRegister) other;
-        return C12238m.areEqual(this.registrationSource, trackRegister.registrationSource) && C12238m.areEqual(this.full, trackRegister.full) && C12238m.areEqual(this.instantInvite, trackRegister.instantInvite) && C12238m.areEqual(this.inviteCode, trackRegister.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegister.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegister.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegister.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegister.inviteInviterId) && C12238m.areEqual(this.smiteCaptchaRequested, trackRegister.smiteCaptchaRequested) && C12238m.areEqual(this.solvedCaptcha, trackRegister.solvedCaptcha) && C12238m.areEqual(this.captchaScore, trackRegister.captchaScore) && C12238m.areEqual(this.requireVerifiedPhone, trackRegister.requireVerifiedPhone) && C12238m.areEqual(this.requireVerifiedEmail, trackRegister.requireVerifiedEmail) && C12238m.areEqual(this.requireVerifiedPhoneThenEmail, trackRegister.requireVerifiedPhoneThenEmail) && C12238m.areEqual(this.email, trackRegister.email) && C12238m.areEqual(this.phone, trackRegister.phone) && C12238m.areEqual(this.identityType, trackRegister.identityType) && C12238m.areEqual(this.phoneCarrierName, trackRegister.phoneCarrierName) && C12238m.areEqual(this.phoneCountry, trackRegister.phoneCountry);
+        return m.areEqual(this.registrationSource, trackRegister.registrationSource) && m.areEqual(this.full, trackRegister.full) && m.areEqual(this.instantInvite, trackRegister.instantInvite) && m.areEqual(this.inviteCode, trackRegister.inviteCode) && m.areEqual(this.inviteGuildId, trackRegister.inviteGuildId) && m.areEqual(this.inviteChannelId, trackRegister.inviteChannelId) && m.areEqual(this.inviteChannelType, trackRegister.inviteChannelType) && m.areEqual(this.inviteInviterId, trackRegister.inviteInviterId) && m.areEqual(this.smiteCaptchaRequested, trackRegister.smiteCaptchaRequested) && m.areEqual(this.solvedCaptcha, trackRegister.solvedCaptcha) && m.areEqual(this.captchaScore, trackRegister.captchaScore) && m.areEqual(this.requireVerifiedPhone, trackRegister.requireVerifiedPhone) && m.areEqual(this.requireVerifiedEmail, trackRegister.requireVerifiedEmail) && m.areEqual(this.requireVerifiedPhoneThenEmail, trackRegister.requireVerifiedPhoneThenEmail) && m.areEqual(this.email, trackRegister.email) && m.areEqual(this.phone, trackRegister.phone) && m.areEqual(this.identityType, trackRegister.identityType) && m.areEqual(this.phoneCarrierName, trackRegister.phoneCarrierName) && m.areEqual(this.phoneCountry, trackRegister.phoneCountry);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -97,43 +97,43 @@ public final /* data */ class TrackRegister implements AnalyticsSchema, TrackBas
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRegister(registrationSource=");
-        sbM833U.append(this.registrationSource);
-        sbM833U.append(", full=");
-        sbM833U.append(this.full);
-        sbM833U.append(", instantInvite=");
-        sbM833U.append(this.instantInvite);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", inviteGuildId=");
-        sbM833U.append(this.inviteGuildId);
-        sbM833U.append(", inviteChannelId=");
-        sbM833U.append(this.inviteChannelId);
-        sbM833U.append(", inviteChannelType=");
-        sbM833U.append(this.inviteChannelType);
-        sbM833U.append(", inviteInviterId=");
-        sbM833U.append(this.inviteInviterId);
-        sbM833U.append(", smiteCaptchaRequested=");
-        sbM833U.append(this.smiteCaptchaRequested);
-        sbM833U.append(", solvedCaptcha=");
-        sbM833U.append(this.solvedCaptcha);
-        sbM833U.append(", captchaScore=");
-        sbM833U.append(this.captchaScore);
-        sbM833U.append(", requireVerifiedPhone=");
-        sbM833U.append(this.requireVerifiedPhone);
-        sbM833U.append(", requireVerifiedEmail=");
-        sbM833U.append(this.requireVerifiedEmail);
-        sbM833U.append(", requireVerifiedPhoneThenEmail=");
-        sbM833U.append(this.requireVerifiedPhoneThenEmail);
-        sbM833U.append(", email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", phone=");
-        sbM833U.append(this.phone);
-        sbM833U.append(", identityType=");
-        sbM833U.append(this.identityType);
-        sbM833U.append(", phoneCarrierName=");
-        sbM833U.append(this.phoneCarrierName);
-        sbM833U.append(", phoneCountry=");
-        return C1643a.m817E(sbM833U, this.phoneCountry, ")");
+        StringBuilder sbU = a.U("TrackRegister(registrationSource=");
+        sbU.append(this.registrationSource);
+        sbU.append(", full=");
+        sbU.append(this.full);
+        sbU.append(", instantInvite=");
+        sbU.append(this.instantInvite);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", inviteGuildId=");
+        sbU.append(this.inviteGuildId);
+        sbU.append(", inviteChannelId=");
+        sbU.append(this.inviteChannelId);
+        sbU.append(", inviteChannelType=");
+        sbU.append(this.inviteChannelType);
+        sbU.append(", inviteInviterId=");
+        sbU.append(this.inviteInviterId);
+        sbU.append(", smiteCaptchaRequested=");
+        sbU.append(this.smiteCaptchaRequested);
+        sbU.append(", solvedCaptcha=");
+        sbU.append(this.solvedCaptcha);
+        sbU.append(", captchaScore=");
+        sbU.append(this.captchaScore);
+        sbU.append(", requireVerifiedPhone=");
+        sbU.append(this.requireVerifiedPhone);
+        sbU.append(", requireVerifiedEmail=");
+        sbU.append(this.requireVerifiedEmail);
+        sbU.append(", requireVerifiedPhoneThenEmail=");
+        sbU.append(this.requireVerifiedPhoneThenEmail);
+        sbU.append(", email=");
+        sbU.append(this.email);
+        sbU.append(", phone=");
+        sbU.append(this.phone);
+        sbU.append(", identityType=");
+        sbU.append(this.identityType);
+        sbU.append(", phoneCarrierName=");
+        sbU.append(this.phoneCarrierName);
+        sbU.append(", phoneCountry=");
+        return a.E(sbU, this.phoneCountry, ")");
     }
 }

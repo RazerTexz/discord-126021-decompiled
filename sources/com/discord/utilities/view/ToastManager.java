@@ -5,9 +5,9 @@ import android.content.Context;
 import android.widget.Toast;
 import androidx.annotation.MainThread;
 import androidx.annotation.StringRes;
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import d0.z.d.m;
 import java.io.Closeable;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ToastManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -40,16 +40,16 @@ public class ToastManager implements Closeable {
 
     @MainThread
     public final void show(Context context, @StringRes int stringRes, int duration) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         show(context, context.getString(stringRes), duration);
     }
 
     @SuppressLint({"ShowToast"})
     @MainThread
     public void show(Context context, CharSequence text, int duration) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         Toast toastMakeText = Toast.makeText(context, text, duration);
-        C12238m.checkNotNullExpressionValue(toastMakeText, "Toast.makeText(context, text, duration)");
+        m.checkNotNullExpressionValue(toastMakeText, "Toast.makeText(context, text, duration)");
         show(toastMakeText);
     }
 
@@ -66,7 +66,7 @@ public class ToastManager implements Closeable {
 
     @MainThread
     public void show(Toast newToast) {
-        C12238m.checkNotNullParameter(newToast, "newToast");
+        m.checkNotNullParameter(newToast, "newToast");
         Toast toast = this.toast;
         if (toast != null) {
             toast.cancel();

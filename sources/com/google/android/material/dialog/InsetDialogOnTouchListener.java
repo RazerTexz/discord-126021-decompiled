@@ -1,19 +1,21 @@
 package com.google.android.material.dialog;
 
-import android.R;
+import android.R$id;
 import android.app.Dialog;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$OnTouchListener;
 import android.view.ViewConfiguration;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-public class InsetDialogOnTouchListener implements View.OnTouchListener {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+public class InsetDialogOnTouchListener implements View$OnTouchListener {
 
     @NonNull
     private final Dialog dialog;
@@ -28,9 +30,9 @@ public class InsetDialogOnTouchListener implements View.OnTouchListener {
         this.prePieSlop = ViewConfiguration.get(dialog.getContext()).getScaledWindowTouchSlop();
     }
 
-    @Override // android.view.View.OnTouchListener
+    @Override // android.view.View$OnTouchListener
     public boolean onTouch(@NonNull View view, @NonNull MotionEvent motionEvent) {
-        View viewFindViewById = view.findViewById(R.id.content);
+        View viewFindViewById = view.findViewById(R$id.content);
         int left = viewFindViewById.getLeft() + this.leftInset;
         int width = viewFindViewById.getWidth() + left;
         int top = viewFindViewById.getTop() + this.topInset;
@@ -41,7 +43,7 @@ public class InsetDialogOnTouchListener implements View.OnTouchListener {
         if (motionEvent.getAction() == 1) {
             motionEventObtain.setAction(4);
         }
-        if (Build.VERSION.SDK_INT < 28) {
+        if (Build$VERSION.SDK_INT < 28) {
             motionEventObtain.setAction(0);
             int i = this.prePieSlop;
             motionEventObtain.setLocation((-i) - 1, (-i) - 1);

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSoundpackUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackSoundpackUpdated implements AnalyticsSchema, 
             return false;
         }
         TrackSoundpackUpdated trackSoundpackUpdated = (TrackSoundpackUpdated) other;
-        return C12238m.areEqual(this.soundpack, trackSoundpackUpdated.soundpack) && C12238m.areEqual(this.previousSoundpack, trackSoundpackUpdated.previousSoundpack);
+        return m.areEqual(this.soundpack, trackSoundpackUpdated.soundpack) && m.areEqual(this.previousSoundpack, trackSoundpackUpdated.previousSoundpack);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackSoundpackUpdated implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSoundpackUpdated(soundpack=");
-        sbM833U.append(this.soundpack);
-        sbM833U.append(", previousSoundpack=");
-        return C1643a.m817E(sbM833U, this.previousSoundpack, ")");
+        StringBuilder sbU = a.U("TrackSoundpackUpdated(soundpack=");
+        sbU.append(this.soundpack);
+        sbU.append(", previousSoundpack=");
+        return a.E(sbU, this.previousSoundpack, ")");
     }
 }

@@ -2,6 +2,7 @@ package androidx.appcompat.widget;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.Resources$NotFoundException;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import java.lang.ref.WeakReference;
@@ -16,7 +17,7 @@ public class TintResources extends ResourcesWrapper {
     }
 
     @Override // androidx.appcompat.widget.ResourcesWrapper, android.content.res.Resources
-    public Drawable getDrawable(int i) throws Resources.NotFoundException {
+    public Drawable getDrawable(int i) throws Resources$NotFoundException {
         Drawable drawable = super.getDrawable(i);
         Context context = this.mContextRef.get();
         if (drawable != null && context != null) {

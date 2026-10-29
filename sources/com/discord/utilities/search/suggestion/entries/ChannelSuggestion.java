@@ -1,46 +1,22 @@
 package com.discord.utilities.search.suggestion.entries;
 
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12106w;
-import p507d0.p579g0.C12108y;
-import p507d0.p592z.p594d.C12238m;
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelSuggestion.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class ChannelSuggestion implements SearchSuggestion {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-    private final SearchSuggestion.Category category;
+    public static final ChannelSuggestion$Companion Companion = new ChannelSuggestion$Companion(null);
+    private final SearchSuggestion$Category category;
     private final long channelId;
     private final String channelName;
 
-    /* JADX INFO: compiled from: ChannelSuggestion.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final boolean canComplete(String channelName, CharSequence currentInput) {
-            C12238m.checkNotNullParameter(channelName, "channelName");
-            C12238m.checkNotNullParameter(currentInput, "currentInput");
-            if ((currentInput.length() > 0) && currentInput.charAt(0) == '#') {
-                currentInput = C12108y.drop(currentInput, 1);
-            }
-            return C12106w.contains((CharSequence) channelName, currentInput, true);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public ChannelSuggestion(String str, long j) {
-        C12238m.checkNotNullParameter(str, "channelName");
+        m.checkNotNullParameter(str, "channelName");
         this.channelName = str;
         this.channelId = j;
-        this.category = SearchSuggestion.Category.IN_CHANNEL;
+        this.category = SearchSuggestion$Category.IN_CHANNEL;
     }
 
     public static /* synthetic */ ChannelSuggestion copy$default(ChannelSuggestion channelSuggestion, String str, long j, int i, Object obj) {
@@ -54,7 +30,7 @@ public final /* data */ class ChannelSuggestion implements SearchSuggestion {
     }
 
     public final ChannelSuggestion copy(String channelName, long channelId) {
-        C12238m.checkNotNullParameter(channelName, "channelName");
+        m.checkNotNullParameter(channelName, "channelName");
         return new ChannelSuggestion(channelName, channelId);
     }
 
@@ -66,11 +42,11 @@ public final /* data */ class ChannelSuggestion implements SearchSuggestion {
             return false;
         }
         ChannelSuggestion channelSuggestion = (ChannelSuggestion) other;
-        return C12238m.areEqual(this.channelName, channelSuggestion.channelName) && this.channelId == channelSuggestion.channelId;
+        return m.areEqual(this.channelName, channelSuggestion.channelName) && this.channelId == channelSuggestion.channelId;
     }
 
     @Override // com.discord.utilities.search.suggestion.entries.SearchSuggestion
-    public SearchSuggestion.Category getCategory() {
+    public SearchSuggestion$Category getCategory() {
         return this.category;
     }
 
@@ -94,13 +70,13 @@ public final /* data */ class ChannelSuggestion implements SearchSuggestion {
 
     public int hashCode() {
         String str = this.channelName;
-        return C0002b.m3a(this.channelId) + ((str != null ? str.hashCode() : 0) * 31);
+        return b.a(this.channelId) + ((str != null ? str.hashCode() : 0) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelSuggestion(channelName=");
-        sbM833U.append(this.channelName);
-        sbM833U.append(", channelId=");
-        return C1643a.m815C(sbM833U, this.channelId, ")");
+        StringBuilder sbU = a.U("ChannelSuggestion(channelName=");
+        sbU.append(this.channelName);
+        sbU.append(", channelId=");
+        return a.C(sbU, this.channelId, ")");
     }
 }

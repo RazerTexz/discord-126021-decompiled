@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OnLifecycleEvent {
-    Lifecycle.Event value();
+    Lifecycle$Event value();
 }

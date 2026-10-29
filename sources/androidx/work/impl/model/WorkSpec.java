@@ -3,29 +3,27 @@ package androidx.work.impl.model;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.arch.core.util.Function;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
 import androidx.work.BackoffPolicy;
 import androidx.work.Constraints;
 import androidx.work.Data;
 import androidx.work.Logger;
 import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import androidx.work.WorkRequest;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 @Entity(indices = {@Index({"schedule_requested_at"}), @Index({"period_start_time"})})
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public final class WorkSpec {
     public static final long SCHEDULE_NOT_REQUESTED_YET = -1;
 
@@ -40,11 +38,11 @@ public final class WorkSpec {
     @Embedded
     public Constraints constraints;
 
-    /* JADX INFO: renamed from: id */
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)
-    public String f163id;
+    public String f38id;
 
     @ColumnInfo(name = "flex_duration")
     public long flexDuration;
@@ -84,132 +82,16 @@ public final class WorkSpec {
 
     @NonNull
     @ColumnInfo(name = "state")
-    public WorkInfo.State state;
+    public WorkInfo$State state;
 
     @NonNull
     @ColumnInfo(name = "worker_class_name")
     public String workerClassName;
     private static final String TAG = Logger.tagWithPrefix("WorkSpec");
-    public static final Function<List<WorkInfoPojo>, List<WorkInfo>> WORK_INFO_MAPPER = new Function<List<WorkInfoPojo>, List<WorkInfo>>() { // from class: androidx.work.impl.model.WorkSpec.1
-        @Override // androidx.arch.core.util.Function
-        public List<WorkInfo> apply(List<WorkInfoPojo> list) {
-            if (list == null) {
-                return null;
-            }
-            ArrayList arrayList = new ArrayList(list.size());
-            Iterator<WorkInfoPojo> it = list.iterator();
-            while (it.hasNext()) {
-                arrayList.add(it.next().toWorkInfo());
-            }
-            return arrayList;
-        }
-    };
-
-    public class IdAndState {
-
-        /* JADX INFO: renamed from: id */
-        @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)
-        public String f164id;
-
-        @ColumnInfo(name = "state")
-        public WorkInfo.State state;
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof IdAndState)) {
-                return false;
-            }
-            IdAndState idAndState = (IdAndState) obj;
-            if (this.state != idAndState.state) {
-                return false;
-            }
-            return this.f164id.equals(idAndState.f164id);
-        }
-
-        public int hashCode() {
-            return this.state.hashCode() + (this.f164id.hashCode() * 31);
-        }
-    }
-
-    public class WorkInfoPojo {
-
-        /* JADX INFO: renamed from: id */
-        @ColumnInfo(name = ModelAuditLogEntry.CHANGE_KEY_ID)
-        public String f165id;
-
-        @ColumnInfo(name = "output")
-        public Data output;
-
-        @Relation(entity = WorkProgress.class, entityColumn = "work_spec_id", parentColumn = ModelAuditLogEntry.CHANGE_KEY_ID, projection = {"progress"})
-        public List<Data> progress;
-
-        @ColumnInfo(name = "run_attempt_count")
-        public int runAttemptCount;
-
-        @ColumnInfo(name = "state")
-        public WorkInfo.State state;
-
-        @Relation(entity = WorkTag.class, entityColumn = "work_spec_id", parentColumn = ModelAuditLogEntry.CHANGE_KEY_ID, projection = {"tag"})
-        public List<String> tags;
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof WorkInfoPojo)) {
-                return false;
-            }
-            WorkInfoPojo workInfoPojo = (WorkInfoPojo) obj;
-            if (this.runAttemptCount != workInfoPojo.runAttemptCount) {
-                return false;
-            }
-            String str = this.f165id;
-            if (str == null ? workInfoPojo.f165id != null : !str.equals(workInfoPojo.f165id)) {
-                return false;
-            }
-            if (this.state != workInfoPojo.state) {
-                return false;
-            }
-            Data data = this.output;
-            if (data == null ? workInfoPojo.output != null : !data.equals(workInfoPojo.output)) {
-                return false;
-            }
-            List<String> list = this.tags;
-            if (list == null ? workInfoPojo.tags != null : !list.equals(workInfoPojo.tags)) {
-                return false;
-            }
-            List<Data> list2 = this.progress;
-            List<Data> list3 = workInfoPojo.progress;
-            if (list2 != null) {
-                return list2.equals(list3);
-            }
-            return list3 == null;
-        }
-
-        public int hashCode() {
-            String str = this.f165id;
-            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-            WorkInfo.State state = this.state;
-            int iHashCode2 = (iHashCode + (state != null ? state.hashCode() : 0)) * 31;
-            Data data = this.output;
-            int iHashCode3 = (((iHashCode2 + (data != null ? data.hashCode() : 0)) * 31) + this.runAttemptCount) * 31;
-            List<String> list = this.tags;
-            int iHashCode4 = (iHashCode3 + (list != null ? list.hashCode() : 0)) * 31;
-            List<Data> list2 = this.progress;
-            return iHashCode4 + (list2 != null ? list2.hashCode() : 0);
-        }
-
-        @NonNull
-        public WorkInfo toWorkInfo() {
-            List<Data> list = this.progress;
-            return new WorkInfo(UUID.fromString(this.f165id), this.state, this.output, this.tags, (list == null || list.isEmpty()) ? Data.EMPTY : this.progress.get(0), this.runAttemptCount);
-        }
-    }
+    public static final Function<List<WorkSpec$WorkInfoPojo>, List<WorkInfo>> WORK_INFO_MAPPER = new WorkSpec$1();
 
     public WorkSpec(@NonNull String str, @NonNull String str2) {
-        this.state = WorkInfo.State.ENQUEUED;
+        this.state = WorkInfo$State.ENQUEUED;
         Data data = Data.EMPTY;
         this.input = data;
         this.output = data;
@@ -217,7 +99,7 @@ public final class WorkSpec {
         this.backoffPolicy = BackoffPolicy.EXPONENTIAL;
         this.backoffDelayDuration = 30000L;
         this.scheduleRequestedAt = -1L;
-        this.f163id = str;
+        this.f38id = str;
         this.workerClassName = str2;
     }
 
@@ -257,7 +139,7 @@ public final class WorkSpec {
             return false;
         }
         WorkSpec workSpec = (WorkSpec) obj;
-        if (this.initialDelay != workSpec.initialDelay || this.intervalDuration != workSpec.intervalDuration || this.flexDuration != workSpec.flexDuration || this.runAttemptCount != workSpec.runAttemptCount || this.backoffDelayDuration != workSpec.backoffDelayDuration || this.periodStartTime != workSpec.periodStartTime || this.minimumRetentionDuration != workSpec.minimumRetentionDuration || this.scheduleRequestedAt != workSpec.scheduleRequestedAt || this.runInForeground != workSpec.runInForeground || !this.f163id.equals(workSpec.f163id) || this.state != workSpec.state || !this.workerClassName.equals(workSpec.workerClassName)) {
+        if (this.initialDelay != workSpec.initialDelay || this.intervalDuration != workSpec.intervalDuration || this.flexDuration != workSpec.flexDuration || this.runAttemptCount != workSpec.runAttemptCount || this.backoffDelayDuration != workSpec.backoffDelayDuration || this.periodStartTime != workSpec.periodStartTime || this.minimumRetentionDuration != workSpec.minimumRetentionDuration || this.scheduleRequestedAt != workSpec.scheduleRequestedAt || this.runInForeground != workSpec.runInForeground || !this.f38id.equals(workSpec.f38id) || this.state != workSpec.state || !this.workerClassName.equals(workSpec.workerClassName)) {
             return false;
         }
         String str = this.inputMergerClassName;
@@ -272,9 +154,9 @@ public final class WorkSpec {
     }
 
     public int hashCode() {
-        int iM863m = C1643a.m863m(this.workerClassName, (this.state.hashCode() + (this.f163id.hashCode() * 31)) * 31, 31);
+        int iM = a.m(this.workerClassName, (this.state.hashCode() + (this.f38id.hashCode() * 31)) * 31, 31);
         String str = this.inputMergerClassName;
-        int iHashCode = (this.output.hashCode() + ((this.input.hashCode() + ((iM863m + (str != null ? str.hashCode() : 0)) * 31)) * 31)) * 31;
+        int iHashCode = (this.output.hashCode() + ((this.input.hashCode() + ((iM + (str != null ? str.hashCode() : 0)) * 31)) * 31)) * 31;
         long j = this.initialDelay;
         int i = (iHashCode + ((int) (j ^ (j >>> 32)))) * 31;
         long j2 = this.intervalDuration;
@@ -292,7 +174,7 @@ public final class WorkSpec {
     }
 
     public boolean isBackedOff() {
-        return this.state == WorkInfo.State.ENQUEUED && this.runAttemptCount > 0;
+        return this.state == WorkInfo$State.ENQUEUED && this.runAttemptCount > 0;
     }
 
     public boolean isPeriodic() {
@@ -321,7 +203,7 @@ public final class WorkSpec {
 
     @NonNull
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("{WorkSpec: "), this.f163id, "}");
+        return a.J(a.U("{WorkSpec: "), this.f38id, "}");
     }
 
     public void setPeriodic(long j, long j2) {
@@ -342,7 +224,7 @@ public final class WorkSpec {
     }
 
     public WorkSpec(@NonNull WorkSpec workSpec) {
-        this.state = WorkInfo.State.ENQUEUED;
+        this.state = WorkInfo$State.ENQUEUED;
         Data data = Data.EMPTY;
         this.input = data;
         this.output = data;
@@ -350,7 +232,7 @@ public final class WorkSpec {
         this.backoffPolicy = BackoffPolicy.EXPONENTIAL;
         this.backoffDelayDuration = 30000L;
         this.scheduleRequestedAt = -1L;
-        this.f163id = workSpec.f163id;
+        this.f38id = workSpec.f38id;
         this.workerClassName = workSpec.workerClassName;
         this.state = workSpec.state;
         this.inputMergerClassName = workSpec.inputMergerClassName;

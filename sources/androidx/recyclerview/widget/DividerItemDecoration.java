@@ -1,6 +1,6 @@
 package androidx.recyclerview.widget;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -12,13 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
-public class DividerItemDecoration extends RecyclerView.ItemDecoration {
+public class DividerItemDecoration extends RecyclerView$ItemDecoration {
     public static final int HORIZONTAL = 0;
     private static final String TAG = "DividerItem";
     public static final int VERTICAL = 1;
     private Drawable mDivider;
     private int mOrientation;
-    private static final int[] ATTRS = {R.attr.listDivider};
+    private static final int[] ATTRS = {R$attr.listDivider};
     private final Rect mBounds = new Rect();
 
     public DividerItemDecoration(Context context, int i) {
@@ -83,8 +83,8 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         return this.mDivider;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView$State recyclerView$State) {
         Drawable drawable = this.mDivider;
         if (drawable == null) {
             rect.set(0, 0, 0, 0);
@@ -95,8 +95,8 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void onDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void onDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView$State recyclerView$State) {
         if (recyclerView.getLayoutManager() == null || this.mDivider == null) {
             return;
         }

@@ -14,37 +14,33 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetAuthBirthdayBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f15670a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinkifiedTextView f15671b;
+    public final LinkifiedTextView f2230b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f15672c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f15673d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialCheckBox f15674e;
+    public final MaterialCheckBox e;
 
     public WidgetAuthBirthdayBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull LinkifiedTextView linkifiedTextView, @NonNull TextInputLayout textInputLayout, @NonNull MaterialButton materialButton, @NonNull LinearLayout linearLayout, @NonNull MaterialCheckBox materialCheckBox, @NonNull DimmerView dimmerView) {
-        this.f15670a = coordinatorLayout;
-        this.f15671b = linkifiedTextView;
-        this.f15672c = textInputLayout;
-        this.f15673d = materialButton;
-        this.f15674e = materialCheckBox;
+        this.a = coordinatorLayout;
+        this.f2230b = linkifiedTextView;
+        this.c = textInputLayout;
+        this.d = materialButton;
+        this.e = materialCheckBox;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15670a;
+        return this.a;
     }
 }

@@ -11,37 +11,33 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSearchBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17419a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FloatingActionButton f17420b;
+    public final FloatingActionButton f2522b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f17421c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final FragmentContainerView f17422d;
+    public final FragmentContainerView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final FragmentContainerView f17423e;
+    public final FragmentContainerView e;
 
     public WidgetSearchBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton floatingActionButton, @NonNull TextInputLayout textInputLayout, @NonNull FragmentContainerView fragmentContainerView, @NonNull FragmentContainerView fragmentContainerView2) {
-        this.f17419a = coordinatorLayout;
-        this.f17420b = floatingActionButton;
-        this.f17421c = textInputLayout;
-        this.f17422d = fragmentContainerView;
-        this.f17423e = fragmentContainerView2;
+        this.a = coordinatorLayout;
+        this.f2522b = floatingActionButton;
+        this.c = textInputLayout;
+        this.d = fragmentContainerView;
+        this.e = fragmentContainerView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17419a;
+        return this.a;
     }
 }

@@ -1,45 +1,32 @@
 package com.discord.models.phone;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: PhoneCountryCode.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class PhoneCountryCode {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final PhoneCountryCode$Companion Companion = new PhoneCountryCode$Companion(null);
     private final String alpha2;
     private final String name;
     private final String phoneCountryCode;
     private static final PhoneCountryCode DEFAULT_COUNTRY_CODE = new PhoneCountryCode("United States", "US", "+1");
     private static final PhoneCountryCode MISSING_COUNTRY_CODE = new PhoneCountryCode("", "", "");
 
-    /* JADX INFO: compiled from: PhoneCountryCode.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final PhoneCountryCode getDEFAULT_COUNTRY_CODE() {
-            return PhoneCountryCode.DEFAULT_COUNTRY_CODE;
-        }
-
-        public final PhoneCountryCode getMISSING_COUNTRY_CODE() {
-            return PhoneCountryCode.MISSING_COUNTRY_CODE;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public PhoneCountryCode(String str, String str2, String str3) {
-        C1643a.m872q0(str, ModelAuditLogEntry.CHANGE_KEY_NAME, str2, "alpha2", str3, "phoneCountryCode");
+        a.q0(str, ModelAuditLogEntry.CHANGE_KEY_NAME, str2, "alpha2", str3, "phoneCountryCode");
         this.name = str;
         this.alpha2 = str2;
         this.phoneCountryCode = str3;
+    }
+
+    public static final /* synthetic */ PhoneCountryCode access$getDEFAULT_COUNTRY_CODE$cp() {
+        return DEFAULT_COUNTRY_CODE;
+    }
+
+    public static final /* synthetic */ PhoneCountryCode access$getMISSING_COUNTRY_CODE$cp() {
+        return MISSING_COUNTRY_CODE;
     }
 
     public static /* synthetic */ PhoneCountryCode copy$default(PhoneCountryCode phoneCountryCode, String str, String str2, String str3, int i, Object obj) {
@@ -56,9 +43,9 @@ public final /* data */ class PhoneCountryCode {
     }
 
     public final PhoneCountryCode copy(String name, String alpha2, String phoneCountryCode) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(alpha2, "alpha2");
-        C12238m.checkNotNullParameter(phoneCountryCode, "phoneCountryCode");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(alpha2, "alpha2");
+        m.checkNotNullParameter(phoneCountryCode, "phoneCountryCode");
         return new PhoneCountryCode(name, alpha2, phoneCountryCode);
     }
 
@@ -70,7 +57,7 @@ public final /* data */ class PhoneCountryCode {
             return false;
         }
         PhoneCountryCode phoneCountryCode = (PhoneCountryCode) other;
-        return C12238m.areEqual(this.name, phoneCountryCode.name) && C12238m.areEqual(this.alpha2, phoneCountryCode.alpha2) && C12238m.areEqual(this.phoneCountryCode, phoneCountryCode.phoneCountryCode);
+        return m.areEqual(this.name, phoneCountryCode.name) && m.areEqual(this.alpha2, phoneCountryCode.alpha2) && m.areEqual(this.phoneCountryCode, phoneCountryCode.phoneCountryCode);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -110,11 +97,11 @@ public final /* data */ class PhoneCountryCode {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PhoneCountryCode(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", alpha2=");
-        sbM833U.append(this.alpha2);
-        sbM833U.append(", phoneCountryCode=");
-        return C1643a.m822J(sbM833U, this.phoneCountryCode, ")");
+        StringBuilder sbU = a.U("PhoneCountryCode(name=");
+        sbU.append(this.name);
+        sbU.append(", alpha2=");
+        sbU.append(this.alpha2);
+        sbU.append(", phoneCountryCode=");
+        return a.J(sbU, this.phoneCountryCode, ")");
     }
 }

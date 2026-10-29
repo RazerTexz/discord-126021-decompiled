@@ -1,11 +1,11 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.widgets.guildscheduledevent.GuildScheduledEventLocationInfo;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ChannelListItemActiveEvent.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,8 +19,8 @@ public final /* data */ class ChannelListItemActiveEventData {
     private final String topic;
 
     public ChannelListItemActiveEventData(String str, GuildScheduledEventLocationInfo guildScheduledEventLocationInfo, int i, List<UserGuildMember> list, boolean z2, boolean z3, Long l) {
-        C12238m.checkNotNullParameter(guildScheduledEventLocationInfo, "locationInfo");
-        C12238m.checkNotNullParameter(list, "speakers");
+        m.checkNotNullParameter(guildScheduledEventLocationInfo, "locationInfo");
+        m.checkNotNullParameter(list, "speakers");
         this.topic = str;
         this.locationInfo = guildScheduledEventLocationInfo;
         this.audienceSize = i;
@@ -66,8 +66,8 @@ public final /* data */ class ChannelListItemActiveEventData {
     }
 
     public final ChannelListItemActiveEventData copy(String topic, GuildScheduledEventLocationInfo locationInfo, int audienceSize, List<UserGuildMember> speakers, boolean connected, boolean isSpeaker, Long eventId) {
-        C12238m.checkNotNullParameter(locationInfo, "locationInfo");
-        C12238m.checkNotNullParameter(speakers, "speakers");
+        m.checkNotNullParameter(locationInfo, "locationInfo");
+        m.checkNotNullParameter(speakers, "speakers");
         return new ChannelListItemActiveEventData(topic, locationInfo, audienceSize, speakers, connected, isSpeaker, eventId);
     }
 
@@ -79,7 +79,7 @@ public final /* data */ class ChannelListItemActiveEventData {
             return false;
         }
         ChannelListItemActiveEventData channelListItemActiveEventData = (ChannelListItemActiveEventData) other;
-        return C12238m.areEqual(this.topic, channelListItemActiveEventData.topic) && C12238m.areEqual(this.locationInfo, channelListItemActiveEventData.locationInfo) && this.audienceSize == channelListItemActiveEventData.audienceSize && C12238m.areEqual(this.speakers, channelListItemActiveEventData.speakers) && this.connected == channelListItemActiveEventData.connected && this.isSpeaker == channelListItemActiveEventData.isSpeaker && C12238m.areEqual(this.eventId, channelListItemActiveEventData.eventId);
+        return m.areEqual(this.topic, channelListItemActiveEventData.topic) && m.areEqual(this.locationInfo, channelListItemActiveEventData.locationInfo) && this.audienceSize == channelListItemActiveEventData.audienceSize && m.areEqual(this.speakers, channelListItemActiveEventData.speakers) && this.connected == channelListItemActiveEventData.connected && this.isSpeaker == channelListItemActiveEventData.isSpeaker && m.areEqual(this.eventId, channelListItemActiveEventData.eventId);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -168,19 +168,19 @@ public final /* data */ class ChannelListItemActiveEventData {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemActiveEventData(topic=");
-        sbM833U.append(this.topic);
-        sbM833U.append(", locationInfo=");
-        sbM833U.append(this.locationInfo);
-        sbM833U.append(", audienceSize=");
-        sbM833U.append(this.audienceSize);
-        sbM833U.append(", speakers=");
-        sbM833U.append(this.speakers);
-        sbM833U.append(", connected=");
-        sbM833U.append(this.connected);
-        sbM833U.append(", isSpeaker=");
-        sbM833U.append(this.isSpeaker);
-        sbM833U.append(", eventId=");
-        return C1643a.m819G(sbM833U, this.eventId, ")");
+        StringBuilder sbU = a.U("ChannelListItemActiveEventData(topic=");
+        sbU.append(this.topic);
+        sbU.append(", locationInfo=");
+        sbU.append(this.locationInfo);
+        sbU.append(", audienceSize=");
+        sbU.append(this.audienceSize);
+        sbU.append(", speakers=");
+        sbU.append(this.speakers);
+        sbU.append(", connected=");
+        sbU.append(this.connected);
+        sbU.append(", isSpeaker=");
+        sbU.append(this.isSpeaker);
+        sbU.append(", eventId=");
+        return a.G(sbU, this.eventId, ")");
     }
 }

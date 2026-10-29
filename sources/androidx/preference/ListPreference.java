@@ -2,13 +2,11 @@ package androidx.preference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import androidx.annotation.ArrayRes;
-import androidx.annotation.NonNull;
 import androidx.core.content.res.TypedArrayUtils;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -20,69 +18,18 @@ public class ListPreference extends DialogPreference {
     private String mValue;
     private boolean mValueSet;
 
-    public class SavedState extends Preference.BaseSavedState {
-        public String mValue;
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.ListPreference.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mValue = parcel.readString();
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeString(this.mValue);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-    }
-
-    public final class SimpleSummaryProvider implements Preference.SummaryProvider<ListPreference> {
-        private static SimpleSummaryProvider sSimpleSummaryProvider;
-
-        private SimpleSummaryProvider() {
-        }
-
-        public static SimpleSummaryProvider getInstance() {
-            if (sSimpleSummaryProvider == null) {
-                sSimpleSummaryProvider = new SimpleSummaryProvider();
-            }
-            return sSimpleSummaryProvider;
-        }
-
-        @Override // androidx.preference.Preference.SummaryProvider
-        public CharSequence provideSummary(ListPreference listPreference) {
-            return TextUtils.isEmpty(listPreference.getEntry()) ? listPreference.getContext().getString(C0525R.string.not_set) : listPreference.getEntry();
-        }
-    }
-
     public ListPreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0525R.styleable.ListPreference, i, i2);
-        this.mEntries = TypedArrayUtils.getTextArray(typedArrayObtainStyledAttributes, C0525R.styleable.ListPreference_entries, C0525R.styleable.ListPreference_android_entries);
-        this.mEntryValues = TypedArrayUtils.getTextArray(typedArrayObtainStyledAttributes, C0525R.styleable.ListPreference_entryValues, C0525R.styleable.ListPreference_android_entryValues);
-        int i3 = C0525R.styleable.ListPreference_useSimpleSummaryProvider;
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.ListPreference, i, i2);
+        this.mEntries = TypedArrayUtils.getTextArray(typedArrayObtainStyledAttributes, R$styleable.ListPreference_entries, R$styleable.ListPreference_android_entries);
+        this.mEntryValues = TypedArrayUtils.getTextArray(typedArrayObtainStyledAttributes, R$styleable.ListPreference_entryValues, R$styleable.ListPreference_android_entryValues);
+        int i3 = R$styleable.ListPreference_useSimpleSummaryProvider;
         if (TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i3, i3, false)) {
-            setSummaryProvider(SimpleSummaryProvider.getInstance());
+            setSummaryProvider(ListPreference$SimpleSummaryProvider.getInstance());
         }
         typedArrayObtainStyledAttributes.recycle();
-        TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, C0525R.styleable.Preference, i, i2);
-        this.mSummary = TypedArrayUtils.getString(typedArrayObtainStyledAttributes2, C0525R.styleable.Preference_summary, C0525R.styleable.Preference_android_summary);
+        TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, R$styleable.Preference, i, i2);
+        this.mSummary = TypedArrayUtils.getString(typedArrayObtainStyledAttributes2, R$styleable.Preference_summary, R$styleable.Preference_android_summary);
         typedArrayObtainStyledAttributes2.recycle();
     }
 
@@ -155,13 +102,13 @@ public class ListPreference extends DialogPreference {
 
     @Override // androidx.preference.Preference
     public void onRestoreInstanceState(Parcelable parcelable) {
-        if (parcelable == null || !parcelable.getClass().equals(SavedState.class)) {
+        if (parcelable == null || !parcelable.getClass().equals(ListPreference$SavedState.class)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        SavedState savedState = (SavedState) parcelable;
-        super.onRestoreInstanceState(savedState.getSuperState());
-        setValue(savedState.mValue);
+        ListPreference$SavedState listPreference$SavedState = (ListPreference$SavedState) parcelable;
+        super.onRestoreInstanceState(listPreference$SavedState.getSuperState());
+        setValue(listPreference$SavedState.mValue);
     }
 
     @Override // androidx.preference.Preference
@@ -170,9 +117,9 @@ public class ListPreference extends DialogPreference {
         if (isPersistent()) {
             return parcelableOnSaveInstanceState;
         }
-        SavedState savedState = new SavedState(parcelableOnSaveInstanceState);
-        savedState.mValue = getValue();
-        return savedState;
+        ListPreference$SavedState listPreference$SavedState = new ListPreference$SavedState(parcelableOnSaveInstanceState);
+        listPreference$SavedState.mValue = getValue();
+        return listPreference$SavedState;
     }
 
     @Override // androidx.preference.Preference
@@ -233,7 +180,7 @@ public class ListPreference extends DialogPreference {
     }
 
     public ListPreference(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, TypedArrayUtils.getAttr(context, C0525R.attr.dialogPreferenceStyle, android.R.attr.dialogPreferenceStyle));
+        this(context, attributeSet, TypedArrayUtils.getAttr(context, R$attr.dialogPreferenceStyle, android.R$attr.dialogPreferenceStyle));
     }
 
     public ListPreference(Context context) {

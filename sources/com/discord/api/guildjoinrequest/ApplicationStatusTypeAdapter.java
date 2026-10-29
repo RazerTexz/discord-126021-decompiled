@@ -3,10 +3,10 @@ package com.discord.api.guildjoinrequest;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import d0.z.d.m;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationStatus.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,12 +26,12 @@ public final class ApplicationStatusTypeAdapter extends TypeAdapter<ApplicationS
         Code decompiled incorrectly, please refer to instructions dump.
     */
     public ApplicationStatus read(JsonReader jsonReader) throws IOException {
-        C12238m.checkNotNullParameter(jsonReader, "in");
-        String strMo6877J = jsonReader.mo6877J();
-        if (strMo6877J != null) {
-            switch (strMo6877J.hashCode()) {
+        m.checkNotNullParameter(jsonReader, "in");
+        String strJ = jsonReader.J();
+        if (strJ != null) {
+            switch (strJ.hashCode()) {
                 case -1179202463:
-                    if (strMo6877J.equals("STARTED")) {
+                    if (strJ.equals("STARTED")) {
                         return ApplicationStatus.STARTED;
                     }
                     break;
@@ -40,12 +40,12 @@ public final class ApplicationStatusTypeAdapter extends TypeAdapter<ApplicationS
                 case 35394935:
                     break;
                 case 174130302:
-                    if (strMo6877J.equals("REJECTED")) {
+                    if (strJ.equals("REJECTED")) {
                         return ApplicationStatus.REJECTED;
                     }
                     break;
                 case 1967871671:
-                    if (strMo6877J.equals("APPROVED")) {
+                    if (strJ.equals("APPROVED")) {
                         return ApplicationStatus.APPROVED;
                     }
                     break;
@@ -58,17 +58,17 @@ public final class ApplicationStatusTypeAdapter extends TypeAdapter<ApplicationS
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, ApplicationStatus applicationStatus) throws IOException {
         ApplicationStatus applicationStatus2 = applicationStatus;
-        C12238m.checkNotNullParameter(jsonWriter, "out");
+        m.checkNotNullParameter(jsonWriter, "out");
         if (applicationStatus2 == null) {
-            jsonWriter.mo6905s();
+            jsonWriter.s();
             return;
         }
         String strName = applicationStatus2.name();
         Locale locale = Locale.ROOT;
-        C12238m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+        m.checkNotNullExpressionValue(locale, "Locale.ROOT");
         Objects.requireNonNull(strName, "null cannot be cast to non-null type java.lang.String");
         String upperCase = strName.toUpperCase(locale);
-        C12238m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
-        jsonWriter.mo6895H(upperCase);
+        m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
+        jsonWriter.H(upperCase);
     }
 }

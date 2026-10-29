@@ -4,17 +4,19 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView$OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
-import android.widget.PopupWindow;
+import android.widget.PopupWindow$OnDismissListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
-public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, AdapterView.OnItemClickListener {
+public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, AdapterView$OnItemClickListener {
     private Rect mEpicenterBounds;
 
     public abstract void addMenu(MenuBuilder menuBuilder);
@@ -52,8 +54,8 @@ public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, Adap
     }
 
     public static int measureIndividualMenuWidth(ListAdapter listAdapter, ViewGroup viewGroup, Context context, int i) {
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
+        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(0, 0);
+        int iMakeMeasureSpec2 = View$MeasureSpec.makeMeasureSpec(0, 0);
         int count = listAdapter.getCount();
         View view = null;
         int i2 = 0;
@@ -80,7 +82,7 @@ public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, Adap
         return i2;
     }
 
-    @Override // android.widget.AdapterView.OnItemClickListener
+    @Override // android.widget.AdapterView$OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
         ListAdapter listAdapter = (ListAdapter) adapterView.getAdapter();
         toMenuAdapter(listAdapter).mAdapterMenu.performItemAction((MenuItem) listAdapter.getItem(i), this, closeMenuOnSubMenuOpened() ? 0 : 4);
@@ -98,7 +100,7 @@ public abstract class MenuPopup implements ShowableListMenu, MenuPresenter, Adap
 
     public abstract void setHorizontalOffset(int i);
 
-    public abstract void setOnDismissListener(PopupWindow.OnDismissListener onDismissListener);
+    public abstract void setOnDismissListener(PopupWindow$OnDismissListener popupWindow$OnDismissListener);
 
     public abstract void setShowTitle(boolean z2);
 

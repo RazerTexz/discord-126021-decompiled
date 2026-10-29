@@ -1,11 +1,11 @@
 package com.discord.models.presence;
 
+import b.d.b.a.a;
 import com.discord.api.activity.Activity;
 import com.discord.api.presence.ClientStatus;
 import com.discord.api.presence.ClientStatuses;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Presence.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public final /* data */ class Presence {
     private final ClientStatus status;
 
     public Presence(ClientStatus clientStatus, ClientStatuses clientStatuses, List<Activity> list) {
-        C12238m.checkNotNullParameter(clientStatus, "status");
+        m.checkNotNullParameter(clientStatus, "status");
         this.status = clientStatus;
         this.clientStatuses = clientStatuses;
         this.activities = list;
@@ -40,7 +40,7 @@ public final /* data */ class Presence {
     }
 
     public final Presence copy(ClientStatus status, ClientStatuses clientStatuses, List<Activity> activities) {
-        C12238m.checkNotNullParameter(status, "status");
+        m.checkNotNullParameter(status, "status");
         return new Presence(status, clientStatuses, activities);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class Presence {
             return false;
         }
         Presence presence = (Presence) other;
-        return C12238m.areEqual(this.status, presence.status) && C12238m.areEqual(this.clientStatuses, presence.clientStatuses) && C12238m.areEqual(this.activities, presence.activities);
+        return m.areEqual(this.status, presence.status) && m.areEqual(this.clientStatuses, presence.clientStatuses) && m.areEqual(this.activities, presence.activities);
     }
 
     public final List<Activity> getActivities() {
@@ -87,11 +87,11 @@ public final /* data */ class Presence {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Presence(status=");
-        sbM833U.append(this.status);
-        sbM833U.append(", clientStatuses=");
-        sbM833U.append(this.clientStatuses);
-        sbM833U.append(", activities=");
-        return C1643a.m824L(sbM833U, this.activities, ")");
+        StringBuilder sbU = a.U("Presence(status=");
+        sbU.append(this.status);
+        sbU.append(", clientStatuses=");
+        sbU.append(this.clientStatuses);
+        sbU.append(", activities=");
+        return a.L(sbU, this.activities, ")");
     }
 }

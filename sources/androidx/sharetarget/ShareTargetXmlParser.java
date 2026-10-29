@@ -8,14 +8,15 @@ import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.WorkerThread;
+import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ShareTargetXmlParser {
     private static final String ATTR_HOST = "host";
     private static final String ATTR_MIME_TYPE = "mimeType";
@@ -59,9 +60,9 @@ public class ShareTargetXmlParser {
         if (xmlResourceParserLoadXmlMetaData != null) {
             return xmlResourceParserLoadXmlMetaData;
         }
-        StringBuilder sbM833U = C1643a.m833U("Failed to open android.app.shortcuts meta-data resource of ");
-        sbM833U.append(activityInfo.name);
-        throw new IllegalArgumentException(sbM833U.toString());
+        StringBuilder sbU = a.U("Failed to open android.app.shortcuts meta-data resource of ");
+        sbU.append(activityInfo.name);
+        throw new IllegalArgumentException(sbU.toString());
     }
 
     private static ShareTargetCompat parseShareTarget(XmlResourceParser xmlResourceParser) throws Exception {
@@ -91,7 +92,7 @@ public class ShareTargetXmlParser {
         if (arrayList.isEmpty() || attributeValue == null || arrayList2.isEmpty()) {
             return null;
         }
-        return new ShareTargetCompat((ShareTargetCompat.TargetData[]) arrayList.toArray(new ShareTargetCompat.TargetData[arrayList.size()]), attributeValue, (String[]) arrayList2.toArray(new String[arrayList2.size()]));
+        return new ShareTargetCompat((ShareTargetCompat$TargetData[]) arrayList.toArray(new ShareTargetCompat$TargetData[arrayList.size()]), attributeValue, (String[]) arrayList2.toArray(new String[arrayList2.size()]));
     }
 
     private static ArrayList<ShareTargetCompat> parseShareTargets(Context context) {
@@ -114,8 +115,8 @@ public class ShareTargetXmlParser {
         return arrayList;
     }
 
-    private static ShareTargetCompat.TargetData parseTargetData(XmlResourceParser xmlResourceParser) {
-        return new ShareTargetCompat.TargetData(getAttributeValue(xmlResourceParser, ATTR_SCHEME), getAttributeValue(xmlResourceParser, ATTR_HOST), getAttributeValue(xmlResourceParser, ATTR_PORT), getAttributeValue(xmlResourceParser, ATTR_PATH), getAttributeValue(xmlResourceParser, ATTR_PATH_PATTERN), getAttributeValue(xmlResourceParser, ATTR_PATH_PREFIX), getAttributeValue(xmlResourceParser, ATTR_MIME_TYPE));
+    private static ShareTargetCompat$TargetData parseTargetData(XmlResourceParser xmlResourceParser) {
+        return new ShareTargetCompat$TargetData(getAttributeValue(xmlResourceParser, ATTR_SCHEME), getAttributeValue(xmlResourceParser, ATTR_HOST), getAttributeValue(xmlResourceParser, ATTR_PORT), getAttributeValue(xmlResourceParser, ATTR_PATH), getAttributeValue(xmlResourceParser, ATTR_PATH_PATTERN), getAttributeValue(xmlResourceParser, ATTR_PATH_PREFIX), getAttributeValue(xmlResourceParser, ATTR_MIME_TYPE));
     }
 
     private static ArrayList<ShareTargetCompat> parseShareTargets(Context context, ActivityInfo activityInfo) {

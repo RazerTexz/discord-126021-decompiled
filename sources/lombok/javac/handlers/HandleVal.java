@@ -3,6 +3,13 @@ package lombok.javac.handlers;
 import com.sun.tools.javac.code.Symtab;
 import com.sun.tools.javac.code.Type;
 import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCAnnotation;
+import com.sun.tools.javac.tree.JCTree$JCEnhancedForLoop;
+import com.sun.tools.javac.tree.JCTree$JCExpression;
+import com.sun.tools.javac.tree.JCTree$JCForLoop;
+import com.sun.tools.javac.tree.JCTree$JCLiteral;
+import com.sun.tools.javac.tree.JCTree$JCNewArray;
+import com.sun.tools.javac.tree.JCTree$JCVariableDecl;
 import com.sun.tools.javac.util.List;
 import lombok.ConfigurationKeys;
 import lombok.core.HandlerPriority;
@@ -10,6 +17,7 @@ import lombok.core.handlers.HandlerUtil;
 import lombok.javac.JavacASTAdapter;
 import lombok.javac.JavacNode;
 import lombok.javac.JavacResolution;
+import lombok.javac.JavacResolution$TypeNotConvertibleException;
 import lombok.javac.ResolutionResetNeeded;
 import lombok.val;
 import lombok.var;
@@ -18,23 +26,22 @@ import lombok.var;
 @HandlerPriority(65636)
 @ResolutionResetNeeded
 public class HandleVal extends JavacASTAdapter {
-    /* JADX INFO: renamed from: eq */
-    private static boolean m10948eq(String typeTreeToString, String key) {
+    private static boolean eq(String typeTreeToString, String key) {
         return typeTreeToString.equals(key) || typeTreeToString.equals(new StringBuilder("lombok.").append(key).toString()) || typeTreeToString.equals(new StringBuilder("lombok.experimental.").append(key).toString());
     }
 
     @Override // lombok.javac.JavacASTAdapter, lombok.javac.JavacASTVisitor
-    public void visitLocal(JavacNode localNode, JCTree.JCVariableDecl local) {
+    public void visitLocal(JavacNode localNode, JCTree$JCVariableDecl local) {
         Type type;
-        JCTree.JCExpression replacement;
-        JCTree.JCExpression jCExpression = local.vartype;
-        if (jCExpression == null) {
+        JCTree$JCExpression replacement;
+        JCTree$JCExpression jCTree$JCExpression = local.vartype;
+        if (jCTree$JCExpression == null) {
             return;
         }
-        String typeTreeToString = jCExpression.toString();
-        if (m10948eq(typeTreeToString, "val") || m10948eq(typeTreeToString, "var")) {
-            boolean isVal = JavacHandlerUtil.typeMatches((Class<?>) val.class, localNode, (JCTree) jCExpression);
-            boolean isVar = JavacHandlerUtil.typeMatches((Class<?>) var.class, localNode, (JCTree) jCExpression);
+        String typeTreeToString = jCTree$JCExpression.toString();
+        if (eq(typeTreeToString, "val") || eq(typeTreeToString, "var")) {
+            boolean isVal = JavacHandlerUtil.typeMatches((Class<?>) val.class, localNode, (JCTree) jCTree$JCExpression);
+            boolean isVar = JavacHandlerUtil.typeMatches((Class<?>) var.class, localNode, (JCTree) jCTree$JCExpression);
             if (isVal || isVar) {
                 if (isVal) {
                     HandlerUtil.handleFlagUsage(localNode, ConfigurationKeys.VAL_FLAG_USAGE, "val");
@@ -42,18 +49,18 @@ public class HandleVal extends JavacASTAdapter {
                 if (isVar) {
                     HandlerUtil.handleFlagUsage(localNode, ConfigurationKeys.VAR_FLAG_USAGE, "var");
                 }
-                JCTree.JCForLoop jCForLoop = (JCTree) localNode.directUp().get();
-                if (isVal && (jCForLoop instanceof JCTree.JCForLoop)) {
+                JCTree$JCForLoop jCTree$JCForLoop = (JCTree) localNode.directUp().get();
+                if (isVal && (jCTree$JCForLoop instanceof JCTree$JCForLoop)) {
                     localNode.addError("'val' is not allowed in old-style for loops");
                     return;
                 }
-                if ((jCForLoop instanceof JCTree.JCForLoop) && jCForLoop.getInitializer().size() > 1) {
+                if ((jCTree$JCForLoop instanceof JCTree$JCForLoop) && jCTree$JCForLoop.getInitializer().size() > 1) {
                     localNode.addError("'var' is not allowed in old-style for loops if there is more than 1 initializer");
                     return;
                 }
-                JCTree.JCExpression rhsOfEnhancedForLoop = null;
-                if (local.init == null && (jCForLoop instanceof JCTree.JCEnhancedForLoop)) {
-                    JCTree.JCEnhancedForLoop efl = (JCTree.JCEnhancedForLoop) jCForLoop;
+                JCTree$JCExpression rhsOfEnhancedForLoop = null;
+                if (local.init == null && (jCTree$JCForLoop instanceof JCTree$JCEnhancedForLoop)) {
+                    JCTree$JCEnhancedForLoop efl = (JCTree$JCEnhancedForLoop) jCTree$JCForLoop;
                     if (efl.var == local) {
                         rhsOfEnhancedForLoop = efl.expr;
                     }
@@ -62,7 +69,7 @@ public class HandleVal extends JavacASTAdapter {
                     localNode.addError("'" + typeTreeToString + "' on a local variable requires an initializer expression");
                     return;
                 }
-                if ((local.init instanceof JCTree.JCNewArray) && local.init.elemtype == null) {
+                if ((local.init instanceof JCTree$JCNewArray) && local.init.elemtype == null) {
                     localNode.addError("'" + typeTreeToString + "' is not compatible with array initializer expressions. Use the full form (new int[] { ... } instead of just { ... })");
                     return;
                 }
@@ -75,7 +82,7 @@ public class HandleVal extends JavacASTAdapter {
                     local.mods.flags |= 16;
                 }
                 if (!localNode.shouldDeleteLombokAnnotations()) {
-                    JCTree.JCAnnotation valAnnotation = JavacHandlerUtil.recursiveSetGeneratedBy(localNode.getTreeMaker().Annotation(local.vartype, List.nil()), jCExpression, localNode.getContext());
+                    JCTree$JCAnnotation valAnnotation = JavacHandlerUtil.recursiveSetGeneratedBy(localNode.getTreeMaker().Annotation(local.vartype, List.nil()), jCTree$JCExpression, localNode.getContext());
                     local.mods.annotations = local.mods.annotations == null ? List.of(valAnnotation) : local.mods.annotations.append(valAnnotation);
                 }
                 if (JavacResolution.platformHasTargetTyping()) {
@@ -87,7 +94,7 @@ public class HandleVal extends JavacASTAdapter {
                     try {
                         if (rhsOfEnhancedForLoop == null) {
                             if (local.init.type == null) {
-                                if (isVar && (local.init instanceof JCTree.JCLiteral) && local.init.value == null) {
+                                if (isVar && (local.init instanceof JCTree$JCLiteral) && local.init.value == null) {
                                     localNode.addError("variable initializer is 'null'");
                                 }
                                 JavacResolution resolver = new JavacResolution(localNode.getContext());
@@ -129,17 +136,17 @@ public class HandleVal extends JavacASTAdapter {
                                 local.vartype = JavacResolution.createJavaLangObject(localNode.getAst());
                             }
                             localNode.getAst().setChanged();
-                        } catch (JavacResolution.TypeNotConvertibleException e3) {
+                        } catch (JavacResolution$TypeNotConvertibleException e3) {
                             localNode.addError("Cannot use '" + typeTreeToString + "' here because initializer expression does not have a representable type: " + e3.getMessage());
                             local.vartype = JavacResolution.createJavaLangObject(localNode.getAst());
                         }
-                        JavacHandlerUtil.recursiveSetGeneratedBy(local.vartype, jCExpression, localNode.getContext());
+                        JavacHandlerUtil.recursiveSetGeneratedBy(local.vartype, jCTree$JCExpression, localNode.getContext());
                     } catch (RuntimeException e4) {
                         local.vartype = JavacResolution.createJavaLangObject(localNode.getAst());
                         throw e4;
                     }
                 } catch (Throwable th) {
-                    JavacHandlerUtil.recursiveSetGeneratedBy(local.vartype, jCExpression, localNode.getContext());
+                    JavacHandlerUtil.recursiveSetGeneratedBy(local.vartype, jCTree$JCExpression, localNode.getContext());
                     throw th;
                 }
             }

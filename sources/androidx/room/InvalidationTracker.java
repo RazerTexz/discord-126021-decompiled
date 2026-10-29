@@ -2,32 +2,28 @@ package androidx.room;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.arch.core.internal.SafeIterableMap;
-import androidx.sqlite.p006db.SimpleSQLiteQuery;
-import androidx.sqlite.p006db.SupportSQLiteDatabase;
-import androidx.sqlite.p006db.SupportSQLiteStatement;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteStatement;
 import androidx.view.LiveData;
-import java.lang.ref.WeakReference;
-import java.util.Arrays;
+import b.d.b.a.a;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class InvalidationTracker {
@@ -46,11 +42,11 @@ public class InvalidationTracker {
     private volatile boolean mInitialized;
     private final InvalidationLiveDataContainer mInvalidationLiveDataContainer;
     private MultiInstanceInvalidationClient mMultiInstanceInvalidationClient;
-    private ObservedTableTracker mObservedTableTracker;
+    private InvalidationTracker$ObservedTableTracker mObservedTableTracker;
 
     @SuppressLint({"RestrictedApi"})
     @VisibleForTesting
-    public final SafeIterableMap<Observer, ObserverWrapper> mObserverMap;
+    public final SafeIterableMap<InvalidationTracker$Observer, InvalidationTracker$ObserverWrapper> mObserverMap;
     public AtomicBoolean mPendingRefresh;
 
     @VisibleForTesting
@@ -64,230 +60,48 @@ public class InvalidationTracker {
     private Map<String, Set<String>> mViewTables;
     private static final String[] TRIGGERS = {"UPDATE", "DELETE", "INSERT"};
 
-    public class ObservedTableTracker {
-        public static final int ADD = 1;
-        public static final int NO_OP = 0;
-        public static final int REMOVE = 2;
-        public boolean mNeedsSync;
-        public boolean mPendingSync;
-        public final long[] mTableObservers;
-        public final int[] mTriggerStateChanges;
-        public final boolean[] mTriggerStates;
-
-        public ObservedTableTracker(int i) {
-            long[] jArr = new long[i];
-            this.mTableObservers = jArr;
-            boolean[] zArr = new boolean[i];
-            this.mTriggerStates = zArr;
-            this.mTriggerStateChanges = new int[i];
-            Arrays.fill(jArr, 0L);
-            Arrays.fill(zArr, false);
-        }
-
-        @Nullable
-        public int[] getTablesToSync() {
-            synchronized (this) {
-                if (this.mNeedsSync && !this.mPendingSync) {
-                    int length = this.mTableObservers.length;
-                    int i = 0;
-                    while (true) {
-                        int i2 = 1;
-                        if (i >= length) {
-                            this.mPendingSync = true;
-                            this.mNeedsSync = false;
-                            return this.mTriggerStateChanges;
-                        }
-                        boolean z2 = this.mTableObservers[i] > 0;
-                        boolean[] zArr = this.mTriggerStates;
-                        if (z2 != zArr[i]) {
-                            int[] iArr = this.mTriggerStateChanges;
-                            if (!z2) {
-                                i2 = 2;
-                            }
-                            iArr[i] = i2;
-                        } else {
-                            this.mTriggerStateChanges[i] = 0;
-                        }
-                        zArr[i] = z2;
-                        i++;
-                    }
-                }
-                return null;
-            }
-        }
-
-        public boolean onAdded(int... iArr) {
-            boolean z2;
-            synchronized (this) {
-                z2 = false;
-                for (int i : iArr) {
-                    long[] jArr = this.mTableObservers;
-                    long j = jArr[i];
-                    jArr[i] = 1 + j;
-                    if (j == 0) {
-                        this.mNeedsSync = true;
-                        z2 = true;
-                    }
-                }
-            }
-            return z2;
-        }
-
-        public boolean onRemoved(int... iArr) {
-            boolean z2;
-            synchronized (this) {
-                z2 = false;
-                for (int i : iArr) {
-                    long[] jArr = this.mTableObservers;
-                    long j = jArr[i];
-                    jArr[i] = j - 1;
-                    if (j == 1) {
-                        this.mNeedsSync = true;
-                        z2 = true;
-                    }
-                }
-            }
-            return z2;
-        }
-
-        public void onSyncCompleted() {
-            synchronized (this) {
-                this.mPendingSync = false;
-            }
-        }
-    }
-
-    public class ObserverWrapper {
-        public final Observer mObserver;
-        private final Set<String> mSingleTableSet;
-        public final int[] mTableIds;
-        private final String[] mTableNames;
-
-        public ObserverWrapper(Observer observer, int[] iArr, String[] strArr) {
-            this.mObserver = observer;
-            this.mTableIds = iArr;
-            this.mTableNames = strArr;
-            if (iArr.length != 1) {
-                this.mSingleTableSet = null;
-                return;
-            }
-            HashSet hashSet = new HashSet();
-            hashSet.add(strArr[0]);
-            this.mSingleTableSet = Collections.unmodifiableSet(hashSet);
-        }
-
-        public void notifyByTableInvalidStatus(Set<Integer> set) {
-            int length = this.mTableIds.length;
-            Set<String> hashSet = null;
-            for (int i = 0; i < length; i++) {
-                if (set.contains(Integer.valueOf(this.mTableIds[i]))) {
-                    if (length == 1) {
-                        hashSet = this.mSingleTableSet;
-                    } else {
-                        if (hashSet == null) {
-                            hashSet = new HashSet<>(length);
-                        }
-                        hashSet.add(this.mTableNames[i]);
-                    }
-                }
-            }
-            if (hashSet != null) {
-                this.mObserver.onInvalidated(hashSet);
-            }
-        }
-
-        public void notifyByTableNames(String[] strArr) {
-            Set<String> set = null;
-            if (this.mTableNames.length == 1) {
-                for (String str : strArr) {
-                    if (str.equalsIgnoreCase(this.mTableNames[0])) {
-                        set = this.mSingleTableSet;
-                        break;
-                    }
-                }
-            } else {
-                HashSet hashSet = new HashSet();
-                for (String str2 : strArr) {
-                    for (String str3 : this.mTableNames) {
-                        if (str3.equalsIgnoreCase(str2)) {
-                            hashSet.add(str3);
-                            break;
-                        }
-                    }
-                }
-                if (hashSet.size() > 0) {
-                    set = hashSet;
-                }
-            }
-            if (set != null) {
-                this.mObserver.onInvalidated(set);
-            }
-        }
-    }
-
-    public class WeakObserver extends Observer {
-        public final WeakReference<Observer> mDelegateRef;
-        public final InvalidationTracker mTracker;
-
-        public WeakObserver(InvalidationTracker invalidationTracker, Observer observer) {
-            super(observer.mTables);
-            this.mTracker = invalidationTracker;
-            this.mDelegateRef = new WeakReference<>(observer);
-        }
-
-        @Override // androidx.room.InvalidationTracker.Observer
-        public void onInvalidated(@NonNull Set<String> set) {
-            Observer observer = this.mDelegateRef.get();
-            if (observer == null) {
-                this.mTracker.removeObserver(this);
-            } else {
-                observer.onInvalidated(set);
-            }
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public InvalidationTracker(RoomDatabase roomDatabase, String... strArr) {
         this(roomDatabase, new HashMap(), Collections.emptyMap(), strArr);
     }
 
     @SuppressLint({"RestrictedApi"})
     @WorkerThread
-    public void addObserver(@NonNull Observer observer) {
-        ObserverWrapper observerWrapperPutIfAbsent;
-        String[] strArrResolveViews = resolveViews(observer.mTables);
+    public void addObserver(@NonNull InvalidationTracker$Observer invalidationTracker$Observer) {
+        InvalidationTracker$ObserverWrapper invalidationTracker$ObserverWrapperPutIfAbsent;
+        String[] strArrResolveViews = resolveViews(invalidationTracker$Observer.mTables);
         int[] iArr = new int[strArrResolveViews.length];
         int length = strArrResolveViews.length;
         for (int i = 0; i < length; i++) {
             Integer num = this.mTableIdLookup.get(strArrResolveViews[i].toLowerCase(Locale.US));
             if (num == null) {
-                StringBuilder sbM833U = C1643a.m833U("There is no table with name ");
-                sbM833U.append(strArrResolveViews[i]);
-                throw new IllegalArgumentException(sbM833U.toString());
+                StringBuilder sbU = a.U("There is no table with name ");
+                sbU.append(strArrResolveViews[i]);
+                throw new IllegalArgumentException(sbU.toString());
             }
             iArr[i] = num.intValue();
         }
-        ObserverWrapper observerWrapper = new ObserverWrapper(observer, iArr, strArrResolveViews);
+        InvalidationTracker$ObserverWrapper invalidationTracker$ObserverWrapper = new InvalidationTracker$ObserverWrapper(invalidationTracker$Observer, iArr, strArrResolveViews);
         synchronized (this.mObserverMap) {
-            observerWrapperPutIfAbsent = this.mObserverMap.putIfAbsent(observer, observerWrapper);
+            invalidationTracker$ObserverWrapperPutIfAbsent = this.mObserverMap.putIfAbsent(invalidationTracker$Observer, invalidationTracker$ObserverWrapper);
         }
-        if (observerWrapperPutIfAbsent == null && this.mObservedTableTracker.onAdded(iArr)) {
+        if (invalidationTracker$ObserverWrapperPutIfAbsent == null && this.mObservedTableTracker.onAdded(iArr)) {
             syncTriggers();
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void addWeakObserver(Observer observer) {
-        addObserver(new WeakObserver(this, observer));
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public void addWeakObserver(InvalidationTracker$Observer invalidationTracker$Observer) {
+        addObserver(new InvalidationTracker$WeakObserver(this, invalidationTracker$Observer));
     }
 
     private static void appendTriggerName(StringBuilder sb, String str, String str2) {
-        C1643a.m876s0(sb, "`", "room_table_modification_trigger_", str, "_");
+        a.s0(sb, "`", "room_table_modification_trigger_", str, "_");
         sb.append(str2);
         sb.append("`");
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
     public <T> LiveData<T> createLiveData(String[] strArr, Callable<T> callable) {
         return createLiveData(strArr, false, callable);
@@ -322,13 +136,13 @@ public class InvalidationTracker {
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     @VisibleForTesting(otherwise = 3)
     public void notifyObserversByTableNames(String... strArr) {
         synchronized (this.mObserverMap) {
-            for (Map.Entry<Observer, ObserverWrapper> entry : this.mObserverMap) {
-                if (!entry.getKey().isRemote()) {
-                    entry.getValue().notifyByTableNames(strArr);
+            for (Map$Entry<InvalidationTracker$Observer, InvalidationTracker$ObserverWrapper> map$Entry : this.mObserverMap) {
+                if (!map$Entry.getKey().isRemote()) {
+                    map$Entry.getValue().notifyByTableNames(strArr);
                 }
             }
         }
@@ -340,7 +154,7 @@ public class InvalidationTracker {
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     @WorkerThread
     public void refreshVersionsSync() {
         syncTriggers();
@@ -349,12 +163,12 @@ public class InvalidationTracker {
 
     @SuppressLint({"RestrictedApi"})
     @WorkerThread
-    public void removeObserver(@NonNull Observer observer) {
-        ObserverWrapper observerWrapperRemove;
+    public void removeObserver(@NonNull InvalidationTracker$Observer invalidationTracker$Observer) {
+        InvalidationTracker$ObserverWrapper invalidationTracker$ObserverWrapperRemove;
         synchronized (this.mObserverMap) {
-            observerWrapperRemove = this.mObserverMap.remove(observer);
+            invalidationTracker$ObserverWrapperRemove = this.mObserverMap.remove(invalidationTracker$Observer);
         }
-        if (observerWrapperRemove == null || !this.mObservedTableTracker.onRemoved(observerWrapperRemove.mTableIds)) {
+        if (invalidationTracker$ObserverWrapperRemove == null || !this.mObservedTableTracker.onRemoved(invalidationTracker$ObserverWrapperRemove.mTableIds)) {
             return;
         }
         syncTriggers();
@@ -385,9 +199,9 @@ public class InvalidationTracker {
             sb.setLength(0);
             sb.append("CREATE TEMP TRIGGER IF NOT EXISTS ");
             appendTriggerName(sb, str, str2);
-            C1643a.m876s0(sb, " AFTER ", str2, " ON `", str);
-            C1643a.m876s0(sb, "` BEGIN UPDATE ", UPDATE_TABLE_NAME, " SET ", INVALIDATED_COLUMN_NAME);
-            C1643a.m876s0(sb, " = 1", " WHERE ", TABLE_ID_COLUMN_NAME, " = ");
+            a.s0(sb, " AFTER ", str2, " ON `", str);
+            a.s0(sb, "` BEGIN UPDATE ", UPDATE_TABLE_NAME, " SET ", INVALIDATED_COLUMN_NAME);
+            a.s0(sb, " = 1", " WHERE ", TABLE_ID_COLUMN_NAME, " = ");
             sb.append(i);
             sb.append(" AND ");
             sb.append(INVALIDATED_COLUMN_NAME);
@@ -464,91 +278,20 @@ public class InvalidationTracker {
         String[] strArrResolveViews = resolveViews(strArr);
         for (String str : strArrResolveViews) {
             if (!this.mTableIdLookup.containsKey(str.toLowerCase(Locale.US))) {
-                throw new IllegalArgumentException(C1643a.m883w("There is no table with name ", str));
+                throw new IllegalArgumentException(a.w("There is no table with name ", str));
             }
         }
         return strArrResolveViews;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public InvalidationTracker(RoomDatabase roomDatabase, Map<String, String> map, Map<String, Set<String>> map2, String... strArr) {
         this.mPendingRefresh = new AtomicBoolean(false);
         this.mInitialized = false;
         this.mObserverMap = new SafeIterableMap<>();
-        this.mRefreshRunnable = new Runnable() { // from class: androidx.room.InvalidationTracker.1
-            private Set<Integer> checkUpdatedTable() {
-                HashSet hashSet = new HashSet();
-                Cursor cursorQuery = InvalidationTracker.this.mDatabase.query(new SimpleSQLiteQuery(InvalidationTracker.SELECT_UPDATED_TABLES_SQL));
-                while (cursorQuery.moveToNext()) {
-                    try {
-                        hashSet.add(Integer.valueOf(cursorQuery.getInt(0)));
-                    } catch (Throwable th) {
-                        cursorQuery.close();
-                        throw th;
-                    }
-                }
-                cursorQuery.close();
-                if (!hashSet.isEmpty()) {
-                    InvalidationTracker.this.mCleanupStatement.executeUpdateDelete();
-                }
-                return hashSet;
-            }
-
-            @Override // java.lang.Runnable
-            public void run() {
-                Lock closeLock = InvalidationTracker.this.mDatabase.getCloseLock();
-                Set<Integer> setCheckUpdatedTable = null;
-                try {
-                    try {
-                        closeLock.lock();
-                        if (!InvalidationTracker.this.ensureInitialization()) {
-                            closeLock.unlock();
-                            return;
-                        }
-                        if (!InvalidationTracker.this.mPendingRefresh.compareAndSet(true, false)) {
-                            closeLock.unlock();
-                            return;
-                        }
-                        if (InvalidationTracker.this.mDatabase.inTransaction()) {
-                            closeLock.unlock();
-                            return;
-                        }
-                        RoomDatabase roomDatabase2 = InvalidationTracker.this.mDatabase;
-                        if (roomDatabase2.mWriteAheadLoggingEnabled) {
-                            SupportSQLiteDatabase writableDatabase = roomDatabase2.getOpenHelper().getWritableDatabase();
-                            writableDatabase.beginTransaction();
-                            try {
-                                setCheckUpdatedTable = checkUpdatedTable();
-                                writableDatabase.setTransactionSuccessful();
-                                writableDatabase.endTransaction();
-                            } catch (Throwable th) {
-                                writableDatabase.endTransaction();
-                                throw th;
-                            }
-                        } else {
-                            setCheckUpdatedTable = checkUpdatedTable();
-                        }
-                        closeLock.unlock();
-                        if (setCheckUpdatedTable == null || setCheckUpdatedTable.isEmpty()) {
-                            return;
-                        }
-                        synchronized (InvalidationTracker.this.mObserverMap) {
-                            Iterator<Map.Entry<Observer, ObserverWrapper>> it = InvalidationTracker.this.mObserverMap.iterator();
-                            while (it.hasNext()) {
-                                it.next().getValue().notifyByTableInvalidStatus(setCheckUpdatedTable);
-                            }
-                        }
-                    } catch (Throwable th2) {
-                        closeLock.unlock();
-                        throw th2;
-                    }
-                } catch (SQLiteException | IllegalStateException e) {
-                    Log.e(Room.LOG_TAG, "Cannot run invalidation tracker. Is the db closed?", e);
-                }
-            }
-        };
+        this.mRefreshRunnable = new InvalidationTracker$1(this);
         this.mDatabase = roomDatabase;
-        this.mObservedTableTracker = new ObservedTableTracker(strArr.length);
+        this.mObservedTableTracker = new InvalidationTracker$ObservedTableTracker(strArr.length);
         this.mTableIdLookup = new HashMap<>();
         this.mViewTables = map2;
         this.mInvalidationLiveDataContainer = new InvalidationLiveDataContainer(roomDatabase);
@@ -566,41 +309,21 @@ public class InvalidationTracker {
                 this.mTableNames[i] = lowerCase;
             }
         }
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            String value = entry.getValue();
+        for (Map$Entry<String, String> map$Entry : map.entrySet()) {
+            String value = map$Entry.getValue();
             Locale locale2 = Locale.US;
             String lowerCase2 = value.toLowerCase(locale2);
             if (this.mTableIdLookup.containsKey(lowerCase2)) {
-                String lowerCase3 = entry.getKey().toLowerCase(locale2);
+                String lowerCase3 = map$Entry.getKey().toLowerCase(locale2);
                 HashMap<String, Integer> map3 = this.mTableIdLookup;
                 map3.put(lowerCase3, map3.get(lowerCase2));
             }
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public <T> LiveData<T> createLiveData(String[] strArr, boolean z2, Callable<T> callable) {
         return this.mInvalidationLiveDataContainer.create(validateAndResolveTableNames(strArr), z2, callable);
-    }
-
-    public abstract class Observer {
-        public final String[] mTables;
-
-        public Observer(@NonNull String str, String... strArr) {
-            String[] strArr2 = (String[]) Arrays.copyOf(strArr, strArr.length + 1);
-            this.mTables = strArr2;
-            strArr2[strArr.length] = str;
-        }
-
-        public boolean isRemote() {
-            return false;
-        }
-
-        public abstract void onInvalidated(@NonNull Set<String> set);
-
-        public Observer(@NonNull String[] strArr) {
-            this.mTables = (String[]) Arrays.copyOf(strArr, strArr.length);
-        }
     }
 
     public void syncTriggers() {

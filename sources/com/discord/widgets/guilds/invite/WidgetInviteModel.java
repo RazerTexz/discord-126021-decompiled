@@ -1,28 +1,18 @@
 package com.discord.widgets.guilds.invite;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import com.discord.api.channel.ChannelUtils;
-import com.discord.api.guildscheduledevent.GuildScheduledEvent;
-import com.discord.api.stageinstance.StageInstance;
 import com.discord.models.domain.ModelInvite;
-import com.discord.models.guild.Guild;
+import com.discord.models.domain.ModelInvite$Settings;
 import com.discord.models.user.MeUser;
-import com.discord.utilities.guilds.GuildUtilsKt;
-import java.util.ArrayList;
-import java.util.Collections;
+import d0.z.d.m;
 import java.util.List;
-import java.util.Map;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetInviteModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class WidgetInviteModel {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final WidgetInviteModel$Companion Companion = new WidgetInviteModel$Companion(null);
     private final List<Channel> dms;
     private final List<Channel> invitableChannels;
     private final ModelInvite invite;
@@ -30,77 +20,15 @@ public final /* data */ class WidgetInviteModel {
     private final boolean isInviteFromStore;
     private final boolean isValidInvite;
     private final MeUser me;
-    private final ModelInvite.Settings settings;
+    private final ModelInvite$Settings settings;
     private final Channel targetChannel;
 
-    /* JADX INFO: compiled from: WidgetInviteModel.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final WidgetInviteModel create(ModelInvite.Settings settings, Map<Long, Channel> invitableChannels, InviteGenerator.InviteGenerationState inviteGenerationState, Long selectedChannelId, MeUser me2, List<Channel> dms, Guild guild, Map<Long, StageInstance> guildStageInstances, GuildScheduledEvent guildScheduledEvent, ModelInvite existingInviteFromStore) {
-            Channel channel;
-            ModelInvite modelInviteTryGetStaticInvite;
-            boolean z2;
-            Channel channel2;
-            C12238m.checkNotNullParameter(settings, "settings");
-            C12238m.checkNotNullParameter(invitableChannels, "invitableChannels");
-            C12238m.checkNotNullParameter(inviteGenerationState, "inviteGenerationState");
-            C12238m.checkNotNullParameter(me2, "me");
-            C12238m.checkNotNullParameter(dms, "dms");
-            C12238m.checkNotNullParameter(guildStageInstances, "guildStageInstances");
-            if (existingInviteFromStore != null) {
-                return new WidgetInviteModel(null, null, existingInviteFromStore, false, true, C12147n.emptyList(), me2, dms, true);
-            }
-            ModelInvite lastGeneratedInvite = inviteGenerationState.getLastGeneratedInvite();
-            ArrayList arrayList = new ArrayList(invitableChannels.values());
-            Collections.sort(arrayList, ChannelUtils.m7684h(Channel.INSTANCE));
-            if (invitableChannels.containsKey(selectedChannelId)) {
-                channel = invitableChannels.get(selectedChannelId);
-            } else {
-                channel = arrayList.isEmpty() ^ true ? (Channel) arrayList.get(0) : null;
-            }
-            Channel channel3 = channel;
-            boolean z3 = (lastGeneratedInvite == null || channel3 == null || lastGeneratedInvite.getChannel() == null || (channel2 = lastGeneratedInvite.getChannel()) == null || channel2.getId() != channel3.getId()) ? false : true;
-            if ((channel3 == null || inviteGenerationState.getState() == InviteGenerator.GenerationState.FAILURE) && (modelInviteTryGetStaticInvite = tryGetStaticInvite(selectedChannelId, guild, guildStageInstances)) != null) {
-                z2 = true;
-            } else {
-                z2 = z3;
-                modelInviteTryGetStaticInvite = lastGeneratedInvite;
-            }
-            if (channel3 != null && guildScheduledEvent != null && guildScheduledEvent.m7987p(channel3.getId()) && modelInviteTryGetStaticInvite != null) {
-                modelInviteTryGetStaticInvite.setGuildScheduledEvent(guildScheduledEvent);
-            }
-            return new WidgetInviteModel(channel3, settings, modelInviteTryGetStaticInvite, inviteGenerationState.getState() == InviteGenerator.GenerationState.GENERATING, z2, arrayList, me2, dms, false);
-        }
-
-        private final ModelInvite tryGetStaticInvite(Long selectedChannelId, Guild guild, Map<Long, StageInstance> guildStageInstances) {
-            String inviteCode;
-            if (guild == null) {
-                return null;
-            }
-            StageInstance stageInstance = guildStageInstances.get(selectedChannelId);
-            if (stageInstance != null && (inviteCode = stageInstance.getInviteCode()) != null) {
-                return ModelInvite.createForStaticUrl(inviteCode, GuildUtilsKt.createApiGuild(guild));
-            }
-            String vanityUrlCode = guild.getVanityUrlCode();
-            if (vanityUrlCode != null) {
-                return ModelInvite.createForStaticUrl(vanityUrlCode, GuildUtilsKt.createApiGuild(guild));
-            }
-            return null;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public WidgetInviteModel(Channel channel, ModelInvite.Settings settings, ModelInvite modelInvite, boolean z2, boolean z3, List<Channel> list, MeUser meUser, List<Channel> list2, boolean z4) {
-        C12238m.checkNotNullParameter(list, "invitableChannels");
-        C12238m.checkNotNullParameter(meUser, "me");
-        C12238m.checkNotNullParameter(list2, "dms");
+    public WidgetInviteModel(Channel channel, ModelInvite$Settings modelInvite$Settings, ModelInvite modelInvite, boolean z2, boolean z3, List<Channel> list, MeUser meUser, List<Channel> list2, boolean z4) {
+        m.checkNotNullParameter(list, "invitableChannels");
+        m.checkNotNullParameter(meUser, "me");
+        m.checkNotNullParameter(list2, "dms");
         this.targetChannel = channel;
-        this.settings = settings;
+        this.settings = modelInvite$Settings;
         this.invite = modelInvite;
         this.isGeneratingInvite = z2;
         this.isValidInvite = z3;
@@ -118,10 +46,15 @@ public final /* data */ class WidgetInviteModel {
         return this.dms;
     }
 
-    public final WidgetInviteModel copy(Channel targetChannel, ModelInvite.Settings settings, ModelInvite invite, boolean isGeneratingInvite, boolean isValidInvite, List<Channel> invitableChannels, MeUser me2, List<Channel> dms, boolean isInviteFromStore) {
-        C12238m.checkNotNullParameter(invitableChannels, "invitableChannels");
-        C12238m.checkNotNullParameter(me2, "me");
-        C12238m.checkNotNullParameter(dms, "dms");
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ WidgetInviteModel copy$default(WidgetInviteModel widgetInviteModel, Channel channel, ModelInvite$Settings modelInvite$Settings, ModelInvite modelInvite, boolean z2, boolean z3, List list, MeUser meUser, List list2, boolean z4, int i, Object obj) {
+        return widgetInviteModel.copy((i & 1) != 0 ? widgetInviteModel.targetChannel : channel, (i & 2) != 0 ? widgetInviteModel.settings : modelInvite$Settings, (i & 4) != 0 ? widgetInviteModel.invite : modelInvite, (i & 8) != 0 ? widgetInviteModel.isGeneratingInvite : z2, (i & 16) != 0 ? widgetInviteModel.isValidInvite : z3, (i & 32) != 0 ? widgetInviteModel.invitableChannels : list, (i & 64) != 0 ? widgetInviteModel.me : meUser, (i & 128) != 0 ? widgetInviteModel.dms : list2, (i & 256) != 0 ? widgetInviteModel.isInviteFromStore : z4);
+    }
+
+    public final WidgetInviteModel copy(Channel targetChannel, ModelInvite$Settings settings, ModelInvite invite, boolean isGeneratingInvite, boolean isValidInvite, List<Channel> invitableChannels, MeUser me2, List<Channel> dms, boolean isInviteFromStore) {
+        m.checkNotNullParameter(invitableChannels, "invitableChannels");
+        m.checkNotNullParameter(me2, "me");
+        m.checkNotNullParameter(dms, "dms");
         return new WidgetInviteModel(targetChannel, settings, invite, isGeneratingInvite, isValidInvite, invitableChannels, me2, dms, isInviteFromStore);
     }
 
@@ -133,7 +66,7 @@ public final /* data */ class WidgetInviteModel {
             return false;
         }
         WidgetInviteModel widgetInviteModel = (WidgetInviteModel) other;
-        return C12238m.areEqual(this.targetChannel, widgetInviteModel.targetChannel) && C12238m.areEqual(this.settings, widgetInviteModel.settings) && C12238m.areEqual(this.invite, widgetInviteModel.invite) && this.isGeneratingInvite == widgetInviteModel.isGeneratingInvite && this.isValidInvite == widgetInviteModel.isValidInvite && C12238m.areEqual(this.invitableChannels, widgetInviteModel.invitableChannels) && C12238m.areEqual(this.me, widgetInviteModel.me) && C12238m.areEqual(this.dms, widgetInviteModel.dms) && this.isInviteFromStore == widgetInviteModel.isInviteFromStore;
+        return m.areEqual(this.targetChannel, widgetInviteModel.targetChannel) && m.areEqual(this.settings, widgetInviteModel.settings) && m.areEqual(this.invite, widgetInviteModel.invite) && this.isGeneratingInvite == widgetInviteModel.isGeneratingInvite && this.isValidInvite == widgetInviteModel.isValidInvite && m.areEqual(this.invitableChannels, widgetInviteModel.invitableChannels) && m.areEqual(this.me, widgetInviteModel.me) && m.areEqual(this.dms, widgetInviteModel.dms) && this.isInviteFromStore == widgetInviteModel.isInviteFromStore;
     }
 
     public final List<Channel> getDms() {
@@ -178,11 +111,11 @@ public final /* data */ class WidgetInviteModel {
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
-    public final ModelInvite.Settings getSettings() {
+    public final ModelInvite$Settings getSettings() {
         return this.settings;
     }
 
-    public final ModelInvite.Settings getSettings() {
+    public final ModelInvite$Settings getSettings() {
         return this.settings;
     }
 
@@ -210,8 +143,8 @@ public final /* data */ class WidgetInviteModel {
     public int hashCode() {
         Channel channel = this.targetChannel;
         int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
-        ModelInvite.Settings settings = this.settings;
-        int iHashCode2 = (iHashCode + (settings != null ? settings.hashCode() : 0)) * 31;
+        ModelInvite$Settings modelInvite$Settings = this.settings;
+        int iHashCode2 = (iHashCode + (modelInvite$Settings != null ? modelInvite$Settings.hashCode() : 0)) * 31;
         ModelInvite modelInvite = this.invite;
         int iHashCode3 = (iHashCode2 + (modelInvite != null ? modelInvite.hashCode() : 0)) * 31;
         boolean z2 = this.isGeneratingInvite;
@@ -249,27 +182,27 @@ public final /* data */ class WidgetInviteModel {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("WidgetInviteModel(targetChannel=");
-        sbM833U.append(this.targetChannel);
-        sbM833U.append(", settings=");
-        sbM833U.append(this.settings);
-        sbM833U.append(", invite=");
-        sbM833U.append(this.invite);
-        sbM833U.append(", isGeneratingInvite=");
-        sbM833U.append(this.isGeneratingInvite);
-        sbM833U.append(", isValidInvite=");
-        sbM833U.append(this.isValidInvite);
-        sbM833U.append(", invitableChannels=");
-        sbM833U.append(this.invitableChannels);
-        sbM833U.append(", me=");
-        sbM833U.append(this.me);
-        sbM833U.append(", dms=");
-        sbM833U.append(this.dms);
-        sbM833U.append(", isInviteFromStore=");
-        return C1643a.m827O(sbM833U, this.isInviteFromStore, ")");
+        StringBuilder sbU = a.U("WidgetInviteModel(targetChannel=");
+        sbU.append(this.targetChannel);
+        sbU.append(", settings=");
+        sbU.append(this.settings);
+        sbU.append(", invite=");
+        sbU.append(this.invite);
+        sbU.append(", isGeneratingInvite=");
+        sbU.append(this.isGeneratingInvite);
+        sbU.append(", isValidInvite=");
+        sbU.append(this.isValidInvite);
+        sbU.append(", invitableChannels=");
+        sbU.append(this.invitableChannels);
+        sbU.append(", me=");
+        sbU.append(this.me);
+        sbU.append(", dms=");
+        sbU.append(this.dms);
+        sbU.append(", isInviteFromStore=");
+        return a.O(sbU, this.isInviteFromStore, ")");
     }
 
-    public /* synthetic */ WidgetInviteModel(Channel channel, ModelInvite.Settings settings, ModelInvite modelInvite, boolean z2, boolean z3, List list, MeUser meUser, List list2, boolean z4, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(channel, settings, modelInvite, (i & 8) != 0 ? false : z2, (i & 16) != 0 ? false : z3, list, meUser, list2, (i & 256) != 0 ? false : z4);
+    public /* synthetic */ WidgetInviteModel(Channel channel, ModelInvite$Settings modelInvite$Settings, ModelInvite modelInvite, boolean z2, boolean z3, List list, MeUser meUser, List list2, boolean z4, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this(channel, modelInvite$Settings, modelInvite, (i & 8) != 0 ? false : z2, (i & 16) != 0 ? false : z3, list, meUser, list2, (i & 256) != 0 ? false : z4);
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPinMessage.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackPinMessage implements AnalyticsSchema, TrackB
             return false;
         }
         TrackPinMessage trackPinMessage = (TrackPinMessage) other;
-        return C12238m.areEqual(this.guildId, trackPinMessage.guildId) && C12238m.areEqual(this.channelId, trackPinMessage.channelId) && C12238m.areEqual(this.authorId, trackPinMessage.authorId) && C12238m.areEqual(this.pinned, trackPinMessage.pinned);
+        return m.areEqual(this.guildId, trackPinMessage.guildId) && m.areEqual(this.channelId, trackPinMessage.channelId) && m.areEqual(this.authorId, trackPinMessage.authorId) && m.areEqual(this.pinned, trackPinMessage.pinned);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackPinMessage implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPinMessage(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", authorId=");
-        sbM833U.append(this.authorId);
-        sbM833U.append(", pinned=");
-        return C1643a.m816D(sbM833U, this.pinned, ")");
+        StringBuilder sbU = a.U("TrackPinMessage(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", authorId=");
+        sbU.append(this.authorId);
+        sbU.append(", pinned=");
+        return a.D(sbU, this.pinned, ")");
     }
 }

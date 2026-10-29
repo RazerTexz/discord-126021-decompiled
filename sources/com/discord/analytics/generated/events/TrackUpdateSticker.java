@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUpdateSticker.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackUpdateSticker implements AnalyticsSchema, Tra
             return false;
         }
         TrackUpdateSticker trackUpdateSticker = (TrackUpdateSticker) other;
-        return C12238m.areEqual(this.id, trackUpdateSticker.id) && C12238m.areEqual(this.guildId, trackUpdateSticker.guildId) && C12238m.areEqual(this.formatType, trackUpdateSticker.formatType);
+        return m.areEqual(this.id, trackUpdateSticker.id) && m.areEqual(this.guildId, trackUpdateSticker.guildId) && m.areEqual(this.formatType, trackUpdateSticker.formatType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -43,11 +43,11 @@ public final /* data */ class TrackUpdateSticker implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpdateSticker(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", formatType=");
-        return C1643a.m819G(sbM833U, this.formatType, ")");
+        StringBuilder sbU = a.U("TrackUpdateSticker(id=");
+        sbU.append(this.id);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", formatType=");
+        return a.G(sbU, this.formatType, ")");
     }
 }

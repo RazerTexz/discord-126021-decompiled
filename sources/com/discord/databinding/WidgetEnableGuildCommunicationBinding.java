@@ -10,37 +10,33 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetEnableGuildCommunicationBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16584a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f16585b;
+    public final MaterialButton f2379b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f16586c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f16587d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16588e;
+    public final TextView e;
 
     public WidgetEnableGuildCommunicationBinding(@NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3) {
-        this.f16584a = linearLayout;
-        this.f16585b = materialButton;
-        this.f16586c = materialButton2;
-        this.f16587d = textView;
-        this.f16588e = textView2;
+        this.a = linearLayout;
+        this.f2379b = materialButton;
+        this.c = materialButton2;
+        this.d = textView;
+        this.e = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16584a;
+        return this.a;
     }
 }

@@ -8,17 +8,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import lombok.AccessLevel;
-import lombok.Builder;
+import lombok.Builder$Default;
+import lombok.Builder$ObtainVia;
 import lombok.ConfigurationKeys;
 import lombok.Singular;
-import lombok.ToString;
+import lombok.ToString$Include;
 import lombok.Value;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.configuration.CheckerFrameworkVersion;
 import lombok.core.handlers.HandlerUtil;
-import lombok.core.handlers.InclusionExclusionUtils;
+import lombok.core.handlers.HandlerUtil$FieldAccess;
+import lombok.core.handlers.InclusionExclusionUtils$Included;
 import lombok.eclipse.EclipseAnnotationHandler;
 import lombok.eclipse.EclipseNode;
 import lombok.experimental.NonFinal;
@@ -63,9 +65,7 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleSuperBuilder.SCL.lombok */
 @HandlerPriority(-1024)
 public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27474xb87c1847;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult;
     private static final char[] SELF_METHOD_NAME = "self".toCharArray();
     private static final char[] FILL_VALUES_METHOD_NAME = "$fillValuesFrom".toCharArray();
     private static final char[] FILL_VALUES_STATIC_METHOD_NAME = "$fillValuesFromInstanceIntoBuilder".toCharArray();
@@ -73,82 +73,39 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
     private static final String BUILDER_VARIABLE_NAME_STRING = "b";
     private static final char[] BUILDER_VARIABLE_NAME = BUILDER_VARIABLE_NAME_STRING.toCharArray();
 
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    static /* synthetic */ int[] m10934xb87c1847() {
-        int[] iArr = f27474xb87c1847;
+    static /* synthetic */ int[] $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult() {
+        int[] iArr = $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult;
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[EclipseHandlerUtil.MemberExistsResult.valuesCustom().length];
+        int[] iArr2 = new int[EclipseHandlerUtil$MemberExistsResult.valuesCustom().length];
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
         } catch (NoSuchFieldError unused3) {
         }
-        f27474xb87c1847 = iArr2;
+        $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult = iArr2;
         return iArr2;
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleSuperBuilder$SuperBuilderJob.SCL.lombok */
-    class SuperBuilderJob extends HandleBuilder.BuilderJob {
-        EclipseNode builderAbstractType;
-        String builderAbstractClassName;
-        char[] builderAbstractClassNameArr;
-        EclipseNode builderImplType;
-        String builderImplClassName;
-        char[] builderImplClassNameArr;
-        private TypeParameter[] builderTypeParams_;
-
-        SuperBuilderJob() {
-        }
-
-        void init(AnnotationValues<SuperBuilder> annValues, SuperBuilder ann, EclipseNode node) {
-            AccessLevel accessLevel = AccessLevel.PUBLIC;
-            this.accessInners = accessLevel;
-            this.accessOuters = accessLevel;
-            this.oldFluent = true;
-            this.oldChain = true;
-            this.builderMethodName = ann.builderMethodName();
-            this.buildMethodName = ann.buildMethodName();
-            this.toBuilder = ann.toBuilder();
-            if (this.builderMethodName == null) {
-                this.builderMethodName = "builder";
-            }
-            if (this.buildMethodName == null) {
-                this.buildMethodName = "build";
-            }
-            this.builderClassName = fixBuilderClassName(node, "");
-        }
-
-        void setBuilderToImpl() {
-            this.builderType = this.builderImplType;
-            this.builderClassName = this.builderImplClassName;
-            this.builderClassNameArr = this.builderImplClassNameArr;
-            this.builderTypeParams = this.typeParams;
-        }
-
-        void setBuilderToAbstract() {
-            this.builderType = this.builderAbstractType;
-            this.builderClassName = this.builderAbstractClassName;
-            this.builderClassNameArr = this.builderAbstractClassNameArr;
-            this.builderTypeParams = this.builderTypeParams_;
-        }
+    static /* synthetic */ char[] access$1() {
+        return SELF_METHOD_NAME;
     }
 
     @Override // lombok.eclipse.EclipseAnnotationHandler
     public void handle(AnnotationValues<SuperBuilder> annotation, Annotation ast, EclipseNode annotationNode) {
         boolean generateBuilderMethod;
-        EclipseSingularsRecipes.EclipseSingularizer singularizer;
+        EclipseSingularsRecipes$EclipseSingularizer singularizer;
         MethodDeclaration md;
         HandlerUtil.handleExperimentalFlagUsage(annotationNode, ConfigurationKeys.SUPERBUILDER_FLAG_USAGE, "@SuperBuilder");
-        SuperBuilderJob job = new SuperBuilderJob();
+        HandleSuperBuilder$SuperBuilderJob job = new HandleSuperBuilder$SuperBuilderJob(this);
         job.sourceNode = annotationNode;
         job.source = ast;
         job.checkerFramework = EclipseHandlerUtil.getCheckerFrameworkVersion(annotationNode);
@@ -163,7 +120,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             generateBuilderMethod = true;
         }
         if (HandlerUtil.checkName("buildMethodName", job.buildMethodName, annotationNode)) {
-            EclipseNode parent = annotationNode.m10925up();
+            EclipseNode parent = annotationNode.up();
             job.builderFields = new ArrayList();
             boolean addCleaning = false;
             List<EclipseNode> nonFinalNonDefaultedFields = null;
@@ -177,10 +134,10 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             boolean valuePresent = EclipseHandlerUtil.hasAnnotation((Class<? extends java.lang.annotation.Annotation>) Value.class, parent) || EclipseHandlerUtil.hasAnnotation("lombok.experimental.Value", parent);
             for (EclipseNode fieldNode : HandleConstructor.findAllFields(parent, true)) {
                 FieldDeclaration fd = fieldNode.get();
-                EclipseNode isDefault = EclipseHandlerUtil.findAnnotation(Builder.Default.class, fieldNode);
+                EclipseNode isDefault = EclipseHandlerUtil.findAnnotation(Builder$Default.class, fieldNode);
                 boolean isFinal = (fd.modifiers & 16) != 0 || (valuePresent && !EclipseHandlerUtil.hasAnnotation((Class<? extends java.lang.annotation.Annotation>) NonFinal.class, fieldNode));
                 Annotation[] copyableAnnotations = EclipseHandlerUtil.findCopyableAnnotations(fieldNode);
-                HandleBuilder.BuilderFieldData bfd = new HandleBuilder.BuilderFieldData();
+                HandleBuilder$BuilderFieldData bfd = new HandleBuilder$BuilderFieldData();
                 bfd.rawName = fieldNode.getName().toCharArray();
                 bfd.name = EclipseHandlerUtil.removePrefixFromField(fieldNode);
                 bfd.builderFieldName = bfd.name;
@@ -232,7 +189,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             b2.name = builderGenericName.toCharArray();
             b2.type = EclipseHandlerUtil.cloneSelfType(job.parentType, job.source);
             paddedTypeParameters[paddedTypeParameters.length - 1] = b2;
-            job.builderTypeParams_ = paddedTypeParameters;
+            HandleSuperBuilder$SuperBuilderJob.access$0(job, paddedTypeParameters);
             job.builderTypeParams = paddedTypeParameters;
             QualifiedTypeReference qualifiedTypeReference = td.superclass;
             ParameterizedQualifiedTypeReference parameterizedQualifiedTypeReference = null;
@@ -281,14 +238,14 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
                     return;
                 }
                 EclipseHandlerUtil.sanityCheckForMethodGeneratingAnnotationsOnBuilderClass(job.builderAbstractType, annotationNode);
-                for (HandleBuilder.BuilderFieldData bfd2 : job.builderFields) {
-                    EclipseSingularsRecipes.SingularData sd = bfd2.singularData;
+                for (HandleBuilder$BuilderFieldData bfd2 : job.builderFields) {
+                    EclipseSingularsRecipes$SingularData sd = bfd2.singularData;
                     if (sd != null && (singularizer = sd.getSingularizer()) != null && singularizer.checkForAlreadyExistingNodesAndGenerateError(job.builderAbstractType, sd)) {
                         bfd2.singularData = null;
                     }
                 }
             }
-            for (HandleBuilder.BuilderFieldData bfd3 : job.builderFields) {
+            for (HandleBuilder$BuilderFieldData bfd3 : job.builderFields) {
                 if (bfd3.singularData != null && bfd3.singularData.getSingularizer() != null && bfd3.singularData.getSingularizer().requiresCleaning()) {
                     addCleaning = true;
                     break;
@@ -319,19 +276,19 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             EclipseHandlerUtil.injectMethod(job.builderType, generateAbstractSelfMethod(job, parameterizedQualifiedTypeReference != null, builderGenericName));
             job.setBuilderToAbstract();
             EclipseHandlerUtil.injectMethod(job.builderType, generateAbstractBuildMethod(job, parameterizedQualifiedTypeReference != null, classGenericName));
-            Iterator<HandleBuilder.BuilderFieldData> it = job.builderFields.iterator();
+            Iterator<HandleBuilder$BuilderFieldData> it = job.builderFields.iterator();
             while (it.hasNext()) {
                 generateSetterMethodsForBuilder(job, it.next(), builderGenericName, annInstance.setterPrefix());
             }
-            if (EclipseHandlerUtil.methodExists("toString", job.builderType, 0) == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
-                List<InclusionExclusionUtils.Included<EclipseNode, ToString.Include>> fieldNodes = new ArrayList<>();
-                Iterator<HandleBuilder.BuilderFieldData> it2 = job.builderFields.iterator();
+            if (EclipseHandlerUtil.methodExists("toString", job.builderType, 0) == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
+                List<InclusionExclusionUtils$Included<EclipseNode, ToString$Include>> fieldNodes = new ArrayList<>();
+                Iterator<HandleBuilder$BuilderFieldData> it2 = job.builderFields.iterator();
                 while (it2.hasNext()) {
                     for (EclipseNode f : it2.next().createdFields) {
-                        fieldNodes.add(new InclusionExclusionUtils.Included<>(f, null, true, false));
+                        fieldNodes.add(new InclusionExclusionUtils$Included<>(f, null, true, false));
                     }
                 }
-                MethodDeclaration md3 = HandleToString.createToString(job.builderType, fieldNodes, true, parameterizedQualifiedTypeReference != null, ast, HandlerUtil.FieldAccess.ALWAYS_FIELD);
+                MethodDeclaration md3 = HandleToString.createToString(job.builderType, fieldNodes, true, parameterizedQualifiedTypeReference != null, ast, HandlerUtil$FieldAccess.ALWAYS_FIELD);
                 if (md3 != null) {
                     EclipseHandlerUtil.injectMethod(job.builderType, md3);
                 }
@@ -357,7 +314,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             }
             job.setBuilderToImpl();
             if (job.toBuilder) {
-                switch (m10934xb87c1847()[EclipseHandlerUtil.methodExists("toBuilder", job.parentType, 0).ordinal()]) {
+                switch ($SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult()[EclipseHandlerUtil.methodExists("toBuilder", job.parentType, 0).ordinal()]) {
                     case 1:
                         EclipseHandlerUtil.injectMethod(parent, generateToBuilderMethod(job));
                         break;
@@ -365,11 +322,11 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             }
             job.setBuilderToImpl();
             EclipseHandlerUtil.injectMethod(job.builderImplType, generateSelfMethod(job));
-            if (EclipseHandlerUtil.methodExists(job.buildMethodName, job.builderImplType, -1) == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+            if (EclipseHandlerUtil.methodExists(job.buildMethodName, job.builderImplType, -1) == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
                 job.setBuilderToImpl();
                 EclipseHandlerUtil.injectMethod(job.builderImplType, generateBuildMethod(job, buildMethodReturnType));
             }
-            if (generateBuilderMethod && EclipseHandlerUtil.methodExists(job.builderMethodName, parent, -1) != EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+            if (generateBuilderMethod && EclipseHandlerUtil.methodExists(job.builderMethodName, parent, -1) != EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
                 generateBuilderMethod = false;
             }
             if (generateBuilderMethod && (md = generateBuilderMethod(job)) != null) {
@@ -384,7 +341,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         }
     }
 
-    private EclipseNode generateBuilderAbstractClass(HandleBuilder.BuilderJob job, TypeReference superclassBuilderClass, String classGenericName, String builderGenericName) {
+    private EclipseNode generateBuilderAbstractClass(HandleBuilder$BuilderJob job, TypeReference superclassBuilderClass, String classGenericName, String builderGenericName) {
         TypeDeclaration parent = job.parentType.get();
         TypeDeclaration builder = new TypeDeclaration(parent.compilationResult);
         builder.bits |= 8388608;
@@ -408,7 +365,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return EclipseHandlerUtil.injectType(job.parentType, builder);
     }
 
-    private EclipseNode generateBuilderImplClass(HandleBuilder.BuilderJob job, String builderImplClass) {
+    private EclipseNode generateBuilderImplClass(HandleBuilder$BuilderJob job, String builderImplClass) {
         TypeDeclaration parent = job.parentType.get();
         TypeDeclaration builder = new TypeDeclaration(parent.compilationResult);
         builder.bits |= 8388608;
@@ -431,7 +388,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return EclipseHandlerUtil.injectType(job.parentType, builder);
     }
 
-    private void generateBuilderBasedConstructor(HandleBuilder.BuilderJob job, boolean callBuilderBasedSuperConstructor) {
+    private void generateBuilderBasedConstructor(HandleBuilder$BuilderJob job, boolean callBuilderBasedSuperConstructor) {
         SingleNameReference qualifiedNameReference;
         Statement nullCheck;
         TypeDeclaration typeDeclaration = job.parentType.get();
@@ -462,7 +419,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         TypeReference builderType = EclipseHandlerUtil.generateParameterizedTypeReference(job.parentType, job.builderClassNameArr, false, mergeToTypeReferences(job.typeParams, wildcards), p);
         constructor.arguments = new Argument[]{new Argument(BUILDER_VARIABLE_NAME, p, builderType, 16)};
         List<Statement> statements = new ArrayList<>();
-        for (HandleBuilder.BuilderFieldData fieldNode : job.builderFields) {
+        for (HandleBuilder$BuilderFieldData fieldNode : job.builderFields) {
             FieldReference fieldInThis = new FieldReference(fieldNode.rawName, p);
             int s2 = (int) (p >> 32);
             int e = (int) p;
@@ -500,7 +457,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         EclipseHandlerUtil.injectMethod(job.parentType, constructor);
     }
 
-    private MethodDeclaration generateBuilderMethod(SuperBuilderJob job) {
+    private MethodDeclaration generateBuilderMethod(HandleSuperBuilder$SuperBuilderJob job) {
         int pS = job.source.sourceStart;
         int pE = job.source.sourceEnd;
         long p = (((long) pS) << 32) | ((long) pE);
@@ -526,7 +483,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MethodDeclaration generateToBuilderMethod(SuperBuilderJob job) {
+    private MethodDeclaration generateToBuilderMethod(HandleSuperBuilder$SuperBuilderJob job) {
         int pS = job.source.sourceStart;
         int pE = job.source.sourceEnd;
         long p = (((long) pS) << 32) | ((long) pE);
@@ -553,7 +510,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MethodDeclaration generateFillValuesMethod(SuperBuilderJob job, boolean inherited, String builderGenericName, String classGenericName) {
+    private MethodDeclaration generateFillValuesMethod(HandleSuperBuilder$SuperBuilderJob job, boolean inherited, String builderGenericName, String classGenericName) {
         MethodDeclaration out = job.createNewMethodDeclaration();
         out.selector = FILL_VALUES_METHOD_NAME;
         out.bits |= 8388608;
@@ -584,7 +541,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MethodDeclaration generateStaticFillValuesMethod(HandleBuilder.BuilderJob job, String setterPrefix) {
+    private MethodDeclaration generateStaticFillValuesMethod(HandleBuilder$BuilderJob job, String setterPrefix) {
         MethodDeclaration out = job.createNewMethodDeclaration();
         out.selector = FILL_VALUES_STATIC_METHOD_NAME;
         out.bits |= 8388608;
@@ -607,7 +564,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
             out.typeParameters = EclipseHandlerUtil.copyTypeParams(job.typeParams, job.source);
         }
         List<Statement> body = new ArrayList<>();
-        for (HandleBuilder.BuilderFieldData bfd : job.builderFields) {
+        for (HandleBuilder$BuilderFieldData bfd : job.builderFields) {
             MessageSend exec = createSetterCallWithInstanceValue(bfd, job.parentType, job.source, setterPrefix);
             body.add(exec);
         }
@@ -616,7 +573,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MessageSend createSetterCallWithInstanceValue(HandleBuilder.BuilderFieldData bfd, EclipseNode type, ASTNode source, String setterPrefix) {
+    private MessageSend createSetterCallWithInstanceValue(HandleBuilder$BuilderFieldData bfd, EclipseNode type, ASTNode source, String setterPrefix) {
         char[] setterName = HandlerUtil.buildAccessorName(setterPrefix, String.valueOf(bfd.name)).toCharArray();
         MessageSend ms = new MessageSend();
         Expression[] tgt = new Expression[bfd.singularData == null ? 1 : 2];
@@ -654,7 +611,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return ms;
     }
 
-    private MethodDeclaration generateAbstractSelfMethod(HandleBuilder.BuilderJob job, boolean override, String builderGenericName) {
+    private MethodDeclaration generateAbstractSelfMethod(HandleBuilder$BuilderJob job, boolean override, String builderGenericName) {
         MethodDeclaration out = job.createNewMethodDeclaration();
         out.selector = SELF_METHOD_NAME;
         out.bits |= 8388608;
@@ -681,7 +638,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MethodDeclaration generateSelfMethod(HandleBuilder.BuilderJob job) {
+    private MethodDeclaration generateSelfMethod(HandleBuilder$BuilderJob job) {
         MethodDeclaration out = job.createNewMethodDeclaration();
         out.selector = SELF_METHOD_NAME;
         out.bits |= 8388608;
@@ -703,7 +660,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MethodDeclaration generateAbstractBuildMethod(HandleBuilder.BuilderJob job, boolean override, String classGenericName) {
+    private MethodDeclaration generateAbstractBuildMethod(HandleBuilder$BuilderJob job, boolean override, String classGenericName) {
         MethodDeclaration out = job.createNewMethodDeclaration();
         out.bits |= 8388608;
         out.modifiers = 16778241;
@@ -724,7 +681,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MethodDeclaration generateBuildMethod(HandleBuilder.BuilderJob job, TypeReference returnType) {
+    private MethodDeclaration generateBuildMethod(HandleBuilder$BuilderJob job, TypeReference returnType) {
         MethodDeclaration out = job.createNewMethodDeclaration();
         out.bits |= 8388608;
         List<Statement> statements = new ArrayList<>();
@@ -750,9 +707,9 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return out;
     }
 
-    private MethodDeclaration generateCleanMethod(HandleBuilder.BuilderJob job) {
+    private MethodDeclaration generateCleanMethod(HandleBuilder$BuilderJob job) {
         List<Statement> statements = new ArrayList<>();
-        for (HandleBuilder.BuilderFieldData bfd : job.builderFields) {
+        for (HandleBuilder$BuilderFieldData bfd : job.builderFields) {
             if (bfd.singularData != null && bfd.singularData.getSingularizer() != null) {
                 bfd.singularData.getSingularizer().appendCleaningCode(bfd.singularData, job.builderType, statements);
             }
@@ -770,14 +727,14 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         return decl;
     }
 
-    private void generateBuilderFields(HandleBuilder.BuilderJob job) {
+    private void generateBuilderFields(HandleBuilder$BuilderJob job) {
         List<EclipseNode> existing = new ArrayList<>();
         for (EclipseNode child : job.builderType.down()) {
-            if (child.getKind() == AST.Kind.FIELD) {
+            if (child.getKind() == AST$Kind.FIELD) {
                 existing.add(child);
             }
         }
-        for (HandleBuilder.BuilderFieldData bfd : job.builderFields) {
+        for (HandleBuilder$BuilderFieldData bfd : job.builderFields) {
             if (bfd.singularData != null && bfd.singularData.getSingularizer() != null) {
                 bfd.createdFields.addAll(bfd.singularData.getSingularizer().generateFields(bfd.singularData, job.builderType));
             } else {
@@ -813,32 +770,18 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         }
     }
 
-    private void generateSetterMethodsForBuilder(HandleBuilder.BuilderJob job, HandleBuilder.BuilderFieldData bfd, final String builderGenericName, String setterPrefix) {
+    private void generateSetterMethodsForBuilder(HandleBuilder$BuilderJob job, HandleBuilder$BuilderFieldData bfd, String builderGenericName, String setterPrefix) {
         boolean deprecate = EclipseHandlerUtil.isFieldDeprecated(bfd.originalFieldNode);
-        EclipseSingularsRecipes.TypeReferenceMaker returnTypeMaker = new EclipseSingularsRecipes.TypeReferenceMaker() { // from class: lombok.eclipse.handlers.HandleSuperBuilder.1
-            @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.TypeReferenceMaker
-            public TypeReference make() {
-                return new SingleTypeReference(builderGenericName.toCharArray(), 0L);
-            }
-        };
-        EclipseSingularsRecipes.StatementMaker returnStatementMaker = new EclipseSingularsRecipes.StatementMaker() { // from class: lombok.eclipse.handlers.HandleSuperBuilder.2
-            @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.StatementMaker
-            /* JADX INFO: renamed from: make, reason: merged with bridge method [inline-methods] */
-            public ReturnStatement mo11563make() {
-                MessageSend returnCall = new MessageSend();
-                returnCall.receiver = ThisReference.implicitThis();
-                returnCall.selector = HandleSuperBuilder.SELF_METHOD_NAME;
-                return new ReturnStatement(returnCall, 0, 0);
-            }
-        };
+        EclipseSingularsRecipes$TypeReferenceMaker returnTypeMaker = new HandleSuperBuilder$1(this, builderGenericName);
+        EclipseSingularsRecipes$StatementMaker returnStatementMaker = new HandleSuperBuilder$2(this);
         if (bfd.singularData == null || bfd.singularData.getSingularizer() == null) {
-            generateSimpleSetterMethodForBuilder(job, deprecate, bfd.createdFields.get(0), bfd.name, bfd.nameOfSetFlag, returnTypeMaker.make(), returnStatementMaker.mo11563make(), bfd.annotations, bfd.originalFieldNode, setterPrefix);
+            generateSimpleSetterMethodForBuilder(job, deprecate, bfd.createdFields.get(0), bfd.name, bfd.nameOfSetFlag, returnTypeMaker.make(), returnStatementMaker.mo186make(), bfd.annotations, bfd.originalFieldNode, setterPrefix);
         } else {
             bfd.singularData.getSingularizer().generateMethods(job.checkerFramework, bfd.singularData, deprecate, job.builderType, true, returnTypeMaker, returnStatementMaker, AccessLevel.PUBLIC);
         }
     }
 
-    private void generateSimpleSetterMethodForBuilder(HandleBuilder.BuilderJob job, boolean deprecate, EclipseNode fieldNode, char[] paramName, char[] nameOfSetFlag, TypeReference returnType, Statement returnStatement, Annotation[] annosOnParam, EclipseNode originalFieldNode, String setterPrefix) {
+    private void generateSimpleSetterMethodForBuilder(HandleBuilder$BuilderJob job, boolean deprecate, EclipseNode fieldNode, char[] paramName, char[] nameOfSetFlag, TypeReference returnType, Statement returnStatement, Annotation[] annosOnParam, EclipseNode originalFieldNode, String setterPrefix) {
         TypeDeclaration td = job.builderType.get();
         AbstractMethodDeclaration[] existing = td.methods;
         if (existing == null) {
@@ -866,10 +809,10 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         EclipseHandlerUtil.injectMethod(job.builderType, setter);
     }
 
-    private void addObtainVia(HandleBuilder.BuilderFieldData bfd, EclipseNode node) {
+    private void addObtainVia(HandleBuilder$BuilderFieldData bfd, EclipseNode node) {
         for (EclipseNode child : node.down()) {
-            if (EclipseHandlerUtil.annotationTypeMatches((Class<? extends java.lang.annotation.Annotation>) Builder.ObtainVia.class, child)) {
-                AnnotationValues<Builder.ObtainVia> ann = EclipseHandlerUtil.createAnnotation(Builder.ObtainVia.class, child);
+            if (EclipseHandlerUtil.annotationTypeMatches((Class<? extends java.lang.annotation.Annotation>) Builder$ObtainVia.class, child)) {
+                AnnotationValues<Builder$ObtainVia> ann = EclipseHandlerUtil.createAnnotation(Builder$ObtainVia.class, child);
                 bfd.obtainVia = ann.getInstance();
                 bfd.obtainViaNode = child;
                 return;
@@ -877,11 +820,11 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
         }
     }
 
-    private EclipseSingularsRecipes.SingularData getSingularData(EclipseNode node, ASTNode source, String setterPrefix) {
+    private EclipseSingularsRecipes$SingularData getSingularData(EclipseNode node, ASTNode source, String setterPrefix) {
         String typeName;
         for (EclipseNode child : node.down()) {
             if (EclipseHandlerUtil.annotationTypeMatches((Class<? extends java.lang.annotation.Annotation>) Singular.class, child)) {
-                char[] pluralName = node.getKind() == AST.Kind.FIELD ? EclipseHandlerUtil.removePrefixFromField(node) : node.get().name;
+                char[] pluralName = node.getKind() == AST$Kind.FIELD ? EclipseHandlerUtil.removePrefixFromField(node) : node.get().name;
                 AnnotationValues<Singular> ann = EclipseHandlerUtil.createAnnotation(Singular.class, child);
                 Singular singularInstance = ann.getInstance();
                 String explicitSingular = singularInstance.value();
@@ -919,12 +862,12 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
                     typeName = parameterizedSingleTypeReference.toString();
                 }
                 String targetFqn = EclipseSingularsRecipes.get().toQualified(typeName);
-                EclipseSingularsRecipes.EclipseSingularizer singularizer = EclipseSingularsRecipes.get().getSingularizer(targetFqn);
+                EclipseSingularsRecipes$EclipseSingularizer singularizer = EclipseSingularsRecipes.get().getSingularizer(targetFqn);
                 if (singularizer == null) {
                     node.addError("Lombok does not know how to create the singular-form builder methods for type '" + typeName + "'; they won't be generated.");
                     return null;
                 }
-                return new EclipseSingularsRecipes.SingularData(child, singularName, pluralName, typeArgs == null ? Collections.emptyList() : Arrays.asList(typeArgs), targetFqn, singularizer, source, singularInstance.ignoreNullCollections(), setterPrefix.toCharArray());
+                return new EclipseSingularsRecipes$SingularData(child, singularName, pluralName, typeArgs == null ? Collections.emptyList() : Arrays.asList(typeArgs), targetFqn, singularizer, source, singularInstance.ignoreNullCollections(), setterPrefix.toCharArray());
             }
         }
         return null;
@@ -1026,7 +969,7 @@ public class HandleSuperBuilder extends EclipseAnnotationHandler<SuperBuilder> {
     private EclipseNode findInnerClass(EclipseNode parent, String name) {
         char[] c = name.toCharArray();
         for (EclipseNode child : parent.down()) {
-            if (child.getKind() == AST.Kind.TYPE) {
+            if (child.getKind() == AST$Kind.TYPE) {
                 TypeDeclaration td = child.get();
                 if (Arrays.equals(td.name, c)) {
                     return child;

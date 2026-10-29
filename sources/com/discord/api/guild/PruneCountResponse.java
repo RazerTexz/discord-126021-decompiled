@@ -1,6 +1,6 @@
 package com.discord.api.guild;
 
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: PruneCountResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,6 +24,6 @@ public final /* data */ class PruneCountResponse {
     }
 
     public String toString() {
-        return C1643a.m814B(C1643a.m833U("PruneCountResponse(pruned="), this.pruned, ")");
+        return a.B(a.U("PruneCountResponse(pruned="), this.pruned, ")");
     }
 }

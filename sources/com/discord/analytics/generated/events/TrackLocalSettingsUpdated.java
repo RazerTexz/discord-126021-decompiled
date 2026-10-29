@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLocalSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSche
             return false;
         }
         TrackLocalSettingsUpdated trackLocalSettingsUpdated = (TrackLocalSettingsUpdated) other;
-        return C12238m.areEqual(this.notificationsEnabled, trackLocalSettingsUpdated.notificationsEnabled) && C12238m.areEqual(this.notificationsInAppEnabled, trackLocalSettingsUpdated.notificationsInAppEnabled) && C12238m.areEqual(this.colorblindEnabled, trackLocalSettingsUpdated.colorblindEnabled) && C12238m.areEqual(this.saturationLevel, trackLocalSettingsUpdated.saturationLevel) && C12238m.areEqual(this.gameDetectionEnabled, trackLocalSettingsUpdated.gameDetectionEnabled) && C12238m.areEqual(this.nativePhoneIntegrationEnabled, trackLocalSettingsUpdated.nativePhoneIntegrationEnabled) && C12238m.areEqual(this.autoStreaming, trackLocalSettingsUpdated.autoStreaming);
+        return m.areEqual(this.notificationsEnabled, trackLocalSettingsUpdated.notificationsEnabled) && m.areEqual(this.notificationsInAppEnabled, trackLocalSettingsUpdated.notificationsInAppEnabled) && m.areEqual(this.colorblindEnabled, trackLocalSettingsUpdated.colorblindEnabled) && m.areEqual(this.saturationLevel, trackLocalSettingsUpdated.saturationLevel) && m.areEqual(this.gameDetectionEnabled, trackLocalSettingsUpdated.gameDetectionEnabled) && m.areEqual(this.nativePhoneIntegrationEnabled, trackLocalSettingsUpdated.nativePhoneIntegrationEnabled) && m.areEqual(this.autoStreaming, trackLocalSettingsUpdated.autoStreaming);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackLocalSettingsUpdated implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackLocalSettingsUpdated(notificationsEnabled=");
-        sbM833U.append(this.notificationsEnabled);
-        sbM833U.append(", notificationsInAppEnabled=");
-        sbM833U.append(this.notificationsInAppEnabled);
-        sbM833U.append(", colorblindEnabled=");
-        sbM833U.append(this.colorblindEnabled);
-        sbM833U.append(", saturationLevel=");
-        sbM833U.append(this.saturationLevel);
-        sbM833U.append(", gameDetectionEnabled=");
-        sbM833U.append(this.gameDetectionEnabled);
-        sbM833U.append(", nativePhoneIntegrationEnabled=");
-        sbM833U.append(this.nativePhoneIntegrationEnabled);
-        sbM833U.append(", autoStreaming=");
-        return C1643a.m816D(sbM833U, this.autoStreaming, ")");
+        StringBuilder sbU = a.U("TrackLocalSettingsUpdated(notificationsEnabled=");
+        sbU.append(this.notificationsEnabled);
+        sbU.append(", notificationsInAppEnabled=");
+        sbU.append(this.notificationsInAppEnabled);
+        sbU.append(", colorblindEnabled=");
+        sbU.append(this.colorblindEnabled);
+        sbU.append(", saturationLevel=");
+        sbU.append(this.saturationLevel);
+        sbU.append(", gameDetectionEnabled=");
+        sbU.append(this.gameDetectionEnabled);
+        sbU.append(", nativePhoneIntegrationEnabled=");
+        sbU.append(this.nativePhoneIntegrationEnabled);
+        sbU.append(", autoStreaming=");
+        return a.D(sbU, this.autoStreaming, ")");
     }
 }

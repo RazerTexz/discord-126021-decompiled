@@ -1,192 +1,24 @@
 package org.webrtc;
 
-import androidx.annotation.Nullable;
-import p007b.p100d.p104b.p105a.C1643a;
-
 /* JADX INFO: loaded from: classes3.dex */
 public interface VideoEncoder {
-
-    public class BitrateAllocation {
-        public final int[][] bitratesBbs;
-
-        @CalledByNative("BitrateAllocation")
-        public BitrateAllocation(int[][] iArr) {
-            this.bitratesBbs = iArr;
-        }
-
-        public int getSum() {
-            int i = 0;
-            for (int[] iArr : this.bitratesBbs) {
-                for (int i2 : iArr) {
-                    i += i2;
-                }
-            }
-            return i;
-        }
-    }
-
-    public interface Callback {
-        void onEncodedFrame(EncodedImage encodedImage, CodecSpecificInfo codecSpecificInfo);
-    }
-
-    public class Capabilities {
-        public final boolean lossNotification;
-
-        @CalledByNative("Capabilities")
-        public Capabilities(boolean z2) {
-            this.lossNotification = z2;
-        }
-    }
-
-    public class CodecSpecificInfo {
-    }
-
-    public class CodecSpecificInfoH264 extends CodecSpecificInfo {
-    }
-
-    public class CodecSpecificInfoVP8 extends CodecSpecificInfo {
-    }
-
-    public class CodecSpecificInfoVP9 extends CodecSpecificInfo {
-    }
-
-    public class EncodeInfo {
-        public final EncodedImage.FrameType[] frameTypes;
-
-        @CalledByNative("EncodeInfo")
-        public EncodeInfo(EncodedImage.FrameType[] frameTypeArr) {
-            this.frameTypes = frameTypeArr;
-        }
-    }
-
-    public class ResolutionBitrateLimits {
-        public final int frameSizePixels;
-        public final int maxBitrateBps;
-        public final int minBitrateBps;
-        public final int minStartBitrateBps;
-
-        public ResolutionBitrateLimits(int i, int i2, int i3, int i4) {
-            this.frameSizePixels = i;
-            this.minStartBitrateBps = i2;
-            this.minBitrateBps = i3;
-            this.maxBitrateBps = i4;
-        }
-
-        @CalledByNative("ResolutionBitrateLimits")
-        public int getFrameSizePixels() {
-            return this.frameSizePixels;
-        }
-
-        @CalledByNative("ResolutionBitrateLimits")
-        public int getMaxBitrateBps() {
-            return this.maxBitrateBps;
-        }
-
-        @CalledByNative("ResolutionBitrateLimits")
-        public int getMinBitrateBps() {
-            return this.minBitrateBps;
-        }
-
-        @CalledByNative("ResolutionBitrateLimits")
-        public int getMinStartBitrateBps() {
-            return this.minStartBitrateBps;
-        }
-    }
-
-    public class ScalingSettings {
-
-        /* JADX INFO: renamed from: on */
-        public final boolean f27620on;
-
-        @Nullable
-        public final Integer high;
-
-        @Nullable
-        public final Integer low;
-        public static final ScalingSettings OFF = new ScalingSettings();
-
-        public ScalingSettings(int i, int i2) {
-            this.f27620on = true;
-            this.low = Integer.valueOf(i);
-            this.high = Integer.valueOf(i2);
-        }
-
-        public String toString() {
-            if (!this.f27620on) {
-                return "OFF";
-            }
-            StringBuilder sbM833U = C1643a.m833U("[ ");
-            sbM833U.append(this.low);
-            sbM833U.append(", ");
-            return C1643a.m818F(sbM833U, this.high, " ]");
-        }
-
-        private ScalingSettings() {
-            this.f27620on = false;
-            this.low = null;
-            this.high = null;
-        }
-
-        @Deprecated
-        public ScalingSettings(boolean z2) {
-            this.f27620on = z2;
-            this.low = null;
-            this.high = null;
-        }
-
-        @Deprecated
-        public ScalingSettings(boolean z2, int i, int i2) {
-            this.f27620on = z2;
-            this.low = Integer.valueOf(i);
-            this.high = Integer.valueOf(i2);
-        }
-    }
-
-    public class Settings {
-        public final boolean automaticResizeOn;
-        public final Capabilities capabilities;
-        public final int height;
-        public final int maxFramerate;
-        public final int numberOfCores;
-        public final int numberOfSimulcastStreams;
-        public final int startBitrate;
-        public final int width;
-
-        @Deprecated
-        public Settings(int i, int i2, int i3, int i4, int i5, int i6, boolean z2) {
-            this(i, i2, i3, i4, i5, i6, z2, new Capabilities(false));
-        }
-
-        @CalledByNative("Settings")
-        public Settings(int i, int i2, int i3, int i4, int i5, int i6, boolean z2, Capabilities capabilities) {
-            this.numberOfCores = i;
-            this.width = i2;
-            this.height = i3;
-            this.startBitrate = i4;
-            this.maxFramerate = i5;
-            this.numberOfSimulcastStreams = i6;
-            this.automaticResizeOn = z2;
-            this.capabilities = capabilities;
-        }
-    }
-
     @CalledByNative
     long createNativeVideoEncoder();
 
     @CalledByNative
-    VideoCodecStatus encode(VideoFrame videoFrame, EncodeInfo encodeInfo);
+    VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder$EncodeInfo videoEncoder$EncodeInfo);
 
     @CalledByNative
     String getImplementationName();
 
     @CalledByNative
-    ResolutionBitrateLimits[] getResolutionBitrateLimits();
+    VideoEncoder$ResolutionBitrateLimits[] getResolutionBitrateLimits();
 
     @CalledByNative
-    ScalingSettings getScalingSettings();
+    VideoEncoder$ScalingSettings getScalingSettings();
 
     @CalledByNative
-    VideoCodecStatus initEncode(Settings settings, Callback callback);
+    VideoCodecStatus initEncode(VideoEncoder$Settings videoEncoder$Settings, VideoEncoder$Callback videoEncoder$Callback);
 
     @CalledByNative
     boolean isHardwareEncoder();
@@ -195,5 +27,5 @@ public interface VideoEncoder {
     VideoCodecStatus release();
 
     @CalledByNative
-    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i);
+    VideoCodecStatus setRateAllocation(VideoEncoder$BitrateAllocation videoEncoder$BitrateAllocation, int i);
 }

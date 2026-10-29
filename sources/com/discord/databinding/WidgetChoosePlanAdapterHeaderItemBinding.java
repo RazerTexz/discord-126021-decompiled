@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChoosePlanAdapterHeaderItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f16374a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16375b;
+    public final TextView f2347b;
 
     public WidgetChoosePlanAdapterHeaderItemBinding(@NonNull FrameLayout frameLayout, @NonNull TextView textView) {
-        this.f16374a = frameLayout;
-        this.f16375b = textView;
+        this.a = frameLayout;
+        this.f2347b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16374a;
+        return this.a;
     }
 }

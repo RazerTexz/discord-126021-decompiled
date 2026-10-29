@@ -1,15 +1,17 @@
 package com.discord.models.domain;
 
+import b.a.m.a.b;
+import b.a.m.a.c;
+import b.a.m.a.d;
+import b.a.m.a.e;
+import b.a.m.a.f;
+import b.a.m.a.g;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.user.User;
-import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
-import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.models.domain.ModelGuildIntegration;
-import com.discord.models.domain.ModelWebhook;
 import java.io.IOException;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelAuditLog implements Model {
@@ -21,60 +23,30 @@ public class ModelAuditLog implements Model {
     private List<ModelWebhook> webhooks;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(final Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "threads":
-                this.threads = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.f
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (Channel) InboundGatewayGsonParser.fromJson(jsonReader, Channel.class);
-                    }
-                });
+                this.threads = model$JsonReader.nextList(new f(model$JsonReader));
                 break;
             case "guild_scheduled_events":
-                this.guildScheduledEvents = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.c
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (GuildScheduledEvent) InboundGatewayGsonParser.fromJson(jsonReader, GuildScheduledEvent.class);
-                    }
-                });
+                this.guildScheduledEvents = model$JsonReader.nextList(new c(model$JsonReader));
                 break;
             case "webhooks":
-                this.webhooks = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.e
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelWebhook) jsonReader.parse(new ModelWebhook());
-                    }
-                });
+                this.webhooks = model$JsonReader.nextList(new e(model$JsonReader));
                 break;
             case "audit_log_entries":
-                this.auditLogEntries = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.b
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelAuditLogEntry) jsonReader.parse(new ModelAuditLogEntry());
-                    }
-                });
+                this.auditLogEntries = model$JsonReader.nextList(new b(model$JsonReader));
                 break;
             case "users":
-                this.users = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.g
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
-                    }
-                });
+                this.users = model$JsonReader.nextList(new g(model$JsonReader));
                 break;
             case "integrations":
-                this.integrations = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.d
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelGuildIntegration) jsonReader.parse(new ModelGuildIntegration());
-                    }
-                });
+                this.integrations = model$JsonReader.nextList(new d(model$JsonReader));
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -164,19 +136,19 @@ public class ModelAuditLog implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelAuditLog(users=");
-        sbM833U.append(getUsers());
-        sbM833U.append(", webhooks=");
-        sbM833U.append(getWebhooks());
-        sbM833U.append(", integrations=");
-        sbM833U.append(getIntegrations());
-        sbM833U.append(", auditLogEntries=");
-        sbM833U.append(getAuditLogEntries());
-        sbM833U.append(", guildScheduledEvents=");
-        sbM833U.append(getGuildScheduledEvents());
-        sbM833U.append(", threads=");
-        sbM833U.append(getThreads());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelAuditLog(users=");
+        sbU.append(getUsers());
+        sbU.append(", webhooks=");
+        sbU.append(getWebhooks());
+        sbU.append(", integrations=");
+        sbU.append(getIntegrations());
+        sbU.append(", auditLogEntries=");
+        sbU.append(getAuditLogEntries());
+        sbU.append(", guildScheduledEvents=");
+        sbU.append(getGuildScheduledEvents());
+        sbU.append(", threads=");
+        sbU.append(getThreads());
+        sbU.append(")");
+        return sbU.toString();
     }
 }

@@ -1,31 +1,13 @@
 package androidx.media;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.versionedparcelable.VersionedParcelable;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public interface AudioAttributesImpl extends VersionedParcelable {
-
-    public interface Builder {
-        @NonNull
-        AudioAttributesImpl build();
-
-        @NonNull
-        Builder setContentType(int i);
-
-        @NonNull
-        Builder setFlags(int i);
-
-        @NonNull
-        Builder setLegacyStreamType(int i);
-
-        @NonNull
-        Builder setUsage(int i);
-    }
-
     @Nullable
     Object getAudioAttributes();
 

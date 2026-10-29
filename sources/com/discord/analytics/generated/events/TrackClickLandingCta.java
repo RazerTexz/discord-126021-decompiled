@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
 import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackClickLandingCta.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, T
             return false;
         }
         TrackClickLandingCta trackClickLandingCta = (TrackClickLandingCta) other;
-        return C12238m.areEqual(this.buttonstate, trackClickLandingCta.buttonstate) && C12238m.areEqual(this.buttontype, trackClickLandingCta.buttontype) && C12238m.areEqual(this.pageName, trackClickLandingCta.pageName) && C12238m.areEqual(this.staticExperimentUuid, trackClickLandingCta.staticExperimentUuid);
+        return m.areEqual(this.buttonstate, trackClickLandingCta.buttonstate) && m.areEqual(this.buttontype, trackClickLandingCta.buttontype) && m.areEqual(this.pageName, trackClickLandingCta.pageName) && m.areEqual(this.staticExperimentUuid, trackClickLandingCta.staticExperimentUuid);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackClickLandingCta implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackClickLandingCta(buttonstate=");
-        sbM833U.append(this.buttonstate);
-        sbM833U.append(", buttontype=");
-        sbM833U.append(this.buttontype);
-        sbM833U.append(", pageName=");
-        sbM833U.append(this.pageName);
-        sbM833U.append(", staticExperimentUuid=");
-        return C1643a.m817E(sbM833U, this.staticExperimentUuid, ")");
+        StringBuilder sbU = a.U("TrackClickLandingCta(buttonstate=");
+        sbU.append(this.buttonstate);
+        sbU.append(", buttontype=");
+        sbU.append(this.buttontype);
+        sbU.append(", pageName=");
+        sbU.append(this.pageName);
+        sbU.append(", staticExperimentUuid=");
+        return a.E(sbU, this.staticExperimentUuid, ")");
     }
 }

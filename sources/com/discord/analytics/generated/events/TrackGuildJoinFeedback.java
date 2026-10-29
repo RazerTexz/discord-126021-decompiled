@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildJoinFeedback.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +20,11 @@ public final /* data */ class TrackGuildJoinFeedback implements AnalyticsSchema,
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_join_feedback";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,7 +33,7 @@ public final /* data */ class TrackGuildJoinFeedback implements AnalyticsSchema,
             return false;
         }
         TrackGuildJoinFeedback trackGuildJoinFeedback = (TrackGuildJoinFeedback) other;
-        return C12238m.areEqual(this.reason, trackGuildJoinFeedback.reason) && C12238m.areEqual(this.rating, trackGuildJoinFeedback.rating) && C12238m.areEqual(this.feedback, trackGuildJoinFeedback.feedback) && C12238m.areEqual(this.skipped, trackGuildJoinFeedback.skipped);
+        return m.areEqual(this.reason, trackGuildJoinFeedback.reason) && m.areEqual(this.rating, trackGuildJoinFeedback.rating) && m.areEqual(this.feedback, trackGuildJoinFeedback.feedback) && m.areEqual(this.skipped, trackGuildJoinFeedback.skipped);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,20 +59,14 @@ public final /* data */ class TrackGuildJoinFeedback implements AnalyticsSchema,
         return iHashCode3 + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildJoinFeedback(reason=");
-        sbM833U.append(this.reason);
-        sbM833U.append(", rating=");
-        sbM833U.append(this.rating);
-        sbM833U.append(", feedback=");
-        sbM833U.append(this.feedback);
-        sbM833U.append(", skipped=");
-        return C1643a.m816D(sbM833U, this.skipped, ")");
+        StringBuilder sbU = a.U("TrackGuildJoinFeedback(reason=");
+        sbU.append(this.reason);
+        sbU.append(", rating=");
+        sbU.append(this.rating);
+        sbU.append(", feedback=");
+        sbU.append(this.feedback);
+        sbU.append(", skipped=");
+        return a.D(sbU, this.skipped, ")");
     }
 }

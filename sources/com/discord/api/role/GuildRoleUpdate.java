@@ -1,8 +1,8 @@
 package com.discord.api.role;
 
+import b.d.b.a.a;
 import com.discord.api.guildhash.GuildHashes;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildRoleUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class GuildRoleUpdate {
             return false;
         }
         GuildRoleUpdate guildRoleUpdate = (GuildRoleUpdate) other;
-        return this.guildId == guildRoleUpdate.guildId && this.roleId == guildRoleUpdate.roleId && C12238m.areEqual(this.role, guildRoleUpdate.role) && C12238m.areEqual(this.guildHashes, guildRoleUpdate.guildHashes);
+        return this.guildId == guildRoleUpdate.guildId && this.roleId == guildRoleUpdate.roleId && m.areEqual(this.role, guildRoleUpdate.role) && m.areEqual(this.guildHashes, guildRoleUpdate.guildHashes);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -49,15 +49,15 @@ public final /* data */ class GuildRoleUpdate {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildRoleUpdate(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", roleId=");
-        sbM833U.append(this.roleId);
-        sbM833U.append(", role=");
-        sbM833U.append(this.role);
-        sbM833U.append(", guildHashes=");
-        sbM833U.append(this.guildHashes);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("GuildRoleUpdate(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", roleId=");
+        sbU.append(this.roleId);
+        sbU.append(", role=");
+        sbU.append(this.role);
+        sbU.append(", guildHashes=");
+        sbU.append(this.guildHashes);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

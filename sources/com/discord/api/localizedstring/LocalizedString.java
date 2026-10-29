@@ -1,9 +1,9 @@
 package com.discord.api.localizedstring;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.io.Serializable;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: LocalizedString.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,10 +12,14 @@ public final /* data */ class LocalizedString implements Serializable {
     private final Map<String, String> localizations;
 
     public LocalizedString(String str, Map<String, String> map) {
-        C12238m.checkNotNullParameter(str, "default");
-        C12238m.checkNotNullParameter(map, "localizations");
+        m.checkNotNullParameter(str, "default");
+        m.checkNotNullParameter(map, "localizations");
         this.default = str;
         this.localizations = map;
+    }
+
+    public final Map<String, String> b() {
+        return this.localizations;
     }
 
     public boolean equals(Object other) {
@@ -26,7 +30,7 @@ public final /* data */ class LocalizedString implements Serializable {
             return false;
         }
         LocalizedString localizedString = (LocalizedString) other;
-        return C12238m.areEqual(this.default, localizedString.default) && C12238m.areEqual(this.localizations, localizedString.localizations);
+        return m.areEqual(this.default, localizedString.default) && m.areEqual(this.localizations, localizedString.localizations);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -41,15 +45,10 @@ public final /* data */ class LocalizedString implements Serializable {
         return iHashCode + (map != null ? map.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final Map<String, String> m8017b() {
-        return this.localizations;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("LocalizedString(default=");
-        sbM833U.append(this.default);
-        sbM833U.append(", localizations=");
-        return C1643a.m825M(sbM833U, this.localizations, ")");
+        StringBuilder sbU = a.U("LocalizedString(default=");
+        sbU.append(this.default);
+        sbU.append(", localizations=");
+        return a.M(sbU, this.localizations, ")");
     }
 }

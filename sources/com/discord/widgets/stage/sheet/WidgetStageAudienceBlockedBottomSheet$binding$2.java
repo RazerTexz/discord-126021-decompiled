@@ -2,17 +2,17 @@ package com.discord.widgets.stage.sheet;
 
 import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetStageAudienceBlockedBottomSheetBinding;
 import com.discord.utilities.view.recycler.MaxHeightRecyclerView;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetStageAudienceBlockedBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetStageAudienceBlockedBottomSheet$binding$2 extends C12236k implements Function1<View, WidgetStageAudienceBlockedBottomSheetBinding> {
+public final /* synthetic */ class WidgetStageAudienceBlockedBottomSheet$binding$2 extends k implements Function1<View, WidgetStageAudienceBlockedBottomSheetBinding> {
     public static final WidgetStageAudienceBlockedBottomSheet$binding$2 INSTANCE = new WidgetStageAudienceBlockedBottomSheet$binding$2();
 
     public WidgetStageAudienceBlockedBottomSheet$binding$2() {
@@ -20,16 +20,21 @@ public final /* synthetic */ class WidgetStageAudienceBlockedBottomSheet$binding
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetStageAudienceBlockedBottomSheetBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.accept_button;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.accept_button);
+    public /* bridge */ /* synthetic */ WidgetStageAudienceBlockedBottomSheetBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetStageAudienceBlockedBottomSheetBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.accept_button;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.accept_button);
         if (materialButton != null) {
-            i = C5419R.id.blocked_users;
-            MaxHeightRecyclerView maxHeightRecyclerView = (MaxHeightRecyclerView) view.findViewById(C5419R.id.blocked_users);
+            i = R$id.blocked_users;
+            MaxHeightRecyclerView maxHeightRecyclerView = (MaxHeightRecyclerView) view.findViewById(R$id.blocked_users);
             if (maxHeightRecyclerView != null) {
-                i = C5419R.id.cancel_button;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(C5419R.id.cancel_button);
+                i = 2131362294;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(2131362294);
                 if (materialButton2 != null) {
                     return new WidgetStageAudienceBlockedBottomSheetBinding((ConstraintLayout) view, materialButton, maxHeightRecyclerView, materialButton2);
                 }

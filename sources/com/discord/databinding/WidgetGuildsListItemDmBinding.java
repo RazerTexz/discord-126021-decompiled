@@ -4,48 +4,45 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildsListItemDmBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final View f17095a;
+    public final View a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f17096b;
+    public final SimpleDraweeView f2459b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17097c;
+    public final TextView c;
 
     public WidgetGuildsListItemDmBinding(@NonNull View view, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView) {
-        this.f17095a = view;
-        this.f17096b = simpleDraweeView;
-        this.f17097c = textView;
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f17095a;
+        this.a = view;
+        this.f2459b = simpleDraweeView;
+        this.c = textView;
     }
 
     @NonNull
-    /* JADX INFO: renamed from: a */
-    public static WidgetGuildsListItemDmBinding m8418a(@NonNull View view) {
-        int i = C5419R.id.guilds_item_dm_avatar;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(C5419R.id.guilds_item_dm_avatar);
+    public static WidgetGuildsListItemDmBinding a(@NonNull View view) {
+        int i = R$id.guilds_item_dm_avatar;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.guilds_item_dm_avatar);
         if (simpleDraweeView != null) {
-            i = C5419R.id.guilds_item_dm_count;
-            TextView textView = (TextView) view.findViewById(C5419R.id.guilds_item_dm_count);
+            i = R$id.guilds_item_dm_count;
+            TextView textView = (TextView) view.findViewById(R$id.guilds_item_dm_count);
             if (textView != null) {
                 return new WidgetGuildsListItemDmBinding(view, simpleDraweeView, textView);
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
+    }
+
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.a;
     }
 }

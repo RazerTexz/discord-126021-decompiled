@@ -4,14 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
 import android.view.Window;
 import androidx.annotation.CallSuper;
 import androidx.annotation.ContentView;
@@ -21,15 +21,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.view.ActionMode$Callback;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.VectorEnabledTintResources;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NavUtils;
 import androidx.core.app.TaskStackBuilder;
+import androidx.core.app.TaskStackBuilder$SupportParentable;
 import androidx.fragment.app.FragmentActivity;
 
 /* JADX INFO: loaded from: classes.dex */
-public class AppCompatActivity extends FragmentActivity implements AppCompatCallback, TaskStackBuilder.SupportParentable, ActionBarDrawerToggle.DelegateProvider {
+public class AppCompatActivity extends FragmentActivity implements AppCompatCallback, TaskStackBuilder$SupportParentable, ActionBarDrawerToggle$DelegateProvider {
     private AppCompatDelegate mDelegate;
     private Resources mResources;
 
@@ -37,8 +39,8 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
-    public void addContentView(View view, ViewGroup.LayoutParams layoutParams) {
-        getDelegate().addContentView(view, layoutParams);
+    public void addContentView(View view, ViewGroup$LayoutParams viewGroup$LayoutParams) {
+        getDelegate().addContentView(view, viewGroup$LayoutParams);
     }
 
     @Override // android.app.Activity, android.view.ContextThemeWrapper, android.content.ContextWrapper
@@ -56,7 +58,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
         }
     }
 
-    @Override // androidx.core.app.ComponentActivity, android.app.Activity, android.view.Window.Callback
+    @Override // androidx.core.app.ComponentActivity, android.app.Activity, android.view.Window$Callback
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
         int keyCode = keyEvent.getKeyCode();
         ActionBar supportActionBar = getSupportActionBar();
@@ -79,9 +81,9 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
         return this.mDelegate;
     }
 
-    @Override // androidx.appcompat.app.ActionBarDrawerToggle.DelegateProvider
+    @Override // androidx.appcompat.app.ActionBarDrawerToggle$DelegateProvider
     @Nullable
-    public ActionBarDrawerToggle.Delegate getDrawerToggleDelegate() {
+    public ActionBarDrawerToggle$Delegate getDrawerToggleDelegate() {
         return getDelegate().getDrawerToggleDelegate();
     }
 
@@ -105,7 +107,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
         return getDelegate().getSupportActionBar();
     }
 
-    @Override // androidx.core.app.TaskStackBuilder.SupportParentable
+    @Override // androidx.core.app.TaskStackBuilder$SupportParentable
     @Nullable
     public Intent getSupportParentActivityIntent() {
         return NavUtils.getParentActivityIntent(this);
@@ -125,7 +127,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
         getDelegate().onConfigurationChanged(configuration);
     }
 
-    @Override // android.app.Activity, android.view.Window.Callback
+    @Override // android.app.Activity, android.view.Window$Callback
     public void onContentChanged() {
         onSupportContentChanged();
     }
@@ -148,7 +150,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
         getDelegate().onDestroy();
     }
 
-    @Override // android.app.Activity, android.view.KeyEvent.Callback
+    @Override // android.app.Activity, android.view.KeyEvent$Callback
     public boolean onKeyDown(int i, KeyEvent keyEvent) {
         if (performMenuItemShortcut(keyEvent)) {
             return true;
@@ -156,7 +158,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
         return super.onKeyDown(i, keyEvent);
     }
 
-    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity, android.view.Window.Callback
+    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity, android.view.Window$Callback
     public final boolean onMenuItemSelected(int i, @NonNull MenuItem menuItem) {
         if (super.onMenuItemSelected(i, menuItem)) {
             return true;
@@ -168,7 +170,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
         return onSupportNavigateUp();
     }
 
-    @Override // android.app.Activity, android.view.Window.Callback
+    @Override // android.app.Activity, android.view.Window$Callback
     public boolean onMenuOpened(int i, Menu menu) {
         return super.onMenuOpened(i, menu);
     }
@@ -176,7 +178,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
     public void onNightModeChanged(int i) {
     }
 
-    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity, android.view.Window.Callback
+    @Override // androidx.fragment.app.FragmentActivity, android.app.Activity, android.view.Window$Callback
     public void onPanelClosed(int i, @NonNull Menu menu) {
         super.onPanelClosed(i, menu);
     }
@@ -258,7 +260,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
 
     @Override // androidx.appcompat.app.AppCompatCallback
     @Nullable
-    public ActionMode onWindowStartingSupportActionMode(@NonNull ActionMode.Callback callback) {
+    public ActionMode onWindowStartingSupportActionMode(@NonNull ActionMode$Callback actionMode$Callback) {
         return null;
     }
 
@@ -274,7 +276,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
 
     private boolean performMenuItemShortcut(KeyEvent keyEvent) {
         Window window;
-        return (Build.VERSION.SDK_INT >= 26 || keyEvent.isCtrlPressed() || KeyEvent.metaStateHasNoModifiers(keyEvent.getMetaState()) || keyEvent.getRepeatCount() != 0 || KeyEvent.isModifierKey(keyEvent.getKeyCode()) || (window = getWindow()) == null || window.getDecorView() == null || !window.getDecorView().dispatchKeyShortcutEvent(keyEvent)) ? false : true;
+        return (Build$VERSION.SDK_INT >= 26 || keyEvent.isCtrlPressed() || KeyEvent.metaStateHasNoModifiers(keyEvent.getMetaState()) || keyEvent.getRepeatCount() != 0 || KeyEvent.isModifierKey(keyEvent.getKeyCode()) || (window = getWindow()) == null || window.getDecorView() == null || !window.getDecorView().dispatchKeyShortcutEvent(keyEvent)) ? false : true;
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
@@ -309,8 +311,8 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
     }
 
     @Nullable
-    public ActionMode startSupportActionMode(@NonNull ActionMode.Callback callback) {
-        return getDelegate().startSupportActionMode(callback);
+    public ActionMode startSupportActionMode(@NonNull ActionMode$Callback actionMode$Callback) {
+        return getDelegate().startSupportActionMode(actionMode$Callback);
     }
 
     @Override // androidx.fragment.app.FragmentActivity
@@ -341,7 +343,7 @@ public class AppCompatActivity extends FragmentActivity implements AppCompatCall
     }
 
     @Override // androidx.activity.ComponentActivity, android.app.Activity
-    public void setContentView(View view, ViewGroup.LayoutParams layoutParams) {
-        getDelegate().setContentView(view, layoutParams);
+    public void setContentView(View view, ViewGroup$LayoutParams viewGroup$LayoutParams) {
+        getDelegate().setContentView(view, viewGroup$LayoutParams);
     }
 }

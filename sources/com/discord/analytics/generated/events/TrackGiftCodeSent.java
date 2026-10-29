@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -13,8 +14,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGiftCodeSent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,6 +29,11 @@ public final /* data */ class TrackGiftCodeSent implements AnalyticsSchema, Trac
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
     private final transient String analyticsSchemaTypeName = "gift_code_sent";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -37,7 +42,7 @@ public final /* data */ class TrackGiftCodeSent implements AnalyticsSchema, Trac
             return false;
         }
         TrackGiftCodeSent trackGiftCodeSent = (TrackGiftCodeSent) other;
-        return C12238m.areEqual(this.messageId, trackGiftCodeSent.messageId) && C12238m.areEqual(this.automaticSend, trackGiftCodeSent.automaticSend);
+        return m.areEqual(this.messageId, trackGiftCodeSent.messageId) && m.areEqual(this.automaticSend, trackGiftCodeSent.automaticSend);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -59,16 +64,10 @@ public final /* data */ class TrackGiftCodeSent implements AnalyticsSchema, Trac
         return iHashCode + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGiftCodeSent(messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", automaticSend=");
-        return C1643a.m816D(sbM833U, this.automaticSend, ")");
+        StringBuilder sbU = a.U("TrackGiftCodeSent(messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", automaticSend=");
+        return a.D(sbU, this.automaticSend, ")");
     }
 }

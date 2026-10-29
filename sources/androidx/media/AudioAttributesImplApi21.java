@@ -5,70 +5,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import p007b.p100d.p104b.p105a.C1643a;
+import androidx.annotation.RestrictTo$Scope;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class AudioAttributesImplApi21 implements AudioAttributesImpl {
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public AudioAttributes mAudioAttributes;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public int mLegacyStreamType;
 
-    @RequiresApi(21)
-    public class Builder implements AudioAttributesImpl.Builder {
-        public final AudioAttributes.Builder mFwkBuilder;
-
-        public Builder() {
-            this.mFwkBuilder = new AudioAttributes.Builder();
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        @NonNull
-        public AudioAttributesImpl build() {
-            return new AudioAttributesImplApi21(this.mFwkBuilder.build());
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        @NonNull
-        public Builder setContentType(int i) {
-            this.mFwkBuilder.setContentType(i);
-            return this;
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        @NonNull
-        public Builder setFlags(int i) {
-            this.mFwkBuilder.setFlags(i);
-            return this;
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        @NonNull
-        public Builder setLegacyStreamType(int i) {
-            this.mFwkBuilder.setLegacyStreamType(i);
-            return this;
-        }
-
-        @Override // androidx.media.AudioAttributesImpl.Builder
-        @NonNull
-        public Builder setUsage(int i) {
-            if (i == 16) {
-                i = 12;
-            }
-            this.mFwkBuilder.setUsage(i);
-            return this;
-        }
-
-        public Builder(Object obj) {
-            this.mFwkBuilder = new AudioAttributes.Builder((AudioAttributes) obj);
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public AudioAttributesImplApi21() {
         this.mLegacyStreamType = -1;
     }
@@ -123,9 +74,9 @@ public class AudioAttributesImplApi21 implements AudioAttributesImpl {
 
     @NonNull
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AudioAttributesCompat: audioattributes=");
-        sbM833U.append(this.mAudioAttributes);
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("AudioAttributesCompat: audioattributes=");
+        sbU.append(this.mAudioAttributes);
+        return sbU.toString();
     }
 
     public AudioAttributesImplApi21(AudioAttributes audioAttributes) {

@@ -1,14 +1,15 @@
 package com.discord.widgets.hubs;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.models.hubs.DirectoryEntryCategory;
+import com.discord.models.hubs.DirectoryEntryCategory$Companion;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -23,8 +24,8 @@ public final /* data */ class HubDescriptionState {
     }
 
     public HubDescriptionState(Channel channel, Integer num, String str, RestCallState<DirectoryEntryGuild> restCallState) {
-        C12238m.checkNotNullParameter(str, "guildName");
-        C12238m.checkNotNullParameter(restCallState, "addServerAsync");
+        m.checkNotNullParameter(str, "guildName");
+        m.checkNotNullParameter(restCallState, "addServerAsync");
         this.channel = channel;
         this.primaryCategoryId = num;
         this.guildName = str;
@@ -53,8 +54,8 @@ public final /* data */ class HubDescriptionState {
     }
 
     public final HubDescriptionState copy(Channel channel, Integer primaryCategoryId, String guildName, RestCallState<DirectoryEntryGuild> addServerAsync) {
-        C12238m.checkNotNullParameter(guildName, "guildName");
-        C12238m.checkNotNullParameter(addServerAsync, "addServerAsync");
+        m.checkNotNullParameter(guildName, "guildName");
+        m.checkNotNullParameter(addServerAsync, "addServerAsync");
         return new HubDescriptionState(channel, primaryCategoryId, guildName, addServerAsync);
     }
 
@@ -66,7 +67,7 @@ public final /* data */ class HubDescriptionState {
             return false;
         }
         HubDescriptionState hubDescriptionState = (HubDescriptionState) other;
-        return C12238m.areEqual(this.channel, hubDescriptionState.channel) && C12238m.areEqual(this.primaryCategoryId, hubDescriptionState.primaryCategoryId) && C12238m.areEqual(this.guildName, hubDescriptionState.guildName) && C12238m.areEqual(this.addServerAsync, hubDescriptionState.addServerAsync);
+        return m.areEqual(this.channel, hubDescriptionState.channel) && m.areEqual(this.primaryCategoryId, hubDescriptionState.primaryCategoryId) && m.areEqual(this.guildName, hubDescriptionState.guildName) && m.areEqual(this.addServerAsync, hubDescriptionState.addServerAsync);
     }
 
     public final RestCallState<DirectoryEntryGuild> getAddServerAsync() {
@@ -106,9 +107,9 @@ public final /* data */ class HubDescriptionState {
             return null;
         }
         int iIntValue = num.intValue();
-        DirectoryEntryCategory.Companion companion = DirectoryEntryCategory.INSTANCE;
+        DirectoryEntryCategory$Companion directoryEntryCategory$Companion = DirectoryEntryCategory.Companion;
         Channel channel = this.channel;
-        return companion.findByKey(iIntValue, channel != null && ChannelUtils.m7700x(channel));
+        return directoryEntryCategory$Companion.findByKey(iIntValue, channel != null && ChannelUtils.x(channel));
     }
 
     public int hashCode() {
@@ -123,16 +124,16 @@ public final /* data */ class HubDescriptionState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubDescriptionState(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", primaryCategoryId=");
-        sbM833U.append(this.primaryCategoryId);
-        sbM833U.append(", guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", addServerAsync=");
-        sbM833U.append(this.addServerAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HubDescriptionState(channel=");
+        sbU.append(this.channel);
+        sbU.append(", primaryCategoryId=");
+        sbU.append(this.primaryCategoryId);
+        sbU.append(", guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", addServerAsync=");
+        sbU.append(this.addServerAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ HubDescriptionState(Channel channel, Integer num, String str, RestCallState restCallState, int i, DefaultConstructorMarker defaultConstructorMarker) {

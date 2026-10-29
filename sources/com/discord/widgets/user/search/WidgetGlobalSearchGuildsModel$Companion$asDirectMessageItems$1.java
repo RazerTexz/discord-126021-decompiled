@@ -2,14 +2,15 @@ package com.discord.widgets.user.search;
 
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelNotificationSettings;
+import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Map;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchGuildsModel$Companion$asDirectMessageItems$1 extends AbstractC12240o implements Function1<Channel, Boolean> {
+public final class WidgetGlobalSearchGuildsModel$Companion$asDirectMessageItems$1 extends o implements Function1<Channel, Boolean> {
     public final /* synthetic */ ModelNotificationSettings $dmSettings;
     public final /* synthetic */ Map $mentionCounts;
 
@@ -28,8 +29,8 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asDirectMessageItems$
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(Channel channel) {
         ModelNotificationSettings modelNotificationSettings;
-        ModelNotificationSettings.ChannelOverride channelOverride;
-        C12238m.checkNotNullParameter(channel, "it");
+        ModelNotificationSettings$ChannelOverride channelOverride;
+        m.checkNotNullParameter(channel, "it");
         return this.$mentionCounts.containsKey(Long.valueOf(channel.getId())) && ((modelNotificationSettings = this.$dmSettings) == null || (channelOverride = modelNotificationSettings.getChannelOverride(channel.getId())) == null || !channelOverride.isMuted());
     }
 }

@@ -1,9 +1,9 @@
 package com.discord.utilities.experiments;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ExperimentRegistry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,22 +12,16 @@ public final /* data */ class RegisteredExperiment {
     private final boolean cacheExperiment;
     private final String name;
     private final String readableName;
-    private final Type type;
+    private final RegisteredExperiment$Type type;
 
-    /* JADX INFO: compiled from: ExperimentRegistry.kt */
-    public enum Type {
-        GUILD,
-        USER
-    }
-
-    public RegisteredExperiment(String str, String str2, Type type, List<String> list, boolean z2) {
-        C12238m.checkNotNullParameter(str, "readableName");
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(list, "buckets");
+    public RegisteredExperiment(String str, String str2, RegisteredExperiment$Type registeredExperiment$Type, List<String> list, boolean z2) {
+        m.checkNotNullParameter(str, "readableName");
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(registeredExperiment$Type, "type");
+        m.checkNotNullParameter(list, "buckets");
         this.readableName = str;
         this.name = str2;
-        this.type = type;
+        this.type = registeredExperiment$Type;
         this.buckets = list;
         this.cacheExperiment = z2;
     }
@@ -37,7 +31,7 @@ public final /* data */ class RegisteredExperiment {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ RegisteredExperiment copy$default(RegisteredExperiment registeredExperiment, String str, String str2, Type type, List list, boolean z2, int i, Object obj) {
+    public static /* synthetic */ RegisteredExperiment copy$default(RegisteredExperiment registeredExperiment, String str, String str2, RegisteredExperiment$Type registeredExperiment$Type, List list, boolean z2, int i, Object obj) {
         if ((i & 1) != 0) {
             str = registeredExperiment.readableName;
         }
@@ -46,9 +40,9 @@ public final /* data */ class RegisteredExperiment {
         }
         String str3 = str2;
         if ((i & 4) != 0) {
-            type = registeredExperiment.type;
+            registeredExperiment$Type = registeredExperiment.type;
         }
-        Type type2 = type;
+        RegisteredExperiment$Type registeredExperiment$Type2 = registeredExperiment$Type;
         if ((i & 8) != 0) {
             list = registeredExperiment.buckets;
         }
@@ -56,14 +50,14 @@ public final /* data */ class RegisteredExperiment {
         if ((i & 16) != 0) {
             z2 = registeredExperiment.cacheExperiment;
         }
-        return registeredExperiment.copy(str, str3, type2, list2, z2);
+        return registeredExperiment.copy(str, str3, registeredExperiment$Type2, list2, z2);
     }
 
-    public final RegisteredExperiment copy(String readableName, String name, Type type, List<String> buckets, boolean cacheExperiment) {
-        C12238m.checkNotNullParameter(readableName, "readableName");
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(buckets, "buckets");
+    public final RegisteredExperiment copy(String readableName, String name, RegisteredExperiment$Type type, List<String> buckets, boolean cacheExperiment) {
+        m.checkNotNullParameter(readableName, "readableName");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(buckets, "buckets");
         return new RegisteredExperiment(readableName, name, type, buckets, cacheExperiment);
     }
 
@@ -75,7 +69,7 @@ public final /* data */ class RegisteredExperiment {
             return false;
         }
         RegisteredExperiment registeredExperiment = (RegisteredExperiment) other;
-        return C12238m.areEqual(this.readableName, registeredExperiment.readableName) && C12238m.areEqual(this.name, registeredExperiment.name) && C12238m.areEqual(this.type, registeredExperiment.type) && C12238m.areEqual(this.buckets, registeredExperiment.buckets) && this.cacheExperiment == registeredExperiment.cacheExperiment;
+        return m.areEqual(this.readableName, registeredExperiment.readableName) && m.areEqual(this.name, registeredExperiment.name) && m.areEqual(this.type, registeredExperiment.type) && m.areEqual(this.buckets, registeredExperiment.buckets) && this.cacheExperiment == registeredExperiment.cacheExperiment;
     }
 
     public final List<String> getBuckets() {
@@ -110,11 +104,11 @@ public final /* data */ class RegisteredExperiment {
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
-    public final Type getType() {
+    public final RegisteredExperiment$Type getType() {
         return this.type;
     }
 
-    public final Type getType() {
+    public final RegisteredExperiment$Type getType() {
         return this.type;
     }
 
@@ -128,8 +122,8 @@ public final /* data */ class RegisteredExperiment {
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         String str2 = this.name;
         int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
-        Type type = this.type;
-        int iHashCode3 = (iHashCode2 + (type != null ? type.hashCode() : 0)) * 31;
+        RegisteredExperiment$Type registeredExperiment$Type = this.type;
+        int iHashCode3 = (iHashCode2 + (registeredExperiment$Type != null ? registeredExperiment$Type.hashCode() : 0)) * 31;
         List<String> list = this.buckets;
         int iHashCode4 = (iHashCode3 + (list != null ? list.hashCode() : 0)) * 31;
         boolean z2 = this.cacheExperiment;
@@ -141,15 +135,15 @@ public final /* data */ class RegisteredExperiment {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("RegisteredExperiment(readableName=");
-        sbM833U.append(this.readableName);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", buckets=");
-        sbM833U.append(this.buckets);
-        sbM833U.append(", cacheExperiment=");
-        return C1643a.m827O(sbM833U, this.cacheExperiment, ")");
+        StringBuilder sbU = a.U("RegisteredExperiment(readableName=");
+        sbU.append(this.readableName);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", buckets=");
+        sbU.append(this.buckets);
+        sbU.append(", cacheExperiment=");
+        return a.O(sbU, this.cacheExperiment, ")");
     }
 }

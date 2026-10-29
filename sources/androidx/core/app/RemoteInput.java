@@ -4,20 +4,16 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.annotation.RestrictTo;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import b.d.b.a.a;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class RemoteInput {
@@ -39,16 +35,6 @@ public final class RemoteInput {
     private final CharSequence mLabel;
     private final String mResultKey;
 
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface EditChoicesBeforeSending {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface Source {
-    }
-
     public RemoteInput(String str, CharSequence charSequence, CharSequence[] charSequenceArr, boolean z2, int i, Bundle bundle, Set<String> set) {
         this.mResultKey = str;
         this.mLabel = charSequence;
@@ -63,7 +49,7 @@ public final class RemoteInput {
     }
 
     public static void addDataResultToIntent(RemoteInput remoteInput, Intent intent, Map<String, Uri> map) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             android.app.RemoteInput.addDataResultToIntent(fromCompat(remoteInput), intent, map);
             return;
         }
@@ -71,9 +57,9 @@ public final class RemoteInput {
         if (clipDataIntentFromIntent == null) {
             clipDataIntentFromIntent = new Intent();
         }
-        for (Map.Entry<String, Uri> entry : map.entrySet()) {
-            String key = entry.getKey();
-            Uri value = entry.getValue();
+        for (Map$Entry<String, Uri> map$Entry : map.entrySet()) {
+            String key = map$Entry.getKey();
+            Uri value = map$Entry.getValue();
             if (key != null) {
                 Bundle bundleExtra = clipDataIntentFromIntent.getBundleExtra(getExtraResultsKeyForData(key));
                 if (bundleExtra == null) {
@@ -87,7 +73,7 @@ public final class RemoteInput {
     }
 
     public static void addResultsToIntent(RemoteInput[] remoteInputArr, Intent intent, Bundle bundle) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             android.app.RemoteInput.addResultsToIntent(fromCompat(remoteInputArr), intent, bundle);
             return;
         }
@@ -122,17 +108,17 @@ public final class RemoteInput {
     @RequiresApi(20)
     public static RemoteInput fromPlatform(android.app.RemoteInput remoteInput) {
         Set<String> allowedDataTypes;
-        Builder builderAddExtras = new Builder(remoteInput.getResultKey()).setLabel(remoteInput.getLabel()).setChoices(remoteInput.getChoices()).setAllowFreeFormInput(remoteInput.getAllowFreeFormInput()).addExtras(remoteInput.getExtras());
-        if (Build.VERSION.SDK_INT >= 26 && (allowedDataTypes = remoteInput.getAllowedDataTypes()) != null) {
+        RemoteInput$Builder remoteInput$BuilderAddExtras = new RemoteInput$Builder(remoteInput.getResultKey()).setLabel(remoteInput.getLabel()).setChoices(remoteInput.getChoices()).setAllowFreeFormInput(remoteInput.getAllowFreeFormInput()).addExtras(remoteInput.getExtras());
+        if (Build$VERSION.SDK_INT >= 26 && (allowedDataTypes = remoteInput.getAllowedDataTypes()) != null) {
             Iterator<String> it = allowedDataTypes.iterator();
             while (it.hasNext()) {
-                builderAddExtras.setAllowDataType(it.next(), true);
+                remoteInput$BuilderAddExtras.setAllowDataType(it.next(), true);
             }
         }
-        if (Build.VERSION.SDK_INT >= 29) {
-            builderAddExtras.setEditChoicesBeforeSending(remoteInput.getEditChoicesBeforeSending());
+        if (Build$VERSION.SDK_INT >= 29) {
+            remoteInput$BuilderAddExtras.setEditChoicesBeforeSending(remoteInput.getEditChoicesBeforeSending());
         }
-        return builderAddExtras.build();
+        return remoteInput$BuilderAddExtras.build();
     }
 
     public boolean getAllowFreeFormInput() {
@@ -162,7 +148,7 @@ public final class RemoteInput {
 
     public static Map<String, Uri> getDataResultsFromIntent(Intent intent, String str) {
         String string;
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return android.app.RemoteInput.getDataResultsFromIntent(intent, str);
         }
         Intent clipDataIntentFromIntent = getClipDataIntentFromIntent(intent);
@@ -189,7 +175,7 @@ public final class RemoteInput {
     }
 
     private static String getExtraResultsKeyForData(String str) {
-        return C1643a.m883w(EXTRA_DATA_TYPE_RESULTS_DATA, str);
+        return a.w(EXTRA_DATA_TYPE_RESULTS_DATA, str);
     }
 
     public Bundle getExtras() {
@@ -209,7 +195,7 @@ public final class RemoteInput {
     }
 
     public static int getResultsSource(@NonNull Intent intent) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             return android.app.RemoteInput.getResultsSource(intent);
         }
         Intent clipDataIntentFromIntent = getClipDataIntentFromIntent(intent);
@@ -224,7 +210,7 @@ public final class RemoteInput {
     }
 
     public static void setResultsSource(@NonNull Intent intent, int i) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             android.app.RemoteInput.setResultsSource(intent, i);
             return;
         }
@@ -236,88 +222,19 @@ public final class RemoteInput {
         intent.setClipData(ClipData.newIntent(RESULTS_CLIP_LABEL, clipDataIntentFromIntent));
     }
 
-    public final class Builder {
-        private CharSequence[] mChoices;
-        private CharSequence mLabel;
-        private final String mResultKey;
-        private final Set<String> mAllowedDataTypes = new HashSet();
-        private final Bundle mExtras = new Bundle();
-        private boolean mAllowFreeFormTextInput = true;
-        private int mEditChoicesBeforeSending = 0;
-
-        public Builder(@NonNull String str) {
-            if (str == null) {
-                throw new IllegalArgumentException("Result key can't be null");
-            }
-            this.mResultKey = str;
-        }
-
-        @NonNull
-        public Builder addExtras(@NonNull Bundle bundle) {
-            if (bundle != null) {
-                this.mExtras.putAll(bundle);
-            }
-            return this;
-        }
-
-        @NonNull
-        public RemoteInput build() {
-            return new RemoteInput(this.mResultKey, this.mLabel, this.mChoices, this.mAllowFreeFormTextInput, this.mEditChoicesBeforeSending, this.mExtras, this.mAllowedDataTypes);
-        }
-
-        @NonNull
-        public Bundle getExtras() {
-            return this.mExtras;
-        }
-
-        @NonNull
-        public Builder setAllowDataType(@NonNull String str, boolean z2) {
-            if (z2) {
-                this.mAllowedDataTypes.add(str);
-            } else {
-                this.mAllowedDataTypes.remove(str);
-            }
-            return this;
-        }
-
-        @NonNull
-        public Builder setAllowFreeFormInput(boolean z2) {
-            this.mAllowFreeFormTextInput = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setChoices(@Nullable CharSequence[] charSequenceArr) {
-            this.mChoices = charSequenceArr;
-            return this;
-        }
-
-        @NonNull
-        public Builder setEditChoicesBeforeSending(int i) {
-            this.mEditChoicesBeforeSending = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setLabel(@Nullable CharSequence charSequence) {
-            this.mLabel = charSequence;
-            return this;
-        }
-    }
-
     @RequiresApi(20)
     public static android.app.RemoteInput fromCompat(RemoteInput remoteInput) {
         Set<String> allowedDataTypes;
-        android.app.RemoteInput.Builder builderAddExtras = new android.app.RemoteInput.Builder(remoteInput.getResultKey()).setLabel(remoteInput.getLabel()).setChoices(remoteInput.getChoices()).setAllowFreeFormInput(remoteInput.getAllowFreeFormInput()).addExtras(remoteInput.getExtras());
-        if (Build.VERSION.SDK_INT >= 26 && (allowedDataTypes = remoteInput.getAllowedDataTypes()) != null) {
+        android.app.RemoteInput$Builder remoteInput$BuilderAddExtras = new android.app.RemoteInput$Builder(remoteInput.getResultKey()).setLabel(remoteInput.getLabel()).setChoices(remoteInput.getChoices()).setAllowFreeFormInput(remoteInput.getAllowFreeFormInput()).addExtras(remoteInput.getExtras());
+        if (Build$VERSION.SDK_INT >= 26 && (allowedDataTypes = remoteInput.getAllowedDataTypes()) != null) {
             Iterator<String> it = allowedDataTypes.iterator();
             while (it.hasNext()) {
-                builderAddExtras.setAllowDataType(it.next(), true);
+                remoteInput$BuilderAddExtras.setAllowDataType(it.next(), true);
             }
         }
-        if (Build.VERSION.SDK_INT >= 29) {
-            builderAddExtras.setEditChoicesBeforeSending(remoteInput.getEditChoicesBeforeSending());
+        if (Build$VERSION.SDK_INT >= 29) {
+            remoteInput$BuilderAddExtras.setEditChoicesBeforeSending(remoteInput.getEditChoicesBeforeSending());
         }
-        return builderAddExtras.build();
+        return remoteInput$BuilderAddExtras.build();
     }
 }

@@ -10,27 +10,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class OauthTokenPermissionDetailedListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15201a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f15202b;
+    public final ImageView f2133b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15203c;
+    public final TextView c;
 
     public OauthTokenPermissionDetailedListItemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f15201a = constraintLayout;
-        this.f15202b = imageView;
-        this.f15203c = textView;
+        this.a = constraintLayout;
+        this.f2133b = imageView;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15201a;
+        return this.a;
     }
 }

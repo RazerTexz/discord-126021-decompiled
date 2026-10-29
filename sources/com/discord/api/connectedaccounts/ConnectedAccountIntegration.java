@@ -1,8 +1,8 @@
 package com.discord.api.connectedaccounts;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ConnectedAccountIntegration.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class ConnectedAccountIntegration {
             return false;
         }
         ConnectedAccountIntegration connectedAccountIntegration = (ConnectedAccountIntegration) other;
-        return C12238m.areEqual(this.id, connectedAccountIntegration.id) && C12238m.areEqual(this.type, connectedAccountIntegration.type) && C12238m.areEqual(this.account, connectedAccountIntegration.account) && C12238m.areEqual(this.guild, connectedAccountIntegration.guild);
+        return m.areEqual(this.id, connectedAccountIntegration.id) && m.areEqual(this.type, connectedAccountIntegration.type) && m.areEqual(this.account, connectedAccountIntegration.account) && m.areEqual(this.guild, connectedAccountIntegration.guild);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -55,15 +55,15 @@ public final /* data */ class ConnectedAccountIntegration {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ConnectedAccountIntegration(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", account=");
-        sbM833U.append(this.account);
-        sbM833U.append(", guild=");
-        sbM833U.append(this.guild);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ConnectedAccountIntegration(id=");
+        sbU.append(this.id);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", account=");
+        sbU.append(this.account);
+        sbU.append(", guild=");
+        sbU.append(this.guild);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

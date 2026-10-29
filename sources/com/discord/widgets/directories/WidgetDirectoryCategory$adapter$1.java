@@ -1,12 +1,12 @@
 package com.discord.widgets.directories;
 
 import android.content.Context;
+import b.a.d.j;
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.directories.DirectoryUtils;
 import com.discord.widgets.hubs.WidgetHubAddServer;
-import p007b.p008a.p018d.C0870j;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetDirectoryCategory.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,7 +20,7 @@ public final class WidgetDirectoryCategory$adapter$1 implements DirectoryChannel
     @Override // com.discord.widgets.directories.DirectoryChannelItemClickInterface
     public void onAddServerClicked() {
         if (this.this$0.getContext() != null) {
-            C0870j.f524g.m160f(this.this$0.requireContext(), this.this$0.activityResult, WidgetHubAddServer.class, null);
+            j.g.f(this.this$0.requireContext(), WidgetDirectoryCategory.access$getActivityResult$p(this.this$0), WidgetHubAddServer.class, null);
         }
     }
 
@@ -29,14 +29,14 @@ public final class WidgetDirectoryCategory$adapter$1 implements DirectoryChannel
         Context context = this.this$0.getContext();
         if (context != null) {
             WidgetDirectoriesViewModel viewModel = this.this$0.getViewModel();
-            C12238m.checkNotNullExpressionValue(context, "it");
+            m.checkNotNullExpressionValue(context, "it");
             viewModel.joinGuild(context, guildId, channelId);
         }
     }
 
     @Override // com.discord.widgets.directories.DirectoryChannelItemClickInterface
     public void onGoToGuildClicked(long guildId) {
-        StoreStream.INSTANCE.getGuildSelected().set(guildId);
+        StoreStream.Companion.getGuildSelected().set(guildId);
     }
 
     /* JADX WARN: Type inference fix 'apply assigned field type' failed
@@ -51,7 +51,7 @@ public final class WidgetDirectoryCategory$adapter$1 implements DirectoryChannel
      */
     @Override // com.discord.widgets.directories.DirectoryChannelItemClickInterface
     public void onOverflowClicked(DirectoryEntryGuild directoryEntry, long channelId, boolean isServerOwner) {
-        C12238m.checkNotNullParameter(directoryEntry, "directoryEntry");
+        m.checkNotNullParameter(directoryEntry, "directoryEntry");
         DirectoryUtils directoryUtils = DirectoryUtils.INSTANCE;
         WidgetDirectoryCategory widgetDirectoryCategory = this.this$0;
         directoryUtils.showServerOptions(widgetDirectoryCategory, directoryEntry, widgetDirectoryCategory.getViewModel().getHubName(), isServerOwner, new WidgetDirectoryCategory$adapter$1$onOverflowClicked$1(this, directoryEntry, channelId));

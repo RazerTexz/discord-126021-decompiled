@@ -1,15 +1,19 @@
 package com.discord.api.friendsuggestions;
 
+import b.d.b.a.a;
 import com.discord.api.user.User;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: FriendSuggestion.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class FriendSuggestion {
     private final List<FriendSuggestionReason> reasons;
     private final User suggestedUser;
+
+    public final List<FriendSuggestionReason> a() {
+        return this.reasons;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -19,7 +23,7 @@ public final /* data */ class FriendSuggestion {
             return false;
         }
         FriendSuggestion friendSuggestion = (FriendSuggestion) other;
-        return C12238m.areEqual(this.suggestedUser, friendSuggestion.suggestedUser) && C12238m.areEqual(this.reasons, friendSuggestion.reasons);
+        return m.areEqual(this.suggestedUser, friendSuggestion.suggestedUser) && m.areEqual(this.reasons, friendSuggestion.reasons);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -34,15 +38,10 @@ public final /* data */ class FriendSuggestion {
         return iHashCode + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<FriendSuggestionReason> m7830a() {
-        return this.reasons;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("FriendSuggestion(suggestedUser=");
-        sbM833U.append(this.suggestedUser);
-        sbM833U.append(", reasons=");
-        return C1643a.m824L(sbM833U, this.reasons, ")");
+        StringBuilder sbU = a.U("FriendSuggestion(suggestedUser=");
+        sbU.append(this.suggestedUser);
+        sbU.append(", reasons=");
+        return a.L(sbU, this.reasons, ")");
     }
 }

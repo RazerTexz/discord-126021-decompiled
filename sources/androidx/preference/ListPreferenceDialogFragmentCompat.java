@@ -1,9 +1,9 @@
 package androidx.preference;
 
-import android.content.DialogInterface;
+import android.content.DialogInterface$OnClickListener;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog$Builder;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ListPreferenceDialogFragmentCompat extends PreferenceDialogFragmentCompat {
@@ -58,18 +58,10 @@ public class ListPreferenceDialogFragmentCompat extends PreferenceDialogFragment
     }
 
     @Override // androidx.preference.PreferenceDialogFragmentCompat
-    public void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-        super.onPrepareDialogBuilder(builder);
-        builder.setSingleChoiceItems(this.mEntries, this.mClickedDialogEntryIndex, new DialogInterface.OnClickListener() { // from class: androidx.preference.ListPreferenceDialogFragmentCompat.1
-            @Override // android.content.DialogInterface.OnClickListener
-            public void onClick(DialogInterface dialogInterface, int i) {
-                ListPreferenceDialogFragmentCompat listPreferenceDialogFragmentCompat = ListPreferenceDialogFragmentCompat.this;
-                listPreferenceDialogFragmentCompat.mClickedDialogEntryIndex = i;
-                listPreferenceDialogFragmentCompat.onClick(dialogInterface, -1);
-                dialogInterface.dismiss();
-            }
-        });
-        builder.setPositiveButton((CharSequence) null, (DialogInterface.OnClickListener) null);
+    public void onPrepareDialogBuilder(AlertDialog$Builder alertDialog$Builder) {
+        super.onPrepareDialogBuilder(alertDialog$Builder);
+        alertDialog$Builder.setSingleChoiceItems(this.mEntries, this.mClickedDialogEntryIndex, new ListPreferenceDialogFragmentCompat$1(this));
+        alertDialog$Builder.setPositiveButton((CharSequence) null, (DialogInterface$OnClickListener) null);
     }
 
     @Override // androidx.preference.PreferenceDialogFragmentCompat, androidx.fragment.app.DialogFragment, androidx.fragment.app.Fragment

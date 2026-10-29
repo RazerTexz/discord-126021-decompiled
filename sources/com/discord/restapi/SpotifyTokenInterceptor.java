@@ -1,48 +1,49 @@
 package com.discord.restapi;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.t.h0;
+import d0.z.d.m;
+import f0.e0.c;
+import f0.w;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import okhttp3.Headers;
+import okhttp3.Headers$a;
 import okhttp3.Interceptor;
+import okhttp3.Interceptor$Chain;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12136h0;
-import p507d0.p592z.p594d.C12238m;
-import p600f0.C12379w;
-import p600f0.p601e0.C12272c;
 
 /* JADX INFO: compiled from: RestInterceptors.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class SpotifyTokenInterceptor implements Interceptor {
-    private final RequiredHeadersInterceptor.HeadersProvider headersProvider;
+    private final RequiredHeadersInterceptor$HeadersProvider headersProvider;
 
-    public SpotifyTokenInterceptor(RequiredHeadersInterceptor.HeadersProvider headersProvider) {
-        C12238m.checkNotNullParameter(headersProvider, "headersProvider");
-        this.headersProvider = headersProvider;
+    public SpotifyTokenInterceptor(RequiredHeadersInterceptor$HeadersProvider requiredHeadersInterceptor$HeadersProvider) {
+        m.checkNotNullParameter(requiredHeadersInterceptor$HeadersProvider, "headersProvider");
+        this.headersProvider = requiredHeadersInterceptor$HeadersProvider;
     }
 
     @Override // okhttp3.Interceptor
-    public Response intercept(Interceptor.Chain chain) {
-        C12238m.checkNotNullParameter(chain, "chain");
-        Request requestMo10230c = chain.mo10230c();
-        C12238m.checkParameterIsNotNull(requestMo10230c, "request");
+    public Response intercept(Interceptor$Chain chain) {
+        m.checkNotNullParameter(chain, "chain");
+        Request requestC = chain.c();
+        m.checkParameterIsNotNull(requestC, "request");
         new LinkedHashMap();
-        C12379w c12379w = requestMo10230c.url;
-        String str = requestMo10230c.method;
-        RequestBody requestBody = requestMo10230c.body;
-        Map linkedHashMap = requestMo10230c.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_TAGS java.lang.String.isEmpty() ? new LinkedHashMap() : C12136h0.toMutableMap(requestMo10230c.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_TAGS java.lang.String);
-        Headers.C12930a c12930aM10956e = requestMo10230c.headers.m10956e();
-        StringBuilder sbM833U = C1643a.m833U("Bearer ");
-        sbM833U.append(this.headersProvider.getSpotifyToken());
-        String string = sbM833U.toString();
-        C12238m.checkParameterIsNotNull("Authorization", ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkParameterIsNotNull(string, "value");
-        c12930aM10956e.m10958a("Authorization", string);
-        if (c12379w != null) {
-            return chain.mo10228a(new Request(c12379w, str, c12930aM10956e.m10960c(), requestBody, C12272c.m10116A(linkedHashMap)));
+        w wVar = requestC.url;
+        String str = requestC.method;
+        RequestBody requestBody = requestC.body;
+        Map linkedHashMap = requestC.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_TAGS java.lang.String.isEmpty() ? new LinkedHashMap() : h0.toMutableMap(requestC.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_TAGS java.lang.String);
+        Headers$a headers$aE = requestC.headers.e();
+        StringBuilder sbU = a.U("Bearer ");
+        sbU.append(this.headersProvider.getSpotifyToken());
+        String string = sbU.toString();
+        m.checkParameterIsNotNull("Authorization", ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkParameterIsNotNull(string, "value");
+        headers$aE.a("Authorization", string);
+        if (wVar != null) {
+            return chain.a(new Request(wVar, str, headers$aE.c(), requestBody, c.A(linkedHashMap)));
         }
         throw new IllegalStateException("url == null".toString());
     }

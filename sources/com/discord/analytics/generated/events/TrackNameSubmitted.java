@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNameSubmitted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackNameSubmitted implements AnalyticsSchema, Tra
             return false;
         }
         TrackNameSubmitted trackNameSubmitted = (TrackNameSubmitted) other;
-        return C12238m.areEqual(this.numWords, trackNameSubmitted.numWords) && C12238m.areEqual(this.numChars, trackNameSubmitted.numChars);
+        return m.areEqual(this.numWords, trackNameSubmitted.numWords) && m.areEqual(this.numChars, trackNameSubmitted.numChars);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackNameSubmitted implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNameSubmitted(numWords=");
-        sbM833U.append(this.numWords);
-        sbM833U.append(", numChars=");
-        return C1643a.m819G(sbM833U, this.numChars, ")");
+        StringBuilder sbU = a.U("TrackNameSubmitted(numWords=");
+        sbU.append(this.numWords);
+        sbU.append(", numChars=");
+        return a.G(sbU, this.numChars, ")");
     }
 }

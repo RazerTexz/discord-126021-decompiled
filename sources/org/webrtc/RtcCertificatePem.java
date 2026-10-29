@@ -13,7 +13,7 @@ public class RtcCertificatePem {
     }
 
     public static RtcCertificatePem generateCertificate() {
-        return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, DEFAULT_EXPIRY);
+        return nativeGenerateCertificate(PeerConnection$KeyType.ECDSA, DEFAULT_EXPIRY);
     }
 
     @CalledByNative
@@ -26,17 +26,17 @@ public class RtcCertificatePem {
         return this.privateKey;
     }
 
-    private static native RtcCertificatePem nativeGenerateCertificate(PeerConnection.KeyType keyType, long j);
+    private static native RtcCertificatePem nativeGenerateCertificate(PeerConnection$KeyType peerConnection$KeyType, long j);
 
-    public static RtcCertificatePem generateCertificate(PeerConnection.KeyType keyType) {
-        return nativeGenerateCertificate(keyType, DEFAULT_EXPIRY);
+    public static RtcCertificatePem generateCertificate(PeerConnection$KeyType peerConnection$KeyType) {
+        return nativeGenerateCertificate(peerConnection$KeyType, DEFAULT_EXPIRY);
     }
 
     public static RtcCertificatePem generateCertificate(long j) {
-        return nativeGenerateCertificate(PeerConnection.KeyType.ECDSA, j);
+        return nativeGenerateCertificate(PeerConnection$KeyType.ECDSA, j);
     }
 
-    public static RtcCertificatePem generateCertificate(PeerConnection.KeyType keyType, long j) {
-        return nativeGenerateCertificate(keyType, j);
+    public static RtcCertificatePem generateCertificate(PeerConnection$KeyType peerConnection$KeyType, long j) {
+        return nativeGenerateCertificate(peerConnection$KeyType, j);
     }
 }

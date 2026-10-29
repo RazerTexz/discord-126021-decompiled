@@ -36,12 +36,16 @@ public final class GrowthTeamFeatures {
     }
 
     private final boolean isBucketEnabled(Integer num, String str, int i, boolean z2) {
-        AppLog.m8358i("Experiment triggered: " + str + " | Track Exposure: " + z2 + " | Assigned Bucket: " + num);
+        AppLog.i("Experiment triggered: " + str + " | Track Exposure: " + z2 + " | Assigned Bucket: " + num);
         return num != null && num.intValue() == i;
     }
 
+    public static /* synthetic */ boolean isGuildExperimentEnabled$default(GrowthTeamFeatures growthTeamFeatures, String str, int i, long j, boolean z2, int i2, Object obj) {
+        return growthTeamFeatures.isGuildExperimentEnabled(str, (i2 & 1) != 0 ? 1 : i, j, (i2 & 4) != 0 ? true : z2);
+    }
+
     private final boolean isGuildExperimentEnabled(String str, int i, long j, boolean z2) {
-        Experiment guildExperiment = StoreStream.INSTANCE.getExperiments().getGuildExperiment(str, j, z2);
+        Experiment guildExperiment = StoreStream.Companion.getExperiments().getGuildExperiment(str, j, z2);
         return isBucketEnabled(guildExperiment != null ? Integer.valueOf(guildExperiment.getBucket()) : null, str, i, z2);
     }
 
@@ -100,7 +104,7 @@ public final class GrowthTeamFeatures {
     }
 
     private final boolean isUserExperimentEnabled(String str, int i, boolean z2) {
-        Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment(str, z2);
+        Experiment userExperiment = StoreStream.Companion.getExperiments().getUserExperiment(str, z2);
         return isBucketEnabled(userExperiment != null ? Integer.valueOf(userExperiment.getBucket()) : null, str, i, z2);
     }
 }

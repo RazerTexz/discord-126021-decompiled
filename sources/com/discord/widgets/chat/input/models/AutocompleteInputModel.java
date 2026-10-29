@@ -1,11 +1,11 @@
 package com.discord.widgets.chat.input.models;
 
+import b.d.b.a.a;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
 import com.discord.widgets.chat.input.autocomplete.LeadingIdentifier;
+import d0.z.d.m;
 import java.util.Map;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AutocompleteInputModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,9 +16,9 @@ public final /* data */ class AutocompleteInputModel {
 
     /* JADX WARN: Multi-variable type inference failed */
     public AutocompleteInputModel(CharSequence charSequence, Map<LeadingIdentifier, ? extends Set<? extends Autocompletable>> map, AutocompleteApplicationCommands autocompleteApplicationCommands) {
-        C12238m.checkNotNullParameter(charSequence, "input");
-        C12238m.checkNotNullParameter(map, "autocompletables");
-        C12238m.checkNotNullParameter(autocompleteApplicationCommands, "applicationCommands");
+        m.checkNotNullParameter(charSequence, "input");
+        m.checkNotNullParameter(map, "autocompletables");
+        m.checkNotNullParameter(autocompleteApplicationCommands, "applicationCommands");
         this.input = charSequence;
         this.autocompletables = map;
         this.applicationCommands = autocompleteApplicationCommands;
@@ -43,9 +43,9 @@ public final /* data */ class AutocompleteInputModel {
     }
 
     public final AutocompleteInputModel copy(CharSequence input, Map<LeadingIdentifier, ? extends Set<? extends Autocompletable>> autocompletables, AutocompleteApplicationCommands applicationCommands) {
-        C12238m.checkNotNullParameter(input, "input");
-        C12238m.checkNotNullParameter(autocompletables, "autocompletables");
-        C12238m.checkNotNullParameter(applicationCommands, "applicationCommands");
+        m.checkNotNullParameter(input, "input");
+        m.checkNotNullParameter(autocompletables, "autocompletables");
+        m.checkNotNullParameter(applicationCommands, "applicationCommands");
         return new AutocompleteInputModel(input, autocompletables, applicationCommands);
     }
 
@@ -57,7 +57,7 @@ public final /* data */ class AutocompleteInputModel {
             return false;
         }
         AutocompleteInputModel autocompleteInputModel = (AutocompleteInputModel) other;
-        return C12238m.areEqual(this.input, autocompleteInputModel.input) && C12238m.areEqual(this.autocompletables, autocompleteInputModel.autocompletables) && C12238m.areEqual(this.applicationCommands, autocompleteInputModel.applicationCommands);
+        return m.areEqual(this.input, autocompleteInputModel.input) && m.areEqual(this.autocompletables, autocompleteInputModel.autocompletables) && m.areEqual(this.applicationCommands, autocompleteInputModel.applicationCommands);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -92,13 +92,13 @@ public final /* data */ class AutocompleteInputModel {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AutocompleteInputModel(input=");
-        sbM833U.append(this.input);
-        sbM833U.append(", autocompletables=");
-        sbM833U.append(this.autocompletables);
-        sbM833U.append(", applicationCommands=");
-        sbM833U.append(this.applicationCommands);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("AutocompleteInputModel(input=");
+        sbU.append(this.input);
+        sbU.append(", autocompletables=");
+        sbU.append(this.autocompletables);
+        sbU.append(", applicationCommands=");
+        sbU.append(this.applicationCommands);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

@@ -2,9 +2,9 @@ package androidx.core.net;
 
 import android.net.Uri;
 import androidx.annotation.NonNull;
+import b.d.b.a.a;
 import com.adjust.sdk.Constants;
 import com.discord.widgets.chat.input.MentionUtilsKt;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class UriCompat {
@@ -33,15 +33,15 @@ public final class UriCompat {
                 return sb.toString();
             }
             if (scheme.equalsIgnoreCase("http") || scheme.equalsIgnoreCase(Constants.SCHEME) || scheme.equalsIgnoreCase("ftp") || scheme.equalsIgnoreCase("rtsp")) {
-                StringBuilder sbM833U = C1643a.m833U("//");
+                StringBuilder sbU = a.U("//");
                 String string = "";
-                sbM833U.append(uri.getHost() != null ? uri.getHost() : "");
+                sbU.append(uri.getHost() != null ? uri.getHost() : "");
                 if (uri.getPort() != -1) {
-                    StringBuilder sbM833U2 = C1643a.m833U(":");
-                    sbM833U2.append(uri.getPort());
-                    string = sbM833U2.toString();
+                    StringBuilder sbU2 = a.U(":");
+                    sbU2.append(uri.getPort());
+                    string = sbU2.toString();
                 }
-                schemeSpecificPart = C1643a.m822J(sbM833U, string, "/...");
+                schemeSpecificPart = a.J(sbU, string, "/...");
             }
         }
         StringBuilder sb2 = new StringBuilder(64);

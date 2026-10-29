@@ -1,24 +1,23 @@
 package com.discord.widgets.hubs;
 
+import b.d.b.a.a;
 import com.discord.api.hubs.WaitlistSignup;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubWaitlistViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubWaitlistState {
     private final RestCallState<WaitlistSignup> waitlistAsync;
 
-    /* JADX WARN: Multi-variable type inference failed */
     public HubWaitlistState() {
-        this(null, 1, 0 == true ? 1 : 0);
+        this(null, 1, null);
     }
 
     public HubWaitlistState(RestCallState<WaitlistSignup> restCallState) {
-        C12238m.checkNotNullParameter(restCallState, "waitlistAsync");
+        m.checkNotNullParameter(restCallState, "waitlistAsync");
         this.waitlistAsync = restCallState;
     }
 
@@ -35,13 +34,13 @@ public final /* data */ class HubWaitlistState {
     }
 
     public final HubWaitlistState copy(RestCallState<WaitlistSignup> waitlistAsync) {
-        C12238m.checkNotNullParameter(waitlistAsync, "waitlistAsync");
+        m.checkNotNullParameter(waitlistAsync, "waitlistAsync");
         return new HubWaitlistState(waitlistAsync);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof HubWaitlistState) && C12238m.areEqual(this.waitlistAsync, ((HubWaitlistState) other).waitlistAsync);
+            return (other instanceof HubWaitlistState) && m.areEqual(this.waitlistAsync, ((HubWaitlistState) other).waitlistAsync);
         }
         return true;
     }
@@ -59,10 +58,10 @@ public final /* data */ class HubWaitlistState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubWaitlistState(waitlistAsync=");
-        sbM833U.append(this.waitlistAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HubWaitlistState(waitlistAsync=");
+        sbU.append(this.waitlistAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ HubWaitlistState(RestCallState restCallState, int i, DefaultConstructorMarker defaultConstructorMarker) {

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotificationSentGameLaunched.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackNotificationSentGameLaunched implements Analy
             return false;
         }
         TrackNotificationSentGameLaunched trackNotificationSentGameLaunched = (TrackNotificationSentGameLaunched) other;
-        return C12238m.areEqual(this.launchingUserId, trackNotificationSentGameLaunched.launchingUserId) && C12238m.areEqual(this.gameName, trackNotificationSentGameLaunched.gameName) && C12238m.areEqual(this.desktop, trackNotificationSentGameLaunched.desktop) && C12238m.areEqual(this.mobile, trackNotificationSentGameLaunched.mobile);
+        return m.areEqual(this.launchingUserId, trackNotificationSentGameLaunched.launchingUserId) && m.areEqual(this.gameName, trackNotificationSentGameLaunched.gameName) && m.areEqual(this.desktop, trackNotificationSentGameLaunched.desktop) && m.areEqual(this.mobile, trackNotificationSentGameLaunched.mobile);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackNotificationSentGameLaunched implements Analy
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotificationSentGameLaunched(launchingUserId=");
-        sbM833U.append(this.launchingUserId);
-        sbM833U.append(", gameName=");
-        sbM833U.append(this.gameName);
-        sbM833U.append(", desktop=");
-        sbM833U.append(this.desktop);
-        sbM833U.append(", mobile=");
-        return C1643a.m816D(sbM833U, this.mobile, ")");
+        StringBuilder sbU = a.U("TrackNotificationSentGameLaunched(launchingUserId=");
+        sbU.append(this.launchingUserId);
+        sbU.append(", gameName=");
+        sbU.append(this.gameName);
+        sbU.append(", desktop=");
+        sbU.append(this.desktop);
+        sbU.append(", mobile=");
+        return a.D(sbU, this.mobile, ")");
     }
 }

@@ -1,57 +1,43 @@
 package com.discord.widgets.channels.threads.browser;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import androidx.viewpager.widget.ViewPager;
-import com.discord.C5419R;
+import b.a.d.f0;
+import b.d.b.a.a;
+import com.discord.R$layout;
+import com.discord.R$menu;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetThreadBrowserBinding;
-import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.stores.SelectedChannelAnalyticsLocation;
-import com.discord.stores.StoreStream;
-import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.channel.ChannelSelector;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.simple_pager.SimplePager;
+import com.discord.utilities.simple_pager.SimplePager$Adapter;
+import com.discord.utilities.simple_pager.SimplePager$Adapter$Item;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.google.android.material.tabs.TabLayout;
+import d0.g;
+import d0.z.d.a0;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import kotlin.Lazy;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0863f0;
-import p007b.p008a.p018d.C0870j;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Subscription;
-import p658rx.functions.Action1;
-import p658rx.functions.Action2;
 
 /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetThreadBrowser extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetThreadBrowser.class, "binding", "getBinding()Lcom/discord/databinding/WidgetThreadBrowserBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetThreadBrowser.class, "binding", "getBinding()Lcom/discord/databinding/WidgetThreadBrowserBinding;", 0)};
     private final int ACTIVE_PAGE;
     private final int ARCHIVED_PAGE;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final WidgetThreadBrowser$Companion Companion = new WidgetThreadBrowser$Companion(null);
 
     /* JADX INFO: renamed from: archivedViewModel$delegate, reason: from kotlin metadata */
     private final Lazy archivedViewModel;
@@ -65,89 +51,60 @@ public final class WidgetThreadBrowser extends AppFragment {
 
     /* JADX INFO: renamed from: guildId$delegate, reason: from kotlin metadata */
     private final Lazy guildId;
-    private WidgetThreadBrowserViewModel.ViewState previousViewState;
+    private WidgetThreadBrowserViewModel$ViewState previousViewState;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$initializeAdapter$1 */
-    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public final class C76361 extends AbstractC12240o implements Function0<Fragment> {
-        public C76361() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Fragment invoke() {
-            return WidgetThreadBrowserActive.INSTANCE.create(WidgetThreadBrowser.this.getViewModel().getGuildId(), WidgetThreadBrowser.this.getViewModel().getChannelId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$initializeAdapter$2 */
-    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public final class C76372 extends AbstractC12240o implements Function0<Fragment> {
-        public C76372() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Fragment invoke() {
-            return WidgetThreadBrowserArchived.INSTANCE.create(WidgetThreadBrowser.this.getViewModel().getGuildId(), WidgetThreadBrowser.this.getViewModel().getChannelId());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser$onResume$1 */
-    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public final class C76391 extends AbstractC12240o implements Function1<WidgetThreadBrowserViewModel.ViewState, Unit> {
-        public C76391() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetThreadBrowserViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetThreadBrowserViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetThreadBrowser.this.updateView(viewState);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetThreadBrowser.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void show(Context context, long guildId, long channelId, String location) {
-            C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-            if (context != null) {
-                Intent intent = new Intent();
-                intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-                intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-                C0870j.m156d(context, WidgetThreadBrowser.class, intent);
-                AnalyticsTracker.openModal("Thread Browser", location, Long.valueOf(guildId));
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public WidgetThreadBrowser() {
-        super(C5419R.layout.widget_thread_browser);
+        super(R$layout.widget_thread_browser);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetThreadBrowser$binding$2.INSTANCE, null, 2, null);
-        this.guildId = C12083g.lazy(new WidgetThreadBrowser$guildId$2(this));
-        this.channelId = C12083g.lazy(new WidgetThreadBrowser$channelId$2(this));
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetThreadBrowserViewModel.class), new C7632x66275139(this), new C0863f0(new WidgetThreadBrowser$viewModel$2(this)));
-        this.archivedViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetThreadBrowserArchivedViewModel.class), new C7634x6627513b(this), new C0863f0(new WidgetThreadBrowser$archivedViewModel$2(this)));
-        this.channelSelector = ChannelSelector.INSTANCE.getInstance();
+        this.guildId = g.lazy(new WidgetThreadBrowser$guildId$2(this));
+        this.channelId = g.lazy(new WidgetThreadBrowser$channelId$2(this));
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetThreadBrowserViewModel.class), new WidgetThreadBrowser$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetThreadBrowser$viewModel$2(this)));
+        this.archivedViewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetThreadBrowserArchivedViewModel.class), new WidgetThreadBrowser$appActivityViewModels$$inlined$activityViewModels$3(this), new f0(new WidgetThreadBrowser$archivedViewModel$2(this)));
+        this.channelSelector = ChannelSelector.Companion.getInstance();
         this.ARCHIVED_PAGE = 1;
+    }
+
+    public static final /* synthetic */ int access$getACTIVE_PAGE$p(WidgetThreadBrowser widgetThreadBrowser) {
+        return widgetThreadBrowser.ACTIVE_PAGE;
+    }
+
+    public static final /* synthetic */ int access$getARCHIVED_PAGE$p(WidgetThreadBrowser widgetThreadBrowser) {
+        return widgetThreadBrowser.ARCHIVED_PAGE;
+    }
+
+    public static final /* synthetic */ WidgetThreadBrowserArchivedViewModel access$getArchivedViewModel$p(WidgetThreadBrowser widgetThreadBrowser) {
+        return widgetThreadBrowser.getArchivedViewModel();
+    }
+
+    public static final /* synthetic */ long access$getChannelId$p(WidgetThreadBrowser widgetThreadBrowser) {
+        return widgetThreadBrowser.getChannelId();
+    }
+
+    public static final /* synthetic */ long access$getGuildId$p(WidgetThreadBrowser widgetThreadBrowser) {
+        return widgetThreadBrowser.getGuildId();
+    }
+
+    public static final /* synthetic */ WidgetThreadBrowserViewModel$ViewState access$getPreviousViewState$p(WidgetThreadBrowser widgetThreadBrowser) {
+        return widgetThreadBrowser.previousViewState;
+    }
+
+    public static final /* synthetic */ WidgetThreadBrowserViewModel access$getViewModel$p(WidgetThreadBrowser widgetThreadBrowser) {
+        return widgetThreadBrowser.getViewModel();
+    }
+
+    public static final /* synthetic */ void access$setPreviousViewState$p(WidgetThreadBrowser widgetThreadBrowser, WidgetThreadBrowserViewModel$ViewState widgetThreadBrowserViewModel$ViewState) {
+        widgetThreadBrowser.previousViewState = widgetThreadBrowserViewModel$ViewState;
+    }
+
+    public static final /* synthetic */ void access$updateMenu(WidgetThreadBrowser widgetThreadBrowser, int i, Boolean bool) {
+        widgetThreadBrowser.updateMenu(i, bool);
+    }
+
+    public static final /* synthetic */ void access$updateView(WidgetThreadBrowser widgetThreadBrowser, WidgetThreadBrowserViewModel$ViewState widgetThreadBrowserViewModel$ViewState) {
+        widgetThreadBrowser.updateView(widgetThreadBrowserViewModel$ViewState);
     }
 
     private final WidgetThreadBrowserArchivedViewModel getArchivedViewModel() {
@@ -170,54 +127,30 @@ public final class WidgetThreadBrowser extends AppFragment {
         return (WidgetThreadBrowserViewModel) this.viewModel.getValue();
     }
 
-    private final void initializeAdapter(WidgetThreadBrowserViewModel.ViewState.Browser viewState) {
-        SimplePager simplePager = getBinding().f18274c;
-        C12238m.checkNotNullExpressionValue(simplePager, "binding.threadBrowserViewPager");
+    private final void initializeAdapter(WidgetThreadBrowserViewModel$ViewState$Browser viewState) {
+        SimplePager simplePager = getBinding().c;
+        m.checkNotNullExpressionValue(simplePager, "binding.threadBrowserViewPager");
         if (simplePager.getAdapter() == null) {
             ArrayList arrayList = new ArrayList();
-            String string = getString(C5419R.string.thread_browser_active);
-            C12238m.checkNotNullExpressionValue(string, "getString(R.string.thread_browser_active)");
-            arrayList.add(new SimplePager.Adapter.Item(string, new C76361()));
+            String string = getString(2131896346);
+            m.checkNotNullExpressionValue(string, "getString(R.string.thread_browser_active)");
+            arrayList.add(new SimplePager$Adapter$Item(string, new WidgetThreadBrowser$initializeAdapter$1(this)));
             if (viewState.getCanViewArchivedThreads()) {
-                String string2 = getString(C5419R.string.thread_browser_archived);
-                C12238m.checkNotNullExpressionValue(string2, "getString(R.string.thread_browser_archived)");
-                arrayList.add(new SimplePager.Adapter.Item(string2, new C76372()));
+                String string2 = getString(2131896348);
+                m.checkNotNullExpressionValue(string2, "getString(R.string.thread_browser_archived)");
+                arrayList.add(new SimplePager$Adapter$Item(string2, new WidgetThreadBrowser$initializeAdapter$2(this)));
             }
-            SimplePager simplePager2 = getBinding().f18274c;
-            C12238m.checkNotNullExpressionValue(simplePager2, "binding.threadBrowserViewPager");
+            SimplePager simplePager2 = getBinding().c;
+            m.checkNotNullExpressionValue(simplePager2, "binding.threadBrowserViewPager");
             FragmentManager parentFragmentManager = getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            Object[] array = arrayList.toArray(new SimplePager.Adapter.Item[0]);
+            m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+            Object[] array = arrayList.toArray(new SimplePager$Adapter$Item[0]);
             Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
-            SimplePager.Adapter.Item[] itemArr = (SimplePager.Adapter.Item[]) array;
-            simplePager2.setAdapter(new SimplePager.Adapter(parentFragmentManager, (SimplePager.Adapter.Item[]) Arrays.copyOf(itemArr, itemArr.length)));
-            getBinding().f18274c.addOnPageChangeListener(new ViewPager.OnPageChangeListener() { // from class: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser.initializeAdapter.3
-                @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
-                public void onPageScrollStateChanged(int state) {
-                }
-
-                @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                }
-
-                @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
-                public void onPageSelected(int position) {
-                    WidgetThreadBrowser widgetThreadBrowser = WidgetThreadBrowser.this;
-                    WidgetThreadBrowserViewModel.ViewState viewState2 = widgetThreadBrowser.previousViewState;
-                    if (!(viewState2 instanceof WidgetThreadBrowserViewModel.ViewState.Browser)) {
-                        viewState2 = null;
-                    }
-                    WidgetThreadBrowserViewModel.ViewState.Browser browser = (WidgetThreadBrowserViewModel.ViewState.Browser) viewState2;
-                    widgetThreadBrowser.updateMenu(position, browser != null ? Boolean.valueOf(browser.getCanCreateThread()) : null);
-                    if (position == WidgetThreadBrowser.this.ACTIVE_PAGE) {
-                        StoreStream.INSTANCE.getAnalytics().trackThreadBrowserTabChanged(WidgetThreadBrowser.this.getChannelId(), "Active Threads");
-                    } else if (position == WidgetThreadBrowser.this.ARCHIVED_PAGE) {
-                        WidgetThreadBrowser.this.getArchivedViewModel().trackTabChanged();
-                    }
-                }
-            });
-            TabLayout tabLayout = getBinding().f18273b;
-            C12238m.checkNotNullExpressionValue(tabLayout, "binding.actionBarTabs");
+            SimplePager$Adapter$Item[] simplePager$Adapter$ItemArr = (SimplePager$Adapter$Item[]) array;
+            simplePager2.setAdapter(new SimplePager$Adapter(parentFragmentManager, (SimplePager$Adapter$Item[]) Arrays.copyOf(simplePager$Adapter$ItemArr, simplePager$Adapter$ItemArr.length)));
+            getBinding().c.addOnPageChangeListener(new WidgetThreadBrowser$initializeAdapter$3(this));
+            TabLayout tabLayout = getBinding().f2670b;
+            m.checkNotNullExpressionValue(tabLayout, "binding.actionBarTabs");
             tabLayout.setVisibility(viewState.getCanViewArchivedThreads() ? 0 : 8);
         }
     }
@@ -225,77 +158,48 @@ public final class WidgetThreadBrowser extends AppFragment {
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76391());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetThreadBrowser.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetThreadBrowser$onResume$1(this), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarTitle(C5419R.string.thread_browser_title);
+        setActionBarTitle(2131896372);
     }
 
     public static final void show(Context context, long j, long j2, String str) {
-        INSTANCE.show(context, j, j2, str);
+        Companion.show(context, j, j2, str);
     }
 
-    private final void updateMenu(final int selectedPage, final Boolean canCreateThread) {
-        setActionBarOptionsMenu(C5419R.menu.menu_thread_browser, new Action2<MenuItem, Context>() { // from class: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser.updateMenu.1
-            @Override // p658rx.functions.Action2
-            public final void call(MenuItem menuItem, Context context) {
-                C12238m.checkNotNullExpressionValue(menuItem, "menuItem");
-                switch (menuItem.getItemId()) {
-                    case C5419R.id.menu_thread_browser_create_thread /* 2131364416 */:
-                        ChannelSelector.openCreateThread$default(ChannelSelector.INSTANCE.getInstance(), WidgetThreadBrowser.this.getGuildId(), WidgetThreadBrowser.this.getChannelId(), null, "Thread Browser Toolbar", 4, null);
-                        WidgetThreadBrowser.this.requireAppActivity().finish();
-                        break;
-                    case C5419R.id.menu_thread_browser_filters /* 2131364417 */:
-                        WidgetThreadBrowserFilterSheet.Companion companion = WidgetThreadBrowserFilterSheet.INSTANCE;
-                        FragmentManager parentFragmentManager = WidgetThreadBrowser.this.getParentFragmentManager();
-                        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-                        companion.show(parentFragmentManager, WidgetThreadBrowser.this.getGuildId(), WidgetThreadBrowser.this.getChannelId());
-                        break;
-                }
-            }
-        }, new Action1<Menu>() { // from class: com.discord.widgets.channels.threads.browser.WidgetThreadBrowser.updateMenu.2
-            @Override // p658rx.functions.Action1
-            public final void call(Menu menu) {
-                MenuItem menuItemFindItem = menu.findItem(C5419R.id.menu_thread_browser_filters);
-                if (menuItemFindItem != null) {
-                    menuItemFindItem.setVisible(selectedPage == WidgetThreadBrowser.this.ARCHIVED_PAGE);
-                }
-                MenuItem menuItemFindItem2 = menu.findItem(C5419R.id.menu_thread_browser_create_thread);
-                if (menuItemFindItem2 != null) {
-                    menuItemFindItem2.setVisible(selectedPage == WidgetThreadBrowser.this.ACTIVE_PAGE && C12238m.areEqual(canCreateThread, Boolean.TRUE));
-                }
-            }
-        });
+    private final void updateMenu(int selectedPage, Boolean canCreateThread) {
+        setActionBarOptionsMenu(R$menu.menu_thread_browser, new WidgetThreadBrowser$updateMenu$1(this), new WidgetThreadBrowser$updateMenu$2(this, selectedPage, canCreateThread));
     }
 
-    private final void updateView(WidgetThreadBrowserViewModel.ViewState viewState) {
+    private final void updateView(WidgetThreadBrowserViewModel$ViewState viewState) {
         this.previousViewState = viewState;
-        if (viewState instanceof WidgetThreadBrowserViewModel.ViewState.GoToChannel) {
-            ChannelSelector.selectChannel$default(this.channelSelector, ((WidgetThreadBrowserViewModel.ViewState.GoToChannel) viewState).getChannel(), null, SelectedChannelAnalyticsLocation.THREAD_BROWSER, 2, null);
+        if (viewState instanceof WidgetThreadBrowserViewModel$ViewState$GoToChannel) {
+            ChannelSelector.selectChannel$default(this.channelSelector, ((WidgetThreadBrowserViewModel$ViewState$GoToChannel) viewState).getChannel(), null, SelectedChannelAnalyticsLocation.THREAD_BROWSER, 2, null);
             requireActivity().onBackPressed();
             return;
         }
-        if (viewState instanceof WidgetThreadBrowserViewModel.ViewState.Browser) {
-            WidgetThreadBrowserViewModel.ViewState.Browser browser = (WidgetThreadBrowserViewModel.ViewState.Browser) viewState;
-            initializeAdapter(browser);
-            if (browser.getChannelName() != null && !browser.isForumChannel()) {
-                StringBuilder sbM833U = C1643a.m833U("#");
-                sbM833U.append(browser.getChannelName());
-                setActionBarSubtitle(sbM833U.toString());
+        if (viewState instanceof WidgetThreadBrowserViewModel$ViewState$Browser) {
+            WidgetThreadBrowserViewModel$ViewState$Browser widgetThreadBrowserViewModel$ViewState$Browser = (WidgetThreadBrowserViewModel$ViewState$Browser) viewState;
+            initializeAdapter(widgetThreadBrowserViewModel$ViewState$Browser);
+            if (widgetThreadBrowserViewModel$ViewState$Browser.getChannelName() != null && !widgetThreadBrowserViewModel$ViewState$Browser.isForumChannel()) {
+                StringBuilder sbU = a.U("#");
+                sbU.append(widgetThreadBrowserViewModel$ViewState$Browser.getChannelName());
+                setActionBarSubtitle(sbU.toString());
             }
-            if (browser.getChannelName() != null && browser.isForumChannel()) {
-                StringBuilder sbM833U2 = C1643a.m833U("#");
-                sbM833U2.append(browser.getChannelName());
-                setActionBarTitle(sbM833U2.toString());
+            if (widgetThreadBrowserViewModel$ViewState$Browser.getChannelName() != null && widgetThreadBrowserViewModel$ViewState$Browser.isForumChannel()) {
+                StringBuilder sbU2 = a.U("#");
+                sbU2.append(widgetThreadBrowserViewModel$ViewState$Browser.getChannelName());
+                setActionBarTitle(sbU2.toString());
             }
-            SimplePager simplePager = getBinding().f18274c;
-            C12238m.checkNotNullExpressionValue(simplePager, "binding.threadBrowserViewPager");
-            updateMenu(simplePager.getCurrentItem(), Boolean.valueOf(browser.getCanCreateThread()));
+            SimplePager simplePager = getBinding().c;
+            m.checkNotNullExpressionValue(simplePager, "binding.threadBrowserViewPager");
+            updateMenu(simplePager.getCurrentItem(), Boolean.valueOf(widgetThreadBrowserViewModel$ViewState$Browser.getCanCreateThread()));
         }
     }
 }

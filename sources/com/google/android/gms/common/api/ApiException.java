@@ -11,8 +11,8 @@ public class ApiException extends Exception {
     public final Status mStatus;
 
     public ApiException(@RecentlyNonNull Status status) {
-        int i = status.f20495p;
-        String str = status.f20496q;
+        int i = status.p;
+        String str = status.q;
         str = str == null ? "" : str;
         StringBuilder sb = new StringBuilder(String.valueOf(str).length() + 13);
         sb.append(i);

@@ -10,27 +10,25 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsChannelsSortFabMenuBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final TableLayout f17573a;
+    public final TableLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FloatingActionButton f17574b;
+    public final FloatingActionButton f2552b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TableLayout f17575c;
+    public final TableLayout c;
 
     public WidgetServerSettingsChannelsSortFabMenuBinding(@NonNull TableLayout tableLayout, @NonNull TableRow tableRow, @NonNull TableRow tableRow2, @NonNull TableRow tableRow3, @NonNull TableRow tableRow4, @NonNull FloatingActionButton floatingActionButton, @NonNull TableLayout tableLayout2) {
-        this.f17573a = tableLayout;
-        this.f17574b = floatingActionButton;
-        this.f17575c = tableLayout2;
+        this.a = tableLayout;
+        this.f2552b = floatingActionButton;
+        this.c = tableLayout2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17573a;
+        return this.a;
     }
 }

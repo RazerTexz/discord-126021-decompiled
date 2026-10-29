@@ -2,9 +2,10 @@ package androidx.arch.core.executor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public abstract class TaskExecutor {
     public abstract void executeOnDiskIO(@NonNull Runnable runnable);
 

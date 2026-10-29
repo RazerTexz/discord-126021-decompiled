@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -13,8 +14,7 @@ import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadata;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPaymentFlowFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -41,7 +41,7 @@ public final /* data */ class TrackPaymentFlowFailed implements AnalyticsSchema,
             return false;
         }
         TrackPaymentFlowFailed trackPaymentFlowFailed = (TrackPaymentFlowFailed) other;
-        return C12238m.areEqual(this.loadId, trackPaymentFlowFailed.loadId) && C12238m.areEqual(this.durationMs, trackPaymentFlowFailed.durationMs) && C12238m.areEqual(this.paymentErrorCode, trackPaymentFlowFailed.paymentErrorCode) && C12238m.areEqual(this.paymentSourceId, trackPaymentFlowFailed.paymentSourceId) && C12238m.areEqual(this.paymentGateway, trackPaymentFlowFailed.paymentGateway) && C12238m.areEqual(this.eligibleForTrial, trackPaymentFlowFailed.eligibleForTrial);
+        return m.areEqual(this.loadId, trackPaymentFlowFailed.loadId) && m.areEqual(this.durationMs, trackPaymentFlowFailed.durationMs) && m.areEqual(this.paymentErrorCode, trackPaymentFlowFailed.paymentErrorCode) && m.areEqual(this.paymentSourceId, trackPaymentFlowFailed.paymentSourceId) && m.areEqual(this.paymentGateway, trackPaymentFlowFailed.paymentGateway) && m.areEqual(this.eligibleForTrial, trackPaymentFlowFailed.eligibleForTrial);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,17 +66,17 @@ public final /* data */ class TrackPaymentFlowFailed implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPaymentFlowFailed(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", durationMs=");
-        sbM833U.append(this.durationMs);
-        sbM833U.append(", paymentErrorCode=");
-        sbM833U.append(this.paymentErrorCode);
-        sbM833U.append(", paymentSourceId=");
-        sbM833U.append(this.paymentSourceId);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", eligibleForTrial=");
-        return C1643a.m816D(sbM833U, this.eligibleForTrial, ")");
+        StringBuilder sbU = a.U("TrackPaymentFlowFailed(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", durationMs=");
+        sbU.append(this.durationMs);
+        sbU.append(", paymentErrorCode=");
+        sbU.append(this.paymentErrorCode);
+        sbU.append(", paymentSourceId=");
+        sbU.append(this.paymentSourceId);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", eligibleForTrial=");
+        return a.D(sbU, this.eligibleForTrial, ")");
     }
 }

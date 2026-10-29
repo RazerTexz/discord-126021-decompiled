@@ -11,13 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
+import b.i.b.d.a.a;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Executor;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class ListenableWorker {
@@ -30,136 +30,6 @@ public abstract class ListenableWorker {
 
     @NonNull
     private WorkerParameters mWorkerParams;
-
-    public abstract class Result {
-
-        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public final class Failure extends Result {
-            private final Data mOutputData;
-
-            public Failure() {
-                this(Data.EMPTY);
-            }
-
-            public boolean equals(Object obj) {
-                if (this == obj) {
-                    return true;
-                }
-                if (obj == null || Failure.class != obj.getClass()) {
-                    return false;
-                }
-                return this.mOutputData.equals(((Failure) obj).mOutputData);
-            }
-
-            @NonNull
-            @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-            public Data getOutputData() {
-                return this.mOutputData;
-            }
-
-            public int hashCode() {
-                return this.mOutputData.hashCode() + 846803280;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Failure {mOutputData=");
-                sbM833U.append(this.mOutputData);
-                sbM833U.append('}');
-                return sbM833U.toString();
-            }
-
-            public Failure(@NonNull Data data) {
-                this.mOutputData = data;
-            }
-        }
-
-        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public final class Retry extends Result {
-            public boolean equals(Object obj) {
-                if (this == obj) {
-                    return true;
-                }
-                return obj != null && Retry.class == obj.getClass();
-            }
-
-            public int hashCode() {
-                return 25945934;
-            }
-
-            public String toString() {
-                return "Retry";
-            }
-        }
-
-        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public final class Success extends Result {
-            private final Data mOutputData;
-
-            public Success() {
-                this(Data.EMPTY);
-            }
-
-            public boolean equals(Object obj) {
-                if (this == obj) {
-                    return true;
-                }
-                if (obj == null || Success.class != obj.getClass()) {
-                    return false;
-                }
-                return this.mOutputData.equals(((Success) obj).mOutputData);
-            }
-
-            @NonNull
-            @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-            public Data getOutputData() {
-                return this.mOutputData;
-            }
-
-            public int hashCode() {
-                return this.mOutputData.hashCode() - 1876823561;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Success {mOutputData=");
-                sbM833U.append(this.mOutputData);
-                sbM833U.append('}');
-                return sbM833U.toString();
-            }
-
-            public Success(@NonNull Data data) {
-                this.mOutputData = data;
-            }
-        }
-
-        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public Result() {
-        }
-
-        @NonNull
-        public static Result failure() {
-            return new Failure();
-        }
-
-        @NonNull
-        public static Result retry() {
-            return new Retry();
-        }
-
-        @NonNull
-        public static Result success() {
-            return new Success();
-        }
-
-        @NonNull
-        public static Result failure(@NonNull Data data) {
-            return new Failure(data);
-        }
-
-        @NonNull
-        public static Result success(@NonNull Data data) {
-            return new Success(data);
-        }
-    }
 
     @Keep
     @SuppressLint({"BanKeepAnnotation"})
@@ -180,7 +50,7 @@ public abstract class ListenableWorker {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public Executor getBackgroundExecutor() {
         return this.mWorkerParams.getBackgroundExecutor();
     }
@@ -212,7 +82,7 @@ public abstract class ListenableWorker {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public TaskExecutor getTaskExecutor() {
         return this.mWorkerParams.getTaskExecutor();
     }
@@ -230,12 +100,12 @@ public abstract class ListenableWorker {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public WorkerFactory getWorkerFactory() {
         return this.mWorkerParams.getWorkerFactory();
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public boolean isRunInForeground() {
         return this.mRunInForeground;
     }
@@ -244,7 +114,7 @@ public abstract class ListenableWorker {
         return this.mStopped;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public final boolean isUsed() {
         return this.mUsed;
     }
@@ -253,26 +123,26 @@ public abstract class ListenableWorker {
     }
 
     @NonNull
-    public final InterfaceFutureC4539a<Void> setForegroundAsync(@NonNull ForegroundInfo foregroundInfo) {
+    public final a<Void> setForegroundAsync(@NonNull ForegroundInfo foregroundInfo) {
         this.mRunInForeground = true;
         return this.mWorkerParams.getForegroundUpdater().setForegroundAsync(getApplicationContext(), getId(), foregroundInfo);
     }
 
     @NonNull
-    public final InterfaceFutureC4539a<Void> setProgressAsync(@NonNull Data data) {
+    public final a<Void> setProgressAsync(@NonNull Data data) {
         return this.mWorkerParams.getProgressUpdater().updateProgress(getApplicationContext(), getId(), data);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public final void setUsed() {
         this.mUsed = true;
     }
 
     @NonNull
     @MainThread
-    public abstract InterfaceFutureC4539a<Result> startWork();
+    public abstract a<ListenableWorker$Result> startWork();
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public final void stop() {
         this.mStopped = true;
         onStopped();

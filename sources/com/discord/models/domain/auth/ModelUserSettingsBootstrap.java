@@ -1,7 +1,7 @@
 package com.discord.models.domain.auth;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelLoginResult.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -36,7 +36,7 @@ public final /* data */ class ModelUserSettingsBootstrap {
             return false;
         }
         ModelUserSettingsBootstrap modelUserSettingsBootstrap = (ModelUserSettingsBootstrap) other;
-        return C12238m.areEqual(this.theme, modelUserSettingsBootstrap.theme) && C12238m.areEqual(this.locale, modelUserSettingsBootstrap.locale);
+        return m.areEqual(this.theme, modelUserSettingsBootstrap.theme) && m.areEqual(this.locale, modelUserSettingsBootstrap.locale);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -65,9 +65,9 @@ public final /* data */ class ModelUserSettingsBootstrap {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelUserSettingsBootstrap(theme=");
-        sbM833U.append(this.theme);
-        sbM833U.append(", locale=");
-        return C1643a.m822J(sbM833U, this.locale, ")");
+        StringBuilder sbU = a.U("ModelUserSettingsBootstrap(theme=");
+        sbU.append(this.theme);
+        sbU.append(", locale=");
+        return a.J(sbU, this.locale, ")");
     }
 }

@@ -3,19 +3,19 @@ package com.discord.widgets.media;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetMediaBinding;
 import com.facebook.samples.zoomable.ZoomableDraweeView;
-import com.google.android.exoplayer2.p505ui.PlayerControlView;
-import com.google.android.exoplayer2.p505ui.PlayerView;
+import com.google.android.exoplayer2.ui.PlayerControlView;
+import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.material.appbar.AppBarLayout;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetMedia.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetMedia$binding$2 extends C12236k implements Function1<View, WidgetMediaBinding> {
+public final /* synthetic */ class WidgetMedia$binding$2 extends k implements Function1<View, WidgetMediaBinding> {
     public static final WidgetMedia$binding$2 INSTANCE = new WidgetMedia$binding$2();
 
     public WidgetMedia$binding$2() {
@@ -23,23 +23,28 @@ public final /* synthetic */ class WidgetMedia$binding$2 extends C12236k impleme
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetMediaBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.action_bar_toolbar_layout;
-        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(C5419R.id.action_bar_toolbar_layout);
+    public /* bridge */ /* synthetic */ WidgetMediaBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetMediaBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = 2131361879;
+        AppBarLayout appBarLayout = (AppBarLayout) view.findViewById(2131361879);
         if (appBarLayout != null) {
             FrameLayout frameLayout = (FrameLayout) view;
-            i = C5419R.id.media_image;
-            ZoomableDraweeView zoomableDraweeView = (ZoomableDraweeView) view.findViewById(C5419R.id.media_image);
+            i = R$id.media_image;
+            ZoomableDraweeView zoomableDraweeView = (ZoomableDraweeView) view.findViewById(R$id.media_image);
             if (zoomableDraweeView != null) {
-                i = C5419R.id.media_loading_indicator;
-                ProgressBar progressBar = (ProgressBar) view.findViewById(C5419R.id.media_loading_indicator);
+                i = R$id.media_loading_indicator;
+                ProgressBar progressBar = (ProgressBar) view.findViewById(R$id.media_loading_indicator);
                 if (progressBar != null) {
-                    i = C5419R.id.media_player_control_view;
-                    PlayerControlView playerControlView = (PlayerControlView) view.findViewById(C5419R.id.media_player_control_view);
+                    i = R$id.media_player_control_view;
+                    PlayerControlView playerControlView = (PlayerControlView) view.findViewById(R$id.media_player_control_view);
                     if (playerControlView != null) {
-                        i = C5419R.id.media_player_view;
-                        PlayerView playerView = (PlayerView) view.findViewById(C5419R.id.media_player_view);
+                        i = R$id.media_player_view;
+                        PlayerView playerView = (PlayerView) view.findViewById(R$id.media_player_view);
                         if (playerView != null) {
                             return new WidgetMediaBinding(frameLayout, appBarLayout, frameLayout, zoomableDraweeView, progressBar, playerControlView, playerView);
                         }

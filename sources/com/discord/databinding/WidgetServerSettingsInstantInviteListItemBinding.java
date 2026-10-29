@@ -14,42 +14,37 @@ import com.discord.views.user.SettingsMemberView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsInstantInviteListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CardView f17681a;
+    public final CardView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17682b;
+    public final TextView f2574b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17683c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17684d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17685e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final SettingsMemberView f17686f;
+    public final SettingsMemberView f;
 
     public WidgetServerSettingsInstantInviteListItemBinding(@NonNull CardView cardView, @NonNull Barrier barrier, @NonNull Barrier barrier2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull LinearLayout linearLayout, @NonNull FrameLayout frameLayout, @NonNull LinearLayout linearLayout2, @NonNull TextView textView3, @NonNull ImageView imageView, @NonNull TextView textView4, @NonNull LinearLayout linearLayout3, @NonNull SettingsMemberView settingsMemberView) {
-        this.f17681a = cardView;
-        this.f17682b = textView;
-        this.f17683c = textView2;
-        this.f17684d = textView3;
-        this.f17685e = textView4;
-        this.f17686f = settingsMemberView;
+        this.a = cardView;
+        this.f2574b = textView;
+        this.c = textView2;
+        this.d = textView3;
+        this.e = textView4;
+        this.f = settingsMemberView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17681a;
+        return this.a;
     }
 }

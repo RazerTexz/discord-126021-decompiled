@@ -6,23 +6,20 @@ import com.sun.tools.javac.jvm.ClassWriter;
 import com.sun.tools.javac.main.JavaCompiler;
 import com.sun.tools.javac.processing.JavacFiler;
 import com.sun.tools.javac.processing.JavacProcessingEnvironment;
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCCompilationUnit;
 import com.sun.tools.javac.util.Context;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import java.util.SortedSet;
 import javax.annotation.processing.AbstractProcessor;
@@ -33,7 +30,7 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-import javax.tools.Diagnostic;
+import javax.tools.Diagnostic$Kind;
 import javax.tools.JavaFileManager;
 import lombok.Lombok;
 import lombok.core.CleanupRegistry;
@@ -58,7 +55,7 @@ public class LombokProcessor extends AbstractProcessor {
     private static final Field javacProcessingEnvironment_discoveredProcs = getFieldAccessor(JPE, "discoveredProcs");
     private static final Field discoveredProcessors_procStateList = getFieldAccessor("com.sun.tools.javac.processing.JavacProcessingEnvironment$DiscoveredProcessors", "procStateList");
     private static final Field processorState_processor = getFieldAccessor("com.sun.tools.javac.processing.JavacProcessingEnvironment$processor", "processor");
-    private final IdentityHashMap<JCTree.JCCompilationUnit, Long> roots = new IdentityHashMap<>();
+    private final IdentityHashMap<JCTree$JCCompilationUnit, Long> roots = new IdentityHashMap<>();
     private CleanupRegistry cleanup = new CleanupRegistry();
     private int dummyCount = 0;
     private static Class<?> qualifiedNamableClass = null;
@@ -203,52 +200,8 @@ public class LombokProcessor extends AbstractProcessor {
         }
     }
 
-    private static ClassLoader wrapClassLoader(final ClassLoader parent) {
-        return new ClassLoader() { // from class: lombok.javac.apt.LombokProcessor.1
-            @Override // java.lang.ClassLoader
-            public Class<?> loadClass(String name) throws ClassNotFoundException {
-                return parent.loadClass(name);
-            }
-
-            public String toString() {
-                return parent.toString();
-            }
-
-            @Override // java.lang.ClassLoader
-            public URL getResource(String name) {
-                return parent.getResource(name);
-            }
-
-            @Override // java.lang.ClassLoader
-            public Enumeration<URL> getResources(String name) throws IOException {
-                return parent.getResources(name);
-            }
-
-            @Override // java.lang.ClassLoader
-            public InputStream getResourceAsStream(String name) {
-                return parent.getResourceAsStream(name);
-            }
-
-            @Override // java.lang.ClassLoader
-            public void setDefaultAssertionStatus(boolean enabled) {
-                parent.setDefaultAssertionStatus(enabled);
-            }
-
-            @Override // java.lang.ClassLoader
-            public void setPackageAssertionStatus(String packageName, boolean enabled) {
-                parent.setPackageAssertionStatus(packageName, enabled);
-            }
-
-            @Override // java.lang.ClassLoader
-            public void setClassAssertionStatus(String className, boolean enabled) {
-                parent.setClassAssertionStatus(className, enabled);
-            }
-
-            @Override // java.lang.ClassLoader
-            public void clearAssertionStatus() {
-                parent.clearAssertionStatus();
-            }
-        };
+    private static ClassLoader wrapClassLoader(ClassLoader parent) {
+        return new LombokProcessor$1(parent);
     }
 
     private void stopJavacProcessingEnvironmentFromClosingOurClassloader() {
@@ -280,15 +233,15 @@ public class LombokProcessor extends AbstractProcessor {
             if (randomModuleName == null) {
                 randomModuleName = getModuleNameFor(element);
             }
-            JCTree.JCCompilationUnit unit = toUnit(element);
+            JCTree$JCCompilationUnit unit = toUnit(element);
             if (unit != null && !this.roots.containsKey(unit)) {
                 this.roots.put(unit, Long.valueOf(this.priorityLevels[0]));
             }
         }
         do {
             for (long prio : this.priorityLevels) {
-                List<JCTree.JCCompilationUnit> cusForThisRound = new ArrayList<>();
-                for (Map.Entry<JCTree.JCCompilationUnit, Long> entry : this.roots.entrySet()) {
+                List<JCTree$JCCompilationUnit> cusForThisRound = new ArrayList<>();
+                for (Map$Entry<JCTree$JCCompilationUnit, Long> entry : this.roots.entrySet()) {
                     Long prioOfCu = entry.getValue();
                     if (prioOfCu != null && prioOfCu.longValue() == prio) {
                         cusForThisRound.add(entry.getKey());
@@ -301,14 +254,14 @@ public class LombokProcessor extends AbstractProcessor {
             while (i >= 0) {
                 Long curLevel = Long.valueOf(this.priorityLevels[i]);
                 Long nextLevel = i == this.priorityLevels.length - 1 ? null : Long.valueOf(this.priorityLevels[i + 1]);
-                List<JCTree.JCCompilationUnit> cusToAdvance = new ArrayList<>();
-                for (Map.Entry<JCTree.JCCompilationUnit, Long> entry2 : this.roots.entrySet()) {
+                List<JCTree$JCCompilationUnit> cusToAdvance = new ArrayList<>();
+                for (Map$Entry<JCTree$JCCompilationUnit, Long> entry2 : this.roots.entrySet()) {
                     if (curLevel.equals(entry2.getValue())) {
                         cusToAdvance.add(entry2.getKey());
                         newLevels.add(nextLevel);
                     }
                 }
-                Iterator<JCTree.JCCompilationUnit> it = cusToAdvance.iterator();
+                Iterator<JCTree$JCCompilationUnit> it = cusToAdvance.iterator();
                 while (it.hasNext()) {
                     this.roots.put(it.next(), nextLevel);
                 }
@@ -334,7 +287,7 @@ public class LombokProcessor extends AbstractProcessor {
                 generatedSourceNames.add(sb.append(i).toString());
             } catch (Exception e) {
                 e.printStackTrace();
-                this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Can't force a new processing round. Lombok won't work.");
+                this.processingEnv.getMessager().printMessage(Diagnostic$Kind.WARNING, "Can't force a new processing round. Lombok won't work.");
             }
         }
     }
@@ -380,7 +333,7 @@ public class LombokProcessor extends AbstractProcessor {
         }
     }
 
-    private JCTree.JCCompilationUnit toUnit(Element element) {
+    private JCTree$JCCompilationUnit toUnit(Element element) {
         TreePath path = null;
         if (this.trees != null) {
             try {
@@ -418,7 +371,7 @@ public class LombokProcessor extends AbstractProcessor {
                 }
                 superclass = procEnvClass.getSuperclass();
             } else {
-                this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Can't get the delegate of the gradle IncrementalProcessingEnvironment. Lombok won't work.");
+                this.processingEnv.getMessager().printMessage(Diagnostic$Kind.WARNING, "Can't get the delegate of the gradle IncrementalProcessingEnvironment. Lombok won't work.");
                 return null;
             }
         }
@@ -444,7 +397,7 @@ public class LombokProcessor extends AbstractProcessor {
                 }
                 superclass = filerClass.getSuperclass();
             } else {
-                this.processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Can't get a JavacFiler from " + filer.getClass().getName() + ". Lombok won't work.");
+                this.processingEnv.getMessager().printMessage(Diagnostic$Kind.WARNING, "Can't get a JavacFiler from " + filer.getClass().getName() + ". Lombok won't work.");
                 return null;
             }
         }

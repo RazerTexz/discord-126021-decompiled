@@ -2,23 +2,20 @@ package com.discord.stores;
 
 import android.content.Context;
 import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.accessibility.AccessibilityFeatureFlags;
 import com.discord.utilities.accessibility.AccessibilityMonitor;
 import com.discord.utilities.accessibility.AccessibilityState;
 import com.discord.utilities.analytics.AnalyticSuperProperties;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.persister.Persister;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.m;
 import java.util.EnumSet;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
 
 /* JADX INFO: compiled from: StoreAccessibility.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -34,125 +31,24 @@ public final class StoreAccessibility extends StoreV2 {
     private final Persister<Boolean> reducedMotionCache;
     private boolean reducedMotionEnabled;
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$init$1 */
-    /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public final class C56701 extends AbstractC12240o implements Function1<AccessibilityState, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$init$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreAccessibility.kt */
-        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ AccessibilityState $it;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(AccessibilityState accessibilityState) {
-                super(0);
-                this.$it = accessibilityState;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreAccessibility.this.updateMonitoredAccessibilityState(this.$it);
-            }
-        }
-
-        public C56701() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(AccessibilityState accessibilityState) {
-            invoke2(accessibilityState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(AccessibilityState accessibilityState) {
-            C12238m.checkNotNullParameter(accessibilityState, "it");
-            StoreAccessibility.this.dispatcher.schedule(new AnonymousClass1(accessibilityState));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$observeAccessibilityFeatures$1 */
-    /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public final class C56711 extends AbstractC12240o implements Function0<EnumSet<AccessibilityFeatureFlags>> {
-        public C56711() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final EnumSet<AccessibilityFeatureFlags> invoke() {
-            return StoreAccessibility.this.getAccessibilityFeatures();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$observeReducedMotionEnabled$1 */
-    /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public final class C56721 extends AbstractC12240o implements Function0<Boolean> {
-        public C56721() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return StoreAccessibility.this.reducedMotionEnabled;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$observeScreenreaderEnabled$1 */
-    /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public final class C56731 extends AbstractC12240o implements Function0<Boolean> {
-        public C56731() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return StoreAccessibility.this.isScreenreaderEnabled();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreAccessibility$setReducedMotionEnabled$1 */
-    /* JADX INFO: compiled from: StoreAccessibility.kt */
-    public final class C56741 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $enabled;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C56741(boolean z2) {
-            super(0);
-            this.$enabled = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreAccessibility.this.reducedMotionEnabled = this.$enabled;
-            StoreAccessibility.this.markChanged();
-        }
-    }
-
     public /* synthetic */ StoreAccessibility(Dispatcher dispatcher, ObservationDeck observationDeck, AccessibilityMonitor accessibilityMonitor, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? AccessibilityMonitor.INSTANCE.getINSTANCE() : accessibilityMonitor);
+        this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 4) != 0 ? AccessibilityMonitor.Companion.getINSTANCE() : accessibilityMonitor);
+    }
+
+    public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreAccessibility storeAccessibility) {
+        return storeAccessibility.dispatcher;
+    }
+
+    public static final /* synthetic */ boolean access$getReducedMotionEnabled$p(StoreAccessibility storeAccessibility) {
+        return storeAccessibility.reducedMotionEnabled;
+    }
+
+    public static final /* synthetic */ void access$setReducedMotionEnabled$p(StoreAccessibility storeAccessibility, boolean z2) {
+        storeAccessibility.reducedMotionEnabled = z2;
+    }
+
+    public static final /* synthetic */ void access$updateMonitoredAccessibilityState(StoreAccessibility storeAccessibility, AccessibilityState accessibilityState) {
+        storeAccessibility.updateMonitoredAccessibilityState(accessibilityState);
     }
 
     public final EnumSet<AccessibilityFeatureFlags> getAccessibilityFeatures() {
@@ -166,9 +62,9 @@ public final class StoreAccessibility extends StoreV2 {
 
     @Override // com.discord.stores.Store
     public void init(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         this.reducedMotionEnabled = this.reducedMotionCache.get().booleanValue();
-        ObservableExtensionsKt.appSubscribe(this.accessibilityMonitor.observeAccessibilityState(), (Class<?>) StoreAccessibility.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C56701());
+        ObservableExtensionsKt.appSubscribe$default(this.accessibilityMonitor.observeAccessibilityState(), StoreAccessibility.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreAccessibility$init$1(this), 62, (Object) null);
     }
 
     public final boolean isScreenreaderEnabled() {
@@ -176,19 +72,19 @@ public final class StoreAccessibility extends StoreV2 {
     }
 
     public final Observable<EnumSet<AccessibilityFeatureFlags>> observeAccessibilityFeatures() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C56711(), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreAccessibility$observeAccessibilityFeatures$1(this), 14, null);
     }
 
     public final Observable<Boolean> observeReducedMotionEnabled() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C56721(), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreAccessibility$observeReducedMotionEnabled$1(this), 14, null);
     }
 
     public final Observable<Boolean> observeScreenreaderEnabled() {
-        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C56731(), 14, null);
+        return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreAccessibility$observeScreenreaderEnabled$1(this), 14, null);
     }
 
     public final void setReducedMotionEnabled(boolean enabled) {
-        this.dispatcher.schedule(new C56741(enabled));
+        this.dispatcher.schedule(new StoreAccessibility$setReducedMotionEnabled$1(this, enabled));
     }
 
     @Override // com.discord.stores.StoreV2
@@ -210,7 +106,7 @@ public final class StoreAccessibility extends StoreV2 {
         if (this.fontScaledDown) {
             enumSetCopyOf.add(AccessibilityFeatureFlags.CHAT_FONT_SCALE_DECREASED);
         }
-        C12238m.checkNotNullExpressionValue(enumSetCopyOf, "features");
+        m.checkNotNullExpressionValue(enumSetCopyOf, "features");
         this.accessibilityFeaturesSnapshot = enumSetCopyOf;
         AnalyticSuperProperties.INSTANCE.setAccessibilityProperties(isScreenreaderEnabled(), getAccessibilityFeatures());
         this.reducedMotionCache.set(Boolean.valueOf(this.reducedMotionEnabled), true);
@@ -244,9 +140,9 @@ public final class StoreAccessibility extends StoreV2 {
     }
 
     public StoreAccessibility(Dispatcher dispatcher, ObservationDeck observationDeck, AccessibilityMonitor accessibilityMonitor) {
-        C12238m.checkNotNullParameter(dispatcher, "dispatcher");
-        C12238m.checkNotNullParameter(observationDeck, "observationDeck");
-        C12238m.checkNotNullParameter(accessibilityMonitor, "accessibilityMonitor");
+        m.checkNotNullParameter(dispatcher, "dispatcher");
+        m.checkNotNullParameter(observationDeck, "observationDeck");
+        m.checkNotNullParameter(accessibilityMonitor, "accessibilityMonitor");
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
         this.accessibilityMonitor = accessibilityMonitor;
@@ -254,7 +150,7 @@ public final class StoreAccessibility extends StoreV2 {
         this.accessibilityFeatures = EnumSet.of(accessibilityFeatureFlags);
         this.reducedMotionCache = new Persister<>("CACHE_KEY_ACCESSIBILITY_REDUCED_MOTION_ENABLED", Boolean.FALSE);
         EnumSet<AccessibilityFeatureFlags> enumSetOf = EnumSet.of(accessibilityFeatureFlags);
-        C12238m.checkNotNullExpressionValue(enumSetOf, "EnumSet.of(AccessibilityFeatureFlags.NONE)");
+        m.checkNotNullExpressionValue(enumSetOf, "EnumSet.of(AccessibilityFeatureFlags.NONE)");
         this.accessibilityFeaturesSnapshot = enumSetOf;
     }
 }

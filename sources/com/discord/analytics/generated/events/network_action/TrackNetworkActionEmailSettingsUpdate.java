@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,9 +8,8 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackNetworkActionEmailSettingsUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,6 +23,11 @@ public final /* data */ class TrackNetworkActionEmailSettingsUpdate implements A
     private final List<Boolean> values = null;
     private final transient String analyticsSchemaTypeName = "network_action_email_settings_update";
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +36,7 @@ public final /* data */ class TrackNetworkActionEmailSettingsUpdate implements A
             return false;
         }
         TrackNetworkActionEmailSettingsUpdate trackNetworkActionEmailSettingsUpdate = (TrackNetworkActionEmailSettingsUpdate) other;
-        return C12238m.areEqual(this.category, trackNetworkActionEmailSettingsUpdate.category) && C12238m.areEqual(this.value, trackNetworkActionEmailSettingsUpdate.value) && C12238m.areEqual(this.categories, trackNetworkActionEmailSettingsUpdate.categories) && C12238m.areEqual(this.values, trackNetworkActionEmailSettingsUpdate.values);
+        return m.areEqual(this.category, trackNetworkActionEmailSettingsUpdate.category) && m.areEqual(this.value, trackNetworkActionEmailSettingsUpdate.value) && m.areEqual(this.categories, trackNetworkActionEmailSettingsUpdate.categories) && m.areEqual(this.values, trackNetworkActionEmailSettingsUpdate.values);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,20 +56,14 @@ public final /* data */ class TrackNetworkActionEmailSettingsUpdate implements A
         return iHashCode3 + (list2 != null ? list2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionEmailSettingsUpdate(category=");
-        sbM833U.append(this.category);
-        sbM833U.append(", value=");
-        sbM833U.append(this.value);
-        sbM833U.append(", categories=");
-        sbM833U.append(this.categories);
-        sbM833U.append(", values=");
-        return C1643a.m824L(sbM833U, this.values, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionEmailSettingsUpdate(category=");
+        sbU.append(this.category);
+        sbU.append(", value=");
+        sbU.append(this.value);
+        sbU.append(", categories=");
+        sbU.append(this.categories);
+        sbU.append(", values=");
+        return a.L(sbU, this.values, ")");
     }
 }

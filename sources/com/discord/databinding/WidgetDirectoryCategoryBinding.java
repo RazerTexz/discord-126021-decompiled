@@ -8,22 +8,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetDirectoryCategoryBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RecyclerView f16459a;
+    public final RecyclerView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f16460b;
+    public final RecyclerView f2364b;
 
     public WidgetDirectoryCategoryBinding(@NonNull RecyclerView recyclerView, @NonNull RecyclerView recyclerView2) {
-        this.f16459a = recyclerView;
-        this.f16460b = recyclerView2;
+        this.a = recyclerView;
+        this.f2364b = recyclerView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16459a;
+        return this.a;
     }
 }

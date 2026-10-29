@@ -1,47 +1,22 @@
 package com.discord.widgets.guildscheduledevent;
 
-import com.discord.api.guildscheduledevent.ApiGuildScheduledEventUser;
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.models.member.GuildMember;
-import com.discord.models.user.CoreUser;
 import com.discord.models.user.User;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildScheduledEventUser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildScheduledEventUser {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final GuildScheduledEventUser$Companion Companion = new GuildScheduledEventUser$Companion(null);
     private final GuildMember guildMember;
     private final long guildScheduledEventId;
     private final User user;
 
-    /* JADX INFO: compiled from: GuildScheduledEventUser.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final GuildScheduledEventUser from(ApiGuildScheduledEventUser apiGuildScheduledEventUser, long guildId) {
-            C12238m.checkNotNullParameter(apiGuildScheduledEventUser, "apiGuildScheduledEventUser");
-            com.discord.api.user.User userM7969c = apiGuildScheduledEventUser.getUser();
-            com.discord.api.guildmember.GuildMember guildMemberM7967a = apiGuildScheduledEventUser.m7967a(guildId);
-            if (userM7969c == null || guildMemberM7967a == null) {
-                return null;
-            }
-            return new GuildScheduledEventUser(new CoreUser(userM7969c), GuildMember.INSTANCE.from(guildMemberM7967a, guildId, (8 & 4) != 0 ? null : null, (8 & 8) != 0 ? null : null), apiGuildScheduledEventUser.getGuildScheduledEventId());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public GuildScheduledEventUser(User user, GuildMember guildMember, long j) {
-        C12238m.checkNotNullParameter(user, "user");
-        C12238m.checkNotNullParameter(guildMember, "guildMember");
+        m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(guildMember, "guildMember");
         this.user = user;
         this.guildMember = guildMember;
         this.guildScheduledEventId = j;
@@ -61,8 +36,8 @@ public final /* data */ class GuildScheduledEventUser {
     }
 
     public final GuildScheduledEventUser copy(User user, GuildMember guildMember, long guildScheduledEventId) {
-        C12238m.checkNotNullParameter(user, "user");
-        C12238m.checkNotNullParameter(guildMember, "guildMember");
+        m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(guildMember, "guildMember");
         return new GuildScheduledEventUser(user, guildMember, guildScheduledEventId);
     }
 
@@ -74,7 +49,7 @@ public final /* data */ class GuildScheduledEventUser {
             return false;
         }
         GuildScheduledEventUser guildScheduledEventUser = (GuildScheduledEventUser) other;
-        return C12238m.areEqual(this.user, guildScheduledEventUser.user) && C12238m.areEqual(this.guildMember, guildScheduledEventUser.guildMember) && this.guildScheduledEventId == guildScheduledEventUser.guildScheduledEventId;
+        return m.areEqual(this.user, guildScheduledEventUser.user) && m.areEqual(this.guildMember, guildScheduledEventUser.guildMember) && this.guildScheduledEventId == guildScheduledEventUser.guildScheduledEventId;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -108,15 +83,15 @@ public final /* data */ class GuildScheduledEventUser {
         User user = this.user;
         int iHashCode = (user != null ? user.hashCode() : 0) * 31;
         GuildMember guildMember = this.guildMember;
-        return C0002b.m3a(this.guildScheduledEventId) + ((iHashCode + (guildMember != null ? guildMember.hashCode() : 0)) * 31);
+        return b.a(this.guildScheduledEventId) + ((iHashCode + (guildMember != null ? guildMember.hashCode() : 0)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventUser(user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", guildMember=");
-        sbM833U.append(this.guildMember);
-        sbM833U.append(", guildScheduledEventId=");
-        return C1643a.m815C(sbM833U, this.guildScheduledEventId, ")");
+        StringBuilder sbU = a.U("GuildScheduledEventUser(user=");
+        sbU.append(this.user);
+        sbU.append(", guildMember=");
+        sbU.append(this.guildMember);
+        sbU.append(", guildScheduledEventId=");
+        return a.C(sbU, this.guildScheduledEventId, ")");
     }
 }

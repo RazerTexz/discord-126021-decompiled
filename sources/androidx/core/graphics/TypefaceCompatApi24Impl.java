@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.SimpleArrayMap;
-import androidx.core.content.res.FontResourcesParserCompat;
-import androidx.core.provider.FontsContractCompat;
+import androidx.core.content.res.FontResourcesParserCompat$FontFamilyFilesResourceEntry;
+import androidx.core.content.res.FontResourcesParserCompat$FontFileResourceEntry;
+import androidx.core.provider.FontsContractCompat$FontInfo;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +24,7 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(24)
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class TypefaceCompatApi24Impl extends TypefaceCompatBaseImpl {
     private static final String ADD_FONT_WEIGHT_STYLE_METHOD = "addFontWeightStyle";
     private static final String CREATE_FROM_FAMILIES_WITH_DEFAULT_METHOD = "createFromFamiliesWithDefault";
@@ -77,14 +79,14 @@ public class TypefaceCompatApi24Impl extends TypefaceCompatBaseImpl {
 
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
     @Nullable
-    public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, Resources resources, int i) {
+    public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat$FontFamilyFilesResourceEntry fontResourcesParserCompat$FontFamilyFilesResourceEntry, Resources resources, int i) {
         Object objNewFamily = newFamily();
         if (objNewFamily == null) {
             return null;
         }
-        for (FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntry : fontFamilyFilesResourceEntry.getEntries()) {
-            ByteBuffer byteBufferCopyToDirectBuffer = TypefaceCompatUtil.copyToDirectBuffer(context, resources, fontFileResourceEntry.getResourceId());
-            if (byteBufferCopyToDirectBuffer == null || !addFontWeightStyle(objNewFamily, byteBufferCopyToDirectBuffer, fontFileResourceEntry.getTtcIndex(), fontFileResourceEntry.getWeight(), fontFileResourceEntry.isItalic())) {
+        for (FontResourcesParserCompat$FontFileResourceEntry fontResourcesParserCompat$FontFileResourceEntry : fontResourcesParserCompat$FontFamilyFilesResourceEntry.getEntries()) {
+            ByteBuffer byteBufferCopyToDirectBuffer = TypefaceCompatUtil.copyToDirectBuffer(context, resources, fontResourcesParserCompat$FontFileResourceEntry.getResourceId());
+            if (byteBufferCopyToDirectBuffer == null || !addFontWeightStyle(objNewFamily, byteBufferCopyToDirectBuffer, fontResourcesParserCompat$FontFileResourceEntry.getTtcIndex(), fontResourcesParserCompat$FontFileResourceEntry.getWeight(), fontResourcesParserCompat$FontFileResourceEntry.isItalic())) {
                 return null;
             }
         }
@@ -93,20 +95,20 @@ public class TypefaceCompatApi24Impl extends TypefaceCompatBaseImpl {
 
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
     @Nullable
-    public Typeface createFromFontInfo(Context context, @Nullable CancellationSignal cancellationSignal, @NonNull FontsContractCompat.FontInfo[] fontInfoArr, int i) {
+    public Typeface createFromFontInfo(Context context, @Nullable CancellationSignal cancellationSignal, @NonNull FontsContractCompat$FontInfo[] fontsContractCompat$FontInfoArr, int i) {
         Object objNewFamily = newFamily();
         if (objNewFamily == null) {
             return null;
         }
         SimpleArrayMap simpleArrayMap = new SimpleArrayMap();
-        for (FontsContractCompat.FontInfo fontInfo : fontInfoArr) {
-            Uri uri = fontInfo.getUri();
+        for (FontsContractCompat$FontInfo fontsContractCompat$FontInfo : fontsContractCompat$FontInfoArr) {
+            Uri uri = fontsContractCompat$FontInfo.getUri();
             ByteBuffer byteBufferMmap = (ByteBuffer) simpleArrayMap.get(uri);
             if (byteBufferMmap == null) {
                 byteBufferMmap = TypefaceCompatUtil.mmap(context, cancellationSignal, uri);
                 simpleArrayMap.put(uri, byteBufferMmap);
             }
-            if (byteBufferMmap == null || !addFontWeightStyle(objNewFamily, byteBufferMmap, fontInfo.getTtcIndex(), fontInfo.getWeight(), fontInfo.isItalic())) {
+            if (byteBufferMmap == null || !addFontWeightStyle(objNewFamily, byteBufferMmap, fontsContractCompat$FontInfo.getTtcIndex(), fontsContractCompat$FontInfo.getWeight(), fontsContractCompat$FontInfo.isItalic())) {
                 return null;
             }
         }

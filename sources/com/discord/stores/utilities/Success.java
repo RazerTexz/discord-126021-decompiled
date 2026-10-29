@@ -1,8 +1,8 @@
 package com.discord.stores.utilities;
 
 import androidx.exifinterface.media.ExifInterface;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: RestCallState.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -32,7 +32,7 @@ public final /* data */ class Success<T> extends RestCallState<T> {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof Success) && C12238m.areEqual(this.response, ((Success) other).response);
+            return (other instanceof Success) && m.areEqual(this.response, ((Success) other).response);
         }
         return true;
     }
@@ -55,9 +55,9 @@ public final /* data */ class Success<T> extends RestCallState<T> {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Success(response=");
-        sbM833U.append(this.response);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("Success(response=");
+        sbU.append(this.response);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

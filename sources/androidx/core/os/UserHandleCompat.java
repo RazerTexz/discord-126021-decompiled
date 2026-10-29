@@ -1,6 +1,6 @@
 package androidx.core.os;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.UserHandle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,17 +18,6 @@ public class UserHandleCompat {
 
     @Nullable
     private static Constructor<UserHandle> sUserHandleConstructor;
-
-    @RequiresApi(24)
-    public class Api24Impl {
-        private Api24Impl() {
-        }
-
-        @NonNull
-        public static UserHandle getUserHandleForUid(int i) {
-            return UserHandle.getUserHandleForUid(i);
-        }
-    }
 
     private UserHandleCompat() {
     }
@@ -53,8 +42,8 @@ public class UserHandleCompat {
 
     @NonNull
     public static UserHandle getUserHandleForUid(int i) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            return Api24Impl.getUserHandleForUid(i);
+        if (Build$VERSION.SDK_INT >= 24) {
+            return UserHandleCompat$Api24Impl.getUserHandleForUid(i);
         }
         try {
             return getUserHandleConstructor().newInstance((Integer) getGetUserIdMethod().invoke(null, Integer.valueOf(i)));

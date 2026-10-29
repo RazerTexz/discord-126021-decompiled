@@ -6,22 +6,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap$CompressFormat;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
 import androidx.fragment.app.FragmentManager;
-import com.discord.C5419R;
+import b.c.a.a0.d;
+import b.d.b.a.a;
+import b.f.g.f.c;
+import b.f.j.d.e;
+import com.discord.R$attr;
 import com.discord.dialogs.ImageUploadDialog;
-import com.discord.media_picker.MediaPicker;
+import com.discord.dialogs.ImageUploadDialog$PreviewType;
+import com.discord.media_picker.MediaPicker$Provider;
 import com.discord.media_picker.RequestType;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.icon.IconUtils;
@@ -32,39 +38,27 @@ import com.facebook.drawee.interfaces.DraweeHierarchy;
 import com.facebook.drawee.view.DraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequest$b;
+import com.facebook.imagepipeline.request.ImageRequest$c;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.yalantis.ucrop.UCropActivity;
+import d0.g0.s;
+import d0.g0.t;
+import d0.g0.w;
+import d0.t.n;
+import d0.t.o;
+import d0.y.b;
+import d0.z.d.m;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import org.objectweb.asm.Opcodes;
-import p007b.p008a.p018d.C0876m;
-import p007b.p008a.p027k.C1107b;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p109f.p132g.p133a.p134a.C1731b;
-import p007b.p109f.p132g.p133a.p134a.C1733d;
-import p007b.p109f.p132g.p143f.C1793a;
-import p007b.p109f.p132g.p143f.C1795c;
-import p007b.p109f.p161j.p169d.C1884e;
-import p007b.p485q.p486a.C5285a;
-import p507d0.p579g0.C12102s;
-import p507d0.p579g0.C12103t;
-import p507d0.p579g0.C12106w;
-import p507d0.p580t.C12145m;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12149o;
-import p507d0.p591y.C12201b;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: MGImages.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -72,67 +66,27 @@ public final class MGImages {
     public static final MGImages INSTANCE = new MGImages();
     private static final ImageEncoder imageEncoder = new ImageEncoder();
 
-    /* JADX INFO: compiled from: MGImages.kt */
-    public final class AlwaysUpdateChangeDetector implements ChangeDetector {
-        public static final AlwaysUpdateChangeDetector INSTANCE = new AlwaysUpdateChangeDetector();
-
-        private AlwaysUpdateChangeDetector() {
-        }
-
-        @Override // com.discord.utilities.images.MGImages.ChangeDetector
-        public boolean track(Object key, Object value) {
-            C12238m.checkNotNullParameter(key, "key");
-            return true;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.images.MGImages$requestImageCrop$1 */
-    /* JADX INFO: compiled from: MGImages.kt */
-    public final class C67741 extends AbstractC12240o implements Function1<Exception, Unit> {
-        public final /* synthetic */ Context $context;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C67741(Context context) {
-            super(1);
-            this.$context = context;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Exception exc) {
-            invoke2(exc);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Exception exc) {
-            C12238m.checkNotNullParameter(exc, "e");
-            Context context = this.$context;
-            C0876m.m170h(context, context != null ? C1107b.m216h(context, C5419R.string.unable_to_open_media_chooser, new Object[]{exc.getMessage()}, null, 4) : null, 0, null, 12);
-        }
-    }
-
-    /* JADX INFO: compiled from: MGImages.kt */
-    public interface ChangeDetector {
-        boolean track(Object key, Object value);
-    }
-
     private MGImages() {
     }
 
     public final void cancelImageRequests(ImageView view) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         getDrawee(view).setController(null);
     }
 
+    public static /* synthetic */ Bitmap centerBitmapInTransparentBitmap$default(MGImages mGImages, Bitmap bitmap, int i, int i2, int i3, int i4, int i5, int i6, int i7, Object obj) {
+        return mGImages.centerBitmapInTransparentBitmap(bitmap, i, i2, i3, i4, (i7 & 32) != 0 ? 0 : i5, (i7 & 64) != 0 ? 0 : i6);
+    }
+
     public final Bitmap centerBitmapInTransparentBitmap(Bitmap src, int innerHeight, int innerWidth, int outerHeight, int outerWidth, int fillMargins, @ColorInt int fillColor) {
-        C12238m.checkNotNullParameter(src, "src");
+        m.checkNotNullParameter(src, "src");
         if (outerWidth <= innerWidth || outerHeight <= innerHeight) {
-            StringBuilder sbM835W = C1643a.m835W("Cannot fit bitmap of size ", innerWidth, " x ", innerHeight, " inside ");
-            sbM835W.append("bitmap of size ");
-            sbM835W.append(outerWidth);
-            sbM835W.append(" x ");
-            sbM835W.append(outerHeight);
-            throw new IllegalArgumentException(sbM835W.toString());
+            StringBuilder sbW = a.W("Cannot fit bitmap of size ", innerWidth, " x ", innerHeight, " inside ");
+            sbW.append("bitmap of size ");
+            sbW.append(outerWidth);
+            sbW.append(" x ");
+            sbW.append(outerHeight);
+            throw new IllegalArgumentException(sbW.toString());
         }
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(outerWidth, outerHeight, src.getConfig());
         Canvas canvas = new Canvas(bitmapCreateBitmap);
@@ -151,7 +105,7 @@ public final class MGImages {
             }
         }
         canvas.drawBitmap(src, (Rect) null, rectF, (Paint) null);
-        C12238m.checkNotNullExpressionValue(bitmapCreateBitmap, "dest");
+        m.checkNotNullExpressionValue(bitmapCreateBitmap, "dest");
         return bitmapCreateBitmap;
     }
 
@@ -163,7 +117,7 @@ public final class MGImages {
     private final GenericDraweeHierarchy getHierarchy(ImageView imageView) {
         DraweeView<?> drawee = getDrawee(imageView);
         if (!drawee.hasHierarchy()) {
-            drawee.setHierarchy(new C1793a(imageView.getResources()).m1122a());
+            drawee.setHierarchy(new b.f.g.f.a(imageView.getResources()).a());
         }
         DraweeHierarchy hierarchy = drawee.getHierarchy();
         Objects.requireNonNull(hierarchy, "null cannot be cast to non-null type com.facebook.drawee.generic.GenericDraweeHierarchy");
@@ -171,37 +125,37 @@ public final class MGImages {
     }
 
     public static final ImageRequestBuilder getImageRequest(String url, int width, int height, boolean useSmallCache) {
-        C12238m.checkNotNullParameter(url, "url");
-        ImageRequestBuilder imageRequestBuilderM8723b = ImageRequestBuilder.m8723b(Uri.parse(url));
-        imageRequestBuilderM8723b.f19613b = ImageRequest.EnumC10667c.FULL_FETCH;
-        C12238m.checkNotNullExpressionValue(imageRequestBuilderM8723b, "requestBuilder");
+        m.checkNotNullParameter(url, "url");
+        ImageRequestBuilder imageRequestBuilderB = ImageRequestBuilder.b(Uri.parse(url));
+        imageRequestBuilderB.f2904b = ImageRequest$c.FULL_FETCH;
+        m.checkNotNullExpressionValue(imageRequestBuilderB, "requestBuilder");
         boolean z2 = false;
-        imageRequestBuilderM8723b.f19618g = (useSmallCache || !C12106w.contains$default((CharSequence) url, (CharSequence) IconUtils.ANIMATED_IMAGE_EXTENSION, false, 2, (Object) null)) ? ImageRequest.EnumC10666b.SMALL : ImageRequest.EnumC10666b.DEFAULT;
+        imageRequestBuilderB.g = (useSmallCache || !w.contains$default((CharSequence) url, (CharSequence) IconUtils.ANIMATED_IMAGE_EXTENSION, false, 2, (Object) null)) ? ImageRequest$b.SMALL : ImageRequest$b.DEFAULT;
         if (width > 0 && height > 0) {
             z2 = true;
         }
         if (z2) {
-            imageRequestBuilderM8723b.f19615d = new C1884e(width, height);
+            imageRequestBuilderB.d = new e(width, height);
         }
-        return imageRequestBuilderM8723b;
+        return imageRequestBuilderB;
     }
 
-    public static final void prepareImageUpload(Uri uri, String mimeType, FragmentManager fragmentManager, MediaPicker.Provider provider, Action1<String> cropResultCallback, ImageUploadDialog.PreviewType previewType) {
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(mimeType, "mimeType");
-        C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        C12238m.checkNotNullParameter(provider, "provider");
-        C12238m.checkNotNullParameter(previewType, "previewType");
-        Objects.requireNonNull(ImageUploadDialog.INSTANCE);
-        C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(provider, "provider");
-        C12238m.checkNotNullParameter(mimeType, "mimeType");
-        C12238m.checkNotNullParameter(previewType, "previewType");
+    public static final void prepareImageUpload(Uri uri, String mimeType, FragmentManager fragmentManager, MediaPicker$Provider provider, Action1<String> cropResultCallback, ImageUploadDialog$PreviewType previewType) {
+        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(mimeType, "mimeType");
+        m.checkNotNullParameter(fragmentManager, "fragmentManager");
+        m.checkNotNullParameter(provider, "provider");
+        m.checkNotNullParameter(previewType, "previewType");
+        Objects.requireNonNull(ImageUploadDialog.k);
+        m.checkNotNullParameter(fragmentManager, "fragmentManager");
+        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(provider, "provider");
+        m.checkNotNullParameter(mimeType, "mimeType");
+        m.checkNotNullParameter(previewType, "previewType");
         ImageUploadDialog imageUploadDialog = new ImageUploadDialog();
-        C12238m.checkNotNullParameter(uri, "<set-?>");
+        m.checkNotNullParameter(uri, "<set-?>");
         imageUploadDialog.uri = uri;
-        C12238m.checkNotNullParameter(provider, "<set-?>");
+        m.checkNotNullParameter(provider, "<set-?>");
         imageUploadDialog.provider = provider;
         imageUploadDialog.mimeType = mimeType;
         imageUploadDialog.cropResultCallBack = cropResultCallback;
@@ -209,10 +163,10 @@ public final class MGImages {
         imageUploadDialog.show(fragmentManager, ImageUploadDialog.class.getName());
     }
 
-    public static final void requestDataUrl(Context context, Uri uri, String mimeType, Action1<String> resultCallback) throws IllegalAccessException, InvocationTargetException {
+    public static final void requestDataUrl(Context context, Uri uri, String mimeType, Action1<String> resultCallback) {
         InputStream inputStreamOpenInputStream;
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(mimeType, "mimeType");
+        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(mimeType, "mimeType");
         if (context != null) {
             try {
                 ContentResolver contentResolver = context.getContentResolver();
@@ -222,39 +176,43 @@ public final class MGImages {
                 if (resultCallback != null) {
                     try {
                         ImageEncoder imageEncoder2 = imageEncoder;
-                        C12238m.checkNotNullExpressionValue(inputStreamOpenInputStream, "it");
+                        m.checkNotNullExpressionValue(inputStreamOpenInputStream, "it");
                         resultCallback.call(imageEncoder2.getDataUrl(mimeType, inputStreamOpenInputStream));
                     } catch (Throwable th) {
                         try {
                             throw th;
                         } catch (Throwable th2) {
-                            C12201b.closeFinally(inputStreamOpenInputStream, th);
+                            b.closeFinally(inputStreamOpenInputStream, th);
                             throw th2;
                         }
                     }
                 }
-                C12201b.closeFinally(inputStreamOpenInputStream, null);
+                b.closeFinally(inputStreamOpenInputStream, null);
             } catch (IOException e) {
-                C0876m.m170h(context, C1107b.m216h(context, C5419R.string.avatar_convert_failure_mobile, new Object[]{e.getMessage()}, null, 4), 0, null, 12);
+                b.a.d.m.h(context, b.a.k.b.h(context, 2131886955, new Object[]{e.getMessage()}, null, 4), 0, null, 12);
             } catch (IllegalStateException e2) {
-                C0876m.m170h(context, C1107b.m216h(context, C5419R.string.avatar_convert_failure_mobile, new Object[]{e2.getMessage()}, null, 4), 0, null, 12);
+                b.a.d.m.h(context, b.a.k.b.h(context, 2131886955, new Object[]{e2.getMessage()}, null, 4), 0, null, 12);
             } catch (NullPointerException e3) {
-                C0876m.m170h(context, C1107b.m216h(context, C5419R.string.avatar_convert_failure_mobile, new Object[]{e3.getMessage()}, null, 4), 0, null, 12);
+                b.a.d.m.h(context, b.a.k.b.h(context, 2131886955, new Object[]{e3.getMessage()}, null, 4), 0, null, 12);
             }
         }
     }
 
-    public static final void requestImageCrop(Context context, MediaPicker.Provider provider, Uri inputUri, float aspectRatioX, float aspectRatioY, int maxOutputDimensionPx) {
-        C12238m.checkNotNullParameter(provider, "provider");
-        C12238m.checkNotNullParameter(inputUri, "inputUri");
-        C67741 c67741 = new C67741(context);
-        int themedColor = ColorCompat.getThemedColor(context, C5419R.attr.color_brand_500);
-        int color = ColorCompat.getColor(context, C5419R.color.white);
-        int themedColor2 = ColorCompat.getThemedColor(context, C5419R.attr.color_brand_630);
-        int themedColor3 = ColorCompat.getThemedColor(context, C5419R.attr.color_brand_500);
-        C12238m.checkNotNullParameter(provider, "provider");
-        C12238m.checkNotNullParameter(inputUri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(c67741, "onError");
+    public static /* synthetic */ void requestImageCrop$default(Context context, MediaPicker$Provider mediaPicker$Provider, Uri uri, float f, float f2, int i, int i2, Object obj) {
+        requestImageCrop(context, mediaPicker$Provider, uri, (i2 & 8) != 0 ? 1.0f : f, (i2 & 16) != 0 ? 1.0f : f2, (i2 & 32) != 0 ? 1024 : i);
+    }
+
+    public static final void requestImageCrop(Context context, MediaPicker$Provider provider, Uri inputUri, float aspectRatioX, float aspectRatioY, int maxOutputDimensionPx) {
+        m.checkNotNullParameter(provider, "provider");
+        m.checkNotNullParameter(inputUri, "inputUri");
+        MGImages$requestImageCrop$1 mGImages$requestImageCrop$1 = new MGImages$requestImageCrop$1(context);
+        int themedColor = ColorCompat.getThemedColor(context, R$attr.color_brand_500);
+        int color = ColorCompat.getColor(context, 2131100487);
+        int themedColor2 = ColorCompat.getThemedColor(context, 2130969079);
+        int themedColor3 = ColorCompat.getThemedColor(context, R$attr.color_brand_500);
+        m.checkNotNullParameter(provider, "provider");
+        m.checkNotNullParameter(inputUri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(mGImages$requestImageCrop$1, "onError");
         try {
             Bundle bundle = new Bundle();
             bundle.putInt("com.yalantis.ucrop.ToolbarColor", themedColor);
@@ -264,28 +222,28 @@ public final class MGImages {
             bundle.putInt("com.yalantis.ucrop.CropFrameColor", themedColor3);
             bundle.putInt("com.yalantis.ucrop.CropGridColor", themedColor3);
             if (bundle.getString("com.yalantis.ucrop.CompressionFormatName") == null) {
-                bundle.putString("com.yalantis.ucrop.CompressionFormatName", Bitmap.CompressFormat.PNG.name());
+                bundle.putString("com.yalantis.ucrop.CompressionFormatName", Bitmap$CompressFormat.PNG.name());
             }
             Context contextRequireContext = provider.requireContext();
             Uri uriFromFile = Uri.fromFile(provider.getImageFile());
-            C12238m.checkNotNullExpressionValue(uriFromFile, "Uri.fromFile(provider.getImageFile())");
-            C5285a c5285a = new C5285a(inputUri, uriFromFile);
-            C12238m.checkNotNullExpressionValue(c5285a, "UCrop.of(uri, destUri)");
-            c5285a.f14388b.putAll(bundle);
+            m.checkNotNullExpressionValue(uriFromFile, "Uri.fromFile(provider.getImageFile())");
+            b.q.a.a aVar = new b.q.a.a(inputUri, uriFromFile);
+            m.checkNotNullExpressionValue(aVar, "UCrop.of(uri, destUri)");
+            aVar.f1977b.putAll(bundle);
             int i = maxOutputDimensionPx < 10 ? 10 : maxOutputDimensionPx;
             if (maxOutputDimensionPx < 10) {
                 maxOutputDimensionPx = 10;
             }
-            c5285a.f14388b.putInt("com.yalantis.ucrop.MaxSizeX", i);
-            c5285a.f14388b.putInt("com.yalantis.ucrop.MaxSizeY", maxOutputDimensionPx);
-            c5285a.f14388b.putFloat("com.yalantis.ucrop.AspectRatioX", aspectRatioX);
-            c5285a.f14388b.putFloat("com.yalantis.ucrop.AspectRatioY", aspectRatioY);
-            c5285a.f14387a.setClass(contextRequireContext, UCropActivity.class);
-            c5285a.f14387a.putExtras(c5285a.f14388b);
-            Intent intent = c5285a.f14387a;
-            C12238m.checkNotNullExpressionValue(intent, "uCrop.getIntent(context)");
+            aVar.f1977b.putInt("com.yalantis.ucrop.MaxSizeX", i);
+            aVar.f1977b.putInt("com.yalantis.ucrop.MaxSizeY", maxOutputDimensionPx);
+            aVar.f1977b.putFloat("com.yalantis.ucrop.AspectRatioX", aspectRatioX);
+            aVar.f1977b.putFloat("com.yalantis.ucrop.AspectRatioY", aspectRatioY);
+            aVar.a.setClass(contextRequireContext, UCropActivity.class);
+            aVar.a.putExtras(aVar.f1977b);
+            Intent intent = aVar.a;
+            m.checkNotNullExpressionValue(intent, "uCrop.getIntent(context)");
             List<ResolveInfo> listQueryIntentActivities = contextRequireContext.getPackageManager().queryIntentActivities(intent, 65536);
-            C12238m.checkNotNullExpressionValue(listQueryIntentActivities, "context\n        .package…nager.MATCH_DEFAULT_ONLY)");
+            m.checkNotNullExpressionValue(listQueryIntentActivities, "context\n        .package…nager.MATCH_DEFAULT_ONLY)");
             Iterator<ResolveInfo> it = listQueryIntentActivities.iterator();
             while (it.hasNext()) {
                 contextRequireContext.grantUriPermission(it.next().activityInfo.packageName, uriFromFile, 3);
@@ -296,29 +254,29 @@ public final class MGImages {
                 throw new IOException("No application available for media picker.");
             }
         } catch (IOException e) {
-            c67741.invoke(e);
+            mGImages$requestImageCrop$1.invoke(e);
         }
     }
 
-    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, Uri uri, ChangeDetector changeDetector, int i, Object obj) {
+    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, Uri uri, MGImages$ChangeDetector mGImages$ChangeDetector, int i, Object obj) {
         if ((i & 4) != 0) {
-            changeDetector = AlwaysUpdateChangeDetector.INSTANCE;
+            mGImages$ChangeDetector = MGImages$AlwaysUpdateChangeDetector.INSTANCE;
         }
-        mGImages.setImage(imageView, uri, changeDetector);
+        mGImages.setImage(imageView, uri, mGImages$ChangeDetector);
     }
 
-    public final void setImage(ImageView view, Uri uri, ChangeDetector changeDetector) {
+    public final void setImage(ImageView view, Uri uri, MGImages$ChangeDetector changeDetector) {
         Integer intOrNull;
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
-        if (C12238m.areEqual(uri.getScheme(), "android.resource")) {
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(changeDetector, "changeDetector");
+        if (m.areEqual(uri.getScheme(), "android.resource")) {
             String host = uri.getHost();
             Context context = view.getContext();
-            C12238m.checkNotNullExpressionValue(context, "view.context");
-            if (C12238m.areEqual(host, context.getPackageName())) {
+            m.checkNotNullExpressionValue(context, "view.context");
+            if (m.areEqual(host, context.getPackageName())) {
                 String lastPathSegment = uri.getLastPathSegment();
-                setImage(view, (lastPathSegment == null || (intOrNull = C12102s.toIntOrNull(lastPathSegment)) == null) ? 0 : intOrNull.intValue(), changeDetector);
+                setImage(view, (lastPathSegment == null || (intOrNull = s.toIntOrNull(lastPathSegment)) == null) ? 0 : intOrNull.intValue(), changeDetector);
                 return;
             }
         }
@@ -365,159 +323,148 @@ public final class MGImages {
         setImage$default(imageView, list, i, i2, z2, function1, null, null, Opcodes.CHECKCAST, null);
     }
 
-    public static final void setImage(ImageView imageView, List<String> list, int i, int i2, boolean z2, Function1<? super ImageRequestBuilder, Unit> function1, ChangeDetector changeDetector) {
-        setImage$default(imageView, list, i, i2, z2, function1, changeDetector, null, 128, null);
+    public static final void setImage(ImageView imageView, List<String> list, int i, int i2, boolean z2, Function1<? super ImageRequestBuilder, Unit> function1, MGImages$ChangeDetector mGImages$ChangeDetector) {
+        setImage$default(imageView, list, i, i2, z2, function1, mGImages$ChangeDetector, null, 128, null);
+    }
+
+    public static /* synthetic */ void setRoundingParams$default(ImageView imageView, float f, boolean z2, Integer num, Integer num2, Float f2, int i, Object obj) {
+        setRoundingParams(imageView, f, z2, (i & 8) != 0 ? null : num, (i & 16) != 0 ? null : num2, (i & 32) != 0 ? null : f2);
     }
 
     public static final void setRoundingParams(ImageView view, float cornerRadius, boolean circle, @ColorInt Integer overlayColor, @ColorInt Integer borderColor, Float borderWidth) {
-        C1795c c1795cM1124a;
-        C12238m.checkNotNullParameter(view, "view");
+        c cVarA;
+        m.checkNotNullParameter(view, "view");
         if (circle) {
-            c1795cM1124a = new C1795c();
-            c1795cM1124a.f3472b = true;
-            c1795cM1124a.f3471a = 1;
+            cVarA = new c();
+            cVarA.f523b = true;
+            cVarA.a = 1;
         } else {
-            c1795cM1124a = C1795c.m1124a(cornerRadius);
+            cVarA = c.a(cornerRadius);
         }
-        if (Build.VERSION.SDK_INT == 28) {
-            C12238m.checkNotNullExpressionValue(c1795cM1124a, "roundingParams");
-            c1795cM1124a.f3478h = true;
+        if (Build$VERSION.SDK_INT == 28) {
+            m.checkNotNullExpressionValue(cVarA, "roundingParams");
+            cVarA.h = true;
         }
         if (overlayColor != null) {
             overlayColor.intValue();
-            C12238m.checkNotNullExpressionValue(c1795cM1124a, "roundingParams");
-            c1795cM1124a.m1125b(overlayColor.intValue());
+            m.checkNotNullExpressionValue(cVarA, "roundingParams");
+            cVarA.b(overlayColor.intValue());
         }
         if (borderColor != null) {
             borderColor.intValue();
-            C12238m.checkNotNullExpressionValue(c1795cM1124a, "roundingParams");
-            c1795cM1124a.f3476f = borderColor.intValue();
+            m.checkNotNullExpressionValue(cVarA, "roundingParams");
+            cVarA.f = borderColor.intValue();
         }
         if (borderWidth != null) {
             borderWidth.floatValue();
-            C12238m.checkNotNullExpressionValue(c1795cM1124a, "roundingParams");
+            m.checkNotNullExpressionValue(cVarA, "roundingParams");
             float fFloatValue = borderWidth.floatValue();
-            C1460d.m535k(fFloatValue >= 0.0f, "the border width cannot be < 0");
-            c1795cM1124a.f3475e = fFloatValue;
+            d.k(fFloatValue >= 0.0f, "the border width cannot be < 0");
+            cVarA.e = fFloatValue;
         }
-        INSTANCE.getHierarchy(view).m8683s(c1795cM1124a);
+        INSTANCE.getHierarchy(view).s(cVarA);
     }
 
     public static final void setScaleType(ImageView view, ScalingUtils$ScaleType scaleType) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(scaleType, "scaleType");
-        INSTANCE.getHierarchy(view).m8678n(scaleType);
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(scaleType, "scaleType");
+        INSTANCE.getHierarchy(view).n(scaleType);
     }
 
-    /* JADX INFO: compiled from: MGImages.kt */
-    public final class DistinctChangeDetector implements ChangeDetector {
-        private final HashMap<Object, Object> dataMap = new HashMap<>();
-
-        @Override // com.discord.utilities.images.MGImages.ChangeDetector
-        public boolean track(Object key, Object value) {
-            C12238m.checkNotNullParameter(key, "key");
-            if (this.dataMap.containsKey(key) && C12238m.areEqual(this.dataMap.get(key), value)) {
-                return false;
-            }
-            this.dataMap.put(key, value);
-            return true;
-        }
-    }
-
-    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, int i, ChangeDetector changeDetector, int i2, Object obj) {
+    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, int i, MGImages$ChangeDetector mGImages$ChangeDetector, int i2, Object obj) {
         if ((i2 & 4) != 0) {
-            changeDetector = AlwaysUpdateChangeDetector.INSTANCE;
+            mGImages$ChangeDetector = MGImages$AlwaysUpdateChangeDetector.INSTANCE;
         }
-        mGImages.setImage(imageView, i, changeDetector);
+        mGImages.setImage(imageView, i, mGImages$ChangeDetector);
     }
 
-    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, int i, ScalingUtils$ScaleType scalingUtils$ScaleType, ChangeDetector changeDetector, int i2, Object obj) {
+    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, int i, ScalingUtils$ScaleType scalingUtils$ScaleType, MGImages$ChangeDetector mGImages$ChangeDetector, int i2, Object obj) {
         if ((i2 & 8) != 0) {
-            changeDetector = AlwaysUpdateChangeDetector.INSTANCE;
+            mGImages$ChangeDetector = MGImages$AlwaysUpdateChangeDetector.INSTANCE;
         }
-        mGImages.setImage(imageView, i, scalingUtils$ScaleType, changeDetector);
+        mGImages.setImage(imageView, i, scalingUtils$ScaleType, mGImages$ChangeDetector);
     }
 
-    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, Drawable drawable, ChangeDetector changeDetector, int i, Object obj) {
+    public static /* synthetic */ void setImage$default(MGImages mGImages, ImageView imageView, Drawable drawable, MGImages$ChangeDetector mGImages$ChangeDetector, int i, Object obj) {
         if ((i & 4) != 0) {
-            changeDetector = AlwaysUpdateChangeDetector.INSTANCE;
+            mGImages$ChangeDetector = MGImages$AlwaysUpdateChangeDetector.INSTANCE;
         }
-        mGImages.setImage(imageView, drawable, changeDetector);
+        mGImages.setImage(imageView, drawable, mGImages$ChangeDetector);
     }
 
-    public static /* synthetic */ void setImage$default(ImageView imageView, String str, int i, int i2, boolean z2, Function1 function1, ChangeDetector changeDetector, int i3, Object obj) {
-        setImage(imageView, str, (i3 & 4) != 0 ? 0 : i, (i3 & 8) != 0 ? 0 : i2, (i3 & 16) == 0 ? z2 : false, (Function1<? super ImageRequestBuilder, Unit>) ((i3 & 32) != 0 ? null : function1), (i3 & 64) != 0 ? AlwaysUpdateChangeDetector.INSTANCE : changeDetector);
+    public static /* synthetic */ void setImage$default(ImageView imageView, String str, int i, int i2, boolean z2, Function1 function1, MGImages$ChangeDetector mGImages$ChangeDetector, int i3, Object obj) {
+        setImage(imageView, str, (i3 & 4) != 0 ? 0 : i, (i3 & 8) != 0 ? 0 : i2, (i3 & 16) == 0 ? z2 : false, (Function1<? super ImageRequestBuilder, Unit>) ((i3 & 32) != 0 ? null : function1), (i3 & 64) != 0 ? MGImages$AlwaysUpdateChangeDetector.INSTANCE : mGImages$ChangeDetector);
     }
 
-    public final void setImage(ImageView view, @DrawableRes int resourceId, ChangeDetector changeDetector) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
+    public final void setImage(ImageView view, @DrawableRes int resourceId, MGImages$ChangeDetector changeDetector) {
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(changeDetector, "changeDetector");
         if (changeDetector.track(view, Integer.valueOf(resourceId))) {
             GenericDraweeHierarchy hierarchy = getHierarchy(view);
-            hierarchy.m8679o(1, hierarchy.f19507b.getDrawable(resourceId));
+            hierarchy.o(1, hierarchy.f2890b.getDrawable(resourceId));
         }
     }
 
-    public static /* synthetic */ void setImage$default(ImageView imageView, List list, int i, int i2, boolean z2, Function1 function1, ChangeDetector changeDetector, ControllerListener controllerListener, int i3, Object obj) {
-        setImage(imageView, list, (i3 & 4) != 0 ? 0 : i, (i3 & 8) != 0 ? 0 : i2, (i3 & 16) == 0 ? z2 : false, (i3 & 32) != 0 ? null : function1, (i3 & 64) != 0 ? AlwaysUpdateChangeDetector.INSTANCE : changeDetector, (i3 & 128) == 0 ? controllerListener : null);
+    public static /* synthetic */ void setImage$default(ImageView imageView, List list, int i, int i2, boolean z2, Function1 function1, MGImages$ChangeDetector mGImages$ChangeDetector, ControllerListener controllerListener, int i3, Object obj) {
+        setImage(imageView, list, (i3 & 4) != 0 ? 0 : i, (i3 & 8) != 0 ? 0 : i2, (i3 & 16) == 0 ? z2 : false, (i3 & 32) != 0 ? null : function1, (i3 & 64) != 0 ? MGImages$AlwaysUpdateChangeDetector.INSTANCE : mGImages$ChangeDetector, (i3 & 128) == 0 ? controllerListener : null);
     }
 
-    public final void setImage(ImageView view, @DrawableRes int resourceId, ScalingUtils$ScaleType scaleType, ChangeDetector changeDetector) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(scaleType, "scaleType");
-        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
+    public final void setImage(ImageView view, @DrawableRes int resourceId, ScalingUtils$ScaleType scaleType, MGImages$ChangeDetector changeDetector) {
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(scaleType, "scaleType");
+        m.checkNotNullParameter(changeDetector, "changeDetector");
         if (changeDetector.track(view, Integer.valueOf(resourceId))) {
             GenericDraweeHierarchy hierarchy = getHierarchy(view);
-            hierarchy.m8681q(hierarchy.f19507b.getDrawable(resourceId), scaleType);
+            hierarchy.q(hierarchy.f2890b.getDrawable(resourceId), scaleType);
         }
     }
 
-    public final void setImage(ImageView view, Drawable drawable, ChangeDetector changeDetector) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(drawable, "drawable");
-        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
+    public final void setImage(ImageView view, Drawable drawable, MGImages$ChangeDetector changeDetector) {
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(drawable, "drawable");
+        m.checkNotNullParameter(changeDetector, "changeDetector");
         if (changeDetector.track(view, drawable)) {
-            getHierarchy(view).m8679o(1, drawable);
+            getHierarchy(view).o(1, drawable);
         }
     }
 
-    public static final void setImage(ImageView view, String url, int width, int height, boolean useSmallCache, Function1<? super ImageRequestBuilder, Unit> transform, ChangeDetector changeDetector) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
-        setImage$default(view, (url == null || C12103t.isBlank(url)) ? C12147n.emptyList() : C12145m.listOf(url), width, height, useSmallCache, transform, changeDetector, null, 128, null);
+    public static final void setImage(ImageView view, String url, int width, int height, boolean useSmallCache, Function1<? super ImageRequestBuilder, Unit> transform, MGImages$ChangeDetector changeDetector) {
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(changeDetector, "changeDetector");
+        setImage$default(view, (url == null || t.isBlank(url)) ? n.emptyList() : d0.t.m.listOf(url), width, height, useSmallCache, transform, changeDetector, null, 128, null);
     }
 
     /* JADX WARN: Type inference failed for: r4v3, types: [REQUEST[], com.facebook.imagepipeline.request.ImageRequest[]] */
-    public static final void setImage(ImageView view, List<String> urls, int width, int height, boolean useSmallCache, Function1<? super ImageRequestBuilder, Unit> transform, ChangeDetector changeDetector, ControllerListener<ImageInfo> controllerListener) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(urls, "urls");
-        C12238m.checkNotNullParameter(changeDetector, "changeDetector");
+    public static final void setImage(ImageView view, List<String> urls, int width, int height, boolean useSmallCache, Function1<? super ImageRequestBuilder, Unit> transform, MGImages$ChangeDetector changeDetector, ControllerListener<ImageInfo> controllerListener) {
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(urls, "urls");
+        m.checkNotNullParameter(changeDetector, "changeDetector");
         if (changeDetector.track(view, urls)) {
             if (urls.isEmpty()) {
                 INSTANCE.getDrawee(view).setController(null);
                 return;
             }
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(urls, 10));
+            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(urls, 10));
             Iterator<T> it = urls.iterator();
             while (it.hasNext()) {
                 ImageRequestBuilder imageRequest = getImageRequest((String) it.next(), width, height, useSmallCache);
                 if (transform != null) {
                     transform.invoke(imageRequest);
                 }
-                arrayList.add(imageRequest.m8724a());
+                arrayList.add(imageRequest.a());
             }
             Object[] array = arrayList.toArray(new ImageRequest[0]);
             Objects.requireNonNull(array, "null cannot be cast to non-null type kotlin.Array<T>");
             ?? r4 = (ImageRequest[]) array;
-            C1733d c1733dM1037a = C1731b.m1037a();
+            b.f.g.a.a.d dVarA = b.f.g.a.a.b.a();
             MGImages mGImages = INSTANCE;
-            c1733dM1037a.f19490n = mGImages.getDrawee(view).getController();
-            c1733dM1037a.f19487k = controllerListener;
-            c1733dM1037a.f19489m = true;
-            C1460d.m535k(r4.length > 0, "No requests specified!");
-            c1733dM1037a.f19485i = r4;
-            c1733dM1037a.f19486j = true;
-            mGImages.getDrawee(view).setController(c1733dM1037a.m8667a());
+            dVarA.n = mGImages.getDrawee(view).getController();
+            dVarA.k = controllerListener;
+            dVarA.m = true;
+            d.k(r4.length > 0, "No requests specified!");
+            dVarA.i = r4;
+            dVarA.j = true;
+            mGImages.getDrawee(view).setController(dVarA.a());
         }
     }
 }

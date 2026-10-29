@@ -6,17 +6,11 @@ import com.sun.tools.javac.comp.Todo;
 import com.sun.tools.javac.file.BaseFileManager;
 import com.sun.tools.javac.main.Arguments;
 import com.sun.tools.javac.main.JavaCompiler;
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCCompilationUnit;
 import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.ListBuffer;
 import com.zwitserloot.cmdreader.CmdReader;
-import com.zwitserloot.cmdreader.Description;
-import com.zwitserloot.cmdreader.Excludes;
-import com.zwitserloot.cmdreader.FullName;
 import com.zwitserloot.cmdreader.InvalidCommandLineException;
-import com.zwitserloot.cmdreader.Mandatory;
-import com.zwitserloot.cmdreader.Sequential;
-import com.zwitserloot.cmdreader.Shorthand;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,6 +38,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Queue;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -82,74 +77,6 @@ public class Delombok {
 
     public void setWriter(Writer writer) {
         this.presetWriter = writer;
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/Delombok$CmdArgs.SCL.lombok */
-    class CmdArgs {
-
-        @Description("override Bootclasspath (analogous to javac -bootclasspath option)")
-        private String bootclasspath;
-
-        @Description("Classpath (analogous to javac -cp option)")
-        @Shorthand({"c"})
-        private String classpath;
-
-        @Description("By default lombok enables preview features if available (introduced in JDK 12). With this option, lombok won't do that.")
-        @FullName("disable-preview")
-        private boolean disablePreview;
-
-        @Description("Sets the encoding of your source files. Defaults to the system default charset. Example: \"UTF-8\"")
-        @Shorthand({"e"})
-        private String encoding;
-
-        @FullName("format-help")
-        private boolean formatHelp;
-        private boolean help;
-
-        @Description("Module path (analogous to javac --module-path option)")
-        @FullName("module-path")
-        private String modulepath;
-
-        @Description("Lombok will only delombok source files. Without this option, non-java, non-class files are copied to the target directory.")
-        @Shorthand({"n"})
-        private boolean nocopy;
-
-        @Description("Output only changed files (implies -n)")
-        private boolean onlyChanged;
-
-        @Description("Print delombok-ed code to standard output instead of saving it in target directory")
-        @Shorthand({"p"})
-        private boolean print;
-
-        @Excludes({"verbose"})
-        @Description("No warnings or errors will be emitted to standard error")
-        @Shorthand({"q"})
-        private boolean quiet;
-
-        @Description("Sourcepath (analogous to javac -sourcepath option)")
-        @Shorthand({"s"})
-        private String sourcepath;
-
-        @Description("Directory to save delomboked files to")
-        @Mandatory(onlyIfNot = {"print", "help", "format-help"})
-        @Shorthand({"d"})
-        private String target;
-
-        @Excludes({"quiet"})
-        @Description("Print the name of each file as it is being delombok-ed.")
-        @Shorthand({"v"})
-        private boolean verbose;
-
-        @Description("Sets formatting rules. Use --format-help to list all available rules. Unset format rules are inferred by scanning the source for usages.")
-        @Shorthand({"f"})
-        private List<String> format = new ArrayList();
-
-        @Description("Files to delombok. Provide either a file, or a directory. If you use a directory, all files in it (recursive) are delombok-ed")
-        @Sequential
-        private List<String> input = new ArrayList();
-
-        private CmdArgs() {
-        }
     }
 
     private static String indentAndWordbreak(String in, int indent, int maxLen) {
@@ -227,28 +154,24 @@ public class Delombok {
             System.out.println(e.getMessage());
             System.exit(1);
         }
-        CmdReader<CmdArgs> reader = CmdReader.m9327of(CmdArgs.class);
+        CmdReader<Delombok$CmdArgs> reader = CmdReader.of(Delombok$CmdArgs.class);
         try {
-            CmdArgs args = reader.make(rawArgs);
-            if (args.help || (args.input.isEmpty() && !args.formatHelp)) {
-                if (!args.help) {
+            Delombok$CmdArgs args = reader.make(rawArgs);
+            if (Delombok$CmdArgs.access$0(args) || (Delombok$CmdArgs.access$1(args).isEmpty() && !Delombok$CmdArgs.access$2(args))) {
+                if (!Delombok$CmdArgs.access$0(args)) {
                     System.err.println("ERROR: no files or directories to delombok specified.");
                 }
                 System.err.println(cmdHelp(reader));
-                System.exit(args.help ? 0 : 1);
+                System.exit(Delombok$CmdArgs.access$0(args) ? 0 : 1);
                 return;
             }
             Delombok delombok = new Delombok();
-            if (args.quiet) {
-                delombok.setFeedback(new PrintStream(new OutputStream() { // from class: lombok.delombok.Delombok.1
-                    @Override // java.io.OutputStream
-                    public void write(int b2) throws IOException {
-                    }
-                }));
+            if (Delombok$CmdArgs.access$3(args)) {
+                delombok.setFeedback(new PrintStream(new Delombok$1()));
             }
-            if (args.formatHelp) {
+            if (Delombok$CmdArgs.access$2(args)) {
                 System.out.println("Available format keys (to use, -f key:value -f key2:value2 -f ... ):");
-                for (Map.Entry<String, String> e2 : FormatPreferences.getKeysAndDescriptions().entrySet()) {
+                for (Map$Entry<String, String> e2 : FormatPreferences.getKeysAndDescriptions().entrySet()) {
                     System.out.print("  ");
                     System.out.print(e2.getKey());
                     System.out.println(":");
@@ -260,63 +183,63 @@ public class Delombok {
                 return;
             }
             try {
-                delombok.setFormatPreferences(formatOptionsToMap(args.format));
-                if (args.encoding != null) {
+                delombok.setFormatPreferences(formatOptionsToMap(Delombok$CmdArgs.access$4(args)));
+                if (Delombok$CmdArgs.access$5(args) != null) {
                     try {
-                        delombok.setCharset(args.encoding);
+                        delombok.setCharset(Delombok$CmdArgs.access$5(args));
                     } catch (UnsupportedCharsetException unused) {
-                        System.err.println("ERROR: Not a known charset: " + args.encoding);
+                        System.err.println("ERROR: Not a known charset: " + Delombok$CmdArgs.access$5(args));
                         System.exit(1);
                         return;
                     }
                 }
-                if (args.verbose) {
+                if (Delombok$CmdArgs.access$6(args)) {
                     delombok.setVerbose(true);
                 }
-                if (args.nocopy || args.onlyChanged) {
+                if (Delombok$CmdArgs.access$7(args) || Delombok$CmdArgs.access$8(args)) {
                     delombok.setNoCopy(true);
                 }
-                if (args.disablePreview) {
+                if (Delombok$CmdArgs.access$9(args)) {
                     delombok.setDisablePreview(true);
                 }
-                if (args.onlyChanged) {
+                if (Delombok$CmdArgs.access$8(args)) {
                     delombok.setOnlyChanged(true);
                 }
-                if (args.print) {
+                if (Delombok$CmdArgs.access$10(args)) {
                     delombok.setOutputToStandardOut();
                 } else {
-                    delombok.setOutput(new File(args.target));
+                    delombok.setOutput(new File(Delombok$CmdArgs.access$11(args)));
                 }
-                if (args.classpath != null) {
-                    delombok.setClasspath(args.classpath);
+                if (Delombok$CmdArgs.access$12(args) != null) {
+                    delombok.setClasspath(Delombok$CmdArgs.access$12(args));
                 }
-                if (args.sourcepath != null) {
-                    delombok.setSourcepath(args.sourcepath);
+                if (Delombok$CmdArgs.access$13(args) != null) {
+                    delombok.setSourcepath(Delombok$CmdArgs.access$13(args));
                 }
-                if (args.bootclasspath != null) {
-                    delombok.setBootclasspath(args.bootclasspath);
+                if (Delombok$CmdArgs.access$14(args) != null) {
+                    delombok.setBootclasspath(Delombok$CmdArgs.access$14(args));
                 }
-                if (args.modulepath != null) {
-                    delombok.setModulepath(args.modulepath);
+                if (Delombok$CmdArgs.access$15(args) != null) {
+                    delombok.setModulepath(Delombok$CmdArgs.access$15(args));
                 }
                 try {
-                    for (String in : args.input) {
+                    for (String in : Delombok$CmdArgs.access$1(args)) {
                         File f = new File(in).getAbsoluteFile();
                         if (f.isFile()) {
                             delombok.addFile(f.getParentFile(), f.getName());
                         } else if (f.isDirectory()) {
                             delombok.addDirectory(f);
                         } else if (!f.exists()) {
-                            if (!args.quiet) {
+                            if (!Delombok$CmdArgs.access$3(args)) {
                                 System.err.println("WARNING: does not exist - skipping: " + f);
                             }
-                        } else if (!args.quiet) {
+                        } else if (!Delombok$CmdArgs.access$3(args)) {
                             System.err.println("WARNING: not a standard file or directory - skipping: " + f);
                         }
                     }
                     delombok.delombok();
                 } catch (Exception e3) {
-                    if (!args.quiet) {
+                    if (!Delombok$CmdArgs.access$3(args)) {
                         String msg = e3.getMessage();
                         if (msg == null || !msg.startsWith("DELOMBOK: ")) {
                             e3.printStackTrace();
@@ -326,7 +249,7 @@ public class Delombok {
                         System.exit(1);
                     }
                 }
-            } catch (InvalidFormatOptionException e4) {
+            } catch (Delombok$InvalidFormatOptionException e4) {
                 System.out.println(String.valueOf(e4.getMessage()) + " Try --format-help.");
                 System.exit(1);
             }
@@ -337,7 +260,7 @@ public class Delombok {
         }
     }
 
-    private static String cmdHelp(CmdReader<CmdArgs> reader) {
+    private static String cmdHelp(CmdReader<Delombok$CmdArgs> reader) {
         String x2 = reader.generateCommandLineHelp("delombok");
         int idx = x2.indexOf(10);
         return String.valueOf(x2.substring(0, idx)) + "\n You can use @filename.args to read arguments from the file 'filename.args'.\n" + x2.substring(idx);
@@ -449,14 +372,7 @@ public class Delombok {
         }
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/Delombok$InvalidFormatOptionException.SCL.lombok */
-    public class InvalidFormatOptionException extends Exception {
-        public InvalidFormatOptionException(String msg) {
-            super(msg);
-        }
-    }
-
-    public static Map<String, String> formatOptionsToMap(List<String> formatOptions) throws InvalidFormatOptionException {
+    public static Map<String, String> formatOptionsToMap(List<String> formatOptions) throws Delombok$InvalidFormatOptionException {
         boolean prettyEnabled = false;
         Map<String, String> formatPrefs = new HashMap<>();
         for (String format : formatOptions) {
@@ -465,7 +381,7 @@ public class Delombok {
                 if (format.equalsIgnoreCase("pretty")) {
                     prettyEnabled = true;
                 } else {
-                    throw new InvalidFormatOptionException("Format keys need to be 2 values separated with a colon.");
+                    throw new Delombok$InvalidFormatOptionException("Format keys need to be 2 values separated with a colon.");
                 }
             } else {
                 String key = format.substring(0, idx);
@@ -478,7 +394,7 @@ public class Delombok {
                     }
                 }
                 if (!valid) {
-                    throw new InvalidFormatOptionException("Unknown format key: '" + key + "'.");
+                    throw new Delombok$InvalidFormatOptionException("Unknown format key: '" + key + "'.");
                 }
                 formatPrefs.put(key.toLowerCase(), value);
             }
@@ -704,7 +620,7 @@ public class Delombok {
 
     private static Field getModuleField() {
         try {
-            return Permit.getField(JCTree.JCCompilationUnit.class, "modle");
+            return Permit.getField(JCTree$JCCompilationUnit.class, "modle");
         } catch (NoSuchFieldException unused) {
             return null;
         } catch (SecurityException unused2) {
@@ -772,8 +688,8 @@ public class Delombok {
         }
         CommentCatcher catcher = CommentCatcher.create(this.context, Javac.getJavaCompilerVersion() >= 13);
         JavaCompiler compiler = catcher.getCompiler();
-        List<JCTree.JCCompilationUnit> roots = new ArrayList<>();
-        Map<JCTree.JCCompilationUnit, File> baseMap = new IdentityHashMap<>();
+        List<JCTree$JCCompilationUnit> roots = new ArrayList<>();
+        Map<JCTree$JCCompilationUnit, File> baseMap = new IdentityHashMap<>();
         Set<LombokProcessor> processors = Collections.singleton(new LombokProcessor());
         if (Javac.getJavaCompilerVersion() >= 9) {
             BaseFileManager baseFileManager = (JavaFileManager) this.context.get(JavaFileManager.class);
@@ -790,7 +706,7 @@ public class Delombok {
         }
         Object unnamedModule = Javac.getJavaCompilerVersion() >= 9 ? Symtab.instance(this.context).unnamedModule : null;
         for (File fileToParse : this.filesToParse) {
-            JCTree.JCCompilationUnit unit = compiler.parse(fileToParse.getAbsolutePath());
+            JCTree$JCCompilationUnit unit = compiler.parse(fileToParse.getAbsolutePath());
             if (Javac.getJavaCompilerVersion() >= 9) {
                 try {
                     MODULE_FIELD.set(unit, unnamedModule);
@@ -804,13 +720,13 @@ public class Delombok {
         if (compiler.errorCount() > 0) {
             return false;
         }
-        for (JCTree.JCCompilationUnit unit2 : roots) {
+        for (JCTree$JCCompilationUnit unit2 : roots) {
             catcher.setComments(unit2, new DocCommentIntegrator().integrate(catcher.getComments(unit2), unit2));
         }
         if (Javac.getJavaCompilerVersion() >= 9) {
-            compiler.initModules(com.sun.tools.javac.util.List.from((JCTree.JCCompilationUnit[]) roots.toArray(new JCTree.JCCompilationUnit[0])));
+            compiler.initModules(com.sun.tools.javac.util.List.from((JCTree$JCCompilationUnit[]) roots.toArray(new JCTree$JCCompilationUnit[0])));
         }
-        com.sun.tools.javac.util.List<JCTree.JCCompilationUnit> trees = compiler.enterTrees(toJavacList(roots));
+        com.sun.tools.javac.util.List<JCTree$JCCompilationUnit> trees = compiler.enterTrees(toJavacList(roots));
         if (Javac.getJavaCompilerVersion() < 9) {
             delegate = compiler.processAnnotations(trees, com.sun.tools.javac.util.List.nil());
         } else {
@@ -820,7 +736,7 @@ public class Delombok {
         Object care = callAttributeMethodOnJavaCompiler(delegate, delegate.todo);
         callFlowMethodOnJavaCompiler(delegate, care);
         FormatPreferences fps = new FormatPreferences(this.formatPrefs);
-        for (JCTree.JCCompilationUnit unit3 : roots) {
+        for (JCTree$JCCompilationUnit unit3 : roots) {
             DelombokResult result = new DelombokResult(catcher.getComments(unit3), catcher.getTextBlockStarts(unit3), unit3, this.force || options.isChanged(unit3), fps);
             if (this.onlyChanged && !result.isChanged() && !options.isChanged(unit3)) {
                 if (this.verbose) {

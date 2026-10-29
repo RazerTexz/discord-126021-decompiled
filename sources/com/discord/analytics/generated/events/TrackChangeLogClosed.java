@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChangeLogClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackChangeLogClosed implements AnalyticsSchema, T
             return false;
         }
         TrackChangeLogClosed trackChangeLogClosed = (TrackChangeLogClosed) other;
-        return C12238m.areEqual(this.changeLogId, trackChangeLogClosed.changeLogId) && C12238m.areEqual(this.secondsOpen, trackChangeLogClosed.secondsOpen) && C12238m.areEqual(this.maxScrolledPercentage, trackChangeLogClosed.maxScrolledPercentage);
+        return m.areEqual(this.changeLogId, trackChangeLogClosed.changeLogId) && m.areEqual(this.secondsOpen, trackChangeLogClosed.secondsOpen) && m.areEqual(this.maxScrolledPercentage, trackChangeLogClosed.maxScrolledPercentage);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,13 +42,13 @@ public final /* data */ class TrackChangeLogClosed implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChangeLogClosed(changeLogId=");
-        sbM833U.append(this.changeLogId);
-        sbM833U.append(", secondsOpen=");
-        sbM833U.append(this.secondsOpen);
-        sbM833U.append(", maxScrolledPercentage=");
-        sbM833U.append(this.maxScrolledPercentage);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TrackChangeLogClosed(changeLogId=");
+        sbU.append(this.changeLogId);
+        sbU.append(", secondsOpen=");
+        sbU.append(this.secondsOpen);
+        sbU.append(", maxScrolledPercentage=");
+        sbU.append(this.maxScrolledPercentage);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

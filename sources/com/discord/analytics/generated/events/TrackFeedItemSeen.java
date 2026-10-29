@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackFeedItemSeen.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,6 +21,11 @@ public final /* data */ class TrackFeedItemSeen implements AnalyticsSchema, Trac
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "feed_item_seen";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,7 +34,7 @@ public final /* data */ class TrackFeedItemSeen implements AnalyticsSchema, Trac
             return false;
         }
         TrackFeedItemSeen trackFeedItemSeen = (TrackFeedItemSeen) other;
-        return C12238m.areEqual(this.feedItemType, trackFeedItemSeen.feedItemType) && C12238m.areEqual(this.loadId, trackFeedItemSeen.loadId) && C12238m.areEqual(this.messageId, trackFeedItemSeen.messageId);
+        return m.areEqual(this.feedItemType, trackFeedItemSeen.feedItemType) && m.areEqual(this.loadId, trackFeedItemSeen.loadId) && m.areEqual(this.messageId, trackFeedItemSeen.messageId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,18 +58,12 @@ public final /* data */ class TrackFeedItemSeen implements AnalyticsSchema, Trac
         return iHashCode2 + (l != null ? l.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackFeedItemSeen(feedItemType=");
-        sbM833U.append(this.feedItemType);
-        sbM833U.append(", loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", messageId=");
-        return C1643a.m819G(sbM833U, this.messageId, ")");
+        StringBuilder sbU = a.U("TrackFeedItemSeen(feedItemType=");
+        sbU.append(this.feedItemType);
+        sbU.append(", loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", messageId=");
+        return a.G(sbU, this.messageId, ")");
     }
 }

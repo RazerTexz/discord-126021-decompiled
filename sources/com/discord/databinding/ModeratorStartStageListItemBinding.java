@@ -8,17 +8,16 @@ import com.discord.widgets.guildscheduledevent.GuildEventPromptView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ModeratorStartStageListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final GuildEventPromptView f15185a;
+    public final GuildEventPromptView a;
 
     public ModeratorStartStageListItemBinding(@NonNull GuildEventPromptView guildEventPromptView) {
-        this.f15185a = guildEventPromptView;
+        this.a = guildEventPromptView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15185a;
+        return this.a;
     }
 }

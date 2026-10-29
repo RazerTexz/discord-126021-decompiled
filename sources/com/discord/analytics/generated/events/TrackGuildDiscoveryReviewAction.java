@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildDiscoveryReviewAction.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,9 +16,14 @@ public final /* data */ class TrackGuildDiscoveryReviewAction implements Analyti
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_discovery_review_action";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackGuildDiscoveryReviewAction) && C12238m.areEqual(this.action, ((TrackGuildDiscoveryReviewAction) other).action);
+            return (other instanceof TrackGuildDiscoveryReviewAction) && m.areEqual(this.action, ((TrackGuildDiscoveryReviewAction) other).action);
         }
         return true;
     }
@@ -43,13 +48,7 @@ public final /* data */ class TrackGuildDiscoveryReviewAction implements Analyti
         return 0;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        return C1643a.m817E(C1643a.m833U("TrackGuildDiscoveryReviewAction(action="), this.action, ")");
+        return a.E(a.U("TrackGuildDiscoveryReviewAction(action="), this.action, ")");
     }
 }

@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
 import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackViewLanding.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackViewLanding implements AnalyticsSchema, Track
             return false;
         }
         TrackViewLanding trackViewLanding = (TrackViewLanding) other;
-        return C12238m.areEqual(this.game, trackViewLanding.game) && C12238m.areEqual(this.locale, trackViewLanding.locale);
+        return m.areEqual(this.game, trackViewLanding.game) && m.areEqual(this.locale, trackViewLanding.locale);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackViewLanding implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackViewLanding(game=");
-        sbM833U.append(this.game);
-        sbM833U.append(", locale=");
-        return C1643a.m817E(sbM833U, this.locale, ")");
+        StringBuilder sbU = a.U("TrackViewLanding(game=");
+        sbU.append(this.game);
+        sbU.append(", locale=");
+        return a.E(sbU, this.locale, ")");
     }
 }

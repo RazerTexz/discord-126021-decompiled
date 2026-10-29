@@ -8,12 +8,13 @@ import android.util.TypedValue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.TintTypedArray;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class MaterialResources {
     private static final float FONT_SCALE_1_3 = 1.3f;
     private static final float FONT_SCALE_2_0 = 2.0f;

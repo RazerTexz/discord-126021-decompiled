@@ -5,52 +5,20 @@ import java.lang.reflect.Array;
 /* JADX INFO: loaded from: classes.dex */
 public class HyperSpline {
     public double[][] mCtl;
-    public Cubic[][] mCurve;
+    public HyperSpline$Cubic[][] mCurve;
     public double[] mCurveLength;
     public int mDimensionality;
     public int mPoints;
     public double mTotalLength;
 
-    public class Cubic {
-        public static final double HALF = 0.5d;
-        public static final double THIRD = 0.3333333333333333d;
-
-        /* JADX INFO: renamed from: mA */
-        public double f96mA;
-
-        /* JADX INFO: renamed from: mB */
-        public double f97mB;
-
-        /* JADX INFO: renamed from: mC */
-        public double f98mC;
-
-        /* JADX INFO: renamed from: mD */
-        public double f99mD;
-
-        public Cubic(double d, double d2, double d3, double d4) {
-            this.f96mA = d;
-            this.f97mB = d2;
-            this.f98mC = d3;
-            this.f99mD = d4;
-        }
-
-        public double eval(double d) {
-            return (((((this.f99mD * d) + this.f98mC) * d) + this.f97mB) * d) + this.f96mA;
-        }
-
-        public double vel(double d) {
-            return (((this.f98mC * 0.5d) + (this.f99mD * 0.3333333333333333d * d)) * d) + this.f97mB;
-        }
-    }
-
     public HyperSpline(double[][] dArr) {
         setup(dArr);
     }
 
-    public double approxLength(Cubic[] cubicArr) {
+    public double approxLength(HyperSpline$Cubic[] hyperSpline$CubicArr) {
         int i;
-        int length = cubicArr.length;
-        double[] dArr = new double[cubicArr.length];
+        int length = hyperSpline$CubicArr.length;
+        double[] dArr = new double[hyperSpline$CubicArr.length];
         double d = 0.0d;
         double d2 = 0.0d;
         double dSqrt = 0.0d;
@@ -60,9 +28,9 @@ public class HyperSpline {
                 break;
             }
             double d3 = 0.0d;
-            while (i < cubicArr.length) {
+            while (i < hyperSpline$CubicArr.length) {
                 double d4 = dArr[i];
-                double dEval = cubicArr[i].eval(d2);
+                double dEval = hyperSpline$CubicArr[i].eval(d2);
                 dArr[i] = dEval;
                 double d5 = d4 - dEval;
                 d3 += d5 * d5;
@@ -73,9 +41,9 @@ public class HyperSpline {
             }
             d2 += 0.1d;
         }
-        while (i < cubicArr.length) {
+        while (i < hyperSpline$CubicArr.length) {
             double d6 = dArr[i];
-            double dEval2 = cubicArr[i].eval(1.0d);
+            double dEval2 = hyperSpline$CubicArr[i].eval(1.0d);
             dArr[i] = dEval2;
             double d7 = d6 - dEval2;
             d += d7 * d7;
@@ -84,7 +52,7 @@ public class HyperSpline {
         return Math.sqrt(d) + dSqrt;
     }
 
-    public static Cubic[] calcNaturalCubic(int i, double[] dArr) {
+    public static HyperSpline$Cubic[] calcNaturalCubic(int i, double[] dArr) {
         double[] dArr2 = new double[i];
         double[] dArr3 = new double[i];
         double[] dArr4 = new double[i];
@@ -110,13 +78,13 @@ public class HyperSpline {
             dArr4[i6] = dArr3[i6] - (dArr2[i6] * dArr4[i6 + 1]);
             i6--;
         }
-        Cubic[] cubicArr = new Cubic[i2];
+        HyperSpline$Cubic[] hyperSpline$CubicArr = new HyperSpline$Cubic[i2];
         while (i3 < i2) {
             int i9 = i3 + 1;
-            cubicArr[i3] = new Cubic((float) dArr[i3], dArr4[i3], (((dArr[i9] - dArr[i3]) * 3.0d) - (dArr4[i3] * 2.0d)) - dArr4[i9], ((dArr[i3] - dArr[i9]) * 2.0d) + dArr4[i3] + dArr4[i9]);
+            hyperSpline$CubicArr[i3] = new HyperSpline$Cubic((float) dArr[i3], dArr4[i3], (((dArr[i9] - dArr[i3]) * 3.0d) - (dArr4[i3] * 2.0d)) - dArr4[i9], ((dArr[i3] - dArr[i9]) * 2.0d) + dArr4[i3] + dArr4[i9]);
             i3 = i9;
         }
-        return cubicArr;
+        return hyperSpline$CubicArr;
     }
 
     public void getPos(double d, double[] dArr) {
@@ -158,7 +126,7 @@ public class HyperSpline {
         int length2 = dArr.length;
         this.mPoints = length2;
         this.mCtl = (double[][]) Array.newInstance((Class<?>) double.class, length, length2);
-        this.mCurve = new Cubic[this.mDimensionality][];
+        this.mCurve = new HyperSpline$Cubic[this.mDimensionality][];
         for (int i2 = 0; i2 < this.mDimensionality; i2++) {
             for (int i3 = 0; i3 < this.mPoints; i3++) {
                 this.mCtl[i2][i3] = dArr[i3][i2];
@@ -170,21 +138,21 @@ public class HyperSpline {
             if (i4 >= i) {
                 break;
             }
-            Cubic[][] cubicArr = this.mCurve;
+            HyperSpline$Cubic[][] hyperSpline$CubicArr = this.mCurve;
             double[][] dArr2 = this.mCtl;
-            cubicArr[i4] = calcNaturalCubic(dArr2[i4].length, dArr2[i4]);
+            hyperSpline$CubicArr[i4] = calcNaturalCubic(dArr2[i4].length, dArr2[i4]);
             i4++;
         }
         this.mCurveLength = new double[this.mPoints - 1];
         this.mTotalLength = 0.0d;
-        Cubic[] cubicArr2 = new Cubic[i];
+        HyperSpline$Cubic[] hyperSpline$CubicArr2 = new HyperSpline$Cubic[i];
         for (int i5 = 0; i5 < this.mCurveLength.length; i5++) {
             for (int i6 = 0; i6 < this.mDimensionality; i6++) {
-                cubicArr2[i6] = this.mCurve[i6][i5];
+                hyperSpline$CubicArr2[i6] = this.mCurve[i6][i5];
             }
             double d = this.mTotalLength;
             double[] dArr3 = this.mCurveLength;
-            double dApproxLength = approxLength(cubicArr2);
+            double dApproxLength = approxLength(hyperSpline$CubicArr2);
             dArr3[i5] = dApproxLength;
             this.mTotalLength = d + dApproxLength;
         }

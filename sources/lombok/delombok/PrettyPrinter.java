@@ -5,10 +5,61 @@ import com.discord.api.permission.Permission;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import com.google.android.material.badge.BadgeDrawable;
-import com.sun.source.tree.Tree;
+import com.sun.source.tree.Tree$Kind;
 import com.sun.tools.javac.tree.DocCommentTable;
 import com.sun.tools.javac.tree.JCTree;
-import com.sun.tools.javac.util.JCDiagnostic;
+import com.sun.tools.javac.tree.JCTree$JCAnnotation;
+import com.sun.tools.javac.tree.JCTree$JCArrayAccess;
+import com.sun.tools.javac.tree.JCTree$JCArrayTypeTree;
+import com.sun.tools.javac.tree.JCTree$JCAssert;
+import com.sun.tools.javac.tree.JCTree$JCAssign;
+import com.sun.tools.javac.tree.JCTree$JCAssignOp;
+import com.sun.tools.javac.tree.JCTree$JCBinary;
+import com.sun.tools.javac.tree.JCTree$JCBlock;
+import com.sun.tools.javac.tree.JCTree$JCBreak;
+import com.sun.tools.javac.tree.JCTree$JCCase;
+import com.sun.tools.javac.tree.JCTree$JCCatch;
+import com.sun.tools.javac.tree.JCTree$JCClassDecl;
+import com.sun.tools.javac.tree.JCTree$JCCompilationUnit;
+import com.sun.tools.javac.tree.JCTree$JCConditional;
+import com.sun.tools.javac.tree.JCTree$JCContinue;
+import com.sun.tools.javac.tree.JCTree$JCDoWhileLoop;
+import com.sun.tools.javac.tree.JCTree$JCEnhancedForLoop;
+import com.sun.tools.javac.tree.JCTree$JCErroneous;
+import com.sun.tools.javac.tree.JCTree$JCExpression;
+import com.sun.tools.javac.tree.JCTree$JCExpressionStatement;
+import com.sun.tools.javac.tree.JCTree$JCFieldAccess;
+import com.sun.tools.javac.tree.JCTree$JCForLoop;
+import com.sun.tools.javac.tree.JCTree$JCIdent;
+import com.sun.tools.javac.tree.JCTree$JCIf;
+import com.sun.tools.javac.tree.JCTree$JCImport;
+import com.sun.tools.javac.tree.JCTree$JCInstanceOf;
+import com.sun.tools.javac.tree.JCTree$JCLabeledStatement;
+import com.sun.tools.javac.tree.JCTree$JCLiteral;
+import com.sun.tools.javac.tree.JCTree$JCMethodDecl;
+import com.sun.tools.javac.tree.JCTree$JCMethodInvocation;
+import com.sun.tools.javac.tree.JCTree$JCModifiers;
+import com.sun.tools.javac.tree.JCTree$JCNewArray;
+import com.sun.tools.javac.tree.JCTree$JCNewClass;
+import com.sun.tools.javac.tree.JCTree$JCParens;
+import com.sun.tools.javac.tree.JCTree$JCPrimitiveTypeTree;
+import com.sun.tools.javac.tree.JCTree$JCReturn;
+import com.sun.tools.javac.tree.JCTree$JCSkip;
+import com.sun.tools.javac.tree.JCTree$JCStatement;
+import com.sun.tools.javac.tree.JCTree$JCSwitch;
+import com.sun.tools.javac.tree.JCTree$JCSynchronized;
+import com.sun.tools.javac.tree.JCTree$JCThrow;
+import com.sun.tools.javac.tree.JCTree$JCTry;
+import com.sun.tools.javac.tree.JCTree$JCTypeApply;
+import com.sun.tools.javac.tree.JCTree$JCTypeCast;
+import com.sun.tools.javac.tree.JCTree$JCTypeParameter;
+import com.sun.tools.javac.tree.JCTree$JCUnary;
+import com.sun.tools.javac.tree.JCTree$JCVariableDecl;
+import com.sun.tools.javac.tree.JCTree$JCWhileLoop;
+import com.sun.tools.javac.tree.JCTree$JCWildcard;
+import com.sun.tools.javac.tree.JCTree$TypeBoundKind;
+import com.sun.tools.javac.tree.JCTree$Visitor;
+import com.sun.tools.javac.util.JCDiagnostic$DiagnosticPosition;
 import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.Name;
 import java.io.IOException;
@@ -21,24 +72,27 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import lombok.javac.CommentInfo;
+import lombok.javac.CommentInfo$EndConnection;
+import lombok.javac.CommentInfo$StartConnection;
 import lombok.javac.Javac;
-import lombok.javac.JavacTreeMaker;
+import lombok.javac.JavacTreeMaker$TreeTag;
+import lombok.javac.JavacTreeMaker$TypeTag;
 import lombok.javac.PackageName;
 import lombok.permit.Permit;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/PrettyPrinter.SCL.lombok */
-public class PrettyPrinter extends JCTree.Visitor {
+public class PrettyPrinter extends JCTree$Visitor {
     private static /* synthetic */ int[] $SWITCH_TABLE$com$sun$source$tree$Tree$Kind;
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection;
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection;
     private static final long DEFAULT = 8796093022208L;
-    private static final Map<JavacTreeMaker.TreeTag, String> OPERATORS;
+    private static final Map<JavacTreeMaker$TreeTag, String> OPERATORS;
     private static final int PREFIX = 14;
     private Name __INIT__;
     private Name __VALUE__;
     private boolean aligned;
     private List<CommentInfo> comments;
-    private final JCTree.JCCompilationUnit compilationUnit;
+    private final JCTree$JCCompilationUnit compilationUnit;
     private Name currentTypeName;
     private final Map<JCTree, String> docComments;
     private final DocCommentTable docTable;
@@ -65,373 +119,373 @@ public class PrettyPrinter extends JCTree.Visitor {
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[Tree.Kind.values().length];
+        int[] iArr2 = new int[Tree$Kind.values().length];
         try {
-            iArr2[Tree.Kind.AND.ordinal()] = 64;
+            iArr2[Tree$Kind.AND.ordinal()] = 64;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[Tree.Kind.AND_ASSIGNMENT.ordinal()] = 77;
+            iArr2[Tree$Kind.AND_ASSIGNMENT.ordinal()] = 77;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[Tree.Kind.ANNOTATION.ordinal()] = 1;
+            iArr2[Tree$Kind.ANNOTATION.ordinal()] = 1;
         } catch (NoSuchFieldError unused3) {
         }
         try {
-            iArr2[Tree.Kind.ARRAY_ACCESS.ordinal()] = 2;
+            iArr2[Tree$Kind.ARRAY_ACCESS.ordinal()] = 2;
         } catch (NoSuchFieldError unused4) {
         }
         try {
-            iArr2[Tree.Kind.ARRAY_TYPE.ordinal()] = 3;
+            iArr2[Tree$Kind.ARRAY_TYPE.ordinal()] = 3;
         } catch (NoSuchFieldError unused5) {
         }
         try {
-            iArr2[Tree.Kind.ASSERT.ordinal()] = 4;
+            iArr2[Tree$Kind.ASSERT.ordinal()] = 4;
         } catch (NoSuchFieldError unused6) {
         }
         try {
-            iArr2[Tree.Kind.ASSIGNMENT.ordinal()] = 5;
+            iArr2[Tree$Kind.ASSIGNMENT.ordinal()] = 5;
         } catch (NoSuchFieldError unused7) {
         }
         try {
-            iArr2[Tree.Kind.BITWISE_COMPLEMENT.ordinal()] = 48;
+            iArr2[Tree$Kind.BITWISE_COMPLEMENT.ordinal()] = 48;
         } catch (NoSuchFieldError unused8) {
         }
         try {
-            iArr2[Tree.Kind.BLOCK.ordinal()] = 6;
+            iArr2[Tree$Kind.BLOCK.ordinal()] = 6;
         } catch (NoSuchFieldError unused9) {
         }
         try {
-            iArr2[Tree.Kind.BOOLEAN_LITERAL.ordinal()] = 84;
+            iArr2[Tree$Kind.BOOLEAN_LITERAL.ordinal()] = 84;
         } catch (NoSuchFieldError unused10) {
         }
         try {
-            iArr2[Tree.Kind.BREAK.ordinal()] = 7;
+            iArr2[Tree$Kind.BREAK.ordinal()] = 7;
         } catch (NoSuchFieldError unused11) {
         }
         try {
-            iArr2[Tree.Kind.CASE.ordinal()] = 8;
+            iArr2[Tree$Kind.CASE.ordinal()] = 8;
         } catch (NoSuchFieldError unused12) {
         }
         try {
-            iArr2[Tree.Kind.CATCH.ordinal()] = 9;
+            iArr2[Tree$Kind.CATCH.ordinal()] = 9;
         } catch (NoSuchFieldError unused13) {
         }
         try {
-            iArr2[Tree.Kind.CHAR_LITERAL.ordinal()] = 85;
+            iArr2[Tree$Kind.CHAR_LITERAL.ordinal()] = 85;
         } catch (NoSuchFieldError unused14) {
         }
         try {
-            iArr2[Tree.Kind.CLASS.ordinal()] = 10;
+            iArr2[Tree$Kind.CLASS.ordinal()] = 10;
         } catch (NoSuchFieldError unused15) {
         }
         try {
-            iArr2[Tree.Kind.COMPILATION_UNIT.ordinal()] = 11;
+            iArr2[Tree$Kind.COMPILATION_UNIT.ordinal()] = 11;
         } catch (NoSuchFieldError unused16) {
         }
         try {
-            iArr2[Tree.Kind.CONDITIONAL_AND.ordinal()] = 67;
+            iArr2[Tree$Kind.CONDITIONAL_AND.ordinal()] = 67;
         } catch (NoSuchFieldError unused17) {
         }
         try {
-            iArr2[Tree.Kind.CONDITIONAL_EXPRESSION.ordinal()] = 12;
+            iArr2[Tree$Kind.CONDITIONAL_EXPRESSION.ordinal()] = 12;
         } catch (NoSuchFieldError unused18) {
         }
         try {
-            iArr2[Tree.Kind.CONDITIONAL_OR.ordinal()] = 68;
+            iArr2[Tree$Kind.CONDITIONAL_OR.ordinal()] = 68;
         } catch (NoSuchFieldError unused19) {
         }
         try {
-            iArr2[Tree.Kind.CONTINUE.ordinal()] = 13;
+            iArr2[Tree$Kind.CONTINUE.ordinal()] = 13;
         } catch (NoSuchFieldError unused20) {
         }
         try {
-            iArr2[Tree.Kind.DIVIDE.ordinal()] = 51;
+            iArr2[Tree$Kind.DIVIDE.ordinal()] = 51;
         } catch (NoSuchFieldError unused21) {
         }
         try {
-            iArr2[Tree.Kind.DIVIDE_ASSIGNMENT.ordinal()] = 70;
+            iArr2[Tree$Kind.DIVIDE_ASSIGNMENT.ordinal()] = 70;
         } catch (NoSuchFieldError unused22) {
         }
         try {
-            iArr2[Tree.Kind.DOUBLE_LITERAL.ordinal()] = 83;
+            iArr2[Tree$Kind.DOUBLE_LITERAL.ordinal()] = 83;
         } catch (NoSuchFieldError unused23) {
         }
         try {
-            iArr2[Tree.Kind.DO_WHILE_LOOP.ordinal()] = 14;
+            iArr2[Tree$Kind.DO_WHILE_LOOP.ordinal()] = 14;
         } catch (NoSuchFieldError unused24) {
         }
         try {
-            iArr2[Tree.Kind.EMPTY_STATEMENT.ordinal()] = 32;
+            iArr2[Tree$Kind.EMPTY_STATEMENT.ordinal()] = 32;
         } catch (NoSuchFieldError unused25) {
         }
         try {
-            iArr2[Tree.Kind.ENHANCED_FOR_LOOP.ordinal()] = 15;
+            iArr2[Tree$Kind.ENHANCED_FOR_LOOP.ordinal()] = 15;
         } catch (NoSuchFieldError unused26) {
         }
         try {
-            iArr2[Tree.Kind.EQUAL_TO.ordinal()] = 62;
+            iArr2[Tree$Kind.EQUAL_TO.ordinal()] = 62;
         } catch (NoSuchFieldError unused27) {
         }
         try {
-            iArr2[Tree.Kind.ERRONEOUS.ordinal()] = 91;
+            iArr2[Tree$Kind.ERRONEOUS.ordinal()] = 91;
         } catch (NoSuchFieldError unused28) {
         }
         try {
-            iArr2[Tree.Kind.EXPRESSION_STATEMENT.ordinal()] = 16;
+            iArr2[Tree$Kind.EXPRESSION_STATEMENT.ordinal()] = 16;
         } catch (NoSuchFieldError unused29) {
         }
         try {
-            iArr2[Tree.Kind.EXTENDS_WILDCARD.ordinal()] = 89;
+            iArr2[Tree$Kind.EXTENDS_WILDCARD.ordinal()] = 89;
         } catch (NoSuchFieldError unused30) {
         }
         try {
-            iArr2[Tree.Kind.FLOAT_LITERAL.ordinal()] = 82;
+            iArr2[Tree$Kind.FLOAT_LITERAL.ordinal()] = 82;
         } catch (NoSuchFieldError unused31) {
         }
         try {
-            iArr2[Tree.Kind.FOR_LOOP.ordinal()] = 18;
+            iArr2[Tree$Kind.FOR_LOOP.ordinal()] = 18;
         } catch (NoSuchFieldError unused32) {
         }
         try {
-            iArr2[Tree.Kind.GREATER_THAN.ordinal()] = 59;
+            iArr2[Tree$Kind.GREATER_THAN.ordinal()] = 59;
         } catch (NoSuchFieldError unused33) {
         }
         try {
-            iArr2[Tree.Kind.GREATER_THAN_EQUAL.ordinal()] = 61;
+            iArr2[Tree$Kind.GREATER_THAN_EQUAL.ordinal()] = 61;
         } catch (NoSuchFieldError unused34) {
         }
         try {
-            iArr2[Tree.Kind.IDENTIFIER.ordinal()] = 19;
+            iArr2[Tree$Kind.IDENTIFIER.ordinal()] = 19;
         } catch (NoSuchFieldError unused35) {
         }
         try {
-            iArr2[Tree.Kind.IF.ordinal()] = 20;
+            iArr2[Tree$Kind.IF.ordinal()] = 20;
         } catch (NoSuchFieldError unused36) {
         }
         try {
-            iArr2[Tree.Kind.IMPORT.ordinal()] = 21;
+            iArr2[Tree$Kind.IMPORT.ordinal()] = 21;
         } catch (NoSuchFieldError unused37) {
         }
         try {
-            iArr2[Tree.Kind.INSTANCE_OF.ordinal()] = 22;
+            iArr2[Tree$Kind.INSTANCE_OF.ordinal()] = 22;
         } catch (NoSuchFieldError unused38) {
         }
         try {
-            iArr2[Tree.Kind.INT_LITERAL.ordinal()] = 80;
+            iArr2[Tree$Kind.INT_LITERAL.ordinal()] = 80;
         } catch (NoSuchFieldError unused39) {
         }
         try {
-            iArr2[Tree.Kind.LABELED_STATEMENT.ordinal()] = 23;
+            iArr2[Tree$Kind.LABELED_STATEMENT.ordinal()] = 23;
         } catch (NoSuchFieldError unused40) {
         }
         try {
-            iArr2[Tree.Kind.LEFT_SHIFT.ordinal()] = 55;
+            iArr2[Tree$Kind.LEFT_SHIFT.ordinal()] = 55;
         } catch (NoSuchFieldError unused41) {
         }
         try {
-            iArr2[Tree.Kind.LEFT_SHIFT_ASSIGNMENT.ordinal()] = 74;
+            iArr2[Tree$Kind.LEFT_SHIFT_ASSIGNMENT.ordinal()] = 74;
         } catch (NoSuchFieldError unused42) {
         }
         try {
-            iArr2[Tree.Kind.LESS_THAN.ordinal()] = 58;
+            iArr2[Tree$Kind.LESS_THAN.ordinal()] = 58;
         } catch (NoSuchFieldError unused43) {
         }
         try {
-            iArr2[Tree.Kind.LESS_THAN_EQUAL.ordinal()] = 60;
+            iArr2[Tree$Kind.LESS_THAN_EQUAL.ordinal()] = 60;
         } catch (NoSuchFieldError unused44) {
         }
         try {
-            iArr2[Tree.Kind.LOGICAL_COMPLEMENT.ordinal()] = 49;
+            iArr2[Tree$Kind.LOGICAL_COMPLEMENT.ordinal()] = 49;
         } catch (NoSuchFieldError unused45) {
         }
         try {
-            iArr2[Tree.Kind.LONG_LITERAL.ordinal()] = 81;
+            iArr2[Tree$Kind.LONG_LITERAL.ordinal()] = 81;
         } catch (NoSuchFieldError unused46) {
         }
         try {
-            iArr2[Tree.Kind.MEMBER_SELECT.ordinal()] = 17;
+            iArr2[Tree$Kind.MEMBER_SELECT.ordinal()] = 17;
         } catch (NoSuchFieldError unused47) {
         }
         try {
-            iArr2[Tree.Kind.METHOD.ordinal()] = 24;
+            iArr2[Tree$Kind.METHOD.ordinal()] = 24;
         } catch (NoSuchFieldError unused48) {
         }
         try {
-            iArr2[Tree.Kind.METHOD_INVOCATION.ordinal()] = 25;
+            iArr2[Tree$Kind.METHOD_INVOCATION.ordinal()] = 25;
         } catch (NoSuchFieldError unused49) {
         }
         try {
-            iArr2[Tree.Kind.MINUS.ordinal()] = 54;
+            iArr2[Tree$Kind.MINUS.ordinal()] = 54;
         } catch (NoSuchFieldError unused50) {
         }
         try {
-            iArr2[Tree.Kind.MINUS_ASSIGNMENT.ordinal()] = 73;
+            iArr2[Tree$Kind.MINUS_ASSIGNMENT.ordinal()] = 73;
         } catch (NoSuchFieldError unused51) {
         }
         try {
-            iArr2[Tree.Kind.MODIFIERS.ordinal()] = 26;
+            iArr2[Tree$Kind.MODIFIERS.ordinal()] = 26;
         } catch (NoSuchFieldError unused52) {
         }
         try {
-            iArr2[Tree.Kind.MULTIPLY.ordinal()] = 50;
+            iArr2[Tree$Kind.MULTIPLY.ordinal()] = 50;
         } catch (NoSuchFieldError unused53) {
         }
         try {
-            iArr2[Tree.Kind.MULTIPLY_ASSIGNMENT.ordinal()] = 69;
+            iArr2[Tree$Kind.MULTIPLY_ASSIGNMENT.ordinal()] = 69;
         } catch (NoSuchFieldError unused54) {
         }
         try {
-            iArr2[Tree.Kind.NEW_ARRAY.ordinal()] = 27;
+            iArr2[Tree$Kind.NEW_ARRAY.ordinal()] = 27;
         } catch (NoSuchFieldError unused55) {
         }
         try {
-            iArr2[Tree.Kind.NEW_CLASS.ordinal()] = 28;
+            iArr2[Tree$Kind.NEW_CLASS.ordinal()] = 28;
         } catch (NoSuchFieldError unused56) {
         }
         try {
-            iArr2[Tree.Kind.NOT_EQUAL_TO.ordinal()] = 63;
+            iArr2[Tree$Kind.NOT_EQUAL_TO.ordinal()] = 63;
         } catch (NoSuchFieldError unused57) {
         }
         try {
-            iArr2[Tree.Kind.NULL_LITERAL.ordinal()] = 87;
+            iArr2[Tree$Kind.NULL_LITERAL.ordinal()] = 87;
         } catch (NoSuchFieldError unused58) {
         }
         try {
-            iArr2[Tree.Kind.OR.ordinal()] = 66;
+            iArr2[Tree$Kind.OR.ordinal()] = 66;
         } catch (NoSuchFieldError unused59) {
         }
         try {
-            iArr2[Tree.Kind.OR_ASSIGNMENT.ordinal()] = 79;
+            iArr2[Tree$Kind.OR_ASSIGNMENT.ordinal()] = 79;
         } catch (NoSuchFieldError unused60) {
         }
         try {
-            iArr2[Tree.Kind.OTHER.ordinal()] = 92;
+            iArr2[Tree$Kind.OTHER.ordinal()] = 92;
         } catch (NoSuchFieldError unused61) {
         }
         try {
-            iArr2[Tree.Kind.PARAMETERIZED_TYPE.ordinal()] = 37;
+            iArr2[Tree$Kind.PARAMETERIZED_TYPE.ordinal()] = 37;
         } catch (NoSuchFieldError unused62) {
         }
         try {
-            iArr2[Tree.Kind.PARENTHESIZED.ordinal()] = 29;
+            iArr2[Tree$Kind.PARENTHESIZED.ordinal()] = 29;
         } catch (NoSuchFieldError unused63) {
         }
         try {
-            iArr2[Tree.Kind.PLUS.ordinal()] = 53;
+            iArr2[Tree$Kind.PLUS.ordinal()] = 53;
         } catch (NoSuchFieldError unused64) {
         }
         try {
-            iArr2[Tree.Kind.PLUS_ASSIGNMENT.ordinal()] = 72;
+            iArr2[Tree$Kind.PLUS_ASSIGNMENT.ordinal()] = 72;
         } catch (NoSuchFieldError unused65) {
         }
         try {
-            iArr2[Tree.Kind.POSTFIX_DECREMENT.ordinal()] = 43;
+            iArr2[Tree$Kind.POSTFIX_DECREMENT.ordinal()] = 43;
         } catch (NoSuchFieldError unused66) {
         }
         try {
-            iArr2[Tree.Kind.POSTFIX_INCREMENT.ordinal()] = 42;
+            iArr2[Tree$Kind.POSTFIX_INCREMENT.ordinal()] = 42;
         } catch (NoSuchFieldError unused67) {
         }
         try {
-            iArr2[Tree.Kind.PREFIX_DECREMENT.ordinal()] = 45;
+            iArr2[Tree$Kind.PREFIX_DECREMENT.ordinal()] = 45;
         } catch (NoSuchFieldError unused68) {
         }
         try {
-            iArr2[Tree.Kind.PREFIX_INCREMENT.ordinal()] = 44;
+            iArr2[Tree$Kind.PREFIX_INCREMENT.ordinal()] = 44;
         } catch (NoSuchFieldError unused69) {
         }
         try {
-            iArr2[Tree.Kind.PRIMITIVE_TYPE.ordinal()] = 30;
+            iArr2[Tree$Kind.PRIMITIVE_TYPE.ordinal()] = 30;
         } catch (NoSuchFieldError unused70) {
         }
         try {
-            iArr2[Tree.Kind.REMAINDER.ordinal()] = 52;
+            iArr2[Tree$Kind.REMAINDER.ordinal()] = 52;
         } catch (NoSuchFieldError unused71) {
         }
         try {
-            iArr2[Tree.Kind.REMAINDER_ASSIGNMENT.ordinal()] = 71;
+            iArr2[Tree$Kind.REMAINDER_ASSIGNMENT.ordinal()] = 71;
         } catch (NoSuchFieldError unused72) {
         }
         try {
-            iArr2[Tree.Kind.RETURN.ordinal()] = 31;
+            iArr2[Tree$Kind.RETURN.ordinal()] = 31;
         } catch (NoSuchFieldError unused73) {
         }
         try {
-            iArr2[Tree.Kind.RIGHT_SHIFT.ordinal()] = 56;
+            iArr2[Tree$Kind.RIGHT_SHIFT.ordinal()] = 56;
         } catch (NoSuchFieldError unused74) {
         }
         try {
-            iArr2[Tree.Kind.RIGHT_SHIFT_ASSIGNMENT.ordinal()] = 75;
+            iArr2[Tree$Kind.RIGHT_SHIFT_ASSIGNMENT.ordinal()] = 75;
         } catch (NoSuchFieldError unused75) {
         }
         try {
-            iArr2[Tree.Kind.STRING_LITERAL.ordinal()] = 86;
+            iArr2[Tree$Kind.STRING_LITERAL.ordinal()] = 86;
         } catch (NoSuchFieldError unused76) {
         }
         try {
-            iArr2[Tree.Kind.SUPER_WILDCARD.ordinal()] = 90;
+            iArr2[Tree$Kind.SUPER_WILDCARD.ordinal()] = 90;
         } catch (NoSuchFieldError unused77) {
         }
         try {
-            iArr2[Tree.Kind.SWITCH.ordinal()] = 33;
+            iArr2[Tree$Kind.SWITCH.ordinal()] = 33;
         } catch (NoSuchFieldError unused78) {
         }
         try {
-            iArr2[Tree.Kind.SYNCHRONIZED.ordinal()] = 34;
+            iArr2[Tree$Kind.SYNCHRONIZED.ordinal()] = 34;
         } catch (NoSuchFieldError unused79) {
         }
         try {
-            iArr2[Tree.Kind.THROW.ordinal()] = 35;
+            iArr2[Tree$Kind.THROW.ordinal()] = 35;
         } catch (NoSuchFieldError unused80) {
         }
         try {
-            iArr2[Tree.Kind.TRY.ordinal()] = 36;
+            iArr2[Tree$Kind.TRY.ordinal()] = 36;
         } catch (NoSuchFieldError unused81) {
         }
         try {
-            iArr2[Tree.Kind.TYPE_CAST.ordinal()] = 38;
+            iArr2[Tree$Kind.TYPE_CAST.ordinal()] = 38;
         } catch (NoSuchFieldError unused82) {
         }
         try {
-            iArr2[Tree.Kind.TYPE_PARAMETER.ordinal()] = 39;
+            iArr2[Tree$Kind.TYPE_PARAMETER.ordinal()] = 39;
         } catch (NoSuchFieldError unused83) {
         }
         try {
-            iArr2[Tree.Kind.UNARY_MINUS.ordinal()] = 47;
+            iArr2[Tree$Kind.UNARY_MINUS.ordinal()] = 47;
         } catch (NoSuchFieldError unused84) {
         }
         try {
-            iArr2[Tree.Kind.UNARY_PLUS.ordinal()] = 46;
+            iArr2[Tree$Kind.UNARY_PLUS.ordinal()] = 46;
         } catch (NoSuchFieldError unused85) {
         }
         try {
-            iArr2[Tree.Kind.UNBOUNDED_WILDCARD.ordinal()] = 88;
+            iArr2[Tree$Kind.UNBOUNDED_WILDCARD.ordinal()] = 88;
         } catch (NoSuchFieldError unused86) {
         }
         try {
-            iArr2[Tree.Kind.UNSIGNED_RIGHT_SHIFT.ordinal()] = 57;
+            iArr2[Tree$Kind.UNSIGNED_RIGHT_SHIFT.ordinal()] = 57;
         } catch (NoSuchFieldError unused87) {
         }
         try {
-            iArr2[Tree.Kind.UNSIGNED_RIGHT_SHIFT_ASSIGNMENT.ordinal()] = 76;
+            iArr2[Tree$Kind.UNSIGNED_RIGHT_SHIFT_ASSIGNMENT.ordinal()] = 76;
         } catch (NoSuchFieldError unused88) {
         }
         try {
-            iArr2[Tree.Kind.VARIABLE.ordinal()] = 40;
+            iArr2[Tree$Kind.VARIABLE.ordinal()] = 40;
         } catch (NoSuchFieldError unused89) {
         }
         try {
-            iArr2[Tree.Kind.WHILE_LOOP.ordinal()] = 41;
+            iArr2[Tree$Kind.WHILE_LOOP.ordinal()] = 41;
         } catch (NoSuchFieldError unused90) {
         }
         try {
-            iArr2[Tree.Kind.XOR.ordinal()] = 65;
+            iArr2[Tree$Kind.XOR.ordinal()] = 65;
         } catch (NoSuchFieldError unused91) {
         }
         try {
-            iArr2[Tree.Kind.XOR_ASSIGNMENT.ordinal()] = 78;
+            iArr2[Tree$Kind.XOR_ASSIGNMENT.ordinal()] = 78;
         } catch (NoSuchFieldError unused92) {
         }
         $SWITCH_TABLE$com$sun$source$tree$Tree$Kind = iArr2;
@@ -443,17 +497,17 @@ public class PrettyPrinter extends JCTree.Visitor {
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[CommentInfo.EndConnection.valuesCustom().length];
+        int[] iArr2 = new int[CommentInfo$EndConnection.valuesCustom().length];
         try {
-            iArr2[CommentInfo.EndConnection.AFTER_COMMENT.ordinal()] = 2;
+            iArr2[CommentInfo$EndConnection.AFTER_COMMENT.ordinal()] = 2;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[CommentInfo.EndConnection.DIRECT_AFTER_COMMENT.ordinal()] = 1;
+            iArr2[CommentInfo$EndConnection.DIRECT_AFTER_COMMENT.ordinal()] = 1;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[CommentInfo.EndConnection.ON_NEXT_LINE.ordinal()] = 3;
+            iArr2[CommentInfo$EndConnection.ON_NEXT_LINE.ordinal()] = 3;
         } catch (NoSuchFieldError unused3) {
         }
         $SWITCH_TABLE$lombok$javac$CommentInfo$EndConnection = iArr2;
@@ -465,21 +519,21 @@ public class PrettyPrinter extends JCTree.Visitor {
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[CommentInfo.StartConnection.valuesCustom().length];
+        int[] iArr2 = new int[CommentInfo$StartConnection.valuesCustom().length];
         try {
-            iArr2[CommentInfo.StartConnection.AFTER_PREVIOUS.ordinal()] = 4;
+            iArr2[CommentInfo$StartConnection.AFTER_PREVIOUS.ordinal()] = 4;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[CommentInfo.StartConnection.DIRECT_AFTER_PREVIOUS.ordinal()] = 3;
+            iArr2[CommentInfo$StartConnection.DIRECT_AFTER_PREVIOUS.ordinal()] = 3;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[CommentInfo.StartConnection.ON_NEXT_LINE.ordinal()] = 2;
+            iArr2[CommentInfo$StartConnection.ON_NEXT_LINE.ordinal()] = 2;
         } catch (NoSuchFieldError unused3) {
         }
         try {
-            iArr2[CommentInfo.StartConnection.START_OF_LINE.ordinal()] = 1;
+            iArr2[CommentInfo$StartConnection.START_OF_LINE.ordinal()] = 1;
         } catch (NoSuchFieldError unused4) {
         }
         $SWITCH_TABLE$lombok$javac$CommentInfo$StartConnection = iArr2;
@@ -488,53 +542,53 @@ public class PrettyPrinter extends JCTree.Visitor {
 
     static {
         Method storeEndMethodTemp;
-        Map<JavacTreeMaker.TreeTag, String> map = new HashMap<>();
-        map.put(JavacTreeMaker.TreeTag.treeTag("POS"), BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX);
-        map.put(JavacTreeMaker.TreeTag.treeTag("NEG"), "-");
-        map.put(JavacTreeMaker.TreeTag.treeTag("NOT"), "!");
-        map.put(JavacTreeMaker.TreeTag.treeTag("COMPL"), "~");
-        map.put(JavacTreeMaker.TreeTag.treeTag("PREINC"), "++");
-        map.put(JavacTreeMaker.TreeTag.treeTag("PREDEC"), "--");
-        map.put(JavacTreeMaker.TreeTag.treeTag("POSTINC"), "++");
-        map.put(JavacTreeMaker.TreeTag.treeTag("POSTDEC"), "--");
-        map.put(JavacTreeMaker.TreeTag.treeTag("NULLCHK"), "<*nullchk*>");
-        map.put(JavacTreeMaker.TreeTag.treeTag("OR"), "||");
-        map.put(JavacTreeMaker.TreeTag.treeTag("AND"), "&&");
-        map.put(JavacTreeMaker.TreeTag.treeTag("EQ"), "==");
-        map.put(JavacTreeMaker.TreeTag.treeTag("NE"), "!=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("LT"), "<");
-        map.put(JavacTreeMaker.TreeTag.treeTag("GT"), ">");
-        map.put(JavacTreeMaker.TreeTag.treeTag("LE"), "<=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("GE"), ">=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("BITOR"), "|");
-        map.put(JavacTreeMaker.TreeTag.treeTag("BITXOR"), "^");
-        map.put(JavacTreeMaker.TreeTag.treeTag("BITAND"), "&");
-        map.put(JavacTreeMaker.TreeTag.treeTag("SL"), "<<");
-        map.put(JavacTreeMaker.TreeTag.treeTag("SR"), ">>");
-        map.put(JavacTreeMaker.TreeTag.treeTag("USR"), ">>>");
-        map.put(JavacTreeMaker.TreeTag.treeTag("PLUS"), BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX);
-        map.put(JavacTreeMaker.TreeTag.treeTag("MINUS"), "-");
-        map.put(JavacTreeMaker.TreeTag.treeTag("MUL"), "*");
-        map.put(JavacTreeMaker.TreeTag.treeTag("DIV"), AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
-        map.put(JavacTreeMaker.TreeTag.treeTag("MOD"), "%");
-        map.put(JavacTreeMaker.TreeTag.treeTag("BITOR_ASG"), "|=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("BITXOR_ASG"), "^=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("BITAND_ASG"), "&=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("SL_ASG"), "<<=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("SR_ASG"), ">>=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("USR_ASG"), ">>>=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("PLUS_ASG"), "+=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("MINUS_ASG"), "-=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("MUL_ASG"), "*=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("DIV_ASG"), "/=");
-        map.put(JavacTreeMaker.TreeTag.treeTag("MOD_ASG"), "%=");
+        Map<JavacTreeMaker$TreeTag, String> map = new HashMap<>();
+        map.put(JavacTreeMaker$TreeTag.treeTag("POS"), BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX);
+        map.put(JavacTreeMaker$TreeTag.treeTag("NEG"), "-");
+        map.put(JavacTreeMaker$TreeTag.treeTag("NOT"), "!");
+        map.put(JavacTreeMaker$TreeTag.treeTag("COMPL"), "~");
+        map.put(JavacTreeMaker$TreeTag.treeTag("PREINC"), "++");
+        map.put(JavacTreeMaker$TreeTag.treeTag("PREDEC"), "--");
+        map.put(JavacTreeMaker$TreeTag.treeTag("POSTINC"), "++");
+        map.put(JavacTreeMaker$TreeTag.treeTag("POSTDEC"), "--");
+        map.put(JavacTreeMaker$TreeTag.treeTag("NULLCHK"), "<*nullchk*>");
+        map.put(JavacTreeMaker$TreeTag.treeTag("OR"), "||");
+        map.put(JavacTreeMaker$TreeTag.treeTag("AND"), "&&");
+        map.put(JavacTreeMaker$TreeTag.treeTag("EQ"), "==");
+        map.put(JavacTreeMaker$TreeTag.treeTag("NE"), "!=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("LT"), "<");
+        map.put(JavacTreeMaker$TreeTag.treeTag("GT"), ">");
+        map.put(JavacTreeMaker$TreeTag.treeTag("LE"), "<=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("GE"), ">=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("BITOR"), "|");
+        map.put(JavacTreeMaker$TreeTag.treeTag("BITXOR"), "^");
+        map.put(JavacTreeMaker$TreeTag.treeTag("BITAND"), "&");
+        map.put(JavacTreeMaker$TreeTag.treeTag("SL"), "<<");
+        map.put(JavacTreeMaker$TreeTag.treeTag("SR"), ">>");
+        map.put(JavacTreeMaker$TreeTag.treeTag("USR"), ">>>");
+        map.put(JavacTreeMaker$TreeTag.treeTag("PLUS"), BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX);
+        map.put(JavacTreeMaker$TreeTag.treeTag("MINUS"), "-");
+        map.put(JavacTreeMaker$TreeTag.treeTag("MUL"), "*");
+        map.put(JavacTreeMaker$TreeTag.treeTag("DIV"), AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
+        map.put(JavacTreeMaker$TreeTag.treeTag("MOD"), "%");
+        map.put(JavacTreeMaker$TreeTag.treeTag("BITOR_ASG"), "|=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("BITXOR_ASG"), "^=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("BITAND_ASG"), "&=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("SL_ASG"), "<<=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("SR_ASG"), ">>=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("USR_ASG"), ">>>=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("PLUS_ASG"), "+=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("MINUS_ASG"), "-=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("MUL_ASG"), "*=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("DIV_ASG"), "/=");
+        map.put(JavacTreeMaker$TreeTag.treeTag("MOD_ASG"), "%=");
         OPERATORS = map;
-        getExtendsClause = getMethod((Class<?>) JCTree.JCClassDecl.class, "getExtendsClause", (Class<?>[]) new Class[0]);
+        getExtendsClause = getMethod((Class<?>) JCTree$JCClassDecl.class, "getExtendsClause", (Class<?>[]) new Class[0]);
         if (Javac.getJavaCompilerVersion() < 8) {
-            getEndPosition = getMethod((Class<?>) JCDiagnostic.DiagnosticPosition.class, "getEndPosition", (Class<?>[]) new Class[]{Map.class});
+            getEndPosition = getMethod((Class<?>) JCDiagnostic$DiagnosticPosition.class, "getEndPosition", (Class<?>[]) new Class[]{Map.class});
             storeEnd = getMethod((Class<?>) Map.class, "put", (Class<?>[]) new Class[]{Object.class, Object.class});
         } else {
-            getEndPosition = getMethod((Class<?>) JCDiagnostic.DiagnosticPosition.class, "getEndPosition", "com.sun.tools.javac.tree.EndPosTable");
+            getEndPosition = getMethod((Class<?>) JCDiagnostic$DiagnosticPosition.class, "getEndPosition", "com.sun.tools.javac.tree.EndPosTable");
             try {
                 Class<?> endPosTable = Class.forName("com.sun.tools.javac.tree.EndPosTable");
                 try {
@@ -559,7 +613,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         reflectionCache = new HashMap();
     }
 
-    public PrettyPrinter(Writer out, JCTree.JCCompilationUnit cu, List<CommentInfo> comments, int[] textBlockStarts, FormatPreferences preferences) {
+    public PrettyPrinter(Writer out, JCTree$JCCompilationUnit cu, List<CommentInfo> comments, int[] textBlockStarts, FormatPreferences preferences) {
         this.out = out;
         this.comments = comments;
         this.textBlockStarts = textBlockStarts;
@@ -582,27 +636,13 @@ public class PrettyPrinter extends JCTree.Visitor {
         return Javac.getEndPosition(tree, this.compilationUnit);
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/PrettyPrinter$UncheckedIOException.SCL.lombok */
-    public final class UncheckedIOException extends RuntimeException {
-        UncheckedIOException(IOException source) {
-            super(toMsg(source));
-            setStackTrace(source.getStackTrace());
-        }
-
-        private static String toMsg(Throwable t) {
-            String msg = t.getMessage();
-            String n = t.getClass().getSimpleName();
-            return (msg == null || msg.isEmpty()) ? n : String.valueOf(n) + ": " + msg;
-        }
-    }
-
     private void align() {
         if (this.onNewLine) {
             for (int i = 0; i < this.indent; i++) {
                 try {
                     this.out.write(this.formatPreferences.indent());
                 } catch (IOException e) {
-                    throw new UncheckedIOException(e);
+                    throw new PrettyPrinter$UncheckedIOException(e);
                 }
             }
             this.onNewLine = false;
@@ -641,15 +681,15 @@ public class PrettyPrinter extends JCTree.Visitor {
     }
 
     private boolean suppress(JCTree tree) {
-        if (tree instanceof JCTree.JCBlock) {
-            JCTree.JCBlock block = (JCTree.JCBlock) tree;
+        if (tree instanceof JCTree$JCBlock) {
+            JCTree$JCBlock block = (JCTree$JCBlock) tree;
             return -1 == block.pos && block.stats.isEmpty();
         }
-        if (tree instanceof JCTree.JCExpressionStatement) {
-            JCTree.JCMethodInvocation jCMethodInvocation = ((JCTree.JCExpressionStatement) tree).expr;
-            if (jCMethodInvocation instanceof JCTree.JCMethodInvocation) {
-                JCTree.JCMethodInvocation inv = jCMethodInvocation;
-                if (inv.typeargs.isEmpty() && inv.args.isEmpty() && (inv.meth instanceof JCTree.JCIdent) && tree.pos == ((JCTree.JCExpression) jCMethodInvocation).pos) {
+        if (tree instanceof JCTree$JCExpressionStatement) {
+            JCTree$JCMethodInvocation jCTree$JCMethodInvocation = ((JCTree$JCExpressionStatement) tree).expr;
+            if (jCTree$JCMethodInvocation instanceof JCTree$JCMethodInvocation) {
+                JCTree$JCMethodInvocation inv = jCTree$JCMethodInvocation;
+                if (inv.typeargs.isEmpty() && inv.args.isEmpty() && (inv.meth instanceof JCTree$JCIdent) && tree.pos == ((JCTree$JCExpression) jCTree$JCMethodInvocation).pos) {
                     return inv.meth.name.toString().equals("super");
                 }
                 return false;
@@ -676,7 +716,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             this.onNewLine = false;
             this.aligned = false;
         } catch (IOException e) {
-            throw new UncheckedIOException(e);
+            throw new PrettyPrinter$UncheckedIOException(e);
         }
     }
 
@@ -687,7 +727,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             this.aligned = false;
             this.needsNewLine = false;
         } catch (IOException e) {
-            throw new UncheckedIOException(e);
+            throw new PrettyPrinter$UncheckedIOException(e);
         }
     }
 
@@ -702,7 +742,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             this.aligned = false;
             this.needsNewLine = false;
         } catch (IOException e) {
-            throw new UncheckedIOException(e);
+            throw new PrettyPrinter$UncheckedIOException(e);
         }
     }
 
@@ -755,10 +795,10 @@ public class PrettyPrinter extends JCTree.Visitor {
         boolean prevNewLine = this.onNewLine;
         CommentInfo head = (CommentInfo) this.comments.head;
         boolean stop = false;
-        while (this.comments.nonEmpty() && head.prevEndPos == from && !stop && head.start != CommentInfo.StartConnection.ON_NEXT_LINE && head.start != CommentInfo.StartConnection.START_OF_LINE) {
+        while (this.comments.nonEmpty() && head.prevEndPos == from && !stop && head.start != CommentInfo$StartConnection.ON_NEXT_LINE && head.start != CommentInfo$StartConnection.START_OF_LINE) {
             from = head.endPos;
             printComment(head);
-            stop = head.end == CommentInfo.EndConnection.ON_NEXT_LINE;
+            stop = head.end == CommentInfo$EndConnection.ON_NEXT_LINE;
             this.comments = this.comments.tail;
             head = (CommentInfo) this.comments.head;
         }
@@ -777,14 +817,14 @@ public class PrettyPrinter extends JCTree.Visitor {
         return null;
     }
 
-    private int dims(JCTree.JCExpression vartype) {
-        if (vartype instanceof JCTree.JCArrayTypeTree) {
-            return 1 + dims(((JCTree.JCArrayTypeTree) vartype).elemtype);
+    private int dims(JCTree$JCExpression vartype) {
+        if (vartype instanceof JCTree$JCArrayTypeTree) {
+            return 1 + dims(((JCTree$JCArrayTypeTree) vartype).elemtype);
         }
         if (isJcAnnotatedType(vartype)) {
-            JCTree.JCArrayTypeTree jCArrayTypeTree = (JCTree) readObject(vartype, "underlyingType", null);
-            if (jCArrayTypeTree instanceof JCTree.JCArrayTypeTree) {
-                return 1 + dims(jCArrayTypeTree.elemtype);
+            JCTree$JCArrayTypeTree jCTree$JCArrayTypeTree = (JCTree) readObject(vartype, "underlyingType", null);
+            if (jCTree$JCArrayTypeTree instanceof JCTree$JCArrayTypeTree) {
+                return 1 + dims(jCTree$JCArrayTypeTree.elemtype);
             }
             return 0;
         }
@@ -812,7 +852,7 @@ public class PrettyPrinter extends JCTree.Visitor {
                 this.needsSpace = true;
                 break;
         }
-        if (this.onNewLine && !this.aligned && comment.start != CommentInfo.StartConnection.START_OF_LINE) {
+        if (this.onNewLine && !this.aligned && comment.start != CommentInfo$StartConnection.START_OF_LINE) {
             this.needsAlign = true;
         }
         print(comment.content);
@@ -865,7 +905,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         return this.__VALUE__;
     }
 
-    public void visitTopLevel(JCTree.JCCompilationUnit tree) {
+    public void visitTopLevel(JCTree$JCCompilationUnit tree) {
         printDocComment(tree);
         JCTree n = PackageName.getPackageNode(tree);
         if (n != null) {
@@ -876,7 +916,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
         boolean first = true;
         for (JCTree child : tree.defs) {
-            if (child instanceof JCTree.JCImport) {
+            if (child instanceof JCTree$JCImport) {
                 if (first) {
                     println();
                 }
@@ -885,19 +925,19 @@ public class PrettyPrinter extends JCTree.Visitor {
             }
         }
         for (JCTree child2 : tree.defs) {
-            if (!(child2 instanceof JCTree.JCImport)) {
+            if (!(child2 instanceof JCTree$JCImport)) {
                 print(child2);
             }
         }
         consumeComments(Integer.MAX_VALUE);
     }
 
-    public void visitImport(JCTree.JCImport tree) {
-        if (tree.qualid instanceof JCTree.JCFieldAccess) {
-            JCTree.JCFieldAccess fa = tree.qualid;
-            if (fa.name.length() == 1 && fa.name.contentEquals("*") && (fa.selected instanceof JCTree.JCFieldAccess)) {
-                JCTree.JCFieldAccess lombokExperimental = fa.selected;
-                if (lombokExperimental.name.contentEquals("experimental") && (lombokExperimental.selected instanceof JCTree.JCIdent) && lombokExperimental.selected.name.contentEquals("lombok")) {
+    public void visitImport(JCTree$JCImport tree) {
+        if (tree.qualid instanceof JCTree$JCFieldAccess) {
+            JCTree$JCFieldAccess fa = tree.qualid;
+            if (fa.name.length() == 1 && fa.name.contentEquals("*") && (fa.selected instanceof JCTree$JCFieldAccess)) {
+                JCTree$JCFieldAccess lombokExperimental = fa.selected;
+                if (lombokExperimental.name.contentEquals("experimental") && (lombokExperimental.selected instanceof JCTree$JCIdent) && lombokExperimental.selected.name.contentEquals("lombok")) {
                     return;
                 }
             }
@@ -910,7 +950,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         println(";", tree);
     }
 
-    public void visitClassDef(JCTree.JCClassDecl tree) {
+    public void visitClassDef(JCTree$JCClassDecl tree) {
         println();
         printDocComment(tree);
         align();
@@ -959,9 +999,9 @@ public class PrettyPrinter extends JCTree.Visitor {
         boolean prevWasEnumMember = isEnum;
         Iterator it = members.iterator();
         while (it.hasNext()) {
-            JCTree.JCMethodDecl jCMethodDecl = (JCTree) it.next();
-            if (typeOfPrevEnumMember != 3 || !(jCMethodDecl instanceof JCTree.JCMethodDecl) || (jCMethodDecl.mods.flags & Permission.CREATE_PRIVATE_THREADS) == 0) {
-                boolean isEnumVar = isEnum && (jCMethodDecl instanceof JCTree.JCVariableDecl) && (((JCTree.JCVariableDecl) jCMethodDecl).mods.flags & Permission.EMBED_LINKS) != 0;
+            JCTree$JCMethodDecl jCTree$JCMethodDecl = (JCTree) it.next();
+            if (typeOfPrevEnumMember != 3 || !(jCTree$JCMethodDecl instanceof JCTree$JCMethodDecl) || (jCTree$JCMethodDecl.mods.flags & Permission.CREATE_PRIVATE_THREADS) == 0) {
+                boolean isEnumVar = isEnum && (jCTree$JCMethodDecl instanceof JCTree$JCVariableDecl) && (((JCTree$JCVariableDecl) jCTree$JCMethodDecl).mods.flags & Permission.EMBED_LINKS) != 0;
                 if (!isEnumVar && prevWasEnumMember) {
                     prevWasEnumMember = false;
                     if (typeOfPrevEnumMember == 3) {
@@ -970,7 +1010,7 @@ public class PrettyPrinter extends JCTree.Visitor {
                     println(";");
                 }
                 if (isEnumVar) {
-                    if (prefType != null && prefType != JCTree.JCVariableDecl.class) {
+                    if (prefType != null && prefType != JCTree$JCVariableDecl.class) {
                         println();
                     }
                     switch (typeOfPrevEnumMember) {
@@ -982,42 +1022,42 @@ public class PrettyPrinter extends JCTree.Visitor {
                             align();
                             break;
                     }
-                    print((JCTree) jCMethodDecl);
-                    JCTree.JCNewClass jCNewClass = ((JCTree.JCVariableDecl) jCMethodDecl).init;
-                    typeOfPrevEnumMember = (!(jCNewClass instanceof JCTree.JCNewClass) || jCNewClass.def == null) ? 1 : 2;
-                } else if (jCMethodDecl instanceof JCTree.JCVariableDecl) {
-                    if (prefType != null && prefType != JCTree.JCVariableDecl.class) {
+                    print((JCTree) jCTree$JCMethodDecl);
+                    JCTree$JCNewClass jCTree$JCNewClass = ((JCTree$JCVariableDecl) jCTree$JCMethodDecl).init;
+                    typeOfPrevEnumMember = (!(jCTree$JCNewClass instanceof JCTree$JCNewClass) || jCTree$JCNewClass.def == null) ? 1 : 2;
+                } else if (jCTree$JCMethodDecl instanceof JCTree$JCVariableDecl) {
+                    if (prefType != null && prefType != JCTree$JCVariableDecl.class) {
                         println();
                     }
                     if (isInterface) {
                         this.flagMod = -26L;
                     }
-                    print((JCTree) jCMethodDecl);
-                } else if (jCMethodDecl instanceof JCTree.JCMethodDecl) {
-                    if ((jCMethodDecl.mods.flags & Permission.CREATE_PRIVATE_THREADS) == 0) {
+                    print((JCTree) jCTree$JCMethodDecl);
+                } else if (jCTree$JCMethodDecl instanceof JCTree$JCMethodDecl) {
+                    if ((jCTree$JCMethodDecl.mods.flags & Permission.CREATE_PRIVATE_THREADS) == 0) {
                         if (prefType != null) {
                             println();
                         }
                         if (isInterface) {
                             this.flagMod = -1026L;
                         }
-                        print((JCTree) jCMethodDecl);
+                        print((JCTree) jCTree$JCMethodDecl);
                     }
-                } else if (jCMethodDecl instanceof JCTree.JCClassDecl) {
+                } else if (jCTree$JCMethodDecl instanceof JCTree$JCClassDecl) {
                     if (prefType != null) {
                         println();
                     }
                     if (isInterface) {
                         this.flagMod = -10L;
                     }
-                    print((JCTree) jCMethodDecl);
+                    print((JCTree) jCTree$JCMethodDecl);
                 } else {
                     if (prefType != null) {
                         println();
                     }
-                    print((JCTree) jCMethodDecl);
+                    print((JCTree) jCTree$JCMethodDecl);
                 }
-                prefType = jCMethodDecl.getClass();
+                prefType = jCTree$JCMethodDecl.getClass();
             }
         }
         if (prevWasEnumMember) {
@@ -1028,7 +1068,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitTypeParameter(JCTree.JCTypeParameter tree) {
+    public void visitTypeParameter(JCTree$JCTypeParameter tree) {
         List<? extends JCTree> list = (List) readObject(tree, "annotations", List.nil());
         if (!list.isEmpty()) {
             print(list, " ");
@@ -1042,7 +1082,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         consumeComments((JCTree) tree);
     }
 
-    public void visitVarDef(JCTree.JCVariableDecl tree) {
+    public void visitVarDef(JCTree$JCVariableDecl tree) {
         printDocComment(tree);
         align();
         if ((tree.mods.flags & Permission.EMBED_LINKS) != 0) {
@@ -1055,13 +1095,13 @@ public class PrettyPrinter extends JCTree.Visitor {
         println(";", tree);
     }
 
-    private void printVarDefInline(JCTree.JCVariableDecl tree) {
+    private void printVarDefInline(JCTree$JCVariableDecl tree) {
         printAnnotations(tree.mods.annotations, false);
         printModifierKeywords(tree.mods);
         printVarDef0(tree);
     }
 
-    private void printVarDef0(JCTree.JCVariableDecl tree) {
+    private void printVarDef0(JCTree$JCVariableDecl tree) {
         boolean varargs = (tree.mods.flags & Permission.MANAGE_THREADS) != 0;
         try {
             this.innermostArrayBracketsAreVarargs = varargs;
@@ -1083,11 +1123,11 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    private void printEnumMember(JCTree.JCVariableDecl tree) {
+    private void printEnumMember(JCTree$JCVariableDecl tree) {
         printAnnotations(tree.mods.annotations, true);
         print((CharSequence) tree.name);
-        if (tree.init instanceof JCTree.JCNewClass) {
-            JCTree.JCNewClass constructor = tree.init;
+        if (tree.init instanceof JCTree$JCNewClass) {
+            JCTree$JCNewClass constructor = tree.init;
             if (constructor.args != null && constructor.args.nonEmpty()) {
                 print("(");
                 print(constructor.args, ", ");
@@ -1104,7 +1144,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitTypeApply(JCTree.JCTypeApply tree) {
+    public void visitTypeApply(JCTree$JCTypeApply tree) {
         print((JCTree) tree.clazz);
         print("<");
         boolean temp = this.innermostArrayBracketsAreVarargs;
@@ -1114,7 +1154,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         print(">");
     }
 
-    public void visitWildcard(JCTree.JCWildcard tree) {
+    public void visitWildcard(JCTree$JCWildcard tree) {
         switch ($SWITCH_TABLE$com$sun$source$tree$Tree$Kind()[tree.getKind().ordinal()]) {
             case 88:
             default:
@@ -1131,8 +1171,8 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitLiteral(JCTree.JCLiteral tree) {
-        JavacTreeMaker.TypeTag typeTag = JavacTreeMaker.TypeTag.typeTag((JCTree) tree);
+    public void visitLiteral(JCTree$JCLiteral tree) {
+        JavacTreeMaker$TypeTag typeTag = JavacTreeMaker$TypeTag.typeTag((JCTree) tree);
         if (!Javac.CTC_INT.equals(typeTag)) {
             if (!Javac.CTC_LONG.equals(typeTag)) {
                 if (!Javac.CTC_FLOAT.equals(typeTag)) {
@@ -1196,7 +1236,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         this.indent--;
     }
 
-    public void visitMethodDef(JCTree.JCMethodDecl tree) {
+    public void visitMethodDef(JCTree$JCMethodDecl tree) {
         boolean isConstructor = tree.name == name_init(tree.name);
         if (!isConstructor || (tree.mods.flags & Permission.CREATE_PRIVATE_THREADS) == 0) {
             printDocComment(tree);
@@ -1216,12 +1256,12 @@ public class PrettyPrinter extends JCTree.Visitor {
             }
             boolean first = true;
             print("(");
-            JCTree.JCVariableDecl recvparam = (JCTree.JCVariableDecl) readObject(tree, "recvparam", null);
+            JCTree$JCVariableDecl recvparam = (JCTree$JCVariableDecl) readObject(tree, "recvparam", null);
             if (recvparam != null) {
                 printVarDefInline(recvparam);
                 first = false;
             }
-            for (JCTree.JCVariableDecl param : tree.params) {
+            for (JCTree$JCVariableDecl param : tree.params) {
                 if (!first) {
                     print(", ");
                 }
@@ -1246,14 +1286,14 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitSkip(JCTree.JCSkip that) {
+    public void visitSkip(JCTree$JCSkip that) {
         if (this.onNewLine && !this.aligned) {
             align();
         }
         println(";");
     }
 
-    public void visitAnnotation(JCTree.JCAnnotation tree) {
+    public void visitAnnotation(JCTree$JCAnnotation tree) {
         print("@");
         print(tree.annotationType);
         if (tree.args.isEmpty()) {
@@ -1261,9 +1301,9 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
         print("(");
         boolean done = false;
-        if (tree.args.length() == 1 && (tree.args.get(0) instanceof JCTree.JCAssign)) {
-            JCTree.JCAssign arg1 = (JCTree.JCAssign) tree.args.get(0);
-            JCTree.JCIdent arg1Name = arg1.lhs instanceof JCTree.JCIdent ? (JCTree.JCIdent) arg1.lhs : null;
+        if (tree.args.length() == 1 && (tree.args.get(0) instanceof JCTree$JCAssign)) {
+            JCTree$JCAssign arg1 = (JCTree$JCAssign) tree.args.get(0);
+            JCTree$JCIdent arg1Name = arg1.lhs instanceof JCTree$JCIdent ? (JCTree$JCIdent) arg1.lhs : null;
             if (arg1Name != null && arg1Name.name == name_value(arg1Name.name)) {
                 print((JCTree) arg1.rhs);
                 done = true;
@@ -1275,21 +1315,21 @@ public class PrettyPrinter extends JCTree.Visitor {
         print(")");
     }
 
-    public void visitTypeArray(JCTree.JCArrayTypeTree tree) {
+    public void visitTypeArray(JCTree$JCArrayTypeTree tree) {
         printTypeArray0(tree);
     }
 
-    public void visitNewArray(JCTree.JCNewArray tree) {
-        JCTree.JCExpression jCExpression = tree.elemtype;
+    public void visitNewArray(JCTree$JCNewArray tree) {
+        JCTree$JCExpression jCTree$JCExpression = tree.elemtype;
         int dims = 0;
-        if (jCExpression != null) {
+        if (jCTree$JCExpression != null) {
             print("new ");
-            while (jCExpression instanceof JCTree.JCArrayTypeTree) {
+            while (jCTree$JCExpression instanceof JCTree$JCArrayTypeTree) {
                 dims++;
-                jCExpression = ((JCTree.JCArrayTypeTree) jCExpression).elemtype;
+                jCTree$JCExpression = ((JCTree$JCArrayTypeTree) jCTree$JCExpression).elemtype;
             }
-            print((JCTree) jCExpression);
-            for (JCTree.JCExpression expr : tree.dims) {
+            print((JCTree) jCTree$JCExpression);
+            for (JCTree$JCExpression expr : tree.dims) {
                 print("[");
                 print((JCTree) expr);
                 print("]");
@@ -1299,7 +1339,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             print("[]");
         }
         if (tree.elems != null) {
-            if (jCExpression != null) {
+            if (jCTree$JCExpression != null) {
                 print("[] ");
             }
             print("{");
@@ -1308,14 +1348,14 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitNewClass(JCTree.JCNewClass tree) {
+    public void visitNewClass(JCTree$JCNewClass tree) {
         if (tree.encl != null) {
             print((JCTree) tree.encl);
             print(".");
         }
-        boolean moveFirstParameter = tree.args.nonEmpty() && (tree.args.head instanceof JCTree.JCUnary) && ((JCTree.JCExpression) tree.args.head).toString().startsWith("<*nullchk*>");
+        boolean moveFirstParameter = tree.args.nonEmpty() && (tree.args.head instanceof JCTree$JCUnary) && ((JCTree$JCExpression) tree.args.head).toString().startsWith("<*nullchk*>");
         if (moveFirstParameter) {
-            print((JCTree) ((JCTree.JCUnary) tree.args.head).arg);
+            print((JCTree) ((JCTree$JCUnary) tree.args.head).arg);
             print(".");
         }
         print("new ");
@@ -1344,15 +1384,15 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitIndexed(JCTree.JCArrayAccess tree) {
+    public void visitIndexed(JCTree$JCArrayAccess tree) {
         print((JCTree) tree.indexed);
         print("[");
         print((JCTree) tree.index);
         print("]");
     }
 
-    public void visitTypeIdent(JCTree.JCPrimitiveTypeTree tree) {
-        JavacTreeMaker.TypeTag typeTag = JavacTreeMaker.TypeTag.typeTag((JCTree) tree);
+    public void visitTypeIdent(JCTree$JCPrimitiveTypeTree tree) {
+        JavacTreeMaker$TypeTag typeTag = JavacTreeMaker$TypeTag.typeTag((JCTree) tree);
         if (!Javac.CTC_BYTE.equals(typeTag)) {
             if (!Javac.CTC_CHAR.equals(typeTag)) {
                 if (!Javac.CTC_SHORT.equals(typeTag)) {
@@ -1393,12 +1433,12 @@ public class PrettyPrinter extends JCTree.Visitor {
         print("byte");
     }
 
-    public void visitLabelled(JCTree.JCLabeledStatement tree) {
+    public void visitLabelled(JCTree$JCLabeledStatement tree) {
         aPrint(tree.label);
         print(":");
-        if ((tree.body instanceof JCTree.JCSkip) || suppress(tree)) {
+        if ((tree.body instanceof JCTree$JCSkip) || suppress(tree)) {
             println(" ;", tree);
-        } else if (tree.body instanceof JCTree.JCBlock) {
+        } else if (tree.body instanceof JCTree$JCBlock) {
             print(" ");
             print((JCTree) tree.body);
         } else {
@@ -1407,13 +1447,13 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitModifiers(JCTree.JCModifiers tree) {
+    public void visitModifiers(JCTree$JCModifiers tree) {
         printAnnotations(tree.annotations, true);
         printModifierKeywords(tree);
     }
 
-    private void printAnnotations(List<JCTree.JCAnnotation> annotations, boolean newlines) {
-        for (JCTree.JCAnnotation ann : annotations) {
+    private void printAnnotations(List<JCTree$JCAnnotation> annotations, boolean newlines) {
+        for (JCTree$JCAnnotation ann : annotations) {
             print((JCTree) ann);
             if (newlines) {
                 println();
@@ -1424,7 +1464,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    private void printModifierKeywords(JCTree.JCModifiers tree) {
+    private void printModifierKeywords(JCTree$JCModifiers tree) {
         long v = this.flagMod & tree.flags;
         this.flagMod = -1L;
         if ((v & Permission.SEND_TTS_MESSAGES) != 0) {
@@ -1469,20 +1509,20 @@ public class PrettyPrinter extends JCTree.Visitor {
         print("default ");
     }
 
-    public void visitSelect(JCTree.JCFieldAccess tree) {
+    public void visitSelect(JCTree$JCFieldAccess tree) {
         print((JCTree) tree.selected);
         print(".");
         print((CharSequence) tree.name);
     }
 
-    public void visitIdent(JCTree.JCIdent tree) {
+    public void visitIdent(JCTree$JCIdent tree) {
         print((CharSequence) tree.name);
     }
 
-    public void visitApply(JCTree.JCMethodInvocation tree) {
+    public void visitApply(JCTree$JCMethodInvocation tree) {
         if (tree.typeargs.nonEmpty()) {
-            if (tree.meth instanceof JCTree.JCFieldAccess) {
-                JCTree.JCFieldAccess fa = tree.meth;
+            if (tree.meth instanceof JCTree$JCFieldAccess) {
+                JCTree$JCFieldAccess fa = tree.meth;
                 print((JCTree) fa.selected);
                 print(".<");
                 print(tree.typeargs, ", ");
@@ -1502,7 +1542,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         print(")");
     }
 
-    public void visitAssert(JCTree.JCAssert tree) {
+    public void visitAssert(JCTree$JCAssert tree) {
         aPrint("assert ");
         print((JCTree) tree.cond);
         if (tree.detail != null) {
@@ -1512,22 +1552,22 @@ public class PrettyPrinter extends JCTree.Visitor {
         println(";", tree);
     }
 
-    public void visitAssign(JCTree.JCAssign tree) {
+    public void visitAssign(JCTree$JCAssign tree) {
         print((JCTree) tree.lhs);
         print(" = ");
         print((JCTree) tree.rhs);
     }
 
-    public void visitAssignop(JCTree.JCAssignOp tree) {
+    public void visitAssignop(JCTree$JCAssignOp tree) {
         print((JCTree) tree.lhs);
-        String opname = operator(JavacTreeMaker.TreeTag.treeTag((JCTree) tree));
+        String opname = operator(JavacTreeMaker$TreeTag.treeTag((JCTree) tree));
         print(" " + opname + " ");
         print((JCTree) tree.rhs);
     }
 
-    public void visitUnary(JCTree.JCUnary tree) {
-        String op = operator(JavacTreeMaker.TreeTag.treeTag((JCTree) tree));
-        if (JavacTreeMaker.TreeTag.treeTag((JCTree) tree).getOperatorPrecedenceLevel() == 14) {
+    public void visitUnary(JCTree$JCUnary tree) {
+        String op = operator(JavacTreeMaker$TreeTag.treeTag((JCTree) tree));
+        if (JavacTreeMaker$TreeTag.treeTag((JCTree) tree).getOperatorPrecedenceLevel() == 14) {
             print(op);
             print((JCTree) tree.arg);
         } else {
@@ -1536,8 +1576,8 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitBinary(JCTree.JCBinary tree) {
-        String op = operator(JavacTreeMaker.TreeTag.treeTag((JCTree) tree));
+    public void visitBinary(JCTree$JCBinary tree) {
+        String op = operator(JavacTreeMaker$TreeTag.treeTag((JCTree) tree));
         print((JCTree) tree.lhs);
         print(" ");
         print(op);
@@ -1545,7 +1585,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         print((JCTree) tree.rhs);
     }
 
-    public void visitTypeTest(JCTree.JCInstanceOf tree) {
+    public void visitTypeTest(JCTree$JCInstanceOf tree) {
         print((JCTree) tree.expr);
         print(" instanceof ");
         JCTree c = (JCTree) readObject(tree, "clazz", null);
@@ -1555,14 +1595,14 @@ public class PrettyPrinter extends JCTree.Visitor {
         print(c);
     }
 
-    public void visitTypeCast(JCTree.JCTypeCast tree) {
+    public void visitTypeCast(JCTree$JCTypeCast tree) {
         print("(");
         print(tree.clazz);
         print(") ");
         print((JCTree) tree.expr);
     }
 
-    public void visitBlock(JCTree.JCBlock tree) {
+    public void visitBlock(JCTree$JCBlock tree) {
         if (tree.pos == -1 && tree.stats.isEmpty()) {
             return;
         }
@@ -1580,9 +1620,9 @@ public class PrettyPrinter extends JCTree.Visitor {
         aPrintln("}", tree);
     }
 
-    public void visitBreak(JCTree.JCBreak tree) {
+    public void visitBreak(JCTree$JCBreak tree) {
         aPrint("break");
-        JCTree.JCExpression value = (JCTree.JCExpression) readObject(tree, "value", null);
+        JCTree$JCExpression value = (JCTree$JCExpression) readObject(tree, "value", null);
         if (value != null) {
             print(" ");
             print((JCTree) value);
@@ -1596,7 +1636,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         println(";", tree);
     }
 
-    public void visitContinue(JCTree.JCContinue tree) {
+    public void visitContinue(JCTree$JCContinue tree) {
         aPrint("continue");
         if (tree.label != null) {
             print(" ");
@@ -1605,7 +1645,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         println(";", tree);
     }
 
-    public void visitConditional(JCTree.JCConditional tree) {
+    public void visitConditional(JCTree$JCConditional tree) {
         print((JCTree) tree.cond);
         print(" ? ");
         print((JCTree) tree.truepart);
@@ -1613,13 +1653,13 @@ public class PrettyPrinter extends JCTree.Visitor {
         print((JCTree) tree.falsepart);
     }
 
-    public void visitParens(JCTree.JCParens tree) {
+    public void visitParens(JCTree$JCParens tree) {
         print("(");
         print((JCTree) tree.expr);
         print(")");
     }
 
-    public void visitReturn(JCTree.JCReturn tree) {
+    public void visitReturn(JCTree$JCReturn tree) {
         aPrint("return");
         if (tree.expr != null) {
             print(" ");
@@ -1628,15 +1668,15 @@ public class PrettyPrinter extends JCTree.Visitor {
         println(";", tree);
     }
 
-    public void visitThrow(JCTree.JCThrow tree) {
+    public void visitThrow(JCTree$JCThrow tree) {
         aPrint("throw ");
         print((JCTree) tree.expr);
         println(";", tree);
     }
 
-    public void visitWhileLoop(JCTree.JCWhileLoop tree) {
+    public void visitWhileLoop(JCTree$JCWhileLoop tree) {
         aPrint("while ");
-        if (tree.cond instanceof JCTree.JCParens) {
+        if (tree.cond instanceof JCTree$JCParens) {
             print((JCTree) tree.cond);
         } else {
             print("(");
@@ -1647,14 +1687,14 @@ public class PrettyPrinter extends JCTree.Visitor {
         print((JCTree) tree.body);
     }
 
-    public void visitForLoop(JCTree.JCForLoop tree) {
+    public void visitForLoop(JCTree$JCForLoop tree) {
         aPrint("for (");
         if (tree.init.nonEmpty()) {
-            if (tree.init.head instanceof JCTree.JCVariableDecl) {
+            if (tree.init.head instanceof JCTree$JCVariableDecl) {
                 boolean first = true;
                 int dims = 0;
-                for (JCTree.JCStatement i : tree.init) {
-                    JCTree.JCVariableDecl vd = (JCTree.JCVariableDecl) i;
+                for (JCTree$JCStatement i : tree.init) {
+                    JCTree$JCVariableDecl vd = (JCTree$JCVariableDecl) i;
                     if (first) {
                         printVarDefInline(vd);
                         dims = dims(vd.vartype);
@@ -1674,12 +1714,12 @@ public class PrettyPrinter extends JCTree.Visitor {
                 }
             } else {
                 boolean first2 = true;
-                for (JCTree.JCExpressionStatement jCExpressionStatement : tree.init) {
+                for (JCTree$JCExpressionStatement jCTree$JCExpressionStatement : tree.init) {
                     if (!first2) {
                         print(", ");
                     }
                     first2 = false;
-                    print((JCTree) jCExpressionStatement.expr);
+                    print((JCTree) jCTree$JCExpressionStatement.expr);
                 }
             }
         }
@@ -1689,7 +1729,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
         print("; ");
         boolean first3 = true;
-        for (JCTree.JCExpressionStatement exprStatement : tree.step) {
+        for (JCTree$JCExpressionStatement exprStatement : tree.step) {
             if (!first3) {
                 print(", ");
             }
@@ -1700,7 +1740,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         print((JCTree) tree.body);
     }
 
-    public void visitForeachLoop(JCTree.JCEnhancedForLoop tree) {
+    public void visitForeachLoop(JCTree$JCEnhancedForLoop tree) {
         aPrint("for (");
         printVarDefInline(tree.var);
         print(" : ");
@@ -1709,9 +1749,9 @@ public class PrettyPrinter extends JCTree.Visitor {
         print((JCTree) tree.body);
     }
 
-    public void visitIf(JCTree.JCIf tree) {
+    public void visitIf(JCTree$JCIf tree) {
         aPrint("if ");
-        if (tree.cond instanceof JCTree.JCParens) {
+        if (tree.cond instanceof JCTree$JCParens) {
             print((JCTree) tree.cond);
         } else {
             print("(");
@@ -1719,7 +1759,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             print(")");
         }
         print(" ");
-        if (tree.thenpart instanceof JCTree.JCBlock) {
+        if (tree.thenpart instanceof JCTree$JCBlock) {
             println("{");
             this.indent++;
             print(tree.thenpart.stats, "");
@@ -1738,15 +1778,15 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitExec(JCTree.JCExpressionStatement tree) {
+    public void visitExec(JCTree$JCExpressionStatement tree) {
         align();
         print((JCTree) tree.expr);
         println(";", tree);
     }
 
-    public void visitDoLoop(JCTree.JCDoWhileLoop tree) {
+    public void visitDoLoop(JCTree$JCDoWhileLoop tree) {
         aPrint("do ");
-        if (tree.body instanceof JCTree.JCBlock) {
+        if (tree.body instanceof JCTree$JCBlock) {
             println("{");
             this.indent++;
             print(tree.body.stats, "");
@@ -1756,7 +1796,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             print((JCTree) tree.body);
         }
         print(" while ");
-        if (tree.cond instanceof JCTree.JCParens) {
+        if (tree.cond instanceof JCTree$JCParens) {
             print((JCTree) tree.cond);
         } else {
             print("(");
@@ -1766,9 +1806,9 @@ public class PrettyPrinter extends JCTree.Visitor {
         println(";", tree);
     }
 
-    public void visitSynchronized(JCTree.JCSynchronized tree) {
+    public void visitSynchronized(JCTree$JCSynchronized tree) {
         aPrint("synchronized ");
-        if (tree.lock instanceof JCTree.JCParens) {
+        if (tree.lock instanceof JCTree$JCParens) {
             print((JCTree) tree.lock);
         } else {
             print("(");
@@ -1779,10 +1819,10 @@ public class PrettyPrinter extends JCTree.Visitor {
         print((JCTree) tree.body);
     }
 
-    public void visitCase(JCTree.JCCase tree) {
+    public void visitCase(JCTree$JCCase tree) {
         List<? extends JCTree> listNil = (List) readObject(tree, "pats", null);
         if (listNil == null) {
-            JCTree.JCExpression pat = (JCTree.JCExpression) readObject(tree, "pat", null);
+            JCTree$JCExpression pat = (JCTree$JCExpression) readObject(tree, "pat", null);
             listNil = pat == null ? List.nil() : List.of(pat);
         }
         if (listNil.isEmpty()) {
@@ -1794,15 +1834,15 @@ public class PrettyPrinter extends JCTree.Visitor {
         Enum<?> caseKind = (Enum) readObject(tree, "caseKind", null);
         if (caseKind != null && caseKind.name().equalsIgnoreCase("RULE")) {
             print(" -> ");
-            if (tree.stats.head instanceof JCTree.JCBreak) {
-                JCTree.JCBreak b2 = (JCTree.JCBreak) tree.stats.head;
+            if (tree.stats.head instanceof JCTree$JCBreak) {
+                JCTree$JCBreak b2 = (JCTree$JCBreak) tree.stats.head;
                 print((JCTree) readObject(b2, "value", null));
                 print(";");
                 this.needsNewLine = true;
                 this.needsAlign = true;
                 return;
             }
-            if (((JCTree.JCStatement) tree.stats.head).getClass().getName().endsWith("$JCYield")) {
+            if (((JCTree$JCStatement) tree.stats.head).getClass().getName().endsWith("$JCYield")) {
                 print((JCTree) readObject((JCTree) tree.stats.head, "value", null));
                 print(";");
                 this.needsNewLine = true;
@@ -1810,7 +1850,7 @@ public class PrettyPrinter extends JCTree.Visitor {
                 return;
             }
             print((JCTree) tree.stats.head);
-            if (tree.stats.head instanceof JCTree.JCBlock) {
+            if (tree.stats.head instanceof JCTree$JCBlock) {
                 this.needsNewLine = false;
                 return;
             }
@@ -1822,16 +1862,16 @@ public class PrettyPrinter extends JCTree.Visitor {
         this.indent--;
     }
 
-    public void visitCatch(JCTree.JCCatch tree) {
+    public void visitCatch(JCTree$JCCatch tree) {
         print(" catch (");
         print((JCTree) tree.param);
         print(") ");
         print((JCTree) tree.body);
     }
 
-    public void visitSwitch(JCTree.JCSwitch tree) {
+    public void visitSwitch(JCTree$JCSwitch tree) {
         aPrint("switch ");
-        if (tree.selector instanceof JCTree.JCParens) {
+        if (tree.selector instanceof JCTree$JCParens) {
             print((JCTree) tree.selector);
         } else {
             print("(");
@@ -1839,7 +1879,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             print(")");
         }
         println(" {");
-        boolean ruleStyle = isCaseRuleStyle((JCTree.JCCase) tree.cases.head);
+        boolean ruleStyle = isCaseRuleStyle((JCTree$JCCase) tree.cases.head);
         if (ruleStyle) {
             this.indent++;
         }
@@ -1852,8 +1892,8 @@ public class PrettyPrinter extends JCTree.Visitor {
 
     void printSwitchExpression(JCTree tree) {
         aPrint("switch ");
-        JCTree.JCExpression selector = (JCTree.JCExpression) readObject(tree, "selector", null);
-        if (selector instanceof JCTree.JCParens) {
+        JCTree$JCExpression selector = (JCTree$JCExpression) readObject(tree, "selector", null);
+        if (selector instanceof JCTree$JCParens) {
             print((JCTree) selector);
         } else {
             print("(");
@@ -1862,7 +1902,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
         println(" {");
         List<? extends JCTree> list = (List) readObject(tree, "cases", null);
-        boolean ruleStyle = isCaseRuleStyle((JCTree.JCCase) list.head);
+        boolean ruleStyle = isCaseRuleStyle((JCTree$JCCase) list.head);
         if (ruleStyle) {
             this.indent++;
         }
@@ -1875,7 +1915,7 @@ public class PrettyPrinter extends JCTree.Visitor {
 
     void printYieldExpression(JCTree tree) {
         aPrint("yield ");
-        JCTree.JCExpression value = (JCTree.JCExpression) readObject(tree, "value", null);
+        JCTree$JCExpression value = (JCTree$JCExpression) readObject(tree, "value", null);
         print((JCTree) value);
         println(";", tree);
     }
@@ -1886,7 +1926,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         print((CharSequence) readObject(tree, ModelAuditLogEntry.CHANGE_KEY_NAME, null));
     }
 
-    public void visitTry(JCTree.JCTry tree) {
+    public void visitTry(JCTree$JCTry tree) {
         aPrint("try ");
         List<?> resources = (List) readObject(tree, "resources", List.nil());
         int len = resources.length();
@@ -1896,8 +1936,8 @@ public class PrettyPrinter extends JCTree.Visitor {
             case 1:
                 print("(");
                 JCTree resource = (JCTree) resources.get(0);
-                if (resource instanceof JCTree.JCVariableDecl) {
-                    JCTree.JCVariableDecl decl = (JCTree.JCVariableDecl) resource;
+                if (resource instanceof JCTree$JCVariableDecl) {
+                    JCTree$JCVariableDecl decl = (JCTree$JCVariableDecl) resource;
                     this.flagMod = -17L;
                     printVarDefInline(decl);
                 } else {
@@ -1911,9 +1951,9 @@ public class PrettyPrinter extends JCTree.Visitor {
                 int c = 0;
                 for (Object i : resources) {
                     align();
-                    if (i instanceof JCTree.JCVariableDecl) {
+                    if (i instanceof JCTree$JCVariableDecl) {
                         this.flagMod = -17L;
-                        printVarDefInline((JCTree.JCVariableDecl) i);
+                        printVarDefInline((JCTree$JCVariableDecl) i);
                     } else {
                         print((JCTree) i);
                     }
@@ -1929,18 +1969,18 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
         println("{");
         this.indent++;
-        for (JCTree.JCStatement stat : tree.body.stats) {
+        for (JCTree$JCStatement stat : tree.body.stats) {
             print((JCTree) stat);
         }
         this.indent--;
         aPrint("}");
-        for (JCTree.JCCatch catchBlock : tree.catchers) {
+        for (JCTree$JCCatch catchBlock : tree.catchers) {
             printCatch(catchBlock);
         }
         if (tree.finalizer != null) {
             println(" finally {");
             this.indent++;
-            for (JCTree.JCStatement stat2 : tree.finalizer.stats) {
+            for (JCTree$JCStatement stat2 : tree.finalizer.stats) {
                 print((JCTree) stat2);
             }
             this.indent--;
@@ -1949,23 +1989,23 @@ public class PrettyPrinter extends JCTree.Visitor {
         println((JCTree) tree);
     }
 
-    private void printCatch(JCTree.JCCatch catchBlock) {
+    private void printCatch(JCTree$JCCatch catchBlock) {
         print(" catch (");
         printVarDefInline(catchBlock.param);
         println(") {");
         this.indent++;
-        for (JCTree.JCStatement stat : catchBlock.body.stats) {
+        for (JCTree$JCStatement stat : catchBlock.body.stats) {
             print((JCTree) stat);
         }
         this.indent--;
         aPrint("}");
     }
 
-    public void visitErroneous(JCTree.JCErroneous tree) {
+    public void visitErroneous(JCTree$JCErroneous tree) {
         print("(ERROR)");
     }
 
-    private static String operator(JavacTreeMaker.TreeTag tag) {
+    private static String operator(JavacTreeMaker$TreeTag tag) {
         String op = OPERATORS.get(tag);
         return op == null ? "(?op?)" : op;
     }
@@ -2023,7 +2063,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public static JCTree getExtendsClause(JCTree.JCClassDecl decl) {
+    public static JCTree getExtendsClause(JCTree$JCClassDecl decl) {
         try {
             return (JCTree) getExtendsClause.invoke(decl, new Object[0]);
         } catch (IllegalAccessException e) {
@@ -2070,7 +2110,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    public void visitTypeBoundKind(JCTree.TypeBoundKind tree) {
+    public void visitTypeBoundKind(JCTree$TypeBoundKind tree) {
         print(String.valueOf(tree.kind));
     }
 
@@ -2111,7 +2151,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
     }
 
-    private boolean isCaseRuleStyle(JCTree.JCCase tree) {
+    private boolean isCaseRuleStyle(JCTree$JCCase tree) {
         Enum<?> caseKind;
         return (tree == null || (caseKind = (Enum) readObject(tree, "caseKind", null)) == null || !caseKind.name().equalsIgnoreCase("RULE")) ? false : true;
     }
@@ -2145,7 +2185,7 @@ public class PrettyPrinter extends JCTree.Visitor {
     }
 
     private void printLambda0(JCTree tree) {
-        List<JCTree.JCVariableDecl> params = (List) readObject(tree, "params", List.nil());
+        List<JCTree$JCVariableDecl> params = (List) readObject(tree, "params", List.nil());
         boolean explicit = true;
         int paramLength = params.size();
         try {
@@ -2158,7 +2198,7 @@ public class PrettyPrinter extends JCTree.Visitor {
         }
         if (explicit) {
             boolean first = true;
-            for (JCTree.JCVariableDecl vd : params) {
+            for (JCTree$JCVariableDecl vd : params) {
                 if (!first) {
                     print(", ");
                 }
@@ -2167,7 +2207,7 @@ public class PrettyPrinter extends JCTree.Visitor {
             }
         } else {
             String sep = "";
-            for (JCTree.JCVariableDecl param : params) {
+            for (JCTree$JCVariableDecl param : params) {
                 print(sep);
                 print((CharSequence) param.name);
                 sep = ", ";
@@ -2177,53 +2217,53 @@ public class PrettyPrinter extends JCTree.Visitor {
             print(")");
         }
         print(" -> ");
-        JCTree.JCBlock jCBlock = (JCTree) readObject(tree, "body", null);
-        if (jCBlock instanceof JCTree.JCBlock) {
+        JCTree$JCBlock jCTree$JCBlock = (JCTree) readObject(tree, "body", null);
+        if (jCTree$JCBlock instanceof JCTree$JCBlock) {
             println("{");
             this.indent++;
-            print(jCBlock.stats, "");
+            print(jCTree$JCBlock.stats, "");
             this.indent--;
             aPrint("}");
             return;
         }
-        print((JCTree) jCBlock);
+        print((JCTree) jCTree$JCBlock);
     }
 
     private void printAnnotatedType0(JCTree tree) {
-        JCTree.JCFieldAccess jCFieldAccess = (JCTree) readObject(tree, "underlyingType", null);
-        if (jCFieldAccess instanceof JCTree.JCFieldAccess) {
-            print((JCTree) jCFieldAccess.selected);
+        JCTree$JCFieldAccess jCTree$JCFieldAccess = (JCTree) readObject(tree, "underlyingType", null);
+        if (jCTree$JCFieldAccess instanceof JCTree$JCFieldAccess) {
+            print((JCTree) jCTree$JCFieldAccess.selected);
             print(".");
             print((List) readObject(tree, "annotations", List.nil()), " ");
             print(" ");
-            print((CharSequence) jCFieldAccess.name);
+            print((CharSequence) jCTree$JCFieldAccess.name);
             return;
         }
-        if (jCFieldAccess instanceof JCTree.JCArrayTypeTree) {
+        if (jCTree$JCFieldAccess instanceof JCTree$JCArrayTypeTree) {
             printTypeArray0(tree);
             return;
         }
         print((List) readObject(tree, "annotations", List.nil()), " ");
         print(" ");
-        print((JCTree) jCFieldAccess);
+        print((JCTree) jCTree$JCFieldAccess);
     }
 
     private void printTypeArray0(JCTree tree) {
         JCTree inner = tree;
         int dimCount = 0;
         while (true) {
-            if (inner instanceof JCTree.JCArrayTypeTree) {
-                inner = ((JCTree.JCArrayTypeTree) inner).elemtype;
+            if (inner instanceof JCTree$JCArrayTypeTree) {
+                inner = ((JCTree$JCArrayTypeTree) inner).elemtype;
                 dimCount++;
             } else {
                 if (!isJcAnnotatedType(inner)) {
                     break;
                 }
-                JCTree.JCArrayTypeTree jCArrayTypeTree = (JCTree) readObject(inner, "underlyingType", null);
-                if (!(jCArrayTypeTree instanceof JCTree.JCArrayTypeTree)) {
+                JCTree$JCArrayTypeTree jCTree$JCArrayTypeTree = (JCTree) readObject(inner, "underlyingType", null);
+                if (!(jCTree$JCArrayTypeTree instanceof JCTree$JCArrayTypeTree)) {
                     break;
                 }
-                inner = jCArrayTypeTree.elemtype;
+                inner = jCTree$JCArrayTypeTree.elemtype;
                 dimCount++;
             }
         }
@@ -2231,19 +2271,19 @@ public class PrettyPrinter extends JCTree.Visitor {
         JCTree jCTree = tree;
         while (true) {
             JCTree inner2 = jCTree;
-            if (inner2 instanceof JCTree.JCArrayTypeTree) {
+            if (inner2 instanceof JCTree$JCArrayTypeTree) {
                 dimCount--;
                 print((dimCount == 0 && this.innermostArrayBracketsAreVarargs) ? "..." : "[]");
-                jCTree = ((JCTree.JCArrayTypeTree) inner2).elemtype;
+                jCTree = ((JCTree$JCArrayTypeTree) inner2).elemtype;
             } else if (isJcAnnotatedType(inner2)) {
-                JCTree.JCArrayTypeTree jCArrayTypeTree2 = (JCTree) readObject(inner2, "underlyingType", null);
-                if (jCArrayTypeTree2 instanceof JCTree.JCArrayTypeTree) {
+                JCTree$JCArrayTypeTree jCTree$JCArrayTypeTree2 = (JCTree) readObject(inner2, "underlyingType", null);
+                if (jCTree$JCArrayTypeTree2 instanceof JCTree$JCArrayTypeTree) {
                     dimCount--;
                     print(" ");
                     print((List) readObject(inner2, "annotations", List.nil()), " ");
                     print(" ");
                     print((dimCount == 0 && this.innermostArrayBracketsAreVarargs) ? "..." : "[]");
-                    jCTree = jCArrayTypeTree2.elemtype;
+                    jCTree = jCTree$JCArrayTypeTree2.elemtype;
                 } else {
                     return;
                 }

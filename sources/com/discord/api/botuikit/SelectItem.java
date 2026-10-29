@@ -1,9 +1,9 @@
 package com.discord.api.botuikit;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.io.Serializable;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SelectComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class SelectItem implements Serializable {
             return false;
         }
         SelectItem selectItem = (SelectItem) other;
-        return C12238m.areEqual(this.label, selectItem.label) && C12238m.areEqual(this.value, selectItem.value) && C12238m.areEqual(this.emoji, selectItem.emoji) && C12238m.areEqual(this.description, selectItem.description) && this.default == selectItem.default;
+        return m.areEqual(this.label, selectItem.label) && m.areEqual(this.value, selectItem.value) && m.areEqual(this.emoji, selectItem.emoji) && m.areEqual(this.description, selectItem.description) && this.default == selectItem.default;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -73,15 +73,15 @@ public final /* data */ class SelectItem implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("SelectItem(label=");
-        sbM833U.append(this.label);
-        sbM833U.append(", value=");
-        sbM833U.append(this.value);
-        sbM833U.append(", emoji=");
-        sbM833U.append(this.emoji);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", default=");
-        return C1643a.m827O(sbM833U, this.default, ")");
+        StringBuilder sbU = a.U("SelectItem(label=");
+        sbU.append(this.label);
+        sbU.append(", value=");
+        sbU.append(this.value);
+        sbU.append(", emoji=");
+        sbU.append(this.emoji);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", default=");
+        return a.O(sbU, this.default, ")");
     }
 }

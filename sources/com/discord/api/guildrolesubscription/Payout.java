@@ -1,8 +1,8 @@
 package com.discord.api.guildrolesubscription;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: PayoutGroup.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class Payout {
             return false;
         }
         Payout payout = (Payout) other;
-        return this.id == payout.id && this.userId == payout.userId && C12238m.areEqual(this.periodStart, payout.periodStart) && C12238m.areEqual(this.periodEnd, payout.periodEnd) && C12238m.areEqual(this.payoutDate, payout.payoutDate) && C12238m.areEqual(this.status, payout.status) && C12238m.areEqual(this.amount, payout.amount);
+        return this.id == payout.id && this.userId == payout.userId && m.areEqual(this.periodStart, payout.periodStart) && m.areEqual(this.periodEnd, payout.periodEnd) && m.areEqual(this.payoutDate, payout.payoutDate) && m.areEqual(this.status, payout.status) && m.areEqual(this.amount, payout.amount);
     }
 
     public int hashCode() {
@@ -43,19 +43,19 @@ public final /* data */ class Payout {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Payout(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", periodStart=");
-        sbM833U.append(this.periodStart);
-        sbM833U.append(", periodEnd=");
-        sbM833U.append(this.periodEnd);
-        sbM833U.append(", payoutDate=");
-        sbM833U.append(this.payoutDate);
-        sbM833U.append(", status=");
-        sbM833U.append(this.status);
-        sbM833U.append(", amount=");
-        return C1643a.m819G(sbM833U, this.amount, ")");
+        StringBuilder sbU = a.U("Payout(id=");
+        sbU.append(this.id);
+        sbU.append(", userId=");
+        sbU.append(this.userId);
+        sbU.append(", periodStart=");
+        sbU.append(this.periodStart);
+        sbU.append(", periodEnd=");
+        sbU.append(this.periodEnd);
+        sbU.append(", payoutDate=");
+        sbU.append(this.payoutDate);
+        sbU.append(", status=");
+        sbU.append(this.status);
+        sbU.append(", amount=");
+        return a.G(sbU, this.amount, ")");
     }
 }

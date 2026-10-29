@@ -8,22 +8,21 @@ import com.discord.utilities.view.text.LinkifiedTextView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsHelpItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinkifiedTextView f17674a;
+    public final LinkifiedTextView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinkifiedTextView f17675b;
+    public final LinkifiedTextView f2572b;
 
     public WidgetServerSettingsHelpItemBinding(@NonNull LinkifiedTextView linkifiedTextView, @NonNull LinkifiedTextView linkifiedTextView2) {
-        this.f17674a = linkifiedTextView;
-        this.f17675b = linkifiedTextView2;
+        this.a = linkifiedTextView;
+        this.f2572b = linkifiedTextView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17674a;
+        return this.a;
     }
 }

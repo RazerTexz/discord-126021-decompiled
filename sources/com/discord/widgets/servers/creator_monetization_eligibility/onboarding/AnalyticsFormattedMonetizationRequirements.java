@@ -1,21 +1,16 @@
 package com.discord.widgets.servers.creator_monetization_eligibility.onboarding;
 
-import com.discord.api.creatormonetization.CreatorMonetizationEligibilityRequirements;
+import b.d.b.a.a;
+import com.discord.api.creatormonetization.CreatorMonetizationEligibilityRequirements$Rejection;
 import com.discord.api.creatormonetization.CreatorMonetizationEnableRequest;
-import com.google.gson.Gson;
-import java.util.Map;
+import d0.g;
+import d0.z.d.m;
 import kotlin.Lazy;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AnalyticsFormattedMonetizationRequirements.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class AnalyticsFormattedMonetizationRequirements {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final AnalyticsFormattedMonetizationRequirements$Companion Companion = new AnalyticsFormattedMonetizationRequirements$Companion(null);
     private final boolean canApply;
     private final Integer communicatorCount;
     private final Integer guildMemberCount;
@@ -29,53 +24,12 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
     private final int minimumSize;
     private final boolean noRecentViolations;
     private final boolean notNSFW;
-    private final CreatorMonetizationEligibilityRequirements.Rejection rejection;
+    private final CreatorMonetizationEligibilityRequirements$Rejection rejection;
     private final Double retentionScore;
     private final boolean weeklyCommunicators;
-    private static final Lazy gsonInstance$delegate = C12083g.lazy(C9411x37fd3d3b.INSTANCE);
+    private static final Lazy gsonInstance$delegate = g.lazy(AnalyticsFormattedMonetizationRequirements$Companion$gsonInstance$2.INSTANCE);
 
-    /* JADX INFO: compiled from: AnalyticsFormattedMonetizationRequirements.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        private final Gson getGsonInstance() {
-            Lazy lazy = AnalyticsFormattedMonetizationRequirements.gsonInstance$delegate;
-            Companion companion = AnalyticsFormattedMonetizationRequirements.INSTANCE;
-            return (Gson) lazy.getValue();
-        }
-
-        public final AnalyticsFormattedMonetizationRequirements toAnalyticsFormat(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements) {
-            C12238m.checkNotNullParameter(creatorMonetizationEligibilityRequirements, "$this$toAnalyticsFormat");
-            boolean sufficient = creatorMonetizationEligibilityRequirements.getSufficient();
-            boolean size = creatorMonetizationEligibilityRequirements.getSize();
-            boolean age = creatorMonetizationEligibilityRequirements.getAge();
-            boolean safeEnvironment = creatorMonetizationEligibilityRequirements.getSafeEnvironment();
-            boolean engagementHealthy = creatorMonetizationEligibilityRequirements.getEngagementHealthy();
-            boolean retentionHealthy = creatorMonetizationEligibilityRequirements.getRetentionHealthy();
-            Map<String, Object> mapM7774i = creatorMonetizationEligibilityRequirements.m7774i();
-            boolean z2 = mapM7774i == null || mapM7774i.isEmpty();
-            boolean canApply = creatorMonetizationEligibilityRequirements.getCanApply();
-            CreatorMonetizationEnableRequest latestRequest = creatorMonetizationEligibilityRequirements.getLatestRequest();
-            boolean z3 = (latestRequest != null ? latestRequest.getState() : null) == CreatorMonetizationEnableRequest.State.OPEN;
-            int minimumAgeInDays = creatorMonetizationEligibilityRequirements.getMinimumAgeInDays();
-            int minimumSize = creatorMonetizationEligibilityRequirements.getMinimumSize();
-            CreatorMonetizationEnableRequest latestRequest2 = creatorMonetizationEligibilityRequirements.getLatestRequest();
-            CreatorMonetizationEligibilityRequirements.Rejection rejection = creatorMonetizationEligibilityRequirements.getRejection();
-            CreatorMonetizationEligibilityRequirements.HealthScore healthScore = creatorMonetizationEligibilityRequirements.getHealthScore();
-            Integer guildSize = healthScore != null ? healthScore.getGuildSize() : null;
-            CreatorMonetizationEligibilityRequirements.HealthScore healthScore2 = creatorMonetizationEligibilityRequirements.getHealthScore();
-            Integer communicators = healthScore2 != null ? healthScore2.getCommunicators() : null;
-            CreatorMonetizationEligibilityRequirements.HealthScore healthScore3 = creatorMonetizationEligibilityRequirements.getHealthScore();
-            return new AnalyticsFormattedMonetizationRequirements(sufficient, size, age, safeEnvironment, engagementHealthy, retentionHealthy, z2, canApply, z3, minimumAgeInDays, minimumSize, latestRequest2, rejection, guildSize, communicators, healthScore3 != null ? healthScore3.getPercRetW1() : null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public AnalyticsFormattedMonetizationRequirements(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, int i, int i2, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, CreatorMonetizationEligibilityRequirements.Rejection rejection, Integer num, Integer num2, Double d) {
+    public AnalyticsFormattedMonetizationRequirements(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, int i, int i2, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection, Integer num, Integer num2, Double d) {
         this.isEligibleForMonetization = z2;
         this.hasSufficientMembers = z3;
         this.meetsServerAgeRequirement = z4;
@@ -88,13 +42,21 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
         this.minimumAgeInDays = i;
         this.minimumSize = i2;
         this.latestRequest = creatorMonetizationEnableRequest;
-        this.rejection = rejection;
+        this.rejection = creatorMonetizationEligibilityRequirements$Rejection;
         this.guildMemberCount = num;
         this.communicatorCount = num2;
         this.retentionScore = d;
     }
 
-    public final AnalyticsFormattedMonetizationRequirements copy(boolean isEligibleForMonetization, boolean hasSufficientMembers, boolean meetsServerAgeRequirement, boolean noRecentViolations, boolean weeklyCommunicators, boolean hasMemberRetention, boolean notNSFW, boolean canApply, boolean isApplicationPending, int minimumAgeInDays, int minimumSize, CreatorMonetizationEnableRequest latestRequest, CreatorMonetizationEligibilityRequirements.Rejection rejection, Integer guildMemberCount, Integer communicatorCount, Double retentionScore) {
+    public static final /* synthetic */ Lazy access$getGsonInstance$cp() {
+        return gsonInstance$delegate;
+    }
+
+    public static /* synthetic */ AnalyticsFormattedMonetizationRequirements copy$default(AnalyticsFormattedMonetizationRequirements analyticsFormattedMonetizationRequirements, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, int i, int i2, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection, Integer num, Integer num2, Double d, int i3, Object obj) {
+        return analyticsFormattedMonetizationRequirements.copy((i3 & 1) != 0 ? analyticsFormattedMonetizationRequirements.isEligibleForMonetization : z2, (i3 & 2) != 0 ? analyticsFormattedMonetizationRequirements.hasSufficientMembers : z3, (i3 & 4) != 0 ? analyticsFormattedMonetizationRequirements.meetsServerAgeRequirement : z4, (i3 & 8) != 0 ? analyticsFormattedMonetizationRequirements.noRecentViolations : z5, (i3 & 16) != 0 ? analyticsFormattedMonetizationRequirements.weeklyCommunicators : z6, (i3 & 32) != 0 ? analyticsFormattedMonetizationRequirements.hasMemberRetention : z7, (i3 & 64) != 0 ? analyticsFormattedMonetizationRequirements.notNSFW : z8, (i3 & 128) != 0 ? analyticsFormattedMonetizationRequirements.canApply : z9, (i3 & 256) != 0 ? analyticsFormattedMonetizationRequirements.isApplicationPending : z10, (i3 & 512) != 0 ? analyticsFormattedMonetizationRequirements.minimumAgeInDays : i, (i3 & 1024) != 0 ? analyticsFormattedMonetizationRequirements.minimumSize : i2, (i3 & 2048) != 0 ? analyticsFormattedMonetizationRequirements.latestRequest : creatorMonetizationEnableRequest, (i3 & 4096) != 0 ? analyticsFormattedMonetizationRequirements.rejection : creatorMonetizationEligibilityRequirements$Rejection, (i3 & 8192) != 0 ? analyticsFormattedMonetizationRequirements.guildMemberCount : num, (i3 & 16384) != 0 ? analyticsFormattedMonetizationRequirements.communicatorCount : num2, (i3 & 32768) != 0 ? analyticsFormattedMonetizationRequirements.retentionScore : d);
+    }
+
+    public final AnalyticsFormattedMonetizationRequirements copy(boolean isEligibleForMonetization, boolean hasSufficientMembers, boolean meetsServerAgeRequirement, boolean noRecentViolations, boolean weeklyCommunicators, boolean hasMemberRetention, boolean notNSFW, boolean canApply, boolean isApplicationPending, int minimumAgeInDays, int minimumSize, CreatorMonetizationEnableRequest latestRequest, CreatorMonetizationEligibilityRequirements$Rejection rejection, Integer guildMemberCount, Integer communicatorCount, Double retentionScore) {
         return new AnalyticsFormattedMonetizationRequirements(isEligibleForMonetization, hasSufficientMembers, meetsServerAgeRequirement, noRecentViolations, weeklyCommunicators, hasMemberRetention, notNSFW, canApply, isApplicationPending, minimumAgeInDays, minimumSize, latestRequest, rejection, guildMemberCount, communicatorCount, retentionScore);
     }
 
@@ -106,7 +68,7 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
             return false;
         }
         AnalyticsFormattedMonetizationRequirements analyticsFormattedMonetizationRequirements = (AnalyticsFormattedMonetizationRequirements) other;
-        return this.isEligibleForMonetization == analyticsFormattedMonetizationRequirements.isEligibleForMonetization && this.hasSufficientMembers == analyticsFormattedMonetizationRequirements.hasSufficientMembers && this.meetsServerAgeRequirement == analyticsFormattedMonetizationRequirements.meetsServerAgeRequirement && this.noRecentViolations == analyticsFormattedMonetizationRequirements.noRecentViolations && this.weeklyCommunicators == analyticsFormattedMonetizationRequirements.weeklyCommunicators && this.hasMemberRetention == analyticsFormattedMonetizationRequirements.hasMemberRetention && this.notNSFW == analyticsFormattedMonetizationRequirements.notNSFW && this.canApply == analyticsFormattedMonetizationRequirements.canApply && this.isApplicationPending == analyticsFormattedMonetizationRequirements.isApplicationPending && this.minimumAgeInDays == analyticsFormattedMonetizationRequirements.minimumAgeInDays && this.minimumSize == analyticsFormattedMonetizationRequirements.minimumSize && C12238m.areEqual(this.latestRequest, analyticsFormattedMonetizationRequirements.latestRequest) && C12238m.areEqual(this.rejection, analyticsFormattedMonetizationRequirements.rejection) && C12238m.areEqual(this.guildMemberCount, analyticsFormattedMonetizationRequirements.guildMemberCount) && C12238m.areEqual(this.communicatorCount, analyticsFormattedMonetizationRequirements.communicatorCount) && C12238m.areEqual(this.retentionScore, analyticsFormattedMonetizationRequirements.retentionScore);
+        return this.isEligibleForMonetization == analyticsFormattedMonetizationRequirements.isEligibleForMonetization && this.hasSufficientMembers == analyticsFormattedMonetizationRequirements.hasSufficientMembers && this.meetsServerAgeRequirement == analyticsFormattedMonetizationRequirements.meetsServerAgeRequirement && this.noRecentViolations == analyticsFormattedMonetizationRequirements.noRecentViolations && this.weeklyCommunicators == analyticsFormattedMonetizationRequirements.weeklyCommunicators && this.hasMemberRetention == analyticsFormattedMonetizationRequirements.hasMemberRetention && this.notNSFW == analyticsFormattedMonetizationRequirements.notNSFW && this.canApply == analyticsFormattedMonetizationRequirements.canApply && this.isApplicationPending == analyticsFormattedMonetizationRequirements.isApplicationPending && this.minimumAgeInDays == analyticsFormattedMonetizationRequirements.minimumAgeInDays && this.minimumSize == analyticsFormattedMonetizationRequirements.minimumSize && m.areEqual(this.latestRequest, analyticsFormattedMonetizationRequirements.latestRequest) && m.areEqual(this.rejection, analyticsFormattedMonetizationRequirements.rejection) && m.areEqual(this.guildMemberCount, analyticsFormattedMonetizationRequirements.guildMemberCount) && m.areEqual(this.communicatorCount, analyticsFormattedMonetizationRequirements.communicatorCount) && m.areEqual(this.retentionScore, analyticsFormattedMonetizationRequirements.retentionScore);
     }
 
     /* JADX INFO: renamed from: component8, reason: from getter */
@@ -219,11 +181,11 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
     }
 
     /* JADX INFO: renamed from: component13, reason: from getter */
-    public final CreatorMonetizationEligibilityRequirements.Rejection getRejection() {
+    public final CreatorMonetizationEligibilityRequirements$Rejection getRejection() {
         return this.rejection;
     }
 
-    public final CreatorMonetizationEligibilityRequirements.Rejection getRejection() {
+    public final CreatorMonetizationEligibilityRequirements$Rejection getRejection() {
         return this.rejection;
     }
 
@@ -334,8 +296,8 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
         int i9 = (((((i8 + (z10 ? 1 : z10)) * 31) + this.minimumAgeInDays) * 31) + this.minimumSize) * 31;
         CreatorMonetizationEnableRequest creatorMonetizationEnableRequest = this.latestRequest;
         int iHashCode = (i9 + (creatorMonetizationEnableRequest != null ? creatorMonetizationEnableRequest.hashCode() : 0)) * 31;
-        CreatorMonetizationEligibilityRequirements.Rejection rejection = this.rejection;
-        int iHashCode2 = (iHashCode + (rejection != null ? rejection.hashCode() : 0)) * 31;
+        CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection = this.rejection;
+        int iHashCode2 = (iHashCode + (creatorMonetizationEligibilityRequirements$Rejection != null ? creatorMonetizationEligibilityRequirements$Rejection.hashCode() : 0)) * 31;
         Integer num = this.guildMemberCount;
         int iHashCode3 = (iHashCode2 + (num != null ? num.hashCode() : 0)) * 31;
         Integer num2 = this.communicatorCount;
@@ -353,45 +315,45 @@ public final /* data */ class AnalyticsFormattedMonetizationRequirements {
     }
 
     public final String toJson() {
-        String strM9209m = INSTANCE.getGsonInstance().m9209m(this);
-        C12238m.checkNotNullExpressionValue(strM9209m, "gsonInstance.toJson(this)");
-        return strM9209m;
+        String strM = AnalyticsFormattedMonetizationRequirements$Companion.access$getGsonInstance$p(Companion).m(this);
+        m.checkNotNullExpressionValue(strM, "gsonInstance.toJson(this)");
+        return strM;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AnalyticsFormattedMonetizationRequirements(isEligibleForMonetization=");
-        sbM833U.append(this.isEligibleForMonetization);
-        sbM833U.append(", hasSufficientMembers=");
-        sbM833U.append(this.hasSufficientMembers);
-        sbM833U.append(", meetsServerAgeRequirement=");
-        sbM833U.append(this.meetsServerAgeRequirement);
-        sbM833U.append(", noRecentViolations=");
-        sbM833U.append(this.noRecentViolations);
-        sbM833U.append(", weeklyCommunicators=");
-        sbM833U.append(this.weeklyCommunicators);
-        sbM833U.append(", hasMemberRetention=");
-        sbM833U.append(this.hasMemberRetention);
-        sbM833U.append(", notNSFW=");
-        sbM833U.append(this.notNSFW);
-        sbM833U.append(", canApply=");
-        sbM833U.append(this.canApply);
-        sbM833U.append(", isApplicationPending=");
-        sbM833U.append(this.isApplicationPending);
-        sbM833U.append(", minimumAgeInDays=");
-        sbM833U.append(this.minimumAgeInDays);
-        sbM833U.append(", minimumSize=");
-        sbM833U.append(this.minimumSize);
-        sbM833U.append(", latestRequest=");
-        sbM833U.append(this.latestRequest);
-        sbM833U.append(", rejection=");
-        sbM833U.append(this.rejection);
-        sbM833U.append(", guildMemberCount=");
-        sbM833U.append(this.guildMemberCount);
-        sbM833U.append(", communicatorCount=");
-        sbM833U.append(this.communicatorCount);
-        sbM833U.append(", retentionScore=");
-        sbM833U.append(this.retentionScore);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("AnalyticsFormattedMonetizationRequirements(isEligibleForMonetization=");
+        sbU.append(this.isEligibleForMonetization);
+        sbU.append(", hasSufficientMembers=");
+        sbU.append(this.hasSufficientMembers);
+        sbU.append(", meetsServerAgeRequirement=");
+        sbU.append(this.meetsServerAgeRequirement);
+        sbU.append(", noRecentViolations=");
+        sbU.append(this.noRecentViolations);
+        sbU.append(", weeklyCommunicators=");
+        sbU.append(this.weeklyCommunicators);
+        sbU.append(", hasMemberRetention=");
+        sbU.append(this.hasMemberRetention);
+        sbU.append(", notNSFW=");
+        sbU.append(this.notNSFW);
+        sbU.append(", canApply=");
+        sbU.append(this.canApply);
+        sbU.append(", isApplicationPending=");
+        sbU.append(this.isApplicationPending);
+        sbU.append(", minimumAgeInDays=");
+        sbU.append(this.minimumAgeInDays);
+        sbU.append(", minimumSize=");
+        sbU.append(this.minimumSize);
+        sbU.append(", latestRequest=");
+        sbU.append(this.latestRequest);
+        sbU.append(", rejection=");
+        sbU.append(this.rejection);
+        sbU.append(", guildMemberCount=");
+        sbU.append(this.guildMemberCount);
+        sbU.append(", communicatorCount=");
+        sbU.append(this.communicatorCount);
+        sbU.append(", retentionScore=");
+        sbU.append(this.retentionScore);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

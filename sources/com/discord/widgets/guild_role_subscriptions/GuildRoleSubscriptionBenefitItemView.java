@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
 import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import com.discord.C5419R;
+import com.discord.R$a;
 import com.discord.databinding.ViewGuildRoleSubscriptionBenefitItemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.emoji.Emoji;
@@ -17,17 +17,18 @@ import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.images.MGImages;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.widgets.guild_role_subscriptions.tier.model.Benefit;
+import com.discord.widgets.guild_role_subscriptions.tier.model.Benefit$ChannelBenefit;
 import com.facebook.drawee.drawable.ScalingUtils$ScaleType;
 import com.facebook.drawee.view.SimpleDraweeView;
+import d0.d0.f;
+import d0.g0.t;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p109f.p132g.p142e.C1786t;
-import p507d0.p512d0.C11226f;
-import p507d0.p579g0.C12103t;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitItemView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildRoleSubscriptionBenefitItemView extends ConstraintLayout {
+    public static final GuildRoleSubscriptionBenefitItemView$Companion Companion = new GuildRoleSubscriptionBenefitItemView$Companion(null);
     private static final int MAX_EMOJI_SIZE = 64;
     private final ViewGuildRoleSubscriptionBenefitItemBinding binding;
     private final int emojiSizePx;
@@ -35,36 +36,36 @@ public final class GuildRoleSubscriptionBenefitItemView extends ConstraintLayout
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildRoleSubscriptionBenefitItemView(Context context) {
         super(context);
-        C12238m.checkNotNullParameter(context, "context");
-        ViewGuildRoleSubscriptionBenefitItemBinding viewGuildRoleSubscriptionBenefitItemBindingM8396a = ViewGuildRoleSubscriptionBenefitItemBinding.m8396a(LayoutInflater.from(getContext()), this);
-        C12238m.checkNotNullExpressionValue(viewGuildRoleSubscriptionBenefitItemBindingM8396a, "ViewGuildRoleSubscriptio…ater.from(context), this)");
-        this.binding = viewGuildRoleSubscriptionBenefitItemBindingM8396a;
-        this.emojiSizePx = getResources().getDimensionPixelSize(C5419R.dimen.guild_role_subscription_benefit_emoji_size);
+        m.checkNotNullParameter(context, "context");
+        ViewGuildRoleSubscriptionBenefitItemBinding viewGuildRoleSubscriptionBenefitItemBindingA = ViewGuildRoleSubscriptionBenefitItemBinding.a(LayoutInflater.from(getContext()), this);
+        m.checkNotNullExpressionValue(viewGuildRoleSubscriptionBenefitItemBindingA, "ViewGuildRoleSubscriptio…ater.from(context), this)");
+        this.binding = viewGuildRoleSubscriptionBenefitItemBindingA;
+        this.emojiSizePx = getResources().getDimensionPixelSize(2131165453);
         initialize$default(this, null, 1, null);
     }
 
     private final void configureEmoji(Emoji emoji) {
-        String imageUri = emoji.getImageUri(false, C11226f.coerceAtMost(IconUtils.getMediaProxySize(this.emojiSizePx), 64), getContext());
-        SimpleDraweeView simpleDraweeView = this.binding.f15462c;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildRoleSubscriptionBenefitImage");
+        String imageUri = emoji.getImageUri(false, f.coerceAtMost(IconUtils.getMediaProxySize(this.emojiSizePx), 64), getContext());
+        SimpleDraweeView simpleDraweeView = this.binding.c;
+        m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildRoleSubscriptionBenefitImage");
         MGImages.setImage$default(simpleDraweeView, imageUri, 0, 0, true, null, null, 108, null);
-        SimpleDraweeView simpleDraweeView2 = this.binding.f15462c;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildRoleSubscriptionBenefitImage");
+        SimpleDraweeView simpleDraweeView2 = this.binding.c;
+        m.checkNotNullExpressionValue(simpleDraweeView2, "binding.guildRoleSubscriptionBenefitImage");
         simpleDraweeView2.setContentDescription(emoji.getFirstName());
     }
 
     private final void configureTitleAndDescription(String title, String description) {
-        TextView textView = this.binding.f15463d;
-        C12238m.checkNotNullExpressionValue(textView, "binding.guildRoleSubscriptionBenefitName");
+        TextView textView = this.binding.d;
+        m.checkNotNullExpressionValue(textView, "binding.guildRoleSubscriptionBenefitName");
         textView.setText(title);
-        TextView textView2 = this.binding.f15461b;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.guildRoleSubscriptionBenefitDescription");
+        TextView textView2 = this.binding.f2192b;
+        m.checkNotNullExpressionValue(textView2, "binding.guildRoleSubscriptionBenefitDescription");
         ViewExtensions.setTextAndVisibilityBy(textView2, description);
     }
 
     public final void configureUI(String title, Emoji emoji, String description) {
-        C12238m.checkNotNullParameter(title, "title");
-        C12238m.checkNotNullParameter(emoji, "emoji");
+        m.checkNotNullParameter(title, "title");
+        m.checkNotNullParameter(emoji, "emoji");
         configureTitleAndDescription(title, description);
         configureEmoji(emoji);
     }
@@ -77,20 +78,20 @@ public final class GuildRoleSubscriptionBenefitItemView extends ConstraintLayout
     }
 
     private final void initialize(AttributeSet attrs) {
-        int dimensionPixelSize = getResources().getDimensionPixelSize(C5419R.dimen.guild_role_subscription_setup_default_padding);
+        int dimensionPixelSize = getResources().getDimensionPixelSize(2131165456);
         setPadding(dimensionPixelSize, dimensionPixelSize, dimensionPixelSize, dimensionPixelSize);
-        setBackground(ContextCompat.getDrawable(getContext(), C5419R.drawable.ripple_rounded_bg_secondary));
-        setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
+        setBackground(ContextCompat.getDrawable(getContext(), 2131232516));
+        setLayoutParams(new ViewGroup$LayoutParams(-1, -2));
         Context context = getContext();
-        C12238m.checkNotNullExpressionValue(context, "context");
-        int[] iArr = C5419R.a.GuildRoleSubscriptionBenefitItemView;
-        C12238m.checkNotNullExpressionValue(iArr, "R.styleable.GuildRoleSubscriptionBenefitItemView");
+        m.checkNotNullExpressionValue(context, "context");
+        int[] iArr = R$a.GuildRoleSubscriptionBenefitItemView;
+        m.checkNotNullExpressionValue(iArr, "R.styleable.GuildRoleSubscriptionBenefitItemView");
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attrs, iArr);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
         String string = typedArrayObtainStyledAttributes.getString(2);
         String string2 = typedArrayObtainStyledAttributes.getString(0);
         int resourceId = typedArrayObtainStyledAttributes.getResourceId(1, -1);
-        if (!(string == null || C12103t.isBlank(string)) && resourceId != -1) {
+        if (!(string == null || t.isBlank(string)) && resourceId != -1) {
             configureUI(string, resourceId, string2);
         }
         typedArrayObtainStyledAttributes.recycle();
@@ -98,37 +99,37 @@ public final class GuildRoleSubscriptionBenefitItemView extends ConstraintLayout
 
     public final void configureUI(Benefit benefit) {
         Integer channelIconResId;
-        C12238m.checkNotNullParameter(benefit, "benefit");
+        m.checkNotNullParameter(benefit, "benefit");
         configureUI(benefit.getName(), benefit.getEmoji(), benefit.getDescription());
-        TextView textView = this.binding.f15463d;
-        C12238m.checkNotNullExpressionValue(textView, "binding.guildRoleSubscriptionBenefitName");
-        if (!(benefit instanceof Benefit.ChannelBenefit)) {
+        TextView textView = this.binding.d;
+        m.checkNotNullExpressionValue(textView, "binding.guildRoleSubscriptionBenefitName");
+        if (!(benefit instanceof Benefit$ChannelBenefit)) {
             benefit = null;
         }
-        Benefit.ChannelBenefit channelBenefit = (Benefit.ChannelBenefit) benefit;
-        ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView, (channelBenefit == null || (channelIconResId = channelBenefit.getChannelIconResId()) == null) ? 0 : channelIconResId.intValue(), 0, 0, 0, 14, null);
+        Benefit$ChannelBenefit benefit$ChannelBenefit = (Benefit$ChannelBenefit) benefit;
+        ViewExtensions.setCompoundDrawableWithIntrinsicBounds$default(textView, (benefit$ChannelBenefit == null || (channelIconResId = benefit$ChannelBenefit.getChannelIconResId()) == null) ? 0 : channelIconResId.intValue(), 0, 0, 0, 14, null);
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildRoleSubscriptionBenefitItemView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
-        ViewGuildRoleSubscriptionBenefitItemBinding viewGuildRoleSubscriptionBenefitItemBindingM8396a = ViewGuildRoleSubscriptionBenefitItemBinding.m8396a(LayoutInflater.from(getContext()), this);
-        C12238m.checkNotNullExpressionValue(viewGuildRoleSubscriptionBenefitItemBindingM8396a, "ViewGuildRoleSubscriptio…ater.from(context), this)");
-        this.binding = viewGuildRoleSubscriptionBenefitItemBindingM8396a;
-        this.emojiSizePx = getResources().getDimensionPixelSize(C5419R.dimen.guild_role_subscription_benefit_emoji_size);
+        m.checkNotNullParameter(context, "context");
+        ViewGuildRoleSubscriptionBenefitItemBinding viewGuildRoleSubscriptionBenefitItemBindingA = ViewGuildRoleSubscriptionBenefitItemBinding.a(LayoutInflater.from(getContext()), this);
+        m.checkNotNullExpressionValue(viewGuildRoleSubscriptionBenefitItemBindingA, "ViewGuildRoleSubscriptio…ater.from(context), this)");
+        this.binding = viewGuildRoleSubscriptionBenefitItemBindingA;
+        this.emojiSizePx = getResources().getDimensionPixelSize(2131165453);
         initialize(attributeSet);
     }
 
     public final void configureUI(String title, @DrawableRes int imageRes, String description) {
-        C12238m.checkNotNullParameter(title, "title");
+        m.checkNotNullParameter(title, "title");
         configureTitleAndDescription(title, description);
         MGImages mGImages = MGImages.INSTANCE;
-        SimpleDraweeView simpleDraweeView = this.binding.f15462c;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildRoleSubscriptionBenefitImage");
-        ScalingUtils$ScaleType scalingUtils$ScaleType = ScalingUtils$ScaleType.f19495a;
-        ScalingUtils$ScaleType scalingUtils$ScaleType2 = C1786t.f3444l;
-        C12238m.checkNotNullExpressionValue(scalingUtils$ScaleType2, "ScalingUtils.ScaleType.CENTER_INSIDE");
+        SimpleDraweeView simpleDraweeView = this.binding.c;
+        m.checkNotNullExpressionValue(simpleDraweeView, "binding.guildRoleSubscriptionBenefitImage");
+        ScalingUtils$ScaleType scalingUtils$ScaleType = ScalingUtils$ScaleType.a;
+        ScalingUtils$ScaleType scalingUtils$ScaleType2 = b.f.g.e.t.l;
+        m.checkNotNullExpressionValue(scalingUtils$ScaleType2, "ScalingUtils.ScaleType.CENTER_INSIDE");
         MGImages.setImage$default(mGImages, simpleDraweeView, imageRes, scalingUtils$ScaleType2, null, 8, null);
     }
 
@@ -139,11 +140,11 @@ public final class GuildRoleSubscriptionBenefitItemView extends ConstraintLayout
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildRoleSubscriptionBenefitItemView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        C12238m.checkNotNullParameter(context, "context");
-        ViewGuildRoleSubscriptionBenefitItemBinding viewGuildRoleSubscriptionBenefitItemBindingM8396a = ViewGuildRoleSubscriptionBenefitItemBinding.m8396a(LayoutInflater.from(getContext()), this);
-        C12238m.checkNotNullExpressionValue(viewGuildRoleSubscriptionBenefitItemBindingM8396a, "ViewGuildRoleSubscriptio…ater.from(context), this)");
-        this.binding = viewGuildRoleSubscriptionBenefitItemBindingM8396a;
-        this.emojiSizePx = getResources().getDimensionPixelSize(C5419R.dimen.guild_role_subscription_benefit_emoji_size);
+        m.checkNotNullParameter(context, "context");
+        ViewGuildRoleSubscriptionBenefitItemBinding viewGuildRoleSubscriptionBenefitItemBindingA = ViewGuildRoleSubscriptionBenefitItemBinding.a(LayoutInflater.from(getContext()), this);
+        m.checkNotNullExpressionValue(viewGuildRoleSubscriptionBenefitItemBindingA, "ViewGuildRoleSubscriptio…ater.from(context), this)");
+        this.binding = viewGuildRoleSubscriptionBenefitItemBindingA;
+        this.emojiSizePx = getResources().getDimensionPixelSize(2131165453);
         initialize(attributeSet);
     }
 

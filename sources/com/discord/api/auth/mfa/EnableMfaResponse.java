@@ -1,8 +1,8 @@
 package com.discord.api.auth.mfa;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EnableMfaResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class EnableMfaResponse {
             return false;
         }
         EnableMfaResponse enableMfaResponse = (EnableMfaResponse) other;
-        return C12238m.areEqual(this.token, enableMfaResponse.token) && C12238m.areEqual(this.backupCodes, enableMfaResponse.backupCodes);
+        return m.areEqual(this.token, enableMfaResponse.token) && m.areEqual(this.backupCodes, enableMfaResponse.backupCodes);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -34,9 +34,9 @@ public final /* data */ class EnableMfaResponse {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EnableMfaResponse(token=");
-        sbM833U.append(this.token);
-        sbM833U.append(", backupCodes=");
-        return C1643a.m824L(sbM833U, this.backupCodes, ")");
+        StringBuilder sbU = a.U("EnableMfaResponse(token=");
+        sbU.append(this.token);
+        sbU.append(", backupCodes=");
+        return a.L(sbU, this.backupCodes, ")");
     }
 }

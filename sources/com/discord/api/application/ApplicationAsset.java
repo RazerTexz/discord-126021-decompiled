@@ -1,8 +1,8 @@
 package com.discord.api.application;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ApplicationAsset.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ApplicationAsset {
             return false;
         }
         ApplicationAsset applicationAsset = (ApplicationAsset) other;
-        return this.id == applicationAsset.id && this.type == applicationAsset.type && C12238m.areEqual(this.name, applicationAsset.name);
+        return this.id == applicationAsset.id && this.type == applicationAsset.type && m.areEqual(this.name, applicationAsset.name);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -40,11 +40,11 @@ public final /* data */ class ApplicationAsset {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApplicationAsset(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", name=");
-        return C1643a.m822J(sbM833U, this.name, ")");
+        StringBuilder sbU = a.U("ApplicationAsset(id=");
+        sbU.append(this.id);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", name=");
+        return a.J(sbU, this.name, ")");
     }
 }

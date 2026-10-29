@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalActionSketchHeads.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,7 +33,7 @@ public final /* data */ class TrackActivityInternalActionSketchHeads implements 
             return false;
         }
         TrackActivityInternalActionSketchHeads trackActivityInternalActionSketchHeads = (TrackActivityInternalActionSketchHeads) other;
-        return C12238m.areEqual(this.actionName, trackActivityInternalActionSketchHeads.actionName) && C12238m.areEqual(this.mode, trackActivityInternalActionSketchHeads.mode) && C12238m.areEqual(this.phase, trackActivityInternalActionSketchHeads.phase) && C12238m.areEqual(this.theme, trackActivityInternalActionSketchHeads.theme) && C12238m.areEqual(this.numRounds, trackActivityInternalActionSketchHeads.numRounds) && C12238m.areEqual(this.roundLengthMs, trackActivityInternalActionSketchHeads.roundLengthMs) && C12238m.areEqual(this.numPlayers, trackActivityInternalActionSketchHeads.numPlayers) && C12238m.areEqual(this.numDrawers, trackActivityInternalActionSketchHeads.numDrawers) && C12238m.areEqual(this.numGuessers, trackActivityInternalActionSketchHeads.numGuessers) && C12238m.areEqual(this.numSpectators, trackActivityInternalActionSketchHeads.numSpectators);
+        return m.areEqual(this.actionName, trackActivityInternalActionSketchHeads.actionName) && m.areEqual(this.mode, trackActivityInternalActionSketchHeads.mode) && m.areEqual(this.phase, trackActivityInternalActionSketchHeads.phase) && m.areEqual(this.theme, trackActivityInternalActionSketchHeads.theme) && m.areEqual(this.numRounds, trackActivityInternalActionSketchHeads.numRounds) && m.areEqual(this.roundLengthMs, trackActivityInternalActionSketchHeads.roundLengthMs) && m.areEqual(this.numPlayers, trackActivityInternalActionSketchHeads.numPlayers) && m.areEqual(this.numDrawers, trackActivityInternalActionSketchHeads.numDrawers) && m.areEqual(this.numGuessers, trackActivityInternalActionSketchHeads.numGuessers) && m.areEqual(this.numSpectators, trackActivityInternalActionSketchHeads.numSpectators);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,25 +66,25 @@ public final /* data */ class TrackActivityInternalActionSketchHeads implements 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalActionSketchHeads(actionName=");
-        sbM833U.append(this.actionName);
-        sbM833U.append(", mode=");
-        sbM833U.append(this.mode);
-        sbM833U.append(", phase=");
-        sbM833U.append(this.phase);
-        sbM833U.append(", theme=");
-        sbM833U.append(this.theme);
-        sbM833U.append(", numRounds=");
-        sbM833U.append(this.numRounds);
-        sbM833U.append(", roundLengthMs=");
-        sbM833U.append(this.roundLengthMs);
-        sbM833U.append(", numPlayers=");
-        sbM833U.append(this.numPlayers);
-        sbM833U.append(", numDrawers=");
-        sbM833U.append(this.numDrawers);
-        sbM833U.append(", numGuessers=");
-        sbM833U.append(this.numGuessers);
-        sbM833U.append(", numSpectators=");
-        return C1643a.m819G(sbM833U, this.numSpectators, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalActionSketchHeads(actionName=");
+        sbU.append(this.actionName);
+        sbU.append(", mode=");
+        sbU.append(this.mode);
+        sbU.append(", phase=");
+        sbU.append(this.phase);
+        sbU.append(", theme=");
+        sbU.append(this.theme);
+        sbU.append(", numRounds=");
+        sbU.append(this.numRounds);
+        sbU.append(", roundLengthMs=");
+        sbU.append(this.roundLengthMs);
+        sbU.append(", numPlayers=");
+        sbU.append(this.numPlayers);
+        sbU.append(", numDrawers=");
+        sbU.append(this.numDrawers);
+        sbU.append(", numGuessers=");
+        sbU.append(this.numGuessers);
+        sbU.append(", numSpectators=");
+        return a.G(sbU, this.numSpectators, ")");
     }
 }

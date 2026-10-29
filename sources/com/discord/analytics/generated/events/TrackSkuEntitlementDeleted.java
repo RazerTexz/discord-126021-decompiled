@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackEntitlementMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackEntitlementMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSkuEntitlementDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackSkuEntitlementDeleted implements AnalyticsSch
             return false;
         }
         TrackSkuEntitlementDeleted trackSkuEntitlementDeleted = (TrackSkuEntitlementDeleted) other;
-        return C12238m.areEqual(this.entitlementType, trackSkuEntitlementDeleted.entitlementType) && C12238m.areEqual(this.deletionType, trackSkuEntitlementDeleted.deletionType);
+        return m.areEqual(this.entitlementType, trackSkuEntitlementDeleted.entitlementType) && m.areEqual(this.deletionType, trackSkuEntitlementDeleted.deletionType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackSkuEntitlementDeleted implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSkuEntitlementDeleted(entitlementType=");
-        sbM833U.append(this.entitlementType);
-        sbM833U.append(", deletionType=");
-        return C1643a.m817E(sbM833U, this.deletionType, ")");
+        StringBuilder sbU = a.U("TrackSkuEntitlementDeleted(entitlementType=");
+        sbU.append(this.entitlementType);
+        sbU.append(", deletionType=");
+        return a.E(sbU, this.deletionType, ")");
     }
 }

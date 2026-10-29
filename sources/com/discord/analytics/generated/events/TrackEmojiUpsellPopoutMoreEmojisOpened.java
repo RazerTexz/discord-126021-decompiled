@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
 import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackEmojiUpsellPopoutMoreEmojisOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackEmojiUpsellPopoutMoreEmojisOpened implements 
             return false;
         }
         TrackEmojiUpsellPopoutMoreEmojisOpened trackEmojiUpsellPopoutMoreEmojisOpened = (TrackEmojiUpsellPopoutMoreEmojisOpened) other;
-        return C12238m.areEqual(this.guildId, trackEmojiUpsellPopoutMoreEmojisOpened.guildId) && C12238m.areEqual(this.emojiId, trackEmojiUpsellPopoutMoreEmojisOpened.emojiId);
+        return m.areEqual(this.guildId, trackEmojiUpsellPopoutMoreEmojisOpened.guildId) && m.areEqual(this.emojiId, trackEmojiUpsellPopoutMoreEmojisOpened.emojiId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackEmojiUpsellPopoutMoreEmojisOpened implements 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackEmojiUpsellPopoutMoreEmojisOpened(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", emojiId=");
-        return C1643a.m819G(sbM833U, this.emojiId, ")");
+        StringBuilder sbU = a.U("TrackEmojiUpsellPopoutMoreEmojisOpened(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", emojiId=");
+        return a.G(sbU, this.emojiId, ")");
     }
 }

@@ -2,10 +2,11 @@ package com.google.android.material.internal;
 
 import android.os.Build;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.Locale;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class ManufacturerUtils {
     private static final String LGE = "lge";
     private static final String MEIZU = "meizu";

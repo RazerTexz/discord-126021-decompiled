@@ -16,7 +16,7 @@ public final class StoreChannelConversions extends StoreV2 {
         long id2 = channel.getId();
         long originChannelId = channel.getOriginChannelId();
         if (originChannelId != 0 && this.selectedChannelId == originChannelId) {
-            ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), 0L, id2, null, null, 12, null);
+            ChannelSelector.selectChannel$default(ChannelSelector.Companion.getInstance(), 0L, id2, null, null, 12, null);
         }
     }
 

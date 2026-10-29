@@ -4,18 +4,18 @@ import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.emoji.Emoji;
 import com.discord.models.domain.emoji.ModelEmojiCustom;
 import com.discord.models.guild.Guild;
+import d0.g0.w;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import kotlin.jvm.functions.Function1;
-import p507d0.p579g0.C12106w;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EmojiPickerViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 extends AbstractC12240o implements Function1<Emoji, WidgetEmojiAdapter.EmojiItem> {
+public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 extends o implements Function1<Emoji, WidgetEmojiAdapter$EmojiItem> {
     public final /* synthetic */ boolean $allowEmojisToAnimate;
     public final /* synthetic */ Function1 $getGuild;
     public final /* synthetic */ String $searchInputLower;
@@ -29,13 +29,18 @@ public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 ex
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetEmojiAdapter.EmojiItem invoke(Emoji emoji) {
+    public /* bridge */ /* synthetic */ WidgetEmojiAdapter$EmojiItem invoke(Emoji emoji) {
+        return invoke2(emoji);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetEmojiAdapter$EmojiItem invoke2(Emoji emoji) {
         String name;
         Object next;
         String lowerCase;
-        C12238m.checkNotNullParameter(emoji, "emoji");
+        m.checkNotNullParameter(emoji, "emoji");
         List<String> names = emoji.getNames();
-        C12238m.checkNotNullExpressionValue(names, "emoji.names");
+        m.checkNotNullExpressionValue(names, "emoji.names");
         Iterator<T> it = names.iterator();
         do {
             name = null;
@@ -45,13 +50,13 @@ public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 ex
             }
             next = it.next();
             String str = (String) next;
-            C12238m.checkNotNullExpressionValue(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+            m.checkNotNullExpressionValue(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
             Locale locale = Locale.getDefault();
-            C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
+            m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
             Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
             lowerCase = str.toLowerCase(locale);
-            C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-        } while (!C12106w.contains$default((CharSequence) lowerCase, (CharSequence) this.$searchInputLower, false, 2, (Object) null));
+            m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        } while (!w.contains$default((CharSequence) lowerCase, (CharSequence) this.$searchInputLower, false, 2, (Object) null));
         String str2 = (String) next;
         if (str2 == null) {
             return null;
@@ -63,6 +68,6 @@ public final class EmojiPickerViewModel$Companion$buildEmojiListItems$items$2 ex
                 name = guild.getName();
             }
         }
-        return new WidgetEmojiAdapter.EmojiItem(name, emoji, str2, this.$allowEmojisToAnimate);
+        return new WidgetEmojiAdapter$EmojiItem(name, emoji, str2, this.$allowEmojisToAnimate);
     }
 }

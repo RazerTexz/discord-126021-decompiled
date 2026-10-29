@@ -1,13 +1,13 @@
 package org.webrtc;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Map;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class JniHelper {
     @CalledByNative
-    public static Object getKey(Map.Entry entry) {
-        return entry.getKey();
+    public static Object getKey(Map$Entry map$Entry) {
+        return map$Entry.getKey();
     }
 
     @CalledByNative
@@ -25,7 +25,7 @@ public class JniHelper {
     }
 
     @CalledByNative
-    public static Object getValue(Map.Entry entry) {
-        return entry.getValue();
+    public static Object getValue(Map$Entry map$Entry) {
+        return map$Entry.getValue();
     }
 }

@@ -3,6 +3,7 @@ package androidx.media.session;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.BroadcastReceiver$PendingResult;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,87 +11,22 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.support.v4.media.MediaBrowserCompat;
-import android.support.v4.media.session.MediaControllerCompat$MediaControllerImplApi21;
+import android.support.v4.media.MediaBrowserCompat$e;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.ContextCompat;
 import androidx.media.MediaBrowserServiceCompat;
+import b.d.b.a.a;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import org.objectweb.asm.Opcodes;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MediaButtonReceiver extends BroadcastReceiver {
     private static final String TAG = "MediaButtonReceiver";
-
-    public class MediaButtonConnectionCallback extends MediaBrowserCompat.C0006c {
-        private final Context mContext;
-        private final Intent mIntent;
-        private MediaBrowserCompat mMediaBrowser;
-        private final BroadcastReceiver.PendingResult mPendingResult;
-
-        public MediaButtonConnectionCallback(Context context, Intent intent, BroadcastReceiver.PendingResult pendingResult) {
-            this.mContext = context;
-            this.mIntent = intent;
-            this.mPendingResult = pendingResult;
-        }
-
-        private void finish() {
-            Messenger messenger;
-            MediaBrowserCompat.C0008e c0008e = (MediaBrowserCompat.C0008e) this.mMediaBrowser.f6b;
-            MediaBrowserCompat.C0012i c0012i = c0008e.f17f;
-            if (c0012i != null && (messenger = c0008e.f18g) != null) {
-                try {
-                    c0012i.m12a(7, null, messenger);
-                } catch (RemoteException unused) {
-                    Log.i("MediaBrowserCompat", "Remote error unregistering client messenger.");
-                }
-            }
-            c0008e.f13b.disconnect();
-            this.mPendingResult.finish();
-        }
-
-        @Override // android.support.v4.media.MediaBrowserCompat.C0006c
-        public void onConnected() {
-            Context context = this.mContext;
-            MediaBrowserCompat.C0008e c0008e = (MediaBrowserCompat.C0008e) this.mMediaBrowser.f6b;
-            if (c0008e.f19h == null) {
-                c0008e.f19h = MediaSessionCompat.Token.m45a(c0008e.f13b.getSessionToken(), null);
-            }
-            MediaSessionCompat.Token token = c0008e.f19h;
-            new ConcurrentHashMap();
-            if (token == null) {
-                throw new IllegalArgumentException("sessionToken must not be null");
-            }
-            MediaControllerCompat$MediaControllerImplApi21 mediaControllerCompat$MediaControllerImplApi21 = new MediaControllerCompat$MediaControllerImplApi21(context, token);
-            KeyEvent keyEvent = (KeyEvent) this.mIntent.getParcelableExtra("android.intent.extra.KEY_EVENT");
-            if (keyEvent == null) {
-                throw new IllegalArgumentException("KeyEvent may not be null");
-            }
-            mediaControllerCompat$MediaControllerImplApi21.f40a.dispatchMediaButtonEvent(keyEvent);
-            finish();
-        }
-
-        @Override // android.support.v4.media.MediaBrowserCompat.C0006c
-        public void onConnectionFailed() {
-            finish();
-        }
-
-        @Override // android.support.v4.media.MediaBrowserCompat.C0006c
-        public void onConnectionSuspended() {
-            finish();
-        }
-
-        public void setMediaBrowser(MediaBrowserCompat mediaBrowserCompat) {
-            this.mMediaBrowser = mediaBrowserCompat;
-        }
-    }
 
     public static PendingIntent buildMediaButtonPendingIntent(Context context, long j) {
         ComponentName mediaButtonReceiverComponent = getMediaButtonReceiverComponent(context);
@@ -101,7 +37,7 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         return null;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public static ComponentName getMediaButtonReceiverComponent(Context context) {
         Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
         intent.setPackage(context.getPackageName());
@@ -129,9 +65,9 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         if (listQueryIntentServices.isEmpty()) {
             return null;
         }
-        StringBuilder sbM837Y = C1643a.m837Y("Expected 1 service that handles ", str, ", found ");
-        sbM837Y.append(listQueryIntentServices.size());
-        throw new IllegalStateException(sbM837Y.toString());
+        StringBuilder sbY = a.Y("Expected 1 service that handles ", str, ", found ");
+        sbY.append(listQueryIntentServices.size());
+        throw new IllegalStateException(sbY.toString());
     }
 
     public static KeyEvent handleIntent(MediaSessionCompat mediaSessionCompat, Intent intent) {
@@ -157,13 +93,13 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         if (serviceComponentByAction2 == null) {
             throw new IllegalStateException("Could not find any Service that handles android.intent.action.MEDIA_BUTTON or implements a media browser service.");
         }
-        BroadcastReceiver.PendingResult pendingResultGoAsync = goAsync();
+        BroadcastReceiver$PendingResult broadcastReceiver$PendingResultGoAsync = goAsync();
         Context applicationContext = context.getApplicationContext();
-        MediaButtonConnectionCallback mediaButtonConnectionCallback = new MediaButtonConnectionCallback(applicationContext, intent, pendingResultGoAsync);
-        MediaBrowserCompat mediaBrowserCompat = new MediaBrowserCompat(applicationContext, serviceComponentByAction2, mediaButtonConnectionCallback, null);
-        mediaButtonConnectionCallback.setMediaBrowser(mediaBrowserCompat);
+        MediaButtonReceiver$MediaButtonConnectionCallback mediaButtonReceiver$MediaButtonConnectionCallback = new MediaButtonReceiver$MediaButtonConnectionCallback(applicationContext, intent, broadcastReceiver$PendingResultGoAsync);
+        MediaBrowserCompat mediaBrowserCompat = new MediaBrowserCompat(applicationContext, serviceComponentByAction2, mediaButtonReceiver$MediaButtonConnectionCallback, null);
+        mediaButtonReceiver$MediaButtonConnectionCallback.setMediaBrowser(mediaBrowserCompat);
         Log.d("MediaBrowserCompat", "Connecting to a MediaBrowserService.");
-        ((MediaBrowserCompat.C0008e) mediaBrowserCompat.f6b).f13b.connect();
+        ((MediaBrowserCompat$e) mediaBrowserCompat.f14b).f16b.connect();
     }
 
     @SuppressLint({"WrongConstant"})
@@ -198,6 +134,6 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         intent.setComponent(componentName);
         intent.putExtra("android.intent.extra.KEY_EVENT", new KeyEvent(0, i));
         intent.addFlags(268435456);
-        return PendingIntent.getBroadcast(context, i, intent, MediaSessionCompat.f46a);
+        return PendingIntent.getBroadcast(context, i, intent, MediaSessionCompat.a);
     }
 }

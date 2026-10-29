@@ -10,32 +10,29 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelsListItemGuildJoinRequestBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16041a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ConstraintLayout f16042b;
+    public final ConstraintLayout f2292b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f16043c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f16044d;
+    public final TextView d;
 
     public WidgetChannelsListItemGuildJoinRequestBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ConstraintLayout constraintLayout2, @NonNull MaterialButton materialButton, @NonNull TextView textView) {
-        this.f16041a = constraintLayout;
-        this.f16042b = constraintLayout2;
-        this.f16043c = materialButton;
-        this.f16044d = textView;
+        this.a = constraintLayout;
+        this.f2292b = constraintLayout2;
+        this.c = materialButton;
+        this.d = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16041a;
+        return this.a;
     }
 }

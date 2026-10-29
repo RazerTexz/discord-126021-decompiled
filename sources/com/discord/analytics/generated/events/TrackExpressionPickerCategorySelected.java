@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackExpressionPickerCategorySelected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackExpressionPickerCategorySelected implements A
             return false;
         }
         TrackExpressionPickerCategorySelected trackExpressionPickerCategorySelected = (TrackExpressionPickerCategorySelected) other;
-        return C12238m.areEqual(this.tab, trackExpressionPickerCategorySelected.tab) && C12238m.areEqual(this.guildId, trackExpressionPickerCategorySelected.guildId) && C12238m.areEqual(this.stickerPackId, trackExpressionPickerCategorySelected.stickerPackId);
+        return m.areEqual(this.tab, trackExpressionPickerCategorySelected.tab) && m.areEqual(this.guildId, trackExpressionPickerCategorySelected.guildId) && m.areEqual(this.stickerPackId, trackExpressionPickerCategorySelected.stickerPackId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,11 +45,11 @@ public final /* data */ class TrackExpressionPickerCategorySelected implements A
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackExpressionPickerCategorySelected(tab=");
-        sbM833U.append(this.tab);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", stickerPackId=");
-        return C1643a.m819G(sbM833U, this.stickerPackId, ")");
+        StringBuilder sbU = a.U("TrackExpressionPickerCategorySelected(tab=");
+        sbU.append(this.tab);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", stickerPackId=");
+        return a.G(sbU, this.stickerPackId, ")");
     }
 }

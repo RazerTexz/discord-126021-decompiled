@@ -1,14 +1,14 @@
 package com.discord.widgets.user.phone;
 
-import com.discord.utilities.captcha.CaptchaHelper;
+import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetUserPhoneManage.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetUserPhoneManage$captchaLauncher$1 extends AbstractC12240o implements Function1<CaptchaHelper.CaptchaPayload, Unit> {
+public final class WidgetUserPhoneManage$captchaLauncher$1 extends o implements Function1<CaptchaHelper$CaptchaPayload, Unit> {
     public final /* synthetic */ WidgetUserPhoneManage this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -18,14 +18,14 @@ public final class WidgetUserPhoneManage$captchaLauncher$1 extends AbstractC1224
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Unit invoke(CaptchaHelper.CaptchaPayload captchaPayload) {
-        invoke2(captchaPayload);
-        return Unit.f27425a;
+    public /* bridge */ /* synthetic */ Unit invoke(CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
+        invoke2(captchaHelper$CaptchaPayload);
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final void invoke2(CaptchaHelper.CaptchaPayload captchaPayload) {
-        C12238m.checkNotNullParameter(captchaPayload, "captchaPayload");
-        this.this$0.updatePhoneNumber(captchaPayload);
+    public final void invoke2(CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
+        m.checkNotNullParameter(captchaHelper$CaptchaPayload, "captchaPayload");
+        WidgetUserPhoneManage.access$updatePhoneNumber(this.this$0, captchaHelper$CaptchaPayload);
     }
 }

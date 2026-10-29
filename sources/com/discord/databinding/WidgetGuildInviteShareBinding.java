@@ -16,67 +16,57 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildInviteShareBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16804a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final View f16805b;
+    public final View f2418b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16806c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f16807d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final CheckedSetting f16808e;
+    public final CheckedSetting e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ImageView f16809f;
+    public final ImageView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final MaterialButton f16810g;
+    public final MaterialButton g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextInputLayout f16811h;
+    public final TextInputLayout h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final RecyclerView f16812i;
+    public final RecyclerView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final AppViewFlipper f16813j;
+    public final AppViewFlipper j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final ViewInviteSettingsSheet f16814k;
+    public final ViewInviteSettingsSheet k;
 
     public WidgetGuildInviteShareBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull TextView textView, @NonNull TextView textView2, @NonNull CheckedSetting checkedSetting, @NonNull ImageView imageView, @NonNull MaterialButton materialButton, @NonNull TextInputLayout textInputLayout, @NonNull RecyclerView recyclerView, @NonNull AppViewFlipper appViewFlipper, @NonNull ViewInviteSettingsSheet viewInviteSettingsSheet) {
-        this.f16804a = coordinatorLayout;
-        this.f16805b = view;
-        this.f16806c = textView;
-        this.f16807d = textView2;
-        this.f16808e = checkedSetting;
-        this.f16809f = imageView;
-        this.f16810g = materialButton;
-        this.f16811h = textInputLayout;
-        this.f16812i = recyclerView;
-        this.f16813j = appViewFlipper;
-        this.f16814k = viewInviteSettingsSheet;
+        this.a = coordinatorLayout;
+        this.f2418b = view;
+        this.c = textView;
+        this.d = textView2;
+        this.e = checkedSetting;
+        this.f = imageView;
+        this.g = materialButton;
+        this.h = textInputLayout;
+        this.i = recyclerView;
+        this.j = appViewFlipper;
+        this.k = viewInviteSettingsSheet;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16804a;
+        return this.a;
     }
 }

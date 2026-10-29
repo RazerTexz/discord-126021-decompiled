@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class EmojiPickerPremiumUpsellBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15058a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15059b;
+    public final TextView f2102b;
 
     public EmojiPickerPremiumUpsellBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView) {
-        this.f15058a = linearLayout;
-        this.f15059b = textView;
+        this.a = linearLayout;
+        this.f2102b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15058a;
+        return this.a;
     }
 }

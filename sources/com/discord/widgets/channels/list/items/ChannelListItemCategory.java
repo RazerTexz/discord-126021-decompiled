@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemCategory.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,7 +15,7 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
     private final int type;
 
     public ChannelListItemCategory(Channel channel, boolean z2, boolean z3, boolean z4) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.isCollapsed = z2;
         this.isMuted = z3;
@@ -41,7 +41,7 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
     }
 
     public final ChannelListItemCategory copy(Channel channel, boolean isCollapsed, boolean isMuted, boolean canManageChannels) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemCategory(channel, isCollapsed, isMuted, canManageChannels);
     }
 
@@ -53,7 +53,7 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
             return false;
         }
         ChannelListItemCategory channelListItemCategory = (ChannelListItemCategory) other;
-        return C12238m.areEqual(this.channel, channelListItemCategory.channel) && this.isCollapsed == channelListItemCategory.isCollapsed && this.isMuted == channelListItemCategory.isMuted && this.canManageChannels == channelListItemCategory.canManageChannels;
+        return m.areEqual(this.channel, channelListItemCategory.channel) && this.isCollapsed == channelListItemCategory.isCollapsed && this.isMuted == channelListItemCategory.isMuted && this.canManageChannels == channelListItemCategory.canManageChannels;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -135,13 +135,13 @@ public final /* data */ class ChannelListItemCategory implements ChannelListItem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemCategory(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", isCollapsed=");
-        sbM833U.append(this.isCollapsed);
-        sbM833U.append(", isMuted=");
-        sbM833U.append(this.isMuted);
-        sbM833U.append(", canManageChannels=");
-        return C1643a.m827O(sbM833U, this.canManageChannels, ")");
+        StringBuilder sbU = a.U("ChannelListItemCategory(channel=");
+        sbU.append(this.channel);
+        sbU.append(", isCollapsed=");
+        sbU.append(this.isCollapsed);
+        sbU.append(", isMuted=");
+        sbU.append(this.isMuted);
+        sbU.append(", canManageChannels=");
+        return a.O(sbU, this.canManageChannels, ")");
     }
 }

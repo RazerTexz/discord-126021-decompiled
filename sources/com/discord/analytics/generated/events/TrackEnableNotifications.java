@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackEnableNotifications.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackEnableNotifications implements AnalyticsSchem
             return false;
         }
         TrackEnableNotifications trackEnableNotifications = (TrackEnableNotifications) other;
-        return C12238m.areEqual(this.enabled, trackEnableNotifications.enabled) && C12238m.areEqual(this.source, trackEnableNotifications.source);
+        return m.areEqual(this.enabled, trackEnableNotifications.enabled) && m.areEqual(this.source, trackEnableNotifications.source);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackEnableNotifications implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackEnableNotifications(enabled=");
-        sbM833U.append(this.enabled);
-        sbM833U.append(", source=");
-        return C1643a.m817E(sbM833U, this.source, ")");
+        StringBuilder sbU = a.U("TrackEnableNotifications(enabled=");
+        sbU.append(this.enabled);
+        sbU.append(", source=");
+        return a.E(sbU, this.source, ")");
     }
 }

@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.core.view.ViewCompat;
+import b.d.b.a.a;
 import java.util.Arrays;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ViewDragHelper {
@@ -34,7 +34,7 @@ public class ViewDragHelper {
     public static final int STATE_IDLE = 0;
     public static final int STATE_SETTLING = 2;
     private static final String TAG = "ViewDragHelper";
-    private final Callback mCallback;
+    private final ViewDragHelper$Callback mCallback;
     private View mCapturedView;
     private int mDragState;
     private int[] mEdgeDragsInProgress;
@@ -54,76 +54,19 @@ public class ViewDragHelper {
     private int mTouchSlop;
     private int mTrackingEdges;
     private VelocityTracker mVelocityTracker;
-    private static final Interpolator sInterpolator = new Interpolator() { // from class: androidx.customview.widget.ViewDragHelper.1
-        @Override // android.animation.TimeInterpolator
-        public float getInterpolation(float f) {
-            float f2 = f - 1.0f;
-            return (f2 * f2 * f2 * f2 * f2) + 1.0f;
-        }
-    };
+    private static final Interpolator sInterpolator = new ViewDragHelper$1();
     private int mActivePointerId = -1;
-    private final Runnable mSetIdleRunnable = new Runnable() { // from class: androidx.customview.widget.ViewDragHelper.2
-        @Override // java.lang.Runnable
-        public void run() {
-            ViewDragHelper.this.setDragState(0);
-        }
-    };
+    private final Runnable mSetIdleRunnable = new ViewDragHelper$2(this);
 
-    public abstract class Callback {
-        public int clampViewPositionHorizontal(@NonNull View view, int i, int i2) {
-            return 0;
-        }
-
-        public int clampViewPositionVertical(@NonNull View view, int i, int i2) {
-            return 0;
-        }
-
-        public int getOrderedChildIndex(int i) {
-            return i;
-        }
-
-        public int getViewHorizontalDragRange(@NonNull View view) {
-            return 0;
-        }
-
-        public int getViewVerticalDragRange(@NonNull View view) {
-            return 0;
-        }
-
-        public void onEdgeDragStarted(int i, int i2) {
-        }
-
-        public boolean onEdgeLock(int i) {
-            return false;
-        }
-
-        public void onEdgeTouched(int i, int i2) {
-        }
-
-        public void onViewCaptured(@NonNull View view, int i) {
-        }
-
-        public void onViewDragStateChanged(int i) {
-        }
-
-        public void onViewPositionChanged(@NonNull View view, int i, int i2, @Px int i3, @Px int i4) {
-        }
-
-        public void onViewReleased(@NonNull View view, float f, float f2) {
-        }
-
-        public abstract boolean tryCaptureView(@NonNull View view, int i);
-    }
-
-    private ViewDragHelper(@NonNull Context context, @NonNull ViewGroup viewGroup, @NonNull Callback callback) {
+    private ViewDragHelper(@NonNull Context context, @NonNull ViewGroup viewGroup, @NonNull ViewDragHelper$Callback viewDragHelper$Callback) {
         if (viewGroup == null) {
             throw new IllegalArgumentException("Parent view may not be null");
         }
-        if (callback == null) {
+        if (viewDragHelper$Callback == null) {
             throw new IllegalArgumentException("Callback may not be null");
         }
         this.mParentView = viewGroup;
-        this.mCallback = callback;
+        this.mCallback = viewDragHelper$Callback;
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
         this.mEdgeSize = (int) ((context.getResources().getDisplayMetrics().density * 20.0f) + 0.5f);
         this.mTouchSlop = viewConfiguration.getScaledTouchSlop();
@@ -174,10 +117,10 @@ public class ViewDragHelper {
 
     public void captureChildView(@NonNull View view, int i) {
         if (view.getParent() != this.mParentView) {
-            StringBuilder sbM833U = C1643a.m833U("captureChildView: parameter must be a descendant of the ViewDragHelper's tracked parent view (");
-            sbM833U.append(this.mParentView);
-            sbM833U.append(")");
-            throw new IllegalArgumentException(sbM833U.toString());
+            StringBuilder sbU = a.U("captureChildView: parameter must be a descendant of the ViewDragHelper's tracked parent view (");
+            sbU.append(this.mParentView);
+            sbU.append(")");
+            throw new IllegalArgumentException(sbU.toString());
         }
         this.mCapturedView = view;
         this.mActivePointerId = i;
@@ -319,8 +262,8 @@ public class ViewDragHelper {
         return this.mDragState == 2;
     }
 
-    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, @NonNull Callback callback) {
-        return new ViewDragHelper(viewGroup.getContext(), viewGroup, callback);
+    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, @NonNull ViewDragHelper$Callback viewDragHelper$Callback) {
+        return new ViewDragHelper(viewGroup.getContext(), viewGroup, viewDragHelper$Callback);
     }
 
     private void dispatchViewReleased(float f, float f2) {
@@ -829,8 +772,8 @@ public class ViewDragHelper {
         return f;
     }
 
-    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, float f, @NonNull Callback callback) {
-        ViewDragHelper viewDragHelperCreate = create(viewGroup, callback);
+    public static ViewDragHelper create(@NonNull ViewGroup viewGroup, float f, @NonNull ViewDragHelper$Callback viewDragHelper$Callback) {
+        ViewDragHelper viewDragHelperCreate = create(viewGroup, viewDragHelper$Callback);
         viewDragHelperCreate.mTouchSlop = (int) ((1.0f / f) * viewDragHelperCreate.mTouchSlop);
         return viewDragHelperCreate;
     }

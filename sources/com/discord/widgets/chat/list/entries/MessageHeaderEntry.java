@@ -1,12 +1,12 @@
 package com.discord.widgets.chat.list.entries;
 
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.guild.Guild;
 import com.discord.models.message.Message;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: MessageHeaderEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -18,7 +18,7 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
     private final int type;
 
     public MessageHeaderEntry(Message message, String str, String str2) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         this.message = message;
         this.text = str;
         this.channelName = str2;
@@ -40,7 +40,7 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
     }
 
     public final MessageHeaderEntry copy(Message message, String text, String channelName) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         return new MessageHeaderEntry(message, text, channelName);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
             return false;
         }
         MessageHeaderEntry messageHeaderEntry = (MessageHeaderEntry) other;
-        return C12238m.areEqual(this.message, messageHeaderEntry.message) && C12238m.areEqual(this.text, messageHeaderEntry.text) && C12238m.areEqual(this.channelName, messageHeaderEntry.channelName);
+        return m.areEqual(this.message, messageHeaderEntry.message) && m.areEqual(this.text, messageHeaderEntry.text) && m.areEqual(this.channelName, messageHeaderEntry.channelName);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -102,17 +102,17 @@ public final /* data */ class MessageHeaderEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MessageHeaderEntry(message=");
-        sbM833U.append(this.message);
-        sbM833U.append(", text=");
-        sbM833U.append(this.text);
-        sbM833U.append(", channelName=");
-        return C1643a.m822J(sbM833U, this.channelName, ")");
+        StringBuilder sbU = a.U("MessageHeaderEntry(message=");
+        sbU.append(this.message);
+        sbU.append(", text=");
+        sbU.append(this.text);
+        sbU.append(", channelName=");
+        return a.J(sbU, this.channelName, ")");
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public MessageHeaderEntry(Message message, Channel channel, Guild guild) {
-        this(message, guild != null ? guild.getName() : null, channel != null ? ChannelUtils.m7679c(channel) : null);
-        C12238m.checkNotNullParameter(message, "message");
+        this(message, guild != null ? guild.getName() : null, channel != null ? ChannelUtils.c(channel) : null);
+        m.checkNotNullParameter(message, "message");
     }
 }

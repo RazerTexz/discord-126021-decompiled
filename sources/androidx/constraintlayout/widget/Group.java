@@ -35,9 +35,9 @@ public class Group extends ConstraintHelper {
 
     @Override // androidx.constraintlayout.widget.ConstraintHelper
     public void updatePostLayout(ConstraintLayout constraintLayout) {
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) getLayoutParams();
-        layoutParams.widget.setWidth(0);
-        layoutParams.widget.setHeight(0);
+        ConstraintLayout$LayoutParams constraintLayout$LayoutParams = (ConstraintLayout$LayoutParams) getLayoutParams();
+        constraintLayout$LayoutParams.widget.setWidth(0);
+        constraintLayout$LayoutParams.widget.setHeight(0);
     }
 
     public Group(Context context, AttributeSet attributeSet) {

@@ -8,8 +8,9 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout$LayoutParams;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$animator;
 import com.google.android.material.animation.MotionSpec;
 import com.google.android.material.animation.Positioning;
 import java.util.HashMap;
@@ -27,12 +28,12 @@ public class FabTransformationSheetBehavior extends FabTransformationBehavior {
 
     @Override // com.google.android.material.transformation.FabTransformationBehavior
     @NonNull
-    public FabTransformationBehavior.FabTransformationSpec onCreateMotionSpec(Context context, boolean z2) {
-        int i = z2 ? C10817R.animator.mtrl_fab_transformation_sheet_expand_spec : C10817R.animator.mtrl_fab_transformation_sheet_collapse_spec;
-        FabTransformationBehavior.FabTransformationSpec fabTransformationSpec = new FabTransformationBehavior.FabTransformationSpec();
-        fabTransformationSpec.timings = MotionSpec.createFromResource(context, i);
-        fabTransformationSpec.positioning = new Positioning(17, 0.0f, 0.0f);
-        return fabTransformationSpec;
+    public FabTransformationBehavior$FabTransformationSpec onCreateMotionSpec(Context context, boolean z2) {
+        int i = z2 ? R$animator.mtrl_fab_transformation_sheet_expand_spec : R$animator.mtrl_fab_transformation_sheet_collapse_spec;
+        FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec = new FabTransformationBehavior$FabTransformationSpec();
+        fabTransformationBehavior$FabTransformationSpec.timings = MotionSpec.createFromResource(context, i);
+        fabTransformationBehavior$FabTransformationSpec.positioning = new Positioning(17, 0.0f, 0.0f);
+        return fabTransformationBehavior$FabTransformationSpec;
     }
 
     @Override // com.google.android.material.transformation.ExpandableTransformationBehavior, com.google.android.material.transformation.ExpandableBehavior
@@ -52,7 +53,7 @@ public class FabTransformationSheetBehavior extends FabTransformationBehavior {
             }
             for (int i = 0; i < childCount; i++) {
                 View childAt = coordinatorLayout.getChildAt(i);
-                boolean z3 = (childAt.getLayoutParams() instanceof CoordinatorLayout.LayoutParams) && (((CoordinatorLayout.LayoutParams) childAt.getLayoutParams()).getBehavior() instanceof FabTransformationScrimBehavior);
+                boolean z3 = (childAt.getLayoutParams() instanceof CoordinatorLayout$LayoutParams) && (((CoordinatorLayout$LayoutParams) childAt.getLayoutParams()).getBehavior() instanceof FabTransformationScrimBehavior);
                 if (childAt != view && !z3) {
                     if (z2) {
                         this.importantForAccessibilityMap.put(childAt, Integer.valueOf(childAt.getImportantForAccessibility()));

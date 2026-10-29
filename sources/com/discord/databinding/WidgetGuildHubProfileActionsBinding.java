@@ -11,47 +11,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildHubProfileActionsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16780a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinearLayout f16781b;
+    public final LinearLayout f2414b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f16782c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final CardView f16783d;
+    public final CardView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16784e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f16785f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f16786g;
+    public final TextView g;
 
     public WidgetGuildHubProfileActionsBinding(@NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout2, @NonNull LinearLayout linearLayout3, @NonNull LinearLayout linearLayout4, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView, @NonNull CardView cardView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull CardView cardView2, @NonNull LinearLayout linearLayout5) {
-        this.f16780a = linearLayout;
-        this.f16781b = linearLayout4;
-        this.f16782c = simpleDraweeView;
-        this.f16783d = cardView;
-        this.f16784e = textView2;
-        this.f16785f = textView3;
-        this.f16786g = textView4;
+        this.a = linearLayout;
+        this.f2414b = linearLayout4;
+        this.c = simpleDraweeView;
+        this.d = cardView;
+        this.e = textView2;
+        this.f = textView3;
+        this.g = textView4;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16780a;
+        return this.a;
     }
 }

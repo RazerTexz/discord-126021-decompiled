@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackIntegrationAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackIntegrationAdded implements AnalyticsSchema, 
             return false;
         }
         TrackIntegrationAdded trackIntegrationAdded = (TrackIntegrationAdded) other;
-        return C12238m.areEqual(this.id, trackIntegrationAdded.id) && C12238m.areEqual(this.guildId, trackIntegrationAdded.guildId) && C12238m.areEqual(this.applicationId, trackIntegrationAdded.applicationId) && C12238m.areEqual(this.scopes, trackIntegrationAdded.scopes);
+        return m.areEqual(this.id, trackIntegrationAdded.id) && m.areEqual(this.guildId, trackIntegrationAdded.guildId) && m.areEqual(this.applicationId, trackIntegrationAdded.applicationId) && m.areEqual(this.scopes, trackIntegrationAdded.scopes);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,13 +47,13 @@ public final /* data */ class TrackIntegrationAdded implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackIntegrationAdded(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", scopes=");
-        return C1643a.m824L(sbM833U, this.scopes, ")");
+        StringBuilder sbU = a.U("TrackIntegrationAdded(id=");
+        sbU.append(this.id);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", scopes=");
+        return a.L(sbU, this.scopes, ")");
     }
 }

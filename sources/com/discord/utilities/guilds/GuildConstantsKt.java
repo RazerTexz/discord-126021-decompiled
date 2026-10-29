@@ -17,12 +17,8 @@ public final class GuildConstantsKt {
     public static final int SYSTEM_CHANNEL_FLAG_SUPPRESS_BOOST = 2;
     public static final int SYSTEM_CHANNEL_FLAG_SUPPRESS_JOIN = 1;
     public static final int SYSTEM_CHANNEL_FLAG_SUPPRESS_JOIN_REPLIES = 8;
-
-    /* JADX INFO: renamed from: SYSTEM_CHANNEL_FLAG_SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATIONS */
-    public static final int f18986x5d587f46 = 16;
-
-    /* JADX INFO: renamed from: SYSTEM_CHANNEL_FLAG_SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATION_REPLIES */
-    public static final int f18987xd7135d56 = 32;
+    public static final int SYSTEM_CHANNEL_FLAG_SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATIONS = 16;
+    public static final int SYSTEM_CHANNEL_FLAG_SUPPRESS_ROLE_SUBSCRIPTION_PURCHASE_NOTIFICATION_REPLIES = 32;
     private static final GuildBoostTierAmounts GUILD_BOOST_TIER_AMOUNTS = new GuildBoostTierAmounts(2, 7, 14);
     private static final GuildBoostTierAmounts GUILD_BOOST_TIER_AMOUNTS_EXP_SMALL_GUILDS = new GuildBoostTierAmounts(2, 3, 4);
     private static final GuildBoostTierAmounts GUILD_BOOST_TIER_AMOUNTS_EXP_MEDIUM_GUILDS = new GuildBoostTierAmounts(2, 7, 10);

@@ -13,62 +13,53 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetPreviewGuildScheduledEventBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f17374a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f17375b;
+    public final ImageView f2512b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f17376c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final CheckedSetting f17377d;
+    public final CheckedSetting d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final GuildScheduledEventItemView f17378e;
+    public final GuildScheduledEventItemView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f17379f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f17380g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f17381h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final MaterialButton f17382i;
+    public final MaterialButton i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f17383j;
+    public final TextView j;
 
     public WidgetPreviewGuildScheduledEventBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull CheckedSetting checkedSetting, @NonNull GuildScheduledEventItemView guildScheduledEventItemView, @NonNull TextView textView, @NonNull TextView textView2, @NonNull ConstraintLayout constraintLayout2, @NonNull TextView textView3, @NonNull MaterialButton materialButton, @NonNull TextView textView4) {
-        this.f17374a = constraintLayout;
-        this.f17375b = imageView;
-        this.f17376c = imageView2;
-        this.f17377d = checkedSetting;
-        this.f17378e = guildScheduledEventItemView;
-        this.f17379f = textView;
-        this.f17380g = textView2;
-        this.f17381h = textView3;
-        this.f17382i = materialButton;
-        this.f17383j = textView4;
+        this.a = constraintLayout;
+        this.f2512b = imageView;
+        this.c = imageView2;
+        this.d = checkedSetting;
+        this.e = guildScheduledEventItemView;
+        this.f = textView;
+        this.g = textView2;
+        this.h = textView3;
+        this.i = materialButton;
+        this.j = textView4;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17374a;
+        return this.a;
     }
 }

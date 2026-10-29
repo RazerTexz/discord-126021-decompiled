@@ -8,23 +8,23 @@ import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class CompositeOnPageChangeCallback extends ViewPager2.OnPageChangeCallback {
+public final class CompositeOnPageChangeCallback extends ViewPager2$OnPageChangeCallback {
 
     @NonNull
-    private final List<ViewPager2.OnPageChangeCallback> mCallbacks;
+    private final List<ViewPager2$OnPageChangeCallback> mCallbacks;
 
     public CompositeOnPageChangeCallback(int i) {
         this.mCallbacks = new ArrayList(i);
     }
 
-    public void addOnPageChangeCallback(ViewPager2.OnPageChangeCallback onPageChangeCallback) {
-        this.mCallbacks.add(onPageChangeCallback);
+    public void addOnPageChangeCallback(ViewPager2$OnPageChangeCallback viewPager2$OnPageChangeCallback) {
+        this.mCallbacks.add(viewPager2$OnPageChangeCallback);
     }
 
-    @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+    @Override // androidx.viewpager2.widget.ViewPager2$OnPageChangeCallback
     public void onPageScrollStateChanged(int i) {
         try {
-            Iterator<ViewPager2.OnPageChangeCallback> it = this.mCallbacks.iterator();
+            Iterator<ViewPager2$OnPageChangeCallback> it = this.mCallbacks.iterator();
             while (it.hasNext()) {
                 it.next().onPageScrollStateChanged(i);
             }
@@ -33,10 +33,10 @@ public final class CompositeOnPageChangeCallback extends ViewPager2.OnPageChange
         }
     }
 
-    @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+    @Override // androidx.viewpager2.widget.ViewPager2$OnPageChangeCallback
     public void onPageScrolled(int i, float f, @Px int i2) {
         try {
-            Iterator<ViewPager2.OnPageChangeCallback> it = this.mCallbacks.iterator();
+            Iterator<ViewPager2$OnPageChangeCallback> it = this.mCallbacks.iterator();
             while (it.hasNext()) {
                 it.next().onPageScrolled(i, f, i2);
             }
@@ -45,10 +45,10 @@ public final class CompositeOnPageChangeCallback extends ViewPager2.OnPageChange
         }
     }
 
-    @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+    @Override // androidx.viewpager2.widget.ViewPager2$OnPageChangeCallback
     public void onPageSelected(int i) {
         try {
-            Iterator<ViewPager2.OnPageChangeCallback> it = this.mCallbacks.iterator();
+            Iterator<ViewPager2$OnPageChangeCallback> it = this.mCallbacks.iterator();
             while (it.hasNext()) {
                 it.next().onPageSelected(i);
             }
@@ -57,8 +57,8 @@ public final class CompositeOnPageChangeCallback extends ViewPager2.OnPageChange
         }
     }
 
-    public void removeOnPageChangeCallback(ViewPager2.OnPageChangeCallback onPageChangeCallback) {
-        this.mCallbacks.remove(onPageChangeCallback);
+    public void removeOnPageChangeCallback(ViewPager2$OnPageChangeCallback viewPager2$OnPageChangeCallback) {
+        this.mCallbacks.remove(viewPager2$OnPageChangeCallback);
     }
 
     private void throwCallbackListModifiedWhileInUse(ConcurrentModificationException concurrentModificationException) {

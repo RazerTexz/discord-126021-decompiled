@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildTemplateEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,7 +14,7 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
     private final long userId;
 
     public GuildTemplateEntry(long j, long j2, String str) {
-        C12238m.checkNotNullParameter(str, "guildTemplateCode");
+        m.checkNotNullParameter(str, "guildTemplateCode");
         this.userId = j;
         this.messageId = j2;
         this.guildTemplateCode = str;
@@ -38,7 +38,7 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
     }
 
     public final GuildTemplateEntry copy(long userId, long messageId, String guildTemplateCode) {
-        C12238m.checkNotNullParameter(guildTemplateCode, "guildTemplateCode");
+        m.checkNotNullParameter(guildTemplateCode, "guildTemplateCode");
         return new GuildTemplateEntry(userId, messageId, guildTemplateCode);
     }
 
@@ -50,7 +50,7 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
             return false;
         }
         GuildTemplateEntry guildTemplateEntry = (GuildTemplateEntry) other;
-        return this.userId == guildTemplateEntry.userId && this.messageId == guildTemplateEntry.messageId && C12238m.areEqual(this.guildTemplateCode, guildTemplateEntry.guildTemplateCode);
+        return this.userId == guildTemplateEntry.userId && this.messageId == guildTemplateEntry.messageId && m.areEqual(this.guildTemplateCode, guildTemplateEntry.guildTemplateCode);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -91,17 +91,17 @@ public final /* data */ class GuildTemplateEntry extends ChatListEntry {
     }
 
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.messageId) + (C0002b.m3a(this.userId) * 31)) * 31;
+        int iA = (b.a(this.messageId) + (b.a(this.userId) * 31)) * 31;
         String str = this.guildTemplateCode;
-        return iM3a + (str != null ? str.hashCode() : 0);
+        return iA + (str != null ? str.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildTemplateEntry(userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", guildTemplateCode=");
-        return C1643a.m822J(sbM833U, this.guildTemplateCode, ")");
+        StringBuilder sbU = a.U("GuildTemplateEntry(userId=");
+        sbU.append(this.userId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", guildTemplateCode=");
+        return a.J(sbU, this.guildTemplateCode, ")");
     }
 }

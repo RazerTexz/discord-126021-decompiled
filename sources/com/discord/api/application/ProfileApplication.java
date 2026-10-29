@@ -1,8 +1,8 @@
 package com.discord.api.application;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ProfileApplication.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ProfileApplication {
             return false;
         }
         ProfileApplication profileApplication = (ProfileApplication) other;
-        return C12238m.areEqual(this.id, profileApplication.id) && C12238m.areEqual(this.customInstallUrl, profileApplication.customInstallUrl) && C12238m.areEqual(this.installParams, profileApplication.installParams);
+        return m.areEqual(this.id, profileApplication.id) && m.areEqual(this.customInstallUrl, profileApplication.customInstallUrl) && m.areEqual(this.installParams, profileApplication.installParams);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -47,13 +47,13 @@ public final /* data */ class ProfileApplication {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ProfileApplication(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", customInstallUrl=");
-        sbM833U.append(this.customInstallUrl);
-        sbM833U.append(", installParams=");
-        sbM833U.append(this.installParams);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ProfileApplication(id=");
+        sbU.append(this.id);
+        sbU.append(", customInstallUrl=");
+        sbU.append(this.customInstallUrl);
+        sbU.append(", installParams=");
+        sbU.append(this.installParams);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

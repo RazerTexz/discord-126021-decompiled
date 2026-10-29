@@ -1,7 +1,6 @@
 package com.google.android.material.transition.platform;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.util.Property;
@@ -20,31 +19,6 @@ public final class ScaleProvider implements VisibilityAnimatorProvider {
     private float outgoingEndScale;
     private float outgoingStartScale;
     private boolean scaleOnDisappear;
-
-    /* JADX INFO: renamed from: com.google.android.material.transition.platform.ScaleProvider$a */
-    public final class C11062a extends AnimatorListenerAdapter {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ View f21396a;
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ float f21397b;
-
-        /* JADX INFO: renamed from: c */
-        public final /* synthetic */ float f21398c;
-
-        public C11062a(View view, float f, float f2) {
-            this.f21396a = view;
-            this.f21397b = f;
-            this.f21398c = f2;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            this.f21396a.setScaleX(this.f21397b);
-            this.f21396a.setScaleY(this.f21398c);
-        }
-    }
 
     public ScaleProvider() {
         this(true);
@@ -69,7 +43,7 @@ public final class ScaleProvider implements VisibilityAnimatorProvider {
         float scaleX = view.getScaleX();
         float scaleY = view.getScaleY();
         ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_X, scaleX * f, scaleX * f2), PropertyValuesHolder.ofFloat((Property<?, Float>) View.SCALE_Y, f * scaleY, f2 * scaleY));
-        objectAnimatorOfPropertyValuesHolder.addListener(new C11062a(view, scaleX, scaleY));
+        objectAnimatorOfPropertyValuesHolder.addListener(new ScaleProvider$a(view, scaleX, scaleY));
         return objectAnimatorOfPropertyValuesHolder;
     }
 

@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ServiceLifecycleDispatcher {
-    private DispatchRunnable mLastDispatchRunnable;
+    private ServiceLifecycleDispatcher$DispatchRunnable mLastDispatchRunnable;
     private final LifecycleRegistry mRegistry;
     private final Handler mHandler = new Handler();
 
@@ -19,49 +19,29 @@ public class ServiceLifecycleDispatcher {
     }
 
     public void onServicePreSuperOnBind() {
-        postDispatchRunnable(Lifecycle.Event.ON_START);
+        postDispatchRunnable(Lifecycle$Event.ON_START);
     }
 
     public void onServicePreSuperOnCreate() {
-        postDispatchRunnable(Lifecycle.Event.ON_CREATE);
+        postDispatchRunnable(Lifecycle$Event.ON_CREATE);
     }
 
     public void onServicePreSuperOnDestroy() {
-        postDispatchRunnable(Lifecycle.Event.ON_STOP);
-        postDispatchRunnable(Lifecycle.Event.ON_DESTROY);
+        postDispatchRunnable(Lifecycle$Event.ON_STOP);
+        postDispatchRunnable(Lifecycle$Event.ON_DESTROY);
     }
 
     public void onServicePreSuperOnStart() {
-        postDispatchRunnable(Lifecycle.Event.ON_START);
+        postDispatchRunnable(Lifecycle$Event.ON_START);
     }
 
-    private void postDispatchRunnable(Lifecycle.Event event) {
-        DispatchRunnable dispatchRunnable = this.mLastDispatchRunnable;
-        if (dispatchRunnable != null) {
-            dispatchRunnable.run();
+    private void postDispatchRunnable(Lifecycle$Event lifecycle$Event) {
+        ServiceLifecycleDispatcher$DispatchRunnable serviceLifecycleDispatcher$DispatchRunnable = this.mLastDispatchRunnable;
+        if (serviceLifecycleDispatcher$DispatchRunnable != null) {
+            serviceLifecycleDispatcher$DispatchRunnable.run();
         }
-        DispatchRunnable dispatchRunnable2 = new DispatchRunnable(this.mRegistry, event);
-        this.mLastDispatchRunnable = dispatchRunnable2;
-        this.mHandler.postAtFrontOfQueue(dispatchRunnable2);
-    }
-
-    public class DispatchRunnable implements Runnable {
-        public final Lifecycle.Event mEvent;
-        private final LifecycleRegistry mRegistry;
-        private boolean mWasExecuted = false;
-
-        public DispatchRunnable(@NonNull LifecycleRegistry lifecycleRegistry, Lifecycle.Event event) {
-            this.mRegistry = lifecycleRegistry;
-            this.mEvent = event;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            if (this.mWasExecuted) {
-                return;
-            }
-            this.mRegistry.handleLifecycleEvent(this.mEvent);
-            this.mWasExecuted = true;
-        }
+        ServiceLifecycleDispatcher$DispatchRunnable serviceLifecycleDispatcher$DispatchRunnable2 = new ServiceLifecycleDispatcher$DispatchRunnable(this.mRegistry, lifecycle$Event);
+        this.mLastDispatchRunnable = serviceLifecycleDispatcher$DispatchRunnable2;
+        this.mHandler.postAtFrontOfQueue(serviceLifecycleDispatcher$DispatchRunnable2);
     }
 }

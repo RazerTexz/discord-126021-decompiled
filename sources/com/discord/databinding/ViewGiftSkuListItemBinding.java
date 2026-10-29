@@ -11,37 +11,33 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewGiftSkuListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CardView f15440a;
+    public final CardView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f15441b;
+    public final ImageView f2188b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15442c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f15443d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f15444e;
+    public final TextView e;
 
     public ViewGiftSkuListItemBinding(@NonNull CardView cardView, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView2) {
-        this.f15440a = cardView;
-        this.f15441b = imageView;
-        this.f15442c = textView;
-        this.f15443d = simpleDraweeView;
-        this.f15444e = textView2;
+        this.a = cardView;
+        this.f2188b = imageView;
+        this.c = textView;
+        this.d = simpleDraweeView;
+        this.e = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15440a;
+        return this.a;
     }
 }

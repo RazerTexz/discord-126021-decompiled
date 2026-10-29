@@ -6,22 +6,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.transition.TransitionValues;
-import p007b.p225i.p226a.p341g.p353l.AbstractC4466h;
+import b.i.a.g.l.h;
 
 /* JADX INFO: loaded from: classes3.dex */
-public final class MaterialFadeThrough extends AbstractC4466h<FadeThroughProvider> {
+public final class MaterialFadeThrough extends h<FadeThroughProvider> {
     private static final float DEFAULT_START_SCALE = 0.92f;
 
     public MaterialFadeThrough() {
         super(createPrimaryAnimatorProvider(), createSecondaryAnimatorProvider());
     }
 
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
+    @Override // b.i.a.g.l.h
     public /* bridge */ /* synthetic */ void addAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
         super.addAdditionalAnimatorProvider(visibilityAnimatorProvider);
     }
 
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
+    @Override // b.i.a.g.l.h
     public /* bridge */ /* synthetic */ void clearAdditionalAnimatorProvider() {
         super.clearAdditionalAnimatorProvider();
     }
@@ -37,28 +37,28 @@ public final class MaterialFadeThrough extends AbstractC4466h<FadeThroughProvide
         return scaleProvider;
     }
 
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
+    @Override // b.i.a.g.l.h
     @Nullable
     public /* bridge */ /* synthetic */ VisibilityAnimatorProvider getSecondaryAnimatorProvider() {
         return super.getSecondaryAnimatorProvider();
     }
 
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h, androidx.transition.Visibility
+    @Override // b.i.a.g.l.h, androidx.transition.Visibility
     public /* bridge */ /* synthetic */ Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
         return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
     }
 
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h, androidx.transition.Visibility
+    @Override // b.i.a.g.l.h, androidx.transition.Visibility
     public /* bridge */ /* synthetic */ Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
         return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
     }
 
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
+    @Override // b.i.a.g.l.h
     public /* bridge */ /* synthetic */ boolean removeAdditionalAnimatorProvider(@NonNull VisibilityAnimatorProvider visibilityAnimatorProvider) {
         return super.removeAdditionalAnimatorProvider(visibilityAnimatorProvider);
     }
 
-    @Override // p007b.p225i.p226a.p341g.p353l.AbstractC4466h
+    @Override // b.i.a.g.l.h
     public /* bridge */ /* synthetic */ void setSecondaryAnimatorProvider(@Nullable VisibilityAnimatorProvider visibilityAnimatorProvider) {
         super.setSecondaryAnimatorProvider(visibilityAnimatorProvider);
     }

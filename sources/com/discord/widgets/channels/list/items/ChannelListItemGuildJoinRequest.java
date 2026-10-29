@@ -1,9 +1,9 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.guildjoinrequest.GuildJoinRequest;
 import com.discord.models.member.GuildMember;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemGuildJoinRequest.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,8 +14,8 @@ public final /* data */ class ChannelListItemGuildJoinRequest implements Channel
     private final int type;
 
     public ChannelListItemGuildJoinRequest(GuildJoinRequest guildJoinRequest, GuildMember guildMember) {
-        C12238m.checkNotNullParameter(guildJoinRequest, "guildJoinRequest");
-        C12238m.checkNotNullParameter(guildMember, "member");
+        m.checkNotNullParameter(guildJoinRequest, "guildJoinRequest");
+        m.checkNotNullParameter(guildMember, "member");
         this.guildJoinRequest = guildJoinRequest;
         this.member = guildMember;
         this.type = 22;
@@ -33,8 +33,8 @@ public final /* data */ class ChannelListItemGuildJoinRequest implements Channel
     }
 
     public final ChannelListItemGuildJoinRequest copy(GuildJoinRequest guildJoinRequest, GuildMember member) {
-        C12238m.checkNotNullParameter(guildJoinRequest, "guildJoinRequest");
-        C12238m.checkNotNullParameter(member, "member");
+        m.checkNotNullParameter(guildJoinRequest, "guildJoinRequest");
+        m.checkNotNullParameter(member, "member");
         return new ChannelListItemGuildJoinRequest(guildJoinRequest, member);
     }
 
@@ -46,7 +46,7 @@ public final /* data */ class ChannelListItemGuildJoinRequest implements Channel
             return false;
         }
         ChannelListItemGuildJoinRequest channelListItemGuildJoinRequest = (ChannelListItemGuildJoinRequest) other;
-        return C12238m.areEqual(this.guildJoinRequest, channelListItemGuildJoinRequest.guildJoinRequest) && C12238m.areEqual(this.member, channelListItemGuildJoinRequest.member);
+        return m.areEqual(this.guildJoinRequest, channelListItemGuildJoinRequest.guildJoinRequest) && m.areEqual(this.member, channelListItemGuildJoinRequest.member);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -85,11 +85,11 @@ public final /* data */ class ChannelListItemGuildJoinRequest implements Channel
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemGuildJoinRequest(guildJoinRequest=");
-        sbM833U.append(this.guildJoinRequest);
-        sbM833U.append(", member=");
-        sbM833U.append(this.member);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ChannelListItemGuildJoinRequest(guildJoinRequest=");
+        sbU.append(this.guildJoinRequest);
+        sbU.append(", member=");
+        sbU.append(this.member);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

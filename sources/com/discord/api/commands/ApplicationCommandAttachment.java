@@ -1,8 +1,8 @@
 package com.discord.api.commands;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ApplicationCommandData.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class ApplicationCommandAttachment {
     private final String id;
 
     public ApplicationCommandAttachment(String str, String str2) {
-        C12238m.checkNotNullParameter(str, "filename");
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(str, "filename");
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_ID);
         this.filename = str;
         this.id = str2;
     }
@@ -25,7 +25,7 @@ public final /* data */ class ApplicationCommandAttachment {
             return false;
         }
         ApplicationCommandAttachment applicationCommandAttachment = (ApplicationCommandAttachment) other;
-        return C12238m.areEqual(this.filename, applicationCommandAttachment.filename) && C12238m.areEqual(this.id, applicationCommandAttachment.id);
+        return m.areEqual(this.filename, applicationCommandAttachment.filename) && m.areEqual(this.id, applicationCommandAttachment.id);
     }
 
     public int hashCode() {
@@ -36,9 +36,9 @@ public final /* data */ class ApplicationCommandAttachment {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApplicationCommandAttachment(filename=");
-        sbM833U.append(this.filename);
-        sbM833U.append(", id=");
-        return C1643a.m822J(sbM833U, this.id, ")");
+        StringBuilder sbU = a.U("ApplicationCommandAttachment(filename=");
+        sbU.append(this.filename);
+        sbU.append(", id=");
+        return a.J(sbU, this.id, ")");
     }
 }

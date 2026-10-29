@@ -12,67 +12,57 @@ import com.discord.views.CheckedSetting;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsAccessibilityBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17769a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f17770b;
+    public final CheckedSetting f2589b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final CheckedSetting f17771c;
+    public final CheckedSetting c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17772d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LinkifiedTextView f17773e;
+    public final LinkifiedTextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f17774f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final CheckedSetting f17775g;
+    public final CheckedSetting g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f17776h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final CheckedSetting f17777i;
+    public final CheckedSetting i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final CheckedSetting f17778j;
+    public final CheckedSetting j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final CheckedSetting f17779k;
+    public final CheckedSetting k;
 
     public WidgetSettingsAccessibilityBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull CheckedSetting checkedSetting, @NonNull CheckedSetting checkedSetting2, @NonNull TextView textView, @NonNull LinkifiedTextView linkifiedTextView, @NonNull TextView textView2, @NonNull CheckedSetting checkedSetting3, @NonNull LinearLayout linearLayout, @NonNull TextView textView3, @NonNull View view, @NonNull CheckedSetting checkedSetting4, @NonNull CheckedSetting checkedSetting5, @NonNull CheckedSetting checkedSetting6) {
-        this.f17769a = coordinatorLayout;
-        this.f17770b = checkedSetting;
-        this.f17771c = checkedSetting2;
-        this.f17772d = textView;
-        this.f17773e = linkifiedTextView;
-        this.f17774f = textView2;
-        this.f17775g = checkedSetting3;
-        this.f17776h = textView3;
-        this.f17777i = checkedSetting4;
-        this.f17778j = checkedSetting5;
-        this.f17779k = checkedSetting6;
+        this.a = coordinatorLayout;
+        this.f2589b = checkedSetting;
+        this.c = checkedSetting2;
+        this.d = textView;
+        this.e = linkifiedTextView;
+        this.f = textView2;
+        this.g = checkedSetting3;
+        this.h = textView3;
+        this.i = checkedSetting4;
+        this.j = checkedSetting5;
+        this.k = checkedSetting6;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17769a;
+        return this.a;
     }
 }

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ReflectiveGenericLifecycleObserver implements LifecycleEventObserver {
-    private final ClassesInfoCache.CallbackInfo mInfo;
+    private final ClassesInfoCache$CallbackInfo mInfo;
     private final Object mWrapped;
 
     public ReflectiveGenericLifecycleObserver(Object obj) {
@@ -13,7 +13,7 @@ public class ReflectiveGenericLifecycleObserver implements LifecycleEventObserve
     }
 
     @Override // androidx.view.LifecycleEventObserver
-    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-        this.mInfo.invokeCallbacks(lifecycleOwner, event, this.mWrapped);
+    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle$Event lifecycle$Event) {
+        this.mInfo.invokeCallbacks(lifecycleOwner, lifecycle$Event, this.mWrapped);
     }
 }

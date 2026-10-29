@@ -22,6 +22,11 @@ public final class TrackImpressionGuildMemberVerification implements AnalyticsSc
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "impression_guild_member_verification";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */
     public String getAnalyticsSchemaTypeName() {
@@ -32,11 +37,5 @@ public final class TrackImpressionGuildMemberVerification implements AnalyticsSc
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
     }
 }

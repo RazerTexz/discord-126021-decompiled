@@ -1,20 +1,22 @@
 package androidx.work.impl;
 
 import android.content.Context;
-import android.os.PowerManager;
+import android.os.PowerManager$WakeLock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.ContextCompat;
 import androidx.work.Configuration;
 import androidx.work.ForegroundInfo;
 import androidx.work.Logger;
-import androidx.work.WorkerParameters;
+import androidx.work.WorkerParameters$RuntimeExtras;
 import androidx.work.impl.foreground.ForegroundProcessor;
 import androidx.work.impl.foreground.SystemForegroundDispatcher;
 import androidx.work.impl.foreground.SystemForegroundService;
 import androidx.work.impl.utils.WakeLocks;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
+import b.i.b.d.a.a;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,11 +24,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class Processor implements ExecutionListener, ForegroundProcessor {
     private static final String FOREGROUND_WAKELOCK_TAG = "ProcessorForegroundLck";
     private Context mAppContext;
@@ -41,37 +41,8 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
     private final List<ExecutionListener> mOuterListeners = new ArrayList();
 
     @Nullable
-    private PowerManager.WakeLock mForegroundLock = null;
+    private PowerManager$WakeLock mForegroundLock = null;
     private final Object mLock = new Object();
-
-    public class FutureListener implements Runnable {
-
-        @NonNull
-        private ExecutionListener mExecutionListener;
-
-        @NonNull
-        private InterfaceFutureC4539a<Boolean> mFuture;
-
-        @NonNull
-        private String mWorkSpecId;
-
-        public FutureListener(@NonNull ExecutionListener executionListener, @NonNull String str, @NonNull InterfaceFutureC4539a<Boolean> interfaceFutureC4539a) {
-            this.mExecutionListener = executionListener;
-            this.mWorkSpecId = str;
-            this.mFuture = interfaceFutureC4539a;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            boolean zBooleanValue;
-            try {
-                zBooleanValue = this.mFuture.get().booleanValue();
-            } catch (InterruptedException | ExecutionException unused) {
-                zBooleanValue = true;
-            }
-            this.mExecutionListener.onExecuted(this.mWorkSpecId, zBooleanValue);
-        }
-    }
 
     public Processor(@NonNull Context context, @NonNull Configuration configuration, @NonNull TaskExecutor taskExecutor, @NonNull WorkDatabase workDatabase, @NonNull List<Scheduler> list) {
         this.mAppContext = context;
@@ -154,9 +125,9 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
             WorkerWrapper workerWrapperRemove = this.mEnqueuedWorkMap.remove(str);
             if (workerWrapperRemove != null) {
                 if (this.mForegroundLock == null) {
-                    PowerManager.WakeLock wakeLockNewWakeLock = WakeLocks.newWakeLock(this.mAppContext, FOREGROUND_WAKELOCK_TAG);
-                    this.mForegroundLock = wakeLockNewWakeLock;
-                    wakeLockNewWakeLock.acquire();
+                    PowerManager$WakeLock powerManager$WakeLockNewWakeLock = WakeLocks.newWakeLock(this.mAppContext, FOREGROUND_WAKELOCK_TAG);
+                    this.mForegroundLock = powerManager$WakeLockNewWakeLock;
+                    powerManager$WakeLockNewWakeLock.acquire();
                 }
                 this.mForegroundWorkMap.put(str, workerWrapperRemove);
                 ContextCompat.startForegroundService(this.mAppContext, SystemForegroundDispatcher.createStartForegroundIntent(this.mAppContext, str, foregroundInfo));
@@ -207,9 +178,9 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
                 } else {
                     Logger.get().debug(TAG, "No more foreground work. SystemForegroundService is already stopped", new Throwable[0]);
                 }
-                PowerManager.WakeLock wakeLock = this.mForegroundLock;
-                if (wakeLock != null) {
-                    wakeLock.release();
+                PowerManager$WakeLock powerManager$WakeLock = this.mForegroundLock;
+                if (powerManager$WakeLock != null) {
+                    powerManager$WakeLock.release();
                     this.mForegroundLock = null;
                 }
             }
@@ -234,15 +205,15 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
         return zInterrupt;
     }
 
-    public boolean startWork(@NonNull String str, @Nullable WorkerParameters.RuntimeExtras runtimeExtras) {
+    public boolean startWork(@NonNull String str, @Nullable WorkerParameters$RuntimeExtras workerParameters$RuntimeExtras) {
         synchronized (this.mLock) {
             if (isEnqueued(str)) {
                 Logger.get().debug(TAG, String.format("Work %s is already enqueued for processing", str), new Throwable[0]);
                 return false;
             }
-            WorkerWrapper workerWrapperBuild = new WorkerWrapper.Builder(this.mAppContext, this.mConfiguration, this.mWorkTaskExecutor, this, this.mWorkDatabase, str).withSchedulers(this.mSchedulers).withRuntimeExtras(runtimeExtras).build();
-            InterfaceFutureC4539a<Boolean> future = workerWrapperBuild.getFuture();
-            future.addListener(new FutureListener(this, str, future), this.mWorkTaskExecutor.getMainThreadExecutor());
+            WorkerWrapper workerWrapperBuild = new WorkerWrapper$Builder(this.mAppContext, this.mConfiguration, this.mWorkTaskExecutor, this, this.mWorkDatabase, str).withSchedulers(this.mSchedulers).withRuntimeExtras(workerParameters$RuntimeExtras).build();
+            a<Boolean> future = workerWrapperBuild.getFuture();
+            future.addListener(new Processor$FutureListener(this, str, future), this.mWorkTaskExecutor.getMainThreadExecutor());
             this.mEnqueuedWorkMap.put(str, workerWrapperBuild);
             this.mWorkTaskExecutor.getBackgroundExecutor().execute(workerWrapperBuild);
             Logger.get().debug(TAG, String.format("%s: processing %s", getClass().getSimpleName(), str), new Throwable[0]);

@@ -1,12 +1,14 @@
 package androidx.core.view;
 
 import android.view.View;
+import android.view.View$OnAttachStateChangeListener;
 import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver$OnPreDrawListener;
 import androidx.annotation.NonNull;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class OneShotPreDrawListener implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
+public final class OneShotPreDrawListener implements ViewTreeObserver$OnPreDrawListener, View$OnAttachStateChangeListener {
     private final Runnable mRunnable;
     private final View mView;
     private ViewTreeObserver mViewTreeObserver;
@@ -27,19 +29,19 @@ public final class OneShotPreDrawListener implements ViewTreeObserver.OnPreDrawL
         return oneShotPreDrawListener;
     }
 
-    @Override // android.view.ViewTreeObserver.OnPreDrawListener
+    @Override // android.view.ViewTreeObserver$OnPreDrawListener
     public boolean onPreDraw() {
         removeListener();
         this.mRunnable.run();
         return true;
     }
 
-    @Override // android.view.View.OnAttachStateChangeListener
+    @Override // android.view.View$OnAttachStateChangeListener
     public void onViewAttachedToWindow(View view) {
         this.mViewTreeObserver = view.getViewTreeObserver();
     }
 
-    @Override // android.view.View.OnAttachStateChangeListener
+    @Override // android.view.View$OnAttachStateChangeListener
     public void onViewDetachedFromWindow(View view) {
         removeListener();
     }

@@ -9,7 +9,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.Shader$TileMode;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import androidx.annotation.NonNull;
@@ -41,8 +41,8 @@ public abstract class RoundedBitmapDrawable extends Drawable {
         this.mBitmap = bitmap;
         if (bitmap != null) {
             computeBitmapSize();
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            this.mBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+            Shader$TileMode shader$TileMode = Shader$TileMode.CLAMP;
+            this.mBitmapShader = new BitmapShader(bitmap, shader$TileMode, shader$TileMode);
         } else {
             this.mBitmapHeight = -1;
             this.mBitmapWidth = -1;

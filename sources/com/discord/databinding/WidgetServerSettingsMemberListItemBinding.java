@@ -11,42 +11,37 @@ import com.discord.widgets.roles.RolesListView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsMemberListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f17702a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FrameLayout f17703b;
+    public final FrameLayout f2578b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f17704c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ImageView f17705d;
+    public final ImageView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final RolesListView f17706e;
+    public final RolesListView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final SettingsMemberView f17707f;
+    public final SettingsMemberView f;
 
     public WidgetServerSettingsMemberListItemBinding(@NonNull FrameLayout frameLayout, @NonNull FrameLayout frameLayout2, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull RolesListView rolesListView, @NonNull SettingsMemberView settingsMemberView) {
-        this.f17702a = frameLayout;
-        this.f17703b = frameLayout2;
-        this.f17704c = imageView;
-        this.f17705d = imageView2;
-        this.f17706e = rolesListView;
-        this.f17707f = settingsMemberView;
+        this.a = frameLayout;
+        this.f2578b = frameLayout2;
+        this.c = imageView;
+        this.d = imageView2;
+        this.e = rolesListView;
+        this.f = settingsMemberView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17702a;
+        return this.a;
     }
 }

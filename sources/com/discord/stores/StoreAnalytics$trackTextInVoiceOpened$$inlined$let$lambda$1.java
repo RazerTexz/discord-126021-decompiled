@@ -2,16 +2,15 @@ package com.discord.stores;
 
 import com.discord.api.channel.Channel;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.t.g0;
+import d0.t.h0;
+import d0.z.d.o;
 import java.util.Map;
 import kotlin.jvm.functions.Function0;
-import p507d0.C12116o;
-import p507d0.p580t.C12134g0;
-import p507d0.p580t.C12136h0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: StoreAnalytics.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreAnalytics$trackTextInVoiceOpened$$inlined$let$lambda$1 extends AbstractC12240o implements Function0<Map<String, ? extends Object>> {
+public final class StoreAnalytics$trackTextInVoiceOpened$$inlined$let$lambda$1 extends o implements Function0<Map<String, ? extends Object>> {
     public final /* synthetic */ SelectedChannelAnalyticsLocation $analyticsLocation$inlined;
     public final /* synthetic */ Channel $channel;
     public final /* synthetic */ long $channelId$inlined;
@@ -27,9 +26,15 @@ public final class StoreAnalytics$trackTextInVoiceOpened$$inlined$let$lambda$1 e
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public final Map<String, ? extends Object> invoke() {
-        Map<String, ? extends Object> channelSnapshotAnalyticsProperties = this.this$0.getChannelSnapshotAnalyticsProperties(this.$channel, true);
+    public /* bridge */ /* synthetic */ Map<String, ? extends Object> invoke() {
+        return invoke2();
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final Map<String, ? extends Object> invoke2() {
+        Map<String, ? extends Object> mapAccess$getChannelSnapshotAnalyticsProperties = StoreAnalytics.access$getChannelSnapshotAnalyticsProperties(this.this$0, this.$channel, true);
         SelectedChannelAnalyticsLocation selectedChannelAnalyticsLocation = this.$analyticsLocation$inlined;
-        return selectedChannelAnalyticsLocation != null ? C12136h0.plus(channelSnapshotAnalyticsProperties, C12134g0.mapOf(C12116o.m10073to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, selectedChannelAnalyticsLocation.getAnalyticsValue()))) : channelSnapshotAnalyticsProperties;
+        return selectedChannelAnalyticsLocation != null ? h0.plus(mapAccess$getChannelSnapshotAnalyticsProperties, g0.mapOf(d0.o.to(ModelAuditLogEntry.CHANGE_KEY_LOCATION, selectedChannelAnalyticsLocation.getAnalyticsValue()))) : mapAccess$getChannelSnapshotAnalyticsProperties;
     }
 }

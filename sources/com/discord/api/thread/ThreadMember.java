@@ -2,7 +2,7 @@ package com.discord.api.thread;
 
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ThreadMember.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public class ThreadMember {
     private final long userId;
 
     public ThreadMember(long j, long j2, int i, UtcDateTime utcDateTime, boolean z2, MuteConfig muteConfig) {
-        C12238m.checkNotNullParameter(utcDateTime, "joinTimestamp");
+        m.checkNotNullParameter(utcDateTime, "joinTimestamp");
         this.id = j;
         this.userId = j2;
         this.flags = i;

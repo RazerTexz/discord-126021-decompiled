@@ -4,12 +4,12 @@ import com.discord.api.channel.Channel;
 import com.discord.models.guild.Guild;
 import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreGuilds;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetHubDescriptionViewModel$Companion$observeStores$1 extends AbstractC12240o implements Function0<HubDescriptionState> {
+public final class WidgetHubDescriptionViewModel$Companion$observeStores$1 extends o implements Function0<HubDescriptionState> {
     public final /* synthetic */ long $channelId;
     public final /* synthetic */ StoreChannels $channelStore;
     public final /* synthetic */ long $guildId;
@@ -22,6 +22,11 @@ public final class WidgetHubDescriptionViewModel$Companion$observeStores$1 exten
         this.$channelId = j;
         this.$guildStore = storeGuilds;
         this.$guildId = j2;
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ HubDescriptionState invoke() {
+        return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

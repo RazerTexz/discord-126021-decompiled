@@ -18,67 +18,57 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class UserProfileHeaderViewBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15341a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CardView f15342b;
+    public final CardView f2166b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f15343c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final CardView f15344d;
+    public final CardView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ImageView f15345e;
+    public final ImageView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final UserAvatarPresenceView f15346f;
+    public final UserAvatarPresenceView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final UserAkaView f15347g;
+    public final UserAkaView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final RecyclerView f15348h;
+    public final RecyclerView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final SimpleDraweeSpanTextView f15349i;
+    public final SimpleDraweeSpanTextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final UsernameView f15350j;
+    public final UsernameView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final SimpleDraweeSpanTextView f15351k;
+    public final SimpleDraweeSpanTextView k;
 
     public UserProfileHeaderViewBinding(@NonNull ConstraintLayout constraintLayout, @NonNull CardView cardView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull CardView cardView2, @NonNull ImageView imageView, @NonNull UserAvatarPresenceView userAvatarPresenceView, @NonNull Barrier barrier, @NonNull UserAkaView userAkaView, @NonNull RecyclerView recyclerView, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView, @NonNull LinearLayout linearLayout, @NonNull UsernameView usernameView, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView2, @NonNull ConstraintLayout constraintLayout2) {
-        this.f15341a = constraintLayout;
-        this.f15342b = cardView;
-        this.f15343c = simpleDraweeView;
-        this.f15344d = cardView2;
-        this.f15345e = imageView;
-        this.f15346f = userAvatarPresenceView;
-        this.f15347g = userAkaView;
-        this.f15348h = recyclerView;
-        this.f15349i = simpleDraweeSpanTextView;
-        this.f15350j = usernameView;
-        this.f15351k = simpleDraweeSpanTextView2;
+        this.a = constraintLayout;
+        this.f2166b = cardView;
+        this.c = simpleDraweeView;
+        this.d = cardView2;
+        this.e = imageView;
+        this.f = userAvatarPresenceView;
+        this.g = userAkaView;
+        this.h = recyclerView;
+        this.i = simpleDraweeSpanTextView;
+        this.j = usernameView;
+        this.k = simpleDraweeSpanTextView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15341a;
+        return this.a;
     }
 }

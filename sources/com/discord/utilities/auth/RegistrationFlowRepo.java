@@ -4,20 +4,17 @@ import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelInvite;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
+import d0.g;
+import d0.z.d.m;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import kotlin.Lazy;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: RegistrationFlowRepo.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class RegistrationFlowRepo {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final RegistrationFlowRepo$Companion Companion = new RegistrationFlowRepo$Companion(null);
     private Long birthday;
     private String email;
     private Map<String, ? extends List<String>> errors;
@@ -25,24 +22,12 @@ public final class RegistrationFlowRepo {
     private boolean isRegistering;
     private String phone;
     private String phoneToken;
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(RegistrationFlowRepo$Companion$INSTANCE$2.INSTANCE);
+    private static final Lazy INSTANCE$delegate = g.lazy(RegistrationFlowRepo$Companion$INSTANCE$2.INSTANCE);
     private String username = "";
     private String password = "";
 
-    /* JADX INFO: compiled from: RegistrationFlowRepo.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final RegistrationFlowRepo getINSTANCE() {
-            Lazy lazy = RegistrationFlowRepo.INSTANCE$delegate;
-            Companion companion = RegistrationFlowRepo.INSTANCE;
-            return (RegistrationFlowRepo) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
+    public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
+        return INSTANCE$delegate;
     }
 
     public final void clear() {
@@ -109,7 +94,7 @@ public final class RegistrationFlowRepo {
     }
 
     public final void setPassword(String str) {
-        C12238m.checkNotNullParameter(str, "<set-?>");
+        m.checkNotNullParameter(str, "<set-?>");
         this.password = str;
     }
 
@@ -126,7 +111,7 @@ public final class RegistrationFlowRepo {
     }
 
     public final void setUsername(String str) {
-        C12238m.checkNotNullParameter(str, "<set-?>");
+        m.checkNotNullParameter(str, "<set-?>");
         this.username = str;
     }
 
@@ -139,8 +124,8 @@ public final class RegistrationFlowRepo {
     }
 
     public final void trackTransition(String step, String actionType, List<String> details) {
-        C12238m.checkNotNullParameter(step, "step");
-        C12238m.checkNotNullParameter(actionType, "actionType");
+        m.checkNotNullParameter(step, "step");
+        m.checkNotNullParameter(actionType, "actionType");
         if (this.isRegistering) {
             AnalyticsTracker analyticsTracker = AnalyticsTracker.INSTANCE;
             Map<String, Object> mapModelInviteToProperties = analyticsTracker.modelInviteToProperties(this.invite, new LinkedHashMap());

@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Outline;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -25,7 +25,7 @@ public class RoundRectDrawable extends Drawable {
     private PorterDuffColorFilter mTintFilter;
     private boolean mInsetForPadding = false;
     private boolean mInsetForRadius = true;
-    private PorterDuff.Mode mTintMode = PorterDuff.Mode.SRC_IN;
+    private PorterDuff$Mode mTintMode = PorterDuff$Mode.SRC_IN;
     private final Paint mPaint = new Paint(5);
 
     public RoundRectDrawable(ColorStateList colorStateList, float f) {
@@ -35,11 +35,11 @@ public class RoundRectDrawable extends Drawable {
         this.mBoundsI = new Rect();
     }
 
-    private PorterDuffColorFilter createTintFilter(ColorStateList colorStateList, PorterDuff.Mode mode) {
-        if (colorStateList == null || mode == null) {
+    private PorterDuffColorFilter createTintFilter(ColorStateList colorStateList, PorterDuff$Mode porterDuff$Mode) {
+        if (colorStateList == null || porterDuff$Mode == null) {
             return null;
         }
-        return new PorterDuffColorFilter(colorStateList.getColorForState(getState(), 0), mode);
+        return new PorterDuffColorFilter(colorStateList.getColorForState(getState(), 0), porterDuff$Mode);
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -97,7 +97,7 @@ public class RoundRectDrawable extends Drawable {
 
     @Override // android.graphics.drawable.Drawable
     public boolean onStateChange(int[] iArr) {
-        PorterDuff.Mode mode;
+        PorterDuff$Mode porterDuff$Mode;
         ColorStateList colorStateList = this.mBackground;
         int colorForState = colorStateList.getColorForState(iArr, colorStateList.getDefaultColor());
         boolean z2 = colorForState != this.mPaint.getColor();
@@ -105,10 +105,10 @@ public class RoundRectDrawable extends Drawable {
             this.mPaint.setColor(colorForState);
         }
         ColorStateList colorStateList2 = this.mTint;
-        if (colorStateList2 == null || (mode = this.mTintMode) == null) {
+        if (colorStateList2 == null || (porterDuff$Mode = this.mTintMode) == null) {
             return z2;
         }
-        this.mTintFilter = createTintFilter(colorStateList2, mode);
+        this.mTintFilter = createTintFilter(colorStateList2, porterDuff$Mode);
         return true;
     }
 
@@ -163,9 +163,9 @@ public class RoundRectDrawable extends Drawable {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public void setTintMode(PorterDuff.Mode mode) {
-        this.mTintMode = mode;
-        this.mTintFilter = createTintFilter(this.mTint, mode);
+    public void setTintMode(PorterDuff$Mode porterDuff$Mode) {
+        this.mTintMode = porterDuff$Mode;
+        this.mTintFilter = createTintFilter(this.mTint, porterDuff$Mode);
         invalidateSelf();
     }
 

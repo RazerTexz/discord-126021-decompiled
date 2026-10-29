@@ -11,6 +11,10 @@ import java.io.StringWriter;
 public class FileLog {
     private static FileOutputStream fos;
 
+    static /* synthetic */ FileOutputStream access$0() {
+        return fos;
+    }
+
     public static void log(String message) {
         log(message, null);
     }
@@ -19,15 +23,7 @@ public class FileLog {
         try {
             if (fos == null) {
                 fos = new FileOutputStream(new File(System.getProperty("user.home"), "LOMBOK-DEBUG-OUT.txt"));
-                Runtime.getRuntime().addShutdownHook(new Thread() { // from class: lombok.core.debug.FileLog.1
-                    @Override // java.lang.Thread, java.lang.Runnable
-                    public void run() {
-                        try {
-                            FileLog.fos.close();
-                        } catch (Throwable unused) {
-                        }
-                    }
-                });
+                Runtime.getRuntime().addShutdownHook(new FileLog$1());
             }
             fos.write(message.getBytes(Constants.ENCODING));
             fos.write(10);

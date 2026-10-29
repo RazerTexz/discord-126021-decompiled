@@ -8,22 +8,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class UserProfileHeaderBadgeBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ImageView f15339a;
+    public final ImageView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f15340b;
+    public final ImageView f2165b;
 
     public UserProfileHeaderBadgeBinding(@NonNull ImageView imageView, @NonNull ImageView imageView2) {
-        this.f15339a = imageView;
-        this.f15340b = imageView2;
+        this.a = imageView;
+        this.f2165b = imageView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15339a;
+        return this.a;
     }
 }

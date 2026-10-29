@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackApplicationCommandValidationFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackApplicationCommandValidationFailed implements
             return false;
         }
         TrackApplicationCommandValidationFailed trackApplicationCommandValidationFailed = (TrackApplicationCommandValidationFailed) other;
-        return C12238m.areEqual(this.applicationId, trackApplicationCommandValidationFailed.applicationId) && C12238m.areEqual(this.commandId, trackApplicationCommandValidationFailed.commandId) && C12238m.areEqual(this.argumentType, trackApplicationCommandValidationFailed.argumentType) && C12238m.areEqual(this.isRequired, trackApplicationCommandValidationFailed.isRequired);
+        return m.areEqual(this.applicationId, trackApplicationCommandValidationFailed.applicationId) && m.areEqual(this.commandId, trackApplicationCommandValidationFailed.commandId) && m.areEqual(this.argumentType, trackApplicationCommandValidationFailed.argumentType) && m.areEqual(this.isRequired, trackApplicationCommandValidationFailed.isRequired);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackApplicationCommandValidationFailed implements
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackApplicationCommandValidationFailed(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", commandId=");
-        sbM833U.append(this.commandId);
-        sbM833U.append(", argumentType=");
-        sbM833U.append(this.argumentType);
-        sbM833U.append(", isRequired=");
-        return C1643a.m816D(sbM833U, this.isRequired, ")");
+        StringBuilder sbU = a.U("TrackApplicationCommandValidationFailed(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", commandId=");
+        sbU.append(this.commandId);
+        sbU.append(", argumentType=");
+        sbU.append(this.argumentType);
+        sbU.append(", isRequired=");
+        return a.D(sbU, this.isRequired, ")");
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.input.models;
 
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationCommandData.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,7 +20,7 @@ public final class ApplicationCommandDataKt {
         boolean z2;
         List<ApplicationCommandValue> options;
         Object next2;
-        C12238m.checkNotNullParameter(applicationCommandData, "$this$getCommandId");
+        m.checkNotNullParameter(applicationCommandData, "$this$getCommandId");
         Iterator<T> it = applicationCommandData.getValues().iterator();
         do {
             obj = null;

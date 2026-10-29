@@ -1,36 +1,24 @@
 package kotlin.ranges;
 
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p512d0.C11223c;
-import p507d0.p512d0.InterfaceC11221a;
+import d0.d0.a;
+import d0.d0.c;
 
 /* JADX INFO: compiled from: Ranges.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class LongRange extends C11223c implements InterfaceC11221a<Long> {
-
-    /* JADX INFO: renamed from: n, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: m */
-    public static final LongRange f27438m = new LongRange(1, 0);
-
-    /* JADX INFO: renamed from: kotlin.ranges.LongRange$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: Ranges.kt */
-    public final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        public final LongRange getEMPTY() {
-            return LongRange.f27438m;
-        }
-    }
+public final class LongRange extends c implements a<Long> {
+    public static final LongRange$a n = new LongRange$a(null);
+    public static final LongRange m = new LongRange(1, 0);
 
     public LongRange(long j, long j2) {
         super(j, j2, 1L);
     }
 
+    public static final /* synthetic */ LongRange access$getEMPTY$cp() {
+        return m;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
-    @Override // p507d0.p512d0.InterfaceC11221a
+    @Override // d0.d0.a
     public /* bridge */ /* synthetic */ boolean contains(Comparable comparable) {
         return contains(((Number) comparable).longValue());
     }
@@ -45,6 +33,16 @@ public final class LongRange extends C11223c implements InterfaceC11221a<Long> {
             return true;
         }
         return false;
+    }
+
+    @Override // d0.d0.a
+    public /* bridge */ /* synthetic */ Comparable getEndInclusive() {
+        return getEndInclusive();
+    }
+
+    @Override // d0.d0.a
+    public /* bridge */ /* synthetic */ Comparable getStart() {
+        return getStart();
     }
 
     public int hashCode() {
@@ -66,12 +64,12 @@ public final class LongRange extends C11223c implements InterfaceC11221a<Long> {
         return getFirst() <= value && value <= getLast();
     }
 
-    @Override // p507d0.p512d0.InterfaceC11221a
+    @Override // d0.d0.a
     public Long getEndInclusive() {
         return Long.valueOf(getLast());
     }
 
-    @Override // p507d0.p512d0.InterfaceC11221a
+    @Override // d0.d0.a
     public Long getStart() {
         return Long.valueOf(getFirst());
     }

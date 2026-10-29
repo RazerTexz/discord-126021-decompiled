@@ -12,32 +12,29 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsBansBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17534a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f17535b;
+    public final RecyclerView f2544b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f17536c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final AppViewFlipper f17537d;
+    public final AppViewFlipper d;
 
     public WidgetServerSettingsBansBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull RecyclerView recyclerView, @NonNull TextInputLayout textInputLayout, @NonNull AppViewFlipper appViewFlipper) {
-        this.f17534a = coordinatorLayout;
-        this.f17535b = recyclerView;
-        this.f17536c = textInputLayout;
-        this.f17537d = appViewFlipper;
+        this.a = coordinatorLayout;
+        this.f2544b = recyclerView;
+        this.c = textInputLayout;
+        this.d = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17534a;
+        return this.a;
     }
 }

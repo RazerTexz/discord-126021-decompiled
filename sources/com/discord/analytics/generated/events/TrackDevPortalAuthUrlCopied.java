@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDevPortalAuthUrlCopied.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackDevPortalAuthUrlCopied implements AnalyticsSc
             return false;
         }
         TrackDevPortalAuthUrlCopied trackDevPortalAuthUrlCopied = (TrackDevPortalAuthUrlCopied) other;
-        return C12238m.areEqual(this.applicationId, trackDevPortalAuthUrlCopied.applicationId) && C12238m.areEqual(this.botId, trackDevPortalAuthUrlCopied.botId) && C12238m.areEqual(this.applicationName, trackDevPortalAuthUrlCopied.applicationName) && C12238m.areEqual(this.hasBot, trackDevPortalAuthUrlCopied.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackDevPortalAuthUrlCopied.hasRedirectUri);
+        return m.areEqual(this.applicationId, trackDevPortalAuthUrlCopied.applicationId) && m.areEqual(this.botId, trackDevPortalAuthUrlCopied.botId) && m.areEqual(this.applicationName, trackDevPortalAuthUrlCopied.applicationName) && m.areEqual(this.hasBot, trackDevPortalAuthUrlCopied.hasBot) && m.areEqual(this.hasRedirectUri, trackDevPortalAuthUrlCopied.hasRedirectUri);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackDevPortalAuthUrlCopied implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDevPortalAuthUrlCopied(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", applicationName=");
-        sbM833U.append(this.applicationName);
-        sbM833U.append(", hasBot=");
-        sbM833U.append(this.hasBot);
-        sbM833U.append(", hasRedirectUri=");
-        return C1643a.m816D(sbM833U, this.hasRedirectUri, ")");
+        StringBuilder sbU = a.U("TrackDevPortalAuthUrlCopied(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", botId=");
+        sbU.append(this.botId);
+        sbU.append(", applicationName=");
+        sbU.append(this.applicationName);
+        sbU.append(", hasBot=");
+        sbU.append(this.hasBot);
+        sbU.append(", hasRedirectUri=");
+        return a.D(sbU, this.hasRedirectUri, ")");
     }
 }

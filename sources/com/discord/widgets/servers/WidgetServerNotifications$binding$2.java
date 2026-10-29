@@ -8,17 +8,17 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import b.a.i.z1;
+import com.discord.R$id;
 import com.discord.databinding.WidgetServerNotificationsBinding;
 import com.discord.views.CheckedSetting;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p007b.p008a.p025i.C1095z1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetServerNotifications.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetServerNotifications$binding$2 extends C12236k implements Function1<View, WidgetServerNotificationsBinding> {
+public final /* synthetic */ class WidgetServerNotifications$binding$2 extends k implements Function1<View, WidgetServerNotificationsBinding> {
     public static final WidgetServerNotifications$binding$2 INSTANCE = new WidgetServerNotifications$binding$2();
 
     public WidgetServerNotifications$binding$2() {
@@ -26,67 +26,72 @@ public final /* synthetic */ class WidgetServerNotifications$binding$2 extends C
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetServerNotificationsBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.add_override;
-        View viewFindViewById = view.findViewById(C5419R.id.add_override);
+    public /* bridge */ /* synthetic */ WidgetServerNotificationsBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetServerNotificationsBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.add_override;
+        View viewFindViewById = view.findViewById(R$id.add_override);
         if (viewFindViewById != null) {
-            int i2 = C5419R.id.category_overview_name;
-            TextView textView = (TextView) viewFindViewById.findViewById(C5419R.id.category_overview_name);
+            int i2 = R$id.category_overview_name;
+            TextView textView = (TextView) viewFindViewById.findViewById(R$id.category_overview_name);
             if (textView != null) {
-                i2 = C5419R.id.guideline;
-                Guideline guideline = (Guideline) viewFindViewById.findViewById(C5419R.id.guideline);
+                i2 = 2131363590;
+                Guideline guideline = (Guideline) viewFindViewById.findViewById(2131363590);
                 if (guideline != null) {
-                    i2 = C5419R.id.navigation_indicator;
-                    ImageView imageView = (ImageView) viewFindViewById.findViewById(C5419R.id.navigation_indicator);
+                    i2 = R$id.navigation_indicator;
+                    ImageView imageView = (ImageView) viewFindViewById.findViewById(R$id.navigation_indicator);
                     if (imageView != null) {
-                        C1095z1 c1095z1 = new C1095z1((ConstraintLayout) viewFindViewById, textView, guideline, imageView);
-                        i = C5419R.id.guild_notifications_override_list;
-                        RecyclerView recyclerView = (RecyclerView) view.findViewById(C5419R.id.guild_notifications_override_list);
+                        z1 z1Var = new z1((ConstraintLayout) viewFindViewById, textView, guideline, imageView);
+                        i = R$id.guild_notifications_override_list;
+                        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.guild_notifications_override_list);
                         if (recyclerView != null) {
-                            i = C5419R.id.server_notifications_everyone_switch;
-                            CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(C5419R.id.server_notifications_everyone_switch);
+                            i = R$id.server_notifications_everyone_switch;
+                            CheckedSetting checkedSetting = (CheckedSetting) view.findViewById(R$id.server_notifications_everyone_switch);
                             if (checkedSetting != null) {
-                                i = C5419R.id.server_notifications_frequency_0_radio;
-                                CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(C5419R.id.server_notifications_frequency_0_radio);
+                                i = R$id.server_notifications_frequency_0_radio;
+                                CheckedSetting checkedSetting2 = (CheckedSetting) view.findViewById(R$id.server_notifications_frequency_0_radio);
                                 if (checkedSetting2 != null) {
-                                    i = C5419R.id.server_notifications_frequency_1_radio;
-                                    CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(C5419R.id.server_notifications_frequency_1_radio);
+                                    i = R$id.server_notifications_frequency_1_radio;
+                                    CheckedSetting checkedSetting3 = (CheckedSetting) view.findViewById(R$id.server_notifications_frequency_1_radio);
                                     if (checkedSetting3 != null) {
-                                        i = C5419R.id.server_notifications_frequency_2_radio;
-                                        CheckedSetting checkedSetting4 = (CheckedSetting) view.findViewById(C5419R.id.server_notifications_frequency_2_radio);
+                                        i = R$id.server_notifications_frequency_2_radio;
+                                        CheckedSetting checkedSetting4 = (CheckedSetting) view.findViewById(R$id.server_notifications_frequency_2_radio);
                                         if (checkedSetting4 != null) {
-                                            i = C5419R.id.server_notifications_frequency_divider;
-                                            View viewFindViewById2 = view.findViewById(C5419R.id.server_notifications_frequency_divider);
+                                            i = R$id.server_notifications_frequency_divider;
+                                            View viewFindViewById2 = view.findViewById(R$id.server_notifications_frequency_divider);
                                             if (viewFindViewById2 != null) {
-                                                i = C5419R.id.server_notifications_frequency_wrap;
-                                                LinearLayout linearLayout = (LinearLayout) view.findViewById(C5419R.id.server_notifications_frequency_wrap);
+                                                i = R$id.server_notifications_frequency_wrap;
+                                                LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.server_notifications_frequency_wrap);
                                                 if (linearLayout != null) {
-                                                    i = C5419R.id.server_notifications_highlights;
-                                                    NotificationHighlightsSettingsView notificationHighlightsSettingsView = (NotificationHighlightsSettingsView) view.findViewById(C5419R.id.server_notifications_highlights);
+                                                    i = R$id.server_notifications_highlights;
+                                                    NotificationHighlightsSettingsView notificationHighlightsSettingsView = (NotificationHighlightsSettingsView) view.findViewById(R$id.server_notifications_highlights);
                                                     if (notificationHighlightsSettingsView != null) {
-                                                        i = C5419R.id.server_notifications_highlights_divider;
-                                                        View viewFindViewById3 = view.findViewById(C5419R.id.server_notifications_highlights_divider);
+                                                        i = R$id.server_notifications_highlights_divider;
+                                                        View viewFindViewById3 = view.findViewById(R$id.server_notifications_highlights_divider);
                                                         if (viewFindViewById3 != null) {
-                                                            i = C5419R.id.server_notifications_mute_settings_view;
-                                                            NotificationMuteSettingsView notificationMuteSettingsView = (NotificationMuteSettingsView) view.findViewById(C5419R.id.server_notifications_mute_settings_view);
+                                                            i = R$id.server_notifications_mute_settings_view;
+                                                            NotificationMuteSettingsView notificationMuteSettingsView = (NotificationMuteSettingsView) view.findViewById(R$id.server_notifications_mute_settings_view);
                                                             if (notificationMuteSettingsView != null) {
-                                                                i = C5419R.id.server_notifications_override_divider;
-                                                                View viewFindViewById4 = view.findViewById(C5419R.id.server_notifications_override_divider);
+                                                                i = R$id.server_notifications_override_divider;
+                                                                View viewFindViewById4 = view.findViewById(R$id.server_notifications_override_divider);
                                                                 if (viewFindViewById4 != null) {
-                                                                    i = C5419R.id.server_notifications_override_title;
-                                                                    TextView textView2 = (TextView) view.findViewById(C5419R.id.server_notifications_override_title);
+                                                                    i = R$id.server_notifications_override_title;
+                                                                    TextView textView2 = (TextView) view.findViewById(R$id.server_notifications_override_title);
                                                                     if (textView2 != null) {
-                                                                        i = C5419R.id.server_notifications_push_switch;
-                                                                        CheckedSetting checkedSetting5 = (CheckedSetting) view.findViewById(C5419R.id.server_notifications_push_switch);
+                                                                        i = R$id.server_notifications_push_switch;
+                                                                        CheckedSetting checkedSetting5 = (CheckedSetting) view.findViewById(R$id.server_notifications_push_switch);
                                                                         if (checkedSetting5 != null) {
-                                                                            i = C5419R.id.server_notifications_roles_divider;
-                                                                            View viewFindViewById5 = view.findViewById(C5419R.id.server_notifications_roles_divider);
+                                                                            i = R$id.server_notifications_roles_divider;
+                                                                            View viewFindViewById5 = view.findViewById(R$id.server_notifications_roles_divider);
                                                                             if (viewFindViewById5 != null) {
-                                                                                i = C5419R.id.server_notifications_roles_switch;
-                                                                                CheckedSetting checkedSetting6 = (CheckedSetting) view.findViewById(C5419R.id.server_notifications_roles_switch);
+                                                                                i = R$id.server_notifications_roles_switch;
+                                                                                CheckedSetting checkedSetting6 = (CheckedSetting) view.findViewById(R$id.server_notifications_roles_switch);
                                                                                 if (checkedSetting6 != null) {
-                                                                                    return new WidgetServerNotificationsBinding((CoordinatorLayout) view, c1095z1, recyclerView, checkedSetting, checkedSetting2, checkedSetting3, checkedSetting4, viewFindViewById2, linearLayout, notificationHighlightsSettingsView, viewFindViewById3, notificationMuteSettingsView, viewFindViewById4, textView2, checkedSetting5, viewFindViewById5, checkedSetting6);
+                                                                                    return new WidgetServerNotificationsBinding((CoordinatorLayout) view, z1Var, recyclerView, checkedSetting, checkedSetting2, checkedSetting3, checkedSetting4, viewFindViewById2, linearLayout, notificationHighlightsSettingsView, viewFindViewById3, notificationMuteSettingsView, viewFindViewById4, textView2, checkedSetting5, viewFindViewById5, checkedSetting6);
                                                                                 }
                                                                             }
                                                                         }

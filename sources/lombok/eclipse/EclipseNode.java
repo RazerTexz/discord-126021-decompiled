@@ -2,9 +2,9 @@ package lombok.eclipse;
 
 import java.util.List;
 import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.LombokNode;
-import lombok.eclipse.EclipseAST.ParseProblem;
 import lombok.eclipse.handlers.EclipseHandlerUtil;
 import org.eclipse.jdt.internal.compiler.ast.ASTNode;
 import org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration;
@@ -25,57 +25,72 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
     private EclipseAST ast;
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
 
+    @Override // lombok.core.LombokNode
+    protected /* bridge */ /* synthetic */ boolean calculateIsStructurallySignificant(ASTNode aSTNode) {
+        return calculateIsStructurallySignificant2(aSTNode);
+    }
+
+    @Override // lombok.core.LombokNode
+    protected /* bridge */ /* synthetic */ boolean fieldContainsAnnotation(ASTNode aSTNode, ASTNode aSTNode2) {
+        return fieldContainsAnnotation2(aSTNode, aSTNode2);
+    }
+
+    @Override // lombok.core.LombokNode
+    public /* bridge */ /* synthetic */ AST getAst() {
+        return getAst();
+    }
+
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[AST.Kind.valuesCustom().length];
+        int[] iArr2 = new int[AST$Kind.valuesCustom().length];
         try {
-            iArr2[AST.Kind.ANNOTATION.ordinal()] = 6;
+            iArr2[AST$Kind.ANNOTATION.ordinal()] = 6;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[AST.Kind.ARGUMENT.ordinal()] = 7;
+            iArr2[AST$Kind.ARGUMENT.ordinal()] = 7;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[AST.Kind.COMPILATION_UNIT.ordinal()] = 1;
+            iArr2[AST$Kind.COMPILATION_UNIT.ordinal()] = 1;
         } catch (NoSuchFieldError unused3) {
         }
         try {
-            iArr2[AST.Kind.FIELD.ordinal()] = 3;
+            iArr2[AST$Kind.FIELD.ordinal()] = 3;
         } catch (NoSuchFieldError unused4) {
         }
         try {
-            iArr2[AST.Kind.INITIALIZER.ordinal()] = 4;
+            iArr2[AST$Kind.INITIALIZER.ordinal()] = 4;
         } catch (NoSuchFieldError unused5) {
         }
         try {
-            iArr2[AST.Kind.LOCAL.ordinal()] = 8;
+            iArr2[AST$Kind.LOCAL.ordinal()] = 8;
         } catch (NoSuchFieldError unused6) {
         }
         try {
-            iArr2[AST.Kind.METHOD.ordinal()] = 5;
+            iArr2[AST$Kind.METHOD.ordinal()] = 5;
         } catch (NoSuchFieldError unused7) {
         }
         try {
-            iArr2[AST.Kind.STATEMENT.ordinal()] = 9;
+            iArr2[AST$Kind.STATEMENT.ordinal()] = 9;
         } catch (NoSuchFieldError unused8) {
         }
         try {
-            iArr2[AST.Kind.TYPE.ordinal()] = 2;
+            iArr2[AST$Kind.TYPE.ordinal()] = 2;
         } catch (NoSuchFieldError unused9) {
         }
         try {
-            iArr2[AST.Kind.TYPE_USE.ordinal()] = 10;
+            iArr2[AST$Kind.TYPE_USE.ordinal()] = 10;
         } catch (NoSuchFieldError unused10) {
         }
         $SWITCH_TABLE$lombok$core$AST$Kind = iArr2;
         return iArr2;
     }
 
-    EclipseNode(EclipseAST ast, ASTNode node, List<EclipseNode> children, AST.Kind kind) {
+    EclipseNode(EclipseAST ast, ASTNode node, List<EclipseNode> children, AST$Kind kind) {
         super(node, children, kind);
         this.ast = ast;
     }
@@ -117,20 +132,20 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
                     visitor.endVisitMethod(this, (AbstractMethodDeclaration) get());
                     return;
                 case 6:
-                    switch ($SWITCH_TABLE$lombok$core$AST$Kind()[m10925up().getKind().ordinal()]) {
+                    switch ($SWITCH_TABLE$lombok$core$AST$Kind()[up().getKind().ordinal()]) {
                         case 2:
-                            visitor.visitAnnotationOnType((TypeDeclaration) m10925up().get(), this, (Annotation) get());
+                            visitor.visitAnnotationOnType((TypeDeclaration) up().get(), this, (Annotation) get());
                             return;
                         case 3:
-                            visitor.visitAnnotationOnField((FieldDeclaration) m10925up().get(), this, (Annotation) get());
+                            visitor.visitAnnotationOnField((FieldDeclaration) up().get(), this, (Annotation) get());
                             return;
                         case 4:
                         case 6:
                         case 9:
                         default:
-                            throw new AssertionError("Annotation not expected as child of a " + m10925up().getKind());
+                            throw new AssertionError("Annotation not expected as child of a " + up().getKind());
                         case 5:
-                            visitor.visitAnnotationOnMethod((AbstractMethodDeclaration) m10925up().get(), this, (Annotation) get());
+                            visitor.visitAnnotationOnMethod((AbstractMethodDeclaration) up().get(), this, (Annotation) get());
                             return;
                         case 7:
                             visitor.visitAnnotationOnMethodArgument((Argument) ((EclipseNode) this.parent).get(), (AbstractMethodDeclaration) ((EclipseNode) this.parent).directUp().get(), this, (Annotation) get());
@@ -143,7 +158,7 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
                             return;
                     }
                 case 7:
-                    AbstractMethodDeclaration method = (AbstractMethodDeclaration) m10925up().get();
+                    AbstractMethodDeclaration method = (AbstractMethodDeclaration) up().get();
                     visitor.visitMethodArgument(this, (Argument) get(), method);
                     this.ast.traverseChildren(visitor, this);
                     visitor.endVisitMethodArgument(this, (Argument) get(), method);
@@ -169,8 +184,8 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
         }
     }
 
-    @Override // lombok.core.LombokNode
-    protected boolean fieldContainsAnnotation(ASTNode field, ASTNode annotation) {
+    /* JADX INFO: renamed from: fieldContainsAnnotation, reason: avoid collision after fix types in other method */
+    protected boolean fieldContainsAnnotation2(ASTNode field, ASTNode annotation) {
         if (!(field instanceof FieldDeclaration)) {
             return false;
         }
@@ -213,7 +228,7 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
         EclipseAST eclipseAST = this.ast;
         EclipseAST eclipseAST2 = this.ast;
         eclipseAST2.getClass();
-        eclipseAST.addProblem(eclipseAST2.new ParseProblem(false, message, sourceStart, sourceEnd));
+        eclipseAST.addProblem(new EclipseAST$ParseProblem(eclipseAST2, false, message, sourceStart, sourceEnd));
     }
 
     @Override // lombok.core.DiagnosticsReceiver
@@ -225,11 +240,11 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
         EclipseAST eclipseAST = this.ast;
         EclipseAST eclipseAST2 = this.ast;
         eclipseAST2.getClass();
-        eclipseAST.addProblem(eclipseAST2.new ParseProblem(true, message, sourceStart, sourceEnd));
+        eclipseAST.addProblem(new EclipseAST$ParseProblem(eclipseAST2, true, message, sourceStart, sourceEnd));
     }
 
-    @Override // lombok.core.LombokNode
-    protected boolean calculateIsStructurallySignificant(ASTNode parent) {
+    /* JADX INFO: renamed from: calculateIsStructurallySignificant, reason: avoid collision after fix types in other method */
+    protected boolean calculateIsStructurallySignificant2(ASTNode parent) {
         return (this.node instanceof TypeDeclaration) || (this.node instanceof AbstractMethodDeclaration) || (this.node instanceof FieldDeclaration) || (this.node instanceof LocalDeclaration) || (this.node instanceof CompilationUnitDeclaration);
     }
 
@@ -272,7 +287,7 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
         EclipseNode directUp;
         if (this.node instanceof TypeDeclaration) {
             EclipseNode directUp2 = directUp();
-            if (directUp2 == null || directUp2.getKind() == AST.Kind.COMPILATION_UNIT) {
+            if (directUp2 == null || directUp2.getKind() == AST$Kind.COMPILATION_UNIT) {
                 return true;
             }
             if (!(directUp2.get() instanceof TypeDeclaration)) {
@@ -355,23 +370,23 @@ public class EclipseNode extends LombokNode<EclipseAST, EclipseNode, ASTNode> {
     @Override // lombok.core.LombokNode
     public boolean isTransient() {
         Integer i;
-        return (getKind() != AST.Kind.FIELD || (i = getModifiers()) == null || (i.intValue() & 128) == 0) ? false : true;
+        return (getKind() != AST$Kind.FIELD || (i = getModifiers()) == null || (i.intValue() & 128) == 0) ? false : true;
     }
 
     @Override // lombok.core.LombokNode
     public boolean isEnumMember() {
-        return getKind() == AST.Kind.FIELD && ((FieldDeclaration) this.node).getKind() == 3;
+        return getKind() == AST$Kind.FIELD && ((FieldDeclaration) this.node).getKind() == 3;
     }
 
     @Override // lombok.core.LombokNode
     public boolean isEnumType() {
-        return getKind() == AST.Kind.TYPE && (((TypeDeclaration) this.node).modifiers & 16384) != 0;
+        return getKind() == AST$Kind.TYPE && (((TypeDeclaration) this.node).modifiers & 16384) != 0;
     }
 
     @Override // lombok.core.LombokNode
     public int countMethodParameters() {
         Argument[] a;
-        if (getKind() == AST.Kind.METHOD && (a = ((AbstractMethodDeclaration) this.node).arguments) != null) {
+        if (getKind() == AST$Kind.METHOD && (a = ((AbstractMethodDeclaration) this.node).arguments) != null) {
             return a.length;
         }
         return 0;

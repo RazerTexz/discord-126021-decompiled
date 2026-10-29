@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelApplicationStreamPreview.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -9,7 +9,7 @@ public final /* data */ class ModelApplicationStreamPreview {
     private final String url;
 
     public ModelApplicationStreamPreview(String str) {
-        C12238m.checkNotNullParameter(str, "url");
+        m.checkNotNullParameter(str, "url");
         this.url = str;
     }
 
@@ -21,13 +21,13 @@ public final /* data */ class ModelApplicationStreamPreview {
     }
 
     public final ModelApplicationStreamPreview copy(String url) {
-        C12238m.checkNotNullParameter(url, "url");
+        m.checkNotNullParameter(url, "url");
         return new ModelApplicationStreamPreview(url);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ModelApplicationStreamPreview) && C12238m.areEqual(this.url, ((ModelApplicationStreamPreview) other).url);
+            return (other instanceof ModelApplicationStreamPreview) && m.areEqual(this.url, ((ModelApplicationStreamPreview) other).url);
         }
         return true;
     }
@@ -50,6 +50,6 @@ public final /* data */ class ModelApplicationStreamPreview {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("ModelApplicationStreamPreview(url="), this.url, ")");
+        return a.J(a.U("ModelApplicationStreamPreview(url="), this.url, ")");
     }
 }

@@ -1,18 +1,18 @@
 package com.discord.widgets.nux;
 
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.databinding.NuxGuildTemplateTextViewHolderBinding;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildTemplateViewHolders.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildTemplateTextViewHolder extends RecyclerView.ViewHolder {
+public final class GuildTemplateTextViewHolder extends RecyclerView$ViewHolder {
     private final NuxGuildTemplateTextViewHolderBinding binding;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildTemplateTextViewHolder(NuxGuildTemplateTextViewHolderBinding nuxGuildTemplateTextViewHolderBinding) {
-        super(nuxGuildTemplateTextViewHolderBinding.f15200a);
-        C12238m.checkNotNullParameter(nuxGuildTemplateTextViewHolderBinding, "binding");
+        super(nuxGuildTemplateTextViewHolderBinding.a);
+        m.checkNotNullParameter(nuxGuildTemplateTextViewHolderBinding, "binding");
         this.binding = nuxGuildTemplateTextViewHolderBinding;
     }
 

@@ -1,23 +1,23 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.api.user.User;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
 import java.io.IOException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelGuildIntegration implements Model {
     private static final String TWITCH_URL_PREFIX = "twitch.tv/";
     public static final String TYPE_TWITCH = "twitch";
     public static final String TYPE_YOUTUBE = "youtube";
-    private IntegrationAccount account;
+    private ModelGuildIntegration$IntegrationAccount account;
     private boolean enableEmoticons;
     private boolean enabled;
     private int expireBehavior;
     private int expireGracePeriod;
 
-    /* JADX INFO: renamed from: id */
-    private long f18568id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private long f2721id;
     private String name;
     private long roleId;
     private int subscriberCount;
@@ -27,167 +27,52 @@ public class ModelGuildIntegration implements Model {
     private User user;
     public static final String[] SUPPORTED_TYPES = {"twitch", "youtube"};
 
-    public class IntegrationAccount implements Model {
-
-        /* JADX INFO: renamed from: id */
-        private String f18569id;
-        private String name;
-
-        @Override // com.discord.models.domain.Model
-        public void assignField(Model.JsonReader jsonReader) throws IOException {
-            String strNextName = jsonReader.nextName();
-            strNextName.hashCode();
-            if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
-                this.f18569id = jsonReader.nextString(this.f18569id);
-            } else if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_NAME)) {
-                this.name = jsonReader.nextString(this.name);
-            } else {
-                jsonReader.skipValue();
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof IntegrationAccount;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof IntegrationAccount)) {
-                return false;
-            }
-            IntegrationAccount integrationAccount = (IntegrationAccount) obj;
-            if (!integrationAccount.canEqual(this)) {
-                return false;
-            }
-            String id2 = getId();
-            String id3 = integrationAccount.getId();
-            if (id2 != null ? !id2.equals(id3) : id3 != null) {
-                return false;
-            }
-            String name = getName();
-            String name2 = integrationAccount.getName();
-            return name != null ? name.equals(name2) : name2 == null;
-        }
-
-        public String getId() {
-            return this.f18569id;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public int hashCode() {
-            String id2 = getId();
-            int iHashCode = id2 == null ? 43 : id2.hashCode();
-            String name = getName();
-            return ((iHashCode + 59) * 59) + (name != null ? name.hashCode() : 43);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelGuildIntegration.IntegrationAccount(id=");
-            sbM833U.append(getId());
-            sbM833U.append(", name=");
-            sbM833U.append(getName());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    public class Update implements Model {
-        private long guildId;
-
-        @Override // com.discord.models.domain.Model
-        public void assignField(Model.JsonReader jsonReader) throws IOException {
-            String strNextName = jsonReader.nextName();
-            strNextName.hashCode();
-            if (strNextName.equals(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID)) {
-                this.guildId = jsonReader.nextLong(this.guildId);
-            } else {
-                jsonReader.skipValue();
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof Update;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Update)) {
-                return false;
-            }
-            Update update = (Update) obj;
-            return update.canEqual(this) && getGuildId() == update.getGuildId();
-        }
-
-        public long getGuildId() {
-            return this.guildId;
-        }
-
-        public int hashCode() {
-            long guildId = getGuildId();
-            return 59 + ((int) (guildId ^ (guildId >>> 32)));
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelGuildIntegration.Update(guildId=");
-            sbM833U.append(getGuildId());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
     @Override // com.discord.models.domain.Model
-    public void assignField(Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "enable_emoticons":
-                this.enableEmoticons = jsonReader.nextBoolean(this.enableEmoticons);
+                this.enableEmoticons = model$JsonReader.nextBoolean(this.enableEmoticons);
                 break;
             case "syncing":
-                this.syncing = jsonReader.nextBoolean(this.syncing);
+                this.syncing = model$JsonReader.nextBoolean(this.syncing);
                 break;
             case "enabled":
-                this.enabled = jsonReader.nextBoolean(this.enabled);
+                this.enabled = model$JsonReader.nextBoolean(this.enabled);
                 break;
             case "account":
-                this.account = (IntegrationAccount) jsonReader.parse(new IntegrationAccount());
+                this.account = (ModelGuildIntegration$IntegrationAccount) model$JsonReader.parse(new ModelGuildIntegration$IntegrationAccount());
                 break;
             case "expire_behavior":
-                this.expireBehavior = jsonReader.nextInt(this.expireBehavior);
+                this.expireBehavior = model$JsonReader.nextInt(this.expireBehavior);
                 break;
             case "id":
-                this.f18568id = jsonReader.nextLong(this.f18568id);
+                this.f2721id = model$JsonReader.nextLong(this.f2721id);
                 break;
             case "name":
-                this.name = jsonReader.nextString(this.name);
+                this.name = model$JsonReader.nextString(this.name);
                 break;
             case "type":
-                this.type = jsonReader.nextString(this.type);
+                this.type = model$JsonReader.nextString(this.type);
                 break;
             case "user":
-                this.user = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
+                this.user = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
                 break;
             case "synced_at":
-                this.syncedAt = jsonReader.nextString(this.syncedAt);
+                this.syncedAt = model$JsonReader.nextString(this.syncedAt);
                 break;
             case "role_id":
-                this.roleId = jsonReader.nextLong(this.roleId);
+                this.roleId = model$JsonReader.nextLong(this.roleId);
                 break;
             case "expire_grace_period":
-                this.expireGracePeriod = jsonReader.nextInt(this.expireGracePeriod);
+                this.expireGracePeriod = model$JsonReader.nextInt(this.expireGracePeriod);
                 break;
             case "subscriber_count":
-                this.subscriberCount = jsonReader.nextInt(this.subscriberCount);
+                this.subscriberCount = model$JsonReader.nextInt(this.subscriberCount);
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -227,12 +112,12 @@ public class ModelGuildIntegration implements Model {
         if (user != null ? !user.equals(user2) : user2 != null) {
             return false;
         }
-        IntegrationAccount account = getAccount();
-        IntegrationAccount account2 = modelGuildIntegration.getAccount();
+        ModelGuildIntegration$IntegrationAccount account = getAccount();
+        ModelGuildIntegration$IntegrationAccount account2 = modelGuildIntegration.getAccount();
         return account != null ? account.equals(account2) : account2 == null;
     }
 
-    public IntegrationAccount getAccount() {
+    public ModelGuildIntegration$IntegrationAccount getAccount() {
         return this.account;
     }
 
@@ -240,9 +125,9 @@ public class ModelGuildIntegration implements Model {
         if (!"twitch".equals(this.type)) {
             return this.name;
         }
-        StringBuilder sbM833U = C1643a.m833U("twitch.tv/");
-        sbM833U.append(this.name);
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("twitch.tv/");
+        sbU.append(this.name);
+        return sbU.toString();
     }
 
     public int getExpireBehavior() {
@@ -254,7 +139,7 @@ public class ModelGuildIntegration implements Model {
     }
 
     public long getId() {
-        return this.f18568id;
+        return this.f2721id;
     }
 
     public String getName() {
@@ -296,7 +181,7 @@ public class ModelGuildIntegration implements Model {
         int iHashCode3 = (iHashCode2 * 59) + (type == null ? 43 : type.hashCode());
         User user = getUser();
         int iHashCode4 = (iHashCode3 * 59) + (user == null ? 43 : user.hashCode());
-        IntegrationAccount account = getAccount();
+        ModelGuildIntegration$IntegrationAccount account = getAccount();
         return (iHashCode4 * 59) + (account != null ? account.hashCode() : 43);
     }
 
@@ -313,33 +198,33 @@ public class ModelGuildIntegration implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelGuildIntegration(enableEmoticons=");
-        sbM833U.append(isEnableEmoticons());
-        sbM833U.append(", enabled=");
-        sbM833U.append(isEnabled());
-        sbM833U.append(", expireBehavior=");
-        sbM833U.append(getExpireBehavior());
-        sbM833U.append(", expireGracePeriod=");
-        sbM833U.append(getExpireGracePeriod());
-        sbM833U.append(", id=");
-        sbM833U.append(getId());
-        sbM833U.append(", name=");
-        sbM833U.append(getName());
-        sbM833U.append(", roleId=");
-        sbM833U.append(getRoleId());
-        sbM833U.append(", subscriberCount=");
-        sbM833U.append(getSubscriberCount());
-        sbM833U.append(", syncedAt=");
-        sbM833U.append(getSyncedAt());
-        sbM833U.append(", syncing=");
-        sbM833U.append(isSyncing());
-        sbM833U.append(", type=");
-        sbM833U.append(getType());
-        sbM833U.append(", user=");
-        sbM833U.append(getUser());
-        sbM833U.append(", account=");
-        sbM833U.append(getAccount());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelGuildIntegration(enableEmoticons=");
+        sbU.append(isEnableEmoticons());
+        sbU.append(", enabled=");
+        sbU.append(isEnabled());
+        sbU.append(", expireBehavior=");
+        sbU.append(getExpireBehavior());
+        sbU.append(", expireGracePeriod=");
+        sbU.append(getExpireGracePeriod());
+        sbU.append(", id=");
+        sbU.append(getId());
+        sbU.append(", name=");
+        sbU.append(getName());
+        sbU.append(", roleId=");
+        sbU.append(getRoleId());
+        sbU.append(", subscriberCount=");
+        sbU.append(getSubscriberCount());
+        sbU.append(", syncedAt=");
+        sbU.append(getSyncedAt());
+        sbU.append(", syncing=");
+        sbU.append(isSyncing());
+        sbU.append(", type=");
+        sbU.append(getType());
+        sbU.append(", user=");
+        sbU.append(getUser());
+        sbU.append(", account=");
+        sbU.append(getAccount());
+        sbU.append(")");
+        return sbU.toString();
     }
 }

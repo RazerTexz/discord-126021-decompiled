@@ -11,37 +11,33 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemEphemeralMessageBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16202a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final View f16203b;
+    public final View f2318b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final View f16204c;
+    public final View c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ImageView f16205d;
+    public final ImageView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16206e;
+    public final TextView e;
 
     public WidgetChatListAdapterItemEphemeralMessageBinding(@NonNull ConstraintLayout constraintLayout, @NonNull View view, @NonNull View view2, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull ImageView imageView2, @NonNull Guideline guideline) {
-        this.f16202a = constraintLayout;
-        this.f16203b = view;
-        this.f16204c = view2;
-        this.f16205d = imageView;
-        this.f16206e = textView;
+        this.a = constraintLayout;
+        this.f2318b = view;
+        this.c = view2;
+        this.d = imageView;
+        this.e = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16202a;
+        return this.a;
     }
 }

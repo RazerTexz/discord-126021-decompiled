@@ -4,20 +4,16 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.impl.utils.SerialExecutor;
 import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class WorkManagerTaskExecutor implements TaskExecutor {
     private final SerialExecutor mBackgroundExecutor;
     private final Handler mMainThreadHandler = new Handler(Looper.getMainLooper());
-    private final Executor mMainThreadExecutor = new Executor() { // from class: androidx.work.impl.utils.taskexecutor.WorkManagerTaskExecutor.1
-        @Override // java.util.concurrent.Executor
-        public void execute(@NonNull Runnable runnable) {
-            WorkManagerTaskExecutor.this.postToMainThread(runnable);
-        }
-    };
+    private final Executor mMainThreadExecutor = new WorkManagerTaskExecutor$1(this);
 
     public WorkManagerTaskExecutor(@NonNull Executor executor) {
         this.mBackgroundExecutor = new SerialExecutor(executor);

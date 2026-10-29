@@ -1,10 +1,10 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemGuildWelcomeKt;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelUserConsents.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,8 +15,8 @@ public final /* data */ class Harvest {
     private final long userId;
 
     public Harvest(String str, long j, String str2, String str3) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(str2, "createdAt");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(str2, "createdAt");
         this.id = str;
         this.userId = j;
         this.createdAt = str2;
@@ -53,8 +53,8 @@ public final /* data */ class Harvest {
     }
 
     public final Harvest copy(String id2, long userId, String createdAt, String completedAt) {
-        C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(createdAt, "createdAt");
+        m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(createdAt, "createdAt");
         return new Harvest(id2, userId, createdAt, completedAt);
     }
 
@@ -70,7 +70,7 @@ public final /* data */ class Harvest {
             return false;
         }
         Harvest harvest = (Harvest) other;
-        return C12238m.areEqual(this.id, harvest.id) && this.userId == harvest.userId && C12238m.areEqual(this.createdAt, harvest.createdAt) && C12238m.areEqual(this.completedAt, harvest.completedAt);
+        return m.areEqual(this.id, harvest.id) && this.userId == harvest.userId && m.areEqual(this.createdAt, harvest.createdAt) && m.areEqual(this.completedAt, harvest.completedAt);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -125,13 +125,13 @@ public final /* data */ class Harvest {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Harvest(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", completedAt=");
-        return C1643a.m822J(sbM833U, this.completedAt, ")");
+        StringBuilder sbU = a.U("Harvest(id=");
+        sbU.append(this.id);
+        sbU.append(", userId=");
+        sbU.append(this.userId);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", completedAt=");
+        return a.J(sbU, this.completedAt, ")");
     }
 }

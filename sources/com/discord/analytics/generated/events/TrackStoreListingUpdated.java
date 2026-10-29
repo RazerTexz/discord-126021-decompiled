@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackStoreListingUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,7 +33,7 @@ public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchem
             return false;
         }
         TrackStoreListingUpdated trackStoreListingUpdated = (TrackStoreListingUpdated) other;
-        return C12238m.areEqual(this.storeListingId, trackStoreListingUpdated.storeListingId) && C12238m.areEqual(this.skuId, trackStoreListingUpdated.skuId) && C12238m.areEqual(this.updateFrom, trackStoreListingUpdated.updateFrom) && C12238m.areEqual(this.updateType, trackStoreListingUpdated.updateType) && C12238m.areEqual(this.guildId, trackStoreListingUpdated.guildId) && C12238m.areEqual(this.childSkuIds, trackStoreListingUpdated.childSkuIds) && C12238m.areEqual(this.isPublished, trackStoreListingUpdated.isPublished) && C12238m.areEqual(this.tagline, trackStoreListingUpdated.tagline) && C12238m.areEqual(this.flavorText, trackStoreListingUpdated.flavorText) && C12238m.areEqual(this.thumbnailAssetId, trackStoreListingUpdated.thumbnailAssetId) && C12238m.areEqual(this.previewVideoAssetId, trackStoreListingUpdated.previewVideoAssetId) && C12238m.areEqual(this.carouselItems, trackStoreListingUpdated.carouselItems);
+        return m.areEqual(this.storeListingId, trackStoreListingUpdated.storeListingId) && m.areEqual(this.skuId, trackStoreListingUpdated.skuId) && m.areEqual(this.updateFrom, trackStoreListingUpdated.updateFrom) && m.areEqual(this.updateType, trackStoreListingUpdated.updateType) && m.areEqual(this.guildId, trackStoreListingUpdated.guildId) && m.areEqual(this.childSkuIds, trackStoreListingUpdated.childSkuIds) && m.areEqual(this.isPublished, trackStoreListingUpdated.isPublished) && m.areEqual(this.tagline, trackStoreListingUpdated.tagline) && m.areEqual(this.flavorText, trackStoreListingUpdated.flavorText) && m.areEqual(this.thumbnailAssetId, trackStoreListingUpdated.thumbnailAssetId) && m.areEqual(this.previewVideoAssetId, trackStoreListingUpdated.previewVideoAssetId) && m.areEqual(this.carouselItems, trackStoreListingUpdated.carouselItems);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -70,29 +70,29 @@ public final /* data */ class TrackStoreListingUpdated implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStoreListingUpdated(storeListingId=");
-        sbM833U.append(this.storeListingId);
-        sbM833U.append(", skuId=");
-        sbM833U.append(this.skuId);
-        sbM833U.append(", updateFrom=");
-        sbM833U.append(this.updateFrom);
-        sbM833U.append(", updateType=");
-        sbM833U.append(this.updateType);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", childSkuIds=");
-        sbM833U.append(this.childSkuIds);
-        sbM833U.append(", isPublished=");
-        sbM833U.append(this.isPublished);
-        sbM833U.append(", tagline=");
-        sbM833U.append(this.tagline);
-        sbM833U.append(", flavorText=");
-        sbM833U.append(this.flavorText);
-        sbM833U.append(", thumbnailAssetId=");
-        sbM833U.append(this.thumbnailAssetId);
-        sbM833U.append(", previewVideoAssetId=");
-        sbM833U.append(this.previewVideoAssetId);
-        sbM833U.append(", carouselItems=");
-        return C1643a.m824L(sbM833U, this.carouselItems, ")");
+        StringBuilder sbU = a.U("TrackStoreListingUpdated(storeListingId=");
+        sbU.append(this.storeListingId);
+        sbU.append(", skuId=");
+        sbU.append(this.skuId);
+        sbU.append(", updateFrom=");
+        sbU.append(this.updateFrom);
+        sbU.append(", updateType=");
+        sbU.append(this.updateType);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", childSkuIds=");
+        sbU.append(this.childSkuIds);
+        sbU.append(", isPublished=");
+        sbU.append(this.isPublished);
+        sbU.append(", tagline=");
+        sbU.append(this.tagline);
+        sbU.append(", flavorText=");
+        sbU.append(this.flavorText);
+        sbU.append(", thumbnailAssetId=");
+        sbU.append(this.thumbnailAssetId);
+        sbU.append(", previewVideoAssetId=");
+        sbU.append(this.previewVideoAssetId);
+        sbU.append(", carouselItems=");
+        return a.L(sbU, this.carouselItems, ")");
     }
 }

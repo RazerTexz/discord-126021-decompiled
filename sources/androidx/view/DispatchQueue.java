@@ -3,14 +3,14 @@ package androidx.view;
 import android.annotation.SuppressLint;
 import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
+import d0.z.d.m;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineDispatcher;
-import p507d0.p592z.p594d.C12238m;
-import p659s.p660a.AbstractC13128l1;
-import p659s.p660a.C13124k0;
-import p659s.p660a.p661a.C13031n;
+import s.a.a.n;
+import s.a.k0;
+import s.a.l1;
 
 /* JADX INFO: compiled from: DispatchQueue.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +20,10 @@ public final class DispatchQueue {
     private boolean paused = true;
     private final Queue<Runnable> queue = new ArrayDeque();
 
+    public static final /* synthetic */ void access$enqueue(DispatchQueue dispatchQueue, Runnable runnable) {
+        dispatchQueue.enqueue(runnable);
+    }
+
     @MainThread
     public final boolean canRun() {
         return this.finished || !this.paused;
@@ -27,18 +31,13 @@ public final class DispatchQueue {
 
     @AnyThread
     @SuppressLint({"WrongThread"})
-    public final void dispatchAndEnqueue(final CoroutineContext context, final Runnable runnable) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(runnable, "runnable");
-        CoroutineDispatcher coroutineDispatcher = C13124k0.f27866a;
-        AbstractC13128l1 abstractC13128l1Mo11194H = C13031n.f27700b.mo11194H();
-        if (abstractC13128l1Mo11194H.isDispatchNeeded(context) || canRun()) {
-            abstractC13128l1Mo11194H.dispatch(context, new Runnable() { // from class: androidx.lifecycle.DispatchQueue$dispatchAndEnqueue$$inlined$with$lambda$1
-                @Override // java.lang.Runnable
-                public final void run() {
-                    this.this$0.enqueue(runnable);
-                }
-            });
+    public final void dispatchAndEnqueue(CoroutineContext context, Runnable runnable) {
+        m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(runnable, "runnable");
+        CoroutineDispatcher coroutineDispatcher = k0.a;
+        l1 l1VarH = n.f3830b.H();
+        if (l1VarH.isDispatchNeeded(context) || canRun()) {
+            l1VarH.dispatch(context, new DispatchQueue$dispatchAndEnqueue$$inlined$with$lambda$1(this, context, runnable));
         } else {
             enqueue(runnable);
         }

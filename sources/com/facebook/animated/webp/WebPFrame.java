@@ -1,65 +1,60 @@
 package com.facebook.animated.webp;
 
 import android.graphics.Bitmap;
-import p007b.p109f.p115d.p119d.InterfaceC1680c;
-import p007b.p109f.p161j.p162a.p163a.InterfaceC1837d;
+import b.f.d.d.c;
+import b.f.j.a.a.d;
 
 /* JADX INFO: loaded from: classes.dex */
-public class WebPFrame implements InterfaceC1837d {
+public class WebPFrame implements d {
 
-    @InterfaceC1680c
+    @c
     private long mNativeContext;
 
-    @InterfaceC1680c
+    @c
     public WebPFrame(long j) {
         this.mNativeContext = j;
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    @Override // b.f.j.a.a.d
+    public void a(int i, int i2, Bitmap bitmap) {
+        nativeRenderFrame(i, i2, bitmap);
+    }
+
+    @Override // b.f.j.a.a.d
+    public int b() {
+        return nativeGetXOffset();
+    }
+
+    @Override // b.f.j.a.a.d
+    public int c() {
+        return nativeGetYOffset();
+    }
+
+    public boolean d() {
+        return nativeIsBlendWithPreviousFrame();
+    }
+
+    @Override // b.f.j.a.a.d
     public void dispose() {
         nativeDispose();
+    }
+
+    public boolean e() {
+        return nativeShouldDisposeToBackgroundColor();
     }
 
     public void finalize() {
         nativeFinalize();
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    @Override // b.f.j.a.a.d
     public int getHeight() {
         return nativeGetHeight();
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    @Override // b.f.j.a.a.d
     public int getWidth() {
         return nativeGetWidth();
-    }
-
-    /* JADX INFO: renamed from: d */
-    public boolean m8630d() {
-        return nativeIsBlendWithPreviousFrame();
-    }
-
-    /* JADX INFO: renamed from: e */
-    public boolean m8631e() {
-        return nativeShouldDisposeToBackgroundColor();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    /* JADX INFO: renamed from: a */
-    public void mo1185a(int i, int i2, Bitmap bitmap) {
-        nativeRenderFrame(i, i2, bitmap);
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    /* JADX INFO: renamed from: b */
-    public int mo1186b() {
-        return nativeGetXOffset();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    /* JADX INFO: renamed from: c */
-    public int mo1187c() {
-        return nativeGetYOffset();
     }
 
     private native void nativeDispose();

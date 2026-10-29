@@ -1,13 +1,13 @@
 package com.discord.utilities.stickers;
 
 import com.discord.utilities.dimen.DimenUtils;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
 import org.objectweb.asm.Opcodes;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: StickerUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StickerUtils$DEFAULT_STICKER_SIZE_PX$2 extends AbstractC12240o implements Function0<Integer> {
+public final class StickerUtils$DEFAULT_STICKER_SIZE_PX$2 extends o implements Function0<Integer> {
     public static final StickerUtils$DEFAULT_STICKER_SIZE_PX$2 INSTANCE = new StickerUtils$DEFAULT_STICKER_SIZE_PX$2();
 
     public StickerUtils$DEFAULT_STICKER_SIZE_PX$2() {

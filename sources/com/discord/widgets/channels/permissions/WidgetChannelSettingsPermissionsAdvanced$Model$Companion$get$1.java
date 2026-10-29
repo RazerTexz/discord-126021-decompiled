@@ -1,7 +1,7 @@
 package com.discord.widgets.channels.permissions;
 
 import com.discord.api.channel.Channel;
-import com.discord.api.permission.PermissionOverwrite;
+import com.discord.api.permission.PermissionOverwrite$Type;
 import com.discord.api.role.GuildRole;
 import com.discord.models.guild.Guild;
 import com.discord.models.user.MeUser;
@@ -10,23 +10,23 @@ import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreUser;
-import com.discord.widgets.channels.SimpleMembersAdapter;
+import com.discord.widgets.channels.SimpleMembersAdapter$MemberItem;
+import d0.t.h0;
+import d0.t.u;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import kotlin.jvm.functions.Function0;
-import p507d0.p580t.C12136h0;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetChannelSettingsPermissionsAdvanced.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1 extends AbstractC12240o implements Function0<WidgetChannelSettingsPermissionsAdvanced.Model> {
+public final class WidgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1 extends o implements Function0<WidgetChannelSettingsPermissionsAdvanced$Model> {
     public final /* synthetic */ long $channelId;
     public final /* synthetic */ StoreChannels $storeChannels;
     public final /* synthetic */ StoreGuilds $storeGuilds;
@@ -43,53 +43,51 @@ public final class WidgetChannelSettingsPermissionsAdvanced$Model$Companion$get$
         this.$storePermissions = storePermissions;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ WidgetChannelSettingsPermissionsAdvanced$Model invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetChannelSettingsPermissionsAdvanced.Model invoke() {
+    public final WidgetChannelSettingsPermissionsAdvanced$Model invoke() {
         Channel channel = this.$storeChannels.getChannel(this.$channelId);
         if (channel == null) {
             return null;
         }
-        Collection overwriteIds = WidgetChannelSettingsPermissionsAdvanced.Model.INSTANCE.getOverwriteIds(channel, PermissionOverwrite.Type.MEMBER);
+        Collection collectionAccess$getOverwriteIds = WidgetChannelSettingsPermissionsAdvanced$Model$Companion.access$getOverwriteIds(WidgetChannelSettingsPermissionsAdvanced$Model.Companion, channel, PermissionOverwrite$Type.MEMBER);
         long guildId = channel.getGuildId();
         Guild guild = this.$storeGuilds.getGuild(guildId);
         Map<Long, GuildRole> mapEmptyMap = this.$storeGuilds.getRoles().get(Long.valueOf(guildId));
         if (mapEmptyMap == null) {
-            mapEmptyMap = C12136h0.emptyMap();
+            mapEmptyMap = h0.emptyMap();
         }
         Map<Long, GuildRole> map = mapEmptyMap;
         MeUser meSnapshot = this.$storeUser.getMeSnapshot();
         Long l = this.$storePermissions.getPermissionsByChannel().get(Long.valueOf(this.$channelId));
         Map<Long, User> users = this.$storeUser.getUsers();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map.Entry<Long, User> entry : users.entrySet()) {
-            if (overwriteIds.contains(Long.valueOf(entry.getKey().longValue()))) {
-                linkedHashMap.put(entry.getKey(), entry.getValue());
+        for (Map$Entry<Long, User> map$Entry : users.entrySet()) {
+            if (collectionAccess$getOverwriteIds.contains(Long.valueOf(map$Entry.getKey().longValue()))) {
+                linkedHashMap.put(map$Entry.getKey(), map$Entry.getValue());
             }
         }
         Collection collectionValues = linkedHashMap.values();
-        final C7545x6e0b1e05 c7545x6e0b1e05 = C7545x6e0b1e05.INSTANCE;
-        Object obj = c7545x6e0b1e05;
-        if (c7545x6e0b1e05 != null) {
-            obj = new Comparator() { // from class: com.discord.widgets.channels.permissions.WidgetChannelSettingsPermissionsAdvanced$sam$java_util_Comparator$0
-                @Override // java.util.Comparator
-                public final /* synthetic */ int compare(Object obj2, Object obj3) {
-                    Object objInvoke = c7545x6e0b1e05.invoke(obj2, obj3);
-                    C12238m.checkNotNullExpressionValue(objInvoke, "invoke(...)");
-                    return ((Number) objInvoke).intValue();
-                }
-            };
+        WidgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1$sortedUsers$2 widgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1$sortedUsers$2 = WidgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1$sortedUsers$2.INSTANCE;
+        Object widgetChannelSettingsPermissionsAdvanced$sam$java_util_Comparator$0 = widgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1$sortedUsers$2;
+        if (widgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1$sortedUsers$2 != null) {
+            widgetChannelSettingsPermissionsAdvanced$sam$java_util_Comparator$0 = new WidgetChannelSettingsPermissionsAdvanced$sam$java_util_Comparator$0(widgetChannelSettingsPermissionsAdvanced$Model$Companion$get$1$sortedUsers$2);
         }
-        List<User> listSortedWith = C12163u.sortedWith(collectionValues, (Comparator) obj);
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(listSortedWith, 10));
+        List<User> listSortedWith = u.sortedWith(collectionValues, (Comparator) widgetChannelSettingsPermissionsAdvanced$sam$java_util_Comparator$0);
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listSortedWith, 10));
         for (User user : listSortedWith) {
-            arrayList.add(new SimpleMembersAdapter.MemberItem(user, this.$storeGuilds.getMember(guildId, user.getId())));
+            arrayList.add(new SimpleMembersAdapter$MemberItem(user, this.$storeGuilds.getMember(guildId, user.getId())));
         }
-        if (!WidgetChannelSettingsPermissionsAdvanced.Model.INSTANCE.isValid(meSnapshot, guild, channel, l)) {
+        if (!WidgetChannelSettingsPermissionsAdvanced$Model.Companion.isValid(meSnapshot, guild, channel, l)) {
             return null;
         }
-        C12238m.checkNotNull(guild);
-        C12238m.checkNotNull(l);
-        return new WidgetChannelSettingsPermissionsAdvanced.Model(meSnapshot, guild, channel, l.longValue(), map, arrayList);
+        m.checkNotNull(guild);
+        m.checkNotNull(l);
+        return new WidgetChannelSettingsPermissionsAdvanced$Model(meSnapshot, guild, channel, l.longValue(), map, arrayList);
     }
 }

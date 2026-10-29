@@ -4,15 +4,19 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout$LayoutParams;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$id;
+import androidx.appcompat.R$styleable;
 import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ButtonBarLayout extends LinearLayout {
     private static final int PEEK_BUTTON_DP = 16;
     private boolean mAllowStacking;
@@ -23,10 +27,10 @@ public class ButtonBarLayout extends LinearLayout {
         super(context, attributeSet);
         this.mLastWidthSize = -1;
         this.mMinimumHeight = 0;
-        int[] iArr = C0051R.styleable.ButtonBarLayout;
+        int[] iArr = R$styleable.ButtonBarLayout;
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr);
         ViewCompat.saveAttributeDataForStyleable(this, context, iArr, attributeSet, typedArrayObtainStyledAttributes, 0, 0);
-        this.mAllowStacking = typedArrayObtainStyledAttributes.getBoolean(C0051R.styleable.ButtonBarLayout_allowStacking, true);
+        this.mAllowStacking = typedArrayObtainStyledAttributes.getBoolean(R$styleable.ButtonBarLayout_allowStacking, true);
         typedArrayObtainStyledAttributes.recycle();
     }
 
@@ -54,7 +58,7 @@ public class ButtonBarLayout extends LinearLayout {
     public void onMeasure(int i, int i2) {
         int iMakeMeasureSpec;
         boolean z2;
-        int size = View.MeasureSpec.getSize(i);
+        int size = View$MeasureSpec.getSize(i);
         int paddingBottom = 0;
         if (this.mAllowStacking) {
             if (size > this.mLastWidthSize && isStacked()) {
@@ -62,11 +66,11 @@ public class ButtonBarLayout extends LinearLayout {
             }
             this.mLastWidthSize = size;
         }
-        if (isStacked() || View.MeasureSpec.getMode(i) != 1073741824) {
+        if (isStacked() || View$MeasureSpec.getMode(i) != 1073741824) {
             iMakeMeasureSpec = i;
             z2 = false;
         } else {
-            iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
+            iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
             z2 = true;
         }
         super.onMeasure(iMakeMeasureSpec, i2);
@@ -82,8 +86,8 @@ public class ButtonBarLayout extends LinearLayout {
         int nextVisibleChildIndex = getNextVisibleChildIndex(0);
         if (nextVisibleChildIndex >= 0) {
             View childAt = getChildAt(nextVisibleChildIndex);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
-            int measuredHeight = childAt.getMeasuredHeight() + getPaddingTop() + layoutParams.topMargin + layoutParams.bottomMargin + 0;
+            LinearLayout$LayoutParams linearLayout$LayoutParams = (LinearLayout$LayoutParams) childAt.getLayoutParams();
+            int measuredHeight = childAt.getMeasuredHeight() + getPaddingTop() + linearLayout$LayoutParams.topMargin + linearLayout$LayoutParams.bottomMargin + 0;
             if (isStacked()) {
                 int nextVisibleChildIndex2 = getNextVisibleChildIndex(nextVisibleChildIndex + 1);
                 paddingBottom = nextVisibleChildIndex2 >= 0 ? getChildAt(nextVisibleChildIndex2).getPaddingTop() + ((int) (getResources().getDisplayMetrics().density * 16.0f)) + measuredHeight : measuredHeight;
@@ -109,7 +113,7 @@ public class ButtonBarLayout extends LinearLayout {
     private void setStacked(boolean z2) {
         setOrientation(z2 ? 1 : 0);
         setGravity(z2 ? 5 : 80);
-        View viewFindViewById = findViewById(C0051R.id.spacer);
+        View viewFindViewById = findViewById(R$id.spacer);
         if (viewFindViewById != null) {
             viewFindViewById.setVisibility(z2 ? 8 : 4);
         }

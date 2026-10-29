@@ -6,7 +6,7 @@ public class GoalRow extends ArrayRow {
         super(cache);
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem.Row
+    @Override // androidx.constraintlayout.solver.ArrayRow, androidx.constraintlayout.solver.LinearSystem$Row
     public void addError(SolverVariable solverVariable) {
         super.addError(solverVariable);
         solverVariable.usageInRowCount--;

@@ -11,10 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.core.view.ViewCompat;
-import androidx.view.Lifecycle;
+import androidx.view.Lifecycle$State;
+import b.d.b.a.a;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class FragmentTransaction {
@@ -50,43 +50,13 @@ public abstract class FragmentTransaction {
 
     @Nullable
     public String mName;
-    public ArrayList<C0394Op> mOps;
+    public ArrayList<FragmentTransaction$Op> mOps;
     public int mPopEnterAnim;
     public int mPopExitAnim;
     public boolean mReorderingAllowed;
     public ArrayList<String> mSharedElementSourceNames;
     public ArrayList<String> mSharedElementTargetNames;
     public int mTransition;
-
-    /* JADX INFO: renamed from: androidx.fragment.app.FragmentTransaction$Op */
-    public final class C0394Op {
-        public int mCmd;
-        public Lifecycle.State mCurrentMaxState;
-        public int mEnterAnim;
-        public int mExitAnim;
-        public Fragment mFragment;
-        public Lifecycle.State mOldMaxState;
-        public int mPopEnterAnim;
-        public int mPopExitAnim;
-
-        public C0394Op() {
-        }
-
-        public C0394Op(int i, Fragment fragment) {
-            this.mCmd = i;
-            this.mFragment = fragment;
-            Lifecycle.State state = Lifecycle.State.RESUMED;
-            this.mOldMaxState = state;
-            this.mCurrentMaxState = state;
-        }
-
-        public C0394Op(int i, @NonNull Fragment fragment, Lifecycle.State state) {
-            this.mCmd = i;
-            this.mFragment = fragment;
-            this.mOldMaxState = fragment.mMaxState;
-            this.mCurrentMaxState = state;
-        }
-    }
 
     @Deprecated
     public FragmentTransaction() {
@@ -102,12 +72,12 @@ public abstract class FragmentTransaction {
         return add(createFragment(cls, bundle), str);
     }
 
-    public void addOp(C0394Op c0394Op) {
-        this.mOps.add(c0394Op);
-        c0394Op.mEnterAnim = this.mEnterAnim;
-        c0394Op.mExitAnim = this.mExitAnim;
-        c0394Op.mPopEnterAnim = this.mPopEnterAnim;
-        c0394Op.mPopExitAnim = this.mPopExitAnim;
+    public void addOp(FragmentTransaction$Op fragmentTransaction$Op) {
+        this.mOps.add(fragmentTransaction$Op);
+        fragmentTransaction$Op.mEnterAnim = this.mEnterAnim;
+        fragmentTransaction$Op.mExitAnim = this.mExitAnim;
+        fragmentTransaction$Op.mPopEnterAnim = this.mPopEnterAnim;
+        fragmentTransaction$Op.mPopExitAnim = this.mPopExitAnim;
     }
 
     @NonNull
@@ -122,10 +92,10 @@ public abstract class FragmentTransaction {
                 this.mSharedElementTargetNames = new ArrayList<>();
             } else {
                 if (this.mSharedElementTargetNames.contains(str)) {
-                    throw new IllegalArgumentException(C1643a.m886y("A shared element with the target name '", str, "' has already been added to the transaction."));
+                    throw new IllegalArgumentException(a.y("A shared element with the target name '", str, "' has already been added to the transaction."));
                 }
                 if (this.mSharedElementSourceNames.contains(transitionName)) {
-                    throw new IllegalArgumentException(C1643a.m886y("A shared element with the source name '", transitionName, "' has already been added to the transaction."));
+                    throw new IllegalArgumentException(a.y("A shared element with the source name '", transitionName, "' has already been added to the transaction."));
                 }
             }
             this.mSharedElementSourceNames.add(transitionName);
@@ -146,7 +116,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction attach(@NonNull Fragment fragment) {
-        addOp(new C0394Op(7, fragment));
+        addOp(new FragmentTransaction$Op(7, fragment));
         return this;
     }
 
@@ -177,7 +147,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction detach(@NonNull Fragment fragment) {
-        addOp(new C0394Op(6, fragment));
+        addOp(new FragmentTransaction$Op(6, fragment));
         return this;
     }
 
@@ -194,10 +164,10 @@ public abstract class FragmentTransaction {
         Class<?> cls = fragment.getClass();
         int modifiers = cls.getModifiers();
         if (cls.isAnonymousClass() || !Modifier.isPublic(modifiers) || (cls.isMemberClass() && !Modifier.isStatic(modifiers))) {
-            StringBuilder sbM833U = C1643a.m833U("Fragment ");
-            sbM833U.append(cls.getCanonicalName());
-            sbM833U.append(" must be a public static class to be  properly recreated from instance state.");
-            throw new IllegalStateException(sbM833U.toString());
+            StringBuilder sbU = a.U("Fragment ");
+            sbU.append(cls.getCanonicalName());
+            sbU.append(" must be a public static class to be  properly recreated from instance state.");
+            throw new IllegalStateException(sbU.toString());
         }
         if (str != null) {
             String str2 = fragment.mTag;
@@ -206,7 +176,7 @@ public abstract class FragmentTransaction {
                 sb.append("Can't change tag of fragment ");
                 sb.append(fragment);
                 sb.append(": was ");
-                throw new IllegalStateException(C1643a.m823K(sb, fragment.mTag, " now ", str));
+                throw new IllegalStateException(a.K(sb, fragment.mTag, " now ", str));
             }
             fragment.mTag = str;
         }
@@ -221,12 +191,12 @@ public abstract class FragmentTransaction {
             fragment.mFragmentId = i;
             fragment.mContainerId = i;
         }
-        addOp(new C0394Op(i2, fragment));
+        addOp(new FragmentTransaction$Op(i2, fragment));
     }
 
     @NonNull
     public FragmentTransaction hide(@NonNull Fragment fragment) {
-        addOp(new C0394Op(4, fragment));
+        addOp(new FragmentTransaction$Op(4, fragment));
         return this;
     }
 
@@ -240,7 +210,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction remove(@NonNull Fragment fragment) {
-        addOp(new C0394Op(3, fragment));
+        addOp(new FragmentTransaction$Op(3, fragment));
         return this;
     }
 
@@ -287,14 +257,14 @@ public abstract class FragmentTransaction {
     }
 
     @NonNull
-    public FragmentTransaction setMaxLifecycle(@NonNull Fragment fragment, @NonNull Lifecycle.State state) {
-        addOp(new C0394Op(10, fragment, state));
+    public FragmentTransaction setMaxLifecycle(@NonNull Fragment fragment, @NonNull Lifecycle$State lifecycle$State) {
+        addOp(new FragmentTransaction$Op(10, fragment, lifecycle$State));
         return this;
     }
 
     @NonNull
     public FragmentTransaction setPrimaryNavigationFragment(@Nullable Fragment fragment) {
-        addOp(new C0394Op(8, fragment));
+        addOp(new FragmentTransaction$Op(8, fragment));
         return this;
     }
 
@@ -318,7 +288,7 @@ public abstract class FragmentTransaction {
 
     @NonNull
     public FragmentTransaction show(@NonNull Fragment fragment) {
-        addOp(new C0394Op(5, fragment));
+        addOp(new FragmentTransaction$Op(5, fragment));
         return this;
     }
 

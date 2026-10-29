@@ -2,6 +2,8 @@ package com.discord.stores;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.a.u.a;
+import b.a.u.b;
 import com.discord.api.message.reaction.MessageReaction;
 import com.discord.api.message.reaction.MessageReactionEmoji;
 import com.discord.api.message.reaction.MessageReactionUpdate;
@@ -10,6 +12,7 @@ import com.discord.utilities.message.LocalMessageCreatorsKt;
 import com.discord.utilities.message.MessageUtils;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.time.ClockFactory;
+import j0.l.e.k;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -19,16 +22,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
-import p637j0.p642l.p647e.C12721k;
-import p658rx.Observable;
-import p658rx.Subscription;
-import p658rx.functions.Action1;
-import p658rx.subjects.BehaviorSubject;
-import p658rx.subjects.SerializedSubject;
-import p658rx.subjects.Subject;
+import rx.Observable;
+import rx.Subscription;
+import rx.subjects.BehaviorSubject;
+import rx.subjects.SerializedSubject;
+import rx.subjects.Subject;
 
 /* JADX INFO: loaded from: classes2.dex */
 public class StoreMessagesHolder {
@@ -45,7 +47,7 @@ public class StoreMessagesHolder {
     private long selectedChannelId;
     private final Set<Long> staleMessages = new HashSet();
     private final LinkedHashMap<Long, TreeMap<Long, Message>> messages = new LinkedHashMap<>();
-    private final Subject<Map<Long, List<Message>>, Map<Long, List<Message>>> messagesPublisher = new SerializedSubject(BehaviorSubject.m11129k0());
+    private final Subject<Map<Long, List<Message>>, Map<Long, List<Message>>> messagesPublisher = new SerializedSubject(BehaviorSubject.k0());
     private Map<Long, List<Message>> messagesSnapshot = Collections.emptyMap();
     private final Map<String, Long> messageNonceIds = new HashMap();
     private final Persister<Map<Long, List<Message>>> cache = new Persister<>("STORE_MESSAGES_CACHE_V38", new HashMap());
@@ -57,7 +59,11 @@ public class StoreMessagesHolder {
     public StoreMessagesHolder() {
         HashSet hashSet = new HashSet();
         this.detachedChannels = hashSet;
-        this.detachedChannelsSubject = new SerializedSubject(BehaviorSubject.m11130l0(new HashSet(hashSet)));
+        this.detachedChannelsSubject = new SerializedSubject(BehaviorSubject.l0(new HashSet(hashSet)));
+    }
+
+    public /* synthetic */ void a(Object obj) {
+        messageCacheTryPersist();
     }
 
     public synchronized void addMessages(@NonNull List<Message> list) {
@@ -96,14 +102,14 @@ public class StoreMessagesHolder {
     private static Message addReaction(Message message, MessageReactionEmoji messageReactionEmoji, boolean z2) {
         MessageReaction messageReaction;
         Map<String, MessageReaction> reactionsMap = message.getReactionsMap();
-        String strM8116c = messageReactionEmoji.m8116c();
-        if (z2 && reactionsMap.containsKey(strM8116c) && reactionsMap.get(strM8116c).getMe()) {
+        String strC = messageReactionEmoji.c();
+        if (z2 && reactionsMap.containsKey(strC) && reactionsMap.get(strC).getMe()) {
             return message;
         }
         LinkedHashMap linkedHashMap = new LinkedHashMap(reactionsMap);
         boolean z3 = true;
-        if (reactionsMap.containsKey(strM8116c)) {
-            MessageReaction messageReaction2 = (MessageReaction) linkedHashMap.get(messageReactionEmoji.m8116c());
+        if (reactionsMap.containsKey(strC)) {
+            MessageReaction messageReaction2 = (MessageReaction) linkedHashMap.get(messageReactionEmoji.c());
             int count = messageReaction2.getCount() + 1;
             MessageReactionEmoji emoji = messageReaction2.getEmoji();
             if (!messageReaction2.getMe() && !z2) {
@@ -113,7 +119,7 @@ public class StoreMessagesHolder {
         } else {
             messageReaction = new MessageReaction(1, messageReactionEmoji, z2);
         }
-        linkedHashMap.put(strM8116c, messageReaction);
+        linkedHashMap.put(strC, messageReaction);
         return LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap);
     }
 
@@ -122,9 +128,9 @@ public class StoreMessagesHolder {
         ListIterator listIterator = new ArrayList(this.messages.entrySet()).listIterator(this.messages.size());
         int i = 8;
         while (listIterator.hasPrevious() && i > 0) {
-            Map.Entry entry = (Map.Entry) listIterator.previous();
-            long jLongValue = ((Long) entry.getKey()).longValue();
-            Map<?, Message> map2 = (Map) entry.getValue();
+            Map$Entry map$Entry = (Map$Entry) listIterator.previous();
+            long jLongValue = ((Long) map$Entry.getKey()).longValue();
+            Map<?, Message> map2 = (Map) map$Entry.getValue();
             if (map2.size() > 0) {
                 map.put(Long.valueOf(jLongValue), computeMessagesCacheSubList(jLongValue, map2));
                 i--;
@@ -167,12 +173,12 @@ public class StoreMessagesHolder {
 
     public synchronized void init(boolean z2) {
         if (z2) {
-            for (Map.Entry<Long, List<Message>> entry : this.cache.get().entrySet()) {
-                if (entry != null && entry.getKey() != null) {
-                    long jLongValue = entry.getKey().longValue();
+            for (Map$Entry<Long, List<Message>> map$Entry : this.cache.get().entrySet()) {
+                if (map$Entry != null && map$Entry.getKey() != null) {
+                    long jLongValue = map$Entry.getKey().longValue();
                     this.messages.put(Long.valueOf(jLongValue), new TreeMap<>(MessageUtils.getSORT_BY_IDS_COMPARATOR()));
                     TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(jLongValue));
-                    for (Message message : entry.getValue()) {
+                    for (Message message : map$Entry.getValue()) {
                         this.staleMessages.add(Long.valueOf(message.getId()));
                         treeMap.put(Long.valueOf(message.getId()), message);
                     }
@@ -185,9 +191,9 @@ public class StoreMessagesHolder {
     }
 
     public synchronized void invalidate() {
-        Iterator<Map.Entry<Long, TreeMap<Long, Message>>> it = this.messages.entrySet().iterator();
+        Iterator<Map$Entry<Long, TreeMap<Long, Message>>> it = this.messages.entrySet().iterator();
         while (it.hasNext()) {
-            Iterator<Map.Entry<Long, Message>> it2 = it.next().getValue().entrySet().iterator();
+            Iterator<Map$Entry<Long, Message>> it2 = it.next().getValue().entrySet().iterator();
             while (it2.hasNext()) {
                 this.staleMessages.add(Long.valueOf(it2.next().getValue().getId()));
             }
@@ -204,18 +210,18 @@ public class StoreMessagesHolder {
         return this.detachedChannels.contains(Long.valueOf(j));
     }
 
-    public synchronized void loadMessageChunks(@NonNull List<StoreMessagesLoader.ChannelChunk> list) {
-        for (StoreMessagesLoader.ChannelChunk channelChunk : list) {
-            List<Message> messages = channelChunk.getMessages();
-            long channelId = channelChunk.getChannelId();
+    public synchronized void loadMessageChunks(@NonNull List<StoreMessagesLoader$ChannelChunk> list) {
+        for (StoreMessagesLoader$ChannelChunk storeMessagesLoader$ChannelChunk : list) {
+            List<Message> messages = storeMessagesLoader$ChannelChunk.getMessages();
+            long channelId = storeMessagesLoader$ChannelChunk.getChannelId();
             if (this.activeChannels.contains(Long.valueOf(channelId))) {
                 TreeMap<Long, Message> treeMap = this.messages.get(Long.valueOf(channelId));
                 boolean zIsChannelDetached = isChannelDetached(channelId);
-                boolean zIsJump = channelChunk.isJump();
-                boolean zIsInitial = channelChunk.isInitial();
-                boolean zIsPresent = channelChunk.isPresent();
+                boolean zIsJump = storeMessagesLoader$ChannelChunk.isJump();
+                boolean zIsInitial = storeMessagesLoader$ChannelChunk.isInitial();
+                boolean zIsPresent = storeMessagesLoader$ChannelChunk.isPresent();
                 if (zIsInitial || zIsJump) {
-                    Iterator<Map.Entry<Long, Message>> it = treeMap.entrySet().iterator();
+                    Iterator<Map$Entry<Long, Message>> it = treeMap.entrySet().iterator();
                     while (it.hasNext()) {
                         Long lValueOf = Long.valueOf(it.next().getValue().getId());
                         if (this.staleMessages.contains(lValueOf) || zIsChannelDetached || zIsJump) {
@@ -227,16 +233,11 @@ public class StoreMessagesHolder {
                 for (Message message : messages) {
                     treeMap.put(Long.valueOf(message.getId()), message);
                 }
-                updateDetachedState(channelId, treeMap, channelChunk.isAppendingTop(), zIsPresent, zIsJump);
+                updateDetachedState(channelId, treeMap, storeMessagesLoader$ChannelChunk.isAppendingTop(), zIsPresent, zIsJump);
                 this.updatedChannels.add(Long.valueOf(channelId));
             }
         }
         publishIfUpdated();
-    }
-
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ void m8508a(Object obj) {
-        messageCacheTryPersist();
     }
 
     private synchronized void messageCacheTryPersist() {
@@ -256,16 +257,7 @@ public class StoreMessagesHolder {
                 if (subscription != null) {
                     subscription.unsubscribe();
                 }
-                this.cachePersistSubscription = new C12721k(null).m11111q(j2, TimeUnit.MILLISECONDS).m11097W(new Action1() { // from class: b.a.u.b
-                    @Override // p658rx.functions.Action1
-                    public final void call(Object obj) {
-                        this.f1998j.m8508a(obj);
-                    }
-                }, new Action1() { // from class: b.a.u.a
-                    @Override // p658rx.functions.Action1
-                    public final void call(Object obj) {
-                    }
-                });
+                this.cachePersistSubscription = new k(null).q(j2, TimeUnit.MILLISECONDS).W(new b(this), a.j);
             }
         }
     }
@@ -278,10 +270,10 @@ public class StoreMessagesHolder {
                 long jLongValue = it.next().longValue();
                 map.put(Long.valueOf(jLongValue), new ArrayList(this.messages.get(Long.valueOf(jLongValue)).values()));
             }
-            for (Map.Entry<Long, List<Message>> entry : this.messagesSnapshot.entrySet()) {
-                long jLongValue2 = entry.getKey().longValue();
+            for (Map$Entry<Long, List<Message>> map$Entry : this.messagesSnapshot.entrySet()) {
+                long jLongValue2 = map$Entry.getKey().longValue();
                 if (!this.updatedChannels.contains(Long.valueOf(jLongValue2))) {
-                    map.put(Long.valueOf(jLongValue2), entry.getValue());
+                    map.put(Long.valueOf(jLongValue2), map$Entry.getValue());
                 }
             }
             this.updatedChannels.clear();
@@ -315,14 +307,14 @@ public class StoreMessagesHolder {
             if (message == null) {
                 return;
             }
-            String strM8116c = messageReactionUpdate.getEmoji().m8116c();
+            String strC = messageReactionUpdate.getEmoji().c();
             Map<String, MessageReaction> reactionsMap = message.getReactionsMap();
-            if (reactionsMap.containsKey(strM8116c)) {
+            if (reactionsMap.containsKey(strC)) {
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
-                for (Map.Entry<String, MessageReaction> entry : reactionsMap.entrySet()) {
-                    String key = entry.getKey();
-                    if (!key.equals(strM8116c)) {
-                        linkedHashMap.put(key, entry.getValue());
+                for (Map$Entry<String, MessageReaction> map$Entry : reactionsMap.entrySet()) {
+                    String key = map$Entry.getKey();
+                    if (!key.equals(strC)) {
+                        linkedHashMap.put(key, map$Entry.getValue());
                     }
                 }
                 treeMap.put(Long.valueOf(messageId), LocalMessageCreatorsKt.createWithReactions(message, linkedHashMap));
@@ -334,19 +326,19 @@ public class StoreMessagesHolder {
 
     private static Message removeReaction(Message message, MessageReactionEmoji messageReactionEmoji, boolean z2) {
         Map<String, MessageReaction> reactionsMap = message.getReactionsMap();
-        String strM8116c = messageReactionEmoji.m8116c();
-        if (!reactionsMap.containsKey(strM8116c)) {
+        String strC = messageReactionEmoji.c();
+        if (!reactionsMap.containsKey(strC)) {
             return message;
         }
-        if (z2 && !reactionsMap.get(strM8116c).getMe()) {
+        if (z2 && !reactionsMap.get(strC).getMe()) {
             return message;
         }
         LinkedHashMap linkedHashMap = new LinkedHashMap(reactionsMap);
-        MessageReaction messageReaction = (MessageReaction) linkedHashMap.get(strM8116c);
+        MessageReaction messageReaction = (MessageReaction) linkedHashMap.get(strC);
         if (messageReaction.getCount() == 1) {
-            linkedHashMap.remove(strM8116c);
+            linkedHashMap.remove(strC);
         } else {
-            linkedHashMap.put(strM8116c, new MessageReaction(messageReaction.getCount() - 1, messageReaction.getEmoji(), messageReaction.getMe() && !z2));
+            linkedHashMap.put(strC, new MessageReaction(messageReaction.getCount() - 1, messageReaction.getEmoji(), messageReaction.getMe() && !z2));
         }
         if (linkedHashMap.isEmpty()) {
             linkedHashMap = null;
@@ -375,7 +367,7 @@ public class StoreMessagesHolder {
         boolean z5 = size >= 200;
         if (z5) {
             int i = z2 ? 100 : size - 100;
-            Iterator<Map.Entry<Long, Message>> it = map.entrySet().iterator();
+            Iterator<Map$Entry<Long, Message>> it = map.entrySet().iterator();
             int i2 = 0;
             while (it.hasNext()) {
                 it.next();

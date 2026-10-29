@@ -9,8 +9,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Dimension;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.StyleableRes;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TypedArray.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,20 +22,20 @@ public final class TypedArrayKt {
     }
 
     public static final boolean getBooleanOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getBoolean(i, false);
     }
 
     @ColorInt
     public static final int getColorOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getColor(i, 0);
     }
 
     public static final ColorStateList getColorStateListOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         ColorStateList colorStateList = typedArray.getColorStateList(i);
         if (colorStateList != null) {
@@ -45,69 +45,69 @@ public final class TypedArrayKt {
     }
 
     public static final float getDimensionOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getDimension(i, 0.0f);
     }
 
     @Dimension
     public static final int getDimensionPixelOffsetOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getDimensionPixelOffset(i, 0);
     }
 
     @Dimension
     public static final int getDimensionPixelSizeOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getDimensionPixelSize(i, 0);
     }
 
     public static final Drawable getDrawableOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         Drawable drawable = typedArray.getDrawable(i);
-        C12238m.checkNotNull(drawable);
+        m.checkNotNull(drawable);
         return drawable;
     }
 
     public static final float getFloatOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getFloat(i, 0.0f);
     }
 
     @RequiresApi(26)
     public static final Typeface getFontOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         Typeface font = typedArray.getFont(i);
-        C12238m.checkNotNull(font);
+        m.checkNotNull(font);
         return font;
     }
 
     public static final int getIntOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getInt(i, 0);
     }
 
     public static final int getIntegerOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getInteger(i, 0);
     }
 
     @AnyRes
     public static final int getResourceIdOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         return typedArray.getResourceId(i, 0);
     }
 
     public static final String getStringOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         String string = typedArray.getString(i);
         if (string != null) {
@@ -117,15 +117,15 @@ public final class TypedArrayKt {
     }
 
     public static final CharSequence[] getTextArrayOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         CharSequence[] textArray = typedArray.getTextArray(i);
-        C12238m.checkNotNullExpressionValue(textArray, "getTextArray(index)");
+        m.checkNotNullExpressionValue(textArray, "getTextArray(index)");
         return textArray;
     }
 
     public static final CharSequence getTextOrThrow(TypedArray typedArray, @StyleableRes int i) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(typedArray, "<this>");
         checkAttribute(typedArray, i);
         CharSequence text = typedArray.getText(i);
         if (text != null) {
@@ -135,8 +135,8 @@ public final class TypedArrayKt {
     }
 
     public static final <R> R use(TypedArray typedArray, Function1<? super TypedArray, ? extends R> function1) {
-        C12238m.checkNotNullParameter(typedArray, "<this>");
-        C12238m.checkNotNullParameter(function1, "block");
+        m.checkNotNullParameter(typedArray, "<this>");
+        m.checkNotNullParameter(function1, "block");
         R rInvoke = function1.invoke(typedArray);
         typedArray.recycle();
         return rInvoke;

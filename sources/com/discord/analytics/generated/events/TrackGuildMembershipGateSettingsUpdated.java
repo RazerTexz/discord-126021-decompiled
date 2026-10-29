@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackGuildMembershipGateMetadata;
 import com.discord.analytics.generated.traits.TrackGuildMembershipGateMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildMembershipGateSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,9 +19,14 @@ public final /* data */ class TrackGuildMembershipGateSettingsUpdated implements
     private TrackGuildMembershipGateMetadata trackGuildMembershipGateMetadata;
     private final transient String analyticsSchemaTypeName = "guild_membership_gate_settings_updated";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackGuildMembershipGateSettingsUpdated) && C12238m.areEqual(this.isEnabled, ((TrackGuildMembershipGateSettingsUpdated) other).isEnabled);
+            return (other instanceof TrackGuildMembershipGateSettingsUpdated) && m.areEqual(this.isEnabled, ((TrackGuildMembershipGateSettingsUpdated) other).isEnabled);
         }
         return true;
     }
@@ -46,13 +51,7 @@ public final /* data */ class TrackGuildMembershipGateSettingsUpdated implements
         return 0;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        return C1643a.m816D(C1643a.m833U("TrackGuildMembershipGateSettingsUpdated(isEnabled="), this.isEnabled, ")");
+        return a.D(a.U("TrackGuildMembershipGateSettingsUpdated(isEnabled="), this.isEnabled, ")");
     }
 }

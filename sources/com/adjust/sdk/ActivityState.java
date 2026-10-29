@@ -2,6 +2,7 @@ package com.adjust.sdk;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectInputStream$GetField;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
@@ -78,7 +79,7 @@ public class ActivityState implements Serializable, Cloneable {
     }
 
     private void readObject(ObjectInputStream objectInputStream) throws ClassNotFoundException, IOException {
-        ObjectInputStream.GetField fields = objectInputStream.readFields();
+        ObjectInputStream$GetField fields = objectInputStream.readFields();
         this.eventCount = Util.readIntField(fields, "eventCount", 0);
         this.sessionCount = Util.readIntField(fields, "sessionCount", 0);
         this.subsessionCount = Util.readIntField(fields, "subsessionCount", -1);

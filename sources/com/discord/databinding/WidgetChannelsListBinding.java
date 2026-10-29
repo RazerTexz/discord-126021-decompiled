@@ -20,92 +20,77 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelsListBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RoundedCoordinatorLayout f15968a;
+    public final RoundedCoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CustomAppBarLayout f15969b;
+    public final CustomAppBarLayout f2282b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f15970c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f15971d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final FrameLayout f15972e;
+    public final FrameLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f15973f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f15974g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final ConstraintLayout f15975h;
+    public final ConstraintLayout h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final MaterialButton f15976i;
+    public final MaterialButton i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final Toolbar f15977j;
+    public final Toolbar j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final TextView f15978k;
+    public final TextView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final AppCompatImageView f15979l;
+    public final AppCompatImageView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final ViewStub f15980m;
+    public final ViewStub m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final CollapsingToolbarLayout f15981n;
+    public final CollapsingToolbarLayout n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final RoundedCoordinatorLayout f15982o;
+    public final RoundedCoordinatorLayout o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final EmptyFriendsStateView f15983p;
+    public final EmptyFriendsStateView p;
 
     public WidgetChannelsListBinding(@NonNull RoundedCoordinatorLayout roundedCoordinatorLayout, @NonNull CustomAppBarLayout customAppBarLayout, @NonNull RecyclerView recyclerView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull FrameLayout frameLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull ConstraintLayout constraintLayout, @NonNull MaterialButton materialButton, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull Toolbar toolbar, @NonNull TextView textView5, @NonNull AppCompatImageView appCompatImageView, @NonNull View view, @NonNull View view2, @NonNull ViewStub viewStub, @NonNull Toolbar toolbar2, @NonNull CollapsingToolbarLayout collapsingToolbarLayout, @NonNull RoundedCoordinatorLayout roundedCoordinatorLayout2, @NonNull EmptyFriendsStateView emptyFriendsStateView) {
-        this.f15968a = roundedCoordinatorLayout;
-        this.f15969b = customAppBarLayout;
-        this.f15970c = recyclerView;
-        this.f15971d = simpleDraweeView;
-        this.f15972e = frameLayout;
-        this.f15973f = textView;
-        this.f15974g = textView2;
-        this.f15975h = constraintLayout;
-        this.f15976i = materialButton;
-        this.f15977j = toolbar;
-        this.f15978k = textView5;
-        this.f15979l = appCompatImageView;
-        this.f15980m = viewStub;
-        this.f15981n = collapsingToolbarLayout;
-        this.f15982o = roundedCoordinatorLayout2;
-        this.f15983p = emptyFriendsStateView;
+        this.a = roundedCoordinatorLayout;
+        this.f2282b = customAppBarLayout;
+        this.c = recyclerView;
+        this.d = simpleDraweeView;
+        this.e = frameLayout;
+        this.f = textView;
+        this.g = textView2;
+        this.h = constraintLayout;
+        this.i = materialButton;
+        this.j = toolbar;
+        this.k = textView5;
+        this.l = appCompatImageView;
+        this.m = viewStub;
+        this.n = collapsingToolbarLayout;
+        this.o = roundedCoordinatorLayout2;
+        this.p = emptyFriendsStateView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15968a;
+        return this.a;
     }
 }

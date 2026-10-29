@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackLocationStackMetadataReceiver
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPremiumFeatureUsageV2.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -36,7 +36,7 @@ public final /* data */ class TrackPremiumFeatureUsageV2 implements AnalyticsSch
             return false;
         }
         TrackPremiumFeatureUsageV2 trackPremiumFeatureUsageV2 = (TrackPremiumFeatureUsageV2) other;
-        return C12238m.areEqual(this.featureName, trackPremiumFeatureUsageV2.featureName) && C12238m.areEqual(this.featureTier, trackPremiumFeatureUsageV2.featureTier) && C12238m.areEqual(this.guildId, trackPremiumFeatureUsageV2.guildId) && C12238m.areEqual(this.rtcConnectionId, trackPremiumFeatureUsageV2.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackPremiumFeatureUsageV2.mediaSessionId) && C12238m.areEqual(this.inOverlay, trackPremiumFeatureUsageV2.inOverlay) && C12238m.areEqual(this.applicationName, trackPremiumFeatureUsageV2.applicationName);
+        return m.areEqual(this.featureName, trackPremiumFeatureUsageV2.featureName) && m.areEqual(this.featureTier, trackPremiumFeatureUsageV2.featureTier) && m.areEqual(this.guildId, trackPremiumFeatureUsageV2.guildId) && m.areEqual(this.rtcConnectionId, trackPremiumFeatureUsageV2.rtcConnectionId) && m.areEqual(this.mediaSessionId, trackPremiumFeatureUsageV2.mediaSessionId) && m.areEqual(this.inOverlay, trackPremiumFeatureUsageV2.inOverlay) && m.areEqual(this.applicationName, trackPremiumFeatureUsageV2.applicationName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,19 +63,19 @@ public final /* data */ class TrackPremiumFeatureUsageV2 implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPremiumFeatureUsageV2(featureName=");
-        sbM833U.append(this.featureName);
-        sbM833U.append(", featureTier=");
-        sbM833U.append(this.featureTier);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", inOverlay=");
-        sbM833U.append(this.inOverlay);
-        sbM833U.append(", applicationName=");
-        return C1643a.m817E(sbM833U, this.applicationName, ")");
+        StringBuilder sbU = a.U("TrackPremiumFeatureUsageV2(featureName=");
+        sbU.append(this.featureName);
+        sbU.append(", featureTier=");
+        sbU.append(this.featureTier);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", inOverlay=");
+        sbU.append(this.inOverlay);
+        sbU.append(", applicationName=");
+        return a.E(sbU, this.applicationName, ")");
     }
 }

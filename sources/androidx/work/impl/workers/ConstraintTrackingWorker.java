@@ -5,8 +5,10 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.ListenableWorker;
+import androidx.work.ListenableWorker$Result;
 import androidx.work.Logger;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.WorkDatabase;
@@ -16,19 +18,19 @@ import androidx.work.impl.constraints.WorkConstraintsTracker;
 import androidx.work.impl.model.WorkSpec;
 import androidx.work.impl.utils.futures.SettableFuture;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
+import b.i.b.d.a.a;
 import java.util.Collections;
 import java.util.List;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class ConstraintTrackingWorker extends ListenableWorker implements WorkConstraintsCallback {
     public static final String ARGUMENT_CLASS_NAME = "androidx.work.impl.workers.ConstraintTrackingWorker.ARGUMENT_CLASS_NAME";
     public volatile boolean mAreConstraintsUnmet;
 
     @Nullable
     private ListenableWorker mDelegate;
-    public SettableFuture<ListenableWorker.Result> mFuture;
+    public SettableFuture<ListenableWorker$Result> mFuture;
     public final Object mLock;
     private WorkerParameters mWorkerParameters;
     private static final String TAG = Logger.tagWithPrefix("ConstraintTrkngWrkr");
@@ -42,7 +44,7 @@ public class ConstraintTrackingWorker extends ListenableWorker implements WorkCo
     }
 
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     @VisibleForTesting
     public ListenableWorker getDelegate() {
         return this.mDelegate;
@@ -50,14 +52,14 @@ public class ConstraintTrackingWorker extends ListenableWorker implements WorkCo
 
     @Override // androidx.work.ListenableWorker
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     @VisibleForTesting
     public TaskExecutor getTaskExecutor() {
         return WorkManagerImpl.getInstance(getApplicationContext()).getWorkTaskExecutor();
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     @VisibleForTesting
     public WorkDatabase getWorkDatabase() {
         return WorkManagerImpl.getInstance(getApplicationContext()).getWorkDatabase();
@@ -91,11 +93,11 @@ public class ConstraintTrackingWorker extends ListenableWorker implements WorkCo
     }
 
     public void setFutureFailed() {
-        this.mFuture.set(ListenableWorker.Result.failure());
+        this.mFuture.set(ListenableWorker$Result.failure());
     }
 
     public void setFutureRetry() {
-        this.mFuture.set(ListenableWorker.Result.retry());
+        this.mFuture.set(ListenableWorker$Result.retry());
     }
 
     public void setupAndRunConstraintTrackingWork() {
@@ -126,19 +128,8 @@ public class ConstraintTrackingWorker extends ListenableWorker implements WorkCo
         }
         Logger.get().debug(TAG, String.format("Constraints met for delegate %s", string), new Throwable[0]);
         try {
-            final InterfaceFutureC4539a<ListenableWorker.Result> interfaceFutureC4539aStartWork = this.mDelegate.startWork();
-            interfaceFutureC4539aStartWork.addListener(new Runnable() { // from class: androidx.work.impl.workers.ConstraintTrackingWorker.2
-                @Override // java.lang.Runnable
-                public void run() {
-                    synchronized (ConstraintTrackingWorker.this.mLock) {
-                        if (ConstraintTrackingWorker.this.mAreConstraintsUnmet) {
-                            ConstraintTrackingWorker.this.setFutureRetry();
-                        } else {
-                            ConstraintTrackingWorker.this.mFuture.setFuture(interfaceFutureC4539aStartWork);
-                        }
-                    }
-                }
-            }, getBackgroundExecutor());
+            a<ListenableWorker$Result> aVarStartWork = this.mDelegate.startWork();
+            aVarStartWork.addListener(new ConstraintTrackingWorker$2(this, aVarStartWork), getBackgroundExecutor());
         } catch (Throwable th) {
             Logger logger = Logger.get();
             String str = TAG;
@@ -156,13 +147,8 @@ public class ConstraintTrackingWorker extends ListenableWorker implements WorkCo
 
     @Override // androidx.work.ListenableWorker
     @NonNull
-    public InterfaceFutureC4539a<ListenableWorker.Result> startWork() {
-        getBackgroundExecutor().execute(new Runnable() { // from class: androidx.work.impl.workers.ConstraintTrackingWorker.1
-            @Override // java.lang.Runnable
-            public void run() {
-                ConstraintTrackingWorker.this.setupAndRunConstraintTrackingWork();
-            }
-        });
+    public a<ListenableWorker$Result> startWork() {
+        getBackgroundExecutor().execute(new ConstraintTrackingWorker$1(this));
         return this.mFuture;
     }
 }

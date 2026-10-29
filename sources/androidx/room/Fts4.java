@@ -15,11 +15,11 @@ public @interface Fts4 {
 
     String languageId() default "";
 
-    FtsOptions.MatchInfo matchInfo() default FtsOptions.MatchInfo.FTS4;
+    FtsOptions$MatchInfo matchInfo() default FtsOptions$MatchInfo.FTS4;
 
     String[] notIndexed() default {};
 
-    FtsOptions.Order order() default FtsOptions.Order.ASC;
+    FtsOptions$Order order() default FtsOptions$Order.ASC;
 
     int[] prefix() default {};
 

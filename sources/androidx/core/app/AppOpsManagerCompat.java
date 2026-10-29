@@ -2,7 +2,7 @@ package androidx.core.app;
 
 import android.app.AppOpsManager;
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -25,14 +25,14 @@ public final class AppOpsManagerCompat {
     }
 
     public static int noteProxyOp(@NonNull Context context, @NonNull String str, @NonNull String str2) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return ((AppOpsManager) context.getSystemService(AppOpsManager.class)).noteProxyOp(str, str2);
         }
         return 1;
     }
 
     public static int noteProxyOpNoThrow(@NonNull Context context, @NonNull String str, @NonNull String str2) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return ((AppOpsManager) context.getSystemService(AppOpsManager.class)).noteProxyOpNoThrow(str, str2);
         }
         return 1;
@@ -40,7 +40,7 @@ public final class AppOpsManagerCompat {
 
     @Nullable
     public static String permissionToOp(@NonNull String str) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return AppOpsManager.permissionToOp(str);
         }
         return null;

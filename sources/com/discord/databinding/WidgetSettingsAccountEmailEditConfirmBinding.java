@@ -13,42 +13,37 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsAccountEmailEditConfirmBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17840a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final DimmerView f17841b;
+    public final DimmerView f2600b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f17842c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17843d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LinkifiedTextView f17844e;
+    public final LinkifiedTextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final Button f17845f;
+    public final Button f;
 
     public WidgetSettingsAccountEmailEditConfirmBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull DimmerView dimmerView, @NonNull TextInputLayout textInputLayout, @NonNull TextView textView, @NonNull LinkifiedTextView linkifiedTextView, @NonNull Button button) {
-        this.f17840a = coordinatorLayout;
-        this.f17841b = dimmerView;
-        this.f17842c = textInputLayout;
-        this.f17843d = textView;
-        this.f17844e = linkifiedTextView;
-        this.f17845f = button;
+        this.a = coordinatorLayout;
+        this.f2600b = dimmerView;
+        this.c = textInputLayout;
+        this.d = textView;
+        this.e = linkifiedTextView;
+        this.f = button;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17840a;
+        return this.a;
     }
 }

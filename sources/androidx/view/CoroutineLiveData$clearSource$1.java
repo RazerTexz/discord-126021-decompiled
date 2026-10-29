@@ -1,14 +1,14 @@
 package androidx.view;
 
 import androidx.exifinterface.media.ExifInterface;
+import d0.w.i.a.d;
+import d0.w.i.a.e;
 import kotlin.coroutines.Continuation;
-import p507d0.p584w.p586i.p587a.AbstractC12187d;
-import p507d0.p584w.p586i.p587a.InterfaceC12188e;
 
 /* JADX INFO: compiled from: CoroutineLiveData.kt */
 /* JADX INFO: loaded from: classes.dex */
-@InterfaceC12188e(m10084c = "androidx.lifecycle.CoroutineLiveData", m10085f = "CoroutineLiveData.kt", m10086l = {234}, m10087m = "clearSource$lifecycle_livedata_ktx_release")
-public final class CoroutineLiveData$clearSource$1 extends AbstractC12187d {
+@e(c = "androidx.lifecycle.CoroutineLiveData", f = "CoroutineLiveData.kt", l = {234}, m = "clearSource$lifecycle_livedata_ktx_release")
+public final class CoroutineLiveData$clearSource$1 extends d {
     public Object L$0;
     public int label;
     public /* synthetic */ Object result;
@@ -20,7 +20,7 @@ public final class CoroutineLiveData$clearSource$1 extends AbstractC12187d {
         this.this$0 = coroutineLiveData;
     }
 
-    @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+    @Override // d0.w.i.a.a
     public final Object invokeSuspend(Object obj) {
         this.result = obj;
         this.label |= Integer.MIN_VALUE;

@@ -4,12 +4,12 @@ import com.discord.api.user.UserProfile;
 import com.discord.models.user.MeUser;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserProfile;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: EditProfileBannerSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EditProfileBannerSheetViewModel$Companion$observeStoreState$1 extends AbstractC12240o implements Function0<EditProfileBannerSheetViewModel.StoreState> {
+public final class EditProfileBannerSheetViewModel$Companion$observeStoreState$1 extends o implements Function0<EditProfileBannerSheetViewModel$StoreState> {
     public final /* synthetic */ StoreUser $storeUser;
     public final /* synthetic */ StoreUserProfile $storeUserProfile;
 
@@ -20,11 +20,16 @@ public final class EditProfileBannerSheetViewModel$Companion$observeStoreState$1
         this.$storeUserProfile = storeUserProfile;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ EditProfileBannerSheetViewModel$StoreState invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final EditProfileBannerSheetViewModel.StoreState invoke() {
+    public final EditProfileBannerSheetViewModel$StoreState invoke() {
         MeUser meSnapshot = this.$storeUser.getMeSnapshot();
         UserProfile userProfile = this.$storeUserProfile.getUserProfile(meSnapshot.getId());
-        return new EditProfileBannerSheetViewModel.StoreState(MeUser.INSTANCE.merge(meSnapshot, userProfile.getUser()), userProfile);
+        return new EditProfileBannerSheetViewModel$StoreState(MeUser.Companion.merge(meSnapshot, userProfile.getUser()), userProfile);
     }
 }

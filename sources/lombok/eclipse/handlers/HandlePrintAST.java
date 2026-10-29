@@ -8,7 +8,7 @@ import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.PrintAST;
 import lombok.eclipse.DeferUntilPostDiet;
-import lombok.eclipse.EclipseASTVisitor;
+import lombok.eclipse.EclipseASTVisitor$Printer;
 import lombok.eclipse.EclipseAnnotationHandler;
 import lombok.eclipse.EclipseNode;
 import org.eclipse.jdt.internal.compiler.ast.Annotation;
@@ -29,7 +29,7 @@ public class HandlePrintAST extends EclipseAnnotationHandler<PrintAST> {
             }
         }
         try {
-            annotationNode.m10925up().traverse(new EclipseASTVisitor.Printer(((PrintAST) annotation.getInstance()).printContent(), stream, ((PrintAST) annotation.getInstance()).printPositions()));
+            annotationNode.up().traverse(new EclipseASTVisitor$Printer(((PrintAST) annotation.getInstance()).printContent(), stream, ((PrintAST) annotation.getInstance()).printPositions()));
             if (stream != System.out) {
                 try {
                     stream.close();

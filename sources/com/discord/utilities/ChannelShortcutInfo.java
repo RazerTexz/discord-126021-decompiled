@@ -1,8 +1,8 @@
 package com.discord.utilities;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ShareUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,7 +12,7 @@ public final /* data */ class ChannelShortcutInfo {
     private final int rank;
 
     public ChannelShortcutInfo(Channel channel, int i, boolean z2) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.rank = i;
         this.isPinnedOnly = z2;
@@ -32,7 +32,7 @@ public final /* data */ class ChannelShortcutInfo {
     }
 
     public final ChannelShortcutInfo copy(Channel channel, int rank, boolean isPinnedOnly) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         return new ChannelShortcutInfo(channel, rank, isPinnedOnly);
     }
 
@@ -44,7 +44,7 @@ public final /* data */ class ChannelShortcutInfo {
             return false;
         }
         ChannelShortcutInfo channelShortcutInfo = (ChannelShortcutInfo) other;
-        return C12238m.areEqual(this.channel, channelShortcutInfo.channel) && this.rank == channelShortcutInfo.rank && this.isPinnedOnly == channelShortcutInfo.isPinnedOnly;
+        return m.areEqual(this.channel, channelShortcutInfo.channel) && this.rank == channelShortcutInfo.rank && this.isPinnedOnly == channelShortcutInfo.isPinnedOnly;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -91,11 +91,11 @@ public final /* data */ class ChannelShortcutInfo {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelShortcutInfo(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", rank=");
-        sbM833U.append(this.rank);
-        sbM833U.append(", isPinnedOnly=");
-        return C1643a.m827O(sbM833U, this.isPinnedOnly, ")");
+        StringBuilder sbU = a.U("ChannelShortcutInfo(channel=");
+        sbU.append(this.channel);
+        sbU.append(", rank=");
+        sbU.append(this.rank);
+        sbU.append(", isPinnedOnly=");
+        return a.O(sbU, this.isPinnedOnly, ")");
     }
 }

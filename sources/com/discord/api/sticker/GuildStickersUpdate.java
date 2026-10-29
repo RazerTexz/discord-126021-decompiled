@@ -1,9 +1,9 @@
 package com.discord.api.sticker;
 
+import b.d.b.a.a;
 import com.discord.api.guildhash.GuildHashes;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildStickersUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,6 +11,10 @@ public final /* data */ class GuildStickersUpdate {
     private final GuildHashes guildHashes;
     private final long guildId;
     private final List<Sticker> stickers;
+
+    public final List<Sticker> c() {
+        return this.stickers;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -20,7 +24,7 @@ public final /* data */ class GuildStickersUpdate {
             return false;
         }
         GuildStickersUpdate guildStickersUpdate = (GuildStickersUpdate) other;
-        return this.guildId == guildStickersUpdate.guildId && C12238m.areEqual(this.stickers, guildStickersUpdate.stickers) && C12238m.areEqual(this.guildHashes, guildStickersUpdate.guildHashes);
+        return this.guildId == guildStickersUpdate.guildId && m.areEqual(this.stickers, guildStickersUpdate.stickers) && m.areEqual(this.guildHashes, guildStickersUpdate.guildHashes);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -42,19 +46,14 @@ public final /* data */ class GuildStickersUpdate {
         return iHashCode + (guildHashes != null ? guildHashes.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: c */
-    public final List<Sticker> m8233c() {
-        return this.stickers;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildStickersUpdate(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", stickers=");
-        sbM833U.append(this.stickers);
-        sbM833U.append(", guildHashes=");
-        sbM833U.append(this.guildHashes);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("GuildStickersUpdate(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", stickers=");
+        sbU.append(this.stickers);
+        sbU.append(", guildHashes=");
+        sbU.append(this.guildHashes);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

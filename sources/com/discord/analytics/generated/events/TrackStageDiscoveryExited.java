@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStageDiscoveryExited.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSche
             return false;
         }
         TrackStageDiscoveryExited trackStageDiscoveryExited = (TrackStageDiscoveryExited) other;
-        return C12238m.areEqual(this.loadId, trackStageDiscoveryExited.loadId) && C12238m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryExited.stageInstanceRecommendations) && C12238m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryExited.lastVisibleIndexAtLoad) && C12238m.areEqual(this.lastVisibleIndex, trackStageDiscoveryExited.lastVisibleIndex) && C12238m.areEqual(this.hasScrolled, trackStageDiscoveryExited.hasScrolled);
+        return m.areEqual(this.loadId, trackStageDiscoveryExited.loadId) && m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryExited.stageInstanceRecommendations) && m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryExited.lastVisibleIndexAtLoad) && m.areEqual(this.lastVisibleIndex, trackStageDiscoveryExited.lastVisibleIndex) && m.areEqual(this.hasScrolled, trackStageDiscoveryExited.hasScrolled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackStageDiscoveryExited implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStageDiscoveryExited(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", stageInstanceRecommendations=");
-        sbM833U.append(this.stageInstanceRecommendations);
-        sbM833U.append(", lastVisibleIndexAtLoad=");
-        sbM833U.append(this.lastVisibleIndexAtLoad);
-        sbM833U.append(", lastVisibleIndex=");
-        sbM833U.append(this.lastVisibleIndex);
-        sbM833U.append(", hasScrolled=");
-        return C1643a.m816D(sbM833U, this.hasScrolled, ")");
+        StringBuilder sbU = a.U("TrackStageDiscoveryExited(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", stageInstanceRecommendations=");
+        sbU.append(this.stageInstanceRecommendations);
+        sbU.append(", lastVisibleIndexAtLoad=");
+        sbU.append(this.lastVisibleIndexAtLoad);
+        sbU.append(", lastVisibleIndex=");
+        sbU.append(this.lastVisibleIndex);
+        sbU.append(", hasScrolled=");
+        return a.D(sbU, this.hasScrolled, ")");
     }
 }

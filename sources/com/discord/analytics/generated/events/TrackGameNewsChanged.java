@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackAfCard;
 import com.discord.analytics.generated.traits.TrackAfCardReceiver;
 import com.discord.analytics.generated.traits.TrackAfGame;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackAfGameReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGameNewsChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, T
             return false;
         }
         TrackGameNewsChanged trackGameNewsChanged = (TrackGameNewsChanged) other;
-        return C12238m.areEqual(this.changeCount, trackGameNewsChanged.changeCount) && C12238m.areEqual(this.newsUrl, trackGameNewsChanged.newsUrl) && C12238m.areEqual(this.newsToIndex, trackGameNewsChanged.newsToIndex) && C12238m.areEqual(this.newsFromIndex, trackGameNewsChanged.newsFromIndex) && C12238m.areEqual(this.newsChangeType, trackGameNewsChanged.newsChangeType);
+        return m.areEqual(this.changeCount, trackGameNewsChanged.changeCount) && m.areEqual(this.newsUrl, trackGameNewsChanged.newsUrl) && m.areEqual(this.newsToIndex, trackGameNewsChanged.newsToIndex) && m.areEqual(this.newsFromIndex, trackGameNewsChanged.newsFromIndex) && m.areEqual(this.newsChangeType, trackGameNewsChanged.newsChangeType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,15 +54,15 @@ public final /* data */ class TrackGameNewsChanged implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGameNewsChanged(changeCount=");
-        sbM833U.append(this.changeCount);
-        sbM833U.append(", newsUrl=");
-        sbM833U.append(this.newsUrl);
-        sbM833U.append(", newsToIndex=");
-        sbM833U.append(this.newsToIndex);
-        sbM833U.append(", newsFromIndex=");
-        sbM833U.append(this.newsFromIndex);
-        sbM833U.append(", newsChangeType=");
-        return C1643a.m817E(sbM833U, this.newsChangeType, ")");
+        StringBuilder sbU = a.U("TrackGameNewsChanged(changeCount=");
+        sbU.append(this.changeCount);
+        sbU.append(", newsUrl=");
+        sbU.append(this.newsUrl);
+        sbU.append(", newsToIndex=");
+        sbU.append(this.newsToIndex);
+        sbU.append(", newsFromIndex=");
+        sbU.append(this.newsFromIndex);
+        sbU.append(", newsChangeType=");
+        return a.E(sbU, this.newsChangeType, ")");
     }
 }

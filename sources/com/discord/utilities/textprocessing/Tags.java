@@ -1,8 +1,8 @@
 package com.discord.utilities.textprocessing;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TagsBuilder.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,9 +13,9 @@ public final /* data */ class Tags {
     private final Set<Long> users;
 
     public Tags(Set<Long> set, Set<Long> set2, Set<Long> set3) {
-        C12238m.checkNotNullParameter(set, "users");
-        C12238m.checkNotNullParameter(set2, "channels");
-        C12238m.checkNotNullParameter(set3, "roles");
+        m.checkNotNullParameter(set, "users");
+        m.checkNotNullParameter(set2, "channels");
+        m.checkNotNullParameter(set3, "roles");
         this.users = set;
         this.channels = set2;
         this.roles = set3;
@@ -49,9 +49,9 @@ public final /* data */ class Tags {
     }
 
     public final Tags copy(Set<Long> users, Set<Long> channels, Set<Long> roles) {
-        C12238m.checkNotNullParameter(users, "users");
-        C12238m.checkNotNullParameter(channels, "channels");
-        C12238m.checkNotNullParameter(roles, "roles");
+        m.checkNotNullParameter(users, "users");
+        m.checkNotNullParameter(channels, "channels");
+        m.checkNotNullParameter(roles, "roles");
         return new Tags(users, channels, roles);
     }
 
@@ -63,7 +63,7 @@ public final /* data */ class Tags {
             return false;
         }
         Tags tags = (Tags) other;
-        return C12238m.areEqual(this.users, tags.users) && C12238m.areEqual(this.channels, tags.channels) && C12238m.areEqual(this.roles, tags.roles);
+        return m.areEqual(this.users, tags.users) && m.areEqual(this.channels, tags.channels) && m.areEqual(this.roles, tags.roles);
     }
 
     public final Set<Long> getChannels() {
@@ -93,11 +93,11 @@ public final /* data */ class Tags {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Tags(users=");
-        sbM833U.append(this.users);
-        sbM833U.append(", channels=");
-        sbM833U.append(this.channels);
-        sbM833U.append(", roles=");
-        return C1643a.m826N(sbM833U, this.roles, ")");
+        StringBuilder sbU = a.U("Tags(users=");
+        sbU.append(this.users);
+        sbU.append(", channels=");
+        sbU.append(this.channels);
+        sbU.append(", roles=");
+        return a.N(sbU, this.roles, ")");
     }
 }

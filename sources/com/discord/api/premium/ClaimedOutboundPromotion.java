@@ -1,14 +1,14 @@
 package com.discord.api.premium;
 
+import b.d.b.a.a;
 import com.adjust.sdk.Constants;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.g0.t;
+import d0.z.d.m;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12103t;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ClaimedOutboundPromotion.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,6 +18,27 @@ public final /* data */ class ClaimedOutboundPromotion {
     private final OutboundPromotion promotion;
     private final long userId;
 
+    public final UtcDateTime c() {
+        return new UtcDateTime(TimeUnit.DAYS.toMillis(30L) + this.promotion.getEndDate().getDateTimeMillis());
+    }
+
+    /* JADX WARN: Code duplicated, block: B:7:0x0022  */
+    public final String d() throws UnsupportedEncodingException {
+        String outboundRedemptionPageLink;
+        String outboundRedemptionUrlFormat = this.promotion.getOutboundRedemptionUrlFormat();
+        if (outboundRedemptionUrlFormat != null) {
+            String strEncode = URLEncoder.encode(this.code, Constants.ENCODING);
+            m.checkNotNullExpressionValue(strEncode, "URLEncoder.encode(code, \"UTF-8\")");
+            outboundRedemptionPageLink = t.replace$default(outboundRedemptionUrlFormat, "{code}", strEncode, false, 4, (Object) null);
+            if (outboundRedemptionPageLink == null) {
+                outboundRedemptionPageLink = this.promotion.getOutboundRedemptionPageLink();
+            }
+        } else {
+            outboundRedemptionPageLink = this.promotion.getOutboundRedemptionPageLink();
+        }
+        return outboundRedemptionPageLink != null ? outboundRedemptionPageLink : "";
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -26,7 +47,7 @@ public final /* data */ class ClaimedOutboundPromotion {
             return false;
         }
         ClaimedOutboundPromotion claimedOutboundPromotion = (ClaimedOutboundPromotion) other;
-        return C12238m.areEqual(this.code, claimedOutboundPromotion.code) && this.userId == claimedOutboundPromotion.userId && C12238m.areEqual(this.claimedAt, claimedOutboundPromotion.claimedAt) && C12238m.areEqual(this.promotion, claimedOutboundPromotion.promotion);
+        return m.areEqual(this.code, claimedOutboundPromotion.code) && this.userId == claimedOutboundPromotion.userId && m.areEqual(this.claimedAt, claimedOutboundPromotion.claimedAt) && m.areEqual(this.promotion, claimedOutboundPromotion.promotion);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -50,39 +71,16 @@ public final /* data */ class ClaimedOutboundPromotion {
         return iHashCode2 + (outboundPromotion != null ? outboundPromotion.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: c */
-    public final UtcDateTime m8135c() {
-        return new UtcDateTime(TimeUnit.DAYS.toMillis(30L) + this.promotion.getEndDate().getDateTimeMillis());
-    }
-
-    /* JADX WARN: Code duplicated, block: B:7:0x0022  */
-    /* JADX INFO: renamed from: d */
-    public final String m8136d() throws UnsupportedEncodingException {
-        String outboundRedemptionPageLink;
-        String outboundRedemptionUrlFormat = this.promotion.getOutboundRedemptionUrlFormat();
-        if (outboundRedemptionUrlFormat != null) {
-            String strEncode = URLEncoder.encode(this.code, Constants.ENCODING);
-            C12238m.checkNotNullExpressionValue(strEncode, "URLEncoder.encode(code, \"UTF-8\")");
-            outboundRedemptionPageLink = C12103t.replace$default(outboundRedemptionUrlFormat, "{code}", strEncode, false, 4, (Object) null);
-            if (outboundRedemptionPageLink == null) {
-                outboundRedemptionPageLink = this.promotion.getOutboundRedemptionPageLink();
-            }
-        } else {
-            outboundRedemptionPageLink = this.promotion.getOutboundRedemptionPageLink();
-        }
-        return outboundRedemptionPageLink != null ? outboundRedemptionPageLink : "";
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ClaimedOutboundPromotion(code=");
-        sbM833U.append(this.code);
-        sbM833U.append(", userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", claimedAt=");
-        sbM833U.append(this.claimedAt);
-        sbM833U.append(", promotion=");
-        sbM833U.append(this.promotion);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ClaimedOutboundPromotion(code=");
+        sbU.append(this.code);
+        sbU.append(", userId=");
+        sbU.append(this.userId);
+        sbU.append(", claimedAt=");
+        sbU.append(this.claimedAt);
+        sbU.append(", promotion=");
+        sbU.append(this.promotion);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

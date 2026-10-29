@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkInformation;
 import com.discord.analytics.generated.traits.TrackNetworkInformationReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackJoinStageInstance.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -37,7 +37,7 @@ public final /* data */ class TrackJoinStageInstance implements AnalyticsSchema,
             return false;
         }
         TrackJoinStageInstance trackJoinStageInstance = (TrackJoinStageInstance) other;
-        return C12238m.areEqual(this.channelId, trackJoinStageInstance.channelId) && C12238m.areEqual(this.channelType, trackJoinStageInstance.channelType) && C12238m.areEqual(this.channelBitrate, trackJoinStageInstance.channelBitrate) && C12238m.areEqual(this.guildId, trackJoinStageInstance.guildId) && C12238m.areEqual(this.nonce, trackJoinStageInstance.nonce) && C12238m.areEqual(this.rtcConnectionId, trackJoinStageInstance.rtcConnectionId) && C12238m.areEqual(this.voiceStateCount, trackJoinStageInstance.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackJoinStageInstance.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackJoinStageInstance.videoEnabled) && C12238m.areEqual(this.gameName, trackJoinStageInstance.gameName) && C12238m.areEqual(this.gamePlatform, trackJoinStageInstance.gamePlatform) && C12238m.areEqual(this.gameId, trackJoinStageInstance.gameId) && C12238m.areEqual(this.customStatusCount, trackJoinStageInstance.customStatusCount) && C12238m.areEqual(this.stageInstanceId, trackJoinStageInstance.stageInstanceId);
+        return m.areEqual(this.channelId, trackJoinStageInstance.channelId) && m.areEqual(this.channelType, trackJoinStageInstance.channelType) && m.areEqual(this.channelBitrate, trackJoinStageInstance.channelBitrate) && m.areEqual(this.guildId, trackJoinStageInstance.guildId) && m.areEqual(this.nonce, trackJoinStageInstance.nonce) && m.areEqual(this.rtcConnectionId, trackJoinStageInstance.rtcConnectionId) && m.areEqual(this.voiceStateCount, trackJoinStageInstance.voiceStateCount) && m.areEqual(this.videoStreamCount, trackJoinStageInstance.videoStreamCount) && m.areEqual(this.videoEnabled, trackJoinStageInstance.videoEnabled) && m.areEqual(this.gameName, trackJoinStageInstance.gameName) && m.areEqual(this.gamePlatform, trackJoinStageInstance.gamePlatform) && m.areEqual(this.gameId, trackJoinStageInstance.gameId) && m.areEqual(this.customStatusCount, trackJoinStageInstance.customStatusCount) && m.areEqual(this.stageInstanceId, trackJoinStageInstance.stageInstanceId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -78,33 +78,33 @@ public final /* data */ class TrackJoinStageInstance implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackJoinStageInstance(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", channelBitrate=");
-        sbM833U.append(this.channelBitrate);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", nonce=");
-        sbM833U.append(this.nonce);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", voiceStateCount=");
-        sbM833U.append(this.voiceStateCount);
-        sbM833U.append(", videoStreamCount=");
-        sbM833U.append(this.videoStreamCount);
-        sbM833U.append(", videoEnabled=");
-        sbM833U.append(this.videoEnabled);
-        sbM833U.append(", gameName=");
-        sbM833U.append(this.gameName);
-        sbM833U.append(", gamePlatform=");
-        sbM833U.append(this.gamePlatform);
-        sbM833U.append(", gameId=");
-        sbM833U.append(this.gameId);
-        sbM833U.append(", customStatusCount=");
-        sbM833U.append(this.customStatusCount);
-        sbM833U.append(", stageInstanceId=");
-        return C1643a.m819G(sbM833U, this.stageInstanceId, ")");
+        StringBuilder sbU = a.U("TrackJoinStageInstance(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", channelBitrate=");
+        sbU.append(this.channelBitrate);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", nonce=");
+        sbU.append(this.nonce);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", voiceStateCount=");
+        sbU.append(this.voiceStateCount);
+        sbU.append(", videoStreamCount=");
+        sbU.append(this.videoStreamCount);
+        sbU.append(", videoEnabled=");
+        sbU.append(this.videoEnabled);
+        sbU.append(", gameName=");
+        sbU.append(this.gameName);
+        sbU.append(", gamePlatform=");
+        sbU.append(this.gamePlatform);
+        sbU.append(", gameId=");
+        sbU.append(this.gameId);
+        sbU.append(", customStatusCount=");
+        sbU.append(this.customStatusCount);
+        sbU.append(", stageInstanceId=");
+        return a.G(sbU, this.stageInstanceId, ")");
     }
 }

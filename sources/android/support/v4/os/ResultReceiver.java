@@ -6,57 +6,45 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import android.os.RemoteException;
 import androidx.annotation.RestrictTo;
-import java.util.Objects;
-import p668x.p669a.p672b.p676c.InterfaceC13185a;
+import androidx.annotation.RestrictTo$Scope;
+import x.a.b.c.a;
+import x.a.b.c.a$a;
+import x.a.b.c.a$a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ResultReceiver implements Parcelable {
-
-    /* JADX INFO: renamed from: j */
-    public InterfaceC13185a f74j;
-    public static final Parcelable.Creator<ResultReceiver> CREATOR = new C0030a();
-
-    /* JADX INFO: renamed from: android.support.v4.os.ResultReceiver$b */
-    public class BinderC0031b extends InterfaceC13185a.a {
-        public BinderC0031b() {
-        }
-
-        @Override // p668x.p669a.p672b.p676c.InterfaceC13185a
-        /* JADX INFO: renamed from: r0 */
-        public void mo74r0(int i, Bundle bundle) {
-            Objects.requireNonNull(ResultReceiver.this);
-            ResultReceiver.this.mo4a(i, bundle);
-        }
-    }
-
-    /* JADX INFO: renamed from: android.support.v4.os.ResultReceiver$a */
-    public class C0030a implements Parcelable.Creator<ResultReceiver> {
-        @Override // android.os.Parcelable.Creator
-        public ResultReceiver createFromParcel(Parcel parcel) {
-            return new ResultReceiver(parcel);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        public ResultReceiver[] newArray(int i) {
-            return new ResultReceiver[i];
-        }
-    }
+    public a j;
+    public static final Parcelable$Creator<ResultReceiver> CREATOR = new ResultReceiver$a();
 
     public ResultReceiver(Parcel parcel) {
-        InterfaceC13185a c13362a;
+        a a_a_a;
         IBinder strongBinder = parcel.readStrongBinder();
-        int i = InterfaceC13185a.a.f27948a;
+        int i = a$a.a;
         if (strongBinder == null) {
-            c13362a = null;
+            a_a_a = null;
         } else {
             IInterface iInterfaceQueryLocalInterface = strongBinder.queryLocalInterface("android.support.v4.os.IResultReceiver");
-            c13362a = (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof InterfaceC13185a)) ? new InterfaceC13185a.a.C13362a(strongBinder) : (InterfaceC13185a) iInterfaceQueryLocalInterface;
+            a_a_a = (iInterfaceQueryLocalInterface == null || !(iInterfaceQueryLocalInterface instanceof a)) ? new a$a$a(strongBinder) : (a) iInterfaceQueryLocalInterface;
         }
-        this.f74j = c13362a;
+        this.j = a_a_a;
+    }
+
+    public void a(int i, Bundle bundle) {
+    }
+
+    public void b(int i, Bundle bundle) {
+        a aVar = this.j;
+        if (aVar != null) {
+            try {
+                aVar.r0(i, bundle);
+            } catch (RemoteException unused) {
+            }
+        }
     }
 
     @Override // android.os.Parcelable
@@ -64,28 +52,13 @@ public class ResultReceiver implements Parcelable {
         return 0;
     }
 
-    /* JADX INFO: renamed from: b */
-    public void m73b(int i, Bundle bundle) {
-        InterfaceC13185a interfaceC13185a = this.f74j;
-        if (interfaceC13185a != null) {
-            try {
-                interfaceC13185a.mo74r0(i, bundle);
-            } catch (RemoteException unused) {
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: a */
-    public void mo4a(int i, Bundle bundle) {
-    }
-
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
         synchronized (this) {
-            if (this.f74j == null) {
-                this.f74j = new BinderC0031b();
+            if (this.j == null) {
+                this.j = new ResultReceiver$b(this);
             }
-            parcel.writeStrongBinder(this.f74j.asBinder());
+            parcel.writeStrongBinder(this.j.asBinder());
         }
     }
 }

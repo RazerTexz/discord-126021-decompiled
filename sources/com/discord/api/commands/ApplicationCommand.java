@@ -1,9 +1,9 @@
 package com.discord.api.commands;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationCommand.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,11 @@ public final /* data */ class ApplicationCommand {
             return false;
         }
         ApplicationCommand applicationCommand = (ApplicationCommand) other;
-        return this.id == applicationCommand.id && this.applicationId == applicationCommand.applicationId && C12238m.areEqual(this.name, applicationCommand.name) && C12238m.areEqual(this.description, applicationCommand.description) && C12238m.areEqual(this.options, applicationCommand.options) && C12238m.areEqual(this.version, applicationCommand.version) && C12238m.areEqual(this.guildId, applicationCommand.guildId) && C12238m.areEqual(this.defaultPermissions, applicationCommand.defaultPermissions) && C12238m.areEqual(this.permissions, applicationCommand.permissions);
+        return this.id == applicationCommand.id && this.applicationId == applicationCommand.applicationId && m.areEqual(this.name, applicationCommand.name) && m.areEqual(this.description, applicationCommand.description) && m.areEqual(this.options, applicationCommand.options) && m.areEqual(this.version, applicationCommand.version) && m.areEqual(this.guildId, applicationCommand.guildId) && m.areEqual(this.defaultPermissions, applicationCommand.defaultPermissions) && m.areEqual(this.permissions, applicationCommand.permissions);
+    }
+
+    public final List<ApplicationCommandOption> g() {
+        return this.options;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -64,6 +68,10 @@ public final /* data */ class ApplicationCommand {
         return this.version;
     }
 
+    public final List<ApplicationCommandPermission> h() {
+        return this.permissions;
+    }
+
     public int hashCode() {
         long j = this.id;
         long j2 = this.applicationId;
@@ -84,34 +92,24 @@ public final /* data */ class ApplicationCommand {
         return iHashCode6 + (list2 != null ? list2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: g */
-    public final List<ApplicationCommandOption> m7717g() {
-        return this.options;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final List<ApplicationCommandPermission> m7718h() {
-        return this.permissions;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApplicationCommand(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", options=");
-        sbM833U.append(this.options);
-        sbM833U.append(", version=");
-        sbM833U.append(this.version);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", defaultPermissions=");
-        sbM833U.append(this.defaultPermissions);
-        sbM833U.append(", permissions=");
-        return C1643a.m824L(sbM833U, this.permissions, ")");
+        StringBuilder sbU = a.U("ApplicationCommand(id=");
+        sbU.append(this.id);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", options=");
+        sbU.append(this.options);
+        sbU.append(", version=");
+        sbU.append(this.version);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", defaultPermissions=");
+        sbU.append(this.defaultPermissions);
+        sbU.append(", permissions=");
+        return a.L(sbU, this.permissions, ")");
     }
 }

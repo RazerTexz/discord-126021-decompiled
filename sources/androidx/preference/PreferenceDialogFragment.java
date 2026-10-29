@@ -2,12 +2,15 @@ package androidx.preference;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog$Builder;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface$OnClickListener;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,10 +23,11 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
-public abstract class PreferenceDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
+public abstract class PreferenceDialogFragment extends DialogFragment implements DialogInterface$OnClickListener {
 
     @Deprecated
     public static final String ARG_KEY = "key";
@@ -51,19 +55,19 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
     @Deprecated
     public DialogPreference getPreference() {
         if (this.mPreference == null) {
-            this.mPreference = (DialogPreference) ((DialogPreference.TargetFragment) getTargetFragment()).findPreference(getArguments().getString("key"));
+            this.mPreference = (DialogPreference) ((DialogPreference$TargetFragment) getTargetFragment()).findPreference(getArguments().getString("key"));
         }
         return this.mPreference;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public boolean needInputMethod() {
         return false;
     }
 
     @Deprecated
     public void onBindDialogView(View view) {
-        View viewFindViewById = view.findViewById(android.R.id.message);
+        View viewFindViewById = view.findViewById(android.R$id.message);
         if (viewFindViewById != null) {
             CharSequence charSequence = this.mDialogMessage;
             int i = 8;
@@ -79,7 +83,7 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
         }
     }
 
-    @Override // android.content.DialogInterface.OnClickListener
+    @Override // android.content.DialogInterface$OnClickListener
     @Deprecated
     public void onClick(DialogInterface dialogInterface, int i) {
         this.mWhichButtonClicked = i;
@@ -89,10 +93,10 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         ComponentCallbacks2 targetFragment = getTargetFragment();
-        if (!(targetFragment instanceof DialogPreference.TargetFragment)) {
+        if (!(targetFragment instanceof DialogPreference$TargetFragment)) {
             throw new IllegalStateException("Target fragment must implement TargetFragment interface");
         }
-        DialogPreference.TargetFragment targetFragment2 = (DialogPreference.TargetFragment) targetFragment;
+        DialogPreference$TargetFragment dialogPreference$TargetFragment = (DialogPreference$TargetFragment) targetFragment;
         String string = getArguments().getString("key");
         if (bundle != null) {
             this.mDialogTitle = bundle.getCharSequence(SAVE_STATE_TITLE);
@@ -107,7 +111,7 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
             }
             return;
         }
-        DialogPreference dialogPreference = (DialogPreference) targetFragment2.findPreference(string);
+        DialogPreference dialogPreference = (DialogPreference) dialogPreference$TargetFragment.findPreference(string);
         this.mPreference = dialogPreference;
         this.mDialogTitle = dialogPreference.getDialogTitle();
         this.mPositiveButtonText = this.mPreference.getPositiveButtonText();
@@ -119,7 +123,7 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
             this.mDialogIcon = (BitmapDrawable) dialogIcon;
             return;
         }
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(dialogIcon.getIntrinsicWidth(), dialogIcon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(dialogIcon.getIntrinsicWidth(), dialogIcon.getIntrinsicHeight(), Bitmap$Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmapCreateBitmap);
         dialogIcon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         dialogIcon.draw(canvas);
@@ -131,7 +135,7 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
     public Dialog onCreateDialog(Bundle bundle) {
         Activity activity = getActivity();
         this.mWhichButtonClicked = -2;
-        AlertDialog.Builder negativeButton = new AlertDialog.Builder(activity).setTitle(this.mDialogTitle).setIcon(this.mDialogIcon).setPositiveButton(this.mPositiveButtonText, this).setNegativeButton(this.mNegativeButtonText, this);
+        AlertDialog$Builder negativeButton = new AlertDialog$Builder(activity).setTitle(this.mDialogTitle).setIcon(this.mDialogIcon).setPositiveButton(this.mPositiveButtonText, this).setNegativeButton(this.mNegativeButtonText, this);
         View viewOnCreateDialogView = onCreateDialogView(activity);
         if (viewOnCreateDialogView != null) {
             onBindDialogView(viewOnCreateDialogView);
@@ -159,14 +163,14 @@ public abstract class PreferenceDialogFragment extends DialogFragment implements
     @Deprecated
     public abstract void onDialogClosed(boolean z2);
 
-    @Override // android.app.DialogFragment, android.content.DialogInterface.OnDismissListener
+    @Override // android.app.DialogFragment, android.content.DialogInterface$OnDismissListener
     public void onDismiss(DialogInterface dialogInterface) {
         super.onDismiss(dialogInterface);
         onDialogClosed(this.mWhichButtonClicked == -1);
     }
 
     @Deprecated
-    public void onPrepareDialogBuilder(AlertDialog.Builder builder) {
+    public void onPrepareDialogBuilder(AlertDialog$Builder alertDialog$Builder) {
     }
 
     @Override // android.app.DialogFragment, android.app.Fragment

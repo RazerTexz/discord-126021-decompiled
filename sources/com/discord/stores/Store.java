@@ -3,7 +3,7 @@ package com.discord.stores;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.discord.utilities.cache.SharedPreferencesProvider;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Store.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -17,6 +17,6 @@ public class Store {
     }
 
     public void init(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
     }
 }

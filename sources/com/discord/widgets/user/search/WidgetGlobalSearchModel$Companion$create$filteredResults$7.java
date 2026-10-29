@@ -1,13 +1,13 @@
 package com.discord.widgets.user.search;
 
 import com.discord.api.channel.Channel;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$filteredResults$7 extends AbstractC12240o implements Function1<Channel, WidgetGlobalSearchModel.ItemDataPayload> {
+public final class WidgetGlobalSearchModel$Companion$create$filteredResults$7 extends o implements Function1<Channel, WidgetGlobalSearchModel$ItemDataPayload> {
     public final /* synthetic */ String $sanitizedFilter;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$4 $toItemChannel$4;
 
@@ -19,8 +19,13 @@ public final class WidgetGlobalSearchModel$Companion$create$filteredResults$7 ex
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetGlobalSearchModel.ItemDataPayload invoke(Channel channel) {
-        C12238m.checkNotNullParameter(channel, "it");
-        return this.$toItemChannel$4.invoke(channel, this.$sanitizedFilter);
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchModel$ItemDataPayload invoke(Channel channel) {
+        return invoke2(channel);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetGlobalSearchModel$ItemDataPayload invoke2(Channel channel) {
+        m.checkNotNullParameter(channel, "it");
+        return this.$toItemChannel$4.invoke2(channel, this.$sanitizedFilter);
     }
 }

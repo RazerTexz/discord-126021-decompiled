@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackModalDismissed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,6 +24,11 @@ public final /* data */ class TrackModalDismissed implements AnalyticsSchema, Tr
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "modal_dismissed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -32,7 +37,7 @@ public final /* data */ class TrackModalDismissed implements AnalyticsSchema, Tr
             return false;
         }
         TrackModalDismissed trackModalDismissed = (TrackModalDismissed) other;
-        return C12238m.areEqual(this.type, trackModalDismissed.type) && C12238m.areEqual(this.dismissType, trackModalDismissed.dismissType) && C12238m.areEqual(this.durationOpenMs, trackModalDismissed.durationOpenMs);
+        return m.areEqual(this.type, trackModalDismissed.type) && m.areEqual(this.dismissType, trackModalDismissed.dismissType) && m.areEqual(this.durationOpenMs, trackModalDismissed.durationOpenMs);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,18 +61,12 @@ public final /* data */ class TrackModalDismissed implements AnalyticsSchema, Tr
         return iHashCode2 + (l != null ? l.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackModalDismissed(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", dismissType=");
-        sbM833U.append(this.dismissType);
-        sbM833U.append(", durationOpenMs=");
-        return C1643a.m819G(sbM833U, this.durationOpenMs, ")");
+        StringBuilder sbU = a.U("TrackModalDismissed(type=");
+        sbU.append(this.type);
+        sbU.append(", dismissType=");
+        sbU.append(this.dismissType);
+        sbU.append(", durationOpenMs=");
+        return a.G(sbU, this.durationOpenMs, ")");
     }
 }

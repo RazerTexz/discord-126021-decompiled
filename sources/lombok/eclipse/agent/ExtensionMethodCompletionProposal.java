@@ -14,7 +14,7 @@ import org.eclipse.jdt.internal.codeassist.complete.CompletionOnSingleNameRefere
 import org.eclipse.jdt.internal.compiler.ast.ASTNode;
 import org.eclipse.jdt.internal.compiler.lookup.MethodBinding;
 import org.eclipse.jdt.internal.compiler.lookup.TypeBinding;
-import org.eclipse.jdt.internal.core.NameLookup;
+import org.eclipse.jdt.internal.core.NameLookup$Answer;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/ExtensionMethodCompletionProposal.SCL.lombok */
 public class ExtensionMethodCompletionProposal extends InternalCompletionProposal {
@@ -88,7 +88,7 @@ public class ExtensionMethodCompletionProposal extends InternalCompletionProposa
         if (this.parameterNames != null) {
             return this.parameterNames;
         }
-        NameLookup.Answer answer = this.nameLookup.findType(new String(this.declarationTypeName), new String(this.declarationPackageName), false, 0, true, false, false, (IProgressMonitor) null);
+        NameLookup$Answer answer = this.nameLookup.findType(new String(this.declarationTypeName), new String(this.declarationPackageName), false, 0, true, false, false, (IProgressMonitor) null);
         if (answer != null && answer.type != null) {
             char[][] parameterTypes = Signature.getParameterTypes(this.fullSignature);
             String[] args = new String[parameterTypes.length];

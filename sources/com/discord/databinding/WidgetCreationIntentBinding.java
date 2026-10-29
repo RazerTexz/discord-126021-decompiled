@@ -11,42 +11,37 @@ import com.google.android.material.card.MaterialCardView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetCreationIntentBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16441a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialCardView f16442b;
+    public final MaterialCardView f2360b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16443c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialCardView f16444d;
+    public final MaterialCardView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16445e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final LinkifiedTextView f16446f;
+    public final LinkifiedTextView f;
 
     public WidgetCreationIntentBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull MaterialCardView materialCardView, @NonNull TextView textView, @NonNull MaterialCardView materialCardView2, @NonNull TextView textView2, @NonNull LinkifiedTextView linkifiedTextView) {
-        this.f16441a = coordinatorLayout;
-        this.f16442b = materialCardView;
-        this.f16443c = textView;
-        this.f16444d = materialCardView2;
-        this.f16445e = textView2;
-        this.f16446f = linkifiedTextView;
+        this.a = coordinatorLayout;
+        this.f2360b = materialCardView;
+        this.c = textView;
+        this.d = materialCardView2;
+        this.e = textView2;
+        this.f = linkifiedTextView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16441a;
+        return this.a;
     }
 }

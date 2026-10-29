@@ -3,14 +3,16 @@ package com.discord.utilities.view.recycler;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
+import androidx.recyclerview.widget.RecyclerView$State;
+import b.d.b.a.a;
+import d0.j;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12111j;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: PaddedItemDecorator.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class PaddedItemDecorator extends RecyclerView.ItemDecoration {
+public final class PaddedItemDecorator extends RecyclerView$ItemDecoration {
     private final int orientation;
     private final boolean spaceBetweenItemsOnly;
     private final int spaceHorz;
@@ -20,12 +22,12 @@ public final class PaddedItemDecorator extends RecyclerView.ItemDecoration {
         this(i, i2, i3, (i4 & 8) != 0 ? false : z2);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        C12238m.checkNotNullParameter(outRect, "outRect");
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(parent, "parent");
-        C12238m.checkNotNullParameter(state, "state");
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView$State state) {
+        m.checkNotNullParameter(outRect, "outRect");
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(parent, "parent");
+        m.checkNotNullParameter(state, "state");
         super.getItemOffsets(outRect, view, parent, state);
         int childAdapterPosition = parent.getChildAdapterPosition(view);
         boolean z2 = childAdapterPosition == 0;
@@ -40,7 +42,7 @@ public final class PaddedItemDecorator extends RecyclerView.ItemDecoration {
             return;
         }
         if (i != 1) {
-            throw new C12111j(C1643a.m883w("An operation is not implemented: ", C1643a.m814B(C1643a.m833U("Other("), this.orientation, ") orientation padding for items not supported yet.")));
+            throw new j(a.w("An operation is not implemented: ", a.B(a.U("Other("), this.orientation, ") orientation padding for items not supported yet.")));
         }
         outRect.top = (!z2 || this.spaceBetweenItemsOnly) ? 0 : this.spaceVert;
         outRect.bottom = (z3 && this.spaceBetweenItemsOnly) ? 0 : this.spaceVert;

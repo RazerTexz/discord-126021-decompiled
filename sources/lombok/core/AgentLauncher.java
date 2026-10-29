@@ -8,18 +8,13 @@ import java.util.List;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AgentLauncher.SCL.lombok */
 public class AgentLauncher {
-    private static final List<AgentInfo> AGENTS = Collections.unmodifiableList(Arrays.asList(new EclipsePatcherInfo(null)));
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AgentLauncher$AgentLaunchable.SCL.lombok */
-    public interface AgentLaunchable {
-        void runAgent(String str, Instrumentation instrumentation, boolean z2, Class<?> cls) throws Exception;
-    }
+    private static final List<AgentLauncher$AgentInfo> AGENTS = Collections.unmodifiableList(Arrays.asList(new AgentLauncher$EclipsePatcherInfo(null)));
 
     public static void runAgents(String agentArgs, Instrumentation instrumentation, boolean injected, Class<?> launchingContext) throws Throwable {
-        for (AgentInfo info : AGENTS) {
+        for (AgentLauncher$AgentInfo info : AGENTS) {
             try {
                 Class<?> agentClass = Class.forName(info.className());
-                AgentLaunchable agent = (AgentLaunchable) agentClass.getConstructor(new Class[0]).newInstance(new Object[0]);
+                AgentLauncher$AgentLaunchable agent = (AgentLauncher$AgentLaunchable) agentClass.getConstructor(new Class[0]).newInstance(new Object[0]);
                 agent.runAgent(agentArgs, instrumentation, injected, launchingContext);
             } catch (Throwable th) {
                 t = th;
@@ -28,50 +23,6 @@ public class AgentLauncher {
                 }
                 info.problem(t, instrumentation);
             }
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AgentLauncher$AgentInfo.SCL.lombok */
-    abstract class AgentInfo {
-        abstract String className();
-
-        private AgentInfo() {
-        }
-
-        /* synthetic */ AgentInfo(AgentInfo agentInfo) {
-            this();
-        }
-
-        void problem(Throwable t, Instrumentation instrumentation) throws Throwable {
-            if (t instanceof ClassNotFoundException) {
-                return;
-            }
-            if (t instanceof ClassCastException) {
-                throw new InternalError("Lombok bug. Class: " + className() + " is not an implementation of lombok.core.Agent");
-            }
-            if (t instanceof IllegalAccessError) {
-                throw new InternalError("Lombok bug. Class: " + className() + " is not public");
-            }
-            if (t instanceof InstantiationException) {
-                throw new InternalError("Lombok bug. Class: " + className() + " is not concrete or has no public no-args constructor");
-            }
-            throw t;
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AgentLauncher$EclipsePatcherInfo.SCL.lombok */
-    class EclipsePatcherInfo extends AgentInfo {
-        private EclipsePatcherInfo() {
-            super(null);
-        }
-
-        /* synthetic */ EclipsePatcherInfo(EclipsePatcherInfo eclipsePatcherInfo) {
-            this();
-        }
-
-        @Override // lombok.core.AgentLauncher.AgentInfo
-        String className() {
-            return "lombok.eclipse.agent.EclipsePatcher";
         }
     }
 }

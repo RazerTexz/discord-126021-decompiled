@@ -5,9 +5,8 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 /* JADX INFO: compiled from: exceptions.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class NoSuchPropertyException extends Exception {
-    /* JADX WARN: Multi-variable type inference failed */
     public NoSuchPropertyException() {
-        this(null, 1, 0 == true ? 1 : 0);
+        this(null, 1, null);
     }
 
     public NoSuchPropertyException(Exception exc) {

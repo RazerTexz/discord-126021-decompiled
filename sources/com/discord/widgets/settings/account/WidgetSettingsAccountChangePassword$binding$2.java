@@ -4,19 +4,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetSettingsAccountChangePasswordBinding;
 import com.discord.utilities.dimmer.DimmerView;
 import com.discord.views.LoadingButton;
 import com.discord.views.ScreenTitleView;
 import com.google.android.material.textfield.TextInputLayout;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetSettingsAccountChangePassword.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetSettingsAccountChangePassword$binding$2 extends C12236k implements Function1<View, WidgetSettingsAccountChangePasswordBinding> {
+public final /* synthetic */ class WidgetSettingsAccountChangePassword$binding$2 extends k implements Function1<View, WidgetSettingsAccountChangePasswordBinding> {
     public static final WidgetSettingsAccountChangePassword$binding$2 INSTANCE = new WidgetSettingsAccountChangePassword$binding$2();
 
     public WidgetSettingsAccountChangePassword$binding$2() {
@@ -24,31 +24,36 @@ public final /* synthetic */ class WidgetSettingsAccountChangePassword$binding$2
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetSettingsAccountChangePasswordBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.auth_change_password_icon;
-        ImageView imageView = (ImageView) view.findViewById(C5419R.id.auth_change_password_icon);
+    public /* bridge */ /* synthetic */ WidgetSettingsAccountChangePasswordBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetSettingsAccountChangePasswordBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.auth_change_password_icon;
+        ImageView imageView = (ImageView) view.findViewById(R$id.auth_change_password_icon);
         if (imageView != null) {
-            i = C5419R.id.change_password_current_password_input;
-            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(C5419R.id.change_password_current_password_input);
+            i = R$id.change_password_current_password_input;
+            TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.change_password_current_password_input);
             if (textInputLayout != null) {
-                i = C5419R.id.change_password_new_password_input;
-                TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(C5419R.id.change_password_new_password_input);
+                i = R$id.change_password_new_password_input;
+                TextInputLayout textInputLayout2 = (TextInputLayout) view.findViewById(R$id.change_password_new_password_input);
                 if (textInputLayout2 != null) {
-                    i = C5419R.id.change_password_save;
-                    LoadingButton loadingButton = (LoadingButton) view.findViewById(C5419R.id.change_password_save);
+                    i = R$id.change_password_save;
+                    LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.change_password_save);
                     if (loadingButton != null) {
-                        i = C5419R.id.change_password_title;
-                        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(C5419R.id.change_password_title);
+                        i = R$id.change_password_title;
+                        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.change_password_title);
                         if (screenTitleView != null) {
-                            i = C5419R.id.change_password_two_factor;
-                            TextInputLayout textInputLayout3 = (TextInputLayout) view.findViewById(C5419R.id.change_password_two_factor);
+                            i = R$id.change_password_two_factor;
+                            TextInputLayout textInputLayout3 = (TextInputLayout) view.findViewById(R$id.change_password_two_factor);
                             if (textInputLayout3 != null) {
-                                i = C5419R.id.change_password_two_factor_title;
-                                TextView textView = (TextView) view.findViewById(C5419R.id.change_password_two_factor_title);
+                                i = R$id.change_password_two_factor_title;
+                                TextView textView = (TextView) view.findViewById(R$id.change_password_two_factor_title);
                                 if (textView != null) {
-                                    i = C5419R.id.dimmer_view;
-                                    DimmerView dimmerView = (DimmerView) view.findViewById(C5419R.id.dimmer_view);
+                                    i = 2131363051;
+                                    DimmerView dimmerView = (DimmerView) view.findViewById(2131363051);
                                     if (dimmerView != null) {
                                         return new WidgetSettingsAccountChangePasswordBinding((CoordinatorLayout) view, imageView, textInputLayout, textInputLayout2, loadingButton, screenTitleView, textInputLayout3, textView, dimmerView);
                                     }

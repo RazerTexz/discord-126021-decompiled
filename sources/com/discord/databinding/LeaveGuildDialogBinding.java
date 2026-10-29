@@ -11,37 +11,33 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class LeaveGuildDialogBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15177a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f15178b;
+    public final MaterialButton f2128b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final LoadingButton f15179c;
+    public final LoadingButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15180d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f15181e;
+    public final TextView e;
 
     public LeaveGuildDialogBinding(@NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull LoadingButton loadingButton, @NonNull TextView textView, @NonNull TextView textView2, @NonNull LinearLayout linearLayout2) {
-        this.f15177a = linearLayout;
-        this.f15178b = materialButton;
-        this.f15179c = loadingButton;
-        this.f15180d = textView;
-        this.f15181e = textView2;
+        this.a = linearLayout;
+        this.f2128b = materialButton;
+        this.c = loadingButton;
+        this.d = textView;
+        this.e = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15177a;
+        return this.a;
     }
 }

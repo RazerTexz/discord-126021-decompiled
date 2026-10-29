@@ -13,62 +13,53 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsVanityUrlBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17759a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextInputLayout f17760b;
+    public final TextInputLayout f2588b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17761c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17762d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17763e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final RelativeLayout f17764f;
+    public final RelativeLayout f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final ProgressBar f17765g;
+    public final ProgressBar g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f17766h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f17767i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final FloatingActionButton f17768j;
+    public final FloatingActionButton j;
 
     public WidgetServerSettingsVanityUrlBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextInputLayout textInputLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull RelativeLayout relativeLayout, @NonNull ProgressBar progressBar, @NonNull TextView textView4, @NonNull TextView textView5, @NonNull FloatingActionButton floatingActionButton) {
-        this.f17759a = coordinatorLayout;
-        this.f17760b = textInputLayout;
-        this.f17761c = textView;
-        this.f17762d = textView2;
-        this.f17763e = textView3;
-        this.f17764f = relativeLayout;
-        this.f17765g = progressBar;
-        this.f17766h = textView4;
-        this.f17767i = textView5;
-        this.f17768j = floatingActionButton;
+        this.a = coordinatorLayout;
+        this.f2588b = textInputLayout;
+        this.c = textView;
+        this.d = textView2;
+        this.e = textView3;
+        this.f = relativeLayout;
+        this.g = progressBar;
+        this.h = textView4;
+        this.i = textView5;
+        this.j = floatingActionButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17759a;
+        return this.a;
     }
 }

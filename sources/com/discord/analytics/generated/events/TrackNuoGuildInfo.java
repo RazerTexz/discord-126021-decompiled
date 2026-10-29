@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNuoGuildInfo.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackNuoGuildInfo implements AnalyticsSchema, Trac
             return false;
         }
         TrackNuoGuildInfo trackNuoGuildInfo = (TrackNuoGuildInfo) other;
-        return C12238m.areEqual(this.evaluatedStep, trackNuoGuildInfo.evaluatedStep) && C12238m.areEqual(this.invitedGuildId, trackNuoGuildInfo.invitedGuildId) && C12238m.areEqual(this.guildCount, trackNuoGuildInfo.guildCount) && C12238m.areEqual(this.memberCount, trackNuoGuildInfo.memberCount) && C12238m.areEqual(this.hasSplash, trackNuoGuildInfo.hasSplash) && C12238m.areEqual(this.channelType, trackNuoGuildInfo.channelType) && C12238m.areEqual(this.verificationLevelEnabled, trackNuoGuildInfo.verificationLevelEnabled);
+        return m.areEqual(this.evaluatedStep, trackNuoGuildInfo.evaluatedStep) && m.areEqual(this.invitedGuildId, trackNuoGuildInfo.invitedGuildId) && m.areEqual(this.guildCount, trackNuoGuildInfo.guildCount) && m.areEqual(this.memberCount, trackNuoGuildInfo.memberCount) && m.areEqual(this.hasSplash, trackNuoGuildInfo.hasSplash) && m.areEqual(this.channelType, trackNuoGuildInfo.channelType) && m.areEqual(this.verificationLevelEnabled, trackNuoGuildInfo.verificationLevelEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackNuoGuildInfo implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNuoGuildInfo(evaluatedStep=");
-        sbM833U.append(this.evaluatedStep);
-        sbM833U.append(", invitedGuildId=");
-        sbM833U.append(this.invitedGuildId);
-        sbM833U.append(", guildCount=");
-        sbM833U.append(this.guildCount);
-        sbM833U.append(", memberCount=");
-        sbM833U.append(this.memberCount);
-        sbM833U.append(", hasSplash=");
-        sbM833U.append(this.hasSplash);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", verificationLevelEnabled=");
-        return C1643a.m816D(sbM833U, this.verificationLevelEnabled, ")");
+        StringBuilder sbU = a.U("TrackNuoGuildInfo(evaluatedStep=");
+        sbU.append(this.evaluatedStep);
+        sbU.append(", invitedGuildId=");
+        sbU.append(this.invitedGuildId);
+        sbU.append(", guildCount=");
+        sbU.append(this.guildCount);
+        sbU.append(", memberCount=");
+        sbU.append(this.memberCount);
+        sbU.append(", hasSplash=");
+        sbU.append(this.hasSplash);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", verificationLevelEnabled=");
+        return a.D(sbU, this.verificationLevelEnabled, ")");
     }
 }

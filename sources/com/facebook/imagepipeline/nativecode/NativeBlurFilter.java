@@ -1,16 +1,16 @@
 package com.facebook.imagepipeline.nativecode;
 
 import android.graphics.Bitmap;
-import p007b.p109f.p115d.p119d.InterfaceC1680c;
-import p007b.p109f.p190m.p191n.C2061a;
+import b.f.d.d.c;
+import b.f.m.n.a;
 
 /* JADX INFO: loaded from: classes3.dex */
-@InterfaceC1680c
+@c
 public class NativeBlurFilter {
     static {
-        C2061a.m1589c("native-filters");
+        a.c("native-filters");
     }
 
-    @InterfaceC1680c
+    @c
     private static native void nativeIterativeBoxBlur(Bitmap bitmap, int i, int i2);
 }

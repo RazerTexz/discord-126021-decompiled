@@ -5,28 +5,7 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
-    private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new Predicate<MediaCodecInfo>() { // from class: org.webrtc.HardwareVideoDecoderFactory.1
-        @Override // org.webrtc.Predicate
-        public /* synthetic */ Predicate<MediaCodecInfo> and(Predicate<? super MediaCodecInfo> predicate) {
-            return Predicate.CC.m11035a(this, predicate);
-        }
-
-        @Override // org.webrtc.Predicate
-        /* JADX INFO: renamed from: or */
-        public /* synthetic */ Predicate<MediaCodecInfo> mo11025or(Predicate<? super MediaCodecInfo> predicate) {
-            return Predicate.CC.m11037c(this, predicate);
-        }
-
-        @Override // org.webrtc.Predicate
-        public /* synthetic */ Predicate<MediaCodecInfo> negate() {
-            return Predicate.CC.m11036b(this);
-        }
-
-        @Override // org.webrtc.Predicate
-        public boolean test(MediaCodecInfo mediaCodecInfo) {
-            return MediaCodecUtils.isHardwareAccelerated(mediaCodecInfo);
-        }
-    };
+    private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new HardwareVideoDecoderFactory$1();
 
     @Deprecated
     public HardwareVideoDecoderFactory() {
@@ -44,18 +23,18 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         return super.getSupportedCodecs();
     }
 
-    public HardwareVideoDecoderFactory(@Nullable EglBase.Context context) {
-        this(context, null);
+    public HardwareVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context) {
+        this(eglBase$Context, null);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
-    public HardwareVideoDecoderFactory(@Nullable EglBase.Context context, @Nullable Predicate<MediaCodecInfo> predicate) {
+    public HardwareVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context, @Nullable Predicate<MediaCodecInfo> predicate) {
         Predicate<MediaCodecInfo> predicateAnd;
         if (predicate == null) {
             predicateAnd = defaultAllowedPredicate;
         } else {
             predicateAnd = predicate.and(defaultAllowedPredicate);
         }
-        super(context, predicateAnd);
+        super(eglBase$Context, predicateAnd);
     }
 }

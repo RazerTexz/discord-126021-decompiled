@@ -2,7 +2,6 @@ package androidx.browser.trusted;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.browser.trusted.TokenContents;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -11,8 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import y.a.b.b;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class TokenContents {
@@ -28,6 +27,10 @@ public final class TokenContents {
 
     private TokenContents(@NonNull byte[] bArr) {
         this.mContents = bArr;
+    }
+
+    public static /* synthetic */ int a(byte[] bArr, byte[] bArr2) {
+        return compareByteArrays(bArr, bArr2);
     }
 
     /*  JADX ERROR: Type inference failed
@@ -88,12 +91,7 @@ public final class TokenContents {
 
     @NonNull
     private static byte[] createToken(@NonNull String str, @NonNull List<byte[]> list) throws IOException {
-        Collections.sort(list, new Comparator() { // from class: y.a.b.b
-            @Override // java.util.Comparator
-            public final int compare(Object obj, Object obj2) {
-                return TokenContents.compareByteArrays((byte[]) obj, (byte[]) obj2);
-            }
-        });
+        Collections.sort(list, b.j);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         dataOutputStream.writeUTF(str);

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildProgramStatusUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackGuildProgramStatusUpdated implements Analytic
             return false;
         }
         TrackGuildProgramStatusUpdated trackGuildProgramStatusUpdated = (TrackGuildProgramStatusUpdated) other;
-        return C12238m.areEqual(this.programType, trackGuildProgramStatusUpdated.programType) && C12238m.areEqual(this.programName, trackGuildProgramStatusUpdated.programName) && C12238m.areEqual(this.statusType, trackGuildProgramStatusUpdated.statusType) && C12238m.areEqual(this.status, trackGuildProgramStatusUpdated.status) && C12238m.areEqual(this.guildId, trackGuildProgramStatusUpdated.guildId) && C12238m.areEqual(this.actionSource, trackGuildProgramStatusUpdated.actionSource);
+        return m.areEqual(this.programType, trackGuildProgramStatusUpdated.programType) && m.areEqual(this.programName, trackGuildProgramStatusUpdated.programName) && m.areEqual(this.statusType, trackGuildProgramStatusUpdated.statusType) && m.areEqual(this.status, trackGuildProgramStatusUpdated.status) && m.areEqual(this.guildId, trackGuildProgramStatusUpdated.guildId) && m.areEqual(this.actionSource, trackGuildProgramStatusUpdated.actionSource);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackGuildProgramStatusUpdated implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildProgramStatusUpdated(programType=");
-        sbM833U.append(this.programType);
-        sbM833U.append(", programName=");
-        sbM833U.append(this.programName);
-        sbM833U.append(", statusType=");
-        sbM833U.append(this.statusType);
-        sbM833U.append(", status=");
-        sbM833U.append(this.status);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", actionSource=");
-        return C1643a.m817E(sbM833U, this.actionSource, ")");
+        StringBuilder sbU = a.U("TrackGuildProgramStatusUpdated(programType=");
+        sbU.append(this.programType);
+        sbU.append(", programName=");
+        sbU.append(this.programName);
+        sbU.append(", statusType=");
+        sbU.append(this.statusType);
+        sbU.append(", status=");
+        sbU.append(this.status);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", actionSource=");
+        return a.E(sbU, this.actionSource, ")");
     }
 }

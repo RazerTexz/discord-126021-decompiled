@@ -5,9 +5,10 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Preconditions;
+import b.d.b.a.a;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class FontRequest {
@@ -42,12 +43,12 @@ public final class FontRequest {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public String getId() {
         return this.mIdentifier;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
     public String getIdentifier() {
         return this.mIdentifier;
@@ -70,14 +71,14 @@ public final class FontRequest {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        StringBuilder sbM833U = C1643a.m833U("FontRequest {mProviderAuthority: ");
-        sbM833U.append(this.mProviderAuthority);
-        sbM833U.append(", mProviderPackage: ");
-        sbM833U.append(this.mProviderPackage);
-        sbM833U.append(", mQuery: ");
-        sbM833U.append(this.mQuery);
-        sbM833U.append(", mCertificates:");
-        sb.append(sbM833U.toString());
+        StringBuilder sbU = a.U("FontRequest {mProviderAuthority: ");
+        sbU.append(this.mProviderAuthority);
+        sbU.append(", mProviderPackage: ");
+        sbU.append(this.mProviderPackage);
+        sbU.append(", mQuery: ");
+        sbU.append(this.mQuery);
+        sbU.append(", mCertificates:");
+        sb.append(sbU.toString());
         for (int i = 0; i < this.mCertificates.size(); i++) {
             sb.append(" [");
             List<byte[]> list = this.mCertificates.get(i);

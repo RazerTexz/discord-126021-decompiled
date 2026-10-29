@@ -1,8 +1,8 @@
 package com.discord.api.guildjoinrequest;
 
+import b.d.b.a.a;
 import com.discord.api.user.User;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildJoinRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class GuildJoinRequest {
             return false;
         }
         GuildJoinRequest guildJoinRequest = (GuildJoinRequest) other;
-        return this.userId == guildJoinRequest.userId && C12238m.areEqual(this.user, guildJoinRequest.user) && this.guildId == guildJoinRequest.guildId && C12238m.areEqual(this.createdAt, guildJoinRequest.createdAt) && C12238m.areEqual(this.applicationStatus, guildJoinRequest.applicationStatus) && C12238m.areEqual(this.rejectionReason, guildJoinRequest.rejectionReason) && C12238m.areEqual(this.inviteCode, guildJoinRequest.inviteCode) && C12238m.areEqual(this.lastSeen, guildJoinRequest.lastSeen) && C12238m.areEqual(this.actionedAt, guildJoinRequest.actionedAt);
+        return this.userId == guildJoinRequest.userId && m.areEqual(this.user, guildJoinRequest.user) && this.guildId == guildJoinRequest.guildId && m.areEqual(this.createdAt, guildJoinRequest.createdAt) && m.areEqual(this.applicationStatus, guildJoinRequest.applicationStatus) && m.areEqual(this.rejectionReason, guildJoinRequest.rejectionReason) && m.areEqual(this.inviteCode, guildJoinRequest.inviteCode) && m.areEqual(this.lastSeen, guildJoinRequest.lastSeen) && m.areEqual(this.actionedAt, guildJoinRequest.actionedAt);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -75,23 +75,23 @@ public final /* data */ class GuildJoinRequest {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildJoinRequest(userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", applicationStatus=");
-        sbM833U.append(this.applicationStatus);
-        sbM833U.append(", rejectionReason=");
-        sbM833U.append(this.rejectionReason);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", lastSeen=");
-        sbM833U.append(this.lastSeen);
-        sbM833U.append(", actionedAt=");
-        return C1643a.m822J(sbM833U, this.actionedAt, ")");
+        StringBuilder sbU = a.U("GuildJoinRequest(userId=");
+        sbU.append(this.userId);
+        sbU.append(", user=");
+        sbU.append(this.user);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", applicationStatus=");
+        sbU.append(this.applicationStatus);
+        sbU.append(", rejectionReason=");
+        sbU.append(this.rejectionReason);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", lastSeen=");
+        sbU.append(this.lastSeen);
+        sbU.append(", actionedAt=");
+        return a.J(sbU, this.actionedAt, ")");
     }
 }

@@ -1,108 +1,33 @@
 package com.discord.models.hubs;
 
 import android.content.Context;
-import androidx.annotation.StringRes;
-import com.discord.C5419R;
-import java.util.Iterator;
-import java.util.List;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
-/* JADX WARN: Enum visitor error
-jadx.core.utils.exceptions.JadxRuntimeException: Init of enum field 'Class' uses external variables
-	at jadx.core.dex.visitors.EnumVisitor.createEnumFieldByConstructor(EnumVisitor.java:485)
-	at jadx.core.dex.visitors.EnumVisitor.processEnumFieldByRegister(EnumVisitor.java:422)
-	at jadx.core.dex.visitors.EnumVisitor.extractEnumFieldsFromFilledArray(EnumVisitor.java:351)
-	at jadx.core.dex.visitors.EnumVisitor.extractEnumFieldsFromInsn(EnumVisitor.java:284)
-	at jadx.core.dex.visitors.EnumVisitor.convertToEnum(EnumVisitor.java:153)
-	at jadx.core.dex.visitors.EnumVisitor.visit(EnumVisitor.java:102)
- */
-/* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
 /* JADX INFO: compiled from: DirectoryEntryCategory.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class DirectoryEntryCategory {
-    private static final /* synthetic */ DirectoryEntryCategory[] $VALUES;
-    public static final DirectoryEntryCategory Class;
+public enum DirectoryEntryCategory {
+    Home(-1, 2131888444, 70),
+    Uncategorized(0, 2131896571, 0, 4, null),
+    SchoolClub(1, 2131888452, 100),
+    Class(2, 2131888445, 0, 4, null),
+    StudySocial(3, 2131888453, 50),
+    SubjectMajor(4, 2131888454, 0, 4, null),
+    Misc(5, 2131888450, 0, 4, null),
+    HQSocial(1, 2131888446, 0, 4, null),
+    HQErgs(2, 2131888447, 0, 4, null),
+    HQMisc(3, 2131888448, 0, 4, null),
+    HQArchives(5, 2131888449, 0, 4, null);
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE;
-    public static final DirectoryEntryCategory HQArchives;
-    public static final DirectoryEntryCategory HQErgs;
-    public static final DirectoryEntryCategory HQMisc;
-    public static final DirectoryEntryCategory HQSocial;
-    public static final DirectoryEntryCategory Home;
-    public static final DirectoryEntryCategory Misc;
-    public static final DirectoryEntryCategory SchoolClub;
-    public static final DirectoryEntryCategory StudySocial;
-    public static final DirectoryEntryCategory SubjectMajor;
-    public static final DirectoryEntryCategory Uncategorized;
+    public static final DirectoryEntryCategory$Companion Companion = new DirectoryEntryCategory$Companion(null);
     private final int idealSize;
     private final int key;
     private final int titleRes;
 
-    /* JADX INFO: compiled from: DirectoryEntryCategory.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final DirectoryEntryCategory findByKey(int key, boolean isHQDirectoryChannel) {
-            Object next;
-            Iterator<T> it = getCategories(isHQDirectoryChannel).iterator();
-            do {
-                if (!it.hasNext()) {
-                    next = null;
-                    break;
-                }
-                next = it.next();
-            } while (!(((DirectoryEntryCategory) next).getKey() == key));
-            DirectoryEntryCategory directoryEntryCategory = (DirectoryEntryCategory) next;
-            return directoryEntryCategory != null ? directoryEntryCategory : DirectoryEntryCategory.Uncategorized;
-        }
-
-        public final List<DirectoryEntryCategory> getCategories(boolean isHQDirectoryChannel) {
-            return isHQDirectoryChannel ? DirectoryEntryCategoryKt.HQ_DIRECTORY_CATEGORIES : DirectoryEntryCategoryKt.HUB_CATEGORIES;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    static {
-        DirectoryEntryCategory directoryEntryCategory = new DirectoryEntryCategory("Home", 0, -1, C5419R.string.directory_category_all, 70);
-        Home = directoryEntryCategory;
-        DirectoryEntryCategory directoryEntryCategory2 = new DirectoryEntryCategory("Uncategorized", 1, 0, C5419R.string.uncategorized, 0, 4, null);
-        Uncategorized = directoryEntryCategory2;
-        DirectoryEntryCategory directoryEntryCategory3 = new DirectoryEntryCategory("SchoolClub", 2, 1, C5419R.string.directory_category_school_club, 100);
-        SchoolClub = directoryEntryCategory3;
-        int i = 4;
-        DefaultConstructorMarker defaultConstructorMarker = null;
-        DirectoryEntryCategory directoryEntryCategory4 = new DirectoryEntryCategory("Class", 3, 2, C5419R.string.directory_category_class, 0, i, defaultConstructorMarker);
-        Class = directoryEntryCategory4;
-        DirectoryEntryCategory directoryEntryCategory5 = new DirectoryEntryCategory("StudySocial", 4, 3, C5419R.string.directory_category_study_social, 50);
-        StudySocial = directoryEntryCategory5;
-        int i2 = 0;
-        DirectoryEntryCategory directoryEntryCategory6 = new DirectoryEntryCategory("SubjectMajor", 5, 4, C5419R.string.directory_category_subject_major, i2, i, defaultConstructorMarker);
-        SubjectMajor = directoryEntryCategory6;
-        DirectoryEntryCategory directoryEntryCategory7 = new DirectoryEntryCategory("Misc", 6, 5, C5419R.string.directory_category_miscellaneous, i2, i, defaultConstructorMarker);
-        Misc = directoryEntryCategory7;
-        DirectoryEntryCategory directoryEntryCategory8 = new DirectoryEntryCategory("HQSocial", 7, 1, C5419R.string.directory_category_internal_1, i2, i, defaultConstructorMarker);
-        HQSocial = directoryEntryCategory8;
-        DirectoryEntryCategory directoryEntryCategory9 = new DirectoryEntryCategory("HQErgs", 8, 2, C5419R.string.directory_category_internal_2, i2, i, defaultConstructorMarker);
-        HQErgs = directoryEntryCategory9;
-        DirectoryEntryCategory directoryEntryCategory10 = new DirectoryEntryCategory("HQMisc", 9, 3, C5419R.string.directory_category_internal_3, i2, i, defaultConstructorMarker);
-        HQMisc = directoryEntryCategory10;
-        DirectoryEntryCategory directoryEntryCategory11 = new DirectoryEntryCategory("HQArchives", 10, 5, C5419R.string.directory_category_internal_5, i2, i, defaultConstructorMarker);
-        HQArchives = directoryEntryCategory11;
-        $VALUES = new DirectoryEntryCategory[]{directoryEntryCategory, directoryEntryCategory2, directoryEntryCategory3, directoryEntryCategory4, directoryEntryCategory5, directoryEntryCategory6, directoryEntryCategory7, directoryEntryCategory8, directoryEntryCategory9, directoryEntryCategory10, directoryEntryCategory11};
-        INSTANCE = new Companion(null);
-    }
-
-    private DirectoryEntryCategory(String str, @StringRes int i, int i2, int i3, int i4) {
-        super(str, i);
-        this.key = i2;
-        this.titleRes = i3;
-        this.idealSize = i4;
+    DirectoryEntryCategory(int i, int i2, int i3) {
+        this.key = i;
+        this.titleRes = i2;
+        this.idealSize = i3;
     }
 
     public final int getIdealSize() {
@@ -114,9 +39,9 @@ public final class DirectoryEntryCategory {
     }
 
     public final String getTitle(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         String string = context.getString(this.titleRes);
-        C12238m.checkNotNullExpressionValue(string, "context.getString(titleRes)");
+        m.checkNotNullExpressionValue(string, "context.getString(titleRes)");
         return string;
     }
 
@@ -124,15 +49,7 @@ public final class DirectoryEntryCategory {
         return this.titleRes;
     }
 
-    public static DirectoryEntryCategory valueOf(String str) {
-        return (DirectoryEntryCategory) Enum.valueOf(DirectoryEntryCategory.class, str);
-    }
-
-    public static DirectoryEntryCategory[] values() {
-        return (DirectoryEntryCategory[]) $VALUES.clone();
-    }
-
-    public /* synthetic */ DirectoryEntryCategory(String str, int i, int i2, int i3, int i4, int i5, DefaultConstructorMarker defaultConstructorMarker) {
-        this(str, i, i2, i3, (i5 & 4) != 0 ? Integer.MAX_VALUE : i4);
+    /* synthetic */ DirectoryEntryCategory(int i, int i2, int i3, int i4, DefaultConstructorMarker defaultConstructorMarker) {
+        this(i, i2, (i4 & 4) != 0 ? Integer.MAX_VALUE : i3);
     }
 }

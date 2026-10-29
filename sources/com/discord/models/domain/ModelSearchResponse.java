@@ -1,15 +1,15 @@
 package com.discord.models.domain;
 
 import androidx.core.app.FrameMetricsAggregator;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.message.Message;
 import com.discord.api.thread.ThreadMember;
+import d0.g;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelSearchResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -44,7 +44,7 @@ public final /* data */ class ModelSearchResponse {
         this.documentIndexed = num2;
         this.retryAfter = num3;
         this.retryMillis = (num3 != null ? num3.intValue() : 0L) * ((long) 1000);
-        this.hits = C12083g.lazy(new ModelSearchResponse$hits$2(this));
+        this.hits = g.lazy(new ModelSearchResponse$hits$2(this));
     }
 
     public final List<List<Message>> component2() {
@@ -59,6 +59,11 @@ public final /* data */ class ModelSearchResponse {
         return this.members;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ ModelSearchResponse copy$default(ModelSearchResponse modelSearchResponse, int i, List list, List list2, List list3, String str, String str2, Integer num, Integer num2, Integer num3, int i2, Object obj) {
+        return modelSearchResponse.copy((i2 & 1) != 0 ? modelSearchResponse.totalResults : i, (i2 & 2) != 0 ? modelSearchResponse.messages : list, (i2 & 4) != 0 ? modelSearchResponse.threads : list2, (i2 & 8) != 0 ? modelSearchResponse.members : list3, (i2 & 16) != 0 ? modelSearchResponse.analyticsId : str, (i2 & 32) != 0 ? modelSearchResponse.message : str2, (i2 & 64) != 0 ? modelSearchResponse.errorCode : num, (i2 & 128) != 0 ? modelSearchResponse.documentIndexed : num2, (i2 & 256) != 0 ? modelSearchResponse.retryAfter : num3);
+    }
+
     public final ModelSearchResponse copy(int totalResults, List<? extends List<Message>> messages, List<Channel> threads, List<? extends ThreadMember> members, String analyticsId, String message, Integer errorCode, Integer documentIndexed, Integer retryAfter) {
         return new ModelSearchResponse(totalResults, messages, threads, members, analyticsId, message, errorCode, documentIndexed, retryAfter);
     }
@@ -71,7 +76,7 @@ public final /* data */ class ModelSearchResponse {
             return false;
         }
         ModelSearchResponse modelSearchResponse = (ModelSearchResponse) other;
-        return this.totalResults == modelSearchResponse.totalResults && C12238m.areEqual(this.messages, modelSearchResponse.messages) && C12238m.areEqual(this.threads, modelSearchResponse.threads) && C12238m.areEqual(this.members, modelSearchResponse.members) && C12238m.areEqual(this.analyticsId, modelSearchResponse.analyticsId) && C12238m.areEqual(this.message, modelSearchResponse.message) && C12238m.areEqual(this.errorCode, modelSearchResponse.errorCode) && C12238m.areEqual(this.documentIndexed, modelSearchResponse.documentIndexed) && C12238m.areEqual(this.retryAfter, modelSearchResponse.retryAfter);
+        return this.totalResults == modelSearchResponse.totalResults && m.areEqual(this.messages, modelSearchResponse.messages) && m.areEqual(this.threads, modelSearchResponse.threads) && m.areEqual(this.members, modelSearchResponse.members) && m.areEqual(this.analyticsId, modelSearchResponse.analyticsId) && m.areEqual(this.message, modelSearchResponse.message) && m.areEqual(this.errorCode, modelSearchResponse.errorCode) && m.areEqual(this.documentIndexed, modelSearchResponse.documentIndexed) && m.areEqual(this.retryAfter, modelSearchResponse.retryAfter);
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -165,24 +170,24 @@ public final /* data */ class ModelSearchResponse {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelSearchResponse(totalResults=");
-        sbM833U.append(this.totalResults);
-        sbM833U.append(", messages=");
-        sbM833U.append(this.messages);
-        sbM833U.append(", threads=");
-        sbM833U.append(this.threads);
-        sbM833U.append(", members=");
-        sbM833U.append(this.members);
-        sbM833U.append(", analyticsId=");
-        sbM833U.append(this.analyticsId);
-        sbM833U.append(", message=");
-        sbM833U.append(this.message);
-        sbM833U.append(", errorCode=");
-        sbM833U.append(this.errorCode);
-        sbM833U.append(", documentIndexed=");
-        sbM833U.append(this.documentIndexed);
-        sbM833U.append(", retryAfter=");
-        return C1643a.m818F(sbM833U, this.retryAfter, ")");
+        StringBuilder sbU = a.U("ModelSearchResponse(totalResults=");
+        sbU.append(this.totalResults);
+        sbU.append(", messages=");
+        sbU.append(this.messages);
+        sbU.append(", threads=");
+        sbU.append(this.threads);
+        sbU.append(", members=");
+        sbU.append(this.members);
+        sbU.append(", analyticsId=");
+        sbU.append(this.analyticsId);
+        sbU.append(", message=");
+        sbU.append(this.message);
+        sbU.append(", errorCode=");
+        sbU.append(this.errorCode);
+        sbU.append(", documentIndexed=");
+        sbU.append(this.documentIndexed);
+        sbU.append(", retryAfter=");
+        return a.F(sbU, this.retryAfter, ")");
     }
 
     public /* synthetic */ ModelSearchResponse(int i, List list, List list2, List list3, String str, String str2, Integer num, Integer num2, Integer num3, int i2, DefaultConstructorMarker defaultConstructorMarker) {

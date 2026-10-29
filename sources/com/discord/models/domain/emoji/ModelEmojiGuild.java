@@ -1,10 +1,10 @@
 package com.discord.models.domain.emoji;
 
+import b.d.b.a.a;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelEmojiGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,9 +19,9 @@ public final /* data */ class ModelEmojiGuild {
     private final User user;
 
     public ModelEmojiGuild(long j, String str, boolean z2, List<Long> list, boolean z3, User user, boolean z4, boolean z5) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(list, "roles");
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(list, "roles");
+        m.checkNotNullParameter(user, "user");
         this.id = j;
         this.name = str;
         this.managed = z2;
@@ -36,10 +36,15 @@ public final /* data */ class ModelEmojiGuild {
         return this.roles;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ ModelEmojiGuild copy$default(ModelEmojiGuild modelEmojiGuild, long j, String str, boolean z2, List list, boolean z3, User user, boolean z4, boolean z5, int i, Object obj) {
+        return modelEmojiGuild.copy((i & 1) != 0 ? modelEmojiGuild.id : j, (i & 2) != 0 ? modelEmojiGuild.name : str, (i & 4) != 0 ? modelEmojiGuild.managed : z2, (i & 8) != 0 ? modelEmojiGuild.roles : list, (i & 16) != 0 ? modelEmojiGuild.requiredColons : z3, (i & 32) != 0 ? modelEmojiGuild.user : user, (i & 64) != 0 ? modelEmojiGuild.animated : z4, (i & 128) != 0 ? modelEmojiGuild.available : z5);
+    }
+
     public final ModelEmojiGuild copy(long id2, String name, boolean managed, List<Long> roles, boolean requiredColons, User user, boolean animated, boolean available) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(roles, "roles");
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(roles, "roles");
+        m.checkNotNullParameter(user, "user");
         return new ModelEmojiGuild(id2, name, managed, roles, requiredColons, user, animated, available);
     }
 
@@ -51,7 +56,7 @@ public final /* data */ class ModelEmojiGuild {
             return false;
         }
         ModelEmojiGuild modelEmojiGuild = (ModelEmojiGuild) other;
-        return this.id == modelEmojiGuild.id && C12238m.areEqual(this.name, modelEmojiGuild.name) && this.managed == modelEmojiGuild.managed && C12238m.areEqual(this.roles, modelEmojiGuild.roles) && this.requiredColons == modelEmojiGuild.requiredColons && C12238m.areEqual(this.user, modelEmojiGuild.user) && this.animated == modelEmojiGuild.animated && this.available == modelEmojiGuild.available;
+        return this.id == modelEmojiGuild.id && m.areEqual(this.name, modelEmojiGuild.name) && this.managed == modelEmojiGuild.managed && m.areEqual(this.roles, modelEmojiGuild.roles) && this.requiredColons == modelEmojiGuild.requiredColons && m.areEqual(this.user, modelEmojiGuild.user) && this.animated == modelEmojiGuild.animated && this.available == modelEmojiGuild.available;
     }
 
     /* JADX INFO: renamed from: component7, reason: from getter */
@@ -169,21 +174,21 @@ public final /* data */ class ModelEmojiGuild {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelEmojiGuild(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", managed=");
-        sbM833U.append(this.managed);
-        sbM833U.append(", roles=");
-        sbM833U.append(this.roles);
-        sbM833U.append(", requiredColons=");
-        sbM833U.append(this.requiredColons);
-        sbM833U.append(", user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", animated=");
-        sbM833U.append(this.animated);
-        sbM833U.append(", available=");
-        return C1643a.m827O(sbM833U, this.available, ")");
+        StringBuilder sbU = a.U("ModelEmojiGuild(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", managed=");
+        sbU.append(this.managed);
+        sbU.append(", roles=");
+        sbU.append(this.roles);
+        sbU.append(", requiredColons=");
+        sbU.append(this.requiredColons);
+        sbU.append(", user=");
+        sbU.append(this.user);
+        sbU.append(", animated=");
+        sbU.append(this.animated);
+        sbU.append(", available=");
+        return a.O(sbU, this.available, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.widgets.chat.input.models;
 
+import b.d.b.a.a;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
+import d0.z.d.m;
 import java.util.Map;
 import kotlin.ranges.IntRange;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ChatInputMentionsMap.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,8 +14,8 @@ public final /* data */ class ChatInputMentionsMap {
 
     /* JADX WARN: Multi-variable type inference failed */
     public ChatInputMentionsMap(CharSequence charSequence, Map<IntRange, ? extends Autocompletable> map) {
-        C12238m.checkNotNullParameter(charSequence, "input");
-        C12238m.checkNotNullParameter(map, "mentions");
+        m.checkNotNullParameter(charSequence, "input");
+        m.checkNotNullParameter(map, "mentions");
         this.input = charSequence;
         this.mentions = map;
     }
@@ -36,8 +36,8 @@ public final /* data */ class ChatInputMentionsMap {
     }
 
     public final ChatInputMentionsMap copy(CharSequence input, Map<IntRange, ? extends Autocompletable> mentions) {
-        C12238m.checkNotNullParameter(input, "input");
-        C12238m.checkNotNullParameter(mentions, "mentions");
+        m.checkNotNullParameter(input, "input");
+        m.checkNotNullParameter(mentions, "mentions");
         return new ChatInputMentionsMap(input, mentions);
     }
 
@@ -49,7 +49,7 @@ public final /* data */ class ChatInputMentionsMap {
             return false;
         }
         ChatInputMentionsMap chatInputMentionsMap = (ChatInputMentionsMap) other;
-        return C12238m.areEqual(this.input, chatInputMentionsMap.input) && C12238m.areEqual(this.mentions, chatInputMentionsMap.mentions);
+        return m.areEqual(this.input, chatInputMentionsMap.input) && m.areEqual(this.mentions, chatInputMentionsMap.mentions);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -73,9 +73,9 @@ public final /* data */ class ChatInputMentionsMap {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChatInputMentionsMap(input=");
-        sbM833U.append(this.input);
-        sbM833U.append(", mentions=");
-        return C1643a.m825M(sbM833U, this.mentions, ")");
+        StringBuilder sbU = a.U("ChatInputMentionsMap(input=");
+        sbU.append(this.input);
+        sbU.append(", mentions=");
+        return a.M(sbU, this.mentions, ")");
     }
 }

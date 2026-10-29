@@ -1,6 +1,6 @@
 package com.discord.widgets.servers.member_verification.form_fields;
 
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: MemberVerificationItemApproveTerms.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -84,9 +84,9 @@ public final /* data */ class MemberVerificationItemApproveTerms implements Memb
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MemberVerificationItemApproveTerms(fieldIndex=");
-        sbM833U.append(this.fieldIndex);
-        sbM833U.append(", isApproved=");
-        return C1643a.m827O(sbM833U, this.isApproved, ")");
+        StringBuilder sbU = a.U("MemberVerificationItemApproveTerms(fieldIndex=");
+        sbU.append(this.fieldIndex);
+        sbU.append(", isApproved=");
+        return a.O(sbU, this.isApproved, ")");
     }
 }

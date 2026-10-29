@@ -9,25 +9,23 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.SimpleArrayMap;
 import androidx.core.view.KeyEventDispatcher;
+import androidx.core.view.KeyEventDispatcher$Component;
 import androidx.view.Lifecycle;
+import androidx.view.Lifecycle$State;
 import androidx.view.LifecycleOwner;
 import androidx.view.LifecycleRegistry;
 import androidx.view.ReportFragment;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-public class ComponentActivity extends Activity implements LifecycleOwner, KeyEventDispatcher.Component {
-    private SimpleArrayMap<Class<? extends ExtraData>, ExtraData> mExtraDataMap = new SimpleArrayMap<>();
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+public class ComponentActivity extends Activity implements LifecycleOwner, KeyEventDispatcher$Component {
+    private SimpleArrayMap<Class<? extends ComponentActivity$ExtraData>, ComponentActivity$ExtraData> mExtraDataMap = new SimpleArrayMap<>();
     private LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    @Deprecated
-    public class ExtraData {
-    }
-
-    @Override // android.app.Activity, android.view.Window.Callback
+    @Override // android.app.Activity, android.view.Window$Callback
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
         View decorView = getWindow().getDecorView();
         if (decorView == null || !KeyEventDispatcher.dispatchBeforeHierarchy(decorView, keyEvent)) {
@@ -36,7 +34,7 @@ public class ComponentActivity extends Activity implements LifecycleOwner, KeyEv
         return true;
     }
 
-    @Override // android.app.Activity, android.view.Window.Callback
+    @Override // android.app.Activity, android.view.Window$Callback
     public boolean dispatchKeyShortcutEvent(KeyEvent keyEvent) {
         View decorView = getWindow().getDecorView();
         if (decorView == null || !KeyEventDispatcher.dispatchBeforeHierarchy(decorView, keyEvent)) {
@@ -45,9 +43,9 @@ public class ComponentActivity extends Activity implements LifecycleOwner, KeyEv
         return true;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
-    public <T extends ExtraData> T getExtraData(Class<T> cls) {
+    public <T extends ComponentActivity$ExtraData> T getExtraData(Class<T> cls) {
         return (T) this.mExtraDataMap.get(cls);
     }
 
@@ -66,18 +64,18 @@ public class ComponentActivity extends Activity implements LifecycleOwner, KeyEv
     @Override // android.app.Activity
     @CallSuper
     public void onSaveInstanceState(@NonNull Bundle bundle) {
-        this.mLifecycleRegistry.markState(Lifecycle.State.CREATED);
+        this.mLifecycleRegistry.markState(Lifecycle$State.CREATED);
         super.onSaveInstanceState(bundle);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
-    public void putExtraData(ExtraData extraData) {
-        this.mExtraDataMap.put((Class<? extends ExtraData>) extraData.getClass(), extraData);
+    public void putExtraData(ComponentActivity$ExtraData componentActivity$ExtraData) {
+        this.mExtraDataMap.put((Class<? extends ComponentActivity$ExtraData>) componentActivity$ExtraData.getClass(), componentActivity$ExtraData);
     }
 
-    @Override // androidx.core.view.KeyEventDispatcher.Component
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @Override // androidx.core.view.KeyEventDispatcher$Component
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public boolean superDispatchKeyEvent(KeyEvent keyEvent) {
         return super.dispatchKeyEvent(keyEvent);
     }

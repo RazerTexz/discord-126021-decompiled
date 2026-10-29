@@ -2,34 +2,19 @@ package androidx.customview.view;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class AbsSavedState implements Parcelable {
     private final Parcelable mSuperState;
-    public static final AbsSavedState EMPTY_STATE = new AbsSavedState() { // from class: androidx.customview.view.AbsSavedState.1
-    };
-    public static final Parcelable.Creator<AbsSavedState> CREATOR = new Parcelable.ClassLoaderCreator<AbsSavedState>() { // from class: androidx.customview.view.AbsSavedState.2
-        @Override // android.os.Parcelable.Creator
-        public AbsSavedState[] newArray(int i) {
-            return new AbsSavedState[i];
-        }
+    public static final AbsSavedState EMPTY_STATE = new AbsSavedState$1();
+    public static final Parcelable$Creator<AbsSavedState> CREATOR = new AbsSavedState$2();
 
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.ClassLoaderCreator
-        public AbsSavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
-            if (parcel.readParcelable(classLoader) == null) {
-                return AbsSavedState.EMPTY_STATE;
-            }
-            throw new IllegalStateException("superState must be null");
-        }
-
-        @Override // android.os.Parcelable.Creator
-        public AbsSavedState createFromParcel(Parcel parcel) {
-            return createFromParcel(parcel, (ClassLoader) null);
-        }
-    };
+    public /* synthetic */ AbsSavedState(AbsSavedState$1 absSavedState$1) {
+        this();
+    }
 
     @Override // android.os.Parcelable
     public int describeContents() {

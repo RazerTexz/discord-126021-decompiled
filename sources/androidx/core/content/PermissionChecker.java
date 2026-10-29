@@ -5,21 +5,13 @@ import android.os.Binder;
 import android.os.Process;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
 import androidx.core.app.AppOpsManagerCompat;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class PermissionChecker {
     public static final int PERMISSION_DENIED = -1;
     public static final int PERMISSION_DENIED_APP_OP = -2;
     public static final int PERMISSION_GRANTED = 0;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface PermissionResult {
-    }
 
     private PermissionChecker() {
     }

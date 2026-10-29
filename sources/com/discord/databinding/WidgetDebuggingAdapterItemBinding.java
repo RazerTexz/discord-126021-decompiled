@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetDebuggingAdapterItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16447a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16448b;
+    public final TextView f2361b;
 
     public WidgetDebuggingAdapterItemBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView) {
-        this.f16447a = linearLayout;
-        this.f16448b = textView;
+        this.a = linearLayout;
+        this.f2361b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16447a;
+        return this.a;
     }
 }

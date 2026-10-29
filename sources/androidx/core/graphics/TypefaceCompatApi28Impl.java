@@ -3,13 +3,14 @@ package androidx.core.graphics;
 import android.graphics.Typeface;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(28)
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class TypefaceCompatApi28Impl extends TypefaceCompatApi26Impl {
     private static final String CREATE_FROM_FAMILIES_WITH_DEFAULT_METHOD = "createFromFamiliesWithDefault";
     private static final String DEFAULT_FAMILY = "sans-serif";

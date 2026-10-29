@@ -10,27 +10,25 @@ import com.discord.views.channelsidebar.PrivateChannelSideBarActionsView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelSidebarActionsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15958a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final GuildChannelSideBarActionsView f15959b;
+    public final GuildChannelSideBarActionsView f2280b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final PrivateChannelSideBarActionsView f15960c;
+    public final PrivateChannelSideBarActionsView c;
 
     public WidgetChannelSidebarActionsBinding(@NonNull FrameLayout frameLayout, @NonNull GuildChannelSideBarActionsView guildChannelSideBarActionsView, @NonNull PrivateChannelSideBarActionsView privateChannelSideBarActionsView) {
-        this.f15958a = frameLayout;
-        this.f15959b = guildChannelSideBarActionsView;
-        this.f15960c = privateChannelSideBarActionsView;
+        this.a = frameLayout;
+        this.f2280b = guildChannelSideBarActionsView;
+        this.c = privateChannelSideBarActionsView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15958a;
+        return this.a;
     }
 }

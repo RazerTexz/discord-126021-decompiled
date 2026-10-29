@@ -10,27 +10,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsSecurityBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17752a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17753b;
+    public final TextView f2586b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17754c;
+    public final MaterialButton c;
 
     public WidgetServerSettingsSecurityBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull MaterialButton materialButton) {
-        this.f17752a = coordinatorLayout;
-        this.f17753b = textView;
-        this.f17754c = materialButton;
+        this.a = coordinatorLayout;
+        this.f2586b = textView;
+        this.c = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17752a;
+        return this.a;
     }
 }

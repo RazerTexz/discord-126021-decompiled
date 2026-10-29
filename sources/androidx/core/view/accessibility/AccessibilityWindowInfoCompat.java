@@ -1,7 +1,7 @@
 package androidx.core.view.accessibility;
 
 import android.graphics.Rect;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.accessibility.AccessibilityWindowInfo;
 import androidx.annotation.NonNull;
 
@@ -39,7 +39,7 @@ public class AccessibilityWindowInfoCompat {
     }
 
     public AccessibilityNodeInfoCompat getAnchor() {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             return AccessibilityNodeInfoCompat.wrapNonNullInstance(((AccessibilityWindowInfo) this.mInfo).getAnchor());
         }
         return null;
@@ -74,7 +74,7 @@ public class AccessibilityWindowInfoCompat {
     }
 
     public CharSequence getTitle() {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             return ((AccessibilityWindowInfo) this.mInfo).getTitle();
         }
         return null;

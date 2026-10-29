@@ -1,21 +1,11 @@
 package com.discord.models.thread.dto;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.message.Message;
 import com.discord.api.thread.ThreadMember;
-import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
-import com.discord.models.domain.Model;
-import com.discord.models.domain.ModelAuditLogEntry;
-import com.google.gson.stream.JsonToken;
-import java.io.IOException;
-import java.util.ArrayList;
+import d0.z.d.m;
 import java.util.List;
-import kotlin.jvm.internal.Ref$LongRef;
-import kotlin.jvm.internal.Ref$ObjectRef;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
 
 /* JADX INFO: compiled from: ModelThreadListSync.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,108 +15,9 @@ public final /* data */ class ModelThreadListSync {
     private final List<Message> mostRecentMessages;
     private final List<Channel> threads;
 
-    /* JADX INFO: compiled from: ModelThreadListSync.kt */
-    public final class Parser implements Model.Parser<ModelThreadListSync> {
-        public static final Parser INSTANCE = new Parser();
-
-        private Parser() {
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        /* JADX WARN: Type inference failed for: r2v0, types: [T, java.util.ArrayList] */
-        @Override // com.discord.models.domain.Model.Parser
-        public ModelThreadListSync parse(final Model.JsonReader reader) throws IOException {
-            C12238m.checkNotNullParameter(reader, "reader");
-            final Ref$LongRef ref$LongRef = new Ref$LongRef();
-            ref$LongRef.element = -1L;
-            final Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
-            ref$ObjectRef.element = null;
-            final Ref$ObjectRef ref$ObjectRef2 = new Ref$ObjectRef();
-            ref$ObjectRef2.element = new ArrayList();
-            final Ref$ObjectRef ref$ObjectRef3 = new Ref$ObjectRef();
-            ref$ObjectRef3.element = null;
-            reader.nextObject(new Action1<String>() { // from class: com.discord.models.thread.dto.ModelThreadListSync$Parser$parse$1
-                /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-                @Override // p658rx.functions.Action1
-                public final void call(String str) throws IOException {
-                    if (str != null) {
-                        switch (str.hashCode()) {
-                            case -1337936983:
-                                if (str.equals("threads")) {
-                                    ref$ObjectRef.element = (T) reader.nextList(new Model.JsonReader.ItemFactory<Channel>() { // from class: com.discord.models.thread.dto.ModelThreadListSync$Parser$parse$1.1
-                                        /* JADX WARN: Can't rename method to resolve collision */
-                                        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                                        public final Channel get() {
-                                            return (Channel) InboundGatewayGsonParser.fromJson(reader, Channel.class);
-                                        }
-                                    });
-                                    return;
-                                }
-                                break;
-                            case -1306538777:
-                                if (str.equals(ModelAuditLogEntry.CHANGE_KEY_GUILD_ID)) {
-                                    Ref$LongRef ref$LongRef2 = ref$LongRef;
-                                    Long lNextLongOrNull = reader.nextLongOrNull();
-                                    C12238m.checkNotNull(lNextLongOrNull);
-                                    ref$LongRef2.element = lNextLongOrNull.longValue();
-                                    return;
-                                }
-                                break;
-                            case 948881689:
-                                if (str.equals("members")) {
-                                    if (reader.peek() != JsonToken.BEGIN_ARRAY) {
-                                        reader.nextObject(new Action1<String>() { // from class: com.discord.models.thread.dto.ModelThreadListSync$Parser$parse$1.3
-                                            @Override // p658rx.functions.Action1
-                                            public final void call(String str2) {
-                                                ThreadMember threadMember = (ThreadMember) InboundGatewayGsonParser.fromJson(reader, ThreadMember.class);
-                                                C12238m.checkNotNullExpressionValue(str2, "threadId");
-                                                ((List) ref$ObjectRef2.element).add(new ThreadMember(Long.parseLong(str2), threadMember.getUserId(), threadMember.getFlags(), threadMember.getJoinTimestamp(), threadMember.getMuted(), threadMember.getMuteConfig()));
-                                            }
-                                        });
-                                        return;
-                                    }
-                                    Ref$ObjectRef ref$ObjectRef4 = ref$ObjectRef2;
-                                    T t = (T) reader.nextList(new Model.JsonReader.ItemFactory<ThreadMember>() { // from class: com.discord.models.thread.dto.ModelThreadListSync$Parser$parse$1.2
-                                        /* JADX WARN: Can't rename method to resolve collision */
-                                        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                                        public final ThreadMember get() {
-                                            return (ThreadMember) InboundGatewayGsonParser.fromJson(reader, ThreadMember.class);
-                                        }
-                                    });
-                                    C12238m.checkNotNullExpressionValue(t, "reader.nextList { Inboun…readMember::class.java) }");
-                                    ref$ObjectRef4.element = t;
-                                    return;
-                                }
-                                break;
-                            case 1472794100:
-                                if (str.equals("most_recent_messages")) {
-                                    ref$ObjectRef3.element = (T) reader.nextList(new Model.JsonReader.ItemFactory<Message>() { // from class: com.discord.models.thread.dto.ModelThreadListSync$Parser$parse$1.4
-                                        /* JADX WARN: Can't rename method to resolve collision */
-                                        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                                        public final Message get() {
-                                            return (Message) InboundGatewayGsonParser.fromJson(reader, Message.class);
-                                        }
-                                    });
-                                    return;
-                                }
-                                break;
-                        }
-                    }
-                    reader.skipValue();
-                }
-            });
-            long j = ref$LongRef.element;
-            List listEmptyList = (List) ref$ObjectRef.element;
-            if (listEmptyList == null) {
-                listEmptyList = C12147n.emptyList();
-            }
-            return new ModelThreadListSync(j, listEmptyList, (List) ref$ObjectRef2.element, (List) ref$ObjectRef3.element);
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public ModelThreadListSync(long j, List<Channel> list, List<? extends ThreadMember> list2, List<Message> list3) {
-        C12238m.checkNotNullParameter(list, "threads");
+        m.checkNotNullParameter(list, "threads");
         this.guildId = j;
         this.threads = list;
         this.members = list2;
@@ -166,7 +57,7 @@ public final /* data */ class ModelThreadListSync {
     }
 
     public final ModelThreadListSync copy(long guildId, List<Channel> threads, List<? extends ThreadMember> members, List<Message> mostRecentMessages) {
-        C12238m.checkNotNullParameter(threads, "threads");
+        m.checkNotNullParameter(threads, "threads");
         return new ModelThreadListSync(guildId, threads, members, mostRecentMessages);
     }
 
@@ -178,7 +69,7 @@ public final /* data */ class ModelThreadListSync {
             return false;
         }
         ModelThreadListSync modelThreadListSync = (ModelThreadListSync) other;
-        return this.guildId == modelThreadListSync.guildId && C12238m.areEqual(this.threads, modelThreadListSync.threads) && C12238m.areEqual(this.members, modelThreadListSync.members) && C12238m.areEqual(this.mostRecentMessages, modelThreadListSync.mostRecentMessages);
+        return this.guildId == modelThreadListSync.guildId && m.areEqual(this.threads, modelThreadListSync.threads) && m.areEqual(this.members, modelThreadListSync.members) && m.areEqual(this.mostRecentMessages, modelThreadListSync.mostRecentMessages);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -214,13 +105,13 @@ public final /* data */ class ModelThreadListSync {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelThreadListSync(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", threads=");
-        sbM833U.append(this.threads);
-        sbM833U.append(", members=");
-        sbM833U.append(this.members);
-        sbM833U.append(", mostRecentMessages=");
-        return C1643a.m824L(sbM833U, this.mostRecentMessages, ")");
+        StringBuilder sbU = a.U("ModelThreadListSync(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", threads=");
+        sbU.append(this.threads);
+        sbU.append(", members=");
+        sbU.append(this.members);
+        sbU.append(", mostRecentMessages=");
+        return a.L(sbU, this.mostRecentMessages, ")");
     }
 }

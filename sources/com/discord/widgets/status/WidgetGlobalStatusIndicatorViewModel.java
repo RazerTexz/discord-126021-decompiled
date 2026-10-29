@@ -1,1137 +1,138 @@
 package com.discord.widgets.status;
 
+import android.content.Context;
 import androidx.annotation.MainThread;
-import com.discord.api.channel.Channel;
+import b.a.d.d0;
 import com.discord.api.channel.ChannelUtils;
-import com.discord.api.stageinstance.StageInstance;
 import com.discord.api.voice.state.StageRequestToSpeakState;
 import com.discord.api.voice.state.VoiceState;
-import com.discord.models.guild.Guild;
-import com.discord.rtcconnection.RtcConnection;
-import com.discord.stores.StoreChannelsSelected;
-import com.discord.stores.StoreConnectivity;
-import com.discord.stores.StoreGuilds;
-import com.discord.stores.StoreRtcConnection;
-import com.discord.stores.StoreStageChannels;
-import com.discord.stores.StoreStageInstances;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreUserRelationships;
-import com.discord.stores.StoreVoiceChannelSelected;
-import com.discord.stores.StoreVoiceParticipants;
-import com.discord.stores.updates.ObservationDeck;
-import com.discord.stores.updates.ObservationDeckProvider;
-import com.discord.utilities.analytics.AnalyticsTracker;
-import com.discord.utilities.error.Error;
+import com.discord.stores.StoreStream$Companion;
+import com.discord.stores.StoreVoiceParticipants$VoiceUser;
 import com.discord.utilities.media.AppSound;
-import com.discord.utilities.media.AppSoundManager;
-import com.discord.utilities.p501rx.ObservableCombineLatestOverloadsKt;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
-import com.discord.utilities.streams.StreamContext;
+import com.discord.utilities.media.AppSoundManager$Provider;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.streams.StreamContextService;
 import com.discord.widgets.stage.StageChannelAPI;
-import com.discord.widgets.stage.StageRoles;
+import d0.z.d.m;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function10;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p008a.p018d.AbstractC0859d0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p641k.InterfaceC12589b;
-import p637j0.p642l.p647e.C12721k;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGlobalStatusIndicatorViewModel extends AbstractC0859d0<ViewState> {
+public final class WidgetGlobalStatusIndicatorViewModel extends d0<WidgetGlobalStatusIndicatorViewModel$ViewState> {
+    public static final WidgetGlobalStatusIndicatorViewModel$Companion Companion = new WidgetGlobalStatusIndicatorViewModel$Companion(null);
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel$1 */
-    /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-    public final /* synthetic */ class C101081 extends C12236k implements Function1<StoreState, Unit> {
-        public C101081(WidgetGlobalStatusIndicatorViewModel widgetGlobalStatusIndicatorViewModel) {
-            super(1, widgetGlobalStatusIndicatorViewModel, WidgetGlobalStatusIndicatorViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/status/WidgetGlobalStatusIndicatorViewModel$StoreState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            C12238m.checkNotNullParameter(storeState, "p1");
-            ((WidgetGlobalStatusIndicatorViewModel) this.receiver).handleStoreState(storeState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel$ackStageInvitationToSpeak$1 */
-    /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-    public final class C101101 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ boolean $accept;
-        public final /* synthetic */ ViewState.StageChannelOngoing $stageState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C101101(boolean z2, ViewState.StageChannelOngoing stageChannelOngoing) {
-            super(1);
-            this.$accept = z2;
-            this.$stageState = stageChannelOngoing;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r14) {
-            if (this.$accept) {
-                AnalyticsTracker.INSTANCE.promotedToSpeaker(this.$stageState.getSelectedVoiceChannel().getId());
-            }
-            ViewState viewStateAccess$getViewState$p = WidgetGlobalStatusIndicatorViewModel.access$getViewState$p(WidgetGlobalStatusIndicatorViewModel.this);
-            if (!(viewStateAccess$getViewState$p instanceof ViewState.StageChannelOngoing)) {
-                viewStateAccess$getViewState$p = null;
-            }
-            ViewState.StageChannelOngoing stageChannelOngoing = (ViewState.StageChannelOngoing) viewStateAccess$getViewState$p;
-            if (stageChannelOngoing != null) {
-                WidgetGlobalStatusIndicatorViewModel.this.updateViewState(ViewState.StageChannelOngoing.copy$default(stageChannelOngoing, null, null, null, null, null, false, null, false, false, 0, 767, null));
-            }
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ Observable observeStoreState$default(Companion companion, StreamContextService streamContextService, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreConnectivity storeConnectivity, StoreChannelsSelected storeChannelsSelected, StoreRtcConnection storeRtcConnection, StoreGuilds storeGuilds, StoreVoiceParticipants storeVoiceParticipants, StoreStageChannels storeStageChannels, StoreUserRelationships storeUserRelationships, StoreStageInstances storeStageInstances, ObservationDeck observationDeck, int i, Object obj) {
-            return companion.observeStoreState(streamContextService, storeVoiceChannelSelected, storeConnectivity, storeChannelsSelected, storeRtcConnection, storeGuilds, storeVoiceParticipants, storeStageChannels, storeUserRelationships, storeStageInstances, (i & 1024) != 0 ? ObservationDeckProvider.get() : observationDeck);
-        }
-
-        private final Observable<StoreState> observeStoreState(final StreamContextService streamContextService, StoreVoiceChannelSelected storeVoiceChannelSelected, final StoreConnectivity storeConnectivity, final StoreChannelsSelected storeChannelsSelected, final StoreRtcConnection storeRtcConnection, final StoreGuilds storeGuilds, final StoreVoiceParticipants storeVoiceParticipants, final StoreStageChannels storeStageChannels, final StoreUserRelationships storeUserRelationships, final StoreStageInstances storeStageInstances, final ObservationDeck observationDeck) {
-            return storeVoiceChannelSelected.observeSelectedChannel().m11099Y(new InterfaceC12589b<Channel, Observable<? extends StoreState>>() { // from class: com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel$Companion$observeStoreState$1
-
-                /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel$Companion$observeStoreState$1$1, reason: invalid class name */
-                /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-                public final /* synthetic */ class AnonymousClass1 extends C12236k implements Function1<StoreConnectivity.DelayedState, WidgetGlobalStatusIndicatorViewModel.StoreState.ConnectivityState> {
-                    public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-                    public AnonymousClass1() {
-                        super(1, WidgetGlobalStatusIndicatorViewModel.StoreState.ConnectivityState.class, "<init>", "<init>(Lcom/discord/stores/StoreConnectivity$DelayedState;)V", 0);
-                    }
-
-                    @Override // kotlin.jvm.functions.Function1
-                    public final WidgetGlobalStatusIndicatorViewModel.StoreState.ConnectivityState invoke(StoreConnectivity.DelayedState delayedState) {
-                        C12238m.checkNotNullParameter(delayedState, "p1");
-                        return new WidgetGlobalStatusIndicatorViewModel.StoreState.ConnectivityState(delayedState);
-                    }
-                }
-
-                /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel$Companion$observeStoreState$1$2, reason: invalid class name */
-                /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-                public final class AnonymousClass2 extends AbstractC12240o implements Function0<Integer> {
-                    public final /* synthetic */ Channel $channel;
-
-                    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-                    public AnonymousClass2(Channel channel) {
-                        super(0);
-                        this.$channel = channel;
-                    }
-
-                    @Override // kotlin.jvm.functions.Function0
-                    public /* bridge */ /* synthetic */ Integer invoke() {
-                        return Integer.valueOf(invoke2());
-                    }
-
-                    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                    public final int invoke2() {
-                        Map<Long, StageRoles> channelRoles = storeStageChannels.getChannelRoles(this.$channel.getId());
-                        Map<Long, Integer> relationships = storeUserRelationships.getRelationships();
-                        LinkedHashMap linkedHashMap = new LinkedHashMap();
-                        for (Map.Entry<Long, Integer> entry : relationships.entrySet()) {
-                            if (entry.getValue().intValue() == 2 && channelRoles != null && channelRoles.containsKey(Long.valueOf(entry.getKey().longValue()))) {
-                                linkedHashMap.put(entry.getKey(), entry.getValue());
-                            }
-                        }
-                        return linkedHashMap.size();
-                    }
-                }
-
-                /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel$Companion$observeStoreState$1$3, reason: invalid class name */
-                /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-                public final /* synthetic */ class AnonymousClass3 extends C12236k implements Function10<Channel, Channel, RtcConnection.StateChange, RtcConnection.Quality, Guild, Map<Long, ? extends StoreVoiceParticipants.VoiceUser>, StreamContext, StageRequestToSpeakState, Integer, StageInstance, WidgetGlobalStatusIndicatorViewModel.StoreState.CallOngoing> {
-                    public static final AnonymousClass3 INSTANCE = new AnonymousClass3();
-
-                    public AnonymousClass3() {
-                        super(10, WidgetGlobalStatusIndicatorViewModel.StoreState.CallOngoing.class, "<init>", "<init>(Lcom/discord/api/channel/Channel;Lcom/discord/api/channel/Channel;Lcom/discord/rtcconnection/RtcConnection$StateChange;Lcom/discord/rtcconnection/RtcConnection$Quality;Lcom/discord/models/guild/Guild;Ljava/util/Map;Lcom/discord/utilities/streams/StreamContext;Lcom/discord/api/voice/state/StageRequestToSpeakState;ILcom/discord/api/stageinstance/StageInstance;)V", 0);
-                    }
-
-                    @Override // kotlin.jvm.functions.Function10
-                    public /* bridge */ /* synthetic */ WidgetGlobalStatusIndicatorViewModel.StoreState.CallOngoing invoke(Channel channel, Channel channel2, RtcConnection.StateChange stateChange, RtcConnection.Quality quality, Guild guild, Map<Long, ? extends StoreVoiceParticipants.VoiceUser> map, StreamContext streamContext, StageRequestToSpeakState stageRequestToSpeakState, Integer num, StageInstance stageInstance) {
-                        return invoke(channel, channel2, stateChange, quality, guild, (Map<Long, StoreVoiceParticipants.VoiceUser>) map, streamContext, stageRequestToSpeakState, num.intValue(), stageInstance);
-                    }
-
-                    public final WidgetGlobalStatusIndicatorViewModel.StoreState.CallOngoing invoke(Channel channel, Channel channel2, RtcConnection.StateChange stateChange, RtcConnection.Quality quality, Guild guild, Map<Long, StoreVoiceParticipants.VoiceUser> map, StreamContext streamContext, StageRequestToSpeakState stageRequestToSpeakState, int i, StageInstance stageInstance) {
-                        C12238m.checkNotNullParameter(channel, "p1");
-                        C12238m.checkNotNullParameter(stateChange, "p3");
-                        C12238m.checkNotNullParameter(quality, "p4");
-                        C12238m.checkNotNullParameter(map, "p6");
-                        C12238m.checkNotNullParameter(stageRequestToSpeakState, "p8");
-                        return new WidgetGlobalStatusIndicatorViewModel.StoreState.CallOngoing(channel, channel2, stateChange, quality, guild, map, streamContext, stageRequestToSpeakState, i, stageInstance);
-                    }
-                }
-
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends WidgetGlobalStatusIndicatorViewModel.StoreState> call(Channel channel) {
-                    if (channel != null) {
-                        C12721k c12721k = new C12721k(channel);
-                        C12238m.checkNotNullExpressionValue(c12721k, "Observable\n                        .just(channel)");
-                        return ObservableCombineLatestOverloadsKt.combineLatest(c12721k, storeChannelsSelected.observeSelectedChannel(), storeRtcConnection.getConnectionState(), storeRtcConnection.getQuality(), storeGuilds.observeGuild(channel.getGuildId()), storeVoiceParticipants.get(channel.getId()), streamContextService.getForActiveStream(), storeStageChannels.observeMyRequestToSpeakState(channel.getId()), ObservationDeck.connectRx$default(observationDeck, new ObservationDeck.UpdateSource[]{storeUserRelationships, storeStageChannels}, false, null, null, new AnonymousClass2(channel), 14, null), storeStageInstances.observeStageInstanceForChannel(channel.getId()), AnonymousClass3.INSTANCE);
-                    }
-                    Observable<StoreConnectivity.DelayedState> observableObserveState = storeConnectivity.observeState();
-                    final AnonymousClass1 anonymousClass1 = AnonymousClass1.INSTANCE;
-                    Object obj = anonymousClass1;
-                    if (anonymousClass1 != null) {
-                        obj = new InterfaceC12589b() { // from class: com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel$sam$rx_functions_Func1$0
-                            @Override // p637j0.p641k.InterfaceC12589b
-                            public final /* synthetic */ Object call(Object obj2) {
-                                return anonymousClass1.invoke(obj2);
-                            }
-                        };
-                    }
-                    return observableObserveState.m11083G((InterfaceC12589b) obj);
-                }
-            });
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-    public abstract class StoreState {
-
-        /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-        public final /* data */ class CallOngoing extends StoreState {
-            private final int blockedUsersOnStage;
-            private final RtcConnection.Quality connectionQuality;
-            private final RtcConnection.StateChange connectionStateChange;
-            private final Guild guild;
-            private final Map<Long, StoreVoiceParticipants.VoiceUser> participants;
-            private final StageRequestToSpeakState requestToSpeakState;
-            private final Channel selectedTextChannel;
-            private final Channel selectedVoiceChannel;
-            private final StageInstance stageInstance;
-            private final StreamContext streamContext;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public CallOngoing(Channel channel, Channel channel2, RtcConnection.StateChange stateChange, RtcConnection.Quality quality, Guild guild, Map<Long, StoreVoiceParticipants.VoiceUser> map, StreamContext streamContext, StageRequestToSpeakState stageRequestToSpeakState, int i, StageInstance stageInstance) {
-                super(null);
-                C12238m.checkNotNullParameter(channel, "selectedVoiceChannel");
-                C12238m.checkNotNullParameter(stateChange, "connectionStateChange");
-                C12238m.checkNotNullParameter(quality, "connectionQuality");
-                C12238m.checkNotNullParameter(map, "participants");
-                C12238m.checkNotNullParameter(stageRequestToSpeakState, "requestToSpeakState");
-                this.selectedVoiceChannel = channel;
-                this.selectedTextChannel = channel2;
-                this.connectionStateChange = stateChange;
-                this.connectionQuality = quality;
-                this.guild = guild;
-                this.participants = map;
-                this.streamContext = streamContext;
-                this.requestToSpeakState = stageRequestToSpeakState;
-                this.blockedUsersOnStage = i;
-                this.stageInstance = stageInstance;
-            }
-
-            public final Map<Long, StoreVoiceParticipants.VoiceUser> component6() {
-                return this.participants;
-            }
-
-            public final CallOngoing copy(Channel selectedVoiceChannel, Channel selectedTextChannel, RtcConnection.StateChange connectionStateChange, RtcConnection.Quality connectionQuality, Guild guild, Map<Long, StoreVoiceParticipants.VoiceUser> participants, StreamContext streamContext, StageRequestToSpeakState requestToSpeakState, int blockedUsersOnStage, StageInstance stageInstance) {
-                C12238m.checkNotNullParameter(selectedVoiceChannel, "selectedVoiceChannel");
-                C12238m.checkNotNullParameter(connectionStateChange, "connectionStateChange");
-                C12238m.checkNotNullParameter(connectionQuality, "connectionQuality");
-                C12238m.checkNotNullParameter(participants, "participants");
-                C12238m.checkNotNullParameter(requestToSpeakState, "requestToSpeakState");
-                return new CallOngoing(selectedVoiceChannel, selectedTextChannel, connectionStateChange, connectionQuality, guild, participants, streamContext, requestToSpeakState, blockedUsersOnStage, stageInstance);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof CallOngoing)) {
-                    return false;
-                }
-                CallOngoing callOngoing = (CallOngoing) other;
-                return C12238m.areEqual(this.selectedVoiceChannel, callOngoing.selectedVoiceChannel) && C12238m.areEqual(this.selectedTextChannel, callOngoing.selectedTextChannel) && C12238m.areEqual(this.connectionStateChange, callOngoing.connectionStateChange) && C12238m.areEqual(this.connectionQuality, callOngoing.connectionQuality) && C12238m.areEqual(this.guild, callOngoing.guild) && C12238m.areEqual(this.participants, callOngoing.participants) && C12238m.areEqual(this.streamContext, callOngoing.streamContext) && C12238m.areEqual(this.requestToSpeakState, callOngoing.requestToSpeakState) && this.blockedUsersOnStage == callOngoing.blockedUsersOnStage && C12238m.areEqual(this.stageInstance, callOngoing.stageInstance);
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final int getBlockedUsersOnStage() {
-                return this.blockedUsersOnStage;
-            }
-
-            public final int getBlockedUsersOnStage() {
-                return this.blockedUsersOnStage;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final RtcConnection.Quality getConnectionQuality() {
-                return this.connectionQuality;
-            }
-
-            public final RtcConnection.Quality getConnectionQuality() {
-                return this.connectionQuality;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final RtcConnection.StateChange getConnectionStateChange() {
-                return this.connectionStateChange;
-            }
-
-            public final RtcConnection.StateChange getConnectionStateChange() {
-                return this.connectionStateChange;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            public final Map<Long, StoreVoiceParticipants.VoiceUser> getParticipants() {
-                return this.participants;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final StageRequestToSpeakState getRequestToSpeakState() {
-                return this.requestToSpeakState;
-            }
-
-            public final StageRequestToSpeakState getRequestToSpeakState() {
-                return this.requestToSpeakState;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Channel getSelectedTextChannel() {
-                return this.selectedTextChannel;
-            }
-
-            public final Channel getSelectedTextChannel() {
-                return this.selectedTextChannel;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getSelectedVoiceChannel() {
-                return this.selectedVoiceChannel;
-            }
-
-            public final Channel getSelectedVoiceChannel() {
-                return this.selectedVoiceChannel;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final StageInstance getStageInstance() {
-                return this.stageInstance;
-            }
-
-            public final StageInstance getStageInstance() {
-                return this.stageInstance;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
-            public int hashCode() {
-                Channel channel = this.selectedVoiceChannel;
-                int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
-                Channel channel2 = this.selectedTextChannel;
-                int iHashCode2 = (iHashCode + (channel2 != null ? channel2.hashCode() : 0)) * 31;
-                RtcConnection.StateChange stateChange = this.connectionStateChange;
-                int iHashCode3 = (iHashCode2 + (stateChange != null ? stateChange.hashCode() : 0)) * 31;
-                RtcConnection.Quality quality = this.connectionQuality;
-                int iHashCode4 = (iHashCode3 + (quality != null ? quality.hashCode() : 0)) * 31;
-                Guild guild = this.guild;
-                int iHashCode5 = (iHashCode4 + (guild != null ? guild.hashCode() : 0)) * 31;
-                Map<Long, StoreVoiceParticipants.VoiceUser> map = this.participants;
-                int iHashCode6 = (iHashCode5 + (map != null ? map.hashCode() : 0)) * 31;
-                StreamContext streamContext = this.streamContext;
-                int iHashCode7 = (iHashCode6 + (streamContext != null ? streamContext.hashCode() : 0)) * 31;
-                StageRequestToSpeakState stageRequestToSpeakState = this.requestToSpeakState;
-                int iHashCode8 = (((iHashCode7 + (stageRequestToSpeakState != null ? stageRequestToSpeakState.hashCode() : 0)) * 31) + this.blockedUsersOnStage) * 31;
-                StageInstance stageInstance = this.stageInstance;
-                return iHashCode8 + (stageInstance != null ? stageInstance.hashCode() : 0);
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("CallOngoing(selectedVoiceChannel=");
-                sbM833U.append(this.selectedVoiceChannel);
-                sbM833U.append(", selectedTextChannel=");
-                sbM833U.append(this.selectedTextChannel);
-                sbM833U.append(", connectionStateChange=");
-                sbM833U.append(this.connectionStateChange);
-                sbM833U.append(", connectionQuality=");
-                sbM833U.append(this.connectionQuality);
-                sbM833U.append(", guild=");
-                sbM833U.append(this.guild);
-                sbM833U.append(", participants=");
-                sbM833U.append(this.participants);
-                sbM833U.append(", streamContext=");
-                sbM833U.append(this.streamContext);
-                sbM833U.append(", requestToSpeakState=");
-                sbM833U.append(this.requestToSpeakState);
-                sbM833U.append(", blockedUsersOnStage=");
-                sbM833U.append(this.blockedUsersOnStage);
-                sbM833U.append(", stageInstance=");
-                sbM833U.append(this.stageInstance);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-        public final /* data */ class ConnectivityState extends StoreState {
-            private final StoreConnectivity.DelayedState connectivityState;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public ConnectivityState(StoreConnectivity.DelayedState delayedState) {
-                super(null);
-                C12238m.checkNotNullParameter(delayedState, "connectivityState");
-                this.connectivityState = delayedState;
-            }
-
-            public static /* synthetic */ ConnectivityState copy$default(ConnectivityState connectivityState, StoreConnectivity.DelayedState delayedState, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    delayedState = connectivityState.connectivityState;
-                }
-                return connectivityState.copy(delayedState);
-            }
-
-            public final ConnectivityState copy(StoreConnectivity.DelayedState connectivityState) {
-                C12238m.checkNotNullParameter(connectivityState, "connectivityState");
-                return new ConnectivityState(connectivityState);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof ConnectivityState) && C12238m.areEqual(this.connectivityState, ((ConnectivityState) other).connectivityState);
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final StoreConnectivity.DelayedState getConnectivityState() {
-                return this.connectivityState;
-            }
-
-            public final StoreConnectivity.DelayedState getConnectivityState() {
-                return this.connectivityState;
-            }
-
-            public int hashCode() {
-                StoreConnectivity.DelayedState delayedState = this.connectivityState;
-                if (delayedState != null) {
-                    return delayedState.hashCode();
-                }
-                return 0;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("ConnectivityState(connectivityState=");
-                sbM833U.append(this.connectivityState);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        private StoreState() {
-        }
-
-        public /* synthetic */ StoreState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-    public abstract class ViewState {
-        private final boolean isSpeakingInOngoingCall;
-
-        /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-        public final /* data */ class CallOngoing extends ViewState {
-            private final RtcConnection.Quality connectionQuality;
-            private final RtcConnection.State connectionState;
-            private final Guild guild;
-            private final boolean hasVideo;
-            private final boolean isSpeakingInOngoingCall;
-            private final int participants;
-            private final Channel selectedTextChannel;
-            private final Channel selectedVoiceChannel;
-            private final StreamContext streamContext;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public CallOngoing(Channel channel, Channel channel2, RtcConnection.State state, RtcConnection.Quality quality, Guild guild, int i, boolean z2, StreamContext streamContext) {
-                super(null);
-                C12238m.checkNotNullParameter(channel, "selectedVoiceChannel");
-                C12238m.checkNotNullParameter(state, "connectionState");
-                C12238m.checkNotNullParameter(quality, "connectionQuality");
-                this.selectedVoiceChannel = channel;
-                this.selectedTextChannel = channel2;
-                this.connectionState = state;
-                this.connectionQuality = quality;
-                this.guild = guild;
-                this.participants = i;
-                this.hasVideo = z2;
-                this.streamContext = streamContext;
-                this.isSpeakingInOngoingCall = true;
-            }
-
-            public final CallOngoing copy(Channel selectedVoiceChannel, Channel selectedTextChannel, RtcConnection.State connectionState, RtcConnection.Quality connectionQuality, Guild guild, int participants, boolean hasVideo, StreamContext streamContext) {
-                C12238m.checkNotNullParameter(selectedVoiceChannel, "selectedVoiceChannel");
-                C12238m.checkNotNullParameter(connectionState, "connectionState");
-                C12238m.checkNotNullParameter(connectionQuality, "connectionQuality");
-                return new CallOngoing(selectedVoiceChannel, selectedTextChannel, connectionState, connectionQuality, guild, participants, hasVideo, streamContext);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof CallOngoing)) {
-                    return false;
-                }
-                CallOngoing callOngoing = (CallOngoing) other;
-                return C12238m.areEqual(this.selectedVoiceChannel, callOngoing.selectedVoiceChannel) && C12238m.areEqual(this.selectedTextChannel, callOngoing.selectedTextChannel) && C12238m.areEqual(this.connectionState, callOngoing.connectionState) && C12238m.areEqual(this.connectionQuality, callOngoing.connectionQuality) && C12238m.areEqual(this.guild, callOngoing.guild) && this.participants == callOngoing.participants && this.hasVideo == callOngoing.hasVideo && C12238m.areEqual(this.streamContext, callOngoing.streamContext);
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final RtcConnection.Quality getConnectionQuality() {
-                return this.connectionQuality;
-            }
-
-            public final RtcConnection.Quality getConnectionQuality() {
-                return this.connectionQuality;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final RtcConnection.State getConnectionState() {
-                return this.connectionState;
-            }
-
-            public final RtcConnection.State getConnectionState() {
-                return this.connectionState;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getHasVideo() {
-                return this.hasVideo;
-            }
-
-            public final boolean getHasVideo() {
-                return this.hasVideo;
-            }
-
-            @Override // com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel.ViewState
-            /* JADX INFO: renamed from: isSpeakingInOngoingCall, reason: from getter */
-            public boolean getIsSpeakingInOngoingCall() {
-                return this.isSpeakingInOngoingCall;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final int getParticipants() {
-                return this.participants;
-            }
-
-            public final int getParticipants() {
-                return this.participants;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Channel getSelectedTextChannel() {
-                return this.selectedTextChannel;
-            }
-
-            public final Channel getSelectedTextChannel() {
-                return this.selectedTextChannel;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getSelectedVoiceChannel() {
-                return this.selectedVoiceChannel;
-            }
-
-            public final Channel getSelectedVoiceChannel() {
-                return this.selectedVoiceChannel;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v14, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v14, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v16 */
-            /* JADX WARN: Type inference failed for: r2v21 */
-            public int hashCode() {
-                Channel channel = this.selectedVoiceChannel;
-                int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
-                Channel channel2 = this.selectedTextChannel;
-                int iHashCode2 = (iHashCode + (channel2 != null ? channel2.hashCode() : 0)) * 31;
-                RtcConnection.State state = this.connectionState;
-                int iHashCode3 = (iHashCode2 + (state != null ? state.hashCode() : 0)) * 31;
-                RtcConnection.Quality quality = this.connectionQuality;
-                int iHashCode4 = (iHashCode3 + (quality != null ? quality.hashCode() : 0)) * 31;
-                Guild guild = this.guild;
-                int iHashCode5 = (((iHashCode4 + (guild != null ? guild.hashCode() : 0)) * 31) + this.participants) * 31;
-                boolean z2 = this.hasVideo;
-                ?? r2 = z2;
-                if (z2) {
-                    r2 = 1;
-                }
-                int i = (iHashCode5 + r2) * 31;
-                StreamContext streamContext = this.streamContext;
-                return i + (streamContext != null ? streamContext.hashCode() : 0);
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("CallOngoing(selectedVoiceChannel=");
-                sbM833U.append(this.selectedVoiceChannel);
-                sbM833U.append(", selectedTextChannel=");
-                sbM833U.append(this.selectedTextChannel);
-                sbM833U.append(", connectionState=");
-                sbM833U.append(this.connectionState);
-                sbM833U.append(", connectionQuality=");
-                sbM833U.append(this.connectionQuality);
-                sbM833U.append(", guild=");
-                sbM833U.append(this.guild);
-                sbM833U.append(", participants=");
-                sbM833U.append(this.participants);
-                sbM833U.append(", hasVideo=");
-                sbM833U.append(this.hasVideo);
-                sbM833U.append(", streamContext=");
-                sbM833U.append(this.streamContext);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-        public final /* data */ class Connecting extends ViewState {
-            private final long delay;
-
-            public Connecting(long j) {
-                super(null);
-                this.delay = j;
-            }
-
-            public static /* synthetic */ Connecting copy$default(Connecting connecting, long j, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    j = connecting.delay;
-                }
-                return connecting.copy(j);
-            }
-
-            public final Connecting copy(long delay) {
-                return new Connecting(delay);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof Connecting) && this.delay == ((Connecting) other).delay;
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getDelay() {
-                return this.delay;
-            }
-
-            public final long getDelay() {
-                return this.delay;
-            }
-
-            public int hashCode() {
-                return C0002b.m3a(this.delay);
-            }
-
-            public String toString() {
-                return C1643a.m815C(C1643a.m833U("Connecting(delay="), this.delay, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-        public final class Inactive extends ViewState {
-            public static final Inactive INSTANCE = new Inactive();
-
-            private Inactive() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-        public final /* data */ class Offline extends ViewState {
-            private final boolean airplaneMode;
-            private final long delay;
-
-            public Offline(long j, boolean z2) {
-                super(null);
-                this.delay = j;
-                this.airplaneMode = z2;
-            }
-
-            public static /* synthetic */ Offline copy$default(Offline offline, long j, boolean z2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    j = offline.delay;
-                }
-                if ((i & 2) != 0) {
-                    z2 = offline.airplaneMode;
-                }
-                return offline.copy(j, z2);
-            }
-
-            public final Offline copy(long delay, boolean airplaneMode) {
-                return new Offline(delay, airplaneMode);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Offline)) {
-                    return false;
-                }
-                Offline offline = (Offline) other;
-                return this.delay == offline.delay && this.airplaneMode == offline.airplaneMode;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getAirplaneMode() {
-                return this.airplaneMode;
-            }
-
-            public final boolean getAirplaneMode() {
-                return this.airplaneMode;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getDelay() {
-                return this.delay;
-            }
-
-            public final long getDelay() {
-                return this.delay;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v2 */
-            /* JADX WARN: Type inference failed for: r1v3 */
-            public int hashCode() {
-                int iM3a = C0002b.m3a(this.delay) * 31;
-                boolean z2 = this.airplaneMode;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                return iM3a + r1;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Offline(delay=");
-                sbM833U.append(this.delay);
-                sbM833U.append(", airplaneMode=");
-                return C1643a.m827O(sbM833U, this.airplaneMode, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorViewModel.kt */
-        public final /* data */ class StageChannelOngoing extends ViewState {
-            private final int blockedUsersOnStage;
-            private final RtcConnection.Quality connectionQuality;
-            private final RtcConnection.State connectionState;
-            private final Guild guild;
-            private final boolean isAckingInvitation;
-            private final boolean isInvitedToSpeak;
-            private final boolean isSpeaking;
-            private final boolean isSpeakingInOngoingCall;
-            private final Channel selectedVoiceChannel;
-            private final StageInstance stageInstance;
-            private final StreamContext streamContext;
-
-            public /* synthetic */ StageChannelOngoing(Channel channel, RtcConnection.State state, RtcConnection.Quality quality, Guild guild, StreamContext streamContext, boolean z2, StageInstance stageInstance, boolean z3, boolean z4, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-                this(channel, state, quality, guild, streamContext, z2, stageInstance, (i2 & 128) != 0 ? false : z3, (i2 & 256) != 0 ? false : z4, (i2 & 512) != 0 ? 0 : i);
-            }
-
-            public static /* synthetic */ StageChannelOngoing copy$default(StageChannelOngoing stageChannelOngoing, Channel channel, RtcConnection.State state, RtcConnection.Quality quality, Guild guild, StreamContext streamContext, boolean z2, StageInstance stageInstance, boolean z3, boolean z4, int i, int i2, Object obj) {
-                return stageChannelOngoing.copy((i2 & 1) != 0 ? stageChannelOngoing.selectedVoiceChannel : channel, (i2 & 2) != 0 ? stageChannelOngoing.connectionState : state, (i2 & 4) != 0 ? stageChannelOngoing.connectionQuality : quality, (i2 & 8) != 0 ? stageChannelOngoing.guild : guild, (i2 & 16) != 0 ? stageChannelOngoing.streamContext : streamContext, (i2 & 32) != 0 ? stageChannelOngoing.isSpeaking : z2, (i2 & 64) != 0 ? stageChannelOngoing.stageInstance : stageInstance, (i2 & 128) != 0 ? stageChannelOngoing.isInvitedToSpeak : z3, (i2 & 256) != 0 ? stageChannelOngoing.isAckingInvitation : z4, (i2 & 512) != 0 ? stageChannelOngoing.blockedUsersOnStage : i);
-            }
-
-            public final StageChannelOngoing copy(Channel selectedVoiceChannel, RtcConnection.State connectionState, RtcConnection.Quality connectionQuality, Guild guild, StreamContext streamContext, boolean isSpeaking, StageInstance stageInstance, boolean isInvitedToSpeak, boolean isAckingInvitation, int blockedUsersOnStage) {
-                C12238m.checkNotNullParameter(selectedVoiceChannel, "selectedVoiceChannel");
-                C12238m.checkNotNullParameter(connectionState, "connectionState");
-                C12238m.checkNotNullParameter(connectionQuality, "connectionQuality");
-                return new StageChannelOngoing(selectedVoiceChannel, connectionState, connectionQuality, guild, streamContext, isSpeaking, stageInstance, isInvitedToSpeak, isAckingInvitation, blockedUsersOnStage);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof StageChannelOngoing)) {
-                    return false;
-                }
-                StageChannelOngoing stageChannelOngoing = (StageChannelOngoing) other;
-                return C12238m.areEqual(this.selectedVoiceChannel, stageChannelOngoing.selectedVoiceChannel) && C12238m.areEqual(this.connectionState, stageChannelOngoing.connectionState) && C12238m.areEqual(this.connectionQuality, stageChannelOngoing.connectionQuality) && C12238m.areEqual(this.guild, stageChannelOngoing.guild) && C12238m.areEqual(this.streamContext, stageChannelOngoing.streamContext) && this.isSpeaking == stageChannelOngoing.isSpeaking && C12238m.areEqual(this.stageInstance, stageChannelOngoing.stageInstance) && this.isInvitedToSpeak == stageChannelOngoing.isInvitedToSpeak && this.isAckingInvitation == stageChannelOngoing.isAckingInvitation && this.blockedUsersOnStage == stageChannelOngoing.blockedUsersOnStage;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final int getBlockedUsersOnStage() {
-                return this.blockedUsersOnStage;
-            }
-
-            public final int getBlockedUsersOnStage() {
-                return this.blockedUsersOnStage;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final RtcConnection.Quality getConnectionQuality() {
-                return this.connectionQuality;
-            }
-
-            public final RtcConnection.Quality getConnectionQuality() {
-                return this.connectionQuality;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final RtcConnection.State getConnectionState() {
-                return this.connectionState;
-            }
-
-            public final RtcConnection.State getConnectionState() {
-                return this.connectionState;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            public final Guild getGuild() {
-                return this.guild;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getIsAckingInvitation() {
-                return this.isAckingInvitation;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsInvitedToSpeak() {
-                return this.isInvitedToSpeak;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsSpeaking() {
-                return this.isSpeaking;
-            }
-
-            @Override // com.discord.widgets.status.WidgetGlobalStatusIndicatorViewModel.ViewState
-            /* JADX INFO: renamed from: isSpeakingInOngoingCall, reason: from getter */
-            public boolean getIsSpeakingInOngoingCall() {
-                return this.isSpeakingInOngoingCall;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getSelectedVoiceChannel() {
-                return this.selectedVoiceChannel;
-            }
-
-            public final Channel getSelectedVoiceChannel() {
-                return this.selectedVoiceChannel;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final StageInstance getStageInstance() {
-                return this.stageInstance;
-            }
-
-            public final StageInstance getStageInstance() {
-                return this.stageInstance;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
-            public final StreamContext getStreamContext() {
-                return this.streamContext;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v12, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v16, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v18, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v3, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v6 */
-            /* JADX WARN: Type inference failed for: r1v8 */
-            /* JADX WARN: Type inference failed for: r2v13, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v15 */
-            /* JADX WARN: Type inference failed for: r2v20 */
-            /* JADX WARN: Type inference failed for: r3v0 */
-            /* JADX WARN: Type inference failed for: r3v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r3v2 */
-            public int hashCode() {
-                Channel channel = this.selectedVoiceChannel;
-                int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
-                RtcConnection.State state = this.connectionState;
-                int iHashCode2 = (iHashCode + (state != null ? state.hashCode() : 0)) * 31;
-                RtcConnection.Quality quality = this.connectionQuality;
-                int iHashCode3 = (iHashCode2 + (quality != null ? quality.hashCode() : 0)) * 31;
-                Guild guild = this.guild;
-                int iHashCode4 = (iHashCode3 + (guild != null ? guild.hashCode() : 0)) * 31;
-                StreamContext streamContext = this.streamContext;
-                int iHashCode5 = (iHashCode4 + (streamContext != null ? streamContext.hashCode() : 0)) * 31;
-                boolean z2 = this.isSpeaking;
-                ?? r2 = z2;
-                if (z2) {
-                    r2 = 1;
-                }
-                int i = (iHashCode5 + r2) * 31;
-                StageInstance stageInstance = this.stageInstance;
-                int iHashCode6 = (i + (stageInstance != null ? stageInstance.hashCode() : 0)) * 31;
-                boolean z3 = this.isInvitedToSpeak;
-                ?? r1 = z3;
-                if (z3) {
-                    r1 = 1;
-                }
-                int i2 = (iHashCode6 + r1) * 31;
-                boolean z4 = this.isAckingInvitation;
-                return ((i2 + (z4 ? 1 : z4)) * 31) + this.blockedUsersOnStage;
-            }
-
-            public final boolean isAckingInvitation() {
-                return this.isAckingInvitation;
-            }
-
-            public final boolean isInvitedToSpeak() {
-                return this.isInvitedToSpeak;
-            }
-
-            public final boolean isSpeaking() {
-                return this.isSpeaking;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("StageChannelOngoing(selectedVoiceChannel=");
-                sbM833U.append(this.selectedVoiceChannel);
-                sbM833U.append(", connectionState=");
-                sbM833U.append(this.connectionState);
-                sbM833U.append(", connectionQuality=");
-                sbM833U.append(this.connectionQuality);
-                sbM833U.append(", guild=");
-                sbM833U.append(this.guild);
-                sbM833U.append(", streamContext=");
-                sbM833U.append(this.streamContext);
-                sbM833U.append(", isSpeaking=");
-                sbM833U.append(this.isSpeaking);
-                sbM833U.append(", stageInstance=");
-                sbM833U.append(this.stageInstance);
-                sbM833U.append(", isInvitedToSpeak=");
-                sbM833U.append(this.isInvitedToSpeak);
-                sbM833U.append(", isAckingInvitation=");
-                sbM833U.append(this.isAckingInvitation);
-                sbM833U.append(", blockedUsersOnStage=");
-                return C1643a.m814B(sbM833U, this.blockedUsersOnStage, ")");
-            }
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public StageChannelOngoing(Channel channel, RtcConnection.State state, RtcConnection.Quality quality, Guild guild, StreamContext streamContext, boolean z2, StageInstance stageInstance, boolean z3, boolean z4, int i) {
-                super(null);
-                C12238m.checkNotNullParameter(channel, "selectedVoiceChannel");
-                C12238m.checkNotNullParameter(state, "connectionState");
-                C12238m.checkNotNullParameter(quality, "connectionQuality");
-                this.selectedVoiceChannel = channel;
-                this.connectionState = state;
-                this.connectionQuality = quality;
-                this.guild = guild;
-                this.streamContext = streamContext;
-                this.isSpeaking = z2;
-                this.stageInstance = stageInstance;
-                this.isInvitedToSpeak = z3;
-                this.isAckingInvitation = z4;
-                this.blockedUsersOnStage = i;
-                this.isSpeakingInOngoingCall = z2 || z3;
-            }
-        }
-
-        private ViewState() {
-        }
-
-        /* JADX INFO: renamed from: isSpeakingInOngoingCall, reason: from getter */
-        public boolean getIsSpeakingInOngoingCall() {
-            return this.isSpeakingInOngoingCall;
-        }
-
-        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            StoreConnectivity.State.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[StoreConnectivity.State.ONLINE.ordinal()] = 1;
-            iArr[StoreConnectivity.State.CONNECTING.ordinal()] = 2;
-            iArr[StoreConnectivity.State.OFFLINE.ordinal()] = 3;
-            iArr[StoreConnectivity.State.OFFLINE_AIRPLANE_MODE.ordinal()] = 4;
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
     public WidgetGlobalStatusIndicatorViewModel() {
-        this(null, 1, 0 == true ? 1 : 0);
+        this(null, 1, null);
     }
 
     public /* synthetic */ WidgetGlobalStatusIndicatorViewModel(Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         Observable observableObserveStoreState$default;
         if ((i & 1) != 0) {
-            Companion companion = INSTANCE;
+            WidgetGlobalStatusIndicatorViewModel$Companion widgetGlobalStatusIndicatorViewModel$Companion = Companion;
             StreamContextService streamContextService = new StreamContextService(null, null, null, null, null, null, null, null, 255, null);
-            StoreStream.Companion companion2 = StoreStream.INSTANCE;
-            observableObserveStoreState$default = Companion.observeStoreState$default(companion, streamContextService, companion2.getVoiceChannelSelected(), companion2.getConnectivity(), companion2.getChannelsSelected(), companion2.getRtcConnection(), companion2.getGuilds(), companion2.getVoiceParticipants(), companion2.getStageChannels(), companion2.getUserRelationships(), companion2.getStageInstances(), null, 1024, null);
-            C12238m.checkNotNullExpressionValue(observableObserveStoreState$default, "observeStoreState(\n     ….getStageInstances(),\n  )");
+            StoreStream$Companion storeStream$Companion = StoreStream.Companion;
+            observableObserveStoreState$default = WidgetGlobalStatusIndicatorViewModel$Companion.observeStoreState$default(widgetGlobalStatusIndicatorViewModel$Companion, streamContextService, storeStream$Companion.getVoiceChannelSelected(), storeStream$Companion.getConnectivity(), storeStream$Companion.getChannelsSelected(), storeStream$Companion.getRtcConnection(), storeStream$Companion.getGuilds(), storeStream$Companion.getVoiceParticipants(), storeStream$Companion.getStageChannels(), storeStream$Companion.getUserRelationships(), storeStream$Companion.getStageInstances(), null, 1024, null);
+            m.checkNotNullExpressionValue(observableObserveStoreState$default, "observeStoreState(\n     ….getStageInstances(),\n  )");
         } else {
             observableObserveStoreState$default = observable;
         }
         this(observableObserveStoreState$default);
     }
 
-    public static final /* synthetic */ ViewState access$getViewState$p(WidgetGlobalStatusIndicatorViewModel widgetGlobalStatusIndicatorViewModel) {
+    public static final /* synthetic */ WidgetGlobalStatusIndicatorViewModel$ViewState access$getViewState$p(WidgetGlobalStatusIndicatorViewModel widgetGlobalStatusIndicatorViewModel) {
         return widgetGlobalStatusIndicatorViewModel.getViewState();
     }
 
+    public static final /* synthetic */ void access$handleStoreState(WidgetGlobalStatusIndicatorViewModel widgetGlobalStatusIndicatorViewModel, WidgetGlobalStatusIndicatorViewModel$StoreState widgetGlobalStatusIndicatorViewModel$StoreState) {
+        widgetGlobalStatusIndicatorViewModel.handleStoreState(widgetGlobalStatusIndicatorViewModel$StoreState);
+    }
+
+    public static final /* synthetic */ void access$updateViewState(WidgetGlobalStatusIndicatorViewModel widgetGlobalStatusIndicatorViewModel, WidgetGlobalStatusIndicatorViewModel$ViewState widgetGlobalStatusIndicatorViewModel$ViewState) {
+        widgetGlobalStatusIndicatorViewModel.updateViewState(widgetGlobalStatusIndicatorViewModel$ViewState);
+    }
+
     public final void ackStageInvitationToSpeak(boolean accept) {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.StageChannelOngoing)) {
+        WidgetGlobalStatusIndicatorViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing)) {
             viewState = null;
         }
-        ViewState.StageChannelOngoing stageChannelOngoing = (ViewState.StageChannelOngoing) viewState;
-        if (stageChannelOngoing != null) {
-            updateViewState(ViewState.StageChannelOngoing.copy$default(stageChannelOngoing, null, null, null, null, null, false, null, false, true, 0, 767, null));
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(StageChannelAPI.INSTANCE.ackInvitationToSpeak(stageChannelOngoing.getSelectedVoiceChannel(), accept), false, 1, null), this, null, 2, null), (Class<?>) WidgetGlobalStatusIndicatorViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101101(accept, stageChannelOngoing));
+        WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing = (WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing) viewState;
+        if (widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing != null) {
+            updateViewState(WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing.copy$default(widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing, null, null, null, null, null, false, null, false, true, 0, 767, null));
+            ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(StageChannelAPI.INSTANCE.ackInvitationToSpeak(widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing.getSelectedVoiceChannel(), accept), false, 1, null), this, null, 2, null), WidgetGlobalStatusIndicatorViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGlobalStatusIndicatorViewModel$ackStageInvitationToSpeak$1(this, accept, widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing), 62, (Object) null);
         }
     }
 
     @MainThread
-    private final void handleStoreState(StoreState storeState) {
+    private final void handleStoreState(WidgetGlobalStatusIndicatorViewModel$StoreState storeState) {
         boolean z2;
-        if (storeState instanceof StoreState.ConnectivityState) {
-            StoreState.ConnectivityState connectivityState = (StoreState.ConnectivityState) storeState;
-            int iOrdinal = connectivityState.getConnectivityState().getState().ordinal();
+        if (storeState instanceof WidgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState) {
+            WidgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState widgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState = (WidgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState) storeState;
+            int iOrdinal = widgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState.getConnectivityState().getState().ordinal();
             if (iOrdinal == 0) {
-                updateViewState(ViewState.Inactive.INSTANCE);
+                updateViewState(WidgetGlobalStatusIndicatorViewModel$ViewState$Inactive.INSTANCE);
                 return;
             }
             if (iOrdinal == 1) {
-                updateViewState(new ViewState.Offline(connectivityState.getConnectivityState().getDelay(), false));
+                updateViewState(new WidgetGlobalStatusIndicatorViewModel$ViewState$Offline(widgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState.getConnectivityState().getDelay(), false));
                 return;
             } else if (iOrdinal == 2) {
-                updateViewState(new ViewState.Offline(connectivityState.getConnectivityState().getDelay(), true));
+                updateViewState(new WidgetGlobalStatusIndicatorViewModel$ViewState$Offline(widgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState.getConnectivityState().getDelay(), true));
                 return;
             } else {
                 if (iOrdinal != 3) {
                     return;
                 }
-                updateViewState(new ViewState.Connecting(connectivityState.getConnectivityState().getDelay()));
+                updateViewState(new WidgetGlobalStatusIndicatorViewModel$ViewState$Connecting(widgetGlobalStatusIndicatorViewModel$StoreState$ConnectivityState.getConnectivityState().getDelay()));
                 return;
             }
         }
-        if (storeState instanceof StoreState.CallOngoing) {
-            StoreState.CallOngoing callOngoing = (StoreState.CallOngoing) storeState;
-            if (!ChannelUtils.m7669D(callOngoing.getSelectedVoiceChannel())) {
-                int size = callOngoing.getParticipants().size();
-                Collection<StoreVoiceParticipants.VoiceUser> collectionValues = callOngoing.getParticipants().values();
-                if ((collectionValues instanceof Collection) && collectionValues.isEmpty()) {
-                    z2 = false;
-                } else {
-                    Iterator<T> it = collectionValues.iterator();
-                    while (it.hasNext()) {
-                        VoiceState voiceState = ((StoreVoiceParticipants.VoiceUser) it.next()).getVoiceState();
-                        if (voiceState != null && voiceState.getSelfVideo()) {
-                            z2 = true;
-                        }
-                    }
-                    z2 = false;
+        if (storeState instanceof WidgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing) {
+            WidgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing = (WidgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing) storeState;
+            if (ChannelUtils.D(widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getSelectedVoiceChannel())) {
+                boolean z3 = widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getRequestToSpeakState() == StageRequestToSpeakState.REQUESTED_TO_SPEAK_AND_AWAITING_USER_ACK;
+                boolean z4 = widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getRequestToSpeakState() == StageRequestToSpeakState.ON_STAGE;
+                WidgetGlobalStatusIndicatorViewModel$ViewState viewState = getViewState();
+                if (!(viewState instanceof WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing)) {
+                    viewState = null;
                 }
-                updateViewState(new ViewState.CallOngoing(callOngoing.getSelectedVoiceChannel(), callOngoing.getSelectedTextChannel(), callOngoing.getConnectionStateChange().state, callOngoing.getConnectionQuality(), callOngoing.getGuild(), size, z2, callOngoing.getStreamContext()));
+                WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing = (WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing) viewState;
+                if (widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing != null && !widgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing.isInvitedToSpeak() && z3) {
+                    AppSoundManager$Provider.INSTANCE.get().play(AppSound.Companion.getSOUND_RECONNECT());
+                }
+                updateViewState(new WidgetGlobalStatusIndicatorViewModel$ViewState$StageChannelOngoing(widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getSelectedVoiceChannel(), widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getConnectionStateChange().state, widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getConnectionQuality(), widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getGuild(), widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getStreamContext(), z4, widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getStageInstance(), z3, false, widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getBlockedUsersOnStage(), 256, null));
                 return;
             }
-            boolean z3 = callOngoing.getRequestToSpeakState() == StageRequestToSpeakState.REQUESTED_TO_SPEAK_AND_AWAITING_USER_ACK;
-            boolean z4 = callOngoing.getRequestToSpeakState() == StageRequestToSpeakState.ON_STAGE;
-            ViewState viewState = getViewState();
-            if (!(viewState instanceof ViewState.StageChannelOngoing)) {
-                viewState = null;
+            int size = widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getParticipants().size();
+            Collection<StoreVoiceParticipants$VoiceUser> collectionValues = widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getParticipants().values();
+            if ((collectionValues instanceof Collection) && collectionValues.isEmpty()) {
+                z2 = false;
+            } else {
+                Iterator<T> it = collectionValues.iterator();
+                while (it.hasNext()) {
+                    VoiceState voiceState = ((StoreVoiceParticipants$VoiceUser) it.next()).getVoiceState();
+                    if (voiceState != null && voiceState.getSelfVideo()) {
+                        z2 = true;
+                    }
+                }
+                z2 = false;
             }
-            ViewState.StageChannelOngoing stageChannelOngoing = (ViewState.StageChannelOngoing) viewState;
-            if (stageChannelOngoing != null && !stageChannelOngoing.isInvitedToSpeak() && z3) {
-                AppSoundManager.Provider.INSTANCE.get().play(AppSound.INSTANCE.getSOUND_RECONNECT());
-            }
-            updateViewState(new ViewState.StageChannelOngoing(callOngoing.getSelectedVoiceChannel(), callOngoing.getConnectionStateChange().state, callOngoing.getConnectionQuality(), callOngoing.getGuild(), callOngoing.getStreamContext(), z4, callOngoing.getStageInstance(), z3, false, callOngoing.getBlockedUsersOnStage(), 256, null));
+            updateViewState(new WidgetGlobalStatusIndicatorViewModel$ViewState$CallOngoing(widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getSelectedVoiceChannel(), widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getSelectedTextChannel(), widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getConnectionStateChange().state, widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getConnectionQuality(), widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getGuild(), size, z2, widgetGlobalStatusIndicatorViewModel$StoreState$CallOngoing.getStreamContext()));
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetGlobalStatusIndicatorViewModel(Observable<StoreState> observable) {
-        super(ViewState.Inactive.INSTANCE);
-        C12238m.checkNotNullParameter(observable, "storeStateObservable");
-        Observable<StoreState> observableM11112r = observable.m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "storeStateObservable\n   …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableM11112r), this, null, 2, null), (Class<?>) WidgetGlobalStatusIndicatorViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C101081(this));
+    public WidgetGlobalStatusIndicatorViewModel(Observable<WidgetGlobalStatusIndicatorViewModel$StoreState> observable) {
+        super(WidgetGlobalStatusIndicatorViewModel$ViewState$Inactive.INSTANCE);
+        m.checkNotNullParameter(observable, "storeStateObservable");
+        Observable<WidgetGlobalStatusIndicatorViewModel$StoreState> observableR = observable.r();
+        m.checkNotNullExpressionValue(observableR, "storeStateObservable\n   …  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), WidgetGlobalStatusIndicatorViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGlobalStatusIndicatorViewModel$1(this), 62, (Object) null);
     }
 }

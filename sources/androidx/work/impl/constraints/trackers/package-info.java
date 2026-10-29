@@ -1,5 +1,6 @@
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 package androidx.work.impl.constraints.trackers;
 
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 

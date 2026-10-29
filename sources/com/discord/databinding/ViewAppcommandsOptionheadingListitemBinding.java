@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewAppcommandsOptionheadingListitemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15367a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15368b;
+    public final TextView f2171b;
 
     public ViewAppcommandsOptionheadingListitemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextView textView, @NonNull View view) {
-        this.f15367a = constraintLayout;
-        this.f15368b = textView;
+        this.a = constraintLayout;
+        this.f2171b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15367a;
+        return this.a;
     }
 }

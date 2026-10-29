@@ -2,51 +2,28 @@ package com.discord.widgets.nux;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.ArrayList;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildTemplateArgs implements Parcelable {
-    public static final Parcelable.Creator<GuildTemplateArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<GuildTemplateArgs> CREATOR = new GuildTemplateArgs$Creator();
     private final boolean showInvitePrompt;
     private final boolean skipCreationIntent;
     private final String subtitle;
     private final List<GuildTemplate> templates;
     private final String title;
 
-    public final class Creator implements Parcelable.Creator<GuildTemplateArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final GuildTemplateArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            String string = parcel.readString();
-            String string2 = parcel.readString();
-            int i = parcel.readInt();
-            ArrayList arrayList = new ArrayList(i);
-            while (i != 0) {
-                arrayList.add((GuildTemplate) Enum.valueOf(GuildTemplate.class, parcel.readString()));
-                i--;
-            }
-            return new GuildTemplateArgs(string, string2, arrayList, parcel.readInt() != 0, parcel.readInt() != 0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final GuildTemplateArgs[] newArray(int i) {
-            return new GuildTemplateArgs[i];
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public GuildTemplateArgs(String str, String str2, List<? extends GuildTemplate> list, boolean z2, boolean z3) {
-        C12238m.checkNotNullParameter(str, "title");
-        C12238m.checkNotNullParameter(str2, "subtitle");
-        C12238m.checkNotNullParameter(list, "templates");
+        m.checkNotNullParameter(str, "title");
+        m.checkNotNullParameter(str2, "subtitle");
+        m.checkNotNullParameter(list, "templates");
         this.title = str;
         this.subtitle = str2;
         this.templates = list;
@@ -82,9 +59,9 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
     }
 
     public final GuildTemplateArgs copy(String title, String subtitle, List<? extends GuildTemplate> templates, boolean showInvitePrompt, boolean skipCreationIntent) {
-        C12238m.checkNotNullParameter(title, "title");
-        C12238m.checkNotNullParameter(subtitle, "subtitle");
-        C12238m.checkNotNullParameter(templates, "templates");
+        m.checkNotNullParameter(title, "title");
+        m.checkNotNullParameter(subtitle, "subtitle");
+        m.checkNotNullParameter(templates, "templates");
         return new GuildTemplateArgs(title, subtitle, templates, showInvitePrompt, skipCreationIntent);
     }
 
@@ -101,7 +78,7 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
             return false;
         }
         GuildTemplateArgs guildTemplateArgs = (GuildTemplateArgs) other;
-        return C12238m.areEqual(this.title, guildTemplateArgs.title) && C12238m.areEqual(this.subtitle, guildTemplateArgs.subtitle) && C12238m.areEqual(this.templates, guildTemplateArgs.templates) && this.showInvitePrompt == guildTemplateArgs.showInvitePrompt && this.skipCreationIntent == guildTemplateArgs.skipCreationIntent;
+        return m.areEqual(this.title, guildTemplateArgs.title) && m.areEqual(this.subtitle, guildTemplateArgs.subtitle) && m.areEqual(this.templates, guildTemplateArgs.templates) && this.showInvitePrompt == guildTemplateArgs.showInvitePrompt && this.skipCreationIntent == guildTemplateArgs.skipCreationIntent;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -171,21 +148,21 @@ public final /* data */ class GuildTemplateArgs implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildTemplateArgs(title=");
-        sbM833U.append(this.title);
-        sbM833U.append(", subtitle=");
-        sbM833U.append(this.subtitle);
-        sbM833U.append(", templates=");
-        sbM833U.append(this.templates);
-        sbM833U.append(", showInvitePrompt=");
-        sbM833U.append(this.showInvitePrompt);
-        sbM833U.append(", skipCreationIntent=");
-        return C1643a.m827O(sbM833U, this.skipCreationIntent, ")");
+        StringBuilder sbU = a.U("GuildTemplateArgs(title=");
+        sbU.append(this.title);
+        sbU.append(", subtitle=");
+        sbU.append(this.subtitle);
+        sbU.append(", templates=");
+        sbU.append(this.templates);
+        sbU.append(", showInvitePrompt=");
+        sbU.append(this.showInvitePrompt);
+        sbU.append(", skipCreationIntent=");
+        return a.O(sbU, this.skipCreationIntent, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeString(this.title);
         parcel.writeString(this.subtitle);
         List<GuildTemplate> list = this.templates;

@@ -1,60 +1,38 @@
 package com.discord.widgets.guilds.contextmenu;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.graphics.PointF;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import com.discord.C5419R;
+import b.a.d.g0;
+import b.a.d.i0;
+import b.d.b.a.a;
+import com.discord.R$layout;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildContextMenuBinding;
 import com.discord.utilities.dimen.DimenUtils;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
-import com.discord.widgets.guilds.leave.WidgetLeaveGuildDialog;
-import com.discord.widgets.guilds.profile.WidgetGuildProfileSheet;
-import com.discord.widgets.servers.WidgetServerNotifications;
-import java.util.Objects;
+import d0.z.d.a0;
+import d0.z.d.m;
 import kotlin.Lazy;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0865g0;
-import p007b.p008a.p018d.C0869i0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p512d0.C11226f;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Subscription;
 
 /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildContextMenu extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildContextMenu.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildContextMenuBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildContextMenu.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildContextMenuBinding;", 0)};
+    public static final WidgetGuildContextMenu$Companion Companion = new WidgetGuildContextMenu$Companion(null);
     private static final String FRAGMENT_TAG = "WidgetGuildContextMenu";
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final String VIEW_CONTAINER_TAG = "WidgetGuildContextMenuViewContainer";
-    private AnimationState animationState;
+    private WidgetGuildContextMenu$AnimationState animationState;
     private Animator animator;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -65,215 +43,78 @@ public final class WidgetGuildContextMenu extends AppFragment {
     private final Lazy viewModel;
     private static final int SCREEN_BOTTOM_BUFFER = DimenUtils.dpToPixels(96);
 
-    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
-    public enum AnimationState {
-        ANIMATING_IN,
-        ANIMATING_OUT
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$onResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
-    public final /* synthetic */ class C85991 extends C12236k implements Function1<GuildContextMenuViewModel.ViewState, Unit> {
-        public C85991(WidgetGuildContextMenu widgetGuildContextMenu) {
-            super(1, widgetGuildContextMenu, WidgetGuildContextMenu.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/contextmenu/GuildContextMenuViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildContextMenuViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildContextMenuViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildContextMenu) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$onResume$2 */
-    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
-    public final /* synthetic */ class C86002 extends C12236k implements Function1<GuildContextMenuViewModel.Event, Unit> {
-        public C86002(WidgetGuildContextMenu widgetGuildContextMenu) {
-            super(1, widgetGuildContextMenu, WidgetGuildContextMenu.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/contextmenu/GuildContextMenuViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(GuildContextMenuViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(GuildContextMenuViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildContextMenu) this.receiver).handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildContextMenu.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        private final int computeMaxContextMenuHeight(Context context) {
-            WidgetGuildContextMenuBinding widgetGuildContextMenuBindingM8416a = WidgetGuildContextMenuBinding.m8416a(LayoutInflater.from(context).inflate(C5419R.layout.widget_guild_context_menu, (ViewGroup) null, false));
-            C12238m.checkNotNullExpressionValue(widgetGuildContextMenuBindingM8416a, "WidgetGuildContextMenuBi…om(context), null, false)");
-            CardView cardView = widgetGuildContextMenuBindingM8416a.f16761a;
-            C12238m.checkNotNullExpressionValue(cardView, "WidgetGuildContextMenuBi…ntext), null, false).root");
-            cardView.measure(0, 0);
-            return cardView.getMeasuredHeight();
-        }
-
-        public final void hide(FragmentActivity activity, boolean animate) {
-            C12238m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-            Fragment fragmentFindFragmentByTag = activity.getSupportFragmentManager().findFragmentByTag(WidgetGuildContextMenu.FRAGMENT_TAG);
-            if (!(fragmentFindFragmentByTag instanceof WidgetGuildContextMenu)) {
-                fragmentFindFragmentByTag = null;
-            }
-            WidgetGuildContextMenu widgetGuildContextMenu = (WidgetGuildContextMenu) fragmentFindFragmentByTag;
-            if (widgetGuildContextMenu != null) {
-                if (animate) {
-                    widgetGuildContextMenu.doCircularRemove();
-                    return;
-                }
-                activity.getSupportFragmentManager().beginTransaction().remove(widgetGuildContextMenu).commitAllowingStateLoss();
-                Window window = activity.getWindow();
-                C12238m.checkNotNullExpressionValue(window, "activity.window");
-                View decorView = window.getDecorView();
-                C12238m.checkNotNullExpressionValue(decorView, "activity.window.decorView");
-                View rootView = decorView.getRootView();
-                Objects.requireNonNull(rootView, "null cannot be cast to non-null type android.view.ViewGroup");
-                ViewGroup viewGroup = (ViewGroup) rootView;
-                Window window2 = activity.getWindow();
-                C12238m.checkNotNullExpressionValue(window2, "activity.window");
-                View decorView2 = window2.getDecorView();
-                C12238m.checkNotNullExpressionValue(decorView2, "activity.window.decorView");
-                FrameLayout frameLayout = (FrameLayout) decorView2.getRootView().findViewWithTag(WidgetGuildContextMenu.VIEW_CONTAINER_TAG);
-                if (frameLayout != null) {
-                    viewGroup.removeView(frameLayout);
-                }
-                WidgetGuildContextMenu.isShowingContextMenu = false;
-            }
-        }
-
-        private final WidgetGuildContextMenu newInstance(long guildId) {
-            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            WidgetGuildContextMenu widgetGuildContextMenu = new WidgetGuildContextMenu();
-            widgetGuildContextMenu.setArguments(bundleM832T);
-            return widgetGuildContextMenu;
-        }
-
-        public final void show(final FragmentActivity activity, PointF absolutePosition, long guildId) {
-            C12238m.checkNotNullParameter(activity, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-            C12238m.checkNotNullParameter(absolutePosition, "absolutePosition");
-            if (WidgetGuildContextMenu.isShowingContextMenu) {
-                return;
-            }
-            WidgetGuildContextMenu.isShowingContextMenu = true;
-            computeMaxContextMenuHeight(activity);
-            hide(activity, false);
-            FrameLayout frameLayout = new FrameLayout(activity);
-            frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
-            frameLayout.setTag(WidgetGuildContextMenu.VIEW_CONTAINER_TAG);
-            Window window = activity.getWindow();
-            C12238m.checkNotNullExpressionValue(window, "activity.window");
-            View decorView = window.getDecorView();
-            C12238m.checkNotNullExpressionValue(decorView, "activity.window.decorView");
-            View rootView = decorView.getRootView();
-            Objects.requireNonNull(rootView, "null cannot be cast to non-null type android.view.ViewGroup");
-            ViewGroup viewGroup = (ViewGroup) rootView;
-            viewGroup.addView(frameLayout);
-            frameLayout.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu$Companion$show$1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    WidgetGuildContextMenu.INSTANCE.hide(activity, true);
-                }
-            });
-            FrameLayout frameLayout2 = new FrameLayout(activity);
-            frameLayout2.setId(View.generateViewId());
-            frameLayout2.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
-            frameLayout.addView(frameLayout2);
-            frameLayout2.setX(absolutePosition.x);
-            frameLayout2.setY(C11226f.coerceAtMost(absolutePosition.y, (viewGroup.getHeight() - computeMaxContextMenuHeight(activity)) - WidgetGuildContextMenu.SCREEN_BOTTOM_BUFFER));
-            activity.getSupportFragmentManager().beginTransaction().add(frameLayout2.getId(), newInstance(guildId), WidgetGuildContextMenu.FRAGMENT_TAG).commit();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public WidgetGuildContextMenu() {
-        super(C5419R.layout.widget_guild_context_menu);
+        super(R$layout.widget_guild_context_menu);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildContextMenu$binding$2.INSTANCE, null, 2, null);
         WidgetGuildContextMenu$viewModel$2 widgetGuildContextMenu$viewModel$2 = new WidgetGuildContextMenu$viewModel$2(this);
-        C0865g0 c0865g0 = new C0865g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(GuildContextMenuViewModel.class), new WidgetGuildContextMenu$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetGuildContextMenu$viewModel$2));
+        g0 g0Var = new g0(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(GuildContextMenuViewModel.class), new WidgetGuildContextMenu$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildContextMenu$viewModel$2));
     }
 
-    private final void configureUI(GuildContextMenuViewModel.ViewState viewState) {
-        if (viewState instanceof GuildContextMenuViewModel.ViewState.Valid) {
-            configureValidUI((GuildContextMenuViewModel.ViewState.Valid) viewState);
-        } else if (C12238m.areEqual(viewState, GuildContextMenuViewModel.ViewState.Invalid.INSTANCE)) {
-            Companion companion = INSTANCE;
+    public static final /* synthetic */ void access$configureUI(WidgetGuildContextMenu widgetGuildContextMenu, GuildContextMenuViewModel$ViewState guildContextMenuViewModel$ViewState) {
+        widgetGuildContextMenu.configureUI(guildContextMenuViewModel$ViewState);
+    }
+
+    public static final /* synthetic */ void access$doCircularRemove(WidgetGuildContextMenu widgetGuildContextMenu) {
+        widgetGuildContextMenu.doCircularRemove();
+    }
+
+    public static final /* synthetic */ WidgetGuildContextMenu$AnimationState access$getAnimationState$p(WidgetGuildContextMenu widgetGuildContextMenu) {
+        return widgetGuildContextMenu.animationState;
+    }
+
+    public static final /* synthetic */ int access$getSCREEN_BOTTOM_BUFFER$cp() {
+        return SCREEN_BOTTOM_BUFFER;
+    }
+
+    public static final /* synthetic */ GuildContextMenuViewModel access$getViewModel$p(WidgetGuildContextMenu widgetGuildContextMenu) {
+        return widgetGuildContextMenu.getViewModel();
+    }
+
+    public static final /* synthetic */ void access$handleEvent(WidgetGuildContextMenu widgetGuildContextMenu, GuildContextMenuViewModel$Event guildContextMenuViewModel$Event) {
+        widgetGuildContextMenu.handleEvent(guildContextMenuViewModel$Event);
+    }
+
+    public static final /* synthetic */ boolean access$isShowingContextMenu$cp() {
+        return isShowingContextMenu;
+    }
+
+    public static final /* synthetic */ void access$setAnimationState$p(WidgetGuildContextMenu widgetGuildContextMenu, WidgetGuildContextMenu$AnimationState widgetGuildContextMenu$AnimationState) {
+        widgetGuildContextMenu.animationState = widgetGuildContextMenu$AnimationState;
+    }
+
+    public static final /* synthetic */ void access$setShowingContextMenu$cp(boolean z2) {
+        isShowingContextMenu = z2;
+    }
+
+    private final void configureUI(GuildContextMenuViewModel$ViewState viewState) {
+        if (viewState instanceof GuildContextMenuViewModel$ViewState$Valid) {
+            configureValidUI((GuildContextMenuViewModel$ViewState$Valid) viewState);
+        } else if (m.areEqual(viewState, GuildContextMenuViewModel$ViewState$Invalid.INSTANCE)) {
+            WidgetGuildContextMenu$Companion widgetGuildContextMenu$Companion = Companion;
             FragmentActivity fragmentActivityRequireActivity = requireActivity();
-            C12238m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-            companion.hide(fragmentActivityRequireActivity, false);
+            m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
+            widgetGuildContextMenu$Companion.hide(fragmentActivityRequireActivity, false);
         }
     }
 
-    private final void configureValidUI(final GuildContextMenuViewModel.ViewState.Valid viewState) {
-        TextView textView = getBinding().f16763c;
-        C12238m.checkNotNullExpressionValue(textView, "binding.guildContextMenuHeader");
+    private final void configureValidUI(GuildContextMenuViewModel$ViewState$Valid viewState) {
+        TextView textView = getBinding().c;
+        m.checkNotNullExpressionValue(textView, "binding.guildContextMenuHeader");
         textView.setText(viewState.getGuild().getName());
-        getBinding().f16765e.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu.configureValidUI.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetGuildContextMenu.this.doCircularRemove();
-                WidgetGuildContextMenu.this.getViewModel().onMarkAsReadClicked();
-            }
-        });
-        getBinding().f16767g.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu.configureValidUI.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetGuildContextMenu.this.doCircularRemove();
-                WidgetServerNotifications.Companion companion = WidgetServerNotifications.INSTANCE;
-                long id2 = viewState.getGuild().getId();
-                FragmentActivity fragmentActivityRequireActivity = WidgetGuildContextMenu.this.requireActivity();
-                C12238m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-                companion.launch(id2, fragmentActivityRequireActivity);
-            }
-        });
-        getBinding().f16764d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu.configureValidUI.3
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetGuildContextMenu.this.doCircularRemove();
-                WidgetLeaveGuildDialog.Companion companion = WidgetLeaveGuildDialog.INSTANCE;
-                FragmentManager parentFragmentManager = WidgetGuildContextMenu.this.getParentFragmentManager();
-                C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-                companion.show(parentFragmentManager, viewState.getGuild().getId());
-            }
-        });
-        getBinding().f16766f.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu.configureValidUI.4
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetGuildContextMenu.this.doCircularRemove();
-                WidgetGuildProfileSheet.Companion companion = WidgetGuildProfileSheet.INSTANCE;
-                FragmentManager parentFragmentManager = WidgetGuildContextMenu.this.getParentFragmentManager();
-                C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-                companion.show(parentFragmentManager, viewState.isGuildSelected(), viewState.getGuild().getId(), (8 & 8) != 0 ? 0L : 0L, (8 & 16) != 0 ? false : false);
-            }
-        });
-        TextView textView2 = getBinding().f16764d;
-        C12238m.checkNotNullExpressionValue(textView2, "binding.guildContextMenuLeaveGuild");
+        getBinding().e.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$1(this));
+        getBinding().g.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$2(this, viewState));
+        getBinding().d.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$3(this, viewState));
+        getBinding().f.setOnClickListener(new WidgetGuildContextMenu$configureValidUI$4(this, viewState));
+        TextView textView2 = getBinding().d;
+        m.checkNotNullExpressionValue(textView2, "binding.guildContextMenuLeaveGuild");
         textView2.setVisibility(viewState.getShowLeaveGuild() ? 0 : 8);
-        TextView textView3 = getBinding().f16765e;
-        C12238m.checkNotNullExpressionValue(textView3, "binding.guildContextMenuMarkAsRead");
+        TextView textView3 = getBinding().e;
+        m.checkNotNullExpressionValue(textView3, "binding.guildContextMenuMarkAsRead");
         textView3.setVisibility(viewState.getShowMarkAsRead() ? 0 : 8);
-        getBinding().f16762b.setContentPadding(0, 0, 0, 0);
-        CardView cardView = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView, "binding.guildContextMenuCard");
+        getBinding().f2411b.setContentPadding(0, 0, 0, 0);
+        CardView cardView = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView, "binding.guildContextMenuCard");
         if (cardView.getVisibility() == 0) {
             return;
         }
@@ -281,90 +122,73 @@ public final class WidgetGuildContextMenu extends AppFragment {
     }
 
     private final void doCircularRemove() {
-        AnimationState animationState = this.animationState;
-        if (animationState == AnimationState.ANIMATING_IN) {
+        WidgetGuildContextMenu$AnimationState widgetGuildContextMenu$AnimationState = this.animationState;
+        if (widgetGuildContextMenu$AnimationState == WidgetGuildContextMenu$AnimationState.ANIMATING_IN) {
             Animator animator = this.animator;
             if (animator != null) {
                 animator.cancel();
             }
-            Companion companion = INSTANCE;
+            WidgetGuildContextMenu$Companion widgetGuildContextMenu$Companion = Companion;
             FragmentActivity fragmentActivityRequireActivity = requireActivity();
-            C12238m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-            companion.hide(fragmentActivityRequireActivity, false);
+            m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
+            widgetGuildContextMenu$Companion.hide(fragmentActivityRequireActivity, false);
             return;
         }
-        AnimationState animationState2 = AnimationState.ANIMATING_OUT;
-        if (animationState == animationState2) {
+        WidgetGuildContextMenu$AnimationState widgetGuildContextMenu$AnimationState2 = WidgetGuildContextMenu$AnimationState.ANIMATING_OUT;
+        if (widgetGuildContextMenu$AnimationState == widgetGuildContextMenu$AnimationState2) {
             return;
         }
-        CardView cardView = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView, "binding.guildContextMenuCard");
+        CardView cardView = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView, "binding.guildContextMenuCard");
         int height = cardView.getHeight() / 2;
-        CardView cardView2 = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView2, "binding.guildContextMenuCard");
+        CardView cardView2 = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView2, "binding.guildContextMenuCard");
         int width = cardView2.getWidth();
-        CardView cardView3 = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView3, "binding.guildContextMenuCard");
+        CardView cardView3 = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView3, "binding.guildContextMenuCard");
         float fHypot = (float) Math.hypot(width, cardView3.getHeight() / 2);
-        CardView cardView4 = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView4, "binding.guildContextMenuCard");
+        CardView cardView4 = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView4, "binding.guildContextMenuCard");
         if (!cardView4.isAttachedToWindow()) {
-            CardView cardView5 = getBinding().f16762b;
-            C12238m.checkNotNullExpressionValue(cardView5, "binding.guildContextMenuCard");
+            CardView cardView5 = getBinding().f2411b;
+            m.checkNotNullExpressionValue(cardView5, "binding.guildContextMenuCard");
             cardView5.setVisibility(8);
             return;
         }
-        Animator animatorCreateCircularReveal = ViewAnimationUtils.createCircularReveal(getBinding().f16762b, 0, height, fHypot, 0.0f);
+        Animator animatorCreateCircularReveal = ViewAnimationUtils.createCircularReveal(getBinding().f2411b, 0, height, fHypot, 0.0f);
         this.animator = animatorCreateCircularReveal;
-        this.animationState = animationState2;
-        C12238m.checkNotNullExpressionValue(animatorCreateCircularReveal, "animator");
+        this.animationState = widgetGuildContextMenu$AnimationState2;
+        m.checkNotNullExpressionValue(animatorCreateCircularReveal, "animator");
         animatorCreateCircularReveal.setDuration(200L);
-        animatorCreateCircularReveal.addListener(new AnimatorListenerAdapter() { // from class: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu.doCircularRemove.1
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                FragmentActivity fragmentActivityM95e = WidgetGuildContextMenu.this.m95e();
-                if (fragmentActivityM95e != null) {
-                    Companion companion2 = WidgetGuildContextMenu.INSTANCE;
-                    C12238m.checkNotNullExpressionValue(fragmentActivityM95e, ActivityChooserModel.ATTRIBUTE_ACTIVITY);
-                    companion2.hide(fragmentActivityM95e, false);
-                }
-            }
-        });
+        animatorCreateCircularReveal.addListener(new WidgetGuildContextMenu$doCircularRemove$1(this));
         animatorCreateCircularReveal.start();
     }
 
     private final void doCircularReveal() {
-        CardView cardView = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView, "binding.guildContextMenuCard");
+        CardView cardView = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView, "binding.guildContextMenuCard");
         if (!cardView.isAttachedToWindow()) {
-            CardView cardView2 = getBinding().f16762b;
-            C12238m.checkNotNullExpressionValue(cardView2, "binding.guildContextMenuCard");
+            CardView cardView2 = getBinding().f2411b;
+            m.checkNotNullExpressionValue(cardView2, "binding.guildContextMenuCard");
             cardView2.setVisibility(0);
             return;
         }
-        CardView cardView3 = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView3, "binding.guildContextMenuCard");
+        CardView cardView3 = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView3, "binding.guildContextMenuCard");
         int height = cardView3.getHeight() / 2;
-        CardView cardView4 = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView4, "binding.guildContextMenuCard");
+        CardView cardView4 = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView4, "binding.guildContextMenuCard");
         int width = cardView4.getWidth();
-        CardView cardView5 = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView5, "binding.guildContextMenuCard");
-        Animator animatorCreateCircularReveal = ViewAnimationUtils.createCircularReveal(getBinding().f16762b, 0, height, 0.0f, (float) Math.hypot(width, cardView5.getHeight() / 2));
+        CardView cardView5 = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView5, "binding.guildContextMenuCard");
+        Animator animatorCreateCircularReveal = ViewAnimationUtils.createCircularReveal(getBinding().f2411b, 0, height, 0.0f, (float) Math.hypot(width, cardView5.getHeight() / 2));
         this.animator = animatorCreateCircularReveal;
-        this.animationState = AnimationState.ANIMATING_IN;
-        C12238m.checkNotNullExpressionValue(animatorCreateCircularReveal, "animator");
+        this.animationState = WidgetGuildContextMenu$AnimationState.ANIMATING_IN;
+        m.checkNotNullExpressionValue(animatorCreateCircularReveal, "animator");
         animatorCreateCircularReveal.setDuration(200L);
-        animatorCreateCircularReveal.addListener(new AnimatorListenerAdapter() { // from class: com.discord.widgets.guilds.contextmenu.WidgetGuildContextMenu.doCircularReveal.1
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                WidgetGuildContextMenu.this.animationState = null;
-            }
-        });
-        CardView cardView6 = getBinding().f16762b;
-        C12238m.checkNotNullExpressionValue(cardView6, "binding.guildContextMenuCard");
+        animatorCreateCircularReveal.addListener(new WidgetGuildContextMenu$doCircularReveal$1(this));
+        CardView cardView6 = getBinding().f2411b;
+        m.checkNotNullExpressionValue(cardView6, "binding.guildContextMenuCard");
         cardView6.setVisibility(0);
         animatorCreateCircularReveal.start();
     }
@@ -377,8 +201,8 @@ public final class WidgetGuildContextMenu extends AppFragment {
         return (GuildContextMenuViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(GuildContextMenuViewModel.Event event) {
-        if (C12238m.areEqual(event, GuildContextMenuViewModel.Event.Dismiss.INSTANCE)) {
+    private final void handleEvent(GuildContextMenuViewModel$Event event) {
+        if (m.areEqual(event, GuildContextMenuViewModel$Event$Dismiss.INSTANCE)) {
             doCircularRemove();
         }
     }
@@ -392,7 +216,7 @@ public final class WidgetGuildContextMenu extends AppFragment {
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetGuildContextMenu.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C85991(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetGuildContextMenu.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C86002(this));
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetGuildContextMenu.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildContextMenu$onResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetGuildContextMenu.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildContextMenu$onResume$2(this), 62, (Object) null);
     }
 }

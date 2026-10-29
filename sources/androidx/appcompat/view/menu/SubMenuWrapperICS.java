@@ -6,10 +6,11 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.internal.view.SupportSubMenu;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class SubMenuWrapperICS extends MenuWrapperICS implements SubMenu {
     private final SupportSubMenu mSubMenu;
 

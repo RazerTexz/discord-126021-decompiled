@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -10,9 +11,8 @@ import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackMessageReported.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,6 +32,11 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "message_reported";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -40,7 +45,7 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
             return false;
         }
         TrackMessageReported trackMessageReported = (TrackMessageReported) other;
-        return C12238m.areEqual(this.reportType, trackMessageReported.reportType) && C12238m.areEqual(this.reportSubType, trackMessageReported.reportSubType) && C12238m.areEqual(this.subject, trackMessageReported.subject) && C12238m.areEqual(this.description, trackMessageReported.description) && C12238m.areEqual(this.reasonEnum, trackMessageReported.reasonEnum) && C12238m.areEqual(this.messageId, trackMessageReported.messageId) && C12238m.areEqual(this.reportId, trackMessageReported.reportId) && C12238m.areEqual(this.mutualGuildIds, trackMessageReported.mutualGuildIds) && C12238m.areEqual(this.reportedMessageAuthorId, trackMessageReported.reportedMessageAuthorId);
+        return m.areEqual(this.reportType, trackMessageReported.reportType) && m.areEqual(this.reportSubType, trackMessageReported.reportSubType) && m.areEqual(this.subject, trackMessageReported.subject) && m.areEqual(this.description, trackMessageReported.description) && m.areEqual(this.reasonEnum, trackMessageReported.reasonEnum) && m.areEqual(this.messageId, trackMessageReported.messageId) && m.areEqual(this.reportId, trackMessageReported.reportId) && m.areEqual(this.mutualGuildIds, trackMessageReported.mutualGuildIds) && m.areEqual(this.reportedMessageAuthorId, trackMessageReported.reportedMessageAuthorId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -76,30 +81,24 @@ public final /* data */ class TrackMessageReported implements AnalyticsSchema, T
         return iHashCode8 + (l4 != null ? l4.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMessageReported(reportType=");
-        sbM833U.append(this.reportType);
-        sbM833U.append(", reportSubType=");
-        sbM833U.append(this.reportSubType);
-        sbM833U.append(", subject=");
-        sbM833U.append(this.subject);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", reasonEnum=");
-        sbM833U.append(this.reasonEnum);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", reportId=");
-        sbM833U.append(this.reportId);
-        sbM833U.append(", mutualGuildIds=");
-        sbM833U.append(this.mutualGuildIds);
-        sbM833U.append(", reportedMessageAuthorId=");
-        return C1643a.m819G(sbM833U, this.reportedMessageAuthorId, ")");
+        StringBuilder sbU = a.U("TrackMessageReported(reportType=");
+        sbU.append(this.reportType);
+        sbU.append(", reportSubType=");
+        sbU.append(this.reportSubType);
+        sbU.append(", subject=");
+        sbU.append(this.subject);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", reasonEnum=");
+        sbU.append(this.reasonEnum);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", reportId=");
+        sbU.append(this.reportId);
+        sbU.append(", mutualGuildIds=");
+        sbU.append(this.mutualGuildIds);
+        sbU.append(", reportedMessageAuthorId=");
+        return a.G(sbU, this.reportedMessageAuthorId, ")");
     }
 }

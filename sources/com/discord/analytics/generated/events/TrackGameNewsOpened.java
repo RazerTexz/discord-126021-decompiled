@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackAfCard;
 import com.discord.analytics.generated.traits.TrackAfCardReceiver;
 import com.discord.analytics.generated.traits.TrackAfGame;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGameNewsOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,7 +32,7 @@ public final /* data */ class TrackGameNewsOpened implements AnalyticsSchema, Tr
             return false;
         }
         TrackGameNewsOpened trackGameNewsOpened = (TrackGameNewsOpened) other;
-        return C12238m.areEqual(this.newsUrl, trackGameNewsOpened.newsUrl) && C12238m.areEqual(this.newsIndex, trackGameNewsOpened.newsIndex) && C12238m.areEqual(this.newsId, trackGameNewsOpened.newsId);
+        return m.areEqual(this.newsUrl, trackGameNewsOpened.newsUrl) && m.areEqual(this.newsIndex, trackGameNewsOpened.newsIndex) && m.areEqual(this.newsId, trackGameNewsOpened.newsId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,11 +51,11 @@ public final /* data */ class TrackGameNewsOpened implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGameNewsOpened(newsUrl=");
-        sbM833U.append(this.newsUrl);
-        sbM833U.append(", newsIndex=");
-        sbM833U.append(this.newsIndex);
-        sbM833U.append(", newsId=");
-        return C1643a.m819G(sbM833U, this.newsId, ")");
+        StringBuilder sbU = a.U("TrackGameNewsOpened(newsUrl=");
+        sbU.append(this.newsUrl);
+        sbU.append(", newsIndex=");
+        sbU.append(this.newsIndex);
+        sbU.append(", newsId=");
+        return a.G(sbU, this.newsId, ")");
     }
 }

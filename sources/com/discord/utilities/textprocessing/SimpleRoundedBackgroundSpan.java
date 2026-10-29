@@ -2,18 +2,19 @@ package com.discord.utilities.textprocessing;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint$FontMetricsInt;
 import android.graphics.Path;
+import android.graphics.Path$Direction;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
 import com.discord.utilities.string.StringUtilsKt;
+import d0.a0.a;
+import d0.g0.t;
+import d0.g0.y;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p508a0.C11210a;
-import p507d0.p579g0.C12084a;
-import p507d0.p579g0.C12103t;
-import p507d0.p579g0.C12108y;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SimpleRoundedBackgroundSpan.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -45,10 +46,10 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
         float f;
         int i;
         Integer num;
-        C12238m.checkNotNullParameter(canvas, "canvas");
-        C12238m.checkNotNullParameter(paint, "paint");
+        m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(paint, "paint");
         String strTransformOrEmpty = StringUtilsKt.transformOrEmpty(text != null ? text.subSequence(start, end).toString() : null, this.transformSpannedText);
-        String str = C12103t.isBlank(strTransformOrEmpty) ^ true ? strTransformOrEmpty : null;
+        String str = t.isBlank(strTransformOrEmpty) ^ true ? strTransformOrEmpty : null;
         if (str != null) {
             int i2 = this.edgeHorizontalPadding;
             float fMeasureText = paint.measureText(str);
@@ -60,7 +61,7 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
                 }
                 RectF rectF = new RectF(x2, top, fMeasureText + x2 + i2, bottom);
                 Path path = new Path();
-                path.addRoundRect(rectF, calculateCornerRadius(start, end, text), Path.Direction.CW);
+                path.addRoundRect(rectF, calculateCornerRadius(start, end, text), Path$Direction.CW);
                 Paint paint2 = new Paint(paint);
                 paint2.setColor(this.backgroundColor);
                 canvas.drawPath(path, paint2);
@@ -76,7 +77,7 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
             i2 += i;
             RectF rectF2 = new RectF(x2, top, fMeasureText + x2 + i2, bottom);
             Path path2 = new Path();
-            path2.addRoundRect(rectF2, calculateCornerRadius(start, end, text), Path.Direction.CW);
+            path2.addRoundRect(rectF2, calculateCornerRadius(start, end, text), Path$Direction.CW);
             Paint paint3 = new Paint(paint);
             paint3.setColor(this.backgroundColor);
             canvas.drawPath(path2, paint3);
@@ -89,9 +90,9 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
     }
 
     @Override // android.text.style.ReplacementSpan
-    public int getSize(Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
-        C12238m.checkNotNullParameter(paint, "paint");
-        int iRoundToInt = C11210a.roundToInt(paint.measureText(StringUtilsKt.transformOrEmpty(text != null ? text.subSequence(start, end).toString() : null, this.transformSpannedText)));
+    public int getSize(Paint paint, CharSequence text, int start, int end, Paint$FontMetricsInt fm) {
+        m.checkNotNullParameter(paint, "paint");
+        int iRoundToInt = a.roundToInt(paint.measureText(StringUtilsKt.transformOrEmpty(text != null ? text.subSequence(start, end).toString() : null, this.transformSpannedText)));
         if (start == this.startIndex) {
             iRoundToInt += this.edgeHorizontalMargin + this.edgeHorizontalPadding;
         }
@@ -105,7 +106,7 @@ public class SimpleRoundedBackgroundSpan extends ReplacementSpan {
         Character orNull;
         int i = this.endIndex;
         if (end != i) {
-            return this.isTrimEnabled && i - end == 1 && text != null && (orNull = C12108y.getOrNull(text, end)) != null && C12084a.isWhitespace(orNull.charValue());
+            return this.isTrimEnabled && i - end == 1 && text != null && (orNull = y.getOrNull(text, end)) != null && d0.g0.a.isWhitespace(orNull.charValue());
         }
         return true;
     }

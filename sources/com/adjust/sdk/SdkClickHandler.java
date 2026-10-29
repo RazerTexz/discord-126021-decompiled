@@ -1,5 +1,6 @@
 package com.adjust.sdk;
 
+import b.d.b.a.a;
 import com.adjust.sdk.scheduler.SingleThreadCachedScheduler;
 import com.adjust.sdk.scheduler.ThreadScheduler;
 import java.io.IOException;
@@ -8,9 +9,6 @@ import java.lang.ref.WeakReference;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SdkClickHandler implements ISdkClickHandler {
@@ -31,6 +29,30 @@ public class SdkClickHandler implements ISdkClickHandler {
         this.logger = AdjustFactory.getLogger();
         this.backoffStrategy = AdjustFactory.getSdkClickBackoffStrategy();
         this.scheduler = new SingleThreadCachedScheduler(SCHEDULED_EXECUTOR_SOURCE);
+    }
+
+    public static /* synthetic */ List access$000(SdkClickHandler sdkClickHandler) {
+        return sdkClickHandler.packageQueue;
+    }
+
+    public static /* synthetic */ ILogger access$100(SdkClickHandler sdkClickHandler) {
+        return sdkClickHandler.logger;
+    }
+
+    public static /* synthetic */ void access$200(SdkClickHandler sdkClickHandler) {
+        sdkClickHandler.sendNextSdkClick();
+    }
+
+    public static /* synthetic */ WeakReference access$300(SdkClickHandler sdkClickHandler) {
+        return sdkClickHandler.activityHandlerWeakRef;
+    }
+
+    public static /* synthetic */ void access$400(SdkClickHandler sdkClickHandler) {
+        sdkClickHandler.sendNextSdkClickI();
+    }
+
+    public static /* synthetic */ void access$500(SdkClickHandler sdkClickHandler, ActivityPackage activityPackage) {
+        sdkClickHandler.sendSdkClickI(activityPackage);
     }
 
     @Override // com.adjust.sdk.ISdkClickHandler
@@ -62,12 +84,7 @@ public class SdkClickHandler implements ISdkClickHandler {
     }
 
     private void sendNextSdkClick() {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.3
-            @Override // java.lang.Runnable
-            public void run() {
-                SdkClickHandler.this.sendNextSdkClickI();
-            }
-        });
+        this.scheduler.submit(new SdkClickHandler$3(this));
     }
 
     private void sendNextSdkClickI() {
@@ -75,65 +92,26 @@ public class SdkClickHandler implements ISdkClickHandler {
         if (iActivityHandler.getActivityState() == null || iActivityHandler.getActivityState().isGdprForgotten || this.paused || this.packageQueue.isEmpty()) {
             return;
         }
-        final ActivityPackage activityPackageRemove = this.packageQueue.remove(0);
+        ActivityPackage activityPackageRemove = this.packageQueue.remove(0);
         int retries = activityPackageRemove.getRetries();
-        Runnable runnable = new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.4
-            @Override // java.lang.Runnable
-            public void run() {
-                SdkClickHandler.this.sendSdkClickI(activityPackageRemove);
-                SdkClickHandler.this.sendNextSdkClick();
-            }
-        };
+        SdkClickHandler$4 sdkClickHandler$4 = new SdkClickHandler$4(this, activityPackageRemove);
         if (retries <= 0) {
-            runnable.run();
+            sdkClickHandler$4.run();
             return;
         }
         long waitingTime = Util.getWaitingTime(retries, this.backoffStrategy);
         this.logger.verbose("Waiting for %s seconds before retrying sdk_click for the %d time", Util.SecondsDisplayFormat.format(waitingTime / MILLISECONDS_TO_SECONDS_DIVISOR), Integer.valueOf(retries));
-        this.scheduler.schedule(runnable, waitingTime);
+        this.scheduler.schedule(sdkClickHandler$4, waitingTime);
     }
 
     @Override // com.adjust.sdk.ISdkClickHandler
     public void sendReftagReferrers() {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.2
-            @Override // java.lang.Runnable
-            public void run() {
-                IActivityHandler iActivityHandler = (IActivityHandler) SdkClickHandler.this.activityHandlerWeakRef.get();
-                SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(iActivityHandler.getContext());
-                try {
-                    JSONArray rawReferrerArray = sharedPreferencesManager.getRawReferrerArray();
-                    boolean z2 = false;
-                    for (int i = 0; i < rawReferrerArray.length(); i++) {
-                        JSONArray jSONArray = rawReferrerArray.getJSONArray(i);
-                        if (jSONArray.optInt(2, -1) == 0) {
-                            String strOptString = jSONArray.optString(0, null);
-                            long jOptLong = jSONArray.optLong(1, -1L);
-                            jSONArray.put(2, 1);
-                            SdkClickHandler.this.sendSdkClick(PackageFactory.buildReftagSdkClickPackage(strOptString, jOptLong, iActivityHandler.getActivityState(), iActivityHandler.getAdjustConfig(), iActivityHandler.getDeviceInfo(), iActivityHandler.getSessionParameters()));
-                            z2 = true;
-                        }
-                    }
-                    if (z2) {
-                        sharedPreferencesManager.saveRawReferrerArray(rawReferrerArray);
-                    }
-                } catch (JSONException e) {
-                    SdkClickHandler.this.logger.error("Send saved raw referrers error (%s)", e.getMessage());
-                }
-            }
-        });
+        this.scheduler.submit(new SdkClickHandler$2(this));
     }
 
     @Override // com.adjust.sdk.ISdkClickHandler
-    public void sendSdkClick(final ActivityPackage activityPackage) {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.SdkClickHandler.1
-            @Override // java.lang.Runnable
-            public void run() {
-                SdkClickHandler.this.packageQueue.add(activityPackage);
-                SdkClickHandler.this.logger.debug("Added sdk_click %d", Integer.valueOf(SdkClickHandler.this.packageQueue.size()));
-                SdkClickHandler.this.logger.verbose("%s", activityPackage.getExtendedString());
-                SdkClickHandler.this.sendNextSdkClick();
-            }
-        });
+    public void sendSdkClick(ActivityPackage activityPackage) {
+        this.scheduler.submit(new SdkClickHandler$1(this, activityPackage));
     }
 
     private void sendSdkClickI(ActivityPackage activityPackage) {
@@ -163,14 +141,14 @@ public class SdkClickHandler implements ISdkClickHandler {
         }
         String baseUrl = AdjustFactory.getBaseUrl();
         if (this.basePath != null) {
-            StringBuilder sbM833U = C1643a.m833U(baseUrl);
-            sbM833U.append(this.basePath);
-            baseUrl = sbM833U.toString();
+            StringBuilder sbU = a.U(baseUrl);
+            sbU.append(this.basePath);
+            baseUrl = sbU.toString();
         }
-        StringBuilder sbM833U2 = C1643a.m833U(baseUrl);
-        sbM833U2.append(activityPackage.getPath());
+        StringBuilder sbU2 = a.U(baseUrl);
+        sbU2.append(activityPackage.getPath());
         try {
-            SdkClickResponseData sdkClickResponseData = (SdkClickResponseData) UtilNetworking.createPOSTHttpsURLConnection(sbM833U2.toString(), activityPackage, this.packageQueue.size() - 1);
+            SdkClickResponseData sdkClickResponseData = (SdkClickResponseData) UtilNetworking.createPOSTHttpsURLConnection(sbU2.toString(), activityPackage, this.packageQueue.size() - 1);
             if (sdkClickResponseData.jsonResponse == null) {
                 retrySendingI(activityPackage);
                 return;

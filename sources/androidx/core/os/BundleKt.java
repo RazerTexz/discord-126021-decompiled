@@ -5,15 +5,15 @@ import android.os.IBinder;
 import android.os.Parcelable;
 import android.util.Size;
 import android.util.SizeF;
+import d0.z.d.m;
 import java.io.Serializable;
 import kotlin.Pair;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Bundle.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class BundleKt {
     public static final Bundle bundleOf(Pair<String, ? extends Object>... pairArr) {
-        C12238m.checkNotNullParameter(pairArr, "pairs");
+        m.checkNotNullParameter(pairArr, "pairs");
         Bundle bundle = new Bundle(pairArr.length);
         int length = pairArr.length;
         int i = 0;
@@ -64,7 +64,7 @@ public final class BundleKt {
                 bundle.putShortArray(strComponent1, (short[]) objComponent2);
             } else if (objComponent2 instanceof Object[]) {
                 Class<?> componentType = objComponent2.getClass().getComponentType();
-                C12238m.checkNotNull(componentType);
+                m.checkNotNull(componentType);
                 if (Parcelable.class.isAssignableFrom(componentType)) {
                     bundle.putParcelableArray(strComponent1, (Parcelable[]) objComponent2);
                 } else if (String.class.isAssignableFrom(componentType)) {

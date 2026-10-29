@@ -1,24 +1,22 @@
 package androidx.work;
 
-import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
-import java.util.ArrayList;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WorkQuery {
-    private final List<WorkInfo.State> mStates;
+    private final List<WorkInfo$State> mStates;
     private final List<String> mTags;
     private final List<String> mUniqueWorkNames;
 
-    public WorkQuery(@NonNull Builder builder) {
-        this.mUniqueWorkNames = builder.mUniqueWorkNames;
-        this.mTags = builder.mTags;
-        this.mStates = builder.mStates;
+    public WorkQuery(@NonNull WorkQuery$Builder workQuery$Builder) {
+        this.mUniqueWorkNames = workQuery$Builder.mUniqueWorkNames;
+        this.mTags = workQuery$Builder.mTags;
+        this.mStates = workQuery$Builder.mStates;
     }
 
     @NonNull
-    public List<WorkInfo.State> getStates() {
+    public List<WorkInfo$State> getStates() {
         return this.mStates;
     }
 
@@ -30,64 +28,5 @@ public final class WorkQuery {
     @NonNull
     public List<String> getUniqueWorkNames() {
         return this.mUniqueWorkNames;
-    }
-
-    public final class Builder {
-        public List<String> mUniqueWorkNames = new ArrayList();
-        public List<String> mTags = new ArrayList();
-        public List<WorkInfo.State> mStates = new ArrayList();
-
-        private Builder() {
-        }
-
-        @NonNull
-        public Builder addStates(@NonNull List<WorkInfo.State> list) {
-            this.mStates.addAll(list);
-            return this;
-        }
-
-        @NonNull
-        public Builder addTags(@NonNull List<String> list) {
-            this.mTags.addAll(list);
-            return this;
-        }
-
-        @NonNull
-        public Builder addUniqueWorkNames(@NonNull List<String> list) {
-            this.mUniqueWorkNames.addAll(list);
-            return this;
-        }
-
-        @NonNull
-        public WorkQuery build() {
-            if (this.mUniqueWorkNames.isEmpty() && this.mTags.isEmpty() && this.mStates.isEmpty()) {
-                throw new IllegalArgumentException("Must specify uniqueNames, tags or states when building a WorkQuery");
-            }
-            return new WorkQuery(this);
-        }
-
-        @NonNull
-        @SuppressLint({"BuilderSetStyle"})
-        public static Builder fromStates(@NonNull List<WorkInfo.State> list) {
-            Builder builder = new Builder();
-            builder.addStates(list);
-            return builder;
-        }
-
-        @NonNull
-        @SuppressLint({"BuilderSetStyle"})
-        public static Builder fromTags(@NonNull List<String> list) {
-            Builder builder = new Builder();
-            builder.addTags(list);
-            return builder;
-        }
-
-        @NonNull
-        @SuppressLint({"BuilderSetStyle"})
-        public static Builder fromUniqueWorkNames(@NonNull List<String> list) {
-            Builder builder = new Builder();
-            builder.addUniqueWorkNames(list);
-            return builder;
-        }
     }
 }

@@ -1,21 +1,21 @@
 package com.discord.utilities.search.suggestion.entries;
 
+import b.d.b.a.a;
 import com.discord.utilities.search.query.node.QueryNode;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: RecentQuerySuggestion.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class RecentQuerySuggestion implements SearchSuggestion {
-    private final SearchSuggestion.Category category;
+    private final SearchSuggestion$Category category;
     private final List<QueryNode> query;
 
     /* JADX WARN: Multi-variable type inference failed */
     public RecentQuerySuggestion(List<? extends QueryNode> list) {
-        C12238m.checkNotNullParameter(list, "query");
+        m.checkNotNullParameter(list, "query");
         this.query = list;
-        this.category = SearchSuggestion.Category.RECENT_QUERY;
+        this.category = SearchSuggestion$Category.RECENT_QUERY;
     }
 
     public final List<QueryNode> component1() {
@@ -31,19 +31,19 @@ public final /* data */ class RecentQuerySuggestion implements SearchSuggestion 
     }
 
     public final RecentQuerySuggestion copy(List<? extends QueryNode> query) {
-        C12238m.checkNotNullParameter(query, "query");
+        m.checkNotNullParameter(query, "query");
         return new RecentQuerySuggestion(query);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof RecentQuerySuggestion) && C12238m.areEqual(this.query, ((RecentQuerySuggestion) other).query);
+            return (other instanceof RecentQuerySuggestion) && m.areEqual(this.query, ((RecentQuerySuggestion) other).query);
         }
         return true;
     }
 
     @Override // com.discord.utilities.search.suggestion.entries.SearchSuggestion
-    public SearchSuggestion.Category getCategory() {
+    public SearchSuggestion$Category getCategory() {
         return this.category;
     }
 
@@ -60,6 +60,6 @@ public final /* data */ class RecentQuerySuggestion implements SearchSuggestion 
     }
 
     public String toString() {
-        return C1643a.m824L(C1643a.m833U("RecentQuerySuggestion(query="), this.query, ")");
+        return a.L(a.U("RecentQuerySuggestion(query="), this.query, ")");
     }
 }

@@ -6,15 +6,15 @@ import java.util.Map;
 /* JADX INFO: loaded from: classes3.dex */
 public class Metrics {
     private static final String TAG = "Metrics";
-    public final Map<String, HistogramInfo> map = new HashMap();
+    public final Map<String, Metrics$HistogramInfo> map = new HashMap();
 
     @CalledByNative
     public Metrics() {
     }
 
     @CalledByNative
-    private void add(String str, HistogramInfo histogramInfo) {
-        this.map.put(str, histogramInfo);
+    private void add(String str, Metrics$HistogramInfo metrics$HistogramInfo) {
+        this.map.put(str, metrics$HistogramInfo);
     }
 
     public static void enable() {
@@ -28,23 +28,4 @@ public class Metrics {
     private static native void nativeEnable();
 
     private static native Metrics nativeGetAndReset();
-
-    public class HistogramInfo {
-        public final int bucketCount;
-        public final int max;
-        public final int min;
-        public final Map<Integer, Integer> samples = new HashMap();
-
-        @CalledByNative("HistogramInfo")
-        public HistogramInfo(int i, int i2, int i3) {
-            this.min = i;
-            this.max = i2;
-            this.bucketCount = i3;
-        }
-
-        @CalledByNative("HistogramInfo")
-        public void addSample(int i, int i2) {
-            this.samples.put(Integer.valueOf(i), Integer.valueOf(i2));
-        }
-    }
 }

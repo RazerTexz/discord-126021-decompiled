@@ -14,19 +14,7 @@ public class FragmentLifecycleCallbacksDispatcher {
     private final FragmentManager mFragmentManager;
 
     @NonNull
-    private final CopyOnWriteArrayList<FragmentLifecycleCallbacksHolder> mLifecycleCallbacks = new CopyOnWriteArrayList<>();
-
-    public final class FragmentLifecycleCallbacksHolder {
-
-        @NonNull
-        public final FragmentManager.FragmentLifecycleCallbacks mCallback;
-        public final boolean mRecursive;
-
-        public FragmentLifecycleCallbacksHolder(@NonNull FragmentManager.FragmentLifecycleCallbacks fragmentLifecycleCallbacks, boolean z2) {
-            this.mCallback = fragmentLifecycleCallbacks;
-            this.mRecursive = z2;
-        }
-    }
+    private final CopyOnWriteArrayList<FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder> mLifecycleCallbacks = new CopyOnWriteArrayList<>();
 
     public FragmentLifecycleCallbacksDispatcher(@NonNull FragmentManager fragmentManager) {
         this.mFragmentManager = fragmentManager;
@@ -37,9 +25,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentActivityCreated(fragment, bundle, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentActivityCreated(this.mFragmentManager, fragment, bundle);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentActivityCreated(this.mFragmentManager, fragment, bundle);
             }
         }
     }
@@ -50,9 +38,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentAttached(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentAttached(this.mFragmentManager, fragment, context);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentAttached(this.mFragmentManager, fragment, context);
             }
         }
     }
@@ -62,9 +50,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentCreated(fragment, bundle, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentCreated(this.mFragmentManager, fragment, bundle);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentCreated(this.mFragmentManager, fragment, bundle);
             }
         }
     }
@@ -74,9 +62,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentDestroyed(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentDestroyed(this.mFragmentManager, fragment);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentDestroyed(this.mFragmentManager, fragment);
             }
         }
     }
@@ -86,9 +74,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentDetached(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentDetached(this.mFragmentManager, fragment);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentDetached(this.mFragmentManager, fragment);
             }
         }
     }
@@ -98,9 +86,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentPaused(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentPaused(this.mFragmentManager, fragment);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentPaused(this.mFragmentManager, fragment);
             }
         }
     }
@@ -111,9 +99,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentPreAttached(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentPreAttached(this.mFragmentManager, fragment, context);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentPreAttached(this.mFragmentManager, fragment, context);
             }
         }
     }
@@ -123,9 +111,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentPreCreated(fragment, bundle, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentPreCreated(this.mFragmentManager, fragment, bundle);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentPreCreated(this.mFragmentManager, fragment, bundle);
             }
         }
     }
@@ -135,9 +123,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentResumed(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentResumed(this.mFragmentManager, fragment);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentResumed(this.mFragmentManager, fragment);
             }
         }
     }
@@ -147,9 +135,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentSaveInstanceState(fragment, bundle, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentSaveInstanceState(this.mFragmentManager, fragment, bundle);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentSaveInstanceState(this.mFragmentManager, fragment, bundle);
             }
         }
     }
@@ -159,9 +147,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentStarted(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentStarted(this.mFragmentManager, fragment);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentStarted(this.mFragmentManager, fragment);
             }
         }
     }
@@ -171,9 +159,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentStopped(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentStopped(this.mFragmentManager, fragment);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentStopped(this.mFragmentManager, fragment);
             }
         }
     }
@@ -183,9 +171,9 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentViewCreated(fragment, view, bundle, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentViewCreated(this.mFragmentManager, fragment, view, bundle);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentViewCreated(this.mFragmentManager, fragment, view, bundle);
             }
         }
     }
@@ -195,22 +183,22 @@ public class FragmentLifecycleCallbacksDispatcher {
         if (parent != null) {
             parent.getParentFragmentManager().getLifecycleCallbacksDispatcher().dispatchOnFragmentViewDestroyed(fragment, true);
         }
-        for (FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
-            if (!z2 || fragmentLifecycleCallbacksHolder.mRecursive) {
-                fragmentLifecycleCallbacksHolder.mCallback.onFragmentViewDestroyed(this.mFragmentManager, fragment);
+        for (FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder : this.mLifecycleCallbacks) {
+            if (!z2 || fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mRecursive) {
+                fragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder.mCallback.onFragmentViewDestroyed(this.mFragmentManager, fragment);
             }
         }
     }
 
-    public void registerFragmentLifecycleCallbacks(@NonNull FragmentManager.FragmentLifecycleCallbacks fragmentLifecycleCallbacks, boolean z2) {
-        this.mLifecycleCallbacks.add(new FragmentLifecycleCallbacksHolder(fragmentLifecycleCallbacks, z2));
+    public void registerFragmentLifecycleCallbacks(@NonNull FragmentManager$FragmentLifecycleCallbacks fragmentManager$FragmentLifecycleCallbacks, boolean z2) {
+        this.mLifecycleCallbacks.add(new FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder(fragmentManager$FragmentLifecycleCallbacks, z2));
     }
 
-    public void unregisterFragmentLifecycleCallbacks(@NonNull FragmentManager.FragmentLifecycleCallbacks fragmentLifecycleCallbacks) {
+    public void unregisterFragmentLifecycleCallbacks(@NonNull FragmentManager$FragmentLifecycleCallbacks fragmentManager$FragmentLifecycleCallbacks) {
         synchronized (this.mLifecycleCallbacks) {
             int size = this.mLifecycleCallbacks.size();
             for (int i = 0; i < size; i++) {
-                if (this.mLifecycleCallbacks.get(i).mCallback == fragmentLifecycleCallbacks) {
+                if (this.mLifecycleCallbacks.get(i).mCallback == fragmentManager$FragmentLifecycleCallbacks) {
                     this.mLifecycleCallbacks.remove(i);
                     break;
                 }

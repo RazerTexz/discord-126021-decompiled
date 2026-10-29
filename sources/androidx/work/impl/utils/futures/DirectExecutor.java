@@ -1,10 +1,11 @@
 package androidx.work.impl.utils.futures;
 
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public enum DirectExecutor implements Executor {
     INSTANCE;
 

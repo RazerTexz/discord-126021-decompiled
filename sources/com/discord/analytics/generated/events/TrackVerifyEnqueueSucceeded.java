@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVerifyEnqueueSucceeded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackVerifyEnqueueSucceeded implements AnalyticsSc
             return false;
         }
         TrackVerifyEnqueueSucceeded trackVerifyEnqueueSucceeded = (TrackVerifyEnqueueSucceeded) other;
-        return C12238m.areEqual(this.phoneNumber, trackVerifyEnqueueSucceeded.phoneNumber) && C12238m.areEqual(this.channel, trackVerifyEnqueueSucceeded.channel);
+        return m.areEqual(this.phoneNumber, trackVerifyEnqueueSucceeded.phoneNumber) && m.areEqual(this.channel, trackVerifyEnqueueSucceeded.channel);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackVerifyEnqueueSucceeded implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVerifyEnqueueSucceeded(phoneNumber=");
-        sbM833U.append(this.phoneNumber);
-        sbM833U.append(", channel=");
-        return C1643a.m817E(sbM833U, this.channel, ")");
+        StringBuilder sbU = a.U("TrackVerifyEnqueueSucceeded(phoneNumber=");
+        sbU.append(this.phoneNumber);
+        sbU.append(", channel=");
+        return a.E(sbU, this.channel, ")");
     }
 }

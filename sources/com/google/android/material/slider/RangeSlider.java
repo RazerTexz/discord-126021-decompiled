@@ -3,10 +3,8 @@ package com.google.android.material.slider;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.AbsSavedState;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import androidx.annotation.ColorRes;
@@ -15,61 +13,16 @@ import androidx.annotation.Dimension;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$attr;
+import com.google.android.material.R$styleable;
 import com.google.android.material.internal.ThemeEnforcement;
 import java.util.ArrayList;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSliderTouchListener> {
+public class RangeSlider extends BaseSlider<RangeSlider, RangeSlider$OnChangeListener, RangeSlider$OnSliderTouchListener> {
     private float minSeparation;
     private int separationUnit;
-
-    public interface OnChangeListener extends BaseOnChangeListener<RangeSlider> {
-    }
-
-    public interface OnSliderTouchListener extends BaseOnSliderTouchListener<RangeSlider> {
-    }
-
-    public class RangeSliderState extends AbsSavedState {
-
-        /* JADX INFO: renamed from: j */
-        public float f21121j;
-
-        /* JADX INFO: renamed from: k */
-        public int f21122k;
-        public static final Parcelable.Creator<RangeSliderState> CREATOR = new C10982a();
-
-        /* JADX INFO: renamed from: com.google.android.material.slider.RangeSlider$RangeSliderState$a */
-        public final class C10982a implements Parcelable.Creator<RangeSliderState> {
-            @Override // android.os.Parcelable.Creator
-            public RangeSliderState createFromParcel(Parcel parcel) {
-                return new RangeSliderState(parcel, null);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public RangeSliderState[] newArray(int i) {
-                return new RangeSliderState[i];
-            }
-        }
-
-        public RangeSliderState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeFloat(this.f21121j);
-            parcel.writeInt(this.f21122k);
-        }
-
-        public RangeSliderState(Parcel parcel, C10983a c10983a) {
-            super(parcel.readParcelable(RangeSliderState.class.getClassLoader()));
-            this.f21121j = parcel.readFloat();
-            this.f21122k = parcel.readInt();
-        }
-    }
 
     public RangeSlider(@NonNull Context context) {
         this(context, null);
@@ -253,22 +206,22 @@ public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSli
         return super.isTickVisible();
     }
 
-    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent.Callback
+    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent$Callback
     public /* bridge */ /* synthetic */ boolean onKeyDown(int i, @NonNull KeyEvent keyEvent) {
         return super.onKeyDown(i, keyEvent);
     }
 
-    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent.Callback
+    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent$Callback
     public /* bridge */ /* synthetic */ boolean onKeyUp(int i, @NonNull KeyEvent keyEvent) {
         return super.onKeyUp(i, keyEvent);
     }
 
     @Override // com.google.android.material.slider.BaseSlider, android.view.View
     public void onRestoreInstanceState(@Nullable Parcelable parcelable) {
-        RangeSliderState rangeSliderState = (RangeSliderState) parcelable;
-        super.onRestoreInstanceState(rangeSliderState.getSuperState());
-        this.minSeparation = rangeSliderState.f21121j;
-        int i = rangeSliderState.f21122k;
+        RangeSlider$RangeSliderState rangeSlider$RangeSliderState = (RangeSlider$RangeSliderState) parcelable;
+        super.onRestoreInstanceState(rangeSlider$RangeSliderState.getSuperState());
+        this.minSeparation = rangeSlider$RangeSliderState.j;
+        int i = rangeSlider$RangeSliderState.k;
         this.separationUnit = i;
         setSeparationUnit(i);
     }
@@ -276,10 +229,10 @@ public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSli
     @Override // com.google.android.material.slider.BaseSlider, android.view.View
     @NonNull
     public Parcelable onSaveInstanceState() {
-        RangeSliderState rangeSliderState = new RangeSliderState(super.onSaveInstanceState());
-        rangeSliderState.f21121j = this.minSeparation;
-        rangeSliderState.f21122k = this.separationUnit;
-        return rangeSliderState;
+        RangeSlider$RangeSliderState rangeSlider$RangeSliderState = new RangeSlider$RangeSliderState(super.onSaveInstanceState());
+        rangeSlider$RangeSliderState.j = this.minSeparation;
+        rangeSlider$RangeSliderState.k = this.separationUnit;
+        return rangeSlider$RangeSliderState;
     }
 
     @Override // com.google.android.material.slider.BaseSlider, android.view.View
@@ -440,7 +393,7 @@ public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSli
     }
 
     public RangeSlider(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C10817R.attr.sliderStyle);
+        this(context, attributeSet, R$attr.sliderStyle);
     }
 
     @Override // com.google.android.material.slider.BaseSlider
@@ -450,12 +403,12 @@ public class RangeSlider extends BaseSlider<RangeSlider, OnChangeListener, OnSli
 
     public RangeSlider(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C10817R.styleable.RangeSlider, i, BaseSlider.DEF_STYLE_RES, new int[0]);
-        int i2 = C10817R.styleable.RangeSlider_values;
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R$styleable.RangeSlider, i, BaseSlider.DEF_STYLE_RES, new int[0]);
+        int i2 = R$styleable.RangeSlider_values;
         if (typedArrayObtainStyledAttributes.hasValue(i2)) {
             setValues(convertToFloat(typedArrayObtainStyledAttributes.getResources().obtainTypedArray(typedArrayObtainStyledAttributes.getResourceId(i2, 0))));
         }
-        this.minSeparation = typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.RangeSlider_minSeparation, 0.0f);
+        this.minSeparation = typedArrayObtainStyledAttributes.getDimension(R$styleable.RangeSlider_minSeparation, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
     }
 }

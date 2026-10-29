@@ -2,40 +2,25 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubAuthenticationlViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubAuthenticationArgs implements Parcelable {
-    public static final Parcelable.Creator<HubAuthenticationArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<HubAuthenticationArgs> CREATOR = new HubAuthenticationArgs$Creator();
     private final String email;
     private final Long guildId;
 
-    public final class Creator implements Parcelable.Creator<HubAuthenticationArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubAuthenticationArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            return new HubAuthenticationArgs(parcel.readString(), parcel.readInt() != 0 ? Long.valueOf(parcel.readLong()) : null);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubAuthenticationArgs[] newArray(int i) {
-            return new HubAuthenticationArgs[i];
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
     public HubAuthenticationArgs() {
-        this(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
+        this(null, null, 3, null);
     }
 
     public HubAuthenticationArgs(String str, Long l) {
-        C12238m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
+        m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
         this.email = str;
         this.guildId = l;
     }
@@ -51,7 +36,7 @@ public final /* data */ class HubAuthenticationArgs implements Parcelable {
     }
 
     public final HubAuthenticationArgs copy(String email, Long guildId) {
-        C12238m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
+        m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
         return new HubAuthenticationArgs(email, guildId);
     }
 
@@ -68,7 +53,7 @@ public final /* data */ class HubAuthenticationArgs implements Parcelable {
             return false;
         }
         HubAuthenticationArgs hubAuthenticationArgs = (HubAuthenticationArgs) other;
-        return C12238m.areEqual(this.email, hubAuthenticationArgs.email) && C12238m.areEqual(this.guildId, hubAuthenticationArgs.guildId);
+        return m.areEqual(this.email, hubAuthenticationArgs.email) && m.areEqual(this.guildId, hubAuthenticationArgs.guildId);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -97,15 +82,15 @@ public final /* data */ class HubAuthenticationArgs implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubAuthenticationArgs(email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", guildId=");
-        return C1643a.m819G(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("HubAuthenticationArgs(email=");
+        sbU.append(this.email);
+        sbU.append(", guildId=");
+        return a.G(sbU, this.guildId, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeString(this.email);
         Long l = this.guildId;
         if (l == null) {

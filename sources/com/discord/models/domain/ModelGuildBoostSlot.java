@@ -1,8 +1,8 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.utilities.time.TimeUtils;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelGuildBoostSlot.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -55,7 +55,7 @@ public final /* data */ class ModelGuildBoostSlot {
             return false;
         }
         ModelGuildBoostSlot modelGuildBoostSlot = (ModelGuildBoostSlot) other;
-        return C12238m.areEqual(this.cooldownEndsAt, modelGuildBoostSlot.cooldownEndsAt) && this.id == modelGuildBoostSlot.id && this.subscriptionId == modelGuildBoostSlot.subscriptionId && C12238m.areEqual(this.premiumGuildSubscription, modelGuildBoostSlot.premiumGuildSubscription) && this.canceled == modelGuildBoostSlot.canceled;
+        return m.areEqual(this.cooldownEndsAt, modelGuildBoostSlot.cooldownEndsAt) && this.id == modelGuildBoostSlot.id && this.subscriptionId == modelGuildBoostSlot.subscriptionId && m.areEqual(this.premiumGuildSubscription, modelGuildBoostSlot.premiumGuildSubscription) && this.canceled == modelGuildBoostSlot.canceled;
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -126,15 +126,15 @@ public final /* data */ class ModelGuildBoostSlot {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelGuildBoostSlot(cooldownEndsAt=");
-        sbM833U.append(this.cooldownEndsAt);
-        sbM833U.append(", id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", premiumGuildSubscription=");
-        sbM833U.append(this.premiumGuildSubscription);
-        sbM833U.append(", canceled=");
-        return C1643a.m827O(sbM833U, this.canceled, ")");
+        StringBuilder sbU = a.U("ModelGuildBoostSlot(cooldownEndsAt=");
+        sbU.append(this.cooldownEndsAt);
+        sbU.append(", id=");
+        sbU.append(this.id);
+        sbU.append(", subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", premiumGuildSubscription=");
+        sbU.append(this.premiumGuildSubscription);
+        sbU.append(", canceled=");
+        return a.O(sbU, this.canceled, ")");
     }
 }

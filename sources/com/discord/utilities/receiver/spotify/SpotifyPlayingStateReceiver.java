@@ -13,6 +13,6 @@ public final class SpotifyPlayingStateReceiver extends BroadcastReceiver {
         if (intent == null) {
             return;
         }
-        StoreStream.INSTANCE.getSpotify().setPlayingStatus(intent.getBooleanExtra("playing", false), intent.getIntExtra("playbackPosition", 0));
+        StoreStream.Companion.getSpotify().setPlayingStatus(intent.getBooleanExtra("playing", false), intent.getIntExtra("playbackPosition", 0));
     }
 }

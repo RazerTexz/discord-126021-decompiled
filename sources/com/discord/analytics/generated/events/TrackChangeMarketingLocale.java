@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
 import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChangeMarketingLocale.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSch
             return false;
         }
         TrackChangeMarketingLocale trackChangeMarketingLocale = (TrackChangeMarketingLocale) other;
-        return C12238m.areEqual(this.from, trackChangeMarketingLocale.from) && C12238m.areEqual(this.to, trackChangeMarketingLocale.to);
+        return m.areEqual(this.from, trackChangeMarketingLocale.from) && m.areEqual(this.to, trackChangeMarketingLocale.to);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackChangeMarketingLocale implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChangeMarketingLocale(from=");
-        sbM833U.append(this.from);
-        sbM833U.append(", to=");
-        return C1643a.m817E(sbM833U, this.to, ")");
+        StringBuilder sbU = a.U("TrackChangeMarketingLocale(from=");
+        sbU.append(this.from);
+        sbU.append(", to=");
+        return a.E(sbU, this.to, ")");
     }
 }

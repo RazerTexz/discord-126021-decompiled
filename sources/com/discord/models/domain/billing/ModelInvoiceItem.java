@@ -1,9 +1,9 @@
 package com.discord.models.domain.billing;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelInvoicePreview.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,7 +17,7 @@ public final /* data */ class ModelInvoiceItem {
     private final int subscriptionPlanPrice;
 
     public ModelInvoiceItem(int i, List<ModelInvoiceDiscount> list, long j, boolean z2, int i2, long j2, int i3) {
-        C12238m.checkNotNullParameter(list, "discount");
+        m.checkNotNullParameter(list, "discount");
         this.amount = i;
         this.discount = list;
         this.id = j;
@@ -31,8 +31,13 @@ public final /* data */ class ModelInvoiceItem {
         return this.discount;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ ModelInvoiceItem copy$default(ModelInvoiceItem modelInvoiceItem, int i, List list, long j, boolean z2, int i2, long j2, int i3, int i4, Object obj) {
+        return modelInvoiceItem.copy((i4 & 1) != 0 ? modelInvoiceItem.amount : i, (i4 & 2) != 0 ? modelInvoiceItem.discount : list, (i4 & 4) != 0 ? modelInvoiceItem.id : j, (i4 & 8) != 0 ? modelInvoiceItem.proration : z2, (i4 & 16) != 0 ? modelInvoiceItem.quantity : i2, (i4 & 32) != 0 ? modelInvoiceItem.subscriptionPlanId : j2, (i4 & 64) != 0 ? modelInvoiceItem.subscriptionPlanPrice : i3);
+    }
+
     public final ModelInvoiceItem copy(int amount, List<ModelInvoiceDiscount> discount, long id2, boolean proration, int quantity, long subscriptionPlanId, int subscriptionPlanPrice) {
-        C12238m.checkNotNullParameter(discount, "discount");
+        m.checkNotNullParameter(discount, "discount");
         return new ModelInvoiceItem(amount, discount, id2, proration, quantity, subscriptionPlanId, subscriptionPlanPrice);
     }
 
@@ -44,7 +49,7 @@ public final /* data */ class ModelInvoiceItem {
             return false;
         }
         ModelInvoiceItem modelInvoiceItem = (ModelInvoiceItem) other;
-        return this.amount == modelInvoiceItem.amount && C12238m.areEqual(this.discount, modelInvoiceItem.discount) && this.id == modelInvoiceItem.id && this.proration == modelInvoiceItem.proration && this.quantity == modelInvoiceItem.quantity && this.subscriptionPlanId == modelInvoiceItem.subscriptionPlanId && this.subscriptionPlanPrice == modelInvoiceItem.subscriptionPlanPrice;
+        return this.amount == modelInvoiceItem.amount && m.areEqual(this.discount, modelInvoiceItem.discount) && this.id == modelInvoiceItem.id && this.proration == modelInvoiceItem.proration && this.quantity == modelInvoiceItem.quantity && this.subscriptionPlanId == modelInvoiceItem.subscriptionPlanId && this.subscriptionPlanPrice == modelInvoiceItem.subscriptionPlanPrice;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -127,19 +132,19 @@ public final /* data */ class ModelInvoiceItem {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelInvoiceItem(amount=");
-        sbM833U.append(this.amount);
-        sbM833U.append(", discount=");
-        sbM833U.append(this.discount);
-        sbM833U.append(", id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", proration=");
-        sbM833U.append(this.proration);
-        sbM833U.append(", quantity=");
-        sbM833U.append(this.quantity);
-        sbM833U.append(", subscriptionPlanId=");
-        sbM833U.append(this.subscriptionPlanId);
-        sbM833U.append(", subscriptionPlanPrice=");
-        return C1643a.m814B(sbM833U, this.subscriptionPlanPrice, ")");
+        StringBuilder sbU = a.U("ModelInvoiceItem(amount=");
+        sbU.append(this.amount);
+        sbU.append(", discount=");
+        sbU.append(this.discount);
+        sbU.append(", id=");
+        sbU.append(this.id);
+        sbU.append(", proration=");
+        sbU.append(this.proration);
+        sbU.append(", quantity=");
+        sbU.append(this.quantity);
+        sbU.append(", subscriptionPlanId=");
+        sbU.append(this.subscriptionPlanId);
+        sbU.append(", subscriptionPlanPrice=");
+        return a.B(sbU, this.subscriptionPlanPrice, ")");
     }
 }

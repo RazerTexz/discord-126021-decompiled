@@ -11,27 +11,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildScheduledEventUpsellBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f17047a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f17048b;
+    public final MaterialButton f2450b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17049c;
+    public final MaterialButton c;
 
     public WidgetGuildScheduledEventUpsellBottomSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull ImageView imageView) {
-        this.f17047a = nestedScrollView;
-        this.f17048b = materialButton;
-        this.f17049c = materialButton2;
+        this.a = nestedScrollView;
+        this.f2450b = materialButton;
+        this.c = materialButton2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17047a;
+        return this.a;
     }
 }

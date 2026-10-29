@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackExternalShareOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackExternalShareOpened implements AnalyticsSchem
             return false;
         }
         TrackExternalShareOpened trackExternalShareOpened = (TrackExternalShareOpened) other;
-        return C12238m.areEqual(this.hasContent, trackExternalShareOpened.hasContent) && C12238m.areEqual(this.hasAttachment, trackExternalShareOpened.hasAttachment);
+        return m.areEqual(this.hasContent, trackExternalShareOpened.hasContent) && m.areEqual(this.hasAttachment, trackExternalShareOpened.hasAttachment);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackExternalShareOpened implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackExternalShareOpened(hasContent=");
-        sbM833U.append(this.hasContent);
-        sbM833U.append(", hasAttachment=");
-        return C1643a.m816D(sbM833U, this.hasAttachment, ")");
+        StringBuilder sbU = a.U("TrackExternalShareOpened(hasContent=");
+        sbU.append(this.hasContent);
+        sbU.append(", hasAttachment=");
+        return a.D(sbU, this.hasAttachment, ")");
     }
 }

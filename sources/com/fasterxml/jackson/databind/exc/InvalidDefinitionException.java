@@ -1,28 +1,28 @@
 package com.fasterxml.jackson.databind.exc;
 
+import b.g.a.b.d;
+import b.g.a.b.f;
+import b.g.a.c.c;
+import b.g.a.c.c0.s;
+import b.g.a.c.j;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import p007b.p195g.p196a.p198b.AbstractC2108d;
-import p007b.p195g.p196a.p198b.AbstractC2110f;
-import p007b.p195g.p196a.p205c.AbstractC2172c;
-import p007b.p195g.p196a.p205c.AbstractC2360j;
-import p007b.p195g.p196a.p205c.p210c0.AbstractC2198s;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class InvalidDefinitionException extends JsonMappingException {
-    public final AbstractC2360j _type;
+    public final j _type;
 
-    public InvalidDefinitionException(AbstractC2110f abstractC2110f, String str, AbstractC2360j abstractC2360j) {
-        super(abstractC2110f, str);
-        this._type = abstractC2360j;
+    public InvalidDefinitionException(f fVar, String str, j jVar) {
+        super(fVar, str);
+        this._type = jVar;
     }
 
-    public InvalidDefinitionException(AbstractC2108d abstractC2108d, String str, AbstractC2360j abstractC2360j) {
-        super(abstractC2108d, str);
-        this._type = abstractC2360j;
+    public InvalidDefinitionException(d dVar, String str, j jVar) {
+        super(dVar, str);
+        this._type = jVar;
     }
 
-    public InvalidDefinitionException(AbstractC2108d abstractC2108d, String str, AbstractC2172c abstractC2172c, AbstractC2198s abstractC2198s) {
-        super(abstractC2108d, str);
-        this._type = abstractC2172c == null ? null : abstractC2172c.f4626a;
+    public InvalidDefinitionException(d dVar, String str, c cVar, s sVar) {
+        super(dVar, str);
+        this._type = cVar == null ? null : cVar.a;
     }
 }

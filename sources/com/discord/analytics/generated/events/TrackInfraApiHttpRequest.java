@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackInfraApiHttpRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchem
             return false;
         }
         TrackInfraApiHttpRequest trackInfraApiHttpRequest = (TrackInfraApiHttpRequest) other;
-        return C12238m.areEqual(this.statusCode, trackInfraApiHttpRequest.statusCode) && C12238m.areEqual(this.count, trackInfraApiHttpRequest.count);
+        return m.areEqual(this.statusCode, trackInfraApiHttpRequest.statusCode) && m.areEqual(this.count, trackInfraApiHttpRequest.count);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackInfraApiHttpRequest implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackInfraApiHttpRequest(statusCode=");
-        sbM833U.append(this.statusCode);
-        sbM833U.append(", count=");
-        return C1643a.m819G(sbM833U, this.count, ")");
+        StringBuilder sbU = a.U("TrackInfraApiHttpRequest(statusCode=");
+        sbU.append(this.statusCode);
+        sbU.append(", count=");
+        return a.G(sbU, this.count, ")");
     }
 }

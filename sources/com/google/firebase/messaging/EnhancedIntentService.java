@@ -9,20 +9,19 @@ import android.util.Log;
 import androidx.annotation.CallSuper;
 import androidx.annotation.MainThread;
 import androidx.annotation.VisibleForTesting;
+import b.i.a.f.e.o.j.a;
+import b.i.c.s.a0;
+import b.i.c.s.y;
+import b.i.c.w.d;
+import b.i.c.w.e;
+import b.i.c.w.f;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.EnhancedIntentService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
-import p007b.p225i.p226a.p288f.p299e.p308o.p309j.ThreadFactoryC3408a;
-import p007b.p225i.p226a.p288f.p340n.InterfaceC4357c;
-import p007b.p225i.p361c.p398s.BinderC4806a0;
-import p007b.p225i.p361c.p398s.C4834y;
-import p007b.p225i.p361c.p406w.ExecutorC4867e;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
@@ -36,27 +35,24 @@ public abstract class EnhancedIntentService extends Service {
     private final Object lock;
     private int runningTasks;
 
-    /* JADX INFO: renamed from: com.google.firebase.messaging.EnhancedIntentService$a */
-    /* JADX INFO: compiled from: com.google.firebase:firebase-messaging@@21.0.0 */
-    public class C11087a implements BinderC4806a0.a {
-        public C11087a() {
-        }
-    }
-
     public EnhancedIntentService() {
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new ThreadFactoryC3408a("Firebase-Messaging-Intent-Handle"));
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new a("Firebase-Messaging-Intent-Handle"));
         threadPoolExecutor.allowCoreThreadTimeOut(true);
         this.executor = Executors.unconfigurableExecutorService(threadPoolExecutor);
         this.lock = new Object();
         this.runningTasks = 0;
     }
 
+    public static /* synthetic */ Task access$000(EnhancedIntentService enhancedIntentService, Intent intent) {
+        return enhancedIntentService.processIntent(intent);
+    }
+
     private void finishTask(Intent intent) {
         if (intent != null) {
-            synchronized (C4834y.f12915b) {
-                if (C4834y.f12916c != null && intent.getBooleanExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", false)) {
+            synchronized (y.f1777b) {
+                if (y.c != null && intent.getBooleanExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", false)) {
                     intent.putExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", false);
-                    C4834y.f12916c.m6002b();
+                    y.c.b();
                 }
             }
         }
@@ -97,7 +93,7 @@ public abstract class EnhancedIntentService extends Service {
         try {
             handleIntent(intent);
         } finally {
-            taskCompletionSource.f20845a.m6024s(null);
+            taskCompletionSource.a.s(null);
         }
     }
 
@@ -107,7 +103,7 @@ public abstract class EnhancedIntentService extends Service {
             Log.d("EnhancedIntentService", "Service received bind request");
         }
         if (this.binder == null) {
-            this.binder = new BinderC4806a0(new C11087a());
+            this.binder = new a0(new EnhancedIntentService$a(this));
         }
         return this.binder;
     }
@@ -120,7 +116,7 @@ public abstract class EnhancedIntentService extends Service {
     }
 
     @Override // android.app.Service
-    public final int onStartCommand(final Intent intent, int i, int i2) {
+    public final int onStartCommand(Intent intent, int i, int i2) {
         synchronized (this.lock) {
             this.lastStartId = i2;
             this.runningTasks++;
@@ -131,60 +127,22 @@ public abstract class EnhancedIntentService extends Service {
             return 2;
         }
         Task<Void> taskProcessIntent = processIntent(startCommandIntent);
-        if (taskProcessIntent.mo6020o()) {
+        if (taskProcessIntent.o()) {
             finishTask(intent);
             return 2;
         }
-        taskProcessIntent.mo6008c(ExecutorC4867e.f13020j, new InterfaceC4357c(this, intent) { // from class: b.i.c.w.f
-
-            /* JADX INFO: renamed from: a */
-            public final EnhancedIntentService f13021a;
-
-            /* JADX INFO: renamed from: b */
-            public final Intent f13022b;
-
-            {
-                this.f13021a = this;
-                this.f13022b = intent;
-            }
-
-            @Override // p007b.p225i.p226a.p288f.p340n.InterfaceC4357c
-            public final void onComplete(Task task) {
-                this.f13021a.lambda$onStartCommand$1$EnhancedIntentService(this.f13022b, task);
-            }
-        });
+        taskProcessIntent.c(e.j, new f(this, intent));
         return 3;
     }
 
     @MainThread
-    private Task<Void> processIntent(final Intent intent) {
+    private Task<Void> processIntent(Intent intent) {
         if (handleIntentOnMainThread(intent)) {
-            return C3404f.m4264Z(null);
+            return b.i.a.f.e.o.f.Z(null);
         }
-        final TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.executor.execute(new Runnable(this, intent, taskCompletionSource) { // from class: b.i.c.w.d
-
-            /* JADX INFO: renamed from: j */
-            public final EnhancedIntentService f13017j;
-
-            /* JADX INFO: renamed from: k */
-            public final Intent f13018k;
-
-            /* JADX INFO: renamed from: l */
-            public final TaskCompletionSource f13019l;
-
-            {
-                this.f13017j = this;
-                this.f13018k = intent;
-                this.f13019l = taskCompletionSource;
-            }
-
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f13017j.lambda$processIntent$0$EnhancedIntentService(this.f13018k, this.f13019l);
-            }
-        });
-        return taskCompletionSource.f20845a;
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        this.executor.execute(new d(this, intent, taskCompletionSource));
+        return taskCompletionSource.a;
     }
 
     public boolean stopSelfResultHook(int i) {

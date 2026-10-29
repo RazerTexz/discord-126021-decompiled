@@ -23,10 +23,10 @@ public class SerialVersionUIDAdder extends ClassVisitor {
     private int access;
     private String name;
     private String[] interfaces;
-    private Collection<Item> svuidFields;
+    private Collection<SerialVersionUIDAdder$Item> svuidFields;
     private boolean hasStaticInitializer;
-    private Collection<Item> svuidConstructors;
-    private Collection<Item> svuidMethods;
+    private Collection<SerialVersionUIDAdder$Item> svuidConstructors;
+    private Collection<SerialVersionUIDAdder$Item> svuidMethods;
 
     public SerialVersionUIDAdder(ClassVisitor classVisitor) {
         this(Opcodes.ASM9, classVisitor);
@@ -62,9 +62,9 @@ public class SerialVersionUIDAdder extends ClassVisitor {
             int mods = access & 3391;
             if ((access & 2) == 0) {
                 if ("<init>".equals(name)) {
-                    this.svuidConstructors.add(new Item(name, mods, descriptor));
+                    this.svuidConstructors.add(new SerialVersionUIDAdder$Item(name, mods, descriptor));
                 } else if (!CLINIT.equals(name)) {
-                    this.svuidMethods.add(new Item(name, mods, descriptor));
+                    this.svuidMethods.add(new SerialVersionUIDAdder$Item(name, mods, descriptor));
                 }
             }
         }
@@ -80,7 +80,7 @@ public class SerialVersionUIDAdder extends ClassVisitor {
             }
             if ((access & 2) == 0 || (access & Opcodes.L2I) == 0) {
                 int mods = access & 223;
-                this.svuidFields.add(new Item(name, mods, desc));
+                this.svuidFields.add(new SerialVersionUIDAdder$Item(name, mods, desc));
             }
         }
         return super.visitField(access, name, desc, signature, value);
@@ -209,43 +209,13 @@ public class SerialVersionUIDAdder extends ClassVisitor {
         }
     }
 
-    private static void writeItems(Collection<Item> itemCollection, DataOutput dataOutputStream, boolean dotted) throws IOException {
-        Item[] items = (Item[]) itemCollection.toArray(new Item[0]);
+    private static void writeItems(Collection<SerialVersionUIDAdder$Item> itemCollection, DataOutput dataOutputStream, boolean dotted) throws IOException {
+        SerialVersionUIDAdder$Item[] items = (SerialVersionUIDAdder$Item[]) itemCollection.toArray(new SerialVersionUIDAdder$Item[0]);
         Arrays.sort(items);
-        for (Item item : items) {
+        for (SerialVersionUIDAdder$Item item : items) {
             dataOutputStream.writeUTF(item.name);
             dataOutputStream.writeInt(item.access);
             dataOutputStream.writeUTF(dotted ? item.descriptor.replace(MentionUtilsKt.SLASH_CHAR, '.') : item.descriptor);
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/commons/SerialVersionUIDAdder$Item.SCL.lombok */
-    final class Item implements Comparable<Item> {
-        final String name;
-        final int access;
-        final String descriptor;
-
-        Item(String name, int access, String descriptor) {
-            this.name = name;
-            this.access = access;
-            this.descriptor = descriptor;
-        }
-
-        @Override // java.lang.Comparable
-        public int compareTo(Item item) {
-            int result = this.name.compareTo(item.name);
-            if (result == 0) {
-                result = this.descriptor.compareTo(item.descriptor);
-            }
-            return result;
-        }
-
-        public boolean equals(Object other) {
-            return (other instanceof Item) && compareTo((Item) other) == 0;
-        }
-
-        public int hashCode() {
-            return this.name.hashCode() ^ this.descriptor.hashCode();
         }
     }
 }

@@ -1,9 +1,9 @@
 package com.discord.api.application;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.Arrays;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ProfileApplication.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ApplicationInstallParams {
             return false;
         }
         ApplicationInstallParams applicationInstallParams = (ApplicationInstallParams) other;
-        return C12238m.areEqual(this.permissions, applicationInstallParams.permissions) && C12238m.areEqual(this.scopes, applicationInstallParams.scopes);
+        return m.areEqual(this.permissions, applicationInstallParams.permissions) && m.areEqual(this.scopes, applicationInstallParams.scopes);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -40,9 +40,9 @@ public final /* data */ class ApplicationInstallParams {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApplicationInstallParams(permissions=");
-        sbM833U.append(this.permissions);
-        sbM833U.append(", scopes=");
-        return C1643a.m822J(sbM833U, Arrays.toString(this.scopes), ")");
+        StringBuilder sbU = a.U("ApplicationInstallParams(permissions=");
+        sbU.append(this.permissions);
+        sbU.append(", scopes=");
+        return a.J(sbU, Arrays.toString(this.scopes), ")");
     }
 }

@@ -4,45 +4,41 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.v5;
+import b.a.i.w5;
+import b.a.i.x5;
 import com.discord.app.AppViewFlipper;
-import p007b.p008a.p025i.C1071v5;
-import p007b.p008a.p025i.C1078w5;
-import p007b.p008a.p025i.C1085x5;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetRemoteAuthBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17406a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final C1085x5 f17407b;
+    public final x5 f2519b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final C1071v5 f17408c;
+    public final v5 c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final C1078w5 f17409d;
+    public final w5 d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final AppViewFlipper f17410e;
+    public final AppViewFlipper e;
 
-    public WidgetRemoteAuthBinding(@NonNull RelativeLayout relativeLayout, @NonNull C1085x5 c1085x5, @NonNull C1071v5 c1071v5, @NonNull C1078w5 c1078w5, @NonNull AppViewFlipper appViewFlipper) {
-        this.f17406a = relativeLayout;
-        this.f17407b = c1085x5;
-        this.f17408c = c1071v5;
-        this.f17409d = c1078w5;
-        this.f17410e = appViewFlipper;
+    public WidgetRemoteAuthBinding(@NonNull RelativeLayout relativeLayout, @NonNull x5 x5Var, @NonNull v5 v5Var, @NonNull w5 w5Var, @NonNull AppViewFlipper appViewFlipper) {
+        this.a = relativeLayout;
+        this.f2519b = x5Var;
+        this.c = v5Var;
+        this.d = w5Var;
+        this.e = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17406a;
+        return this.a;
     }
 }

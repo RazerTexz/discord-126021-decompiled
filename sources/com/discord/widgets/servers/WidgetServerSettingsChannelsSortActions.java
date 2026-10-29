@@ -3,48 +3,26 @@ package com.discord.widgets.servers;
 import android.os.Bundle;
 import android.view.View;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import com.discord.C5419R;
+import b.d.b.a.a;
+import com.discord.R$layout;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetServerSettingsChannelsSortActionsBinding;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetServerSettingsChannelsSortActions extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetServerSettingsChannelsSortActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsChannelsSortActionsBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetServerSettingsChannelsSortActions.class, "binding", "getBinding()Lcom/discord/databinding/WidgetServerSettingsChannelsSortActionsBinding;", 0)};
+    public static final WidgetServerSettingsChannelsSortActions$Companion Companion = new WidgetServerSettingsChannelsSortActions$Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
     private Function1<? super Integer, Unit> sortTypeSelectedListener;
-
-    /* JADX INFO: compiled from: WidgetServerSettingsChannelsSortActions.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, Function1<? super Integer, Unit> sortTypeSelectedListener) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(sortTypeSelectedListener, "sortTypeSelectedListener");
-            WidgetServerSettingsChannelsSortActions widgetServerSettingsChannelsSortActions = new WidgetServerSettingsChannelsSortActions();
-            widgetServerSettingsChannelsSortActions.setSortTypeSelectedListener(sortTypeSelectedListener);
-            widgetServerSettingsChannelsSortActions.show(fragmentManager, "javaClass");
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     public WidgetServerSettingsChannelsSortActions() {
         super(false, 1, null);
@@ -52,36 +30,9 @@ public final class WidgetServerSettingsChannelsSortActions extends AppBottomShee
     }
 
     private final void configureUI() {
-        getBinding().f17570b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.servers.WidgetServerSettingsChannelsSortActions.configureUI.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                Function1<Integer, Unit> sortTypeSelectedListener = WidgetServerSettingsChannelsSortActions.this.getSortTypeSelectedListener();
-                if (sortTypeSelectedListener != null) {
-                    sortTypeSelectedListener.invoke(4);
-                }
-                WidgetServerSettingsChannelsSortActions.this.dismiss();
-            }
-        });
-        getBinding().f17572d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.servers.WidgetServerSettingsChannelsSortActions.configureUI.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                Function1<Integer, Unit> sortTypeSelectedListener = WidgetServerSettingsChannelsSortActions.this.getSortTypeSelectedListener();
-                if (sortTypeSelectedListener != null) {
-                    sortTypeSelectedListener.invoke(2);
-                }
-                WidgetServerSettingsChannelsSortActions.this.dismiss();
-            }
-        });
-        getBinding().f17571c.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.servers.WidgetServerSettingsChannelsSortActions.configureUI.3
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                Function1<Integer, Unit> sortTypeSelectedListener = WidgetServerSettingsChannelsSortActions.this.getSortTypeSelectedListener();
-                if (sortTypeSelectedListener != null) {
-                    sortTypeSelectedListener.invoke(0);
-                }
-                WidgetServerSettingsChannelsSortActions.this.dismiss();
-            }
-        });
+        getBinding().f2551b.setOnClickListener(new WidgetServerSettingsChannelsSortActions$configureUI$1(this));
+        getBinding().d.setOnClickListener(new WidgetServerSettingsChannelsSortActions$configureUI$2(this));
+        getBinding().c.setOnClickListener(new WidgetServerSettingsChannelsSortActions$configureUI$3(this));
     }
 
     private final WidgetServerSettingsChannelsSortActionsBinding getBinding() {
@@ -90,7 +41,7 @@ public final class WidgetServerSettingsChannelsSortActions extends AppBottomShee
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return C5419R.layout.widget_server_settings_channels_sort_actions;
+        return R$layout.widget_server_settings_channels_sort_actions;
     }
 
     public final Function1<Integer, Unit> getSortTypeSelectedListener() {
@@ -105,7 +56,7 @@ public final class WidgetServerSettingsChannelsSortActions extends AppBottomShee
 
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         super.onViewCreated(view, savedInstanceState);
         configureUI();
     }

@@ -1,45 +1,35 @@
 package com.discord.widgets.channels.permissions;
 
-import androidx.core.os.BundleKt;
+import android.content.Context;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import com.discord.C5419R;
-import com.discord.api.permission.PermissionOverwrite;
+import b.a.d.i0;
+import b.d.b.a.a;
+import com.discord.R$layout;
+import com.discord.api.permission.PermissionOverwrite$Type;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetChannelSettingsAddMemberBinding;
-import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import d0.g;
+import d0.z.d.a0;
+import d0.z.d.m;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import kotlin.Lazy;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function2;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0869i0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.C12116o;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
-import p658rx.subjects.BehaviorSubject;
+import rx.Observable;
+import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetChannelSettingsAddMemberFragment.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSettingsAddMemberBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetChannelSettingsAddMemberFragment.class, "binding", "getBinding()Lcom/discord/databinding/WidgetChannelSettingsAddMemberBinding;", 0)};
+    public static final WidgetChannelSettingsAddMemberFragment$Companion Companion = new WidgetChannelSettingsAddMemberFragment$Companion(null);
 
     /* JADX INFO: renamed from: adapter$delegate, reason: from kotlin metadata */
     private final Lazy adapter;
@@ -50,7 +40,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
     /* JADX INFO: renamed from: channelId$delegate, reason: from kotlin metadata */
     private final Lazy channelId;
     private final BehaviorSubject<String> querySubject;
-    private final BehaviorSubject<Map<Long, PermissionOverwrite.Type>> selectedSubject;
+    private final BehaviorSubject<Map<Long, PermissionOverwrite$Type>> selectedSubject;
 
     /* JADX INFO: renamed from: showRolesWithGuildPermission$delegate, reason: from kotlin metadata */
     private final Lazy showRolesWithGuildPermission;
@@ -59,116 +49,51 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
     private final Lazy viewModel;
     private static final String EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION = "EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION";
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public final class C75241 extends AbstractC12240o implements Function1<String, Unit> {
-        public C75241() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            WidgetChannelSettingsAddMemberFragmentViewModel viewModel = WidgetChannelSettingsAddMemberFragment.this.getViewModel();
-            C12238m.checkNotNullExpressionValue(str, "it");
-            viewModel.updateQuery(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public final class C75252 extends AbstractC12240o implements Function1<String, Unit> {
-        public C75252() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(String str) {
-            invoke2(str);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(String str) {
-            C12238m.checkNotNullParameter(str, "it");
-            WidgetChannelSettingsAddMemberFragment.this.querySubject.onNext(str);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$3 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public final class C75263 extends AbstractC12240o implements Function2<Long, PermissionOverwrite.Type, Unit> {
-        public C75263() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, PermissionOverwrite.Type type) {
-            invoke(l.longValue(), type);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, PermissionOverwrite.Type type) {
-            C12238m.checkNotNullParameter(type, "type");
-            WidgetChannelSettingsAddMemberFragment.this.getViewModel().toggleItem(j, type);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.permissions.WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$4 */
-    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public final class C75274 extends AbstractC12240o implements Function1<WidgetChannelSettingsAddMemberFragmentViewModel.ViewState, Unit> {
-        public C75274() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelSettingsAddMemberFragmentViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetChannelSettingsAddMemberFragmentViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetChannelSettingsAddMemberFragment.this.configureUI(viewState);
-            WidgetChannelSettingsAddMemberFragment.this.selectedSubject.onNext(viewState.getSelected());
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChannelSettingsAddMemberFragment.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final WidgetChannelSettingsAddMemberFragment create(long channelId, boolean showRolesWithGuildPermission) {
-            WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment = new WidgetChannelSettingsAddMemberFragment();
-            widgetChannelSettingsAddMemberFragment.setArguments(BundleKt.bundleOf(C12116o.m10073to("com.discord.intent.extra.EXTRA_CHANNEL_ID", Long.valueOf(channelId)), C12116o.m10073to(WidgetChannelSettingsAddMemberFragment.EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION, Boolean.valueOf(showRolesWithGuildPermission))));
-            return widgetChannelSettingsAddMemberFragment;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public WidgetChannelSettingsAddMemberFragment() {
-        super(C5419R.layout.widget_channel_settings_add_member);
+        super(R$layout.widget_channel_settings_add_member);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetChannelSettingsAddMemberFragment$binding$2.INSTANCE, null, 2, null);
-        this.adapter = C12083g.lazy(new WidgetChannelSettingsAddMemberFragment$adapter$2(this));
-        this.channelId = C12083g.lazy(new WidgetChannelSettingsAddMemberFragment$channelId$2(this));
-        this.showRolesWithGuildPermission = C12083g.lazy(new C7528x94d74945(this));
+        this.adapter = g.lazy(new WidgetChannelSettingsAddMemberFragment$adapter$2(this));
+        this.channelId = g.lazy(new WidgetChannelSettingsAddMemberFragment$channelId$2(this));
+        this.showRolesWithGuildPermission = g.lazy(new WidgetChannelSettingsAddMemberFragment$showRolesWithGuildPermission$2(this));
         WidgetChannelSettingsAddMemberFragment$viewModel$2 widgetChannelSettingsAddMemberFragment$viewModel$2 = new WidgetChannelSettingsAddMemberFragment$viewModel$2(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetChannelSettingsAddMemberFragmentViewModel.class), new C7523xeed7a80a(widgetChannelSettingsAddMemberFragment$viewModel$2), new C0869i0(new WidgetChannelSettingsAddMemberFragment$viewModel$3(this)));
-        this.querySubject = BehaviorSubject.m11130l0("");
-        this.selectedSubject = BehaviorSubject.m11130l0(Collections.emptyMap());
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetChannelSettingsAddMemberFragmentViewModel.class), new WidgetChannelSettingsAddMemberFragment$appViewModels$$inlined$viewModels$1(widgetChannelSettingsAddMemberFragment$viewModel$2), new i0(new WidgetChannelSettingsAddMemberFragment$viewModel$3(this)));
+        this.querySubject = BehaviorSubject.l0("");
+        this.selectedSubject = BehaviorSubject.l0(Collections.emptyMap());
     }
 
-    private final void configureUI(WidgetChannelSettingsAddMemberFragmentViewModel.ViewState viewState) {
+    public static final /* synthetic */ void access$configureUI(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment, WidgetChannelSettingsAddMemberFragmentViewModel$ViewState widgetChannelSettingsAddMemberFragmentViewModel$ViewState) {
+        widgetChannelSettingsAddMemberFragment.configureUI(widgetChannelSettingsAddMemberFragmentViewModel$ViewState);
+    }
+
+    public static final /* synthetic */ WidgetChannelSettingsAddMemberBinding access$getBinding$p(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment) {
+        return widgetChannelSettingsAddMemberFragment.getBinding();
+    }
+
+    public static final /* synthetic */ long access$getChannelId$p(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment) {
+        return widgetChannelSettingsAddMemberFragment.getChannelId();
+    }
+
+    public static final /* synthetic */ String access$getEXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION$cp() {
+        return EXTRA_SHOW_ROLES_WITH_GUILD_PERMISSION;
+    }
+
+    public static final /* synthetic */ BehaviorSubject access$getQuerySubject$p(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment) {
+        return widgetChannelSettingsAddMemberFragment.querySubject;
+    }
+
+    public static final /* synthetic */ BehaviorSubject access$getSelectedSubject$p(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment) {
+        return widgetChannelSettingsAddMemberFragment.selectedSubject;
+    }
+
+    public static final /* synthetic */ boolean access$getShowRolesWithGuildPermission$p(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment) {
+        return widgetChannelSettingsAddMemberFragment.getShowRolesWithGuildPermission();
+    }
+
+    public static final /* synthetic */ WidgetChannelSettingsAddMemberFragmentViewModel access$getViewModel$p(WidgetChannelSettingsAddMemberFragment widgetChannelSettingsAddMemberFragment) {
+        return widgetChannelSettingsAddMemberFragment.getViewModel();
+    }
+
+    private final void configureUI(WidgetChannelSettingsAddMemberFragmentViewModel$ViewState viewState) {
         getAdapter().setData(viewState.getItems());
     }
 
@@ -184,7 +109,7 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
         return ((Number) this.channelId.getValue()).longValue();
     }
 
-    public final BehaviorSubject<Map<Long, PermissionOverwrite.Type>> getSelectedItemsSubject() {
+    public final BehaviorSubject<Map<Long, PermissionOverwrite$Type>> getSelectedItemsSubject() {
         return this.selectedSubject;
     }
 
@@ -199,12 +124,12 @@ public final class WidgetChannelSettingsAddMemberFragment extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        Observable<String> observableM11112r = this.querySubject.m11110p(200L, TimeUnit.MILLISECONDS).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "querySubject\n        .de…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetChannelSettingsAddMemberFragment.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C75241());
-        getBinding().f15897c.setText(getViewModel().getQuery());
-        getBinding().f15897c.m8553a(this, new C75252());
-        getAdapter().setOnClickListener(new C75263());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChannelSettingsAddMemberFragment.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C75274());
+        Observable<String> observableR = this.querySubject.p(200L, TimeUnit.MILLISECONDS).r();
+        m.checkNotNullExpressionValue(observableR, "querySubject\n        .de…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableR, this, null, 2, null), WidgetChannelSettingsAddMemberFragment.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        getBinding().c.setText(getViewModel().getQuery());
+        getBinding().c.a(this, new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$2(this));
+        getAdapter().setOnClickListener(new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$3(this));
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelSettingsAddMemberFragment.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelSettingsAddMemberFragment$onViewBoundOrOnResume$4(this), 62, (Object) null);
     }
 }

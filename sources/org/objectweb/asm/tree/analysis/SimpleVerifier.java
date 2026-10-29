@@ -13,6 +13,16 @@ public class SimpleVerifier extends BasicVerifier {
     private final boolean isInterface;
     private ClassLoader loader;
 
+    @Override // org.objectweb.asm.tree.analysis.BasicInterpreter, org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value merge(Value value, Value value2) {
+        return merge((BasicValue) value, (BasicValue) value2);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.BasicInterpreter, org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value newValue(Type type) {
+        return newValue(type);
+    }
+
     public SimpleVerifier() {
         this(null, null, false);
     }
@@ -123,7 +133,7 @@ public class SimpleVerifier extends BasicVerifier {
         }
     }
 
-    @Override // org.objectweb.asm.tree.analysis.BasicInterpreter, org.objectweb.asm.tree.analysis.Interpreter
+    @Override // org.objectweb.asm.tree.analysis.BasicInterpreter
     public BasicValue merge(BasicValue value1, BasicValue value2) {
         if (!value1.equals(value2)) {
             Type type1 = value1.getType();

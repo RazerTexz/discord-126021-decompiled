@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -9,9 +10,8 @@ import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackSearchResultViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -46,6 +46,11 @@ public final /* data */ class TrackSearchResultViewed implements AnalyticsSchema
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -54,7 +59,7 @@ public final /* data */ class TrackSearchResultViewed implements AnalyticsSchema
             return false;
         }
         TrackSearchResultViewed trackSearchResultViewed = (TrackSearchResultViewed) other;
-        return C12238m.areEqual(this.searchType, trackSearchResultViewed.searchType) && C12238m.areEqual(this.loadId, trackSearchResultViewed.loadId) && C12238m.areEqual(this.loadDurationMs, trackSearchResultViewed.loadDurationMs) && C12238m.areEqual(this.searchId, trackSearchResultViewed.searchId) && C12238m.areEqual(this.prevSearchId, trackSearchResultViewed.prevSearchId) && C12238m.areEqual(this.isError, trackSearchResultViewed.isError) && C12238m.areEqual(this.limit, trackSearchResultViewed.limit) && C12238m.areEqual(this.offset, trackSearchResultViewed.offset) && C12238m.areEqual(this.page, trackSearchResultViewed.page) && C12238m.areEqual(this.totalResults, trackSearchResultViewed.totalResults) && C12238m.areEqual(this.pageResults, trackSearchResultViewed.pageResults) && C12238m.areEqual(this.isIndexing, trackSearchResultViewed.isIndexing) && C12238m.areEqual(this.pageNumMessages, trackSearchResultViewed.pageNumMessages) && C12238m.areEqual(this.pageNumLinks, trackSearchResultViewed.pageNumLinks) && C12238m.areEqual(this.pageNumEmbeds, trackSearchResultViewed.pageNumEmbeds) && C12238m.areEqual(this.pageNumAttach, trackSearchResultViewed.pageNumAttach) && this.modifiers == trackSearchResultViewed.modifiers && C12238m.areEqual(this.numModifiers, trackSearchResultViewed.numModifiers) && C12238m.areEqual(this.query, trackSearchResultViewed.query) && C12238m.areEqual(this.guildIds, trackSearchResultViewed.guildIds) && C12238m.areEqual(this.categoryId, trackSearchResultViewed.categoryId) && C12238m.areEqual(this.previewEnabled, trackSearchResultViewed.previewEnabled) && C12238m.areEqual(this.numResultsLocked, trackSearchResultViewed.numResultsLocked) && C12238m.areEqual(this.isSuggestion, trackSearchResultViewed.isSuggestion);
+        return m.areEqual(this.searchType, trackSearchResultViewed.searchType) && m.areEqual(this.loadId, trackSearchResultViewed.loadId) && m.areEqual(this.loadDurationMs, trackSearchResultViewed.loadDurationMs) && m.areEqual(this.searchId, trackSearchResultViewed.searchId) && m.areEqual(this.prevSearchId, trackSearchResultViewed.prevSearchId) && m.areEqual(this.isError, trackSearchResultViewed.isError) && m.areEqual(this.limit, trackSearchResultViewed.limit) && m.areEqual(this.offset, trackSearchResultViewed.offset) && m.areEqual(this.page, trackSearchResultViewed.page) && m.areEqual(this.totalResults, trackSearchResultViewed.totalResults) && m.areEqual(this.pageResults, trackSearchResultViewed.pageResults) && m.areEqual(this.isIndexing, trackSearchResultViewed.isIndexing) && m.areEqual(this.pageNumMessages, trackSearchResultViewed.pageNumMessages) && m.areEqual(this.pageNumLinks, trackSearchResultViewed.pageNumLinks) && m.areEqual(this.pageNumEmbeds, trackSearchResultViewed.pageNumEmbeds) && m.areEqual(this.pageNumAttach, trackSearchResultViewed.pageNumAttach) && this.modifiers == trackSearchResultViewed.modifiers && m.areEqual(this.numModifiers, trackSearchResultViewed.numModifiers) && m.areEqual(this.query, trackSearchResultViewed.query) && m.areEqual(this.guildIds, trackSearchResultViewed.guildIds) && m.areEqual(this.categoryId, trackSearchResultViewed.categoryId) && m.areEqual(this.previewEnabled, trackSearchResultViewed.previewEnabled) && m.areEqual(this.numResultsLocked, trackSearchResultViewed.numResultsLocked) && m.areEqual(this.isSuggestion, trackSearchResultViewed.isSuggestion);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -120,60 +125,54 @@ public final /* data */ class TrackSearchResultViewed implements AnalyticsSchema
         return iHashCode22 + (bool4 != null ? bool4.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSearchResultViewed(searchType=");
-        sbM833U.append(this.searchType);
-        sbM833U.append(", loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", loadDurationMs=");
-        sbM833U.append(this.loadDurationMs);
-        sbM833U.append(", searchId=");
-        sbM833U.append(this.searchId);
-        sbM833U.append(", prevSearchId=");
-        sbM833U.append(this.prevSearchId);
-        sbM833U.append(", isError=");
-        sbM833U.append(this.isError);
-        sbM833U.append(", limit=");
-        sbM833U.append(this.limit);
-        sbM833U.append(", offset=");
-        sbM833U.append(this.offset);
-        sbM833U.append(", page=");
-        sbM833U.append(this.page);
-        sbM833U.append(", totalResults=");
-        sbM833U.append(this.totalResults);
-        sbM833U.append(", pageResults=");
-        sbM833U.append(this.pageResults);
-        sbM833U.append(", isIndexing=");
-        sbM833U.append(this.isIndexing);
-        sbM833U.append(", pageNumMessages=");
-        sbM833U.append(this.pageNumMessages);
-        sbM833U.append(", pageNumLinks=");
-        sbM833U.append(this.pageNumLinks);
-        sbM833U.append(", pageNumEmbeds=");
-        sbM833U.append(this.pageNumEmbeds);
-        sbM833U.append(", pageNumAttach=");
-        sbM833U.append(this.pageNumAttach);
-        sbM833U.append(", modifiers=");
-        sbM833U.append(this.modifiers);
-        sbM833U.append(", numModifiers=");
-        sbM833U.append(this.numModifiers);
-        sbM833U.append(", query=");
-        sbM833U.append(this.query);
-        sbM833U.append(", guildIds=");
-        sbM833U.append(this.guildIds);
-        sbM833U.append(", categoryId=");
-        sbM833U.append(this.categoryId);
-        sbM833U.append(", previewEnabled=");
-        sbM833U.append(this.previewEnabled);
-        sbM833U.append(", numResultsLocked=");
-        sbM833U.append(this.numResultsLocked);
-        sbM833U.append(", isSuggestion=");
-        return C1643a.m816D(sbM833U, this.isSuggestion, ")");
+        StringBuilder sbU = a.U("TrackSearchResultViewed(searchType=");
+        sbU.append(this.searchType);
+        sbU.append(", loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", loadDurationMs=");
+        sbU.append(this.loadDurationMs);
+        sbU.append(", searchId=");
+        sbU.append(this.searchId);
+        sbU.append(", prevSearchId=");
+        sbU.append(this.prevSearchId);
+        sbU.append(", isError=");
+        sbU.append(this.isError);
+        sbU.append(", limit=");
+        sbU.append(this.limit);
+        sbU.append(", offset=");
+        sbU.append(this.offset);
+        sbU.append(", page=");
+        sbU.append(this.page);
+        sbU.append(", totalResults=");
+        sbU.append(this.totalResults);
+        sbU.append(", pageResults=");
+        sbU.append(this.pageResults);
+        sbU.append(", isIndexing=");
+        sbU.append(this.isIndexing);
+        sbU.append(", pageNumMessages=");
+        sbU.append(this.pageNumMessages);
+        sbU.append(", pageNumLinks=");
+        sbU.append(this.pageNumLinks);
+        sbU.append(", pageNumEmbeds=");
+        sbU.append(this.pageNumEmbeds);
+        sbU.append(", pageNumAttach=");
+        sbU.append(this.pageNumAttach);
+        sbU.append(", modifiers=");
+        sbU.append(this.modifiers);
+        sbU.append(", numModifiers=");
+        sbU.append(this.numModifiers);
+        sbU.append(", query=");
+        sbU.append(this.query);
+        sbU.append(", guildIds=");
+        sbU.append(this.guildIds);
+        sbU.append(", categoryId=");
+        sbU.append(this.categoryId);
+        sbU.append(", previewEnabled=");
+        sbU.append(this.previewEnabled);
+        sbU.append(", numResultsLocked=");
+        sbU.append(this.numResultsLocked);
+        sbU.append(", isSuggestion=");
+        return a.D(sbU, this.isSuggestion, ")");
     }
 }

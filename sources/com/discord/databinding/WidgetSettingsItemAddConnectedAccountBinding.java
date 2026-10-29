@@ -10,27 +10,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsItemAddConnectedAccountBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17972a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f17973b;
+    public final ImageView f2622b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17974c;
+    public final TextView c;
 
     public WidgetSettingsItemAddConnectedAccountBinding(@NonNull LinearLayout linearLayout, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f17972a = linearLayout;
-        this.f17973b = imageView;
-        this.f17974c = textView;
+        this.a = linearLayout;
+        this.f2622b = imageView;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17972a;
+        return this.a;
     }
 }

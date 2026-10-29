@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetDebuggingBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16449a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f16450b;
+    public final RecyclerView f2362b;
 
     public WidgetDebuggingBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView recyclerView) {
-        this.f16449a = coordinatorLayout;
-        this.f16450b = recyclerView;
+        this.a = coordinatorLayout;
+        this.f2362b = recyclerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16449a;
+        return this.a;
     }
 }

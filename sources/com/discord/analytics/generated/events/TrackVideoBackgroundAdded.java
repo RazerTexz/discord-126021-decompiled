@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVideoBackgroundAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackVideoBackgroundAdded implements AnalyticsSche
             return false;
         }
         TrackVideoBackgroundAdded trackVideoBackgroundAdded = (TrackVideoBackgroundAdded) other;
-        return C12238m.areEqual(this.isAnimated, trackVideoBackgroundAdded.isAnimated) && C12238m.areEqual(this.isVideo, trackVideoBackgroundAdded.isVideo) && C12238m.areEqual(this.isFromTenor, trackVideoBackgroundAdded.isFromTenor);
+        return m.areEqual(this.isAnimated, trackVideoBackgroundAdded.isAnimated) && m.areEqual(this.isVideo, trackVideoBackgroundAdded.isVideo) && m.areEqual(this.isFromTenor, trackVideoBackgroundAdded.isFromTenor);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackVideoBackgroundAdded implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVideoBackgroundAdded(isAnimated=");
-        sbM833U.append(this.isAnimated);
-        sbM833U.append(", isVideo=");
-        sbM833U.append(this.isVideo);
-        sbM833U.append(", isFromTenor=");
-        return C1643a.m816D(sbM833U, this.isFromTenor, ")");
+        StringBuilder sbU = a.U("TrackVideoBackgroundAdded(isAnimated=");
+        sbU.append(this.isAnimated);
+        sbU.append(", isVideo=");
+        sbU.append(this.isVideo);
+        sbU.append(", isFromTenor=");
+        return a.D(sbU, this.isFromTenor, ")");
     }
 }

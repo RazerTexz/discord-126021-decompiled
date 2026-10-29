@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotificationCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,6 +21,11 @@ public final /* data */ class TrackNotificationCtaClicked implements AnalyticsSc
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "notification_cta_clicked";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,7 +34,7 @@ public final /* data */ class TrackNotificationCtaClicked implements AnalyticsSc
             return false;
         }
         TrackNotificationCtaClicked trackNotificationCtaClicked = (TrackNotificationCtaClicked) other;
-        return C12238m.areEqual(this.notificationType, trackNotificationCtaClicked.notificationType) && C12238m.areEqual(this.action, trackNotificationCtaClicked.action) && C12238m.areEqual(this.dismissed, trackNotificationCtaClicked.dismissed);
+        return m.areEqual(this.notificationType, trackNotificationCtaClicked.notificationType) && m.areEqual(this.action, trackNotificationCtaClicked.action) && m.areEqual(this.dismissed, trackNotificationCtaClicked.dismissed);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,18 +58,12 @@ public final /* data */ class TrackNotificationCtaClicked implements AnalyticsSc
         return iHashCode2 + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotificationCtaClicked(notificationType=");
-        sbM833U.append(this.notificationType);
-        sbM833U.append(", action=");
-        sbM833U.append(this.action);
-        sbM833U.append(", dismissed=");
-        return C1643a.m816D(sbM833U, this.dismissed, ")");
+        StringBuilder sbU = a.U("TrackNotificationCtaClicked(notificationType=");
+        sbU.append(this.notificationType);
+        sbU.append(", action=");
+        sbU.append(this.action);
+        sbU.append(", dismissed=");
+        return a.D(sbU, this.dismissed, ")");
     }
 }

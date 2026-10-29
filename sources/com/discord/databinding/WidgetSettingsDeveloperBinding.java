@@ -12,52 +12,45 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsDeveloperBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17935a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f17936b;
+    public final MaterialButton f2615b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17937c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f17938d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final RecyclerView f17939e;
+    public final RecyclerView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final RecyclerView f17940f;
+    public final RecyclerView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final MaterialButton f17941g;
+    public final MaterialButton g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final CheckedSetting f17942h;
+    public final CheckedSetting h;
 
     public WidgetSettingsDeveloperBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull MaterialButton materialButton3, @NonNull RecyclerView recyclerView, @NonNull RecyclerView recyclerView2, @NonNull MaterialButton materialButton4, @NonNull CheckedSetting checkedSetting, @NonNull TextView textView) {
-        this.f17935a = coordinatorLayout;
-        this.f17936b = materialButton;
-        this.f17937c = materialButton2;
-        this.f17938d = materialButton3;
-        this.f17939e = recyclerView;
-        this.f17940f = recyclerView2;
-        this.f17941g = materialButton4;
-        this.f17942h = checkedSetting;
+        this.a = coordinatorLayout;
+        this.f2615b = materialButton;
+        this.c = materialButton2;
+        this.d = materialButton3;
+        this.e = recyclerView;
+        this.f = recyclerView2;
+        this.g = materialButton4;
+        this.h = checkedSetting;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17935a;
+        return this.a;
     }
 }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackFailedMessageResolved.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,6 +27,11 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "failed_message_resolved";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,7 +40,7 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
             return false;
         }
         TrackFailedMessageResolved trackFailedMessageResolved = (TrackFailedMessageResolved) other;
-        return C12238m.areEqual(this.numAttachments, trackFailedMessageResolved.numAttachments) && C12238m.areEqual(this.maxAttachmentSize, trackFailedMessageResolved.maxAttachmentSize) && C12238m.areEqual(this.totalAttachmentSize, trackFailedMessageResolved.totalAttachmentSize) && C12238m.areEqual(this.hasImage, trackFailedMessageResolved.hasImage) && C12238m.areEqual(this.hasVideo, trackFailedMessageResolved.hasVideo) && C12238m.areEqual(this.resolutionType, trackFailedMessageResolved.resolutionType) && C12238m.areEqual(this.initialAttemptTs, trackFailedMessageResolved.initialAttemptTs) && C12238m.areEqual(this.numRetries, trackFailedMessageResolved.numRetries) && C12238m.areEqual(this.previewEnabled, trackFailedMessageResolved.previewEnabled);
+        return m.areEqual(this.numAttachments, trackFailedMessageResolved.numAttachments) && m.areEqual(this.maxAttachmentSize, trackFailedMessageResolved.maxAttachmentSize) && m.areEqual(this.totalAttachmentSize, trackFailedMessageResolved.totalAttachmentSize) && m.areEqual(this.hasImage, trackFailedMessageResolved.hasImage) && m.areEqual(this.hasVideo, trackFailedMessageResolved.hasVideo) && m.areEqual(this.resolutionType, trackFailedMessageResolved.resolutionType) && m.areEqual(this.initialAttemptTs, trackFailedMessageResolved.initialAttemptTs) && m.areEqual(this.numRetries, trackFailedMessageResolved.numRetries) && m.areEqual(this.previewEnabled, trackFailedMessageResolved.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -71,30 +76,24 @@ public final /* data */ class TrackFailedMessageResolved implements AnalyticsSch
         return iHashCode8 + (bool3 != null ? bool3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackFailedMessageResolved(numAttachments=");
-        sbM833U.append(this.numAttachments);
-        sbM833U.append(", maxAttachmentSize=");
-        sbM833U.append(this.maxAttachmentSize);
-        sbM833U.append(", totalAttachmentSize=");
-        sbM833U.append(this.totalAttachmentSize);
-        sbM833U.append(", hasImage=");
-        sbM833U.append(this.hasImage);
-        sbM833U.append(", hasVideo=");
-        sbM833U.append(this.hasVideo);
-        sbM833U.append(", resolutionType=");
-        sbM833U.append(this.resolutionType);
-        sbM833U.append(", initialAttemptTs=");
-        sbM833U.append(this.initialAttemptTs);
-        sbM833U.append(", numRetries=");
-        sbM833U.append(this.numRetries);
-        sbM833U.append(", previewEnabled=");
-        return C1643a.m816D(sbM833U, this.previewEnabled, ")");
+        StringBuilder sbU = a.U("TrackFailedMessageResolved(numAttachments=");
+        sbU.append(this.numAttachments);
+        sbU.append(", maxAttachmentSize=");
+        sbU.append(this.maxAttachmentSize);
+        sbU.append(", totalAttachmentSize=");
+        sbU.append(this.totalAttachmentSize);
+        sbU.append(", hasImage=");
+        sbU.append(this.hasImage);
+        sbU.append(", hasVideo=");
+        sbU.append(this.hasVideo);
+        sbU.append(", resolutionType=");
+        sbU.append(this.resolutionType);
+        sbU.append(", initialAttemptTs=");
+        sbU.append(this.initialAttemptTs);
+        sbU.append(", numRetries=");
+        sbU.append(this.numRetries);
+        sbU.append(", previewEnabled=");
+        return a.D(sbU, this.previewEnabled, ")");
     }
 }

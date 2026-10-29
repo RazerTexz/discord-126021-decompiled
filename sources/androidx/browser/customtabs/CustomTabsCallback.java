@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CustomTabsCallback {
@@ -13,7 +14,7 @@ public class CustomTabsCallback {
     public static final int NAVIGATION_FINISHED = 2;
     public static final int NAVIGATION_STARTED = 1;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public static final String ONLINE_EXTRAS_KEY = "online";
     public static final int TAB_HIDDEN = 6;
     public static final int TAB_SHOWN = 5;

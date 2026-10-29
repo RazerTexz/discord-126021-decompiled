@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -12,6 +11,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.SimpleArrayMap;
 import androidx.core.content.res.TypedArrayUtils;
 import java.util.ArrayList;
@@ -27,53 +27,9 @@ public abstract class PreferenceGroup extends Preference {
     private final Handler mHandler;
     public final SimpleArrayMap<String, Long> mIdRecycleCache;
     private int mInitialExpandedChildrenCount;
-    private OnExpandButtonClickListener mOnExpandButtonClickListener;
+    private PreferenceGroup$OnExpandButtonClickListener mOnExpandButtonClickListener;
     private boolean mOrderingAsAdded;
     private List<Preference> mPreferences;
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public interface OnExpandButtonClickListener {
-        void onExpandButtonClick();
-    }
-
-    public interface PreferencePositionCallback {
-        int getPreferenceAdapterPosition(Preference preference);
-
-        int getPreferenceAdapterPosition(String str);
-    }
-
-    public class SavedState extends Preference.BaseSavedState {
-        public int mInitialExpandedChildrenCount;
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.PreferenceGroup.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mInitialExpandedChildrenCount = parcel.readInt();
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.mInitialExpandedChildrenCount);
-        }
-
-        public SavedState(Parcelable parcelable, int i) {
-            super(parcelable);
-            this.mInitialExpandedChildrenCount = i;
-        }
-    }
 
     public PreferenceGroup(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
@@ -84,19 +40,12 @@ public abstract class PreferenceGroup extends Preference {
         this.mAttachedToHierarchy = false;
         this.mInitialExpandedChildrenCount = Integer.MAX_VALUE;
         this.mOnExpandButtonClickListener = null;
-        this.mClearRecycleCacheRunnable = new Runnable() { // from class: androidx.preference.PreferenceGroup.1
-            @Override // java.lang.Runnable
-            public void run() {
-                synchronized (this) {
-                    PreferenceGroup.this.mIdRecycleCache.clear();
-                }
-            }
-        };
+        this.mClearRecycleCacheRunnable = new PreferenceGroup$1(this);
         this.mPreferences = new ArrayList();
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0525R.styleable.PreferenceGroup, i, i2);
-        int i3 = C0525R.styleable.PreferenceGroup_orderingFromXml;
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.PreferenceGroup, i, i2);
+        int i3 = R$styleable.PreferenceGroup_orderingFromXml;
         this.mOrderingAsAdded = TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, i3, i3, true);
-        int i4 = C0525R.styleable.PreferenceGroup_initialExpandedChildrenCount;
+        int i4 = R$styleable.PreferenceGroup_initialExpandedChildrenCount;
         if (typedArrayObtainStyledAttributes.hasValue(i4)) {
             setInitialExpandedChildrenCount(TypedArrayUtils.getInt(typedArrayObtainStyledAttributes, i4, i4, Integer.MAX_VALUE));
         }
@@ -204,8 +153,8 @@ public abstract class PreferenceGroup extends Preference {
     }
 
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public OnExpandButtonClickListener getOnExpandButtonClickListener() {
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public PreferenceGroup$OnExpandButtonClickListener getOnExpandButtonClickListener() {
         return this.mOnExpandButtonClickListener;
     }
 
@@ -217,7 +166,7 @@ public abstract class PreferenceGroup extends Preference {
         return this.mPreferences.size();
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public boolean isAttached() {
         return this.mAttachedToHierarchy;
     }
@@ -266,18 +215,18 @@ public abstract class PreferenceGroup extends Preference {
 
     @Override // androidx.preference.Preference
     public void onRestoreInstanceState(Parcelable parcelable) {
-        if (parcelable == null || !parcelable.getClass().equals(SavedState.class)) {
+        if (parcelable == null || !parcelable.getClass().equals(PreferenceGroup$SavedState.class)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        SavedState savedState = (SavedState) parcelable;
-        this.mInitialExpandedChildrenCount = savedState.mInitialExpandedChildrenCount;
-        super.onRestoreInstanceState(savedState.getSuperState());
+        PreferenceGroup$SavedState preferenceGroup$SavedState = (PreferenceGroup$SavedState) parcelable;
+        this.mInitialExpandedChildrenCount = preferenceGroup$SavedState.mInitialExpandedChildrenCount;
+        super.onRestoreInstanceState(preferenceGroup$SavedState.getSuperState());
     }
 
     @Override // androidx.preference.Preference
     public Parcelable onSaveInstanceState() {
-        return new SavedState(super.onSaveInstanceState(), this.mInitialExpandedChildrenCount);
+        return new PreferenceGroup$SavedState(super.onSaveInstanceState(), this.mInitialExpandedChildrenCount);
     }
 
     public void removeAll() {
@@ -334,9 +283,9 @@ public abstract class PreferenceGroup extends Preference {
         this.mInitialExpandedChildrenCount = i;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void setOnExpandButtonClickListener(@Nullable OnExpandButtonClickListener onExpandButtonClickListener) {
-        this.mOnExpandButtonClickListener = onExpandButtonClickListener;
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public void setOnExpandButtonClickListener(@Nullable PreferenceGroup$OnExpandButtonClickListener preferenceGroup$OnExpandButtonClickListener) {
+        this.mOnExpandButtonClickListener = preferenceGroup$OnExpandButtonClickListener;
     }
 
     public void setOrderingAsAdded(boolean z2) {

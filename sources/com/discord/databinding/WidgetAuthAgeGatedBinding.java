@@ -11,22 +11,21 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetAuthAgeGatedBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f15668a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f15669b;
+    public final MaterialButton f2229b;
 
     public WidgetAuthAgeGatedBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull LinkifiedTextView linkifiedTextView) {
-        this.f15668a = coordinatorLayout;
-        this.f15669b = materialButton;
+        this.a = coordinatorLayout;
+        this.f2229b = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15668a;
+        return this.a;
     }
 }

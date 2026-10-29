@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 /* JADX INFO: loaded from: classes.dex */
 public class PackageBuilder {
-    private ActivityStateCopy activityStateCopy;
+    private PackageBuilder$ActivityStateCopy activityStateCopy;
     private AdjustConfig adjustConfig;
     public AdjustAttribution attribution;
     private long createdAt;
@@ -26,44 +26,11 @@ public class PackageBuilder {
     public long clickTimeInMilliseconds = -1;
     public long installBeginTimeInSeconds = -1;
 
-    public class ActivityStateCopy {
-        public int eventCount;
-        public long lastInterval;
-        public String pushToken;
-        public int sessionCount;
-        public long sessionLength;
-        public int subsessionCount;
-        public long timeSpent;
-        public String uuid;
-
-        public ActivityStateCopy(ActivityState activityState) {
-            this.eventCount = -1;
-            this.sessionCount = -1;
-            this.subsessionCount = -1;
-            this.timeSpent = -1L;
-            this.lastInterval = -1L;
-            this.sessionLength = -1L;
-            this.uuid = null;
-            this.pushToken = null;
-            if (activityState == null) {
-                return;
-            }
-            this.eventCount = activityState.eventCount;
-            this.sessionCount = activityState.sessionCount;
-            this.subsessionCount = activityState.subsessionCount;
-            this.timeSpent = activityState.timeSpent;
-            this.lastInterval = activityState.lastInterval;
-            this.sessionLength = activityState.sessionLength;
-            this.uuid = activityState.uuid;
-            this.pushToken = activityState.pushToken;
-        }
-    }
-
     public PackageBuilder(AdjustConfig adjustConfig, DeviceInfo deviceInfo, ActivityState activityState, SessionParameters sessionParameters, long j) {
         this.createdAt = j;
         this.deviceInfo = deviceInfo;
         this.adjustConfig = adjustConfig;
-        this.activityStateCopy = new ActivityStateCopy(activityState);
+        this.activityStateCopy = new PackageBuilder$ActivityStateCopy(this, activityState);
         this.sessionParameters = sessionParameters;
     }
 

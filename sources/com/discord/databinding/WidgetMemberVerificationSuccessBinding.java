@@ -11,27 +11,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetMemberVerificationSuccessBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17262a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f17263b;
+    public final MaterialButton f2494b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17264c;
+    public final TextView c;
 
     public WidgetMemberVerificationSuccessBinding(@NonNull RelativeLayout relativeLayout, @NonNull MaterialButton materialButton, @NonNull TextView textView, @NonNull CardView cardView) {
-        this.f17262a = relativeLayout;
-        this.f17263b = materialButton;
-        this.f17264c = textView;
+        this.a = relativeLayout;
+        this.f2494b = materialButton;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17262a;
+        return this.a;
     }
 }

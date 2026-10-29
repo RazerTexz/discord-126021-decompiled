@@ -8,25 +8,23 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
 import android.view.ViewParent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$styleable;
 import java.lang.ref.WeakReference;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public final class ViewStubCompat extends View {
-    private OnInflateListener mInflateListener;
+    private ViewStubCompat$OnInflateListener mInflateListener;
     private int mInflatedId;
     private WeakReference<View> mInflatedViewRef;
     private LayoutInflater mInflater;
     private int mLayoutResource;
-
-    public interface OnInflateListener {
-        void onInflate(ViewStubCompat viewStubCompat, View view);
-    }
 
     public ViewStubCompat(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
@@ -73,16 +71,16 @@ public final class ViewStubCompat extends View {
         }
         int iIndexOfChild = viewGroup.indexOfChild(this);
         viewGroup.removeViewInLayout(this);
-        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        ViewGroup$LayoutParams layoutParams = getLayoutParams();
         if (layoutParams != null) {
             viewGroup.addView(viewInflate, iIndexOfChild, layoutParams);
         } else {
             viewGroup.addView(viewInflate, iIndexOfChild);
         }
         this.mInflatedViewRef = new WeakReference<>(viewInflate);
-        OnInflateListener onInflateListener = this.mInflateListener;
-        if (onInflateListener != null) {
-            onInflateListener.onInflate(this, viewInflate);
+        ViewStubCompat$OnInflateListener viewStubCompat$OnInflateListener = this.mInflateListener;
+        if (viewStubCompat$OnInflateListener != null) {
+            viewStubCompat$OnInflateListener.onInflate(this, viewInflate);
         }
         return viewInflate;
     }
@@ -104,8 +102,8 @@ public final class ViewStubCompat extends View {
         this.mLayoutResource = i;
     }
 
-    public void setOnInflateListener(OnInflateListener onInflateListener) {
-        this.mInflateListener = onInflateListener;
+    public void setOnInflateListener(ViewStubCompat$OnInflateListener viewStubCompat$OnInflateListener) {
+        this.mInflateListener = viewStubCompat$OnInflateListener;
     }
 
     @Override // android.view.View
@@ -128,10 +126,10 @@ public final class ViewStubCompat extends View {
     public ViewStubCompat(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         this.mLayoutResource = 0;
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0051R.styleable.ViewStubCompat, i, 0);
-        this.mInflatedId = typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.ViewStubCompat_android_inflatedId, -1);
-        this.mLayoutResource = typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.ViewStubCompat_android_layout, 0);
-        setId(typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.ViewStubCompat_android_id, -1));
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.ViewStubCompat, i, 0);
+        this.mInflatedId = typedArrayObtainStyledAttributes.getResourceId(R$styleable.ViewStubCompat_android_inflatedId, -1);
+        this.mLayoutResource = typedArrayObtainStyledAttributes.getResourceId(R$styleable.ViewStubCompat_android_layout, 0);
+        setId(typedArrayObtainStyledAttributes.getResourceId(R$styleable.ViewStubCompat_android_id, -1));
         typedArrayObtainStyledAttributes.recycle();
         setVisibility(8);
         setWillNotDraw(true);

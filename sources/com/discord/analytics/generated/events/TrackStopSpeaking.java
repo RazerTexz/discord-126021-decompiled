@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStopSpeaking.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackStopSpeaking implements AnalyticsSchema, Trac
             return false;
         }
         TrackStopSpeaking trackStopSpeaking = (TrackStopSpeaking) other;
-        return C12238m.areEqual(this.duration, trackStopSpeaking.duration) && C12238m.areEqual(this.gamePlatform, trackStopSpeaking.gamePlatform) && C12238m.areEqual(this.gameName, trackStopSpeaking.gameName) && C12238m.areEqual(this.gameId, trackStopSpeaking.gameId);
+        return m.areEqual(this.duration, trackStopSpeaking.duration) && m.areEqual(this.gamePlatform, trackStopSpeaking.gamePlatform) && m.areEqual(this.gameName, trackStopSpeaking.gameName) && m.areEqual(this.gameId, trackStopSpeaking.gameId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackStopSpeaking implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStopSpeaking(duration=");
-        sbM833U.append(this.duration);
-        sbM833U.append(", gamePlatform=");
-        sbM833U.append(this.gamePlatform);
-        sbM833U.append(", gameName=");
-        sbM833U.append(this.gameName);
-        sbM833U.append(", gameId=");
-        return C1643a.m819G(sbM833U, this.gameId, ")");
+        StringBuilder sbU = a.U("TrackStopSpeaking(duration=");
+        sbU.append(this.duration);
+        sbU.append(", gamePlatform=");
+        sbU.append(this.gamePlatform);
+        sbU.append(", gameName=");
+        sbU.append(this.gameName);
+        sbU.append(", gameId=");
+        return a.G(sbU, this.gameId, ")");
     }
 }

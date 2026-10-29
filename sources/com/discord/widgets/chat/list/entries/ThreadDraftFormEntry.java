@@ -1,11 +1,11 @@
 package com.discord.widgets.chat.list.entries;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.models.guild.Guild;
-import com.discord.stores.StoreThreadDraft;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import com.discord.stores.StoreThreadDraft$ThreadDraftState;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ThreadDraftFormEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,31 +19,35 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
     private final String key;
     private final Channel parentChannel;
     private final Long parentMessageId;
-    private final StoreThreadDraft.ThreadDraftState threadDraftState;
+    private final StoreThreadDraft$ThreadDraftState threadDraftState;
     private final int type;
 
-    public ThreadDraftFormEntry(Channel channel, Long l, long j, Guild guild, Integer num, StoreThreadDraft.ThreadDraftState threadDraftState, boolean z2, boolean z3, boolean z4) {
-        C12238m.checkNotNullParameter(channel, "parentChannel");
-        C12238m.checkNotNullParameter(threadDraftState, "threadDraftState");
+    public ThreadDraftFormEntry(Channel channel, Long l, long j, Guild guild, Integer num, StoreThreadDraft$ThreadDraftState storeThreadDraft$ThreadDraftState, boolean z2, boolean z3, boolean z4) {
+        m.checkNotNullParameter(channel, "parentChannel");
+        m.checkNotNullParameter(storeThreadDraft$ThreadDraftState, "threadDraftState");
         this.parentChannel = channel;
         this.parentMessageId = l;
         this.guildId = j;
         this.guild = guild;
         this.defaultAutoArchiveDuration = num;
-        this.threadDraftState = threadDraftState;
+        this.threadDraftState = storeThreadDraft$ThreadDraftState;
         this.canCreatePrivateThread = z2;
         this.canSeePrivateThreadOption = z3;
         this.canCreatePublicThread = z4;
         this.type = 37;
-        StringBuilder sbM833U = C1643a.m833U("37");
-        sbM833U.append(channel.getId());
-        sbM833U.append(l);
-        this.key = sbM833U.toString();
+        StringBuilder sbU = a.U("37");
+        sbU.append(channel.getId());
+        sbU.append(l);
+        this.key = sbU.toString();
     }
 
-    public final ThreadDraftFormEntry copy(Channel parentChannel, Long parentMessageId, long guildId, Guild guild, Integer defaultAutoArchiveDuration, StoreThreadDraft.ThreadDraftState threadDraftState, boolean canCreatePrivateThread, boolean canSeePrivateThreadOption, boolean canCreatePublicThread) {
-        C12238m.checkNotNullParameter(parentChannel, "parentChannel");
-        C12238m.checkNotNullParameter(threadDraftState, "threadDraftState");
+    public static /* synthetic */ ThreadDraftFormEntry copy$default(ThreadDraftFormEntry threadDraftFormEntry, Channel channel, Long l, long j, Guild guild, Integer num, StoreThreadDraft$ThreadDraftState storeThreadDraft$ThreadDraftState, boolean z2, boolean z3, boolean z4, int i, Object obj) {
+        return threadDraftFormEntry.copy((i & 1) != 0 ? threadDraftFormEntry.parentChannel : channel, (i & 2) != 0 ? threadDraftFormEntry.parentMessageId : l, (i & 4) != 0 ? threadDraftFormEntry.guildId : j, (i & 8) != 0 ? threadDraftFormEntry.guild : guild, (i & 16) != 0 ? threadDraftFormEntry.defaultAutoArchiveDuration : num, (i & 32) != 0 ? threadDraftFormEntry.threadDraftState : storeThreadDraft$ThreadDraftState, (i & 64) != 0 ? threadDraftFormEntry.canCreatePrivateThread : z2, (i & 128) != 0 ? threadDraftFormEntry.canSeePrivateThreadOption : z3, (i & 256) != 0 ? threadDraftFormEntry.canCreatePublicThread : z4);
+    }
+
+    public final ThreadDraftFormEntry copy(Channel parentChannel, Long parentMessageId, long guildId, Guild guild, Integer defaultAutoArchiveDuration, StoreThreadDraft$ThreadDraftState threadDraftState, boolean canCreatePrivateThread, boolean canSeePrivateThreadOption, boolean canCreatePublicThread) {
+        m.checkNotNullParameter(parentChannel, "parentChannel");
+        m.checkNotNullParameter(threadDraftState, "threadDraftState");
         return new ThreadDraftFormEntry(parentChannel, parentMessageId, guildId, guild, defaultAutoArchiveDuration, threadDraftState, canCreatePrivateThread, canSeePrivateThreadOption, canCreatePublicThread);
     }
 
@@ -55,7 +59,7 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
             return false;
         }
         ThreadDraftFormEntry threadDraftFormEntry = (ThreadDraftFormEntry) other;
-        return C12238m.areEqual(this.parentChannel, threadDraftFormEntry.parentChannel) && C12238m.areEqual(this.parentMessageId, threadDraftFormEntry.parentMessageId) && this.guildId == threadDraftFormEntry.guildId && C12238m.areEqual(this.guild, threadDraftFormEntry.guild) && C12238m.areEqual(this.defaultAutoArchiveDuration, threadDraftFormEntry.defaultAutoArchiveDuration) && C12238m.areEqual(this.threadDraftState, threadDraftFormEntry.threadDraftState) && this.canCreatePrivateThread == threadDraftFormEntry.canCreatePrivateThread && this.canSeePrivateThreadOption == threadDraftFormEntry.canSeePrivateThreadOption && this.canCreatePublicThread == threadDraftFormEntry.canCreatePublicThread;
+        return m.areEqual(this.parentChannel, threadDraftFormEntry.parentChannel) && m.areEqual(this.parentMessageId, threadDraftFormEntry.parentMessageId) && this.guildId == threadDraftFormEntry.guildId && m.areEqual(this.guild, threadDraftFormEntry.guild) && m.areEqual(this.defaultAutoArchiveDuration, threadDraftFormEntry.defaultAutoArchiveDuration) && m.areEqual(this.threadDraftState, threadDraftFormEntry.threadDraftState) && this.canCreatePrivateThread == threadDraftFormEntry.canCreatePrivateThread && this.canSeePrivateThreadOption == threadDraftFormEntry.canSeePrivateThreadOption && this.canCreatePublicThread == threadDraftFormEntry.canCreatePublicThread;
     }
 
     /* JADX INFO: renamed from: component7, reason: from getter */
@@ -136,11 +140,11 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
-    public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
+    public final StoreThreadDraft$ThreadDraftState getThreadDraftState() {
         return this.threadDraftState;
     }
 
-    public final StoreThreadDraft.ThreadDraftState getThreadDraftState() {
+    public final StoreThreadDraft$ThreadDraftState getThreadDraftState() {
         return this.threadDraftState;
     }
 
@@ -166,13 +170,13 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
         Channel channel = this.parentChannel;
         int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
         Long l = this.parentMessageId;
-        int iM3a = (C0002b.m3a(this.guildId) + ((iHashCode + (l != null ? l.hashCode() : 0)) * 31)) * 31;
+        int iA = (b.a(this.guildId) + ((iHashCode + (l != null ? l.hashCode() : 0)) * 31)) * 31;
         Guild guild = this.guild;
-        int iHashCode2 = (iM3a + (guild != null ? guild.hashCode() : 0)) * 31;
+        int iHashCode2 = (iA + (guild != null ? guild.hashCode() : 0)) * 31;
         Integer num = this.defaultAutoArchiveDuration;
         int iHashCode3 = (iHashCode2 + (num != null ? num.hashCode() : 0)) * 31;
-        StoreThreadDraft.ThreadDraftState threadDraftState = this.threadDraftState;
-        int iHashCode4 = (iHashCode3 + (threadDraftState != null ? threadDraftState.hashCode() : 0)) * 31;
+        StoreThreadDraft$ThreadDraftState storeThreadDraft$ThreadDraftState = this.threadDraftState;
+        int iHashCode4 = (iHashCode3 + (storeThreadDraft$ThreadDraftState != null ? storeThreadDraft$ThreadDraftState.hashCode() : 0)) * 31;
         boolean z2 = this.canCreatePrivateThread;
         ?? r0 = z2;
         if (z2) {
@@ -190,23 +194,23 @@ public final /* data */ class ThreadDraftFormEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ThreadDraftFormEntry(parentChannel=");
-        sbM833U.append(this.parentChannel);
-        sbM833U.append(", parentMessageId=");
-        sbM833U.append(this.parentMessageId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guild=");
-        sbM833U.append(this.guild);
-        sbM833U.append(", defaultAutoArchiveDuration=");
-        sbM833U.append(this.defaultAutoArchiveDuration);
-        sbM833U.append(", threadDraftState=");
-        sbM833U.append(this.threadDraftState);
-        sbM833U.append(", canCreatePrivateThread=");
-        sbM833U.append(this.canCreatePrivateThread);
-        sbM833U.append(", canSeePrivateThreadOption=");
-        sbM833U.append(this.canSeePrivateThreadOption);
-        sbM833U.append(", canCreatePublicThread=");
-        return C1643a.m827O(sbM833U, this.canCreatePublicThread, ")");
+        StringBuilder sbU = a.U("ThreadDraftFormEntry(parentChannel=");
+        sbU.append(this.parentChannel);
+        sbU.append(", parentMessageId=");
+        sbU.append(this.parentMessageId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guild=");
+        sbU.append(this.guild);
+        sbU.append(", defaultAutoArchiveDuration=");
+        sbU.append(this.defaultAutoArchiveDuration);
+        sbU.append(", threadDraftState=");
+        sbU.append(this.threadDraftState);
+        sbU.append(", canCreatePrivateThread=");
+        sbU.append(this.canCreatePrivateThread);
+        sbU.append(", canSeePrivateThreadOption=");
+        sbU.append(this.canSeePrivateThreadOption);
+        sbU.append(", canCreatePublicThread=");
+        return a.O(sbU, this.canCreatePublicThread, ")");
     }
 }

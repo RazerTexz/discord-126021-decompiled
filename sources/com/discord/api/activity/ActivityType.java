@@ -1,6 +1,5 @@
 package com.discord.api.activity;
 
-import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: ActivityType.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -13,19 +12,8 @@ public enum ActivityType {
     COMPETING(5),
     UNKNOWN(-1);
 
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final ActivityType$Companion Companion = new ActivityType$Companion(null);
     private final int apiInt;
-
-    /* JADX INFO: compiled from: ActivityType.kt */
-    public final class Companion {
-        public Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
 
     ActivityType(int i) {
         this.apiInt = i;

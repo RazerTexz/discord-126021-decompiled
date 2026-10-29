@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.settings;
 
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
+import rx.functions.Action1;
 
 /* JADX INFO: compiled from: WidgetChannelGroupDMSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,8 +13,8 @@ public final class WidgetChannelGroupDMSettings$sam$rx_functions_Action1$0 imple
         this.function = function1;
     }
 
-    @Override // p658rx.functions.Action1
+    @Override // rx.functions.Action1
     public final /* synthetic */ void call(Object obj) {
-        C12238m.checkNotNullExpressionValue(this.function.invoke(obj), "invoke(...)");
+        m.checkNotNullExpressionValue(this.function.invoke(obj), "invoke(...)");
     }
 }

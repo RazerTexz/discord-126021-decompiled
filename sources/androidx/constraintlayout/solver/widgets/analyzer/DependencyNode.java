@@ -1,9 +1,9 @@
 package androidx.constraintlayout.solver.widgets.analyzer;
 
+import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class DependencyNode implements Dependency {
@@ -13,23 +13,12 @@ public class DependencyNode implements Dependency {
     public Dependency updateDelegate = null;
     public boolean delegateToWidgetRun = false;
     public boolean readyToSolve = false;
-    public Type type = Type.UNKNOWN;
+    public DependencyNode$Type type = DependencyNode$Type.UNKNOWN;
     public int marginFactor = 1;
     public DimensionDependency marginDependency = null;
     public boolean resolved = false;
     public List<Dependency> dependencies = new ArrayList();
     public List<DependencyNode> targets = new ArrayList();
-
-    public enum Type {
-        UNKNOWN,
-        HORIZONTAL_DIMENSION,
-        VERTICAL_DIMENSION,
-        LEFT,
-        RIGHT,
-        TOP,
-        BOTTOM,
-        BASELINE
-    }
 
     public DependencyNode(WidgetRun widgetRun) {
         this.run = widgetRun;
@@ -53,10 +42,10 @@ public class DependencyNode implements Dependency {
 
     public String name() {
         String debugName = this.run.widget.getDebugName();
-        Type type = this.type;
-        StringBuilder sbM836X = C1643a.m836X((type == Type.LEFT || type == Type.RIGHT) ? C1643a.m883w(debugName, "_HORIZONTAL") : C1643a.m883w(debugName, "_VERTICAL"), ":");
-        sbM836X.append(this.type.name());
-        return sbM836X.toString();
+        DependencyNode$Type dependencyNode$Type = this.type;
+        StringBuilder sbX = a.X((dependencyNode$Type == DependencyNode$Type.LEFT || dependencyNode$Type == DependencyNode$Type.RIGHT) ? a.w(debugName, "_HORIZONTAL") : a.w(debugName, "_VERTICAL"), ":");
+        sbX.append(this.type.name());
+        return sbX.toString();
     }
 
     public void resolve(int i) {

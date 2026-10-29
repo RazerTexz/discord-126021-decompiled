@@ -3,17 +3,16 @@ package androidx.dynamicanimation.animation;
 import android.annotation.SuppressLint;
 import android.os.Looper;
 import android.util.AndroidRuntimeException;
-import android.view.View;
 import androidx.annotation.FloatRange;
 import androidx.annotation.MainThread;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.constraintlayout.motion.widget.Key;
-import androidx.core.view.ViewCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
-public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements AnimationHandler.AnimationFrameCallback {
+public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements AnimationHandler$AnimationFrameCallback {
 
     @SuppressLint({"MinMaxConstant"})
     public static final float MIN_VISIBLE_CHANGE_ALPHA = 0.00390625f;
@@ -28,7 +27,7 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
     public static final float MIN_VISIBLE_CHANGE_SCALE = 0.002f;
     private static final float THRESHOLD_MULTIPLIER = 0.75f;
     private static final float UNSET = Float.MAX_VALUE;
-    private final ArrayList<OnAnimationEndListener> mEndListeners;
+    private final ArrayList<DynamicAnimation$OnAnimationEndListener> mEndListeners;
     private long mLastFrameTime;
     public float mMaxValue;
     public float mMinValue;
@@ -37,190 +36,25 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
     public boolean mRunning;
     public boolean mStartValueIsSet;
     public final Object mTarget;
-    private final ArrayList<OnAnimationUpdateListener> mUpdateListeners;
+    private final ArrayList<DynamicAnimation$OnAnimationUpdateListener> mUpdateListeners;
     public float mValue;
     public float mVelocity;
-    public static final ViewProperty TRANSLATION_X = new ViewProperty(Key.TRANSLATION_X) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.1
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getTranslationX();
-        }
+    public static final DynamicAnimation$ViewProperty TRANSLATION_X = new DynamicAnimation$1(Key.TRANSLATION_X);
+    public static final DynamicAnimation$ViewProperty TRANSLATION_Y = new DynamicAnimation$2(Key.TRANSLATION_Y);
+    public static final DynamicAnimation$ViewProperty TRANSLATION_Z = new DynamicAnimation$3(Key.TRANSLATION_Z);
+    public static final DynamicAnimation$ViewProperty SCALE_X = new DynamicAnimation$4(Key.SCALE_X);
+    public static final DynamicAnimation$ViewProperty SCALE_Y = new DynamicAnimation$5(Key.SCALE_Y);
+    public static final DynamicAnimation$ViewProperty ROTATION = new DynamicAnimation$6(Key.ROTATION);
+    public static final DynamicAnimation$ViewProperty ROTATION_X = new DynamicAnimation$7(Key.ROTATION_X);
+    public static final DynamicAnimation$ViewProperty ROTATION_Y = new DynamicAnimation$8(Key.ROTATION_Y);
+    public static final DynamicAnimation$ViewProperty X = new DynamicAnimation$9("x");
+    public static final DynamicAnimation$ViewProperty Y = new DynamicAnimation$10("y");
+    public static final DynamicAnimation$ViewProperty Z = new DynamicAnimation$11("z");
+    public static final DynamicAnimation$ViewProperty ALPHA = new DynamicAnimation$12(Key.ALPHA);
+    public static final DynamicAnimation$ViewProperty SCROLL_X = new DynamicAnimation$13("scrollX");
+    public static final DynamicAnimation$ViewProperty SCROLL_Y = new DynamicAnimation$14("scrollY");
 
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setTranslationX(f);
-        }
-    };
-    public static final ViewProperty TRANSLATION_Y = new ViewProperty(Key.TRANSLATION_Y) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.2
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getTranslationY();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setTranslationY(f);
-        }
-    };
-    public static final ViewProperty TRANSLATION_Z = new ViewProperty(Key.TRANSLATION_Z) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.3
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return ViewCompat.getTranslationZ(view);
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            ViewCompat.setTranslationZ(view, f);
-        }
-    };
-    public static final ViewProperty SCALE_X = new ViewProperty(Key.SCALE_X) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.4
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getScaleX();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setScaleX(f);
-        }
-    };
-    public static final ViewProperty SCALE_Y = new ViewProperty(Key.SCALE_Y) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.5
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getScaleY();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setScaleY(f);
-        }
-    };
-    public static final ViewProperty ROTATION = new ViewProperty(Key.ROTATION) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.6
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getRotation();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setRotation(f);
-        }
-    };
-    public static final ViewProperty ROTATION_X = new ViewProperty(Key.ROTATION_X) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.7
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getRotationX();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setRotationX(f);
-        }
-    };
-    public static final ViewProperty ROTATION_Y = new ViewProperty(Key.ROTATION_Y) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.8
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getRotationY();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setRotationY(f);
-        }
-    };
-
-    /* JADX INFO: renamed from: X */
-    public static final ViewProperty f139X = new ViewProperty("x") { // from class: androidx.dynamicanimation.animation.DynamicAnimation.9
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getX();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setX(f);
-        }
-    };
-
-    /* JADX INFO: renamed from: Y */
-    public static final ViewProperty f140Y = new ViewProperty("y") { // from class: androidx.dynamicanimation.animation.DynamicAnimation.10
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getY();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setY(f);
-        }
-    };
-
-    /* JADX INFO: renamed from: Z */
-    public static final ViewProperty f141Z = new ViewProperty("z") { // from class: androidx.dynamicanimation.animation.DynamicAnimation.11
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return ViewCompat.getZ(view);
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            ViewCompat.setZ(view, f);
-        }
-    };
-    public static final ViewProperty ALPHA = new ViewProperty(Key.ALPHA) { // from class: androidx.dynamicanimation.animation.DynamicAnimation.12
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getAlpha();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setAlpha(f);
-        }
-    };
-    public static final ViewProperty SCROLL_X = new ViewProperty("scrollX") { // from class: androidx.dynamicanimation.animation.DynamicAnimation.13
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getScrollX();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setScrollX((int) f);
-        }
-    };
-    public static final ViewProperty SCROLL_Y = new ViewProperty("scrollY") { // from class: androidx.dynamicanimation.animation.DynamicAnimation.14
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public float getValue(View view) {
-            return view.getScrollY();
-        }
-
-        @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-        public void setValue(View view, float f) {
-            view.setScrollY((int) f);
-        }
-    };
-
-    public class MassState {
-        public float mValue;
-        public float mVelocity;
-    }
-
-    public interface OnAnimationEndListener {
-        void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2);
-    }
-
-    public interface OnAnimationUpdateListener {
-        void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2);
-    }
-
-    public abstract class ViewProperty extends FloatPropertyCompat<View> {
-        private ViewProperty(String str) {
-            super(str);
-        }
-    }
-
-    public DynamicAnimation(final FloatValueHolder floatValueHolder) {
+    public DynamicAnimation(FloatValueHolder floatValueHolder) {
         this.mVelocity = 0.0f;
         this.mValue = Float.MAX_VALUE;
         this.mStartValueIsSet = false;
@@ -231,33 +65,23 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         this.mEndListeners = new ArrayList<>();
         this.mUpdateListeners = new ArrayList<>();
         this.mTarget = null;
-        this.mProperty = new FloatPropertyCompat("FloatValueHolder") { // from class: androidx.dynamicanimation.animation.DynamicAnimation.15
-            @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-            public float getValue(Object obj) {
-                return floatValueHolder.getValue();
-            }
-
-            @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-            public void setValue(Object obj, float f) {
-                floatValueHolder.setValue(f);
-            }
-        };
+        this.mProperty = new DynamicAnimation$15(this, "FloatValueHolder", floatValueHolder);
         this.mMinVisibleChange = 1.0f;
     }
 
-    public T addEndListener(OnAnimationEndListener onAnimationEndListener) {
-        if (!this.mEndListeners.contains(onAnimationEndListener)) {
-            this.mEndListeners.add(onAnimationEndListener);
+    public T addEndListener(DynamicAnimation$OnAnimationEndListener dynamicAnimation$OnAnimationEndListener) {
+        if (!this.mEndListeners.contains(dynamicAnimation$OnAnimationEndListener)) {
+            this.mEndListeners.add(dynamicAnimation$OnAnimationEndListener);
         }
         return this;
     }
 
-    public T addUpdateListener(OnAnimationUpdateListener onAnimationUpdateListener) {
+    public T addUpdateListener(DynamicAnimation$OnAnimationUpdateListener dynamicAnimation$OnAnimationUpdateListener) {
         if (isRunning()) {
             throw new UnsupportedOperationException("Error: Update listeners must be added beforethe animation.");
         }
-        if (!this.mUpdateListeners.contains(onAnimationUpdateListener)) {
-            this.mUpdateListeners.add(onAnimationUpdateListener);
+        if (!this.mUpdateListeners.contains(dynamicAnimation$OnAnimationUpdateListener)) {
+            this.mUpdateListeners.add(dynamicAnimation$OnAnimationUpdateListener);
         }
         return this;
     }
@@ -272,8 +96,8 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         }
     }
 
-    @Override // androidx.dynamicanimation.animation.AnimationHandler.AnimationFrameCallback
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @Override // androidx.dynamicanimation.animation.AnimationHandler$AnimationFrameCallback
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public boolean doAnimationFrame(long j) {
         long j2 = this.mLastFrameTime;
         if (j2 == 0) {
@@ -327,8 +151,8 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         return this.mRunning;
     }
 
-    public void removeEndListener(OnAnimationEndListener onAnimationEndListener) {
-        removeEntry(this.mEndListeners, onAnimationEndListener);
+    public void removeEndListener(DynamicAnimation$OnAnimationEndListener dynamicAnimation$OnAnimationEndListener) {
+        removeEntry(this.mEndListeners, dynamicAnimation$OnAnimationEndListener);
     }
 
     private static <T> void removeEntry(ArrayList<T> arrayList, T t) {
@@ -346,8 +170,8 @@ public abstract class DynamicAnimation<T extends DynamicAnimation<T>> implements
         }
     }
 
-    public void removeUpdateListener(OnAnimationUpdateListener onAnimationUpdateListener) {
-        removeEntry(this.mUpdateListeners, onAnimationUpdateListener);
+    public void removeUpdateListener(DynamicAnimation$OnAnimationUpdateListener dynamicAnimation$OnAnimationUpdateListener) {
+        removeEntry(this.mUpdateListeners, dynamicAnimation$OnAnimationUpdateListener);
     }
 
     public T setMaxValue(float f) {

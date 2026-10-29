@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalActionLandio.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -36,7 +36,7 @@ public final /* data */ class TrackActivityInternalActionLandio implements Analy
             return false;
         }
         TrackActivityInternalActionLandio trackActivityInternalActionLandio = (TrackActivityInternalActionLandio) other;
-        return C12238m.areEqual(this.actionName, trackActivityInternalActionLandio.actionName) && C12238m.areEqual(this.ping, trackActivityInternalActionLandio.ping) && C12238m.areEqual(this.server, trackActivityInternalActionLandio.server) && C12238m.areEqual(this.pingPeak, trackActivityInternalActionLandio.pingPeak) && C12238m.areEqual(this.frame, trackActivityInternalActionLandio.frame) && C12238m.areEqual(this.framePeak, trackActivityInternalActionLandio.framePeak) && C12238m.areEqual(this.numPlayers, trackActivityInternalActionLandio.numPlayers) && C12238m.areEqual(this.numVotesYes, trackActivityInternalActionLandio.numVotesYes) && C12238m.areEqual(this.numVotesNo, trackActivityInternalActionLandio.numVotesNo) && C12238m.areEqual(this.turnLifespan, trackActivityInternalActionLandio.turnLifespan) && C12238m.areEqual(this.turnKills, trackActivityInternalActionLandio.turnKills) && C12238m.areEqual(this.turnClaimed, trackActivityInternalActionLandio.turnClaimed) && C12238m.areEqual(this.toggleEnable, trackActivityInternalActionLandio.toggleEnable);
+        return m.areEqual(this.actionName, trackActivityInternalActionLandio.actionName) && m.areEqual(this.ping, trackActivityInternalActionLandio.ping) && m.areEqual(this.server, trackActivityInternalActionLandio.server) && m.areEqual(this.pingPeak, trackActivityInternalActionLandio.pingPeak) && m.areEqual(this.frame, trackActivityInternalActionLandio.frame) && m.areEqual(this.framePeak, trackActivityInternalActionLandio.framePeak) && m.areEqual(this.numPlayers, trackActivityInternalActionLandio.numPlayers) && m.areEqual(this.numVotesYes, trackActivityInternalActionLandio.numVotesYes) && m.areEqual(this.numVotesNo, trackActivityInternalActionLandio.numVotesNo) && m.areEqual(this.turnLifespan, trackActivityInternalActionLandio.turnLifespan) && m.areEqual(this.turnKills, trackActivityInternalActionLandio.turnKills) && m.areEqual(this.turnClaimed, trackActivityInternalActionLandio.turnClaimed) && m.areEqual(this.toggleEnable, trackActivityInternalActionLandio.toggleEnable);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -75,31 +75,31 @@ public final /* data */ class TrackActivityInternalActionLandio implements Analy
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalActionLandio(actionName=");
-        sbM833U.append(this.actionName);
-        sbM833U.append(", ping=");
-        sbM833U.append(this.ping);
-        sbM833U.append(", server=");
-        sbM833U.append(this.server);
-        sbM833U.append(", pingPeak=");
-        sbM833U.append(this.pingPeak);
-        sbM833U.append(", frame=");
-        sbM833U.append(this.frame);
-        sbM833U.append(", framePeak=");
-        sbM833U.append(this.framePeak);
-        sbM833U.append(", numPlayers=");
-        sbM833U.append(this.numPlayers);
-        sbM833U.append(", numVotesYes=");
-        sbM833U.append(this.numVotesYes);
-        sbM833U.append(", numVotesNo=");
-        sbM833U.append(this.numVotesNo);
-        sbM833U.append(", turnLifespan=");
-        sbM833U.append(this.turnLifespan);
-        sbM833U.append(", turnKills=");
-        sbM833U.append(this.turnKills);
-        sbM833U.append(", turnClaimed=");
-        sbM833U.append(this.turnClaimed);
-        sbM833U.append(", toggleEnable=");
-        return C1643a.m816D(sbM833U, this.toggleEnable, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalActionLandio(actionName=");
+        sbU.append(this.actionName);
+        sbU.append(", ping=");
+        sbU.append(this.ping);
+        sbU.append(", server=");
+        sbU.append(this.server);
+        sbU.append(", pingPeak=");
+        sbU.append(this.pingPeak);
+        sbU.append(", frame=");
+        sbU.append(this.frame);
+        sbU.append(", framePeak=");
+        sbU.append(this.framePeak);
+        sbU.append(", numPlayers=");
+        sbU.append(this.numPlayers);
+        sbU.append(", numVotesYes=");
+        sbU.append(this.numVotesYes);
+        sbU.append(", numVotesNo=");
+        sbU.append(this.numVotesNo);
+        sbU.append(", turnLifespan=");
+        sbU.append(this.turnLifespan);
+        sbU.append(", turnKills=");
+        sbU.append(this.turnKills);
+        sbU.append(", turnClaimed=");
+        sbU.append(this.turnClaimed);
+        sbU.append(", toggleEnable=");
+        return a.D(sbU, this.toggleEnable, ")");
     }
 }

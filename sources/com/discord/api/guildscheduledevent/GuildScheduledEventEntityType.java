@@ -1,6 +1,5 @@
 package com.discord.api.guildscheduledevent;
 
-import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildScheduledEventEntityType.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,33 +10,8 @@ public enum GuildScheduledEventEntityType {
     EXTERNAL(3),
     UNKNOWN(-1);
 
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final GuildScheduledEventEntityType$Companion Companion = new GuildScheduledEventEntityType$Companion(null);
     private final int apiValue;
-
-    /* JADX INFO: compiled from: GuildScheduledEventEntityType.kt */
-    public final class Companion {
-        public Companion() {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final GuildScheduledEventEntityType m7993a(int type) {
-            if (type == 0) {
-                return GuildScheduledEventEntityType.NONE;
-            }
-            if (type == 1) {
-                return GuildScheduledEventEntityType.STAGE_INSTANCE;
-            }
-            if (type != 2) {
-                return type != 3 ? GuildScheduledEventEntityType.UNKNOWN : GuildScheduledEventEntityType.EXTERNAL;
-            }
-            return GuildScheduledEventEntityType.VOICE;
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
 
     GuildScheduledEventEntityType(int i) {
         this.apiValue = i;

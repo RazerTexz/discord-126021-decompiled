@@ -1,13 +1,13 @@
 package com.discord.stores;
 
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreMediaEngine.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreMediaEngine$EngineListener$onConnected$1 extends AbstractC12240o implements Function1<StoreMediaEngine.Listener, Unit> {
+public final class StoreMediaEngine$EngineListener$onConnected$1 extends o implements Function1<StoreMediaEngine$Listener, Unit> {
     public static final StoreMediaEngine$EngineListener$onConnected$1 INSTANCE = new StoreMediaEngine$EngineListener$onConnected$1();
 
     public StoreMediaEngine$EngineListener$onConnected$1() {
@@ -15,14 +15,14 @@ public final class StoreMediaEngine$EngineListener$onConnected$1 extends Abstrac
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Unit invoke(StoreMediaEngine.Listener listener) {
-        invoke2(listener);
-        return Unit.f27425a;
+    public /* bridge */ /* synthetic */ Unit invoke(StoreMediaEngine$Listener storeMediaEngine$Listener) {
+        invoke2(storeMediaEngine$Listener);
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final void invoke2(StoreMediaEngine.Listener listener) {
-        C12238m.checkNotNullParameter(listener, "it");
-        listener.onConnected();
+    public final void invoke2(StoreMediaEngine$Listener storeMediaEngine$Listener) {
+        m.checkNotNullParameter(storeMediaEngine$Listener, "it");
+        storeMediaEngine$Listener.onConnected();
     }
 }

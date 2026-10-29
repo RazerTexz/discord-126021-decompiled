@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStreamReportProblem.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackStreamReportProblem implements AnalyticsSchem
             return false;
         }
         TrackStreamReportProblem trackStreamReportProblem = (TrackStreamReportProblem) other;
-        return C12238m.areEqual(this.reason, trackStreamReportProblem.reason) && C12238m.areEqual(this.streamerUserId, trackStreamReportProblem.streamerUserId) && C12238m.areEqual(this.streamChannelId, trackStreamReportProblem.streamChannelId) && C12238m.areEqual(this.guildId, trackStreamReportProblem.guildId) && C12238m.areEqual(this.applicationName, trackStreamReportProblem.applicationName) && C12238m.areEqual(this.applicationId, trackStreamReportProblem.applicationId) && C12238m.areEqual(this.mediaSessionId, trackStreamReportProblem.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackStreamReportProblem.rtcConnectionId) && C12238m.areEqual(this.rating, trackStreamReportProblem.rating) && C12238m.areEqual(this.feedback, trackStreamReportProblem.feedback);
+        return m.areEqual(this.reason, trackStreamReportProblem.reason) && m.areEqual(this.streamerUserId, trackStreamReportProblem.streamerUserId) && m.areEqual(this.streamChannelId, trackStreamReportProblem.streamChannelId) && m.areEqual(this.guildId, trackStreamReportProblem.guildId) && m.areEqual(this.applicationName, trackStreamReportProblem.applicationName) && m.areEqual(this.applicationId, trackStreamReportProblem.applicationId) && m.areEqual(this.mediaSessionId, trackStreamReportProblem.mediaSessionId) && m.areEqual(this.rtcConnectionId, trackStreamReportProblem.rtcConnectionId) && m.areEqual(this.rating, trackStreamReportProblem.rating) && m.areEqual(this.feedback, trackStreamReportProblem.feedback);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -64,25 +64,25 @@ public final /* data */ class TrackStreamReportProblem implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStreamReportProblem(reason=");
-        sbM833U.append(this.reason);
-        sbM833U.append(", streamerUserId=");
-        sbM833U.append(this.streamerUserId);
-        sbM833U.append(", streamChannelId=");
-        sbM833U.append(this.streamChannelId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", applicationName=");
-        sbM833U.append(this.applicationName);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", rating=");
-        sbM833U.append(this.rating);
-        sbM833U.append(", feedback=");
-        return C1643a.m817E(sbM833U, this.feedback, ")");
+        StringBuilder sbU = a.U("TrackStreamReportProblem(reason=");
+        sbU.append(this.reason);
+        sbU.append(", streamerUserId=");
+        sbU.append(this.streamerUserId);
+        sbU.append(", streamChannelId=");
+        sbU.append(this.streamChannelId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", applicationName=");
+        sbU.append(this.applicationName);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", rating=");
+        sbU.append(this.rating);
+        sbU.append(", feedback=");
+        return a.E(sbU, this.feedback, ")");
     }
 }

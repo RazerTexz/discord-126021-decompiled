@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
@@ -17,19 +18,7 @@ public final class ActivityResult implements Parcelable {
     private final int mResultCode;
 
     @NonNull
-    public static final Parcelable.Creator<ActivityResult> CREATOR = new Parcelable.Creator<ActivityResult>() { // from class: androidx.activity.result.ActivityResult.1
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ActivityResult createFromParcel(@NonNull Parcel parcel) {
-            return new ActivityResult(parcel);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ActivityResult[] newArray(int i) {
-            return new ActivityResult[i];
-        }
-    };
+    public static final Parcelable$Creator<ActivityResult> CREATOR = new ActivityResult$1();
 
     public ActivityResult(int i, @Nullable Intent intent) {
         this.mResultCode = i;
@@ -59,12 +48,12 @@ public final class ActivityResult implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ActivityResult{resultCode=");
-        sbM833U.append(resultCodeToString(this.mResultCode));
-        sbM833U.append(", data=");
-        sbM833U.append(this.mData);
-        sbM833U.append('}');
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ActivityResult{resultCode=");
+        sbU.append(resultCodeToString(this.mResultCode));
+        sbU.append(", data=");
+        sbU.append(this.mData);
+        sbU.append('}');
+        return sbU.toString();
     }
 
     @Override // android.os.Parcelable

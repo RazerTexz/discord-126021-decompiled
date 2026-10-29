@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.display.VirtualDisplay;
 import android.media.projection.MediaProjection;
+import android.media.projection.MediaProjection$Callback;
 import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
 import androidx.annotation.Nullable;
@@ -22,7 +23,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
 
     @Nullable
     public MediaProjection mediaProjection;
-    private final MediaProjection.Callback mediaProjectionCallback;
+    private final MediaProjection$Callback mediaProjectionCallback;
 
     @Nullable
     private MediaProjectionManager mediaProjectionManager;
@@ -36,9 +37,30 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private VirtualDisplay virtualDisplay;
     private int width;
 
-    public ScreenCapturerAndroid(Intent intent, MediaProjection.Callback callback) {
+    public ScreenCapturerAndroid(Intent intent, MediaProjection$Callback mediaProjection$Callback) {
         this.mediaProjectionPermissionResultData = intent;
-        this.mediaProjectionCallback = callback;
+        this.mediaProjectionCallback = mediaProjection$Callback;
+    }
+
+    public static /* synthetic */ SurfaceTextureHelper access$000(ScreenCapturerAndroid screenCapturerAndroid) {
+        return screenCapturerAndroid.surfaceTextureHelper;
+    }
+
+    public static /* synthetic */ CapturerObserver access$100(ScreenCapturerAndroid screenCapturerAndroid) {
+        return screenCapturerAndroid.capturerObserver;
+    }
+
+    public static /* synthetic */ VirtualDisplay access$200(ScreenCapturerAndroid screenCapturerAndroid) {
+        return screenCapturerAndroid.virtualDisplay;
+    }
+
+    public static /* synthetic */ VirtualDisplay access$202(ScreenCapturerAndroid screenCapturerAndroid, VirtualDisplay virtualDisplay) {
+        screenCapturerAndroid.virtualDisplay = virtualDisplay;
+        return virtualDisplay;
+    }
+
+    public static /* synthetic */ MediaProjection$Callback access$300(ScreenCapturerAndroid screenCapturerAndroid) {
+        return screenCapturerAndroid.mediaProjectionCallback;
     }
 
     @Override // org.webrtc.VideoCapturer
@@ -49,13 +71,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         if (this.virtualDisplay == null) {
             return;
         }
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new Runnable() { // from class: org.webrtc.ScreenCapturerAndroid.2
-            @Override // java.lang.Runnable
-            public void run() {
-                ScreenCapturerAndroid.this.virtualDisplay.release();
-                ScreenCapturerAndroid.this.createVirtualDisplay();
-            }
-        });
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new ScreenCapturerAndroid$2(this));
     }
 
     private void checkNotDisposed() {
@@ -123,23 +139,6 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     @Override // org.webrtc.VideoCapturer
     public synchronized void stopCapture() {
         checkNotDisposed();
-        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new Runnable() { // from class: org.webrtc.ScreenCapturerAndroid.1
-            @Override // java.lang.Runnable
-            public void run() {
-                ScreenCapturerAndroid.this.surfaceTextureHelper.stopListening();
-                ScreenCapturerAndroid.this.capturerObserver.onCapturerStopped();
-                if (ScreenCapturerAndroid.this.virtualDisplay != null) {
-                    ScreenCapturerAndroid.this.virtualDisplay.release();
-                    ScreenCapturerAndroid.this.virtualDisplay = null;
-                }
-                ScreenCapturerAndroid screenCapturerAndroid = ScreenCapturerAndroid.this;
-                MediaProjection mediaProjection = screenCapturerAndroid.mediaProjection;
-                if (mediaProjection != null) {
-                    mediaProjection.unregisterCallback(screenCapturerAndroid.mediaProjectionCallback);
-                    ScreenCapturerAndroid.this.mediaProjection.stop();
-                    ScreenCapturerAndroid.this.mediaProjection = null;
-                }
-            }
-        });
+        ThreadUtils.invokeAtFrontUninterruptibly(this.surfaceTextureHelper.getHandler(), new ScreenCapturerAndroid$1(this));
     }
 }

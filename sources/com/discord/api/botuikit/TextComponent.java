@@ -1,7 +1,7 @@
 package com.discord.api.botuikit;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TextComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TextComponent extends ActionComponent {
             return false;
         }
         TextComponent textComponent = (TextComponent) other;
-        return C12238m.areEqual(this.type, textComponent.type) && C12238m.areEqual(this.style, textComponent.style) && C12238m.areEqual(this.customId, textComponent.customId) && C12238m.areEqual(this.label, textComponent.label) && C12238m.areEqual(this.value, textComponent.value) && C12238m.areEqual(this.placeholder, textComponent.placeholder) && this.minLength == textComponent.minLength && this.maxLength == textComponent.maxLength && C12238m.areEqual(this.required, textComponent.required);
+        return m.areEqual(this.type, textComponent.type) && m.areEqual(this.style, textComponent.style) && m.areEqual(this.customId, textComponent.customId) && m.areEqual(this.label, textComponent.label) && m.areEqual(this.value, textComponent.value) && m.areEqual(this.placeholder, textComponent.placeholder) && this.minLength == textComponent.minLength && this.maxLength == textComponent.maxLength && m.areEqual(this.required, textComponent.required);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -90,23 +90,23 @@ public final /* data */ class TextComponent extends ActionComponent {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TextComponent(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", style=");
-        sbM833U.append(this.style);
-        sbM833U.append(", customId=");
-        sbM833U.append(this.customId);
-        sbM833U.append(", label=");
-        sbM833U.append(this.label);
-        sbM833U.append(", value=");
-        sbM833U.append(this.value);
-        sbM833U.append(", placeholder=");
-        sbM833U.append(this.placeholder);
-        sbM833U.append(", minLength=");
-        sbM833U.append(this.minLength);
-        sbM833U.append(", maxLength=");
-        sbM833U.append(this.maxLength);
-        sbM833U.append(", required=");
-        return C1643a.m816D(sbM833U, this.required, ")");
+        StringBuilder sbU = a.U("TextComponent(type=");
+        sbU.append(this.type);
+        sbU.append(", style=");
+        sbU.append(this.style);
+        sbU.append(", customId=");
+        sbU.append(this.customId);
+        sbU.append(", label=");
+        sbU.append(this.label);
+        sbU.append(", value=");
+        sbU.append(this.value);
+        sbU.append(", placeholder=");
+        sbU.append(this.placeholder);
+        sbU.append(", minLength=");
+        sbU.append(this.minLength);
+        sbU.append(", maxLength=");
+        sbU.append(this.maxLength);
+        sbU.append(", required=");
+        return a.D(sbU, this.required, ")");
     }
 }

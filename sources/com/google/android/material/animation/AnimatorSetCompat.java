@@ -5,10 +5,11 @@ import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class AnimatorSetCompat {
     public static void playTogether(@NonNull AnimatorSet animatorSet, @NonNull List<Animator> list) {
         int size = list.size();

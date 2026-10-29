@@ -9,154 +9,47 @@ import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
 import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.widgets.servers.creator_monetization_eligibility.CreatorMonetizationCountryAllowlist;
+import d0.g;
+import d0.z.d.m;
+import j0.l.e.k;
 import kotlin.Lazy;
-import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p642l.p647e.C12721k;
-import p658rx.Observable;
+import rx.Observable;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildRoleSubscriptionsFeatureFlag {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final GuildRoleSubscriptionsFeatureFlag$Companion Companion = new GuildRoleSubscriptionsFeatureFlag$Companion(null);
     private final ObservationDeck observationDeck;
     private final StoreExperiments storeExperiments;
     private final StoreGuilds storeGuilds;
     private final StorePermissions storePermissions;
     private final StoreUser storeUser;
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(GuildRoleSubscriptionsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeeGuildRoleSubscriptions$1 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public final class C84311 extends AbstractC12240o implements Function0<Boolean> {
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C84311(long j) {
-            super(0);
-            this.$guildId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return GuildRoleSubscriptionsFeatureFlag.this.canGuildSeePremiumMemberships(this.$guildId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeeGuildRoleSubscriptionsSettings$1 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public final class C84321 extends AbstractC12240o implements Function0<Boolean> {
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C84321(long j) {
-            super(0);
-            this.$guildId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return GuildRoleSubscriptionsFeatureFlag.canGuildSeeGuildRoleSubscriptionSettings$default(GuildRoleSubscriptionsFeatureFlag.this, this.$guildId, null, 2, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeePurchaseFeedbackLoopSystemMessages$1 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public final class C84331 extends AbstractC12240o implements Function0<Boolean> {
-        public final /* synthetic */ Long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C84331(Long l) {
-            super(0);
-            this.$guildId = l;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return GuildRoleSubscriptionsFeatureFlag.this.canGuildSeePurchaseFeedbackLoopMessages(this.$guildId.longValue());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag$observeIsGuildEligibleForGuildRoleSubscriptionFreeTrials$1 */
-    /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public final class C84341 extends AbstractC12240o implements Function0<Boolean> {
-        public final /* synthetic */ long $guildId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C84341(long j) {
-            super(0);
-            this.$guildId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return GuildRoleSubscriptionsFeatureFlag.this.isGuildEligibleForGuildRoleSubscriptionTrials(this.$guildId);
-        }
-    }
-
-    /* JADX INFO: compiled from: GuildRoleSubscriptionsFeatureFlag.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final GuildRoleSubscriptionsFeatureFlag getINSTANCE() {
-            Lazy lazy = GuildRoleSubscriptionsFeatureFlag.INSTANCE$delegate;
-            Companion companion = GuildRoleSubscriptionsFeatureFlag.INSTANCE;
-            return (GuildRoleSubscriptionsFeatureFlag) lazy.getValue();
-        }
-
-        private final boolean isCreatorMonetizable(Guild guild) {
-            return guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE) && !guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE_DISABLED);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final Lazy INSTANCE$delegate = g.lazy(GuildRoleSubscriptionsFeatureFlag$Companion$INSTANCE$2.INSTANCE);
 
     public GuildRoleSubscriptionsFeatureFlag() {
         this(null, null, null, null, null, 31, null);
     }
 
     public GuildRoleSubscriptionsFeatureFlag(StoreExperiments storeExperiments, StoreGuilds storeGuilds, StoreUser storeUser, StorePermissions storePermissions, ObservationDeck observationDeck) {
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        C12238m.checkNotNullParameter(storeUser, "storeUser");
-        C12238m.checkNotNullParameter(storePermissions, "storePermissions");
-        C12238m.checkNotNullParameter(observationDeck, "observationDeck");
+        m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        m.checkNotNullParameter(storeUser, "storeUser");
+        m.checkNotNullParameter(storePermissions, "storePermissions");
+        m.checkNotNullParameter(observationDeck, "observationDeck");
         this.storeExperiments = storeExperiments;
         this.storeGuilds = storeGuilds;
         this.storeUser = storeUser;
         this.storePermissions = storePermissions;
         this.observationDeck = observationDeck;
+    }
+
+    public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
+        return INSTANCE$delegate;
     }
 
     public final boolean canGuildAccessMobileWebPurchases(long guildId) {
@@ -171,18 +64,18 @@ public final class GuildRoleSubscriptionsFeatureFlag {
 
     public static /* synthetic */ boolean canGuildSeeGuildRoleSubscriptionSettings$default(GuildRoleSubscriptionsFeatureFlag guildRoleSubscriptionsFeatureFlag, long j, CreatorMonetizationCountryAllowlist creatorMonetizationCountryAllowlist, int i, Object obj) {
         if ((i & 2) != 0) {
-            creatorMonetizationCountryAllowlist = CreatorMonetizationCountryAllowlist.INSTANCE.getINSTANCE();
+            creatorMonetizationCountryAllowlist = CreatorMonetizationCountryAllowlist.Companion.getINSTANCE();
         }
         return guildRoleSubscriptionsFeatureFlag.canGuildSeeGuildRoleSubscriptionSettings(j, creatorMonetizationCountryAllowlist);
     }
 
     public final boolean canGuildSeeGuildRoleSubscriptionSettings(long guildId, CreatorMonetizationCountryAllowlist countryAllowlist) {
         Guild guild;
-        C12238m.checkNotNullParameter(countryAllowlist, "countryAllowlist");
+        m.checkNotNullParameter(countryAllowlist, "countryAllowlist");
         if (!isGuildEligibleForRoleSubscriptions(guildId) || (guild = this.storeGuilds.getGuild(guildId)) == null) {
             return false;
         }
-        if (INSTANCE.isCreatorMonetizable(guild)) {
+        if (GuildRoleSubscriptionsFeatureFlag$Companion.access$isCreatorMonetizable$p(Companion, guild)) {
             return PermissionUtils.can(32L, this.storePermissions.getGuildPermissions().get(Long.valueOf(guildId)));
         }
         return guild.isOwner(this.storeUser.getMeSnapshot().getId()) && countryAllowlist.isUserInEligibleCountry();
@@ -191,7 +84,7 @@ public final class GuildRoleSubscriptionsFeatureFlag {
     public final boolean canGuildSeePremiumMemberships(long guildId) {
         Guild guild = this.storeGuilds.getGuild(guildId);
         if (guild != null) {
-            return guild.hasFeature(GuildFeature.ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE) && INSTANCE.isCreatorMonetizable(guild);
+            return guild.hasFeature(GuildFeature.ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE) && GuildRoleSubscriptionsFeatureFlag$Companion.access$isCreatorMonetizable$p(Companion, guild);
         }
         return false;
     }
@@ -209,7 +102,7 @@ public final class GuildRoleSubscriptionsFeatureFlag {
     }
 
     public final boolean canUserAccessRoleSubscriptionManagement(StoreExperiments experiments) {
-        C12238m.checkNotNullParameter(experiments, "experiments");
+        m.checkNotNullParameter(experiments, "experiments");
         Experiment userExperiment = experiments.getUserExperiment("2022-06_native_mobile_role_subscription_management", false);
         return userExperiment != null && userExperiment.getBucket() == 1;
     }
@@ -229,35 +122,35 @@ public final class GuildRoleSubscriptionsFeatureFlag {
     }
 
     public final Observable<Boolean> observeCanGuildSeeGuildRoleSubscriptions(long guildId) {
-        Observable<Boolean> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.storeGuilds}, false, null, null, new C84311(guildId), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this.storeGuilds}, false, null, null, new GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeeGuildRoleSubscriptions$1(this, guildId), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Boolean> observeCanGuildSeeGuildRoleSubscriptionsSettings(long guildId) {
-        Observable<Boolean> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.storeExperiments, this.storeGuilds, this.storeUser, this.storePermissions}, false, null, null, new C84321(guildId), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this.storeExperiments, this.storeGuilds, this.storeUser, this.storePermissions}, false, null, null, new GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeeGuildRoleSubscriptionsSettings$1(this, guildId), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Boolean> observeCanGuildSeePurchaseFeedbackLoopSystemMessages(Long guildId) {
         if (guildId == null) {
-            C12721k c12721k = new C12721k(Boolean.FALSE);
-            C12238m.checkNotNullExpressionValue(c12721k, "Observable.just(false)");
-            return c12721k;
+            k kVar = new k(Boolean.FALSE);
+            m.checkNotNullExpressionValue(kVar, "Observable.just(false)");
+            return kVar;
         }
-        Observable<Boolean> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.storeExperiments, this.storeGuilds}, false, null, null, new C84331(guildId), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this.storeExperiments, this.storeGuilds}, false, null, null, new GuildRoleSubscriptionsFeatureFlag$observeCanGuildSeePurchaseFeedbackLoopSystemMessages$1(this, guildId), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Boolean> observeIsGuildEligibleForGuildRoleSubscriptionFreeTrials(long guildId) {
-        Observable<Boolean> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this.storeExperiments}, false, null, null, new C84341(guildId), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this.storeExperiments}, false, null, null, new GuildRoleSubscriptionsFeatureFlag$observeIsGuildEligibleForGuildRoleSubscriptionFreeTrials$1(this, guildId), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        return observableR;
     }
 
     public /* synthetic */ GuildRoleSubscriptionsFeatureFlag(StoreExperiments storeExperiments, StoreGuilds storeGuilds, StoreUser storeUser, StorePermissions storePermissions, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments, (i & 2) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds, (i & 4) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser, (i & 8) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions, (i & 16) != 0 ? ObservationDeckProvider.get() : observationDeck);
+        this((i & 1) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments, (i & 2) != 0 ? StoreStream.Companion.getGuilds() : storeGuilds, (i & 4) != 0 ? StoreStream.Companion.getUsers() : storeUser, (i & 8) != 0 ? StoreStream.Companion.getPermissions() : storePermissions, (i & 16) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
 }

@@ -3,9 +3,7 @@ package org.objectweb.asm;
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/ClassVisitor.SCL.lombok */
 public abstract class ClassVisitor {
     protected final int api;
-
-    /* JADX INFO: renamed from: cv */
-    protected ClassVisitor f27598cv;
+    protected ClassVisitor cv;
 
     public ClassVisitor(int api) {
         this(api, null);
@@ -19,21 +17,21 @@ public abstract class ClassVisitor {
             Constants.checkAsmExperimental(this);
         }
         this.api = api;
-        this.f27598cv = classVisitor;
+        this.cv = classVisitor;
     }
 
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         if (this.api < 524288 && (access & 65536) != 0) {
             throw new UnsupportedOperationException("Records requires ASM8");
         }
-        if (this.f27598cv != null) {
-            this.f27598cv.visit(version, access, name, signature, superName, interfaces);
+        if (this.cv != null) {
+            this.cv.visit(version, access, name, signature, superName, interfaces);
         }
     }
 
     public void visitSource(String source, String debug) {
-        if (this.f27598cv != null) {
-            this.f27598cv.visitSource(source, debug);
+        if (this.cv != null) {
+            this.cv.visitSource(source, debug);
         }
     }
 
@@ -41,8 +39,8 @@ public abstract class ClassVisitor {
         if (this.api < 393216) {
             throw new UnsupportedOperationException("Module requires ASM6");
         }
-        if (this.f27598cv != null) {
-            return this.f27598cv.visitModule(name, access, version);
+        if (this.cv != null) {
+            return this.cv.visitModule(name, access, version);
         }
         return null;
     }
@@ -51,20 +49,20 @@ public abstract class ClassVisitor {
         if (this.api < 458752) {
             throw new UnsupportedOperationException("NestHost requires ASM7");
         }
-        if (this.f27598cv != null) {
-            this.f27598cv.visitNestHost(nestHost);
+        if (this.cv != null) {
+            this.cv.visitNestHost(nestHost);
         }
     }
 
     public void visitOuterClass(String owner, String name, String descriptor) {
-        if (this.f27598cv != null) {
-            this.f27598cv.visitOuterClass(owner, name, descriptor);
+        if (this.cv != null) {
+            this.cv.visitOuterClass(owner, name, descriptor);
         }
     }
 
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-        if (this.f27598cv != null) {
-            return this.f27598cv.visitAnnotation(descriptor, visible);
+        if (this.cv != null) {
+            return this.cv.visitAnnotation(descriptor, visible);
         }
         return null;
     }
@@ -73,15 +71,15 @@ public abstract class ClassVisitor {
         if (this.api < 327680) {
             throw new UnsupportedOperationException("TypeAnnotation requires ASM5");
         }
-        if (this.f27598cv != null) {
-            return this.f27598cv.visitTypeAnnotation(typeRef, typePath, descriptor, visible);
+        if (this.cv != null) {
+            return this.cv.visitTypeAnnotation(typeRef, typePath, descriptor, visible);
         }
         return null;
     }
 
     public void visitAttribute(Attribute attribute) {
-        if (this.f27598cv != null) {
-            this.f27598cv.visitAttribute(attribute);
+        if (this.cv != null) {
+            this.cv.visitAttribute(attribute);
         }
     }
 
@@ -89,8 +87,8 @@ public abstract class ClassVisitor {
         if (this.api < 458752) {
             throw new UnsupportedOperationException("NestMember requires ASM7");
         }
-        if (this.f27598cv != null) {
-            this.f27598cv.visitNestMember(nestMember);
+        if (this.cv != null) {
+            this.cv.visitNestMember(nestMember);
         }
     }
 
@@ -98,14 +96,14 @@ public abstract class ClassVisitor {
         if (this.api < 589824) {
             throw new UnsupportedOperationException("PermittedSubclasses requires ASM9");
         }
-        if (this.f27598cv != null) {
-            this.f27598cv.visitPermittedSubclass(permittedSubclass);
+        if (this.cv != null) {
+            this.cv.visitPermittedSubclass(permittedSubclass);
         }
     }
 
     public void visitInnerClass(String name, String outerName, String innerName, int access) {
-        if (this.f27598cv != null) {
-            this.f27598cv.visitInnerClass(name, outerName, innerName, access);
+        if (this.cv != null) {
+            this.cv.visitInnerClass(name, outerName, innerName, access);
         }
     }
 
@@ -113,29 +111,29 @@ public abstract class ClassVisitor {
         if (this.api < 524288) {
             throw new UnsupportedOperationException("Record requires ASM8");
         }
-        if (this.f27598cv != null) {
-            return this.f27598cv.visitRecordComponent(name, descriptor, signature);
+        if (this.cv != null) {
+            return this.cv.visitRecordComponent(name, descriptor, signature);
         }
         return null;
     }
 
     public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
-        if (this.f27598cv != null) {
-            return this.f27598cv.visitField(access, name, descriptor, signature, value);
+        if (this.cv != null) {
+            return this.cv.visitField(access, name, descriptor, signature, value);
         }
         return null;
     }
 
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-        if (this.f27598cv != null) {
-            return this.f27598cv.visitMethod(access, name, descriptor, signature, exceptions);
+        if (this.cv != null) {
+            return this.cv.visitMethod(access, name, descriptor, signature, exceptions);
         }
         return null;
     }
 
     public void visitEnd() {
-        if (this.f27598cv != null) {
-            this.f27598cv.visitEnd();
+        if (this.cv != null) {
+            this.cv.visitEnd();
         }
     }
 }

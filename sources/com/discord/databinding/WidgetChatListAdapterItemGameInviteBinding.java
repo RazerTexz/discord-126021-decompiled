@@ -9,22 +9,21 @@ import com.discord.widgets.chat.list.ViewEmbedGameInvite;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemGameInviteBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CardView f16207a;
+    public final CardView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ViewEmbedGameInvite f16208b;
+    public final ViewEmbedGameInvite f2319b;
 
     public WidgetChatListAdapterItemGameInviteBinding(@NonNull CardView cardView, @NonNull ViewEmbedGameInvite viewEmbedGameInvite) {
-        this.f16207a = cardView;
-        this.f16208b = viewEmbedGameInvite;
+        this.a = cardView;
+        this.f2319b = viewEmbedGameInvite;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16207a;
+        return this.a;
     }
 }

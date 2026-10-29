@@ -1,9 +1,6 @@
 package com.esotericsoftware.kryo.util;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class IntMap<V> {
@@ -25,232 +22,6 @@ public class IntMap<V> {
     private int threshold;
     public V[] valueTable;
     public V zeroValue;
-
-    public class Entries<V> extends MapIterator<V> implements Iterable<Entry<V>>, Iterator<Entry<V>> {
-        private Entry<V> entry;
-
-        public Entries(IntMap intMap) {
-            super(intMap);
-            this.entry = new Entry<>();
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            return this.hasNext;
-        }
-
-        @Override // java.lang.Iterable
-        public Iterator<Entry<V>> iterator() {
-            return this;
-        }
-
-        @Override // com.esotericsoftware.kryo.util.IntMap.MapIterator, java.util.Iterator
-        public /* bridge */ /* synthetic */ void remove() {
-            super.remove();
-        }
-
-        @Override // com.esotericsoftware.kryo.util.IntMap.MapIterator
-        public /* bridge */ /* synthetic */ void reset() {
-            super.reset();
-        }
-
-        @Override // java.util.Iterator
-        public Entry<V> next() {
-            if (!this.hasNext) {
-                throw new NoSuchElementException();
-            }
-            IntMap<V> intMap = this.map;
-            int[] iArr = intMap.keyTable;
-            int i = this.nextIndex;
-            if (i == -1) {
-                Entry<V> entry = this.entry;
-                entry.key = 0;
-                entry.value = intMap.zeroValue;
-            } else {
-                Entry<V> entry2 = this.entry;
-                entry2.key = iArr[i];
-                entry2.value = intMap.valueTable[i];
-            }
-            this.currentIndex = i;
-            findNextIndex();
-            return this.entry;
-        }
-    }
-
-    public class Entry<V> {
-        public int key;
-        public V value;
-
-        public String toString() {
-            return this.key + "=" + this.value;
-        }
-    }
-
-    public class Keys extends MapIterator {
-        public Keys(IntMap intMap) {
-            super(intMap);
-        }
-
-        public int next() {
-            if (!this.hasNext) {
-                throw new NoSuchElementException();
-            }
-            int i = this.nextIndex;
-            int i2 = i == -1 ? 0 : this.map.keyTable[i];
-            this.currentIndex = i;
-            findNextIndex();
-            return i2;
-        }
-
-        @Override // com.esotericsoftware.kryo.util.IntMap.MapIterator, java.util.Iterator
-        public /* bridge */ /* synthetic */ void remove() {
-            super.remove();
-        }
-
-        @Override // com.esotericsoftware.kryo.util.IntMap.MapIterator
-        public /* bridge */ /* synthetic */ void reset() {
-            super.reset();
-        }
-
-        public IntArray toArray() {
-            IntArray intArray = new IntArray(true, this.map.size);
-            while (this.hasNext) {
-                intArray.add(next());
-            }
-            return intArray;
-        }
-    }
-
-    public class MapIterator<V> {
-        public static final int INDEX_ILLEGAL = -2;
-        public static final int INDEX_ZERO = -1;
-        public int currentIndex;
-        public boolean hasNext;
-        public final IntMap<V> map;
-        public int nextIndex;
-
-        public MapIterator(IntMap<V> intMap) {
-            this.map = intMap;
-            reset();
-        }
-
-        public void findNextIndex() {
-            int i;
-            this.hasNext = false;
-            IntMap<V> intMap = this.map;
-            int[] iArr = intMap.keyTable;
-            int i2 = intMap.capacity + intMap.stashSize;
-            do {
-                i = this.nextIndex + 1;
-                this.nextIndex = i;
-                if (i >= i2) {
-                    return;
-                }
-            } while (iArr[i] == 0);
-            this.hasNext = true;
-        }
-
-        /* JADX WARN: Code duplicated, block: B:10:0x001a  */
-        /* JADX WARN: Code duplicated, block: B:11:0x0027  */
-        /* JADX WARN: Code duplicated, block: B:14:0x003b  */
-        /* JADX WARN: Code duplicated, block: B:7:0x0012 A[DONT_INVERT] */
-        /* JADX WARN: Code duplicated, block: B:8:0x0014  */
-        public void remove() {
-            IntMap<V> intMap;
-            int i = this.currentIndex;
-            if (i == -1) {
-                IntMap<V> intMap2 = this.map;
-                if (intMap2.hasZeroValue) {
-                    intMap2.zeroValue = null;
-                    intMap2.hasZeroValue = false;
-                } else {
-                    if (i >= 0) {
-                        throw new IllegalStateException("next must be called before remove.");
-                    }
-                    intMap = this.map;
-                    if (i >= intMap.capacity) {
-                        intMap.removeStashIndex(i);
-                        this.nextIndex = this.currentIndex - 1;
-                        findNextIndex();
-                    } else {
-                        intMap.keyTable[i] = 0;
-                        intMap.valueTable[i] = null;
-                    }
-                }
-            } else {
-                if (i >= 0) {
-                    throw new IllegalStateException("next must be called before remove.");
-                }
-                intMap = this.map;
-                if (i >= intMap.capacity) {
-                    intMap.removeStashIndex(i);
-                    this.nextIndex = this.currentIndex - 1;
-                    findNextIndex();
-                } else {
-                    intMap.keyTable[i] = 0;
-                    intMap.valueTable[i] = null;
-                }
-            }
-            this.currentIndex = -2;
-            this.map.size--;
-        }
-
-        public void reset() {
-            this.currentIndex = -2;
-            this.nextIndex = -1;
-            if (this.map.hasZeroValue) {
-                this.hasNext = true;
-            } else {
-                findNextIndex();
-            }
-        }
-    }
-
-    public class Values<V> extends MapIterator<V> implements Iterable<V>, Iterator<V> {
-        public Values(IntMap<V> intMap) {
-            super(intMap);
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            return this.hasNext;
-        }
-
-        @Override // java.lang.Iterable
-        public Iterator<V> iterator() {
-            return this;
-        }
-
-        @Override // java.util.Iterator
-        public V next() {
-            if (!this.hasNext) {
-                throw new NoSuchElementException();
-            }
-            int i = this.nextIndex;
-            V v = i == -1 ? this.map.zeroValue : this.map.valueTable[i];
-            this.currentIndex = i;
-            findNextIndex();
-            return v;
-        }
-
-        @Override // com.esotericsoftware.kryo.util.IntMap.MapIterator, java.util.Iterator
-        public /* bridge */ /* synthetic */ void remove() {
-            super.remove();
-        }
-
-        @Override // com.esotericsoftware.kryo.util.IntMap.MapIterator
-        public /* bridge */ /* synthetic */ void reset() {
-            super.reset();
-        }
-
-        public ArrayList<V> toArray() {
-            ArrayList<V> arrayList = new ArrayList<>(this.map.size);
-            while (this.hasNext) {
-                arrayList.add(next());
-            }
-            return arrayList;
-        }
-    }
 
     public IntMap() {
         this(32, 0.8f);
@@ -360,8 +131,8 @@ public class IntMap<V> {
         }
     }
 
-    public Entries<V> entries() {
-        return new Entries<>(this);
+    public IntMap$Entries<V> entries() {
+        return new IntMap$Entries<>(this);
     }
 
     public int findKey(Object obj, boolean z2, int i) {
@@ -471,8 +242,8 @@ public class IntMap<V> {
         return (i2 ^ (i2 >>> this.hashShift)) & this.mask;
     }
 
-    public Keys keys() {
-        return new Keys(this);
+    public IntMap$Keys keys() {
+        return new IntMap$Keys(this);
     }
 
     private void push(int i, V v, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
@@ -690,8 +461,8 @@ public class IntMap<V> {
     }
 
     public void putAll(IntMap<V> intMap) {
-        for (Entry<V> entry : intMap.entries()) {
-            put(entry.key, entry.value);
+        for (IntMap$Entry<V> intMap$Entry : intMap.entries()) {
+            put(intMap$Entry.key, intMap$Entry.value);
         }
     }
 
@@ -900,7 +671,7 @@ public class IntMap<V> {
 
     public void shrink(int i) {
         if (i < 0) {
-            throw new IllegalArgumentException(C1643a.m871q("maximumCapacity must be >= 0: ", i));
+            throw new IllegalArgumentException(a.q("maximumCapacity must be >= 0: ", i));
         }
         int i2 = this.size;
         if (i2 > i) {
@@ -918,15 +689,15 @@ public class IntMap<V> {
     /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:15:0x003e -> B:16:0x003f). Please report as a decompilation issue!!! */
     /*  JADX ERROR: StackOverflowError in pass: RegionMakerVisitor
         java.lang.StackOverflowError
-        	at jadx.core.dex.regions.Region.<init>(Region.java:19)
-        	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:54)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:111)
-        	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
-        	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:117)
-        	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
-        	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
-        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:117)
+        	at jadx.core.dex.attributes.AttributeStorage.add(AttributeStorage.java:53)
+        	at jadx.core.dex.attributes.AttrNode.add(AttrNode.java:21)
+        	at jadx.core.dex.regions.conditions.Compare.<init>(Compare.java:12)
+        	at jadx.core.dex.regions.conditions.IfCondition.fromIfNode(IfCondition.java:73)
+        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.makeIfInfo(IfRegionMaker.java:161)
+        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.getNextIfNodeInfo(IfRegionMaker.java:631)
+        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.getNextIf(IfRegionMaker.java:602)
+        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.mergeNestedIfNodes(IfRegionMaker.java:413)
+        	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:68)
         	at jadx.core.dex.visitors.regions.maker.RegionMaker.traverse(RegionMaker.java:109)
         	at jadx.core.dex.visitors.regions.maker.RegionMaker.makeRegion(RegionMaker.java:69)
         	at jadx.core.dex.visitors.regions.maker.IfRegionMaker.process(IfRegionMaker.java:117)
@@ -2003,8 +1774,8 @@ public class IntMap<V> {
         throw new UnsupportedOperationException("Method not decompiled: com.esotericsoftware.kryo.util.IntMap.toString():java.lang.String");
     }
 
-    public Values<V> values() {
-        return new Values<>(this);
+    public IntMap$Values<V> values() {
+        return new IntMap$Values<>(this);
     }
 
     public IntMap(int i) {
@@ -2013,7 +1784,7 @@ public class IntMap<V> {
 
     public IntMap(int i, float f) {
         if (i < 0) {
-            throw new IllegalArgumentException(C1643a.m871q("initialCapacity must be >= 0: ", i));
+            throw new IllegalArgumentException(a.q("initialCapacity must be >= 0: ", i));
         }
         if (i <= 1073741824) {
             int iNextPowerOfTwo = ObjectMap.nextPowerOfTwo(i);
@@ -2033,7 +1804,7 @@ public class IntMap<V> {
             }
             throw new IllegalArgumentException("loadFactor must be > 0: " + f);
         }
-        throw new IllegalArgumentException(C1643a.m871q("initialCapacity is too large: ", i));
+        throw new IllegalArgumentException(a.q("initialCapacity is too large: ", i));
     }
 
     public void clear() {

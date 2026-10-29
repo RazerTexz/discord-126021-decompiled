@@ -2,6 +2,7 @@ package androidx.appcompat.app;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.view.ActionMode$Callback;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface AppCompatCallback {
@@ -10,5 +11,5 @@ public interface AppCompatCallback {
     void onSupportActionModeStarted(ActionMode actionMode);
 
     @Nullable
-    ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback);
+    ActionMode onWindowStartingSupportActionMode(ActionMode$Callback actionMode$Callback);
 }

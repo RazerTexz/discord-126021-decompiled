@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDiscoverySetupPopularTagClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,6 +17,11 @@ public final /* data */ class TrackDiscoverySetupPopularTagClicked implements An
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "discovery_setup_popular_tag_clicked";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -25,7 +30,7 @@ public final /* data */ class TrackDiscoverySetupPopularTagClicked implements An
             return false;
         }
         TrackDiscoverySetupPopularTagClicked trackDiscoverySetupPopularTagClicked = (TrackDiscoverySetupPopularTagClicked) other;
-        return C12238m.areEqual(this.tag, trackDiscoverySetupPopularTagClicked.tag) && C12238m.areEqual(this.primaryCategoryId, trackDiscoverySetupPopularTagClicked.primaryCategoryId);
+        return m.areEqual(this.tag, trackDiscoverySetupPopularTagClicked.tag) && m.areEqual(this.primaryCategoryId, trackDiscoverySetupPopularTagClicked.primaryCategoryId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,16 +52,10 @@ public final /* data */ class TrackDiscoverySetupPopularTagClicked implements An
         return iHashCode + (l != null ? l.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDiscoverySetupPopularTagClicked(tag=");
-        sbM833U.append(this.tag);
-        sbM833U.append(", primaryCategoryId=");
-        return C1643a.m819G(sbM833U, this.primaryCategoryId, ")");
+        StringBuilder sbU = a.U("TrackDiscoverySetupPopularTagClicked(tag=");
+        sbU.append(this.tag);
+        sbU.append(", primaryCategoryId=");
+        return a.G(sbU, this.primaryCategoryId, ")");
     }
 }

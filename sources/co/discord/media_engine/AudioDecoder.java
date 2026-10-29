@@ -1,10 +1,10 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.Map;
 import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Codecs.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,8 +18,8 @@ public final /* data */ class AudioDecoder {
     private final int type;
 
     public AudioDecoder(int i, String str, int i2, int i3, Map<String, String> map) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(map, "params");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(map, "params");
         this.type = i;
         this.name = str;
         this.freq = i2;
@@ -61,8 +61,8 @@ public final /* data */ class AudioDecoder {
     }
 
     public final AudioDecoder copy(int type, String name, int freq, int channels, Map<String, String> params) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(params, "params");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(params, "params");
         return new AudioDecoder(type, name, freq, channels, params);
     }
 
@@ -74,7 +74,7 @@ public final /* data */ class AudioDecoder {
             return false;
         }
         AudioDecoder audioDecoder = (AudioDecoder) other;
-        return this.type == audioDecoder.type && C12238m.areEqual(this.name, audioDecoder.name) && this.freq == audioDecoder.freq && this.channels == audioDecoder.channels && C12238m.areEqual(this.params, audioDecoder.params);
+        return this.type == audioDecoder.type && m.areEqual(this.name, audioDecoder.name) && this.freq == audioDecoder.freq && this.channels == audioDecoder.channels && m.areEqual(this.params, audioDecoder.params);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -134,15 +134,15 @@ public final /* data */ class AudioDecoder {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AudioDecoder(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", freq=");
-        sbM833U.append(this.freq);
-        sbM833U.append(", channels=");
-        sbM833U.append(this.channels);
-        sbM833U.append(", params=");
-        return C1643a.m825M(sbM833U, this.params, ")");
+        StringBuilder sbU = a.U("AudioDecoder(type=");
+        sbU.append(this.type);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", freq=");
+        sbU.append(this.freq);
+        sbU.append(", channels=");
+        sbU.append(this.channels);
+        sbU.append(", params=");
+        return a.M(sbU, this.params, ")");
     }
 }

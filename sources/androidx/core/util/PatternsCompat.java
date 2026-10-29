@@ -1,15 +1,16 @@
 package androidx.core.util;
 
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.regex.Pattern;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class PatternsCompat {
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static final Pattern AUTOLINK_EMAIL_ADDRESS;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static final Pattern AUTOLINK_WEB_URL;
     public static final Pattern DOMAIN_NAME;
     public static final Pattern EMAIL_ADDRESS;

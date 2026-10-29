@@ -3,10 +3,11 @@ package com.google.android.material.shape;
 import android.graphics.RectF;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public final class AdjustedCornerSize implements CornerSize {
     private final float adjustment;
     private final CornerSize other;

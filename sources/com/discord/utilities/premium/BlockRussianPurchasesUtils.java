@@ -1,47 +1,32 @@
 package com.discord.utilities.premium;
 
+import b.a.a.r;
 import com.discord.models.experiments.domain.Experiment;
-import com.discord.stores.StoreNotices;
+import com.discord.stores.StoreNotices$Notice;
 import com.discord.stores.StoreStream;
+import d0.g;
+import d0.z.d.m;
 import java.util.Objects;
 import kotlin.Lazy;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p008a.p009a.C0841r;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: BlockRussianPurchasesUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class BlockRussianPurchasesUtils {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final BlockRussianPurchasesUtils$Companion Companion = new BlockRussianPurchasesUtils$Companion(null);
     private Boolean isBlockedFromPurchases;
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(BlockRussianPurchasesUtils$Companion$INSTANCE$2.INSTANCE);
+    private static final Lazy INSTANCE$delegate = g.lazy(BlockRussianPurchasesUtils$Companion$INSTANCE$2.INSTANCE);
 
-    /* JADX INFO: compiled from: BlockRussianPurchasesUtils.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final BlockRussianPurchasesUtils getINSTANCE() {
-            Lazy lazy = BlockRussianPurchasesUtils.INSTANCE$delegate;
-            Companion companion = BlockRussianPurchasesUtils.INSTANCE;
-            return (BlockRussianPurchasesUtils) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
+    public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
+        return INSTANCE$delegate;
     }
 
     public final boolean isBlockedFromPurchases() {
         if (this.isBlockedFromPurchases == null) {
-            Experiment userExperiment = StoreStream.INSTANCE.getExperiments().getUserExperiment("2022-03_block_russian_purchases", true);
+            Experiment userExperiment = StoreStream.Companion.getExperiments().getUserExperiment("2022-03_block_russian_purchases", true);
             this.isBlockedFromPurchases = Boolean.valueOf(userExperiment != null && userExperiment.getBucket() == 1);
         }
         Boolean bool = this.isBlockedFromPurchases;
-        C12238m.checkNotNull(bool);
+        m.checkNotNull(bool);
         return bool.booleanValue();
     }
 
@@ -49,9 +34,8 @@ public final class BlockRussianPurchasesUtils {
         if (!isBlockedFromPurchases()) {
             return false;
         }
-        Objects.requireNonNull(C0841r.INSTANCE);
-        String str = "Block Russian Purchases Dialog";
-        StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(str, null, 0L, 0, false, null, 0L, true, 0L, C6835xa02d3131.INSTANCE, 54, null));
+        Objects.requireNonNull(r.k);
+        StoreStream.Companion.getNotices().requestToShow(new StoreNotices$Notice("Block Russian Purchases Dialog", null, 0L, 0, false, null, 0L, true, 0L, BlockRussianPurchasesUtils$showDialog$blockRussianPurchasesNotice$1.INSTANCE, 54, null));
         return true;
     }
 }

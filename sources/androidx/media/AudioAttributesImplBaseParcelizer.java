@@ -1,10 +1,11 @@
 package androidx.media;
 
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.versionedparcelable.VersionedParcel;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class AudioAttributesImplBaseParcelizer {
     public static AudioAttributesImplBase read(VersionedParcel versionedParcel) {
         AudioAttributesImplBase audioAttributesImplBase = new AudioAttributesImplBase();

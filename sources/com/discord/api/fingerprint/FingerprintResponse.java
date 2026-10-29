@@ -1,7 +1,7 @@
 package com.discord.api.fingerprint;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: FingerprintResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class FingerprintResponse {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof FingerprintResponse) && C12238m.areEqual(this.fingerprint, ((FingerprintResponse) other).fingerprint);
+            return (other instanceof FingerprintResponse) && m.areEqual(this.fingerprint, ((FingerprintResponse) other).fingerprint);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class FingerprintResponse {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("FingerprintResponse(fingerprint="), this.fingerprint, ")");
+        return a.J(a.U("FingerprintResponse(fingerprint="), this.fingerprint, ")");
     }
 }

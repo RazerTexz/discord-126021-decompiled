@@ -54,12 +54,4 @@ public final class Permission {
     public static final long VIEW_CHANNEL = 1024;
     public static final long VIEW_GUILD_ANALYTICS = 524288;
     public static final Permission INSTANCE = new Permission();
-
-    /* JADX INFO: compiled from: Permission.kt */
-    public final class AllowList {
-        public static final long COMMUNICATIONS_DISABLED_DEFAULT = 66560;
-        public static final long LURKER_DEFAULT = 66560;
-        public static final long LURKER_STAGE_CHANNEL = 4331734016L;
-        public static final AllowList INSTANCE = new AllowList();
-    }
 }

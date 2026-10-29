@@ -1,11 +1,11 @@
 package com.discord.widgets.servers.guild_role_subscription.edit_tier;
 
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetServerSettingsGuildRoleSubscriptionEditTier.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsGuildRoleSubscriptionEditTier$guildId$2 extends AbstractC12240o implements Function0<Long> {
+public final class WidgetServerSettingsGuildRoleSubscriptionEditTier$guildId$2 extends o implements Function0<Long> {
     public final /* synthetic */ WidgetServerSettingsGuildRoleSubscriptionEditTier this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

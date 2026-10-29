@@ -9,13 +9,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.core.util.Pair;
 import java.util.Collection;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public interface DateSelector<S> extends Parcelable {
     @StyleRes
     int getDefaultThemeResId(Context context);

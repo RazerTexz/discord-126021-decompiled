@@ -3,7 +3,7 @@ package androidx.core.telephony.mbms;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.LocaleList;
 import android.telephony.mbms.ServiceInfo;
 import androidx.annotation.NonNull;
@@ -20,7 +20,7 @@ public final class MbmsHelper {
     @SuppressLint({"BanTargetApiAnnotation"})
     @TargetApi(28)
     public static CharSequence getBestNameForService(@NonNull Context context, @NonNull ServiceInfo serviceInfo) {
-        if (Build.VERSION.SDK_INT < 28) {
+        if (Build$VERSION.SDK_INT < 28) {
             return null;
         }
         LocaleList locales = context.getResources().getConfiguration().getLocales();

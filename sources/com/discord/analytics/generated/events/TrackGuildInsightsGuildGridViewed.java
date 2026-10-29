@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackGuildInsightsGuildGridViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,7 +16,7 @@ public final /* data */ class TrackGuildInsightsGuildGridViewed implements Analy
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackGuildInsightsGuildGridViewed) && C12238m.areEqual(this.guildIds, ((TrackGuildInsightsGuildGridViewed) other).guildIds);
+            return (other instanceof TrackGuildInsightsGuildGridViewed) && m.areEqual(this.guildIds, ((TrackGuildInsightsGuildGridViewed) other).guildIds);
         }
         return true;
     }
@@ -36,6 +36,6 @@ public final /* data */ class TrackGuildInsightsGuildGridViewed implements Analy
     }
 
     public String toString() {
-        return C1643a.m824L(C1643a.m833U("TrackGuildInsightsGuildGridViewed(guildIds="), this.guildIds, ")");
+        return a.L(a.U("TrackGuildInsightsGuildGridViewed(guildIds="), this.guildIds, ")");
     }
 }

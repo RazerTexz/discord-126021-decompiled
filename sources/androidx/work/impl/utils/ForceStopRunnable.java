@@ -8,13 +8,14 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteAccessPermException;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.app.NotificationCompat;
 import androidx.work.Logger;
-import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import androidx.work.impl.Schedulers;
 import androidx.work.impl.WorkDatabase;
 import androidx.work.impl.WorkDatabasePathHelper;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class ForceStopRunnable implements Runnable {
 
     @VisibleForTesting
@@ -38,20 +39,6 @@ public class ForceStopRunnable implements Runnable {
     private static final String TAG = Logger.tagWithPrefix("ForceStopRunnable");
     private static final long TEN_YEARS = TimeUnit.DAYS.toMillis(3650);
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public class BroadcastReceiver extends android.content.BroadcastReceiver {
-        private static final String TAG = Logger.tagWithPrefix("ForceStopRunnable$Rcvr");
-
-        @Override // android.content.BroadcastReceiver
-        public void onReceive(Context context, Intent intent) {
-            if (intent == null || !ForceStopRunnable.ACTION_FORCE_STOP_RESCHEDULE.equals(intent.getAction())) {
-                return;
-            }
-            Logger.get().verbose(TAG, "Rescheduling alarm that keeps track of force-stops.", new Throwable[0]);
-            ForceStopRunnable.setAlarm(context);
-        }
-    }
-
     public ForceStopRunnable(@NonNull Context context, @NonNull WorkManagerImpl workManagerImpl) {
         this.mContext = context.getApplicationContext();
         this.mWorkManager = workManagerImpl;
@@ -59,7 +46,7 @@ public class ForceStopRunnable implements Runnable {
 
     @VisibleForTesting
     public boolean cleanUp() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             SystemJobScheduler.cancelInvalidJobs(this.mContext);
         }
         WorkDatabase workDatabase = this.mWorkManager.getWorkDatabase();
@@ -71,8 +58,8 @@ public class ForceStopRunnable implements Runnable {
             boolean z2 = (runningWork == null || runningWork.isEmpty()) ? false : true;
             if (z2) {
                 for (WorkSpec workSpec : runningWork) {
-                    workSpecDao.setState(WorkInfo.State.ENQUEUED, workSpec.f163id);
-                    workSpecDao.markWorkSpecScheduled(workSpec.f163id, -1L);
+                    workSpecDao.setState(WorkInfo$State.ENQUEUED, workSpec.f38id);
+                    workSpecDao.markWorkSpecScheduled(workSpec.f38id, -1L);
                 }
             }
             workProgressDao.deleteAll();
@@ -86,7 +73,7 @@ public class ForceStopRunnable implements Runnable {
     @VisibleForTesting
     public static Intent getIntent(Context context) {
         Intent intent = new Intent();
-        intent.setComponent(new ComponentName(context, (Class<?>) BroadcastReceiver.class));
+        intent.setComponent(new ComponentName(context, (Class<?>) ForceStopRunnable$BroadcastReceiver.class));
         intent.setAction(ACTION_FORCE_STOP_RESCHEDULE);
         return intent;
     }

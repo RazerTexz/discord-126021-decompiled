@@ -2,15 +2,14 @@ package com.discord.models.commands;
 
 import com.discord.api.commands.ApplicationCommandPermission;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.t.h0;
+import d0.t.o;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.C12116o;
-import p507d0.p580t.C12136h0;
-import p507d0.p580t.C12149o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationCommand.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,15 +20,15 @@ public final class RemoteApplicationCommand extends ApplicationCommand {
 
     public RemoteApplicationCommand(String str, long j, String str2, String str3, List<ApplicationCommandOption> list, Long l, String str4, Boolean bool, List<ApplicationCommandPermission> list2, Function1<? super Map<String, ? extends Object>, String> function1) {
         Map map;
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(list, "options");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(list, "options");
         if (list2 != null) {
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list2, 10));
+            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(list2, 10));
             for (ApplicationCommandPermission applicationCommandPermission : list2) {
-                arrayList.add(C12116o.m10073to(Long.valueOf(applicationCommandPermission.getId()), Boolean.valueOf(applicationCommandPermission.getPermission())));
+                arrayList.add(d0.o.to(Long.valueOf(applicationCommandPermission.getId()), Boolean.valueOf(applicationCommandPermission.getPermission())));
             }
-            map = C12136h0.toMap(arrayList);
+            map = h0.toMap(arrayList);
         } else {
             map = null;
         }

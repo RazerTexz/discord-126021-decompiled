@@ -1,21 +1,22 @@
 package androidx.swiperefreshlayout.widget;
 
-import android.R;
+import android.R$attr;
+import android.R$integer;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.animation.Animation;
+import android.view.animation.Animation$AnimationListener;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Transformation;
 import android.widget.ListView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
@@ -63,7 +64,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
     private Animation mAlphaStartAnimation;
     private final Animation mAnimateToCorrectPosition;
     private final Animation mAnimateToStartPosition;
-    private OnChildScrollUpCallback mChildScrollUpCallback;
+    private SwipeRefreshLayout$OnChildScrollUpCallback mChildScrollUpCallback;
     private int mCircleDiameter;
     public CircleImageView mCircleView;
     private int mCircleViewIndex;
@@ -75,7 +76,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
     private float mInitialDownY;
     private float mInitialMotionY;
     private boolean mIsBeingDragged;
-    public OnRefreshListener mListener;
+    public SwipeRefreshLayout$OnRefreshListener mListener;
     private int mMediumAnimationDuration;
     private boolean mNestedScrollInProgress;
     private final NestedScrollingChildHelper mNestedScrollingChildHelper;
@@ -86,7 +87,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
     private final int[] mParentOffsetInWindow;
     private final int[] mParentScrollConsumed;
     public CircularProgressDrawable mProgress;
-    private Animation.AnimationListener mRefreshListener;
+    private Animation$AnimationListener mRefreshListener;
     public boolean mRefreshing;
     private boolean mReturningToStart;
     public boolean mScale;
@@ -101,85 +102,44 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
     private int mTouchSlop;
     public boolean mUsingCustomStart;
     private static final String LOG_TAG = SwipeRefreshLayout.class.getSimpleName();
-    private static final int[] LAYOUT_ATTRS = {R.attr.enabled};
-
-    public interface OnChildScrollUpCallback {
-        boolean canChildScrollUp(@NonNull SwipeRefreshLayout swipeRefreshLayout, @Nullable View view);
-    }
-
-    public interface OnRefreshListener {
-        void onRefresh();
-    }
-
-    public class SavedState extends View.BaseSavedState {
-        public final boolean mRefreshing;
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-
-        public SavedState(Parcelable parcelable, boolean z2) {
-            super(parcelable);
-            this.mRefreshing = z2;
-        }
-
-        @Override // android.view.View.BaseSavedState, android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeByte(this.mRefreshing ? (byte) 1 : (byte) 0);
-        }
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mRefreshing = parcel.readByte() != 0;
-        }
-    }
+    private static final int[] LAYOUT_ATTRS = {R$attr.enabled};
 
     public SwipeRefreshLayout(@NonNull Context context) {
         this(context, null);
     }
 
-    private void animateOffsetToCorrectPosition(int i, Animation.AnimationListener animationListener) {
+    private void animateOffsetToCorrectPosition(int i, Animation$AnimationListener animation$AnimationListener) {
         this.mFrom = i;
         this.mAnimateToCorrectPosition.reset();
         this.mAnimateToCorrectPosition.setDuration(200L);
         this.mAnimateToCorrectPosition.setInterpolator(this.mDecelerateInterpolator);
-        if (animationListener != null) {
-            this.mCircleView.setAnimationListener(animationListener);
+        if (animation$AnimationListener != null) {
+            this.mCircleView.setAnimationListener(animation$AnimationListener);
         }
         this.mCircleView.clearAnimation();
         this.mCircleView.startAnimation(this.mAnimateToCorrectPosition);
     }
 
-    private void animateOffsetToStartPosition(int i, Animation.AnimationListener animationListener) {
+    private void animateOffsetToStartPosition(int i, Animation$AnimationListener animation$AnimationListener) {
         if (this.mScale) {
-            startScaleDownReturnToStartAnimation(i, animationListener);
+            startScaleDownReturnToStartAnimation(i, animation$AnimationListener);
             return;
         }
         this.mFrom = i;
         this.mAnimateToStartPosition.reset();
         this.mAnimateToStartPosition.setDuration(200L);
         this.mAnimateToStartPosition.setInterpolator(this.mDecelerateInterpolator);
-        if (animationListener != null) {
-            this.mCircleView.setAnimationListener(animationListener);
+        if (animation$AnimationListener != null) {
+            this.mCircleView.setAnimationListener(animation$AnimationListener);
         }
         this.mCircleView.clearAnimation();
         this.mCircleView.startAnimation(this.mAnimateToStartPosition);
     }
 
     public boolean canChildScrollUp() {
-        OnChildScrollUpCallback onChildScrollUpCallback = this.mChildScrollUpCallback;
-        if (onChildScrollUpCallback != null) {
-            return onChildScrollUpCallback.canChildScrollUp(this, this.mTarget);
+        SwipeRefreshLayout$OnChildScrollUpCallback swipeRefreshLayout$OnChildScrollUpCallback = this.mChildScrollUpCallback;
+        if (swipeRefreshLayout$OnChildScrollUpCallback != null) {
+            return swipeRefreshLayout$OnChildScrollUpCallback.canChildScrollUp(this, this.mTarget);
         }
         View view = this.mTarget;
         return view instanceof ListView ? ListViewCompat.canScrollList((ListView) view, -1) : view.canScrollVertically(-1);
@@ -236,24 +196,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         }
         this.mRefreshing = false;
         this.mProgress.setStartEndTrim(0.0f, 0.0f);
-        animateOffsetToStartPosition(this.mCurrentTargetOffsetTop, this.mScale ? null : new Animation.AnimationListener() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.5
-            @Override // android.view.animation.Animation.AnimationListener
-            public void onAnimationEnd(Animation animation) {
-                SwipeRefreshLayout swipeRefreshLayout = SwipeRefreshLayout.this;
-                if (swipeRefreshLayout.mScale) {
-                    return;
-                }
-                swipeRefreshLayout.startScaleDownAnimation(null);
-            }
-
-            @Override // android.view.animation.Animation.AnimationListener
-            public void onAnimationRepeat(Animation animation) {
-            }
-
-            @Override // android.view.animation.Animation.AnimationListener
-            public void onAnimationStart(Animation animation) {
-            }
-        });
+        animateOffsetToStartPosition(this.mCurrentTargetOffsetTop, this.mScale ? null : new SwipeRefreshLayout$5(this));
         this.mProgress.setArrowEnabled(false);
     }
 
@@ -430,8 +373,8 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         if (view == null) {
             return;
         }
-        view.measure(View.MeasureSpec.makeMeasureSpec((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom(), BasicMeasure.EXACTLY));
-        this.mCircleView.measure(View.MeasureSpec.makeMeasureSpec(this.mCircleDiameter, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(this.mCircleDiameter, BasicMeasure.EXACTLY));
+        view.measure(View$MeasureSpec.makeMeasureSpec((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom(), BasicMeasure.EXACTLY));
+        this.mCircleView.measure(View$MeasureSpec.makeMeasureSpec(this.mCircleDiameter, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(this.mCircleDiameter, BasicMeasure.EXACTLY));
         this.mCircleViewIndex = -1;
         for (int i3 = 0; i3 < getChildCount(); i3++) {
             if (getChildAt(i3) == this.mCircleView) {
@@ -485,14 +428,14 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
 
     @Override // android.view.View
     public void onRestoreInstanceState(Parcelable parcelable) {
-        SavedState savedState = (SavedState) parcelable;
-        super.onRestoreInstanceState(savedState.getSuperState());
-        setRefreshing(savedState.mRefreshing);
+        SwipeRefreshLayout$SavedState swipeRefreshLayout$SavedState = (SwipeRefreshLayout$SavedState) parcelable;
+        super.onRestoreInstanceState(swipeRefreshLayout$SavedState.getSuperState());
+        setRefreshing(swipeRefreshLayout$SavedState.mRefreshing);
     }
 
     @Override // android.view.View
     public Parcelable onSaveInstanceState() {
-        return new SavedState(super.onSaveInstanceState(), this.mRefreshing);
+        return new SwipeRefreshLayout$SavedState(super.onSaveInstanceState(), this.mRefreshing);
     }
 
     private void onSecondaryPointerUp(MotionEvent motionEvent) {
@@ -658,12 +601,12 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mNestedScrollingChildHelper.setNestedScrollingEnabled(z2);
     }
 
-    public void setOnChildScrollUpCallback(@Nullable OnChildScrollUpCallback onChildScrollUpCallback) {
-        this.mChildScrollUpCallback = onChildScrollUpCallback;
+    public void setOnChildScrollUpCallback(@Nullable SwipeRefreshLayout$OnChildScrollUpCallback swipeRefreshLayout$OnChildScrollUpCallback) {
+        this.mChildScrollUpCallback = swipeRefreshLayout$OnChildScrollUpCallback;
     }
 
-    public void setOnRefreshListener(@Nullable OnRefreshListener onRefreshListener) {
-        this.mListener = onRefreshListener;
+    public void setOnRefreshListener(@Nullable SwipeRefreshLayout$OnRefreshListener swipeRefreshLayout$OnRefreshListener) {
+        this.mListener = swipeRefreshLayout$OnRefreshListener;
     }
 
     @Deprecated
@@ -729,20 +672,13 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mCurrentTargetOffsetTop = this.mCircleView.getTop();
     }
 
-    private Animation startAlphaAnimation(final int i, final int i2) {
-        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.4
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                CircularProgressDrawable circularProgressDrawable = SwipeRefreshLayout.this.mProgress;
-                int i3 = i;
-                circularProgressDrawable.setAlpha((int) (((i2 - i3) * f) + i3));
-            }
-        };
-        animation.setDuration(300L);
+    private Animation startAlphaAnimation(int i, int i2) {
+        SwipeRefreshLayout$4 swipeRefreshLayout$4 = new SwipeRefreshLayout$4(this, i, i2);
+        swipeRefreshLayout$4.setDuration(300L);
         this.mCircleView.setAnimationListener(null);
         this.mCircleView.clearAnimation();
-        this.mCircleView.startAnimation(animation);
-        return animation;
+        this.mCircleView.startAnimation(swipeRefreshLayout$4);
+        return swipeRefreshLayout$4;
     }
 
     private void startDragging(float f) {
@@ -770,54 +706,36 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mAlphaStartAnimation = startAlphaAnimation(this.mProgress.getAlpha(), 76);
     }
 
-    public void startScaleDownAnimation(Animation.AnimationListener animationListener) {
-        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.3
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                SwipeRefreshLayout.this.setAnimationProgress(1.0f - f);
-            }
-        };
-        this.mScaleDownAnimation = animation;
-        animation.setDuration(150L);
-        this.mCircleView.setAnimationListener(animationListener);
+    public void startScaleDownAnimation(Animation$AnimationListener animation$AnimationListener) {
+        SwipeRefreshLayout$3 swipeRefreshLayout$3 = new SwipeRefreshLayout$3(this);
+        this.mScaleDownAnimation = swipeRefreshLayout$3;
+        swipeRefreshLayout$3.setDuration(150L);
+        this.mCircleView.setAnimationListener(animation$AnimationListener);
         this.mCircleView.clearAnimation();
         this.mCircleView.startAnimation(this.mScaleDownAnimation);
     }
 
-    private void startScaleDownReturnToStartAnimation(int i, Animation.AnimationListener animationListener) {
+    private void startScaleDownReturnToStartAnimation(int i, Animation$AnimationListener animation$AnimationListener) {
         this.mFrom = i;
         this.mStartingScale = this.mCircleView.getScaleX();
-        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.8
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                SwipeRefreshLayout swipeRefreshLayout = SwipeRefreshLayout.this;
-                float f2 = swipeRefreshLayout.mStartingScale;
-                swipeRefreshLayout.setAnimationProgress(((-f2) * f) + f2);
-                SwipeRefreshLayout.this.moveToStart(f);
-            }
-        };
-        this.mScaleDownToStartAnimation = animation;
-        animation.setDuration(150L);
-        if (animationListener != null) {
-            this.mCircleView.setAnimationListener(animationListener);
+        SwipeRefreshLayout$8 swipeRefreshLayout$8 = new SwipeRefreshLayout$8(this);
+        this.mScaleDownToStartAnimation = swipeRefreshLayout$8;
+        swipeRefreshLayout$8.setDuration(150L);
+        if (animation$AnimationListener != null) {
+            this.mCircleView.setAnimationListener(animation$AnimationListener);
         }
         this.mCircleView.clearAnimation();
         this.mCircleView.startAnimation(this.mScaleDownToStartAnimation);
     }
 
-    private void startScaleUpAnimation(Animation.AnimationListener animationListener) {
+    private void startScaleUpAnimation(Animation$AnimationListener animation$AnimationListener) {
         this.mCircleView.setVisibility(0);
         this.mProgress.setAlpha(255);
-        Animation animation = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.2
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                SwipeRefreshLayout.this.setAnimationProgress(f);
-            }
-        };
-        this.mScaleAnimation = animation;
-        animation.setDuration(this.mMediumAnimationDuration);
-        if (animationListener != null) {
-            this.mCircleView.setAnimationListener(animationListener);
+        SwipeRefreshLayout$2 swipeRefreshLayout$2 = new SwipeRefreshLayout$2(this);
+        this.mScaleAnimation = swipeRefreshLayout$2;
+        swipeRefreshLayout$2.setDuration(this.mMediumAnimationDuration);
+        if (animation$AnimationListener != null) {
+            this.mCircleView.setAnimationListener(animation$AnimationListener);
         }
         this.mCircleView.clearAnimation();
         this.mCircleView.startAnimation(this.mScaleAnimation);
@@ -839,52 +757,11 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         this.mNestedScrollingV2ConsumedCompat = new int[2];
         this.mActivePointerId = -1;
         this.mCircleViewIndex = -1;
-        this.mRefreshListener = new Animation.AnimationListener() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.1
-            @Override // android.view.animation.Animation.AnimationListener
-            public void onAnimationEnd(Animation animation) {
-                OnRefreshListener onRefreshListener;
-                SwipeRefreshLayout swipeRefreshLayout = SwipeRefreshLayout.this;
-                if (!swipeRefreshLayout.mRefreshing) {
-                    swipeRefreshLayout.reset();
-                    return;
-                }
-                swipeRefreshLayout.mProgress.setAlpha(255);
-                SwipeRefreshLayout.this.mProgress.start();
-                SwipeRefreshLayout swipeRefreshLayout2 = SwipeRefreshLayout.this;
-                if (swipeRefreshLayout2.mNotify && (onRefreshListener = swipeRefreshLayout2.mListener) != null) {
-                    onRefreshListener.onRefresh();
-                }
-                SwipeRefreshLayout swipeRefreshLayout3 = SwipeRefreshLayout.this;
-                swipeRefreshLayout3.mCurrentTargetOffsetTop = swipeRefreshLayout3.mCircleView.getTop();
-            }
-
-            @Override // android.view.animation.Animation.AnimationListener
-            public void onAnimationRepeat(Animation animation) {
-            }
-
-            @Override // android.view.animation.Animation.AnimationListener
-            public void onAnimationStart(Animation animation) {
-            }
-        };
-        this.mAnimateToCorrectPosition = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.6
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                SwipeRefreshLayout swipeRefreshLayout = SwipeRefreshLayout.this;
-                int iAbs = !swipeRefreshLayout.mUsingCustomStart ? swipeRefreshLayout.mSpinnerOffsetEnd - Math.abs(swipeRefreshLayout.mOriginalOffsetTop) : swipeRefreshLayout.mSpinnerOffsetEnd;
-                SwipeRefreshLayout swipeRefreshLayout2 = SwipeRefreshLayout.this;
-                int i = swipeRefreshLayout2.mFrom;
-                SwipeRefreshLayout.this.setTargetOffsetTopAndBottom((i + ((int) ((iAbs - i) * f))) - swipeRefreshLayout2.mCircleView.getTop());
-                SwipeRefreshLayout.this.mProgress.setArrowScale(1.0f - f);
-            }
-        };
-        this.mAnimateToStartPosition = new Animation() { // from class: androidx.swiperefreshlayout.widget.SwipeRefreshLayout.7
-            @Override // android.view.animation.Animation
-            public void applyTransformation(float f, Transformation transformation) {
-                SwipeRefreshLayout.this.moveToStart(f);
-            }
-        };
+        this.mRefreshListener = new SwipeRefreshLayout$1(this);
+        this.mAnimateToCorrectPosition = new SwipeRefreshLayout$6(this);
+        this.mAnimateToStartPosition = new SwipeRefreshLayout$7(this);
         this.mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        this.mMediumAnimationDuration = getResources().getInteger(R.integer.config_mediumAnimTime);
+        this.mMediumAnimationDuration = getResources().getInteger(R$integer.config_mediumAnimTime);
         setWillNotDraw(false);
         this.mDecelerateInterpolator = new DecelerateInterpolator(DECELERATE_INTERPOLATION_FACTOR);
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();

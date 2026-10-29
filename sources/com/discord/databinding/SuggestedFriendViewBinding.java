@@ -10,42 +10,37 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class SuggestedFriendViewBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final View f15288a;
+    public final View a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f15289b;
+    public final SimpleDraweeView f2156b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final AppCompatImageView f15290c;
+    public final AppCompatImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15291d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final AppCompatImageView f15292e;
+    public final AppCompatImageView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f15293f;
+    public final TextView f;
 
     public SuggestedFriendViewBinding(@NonNull View view, @NonNull SimpleDraweeView simpleDraweeView, @NonNull AppCompatImageView appCompatImageView, @NonNull TextView textView, @NonNull AppCompatImageView appCompatImageView2, @NonNull TextView textView2) {
-        this.f15288a = view;
-        this.f15289b = simpleDraweeView;
-        this.f15290c = appCompatImageView;
-        this.f15291d = textView;
-        this.f15292e = appCompatImageView2;
-        this.f15293f = textView2;
+        this.a = view;
+        this.f2156b = simpleDraweeView;
+        this.c = appCompatImageView;
+        this.d = textView;
+        this.e = appCompatImageView2;
+        this.f = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15288a;
+        return this.a;
     }
 }

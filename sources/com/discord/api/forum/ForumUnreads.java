@@ -1,8 +1,8 @@
 package com.discord.api.forum;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ForumUnreads.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,6 +10,10 @@ public final /* data */ class ForumUnreads {
     private final long channelId;
     private final boolean permissionDenied;
     private final List<ForumUnread> threads;
+
+    public final List<ForumUnread> b() {
+        return this.threads;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -19,7 +23,7 @@ public final /* data */ class ForumUnreads {
             return false;
         }
         ForumUnreads forumUnreads = (ForumUnreads) other;
-        return this.channelId == forumUnreads.channelId && this.permissionDenied == forumUnreads.permissionDenied && C12238m.areEqual(this.threads, forumUnreads.threads);
+        return this.channelId == forumUnreads.channelId && this.permissionDenied == forumUnreads.permissionDenied && m.areEqual(this.threads, forumUnreads.threads);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -45,17 +49,12 @@ public final /* data */ class ForumUnreads {
         return i2 + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<ForumUnread> m7825b() {
-        return this.threads;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ForumUnreads(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", permissionDenied=");
-        sbM833U.append(this.permissionDenied);
-        sbM833U.append(", threads=");
-        return C1643a.m824L(sbM833U, this.threads, ")");
+        StringBuilder sbU = a.U("ForumUnreads(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", permissionDenied=");
+        sbU.append(this.permissionDenied);
+        sbU.append(", threads=");
+        return a.L(sbU, this.threads, ")");
     }
 }

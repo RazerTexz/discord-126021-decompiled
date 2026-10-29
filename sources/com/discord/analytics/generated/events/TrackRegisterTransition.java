@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackRegisterTransition.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,7 +33,7 @@ public final /* data */ class TrackRegisterTransition implements AnalyticsSchema
             return false;
         }
         TrackRegisterTransition trackRegisterTransition = (TrackRegisterTransition) other;
-        return C12238m.areEqual(this.step, trackRegisterTransition.step) && C12238m.areEqual(this.actionType, trackRegisterTransition.actionType) && C12238m.areEqual(this.actionTypeDetails, trackRegisterTransition.actionTypeDetails) && C12238m.areEqual(this.actionDetails, trackRegisterTransition.actionDetails) && C12238m.areEqual(this.identityType, trackRegisterTransition.identityType) && C12238m.areEqual(this.registrationSource, trackRegisterTransition.registrationSource) && C12238m.areEqual(this.isUnclaimed, trackRegisterTransition.isUnclaimed) && C12238m.areEqual(this.inviteCode, trackRegisterTransition.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegisterTransition.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegisterTransition.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegisterTransition.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegisterTransition.inviteInviterId);
+        return m.areEqual(this.step, trackRegisterTransition.step) && m.areEqual(this.actionType, trackRegisterTransition.actionType) && m.areEqual(this.actionTypeDetails, trackRegisterTransition.actionTypeDetails) && m.areEqual(this.actionDetails, trackRegisterTransition.actionDetails) && m.areEqual(this.identityType, trackRegisterTransition.identityType) && m.areEqual(this.registrationSource, trackRegisterTransition.registrationSource) && m.areEqual(this.isUnclaimed, trackRegisterTransition.isUnclaimed) && m.areEqual(this.inviteCode, trackRegisterTransition.inviteCode) && m.areEqual(this.inviteGuildId, trackRegisterTransition.inviteGuildId) && m.areEqual(this.inviteChannelId, trackRegisterTransition.inviteChannelId) && m.areEqual(this.inviteChannelType, trackRegisterTransition.inviteChannelType) && m.areEqual(this.inviteInviterId, trackRegisterTransition.inviteInviterId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -70,29 +70,29 @@ public final /* data */ class TrackRegisterTransition implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRegisterTransition(step=");
-        sbM833U.append(this.step);
-        sbM833U.append(", actionType=");
-        sbM833U.append(this.actionType);
-        sbM833U.append(", actionTypeDetails=");
-        sbM833U.append(this.actionTypeDetails);
-        sbM833U.append(", actionDetails=");
-        sbM833U.append(this.actionDetails);
-        sbM833U.append(", identityType=");
-        sbM833U.append(this.identityType);
-        sbM833U.append(", registrationSource=");
-        sbM833U.append(this.registrationSource);
-        sbM833U.append(", isUnclaimed=");
-        sbM833U.append(this.isUnclaimed);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", inviteGuildId=");
-        sbM833U.append(this.inviteGuildId);
-        sbM833U.append(", inviteChannelId=");
-        sbM833U.append(this.inviteChannelId);
-        sbM833U.append(", inviteChannelType=");
-        sbM833U.append(this.inviteChannelType);
-        sbM833U.append(", inviteInviterId=");
-        return C1643a.m819G(sbM833U, this.inviteInviterId, ")");
+        StringBuilder sbU = a.U("TrackRegisterTransition(step=");
+        sbU.append(this.step);
+        sbU.append(", actionType=");
+        sbU.append(this.actionType);
+        sbU.append(", actionTypeDetails=");
+        sbU.append(this.actionTypeDetails);
+        sbU.append(", actionDetails=");
+        sbU.append(this.actionDetails);
+        sbU.append(", identityType=");
+        sbU.append(this.identityType);
+        sbU.append(", registrationSource=");
+        sbU.append(this.registrationSource);
+        sbU.append(", isUnclaimed=");
+        sbU.append(this.isUnclaimed);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", inviteGuildId=");
+        sbU.append(this.inviteGuildId);
+        sbU.append(", inviteChannelId=");
+        sbU.append(this.inviteChannelId);
+        sbU.append(", inviteChannelType=");
+        sbU.append(this.inviteChannelType);
+        sbU.append(", inviteInviterId=");
+        return a.G(sbU, this.inviteInviterId, ")");
     }
 }

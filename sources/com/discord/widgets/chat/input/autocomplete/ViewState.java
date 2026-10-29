@@ -1,7 +1,7 @@
 package com.discord.widgets.chat.input.autocomplete;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: AutocompleteViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -10,8 +10,8 @@ public final /* data */ class ViewState {
     private final SelectedCommandViewState selectedCommandViewState;
 
     public ViewState(AutocompleteViewState autocompleteViewState, SelectedCommandViewState selectedCommandViewState) {
-        C12238m.checkNotNullParameter(autocompleteViewState, "autocompleteViewState");
-        C12238m.checkNotNullParameter(selectedCommandViewState, "selectedCommandViewState");
+        m.checkNotNullParameter(autocompleteViewState, "autocompleteViewState");
+        m.checkNotNullParameter(selectedCommandViewState, "selectedCommandViewState");
         this.autocompleteViewState = autocompleteViewState;
         this.selectedCommandViewState = selectedCommandViewState;
     }
@@ -27,8 +27,8 @@ public final /* data */ class ViewState {
     }
 
     public final ViewState copy(AutocompleteViewState autocompleteViewState, SelectedCommandViewState selectedCommandViewState) {
-        C12238m.checkNotNullParameter(autocompleteViewState, "autocompleteViewState");
-        C12238m.checkNotNullParameter(selectedCommandViewState, "selectedCommandViewState");
+        m.checkNotNullParameter(autocompleteViewState, "autocompleteViewState");
+        m.checkNotNullParameter(selectedCommandViewState, "selectedCommandViewState");
         return new ViewState(autocompleteViewState, selectedCommandViewState);
     }
 
@@ -40,7 +40,7 @@ public final /* data */ class ViewState {
             return false;
         }
         ViewState viewState = (ViewState) other;
-        return C12238m.areEqual(this.autocompleteViewState, viewState.autocompleteViewState) && C12238m.areEqual(this.selectedCommandViewState, viewState.selectedCommandViewState);
+        return m.areEqual(this.autocompleteViewState, viewState.autocompleteViewState) && m.areEqual(this.selectedCommandViewState, viewState.selectedCommandViewState);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -69,11 +69,11 @@ public final /* data */ class ViewState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ViewState(autocompleteViewState=");
-        sbM833U.append(this.autocompleteViewState);
-        sbM833U.append(", selectedCommandViewState=");
-        sbM833U.append(this.selectedCommandViewState);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ViewState(autocompleteViewState=");
+        sbU.append(this.autocompleteViewState);
+        sbU.append(", selectedCommandViewState=");
+        sbU.append(this.selectedCommandViewState);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

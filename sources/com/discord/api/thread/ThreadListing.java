@@ -1,10 +1,10 @@
 package com.discord.api.thread;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.message.Message;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ThreadListing.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -14,6 +14,14 @@ public final /* data */ class ThreadListing {
     private final List<ThreadMember> members;
     private final List<Channel> threads;
 
+    public final List<Message> a() {
+        return this.firstMessages;
+    }
+
+    public final List<Channel> c() {
+        return this.threads;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -22,7 +30,7 @@ public final /* data */ class ThreadListing {
             return false;
         }
         ThreadListing threadListing = (ThreadListing) other;
-        return C12238m.areEqual(this.threads, threadListing.threads) && this.hasMore == threadListing.hasMore && C12238m.areEqual(this.members, threadListing.members) && C12238m.areEqual(this.firstMessages, threadListing.firstMessages);
+        return m.areEqual(this.threads, threadListing.threads) && this.hasMore == threadListing.hasMore && m.areEqual(this.members, threadListing.members) && m.areEqual(this.firstMessages, threadListing.firstMessages);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -49,24 +57,14 @@ public final /* data */ class ThreadListing {
         return iHashCode2 + (list3 != null ? list3.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<Message> m8256a() {
-        return this.firstMessages;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<Channel> m8258c() {
-        return this.threads;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ThreadListing(threads=");
-        sbM833U.append(this.threads);
-        sbM833U.append(", hasMore=");
-        sbM833U.append(this.hasMore);
-        sbM833U.append(", members=");
-        sbM833U.append(this.members);
-        sbM833U.append(", firstMessages=");
-        return C1643a.m824L(sbM833U, this.firstMessages, ")");
+        StringBuilder sbU = a.U("ThreadListing(threads=");
+        sbU.append(this.threads);
+        sbU.append(", hasMore=");
+        sbU.append(this.hasMore);
+        sbU.append(", members=");
+        sbU.append(this.members);
+        sbU.append(", firstMessages=");
+        return a.L(sbU, this.firstMessages, ")");
     }
 }

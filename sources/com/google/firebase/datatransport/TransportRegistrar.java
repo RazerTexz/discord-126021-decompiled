@@ -2,38 +2,30 @@ package com.google.firebase.datatransport;
 
 import android.content.Context;
 import androidx.annotation.Keep;
-import com.google.firebase.datatransport.TransportRegistrar;
+import b.i.a.b.j.n;
+import b.i.c.l.d;
+import b.i.c.l.d$b;
+import b.i.c.l.e;
+import b.i.c.l.g;
+import b.i.c.l.o;
+import b.i.c.n.a;
 import java.util.Collections;
 import java.util.List;
-import p007b.p225i.p226a.p228b.InterfaceC2412g;
-import p007b.p225i.p226a.p228b.p229i.C2414a;
-import p007b.p225i.p226a.p228b.p231j.C2447n;
-import p007b.p225i.p361c.p368l.C4572d;
-import p007b.p225i.p361c.p368l.C4583o;
-import p007b.p225i.p361c.p368l.InterfaceC4573e;
-import p007b.p225i.p361c.p368l.InterfaceC4574f;
-import p007b.p225i.p361c.p368l.InterfaceC4575g;
 
 /* JADX INFO: compiled from: com.google.firebase:firebase-datatransport@@17.0.3 */
 /* JADX INFO: loaded from: classes3.dex */
 @Keep
-public class TransportRegistrar implements InterfaceC4575g {
-    @Override // p007b.p225i.p361c.p368l.InterfaceC4575g
-    public List<C4572d<?>> getComponents() {
-        C4572d.b bVarM6348a = C4572d.m6348a(InterfaceC2412g.class);
-        bVarM6348a.m6351a(new C4583o(Context.class, 1, 0));
-        bVarM6348a.m6353c(new InterfaceC4574f() { // from class: b.i.c.n.a
-            @Override // p007b.p225i.p361c.p368l.InterfaceC4574f
-            /* JADX INFO: renamed from: a */
-            public Object mo6341a(InterfaceC4573e interfaceC4573e) {
-                return TransportRegistrar.lambda$getComponents$0(interfaceC4573e);
-            }
-        });
-        return Collections.singletonList(bVarM6348a.m6352b());
+public class TransportRegistrar implements g {
+    @Override // b.i.c.l.g
+    public List<d<?>> getComponents() {
+        d$b d_bA = d.a(b.i.a.b.g.class);
+        d_bA.a(new o(Context.class, 1, 0));
+        d_bA.c(a.a);
+        return Collections.singletonList(d_bA.b());
     }
 
-    public static /* synthetic */ InterfaceC2412g lambda$getComponents$0(InterfaceC4573e interfaceC4573e) {
-        C2447n.m2360b((Context) interfaceC4573e.mo6346a(Context.class));
-        return C2447n.m2359a().m2361c(C2414a.f5127e);
+    public static /* synthetic */ b.i.a.b.g lambda$getComponents$0(e eVar) {
+        n.b((Context) eVar.a(Context.class));
+        return n.a().c(b.i.a.b.i.a.e);
     }
 }

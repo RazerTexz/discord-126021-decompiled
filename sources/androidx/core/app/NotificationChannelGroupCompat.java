@@ -2,7 +2,7 @@ package androidx.core.app;
 
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -18,31 +18,6 @@ public class NotificationChannelGroupCompat {
     public String mDescription;
     public final String mId;
     public CharSequence mName;
-
-    public class Builder {
-        public final NotificationChannelGroupCompat mGroup;
-
-        public Builder(@NonNull String str) {
-            this.mGroup = new NotificationChannelGroupCompat(str);
-        }
-
-        @NonNull
-        public NotificationChannelGroupCompat build() {
-            return this.mGroup;
-        }
-
-        @NonNull
-        public Builder setDescription(@Nullable String str) {
-            this.mGroup.mDescription = str;
-            return this;
-        }
-
-        @NonNull
-        public Builder setName(@Nullable CharSequence charSequence) {
-            this.mGroup.mName = charSequence;
-            return this;
-        }
-    }
 
     public NotificationChannelGroupCompat(@NonNull String str) {
         this.mChannels = Collections.emptyList();
@@ -81,7 +56,7 @@ public class NotificationChannelGroupCompat {
     }
 
     public NotificationChannelGroup getNotificationChannelGroup() {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i < 26) {
             return null;
         }
@@ -97,8 +72,8 @@ public class NotificationChannelGroupCompat {
     }
 
     @NonNull
-    public Builder toBuilder() {
-        return new Builder(this.mId).setName(this.mName).setDescription(this.mDescription);
+    public NotificationChannelGroupCompat$Builder toBuilder() {
+        return new NotificationChannelGroupCompat$Builder(this.mId).setName(this.mName).setDescription(this.mDescription);
     }
 
     @RequiresApi(28)
@@ -110,7 +85,7 @@ public class NotificationChannelGroupCompat {
     public NotificationChannelGroupCompat(@NonNull NotificationChannelGroup notificationChannelGroup, @NonNull List<NotificationChannel> list) {
         this(notificationChannelGroup.getId());
         this.mName = notificationChannelGroup.getName();
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i >= 28) {
             this.mDescription = notificationChannelGroup.getDescription();
         }

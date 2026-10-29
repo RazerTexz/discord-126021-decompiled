@@ -3,15 +3,16 @@ package androidx.preference;
 import android.content.Context;
 import android.util.AttributeSet;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.res.TypedArrayUtils;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class PreferenceScreen extends PreferenceGroup {
     private boolean mShouldUseGeneratedIds;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public PreferenceScreen(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, TypedArrayUtils.getAttr(context, C0525R.attr.preferenceScreenStyle, android.R.attr.preferenceScreenStyle));
+        super(context, attributeSet, TypedArrayUtils.getAttr(context, R$attr.preferenceScreenStyle, android.R$attr.preferenceScreenStyle));
         this.mShouldUseGeneratedIds = true;
     }
 
@@ -22,7 +23,7 @@ public final class PreferenceScreen extends PreferenceGroup {
 
     @Override // androidx.preference.Preference
     public void onClick() {
-        PreferenceManager.OnNavigateToScreenListener onNavigateToScreenListener;
+        PreferenceManager$OnNavigateToScreenListener onNavigateToScreenListener;
         if (getIntent() != null || getFragment() != null || getPreferenceCount() == 0 || (onNavigateToScreenListener = getPreferenceManager().getOnNavigateToScreenListener()) == null) {
             return;
         }

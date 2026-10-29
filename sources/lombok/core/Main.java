@@ -1,8 +1,6 @@
 package lombok.core;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,76 +15,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Thread.currentThread().setContextClassLoader(Main.class.getClassLoader());
-        int err = new Main(SpiLoadUtil.readAllFromIterator(SpiLoadUtil.findServices(LombokApp.class)), Arrays.asList(args)).m10926go();
+        int err = new Main(SpiLoadUtil.readAllFromIterator(SpiLoadUtil.findServices(LombokApp.class)), Arrays.asList(args)).go();
         if (err != 0) {
             System.exit(err);
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/Main$VersionApp.SCL.lombok */
-    public class VersionApp extends LombokApp {
-        @Override // lombok.core.LombokApp
-        public String getAppName() {
-            return "version";
-        }
-
-        @Override // lombok.core.LombokApp
-        public String getAppDescription() {
-            return "prints lombok's version.";
-        }
-
-        @Override // lombok.core.LombokApp
-        public List<String> getAppAliases() {
-            return Arrays.asList("-version", "--version");
-        }
-
-        @Override // lombok.core.LombokApp
-        public int runApp(List<String> args) {
-            System.out.println(Version.getFullVersion());
-            return 0;
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/Main$LicenseApp.SCL.lombok */
-    public class LicenseApp extends LombokApp {
-        @Override // lombok.core.LombokApp
-        public String getAppName() {
-            return "license";
-        }
-
-        @Override // lombok.core.LombokApp
-        public String getAppDescription() {
-            return "prints license information.";
-        }
-
-        @Override // lombok.core.LombokApp
-        public List<String> getAppAliases() {
-            return Arrays.asList("licence", "copyright", "copyleft", "gpl");
-        }
-
-        @Override // lombok.core.LombokApp
-        public int runApp(List<String> args) {
-            try {
-                InputStream in = Main.class.getResourceAsStream("/LICENSE");
-                try {
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    byte[] b2 = new byte[65536];
-                    while (true) {
-                        int r = in.read(b2);
-                        if (r != -1) {
-                            out.write(b2, 0, r);
-                        } else {
-                            System.out.println(new String(out.toByteArray()));
-                            return 0;
-                        }
-                    }
-                } finally {
-                    in.close();
-                }
-            } catch (Exception unused) {
-                System.err.println("License file not found. Check https://projectlombok.org/LICENSE");
-                return 1;
-            }
         }
     }
 
@@ -95,8 +26,7 @@ public class Main {
         this.args = args;
     }
 
-    /* JADX INFO: renamed from: go */
-    public int m10926go() {
+    public int go() {
         if (!this.args.isEmpty() && HELP_SWITCHES.contains(this.args.get(0))) {
             printHelp(null, System.out);
             return 0;

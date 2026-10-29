@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackInviteLoginSuccessful.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSch
             return false;
         }
         TrackInviteLoginSuccessful trackInviteLoginSuccessful = (TrackInviteLoginSuccessful) other;
-        return C12238m.areEqual(this.inviteCode, trackInviteLoginSuccessful.inviteCode) && C12238m.areEqual(this.guildId, trackInviteLoginSuccessful.guildId) && C12238m.areEqual(this.channelId, trackInviteLoginSuccessful.channelId) && C12238m.areEqual(this.inviterId, trackInviteLoginSuccessful.inviterId) && C12238m.areEqual(this.prevUserId, trackInviteLoginSuccessful.prevUserId);
+        return m.areEqual(this.inviteCode, trackInviteLoginSuccessful.inviteCode) && m.areEqual(this.guildId, trackInviteLoginSuccessful.guildId) && m.areEqual(this.channelId, trackInviteLoginSuccessful.channelId) && m.areEqual(this.inviterId, trackInviteLoginSuccessful.inviterId) && m.areEqual(this.prevUserId, trackInviteLoginSuccessful.prevUserId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackInviteLoginSuccessful implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackInviteLoginSuccessful(inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", inviterId=");
-        sbM833U.append(this.inviterId);
-        sbM833U.append(", prevUserId=");
-        return C1643a.m819G(sbM833U, this.prevUserId, ")");
+        StringBuilder sbU = a.U("TrackInviteLoginSuccessful(inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", inviterId=");
+        sbU.append(this.inviterId);
+        sbU.append(", prevUserId=");
+        return a.G(sbU, this.prevUserId, ")");
     }
 }

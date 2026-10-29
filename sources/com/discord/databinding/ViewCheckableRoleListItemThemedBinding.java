@@ -8,22 +8,21 @@ import com.discord.views.CheckedSetting;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewCheckableRoleListItemThemedBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CheckedSetting f15399a;
+    public final CheckedSetting a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f15400b;
+    public final CheckedSetting f2180b;
 
     public ViewCheckableRoleListItemThemedBinding(@NonNull CheckedSetting checkedSetting, @NonNull CheckedSetting checkedSetting2) {
-        this.f15399a = checkedSetting;
-        this.f15400b = checkedSetting2;
+        this.a = checkedSetting;
+        this.f2180b = checkedSetting2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15399a;
+        return this.a;
     }
 }

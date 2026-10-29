@@ -1,19 +1,24 @@
 package com.discord.stores;
 
+import android.content.Context;
 import com.discord.api.channel.Channel;
-import com.discord.api.forum.ForumPostFirstMessages;
 import com.discord.api.message.reaction.MessageReaction;
 import com.discord.api.message.reaction.MessageReactionUpdate;
 import com.discord.models.domain.ModelMessageDelete;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.message.Message;
-import com.discord.restapi.RestAPIParams;
+import com.discord.restapi.RestAPIParams$GetForumPostData;
 import com.discord.restapi.utils.RetryWithDelay;
 import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.t.h0;
+import d0.t.o;
+import d0.t.o0;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -27,19 +32,12 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.objectweb.asm.Opcodes;
-import p507d0.p578f0.C12078q;
-import p507d0.p580t.C12136h0;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12150o0;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
 
 /* JADX INFO: compiled from: StoreForumPostMessages.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreForumPostMessages extends StoreV2 {
+    public static final StoreForumPostMessages$Companion Companion = new StoreForumPostMessages$Companion(null);
     public static final int MAX_REQUEST_BODY_POST_IDS = 10;
     private final Dispatcher dispatcher;
     private Map<Long, Set<Long>> forumPostFetchQueue;
@@ -51,218 +49,57 @@ public final class StoreForumPostMessages extends StoreV2 {
     private Set<Long> shouldGetForumPostFirstMessageFromGateway;
     private final StoreUser storeUser;
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$enqueueForumPostFirstMessageFetch$1 */
-    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-    public final class C59311 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $parentChannelId;
-        public final /* synthetic */ long $postId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C59311(long j, long j2) {
-            super(0);
-            this.$postId = j;
-            this.$parentChannelId = j2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (StoreForumPostMessages.this.hasForumPostFirstMessage(this.$postId) || StoreForumPostMessages.this.isFetchingForumPostFirstMessage(this.$postId) || StoreForumPostMessages.this.expectForumPostFirstMessageFromGateway(this.$postId)) {
-                return;
-            }
-            Set linkedHashSet = (Set) StoreForumPostMessages.this.forumPostFetchQueue.get(Long.valueOf(this.$parentChannelId));
-            if (linkedHashSet == null) {
-                linkedHashSet = new LinkedHashSet();
-            }
-            linkedHashSet.add(Long.valueOf(this.$postId));
-            StoreForumPostMessages.this.forumPostFetchQueue.put(Long.valueOf(this.$parentChannelId), linkedHashSet);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$1 */
-    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-    public final class C59321 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Function0 $onTerminated;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public AnonymousClass1() {
-                super(0);
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                C59321.this.$onTerminated.invoke();
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C59321(Function0 function0) {
-            super(0);
-            this.$onTerminated = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreForumPostMessages.this.dispatcher.schedule(new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$2 */
-    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-    public final class C59332 extends AbstractC12240o implements Function1<ForumPostFirstMessages, Unit> {
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$fetchForumPosts$2$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-            public final /* synthetic */ ForumPostFirstMessages $response;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(ForumPostFirstMessages forumPostFirstMessages) {
-                super(0);
-                this.$response = forumPostFirstMessages;
-            }
-
-            @Override // kotlin.jvm.functions.Function0
-            public /* bridge */ /* synthetic */ Unit invoke() {
-                invoke2();
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2() {
-                StoreForumPostMessages.this.bulkCreateFirstMessage(C12078q.toList(C12078q.filterNotNull(C12078q.map(C12163u.asSequence(this.$response.m7821a().values()), StoreForumPostMessages$fetchForumPosts$2$1$firstMessages$1.INSTANCE))));
-            }
-        }
-
-        public C59332() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ForumPostFirstMessages forumPostFirstMessages) {
-            invoke2(forumPostFirstMessages);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ForumPostFirstMessages forumPostFirstMessages) {
-            C12238m.checkNotNullParameter(forumPostFirstMessages, "response");
-            StoreForumPostMessages.this.dispatcher.schedule(new AnonymousClass1(forumPostFirstMessages));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$flushForumPostFirstMessageQueue$1 */
-    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-    public final class C59341 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $parentChannelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C59341(long j) {
-            super(0);
-            this.$parentChannelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            if (StoreForumPostMessages.this.forumPostRequestQueueProcessing) {
-                return;
-            }
-            StoreForumPostMessages.this.forumPostRequestQueueProcessing = true;
-            StoreForumPostMessages.this.flushForumPostFirstMessageQueueHelper(this.$parentChannelId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$flushForumPostFirstMessageQueueHelper$1 */
-    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-    public final class C59351 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $parentChannelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C59351(long j) {
-            super(0);
-            this.$parentChannelId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Collection collection = (Collection) StoreForumPostMessages.this.forumPostFetchQueue.get(Long.valueOf(this.$parentChannelId));
-            if (collection == null || collection.isEmpty()) {
-                StoreForumPostMessages.this.forumPostRequestQueueProcessing = false;
-            } else {
-                StoreForumPostMessages.this.flushForumPostFirstMessageQueueHelper(this.$parentChannelId);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$observeForumPostFirstMessage$1 */
-    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-    public final class C59361 extends AbstractC12240o implements Function0<Message> {
-        public final /* synthetic */ long $postId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C59361(long j) {
-            super(0);
-            this.$postId = j;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Message invoke() {
-            return (Message) StoreForumPostMessages.this.forumPostFirstMessageSnapshot.get(Long.valueOf(this.$postId));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreForumPostMessages$observeForumPostFirstMessages$1 */
-    /* JADX INFO: compiled from: StoreForumPostMessages.kt */
-    public final class C59371 extends AbstractC12240o implements Function0<Map<Long, ? extends Message>> {
-        public C59371() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends Message> invoke() {
-            return StoreForumPostMessages.this.forumPostFirstMessageSnapshot;
-        }
-    }
-
     public /* synthetic */ StoreForumPostMessages(Dispatcher dispatcher, StoreUser storeUser, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, storeUser, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
 
+    public static final /* synthetic */ boolean access$expectForumPostFirstMessageFromGateway(StoreForumPostMessages storeForumPostMessages, long j) {
+        return storeForumPostMessages.expectForumPostFirstMessageFromGateway(j);
+    }
+
+    public static final /* synthetic */ void access$flushForumPostFirstMessageQueueHelper(StoreForumPostMessages storeForumPostMessages, long j) {
+        storeForumPostMessages.flushForumPostFirstMessageQueueHelper(j);
+    }
+
+    public static final /* synthetic */ Dispatcher access$getDispatcher$p(StoreForumPostMessages storeForumPostMessages) {
+        return storeForumPostMessages.dispatcher;
+    }
+
+    public static final /* synthetic */ Map access$getForumPostFetchQueue$p(StoreForumPostMessages storeForumPostMessages) {
+        return storeForumPostMessages.forumPostFetchQueue;
+    }
+
+    public static final /* synthetic */ Map access$getForumPostFirstMessageSnapshot$p(StoreForumPostMessages storeForumPostMessages) {
+        return storeForumPostMessages.forumPostFirstMessageSnapshot;
+    }
+
+    public static final /* synthetic */ boolean access$getForumPostRequestQueueProcessing$p(StoreForumPostMessages storeForumPostMessages) {
+        return storeForumPostMessages.forumPostRequestQueueProcessing;
+    }
+
+    public static final /* synthetic */ boolean access$hasForumPostFirstMessage(StoreForumPostMessages storeForumPostMessages, long j) {
+        return storeForumPostMessages.hasForumPostFirstMessage(j);
+    }
+
+    public static final /* synthetic */ boolean access$isFetchingForumPostFirstMessage(StoreForumPostMessages storeForumPostMessages, long j) {
+        return storeForumPostMessages.isFetchingForumPostFirstMessage(j);
+    }
+
+    public static final /* synthetic */ void access$setForumPostFetchQueue$p(StoreForumPostMessages storeForumPostMessages, Map map) {
+        storeForumPostMessages.forumPostFetchQueue = map;
+    }
+
+    public static final /* synthetic */ void access$setForumPostFirstMessageSnapshot$p(StoreForumPostMessages storeForumPostMessages, Map map) {
+        storeForumPostMessages.forumPostFirstMessageSnapshot = map;
+    }
+
+    public static final /* synthetic */ void access$setForumPostRequestQueueProcessing$p(StoreForumPostMessages storeForumPostMessages, boolean z2) {
+        storeForumPostMessages.forumPostRequestQueueProcessing = z2;
+    }
+
     @StoreThread
     public final void bulkCreateFirstMessage(List<com.discord.api.message.Message> messages) {
-        C12238m.checkNotNullParameter(messages, "messages");
+        m.checkNotNullParameter(messages, "messages");
         ArrayList<com.discord.api.message.Message> arrayList = new ArrayList();
         for (Object obj : messages) {
             if (isFirstMessage((com.discord.api.message.Message) obj)) {
@@ -280,7 +117,7 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void createFirstMessage(com.discord.api.message.Message message) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         if (isFirstMessage(message)) {
             this.forumPostFirstMessage.put(Long.valueOf(message.getChannelId()), new Message(message));
             this.shouldGetForumPostFirstMessageFromGateway.remove(Long.valueOf(message.getChannelId()));
@@ -298,7 +135,7 @@ public final class StoreForumPostMessages extends StoreV2 {
     }
 
     public final void enqueueForumPostFirstMessageFetch(long parentChannelId, long postId) {
-        this.dispatcher.schedule(new C59311(postId, parentChannelId));
+        this.dispatcher.schedule(new StoreForumPostMessages$enqueueForumPostFirstMessageFetch$1(this, postId, parentChannelId));
     }
 
     @StoreThread
@@ -309,11 +146,11 @@ public final class StoreForumPostMessages extends StoreV2 {
     @StoreThread
     private final void fetchForumPosts(long parentChannelId, List<Long> postIds, Function0<Unit> onTerminated) {
         this.forumPostFirstMessageFetchSent.addAll(postIds);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RetryWithDelay.restRetry$default(RetryWithDelay.INSTANCE, RestAPI.INSTANCE.getApi().getForumPostData(parentChannelId, new RestAPIParams.GetForumPostData(postIds)), 0L, null, null, 7, null), false, 1, null), (Class<?>) StoreForumPostMessages.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C59321(onTerminated)), new C59332());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RetryWithDelay.restRetry$default(RetryWithDelay.INSTANCE, RestAPI.Companion.getApi().getForumPostData(parentChannelId, new RestAPIParams$GetForumPostData(postIds)), 0L, null, null, 7, null), false, 1, null), StoreForumPostMessages.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, new StoreForumPostMessages$fetchForumPosts$1(this, onTerminated), new StoreForumPostMessages$fetchForumPosts$2(this), 30, (Object) null);
     }
 
     public final void flushForumPostFirstMessageQueue(long parentChannelId) {
-        this.dispatcher.schedule(new C59341(parentChannelId));
+        this.dispatcher.schedule(new StoreForumPostMessages$flushForumPostFirstMessageQueue$1(this, parentChannelId));
     }
 
     @StoreThread
@@ -323,9 +160,9 @@ public final class StoreForumPostMessages extends StoreV2 {
             this.forumPostRequestQueueProcessing = false;
             return;
         }
-        List<Long> listTake = C12163u.take(set, 10);
-        this.forumPostFetchQueue.put(Long.valueOf(parentChannelId), C12163u.toMutableSet(C12150o0.minus((Set) set, (Iterable) listTake)));
-        fetchForumPosts(parentChannelId, listTake, new C59351(parentChannelId));
+        List<Long> listTake = u.take(set, 10);
+        this.forumPostFetchQueue.put(Long.valueOf(parentChannelId), u.toMutableSet(o0.minus((Set) set, (Iterable) listTake)));
+        fetchForumPosts(parentChannelId, listTake, new StoreForumPostMessages$flushForumPostFirstMessageQueueHelper$1(this, parentChannelId));
     }
 
     @StoreThread
@@ -339,7 +176,7 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
+        m.checkNotNullParameter(payload, "payload");
         this.forumPostFirstMessage.clear();
         this.forumPostFetchQueue.clear();
         this.shouldGetForumPostFirstMessageFromGateway.clear();
@@ -349,13 +186,13 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void handleMessageCreate(com.discord.api.message.Message message) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         createFirstMessage(message);
     }
 
     @StoreThread
     public final void handleMessageDelete(ModelMessageDelete messageDelete) {
-        C12238m.checkNotNullParameter(messageDelete, "messageDelete");
+        m.checkNotNullParameter(messageDelete, "messageDelete");
         Message message = this.forumPostFirstMessage.get(Long.valueOf(messageDelete.getChannelId()));
         if (message == null || !messageDelete.getMessageIds().contains(Long.valueOf(message.getId()))) {
             return;
@@ -365,7 +202,7 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void handleMessageUpdate(com.discord.api.message.Message message) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         updateFirstMessage(message);
     }
 
@@ -373,14 +210,14 @@ public final class StoreForumPostMessages extends StoreV2 {
     public final void handleReactionAdd(MessageReactionUpdate update) {
         List list;
         List arrayList;
-        C12238m.checkNotNullParameter(update, "update");
+        m.checkNotNullParameter(update, "update");
         Message firstMessageForReactionUpdate = getFirstMessageForReactionUpdate(update);
         if (firstMessageForReactionUpdate != null) {
             List<MessageReaction> reactions = firstMessageForReactionUpdate.getReactions();
             Object obj = null;
             if (reactions != null) {
                 for (Object obj2 : reactions) {
-                    if (C12238m.areEqual(((MessageReaction) obj2).getEmoji().m8116c(), update.getEmoji().m8116c())) {
+                    if (m.areEqual(((MessageReaction) obj2).getEmoji().c(), update.getEmoji().c())) {
                         obj = obj2;
                         break;
                     }
@@ -390,16 +227,16 @@ public final class StoreForumPostMessages extends StoreV2 {
             if (obj == null) {
                 boolean z2 = update.getUserId() == this.storeUser.getMeSnapshot().getId();
                 List<MessageReaction> reactions2 = firstMessageForReactionUpdate.getReactions();
-                if (reactions2 == null || (arrayList = C12163u.toMutableList((Collection) reactions2)) == null) {
+                if (reactions2 == null || (arrayList = u.toMutableList((Collection) reactions2)) == null) {
                     arrayList = new ArrayList();
                 }
                 arrayList.add(new MessageReaction(1, update.getEmoji(), z2));
-                list = C12163u.toList(arrayList);
+                list = u.toList(arrayList);
             } else {
                 List<MessageReaction> reactions3 = firstMessageForReactionUpdate.getReactions();
-                ArrayList arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(reactions3, 10));
+                ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(reactions3, 10));
                 for (MessageReaction messageReaction : reactions3) {
-                    if (C12238m.areEqual(messageReaction.getEmoji().m8116c(), update.getEmoji().m8116c())) {
+                    if (m.areEqual(messageReaction.getEmoji().c(), update.getEmoji().c())) {
                         messageReaction = new MessageReaction(messageReaction.getCount() + 1, messageReaction.getEmoji(), update.getUserId() == this.storeUser.getMeSnapshot().getId() ? true : messageReaction.getMe());
                     }
                     arrayList2.add(messageReaction);
@@ -414,14 +251,14 @@ public final class StoreForumPostMessages extends StoreV2 {
     @StoreThread
     public final void handleReactionRemove(MessageReactionUpdate update) {
         ArrayList arrayList;
-        C12238m.checkNotNullParameter(update, "update");
+        m.checkNotNullParameter(update, "update");
         Message firstMessageForReactionUpdate = getFirstMessageForReactionUpdate(update);
         if (firstMessageForReactionUpdate != null) {
             List<MessageReaction> reactions = firstMessageForReactionUpdate.getReactions();
             if (reactions != null) {
                 ArrayList arrayList2 = new ArrayList();
                 for (MessageReaction messageReaction : reactions) {
-                    if (C12238m.areEqual(messageReaction.getEmoji().m8116c(), update.getEmoji().m8116c())) {
+                    if (m.areEqual(messageReaction.getEmoji().c(), update.getEmoji().c())) {
                         boolean me2 = update.getUserId() == this.storeUser.getMeSnapshot().getId() ? false : messageReaction.getMe();
                         int count = messageReaction.getCount() - 1;
                         messageReaction = count > 0 ? new MessageReaction(count, messageReaction.getEmoji(), me2) : null;
@@ -441,7 +278,7 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void handleReactionRemoveAll(MessageReactionUpdate update) {
-        C12238m.checkNotNullParameter(update, "update");
+        m.checkNotNullParameter(update, "update");
         Message firstMessageForReactionUpdate = getFirstMessageForReactionUpdate(update);
         if (firstMessageForReactionUpdate != null) {
             this.forumPostFirstMessage.put(Long.valueOf(firstMessageForReactionUpdate.getChannelId()), Message.copy$default(firstMessageForReactionUpdate, 0L, 0L, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, null, null, null, -8193, Opcodes.LAND, null));
@@ -452,14 +289,14 @@ public final class StoreForumPostMessages extends StoreV2 {
     @StoreThread
     public final void handleReactionRemoveEmoji(MessageReactionUpdate update) {
         ArrayList arrayList;
-        C12238m.checkNotNullParameter(update, "update");
+        m.checkNotNullParameter(update, "update");
         Message firstMessageForReactionUpdate = getFirstMessageForReactionUpdate(update);
         if (firstMessageForReactionUpdate != null) {
             List<MessageReaction> reactions = firstMessageForReactionUpdate.getReactions();
             if (reactions != null) {
                 ArrayList arrayList2 = new ArrayList();
                 for (Object obj : reactions) {
-                    if (!C12238m.areEqual(((MessageReaction) obj).getEmoji().m8116c(), update.getEmoji().m8116c())) {
+                    if (!m.areEqual(((MessageReaction) obj).getEmoji().c(), update.getEmoji().c())) {
                         arrayList2.add(obj);
                     }
                 }
@@ -474,7 +311,7 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void handleThreadCreateOrUpdate(Channel channel) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         if (hasForumPostFirstMessage(channel.getId()) || isFetchingForumPostFirstMessage(channel.getId())) {
             return;
         }
@@ -483,7 +320,7 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void handleThreadDelete(Channel channel) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         this.shouldGetForumPostFirstMessageFromGateway.remove(Long.valueOf(channel.getId()));
     }
 
@@ -501,20 +338,24 @@ public final class StoreForumPostMessages extends StoreV2 {
         return message.getId() == message.getChannelId();
     }
 
+    public static /* synthetic */ Observable observeForumPostFirstMessage$default(StoreForumPostMessages storeForumPostMessages, long j, long j2, boolean z2, int i, Object obj) {
+        return storeForumPostMessages.observeForumPostFirstMessage(j, j2, (i & 4) != 0 ? false : z2);
+    }
+
     public final Observable<Message> observeForumPostFirstMessage(long parentChannelId, long postId, boolean fetchIfMissing) {
         if (fetchIfMissing && this.forumPostFirstMessageSnapshot.get(Long.valueOf(postId)) == null) {
             enqueueForumPostFirstMessageFetch(parentChannelId, postId);
             flushForumPostFirstMessageQueue(parentChannelId);
         }
-        Observable<Message> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C59361(postId), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Message> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreForumPostMessages$observeForumPostFirstMessage$1(this, postId), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Map<Long, Message>> observeForumPostFirstMessages() {
-        Observable<Map<Long, Message>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C59371(), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Map<Long, Message>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreForumPostMessages$observeForumPostFirstMessages$1(this), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        return observableR;
     }
 
     @Override // com.discord.stores.StoreV2
@@ -525,7 +366,7 @@ public final class StoreForumPostMessages extends StoreV2 {
 
     @StoreThread
     public final void updateFirstMessage(com.discord.api.message.Message message) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         Message message2 = this.forumPostFirstMessage.get(Long.valueOf(message.getChannelId()));
         if (message2 == null || !isFirstMessage(message)) {
             return;
@@ -536,14 +377,14 @@ public final class StoreForumPostMessages extends StoreV2 {
     }
 
     public StoreForumPostMessages(Dispatcher dispatcher, StoreUser storeUser, ObservationDeck observationDeck) {
-        C12238m.checkNotNullParameter(dispatcher, "dispatcher");
-        C12238m.checkNotNullParameter(storeUser, "storeUser");
-        C12238m.checkNotNullParameter(observationDeck, "observationDeck");
+        m.checkNotNullParameter(dispatcher, "dispatcher");
+        m.checkNotNullParameter(storeUser, "storeUser");
+        m.checkNotNullParameter(observationDeck, "observationDeck");
         this.dispatcher = dispatcher;
         this.storeUser = storeUser;
         this.observationDeck = observationDeck;
         this.forumPostFirstMessage = new HashMap();
-        this.forumPostFirstMessageSnapshot = C12136h0.emptyMap();
+        this.forumPostFirstMessageSnapshot = h0.emptyMap();
         this.shouldGetForumPostFirstMessageFromGateway = new LinkedHashSet();
         this.forumPostFirstMessageFetchSent = new HashSet();
         this.forumPostFetchQueue = new HashMap();

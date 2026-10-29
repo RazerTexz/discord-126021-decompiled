@@ -12,37 +12,33 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewAuthInviteInfoBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f15374a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f15375b;
+    public final SimpleDraweeView f2174b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15376c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15377d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ImageView f15378e;
+    public final ImageView e;
 
     public ViewAuthInviteInfoBinding(@NonNull RelativeLayout relativeLayout, @NonNull LinearLayout linearLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView, @NonNull TextView textView2, @NonNull ImageView imageView) {
-        this.f15374a = relativeLayout;
-        this.f15375b = simpleDraweeView;
-        this.f15376c = textView;
-        this.f15377d = textView2;
-        this.f15378e = imageView;
+        this.a = relativeLayout;
+        this.f2174b = simpleDraweeView;
+        this.c = textView;
+        this.d = textView2;
+        this.e = imageView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15374a;
+        return this.a;
     }
 }

@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsConnectionsAddBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f17930a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f17931b;
+    public final RecyclerView f2613b;
 
     public WidgetSettingsConnectionsAddBinding(@NonNull NestedScrollView nestedScrollView, @NonNull RecyclerView recyclerView) {
-        this.f17930a = nestedScrollView;
-        this.f17931b = recyclerView;
+        this.a = nestedScrollView;
+        this.f2613b = recyclerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17930a;
+        return this.a;
     }
 }

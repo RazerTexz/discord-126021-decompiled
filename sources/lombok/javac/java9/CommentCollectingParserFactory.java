@@ -5,6 +5,7 @@ import com.sun.tools.javac.parser.JavacParser;
 import com.sun.tools.javac.parser.ParserFactory;
 import com.sun.tools.javac.parser.ScannerFactory;
 import com.sun.tools.javac.util.Context;
+import com.sun.tools.javac.util.Context$Key;
 import java.lang.reflect.Field;
 import lombok.permit.Permit;
 
@@ -12,7 +13,7 @@ import lombok.permit.Permit;
 public class CommentCollectingParserFactory extends ParserFactory {
     private final Context context;
 
-    static Context.Key<ParserFactory> key() {
+    static Context$Key<ParserFactory> key() {
         return parserFactoryKey;
     }
 

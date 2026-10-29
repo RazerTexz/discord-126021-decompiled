@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackSystemMessageAgeRestrictedSent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackSystemMessageAgeRestrictedSent implements Ana
             return false;
         }
         TrackSystemMessageAgeRestrictedSent trackSystemMessageAgeRestrictedSent = (TrackSystemMessageAgeRestrictedSent) other;
-        return C12238m.areEqual(this.guildIds, trackSystemMessageAgeRestrictedSent.guildIds) && C12238m.areEqual(this.messageType, trackSystemMessageAgeRestrictedSent.messageType);
+        return m.areEqual(this.guildIds, trackSystemMessageAgeRestrictedSent.guildIds) && m.areEqual(this.messageType, trackSystemMessageAgeRestrictedSent.messageType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -40,9 +40,9 @@ public final /* data */ class TrackSystemMessageAgeRestrictedSent implements Ana
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSystemMessageAgeRestrictedSent(guildIds=");
-        sbM833U.append(this.guildIds);
-        sbM833U.append(", messageType=");
-        return C1643a.m817E(sbM833U, this.messageType, ")");
+        StringBuilder sbU = a.U("TrackSystemMessageAgeRestrictedSent(guildIds=");
+        sbU.append(this.guildIds);
+        sbU.append(", messageType=");
+        return a.E(sbU, this.messageType, ")");
     }
 }

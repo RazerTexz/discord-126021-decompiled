@@ -1,7 +1,6 @@
 package co.discord.media_engine;
 
-import p001a0.p002a.p003a.C0001a;
-import p007b.p100d.p104b.p105a.C1643a;
+import a0.a.a.a;
 
 /* JADX INFO: compiled from: Statistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +19,10 @@ public final /* data */ class PlayoutMetric {
         this.p95 = d4;
         this.p99 = d5;
         this.max = d6;
+    }
+
+    public static /* synthetic */ PlayoutMetric copy$default(PlayoutMetric playoutMetric, double d, double d2, double d3, double d4, double d5, double d6, int i, Object obj) {
+        return playoutMetric.copy((i & 1) != 0 ? playoutMetric.last : d, (i & 2) != 0 ? playoutMetric.mean : d2, (i & 4) != 0 ? playoutMetric.p75 : d3, (i & 8) != 0 ? playoutMetric.p95 : d4, (i & 16) != 0 ? playoutMetric.p99 : d5, (i & 32) != 0 ? playoutMetric.max : d6);
     }
 
     public final PlayoutMetric copy(double last, double mean, double p75, double p95, double p99, double max) {
@@ -92,23 +95,23 @@ public final /* data */ class PlayoutMetric {
     }
 
     public int hashCode() {
-        return C0001a.m2a(this.max) + ((C0001a.m2a(this.p99) + ((C0001a.m2a(this.p95) + ((C0001a.m2a(this.p75) + ((C0001a.m2a(this.mean) + (C0001a.m2a(this.last) * 31)) * 31)) * 31)) * 31)) * 31);
+        return a.a(this.max) + ((a.a(this.p99) + ((a.a(this.p95) + ((a.a(this.p75) + ((a.a(this.mean) + (a.a(this.last) * 31)) * 31)) * 31)) * 31)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PlayoutMetric(last=");
-        sbM833U.append(this.last);
-        sbM833U.append(", mean=");
-        sbM833U.append(this.mean);
-        sbM833U.append(", p75=");
-        sbM833U.append(this.p75);
-        sbM833U.append(", p95=");
-        sbM833U.append(this.p95);
-        sbM833U.append(", p99=");
-        sbM833U.append(this.p99);
-        sbM833U.append(", max=");
-        sbM833U.append(this.max);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = b.d.b.a.a.U("PlayoutMetric(last=");
+        sbU.append(this.last);
+        sbU.append(", mean=");
+        sbU.append(this.mean);
+        sbU.append(", p75=");
+        sbU.append(this.p75);
+        sbU.append(", p95=");
+        sbU.append(this.p95);
+        sbU.append(", p99=");
+        sbU.append(this.p99);
+        sbU.append(", max=");
+        sbU.append(this.max);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

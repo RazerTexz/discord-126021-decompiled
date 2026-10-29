@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUserPremiumGuildSubscriptionSlotCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCreated imple
             return false;
         }
         TrackUserPremiumGuildSubscriptionSlotCreated trackUserPremiumGuildSubscriptionSlotCreated = (TrackUserPremiumGuildSubscriptionSlotCreated) other;
-        return C12238m.areEqual(this.slotId, trackUserPremiumGuildSubscriptionSlotCreated.slotId) && C12238m.areEqual(this.subscriptionId, trackUserPremiumGuildSubscriptionSlotCreated.subscriptionId);
+        return m.areEqual(this.slotId, trackUserPremiumGuildSubscriptionSlotCreated.slotId) && m.areEqual(this.subscriptionId, trackUserPremiumGuildSubscriptionSlotCreated.subscriptionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackUserPremiumGuildSubscriptionSlotCreated imple
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUserPremiumGuildSubscriptionSlotCreated(slotId=");
-        sbM833U.append(this.slotId);
-        sbM833U.append(", subscriptionId=");
-        return C1643a.m819G(sbM833U, this.subscriptionId, ")");
+        StringBuilder sbU = a.U("TrackUserPremiumGuildSubscriptionSlotCreated(slotId=");
+        sbU.append(this.slotId);
+        sbU.append(", subscriptionId=");
+        return a.G(sbU, this.subscriptionId, ")");
     }
 }

@@ -1,19 +1,21 @@
 package androidx.work.impl.background.greedy;
 
 import android.app.ActivityManager;
+import android.app.ActivityManager$RunningAppProcessInfo;
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Process;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.work.Configuration;
 import androidx.work.Logger;
-import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import androidx.work.impl.ExecutionListener;
 import androidx.work.impl.Scheduler;
 import androidx.work.impl.WorkManagerImpl;
@@ -27,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, ExecutionListener {
     private final Context mContext;
     private DelayedWorkTracker mDelayedWorkTracker;
@@ -66,8 +68,8 @@ public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, Exec
 
     @Nullable
     private String getProcessName() {
-        List<ActivityManager.RunningAppProcessInfo> runningAppProcesses;
-        if (Build.VERSION.SDK_INT >= 28) {
+        List<ActivityManager$RunningAppProcessInfo> runningAppProcesses;
+        if (Build$VERSION.SDK_INT >= 28) {
             return Application.getProcessName();
         }
         try {
@@ -85,9 +87,9 @@ public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, Exec
         if (activityManager == null || (runningAppProcesses = activityManager.getRunningAppProcesses()) == null || runningAppProcesses.isEmpty()) {
             return null;
         }
-        for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
-            if (runningAppProcessInfo.pid == iMyPid) {
-                return runningAppProcessInfo.processName;
+        for (ActivityManager$RunningAppProcessInfo activityManager$RunningAppProcessInfo : runningAppProcesses) {
+            if (activityManager$RunningAppProcessInfo.pid == iMyPid) {
+                return activityManager$RunningAppProcessInfo.processName;
             }
         }
         return null;
@@ -130,7 +132,7 @@ public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, Exec
     private void removeConstraintTrackingFor(@NonNull String str) {
         synchronized (this.mLock) {
             for (WorkSpec workSpec : this.mConstrainedWorkSpecs) {
-                if (workSpec.f163id.equals(str)) {
+                if (workSpec.f38id.equals(str)) {
                     Logger.get().debug(TAG, String.format("Stopping tracking for %s", str), new Throwable[0]);
                     this.mConstrainedWorkSpecs.remove(workSpec);
                     this.mWorkConstraintsTracker.replace(this.mConstrainedWorkSpecs);
@@ -155,25 +157,25 @@ public class GreedyScheduler implements Scheduler, WorkConstraintsCallback, Exec
         for (WorkSpec workSpec : workSpecArr) {
             long jCalculateNextRunTime = workSpec.calculateNextRunTime();
             long jCurrentTimeMillis = System.currentTimeMillis();
-            if (workSpec.state == WorkInfo.State.ENQUEUED) {
+            if (workSpec.state == WorkInfo$State.ENQUEUED) {
                 if (jCurrentTimeMillis < jCalculateNextRunTime) {
                     DelayedWorkTracker delayedWorkTracker = this.mDelayedWorkTracker;
                     if (delayedWorkTracker != null) {
                         delayedWorkTracker.schedule(workSpec);
                     }
                 } else if (workSpec.hasConstraints()) {
-                    int i = Build.VERSION.SDK_INT;
+                    int i = Build$VERSION.SDK_INT;
                     if (i >= 23 && workSpec.constraints.requiresDeviceIdle()) {
                         Logger.get().debug(TAG, String.format("Ignoring WorkSpec %s, Requires device idle.", workSpec), new Throwable[0]);
                     } else if (i < 24 || !workSpec.constraints.hasContentUriTriggers()) {
                         hashSet.add(workSpec);
-                        hashSet2.add(workSpec.f163id);
+                        hashSet2.add(workSpec.f38id);
                     } else {
                         Logger.get().debug(TAG, String.format("Ignoring WorkSpec %s, Requires ContentUri triggers.", workSpec), new Throwable[0]);
                     }
                 } else {
-                    Logger.get().debug(TAG, String.format("Starting work for %s", workSpec.f163id), new Throwable[0]);
-                    this.mWorkManagerImpl.startWork(workSpec.f163id);
+                    Logger.get().debug(TAG, String.format("Starting work for %s", workSpec.f38id), new Throwable[0]);
+                    this.mWorkManagerImpl.startWork(workSpec.f38id);
                 }
             }
         }

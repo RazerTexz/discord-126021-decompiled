@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackThread;
 import com.discord.analytics.generated.traits.TrackThreadReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackJoinThread.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackJoinThread implements AnalyticsSchema, TrackB
             return false;
         }
         TrackJoinThread trackJoinThread = (TrackJoinThread) other;
-        return C12238m.areEqual(this.channelId, trackJoinThread.channelId) && C12238m.areEqual(this.parentId, trackJoinThread.parentId) && C12238m.areEqual(this.guildId, trackJoinThread.guildId) && C12238m.areEqual(this.channelType, trackJoinThread.channelType) && C12238m.areEqual(this.targetUserId, trackJoinThread.targetUserId) && C12238m.areEqual(this.isSelfJoin, trackJoinThread.isSelfJoin);
+        return m.areEqual(this.channelId, trackJoinThread.channelId) && m.areEqual(this.parentId, trackJoinThread.parentId) && m.areEqual(this.guildId, trackJoinThread.guildId) && m.areEqual(this.channelType, trackJoinThread.channelType) && m.areEqual(this.targetUserId, trackJoinThread.targetUserId) && m.areEqual(this.isSelfJoin, trackJoinThread.isSelfJoin);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,17 +54,17 @@ public final /* data */ class TrackJoinThread implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackJoinThread(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", parentId=");
-        sbM833U.append(this.parentId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", targetUserId=");
-        sbM833U.append(this.targetUserId);
-        sbM833U.append(", isSelfJoin=");
-        return C1643a.m816D(sbM833U, this.isSelfJoin, ")");
+        StringBuilder sbU = a.U("TrackJoinThread(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", parentId=");
+        sbU.append(this.parentId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", targetUserId=");
+        sbU.append(this.targetUserId);
+        sbU.append(", isSelfJoin=");
+        return a.D(sbU, this.isSelfJoin, ")");
     }
 }

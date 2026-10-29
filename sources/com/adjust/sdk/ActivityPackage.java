@@ -2,12 +2,14 @@ package com.adjust.sdk;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectInputStream$GetField;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.TreeMap;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -71,10 +73,10 @@ public class ActivityPackage implements Serializable {
             sb.append("Parameters:");
             TreeMap treeMap = new TreeMap(this.parameters);
             List listAsList = Arrays.asList("app_secret", "secret_id", "event_callback_id");
-            for (Map.Entry entry : treeMap.entrySet()) {
-                String str = (String) entry.getKey();
+            for (Map$Entry map$Entry : treeMap.entrySet()) {
+                String str = (String) map$Entry.getKey();
                 if (!listAsList.contains(str)) {
-                    sb.append(Util.formatString("\n\t%-16s %s", str, entry.getValue()));
+                    sb.append(Util.formatString("\n\t%-16s %s", str, map$Entry.getValue()));
                 }
             }
         }
@@ -136,7 +138,7 @@ public class ActivityPackage implements Serializable {
     }
 
     private void readObject(ObjectInputStream objectInputStream) throws ClassNotFoundException, IOException {
-        ObjectInputStream.GetField fields = objectInputStream.readFields();
+        ObjectInputStream$GetField fields = objectInputStream.readFields();
         this.path = Util.readStringField(fields, "path", null);
         this.clientSdk = Util.readStringField(fields, "clientSdk", null);
         this.parameters = (Map) Util.readObjectField(fields, "parameters", null);

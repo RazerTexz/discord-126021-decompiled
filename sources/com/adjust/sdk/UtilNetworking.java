@@ -1,7 +1,9 @@
 package com.adjust.sdk;
 
 import android.net.Uri;
+import android.net.Uri$Builder;
 import androidx.browser.trusted.sharing.ShareTarget;
+import b.d.b.a.a;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -12,29 +14,17 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map$Entry;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class UtilNetworking {
     private static String userAgent;
 
-    public class ConnectionOptions implements IConnectionOptions {
-        @Override // com.adjust.sdk.UtilNetworking.IConnectionOptions
-        public void applyConnectionOptions(HttpsURLConnection httpsURLConnection, String str) {
-            httpsURLConnection.setRequestProperty("Client-SDK", str);
-            httpsURLConnection.setConnectTimeout(60000);
-            httpsURLConnection.setReadTimeout(60000);
-            if (UtilNetworking.userAgent != null) {
-                httpsURLConnection.setRequestProperty("User-Agent", UtilNetworking.userAgent);
-            }
-        }
-    }
-
-    public interface IConnectionOptions {
-        void applyConnectionOptions(HttpsURLConnection httpsURLConnection, String str);
+    public static /* synthetic */ String access$000() {
+        return userAgent;
     }
 
     private static String buildAuthorizationHeader(Map<String, String> map, String str) {
@@ -78,7 +68,7 @@ public class UtilNetworking {
 
     private static Uri buildUri(String str, Map<String, String> map, String str2) {
         String path;
-        Uri.Builder builder = new Uri.Builder();
+        Uri$Builder uri$Builder = new Uri$Builder();
         String protocol = Constants.SCHEME;
         String authority = Constants.AUTHORITY;
         try {
@@ -94,15 +84,15 @@ public class UtilNetworking {
             getLogger().error("Unable to parse endpoint (%s)", e.getMessage());
             path = "";
         }
-        builder.scheme(protocol);
-        builder.encodedAuthority(authority);
-        builder.path(path);
-        builder.appendPath(str);
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            builder.appendQueryParameter(entry.getKey(), entry.getValue());
+        uri$Builder.scheme(protocol);
+        uri$Builder.encodedAuthority(authority);
+        uri$Builder.path(path);
+        uri$Builder.appendPath(str);
+        for (Map$Entry<String, String> map$Entry : map.entrySet()) {
+            uri$Builder.appendQueryParameter(map$Entry.getKey(), map$Entry.getValue());
         }
-        builder.appendQueryParameter("sent_at", Util.dateFormatter.format(Long.valueOf(System.currentTimeMillis())));
-        return builder.build();
+        uri$Builder.appendQueryParameter("sent_at", Util.dateFormatter.format(Long.valueOf(System.currentTimeMillis())));
+        return uri$Builder.build();
     }
 
     public static ResponseData createGETHttpsURLConnection(ActivityPackage activityPackage, String str) throws Exception {
@@ -204,12 +194,12 @@ public class UtilNetworking {
 
     private static String getPostDataString(Map<String, String> map, int i) throws UnsupportedEncodingException {
         StringBuilder sb = new StringBuilder();
-        Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+        Iterator<Map$Entry<String, String>> it = map.entrySet().iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
-            Map.Entry<String, String> next = it.next();
+            Map$Entry<String, String> next = it.next();
             String strEncode = URLEncoder.encode(next.getKey(), Constants.ENCODING);
             String value = next.getValue();
             String strEncode2 = value != null ? URLEncoder.encode(value, Constants.ENCODING) : "";
@@ -251,17 +241,17 @@ public class UtilNetworking {
         if (str6 != null) {
             map2.put("payload", str6);
         }
-        String strM822J = "";
+        String strJ = "";
         String string = "";
-        for (Map.Entry entry : map2.entrySet()) {
-            if (entry.getValue() != null) {
-                strM822J = C1643a.m822J(C1643a.m833U(strM822J), (String) entry.getKey(), " ");
-                StringBuilder sbM833U = C1643a.m833U(string);
-                sbM833U.append((String) entry.getValue());
-                string = sbM833U.toString();
+        for (Map$Entry map$Entry : map2.entrySet()) {
+            if (map$Entry.getValue() != null) {
+                strJ = a.J(a.U(strJ), (String) map$Entry.getKey(), " ");
+                StringBuilder sbU = a.U(string);
+                sbU.append((String) map$Entry.getValue());
+                string = sbU.toString();
             }
         }
-        String strSubstring = strM822J.substring(0, strM822J.length() - 1);
+        String strSubstring = strJ.substring(0, strJ.length() - 1);
         HashMap map3 = new HashMap();
         map3.put("clear_signature", string);
         map3.put("fields", strSubstring);

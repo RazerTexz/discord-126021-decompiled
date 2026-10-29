@@ -1,66 +1,19 @@
 package com.discord.utilities.captcha;
 
-import com.discord.app.AppLog;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.logging.Logger;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.io.Serializable;
 import java.util.List;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
-import p007b.p225i.p408d.C4901e;
-import p007b.p225i.p408d.EnumC4899c;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: CaptchaErrorBody.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class CaptchaErrorBody implements Serializable {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final CaptchaErrorBody$Companion Companion = new CaptchaErrorBody$Companion(null);
     private final List<String> captchaKey;
     private final String captchaRqdata;
     private final String captchaRqtoken;
     private final CaptchaService captchaService;
     private final String captchaSitekey;
-
-    /* JADX INFO: compiled from: CaptchaErrorBody.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final CaptchaErrorBody createFromError(Error error) {
-            C12238m.checkNotNullParameter(error, "error");
-            String bodyText = error.getBodyText();
-            if (bodyText == null) {
-                return null;
-            }
-            C4901e c4901e = new C4901e();
-            c4901e.f13097c = EnumC4899c.f13091m;
-            try {
-                return (CaptchaErrorBody) C3404f.m4203E1(CaptchaErrorBody.class).cast(c4901e.m6851a().m9203g(bodyText, CaptchaErrorBody.class));
-            } catch (Exception e) {
-                Logger.e$default(AppLog.f14950g, "failed to parse captcha error body", e, null, 4, null);
-                return null;
-            }
-        }
-
-        public final CaptchaErrorBody createFromString(String errorString) {
-            C12238m.checkNotNullParameter(errorString, "errorString");
-            C4901e c4901e = new C4901e();
-            c4901e.f13097c = EnumC4899c.f13091m;
-            try {
-                return (CaptchaErrorBody) C3404f.m4203E1(CaptchaErrorBody.class).cast(c4901e.m6851a().m9203g(errorString, CaptchaErrorBody.class));
-            } catch (Exception e) {
-                Logger.e$default(AppLog.f14950g, "failed to parse captcha error body", e, null, 4, null);
-                return null;
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     public CaptchaErrorBody(List<String> list, String str, CaptchaService captchaService, String str2, String str3) {
         this.captchaKey = list;
@@ -109,7 +62,7 @@ public final /* data */ class CaptchaErrorBody implements Serializable {
             return false;
         }
         CaptchaErrorBody captchaErrorBody = (CaptchaErrorBody) other;
-        return C12238m.areEqual(this.captchaKey, captchaErrorBody.captchaKey) && C12238m.areEqual(this.captchaSitekey, captchaErrorBody.captchaSitekey) && C12238m.areEqual(this.captchaService, captchaErrorBody.captchaService) && C12238m.areEqual(this.captchaRqdata, captchaErrorBody.captchaRqdata) && C12238m.areEqual(this.captchaRqtoken, captchaErrorBody.captchaRqtoken);
+        return m.areEqual(this.captchaKey, captchaErrorBody.captchaKey) && m.areEqual(this.captchaSitekey, captchaErrorBody.captchaSitekey) && m.areEqual(this.captchaService, captchaErrorBody.captchaService) && m.areEqual(this.captchaRqdata, captchaErrorBody.captchaRqdata) && m.areEqual(this.captchaRqtoken, captchaErrorBody.captchaRqtoken);
     }
 
     public final List<String> getCaptchaKey() {
@@ -166,15 +119,15 @@ public final /* data */ class CaptchaErrorBody implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("CaptchaErrorBody(captchaKey=");
-        sbM833U.append(this.captchaKey);
-        sbM833U.append(", captchaSitekey=");
-        sbM833U.append(this.captchaSitekey);
-        sbM833U.append(", captchaService=");
-        sbM833U.append(this.captchaService);
-        sbM833U.append(", captchaRqdata=");
-        sbM833U.append(this.captchaRqdata);
-        sbM833U.append(", captchaRqtoken=");
-        return C1643a.m822J(sbM833U, this.captchaRqtoken, ")");
+        StringBuilder sbU = a.U("CaptchaErrorBody(captchaKey=");
+        sbU.append(this.captchaKey);
+        sbU.append(", captchaSitekey=");
+        sbU.append(this.captchaSitekey);
+        sbU.append(", captchaService=");
+        sbU.append(this.captchaService);
+        sbU.append(", captchaRqdata=");
+        sbU.append(this.captchaRqdata);
+        sbU.append(", captchaRqtoken=");
+        return a.J(sbU, this.captchaRqtoken, ")");
     }
 }

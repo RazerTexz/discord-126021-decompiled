@@ -17,6 +17,11 @@ public class DefaultBitmapMemoryCacheParamsSupplier implements Supplier<MemoryCa
         this.mActivityManager = activityManager;
     }
 
+    @Override // com.facebook.common.internal.Supplier
+    public /* bridge */ /* synthetic */ MemoryCacheParams get() {
+        return get();
+    }
+
     private int getMaxCacheSize() {
         int iMin = Math.min(this.mActivityManager.getMemoryClass() * 1048576, Integer.MAX_VALUE);
         if (iMin < 33554432) {

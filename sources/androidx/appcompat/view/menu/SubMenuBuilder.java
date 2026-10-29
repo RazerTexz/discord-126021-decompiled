@@ -8,9 +8,10 @@ import android.view.SubMenu;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class SubMenuBuilder extends MenuBuilder implements SubMenu {
     private MenuItemImpl mItem;
     private MenuBuilder mParentMenu;
@@ -76,8 +77,8 @@ public class SubMenuBuilder extends MenuBuilder implements SubMenu {
     }
 
     @Override // androidx.appcompat.view.menu.MenuBuilder
-    public void setCallback(MenuBuilder.Callback callback) {
-        this.mParentMenu.setCallback(callback);
+    public void setCallback(MenuBuilder$Callback menuBuilder$Callback) {
+        this.mParentMenu.setCallback(menuBuilder$Callback);
     }
 
     @Override // androidx.appcompat.view.menu.MenuBuilder, androidx.core.internal.view.SupportMenu, android.view.Menu

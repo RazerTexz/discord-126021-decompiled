@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -10,8 +11,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStageChannelReported.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,6 +29,11 @@ public final /* data */ class TrackStageChannelReported implements AnalyticsSche
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "stage_channel_reported";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -37,7 +42,7 @@ public final /* data */ class TrackStageChannelReported implements AnalyticsSche
             return false;
         }
         TrackStageChannelReported trackStageChannelReported = (TrackStageChannelReported) other;
-        return C12238m.areEqual(this.reportType, trackStageChannelReported.reportType) && C12238m.areEqual(this.reportSubType, trackStageChannelReported.reportSubType) && C12238m.areEqual(this.subject, trackStageChannelReported.subject) && C12238m.areEqual(this.description, trackStageChannelReported.description) && C12238m.areEqual(this.reasonEnum, trackStageChannelReported.reasonEnum) && C12238m.areEqual(this.stageInstanceId, trackStageChannelReported.stageInstanceId) && C12238m.areEqual(this.reportId, trackStageChannelReported.reportId);
+        return m.areEqual(this.reportType, trackStageChannelReported.reportType) && m.areEqual(this.reportSubType, trackStageChannelReported.reportSubType) && m.areEqual(this.subject, trackStageChannelReported.subject) && m.areEqual(this.description, trackStageChannelReported.description) && m.areEqual(this.reasonEnum, trackStageChannelReported.reasonEnum) && m.areEqual(this.stageInstanceId, trackStageChannelReported.stageInstanceId) && m.areEqual(this.reportId, trackStageChannelReported.reportId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,26 +74,20 @@ public final /* data */ class TrackStageChannelReported implements AnalyticsSche
         return iHashCode6 + (l3 != null ? l3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStageChannelReported(reportType=");
-        sbM833U.append(this.reportType);
-        sbM833U.append(", reportSubType=");
-        sbM833U.append(this.reportSubType);
-        sbM833U.append(", subject=");
-        sbM833U.append(this.subject);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", reasonEnum=");
-        sbM833U.append(this.reasonEnum);
-        sbM833U.append(", stageInstanceId=");
-        sbM833U.append(this.stageInstanceId);
-        sbM833U.append(", reportId=");
-        return C1643a.m819G(sbM833U, this.reportId, ")");
+        StringBuilder sbU = a.U("TrackStageChannelReported(reportType=");
+        sbU.append(this.reportType);
+        sbU.append(", reportSubType=");
+        sbU.append(this.reportSubType);
+        sbU.append(", subject=");
+        sbU.append(this.subject);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", reasonEnum=");
+        sbU.append(this.reasonEnum);
+        sbU.append(", stageInstanceId=");
+        sbU.append(this.stageInstanceId);
+        sbU.append(", reportId=");
+        return a.G(sbU, this.reportId, ")");
     }
 }

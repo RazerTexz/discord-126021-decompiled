@@ -6,16 +6,16 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetForumGuidelinesBottomSheetBinding;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetForumGuidelinesBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetForumGuidelinesBottomSheet$binding$2 extends C12236k implements Function1<View, WidgetForumGuidelinesBottomSheetBinding> {
+public final /* synthetic */ class WidgetForumGuidelinesBottomSheet$binding$2 extends k implements Function1<View, WidgetForumGuidelinesBottomSheetBinding> {
     public static final WidgetForumGuidelinesBottomSheet$binding$2 INSTANCE = new WidgetForumGuidelinesBottomSheet$binding$2();
 
     public WidgetForumGuidelinesBottomSheet$binding$2() {
@@ -23,28 +23,33 @@ public final /* synthetic */ class WidgetForumGuidelinesBottomSheet$binding$2 ex
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetForumGuidelinesBottomSheetBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.channel_topic;
-        TextView textView = (TextView) view.findViewById(C5419R.id.channel_topic);
+    public /* bridge */ /* synthetic */ WidgetForumGuidelinesBottomSheetBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetForumGuidelinesBottomSheetBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.channel_topic;
+        TextView textView = (TextView) view.findViewById(R$id.channel_topic);
         if (textView != null) {
-            i = C5419R.id.channel_topic_card;
-            CardView cardView = (CardView) view.findViewById(C5419R.id.channel_topic_card);
+            i = R$id.channel_topic_card;
+            CardView cardView = (CardView) view.findViewById(R$id.channel_topic_card);
             if (cardView != null) {
-                i = C5419R.id.content;
-                ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(C5419R.id.content);
+                i = 2131362884;
+                ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(2131362884);
                 if (constraintLayout != null) {
-                    i = C5419R.id.got_it;
-                    MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.got_it);
+                    i = R$id.got_it;
+                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.got_it);
                     if (materialButton != null) {
-                        i = C5419R.id.sparkle;
-                        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(C5419R.id.sparkle);
+                        i = R$id.sparkle;
+                        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.sparkle);
                         if (appCompatImageView != null) {
-                            i = C5419R.id.subtitle;
-                            TextView textView2 = (TextView) view.findViewById(C5419R.id.subtitle);
+                            i = R$id.subtitle;
+                            TextView textView2 = (TextView) view.findViewById(R$id.subtitle);
                             if (textView2 != null) {
-                                i = C5419R.id.title;
-                                TextView textView3 = (TextView) view.findViewById(C5419R.id.title);
+                                i = 2131365869;
+                                TextView textView3 = (TextView) view.findViewById(2131365869);
                                 if (textView3 != null) {
                                     return new WidgetForumGuidelinesBottomSheetBinding((NestedScrollView) view, textView, cardView, constraintLayout, materialButton, appCompatImageView, textView2, textView3);
                                 }

@@ -9,22 +9,21 @@ import com.discord.views.CheckedSetting;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsActivityStatusBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17846a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f17847b;
+    public final CheckedSetting f2601b;
 
     public WidgetSettingsActivityStatusBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull CheckedSetting checkedSetting) {
-        this.f17846a = coordinatorLayout;
-        this.f17847b = checkedSetting;
+        this.a = coordinatorLayout;
+        this.f2601b = checkedSetting;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17846a;
+        return this.a;
     }
 }

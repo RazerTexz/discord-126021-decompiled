@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackJoinExperiment.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackJoinExperiment implements AnalyticsSchema, Tr
             return false;
         }
         TrackJoinExperiment trackJoinExperiment = (TrackJoinExperiment) other;
-        return C12238m.areEqual(this.type, trackJoinExperiment.type) && C12238m.areEqual(this.name, trackJoinExperiment.name) && C12238m.areEqual(this.bucket, trackJoinExperiment.bucket) && C12238m.areEqual(this.revision, trackJoinExperiment.revision);
+        return m.areEqual(this.type, trackJoinExperiment.type) && m.areEqual(this.name, trackJoinExperiment.name) && m.areEqual(this.bucket, trackJoinExperiment.bucket) && m.areEqual(this.revision, trackJoinExperiment.revision);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -46,13 +46,13 @@ public final /* data */ class TrackJoinExperiment implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackJoinExperiment(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", bucket=");
-        sbM833U.append(this.bucket);
-        sbM833U.append(", revision=");
-        return C1643a.m819G(sbM833U, this.revision, ")");
+        StringBuilder sbU = a.U("TrackJoinExperiment(type=");
+        sbU.append(this.type);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", bucket=");
+        sbU.append(this.bucket);
+        sbU.append(", revision=");
+        return a.G(sbU, this.revision, ")");
     }
 }

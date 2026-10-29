@@ -2,21 +2,22 @@ package androidx.appcompat.widget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$styleable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.ImageViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class AppCompatImageHelper {
     private TintInfo mImageTint;
     private TintInfo mInternalImageTint;
@@ -40,7 +41,7 @@ public class AppCompatImageHelper {
             tintInfo.mHasTintList = true;
             tintInfo.mTintList = imageTintList;
         }
-        PorterDuff.Mode imageTintMode = ImageViewCompat.getImageTintMode(this.mView);
+        PorterDuff$Mode imageTintMode = ImageViewCompat.getImageTintMode(this.mView);
         if (imageTintMode != null) {
             tintInfo.mHasTintMode = true;
             tintInfo.mTintMode = imageTintMode;
@@ -81,7 +82,7 @@ public class AppCompatImageHelper {
         return null;
     }
 
-    public PorterDuff.Mode getSupportImageTintMode() {
+    public PorterDuff$Mode getSupportImageTintMode() {
         TintInfo tintInfo = this.mImageTint;
         if (tintInfo != null) {
             return tintInfo.mTintMode;
@@ -96,23 +97,23 @@ public class AppCompatImageHelper {
     public void loadFromAttributes(AttributeSet attributeSet, int i) {
         int resourceId;
         Context context = this.mView.getContext();
-        int[] iArr = C0051R.styleable.AppCompatImageView;
+        int[] iArr = R$styleable.AppCompatImageView;
         TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, iArr, i, 0);
         ImageView imageView = this.mView;
         ViewCompat.saveAttributeDataForStyleable(imageView, imageView.getContext(), iArr, attributeSet, tintTypedArrayObtainStyledAttributes.getWrappedTypeArray(), i, 0);
         try {
             Drawable drawable = this.mView.getDrawable();
-            if (drawable == null && (resourceId = tintTypedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.AppCompatImageView_srcCompat, -1)) != -1 && (drawable = AppCompatResources.getDrawable(this.mView.getContext(), resourceId)) != null) {
+            if (drawable == null && (resourceId = tintTypedArrayObtainStyledAttributes.getResourceId(R$styleable.AppCompatImageView_srcCompat, -1)) != -1 && (drawable = AppCompatResources.getDrawable(this.mView.getContext(), resourceId)) != null) {
                 this.mView.setImageDrawable(drawable);
             }
             if (drawable != null) {
                 DrawableUtils.fixDrawable(drawable);
             }
-            int i2 = C0051R.styleable.AppCompatImageView_tint;
+            int i2 = R$styleable.AppCompatImageView_tint;
             if (tintTypedArrayObtainStyledAttributes.hasValue(i2)) {
                 ImageViewCompat.setImageTintList(this.mView, tintTypedArrayObtainStyledAttributes.getColorStateList(i2));
             }
-            int i3 = C0051R.styleable.AppCompatImageView_tintMode;
+            int i3 = R$styleable.AppCompatImageView_tintMode;
             if (tintTypedArrayObtainStyledAttributes.hasValue(i3)) {
                 ImageViewCompat.setImageTintMode(this.mView, DrawableUtils.parseTintMode(tintTypedArrayObtainStyledAttributes.getInt(i3, -1), null));
             }
@@ -158,18 +159,18 @@ public class AppCompatImageHelper {
         applySupportImageTint();
     }
 
-    public void setSupportImageTintMode(PorterDuff.Mode mode) {
+    public void setSupportImageTintMode(PorterDuff$Mode porterDuff$Mode) {
         if (this.mImageTint == null) {
             this.mImageTint = new TintInfo();
         }
         TintInfo tintInfo = this.mImageTint;
-        tintInfo.mTintMode = mode;
+        tintInfo.mTintMode = porterDuff$Mode;
         tintInfo.mHasTintMode = true;
         applySupportImageTint();
     }
 
     private boolean shouldApplyFrameworkTintUsingColorFilter() {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i > 21) {
             return this.mInternalImageTint != null;
         }

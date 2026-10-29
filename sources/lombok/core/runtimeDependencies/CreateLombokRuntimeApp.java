@@ -2,11 +2,7 @@ package lombok.core.runtimeDependencies;
 
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import com.zwitserloot.cmdreader.CmdReader;
-import com.zwitserloot.cmdreader.Description;
 import com.zwitserloot.cmdreader.InvalidCommandLineException;
-import com.zwitserloot.cmdreader.Mandatory;
-import com.zwitserloot.cmdreader.Requires;
-import com.zwitserloot.cmdreader.Shorthand;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,6 +14,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.jar.JarOutputStream;
 import java.util.zip.ZipEntry;
 import lombok.core.LombokApp;
@@ -42,36 +39,11 @@ public class CreateLombokRuntimeApp extends LombokApp {
         return Arrays.asList("runtime");
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/runtimeDependencies/CreateLombokRuntimeApp$CmdArgs.SCL.lombok */
-    class CmdArgs {
-
-        @Description("Prints those lombok transformations that require lombok-runtime.jar.")
-        @Mandatory(onlyIfNot = {"create"})
-        @Shorthand({"p"})
-        boolean print;
-
-        @Description("Creates the lombok-runtime.jar.")
-        @Mandatory(onlyIfNot = {"print"})
-        @Shorthand({"c"})
-        boolean create;
-
-        @Requires({"create"})
-        @Description("Where to write the lombok-runtime.jar. Defaults to the current working directory.")
-        @Shorthand({"o"})
-        String output;
-
-        @Description("Shows this help text")
-        boolean help;
-
-        private CmdArgs() {
-        }
-    }
-
     @Override // lombok.core.LombokApp
     public int runApp(List<String> rawArgs) throws Exception {
-        CmdReader<CmdArgs> reader = CmdReader.m9327of(CmdArgs.class);
+        CmdReader<CreateLombokRuntimeApp$CmdArgs> reader = CmdReader.of(CreateLombokRuntimeApp$CmdArgs.class);
         try {
-            CmdArgs args = reader.make((String[]) rawArgs.toArray(new String[0]));
+            CreateLombokRuntimeApp$CmdArgs args = reader.make((String[]) rawArgs.toArray(new String[0]));
             if (args.help) {
                 printHelp(reader, null, System.out);
                 return 0;
@@ -140,10 +112,10 @@ public class CreateLombokRuntimeApp extends LombokApp {
             JarOutputStream jar = new JarOutputStream(out);
             deps.put("LICENSE", CreateLombokRuntimeApp.class);
             deps.put("AUTHORS", CreateLombokRuntimeApp.class);
-            for (Map.Entry<String, Class<?>> dep : deps.entrySet()) {
+            for (Map$Entry<String, Class<?>> dep : deps.entrySet()) {
                 InputStream in = dep.getValue().getResourceAsStream(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN + dep.getKey());
                 if (in == null) {
-                    throw new Fail(String.format("Dependency %s contributed by %s cannot be found", dep.getKey(), dep.getValue()));
+                    throw new CreateLombokRuntimeApp$Fail(String.format("Dependency %s contributed by %s cannot be found", dep.getKey(), dep.getValue()));
                 }
                 try {
                     writeIntoJar(jar, dep.getKey(), in);
@@ -169,7 +141,7 @@ public class CreateLombokRuntimeApp extends LombokApp {
             if (0 == 0) {
                 outFile.delete();
             }
-            if (t instanceof Fail) {
+            if (t instanceof CreateLombokRuntimeApp$Fail) {
                 System.err.println(t.getMessage());
                 return 1;
             }
@@ -198,13 +170,6 @@ public class CreateLombokRuntimeApp extends LombokApp {
         }
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/runtimeDependencies/CreateLombokRuntimeApp$Fail.SCL.lombok */
-    class Fail extends Exception {
-        Fail(String message) {
-            super(message);
-        }
-    }
-
     private void initializeInfoObjects() throws IOException {
         this.infoObjects = SpiLoadUtil.readAllFromIterator(SpiLoadUtil.findServices(RuntimeDependencyInfo.class));
     }
@@ -217,7 +182,7 @@ public class CreateLombokRuntimeApp extends LombokApp {
         }
     }
 
-    private void printHelp(CmdReader<CmdArgs> reader, String message, PrintStream out) {
+    private void printHelp(CmdReader<CreateLombokRuntimeApp$CmdArgs> reader, String message, PrintStream out) {
         if (message != null) {
             out.println(message);
             out.println("----------------------------");

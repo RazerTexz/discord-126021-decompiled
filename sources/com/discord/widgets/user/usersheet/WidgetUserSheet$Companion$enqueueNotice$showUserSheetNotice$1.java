@@ -3,13 +3,13 @@ package com.discord.widgets.user.usersheet;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import com.discord.stores.StoreNotices;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetUserSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetUserSheet$Companion$enqueueNotice$showUserSheetNotice$1 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+public final class WidgetUserSheet$Companion$enqueueNotice$showUserSheetNotice$1 extends o implements Function1<FragmentActivity, Boolean> {
     public final /* synthetic */ String $friendToken;
     public final /* synthetic */ String $noticeName;
     public final /* synthetic */ StoreNotices $storeNotices;
@@ -31,13 +31,13 @@ public final class WidgetUserSheet$Companion$enqueueNotice$showUserSheetNotice$1
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
-        C12238m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
-        WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
+        m.checkNotNullParameter(fragmentActivity, "fragmentActivity");
+        WidgetUserSheet$Companion widgetUserSheet$Companion = WidgetUserSheet.Companion;
         long j = this.$userId;
         String str = this.$friendToken;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
-        C12238m.checkNotNullExpressionValue(supportFragmentManager, "fragmentActivity.supportFragmentManager");
-        WidgetUserSheet.Companion.show$default(companion, j, null, supportFragmentManager, null, null, null, str, 58, null);
+        m.checkNotNullExpressionValue(supportFragmentManager, "fragmentActivity.supportFragmentManager");
+        WidgetUserSheet$Companion.show$default(widgetUserSheet$Companion, j, null, supportFragmentManager, null, null, null, str, 58, null);
         StoreNotices.markSeen$default(this.$storeNotices, this.$noticeName, 0L, 2, null);
         return true;
     }

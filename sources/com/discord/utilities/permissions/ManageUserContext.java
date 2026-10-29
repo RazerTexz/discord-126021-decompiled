@@ -1,23 +1,17 @@
 package com.discord.utilities.permissions;
 
-import com.discord.api.permission.Permission;
+import b.d.b.a.a;
 import com.discord.api.role.GuildRole;
 import com.discord.models.guild.Guild;
 import com.discord.models.user.MeUser;
 import com.discord.models.user.User;
-import com.discord.utilities.guilds.RoleUtils;
 import java.util.Collection;
 import java.util.Map;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: PermissionsContexts.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class ManageUserContext {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final ManageUserContext$Companion Companion = new ManageUserContext$Companion(null);
     private final boolean canBan;
     private final boolean canChangeNickname;
     private final boolean canDeafen;
@@ -27,38 +21,6 @@ public final /* data */ class ManageUserContext {
     private final boolean canMove;
     private final boolean canMute;
     private final boolean canTransferOwnership;
-
-    /* JADX INFO: compiled from: PermissionsContexts.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final ManageUserContext from(Guild guild, MeUser actingUser, User targetUser, Collection<Long> actingUserRoles, Collection<Long> userRoles, Long myPermissions, Map<Long, GuildRole> guildRoles) {
-            C12238m.checkNotNullParameter(guild, "guild");
-            C12238m.checkNotNullParameter(actingUser, "actingUser");
-            C12238m.checkNotNullParameter(targetUser, "targetUser");
-            C12238m.checkNotNullParameter(actingUserRoles, "actingUserRoles");
-            C12238m.checkNotNullParameter(userRoles, "userRoles");
-            C12238m.checkNotNullParameter(guildRoles, "guildRoles");
-            long id2 = targetUser.getId();
-            long id3 = actingUser.getId();
-            boolean z2 = id3 == id2;
-            boolean z3 = id3 == guild.getOwnerId();
-            boolean z4 = z3 || (!((id2 > guild.getOwnerId() ? 1 : (id2 == guild.getOwnerId() ? 0 : -1)) == 0) && RoleUtils.rankIsHigher(RoleUtils.getHighestRole(guildRoles, actingUserRoles), RoleUtils.getHighestRole(guildRoles, userRoles)));
-            int mfaLevel = guild.getMfaLevel();
-            boolean mfaEnabled = actingUser.getMfaEnabled();
-            boolean z5 = z3 || PermissionUtils.canAndIsElevated(8L, myPermissions, mfaEnabled, mfaLevel);
-            boolean z6 = (z2 || z4) && (z5 || PermissionUtils.canAndIsElevated(Permission.MANAGE_ROLES, myPermissions, mfaEnabled, mfaLevel));
-            boolean z7 = !z2 && z4 && (z5 || PermissionUtils.canAndIsElevated(2L, myPermissions, mfaEnabled, mfaLevel));
-            boolean z8 = !z2 && z4 && (z5 || PermissionUtils.canAndIsElevated(4L, myPermissions, mfaEnabled, mfaLevel));
-            boolean z9 = !z2 && z4 && (z5 || PermissionUtils.canAndIsElevated(Permission.MODERATE_MEMBERS, myPermissions, mfaEnabled, mfaLevel));
-            return new ManageUserContext(z6, z7, z8, z5 || PermissionUtils.can(Permission.MUTE_MEMBERS, myPermissions), z5 || PermissionUtils.can(Permission.DEAFEN_MEMBERS, myPermissions), z5 || PermissionUtils.can(Permission.MOVE_MEMBERS, myPermissions), !z2 ? !(z4 && (z5 || PermissionUtils.canAndIsElevated(Permission.MANAGE_NICKNAMES, myPermissions, mfaEnabled, mfaLevel))) : !(z5 || PermissionUtils.can(Permission.CHANGE_NICKNAME, myPermissions)), z9, !z2 && z3);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     public ManageUserContext(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10) {
         this.canManageRoles = z2;
@@ -74,6 +36,10 @@ public final /* data */ class ManageUserContext {
 
     public final boolean canManage() {
         return this.canManageRoles || this.canKick || this.canBan || this.canMute || this.canDeafen || this.canMove || this.canChangeNickname || this.canTransferOwnership;
+    }
+
+    public static /* synthetic */ ManageUserContext copy$default(ManageUserContext manageUserContext, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, int i, Object obj) {
+        return manageUserContext.copy((i & 1) != 0 ? manageUserContext.canManageRoles : z2, (i & 2) != 0 ? manageUserContext.canKick : z3, (i & 4) != 0 ? manageUserContext.canBan : z4, (i & 8) != 0 ? manageUserContext.canMute : z5, (i & 16) != 0 ? manageUserContext.canDeafen : z6, (i & 32) != 0 ? manageUserContext.canMove : z7, (i & 64) != 0 ? manageUserContext.canChangeNickname : z8, (i & 128) != 0 ? manageUserContext.canDisableCommunication : z9, (i & 256) != 0 ? manageUserContext.canTransferOwnership : z10);
     }
 
     public final ManageUserContext copy(boolean canManageRoles, boolean canKick, boolean canBan, boolean canMute, boolean canDeafen, boolean canMove, boolean canChangeNickname, boolean canDisableCommunication, boolean canTransferOwnership) {
@@ -92,7 +58,7 @@ public final /* data */ class ManageUserContext {
     }
 
     public static final ManageUserContext from(Guild guild, MeUser meUser, User user, Collection<Long> collection, Collection<Long> collection2, Long l, Map<Long, GuildRole> map) {
-        return INSTANCE.from(guild, meUser, user, collection, collection2, l, map);
+        return Companion.from(guild, meUser, user, collection, collection2, l, map);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -262,23 +228,23 @@ public final /* data */ class ManageUserContext {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ManageUserContext(canManageRoles=");
-        sbM833U.append(this.canManageRoles);
-        sbM833U.append(", canKick=");
-        sbM833U.append(this.canKick);
-        sbM833U.append(", canBan=");
-        sbM833U.append(this.canBan);
-        sbM833U.append(", canMute=");
-        sbM833U.append(this.canMute);
-        sbM833U.append(", canDeafen=");
-        sbM833U.append(this.canDeafen);
-        sbM833U.append(", canMove=");
-        sbM833U.append(this.canMove);
-        sbM833U.append(", canChangeNickname=");
-        sbM833U.append(this.canChangeNickname);
-        sbM833U.append(", canDisableCommunication=");
-        sbM833U.append(this.canDisableCommunication);
-        sbM833U.append(", canTransferOwnership=");
-        return C1643a.m827O(sbM833U, this.canTransferOwnership, ")");
+        StringBuilder sbU = a.U("ManageUserContext(canManageRoles=");
+        sbU.append(this.canManageRoles);
+        sbU.append(", canKick=");
+        sbU.append(this.canKick);
+        sbU.append(", canBan=");
+        sbU.append(this.canBan);
+        sbU.append(", canMute=");
+        sbU.append(this.canMute);
+        sbU.append(", canDeafen=");
+        sbU.append(this.canDeafen);
+        sbU.append(", canMove=");
+        sbU.append(this.canMove);
+        sbU.append(", canChangeNickname=");
+        sbU.append(this.canChangeNickname);
+        sbU.append(", canDisableCommunication=");
+        sbU.append(this.canDisableCommunication);
+        sbU.append(", canTransferOwnership=");
+        return a.O(sbU, this.canTransferOwnership, ")");
     }
 }

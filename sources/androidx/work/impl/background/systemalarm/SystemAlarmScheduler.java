@@ -3,12 +3,13 @@ package androidx.work.impl.background.systemalarm;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Logger;
 import androidx.work.impl.Scheduler;
 import androidx.work.impl.model.WorkSpec;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class SystemAlarmScheduler implements Scheduler {
     private final Context mContext;
     private static final String TAG = Logger.tagWithPrefix("SystemAlarmScheduler");
@@ -35,7 +36,7 @@ public class SystemAlarmScheduler implements Scheduler {
     }
 
     private void scheduleWorkSpec(@NonNull WorkSpec workSpec) {
-        Logger.get().debug(TAG, String.format("Scheduling work with workSpecId %s", workSpec.f163id), new Throwable[0]);
-        this.mContext.startService(CommandHandler.createScheduleWorkIntent(this.mContext, workSpec.f163id));
+        Logger.get().debug(TAG, String.format("Scheduling work with workSpecId %s", workSpec.f38id), new Throwable[0]);
+        this.mContext.startService(CommandHandler.createScheduleWorkIntent(this.mContext, workSpec.f38id));
     }
 }

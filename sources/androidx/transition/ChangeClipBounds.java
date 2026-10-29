@@ -1,7 +1,6 @@
 package androidx.transition;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.content.Context;
@@ -65,13 +64,7 @@ public class ChangeClipBounds extends Transition {
             ViewCompat.setClipBounds(transitionValues2.view, rect);
             objectAnimatorOfObject = ObjectAnimator.ofObject(transitionValues2.view, (Property<View, V>) ViewUtils.CLIP_BOUNDS, (TypeEvaluator) new RectEvaluator(new Rect()), (Object[]) new Rect[]{rect, rect2});
             if (z2) {
-                final View view = transitionValues2.view;
-                objectAnimatorOfObject.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeClipBounds.1
-                    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                    public void onAnimationEnd(Animator animator) {
-                        ViewCompat.setClipBounds(view, null);
-                    }
-                });
+                objectAnimatorOfObject.addListener(new ChangeClipBounds$1(this, transitionValues2.view));
             }
         }
         return objectAnimatorOfObject;

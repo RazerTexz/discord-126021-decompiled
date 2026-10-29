@@ -1,8 +1,8 @@
 package com.discord.api.message;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: LocalAttachment.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,8 +12,8 @@ public final /* data */ class LocalAttachment {
     private final String uriString;
 
     public LocalAttachment(long j, String str, String str2) {
-        C12238m.checkNotNullParameter(str, "uriString");
-        C12238m.checkNotNullParameter(str2, "displayName");
+        m.checkNotNullParameter(str, "uriString");
+        m.checkNotNullParameter(str2, "displayName");
         this.id = j;
         this.uriString = str;
         this.displayName = str2;
@@ -27,7 +27,7 @@ public final /* data */ class LocalAttachment {
             return false;
         }
         LocalAttachment localAttachment = (LocalAttachment) other;
-        return this.id == localAttachment.id && C12238m.areEqual(this.uriString, localAttachment.uriString) && C12238m.areEqual(this.displayName, localAttachment.displayName);
+        return this.id == localAttachment.id && m.areEqual(this.uriString, localAttachment.uriString) && m.areEqual(this.displayName, localAttachment.displayName);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -55,11 +55,11 @@ public final /* data */ class LocalAttachment {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("LocalAttachment(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", uriString=");
-        sbM833U.append(this.uriString);
-        sbM833U.append(", displayName=");
-        return C1643a.m822J(sbM833U, this.displayName, ")");
+        StringBuilder sbU = a.U("LocalAttachment(id=");
+        sbU.append(this.id);
+        sbU.append(", uriString=");
+        sbU.append(this.uriString);
+        sbU.append(", displayName=");
+        return a.J(sbU, this.displayName, ")");
     }
 }

@@ -1,9 +1,9 @@
 package com.discord.api.commands;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationCommandData.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,12 +15,32 @@ public final /* data */ class ApplicationCommandValue {
     private final Object value;
 
     public ApplicationCommandValue(String str, Object obj, int i, List<ApplicationCommandValue> list, Boolean bool) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.name = str;
         this.value = obj;
         this.type = i;
         this.options = list;
         this.focused = bool;
+    }
+
+    public static ApplicationCommandValue a(ApplicationCommandValue applicationCommandValue, String str, Object obj, int i, List list, Boolean bool, int i2) {
+        String str2 = (i2 & 1) != 0 ? applicationCommandValue.name : null;
+        if ((i2 & 2) != 0) {
+            obj = applicationCommandValue.value;
+        }
+        Object obj2 = obj;
+        if ((i2 & 4) != 0) {
+            i = applicationCommandValue.type;
+        }
+        int i3 = i;
+        List<ApplicationCommandValue> list2 = (i2 & 8) != 0 ? applicationCommandValue.options : null;
+        Boolean bool2 = (i2 & 16) != 0 ? applicationCommandValue.focused : null;
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        return new ApplicationCommandValue(str2, obj2, i3, list2, bool2);
+    }
+
+    public final List<ApplicationCommandValue> c() {
+        return this.options;
     }
 
     public boolean equals(Object other) {
@@ -31,7 +51,7 @@ public final /* data */ class ApplicationCommandValue {
             return false;
         }
         ApplicationCommandValue applicationCommandValue = (ApplicationCommandValue) other;
-        return C12238m.areEqual(this.name, applicationCommandValue.name) && C12238m.areEqual(this.value, applicationCommandValue.value) && this.type == applicationCommandValue.type && C12238m.areEqual(this.options, applicationCommandValue.options) && C12238m.areEqual(this.focused, applicationCommandValue.focused);
+        return m.areEqual(this.name, applicationCommandValue.name) && m.areEqual(this.value, applicationCommandValue.value) && this.type == applicationCommandValue.type && m.areEqual(this.options, applicationCommandValue.options) && m.areEqual(this.focused, applicationCommandValue.focused);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -60,38 +80,16 @@ public final /* data */ class ApplicationCommandValue {
         return iHashCode3 + (bool != null ? bool.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public static ApplicationCommandValue m7739a(ApplicationCommandValue applicationCommandValue, String str, Object obj, int i, List list, Boolean bool, int i2) {
-        String str2 = (i2 & 1) != 0 ? applicationCommandValue.name : null;
-        if ((i2 & 2) != 0) {
-            obj = applicationCommandValue.value;
-        }
-        Object obj2 = obj;
-        if ((i2 & 4) != 0) {
-            i = applicationCommandValue.type;
-        }
-        int i3 = i;
-        List<ApplicationCommandValue> list2 = (i2 & 8) != 0 ? applicationCommandValue.options : null;
-        Boolean bool2 = (i2 & 16) != 0 ? applicationCommandValue.focused : null;
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        return new ApplicationCommandValue(str2, obj2, i3, list2, bool2);
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<ApplicationCommandValue> m7741c() {
-        return this.options;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApplicationCommandValue(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", value=");
-        sbM833U.append(this.value);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", options=");
-        sbM833U.append(this.options);
-        sbM833U.append(", focused=");
-        return C1643a.m816D(sbM833U, this.focused, ")");
+        StringBuilder sbU = a.U("ApplicationCommandValue(name=");
+        sbU.append(this.name);
+        sbU.append(", value=");
+        sbU.append(this.value);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", options=");
+        sbU.append(this.options);
+        sbU.append(", focused=");
+        return a.D(sbU, this.focused, ")");
     }
 }

@@ -3,12 +3,12 @@ package androidx.appcompat.widget;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 import androidx.annotation.Nullable;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$styleable;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewCompat;
 
@@ -18,7 +18,7 @@ public class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
     private boolean mHasTickMarkTintMode;
     private Drawable mTickMark;
     private ColorStateList mTickMarkTintList;
-    private PorterDuff.Mode mTickMarkTintMode;
+    private PorterDuff$Mode mTickMarkTintMode;
     private final SeekBar mView;
 
     public AppCompatSeekBarHelper(SeekBar seekBar) {
@@ -88,7 +88,7 @@ public class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
     }
 
     @Nullable
-    public PorterDuff.Mode getTickMarkTintMode() {
+    public PorterDuff$Mode getTickMarkTintMode() {
         return this.mTickMarkTintMode;
     }
 
@@ -103,21 +103,21 @@ public class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
     public void loadFromAttributes(AttributeSet attributeSet, int i) {
         super.loadFromAttributes(attributeSet, i);
         Context context = this.mView.getContext();
-        int[] iArr = C0051R.styleable.AppCompatSeekBar;
+        int[] iArr = R$styleable.AppCompatSeekBar;
         TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, iArr, i, 0);
         SeekBar seekBar = this.mView;
         ViewCompat.saveAttributeDataForStyleable(seekBar, seekBar.getContext(), iArr, attributeSet, tintTypedArrayObtainStyledAttributes.getWrappedTypeArray(), i, 0);
-        Drawable drawableIfKnown = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(C0051R.styleable.AppCompatSeekBar_android_thumb);
+        Drawable drawableIfKnown = tintTypedArrayObtainStyledAttributes.getDrawableIfKnown(R$styleable.AppCompatSeekBar_android_thumb);
         if (drawableIfKnown != null) {
             this.mView.setThumb(drawableIfKnown);
         }
-        setTickMark(tintTypedArrayObtainStyledAttributes.getDrawable(C0051R.styleable.AppCompatSeekBar_tickMark));
-        int i2 = C0051R.styleable.AppCompatSeekBar_tickMarkTintMode;
+        setTickMark(tintTypedArrayObtainStyledAttributes.getDrawable(R$styleable.AppCompatSeekBar_tickMark));
+        int i2 = R$styleable.AppCompatSeekBar_tickMarkTintMode;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i2)) {
             this.mTickMarkTintMode = DrawableUtils.parseTintMode(tintTypedArrayObtainStyledAttributes.getInt(i2, -1), this.mTickMarkTintMode);
             this.mHasTickMarkTintMode = true;
         }
-        int i3 = C0051R.styleable.AppCompatSeekBar_tickMarkTint;
+        int i3 = R$styleable.AppCompatSeekBar_tickMarkTint;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i3)) {
             this.mTickMarkTintList = tintTypedArrayObtainStyledAttributes.getColorStateList(i3);
             this.mHasTickMarkTint = true;
@@ -149,8 +149,8 @@ public class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
         applyTickMarkTint();
     }
 
-    public void setTickMarkTintMode(@Nullable PorterDuff.Mode mode) {
-        this.mTickMarkTintMode = mode;
+    public void setTickMarkTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+        this.mTickMarkTintMode = porterDuff$Mode;
         this.mHasTickMarkTintMode = true;
         applyTickMarkTint();
     }

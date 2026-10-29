@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackApplicationCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackApplicationCreated implements AnalyticsSchema
             return false;
         }
         TrackApplicationCreated trackApplicationCreated = (TrackApplicationCreated) other;
-        return C12238m.areEqual(this.applicationId, trackApplicationCreated.applicationId) && C12238m.areEqual(this.botId, trackApplicationCreated.botId) && C12238m.areEqual(this.name, trackApplicationCreated.name) && C12238m.areEqual(this.hasBot, trackApplicationCreated.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackApplicationCreated.hasRedirectUri) && C12238m.areEqual(this.description, trackApplicationCreated.description) && C12238m.areEqual(this.iconHash, trackApplicationCreated.iconHash) && C12238m.areEqual(this.coverImageHash, trackApplicationCreated.coverImageHash);
+        return m.areEqual(this.applicationId, trackApplicationCreated.applicationId) && m.areEqual(this.botId, trackApplicationCreated.botId) && m.areEqual(this.name, trackApplicationCreated.name) && m.areEqual(this.hasBot, trackApplicationCreated.hasBot) && m.areEqual(this.hasRedirectUri, trackApplicationCreated.hasRedirectUri) && m.areEqual(this.description, trackApplicationCreated.description) && m.areEqual(this.iconHash, trackApplicationCreated.iconHash) && m.areEqual(this.coverImageHash, trackApplicationCreated.coverImageHash);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -58,21 +58,21 @@ public final /* data */ class TrackApplicationCreated implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackApplicationCreated(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", hasBot=");
-        sbM833U.append(this.hasBot);
-        sbM833U.append(", hasRedirectUri=");
-        sbM833U.append(this.hasRedirectUri);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", iconHash=");
-        sbM833U.append(this.iconHash);
-        sbM833U.append(", coverImageHash=");
-        return C1643a.m817E(sbM833U, this.coverImageHash, ")");
+        StringBuilder sbU = a.U("TrackApplicationCreated(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", botId=");
+        sbU.append(this.botId);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", hasBot=");
+        sbU.append(this.hasBot);
+        sbU.append(", hasRedirectUri=");
+        sbU.append(this.hasRedirectUri);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", iconHash=");
+        sbU.append(this.iconHash);
+        sbU.append(", coverImageHash=");
+        return a.E(sbU, this.coverImageHash, ")");
     }
 }

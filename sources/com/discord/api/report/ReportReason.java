@@ -1,8 +1,8 @@
 package com.discord.api.report;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ReportReason.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ReportReason {
             return false;
         }
         ReportReason reportReason = (ReportReason) other;
-        return this.reason == reportReason.reason && C12238m.areEqual(this.label, reportReason.label) && C12238m.areEqual(this.description, reportReason.description);
+        return this.reason == reportReason.reason && m.areEqual(this.label, reportReason.label) && m.areEqual(this.description, reportReason.description);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,11 +46,11 @@ public final /* data */ class ReportReason {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ReportReason(reason=");
-        sbM833U.append(this.reason);
-        sbM833U.append(", label=");
-        sbM833U.append(this.label);
-        sbM833U.append(", description=");
-        return C1643a.m822J(sbM833U, this.description, ")");
+        StringBuilder sbU = a.U("ReportReason(reason=");
+        sbU.append(this.reason);
+        sbU.append(", label=");
+        sbU.append(this.label);
+        sbU.append(", description=");
+        return a.J(sbU, this.description, ")");
     }
 }

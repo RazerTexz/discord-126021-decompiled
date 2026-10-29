@@ -17,8 +17,15 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     public static final int AND = 126;
     private static final String CLASS_DESCRIPTOR = "Ljava/lang/Class;";
     public static final int DIV = 108;
+    public static final int EQ = 153;
+    public static final int GE = 156;
+    public static final int GT = 157;
+    public static final int LE = 158;
+    public static final int LT = 155;
     public static final int MUL = 104;
+    public static final int NE = 154;
     public static final int NEG = 116;
+    public static final int OR = 128;
     public static final int REM = 112;
     public static final int SHL = 120;
     public static final int SHR = 122;
@@ -27,27 +34,6 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     public static final int XOR = 130;
     private final int access;
     private final Type[] argumentTypes;
-
-    /* JADX INFO: renamed from: OR */
-    public static final int f27604OR = 128;
-
-    /* JADX INFO: renamed from: EQ */
-    public static final int f27605EQ = 153;
-
-    /* JADX INFO: renamed from: NE */
-    public static final int f27606NE = 154;
-
-    /* JADX INFO: renamed from: LT */
-    public static final int f27607LT = 155;
-
-    /* JADX INFO: renamed from: GE */
-    public static final int f27608GE = 156;
-
-    /* JADX INFO: renamed from: GT */
-    public static final int f27609GT = 157;
-
-    /* JADX INFO: renamed from: LE */
-    public static final int f27610LE = 158;
     private final List<Type> localTypes;
     private final String name;
     private final Type returnType;
@@ -122,101 +108,101 @@ public class GeneratorAdapter extends LocalVariablesSorter {
 
     public void push(int value) {
         if (value >= -1 && value <= 5) {
-            this.f27600mv.visitInsn(3 + value);
+            this.mv.visitInsn(3 + value);
             return;
         }
         if (value >= -128 && value <= 127) {
-            this.f27600mv.visitIntInsn(16, value);
+            this.mv.visitIntInsn(16, value);
         } else if (value >= -32768 && value <= 32767) {
-            this.f27600mv.visitIntInsn(17, value);
+            this.mv.visitIntInsn(17, value);
         } else {
-            this.f27600mv.visitLdcInsn(Integer.valueOf(value));
+            this.mv.visitLdcInsn(Integer.valueOf(value));
         }
     }
 
     public void push(long value) {
         if (value == 0 || value == 1) {
-            this.f27600mv.visitInsn(9 + ((int) value));
+            this.mv.visitInsn(9 + ((int) value));
         } else {
-            this.f27600mv.visitLdcInsn(Long.valueOf(value));
+            this.mv.visitLdcInsn(Long.valueOf(value));
         }
     }
 
     public void push(float value) {
         int bits = Float.floatToIntBits(value);
         if (bits == 0 || bits == 1065353216 || bits == 1073741824) {
-            this.f27600mv.visitInsn(11 + ((int) value));
+            this.mv.visitInsn(11 + ((int) value));
         } else {
-            this.f27600mv.visitLdcInsn(Float.valueOf(value));
+            this.mv.visitLdcInsn(Float.valueOf(value));
         }
     }
 
     public void push(double value) {
         long bits = Double.doubleToLongBits(value);
         if (bits == 0 || bits == 4607182418800017408L) {
-            this.f27600mv.visitInsn(14 + ((int) value));
+            this.mv.visitInsn(14 + ((int) value));
         } else {
-            this.f27600mv.visitLdcInsn(Double.valueOf(value));
+            this.mv.visitLdcInsn(Double.valueOf(value));
         }
     }
 
     public void push(String value) {
         if (value == null) {
-            this.f27600mv.visitInsn(1);
+            this.mv.visitInsn(1);
         } else {
-            this.f27600mv.visitLdcInsn(value);
+            this.mv.visitLdcInsn(value);
         }
     }
 
     public void push(Type value) {
         if (value == null) {
-            this.f27600mv.visitInsn(1);
+            this.mv.visitInsn(1);
             return;
         }
         switch (value.getSort()) {
             case 1:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Boolean", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Boolean", "TYPE", CLASS_DESCRIPTOR);
                 break;
             case 2:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Character", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Character", "TYPE", CLASS_DESCRIPTOR);
                 break;
             case 3:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Byte", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Byte", "TYPE", CLASS_DESCRIPTOR);
                 break;
             case 4:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Short", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Short", "TYPE", CLASS_DESCRIPTOR);
                 break;
             case 5:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Integer", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Integer", "TYPE", CLASS_DESCRIPTOR);
                 break;
             case 6:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Float", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Float", "TYPE", CLASS_DESCRIPTOR);
                 break;
             case 7:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Long", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Long", "TYPE", CLASS_DESCRIPTOR);
                 break;
             case 8:
-                this.f27600mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Double", "TYPE", CLASS_DESCRIPTOR);
+                this.mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/Double", "TYPE", CLASS_DESCRIPTOR);
                 break;
             default:
-                this.f27600mv.visitLdcInsn(value);
+                this.mv.visitLdcInsn(value);
                 break;
         }
     }
 
     public void push(Handle handle) {
         if (handle == null) {
-            this.f27600mv.visitInsn(1);
+            this.mv.visitInsn(1);
         } else {
-            this.f27600mv.visitLdcInsn(handle);
+            this.mv.visitLdcInsn(handle);
         }
     }
 
     public void push(ConstantDynamic constantDynamic) {
         if (constantDynamic == null) {
-            this.f27600mv.visitInsn(1);
+            this.mv.visitInsn(1);
         } else {
-            this.f27600mv.visitLdcInsn(constantDynamic);
+            this.mv.visitLdcInsn(constantDynamic);
         }
     }
 
@@ -229,18 +215,18 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     private void loadInsn(Type type, int index) {
-        this.f27600mv.visitVarInsn(type.getOpcode(21), index);
+        this.mv.visitVarInsn(type.getOpcode(21), index);
     }
 
     private void storeInsn(Type type, int index) {
-        this.f27600mv.visitVarInsn(type.getOpcode(54), index);
+        this.mv.visitVarInsn(type.getOpcode(54), index);
     }
 
     public void loadThis() {
         if ((this.access & 8) != 0) {
             throw new IllegalStateException("no 'this' pointer within static method");
         }
-        this.f27600mv.visitVarInsn(25, 0);
+        this.mv.visitVarInsn(25, 0);
     }
 
     public void loadArg(int arg) {
@@ -308,47 +294,47 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void arrayLoad(Type type) {
-        this.f27600mv.visitInsn(type.getOpcode(46));
+        this.mv.visitInsn(type.getOpcode(46));
     }
 
     public void arrayStore(Type type) {
-        this.f27600mv.visitInsn(type.getOpcode(79));
+        this.mv.visitInsn(type.getOpcode(79));
     }
 
     public void pop() {
-        this.f27600mv.visitInsn(87);
+        this.mv.visitInsn(87);
     }
 
     public void pop2() {
-        this.f27600mv.visitInsn(88);
+        this.mv.visitInsn(88);
     }
 
     public void dup() {
-        this.f27600mv.visitInsn(89);
+        this.mv.visitInsn(89);
     }
 
     public void dup2() {
-        this.f27600mv.visitInsn(92);
+        this.mv.visitInsn(92);
     }
 
     public void dupX1() {
-        this.f27600mv.visitInsn(90);
+        this.mv.visitInsn(90);
     }
 
     public void dupX2() {
-        this.f27600mv.visitInsn(91);
+        this.mv.visitInsn(91);
     }
 
     public void dup2X1() {
-        this.f27600mv.visitInsn(93);
+        this.mv.visitInsn(93);
     }
 
     public void dup2X2() {
-        this.f27600mv.visitInsn(94);
+        this.mv.visitInsn(94);
     }
 
     public void swap() {
-        this.f27600mv.visitInsn(95);
+        this.mv.visitInsn(95);
     }
 
     public void swap(Type prev, Type type) {
@@ -372,16 +358,16 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void math(int op, Type type) {
-        this.f27600mv.visitInsn(type.getOpcode(op));
+        this.mv.visitInsn(type.getOpcode(op));
     }
 
     public void not() {
-        this.f27600mv.visitInsn(4);
-        this.f27600mv.visitInsn(130);
+        this.mv.visitInsn(4);
+        this.mv.visitInsn(130);
     }
 
     public void iinc(int local, int amount) {
-        this.f27600mv.visitIincInsn(local, amount);
+        this.mv.visitIincInsn(local, amount);
     }
 
     public void cast(Type from, Type to) {
@@ -389,7 +375,7 @@ public class GeneratorAdapter extends LocalVariablesSorter {
             if (from.getSort() < 1 || from.getSort() > 8 || to.getSort() < 1 || to.getSort() > 8) {
                 throw new IllegalArgumentException("Cannot cast from " + from + " to " + to);
             }
-            InstructionAdapter.cast(this.f27600mv, from, to);
+            InstructionAdapter.cast(this.mv, from, to);
         }
     }
 
@@ -494,12 +480,12 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void mark(Label label) {
-        this.f27600mv.visitLabel(label);
+        this.mv.visitLabel(label);
     }
 
     public Label mark() {
         Label label = new Label();
-        this.f27600mv.visitLabel(label);
+        this.mv.visitLabel(label);
         return label;
     }
 
@@ -507,22 +493,22 @@ public class GeneratorAdapter extends LocalVariablesSorter {
         int intOp;
         switch (type.getSort()) {
             case 6:
-                this.f27600mv.visitInsn((mode == 156 || mode == 157) ? Opcodes.FCMPL : 150);
+                this.mv.visitInsn((mode == 156 || mode == 157) ? Opcodes.FCMPL : 150);
                 break;
             case 7:
-                this.f27600mv.visitInsn(Opcodes.LCMP);
+                this.mv.visitInsn(Opcodes.LCMP);
                 break;
             case 8:
-                this.f27600mv.visitInsn((mode == 156 || mode == 157) ? Opcodes.DCMPL : Opcodes.DCMPG);
+                this.mv.visitInsn((mode == 156 || mode == 157) ? Opcodes.DCMPL : Opcodes.DCMPG);
                 break;
             case 9:
             case 10:
                 if (mode == 153) {
-                    this.f27600mv.visitJumpInsn(Opcodes.IF_ACMPEQ, label);
+                    this.mv.visitJumpInsn(Opcodes.IF_ACMPEQ, label);
                     return;
                 } else {
                     if (mode == 154) {
-                        this.f27600mv.visitJumpInsn(Opcodes.IF_ACMPNE, label);
+                        this.mv.visitJumpInsn(Opcodes.IF_ACMPNE, label);
                         return;
                     }
                     throw new IllegalArgumentException("Bad comparison for type " + type);
@@ -550,10 +536,10 @@ public class GeneratorAdapter extends LocalVariablesSorter {
                     default:
                         throw new IllegalArgumentException("Bad comparison mode " + mode);
                 }
-                this.f27600mv.visitJumpInsn(intOp, label);
+                this.mv.visitJumpInsn(intOp, label);
                 return;
         }
-        this.f27600mv.visitJumpInsn(mode, label);
+        this.mv.visitJumpInsn(mode, label);
     }
 
     public void ifICmp(int mode, Label label) {
@@ -561,23 +547,23 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void ifZCmp(int mode, Label label) {
-        this.f27600mv.visitJumpInsn(mode, label);
+        this.mv.visitJumpInsn(mode, label);
     }
 
     public void ifNull(Label label) {
-        this.f27600mv.visitJumpInsn(Opcodes.IFNULL, label);
+        this.mv.visitJumpInsn(Opcodes.IFNULL, label);
     }
 
     public void ifNonNull(Label label) {
-        this.f27600mv.visitJumpInsn(Opcodes.IFNONNULL, label);
+        this.mv.visitJumpInsn(Opcodes.IFNONNULL, label);
     }
 
     public void goTo(Label label) {
-        this.f27600mv.visitJumpInsn(Opcodes.GOTO, label);
+        this.mv.visitJumpInsn(Opcodes.GOTO, label);
     }
 
     public void ret(int local) {
-        this.f27600mv.visitVarInsn(Opcodes.RET, local);
+        this.mv.visitVarInsn(Opcodes.RET, local);
     }
 
     public void tableSwitch(int[] keys, TableSwitchGenerator generator) {
@@ -609,7 +595,7 @@ public class GeneratorAdapter extends LocalVariablesSorter {
                 for (int i2 : keys) {
                     labels[i2 - min] = newLabel();
                 }
-                this.f27600mv.visitTableSwitchInsn(min, max, defaultLabel, labels);
+                this.mv.visitTableSwitchInsn(min, max, defaultLabel, labels);
                 for (int i3 = 0; i3 < range; i3++) {
                     Label label = labels[i3];
                     if (label != defaultLabel) {
@@ -622,7 +608,7 @@ public class GeneratorAdapter extends LocalVariablesSorter {
                 for (int i4 = 0; i4 < numKeys; i4++) {
                     labels2[i4] = newLabel();
                 }
-                this.f27600mv.visitLookupSwitchInsn(defaultLabel, keys, labels2);
+                this.mv.visitLookupSwitchInsn(defaultLabel, keys, labels2);
                 for (int i5 = 0; i5 < numKeys; i5++) {
                     mark(labels2[i5]);
                     generator.generateCase(keys[i5], endLabel);
@@ -635,11 +621,11 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void returnValue() {
-        this.f27600mv.visitInsn(this.returnType.getOpcode(Opcodes.IRETURN));
+        this.mv.visitInsn(this.returnType.getOpcode(Opcodes.IRETURN));
     }
 
     private void fieldInsn(int opcode, Type ownerType, String name, Type fieldType) {
-        this.f27600mv.visitFieldInsn(opcode, ownerType.getInternalName(), name, fieldType.getDescriptor());
+        this.mv.visitFieldInsn(opcode, ownerType.getInternalName(), name, fieldType.getDescriptor());
     }
 
     public void getStatic(Type owner, String name, Type type) {
@@ -660,7 +646,7 @@ public class GeneratorAdapter extends LocalVariablesSorter {
 
     private void invokeInsn(int opcode, Type type, Method method, boolean isInterface) {
         String owner = type.getSort() == 9 ? type.getDescriptor() : type.getInternalName();
-        this.f27600mv.visitMethodInsn(opcode, owner, method.getName(), method.getDescriptor(), isInterface);
+        this.mv.visitMethodInsn(opcode, owner, method.getName(), method.getDescriptor(), isInterface);
     }
 
     public void invokeVirtual(Type owner, Method method) {
@@ -680,11 +666,11 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void invokeDynamic(String name, String descriptor, Handle bootstrapMethodHandle, Object... bootstrapMethodArguments) {
-        this.f27600mv.visitInvokeDynamicInsn(name, descriptor, bootstrapMethodHandle, bootstrapMethodArguments);
+        this.mv.visitInvokeDynamicInsn(name, descriptor, bootstrapMethodHandle, bootstrapMethodArguments);
     }
 
     private void typeInsn(int opcode, Type type) {
-        this.f27600mv.visitTypeInsn(opcode, type.getInternalName());
+        this.mv.visitTypeInsn(opcode, type.getInternalName());
     }
 
     public void newInstance(Type type) {
@@ -692,15 +678,15 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void newArray(Type type) {
-        InstructionAdapter.newarray(this.f27600mv, type);
+        InstructionAdapter.newarray(this.mv, type);
     }
 
     public void arrayLength() {
-        this.f27600mv.visitInsn(Opcodes.ARRAYLENGTH);
+        this.mv.visitInsn(Opcodes.ARRAYLENGTH);
     }
 
     public void throwException() {
-        this.f27600mv.visitInsn(Opcodes.ATHROW);
+        this.mv.visitInsn(Opcodes.ATHROW);
     }
 
     public void throwException(Type type, String message) {
@@ -722,26 +708,26 @@ public class GeneratorAdapter extends LocalVariablesSorter {
     }
 
     public void monitorEnter() {
-        this.f27600mv.visitInsn(Opcodes.MONITORENTER);
+        this.mv.visitInsn(Opcodes.MONITORENTER);
     }
 
     public void monitorExit() {
-        this.f27600mv.visitInsn(Opcodes.MONITOREXIT);
+        this.mv.visitInsn(Opcodes.MONITOREXIT);
     }
 
     public void endMethod() {
         if ((this.access & 1024) == 0) {
-            this.f27600mv.visitMaxs(0, 0);
+            this.mv.visitMaxs(0, 0);
         }
-        this.f27600mv.visitEnd();
+        this.mv.visitEnd();
     }
 
     public void catchException(Label start, Label end, Type exception) {
         Label catchLabel = new Label();
         if (exception == null) {
-            this.f27600mv.visitTryCatchBlock(start, end, catchLabel, null);
+            this.mv.visitTryCatchBlock(start, end, catchLabel, null);
         } else {
-            this.f27600mv.visitTryCatchBlock(start, end, catchLabel, exception.getInternalName());
+            this.mv.visitTryCatchBlock(start, end, catchLabel, exception.getInternalName());
         }
         mark(catchLabel);
     }

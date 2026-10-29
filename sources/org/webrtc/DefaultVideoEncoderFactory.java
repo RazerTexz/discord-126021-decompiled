@@ -1,17 +1,17 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
+import h0.c.s0;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import p617h0.p628c.C12487s0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
     private final VideoEncoderFactory hardwareVideoEncoderFactory;
     private final VideoEncoderFactory softwareVideoEncoderFactory = new SoftwareVideoEncoderFactory();
 
-    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z2, boolean z3) {
-        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z2, z3);
+    public DefaultVideoEncoderFactory(EglBase$Context eglBase$Context, boolean z2, boolean z3) {
+        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(eglBase$Context, z2, z3);
     }
 
     @Override // org.webrtc.VideoEncoderFactory
@@ -26,13 +26,13 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     @Override // org.webrtc.VideoEncoderFactory
-    public /* synthetic */ VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return C12487s0.m10677a(this);
+    public /* synthetic */ VideoEncoderFactory$VideoEncoderSelector getEncoderSelector() {
+        return s0.a(this);
     }
 
     @Override // org.webrtc.VideoEncoderFactory
     public /* synthetic */ VideoCodecInfo[] getImplementations() {
-        return C12487s0.m10678b(this);
+        return s0.b(this);
     }
 
     @Override // org.webrtc.VideoEncoderFactory

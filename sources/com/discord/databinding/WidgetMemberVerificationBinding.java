@@ -16,47 +16,41 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetMemberVerificationBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17237a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final DimmerView f17238b;
+    public final DimmerView f2488b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MemberVerificationView f17239c;
+    public final MemberVerificationView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MemberVerificationAvatarView f17240d;
+    public final MemberVerificationAvatarView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LoadingButton f17241e;
+    public final LoadingButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final RecyclerView f17242f;
+    public final RecyclerView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final NestedScrollView f17243g;
+    public final NestedScrollView g;
 
     public WidgetMemberVerificationBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull CustomAppBarLayout customAppBarLayout, @NonNull CollapsingToolbarLayout collapsingToolbarLayout, @NonNull DimmerView dimmerView, @NonNull MemberVerificationView memberVerificationView, @NonNull MemberVerificationAvatarView memberVerificationAvatarView, @NonNull LoadingButton loadingButton, @NonNull RecyclerView recyclerView, @NonNull NestedScrollView nestedScrollView) {
-        this.f17237a = coordinatorLayout;
-        this.f17238b = dimmerView;
-        this.f17239c = memberVerificationView;
-        this.f17240d = memberVerificationAvatarView;
-        this.f17241e = loadingButton;
-        this.f17242f = recyclerView;
-        this.f17243g = nestedScrollView;
+        this.a = coordinatorLayout;
+        this.f2488b = dimmerView;
+        this.c = memberVerificationView;
+        this.d = memberVerificationAvatarView;
+        this.e = loadingButton;
+        this.f = recyclerView;
+        this.g = nestedScrollView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17237a;
+        return this.a;
     }
 }

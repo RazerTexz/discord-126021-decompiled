@@ -11,47 +11,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemPrivateChannelStartBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16261a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16262b;
+    public final TextView f2328b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final PileView f16263c;
+    public final PileView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final LinearLayout f16264d;
+    public final LinearLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16265e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final SimpleDraweeView f16266f;
+    public final SimpleDraweeView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f16267g;
+    public final TextView g;
 
     public WidgetChatListAdapterItemPrivateChannelStartBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull PileView pileView, @NonNull LinearLayout linearLayout2, @NonNull TextView textView2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView3) {
-        this.f16261a = linearLayout;
-        this.f16262b = textView;
-        this.f16263c = pileView;
-        this.f16264d = linearLayout2;
-        this.f16265e = textView2;
-        this.f16266f = simpleDraweeView;
-        this.f16267g = textView3;
+        this.a = linearLayout;
+        this.f2328b = textView;
+        this.c = pileView;
+        this.d = linearLayout2;
+        this.e = textView2;
+        this.f = simpleDraweeView;
+        this.g = textView3;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16261a;
+        return this.a;
     }
 }

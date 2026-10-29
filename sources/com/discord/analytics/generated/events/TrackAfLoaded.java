@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackAfLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -48,7 +48,7 @@ public final /* data */ class TrackAfLoaded implements AnalyticsSchema, TrackBas
             return false;
         }
         TrackAfLoaded trackAfLoaded = (TrackAfLoaded) other;
-        return C12238m.areEqual(this.loadId, trackAfLoaded.loadId) && C12238m.areEqual(this.gameIds, trackAfLoaded.gameIds) && C12238m.areEqual(this.numCards, trackAfLoaded.numCards) && C12238m.areEqual(this.numCardsVisible, trackAfLoaded.numCardsVisible) && C12238m.areEqual(this.numCardsGameNews, trackAfLoaded.numCardsGameNews) && C12238m.areEqual(this.numCardsGamePlayable, trackAfLoaded.numCardsGamePlayable) && C12238m.areEqual(this.numGameParties, trackAfLoaded.numGameParties) && C12238m.areEqual(this.numGamePartiesVoice, trackAfLoaded.numGamePartiesVoice) && C12238m.areEqual(this.numGamePartiesSolo, trackAfLoaded.numGamePartiesSolo) && C12238m.areEqual(this.numGamePartiesRecentlyPlayed, trackAfLoaded.numGamePartiesRecentlyPlayed) && C12238m.areEqual(this.numGamePartiesRichPresence, trackAfLoaded.numGamePartiesRichPresence) && C12238m.areEqual(this.numGamePartiesCollapsed, trackAfLoaded.numGamePartiesCollapsed) && C12238m.areEqual(this.numSoloCollapsed, trackAfLoaded.numSoloCollapsed) && C12238m.areEqual(this.numRecentlyPlayedCollapsed, trackAfLoaded.numRecentlyPlayedCollapsed) && C12238m.areEqual(this.numUsersSubscribed, trackAfLoaded.numUsersSubscribed) && C12238m.areEqual(this.numLauncherApplications, trackAfLoaded.numLauncherApplications) && C12238m.areEqual(this.windowWidth, trackAfLoaded.windowWidth) && C12238m.areEqual(this.windowHeight, trackAfLoaded.windowHeight) && C12238m.areEqual(this.feedLayout, trackAfLoaded.feedLayout) && C12238m.areEqual(this.subscribedGames, trackAfLoaded.subscribedGames) && C12238m.areEqual(this.numItemsNowPlaying, trackAfLoaded.numItemsNowPlaying) && C12238m.areEqual(this.numItemsRecentlyPlayed, trackAfLoaded.numItemsRecentlyPlayed) && C12238m.areEqual(this.newsIdsViewed, trackAfLoaded.newsIdsViewed) && C12238m.areEqual(this.guildIdsViewed, trackAfLoaded.guildIdsViewed);
+        return m.areEqual(this.loadId, trackAfLoaded.loadId) && m.areEqual(this.gameIds, trackAfLoaded.gameIds) && m.areEqual(this.numCards, trackAfLoaded.numCards) && m.areEqual(this.numCardsVisible, trackAfLoaded.numCardsVisible) && m.areEqual(this.numCardsGameNews, trackAfLoaded.numCardsGameNews) && m.areEqual(this.numCardsGamePlayable, trackAfLoaded.numCardsGamePlayable) && m.areEqual(this.numGameParties, trackAfLoaded.numGameParties) && m.areEqual(this.numGamePartiesVoice, trackAfLoaded.numGamePartiesVoice) && m.areEqual(this.numGamePartiesSolo, trackAfLoaded.numGamePartiesSolo) && m.areEqual(this.numGamePartiesRecentlyPlayed, trackAfLoaded.numGamePartiesRecentlyPlayed) && m.areEqual(this.numGamePartiesRichPresence, trackAfLoaded.numGamePartiesRichPresence) && m.areEqual(this.numGamePartiesCollapsed, trackAfLoaded.numGamePartiesCollapsed) && m.areEqual(this.numSoloCollapsed, trackAfLoaded.numSoloCollapsed) && m.areEqual(this.numRecentlyPlayedCollapsed, trackAfLoaded.numRecentlyPlayedCollapsed) && m.areEqual(this.numUsersSubscribed, trackAfLoaded.numUsersSubscribed) && m.areEqual(this.numLauncherApplications, trackAfLoaded.numLauncherApplications) && m.areEqual(this.windowWidth, trackAfLoaded.windowWidth) && m.areEqual(this.windowHeight, trackAfLoaded.windowHeight) && m.areEqual(this.feedLayout, trackAfLoaded.feedLayout) && m.areEqual(this.subscribedGames, trackAfLoaded.subscribedGames) && m.areEqual(this.numItemsNowPlaying, trackAfLoaded.numItemsNowPlaying) && m.areEqual(this.numItemsRecentlyPlayed, trackAfLoaded.numItemsRecentlyPlayed) && m.areEqual(this.newsIdsViewed, trackAfLoaded.newsIdsViewed) && m.areEqual(this.guildIdsViewed, trackAfLoaded.guildIdsViewed);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -109,53 +109,53 @@ public final /* data */ class TrackAfLoaded implements AnalyticsSchema, TrackBas
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAfLoaded(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", gameIds=");
-        sbM833U.append(this.gameIds);
-        sbM833U.append(", numCards=");
-        sbM833U.append(this.numCards);
-        sbM833U.append(", numCardsVisible=");
-        sbM833U.append(this.numCardsVisible);
-        sbM833U.append(", numCardsGameNews=");
-        sbM833U.append(this.numCardsGameNews);
-        sbM833U.append(", numCardsGamePlayable=");
-        sbM833U.append(this.numCardsGamePlayable);
-        sbM833U.append(", numGameParties=");
-        sbM833U.append(this.numGameParties);
-        sbM833U.append(", numGamePartiesVoice=");
-        sbM833U.append(this.numGamePartiesVoice);
-        sbM833U.append(", numGamePartiesSolo=");
-        sbM833U.append(this.numGamePartiesSolo);
-        sbM833U.append(", numGamePartiesRecentlyPlayed=");
-        sbM833U.append(this.numGamePartiesRecentlyPlayed);
-        sbM833U.append(", numGamePartiesRichPresence=");
-        sbM833U.append(this.numGamePartiesRichPresence);
-        sbM833U.append(", numGamePartiesCollapsed=");
-        sbM833U.append(this.numGamePartiesCollapsed);
-        sbM833U.append(", numSoloCollapsed=");
-        sbM833U.append(this.numSoloCollapsed);
-        sbM833U.append(", numRecentlyPlayedCollapsed=");
-        sbM833U.append(this.numRecentlyPlayedCollapsed);
-        sbM833U.append(", numUsersSubscribed=");
-        sbM833U.append(this.numUsersSubscribed);
-        sbM833U.append(", numLauncherApplications=");
-        sbM833U.append(this.numLauncherApplications);
-        sbM833U.append(", windowWidth=");
-        sbM833U.append(this.windowWidth);
-        sbM833U.append(", windowHeight=");
-        sbM833U.append(this.windowHeight);
-        sbM833U.append(", feedLayout=");
-        sbM833U.append(this.feedLayout);
-        sbM833U.append(", subscribedGames=");
-        sbM833U.append(this.subscribedGames);
-        sbM833U.append(", numItemsNowPlaying=");
-        sbM833U.append(this.numItemsNowPlaying);
-        sbM833U.append(", numItemsRecentlyPlayed=");
-        sbM833U.append(this.numItemsRecentlyPlayed);
-        sbM833U.append(", newsIdsViewed=");
-        sbM833U.append(this.newsIdsViewed);
-        sbM833U.append(", guildIdsViewed=");
-        return C1643a.m824L(sbM833U, this.guildIdsViewed, ")");
+        StringBuilder sbU = a.U("TrackAfLoaded(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", gameIds=");
+        sbU.append(this.gameIds);
+        sbU.append(", numCards=");
+        sbU.append(this.numCards);
+        sbU.append(", numCardsVisible=");
+        sbU.append(this.numCardsVisible);
+        sbU.append(", numCardsGameNews=");
+        sbU.append(this.numCardsGameNews);
+        sbU.append(", numCardsGamePlayable=");
+        sbU.append(this.numCardsGamePlayable);
+        sbU.append(", numGameParties=");
+        sbU.append(this.numGameParties);
+        sbU.append(", numGamePartiesVoice=");
+        sbU.append(this.numGamePartiesVoice);
+        sbU.append(", numGamePartiesSolo=");
+        sbU.append(this.numGamePartiesSolo);
+        sbU.append(", numGamePartiesRecentlyPlayed=");
+        sbU.append(this.numGamePartiesRecentlyPlayed);
+        sbU.append(", numGamePartiesRichPresence=");
+        sbU.append(this.numGamePartiesRichPresence);
+        sbU.append(", numGamePartiesCollapsed=");
+        sbU.append(this.numGamePartiesCollapsed);
+        sbU.append(", numSoloCollapsed=");
+        sbU.append(this.numSoloCollapsed);
+        sbU.append(", numRecentlyPlayedCollapsed=");
+        sbU.append(this.numRecentlyPlayedCollapsed);
+        sbU.append(", numUsersSubscribed=");
+        sbU.append(this.numUsersSubscribed);
+        sbU.append(", numLauncherApplications=");
+        sbU.append(this.numLauncherApplications);
+        sbU.append(", windowWidth=");
+        sbU.append(this.windowWidth);
+        sbU.append(", windowHeight=");
+        sbU.append(this.windowHeight);
+        sbU.append(", feedLayout=");
+        sbU.append(this.feedLayout);
+        sbU.append(", subscribedGames=");
+        sbU.append(this.subscribedGames);
+        sbU.append(", numItemsNowPlaying=");
+        sbU.append(this.numItemsNowPlaying);
+        sbU.append(", numItemsRecentlyPlayed=");
+        sbU.append(this.numItemsRecentlyPlayed);
+        sbU.append(", newsIdsViewed=");
+        sbU.append(this.newsIdsViewed);
+        sbU.append(", guildIdsViewed=");
+        return a.L(sbU, this.guildIdsViewed, ")");
     }
 }

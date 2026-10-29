@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSubscriptionCanceled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackSubscriptionCanceled implements AnalyticsSche
             return false;
         }
         TrackSubscriptionCanceled trackSubscriptionCanceled = (TrackSubscriptionCanceled) other;
-        return C12238m.areEqual(this.subscriptionId, trackSubscriptionCanceled.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionCanceled.subscriptionType) && C12238m.areEqual(this.subscriptionLength, trackSubscriptionCanceled.subscriptionLength) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionCanceled.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionCanceled.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionCanceled.paymentGateway) && C12238m.areEqual(this.cancellationType, trackSubscriptionCanceled.cancellationType) && C12238m.areEqual(this.createdAt, trackSubscriptionCanceled.createdAt) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionCanceled.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionCanceled.currentPeriodEnd);
+        return m.areEqual(this.subscriptionId, trackSubscriptionCanceled.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionCanceled.subscriptionType) && m.areEqual(this.subscriptionLength, trackSubscriptionCanceled.subscriptionLength) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionCanceled.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionCanceled.planId) && m.areEqual(this.paymentGateway, trackSubscriptionCanceled.paymentGateway) && m.areEqual(this.cancellationType, trackSubscriptionCanceled.cancellationType) && m.areEqual(this.createdAt, trackSubscriptionCanceled.createdAt) && m.areEqual(this.currentPeriodStart, trackSubscriptionCanceled.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionCanceled.currentPeriodEnd);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,25 +63,25 @@ public final /* data */ class TrackSubscriptionCanceled implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSubscriptionCanceled(subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", subscriptionType=");
-        sbM833U.append(this.subscriptionType);
-        sbM833U.append(", subscriptionLength=");
-        sbM833U.append(this.subscriptionLength);
-        sbM833U.append(", paymentGatewayPlanId=");
-        sbM833U.append(this.paymentGatewayPlanId);
-        sbM833U.append(", planId=");
-        sbM833U.append(this.planId);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", cancellationType=");
-        sbM833U.append(this.cancellationType);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", currentPeriodStart=");
-        sbM833U.append(this.currentPeriodStart);
-        sbM833U.append(", currentPeriodEnd=");
-        return C1643a.m819G(sbM833U, this.currentPeriodEnd, ")");
+        StringBuilder sbU = a.U("TrackSubscriptionCanceled(subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", subscriptionType=");
+        sbU.append(this.subscriptionType);
+        sbU.append(", subscriptionLength=");
+        sbU.append(this.subscriptionLength);
+        sbU.append(", paymentGatewayPlanId=");
+        sbU.append(this.paymentGatewayPlanId);
+        sbU.append(", planId=");
+        sbU.append(this.planId);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", cancellationType=");
+        sbU.append(this.cancellationType);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", currentPeriodStart=");
+        sbU.append(this.currentPeriodStart);
+        sbU.append(", currentPeriodEnd=");
+        return a.G(sbU, this.currentPeriodEnd, ")");
     }
 }

@@ -6,7 +6,10 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
-import androidx.core.widget.ContentLoadingProgressBar;
+import y.b.b.a;
+import y.b.b.b;
+import y.b.b.c;
+import y.b.b.d;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ContentLoadingProgressBar extends ProgressBar {
@@ -23,13 +26,16 @@ public class ContentLoadingProgressBar extends ProgressBar {
         this(context, null);
     }
 
+    public static /* synthetic */ void a(ContentLoadingProgressBar contentLoadingProgressBar) {
+        contentLoadingProgressBar.hideOnUiThread();
+    }
+
+    public static /* synthetic */ void b(ContentLoadingProgressBar contentLoadingProgressBar) {
+        contentLoadingProgressBar.showOnUiThread();
+    }
+
     public void hide() {
-        post(new Runnable() { // from class: y.b.b.b
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f27957j.hideOnUiThread();
-            }
-        });
+        post(new b(this));
     }
 
     @UiThread
@@ -69,12 +75,7 @@ public class ContentLoadingProgressBar extends ProgressBar {
     }
 
     public void show() {
-        post(new Runnable() { // from class: y.b.b.d
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f27959j.showOnUiThread();
-            }
-        });
+        post(new d(this));
     }
 
     @UiThread
@@ -96,26 +97,7 @@ public class ContentLoadingProgressBar extends ProgressBar {
         this.mPostedHide = false;
         this.mPostedShow = false;
         this.mDismissed = false;
-        this.mDelayedHide = new Runnable() { // from class: y.b.b.a
-            @Override // java.lang.Runnable
-            public final void run() {
-                ContentLoadingProgressBar contentLoadingProgressBar = this.f27956j;
-                contentLoadingProgressBar.mPostedHide = false;
-                contentLoadingProgressBar.mStartTime = -1L;
-                contentLoadingProgressBar.setVisibility(8);
-            }
-        };
-        this.mDelayedShow = new Runnable() { // from class: y.b.b.c
-            @Override // java.lang.Runnable
-            public final void run() {
-                ContentLoadingProgressBar contentLoadingProgressBar = this.f27958j;
-                contentLoadingProgressBar.mPostedShow = false;
-                if (contentLoadingProgressBar.mDismissed) {
-                    return;
-                }
-                contentLoadingProgressBar.mStartTime = System.currentTimeMillis();
-                contentLoadingProgressBar.setVisibility(0);
-            }
-        };
+        this.mDelayedHide = new a(this);
+        this.mDelayedShow = new c(this);
     }
 }

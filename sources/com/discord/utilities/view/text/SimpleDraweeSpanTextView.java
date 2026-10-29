@@ -2,7 +2,7 @@ package com.discord.utilities.view.text;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.TextView$BufferType;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
@@ -20,7 +20,7 @@ public class SimpleDraweeSpanTextView extends AppCompatTextView {
     public void detachCurrentDraweeSpanStringBuilder() {
         DraweeSpanStringBuilder draweeSpanStringBuilder = this.mDraweeStringBuilder;
         if (draweeSpanStringBuilder != null) {
-            draweeSpanStringBuilder.m8685b(this);
+            draweeSpanStringBuilder.b(this);
         }
         this.mDraweeStringBuilder = null;
     }
@@ -31,7 +31,7 @@ public class SimpleDraweeSpanTextView extends AppCompatTextView {
         this.mIsAttached = true;
         DraweeSpanStringBuilder draweeSpanStringBuilder = this.mDraweeStringBuilder;
         if (draweeSpanStringBuilder != null) {
-            draweeSpanStringBuilder.m8684a(this);
+            draweeSpanStringBuilder.a(this);
         }
     }
 
@@ -40,7 +40,7 @@ public class SimpleDraweeSpanTextView extends AppCompatTextView {
         this.mIsAttached = false;
         DraweeSpanStringBuilder draweeSpanStringBuilder = this.mDraweeStringBuilder;
         if (draweeSpanStringBuilder != null) {
-            draweeSpanStringBuilder.m8685b(this);
+            draweeSpanStringBuilder.b(this);
         }
         super.onDetachedFromWindow();
     }
@@ -51,7 +51,7 @@ public class SimpleDraweeSpanTextView extends AppCompatTextView {
         this.mIsAttached = true;
         DraweeSpanStringBuilder draweeSpanStringBuilder = this.mDraweeStringBuilder;
         if (draweeSpanStringBuilder != null) {
-            draweeSpanStringBuilder.m8684a(this);
+            draweeSpanStringBuilder.a(this);
         }
     }
 
@@ -60,7 +60,7 @@ public class SimpleDraweeSpanTextView extends AppCompatTextView {
         this.mIsAttached = false;
         DraweeSpanStringBuilder draweeSpanStringBuilder = this.mDraweeStringBuilder;
         if (draweeSpanStringBuilder != null) {
-            draweeSpanStringBuilder.m8685b(this);
+            draweeSpanStringBuilder.b(this);
         }
         super.onStartTemporaryDetach();
     }
@@ -72,12 +72,12 @@ public class SimpleDraweeSpanTextView extends AppCompatTextView {
     }
 
     public void setDraweeSpanStringBuilder(DraweeSpanStringBuilder draweeSpanStringBuilder) {
-        setText(draweeSpanStringBuilder, TextView.BufferType.SPANNABLE);
+        setText(draweeSpanStringBuilder, TextView$BufferType.SPANNABLE);
         this.mDraweeStringBuilder = draweeSpanStringBuilder;
         if (draweeSpanStringBuilder == null || !this.mIsAttached) {
             return;
         }
-        draweeSpanStringBuilder.m8684a(this);
+        draweeSpanStringBuilder.a(this);
     }
 
     public SimpleDraweeSpanTextView(Context context, @Nullable AttributeSet attributeSet) {

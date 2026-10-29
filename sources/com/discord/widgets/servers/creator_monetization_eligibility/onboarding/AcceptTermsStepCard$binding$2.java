@@ -5,15 +5,16 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.TextView;
-import com.discord.C5419R;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.databinding.ViewCreatorMonetizationAcceptTermsStepCardBinding;
+import d0.z.d.o;
 import java.util.Objects;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: AcceptTermsStepCard.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class AcceptTermsStepCard$binding$2 extends AbstractC12240o implements Function0<ViewCreatorMonetizationAcceptTermsStepCardBinding> {
+public final class AcceptTermsStepCard$binding$2 extends o implements Function0<ViewCreatorMonetizationAcceptTermsStepCardBinding> {
     public final /* synthetic */ Context $context;
     public final /* synthetic */ AcceptTermsStepCard this$0;
 
@@ -24,27 +25,32 @@ public final class AcceptTermsStepCard$binding$2 extends AbstractC12240o impleme
         this.$context = context;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ ViewCreatorMonetizationAcceptTermsStepCardBinding invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ViewCreatorMonetizationAcceptTermsStepCardBinding invoke() {
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(this.$context);
         AcceptTermsStepCard acceptTermsStepCard = this.this$0;
         Objects.requireNonNull(acceptTermsStepCard, "parent");
-        layoutInflaterFrom.inflate(C5419R.layout.view_creator_monetization_accept_terms_step_card, acceptTermsStepCard);
-        int i = C5419R.id.description;
-        TextView textView = (TextView) acceptTermsStepCard.findViewById(C5419R.id.description);
+        layoutInflaterFrom.inflate(R$layout.view_creator_monetization_accept_terms_step_card, acceptTermsStepCard);
+        int i = R$id.description;
+        TextView textView = (TextView) acceptTermsStepCard.findViewById(R$id.description);
         if (textView != null) {
-            i = C5419R.id.image;
-            ImageView imageView = (ImageView) acceptTermsStepCard.findViewById(C5419R.id.image);
+            i = 2131364034;
+            ImageView imageView = (ImageView) acceptTermsStepCard.findViewById(2131364034);
             if (imageView != null) {
-                i = C5419R.id.image_padding;
-                Space space = (Space) acceptTermsStepCard.findViewById(C5419R.id.image_padding);
+                i = R$id.image_padding;
+                Space space = (Space) acceptTermsStepCard.findViewById(R$id.image_padding);
                 if (space != null) {
-                    i = C5419R.id.step_number;
-                    TextView textView2 = (TextView) acceptTermsStepCard.findViewById(C5419R.id.step_number);
+                    i = R$id.step_number;
+                    TextView textView2 = (TextView) acceptTermsStepCard.findViewById(R$id.step_number);
                     if (textView2 != null) {
-                        i = C5419R.id.title;
-                        TextView textView3 = (TextView) acceptTermsStepCard.findViewById(C5419R.id.title);
+                        i = 2131365869;
+                        TextView textView3 = (TextView) acceptTermsStepCard.findViewById(2131365869);
                         if (textView3 != null) {
                             return new ViewCreatorMonetizationAcceptTermsStepCardBinding(acceptTermsStepCard, textView, imageView, space, textView2, textView3);
                         }

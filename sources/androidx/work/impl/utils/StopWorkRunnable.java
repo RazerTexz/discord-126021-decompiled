@@ -2,15 +2,16 @@ package androidx.work.impl.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Logger;
-import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import androidx.work.impl.Processor;
 import androidx.work.impl.WorkDatabase;
 import androidx.work.impl.WorkManagerImpl;
 import androidx.work.impl.model.WorkSpecDao;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class StopWorkRunnable implements Runnable {
     private final boolean mStopInForeground;
     private final WorkManagerImpl mWorkManagerImpl;
@@ -35,8 +36,8 @@ public class StopWorkRunnable implements Runnable {
             if (this.mStopInForeground) {
                 zStopWork = this.mWorkManagerImpl.getProcessor().stopForegroundWork(this.mWorkSpecId);
             } else {
-                if (!zIsEnqueuedInForeground && workSpecDao.getState(this.mWorkSpecId) == WorkInfo.State.RUNNING) {
-                    workSpecDao.setState(WorkInfo.State.ENQUEUED, this.mWorkSpecId);
+                if (!zIsEnqueuedInForeground && workSpecDao.getState(this.mWorkSpecId) == WorkInfo$State.RUNNING) {
+                    workSpecDao.setState(WorkInfo$State.ENQUEUED, this.mWorkSpecId);
                 }
                 zStopWork = this.mWorkManagerImpl.getProcessor().stopWork(this.mWorkSpecId);
             }

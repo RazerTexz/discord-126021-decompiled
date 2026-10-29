@@ -16,92 +16,77 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildRoleSubscriptionTierBenefitBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16939a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16940b;
+    public final TextView f2438b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16941c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextInputLayout f16942d;
+    public final TextInputLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialButton f16943e;
+    public final MaterialButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextInputLayout f16944f;
+    public final TextInputLayout f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextInputEditText f16945g;
+    public final TextInputEditText g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final SimpleDraweeView f16946h;
+    public final SimpleDraweeView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f16947i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f16948j;
+    public final TextView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final MaterialButton f16949k;
+    public final MaterialButton k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final MaterialButton f16950l;
+    public final MaterialButton l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final LinearLayout f16951m;
+    public final LinearLayout m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f16952n;
+    public final TextView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final TextView f16953o;
+    public final TextView o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final TextView f16954p;
+    public final TextView p;
 
     public WidgetGuildRoleSubscriptionTierBenefitBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextView textView, @NonNull TextInputEditText textInputEditText, @NonNull TextView textView2, @NonNull TextInputLayout textInputLayout, @NonNull AppBarLayout appBarLayout, @NonNull MaterialButton materialButton, @NonNull TextInputLayout textInputLayout2, @NonNull TextInputEditText textInputEditText2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull MaterialButton materialButton2, @NonNull MaterialButton materialButton3, @NonNull ScrollView scrollView, @NonNull LinearLayout linearLayout, @NonNull TextView textView5, @NonNull TextView textView6, @NonNull TextView textView7) {
-        this.f16939a = constraintLayout;
-        this.f16940b = textView;
-        this.f16941c = textView2;
-        this.f16942d = textInputLayout;
-        this.f16943e = materialButton;
-        this.f16944f = textInputLayout2;
-        this.f16945g = textInputEditText2;
-        this.f16946h = simpleDraweeView;
-        this.f16947i = textView3;
-        this.f16948j = textView4;
-        this.f16949k = materialButton2;
-        this.f16950l = materialButton3;
-        this.f16951m = linearLayout;
-        this.f16952n = textView5;
-        this.f16953o = textView6;
-        this.f16954p = textView7;
+        this.a = constraintLayout;
+        this.f2438b = textView;
+        this.c = textView2;
+        this.d = textInputLayout;
+        this.e = materialButton;
+        this.f = textInputLayout2;
+        this.g = textInputEditText2;
+        this.h = simpleDraweeView;
+        this.i = textView3;
+        this.j = textView4;
+        this.k = materialButton2;
+        this.l = materialButton3;
+        this.m = linearLayout;
+        this.n = textView5;
+        this.o = textView6;
+        this.p = textView7;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16939a;
+        return this.a;
     }
 }

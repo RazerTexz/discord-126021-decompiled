@@ -1,14 +1,14 @@
 package androidx.core.os;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.LocaleList;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
+import b.d.b.a.a;
 import java.util.Locale;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class LocaleListCompat {
@@ -21,7 +21,7 @@ public final class LocaleListCompat {
 
     @NonNull
     public static LocaleListCompat create(@NonNull Locale... localeArr) {
-        return Build.VERSION.SDK_INT >= 24 ? wrap(new LocaleList(localeArr)) : new LocaleListCompat(new LocaleListCompatWrapper(localeArr));
+        return Build$VERSION.SDK_INT >= 24 ? wrap(new LocaleList(localeArr)) : new LocaleListCompat(new LocaleListCompatWrapper(localeArr));
     }
 
     public boolean equals(Object obj) {
@@ -55,7 +55,7 @@ public final class LocaleListCompat {
                 return new Locale(strArrSplit2[0]);
             }
         }
-        throw new IllegalArgumentException(C1643a.m886y("Can not parse language tag: [", str, "]"));
+        throw new IllegalArgumentException(a.y("Can not parse language tag: [", str, "]"));
     }
 
     @NonNull
@@ -79,13 +79,13 @@ public final class LocaleListCompat {
     @NonNull
     @Size(min = 1)
     public static LocaleListCompat getAdjustedDefault() {
-        return Build.VERSION.SDK_INT >= 24 ? wrap(LocaleList.getAdjustedDefault()) : create(Locale.getDefault());
+        return Build$VERSION.SDK_INT >= 24 ? wrap(LocaleList.getAdjustedDefault()) : create(Locale.getDefault());
     }
 
     @NonNull
     @Size(min = 1)
     public static LocaleListCompat getDefault() {
-        return Build.VERSION.SDK_INT >= 24 ? wrap(LocaleList.getDefault()) : create(Locale.getDefault());
+        return Build$VERSION.SDK_INT >= 24 ? wrap(LocaleList.getDefault()) : create(Locale.getDefault());
     }
 
     @NonNull

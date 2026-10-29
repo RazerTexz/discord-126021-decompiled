@@ -1,7 +1,8 @@
 package androidx.core.os;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Handler;
+import android.os.Handler$Callback;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
@@ -14,44 +15,16 @@ import java.lang.reflect.InvocationTargetException;
 public final class HandlerCompat {
     private static final String TAG = "HandlerCompat";
 
-    @RequiresApi(28)
-    public class Api28Impl {
-        private Api28Impl() {
-        }
-
-        public static Handler createAsync(Looper looper) {
-            return Handler.createAsync(looper);
-        }
-
-        public static boolean postDelayed(Handler handler, Runnable runnable, Object obj, long j) {
-            return handler.postDelayed(runnable, obj, j);
-        }
-
-        public static Handler createAsync(Looper looper, Handler.Callback callback) {
-            return Handler.createAsync(looper, callback);
-        }
-    }
-
-    @RequiresApi(29)
-    public class Api29Impl {
-        private Api29Impl() {
-        }
-
-        public static boolean hasCallbacks(Handler handler, Runnable runnable) {
-            return handler.hasCallbacks(runnable);
-        }
-    }
-
     private HandlerCompat() {
     }
 
     @NonNull
     public static Handler createAsync(@NonNull Looper looper) {
-        if (Build.VERSION.SDK_INT >= 28) {
-            return Api28Impl.createAsync(looper);
+        if (Build$VERSION.SDK_INT >= 28) {
+            return HandlerCompat$Api28Impl.createAsync(looper);
         }
         try {
-            return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler.Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);
+            return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler$Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);
         } catch (IllegalAccessException e) {
             e = e;
             Log.w(TAG, "Unable to invoke Handler(Looper, Callback, boolean) constructor", e);
@@ -78,8 +51,8 @@ public final class HandlerCompat {
 
     @RequiresApi(16)
     public static boolean hasCallbacks(@NonNull Handler handler, @NonNull Runnable runnable) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            return Api29Impl.hasCallbacks(handler, runnable);
+        if (Build$VERSION.SDK_INT >= 29) {
+            return HandlerCompat$Api29Impl.hasCallbacks(handler, runnable);
         }
         try {
             return ((Boolean) Handler.class.getMethod("hasCallbacks", Runnable.class).invoke(handler, runnable)).booleanValue();
@@ -105,8 +78,8 @@ public final class HandlerCompat {
     }
 
     public static boolean postDelayed(@NonNull Handler handler, @NonNull Runnable runnable, @Nullable Object obj, long j) {
-        if (Build.VERSION.SDK_INT >= 28) {
-            return Api28Impl.postDelayed(handler, runnable, obj, j);
+        if (Build$VERSION.SDK_INT >= 28) {
+            return HandlerCompat$Api28Impl.postDelayed(handler, runnable, obj, j);
         }
         Message messageObtain = Message.obtain(handler, runnable);
         messageObtain.obj = obj;
@@ -114,24 +87,24 @@ public final class HandlerCompat {
     }
 
     @NonNull
-    public static Handler createAsync(@NonNull Looper looper, @NonNull Handler.Callback callback) {
-        if (Build.VERSION.SDK_INT >= 28) {
-            return Api28Impl.createAsync(looper, callback);
+    public static Handler createAsync(@NonNull Looper looper, @NonNull Handler$Callback handler$Callback) {
+        if (Build$VERSION.SDK_INT >= 28) {
+            return HandlerCompat$Api28Impl.createAsync(looper, handler$Callback);
         }
         try {
-            return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler.Callback.class, Boolean.TYPE).newInstance(looper, callback, Boolean.TRUE);
+            return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler$Callback.class, Boolean.TYPE).newInstance(looper, handler$Callback, Boolean.TRUE);
         } catch (IllegalAccessException e) {
             e = e;
             Log.w(TAG, "Unable to invoke Handler(Looper, Callback, boolean) constructor", e);
-            return new Handler(looper, callback);
+            return new Handler(looper, handler$Callback);
         } catch (InstantiationException e2) {
             e = e2;
             Log.w(TAG, "Unable to invoke Handler(Looper, Callback, boolean) constructor", e);
-            return new Handler(looper, callback);
+            return new Handler(looper, handler$Callback);
         } catch (NoSuchMethodException e3) {
             e = e3;
             Log.w(TAG, "Unable to invoke Handler(Looper, Callback, boolean) constructor", e);
-            return new Handler(looper, callback);
+            return new Handler(looper, handler$Callback);
         } catch (InvocationTargetException e4) {
             Throwable cause = e4.getCause();
             if (!(cause instanceof RuntimeException)) {

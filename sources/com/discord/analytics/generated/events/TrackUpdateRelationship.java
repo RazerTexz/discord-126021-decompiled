@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUpdateRelationship.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackUpdateRelationship implements AnalyticsSchema
             return false;
         }
         TrackUpdateRelationship trackUpdateRelationship = (TrackUpdateRelationship) other;
-        return C12238m.areEqual(this.isInitiator, trackUpdateRelationship.isInitiator) && C12238m.areEqual(this.mutualGuilds, trackUpdateRelationship.mutualGuilds) && C12238m.areEqual(this.otherUser, trackUpdateRelationship.otherUser) && C12238m.areEqual(this.type, trackUpdateRelationship.type) && C12238m.areEqual(this.userGuilds, trackUpdateRelationship.userGuilds);
+        return m.areEqual(this.isInitiator, trackUpdateRelationship.isInitiator) && m.areEqual(this.mutualGuilds, trackUpdateRelationship.mutualGuilds) && m.areEqual(this.otherUser, trackUpdateRelationship.otherUser) && m.areEqual(this.type, trackUpdateRelationship.type) && m.areEqual(this.userGuilds, trackUpdateRelationship.userGuilds);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackUpdateRelationship implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpdateRelationship(isInitiator=");
-        sbM833U.append(this.isInitiator);
-        sbM833U.append(", mutualGuilds=");
-        sbM833U.append(this.mutualGuilds);
-        sbM833U.append(", otherUser=");
-        sbM833U.append(this.otherUser);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", userGuilds=");
-        return C1643a.m819G(sbM833U, this.userGuilds, ")");
+        StringBuilder sbU = a.U("TrackUpdateRelationship(isInitiator=");
+        sbU.append(this.isInitiator);
+        sbU.append(", mutualGuilds=");
+        sbU.append(this.mutualGuilds);
+        sbU.append(", otherUser=");
+        sbU.append(this.otherUser);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", userGuilds=");
+        return a.G(sbU, this.userGuilds, ")");
     }
 }

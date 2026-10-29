@@ -16,87 +16,73 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemInviteBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16238a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16239b;
+    public final TextView f2325b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16240c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final FrameLayout f16241d;
+    public final FrameLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LinkifiedTextView f16242e;
+    public final LinkifiedTextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final SimpleDraweeView f16243f;
+    public final SimpleDraweeView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f16244g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final MaterialButton f16245h;
+    public final MaterialButton h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final MaterialButton f16246i;
+    public final MaterialButton i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final View f16247j;
+    public final View j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final ServerMemberCount f16248k;
+    public final ServerMemberCount k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final MaterialButton f16249l;
+    public final MaterialButton l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final TextView f16250m;
+    public final TextView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final SimpleDraweeView f16251n;
+    public final SimpleDraweeView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final RoundedRelativeLayout f16252o;
+    public final RoundedRelativeLayout o;
 
     public WidgetChatListAdapterItemInviteBinding(@NonNull ConstraintLayout constraintLayout, @NonNull Barrier barrier, @NonNull Barrier barrier2, @NonNull FrameLayout frameLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull FrameLayout frameLayout2, @NonNull LinkifiedTextView linkifiedTextView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView3, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull View view, @NonNull ServerMemberCount serverMemberCount, @NonNull MaterialButton materialButton3, @NonNull TextView textView4, @NonNull SimpleDraweeView simpleDraweeView2, @NonNull RoundedRelativeLayout roundedRelativeLayout, @NonNull ConstraintLayout constraintLayout2) {
-        this.f16238a = constraintLayout;
-        this.f16239b = textView;
-        this.f16240c = textView2;
-        this.f16241d = frameLayout2;
-        this.f16242e = linkifiedTextView;
-        this.f16243f = simpleDraweeView;
-        this.f16244g = textView3;
-        this.f16245h = materialButton;
-        this.f16246i = materialButton2;
-        this.f16247j = view;
-        this.f16248k = serverMemberCount;
-        this.f16249l = materialButton3;
-        this.f16250m = textView4;
-        this.f16251n = simpleDraweeView2;
-        this.f16252o = roundedRelativeLayout;
+        this.a = constraintLayout;
+        this.f2325b = textView;
+        this.c = textView2;
+        this.d = frameLayout2;
+        this.e = linkifiedTextView;
+        this.f = simpleDraweeView;
+        this.g = textView3;
+        this.h = materialButton;
+        this.i = materialButton2;
+        this.j = view;
+        this.k = serverMemberCount;
+        this.l = materialButton3;
+        this.m = textView4;
+        this.n = simpleDraweeView2;
+        this.o = roundedRelativeLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16238a;
+        return this.a;
     }
 }

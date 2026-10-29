@@ -1,12 +1,14 @@
 package com.adjust.sdk;
 
 import android.app.ActivityManager;
+import android.app.ActivityManager$RunningAppProcessInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Process;
 import androidx.appcompat.widget.ActivityChooserModel;
+import b.d.b.a.a;
 import com.adjust.sdk.scheduler.SingleThreadCachedScheduler;
 import com.adjust.sdk.scheduler.ThreadExecutor;
 import com.adjust.sdk.scheduler.TimerCycle;
@@ -20,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import org.json.JSONObject;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ActivityHandler implements IActivityHandler {
@@ -51,82 +52,12 @@ public class ActivityHandler implements IActivityHandler {
     private String gdprPath;
     private InstallReferrer installReferrer;
     private InstallReferrerHuawei installReferrerHuawei;
-    private InternalState internalState;
+    private ActivityHandler$InternalState internalState;
     private ILogger logger;
     private IPackageHandler packageHandler;
     private ISdkClickHandler sdkClickHandler;
     private SessionParameters sessionParameters;
     private String subscriptionPath;
-
-    public class InternalState {
-        public boolean background;
-        public boolean delayStart;
-        public boolean enabled;
-        public boolean firstLaunch;
-        public boolean firstSdkStart;
-        public boolean offline;
-        public boolean sessionResponseProcessed;
-        public boolean updatePackages;
-
-        public InternalState() {
-        }
-
-        public boolean hasFirstSdkStartNotOcurred() {
-            return !this.firstSdkStart;
-        }
-
-        public boolean hasFirstSdkStartOcurred() {
-            return this.firstSdkStart;
-        }
-
-        public boolean hasSessionResponseNotBeenProcessed() {
-            return !this.sessionResponseProcessed;
-        }
-
-        public boolean isDisabled() {
-            return !this.enabled;
-        }
-
-        public boolean isEnabled() {
-            return this.enabled;
-        }
-
-        public boolean isFirstLaunch() {
-            return this.firstLaunch;
-        }
-
-        public boolean isInBackground() {
-            return this.background;
-        }
-
-        public boolean isInDelayedStart() {
-            return this.delayStart;
-        }
-
-        public boolean isInForeground() {
-            return !this.background;
-        }
-
-        public boolean isNotFirstLaunch() {
-            return !this.firstLaunch;
-        }
-
-        public boolean isNotInDelayedStart() {
-            return !this.delayStart;
-        }
-
-        public boolean isOffline() {
-            return this.offline;
-        }
-
-        public boolean isOnline() {
-            return !this.offline;
-        }
-
-        public boolean itHasToUpdatePackages() {
-            return this.updatePackages;
-        }
-    }
 
     private ActivityHandler(AdjustConfig adjustConfig) {
         init(adjustConfig);
@@ -134,33 +65,155 @@ public class ActivityHandler implements IActivityHandler {
         this.logger = logger;
         logger.lockLogLevel();
         this.executor = new SingleThreadCachedScheduler("ActivityHandler");
-        InternalState internalState = new InternalState();
-        this.internalState = internalState;
+        ActivityHandler$InternalState activityHandler$InternalState = new ActivityHandler$InternalState(this);
+        this.internalState = activityHandler$InternalState;
         Boolean bool = adjustConfig.startEnabled;
-        internalState.enabled = bool != null ? bool.booleanValue() : true;
-        InternalState internalState2 = this.internalState;
-        internalState2.offline = adjustConfig.startOffline;
-        internalState2.background = true;
-        internalState2.delayStart = false;
-        internalState2.updatePackages = false;
-        internalState2.sessionResponseProcessed = false;
-        internalState2.firstSdkStart = false;
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.1
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.initI();
-            }
-        });
+        activityHandler$InternalState.enabled = bool != null ? bool.booleanValue() : true;
+        ActivityHandler$InternalState activityHandler$InternalState2 = this.internalState;
+        activityHandler$InternalState2.offline = adjustConfig.startOffline;
+        activityHandler$InternalState2.background = true;
+        activityHandler$InternalState2.delayStart = false;
+        activityHandler$InternalState2.updatePackages = false;
+        activityHandler$InternalState2.sessionResponseProcessed = false;
+        activityHandler$InternalState2.firstSdkStart = false;
+        this.executor.submit(new ActivityHandler$1(this));
+    }
+
+    public static /* synthetic */ void access$000(ActivityHandler activityHandler) {
+        activityHandler.initI();
+    }
+
+    public static /* synthetic */ void access$100(ActivityHandler activityHandler) {
+        activityHandler.delayStartI();
+    }
+
+    public static /* synthetic */ void access$1000(ActivityHandler activityHandler, AdjustEvent adjustEvent) {
+        activityHandler.trackEventI(adjustEvent);
+    }
+
+    public static /* synthetic */ void access$1100(ActivityHandler activityHandler, boolean z2) {
+        activityHandler.setEnabledI(z2);
+    }
+
+    public static /* synthetic */ void access$1200(ActivityHandler activityHandler, boolean z2) {
+        activityHandler.setOfflineModeI(z2);
+    }
+
+    public static /* synthetic */ void access$1300(ActivityHandler activityHandler, Uri uri, long j) {
+        activityHandler.readOpenUrlI(uri, j);
+    }
+
+    public static /* synthetic */ void access$1400(ActivityHandler activityHandler, boolean z2) {
+        activityHandler.setAskingAttributionI(z2);
+    }
+
+    public static /* synthetic */ void access$1500(ActivityHandler activityHandler) {
+        activityHandler.sendReftagReferrerI();
+    }
+
+    public static /* synthetic */ void access$1600(ActivityHandler activityHandler, String str, long j, long j2, String str2) {
+        activityHandler.sendInstallReferrerI(str, j, j2, str2);
+    }
+
+    public static /* synthetic */ void access$1700(ActivityHandler activityHandler, EventResponseData eventResponseData) {
+        activityHandler.launchEventResponseTasksI(eventResponseData);
+    }
+
+    public static /* synthetic */ void access$1800(ActivityHandler activityHandler, SdkClickResponseData sdkClickResponseData) {
+        activityHandler.launchSdkClickResponseTasksI(sdkClickResponseData);
+    }
+
+    public static /* synthetic */ void access$1900(ActivityHandler activityHandler, SessionResponseData sessionResponseData) {
+        activityHandler.launchSessionResponseTasksI(sessionResponseData);
+    }
+
+    public static /* synthetic */ void access$200(ActivityHandler activityHandler) {
+        activityHandler.stopBackgroundTimerI();
+    }
+
+    public static /* synthetic */ void access$2000(ActivityHandler activityHandler, AttributionResponseData attributionResponseData) {
+        activityHandler.launchAttributionResponseTasksI(attributionResponseData);
+    }
+
+    public static /* synthetic */ void access$2100(ActivityHandler activityHandler) {
+        activityHandler.sendFirstPackagesI();
+    }
+
+    public static /* synthetic */ void access$2200(ActivityHandler activityHandler, String str) {
+        activityHandler.setPushTokenI(str);
+    }
+
+    public static /* synthetic */ void access$2300(ActivityHandler activityHandler) {
+        activityHandler.gdprForgetMeI();
+    }
+
+    public static /* synthetic */ void access$2400(ActivityHandler activityHandler) {
+        activityHandler.disableThirdPartySharingI();
+    }
+
+    public static /* synthetic */ void access$2500(ActivityHandler activityHandler, String str, JSONObject jSONObject) {
+        activityHandler.trackAdRevenueI(str, jSONObject);
+    }
+
+    public static /* synthetic */ void access$2600(ActivityHandler activityHandler, AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
+        activityHandler.trackSubscriptionI(adjustPlayStoreSubscription);
+    }
+
+    public static /* synthetic */ void access$2700(ActivityHandler activityHandler) {
+        activityHandler.gotOptOutResponseI();
+    }
+
+    public static /* synthetic */ void access$2800(ActivityHandler activityHandler) {
+        activityHandler.foregroundTimerFiredI();
+    }
+
+    public static /* synthetic */ void access$2900(ActivityHandler activityHandler) {
+        activityHandler.backgroundTimerFiredI();
+    }
+
+    public static /* synthetic */ void access$300(ActivityHandler activityHandler) {
+        activityHandler.startForegroundTimerI();
+    }
+
+    public static /* synthetic */ AdjustConfig access$3000(ActivityHandler activityHandler) {
+        return activityHandler.adjustConfig;
+    }
+
+    public static /* synthetic */ AdjustAttribution access$3100(ActivityHandler activityHandler) {
+        return activityHandler.attribution;
+    }
+
+    public static /* synthetic */ void access$3200(ActivityHandler activityHandler, Intent intent, Uri uri) {
+        activityHandler.launchDeeplinkMain(intent, uri);
+    }
+
+    public static /* synthetic */ ILogger access$400(ActivityHandler activityHandler) {
+        return activityHandler.logger;
+    }
+
+    public static /* synthetic */ void access$500(ActivityHandler activityHandler) {
+        activityHandler.startI();
+    }
+
+    public static /* synthetic */ void access$600(ActivityHandler activityHandler) {
+        activityHandler.stopForegroundTimerI();
+    }
+
+    public static /* synthetic */ void access$700(ActivityHandler activityHandler) {
+        activityHandler.startBackgroundTimerI();
+    }
+
+    public static /* synthetic */ void access$800(ActivityHandler activityHandler) {
+        activityHandler.endI();
+    }
+
+    public static /* synthetic */ ActivityHandler$InternalState access$900(ActivityHandler activityHandler) {
+        return activityHandler.internalState;
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void addSessionCallbackParameter(final String str, final String str2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.16
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.addSessionCallbackParameterI(str, str2);
-            }
-        });
+    public void addSessionCallbackParameter(String str, String str2) {
+        this.executor.submit(new ActivityHandler$16(this, str, str2));
     }
 
     public void addSessionCallbackParameterI(String str, String str2) {
@@ -183,13 +236,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void addSessionPartnerParameter(final String str, final String str2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.17
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.addSessionPartnerParameterI(str, str2);
-            }
-        });
+    public void addSessionPartnerParameter(String str, String str2) {
+        this.executor.submit(new ActivityHandler$17(this, str, str2));
     }
 
     public void addSessionPartnerParameterI(String str, String str2) {
@@ -212,12 +260,7 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     public void backgroundTimerFired() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.29
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.backgroundTimerFiredI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$29(this));
     }
 
     private void backgroundTimerFiredI() {
@@ -356,12 +399,7 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void disableThirdPartySharing() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.24
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.disableThirdPartySharingI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$24(this));
     }
 
     private void disableThirdPartySharingI() {
@@ -410,12 +448,7 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     public void foregroundTimerFired() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.28
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.foregroundTimerFiredI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$28(this));
     }
 
     private void foregroundTimerFiredI() {
@@ -433,12 +466,7 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void gdprForgetMe() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.23
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.gdprForgetMeI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$23(this));
     }
 
     private void gdprForgetMeI() {
@@ -519,12 +547,12 @@ public class ActivityHandler implements IActivityHandler {
             if (activityManager == null) {
                 return null;
             }
-            for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : activityManager.getRunningAppProcesses()) {
-                if (runningAppProcessInfo.pid == iMyPid) {
-                    if (runningAppProcessInfo.processName.equalsIgnoreCase(adjustConfig.processName)) {
+            for (ActivityManager$RunningAppProcessInfo activityManager$RunningAppProcessInfo : activityManager.getRunningAppProcesses()) {
+                if (activityManager$RunningAppProcessInfo.pid == iMyPid) {
+                    if (activityManager$RunningAppProcessInfo.processName.equalsIgnoreCase(adjustConfig.processName)) {
                         break;
                     }
-                    AdjustFactory.getLogger().info("Skipping initialization in background process (%s)", runningAppProcessInfo.processName);
+                    AdjustFactory.getLogger().info("Skipping initialization in background process (%s)", activityManager$RunningAppProcessInfo.processName);
                     return null;
                 }
             }
@@ -532,7 +560,7 @@ public class ActivityHandler implements IActivityHandler {
         return new ActivityHandler(adjustConfig);
     }
 
-    public InternalState getInternalState() {
+    public ActivityHandler$InternalState getInternalState() {
         return this.internalState;
     }
 
@@ -548,12 +576,7 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void gotOptOutResponse() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.27
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.gotOptOutResponseI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$27(this));
     }
 
     private void gotOptOutResponseI() {
@@ -597,19 +620,14 @@ public class ActivityHandler implements IActivityHandler {
             if (adjustConfig.preLaunchActionsArray == null) {
                 adjustConfig.preLaunchActionsArray = new ArrayList();
             }
-            this.adjustConfig.preLaunchActionsArray.add(new IRunActivityHandler() { // from class: com.adjust.sdk.ActivityHandler.30
-                @Override // com.adjust.sdk.IRunActivityHandler
-                public void run(ActivityHandler activityHandler) {
-                    activityHandler.setEnabledI(ActivityHandler.this.adjustConfig.startEnabled.booleanValue());
-                }
-            });
+            this.adjustConfig.preLaunchActionsArray.add(new ActivityHandler$30(this));
         }
         if (this.internalState.hasFirstSdkStartOcurred()) {
-            InternalState internalState = this.internalState;
+            ActivityHandler$InternalState activityHandler$InternalState = this.internalState;
             ActivityState activityState = this.activityState;
-            internalState.enabled = activityState.enabled;
-            internalState.updatePackages = activityState.updatePackages;
-            internalState.firstLaunch = false;
+            activityHandler$InternalState.enabled = activityState.enabled;
+            activityHandler$InternalState.updatePackages = activityState.updatePackages;
+            activityHandler$InternalState.firstLaunch = false;
         } else {
             this.internalState.firstLaunch = true;
         }
@@ -652,30 +670,15 @@ public class ActivityHandler implements IActivityHandler {
                 disableThirdPartySharing();
             }
         }
-        this.foregroundTimer = new TimerCycle(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.31
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.foregroundTimerFired();
-            }
-        }, FOREGROUND_TIMER_START, FOREGROUND_TIMER_INTERVAL, FOREGROUND_TIMER_NAME);
+        this.foregroundTimer = new TimerCycle(new ActivityHandler$31(this), FOREGROUND_TIMER_START, FOREGROUND_TIMER_INTERVAL, FOREGROUND_TIMER_NAME);
         if (this.adjustConfig.sendInBackground) {
             this.logger.info("Send in background configured", new Object[0]);
-            this.backgroundTimer = new TimerOnce(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.32
-                @Override // java.lang.Runnable
-                public void run() {
-                    ActivityHandler.this.backgroundTimerFired();
-                }
-            }, BACKGROUND_TIMER_NAME);
+            this.backgroundTimer = new TimerOnce(new ActivityHandler$32(this), BACKGROUND_TIMER_NAME);
         }
         if (this.internalState.hasFirstSdkStartNotOcurred() && (d = this.adjustConfig.delayStart) != null && d.doubleValue() > 0.0d) {
             this.logger.info("Delay start configured", new Object[0]);
             this.internalState.delayStart = true;
-            this.delayStartTimer = new TimerOnce(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.33
-                @Override // java.lang.Runnable
-                public void run() {
-                    ActivityHandler.this.sendFirstPackages();
-                }
-            }, DELAY_START_TIMER_NAME);
+            this.delayStartTimer = new TimerOnce(new ActivityHandler$33(this), DELAY_START_TIMER_NAME);
         }
         UtilNetworking.setUserAgent(this.adjustConfig.userAgent);
         AdjustConfig adjustConfig3 = this.adjustConfig;
@@ -688,18 +691,8 @@ public class ActivityHandler implements IActivityHandler {
         if (isToUpdatePackagesI()) {
             updatePackagesI();
         }
-        this.installReferrer = new InstallReferrer(this.adjustConfig.context, new InstallReferrerReadListener() { // from class: com.adjust.sdk.ActivityHandler.34
-            @Override // com.adjust.sdk.InstallReferrerReadListener
-            public void onInstallReferrerRead(String str3, long j, long j2) {
-                ActivityHandler.this.sendInstallReferrer(str3, j, j2, "google");
-            }
-        });
-        this.installReferrerHuawei = new InstallReferrerHuawei(this.adjustConfig.context, new InstallReferrerReadListener() { // from class: com.adjust.sdk.ActivityHandler.35
-            @Override // com.adjust.sdk.InstallReferrerReadListener
-            public void onInstallReferrerRead(String str3, long j, long j2) {
-                ActivityHandler.this.sendInstallReferrer(str3, j, j2, Constants.REFERRER_API_HUAWEI);
-            }
-        });
+        this.installReferrer = new InstallReferrer(this.adjustConfig.context, new ActivityHandler$34(this));
+        this.installReferrerHuawei = new InstallReferrerHuawei(this.adjustConfig.context, new ActivityHandler$35(this));
         preLaunchActionsI(this.adjustConfig.preLaunchActionsArray);
         sendReftagReferrerI();
     }
@@ -723,25 +716,12 @@ public class ActivityHandler implements IActivityHandler {
         if (this.adjustConfig.onAttributionChangedListener == null) {
             return;
         }
-        handler.post(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.40
-            @Override // java.lang.Runnable
-            public void run() {
-                if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onAttributionChangedListener == null) {
-                    return;
-                }
-                ActivityHandler.this.adjustConfig.onAttributionChangedListener.onAttributionChanged(ActivityHandler.this.attribution);
-            }
-        });
+        handler.post(new ActivityHandler$40(this));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void launchAttributionResponseTasks(final AttributionResponseData attributionResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.14
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchAttributionResponseTasksI(attributionResponseData);
-            }
-        });
+    public void launchAttributionResponseTasks(AttributionResponseData attributionResponseData) {
+        this.executor.submit(new ActivityHandler$14(this, attributionResponseData));
     }
 
     private void launchAttributionResponseTasksI(AttributionResponseData attributionResponseData) {
@@ -763,55 +743,29 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void launchEventResponseTasks(final EventResponseData eventResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.11
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchEventResponseTasksI(eventResponseData);
-            }
-        });
+    public void launchEventResponseTasks(EventResponseData eventResponseData) {
+        this.executor.submit(new ActivityHandler$11(this, eventResponseData));
     }
 
-    private void launchEventResponseTasksI(final EventResponseData eventResponseData) {
+    private void launchEventResponseTasksI(EventResponseData eventResponseData) {
         updateAdidI(eventResponseData.adid);
         Handler handler = new Handler(this.adjustConfig.context.getMainLooper());
         boolean z2 = eventResponseData.success;
         if (z2 && this.adjustConfig.onEventTrackingSucceededListener != null) {
             this.logger.debug("Launching success event tracking listener", new Object[0]);
-            handler.post(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.36
-                @Override // java.lang.Runnable
-                public void run() {
-                    if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onEventTrackingSucceededListener == null) {
-                        return;
-                    }
-                    ActivityHandler.this.adjustConfig.onEventTrackingSucceededListener.onFinishedEventTrackingSucceeded(eventResponseData.getSuccessResponseData());
-                }
-            });
+            handler.post(new ActivityHandler$36(this, eventResponseData));
         } else {
             if (z2 || this.adjustConfig.onEventTrackingFailedListener == null) {
                 return;
             }
             this.logger.debug("Launching failed event tracking listener", new Object[0]);
-            handler.post(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.37
-                @Override // java.lang.Runnable
-                public void run() {
-                    if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onEventTrackingFailedListener == null) {
-                        return;
-                    }
-                    ActivityHandler.this.adjustConfig.onEventTrackingFailedListener.onFinishedEventTrackingFailed(eventResponseData.getFailureResponseData());
-                }
-            });
+            handler.post(new ActivityHandler$37(this, eventResponseData));
         }
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void launchSdkClickResponseTasks(final SdkClickResponseData sdkClickResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.12
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchSdkClickResponseTasksI(sdkClickResponseData);
-            }
-        });
+    public void launchSdkClickResponseTasks(SdkClickResponseData sdkClickResponseData) {
+        this.executor.submit(new ActivityHandler$12(this, sdkClickResponseData));
     }
 
     private void launchSdkClickResponseTasksI(SdkClickResponseData sdkClickResponseData) {
@@ -822,44 +776,23 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    private void launchSessionResponseListenerI(final SessionResponseData sessionResponseData, Handler handler) {
+    private void launchSessionResponseListenerI(SessionResponseData sessionResponseData, Handler handler) {
         boolean z2 = sessionResponseData.success;
         if (z2 && this.adjustConfig.onSessionTrackingSucceededListener != null) {
             this.logger.debug("Launching success session tracking listener", new Object[0]);
-            handler.post(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.38
-                @Override // java.lang.Runnable
-                public void run() {
-                    if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onSessionTrackingSucceededListener == null) {
-                        return;
-                    }
-                    ActivityHandler.this.adjustConfig.onSessionTrackingSucceededListener.onFinishedSessionTrackingSucceeded(sessionResponseData.getSuccessResponseData());
-                }
-            });
+            handler.post(new ActivityHandler$38(this, sessionResponseData));
         } else {
             if (z2 || this.adjustConfig.onSessionTrackingFailedListener == null) {
                 return;
             }
             this.logger.debug("Launching failed session tracking listener", new Object[0]);
-            handler.post(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.39
-                @Override // java.lang.Runnable
-                public void run() {
-                    if (ActivityHandler.this.adjustConfig == null || ActivityHandler.this.adjustConfig.onSessionTrackingFailedListener == null) {
-                        return;
-                    }
-                    ActivityHandler.this.adjustConfig.onSessionTrackingFailedListener.onFinishedSessionTrackingFailed(sessionResponseData.getFailureResponseData());
-                }
-            });
+            handler.post(new ActivityHandler$39(this, sessionResponseData));
         }
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void launchSessionResponseTasks(final SessionResponseData sessionResponseData) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.13
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.launchSessionResponseTasksI(sessionResponseData);
-            }
-        });
+    public void launchSessionResponseTasks(SessionResponseData sessionResponseData) {
+        this.executor.submit(new ActivityHandler$13(this, sessionResponseData));
     }
 
     private void launchSessionResponseTasksI(SessionResponseData sessionResponseData) {
@@ -881,30 +814,13 @@ public class ActivityHandler implements IActivityHandler {
     @Override // com.adjust.sdk.IActivityHandler
     public void onPause() {
         this.internalState.background = true;
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.3
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.stopForegroundTimerI();
-                ActivityHandler.this.startBackgroundTimerI();
-                ActivityHandler.this.logger.verbose("Subsession end", new Object[0]);
-                ActivityHandler.this.endI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$3(this));
     }
 
     @Override // com.adjust.sdk.IActivityHandler
     public void onResume() {
         this.internalState.background = false;
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.2
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.delayStartI();
-                ActivityHandler.this.stopBackgroundTimerI();
-                ActivityHandler.this.startForegroundTimerI();
-                ActivityHandler.this.logger.verbose("Subsession start", new Object[0]);
-                ActivityHandler.this.startI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$2(this));
     }
 
     private void pauseSendingI() {
@@ -931,23 +847,12 @@ public class ActivityHandler implements IActivityHandler {
         }
     }
 
-    private void prepareDeeplinkI(final Uri uri, Handler handler) {
+    private void prepareDeeplinkI(Uri uri, Handler handler) {
         if (uri == null) {
             return;
         }
         this.logger.info("Deferred deeplink received (%s)", uri);
-        final Intent intentCreateDeeplinkIntentI = createDeeplinkIntentI(uri);
-        handler.post(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.41
-            @Override // java.lang.Runnable
-            public void run() {
-                if (ActivityHandler.this.adjustConfig == null) {
-                    return;
-                }
-                if (ActivityHandler.this.adjustConfig.onDeeplinkResponseListener != null ? ActivityHandler.this.adjustConfig.onDeeplinkResponseListener.launchReceivedDeeplink(uri) : true) {
-                    ActivityHandler.this.launchDeeplinkMain(intentCreateDeeplinkIntentI, uri);
-                }
-            }
-        });
+        handler.post(new ActivityHandler$41(this, uri, createDeeplinkIntentI(uri)));
     }
 
     private void processCachedDeeplinkI() {
@@ -1032,13 +937,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void readOpenUrl(final Uri uri, final long j) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.7
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.readOpenUrlI(uri, j);
-            }
-        });
+    public void readOpenUrl(Uri uri, long j) {
+        this.executor.submit(new ActivityHandler$7(this, uri, j));
     }
 
     private void readOpenUrlI(Uri uri, long j) {
@@ -1052,10 +952,10 @@ public class ActivityHandler implements IActivityHandler {
                 return;
             }
             ILogger iLogger = this.logger;
-            StringBuilder sbM833U = C1643a.m833U("Deep link (");
-            sbM833U.append(uri.toString());
-            sbM833U.append(") processing skipped");
-            iLogger.debug(sbM833U.toString(), new Object[0]);
+            StringBuilder sbU = a.U("Deep link (");
+            sbU.append(uri.toString());
+            sbU.append(") processing skipped");
+            iLogger.debug(sbU.toString(), new Object[0]);
         }
     }
 
@@ -1078,13 +978,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void removeSessionCallbackParameter(final String str) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.18
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.removeSessionCallbackParameterI(str);
-            }
-        });
+    public void removeSessionCallbackParameter(String str) {
+        this.executor.submit(new ActivityHandler$18(this, str));
     }
 
     public void removeSessionCallbackParameterI(String str) {
@@ -1102,13 +997,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void removeSessionPartnerParameter(final String str) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.19
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.removeSessionPartnerParameterI(str);
-            }
-        });
+    public void removeSessionPartnerParameter(String str) {
+        this.executor.submit(new ActivityHandler$19(this, str));
     }
 
     public void removeSessionPartnerParameterI(String str) {
@@ -1127,12 +1017,7 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void resetSessionCallbackParameters() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.20
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.resetSessionCallbackParametersI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$20(this));
     }
 
     public void resetSessionCallbackParametersI() {
@@ -1145,12 +1030,7 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void resetSessionPartnerParameters() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.21
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.resetSessionPartnerParametersI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$21(this));
     }
 
     public void resetSessionPartnerParametersI() {
@@ -1169,12 +1049,7 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void sendFirstPackages() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.15
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.sendFirstPackagesI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$15(this));
     }
 
     private void sendFirstPackagesI() {
@@ -1190,13 +1065,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void sendInstallReferrer(final String str, final long j, final long j2, final String str2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.10
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.sendInstallReferrerI(str, j, j2, str2);
-            }
-        });
+    public void sendInstallReferrer(String str, long j, long j2, String str2) {
+        this.executor.submit(new ActivityHandler$10(this, str, j, j2, str2));
     }
 
     private void sendInstallReferrerI(String str, long j, long j2, String str2) {
@@ -1218,12 +1088,7 @@ public class ActivityHandler implements IActivityHandler {
 
     @Override // com.adjust.sdk.IActivityHandler
     public void sendReftagReferrer() {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.9
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.sendReftagReferrerI();
-            }
-        });
+        this.executor.submit(new ActivityHandler$9(this));
     }
 
     private void sendReftagReferrerI() {
@@ -1233,13 +1098,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setAskingAttribution(final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.8
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.setAskingAttributionI(z2);
-            }
-        });
+    public void setAskingAttribution(boolean z2) {
+        this.executor.submit(new ActivityHandler$8(this, z2));
     }
 
     private void setAskingAttributionI(boolean z2) {
@@ -1248,13 +1108,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setEnabled(final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.5
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.setEnabledI(z2);
-            }
-        });
+    public void setEnabled(boolean z2) {
+        this.executor.submit(new ActivityHandler$5(this, z2));
     }
 
     private void setEnabledI(boolean z2) {
@@ -1264,9 +1119,9 @@ public class ActivityHandler implements IActivityHandler {
                 this.logger.error("Re-enabling SDK not possible for forgotten user", new Object[0]);
                 return;
             }
-            InternalState internalState = this.internalState;
-            internalState.enabled = z2;
-            if (internalState.hasFirstSdkStartNotOcurred()) {
+            ActivityHandler$InternalState activityHandler$InternalState = this.internalState;
+            activityHandler$InternalState.enabled = z2;
+            if (activityHandler$InternalState.hasFirstSdkStartNotOcurred()) {
                 updateStatusI(!z2, "Handlers will start as paused due to the SDK being disabled", "Handlers will still start as paused", "Handlers will start as active due to the SDK being enabled");
                 return;
             }
@@ -1289,20 +1144,15 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setOfflineMode(final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.6
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.setOfflineModeI(z2);
-            }
-        });
+    public void setOfflineMode(boolean z2) {
+        this.executor.submit(new ActivityHandler$6(this, z2));
     }
 
     private void setOfflineModeI(boolean z2) {
         if (hasChangedStateI(this.internalState.isOffline(), z2, "Adjust already in offline mode", "Adjust already in online mode")) {
-            InternalState internalState = this.internalState;
-            internalState.offline = z2;
-            if (internalState.hasFirstSdkStartNotOcurred()) {
+            ActivityHandler$InternalState activityHandler$InternalState = this.internalState;
+            activityHandler$InternalState.offline = z2;
+            if (activityHandler$InternalState.hasFirstSdkStartNotOcurred()) {
                 updateStatusI(z2, "Handlers will start paused due to SDK being offline", "Handlers will still start as paused", "Handlers will start as active due to SDK being online");
             } else {
                 updateStatusI(z2, "Pausing handlers to put SDK offline mode", "Handlers remain paused", "Resuming handlers to put SDK in online mode");
@@ -1311,19 +1161,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void setPushToken(final String str, final boolean z2) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.22
-            @Override // java.lang.Runnable
-            public void run() {
-                if (!z2) {
-                    new SharedPreferencesManager(ActivityHandler.this.getContext()).savePushToken(str);
-                }
-                if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
-                    return;
-                }
-                ActivityHandler.this.setPushTokenI(str);
-            }
-        });
+    public void setPushToken(String str, boolean z2) {
+        this.executor.submit(new ActivityHandler$22(this, z2, str));
     }
 
     private void setPushTokenI(String str) {
@@ -1501,13 +1340,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void trackAdRevenue(final String str, final JSONObject jSONObject) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.25
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.trackAdRevenueI(str, jSONObject);
-            }
-        });
+    public void trackAdRevenue(String str, JSONObject jSONObject) {
+        this.executor.submit(new ActivityHandler$25(this, str, jSONObject));
     }
 
     private void trackAdRevenueI(String str, JSONObject jSONObject) {
@@ -1518,17 +1352,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void trackEvent(final AdjustEvent adjustEvent) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.4
-            @Override // java.lang.Runnable
-            public void run() {
-                if (ActivityHandler.this.internalState.hasFirstSdkStartNotOcurred()) {
-                    ActivityHandler.this.logger.warn("Event tracked before first activity resumed.\nIf it was triggered in the Application class, it might timestamp or even send an install long before the user opens the app.\nPlease check https://github.com/adjust/android_sdk#can-i-trigger-an-event-at-application-launch for more information.", new Object[0]);
-                    ActivityHandler.this.startI();
-                }
-                ActivityHandler.this.trackEventI(adjustEvent);
-            }
-        });
+    public void trackEvent(AdjustEvent adjustEvent) {
+        this.executor.submit(new ActivityHandler$4(this, adjustEvent));
     }
 
     private void trackEventI(AdjustEvent adjustEvent) {
@@ -1561,13 +1386,8 @@ public class ActivityHandler implements IActivityHandler {
     }
 
     @Override // com.adjust.sdk.IActivityHandler
-    public void trackPlayStoreSubscription(final AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.ActivityHandler.26
-            @Override // java.lang.Runnable
-            public void run() {
-                ActivityHandler.this.trackSubscriptionI(adjustPlayStoreSubscription);
-            }
-        });
+    public void trackPlayStoreSubscription(AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
+        this.executor.submit(new ActivityHandler$26(this, adjustPlayStoreSubscription));
     }
 
     private void trackSubscriptionI(AdjustPlayStoreSubscription adjustPlayStoreSubscription) {
@@ -1648,7 +1468,7 @@ public class ActivityHandler implements IActivityHandler {
         } else if (pausedI(true)) {
             this.logger.info(str2, new Object[0]);
         } else {
-            this.logger.info(C1643a.m883w(str2, ", except the Sdk Click Handler"), new Object[0]);
+            this.logger.info(a.w(str2, ", except the Sdk Click Handler"), new Object[0]);
         }
         updateHandlersStatusAndSendI();
     }

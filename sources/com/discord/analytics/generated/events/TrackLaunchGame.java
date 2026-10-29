@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLaunchGame.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackLaunchGame implements AnalyticsSchema, TrackB
             return false;
         }
         TrackLaunchGame trackLaunchGame = (TrackLaunchGame) other;
-        return C12238m.areEqual(this.game, trackLaunchGame.game) && C12238m.areEqual(this.gameId, trackLaunchGame.gameId) && C12238m.areEqual(this.verified, trackLaunchGame.verified) && C12238m.areEqual(this.elevated, trackLaunchGame.elevated) && C12238m.areEqual(this.customName, trackLaunchGame.customName) && C12238m.areEqual(this.platformType, trackLaunchGame.platformType) && C12238m.areEqual(this.gamePlatform, trackLaunchGame.gamePlatform) && C12238m.areEqual(this.distributor, trackLaunchGame.distributor);
+        return m.areEqual(this.game, trackLaunchGame.game) && m.areEqual(this.gameId, trackLaunchGame.gameId) && m.areEqual(this.verified, trackLaunchGame.verified) && m.areEqual(this.elevated, trackLaunchGame.elevated) && m.areEqual(this.customName, trackLaunchGame.customName) && m.areEqual(this.platformType, trackLaunchGame.platformType) && m.areEqual(this.gamePlatform, trackLaunchGame.gamePlatform) && m.areEqual(this.distributor, trackLaunchGame.distributor);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,21 +57,21 @@ public final /* data */ class TrackLaunchGame implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackLaunchGame(game=");
-        sbM833U.append(this.game);
-        sbM833U.append(", gameId=");
-        sbM833U.append(this.gameId);
-        sbM833U.append(", verified=");
-        sbM833U.append(this.verified);
-        sbM833U.append(", elevated=");
-        sbM833U.append(this.elevated);
-        sbM833U.append(", customName=");
-        sbM833U.append(this.customName);
-        sbM833U.append(", platformType=");
-        sbM833U.append(this.platformType);
-        sbM833U.append(", gamePlatform=");
-        sbM833U.append(this.gamePlatform);
-        sbM833U.append(", distributor=");
-        return C1643a.m817E(sbM833U, this.distributor, ")");
+        StringBuilder sbU = a.U("TrackLaunchGame(game=");
+        sbU.append(this.game);
+        sbU.append(", gameId=");
+        sbU.append(this.gameId);
+        sbU.append(", verified=");
+        sbU.append(this.verified);
+        sbU.append(", elevated=");
+        sbU.append(this.elevated);
+        sbU.append(", customName=");
+        sbU.append(this.customName);
+        sbU.append(", platformType=");
+        sbU.append(this.platformType);
+        sbU.append(", gamePlatform=");
+        sbU.append(this.gamePlatform);
+        sbU.append(", distributor=");
+        return a.E(sbU, this.distributor, ")");
     }
 }

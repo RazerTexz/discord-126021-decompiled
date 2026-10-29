@@ -13,10 +13,11 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.res.TypedArrayUtils;
+import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.Iterator;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class TransitionSet extends Transition {
@@ -32,41 +33,23 @@ public class TransitionSet extends Transition {
     public boolean mStarted;
     private ArrayList<Transition> mTransitions;
 
-    public class TransitionSetListener extends TransitionListenerAdapter {
-        public TransitionSet mTransitionSet;
-
-        public TransitionSetListener(TransitionSet transitionSet) {
-            this.mTransitionSet = transitionSet;
-        }
-
-        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-        public void onTransitionEnd(@NonNull Transition transition) {
-            TransitionSet transitionSet = this.mTransitionSet;
-            int i = transitionSet.mCurrentListeners - 1;
-            transitionSet.mCurrentListeners = i;
-            if (i == 0) {
-                transitionSet.mStarted = false;
-                transitionSet.end();
-            }
-            transition.removeListener(this);
-        }
-
-        @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-        public void onTransitionStart(@NonNull Transition transition) {
-            TransitionSet transitionSet = this.mTransitionSet;
-            if (transitionSet.mStarted) {
-                return;
-            }
-            transitionSet.start();
-            this.mTransitionSet.mStarted = true;
-        }
-    }
-
     public TransitionSet() {
         this.mTransitions = new ArrayList<>();
         this.mPlayTogether = true;
         this.mStarted = false;
         this.mChangeFlags = 0;
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition addListener(@NonNull Transition$TransitionListener transition$TransitionListener) {
+        return addListener(transition$TransitionListener);
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition addTarget(@IdRes int i) {
+        return addTarget(i);
     }
 
     @NonNull
@@ -97,7 +80,7 @@ public class TransitionSet extends Transition {
     }
 
     @Override // androidx.transition.Transition
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void cancel() {
         super.cancel();
         int size = this.mTransitions.size();
@@ -140,7 +123,7 @@ public class TransitionSet extends Transition {
     }
 
     @Override // androidx.transition.Transition
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void createAnimators(ViewGroup viewGroup, TransitionValuesMaps transitionValuesMaps, TransitionValuesMaps transitionValuesMaps2, ArrayList<TransitionValues> arrayList, ArrayList<TransitionValues> arrayList2) {
         long startDelay = getStartDelay();
         int size = this.mTransitions.size();
@@ -168,7 +151,7 @@ public class TransitionSet extends Transition {
     }
 
     @Override // androidx.transition.Transition
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void forceToEnd(ViewGroup viewGroup) {
         super.forceToEnd(viewGroup);
         int size = this.mTransitions.size();
@@ -194,13 +177,31 @@ public class TransitionSet extends Transition {
     }
 
     @Override // androidx.transition.Transition
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    /* JADX INFO: renamed from: clone */
+    public /* bridge */ /* synthetic */ Object mo5clone() throws CloneNotSupportedException {
+        return clone();
+    }
+
+    @Override // androidx.transition.Transition
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void pause(View view) {
         super.pause(view);
         int size = this.mTransitions.size();
         for (int i = 0; i < size; i++) {
             this.mTransitions.get(i).pause(view);
         }
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition removeListener(@NonNull Transition$TransitionListener transition$TransitionListener) {
+        return removeListener(transition$TransitionListener);
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition removeTarget(@IdRes int i) {
+        return removeTarget(i);
     }
 
     @NonNull
@@ -211,7 +212,7 @@ public class TransitionSet extends Transition {
     }
 
     @Override // androidx.transition.Transition
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void resume(View view) {
         super.resume(view);
         int size = this.mTransitions.size();
@@ -221,7 +222,7 @@ public class TransitionSet extends Transition {
     }
 
     @Override // androidx.transition.Transition
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void runAnimators() {
         if (this.mTransitions.isEmpty()) {
             start();
@@ -237,19 +238,11 @@ public class TransitionSet extends Transition {
             return;
         }
         for (int i = 1; i < this.mTransitions.size(); i++) {
-            Transition transition = this.mTransitions.get(i - 1);
-            final Transition transition2 = this.mTransitions.get(i);
-            transition.addListener(new TransitionListenerAdapter() { // from class: androidx.transition.TransitionSet.1
-                @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-                public void onTransitionEnd(@NonNull Transition transition3) {
-                    transition2.runAnimators();
-                    transition3.removeListener(this);
-                }
-            });
+            this.mTransitions.get(i - 1).addListener(new TransitionSet$1(this, this.mTransitions.get(i)));
         }
-        Transition transition3 = this.mTransitions.get(0);
-        if (transition3 != null) {
-            transition3.runAnimators();
+        Transition transition = this.mTransitions.get(0);
+        if (transition != null) {
+            transition.runAnimators();
         }
     }
 
@@ -263,13 +256,25 @@ public class TransitionSet extends Transition {
     }
 
     @Override // androidx.transition.Transition
-    public void setEpicenterCallback(Transition.EpicenterCallback epicenterCallback) {
-        super.setEpicenterCallback(epicenterCallback);
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition setDuration(long j) {
+        return setDuration(j);
+    }
+
+    @Override // androidx.transition.Transition
+    public void setEpicenterCallback(Transition$EpicenterCallback transition$EpicenterCallback) {
+        super.setEpicenterCallback(transition$EpicenterCallback);
         this.mChangeFlags |= 8;
         int size = this.mTransitions.size();
         for (int i = 0; i < size; i++) {
-            this.mTransitions.get(i).setEpicenterCallback(epicenterCallback);
+            this.mTransitions.get(i).setEpicenterCallback(transition$EpicenterCallback);
         }
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition setInterpolator(@Nullable TimeInterpolator timeInterpolator) {
+        return setInterpolator(timeInterpolator);
     }
 
     @NonNull
@@ -278,7 +283,7 @@ public class TransitionSet extends Transition {
             this.mPlayTogether = true;
         } else {
             if (i != 1) {
-                throw new AndroidRuntimeException(C1643a.m871q("Invalid parameter for TransitionSet ordering: ", i));
+                throw new AndroidRuntimeException(a.q("Invalid parameter for TransitionSet ordering: ", i));
             }
             this.mPlayTogether = false;
         }
@@ -306,11 +311,22 @@ public class TransitionSet extends Transition {
         }
     }
 
+    @Override // androidx.transition.Transition
+    public /* bridge */ /* synthetic */ Transition setSceneRoot(ViewGroup viewGroup) {
+        return setSceneRoot(viewGroup);
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition setStartDelay(long j) {
+        return setStartDelay(j);
+    }
+
     private void setupStartEndListeners() {
-        TransitionSetListener transitionSetListener = new TransitionSetListener(this);
+        TransitionSet$TransitionSetListener transitionSet$TransitionSetListener = new TransitionSet$TransitionSetListener(this);
         Iterator<Transition> it = this.mTransitions.iterator();
         while (it.hasNext()) {
-            it.next().addListener(transitionSetListener);
+            it.next().addListener(transitionSet$TransitionSetListener);
         }
         this.mCurrentListeners = this.mTransitions.size();
     }
@@ -319,35 +335,46 @@ public class TransitionSet extends Transition {
     public String toString(String str) {
         String string = super.toString(str);
         for (int i = 0; i < this.mTransitions.size(); i++) {
-            StringBuilder sbM836X = C1643a.m836X(string, "\n");
-            sbM836X.append(this.mTransitions.get(i).toString(str + "  "));
-            string = sbM836X.toString();
+            StringBuilder sbX = a.X(string, "\n");
+            sbX.append(this.mTransitions.get(i).toString(str + "  "));
+            string = sbX.toString();
         }
         return string;
     }
 
     @Override // androidx.transition.Transition
     @NonNull
-    public TransitionSet addListener(@NonNull Transition.TransitionListener transitionListener) {
-        return (TransitionSet) super.addListener(transitionListener);
+    public TransitionSet addListener(@NonNull Transition$TransitionListener transition$TransitionListener) {
+        return (TransitionSet) super.addListener(transition$TransitionListener);
     }
 
     @Override // androidx.transition.Transition
-    /* JADX INFO: renamed from: clone */
-    public Transition mo11382clone() {
-        TransitionSet transitionSet = (TransitionSet) super.mo11382clone();
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition addTarget(@NonNull View view) {
+        return addTarget(view);
+    }
+
+    @Override // androidx.transition.Transition
+    public Transition clone() {
+        TransitionSet transitionSet = (TransitionSet) super.clone();
         transitionSet.mTransitions = new ArrayList<>();
         int size = this.mTransitions.size();
         for (int i = 0; i < size; i++) {
-            transitionSet.addTransitionInternal(this.mTransitions.get(i).mo11382clone());
+            transitionSet.addTransitionInternal(this.mTransitions.get(i).clone());
         }
         return transitionSet;
     }
 
     @Override // androidx.transition.Transition
     @NonNull
-    public TransitionSet removeListener(@NonNull Transition.TransitionListener transitionListener) {
-        return (TransitionSet) super.removeListener(transitionListener);
+    public TransitionSet removeListener(@NonNull Transition$TransitionListener transition$TransitionListener) {
+        return (TransitionSet) super.removeListener(transition$TransitionListener);
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition removeTarget(@NonNull View view) {
+        return removeTarget(view);
     }
 
     @Override // androidx.transition.Transition
@@ -408,11 +435,23 @@ public class TransitionSet extends Transition {
 
     @Override // androidx.transition.Transition
     @NonNull
+    public /* bridge */ /* synthetic */ Transition addTarget(@NonNull String str) {
+        return addTarget(str);
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
     public Transition excludeTarget(@NonNull String str, boolean z2) {
         for (int i = 0; i < this.mTransitions.size(); i++) {
             this.mTransitions.get(i).excludeTarget(str, z2);
         }
         return super.excludeTarget(str, z2);
+    }
+
+    @Override // androidx.transition.Transition
+    @NonNull
+    public /* bridge */ /* synthetic */ Transition removeTarget(@NonNull String str) {
+        return removeTarget(str);
     }
 
     @Override // androidx.transition.Transition

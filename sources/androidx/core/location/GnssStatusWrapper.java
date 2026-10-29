@@ -1,14 +1,15 @@
 package androidx.core.location;
 
 import android.location.GnssStatus;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Preconditions;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(24)
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class GnssStatusWrapper extends GnssStatusCompat {
     private final GnssStatus mWrapped;
 
@@ -33,7 +34,7 @@ public class GnssStatusWrapper extends GnssStatusCompat {
 
     @Override // androidx.core.location.GnssStatusCompat
     public float getBasebandCn0DbHz(int i) {
-        if (Build.VERSION.SDK_INT >= 30) {
+        if (Build$VERSION.SDK_INT >= 30) {
             return this.mWrapped.getBasebandCn0DbHz(i);
         }
         throw new UnsupportedOperationException();
@@ -41,7 +42,7 @@ public class GnssStatusWrapper extends GnssStatusCompat {
 
     @Override // androidx.core.location.GnssStatusCompat
     public float getCarrierFrequencyHz(int i) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return this.mWrapped.getCarrierFrequencyHz(i);
         }
         throw new UnsupportedOperationException();
@@ -79,7 +80,7 @@ public class GnssStatusWrapper extends GnssStatusCompat {
 
     @Override // androidx.core.location.GnssStatusCompat
     public boolean hasBasebandCn0DbHz(int i) {
-        if (Build.VERSION.SDK_INT >= 30) {
+        if (Build$VERSION.SDK_INT >= 30) {
             return this.mWrapped.hasBasebandCn0DbHz(i);
         }
         return false;
@@ -87,7 +88,7 @@ public class GnssStatusWrapper extends GnssStatusCompat {
 
     @Override // androidx.core.location.GnssStatusCompat
     public boolean hasCarrierFrequencyHz(int i) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return this.mWrapped.hasCarrierFrequencyHz(i);
         }
         return false;

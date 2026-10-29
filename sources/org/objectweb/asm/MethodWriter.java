@@ -7,6 +7,7 @@ final class MethodWriter extends MethodVisitor {
     static final int COMPUTE_MAX_STACK_AND_LOCAL = 1;
     static final int COMPUTE_MAX_STACK_AND_LOCAL_FROM_FRAMES = 2;
     static final int COMPUTE_NOTHING = 0;
+    private static final int NA = 0;
     private final int accessFlags;
     private final ByteVector code;
     private final int compute;
@@ -17,9 +18,6 @@ final class MethodWriter extends MethodVisitor {
     private final String descriptor;
     private final int descriptorIndex;
     private final int[] exceptionIndexTable;
-
-    /* JADX INFO: renamed from: NA */
-    private static final int f27601NA = 0;
     private Attribute firstAttribute;
     private Label firstBasicBlock;
     private Attribute firstCodeAttribute;
@@ -1358,7 +1356,7 @@ final class MethodWriter extends MethodVisitor {
         }
     }
 
-    final void collectAttributePrototypes(Attribute.Set attributePrototypes) {
+    final void collectAttributePrototypes(Attribute$Set attributePrototypes) {
         attributePrototypes.addAttributes(this.firstAttribute);
         attributePrototypes.addAttributes(this.firstCodeAttribute);
     }

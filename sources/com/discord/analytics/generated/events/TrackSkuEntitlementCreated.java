@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackEntitlementMetadata;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackPaymentMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSkuEntitlementCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,7 +33,7 @@ public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSch
             return false;
         }
         TrackSkuEntitlementCreated trackSkuEntitlementCreated = (TrackSkuEntitlementCreated) other;
-        return C12238m.areEqual(this.entitlementType, trackSkuEntitlementCreated.entitlementType) && C12238m.areEqual(this.startTimestamp, trackSkuEntitlementCreated.startTimestamp) && C12238m.areEqual(this.endTimestamp, trackSkuEntitlementCreated.endTimestamp) && C12238m.areEqual(this.redemptionCode, trackSkuEntitlementCreated.redemptionCode);
+        return m.areEqual(this.entitlementType, trackSkuEntitlementCreated.entitlementType) && m.areEqual(this.startTimestamp, trackSkuEntitlementCreated.startTimestamp) && m.areEqual(this.endTimestamp, trackSkuEntitlementCreated.endTimestamp) && m.areEqual(this.redemptionCode, trackSkuEntitlementCreated.redemptionCode);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,13 +54,13 @@ public final /* data */ class TrackSkuEntitlementCreated implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSkuEntitlementCreated(entitlementType=");
-        sbM833U.append(this.entitlementType);
-        sbM833U.append(", startTimestamp=");
-        sbM833U.append(this.startTimestamp);
-        sbM833U.append(", endTimestamp=");
-        sbM833U.append(this.endTimestamp);
-        sbM833U.append(", redemptionCode=");
-        return C1643a.m817E(sbM833U, this.redemptionCode, ")");
+        StringBuilder sbU = a.U("TrackSkuEntitlementCreated(entitlementType=");
+        sbU.append(this.entitlementType);
+        sbU.append(", startTimestamp=");
+        sbU.append(this.startTimestamp);
+        sbU.append(", endTimestamp=");
+        sbU.append(this.endTimestamp);
+        sbU.append(", redemptionCode=");
+        return a.E(sbU, this.redemptionCode, ")");
     }
 }

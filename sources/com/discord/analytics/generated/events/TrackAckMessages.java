@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAckMessages.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,9 +25,14 @@ public final /* data */ class TrackAckMessages implements AnalyticsSchema, Track
     private TrackOverlayClientMetadata trackOverlayClientMetadata;
     private final transient String analyticsSchemaTypeName = "ack_messages";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackAckMessages) && C12238m.areEqual(this.previewEnabled, ((TrackAckMessages) other).previewEnabled);
+            return (other instanceof TrackAckMessages) && m.areEqual(this.previewEnabled, ((TrackAckMessages) other).previewEnabled);
         }
         return true;
     }
@@ -52,13 +57,7 @@ public final /* data */ class TrackAckMessages implements AnalyticsSchema, Track
         return 0;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        return C1643a.m816D(C1643a.m833U("TrackAckMessages(previewEnabled="), this.previewEnabled, ")");
+        return a.D(a.U("TrackAckMessages(previewEnabled="), this.previewEnabled, ")");
     }
 }

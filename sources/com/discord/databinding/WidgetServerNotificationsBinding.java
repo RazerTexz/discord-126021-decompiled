@@ -7,105 +7,89 @@ import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.z1;
 import com.discord.views.CheckedSetting;
 import com.discord.widgets.servers.NotificationHighlightsSettingsView;
 import com.discord.widgets.servers.NotificationMuteSettingsView;
-import p007b.p008a.p025i.C1095z1;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerNotificationsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17489a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final C1095z1 f17490b;
+    public final z1 f2538b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f17491c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final CheckedSetting f17492d;
+    public final CheckedSetting d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final CheckedSetting f17493e;
+    public final CheckedSetting e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final CheckedSetting f17494f;
+    public final CheckedSetting f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final CheckedSetting f17495g;
+    public final CheckedSetting g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final View f17496h;
+    public final View h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final LinearLayout f17497i;
+    public final LinearLayout i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final NotificationHighlightsSettingsView f17498j;
+    public final NotificationHighlightsSettingsView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final View f17499k;
+    public final View k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final NotificationMuteSettingsView f17500l;
+    public final NotificationMuteSettingsView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final View f17501m;
+    public final View m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f17502n;
+    public final TextView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final CheckedSetting f17503o;
+    public final CheckedSetting o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final View f17504p;
+    public final View p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final CheckedSetting f17505q;
+    public final CheckedSetting q;
 
-    public WidgetServerNotificationsBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull C1095z1 c1095z1, @NonNull RecyclerView recyclerView, @NonNull CheckedSetting checkedSetting, @NonNull CheckedSetting checkedSetting2, @NonNull CheckedSetting checkedSetting3, @NonNull CheckedSetting checkedSetting4, @NonNull View view, @NonNull LinearLayout linearLayout, @NonNull NotificationHighlightsSettingsView notificationHighlightsSettingsView, @NonNull View view2, @NonNull NotificationMuteSettingsView notificationMuteSettingsView, @NonNull View view3, @NonNull TextView textView, @NonNull CheckedSetting checkedSetting5, @NonNull View view4, @NonNull CheckedSetting checkedSetting6) {
-        this.f17489a = coordinatorLayout;
-        this.f17490b = c1095z1;
-        this.f17491c = recyclerView;
-        this.f17492d = checkedSetting;
-        this.f17493e = checkedSetting2;
-        this.f17494f = checkedSetting3;
-        this.f17495g = checkedSetting4;
-        this.f17496h = view;
-        this.f17497i = linearLayout;
-        this.f17498j = notificationHighlightsSettingsView;
-        this.f17499k = view2;
-        this.f17500l = notificationMuteSettingsView;
-        this.f17501m = view3;
-        this.f17502n = textView;
-        this.f17503o = checkedSetting5;
-        this.f17504p = view4;
-        this.f17505q = checkedSetting6;
+    public WidgetServerNotificationsBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull z1 z1Var, @NonNull RecyclerView recyclerView, @NonNull CheckedSetting checkedSetting, @NonNull CheckedSetting checkedSetting2, @NonNull CheckedSetting checkedSetting3, @NonNull CheckedSetting checkedSetting4, @NonNull View view, @NonNull LinearLayout linearLayout, @NonNull NotificationHighlightsSettingsView notificationHighlightsSettingsView, @NonNull View view2, @NonNull NotificationMuteSettingsView notificationMuteSettingsView, @NonNull View view3, @NonNull TextView textView, @NonNull CheckedSetting checkedSetting5, @NonNull View view4, @NonNull CheckedSetting checkedSetting6) {
+        this.a = coordinatorLayout;
+        this.f2538b = z1Var;
+        this.c = recyclerView;
+        this.d = checkedSetting;
+        this.e = checkedSetting2;
+        this.f = checkedSetting3;
+        this.g = checkedSetting4;
+        this.h = view;
+        this.i = linearLayout;
+        this.j = notificationHighlightsSettingsView;
+        this.k = view2;
+        this.l = notificationMuteSettingsView;
+        this.m = view3;
+        this.n = textView;
+        this.o = checkedSetting5;
+        this.p = view4;
+        this.q = checkedSetting6;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17489a;
+        return this.a;
     }
 }

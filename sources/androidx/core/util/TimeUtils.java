@@ -1,13 +1,14 @@
 package androidx.core.util;
 
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.io.PrintWriter;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public final class TimeUtils {
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static final int HUNDRED_DAY_FIELD_LEN = 19;
     private static final int SECONDS_PER_DAY = 86400;
     private static final int SECONDS_PER_HOUR = 3600;
@@ -31,7 +32,7 @@ public final class TimeUtils {
         return 0;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static void formatDuration(long j, StringBuilder sb) {
         synchronized (sFormatSync) {
             sb.append(sFormatStr, 0, formatDurationLocked(j, 0));
@@ -136,19 +137,19 @@ public final class TimeUtils {
         return i7 + 1;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static void formatDuration(long j, PrintWriter printWriter, int i) {
         synchronized (sFormatSync) {
             printWriter.print(new String(sFormatStr, 0, formatDurationLocked(j, i)));
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static void formatDuration(long j, PrintWriter printWriter) {
         formatDuration(j, printWriter, 0);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static void formatDuration(long j, long j2, PrintWriter printWriter) {
         if (j == 0) {
             printWriter.print("--");

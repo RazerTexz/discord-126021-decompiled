@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
 import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMktgApplicationStep.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackMktgApplicationStep implements AnalyticsSchem
             return false;
         }
         TrackMktgApplicationStep trackMktgApplicationStep = (TrackMktgApplicationStep) other;
-        return C12238m.areEqual(this.applicationType, trackMktgApplicationStep.applicationType) && C12238m.areEqual(this.pageName, trackMktgApplicationStep.pageName) && C12238m.areEqual(this.step, trackMktgApplicationStep.step);
+        return m.areEqual(this.applicationType, trackMktgApplicationStep.applicationType) && m.areEqual(this.pageName, trackMktgApplicationStep.pageName) && m.areEqual(this.step, trackMktgApplicationStep.step);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,11 +45,11 @@ public final /* data */ class TrackMktgApplicationStep implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMktgApplicationStep(applicationType=");
-        sbM833U.append(this.applicationType);
-        sbM833U.append(", pageName=");
-        sbM833U.append(this.pageName);
-        sbM833U.append(", step=");
-        return C1643a.m817E(sbM833U, this.step, ")");
+        StringBuilder sbU = a.U("TrackMktgApplicationStep(applicationType=");
+        sbU.append(this.applicationType);
+        sbU.append(", pageName=");
+        sbU.append(this.pageName);
+        sbU.append(", step=");
+        return a.E(sbU, this.step, ")");
     }
 }

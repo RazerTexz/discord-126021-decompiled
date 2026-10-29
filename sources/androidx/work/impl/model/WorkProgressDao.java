@@ -3,6 +3,7 @@ package androidx.work.impl.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -11,7 +12,7 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 @Dao
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public interface WorkProgressDao {
     @Query("DELETE from WorkProgress where work_spec_id=:workSpecId")
     void delete(@NonNull String str);

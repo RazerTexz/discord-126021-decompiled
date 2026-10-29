@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackAfCard;
 import com.discord.analytics.generated.traits.TrackAfCardReceiver;
 import com.discord.analytics.generated.traits.TrackAfGame;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackAfPartyReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAfUserPopoutOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackAfUserPopoutOpened implements AnalyticsSchema
             return false;
         }
         TrackAfUserPopoutOpened trackAfUserPopoutOpened = (TrackAfUserPopoutOpened) other;
-        return C12238m.areEqual(this.popoutUserId, trackAfUserPopoutOpened.popoutUserId) && C12238m.areEqual(this.avatarPosition, trackAfUserPopoutOpened.avatarPosition);
+        return m.areEqual(this.popoutUserId, trackAfUserPopoutOpened.popoutUserId) && m.areEqual(this.avatarPosition, trackAfUserPopoutOpened.avatarPosition);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,9 +48,9 @@ public final /* data */ class TrackAfUserPopoutOpened implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAfUserPopoutOpened(popoutUserId=");
-        sbM833U.append(this.popoutUserId);
-        sbM833U.append(", avatarPosition=");
-        return C1643a.m819G(sbM833U, this.avatarPosition, ")");
+        StringBuilder sbU = a.U("TrackAfUserPopoutOpened(popoutUserId=");
+        sbU.append(this.popoutUserId);
+        sbU.append(", avatarPosition=");
+        return a.G(sbU, this.avatarPosition, ")");
     }
 }

@@ -5,45 +5,41 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/LombokImmutableList.SCL.lombok */
 public final class LombokImmutableList<T> implements Iterable<T> {
     private Object[] content;
     private static final LombokImmutableList<?> EMPTY = new LombokImmutableList<>(new Object[0]);
 
-    /* JADX INFO: renamed from: of */
-    public static <T> LombokImmutableList<T> m10918of() {
+    static /* synthetic */ Object[] access$0(LombokImmutableList lombokImmutableList) {
+        return lombokImmutableList.content;
+    }
+
+    public static <T> LombokImmutableList<T> of() {
         return (LombokImmutableList<T>) EMPTY;
     }
 
-    /* JADX INFO: renamed from: of */
-    public static <T> LombokImmutableList<T> m10919of(T a) {
+    public static <T> LombokImmutableList<T> of(T a) {
         return new LombokImmutableList<>(new Object[]{a});
     }
 
-    /* JADX INFO: renamed from: of */
-    public static <T> LombokImmutableList<T> m10920of(T a, T b2) {
+    public static <T> LombokImmutableList<T> of(T a, T b2) {
         return new LombokImmutableList<>(new Object[]{a, b2});
     }
 
-    /* JADX INFO: renamed from: of */
-    public static <T> LombokImmutableList<T> m10921of(T a, T b2, T c) {
+    public static <T> LombokImmutableList<T> of(T a, T b2, T c) {
         return new LombokImmutableList<>(new Object[]{a, b2, c});
     }
 
-    /* JADX INFO: renamed from: of */
-    public static <T> LombokImmutableList<T> m10922of(T a, T b2, T c, T d) {
+    public static <T> LombokImmutableList<T> of(T a, T b2, T c, T d) {
         return new LombokImmutableList<>(new Object[]{a, b2, c, d});
     }
 
-    /* JADX INFO: renamed from: of */
-    public static <T> LombokImmutableList<T> m10923of(T a, T b2, T c, T d, T e) {
+    public static <T> LombokImmutableList<T> of(T a, T b2, T c, T d, T e) {
         return new LombokImmutableList<>(new Object[]{a, b2, c, d, e});
     }
 
-    /* JADX INFO: renamed from: of */
-    public static <T> LombokImmutableList<T> m10924of(T a, T b2, T c, T d, T e, T f, T... tArr) {
+    public static <T> LombokImmutableList<T> of(T a, T b2, T c, T d, T e, T f, T... tArr) {
         Object[] rest = tArr == null ? new Object[1] : tArr;
         Object[] val = new Object[rest.length + 6];
         System.arraycopy(rest, 0, val, 6, rest.length);
@@ -166,30 +162,7 @@ public final class LombokImmutableList<T> implements Iterable<T> {
 
     @Override // java.lang.Iterable
     public Iterator<T> iterator() {
-        return new Iterator<T>() { // from class: lombok.core.LombokImmutableList.1
-            private int idx = 0;
-
-            @Override // java.util.Iterator
-            public boolean hasNext() {
-                return this.idx < LombokImmutableList.this.content.length;
-            }
-
-            @Override // java.util.Iterator
-            public T next() {
-                if (this.idx < LombokImmutableList.this.content.length) {
-                    Object[] objArr = LombokImmutableList.this.content;
-                    int i = this.idx;
-                    this.idx = i + 1;
-                    return (T) objArr[i];
-                }
-                throw new NoSuchElementException();
-            }
-
-            @Override // java.util.Iterator
-            public void remove() {
-                throw new UnsupportedOperationException("List is immutable");
-            }
-        };
+        return new LombokImmutableList$1(this);
     }
 
     public String toString() {

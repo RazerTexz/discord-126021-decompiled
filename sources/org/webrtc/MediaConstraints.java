@@ -1,81 +1,41 @@
 package org.webrtc;
 
-import androidx.annotation.Nullable;
+import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MediaConstraints {
-    public final List<KeyValuePair> mandatory = new ArrayList();
-    public final List<KeyValuePair> optional = new ArrayList();
-
-    public class KeyValuePair {
-        private final String key;
-        private final String value;
-
-        public KeyValuePair(String str, String str2) {
-            this.key = str;
-            this.value = str2;
-        }
-
-        public boolean equals(@Nullable Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
-            }
-            KeyValuePair keyValuePair = (KeyValuePair) obj;
-            return this.key.equals(keyValuePair.key) && this.value.equals(keyValuePair.value);
-        }
-
-        @CalledByNative("KeyValuePair")
-        public String getKey() {
-            return this.key;
-        }
-
-        @CalledByNative("KeyValuePair")
-        public String getValue() {
-            return this.value;
-        }
-
-        public int hashCode() {
-            return this.value.hashCode() + this.key.hashCode();
-        }
-
-        public String toString() {
-            return this.key + ": " + this.value;
-        }
-    }
+    public final List<MediaConstraints$KeyValuePair> mandatory = new ArrayList();
+    public final List<MediaConstraints$KeyValuePair> optional = new ArrayList();
 
     @CalledByNative
-    public List<KeyValuePair> getMandatory() {
+    public List<MediaConstraints$KeyValuePair> getMandatory() {
         return this.mandatory;
     }
 
     @CalledByNative
-    public List<KeyValuePair> getOptional() {
+    public List<MediaConstraints$KeyValuePair> getOptional() {
         return this.optional;
     }
 
-    private static String stringifyKeyValuePairList(List<KeyValuePair> list) {
+    private static String stringifyKeyValuePairList(List<MediaConstraints$KeyValuePair> list) {
         StringBuilder sb = new StringBuilder("[");
-        for (KeyValuePair keyValuePair : list) {
+        for (MediaConstraints$KeyValuePair mediaConstraints$KeyValuePair : list) {
             if (sb.length() > 1) {
                 sb.append(", ");
             }
-            sb.append(keyValuePair.toString());
+            sb.append(mediaConstraints$KeyValuePair.toString());
         }
         sb.append("]");
         return sb.toString();
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("mandatory: ");
-        sbM833U.append(stringifyKeyValuePairList(this.mandatory));
-        sbM833U.append(", optional: ");
-        sbM833U.append(stringifyKeyValuePairList(this.optional));
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("mandatory: ");
+        sbU.append(stringifyKeyValuePairList(this.mandatory));
+        sbU.append(", optional: ");
+        sbU.append(stringifyKeyValuePairList(this.optional));
+        return sbU.toString();
     }
 }

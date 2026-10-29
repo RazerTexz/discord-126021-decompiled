@@ -3,12 +3,13 @@ package org.webrtc.voiceengine;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
+import android.os.Build$VERSION;
+import b.d.b.a.a;
 import java.util.Arrays;
 import java.util.List;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
 import org.webrtc.MediaStreamTrack;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class WebRtcAudioUtils {
@@ -90,12 +91,12 @@ public final class WebRtcAudioUtils {
     }
 
     public static String getThreadInfo() {
-        StringBuilder sbM833U = C1643a.m833U("@[name=");
-        sbM833U.append(Thread.currentThread().getName());
-        sbM833U.append(", id=");
-        sbM833U.append(Thread.currentThread().getId());
-        sbM833U.append("]");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("@[name=");
+        sbU.append(Thread.currentThread().getName());
+        sbU.append(", id=");
+        sbU.append(Thread.currentThread().getId());
+        sbU.append("]");
+        return sbU.toString();
     }
 
     private static boolean hasMicrophone() {
@@ -123,36 +124,36 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
-        if (Build.VERSION.SDK_INT < 23) {
+        if (Build$VERSION.SDK_INT < 23) {
             return;
         }
         AudioDeviceInfo[] devices = audioManager.getDevices(3);
         if (devices.length == 0) {
             return;
         }
-        Logging.m11027d(str, "Audio Devices: ");
+        Logging.d(str, "Audio Devices: ");
         for (AudioDeviceInfo audioDeviceInfo : devices) {
-            StringBuilder sbM833U = C1643a.m833U("  ");
-            sbM833U.append(deviceTypeToString(audioDeviceInfo.getType()));
-            sbM833U.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
+            StringBuilder sbU = a.U("  ");
+            sbU.append(deviceTypeToString(audioDeviceInfo.getType()));
+            sbU.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
             if (audioDeviceInfo.getChannelCounts().length > 0) {
-                sbM833U.append("channels=");
-                sbM833U.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
-                sbM833U.append(", ");
+                sbU.append("channels=");
+                sbU.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
+                sbU.append(", ");
             }
             if (audioDeviceInfo.getEncodings().length > 0) {
-                sbM833U.append("encodings=");
-                sbM833U.append(Arrays.toString(audioDeviceInfo.getEncodings()));
-                sbM833U.append(", ");
+                sbU.append("encodings=");
+                sbU.append(Arrays.toString(audioDeviceInfo.getEncodings()));
+                sbU.append(", ");
             }
             if (audioDeviceInfo.getSampleRates().length > 0) {
-                sbM833U.append("sample rates=");
-                sbM833U.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
-                sbM833U.append(", ");
+                sbU.append("sample rates=");
+                sbU.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
+                sbU.append(", ");
             }
-            sbM833U.append("id=");
-            sbM833U.append(audioDeviceInfo.getId());
-            Logging.m11027d(str, sbM833U.toString());
+            sbU.append("id=");
+            sbU.append(audioDeviceInfo.getId());
+            Logging.d(str, sbU.toString());
         }
     }
 
@@ -165,69 +166,69 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logAudioStateBasic(String str, AudioManager audioManager) {
-        StringBuilder sbM833U = C1643a.m833U("Audio State: audio mode: ");
-        sbM833U.append(modeToString(audioManager.getMode()));
-        sbM833U.append(", has mic: ");
-        sbM833U.append(hasMicrophone());
-        sbM833U.append(", mic muted: ");
-        sbM833U.append(audioManager.isMicrophoneMute());
-        sbM833U.append(", music active: ");
-        sbM833U.append(audioManager.isMusicActive());
-        sbM833U.append(", speakerphone: ");
-        sbM833U.append(audioManager.isSpeakerphoneOn());
-        sbM833U.append(", BT SCO: ");
-        sbM833U.append(audioManager.isBluetoothScoOn());
-        Logging.m11027d(str, sbM833U.toString());
+        StringBuilder sbU = a.U("Audio State: audio mode: ");
+        sbU.append(modeToString(audioManager.getMode()));
+        sbU.append(", has mic: ");
+        sbU.append(hasMicrophone());
+        sbU.append(", mic muted: ");
+        sbU.append(audioManager.isMicrophoneMute());
+        sbU.append(", music active: ");
+        sbU.append(audioManager.isMusicActive());
+        sbU.append(", speakerphone: ");
+        sbU.append(audioManager.isSpeakerphoneOn());
+        sbU.append(", BT SCO: ");
+        sbU.append(audioManager.isBluetoothScoOn());
+        Logging.d(str, sbU.toString());
     }
 
     private static void logAudioStateVolume(String str, AudioManager audioManager) {
         int[] iArr = {0, 3, 2, 4, 5, 1};
-        Logging.m11027d(str, "Audio State: ");
+        Logging.d(str, "Audio State: ");
         boolean zIsVolumeFixed = isVolumeFixed(audioManager);
-        Logging.m11027d(str, "  fixed volume=" + zIsVolumeFixed);
+        Logging.d(str, "  fixed volume=" + zIsVolumeFixed);
         if (zIsVolumeFixed) {
             return;
         }
         for (int i = 0; i < 6; i++) {
             int i2 = iArr[i];
             StringBuilder sb = new StringBuilder();
-            StringBuilder sbM833U = C1643a.m833U("  ");
-            sbM833U.append(streamTypeToString(i2));
-            sbM833U.append(": ");
-            sb.append(sbM833U.toString());
+            StringBuilder sbU = a.U("  ");
+            sbU.append(streamTypeToString(i2));
+            sbU.append(": ");
+            sb.append(sbU.toString());
             sb.append("volume=");
             sb.append(audioManager.getStreamVolume(i2));
             sb.append(", max=");
             sb.append(audioManager.getStreamMaxVolume(i2));
             logIsStreamMute(str, audioManager, i2, sb);
-            Logging.m11027d(str, sb.toString());
+            Logging.d(str, sb.toString());
         }
     }
 
     public static void logDeviceInfo(String str) {
-        StringBuilder sbM833U = C1643a.m833U("Android SDK: ");
-        sbM833U.append(Build.VERSION.SDK_INT);
-        sbM833U.append(", Release: ");
-        sbM833U.append(Build.VERSION.RELEASE);
-        sbM833U.append(", Brand: ");
-        sbM833U.append(Build.BRAND);
-        sbM833U.append(", Device: ");
-        sbM833U.append(Build.DEVICE);
-        sbM833U.append(", Id: ");
-        sbM833U.append(Build.ID);
-        sbM833U.append(", Hardware: ");
-        sbM833U.append(Build.HARDWARE);
-        sbM833U.append(", Manufacturer: ");
-        sbM833U.append(Build.MANUFACTURER);
-        sbM833U.append(", Model: ");
-        sbM833U.append(Build.MODEL);
-        sbM833U.append(", Product: ");
-        sbM833U.append(Build.PRODUCT);
-        Logging.m11027d(str, sbM833U.toString());
+        StringBuilder sbU = a.U("Android SDK: ");
+        sbU.append(Build$VERSION.SDK_INT);
+        sbU.append(", Release: ");
+        sbU.append(Build$VERSION.RELEASE);
+        sbU.append(", Brand: ");
+        sbU.append(Build.BRAND);
+        sbU.append(", Device: ");
+        sbU.append(Build.DEVICE);
+        sbU.append(", Id: ");
+        sbU.append(Build.ID);
+        sbU.append(", Hardware: ");
+        sbU.append(Build.HARDWARE);
+        sbU.append(", Manufacturer: ");
+        sbU.append(Build.MANUFACTURER);
+        sbU.append(", Model: ");
+        sbU.append(Build.MODEL);
+        sbU.append(", Product: ");
+        sbU.append(Build.PRODUCT);
+        Logging.d(str, sbU.toString());
     }
 
     private static void logIsStreamMute(String str, AudioManager audioManager, int i, StringBuilder sb) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             sb.append(", muted=");
             sb.append(audioManager.isStreamMute(i));
         }
@@ -260,7 +261,7 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z2) {
-        Logging.m11031w(TAG, "setWebRtcBasedAutomaticGainControl() is deprecated");
+        Logging.w(TAG, "setWebRtcBasedAutomaticGainControl() is deprecated");
     }
 
     public static synchronized void setWebRtcBasedNoiseSuppressor(boolean z2) {
@@ -288,7 +289,7 @@ public final class WebRtcAudioUtils {
 
     public static synchronized boolean useWebRtcBasedAcousticEchoCanceler() {
         if (useWebRtcBasedAcousticEchoCanceler) {
-            Logging.m11031w(TAG, "Overriding default behavior; now using WebRTC AEC!");
+            Logging.w(TAG, "Overriding default behavior; now using WebRTC AEC!");
         }
         return useWebRtcBasedAcousticEchoCanceler;
     }
@@ -299,7 +300,7 @@ public final class WebRtcAudioUtils {
 
     public static synchronized boolean useWebRtcBasedNoiseSuppressor() {
         if (useWebRtcBasedNoiseSuppressor) {
-            Logging.m11031w(TAG, "Overriding default behavior; now using WebRTC NS!");
+            Logging.w(TAG, "Overriding default behavior; now using WebRTC NS!");
         }
         return useWebRtcBasedNoiseSuppressor;
     }

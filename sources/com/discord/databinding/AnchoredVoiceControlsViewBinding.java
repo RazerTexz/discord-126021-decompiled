@@ -10,47 +10,41 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class AnchoredVoiceControlsViewBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15007a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f15008b;
+    public final ImageView f2088b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f15009c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ImageView f15010d;
+    public final ImageView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialButton f15011e;
+    public final MaterialButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ImageView f15012f;
+    public final ImageView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final ImageView f15013g;
+    public final ImageView g;
 
     public AnchoredVoiceControlsViewBinding(@NonNull LinearLayout linearLayout, @NonNull ImageView imageView, @NonNull LinearLayout linearLayout2, @NonNull ImageView imageView2, @NonNull ImageView imageView3, @NonNull MaterialButton materialButton, @NonNull ImageView imageView4, @NonNull ImageView imageView5) {
-        this.f15007a = linearLayout;
-        this.f15008b = imageView;
-        this.f15009c = imageView2;
-        this.f15010d = imageView3;
-        this.f15011e = materialButton;
-        this.f15012f = imageView4;
-        this.f15013g = imageView5;
+        this.a = linearLayout;
+        this.f2088b = imageView;
+        this.c = imageView2;
+        this.d = imageView3;
+        this.e = materialButton;
+        this.f = imageView4;
+        this.g = imageView5;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15007a;
+        return this.a;
     }
 }

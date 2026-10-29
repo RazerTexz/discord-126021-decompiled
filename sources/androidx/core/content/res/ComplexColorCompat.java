@@ -2,6 +2,7 @@ package androidx.core.content.res;
 
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.content.res.Resources$Theme;
 import android.content.res.XmlResourceParser;
 import android.graphics.Shader;
 import android.util.AttributeSet;
@@ -12,11 +13,12 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.io.IOException;
 import org.xmlpull.v1.XmlPullParserException;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public final class ComplexColorCompat {
     private static final String LOG_TAG = "ComplexColorCompat";
     private int mColor;
@@ -30,7 +32,7 @@ public final class ComplexColorCompat {
     }
 
     @NonNull
-    private static ComplexColorCompat createFromXml(@NonNull Resources resources, @ColorRes int i, @Nullable Resources.Theme theme) throws XmlPullParserException, IOException {
+    private static ComplexColorCompat createFromXml(@NonNull Resources resources, @ColorRes int i, @Nullable Resources$Theme resources$Theme) throws XmlPullParserException, IOException {
         int next;
         XmlResourceParser xml = resources.getXml(i);
         AttributeSet attributeSetAsAttributeSet = Xml.asAttributeSet(xml);
@@ -46,10 +48,10 @@ public final class ComplexColorCompat {
         String name = xml.getName();
         name.hashCode();
         if (name.equals("gradient")) {
-            return from(GradientColorInflaterCompat.createFromXmlInner(resources, xml, attributeSetAsAttributeSet, theme));
+            return from(GradientColorInflaterCompat.createFromXmlInner(resources, xml, attributeSetAsAttributeSet, resources$Theme));
         }
         if (name.equals("selector")) {
-            return from(ColorStateListInflaterCompat.createFromXmlInner(resources, xml, attributeSetAsAttributeSet, theme));
+            return from(ColorStateListInflaterCompat.createFromXmlInner(resources, xml, attributeSetAsAttributeSet, resources$Theme));
         }
         throw new XmlPullParserException(xml.getPositionDescription() + ": unsupported complex color tag " + name);
     }
@@ -69,9 +71,9 @@ public final class ComplexColorCompat {
     }
 
     @Nullable
-    public static ComplexColorCompat inflate(@NonNull Resources resources, @ColorRes int i, @Nullable Resources.Theme theme) {
+    public static ComplexColorCompat inflate(@NonNull Resources resources, @ColorRes int i, @Nullable Resources$Theme resources$Theme) {
         try {
-            return createFromXml(resources, i, theme);
+            return createFromXml(resources, i, resources$Theme);
         } catch (Exception e) {
             Log.e(LOG_TAG, "Failed to inflate ComplexColor.", e);
             return null;

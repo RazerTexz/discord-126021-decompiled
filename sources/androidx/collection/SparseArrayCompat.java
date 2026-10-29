@@ -22,7 +22,7 @@ public class SparseArrayCompat<E> implements Cloneable {
             return;
         }
         if (this.mGarbage && i2 >= this.mKeys.length) {
-            m81gc();
+            gc();
         }
         int i3 = this.mSize;
         if (i3 >= this.mKeys.length) {
@@ -64,43 +64,7 @@ public class SparseArrayCompat<E> implements Cloneable {
         remove(i);
     }
 
-    @Nullable
-    public E get(int i) {
-        return get(i, null);
-    }
-
-    public int indexOfKey(int i) {
-        if (this.mGarbage) {
-            m81gc();
-        }
-        return ContainerHelpers.binarySearch(this.mKeys, this.mSize, i);
-    }
-
-    public int indexOfValue(E e) {
-        if (this.mGarbage) {
-            m81gc();
-        }
-        for (int i = 0; i < this.mSize; i++) {
-            if (this.mValues[i] == e) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public boolean isEmpty() {
-        return size() == 0;
-    }
-
-    public int keyAt(int i) {
-        if (this.mGarbage) {
-            m81gc();
-        }
-        return this.mKeys[i];
-    }
-
-    /* JADX INFO: renamed from: gc */
-    private void m81gc() {
+    private void gc() {
         int i = this.mSize;
         int[] iArr = this.mKeys;
         Object[] objArr = this.mValues;
@@ -120,6 +84,46 @@ public class SparseArrayCompat<E> implements Cloneable {
         this.mSize = i2;
     }
 
+    @Nullable
+    public E get(int i) {
+        return get(i, null);
+    }
+
+    public int indexOfKey(int i) {
+        if (this.mGarbage) {
+            gc();
+        }
+        return ContainerHelpers.binarySearch(this.mKeys, this.mSize, i);
+    }
+
+    public int indexOfValue(E e) {
+        if (this.mGarbage) {
+            gc();
+        }
+        for (int i = 0; i < this.mSize; i++) {
+            if (this.mValues[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    public int keyAt(int i) {
+        if (this.mGarbage) {
+            gc();
+        }
+        return this.mKeys[i];
+    }
+
+    /* JADX INFO: renamed from: clone, reason: collision with other method in class */
+    public /* bridge */ /* synthetic */ Object m1clone() throws CloneNotSupportedException {
+        return clone();
+    }
+
     public void put(int i, E e) {
         int iBinarySearch = ContainerHelpers.binarySearch(this.mKeys, this.mSize, i);
         if (iBinarySearch >= 0) {
@@ -137,7 +141,7 @@ public class SparseArrayCompat<E> implements Cloneable {
             }
         }
         if (this.mGarbage && i3 >= this.mKeys.length) {
-            m81gc();
+            gc();
             i2 = ~ContainerHelpers.binarySearch(this.mKeys, this.mSize, i);
         }
         int i4 = this.mSize;
@@ -226,14 +230,14 @@ public class SparseArrayCompat<E> implements Cloneable {
 
     public void setValueAt(int i, E e) {
         if (this.mGarbage) {
-            m81gc();
+            gc();
         }
         this.mValues[i] = e;
     }
 
     public int size() {
         if (this.mGarbage) {
-            m81gc();
+            gc();
         }
         return this.mSize;
     }
@@ -263,7 +267,7 @@ public class SparseArrayCompat<E> implements Cloneable {
 
     public E valueAt(int i) {
         if (this.mGarbage) {
-            m81gc();
+            gc();
         }
         return (E) this.mValues[i];
     }
@@ -280,6 +284,17 @@ public class SparseArrayCompat<E> implements Cloneable {
         }
     }
 
+    public SparseArrayCompat<E> clone() {
+        try {
+            SparseArrayCompat<E> sparseArrayCompat = (SparseArrayCompat) super.clone();
+            sparseArrayCompat.mKeys = (int[]) this.mKeys.clone();
+            sparseArrayCompat.mValues = (Object[]) this.mValues.clone();
+            return sparseArrayCompat;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
+    }
+
     public E get(int i, E e) {
         int iBinarySearch = ContainerHelpers.binarySearch(this.mKeys, this.mSize, i);
         if (iBinarySearch >= 0) {
@@ -289,18 +304,6 @@ public class SparseArrayCompat<E> implements Cloneable {
             }
         }
         return e;
-    }
-
-    /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
-    public SparseArrayCompat<E> m11378clone() {
-        try {
-            SparseArrayCompat<E> sparseArrayCompat = (SparseArrayCompat) super.clone();
-            sparseArrayCompat.mKeys = (int[]) this.mKeys.clone();
-            sparseArrayCompat.mValues = (Object[]) this.mValues.clone();
-            return sparseArrayCompat;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e);
-        }
     }
 
     public boolean replace(int i, E e, E e2) {

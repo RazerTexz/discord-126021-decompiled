@@ -1,25 +1,25 @@
 package com.discord.models.user;
 
+import a0.a.a.b;
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.api.premium.PremiumTier;
 import com.discord.api.user.NsfwAllowance;
 import com.discord.api.user.Phone;
+import com.discord.api.user.Phone$NoPhoneNumber;
+import com.discord.api.user.Phone$PhoneNumber;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.nullserializable.NullSerializable;
+import d0.g0.s;
+import d0.z.d.m;
 import java.util.Objects;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12102s;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MeUser.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class MeUser implements User {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final MeUser$Companion Companion = new MeUser$Companion(null);
     private final String avatar;
     private final String banner;
     private final String bannerColor;
@@ -40,187 +40,10 @@ public final /* data */ class MeUser implements User {
     private final String token;
     private final String username;
 
-    /* JADX INFO: compiled from: MeUser.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        /* JADX WARN: Code duplicated, block: B:70:0x0116  */
-        /* JADX WARN: Code duplicated, block: B:73:0x0124  */
-        /* JADX WARN: Code duplicated, block: B:75:0x012f  */
-        /* JADX WARN: Code duplicated, block: B:77:0x0133  */
-        /* JADX WARN: Code duplicated, block: B:78:0x0136 A[DONT_INVERT] */
-        /* JADX WARN: Code duplicated, block: B:79:0x0138  */
-        /* JADX WARN: Code duplicated, block: B:83:0x0146  */
-        /* JADX WARN: Code duplicated, block: B:85:0x014a  */
-        /* JADX WARN: Code duplicated, block: B:88:0x0155  */
-        /* JADX WARN: Code duplicated, block: B:91:0x0176  */
-        /* JADX WARN: Code duplicated, block: B:93:0x017c  */
-        public final MeUser merge(MeUser oldUser, com.discord.api.user.User newUser) {
-            String avatar;
-            String banner;
-            String phoneNumber;
-            String str;
-            NsfwAllowance nsfwAllowed;
-            NullSerializable<String> nullSerializableM8291d;
-            String bio;
-            String str2;
-            NullSerializable<String> nullSerializableM8290c;
-            String strMo8429a;
-            C12238m.checkNotNullParameter(oldUser, "oldUser");
-            C12238m.checkNotNullParameter(newUser, "newUser");
-            long id2 = newUser.getId();
-            String username = newUser.getUsername();
-            NullSerializable<String> nullSerializableM8288a = newUser.m8288a();
-            if (nullSerializableM8288a instanceof NullSerializable.C5566b) {
-                avatar = (String) ((NullSerializable.C5566b) nullSerializableM8288a).mo8429a();
-            } else if (nullSerializableM8288a instanceof NullSerializable.C5565a) {
-                avatar = null;
-            } else {
-                if (nullSerializableM8288a != null) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                avatar = oldUser.getAvatar();
-            }
-            NullSerializable<String> nullSerializableM8289b = newUser.m8289b();
-            if (nullSerializableM8289b instanceof NullSerializable.C5566b) {
-                banner = (String) ((NullSerializable.C5566b) nullSerializableM8289b).mo8429a();
-            } else if (nullSerializableM8289b instanceof NullSerializable.C5565a) {
-                banner = null;
-            } else {
-                if (nullSerializableM8289b != null) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                banner = oldUser.getBanner();
-            }
-            Boolean bot = newUser.getBot();
-            boolean zBooleanValue = bot != null ? bot.booleanValue() : oldUser.getIsBot();
-            Boolean system = newUser.getSystem();
-            boolean zBooleanValue2 = system != null ? system.booleanValue() : oldUser.getIsSystemUser();
-            Integer intOrNull = C12102s.toIntOrNull(newUser.getDiscriminator());
-            int iIntValue = intOrNull != null ? intOrNull.intValue() : oldUser.getDiscriminator();
-            PremiumTier premiumType = newUser.getPremiumType();
-            if (premiumType == null) {
-                premiumType = oldUser.getPremiumTier();
-            }
-            String email = newUser.getEmail();
-            if (email == null) {
-                email = oldUser.getEmail();
-            }
-            Boolean mfaEnabled = newUser.getMfaEnabled();
-            boolean zBooleanValue3 = mfaEnabled != null ? mfaEnabled.booleanValue() : oldUser.getMfaEnabled();
-            Boolean verified = newUser.getVerified();
-            boolean zBooleanValue4 = verified != null ? verified.booleanValue() : oldUser.isVerified();
-            String token = newUser.getToken();
-            if (token == null) {
-                token = oldUser.getToken();
-            }
-            Integer flags = newUser.getFlags();
-            int iIntValue2 = flags != null ? flags.intValue() : oldUser.getFlags();
-            Integer publicFlags = newUser.getPublicFlags();
-            int iIntValue3 = publicFlags != null ? publicFlags.intValue() : oldUser.getPublicFlags();
-            Phone phone = newUser.getPhone();
-            if (!(phone instanceof Phone.PhoneNumber)) {
-                if (C12238m.areEqual(phone, Phone.NoPhoneNumber.INSTANCE)) {
-                    str = null;
-                } else {
-                    if (phone != null) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    phoneNumber = oldUser.getPhoneNumber();
-                }
-                nsfwAllowed = newUser.getNsfwAllowed();
-                if (nsfwAllowed == null) {
-                    nsfwAllowed = oldUser.getNsfwAllowance();
-                }
-                NsfwAllowance nsfwAllowance = nsfwAllowed;
-                nullSerializableM8291d = newUser.m8291d();
-                if (nullSerializableM8291d instanceof NullSerializable.C5566b) {
-                    if (nullSerializableM8291d instanceof NullSerializable.C5565a) {
-                        str2 = null;
-                    } else {
-                        if (nullSerializableM8291d == null) {
-                            throw new NoWhenBranchMatchedException();
-                        }
-                        bio = oldUser.getBio();
-                    }
-                    nullSerializableM8290c = newUser.m8290c();
-                    if (!(nullSerializableM8290c instanceof NullSerializable.C5566b) || (nullSerializableM8290c instanceof NullSerializable.C5565a)) {
-                        strMo8429a = nullSerializableM8290c.mo8429a();
-                    } else {
-                        if (nullSerializableM8290c == null) {
-                            throw new NoWhenBranchMatchedException();
-                        }
-                        strMo8429a = oldUser.getBannerColor();
-                    }
-                    return new MeUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, email, zBooleanValue3, zBooleanValue4, token, iIntValue2, iIntValue3, str, nsfwAllowance, str2, strMo8429a);
-                }
-                bio = (String) ((NullSerializable.C5566b) nullSerializableM8291d).mo8429a();
-                str2 = bio;
-                nullSerializableM8290c = newUser.m8290c();
-                if (!(nullSerializableM8290c instanceof NullSerializable.C5566b)) {
-                    strMo8429a = nullSerializableM8290c.mo8429a();
-                } else {
-                    if (nullSerializableM8290c == null) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    strMo8429a = oldUser.getBannerColor();
-                }
-                return new MeUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, email, zBooleanValue3, zBooleanValue4, token, iIntValue2, iIntValue3, str, nsfwAllowance, str2, strMo8429a);
-            }
-            Phone phone2 = newUser.getPhone();
-            Objects.requireNonNull(phone2, "null cannot be cast to non-null type com.discord.api.user.Phone.PhoneNumber");
-            phoneNumber = ((Phone.PhoneNumber) phone2).getNumber();
-            str = phoneNumber;
-            nsfwAllowed = newUser.getNsfwAllowed();
-            if (nsfwAllowed == null) {
-                nsfwAllowed = oldUser.getNsfwAllowance();
-            }
-            NsfwAllowance nsfwAllowance2 = nsfwAllowed;
-            nullSerializableM8291d = newUser.m8291d();
-            if (nullSerializableM8291d instanceof NullSerializable.C5566b) {
-                if (nullSerializableM8291d instanceof NullSerializable.C5565a) {
-                    str2 = null;
-                } else {
-                    if (nullSerializableM8291d == null) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    bio = oldUser.getBio();
-                }
-                nullSerializableM8290c = newUser.m8290c();
-                if (!(nullSerializableM8290c instanceof NullSerializable.C5566b)) {
-                    strMo8429a = nullSerializableM8290c.mo8429a();
-                } else {
-                    if (nullSerializableM8290c == null) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    strMo8429a = oldUser.getBannerColor();
-                }
-                return new MeUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, email, zBooleanValue3, zBooleanValue4, token, iIntValue2, iIntValue3, str, nsfwAllowance2, str2, strMo8429a);
-            }
-            bio = (String) ((NullSerializable.C5566b) nullSerializableM8291d).mo8429a();
-            str2 = bio;
-            nullSerializableM8290c = newUser.m8290c();
-            if (!(nullSerializableM8290c instanceof NullSerializable.C5566b)) {
-                strMo8429a = nullSerializableM8290c.mo8429a();
-            } else {
-                if (nullSerializableM8290c == null) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                strMo8429a = oldUser.getBannerColor();
-            }
-            return new MeUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, email, zBooleanValue3, zBooleanValue4, token, iIntValue2, iIntValue3, str, nsfwAllowance2, str2, strMo8429a);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public MeUser(long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, String str4, boolean z4, boolean z5, String str5, int i2, int i3, String str6, NsfwAllowance nsfwAllowance, String str7, String str8) {
-        C12238m.checkNotNullParameter(str, "username");
-        C12238m.checkNotNullParameter(premiumTier, "premiumTier");
-        C12238m.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
+        m.checkNotNullParameter(str, "username");
+        m.checkNotNullParameter(premiumTier, "premiumTier");
+        m.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
         this.id = j;
         this.username = str;
         this.avatar = str2;
@@ -290,10 +113,14 @@ public final /* data */ class MeUser implements User {
         return getPremiumTier();
     }
 
+    public static /* synthetic */ MeUser copy$default(MeUser meUser, long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, String str4, boolean z4, boolean z5, String str5, int i2, int i3, String str6, NsfwAllowance nsfwAllowance, String str7, String str8, int i4, Object obj) {
+        return meUser.copy((i4 & 1) != 0 ? meUser.getId() : j, (i4 & 2) != 0 ? meUser.getUsername() : str, (i4 & 4) != 0 ? meUser.getAvatar() : str2, (i4 & 8) != 0 ? meUser.getBanner() : str3, (i4 & 16) != 0 ? meUser.getIsBot() : z2, (i4 & 32) != 0 ? meUser.getIsSystemUser() : z3, (i4 & 64) != 0 ? meUser.getDiscriminator() : i, (i4 & 128) != 0 ? meUser.getPremiumTier() : premiumTier, (i4 & 256) != 0 ? meUser.email : str4, (i4 & 512) != 0 ? meUser.mfaEnabled : z4, (i4 & 1024) != 0 ? meUser.isVerified : z5, (i4 & 2048) != 0 ? meUser.token : str5, (i4 & 4096) != 0 ? meUser.getFlags() : i2, (i4 & 8192) != 0 ? meUser.getPublicFlags() : i3, (i4 & 16384) != 0 ? meUser.phoneNumber : str6, (i4 & 32768) != 0 ? meUser.nsfwAllowance : nsfwAllowance, (i4 & 65536) != 0 ? meUser.getBio() : str7, (i4 & 131072) != 0 ? meUser.getBannerColor() : str8);
+    }
+
     public final MeUser copy(long id2, String username, String avatar, String banner, boolean isBot, boolean isSystemUser, int discriminator, PremiumTier premiumTier, String email, boolean mfaEnabled, boolean isVerified, String token, int flags, int publicFlags, String phoneNumber, NsfwAllowance nsfwAllowance, String bio, String bannerColor) {
-        C12238m.checkNotNullParameter(username, "username");
-        C12238m.checkNotNullParameter(premiumTier, "premiumTier");
-        C12238m.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
+        m.checkNotNullParameter(username, "username");
+        m.checkNotNullParameter(premiumTier, "premiumTier");
+        m.checkNotNullParameter(nsfwAllowance, "nsfwAllowance");
         return new MeUser(id2, username, avatar, banner, isBot, isSystemUser, discriminator, premiumTier, email, mfaEnabled, isVerified, token, flags, publicFlags, phoneNumber, nsfwAllowance, bio, bannerColor);
     }
 
@@ -305,7 +132,7 @@ public final /* data */ class MeUser implements User {
             return false;
         }
         MeUser meUser = (MeUser) other;
-        return getId() == meUser.getId() && C12238m.areEqual(getUsername(), meUser.getUsername()) && C12238m.areEqual(getAvatar(), meUser.getAvatar()) && C12238m.areEqual(getBanner(), meUser.getBanner()) && getIsBot() == meUser.getIsBot() && getIsSystemUser() == meUser.getIsSystemUser() && getDiscriminator() == meUser.getDiscriminator() && C12238m.areEqual(getPremiumTier(), meUser.getPremiumTier()) && C12238m.areEqual(this.email, meUser.email) && this.mfaEnabled == meUser.mfaEnabled && this.isVerified == meUser.isVerified && C12238m.areEqual(this.token, meUser.token) && getFlags() == meUser.getFlags() && getPublicFlags() == meUser.getPublicFlags() && C12238m.areEqual(this.phoneNumber, meUser.phoneNumber) && C12238m.areEqual(this.nsfwAllowance, meUser.nsfwAllowance) && C12238m.areEqual(getBio(), meUser.getBio()) && C12238m.areEqual(getBannerColor(), meUser.getBannerColor());
+        return getId() == meUser.getId() && m.areEqual(getUsername(), meUser.getUsername()) && m.areEqual(getAvatar(), meUser.getAvatar()) && m.areEqual(getBanner(), meUser.getBanner()) && getIsBot() == meUser.getIsBot() && getIsSystemUser() == meUser.getIsSystemUser() && getDiscriminator() == meUser.getDiscriminator() && m.areEqual(getPremiumTier(), meUser.getPremiumTier()) && m.areEqual(this.email, meUser.email) && this.mfaEnabled == meUser.mfaEnabled && this.isVerified == meUser.isVerified && m.areEqual(this.token, meUser.token) && getFlags() == meUser.getFlags() && getPublicFlags() == meUser.getPublicFlags() && m.areEqual(this.phoneNumber, meUser.phoneNumber) && m.areEqual(this.nsfwAllowance, meUser.nsfwAllowance) && m.areEqual(getBio(), meUser.getBio()) && m.areEqual(getBannerColor(), meUser.getBannerColor());
     }
 
     @Override // com.discord.models.user.User
@@ -433,9 +260,9 @@ public final /* data */ class MeUser implements User {
     /* JADX WARN: Type inference failed for: r3v1, types: [int] */
     /* JADX WARN: Type inference failed for: r3v2 */
     public int hashCode() {
-        int iM3a = C0002b.m3a(getId()) * 31;
+        int iA = b.a(getId()) * 31;
         String username = getUsername();
-        int iHashCode = (iM3a + (username != null ? username.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (username != null ? username.hashCode() : 0)) * 31;
         String avatar = getAvatar();
         int iHashCode2 = (iHashCode + (avatar != null ? avatar.hashCode() : 0)) * 31;
         String banner = getBanner();
@@ -481,44 +308,44 @@ public final /* data */ class MeUser implements User {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MeUser(id=");
-        sbM833U.append(getId());
-        sbM833U.append(", username=");
-        sbM833U.append(getUsername());
-        sbM833U.append(", avatar=");
-        sbM833U.append(getAvatar());
-        sbM833U.append(", banner=");
-        sbM833U.append(getBanner());
-        sbM833U.append(", isBot=");
-        sbM833U.append(getIsBot());
-        sbM833U.append(", isSystemUser=");
-        sbM833U.append(getIsSystemUser());
-        sbM833U.append(", discriminator=");
-        sbM833U.append(getDiscriminator());
-        sbM833U.append(", premiumTier=");
-        sbM833U.append(getPremiumTier());
-        sbM833U.append(", email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", mfaEnabled=");
-        sbM833U.append(this.mfaEnabled);
-        sbM833U.append(", isVerified=");
-        sbM833U.append(this.isVerified);
-        sbM833U.append(", token=");
-        sbM833U.append(this.token);
-        sbM833U.append(", flags=");
-        sbM833U.append(getFlags());
-        sbM833U.append(", publicFlags=");
-        sbM833U.append(getPublicFlags());
-        sbM833U.append(", phoneNumber=");
-        sbM833U.append(this.phoneNumber);
-        sbM833U.append(", nsfwAllowance=");
-        sbM833U.append(this.nsfwAllowance);
-        sbM833U.append(", bio=");
-        sbM833U.append(getBio());
-        sbM833U.append(", bannerColor=");
-        sbM833U.append(getBannerColor());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("MeUser(id=");
+        sbU.append(getId());
+        sbU.append(", username=");
+        sbU.append(getUsername());
+        sbU.append(", avatar=");
+        sbU.append(getAvatar());
+        sbU.append(", banner=");
+        sbU.append(getBanner());
+        sbU.append(", isBot=");
+        sbU.append(getIsBot());
+        sbU.append(", isSystemUser=");
+        sbU.append(getIsSystemUser());
+        sbU.append(", discriminator=");
+        sbU.append(getDiscriminator());
+        sbU.append(", premiumTier=");
+        sbU.append(getPremiumTier());
+        sbU.append(", email=");
+        sbU.append(this.email);
+        sbU.append(", mfaEnabled=");
+        sbU.append(this.mfaEnabled);
+        sbU.append(", isVerified=");
+        sbU.append(this.isVerified);
+        sbU.append(", token=");
+        sbU.append(this.token);
+        sbU.append(", flags=");
+        sbU.append(getFlags());
+        sbU.append(", publicFlags=");
+        sbU.append(getPublicFlags());
+        sbU.append(", phoneNumber=");
+        sbU.append(this.phoneNumber);
+        sbU.append(", nsfwAllowance=");
+        sbU.append(this.nsfwAllowance);
+        sbU.append(", bio=");
+        sbU.append(getBio());
+        sbU.append(", bannerColor=");
+        sbU.append(getBannerColor());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ MeUser(long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, String str4, boolean z4, boolean z5, String str5, int i2, int i3, String str6, NsfwAllowance nsfwAllowance, String str7, String str8, int i4, DefaultConstructorMarker defaultConstructorMarker) {
@@ -528,18 +355,18 @@ public final /* data */ class MeUser implements User {
     /* JADX WARN: Illegal instructions before constructor call */
     public MeUser(com.discord.api.user.User user) {
         String number;
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(user, "user");
         long id2 = user.getId();
         String username = user.getUsername();
-        NullSerializable<String> nullSerializableM8288a = user.m8288a();
-        String strMo8429a = nullSerializableM8288a != null ? nullSerializableM8288a.mo8429a() : null;
-        NullSerializable<String> nullSerializableM8289b = user.m8289b();
-        String strMo8429a2 = nullSerializableM8289b != null ? nullSerializableM8289b.mo8429a() : null;
+        NullSerializable<String> nullSerializableA = user.a();
+        String strA = nullSerializableA != null ? nullSerializableA.a() : null;
+        NullSerializable<String> nullSerializableB = user.b();
+        String strA2 = nullSerializableB != null ? nullSerializableB.a() : null;
         Boolean bot = user.getBot();
         boolean zBooleanValue = bot != null ? bot.booleanValue() : false;
         Boolean system = user.getSystem();
         boolean zBooleanValue2 = system != null ? system.booleanValue() : false;
-        Integer intOrNull = C12102s.toIntOrNull(user.getDiscriminator());
+        Integer intOrNull = s.toIntOrNull(user.getDiscriminator());
         int iIntValue = intOrNull != null ? intOrNull.intValue() : 0;
         PremiumTier premiumType = user.getPremiumType();
         premiumType = premiumType == null ? PremiumTier.NONE : premiumType;
@@ -554,21 +381,21 @@ public final /* data */ class MeUser implements User {
         Integer publicFlags = user.getPublicFlags();
         int iIntValue3 = publicFlags != null ? publicFlags.intValue() : 0;
         Phone phone = user.getPhone();
-        if (phone instanceof Phone.PhoneNumber) {
+        if (phone instanceof Phone$PhoneNumber) {
             Phone phone2 = user.getPhone();
             Objects.requireNonNull(phone2, "null cannot be cast to non-null type com.discord.api.user.Phone.PhoneNumber");
-            number = ((Phone.PhoneNumber) phone2).getNumber();
+            number = ((Phone$PhoneNumber) phone2).getNumber();
         } else {
-            if (!C12238m.areEqual(phone, Phone.NoPhoneNumber.INSTANCE) && phone != null) {
+            if (!m.areEqual(phone, Phone$NoPhoneNumber.INSTANCE) && phone != null) {
                 throw new NoWhenBranchMatchedException();
             }
             number = null;
         }
         NsfwAllowance nsfwAllowed = user.getNsfwAllowed();
         NsfwAllowance nsfwAllowance = nsfwAllowed == null ? NsfwAllowance.UNKNOWN : nsfwAllowed;
-        NullSerializable<String> nullSerializableM8291d = user.m8291d();
-        String strMo8429a3 = nullSerializableM8291d != null ? nullSerializableM8291d.mo8429a() : null;
-        NullSerializable<String> nullSerializableM8290c = user.m8290c();
-        this(id2, username, strMo8429a, strMo8429a2, zBooleanValue, zBooleanValue2, iIntValue, premiumType, email, zBooleanValue3, zBooleanValue4, token, iIntValue2, iIntValue3, number, nsfwAllowance, strMo8429a3, nullSerializableM8290c != null ? nullSerializableM8290c.mo8429a() : null);
+        NullSerializable<String> nullSerializableD = user.d();
+        String strA3 = nullSerializableD != null ? nullSerializableD.a() : null;
+        NullSerializable<String> nullSerializableC = user.c();
+        this(id2, username, strA, strA2, zBooleanValue, zBooleanValue2, iIntValue, premiumType, email, zBooleanValue3, zBooleanValue4, token, iIntValue2, iIntValue3, number, nsfwAllowance, strA3, nullSerializableC != null ? nullSerializableC.a() : null);
     }
 }

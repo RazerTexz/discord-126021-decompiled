@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.discord.api.channel.Channel;
 import com.discord.widgets.channels.WidgetGroupInviteFriends;
+import com.discord.widgets.channels.WidgetGroupInviteFriends$Companion;
 import com.discord.widgets.channels.invite.GroupInviteFriendsSheet;
+import com.discord.widgets.channels.invite.GroupInviteFriendsSheet$Companion;
 import com.discord.widgets.channels.invite.GroupInviteFriendsSheetFeatureFlag;
 import com.discord.widgets.guilds.invite.WidgetGuildInviteShare;
-import p507d0.p592z.p594d.C12238m;
+import com.discord.widgets.guilds.invite.WidgetGuildInviteShare$Companion;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelInviteLaunchUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -18,31 +21,35 @@ public final class ChannelInviteLaunchUtils {
     private ChannelInviteLaunchUtils() {
     }
 
+    public static /* synthetic */ void inviteToChannel$default(ChannelInviteLaunchUtils channelInviteLaunchUtils, Fragment fragment, Channel channel, String str, Long l, String str2, int i, Object obj) {
+        channelInviteLaunchUtils.inviteToChannel(fragment, channel, str, (i & 8) != 0 ? null : l, (i & 16) != 0 ? null : str2);
+    }
+
     public final void inviteToChannel(Fragment fragment, Channel channel, String source, Long eventId, String inviteStoreKey) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
-        C12238m.checkNotNullParameter(source, "source");
+        m.checkNotNullParameter(fragment, "fragment");
+        m.checkNotNullParameter(source, "source");
         if (channel != null) {
             long id2 = channel.getId();
             if (channel.getGuildId() != 0) {
-                WidgetGuildInviteShare.Companion companion = WidgetGuildInviteShare.INSTANCE;
+                WidgetGuildInviteShare$Companion widgetGuildInviteShare$Companion = WidgetGuildInviteShare.Companion;
                 Context contextRequireContext = fragment.requireContext();
-                C12238m.checkNotNullExpressionValue(contextRequireContext, "fragment.requireContext()");
+                m.checkNotNullExpressionValue(contextRequireContext, "fragment.requireContext()");
                 FragmentManager childFragmentManager = fragment.getChildFragmentManager();
-                C12238m.checkNotNullExpressionValue(childFragmentManager, "fragment.childFragmentManager");
-                companion.launch(contextRequireContext, childFragmentManager, channel.getGuildId(), (16 & 8) != 0 ? null : Long.valueOf(id2), (16 & 16) != 0 ? false : false, (16 & 32) != 0 ? null : eventId, (16 & 64) != 0 ? null : inviteStoreKey, source);
+                m.checkNotNullExpressionValue(childFragmentManager, "fragment.childFragmentManager");
+                WidgetGuildInviteShare$Companion.launch$default(widgetGuildInviteShare$Companion, contextRequireContext, childFragmentManager, channel.getGuildId(), Long.valueOf(id2), false, eventId, inviteStoreKey, source, 16, null);
                 return;
             }
-            if (GroupInviteFriendsSheetFeatureFlag.INSTANCE.getINSTANCE().isEnabled()) {
-                GroupInviteFriendsSheet.Companion companion2 = GroupInviteFriendsSheet.INSTANCE;
+            if (GroupInviteFriendsSheetFeatureFlag.Companion.getINSTANCE().isEnabled()) {
+                GroupInviteFriendsSheet$Companion groupInviteFriendsSheet$Companion = GroupInviteFriendsSheet.Companion;
                 FragmentManager childFragmentManager2 = fragment.getChildFragmentManager();
-                C12238m.checkNotNullExpressionValue(childFragmentManager2, "fragment.childFragmentManager");
-                companion2.show(childFragmentManager2, id2, source);
+                m.checkNotNullExpressionValue(childFragmentManager2, "fragment.childFragmentManager");
+                groupInviteFriendsSheet$Companion.show(childFragmentManager2, id2, source);
                 return;
             }
-            WidgetGroupInviteFriends.Companion companion3 = WidgetGroupInviteFriends.INSTANCE;
+            WidgetGroupInviteFriends$Companion widgetGroupInviteFriends$Companion = WidgetGroupInviteFriends.Companion;
             Context contextRequireContext2 = fragment.requireContext();
-            C12238m.checkNotNullExpressionValue(contextRequireContext2, "fragment.requireContext()");
-            companion3.launch(contextRequireContext2, id2, source);
+            m.checkNotNullExpressionValue(contextRequireContext2, "fragment.requireContext()");
+            widgetGroupInviteFriends$Companion.launch(contextRequireContext2, id2, source);
         }
     }
 }

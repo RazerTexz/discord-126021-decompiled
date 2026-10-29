@@ -8,17 +8,16 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ModeratorStartStageContinueItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15183a;
+    public final ConstraintLayout a;
 
     public ModeratorStartStageContinueItemBinding(@NonNull ConstraintLayout constraintLayout) {
-        this.f15183a = constraintLayout;
+        this.a = constraintLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15183a;
+        return this.a;
     }
 }

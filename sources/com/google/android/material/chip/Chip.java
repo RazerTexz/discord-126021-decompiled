@@ -1,34 +1,31 @@
 package com.google.android.material.chip;
 
-import android.R;
+import android.R$attr;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.Outline;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
-import android.os.Bundle;
+import android.os.Build$VERSION;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.TextUtils$TruncateAt;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.PointerIcon;
-import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.view.View$OnClickListener;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.TextView;
+import android.widget.CompoundButton$OnCheckedChangeListener;
+import android.widget.TextView$BufferType;
 import androidx.annotation.AnimatorRes;
 import androidx.annotation.BoolRes;
 import androidx.annotation.CallSuper;
@@ -46,8 +43,10 @@ import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.core.view.PointerIconCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat$CollectionItemInfoCompat;
 import androidx.customview.widget.ExploreByTouchHelper;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$style;
+import com.google.android.material.R$styleable;
 import com.google.android.material.animation.MotionSpec;
 import com.google.android.material.internal.ThemeEnforcement;
 import com.google.android.material.internal.ViewUtils;
@@ -62,10 +61,9 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.List;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Shapeable {
+public class Chip extends AppCompatCheckBox implements ChipDrawable$Delegate, Shapeable {
     private static final String BUTTON_ACCESSIBILITY_CLASS_NAME = "android.widget.Button";
     private static final int CHIP_BODY_VIRTUAL_ID = 0;
     private static final int CLOSE_ICON_VIRTUAL_ID = 1;
@@ -92,10 +90,10 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     private int minTouchTargetSize;
 
     @Nullable
-    private CompoundButton.OnCheckedChangeListener onCheckedChangeListenerInternal;
+    private CompoundButton$OnCheckedChangeListener onCheckedChangeListenerInternal;
 
     @Nullable
-    private View.OnClickListener onCloseIconClickListener;
+    private View$OnClickListener onCloseIconClickListener;
     private final Rect rect;
     private final RectF rectF;
 
@@ -103,130 +101,43 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     private RippleDrawable ripple;
 
     @NonNull
-    private final C10874c touchHelper;
-    private static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_Chip_Action;
+    private final Chip$c touchHelper;
+    private static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_Chip_Action;
     private static final Rect EMPTY_BOUNDS = new Rect();
-    private static final int[] SELECTED_STATE = {R.attr.state_selected};
-    private static final int[] CHECKABLE_STATE_SET = {R.attr.state_checkable};
-
-    /* JADX INFO: renamed from: com.google.android.material.chip.Chip$a */
-    public class C10872a extends TextAppearanceFontCallback {
-        public C10872a() {
-        }
-
-        @Override // com.google.android.material.resources.TextAppearanceFontCallback
-        public void onFontRetrievalFailed(int i) {
-        }
-
-        @Override // com.google.android.material.resources.TextAppearanceFontCallback
-        public void onFontRetrieved(@NonNull Typeface typeface, boolean z2) {
-            Chip chip = Chip.this;
-            chip.setText(chip.chipDrawable.shouldDrawText() ? Chip.this.chipDrawable.getText() : Chip.this.getText());
-            Chip.this.requestLayout();
-            Chip.this.invalidate();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.chip.Chip$b */
-    public class C10873b extends ViewOutlineProvider {
-        public C10873b() {
-        }
-
-        @Override // android.view.ViewOutlineProvider
-        @TargetApi(21)
-        public void getOutline(View view, @NonNull Outline outline) {
-            if (Chip.this.chipDrawable != null) {
-                Chip.this.chipDrawable.getOutline(outline);
-            } else {
-                outline.setAlpha(0.0f);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.chip.Chip$c */
-    public class C10874c extends ExploreByTouchHelper {
-        public C10874c(Chip chip) {
-            super(chip);
-        }
-
-        @Override // androidx.customview.widget.ExploreByTouchHelper
-        public int getVirtualViewAt(float f, float f2) {
-            return (Chip.this.hasCloseIcon() && Chip.this.getCloseIconTouchBounds().contains(f, f2)) ? 1 : 0;
-        }
-
-        @Override // androidx.customview.widget.ExploreByTouchHelper
-        public void getVisibleVirtualViews(@NonNull List<Integer> list) {
-            list.add(0);
-            if (Chip.this.hasCloseIcon() && Chip.this.isCloseIconVisible() && Chip.this.onCloseIconClickListener != null) {
-                list.add(1);
-            }
-        }
-
-        @Override // androidx.customview.widget.ExploreByTouchHelper
-        public boolean onPerformActionForVirtualView(int i, int i2, Bundle bundle) {
-            if (i2 != 16) {
-                return false;
-            }
-            if (i == 0) {
-                return Chip.this.performClick();
-            }
-            if (i == 1) {
-                return Chip.this.performCloseIconClick();
-            }
-            return false;
-        }
-
-        @Override // androidx.customview.widget.ExploreByTouchHelper
-        public void onPopulateNodeForHost(@NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            accessibilityNodeInfoCompat.setCheckable(Chip.this.isCheckable());
-            accessibilityNodeInfoCompat.setClickable(Chip.this.isClickable());
-            if (Chip.this.isCheckable() || Chip.this.isClickable()) {
-                accessibilityNodeInfoCompat.setClassName(Chip.this.isCheckable() ? Chip.COMPOUND_BUTTON_ACCESSIBILITY_CLASS_NAME : Chip.BUTTON_ACCESSIBILITY_CLASS_NAME);
-            } else {
-                accessibilityNodeInfoCompat.setClassName(Chip.GENERIC_VIEW_ACCESSIBILITY_CLASS_NAME);
-            }
-            CharSequence text = Chip.this.getText();
-            if (Build.VERSION.SDK_INT >= 23) {
-                accessibilityNodeInfoCompat.setText(text);
-            } else {
-                accessibilityNodeInfoCompat.setContentDescription(text);
-            }
-        }
-
-        @Override // androidx.customview.widget.ExploreByTouchHelper
-        public void onPopulateNodeForVirtualView(int i, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            if (i != 1) {
-                accessibilityNodeInfoCompat.setContentDescription("");
-                accessibilityNodeInfoCompat.setBoundsInParent(Chip.EMPTY_BOUNDS);
-                return;
-            }
-            CharSequence closeIconContentDescription = Chip.this.getCloseIconContentDescription();
-            if (closeIconContentDescription != null) {
-                accessibilityNodeInfoCompat.setContentDescription(closeIconContentDescription);
-            } else {
-                CharSequence text = Chip.this.getText();
-                Context context = Chip.this.getContext();
-                int i2 = C10817R.string.mtrl_chip_close_icon_content_description;
-                Object[] objArr = new Object[1];
-                objArr[0] = TextUtils.isEmpty(text) ? "" : text;
-                accessibilityNodeInfoCompat.setContentDescription(context.getString(i2, objArr).trim());
-            }
-            accessibilityNodeInfoCompat.setBoundsInParent(Chip.this.getCloseIconTouchBoundsInt());
-            accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK);
-            accessibilityNodeInfoCompat.setEnabled(Chip.this.isEnabled());
-        }
-
-        @Override // androidx.customview.widget.ExploreByTouchHelper
-        public void onVirtualViewKeyboardFocusChanged(int i, boolean z2) {
-            if (i == 1) {
-                Chip.this.closeIconFocused = z2;
-                Chip.this.refreshDrawableState();
-            }
-        }
-    }
+    private static final int[] SELECTED_STATE = {R$attr.state_selected};
+    private static final int[] CHECKABLE_STATE_SET = {R$attr.state_checkable};
 
     public Chip(Context context) {
         this(context, null);
+    }
+
+    public static /* synthetic */ ChipDrawable access$000(Chip chip) {
+        return chip.chipDrawable;
+    }
+
+    public static /* synthetic */ boolean access$100(Chip chip) {
+        return chip.hasCloseIcon();
+    }
+
+    public static /* synthetic */ RectF access$200(Chip chip) {
+        return chip.getCloseIconTouchBounds();
+    }
+
+    public static /* synthetic */ View$OnClickListener access$300(Chip chip) {
+        return chip.onCloseIconClickListener;
+    }
+
+    public static /* synthetic */ boolean access$402(Chip chip, boolean z2) {
+        chip.closeIconFocused = z2;
+        return z2;
+    }
+
+    public static /* synthetic */ Rect access$500(Chip chip) {
+        return chip.getCloseIconTouchBoundsInt();
+    }
+
+    public static /* synthetic */ Rect access$600() {
+        return EMPTY_BOUNDS;
     }
 
     private void applyChipDrawable(@NonNull ChipDrawable chipDrawable) {
@@ -527,7 +438,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
 
     @Override // android.widget.TextView
     @Nullable
-    public TextUtils.TruncateAt getEllipsize() {
+    public TextUtils$TruncateAt getEllipsize() {
         ChipDrawable chipDrawable = this.chipDrawable;
         if (chipDrawable != null) {
             return chipDrawable.getEllipsize();
@@ -649,14 +560,14 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     }
 
     private void initMinTouchTarget(Context context, @Nullable AttributeSet attributeSet, int i) {
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, C10817R.styleable.Chip, i, DEF_STYLE_RES, new int[0]);
-        this.ensureMinTouchTargetSize = typedArrayObtainStyledAttributes.getBoolean(C10817R.styleable.Chip_ensureMinTouchTargetSize, false);
-        this.minTouchTargetSize = (int) Math.ceil(typedArrayObtainStyledAttributes.getDimension(C10817R.styleable.Chip_chipMinTouchTargetSize, (float) Math.ceil(ViewUtils.dpToPx(getContext(), 48))));
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context, attributeSet, R$styleable.Chip, i, DEF_STYLE_RES, new int[0]);
+        this.ensureMinTouchTargetSize = typedArrayObtainStyledAttributes.getBoolean(R$styleable.Chip_ensureMinTouchTargetSize, false);
+        this.minTouchTargetSize = (int) Math.ceil(typedArrayObtainStyledAttributes.getDimension(R$styleable.Chip_chipMinTouchTargetSize, (float) Math.ceil(ViewUtils.dpToPx(getContext(), 48))));
         typedArrayObtainStyledAttributes.recycle();
     }
 
     private void initOutlineProvider() {
-        setOutlineProvider(new C10873b());
+        setOutlineProvider(new Chip$b(this));
     }
 
     private void insetChipBackgroundDrawable(int i, int i2, int i3, int i4) {
@@ -704,7 +615,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         MaterialShapeUtils.setParentAbsoluteElevation(this, this.chipDrawable);
     }
 
-    @Override // com.google.android.material.chip.ChipDrawable.Delegate
+    @Override // com.google.android.material.chip.ChipDrawable$Delegate
     public void onChipDrawableSizeChange() {
         ensureAccessibleTouchTarget(this.minTouchTargetSize);
         requestLayout();
@@ -752,7 +663,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         accessibilityNodeInfo.setClickable(isClickable());
         if (getParent() instanceof ChipGroup) {
             ChipGroup chipGroup = (ChipGroup) getParent();
-            AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionItemInfo(AccessibilityNodeInfoCompat.CollectionItemInfoCompat.obtain(chipGroup.getRowIndex(this), 1, chipGroup.isSingleLine() ? chipGroup.getIndexOfChip(this) : -1, 1, false, isChecked()));
+            AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionItemInfo(AccessibilityNodeInfoCompat$CollectionItemInfoCompat.obtain(chipGroup.getRowIndex(this), 1, chipGroup.isSingleLine() ? chipGroup.getIndexOfChip(this) : -1, 1, false, isChecked()));
         }
     }
 
@@ -816,9 +727,9 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     public boolean performCloseIconClick() {
         boolean z2 = false;
         playSoundEffect(0);
-        View.OnClickListener onClickListener = this.onCloseIconClickListener;
-        if (onClickListener != null) {
-            onClickListener.onClick(this);
+        View$OnClickListener view$OnClickListener = this.onCloseIconClickListener;
+        if (view$OnClickListener != null) {
+            view$OnClickListener.onClick(this);
             z2 = true;
         }
         this.touchHelper.sendEventForVirtualView(1, 1);
@@ -868,7 +779,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     }
 
     @Override // android.view.View
-    public void setBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
+    public void setBackgroundTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
         Log.w(TAG, "Do not set the background tint mode; Chip manages its own background drawable.");
     }
 
@@ -888,7 +799,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
 
     @Override // android.widget.CompoundButton, android.widget.Checkable
     public void setChecked(boolean z2) {
-        CompoundButton.OnCheckedChangeListener onCheckedChangeListener;
+        CompoundButton$OnCheckedChangeListener compoundButton$OnCheckedChangeListener;
         ChipDrawable chipDrawable = this.chipDrawable;
         if (chipDrawable == null) {
             this.deferredCheckedValue = z2;
@@ -897,10 +808,10 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         if (chipDrawable.isCheckable()) {
             boolean zIsChecked = isChecked();
             super.setChecked(z2);
-            if (zIsChecked == z2 || (onCheckedChangeListener = this.onCheckedChangeListenerInternal) == null) {
+            if (zIsChecked == z2 || (compoundButton$OnCheckedChangeListener = this.onCheckedChangeListenerInternal) == null) {
                 return;
             }
-            onCheckedChangeListener.onCheckedChanged(this, z2);
+            compoundButton$OnCheckedChangeListener.onCheckedChanged(this, z2);
         }
     }
 
@@ -1291,17 +1202,17 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     }
 
     @Override // android.widget.TextView
-    public void setEllipsize(TextUtils.TruncateAt truncateAt) {
+    public void setEllipsize(TextUtils$TruncateAt textUtils$TruncateAt) {
         if (this.chipDrawable == null) {
             return;
         }
-        if (truncateAt == TextUtils.TruncateAt.MARQUEE) {
+        if (textUtils$TruncateAt == TextUtils$TruncateAt.MARQUEE) {
             throw new UnsupportedOperationException("Text within a chip are not allowed to scroll.");
         }
-        super.setEllipsize(truncateAt);
+        super.setEllipsize(textUtils$TruncateAt);
         ChipDrawable chipDrawable = this.chipDrawable;
         if (chipDrawable != null) {
-            chipDrawable.setEllipsize(truncateAt);
+            chipDrawable.setEllipsize(textUtils$TruncateAt);
         }
     }
 
@@ -1402,12 +1313,12 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         super.setMinLines(i);
     }
 
-    public void setOnCheckedChangeListenerInternal(CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
-        this.onCheckedChangeListenerInternal = onCheckedChangeListener;
+    public void setOnCheckedChangeListenerInternal(CompoundButton$OnCheckedChangeListener compoundButton$OnCheckedChangeListener) {
+        this.onCheckedChangeListenerInternal = compoundButton$OnCheckedChangeListener;
     }
 
-    public void setOnCloseIconClickListener(View.OnClickListener onClickListener) {
-        this.onCloseIconClickListener = onClickListener;
+    public void setOnCloseIconClickListener(View$OnClickListener view$OnClickListener) {
+        this.onCloseIconClickListener = view$OnClickListener;
         updateAccessibilityDelegate();
     }
 
@@ -1461,7 +1372,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     }
 
     @Override // android.widget.TextView
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+    public void setText(CharSequence charSequence, TextView$BufferType textView$BufferType) {
         ChipDrawable chipDrawable = this.chipDrawable;
         if (chipDrawable == null) {
             return;
@@ -1469,7 +1380,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         if (charSequence == null) {
             charSequence = "";
         }
-        super.setText(chipDrawable.shouldDrawText() ? null : charSequence, bufferType);
+        super.setText(chipDrawable.shouldDrawText() ? null : charSequence, textView$BufferType);
         ChipDrawable chipDrawable2 = this.chipDrawable;
         if (chipDrawable2 != null) {
             chipDrawable2.setText(charSequence);
@@ -1608,7 +1519,7 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
     }
 
     public Chip(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, C10817R.attr.chipStyle);
+        this(context, attributeSet, com.google.android.material.R$attr.chipStyle);
     }
 
     public void setCloseIconVisible(boolean z2) {
@@ -1625,20 +1536,20 @@ public class Chip extends AppCompatCheckBox implements ChipDrawable.Delegate, Sh
         super(MaterialThemeOverlay.wrap(context, attributeSet, i, i2), attributeSet, i);
         this.rect = new Rect();
         this.rectF = new RectF();
-        this.fontCallback = new C10872a();
+        this.fontCallback = new Chip$a(this);
         Context context2 = getContext();
         validateAttributes(attributeSet);
         ChipDrawable chipDrawableCreateFromAttributes = ChipDrawable.createFromAttributes(context2, attributeSet, i, i2);
         initMinTouchTarget(context2, attributeSet, i);
         setChipDrawable(chipDrawableCreateFromAttributes);
         chipDrawableCreateFromAttributes.setElevation(ViewCompat.getElevation(this));
-        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, C10817R.styleable.Chip, i, i2, new int[0]);
-        if (Build.VERSION.SDK_INT < 23) {
-            setTextColor(MaterialResources.getColorStateList(context2, typedArrayObtainStyledAttributes, C10817R.styleable.Chip_android_textColor));
+        TypedArray typedArrayObtainStyledAttributes = ThemeEnforcement.obtainStyledAttributes(context2, attributeSet, R$styleable.Chip, i, i2, new int[0]);
+        if (Build$VERSION.SDK_INT < 23) {
+            setTextColor(MaterialResources.getColorStateList(context2, typedArrayObtainStyledAttributes, R$styleable.Chip_android_textColor));
         }
-        boolean zHasValue = typedArrayObtainStyledAttributes.hasValue(C10817R.styleable.Chip_shapeAppearance);
+        boolean zHasValue = typedArrayObtainStyledAttributes.hasValue(R$styleable.Chip_shapeAppearance);
         typedArrayObtainStyledAttributes.recycle();
-        this.touchHelper = new C10874c(this);
+        this.touchHelper = new Chip$c(this, this);
         updateAccessibilityDelegate();
         if (!zHasValue) {
             initOutlineProvider();

@@ -1,32 +1,17 @@
 package com.google.android.material.datepicker;
 
 import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
+import b.i.a.g.d.l;
 import java.util.Arrays;
-import p007b.p225i.p226a.p341g.p345d.C4401l;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class DateValidatorPointForward implements CalendarConstraints.DateValidator {
+public class DateValidatorPointForward implements CalendarConstraints$DateValidator {
     private final long point;
-    public static final Parcelable.Creator<DateValidatorPointForward> CREATOR = new C10884a();
+    public static final Parcelable$Creator<DateValidatorPointForward> CREATOR = new DateValidatorPointForward$a();
 
-    /* JADX INFO: renamed from: com.google.android.material.datepicker.DateValidatorPointForward$a */
-    public final class C10884a implements Parcelable.Creator<DateValidatorPointForward> {
-        @Override // android.os.Parcelable.Creator
-        @NonNull
-        public DateValidatorPointForward createFromParcel(@NonNull Parcel parcel) {
-            return new DateValidatorPointForward(parcel.readLong(), null);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        @NonNull
-        public DateValidatorPointForward[] newArray(int i) {
-            return new DateValidatorPointForward[i];
-        }
-    }
-
-    public /* synthetic */ DateValidatorPointForward(long j, C10884a c10884a) {
+    public /* synthetic */ DateValidatorPointForward(long j, DateValidatorPointForward$a dateValidatorPointForward$a) {
         this(j);
     }
 
@@ -51,14 +36,14 @@ public class DateValidatorPointForward implements CalendarConstraints.DateValida
         return Arrays.hashCode(new Object[]{Long.valueOf(this.point)});
     }
 
-    @Override // com.google.android.material.datepicker.CalendarConstraints.DateValidator
+    @Override // com.google.android.material.datepicker.CalendarConstraints$DateValidator
     public boolean isValid(long j) {
         return j >= this.point;
     }
 
     @NonNull
     public static DateValidatorPointForward now() {
-        return from(C4401l.m6075h().getTimeInMillis());
+        return from(l.h().getTimeInMillis());
     }
 
     @Override // android.os.Parcelable

@@ -2,13 +2,15 @@ package androidx.appcompat.widget;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.Resources$NotFoundException;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.lang.ref.WeakReference;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class VectorEnabledTintResources extends Resources {
     public static final int MAX_SDK_WHERE_REQUIRED = 20;
     private static boolean sCompatVectorFromResourcesEnabled = false;
@@ -20,7 +22,7 @@ public class VectorEnabledTintResources extends Resources {
     }
 
     @Override // android.content.res.Resources
-    public Drawable getDrawable(int i) throws Resources.NotFoundException {
+    public Drawable getDrawable(int i) throws Resources$NotFoundException {
         Context context = this.mContextRef.get();
         return context != null ? ResourceManagerInternal.get().onDrawableLoadedFromResources(context, this, i) : super.getDrawable(i);
     }

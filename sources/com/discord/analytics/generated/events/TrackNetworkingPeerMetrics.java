@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkingPeerMetrics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSch
             return false;
         }
         TrackNetworkingPeerMetrics trackNetworkingPeerMetrics = (TrackNetworkingPeerMetrics) other;
-        return C12238m.areEqual(this.applicationId, trackNetworkingPeerMetrics.applicationId) && C12238m.areEqual(this.peerId, trackNetworkingPeerMetrics.peerId) && C12238m.areEqual(this.intervalNs, trackNetworkingPeerMetrics.intervalNs) && C12238m.areEqual(this.pingsSent, trackNetworkingPeerMetrics.pingsSent) && C12238m.areEqual(this.pingsReceived, trackNetworkingPeerMetrics.pingsReceived) && C12238m.areEqual(this.pongsSent, trackNetworkingPeerMetrics.pongsSent) && C12238m.areEqual(this.pongsReceived, trackNetworkingPeerMetrics.pongsReceived) && C12238m.areEqual(this.pingRttAvg, trackNetworkingPeerMetrics.pingRttAvg) && C12238m.areEqual(this.pingRttMax, trackNetworkingPeerMetrics.pingRttMax) && C12238m.areEqual(this.pingRttP95, trackNetworkingPeerMetrics.pingRttP95) && C12238m.areEqual(this.pingRttStddev, trackNetworkingPeerMetrics.pingRttStddev);
+        return m.areEqual(this.applicationId, trackNetworkingPeerMetrics.applicationId) && m.areEqual(this.peerId, trackNetworkingPeerMetrics.peerId) && m.areEqual(this.intervalNs, trackNetworkingPeerMetrics.intervalNs) && m.areEqual(this.pingsSent, trackNetworkingPeerMetrics.pingsSent) && m.areEqual(this.pingsReceived, trackNetworkingPeerMetrics.pingsReceived) && m.areEqual(this.pongsSent, trackNetworkingPeerMetrics.pongsSent) && m.areEqual(this.pongsReceived, trackNetworkingPeerMetrics.pongsReceived) && m.areEqual(this.pingRttAvg, trackNetworkingPeerMetrics.pingRttAvg) && m.areEqual(this.pingRttMax, trackNetworkingPeerMetrics.pingRttMax) && m.areEqual(this.pingRttP95, trackNetworkingPeerMetrics.pingRttP95) && m.areEqual(this.pingRttStddev, trackNetworkingPeerMetrics.pingRttStddev);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,27 +66,27 @@ public final /* data */ class TrackNetworkingPeerMetrics implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkingPeerMetrics(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", peerId=");
-        sbM833U.append(this.peerId);
-        sbM833U.append(", intervalNs=");
-        sbM833U.append(this.intervalNs);
-        sbM833U.append(", pingsSent=");
-        sbM833U.append(this.pingsSent);
-        sbM833U.append(", pingsReceived=");
-        sbM833U.append(this.pingsReceived);
-        sbM833U.append(", pongsSent=");
-        sbM833U.append(this.pongsSent);
-        sbM833U.append(", pongsReceived=");
-        sbM833U.append(this.pongsReceived);
-        sbM833U.append(", pingRttAvg=");
-        sbM833U.append(this.pingRttAvg);
-        sbM833U.append(", pingRttMax=");
-        sbM833U.append(this.pingRttMax);
-        sbM833U.append(", pingRttP95=");
-        sbM833U.append(this.pingRttP95);
-        sbM833U.append(", pingRttStddev=");
-        return C1643a.m819G(sbM833U, this.pingRttStddev, ")");
+        StringBuilder sbU = a.U("TrackNetworkingPeerMetrics(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", peerId=");
+        sbU.append(this.peerId);
+        sbU.append(", intervalNs=");
+        sbU.append(this.intervalNs);
+        sbU.append(", pingsSent=");
+        sbU.append(this.pingsSent);
+        sbU.append(", pingsReceived=");
+        sbU.append(this.pingsReceived);
+        sbU.append(", pongsSent=");
+        sbU.append(this.pongsSent);
+        sbU.append(", pongsReceived=");
+        sbU.append(this.pongsReceived);
+        sbU.append(", pingRttAvg=");
+        sbU.append(this.pingRttAvg);
+        sbU.append(", pingRttMax=");
+        sbU.append(this.pingRttMax);
+        sbU.append(", pingRttP95=");
+        sbU.append(this.pingRttP95);
+        sbU.append(", pingRttStddev=");
+        return a.G(sbU, this.pingRttStddev, ")");
     }
 }

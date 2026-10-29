@@ -9,14 +9,12 @@ import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder$Default;
 import lombok.ConfigurationKeys;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.core.AST;
-import lombok.core.AnnotationValues;
+import lombok.core.AST$Kind;
 import lombok.core.configuration.CheckerFrameworkVersion;
-import lombok.core.handlers.HandlerUtil;
-import lombok.eclipse.EclipseAnnotationHandler;
 import lombok.eclipse.EclipseNode;
 import org.eclipse.jdt.internal.compiler.ast.ASTNode;
 import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;
@@ -55,65 +53,8 @@ public class HandleConstructor {
     private static final char[][] JAVA_BEANS_CONSTRUCTORPROPERTIES = {"java".toCharArray(), "beans".toCharArray(), "ConstructorProperties".toCharArray()};
     private static final char[] DEFAULT_PREFIX = {'$', 'd', 'e', 'f', 'a', 'u', 'l', 't', '$'};
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleConstructor$SkipIfConstructorExists.SCL.lombok */
-    public enum SkipIfConstructorExists {
-        YES,
-        NO,
-        I_AM_BUILDER;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static SkipIfConstructorExists[] valuesCustom() {
-            SkipIfConstructorExists[] skipIfConstructorExistsArrValuesCustom = values();
-            int length = skipIfConstructorExistsArrValuesCustom.length;
-            SkipIfConstructorExists[] skipIfConstructorExistsArr = new SkipIfConstructorExists[length];
-            System.arraycopy(skipIfConstructorExistsArrValuesCustom, 0, skipIfConstructorExistsArr, 0, length);
-            return skipIfConstructorExistsArr;
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleConstructor$HandleNoArgsConstructor.SCL.lombok */
-    public class HandleNoArgsConstructor extends EclipseAnnotationHandler<NoArgsConstructor> {
-        private static final String NAME = NoArgsConstructor.class.getSimpleName();
-        private HandleConstructor handleConstructor = new HandleConstructor();
-
-        @Override // lombok.eclipse.EclipseAnnotationHandler
-        public void handle(AnnotationValues<NoArgsConstructor> annotation, Annotation ast, EclipseNode annotationNode) {
-            HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.NO_ARGS_CONSTRUCTOR_FLAG_USAGE, "@NoArgsConstructor", ConfigurationKeys.ANY_CONSTRUCTOR_FLAG_USAGE, "any @xArgsConstructor");
-            EclipseNode typeNode = annotationNode.m10925up();
-            if (HandleConstructor.checkLegality(typeNode, annotationNode, NAME)) {
-                NoArgsConstructor ann = annotation.getInstance();
-                AccessLevel level = ann.access();
-                String staticName = ann.staticName();
-                if (level == AccessLevel.NONE) {
-                    return;
-                }
-                boolean force = ann.force();
-                List<Annotation> onConstructor = EclipseHandlerUtil.unboxAndRemoveAnnotationParameter(ast, "onConstructor", "@NoArgsConstructor(onConstructor", annotationNode);
-                this.handleConstructor.generateConstructor(typeNode, level, Collections.emptyList(), force, staticName, SkipIfConstructorExists.NO, onConstructor, annotationNode);
-            }
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleConstructor$HandleRequiredArgsConstructor.SCL.lombok */
-    public class HandleRequiredArgsConstructor extends EclipseAnnotationHandler<RequiredArgsConstructor> {
-        private static final String NAME = RequiredArgsConstructor.class.getSimpleName();
-        private HandleConstructor handleConstructor = new HandleConstructor();
-
-        @Override // lombok.eclipse.EclipseAnnotationHandler
-        public void handle(AnnotationValues<RequiredArgsConstructor> annotation, Annotation ast, EclipseNode annotationNode) {
-            RequiredArgsConstructor ann;
-            AccessLevel level;
-            HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.REQUIRED_ARGS_CONSTRUCTOR_FLAG_USAGE, "@RequiredArgsConstructor", ConfigurationKeys.ANY_CONSTRUCTOR_FLAG_USAGE, "any @xArgsConstructor");
-            EclipseNode typeNode = annotationNode.m10925up();
-            if (HandleConstructor.checkLegality(typeNode, annotationNode, NAME) && (level = (ann = annotation.getInstance()).access()) != AccessLevel.NONE) {
-                String staticName = ann.staticName();
-                if (annotation.isExplicit("suppressConstructorProperties")) {
-                    annotationNode.addError("This deprecated feature is no longer supported. Remove it; you can create a lombok.config file with 'lombok.anyConstructor.suppressConstructorProperties = true'.");
-                }
-                List<Annotation> onConstructor = EclipseHandlerUtil.unboxAndRemoveAnnotationParameter(ast, "onConstructor", "@RequiredArgsConstructor(onConstructor", annotationNode);
-                this.handleConstructor.generateConstructor(typeNode, level, HandleConstructor.findRequiredFields(typeNode), false, staticName, SkipIfConstructorExists.NO, onConstructor, annotationNode);
-            }
-        }
+    static /* synthetic */ List access$0(EclipseNode eclipseNode) {
+        return findRequiredFields(eclipseNode);
     }
 
     private static List<EclipseNode> findRequiredFields(EclipseNode typeNode) {
@@ -123,7 +64,7 @@ public class HandleConstructor {
     private static List<EclipseNode> findFields(EclipseNode typeNode, boolean nullMarked) {
         List<EclipseNode> fields = new ArrayList<>();
         for (EclipseNode child : typeNode.down()) {
-            if (child.getKind() == AST.Kind.FIELD) {
+            if (child.getKind() == AST$Kind.FIELD) {
                 FieldDeclaration fieldDecl = child.get();
                 if (EclipseHandlerUtil.filterField(fieldDecl)) {
                     boolean isFinal = (fieldDecl.modifiers & 16) != 0;
@@ -146,7 +87,7 @@ public class HandleConstructor {
     static List<EclipseNode> findAllFields(EclipseNode typeNode, boolean evenFinalInitialized) {
         List<EclipseNode> fields = new ArrayList<>();
         for (EclipseNode child : typeNode.down()) {
-            if (child.getKind() == AST.Kind.FIELD) {
+            if (child.getKind() == AST$Kind.FIELD) {
                 FieldDeclaration fieldDecl = child.get();
                 if (EclipseHandlerUtil.filterField(fieldDecl) && (evenFinalInitialized || (fieldDecl.modifiers & 16) == 0 || fieldDecl.initialization == null)) {
                     fields.add(child);
@@ -154,28 +95,6 @@ public class HandleConstructor {
             }
         }
         return fields;
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleConstructor$HandleAllArgsConstructor.SCL.lombok */
-    public class HandleAllArgsConstructor extends EclipseAnnotationHandler<AllArgsConstructor> {
-        private static final String NAME = AllArgsConstructor.class.getSimpleName();
-        private HandleConstructor handleConstructor = new HandleConstructor();
-
-        @Override // lombok.eclipse.EclipseAnnotationHandler
-        public void handle(AnnotationValues<AllArgsConstructor> annotation, Annotation ast, EclipseNode annotationNode) {
-            AllArgsConstructor ann;
-            AccessLevel level;
-            HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.ALL_ARGS_CONSTRUCTOR_FLAG_USAGE, "@AllArgsConstructor", ConfigurationKeys.ANY_CONSTRUCTOR_FLAG_USAGE, "any @xArgsConstructor");
-            EclipseNode typeNode = annotationNode.m10925up();
-            if (HandleConstructor.checkLegality(typeNode, annotationNode, NAME) && (level = (ann = annotation.getInstance()).access()) != AccessLevel.NONE) {
-                String staticName = ann.staticName();
-                if (annotation.isExplicit("suppressConstructorProperties")) {
-                    annotationNode.addError("This deprecated feature is no longer supported. Remove it; you can create a lombok.config file with 'lombok.anyConstructor.suppressConstructorProperties = true'.");
-                }
-                List<Annotation> onConstructor = EclipseHandlerUtil.unboxAndRemoveAnnotationParameter(ast, "onConstructor", "@AllArgsConstructor(onConstructor", annotationNode);
-                this.handleConstructor.generateConstructor(typeNode, level, HandleConstructor.findAllFields(typeNode), false, staticName, SkipIfConstructorExists.NO, onConstructor, annotationNode);
-            }
-        }
     }
 
     static boolean checkLegality(EclipseNode typeNode, EclipseNode errorNode, String name) {
@@ -195,30 +114,30 @@ public class HandleConstructor {
     public void generateExtraNoArgsConstructor(EclipseNode typeNode, EclipseNode sourceNode) {
         Boolean v;
         if (EclipseHandlerUtil.isDirectDescendantOfObject(typeNode) && (v = (Boolean) typeNode.getAst().readConfiguration(ConfigurationKeys.NO_ARGS_CONSTRUCTOR_EXTRA_PRIVATE)) != null && v.booleanValue()) {
-            generate(typeNode, AccessLevel.PRIVATE, Collections.emptyList(), true, null, SkipIfConstructorExists.NO, Collections.emptyList(), sourceNode, true);
+            generate(typeNode, AccessLevel.PRIVATE, Collections.emptyList(), true, null, HandleConstructor$SkipIfConstructorExists.NO, Collections.emptyList(), sourceNode, true);
         }
     }
 
-    public void generateRequiredArgsConstructor(EclipseNode typeNode, AccessLevel level, String staticName, SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode) {
+    public void generateRequiredArgsConstructor(EclipseNode typeNode, AccessLevel level, String staticName, HandleConstructor$SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode) {
         generateConstructor(typeNode, level, findRequiredFields(typeNode), false, staticName, skipIfConstructorExists, onConstructor, sourceNode);
     }
 
-    public void generateAllArgsConstructor(EclipseNode typeNode, AccessLevel level, String staticName, SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode) {
+    public void generateAllArgsConstructor(EclipseNode typeNode, AccessLevel level, String staticName, HandleConstructor$SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode) {
         generateConstructor(typeNode, level, findAllFields(typeNode), false, staticName, skipIfConstructorExists, onConstructor, sourceNode);
     }
 
-    public void generateConstructor(EclipseNode typeNode, AccessLevel level, List<EclipseNode> fieldsToParam, boolean forceDefaults, String staticName, SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode) {
+    public void generateConstructor(EclipseNode typeNode, AccessLevel level, List<EclipseNode> fieldsToParam, boolean forceDefaults, String staticName, HandleConstructor$SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode) {
         generate(typeNode, level, fieldsToParam, forceDefaults, staticName, skipIfConstructorExists, onConstructor, sourceNode, false);
     }
 
-    public void generate(EclipseNode typeNode, AccessLevel level, List<EclipseNode> fieldsToParam, boolean forceDefaults, String staticName, SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode, boolean noArgs) {
+    public void generate(EclipseNode typeNode, AccessLevel level, List<EclipseNode> fieldsToParam, boolean forceDefaults, String staticName, HandleConstructor$SkipIfConstructorExists skipIfConstructorExists, List<Annotation> onConstructor, EclipseNode sourceNode, boolean noArgs) {
         ASTNode source = sourceNode.get();
         boolean staticConstrRequired = (staticName == null || staticName.equals("")) ? false : true;
-        if (skipIfConstructorExists != SkipIfConstructorExists.NO) {
+        if (skipIfConstructorExists != HandleConstructor$SkipIfConstructorExists.NO) {
             for (EclipseNode child : typeNode.down()) {
-                if (child.getKind() == AST.Kind.ANNOTATION) {
+                if (child.getKind() == AST$Kind.ANNOTATION) {
                     boolean skipGeneration = EclipseHandlerUtil.annotationTypeMatches((Class<? extends java.lang.annotation.Annotation>) NoArgsConstructor.class, child) || EclipseHandlerUtil.annotationTypeMatches((Class<? extends java.lang.annotation.Annotation>) AllArgsConstructor.class, child) || EclipseHandlerUtil.annotationTypeMatches((Class<? extends java.lang.annotation.Annotation>) RequiredArgsConstructor.class, child);
-                    if (!skipGeneration && skipIfConstructorExists == SkipIfConstructorExists.YES) {
+                    if (!skipGeneration && skipIfConstructorExists == HandleConstructor$SkipIfConstructorExists.YES) {
                         skipGeneration = EclipseHandlerUtil.annotationTypeMatches((Class<? extends java.lang.annotation.Annotation>) Builder.class, child);
                     }
                     if (skipGeneration) {
@@ -234,7 +153,7 @@ public class HandleConstructor {
         if (noArgs && noArgsConstructorExists(typeNode)) {
             return;
         }
-        if (skipIfConstructorExists == SkipIfConstructorExists.NO || EclipseHandlerUtil.constructorExists(typeNode) == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+        if (skipIfConstructorExists == HandleConstructor$SkipIfConstructorExists.NO || EclipseHandlerUtil.constructorExists(typeNode) == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
             ConstructorDeclaration constr = createConstructor(staticConstrRequired ? AccessLevel.PRIVATE : level, typeNode, fieldsToParam, forceDefaults, sourceNode, onConstructor);
             EclipseHandlerUtil.injectMethod(typeNode, constr);
         }
@@ -420,13 +339,13 @@ public class HandleConstructor {
         EclipseNode ftp;
         List<EclipseNode> out = new ArrayList<>();
         for (EclipseNode node : type.down()) {
-            if (node.getKind() == AST.Kind.FIELD) {
+            if (node.getKind() == AST$Kind.FIELD) {
                 FieldDeclaration fd = node.get();
                 if ((fd.modifiers & 8) == 0) {
                     Iterator<EclipseNode> it = fieldsToParam.iterator();
                     do {
                         if (!it.hasNext()) {
-                            if (!EclipseHandlerUtil.hasAnnotation((Class<? extends java.lang.annotation.Annotation>) Builder.Default.class, node)) {
+                            if (!EclipseHandlerUtil.hasAnnotation((Class<? extends java.lang.annotation.Annotation>) Builder$Default.class, node)) {
                                 break;
                             }
                             out.add(node);
@@ -444,13 +363,13 @@ public class HandleConstructor {
         EclipseNode ftp;
         List<EclipseNode> out = new ArrayList<>();
         for (EclipseNode node : type.down()) {
-            if (node.getKind() == AST.Kind.FIELD) {
+            if (node.getKind() == AST$Kind.FIELD) {
                 FieldDeclaration fd = node.get();
                 if (fd.initialization == null && (fd.modifiers & 16) != 0 && (fd.modifiers & 8) == 0) {
                     Iterator<EclipseNode> it = fieldsToParam.iterator();
                     do {
                         if (!it.hasNext()) {
-                            if (!EclipseHandlerUtil.hasAnnotation((Class<? extends java.lang.annotation.Annotation>) Builder.Default.class, node)) {
+                            if (!EclipseHandlerUtil.hasAnnotation((Class<? extends java.lang.annotation.Annotation>) Builder$Default.class, node)) {
                                 out.add(node);
                                 break;
                             }
@@ -489,12 +408,12 @@ public class HandleConstructor {
     }
 
     public static boolean isLocalType(EclipseNode type) {
-        AST.Kind kind = type.m10925up().getKind();
-        if (kind == AST.Kind.COMPILATION_UNIT) {
+        AST$Kind kind = type.up().getKind();
+        if (kind == AST$Kind.COMPILATION_UNIT) {
             return false;
         }
-        if (kind == AST.Kind.TYPE) {
-            return isLocalType(type.m10925up());
+        if (kind == AST$Kind.TYPE) {
+            return isLocalType(type.up());
         }
         return true;
     }

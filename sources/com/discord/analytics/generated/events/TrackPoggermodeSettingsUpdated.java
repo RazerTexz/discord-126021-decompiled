@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackPoggermodeSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackPoggermodeSettingsUpdated implements Analytic
             return false;
         }
         TrackPoggermodeSettingsUpdated trackPoggermodeSettingsUpdated = (TrackPoggermodeSettingsUpdated) other;
-        return C12238m.areEqual(this.enabled, trackPoggermodeSettingsUpdated.enabled) && C12238m.areEqual(this.combosEnabled, trackPoggermodeSettingsUpdated.combosEnabled) && C12238m.areEqual(this.combosRequiredCount, trackPoggermodeSettingsUpdated.combosRequiredCount) && C12238m.areEqual(this.screenshakeEnabled, trackPoggermodeSettingsUpdated.screenshakeEnabled) && C12238m.areEqual(this.shakeIntensity, trackPoggermodeSettingsUpdated.shakeIntensity) && C12238m.areEqual(this.screenshakeEnabledLocations, trackPoggermodeSettingsUpdated.screenshakeEnabledLocations) && C12238m.areEqual(this.confettiEnabled, trackPoggermodeSettingsUpdated.confettiEnabled) && C12238m.areEqual(this.confettiSize, trackPoggermodeSettingsUpdated.confettiSize) && C12238m.areEqual(this.confettiCount, trackPoggermodeSettingsUpdated.confettiCount) && C12238m.areEqual(this.confettiEnabledLocations, trackPoggermodeSettingsUpdated.confettiEnabledLocations);
+        return m.areEqual(this.enabled, trackPoggermodeSettingsUpdated.enabled) && m.areEqual(this.combosEnabled, trackPoggermodeSettingsUpdated.combosEnabled) && m.areEqual(this.combosRequiredCount, trackPoggermodeSettingsUpdated.combosRequiredCount) && m.areEqual(this.screenshakeEnabled, trackPoggermodeSettingsUpdated.screenshakeEnabled) && m.areEqual(this.shakeIntensity, trackPoggermodeSettingsUpdated.shakeIntensity) && m.areEqual(this.screenshakeEnabledLocations, trackPoggermodeSettingsUpdated.screenshakeEnabledLocations) && m.areEqual(this.confettiEnabled, trackPoggermodeSettingsUpdated.confettiEnabled) && m.areEqual(this.confettiSize, trackPoggermodeSettingsUpdated.confettiSize) && m.areEqual(this.confettiCount, trackPoggermodeSettingsUpdated.confettiCount) && m.areEqual(this.confettiEnabledLocations, trackPoggermodeSettingsUpdated.confettiEnabledLocations);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -64,25 +64,25 @@ public final /* data */ class TrackPoggermodeSettingsUpdated implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPoggermodeSettingsUpdated(enabled=");
-        sbM833U.append(this.enabled);
-        sbM833U.append(", combosEnabled=");
-        sbM833U.append(this.combosEnabled);
-        sbM833U.append(", combosRequiredCount=");
-        sbM833U.append(this.combosRequiredCount);
-        sbM833U.append(", screenshakeEnabled=");
-        sbM833U.append(this.screenshakeEnabled);
-        sbM833U.append(", shakeIntensity=");
-        sbM833U.append(this.shakeIntensity);
-        sbM833U.append(", screenshakeEnabledLocations=");
-        sbM833U.append(this.screenshakeEnabledLocations);
-        sbM833U.append(", confettiEnabled=");
-        sbM833U.append(this.confettiEnabled);
-        sbM833U.append(", confettiSize=");
-        sbM833U.append(this.confettiSize);
-        sbM833U.append(", confettiCount=");
-        sbM833U.append(this.confettiCount);
-        sbM833U.append(", confettiEnabledLocations=");
-        return C1643a.m824L(sbM833U, this.confettiEnabledLocations, ")");
+        StringBuilder sbU = a.U("TrackPoggermodeSettingsUpdated(enabled=");
+        sbU.append(this.enabled);
+        sbU.append(", combosEnabled=");
+        sbU.append(this.combosEnabled);
+        sbU.append(", combosRequiredCount=");
+        sbU.append(this.combosRequiredCount);
+        sbU.append(", screenshakeEnabled=");
+        sbU.append(this.screenshakeEnabled);
+        sbU.append(", shakeIntensity=");
+        sbU.append(this.shakeIntensity);
+        sbU.append(", screenshakeEnabledLocations=");
+        sbU.append(this.screenshakeEnabledLocations);
+        sbU.append(", confettiEnabled=");
+        sbU.append(this.confettiEnabled);
+        sbU.append(", confettiSize=");
+        sbU.append(this.confettiSize);
+        sbU.append(", confettiCount=");
+        sbU.append(this.confettiCount);
+        sbU.append(", confettiEnabledLocations=");
+        return a.L(sbU, this.confettiEnabledLocations, ")");
     }
 }

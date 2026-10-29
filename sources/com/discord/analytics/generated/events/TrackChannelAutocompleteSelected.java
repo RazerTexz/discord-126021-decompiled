@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChannelAutocompleteSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,6 +26,11 @@ public final /* data */ class TrackChannelAutocompleteSelected implements Analyt
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "channel_autocomplete_selected";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -34,7 +39,7 @@ public final /* data */ class TrackChannelAutocompleteSelected implements Analyt
             return false;
         }
         TrackChannelAutocompleteSelected trackChannelAutocompleteSelected = (TrackChannelAutocompleteSelected) other;
-        return C12238m.areEqual(this.autocompleteType, trackChannelAutocompleteSelected.autocompleteType) && C12238m.areEqual(this.hasSticker, trackChannelAutocompleteSelected.hasSticker) && C12238m.areEqual(this.hasEmoji, trackChannelAutocompleteSelected.hasEmoji) && C12238m.areEqual(this.numStickerResults, trackChannelAutocompleteSelected.numStickerResults) && C12238m.areEqual(this.numEmojiResults, trackChannelAutocompleteSelected.numEmojiResults) && C12238m.areEqual(this.selection, trackChannelAutocompleteSelected.selection) && C12238m.areEqual(this.selectionType, trackChannelAutocompleteSelected.selectionType) && C12238m.areEqual(this.stickerId, trackChannelAutocompleteSelected.stickerId);
+        return m.areEqual(this.autocompleteType, trackChannelAutocompleteSelected.autocompleteType) && m.areEqual(this.hasSticker, trackChannelAutocompleteSelected.hasSticker) && m.areEqual(this.hasEmoji, trackChannelAutocompleteSelected.hasEmoji) && m.areEqual(this.numStickerResults, trackChannelAutocompleteSelected.numStickerResults) && m.areEqual(this.numEmojiResults, trackChannelAutocompleteSelected.numEmojiResults) && m.areEqual(this.selection, trackChannelAutocompleteSelected.selection) && m.areEqual(this.selectionType, trackChannelAutocompleteSelected.selectionType) && m.areEqual(this.stickerId, trackChannelAutocompleteSelected.stickerId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -68,28 +73,22 @@ public final /* data */ class TrackChannelAutocompleteSelected implements Analyt
         return iHashCode7 + (l3 != null ? l3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChannelAutocompleteSelected(autocompleteType=");
-        sbM833U.append(this.autocompleteType);
-        sbM833U.append(", hasSticker=");
-        sbM833U.append(this.hasSticker);
-        sbM833U.append(", hasEmoji=");
-        sbM833U.append(this.hasEmoji);
-        sbM833U.append(", numStickerResults=");
-        sbM833U.append(this.numStickerResults);
-        sbM833U.append(", numEmojiResults=");
-        sbM833U.append(this.numEmojiResults);
-        sbM833U.append(", selection=");
-        sbM833U.append(this.selection);
-        sbM833U.append(", selectionType=");
-        sbM833U.append(this.selectionType);
-        sbM833U.append(", stickerId=");
-        return C1643a.m819G(sbM833U, this.stickerId, ")");
+        StringBuilder sbU = a.U("TrackChannelAutocompleteSelected(autocompleteType=");
+        sbU.append(this.autocompleteType);
+        sbU.append(", hasSticker=");
+        sbU.append(this.hasSticker);
+        sbU.append(", hasEmoji=");
+        sbU.append(this.hasEmoji);
+        sbU.append(", numStickerResults=");
+        sbU.append(this.numStickerResults);
+        sbU.append(", numEmojiResults=");
+        sbU.append(this.numEmojiResults);
+        sbU.append(", selection=");
+        sbU.append(this.selection);
+        sbU.append(", selectionType=");
+        sbU.append(this.selectionType);
+        sbU.append(", stickerId=");
+        return a.G(sbU, this.stickerId, ")");
     }
 }

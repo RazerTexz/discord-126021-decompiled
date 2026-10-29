@@ -1,8 +1,8 @@
 package com.discord.api.bugreport;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: BugReportConfig.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,8 +12,8 @@ public final /* data */ class Feature {
     private final String squad;
 
     public Feature(String str, String str2, Long l) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(str2, "squad");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str2, "squad");
         this.name = str;
         this.squad = str2;
         this.asanaInboxId = l;
@@ -27,7 +27,7 @@ public final /* data */ class Feature {
             return false;
         }
         Feature feature = (Feature) other;
-        return C12238m.areEqual(this.name, feature.name) && C12238m.areEqual(this.squad, feature.squad) && C12238m.areEqual(this.asanaInboxId, feature.asanaInboxId);
+        return m.areEqual(this.name, feature.name) && m.areEqual(this.squad, feature.squad) && m.areEqual(this.asanaInboxId, feature.asanaInboxId);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -55,11 +55,11 @@ public final /* data */ class Feature {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Feature(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", squad=");
-        sbM833U.append(this.squad);
-        sbM833U.append(", asanaInboxId=");
-        return C1643a.m819G(sbM833U, this.asanaInboxId, ")");
+        StringBuilder sbU = a.U("Feature(name=");
+        sbU.append(this.name);
+        sbU.append(", squad=");
+        sbU.append(this.squad);
+        sbU.append(", asanaInboxId=");
+        return a.G(sbU, this.asanaInboxId, ")");
     }
 }

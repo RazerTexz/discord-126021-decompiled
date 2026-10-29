@@ -2,78 +2,33 @@ package com.discord.utilities.mg_recycler;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.exifinterface.media.ExifInterface;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
-import com.discord.C5419R;
+import androidx.recyclerview.widget.RecyclerView$Adapter;
+import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import b.a.k.b;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.recycler.SelfHealingLinearLayoutManager;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p008a.p027k.C1107b;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.subscriptions.CompositeSubscription;
+import d0.z.d.m;
+import rx.subscriptions.CompositeSubscription;
 
 /* JADX INFO: compiled from: MGRecyclerAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public abstract class MGRecyclerAdapter<D> extends RecyclerView.Adapter<MGRecyclerViewHolder<?, D>> {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+public abstract class MGRecyclerAdapter<D> extends RecyclerView$Adapter<MGRecyclerViewHolder<?, D>> {
+    public static final MGRecyclerAdapter$Companion Companion = new MGRecyclerAdapter$Companion(null);
     private final CompositeSubscription cellSubscriptions;
     private RecyclerView recycler;
 
-    /* JADX INFO: compiled from: MGRecyclerAdapter.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final <D, T extends MGRecyclerAdapter<D>> T configure(T adapter) {
-            C12238m.checkNotNullParameter(adapter, "adapter");
-            try {
-                RecyclerView recycler = adapter.getRecycler();
-                RecyclerView.LayoutManager layoutManager = adapter.getRecycler().getLayoutManager();
-                RecyclerView.ItemAnimator itemAnimator = null;
-                if (!(layoutManager instanceof LinearLayoutManager)) {
-                    layoutManager = null;
-                }
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-                SelfHealingLinearLayoutManager selfHealingLinearLayoutManager = new SelfHealingLinearLayoutManager(adapter.getRecycler(), adapter, linearLayoutManager != null ? linearLayoutManager.getOrientation() : 1, false);
-                selfHealingLinearLayoutManager.setSmoothScrollbarEnabled(true);
-                recycler.setLayoutManager(selfHealingLinearLayoutManager);
-                recycler.setAdapter(adapter);
-                recycler.setHasFixedSize(true);
-                RecyclerView.ItemAnimator itemAnimator2 = recycler.getItemAnimator();
-                if (itemAnimator2 instanceof SimpleItemAnimator) {
-                    itemAnimator = itemAnimator2;
-                }
-                SimpleItemAnimator simpleItemAnimator = (SimpleItemAnimator) itemAnimator;
-                if (simpleItemAnimator != null) {
-                    simpleItemAnimator.setSupportsChangeAnimations(false);
-                }
-                return adapter;
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public MGRecyclerAdapter(RecyclerView recyclerView) {
-        C12238m.checkNotNullParameter(recyclerView, "recycler");
+        m.checkNotNullParameter(recyclerView, "recycler");
         this.recycler = recyclerView;
         this.cellSubscriptions = new CompositeSubscription();
     }
 
     public static final <D, T extends MGRecyclerAdapter<D>> T configure(T t) {
-        return (T) INSTANCE.configure(t);
+        return (T) Companion.configure(t);
     }
 
     public final void dispose() {
-        this.cellSubscriptions.m11137b();
+        this.cellSubscriptions.b();
     }
 
     public final CompositeSubscription getCellSubscriptions() {
@@ -82,7 +37,7 @@ public abstract class MGRecyclerAdapter<D> extends RecyclerView.Adapter<MGRecycl
 
     public final Context getContext() {
         Context context = getRecycler().getContext();
-        C12238m.checkNotNullExpressionValue(context, "recycler.context");
+        m.checkNotNullExpressionValue(context, "recycler.context");
         return context;
     }
 
@@ -95,17 +50,21 @@ public abstract class MGRecyclerAdapter<D> extends RecyclerView.Adapter<MGRecycl
     @SuppressLint({"StringFormatMatches"})
     public final IllegalArgumentException invalidViewTypeException(int viewType) {
         Context context = getRecycler().getContext();
-        return new IllegalArgumentException(String.valueOf(context != null ? C1107b.m216h(context, C5419R.string.android_unknown_view_holder, new Object[]{Integer.valueOf(viewType)}, null, 4) : null));
+        return new IllegalArgumentException(String.valueOf(context != null ? b.h(context, 2131886424, new Object[]{Integer.valueOf(viewType)}, null, 4) : null));
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i) {
+        onBindViewHolder((MGRecyclerViewHolder) recyclerView$ViewHolder, i);
     }
 
     public void setRecycler(RecyclerView recyclerView) {
-        C12238m.checkNotNullParameter(recyclerView, "<set-?>");
+        m.checkNotNullParameter(recyclerView, "<set-?>");
         this.recycler = recyclerView;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onBindViewHolder(MGRecyclerViewHolder<?, D> holder, int position) {
-        C12238m.checkNotNullParameter(holder, "holder");
+        m.checkNotNullParameter(holder, "holder");
         holder.onBindViewHolder(position);
     }
 }

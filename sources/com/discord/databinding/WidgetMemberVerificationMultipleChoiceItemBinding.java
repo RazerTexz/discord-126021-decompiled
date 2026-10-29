@@ -8,22 +8,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetMemberVerificationMultipleChoiceItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RadioGroup f17246a;
+    public final RadioGroup a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RadioGroup f17247b;
+    public final RadioGroup f2490b;
 
     public WidgetMemberVerificationMultipleChoiceItemBinding(@NonNull RadioGroup radioGroup, @NonNull RadioGroup radioGroup2) {
-        this.f17246a = radioGroup;
-        this.f17247b = radioGroup2;
+        this.a = radioGroup;
+        this.f2490b = radioGroup2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17246a;
+        return this.a;
     }
 }

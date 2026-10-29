@@ -10,27 +10,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsEmojisHeaderBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17643a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f17644b;
+    public final MaterialButton f2564b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17645c;
+    public final TextView c;
 
     public WidgetServerSettingsEmojisHeaderBinding(@NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull TextView textView) {
-        this.f17643a = linearLayout;
-        this.f17644b = materialButton;
-        this.f17645c = textView;
+        this.a = linearLayout;
+        this.f2564b = materialButton;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17643a;
+        return this.a;
     }
 }

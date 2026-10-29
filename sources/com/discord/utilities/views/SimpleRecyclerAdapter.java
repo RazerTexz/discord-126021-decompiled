@@ -1,110 +1,69 @@
 package com.discord.utilities.views;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.exifinterface.media.ExifInterface;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import androidx.recyclerview.widget.RecyclerView$Adapter;
+import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.drawable.DrawableCompat;
-import com.discord.utilities.views.SimpleRecyclerAdapter.ViewHolder;
+import com.discord.utilities.views.SimpleRecyclerAdapter$ViewHolder;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
-import java.util.Objects;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SimpleRecyclerAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public class SimpleRecyclerAdapter<T, VH extends ViewHolder<T>> extends RecyclerView.Adapter<VH> {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+public class SimpleRecyclerAdapter<T, VH extends SimpleRecyclerAdapter$ViewHolder<T>> extends RecyclerView$Adapter<VH> {
+    public static final SimpleRecyclerAdapter$Companion Companion = new SimpleRecyclerAdapter$Companion(null);
     private final Function2<LayoutInflater, ViewGroup, VH> createViewHolder;
     private List<? extends T> data;
 
-    /* JADX INFO: compiled from: SimpleRecyclerAdapter.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void addThemedDivider(RecyclerView recyclerView) {
-            C12238m.checkNotNullParameter(recyclerView, "$this$addThemedDivider");
-            int themedDrawableRes$default = DrawableCompat.getThemedDrawableRes$default(recyclerView, C5419R.attr.colorPrimaryDivider, 0, 2, (Object) null);
-            Resources resources = recyclerView.getResources();
-            Context context = recyclerView.getContext();
-            C12238m.checkNotNullExpressionValue(context, "context");
-            Drawable drawable = ResourcesCompat.getDrawable(resources, themedDrawableRes$default, context.getTheme());
-            if (drawable != null) {
-                C12238m.checkNotNullExpressionValue(drawable, "ResourcesCompat.getDrawa… context.theme) ?: return");
-                Context context2 = recyclerView.getContext();
-                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-                Objects.requireNonNull(layoutManager, "null cannot be cast to non-null type androidx.recyclerview.widget.LinearLayoutManager");
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(context2, ((LinearLayoutManager) layoutManager).getOrientation());
-                dividerItemDecoration.setDrawable(drawable);
-                recyclerView.addItemDecoration(dividerItemDecoration);
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: SimpleRecyclerAdapter.kt */
-    public abstract class ViewHolder<T> extends RecyclerView.ViewHolder {
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public ViewHolder(View view) {
-            super(view);
-            C12238m.checkNotNullParameter(view, "itemView");
-        }
-
-        public abstract void bind(T data);
-    }
-
     public /* synthetic */ SimpleRecyclerAdapter(List list, Function2 function2, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? C12147n.emptyList() : list, function2);
+        this((i & 1) != 0 ? n.emptyList() : list, function2);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
     public int getItemCount() {
         return this.data.size();
     }
 
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    public /* bridge */ /* synthetic */ void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i) {
+        onBindViewHolder((SimpleRecyclerAdapter$ViewHolder) recyclerView$ViewHolder, i);
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return onCreateViewHolder(viewGroup, i);
+    }
+
     public final void setData(List<? extends T> data) {
-        C12238m.checkNotNullParameter(data, "data");
+        m.checkNotNullParameter(data, "data");
         this.data = data;
         notifyDataSetChanged();
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public SimpleRecyclerAdapter(List<? extends T> list, Function2<? super LayoutInflater, ? super ViewGroup, ? extends VH> function2) {
-        C12238m.checkNotNullParameter(list, "data");
-        C12238m.checkNotNullParameter(function2, "createViewHolder");
+        m.checkNotNullParameter(list, "data");
+        m.checkNotNullParameter(function2, "createViewHolder");
         this.data = list;
         this.createViewHolder = function2;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onBindViewHolder(VH holder, int position) {
-        C12238m.checkNotNullParameter(holder, "holder");
+        m.checkNotNullParameter(holder, "holder");
         holder.bind(this.data.get(position));
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        C12238m.checkNotNullParameter(parent, "parent");
+        m.checkNotNullParameter(parent, "parent");
         Function2<LayoutInflater, ViewGroup, VH> function2 = this.createViewHolder;
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(parent.getContext());
-        C12238m.checkNotNullExpressionValue(layoutInflaterFrom, "LayoutInflater.from(parent.context)");
+        m.checkNotNullExpressionValue(layoutInflaterFrom, "LayoutInflater.from(parent.context)");
         return function2.invoke(layoutInflaterFrom, parent);
     }
 }

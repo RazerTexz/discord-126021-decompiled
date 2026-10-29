@@ -1,9 +1,9 @@
 package co.discord.media_engine;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Statistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -13,7 +13,7 @@ public final /* data */ class ReceiverReport {
     private final String id;
 
     public ReceiverReport(String str, long j, int i) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
         this.id = str;
         this.bitrate = j;
         this.fractionLost = i;
@@ -33,7 +33,7 @@ public final /* data */ class ReceiverReport {
     }
 
     public final ReceiverReport copy(String id2, long bitrate, int fractionLost) {
-        C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
         return new ReceiverReport(id2, bitrate, fractionLost);
     }
 
@@ -45,7 +45,7 @@ public final /* data */ class ReceiverReport {
             return false;
         }
         ReceiverReport receiverReport = (ReceiverReport) other;
-        return C12238m.areEqual(this.id, receiverReport.id) && this.bitrate == receiverReport.bitrate && this.fractionLost == receiverReport.fractionLost;
+        return m.areEqual(this.id, receiverReport.id) && this.bitrate == receiverReport.bitrate && this.fractionLost == receiverReport.fractionLost;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -77,15 +77,15 @@ public final /* data */ class ReceiverReport {
 
     public int hashCode() {
         String str = this.id;
-        return ((C0002b.m3a(this.bitrate) + ((str != null ? str.hashCode() : 0) * 31)) * 31) + this.fractionLost;
+        return ((b.a(this.bitrate) + ((str != null ? str.hashCode() : 0) * 31)) * 31) + this.fractionLost;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ReceiverReport(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", bitrate=");
-        sbM833U.append(this.bitrate);
-        sbM833U.append(", fractionLost=");
-        return C1643a.m814B(sbM833U, this.fractionLost, ")");
+        StringBuilder sbU = a.U("ReceiverReport(id=");
+        sbU.append(this.id);
+        sbU.append(", bitrate=");
+        sbU.append(this.bitrate);
+        sbU.append(", fractionLost=");
+        return a.B(sbU, this.fractionLost, ")");
     }
 }

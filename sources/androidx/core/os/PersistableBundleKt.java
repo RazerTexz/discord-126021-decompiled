@@ -1,17 +1,17 @@
 package androidx.core.os;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.PersistableBundle;
 import androidx.annotation.RequiresApi;
+import d0.z.d.m;
 import kotlin.Pair;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: PersistableBundle.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class PersistableBundleKt {
     @RequiresApi(21)
     public static final PersistableBundle persistableBundleOf(Pair<String, ? extends Object>... pairArr) {
-        C12238m.checkNotNullParameter(pairArr, "pairs");
+        m.checkNotNullParameter(pairArr, "pairs");
         PersistableBundle persistableBundle = new PersistableBundle(pairArr.length);
         int length = pairArr.length;
         int i = 0;
@@ -23,7 +23,7 @@ public final class PersistableBundleKt {
             if (objComponent2 == null) {
                 persistableBundle.putString(strComponent1, null);
             } else if (objComponent2 instanceof Boolean) {
-                if (Build.VERSION.SDK_INT < 22) {
+                if (Build$VERSION.SDK_INT < 22) {
                     throw new IllegalArgumentException("Illegal value type boolean for key \"" + strComponent1 + '\"');
                 }
                 persistableBundle.putBoolean(strComponent1, ((Boolean) objComponent2).booleanValue());
@@ -36,7 +36,7 @@ public final class PersistableBundleKt {
             } else if (objComponent2 instanceof String) {
                 persistableBundle.putString(strComponent1, (String) objComponent2);
             } else if (objComponent2 instanceof boolean[]) {
-                if (Build.VERSION.SDK_INT < 22) {
+                if (Build$VERSION.SDK_INT < 22) {
                     throw new IllegalArgumentException("Illegal value type boolean[] for key \"" + strComponent1 + '\"');
                 }
                 persistableBundle.putBooleanArray(strComponent1, (boolean[]) objComponent2);
@@ -51,7 +51,7 @@ public final class PersistableBundleKt {
                     throw new IllegalArgumentException("Illegal value type " + ((Object) objComponent2.getClass().getCanonicalName()) + " for key \"" + strComponent1 + '\"');
                 }
                 Class<?> componentType = objComponent2.getClass().getComponentType();
-                C12238m.checkNotNull(componentType);
+                m.checkNotNull(componentType);
                 if (!String.class.isAssignableFrom(componentType)) {
                     throw new IllegalArgumentException("Illegal value array type " + ((Object) componentType.getCanonicalName()) + " for key \"" + strComponent1 + '\"');
                 }

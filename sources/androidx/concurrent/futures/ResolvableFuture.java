@@ -2,10 +2,11 @@ package androidx.concurrent.futures;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
+import androidx.annotation.RestrictTo$Scope;
+import b.i.b.d.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public final class ResolvableFuture<V> extends AbstractResolvableFuture<V> {
     private ResolvableFuture() {
     }
@@ -25,7 +26,7 @@ public final class ResolvableFuture<V> extends AbstractResolvableFuture<V> {
     }
 
     @Override // androidx.concurrent.futures.AbstractResolvableFuture
-    public boolean setFuture(InterfaceFutureC4539a<? extends V> interfaceFutureC4539a) {
-        return super.setFuture(interfaceFutureC4539a);
+    public boolean setFuture(a<? extends V> aVar) {
+        return super.setFuture(aVar);
     }
 }

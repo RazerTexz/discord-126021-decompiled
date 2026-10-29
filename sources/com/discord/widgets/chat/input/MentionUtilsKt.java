@@ -1,10 +1,10 @@
 package com.discord.widgets.chat.input;
 
+import d0.g0.a;
+import d0.t.n0;
+import d0.z.d.m;
 import java.util.Set;
 import kotlin.Pair;
-import p507d0.p579g0.C12084a;
-import p507d0.p580t.C12148n0;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MentionUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,19 +13,19 @@ public final class MentionUtilsKt {
     public static final char EMOJIS_AND_STICKERS_CHAR = ':';
     public static final char CHANNELS_CHAR = '#';
     public static final char SLASH_CHAR = '/';
-    private static final Set<Character> DEFAULT_LEADING_IDENTIFIERS = C12148n0.hashSetOf(Character.valueOf(MENTIONS_CHAR), Character.valueOf(EMOJIS_AND_STICKERS_CHAR), Character.valueOf(CHANNELS_CHAR), Character.valueOf(SLASH_CHAR));
+    private static final Set<Character> DEFAULT_LEADING_IDENTIFIERS = n0.hashSetOf(Character.valueOf(MENTIONS_CHAR), Character.valueOf(EMOJIS_AND_STICKERS_CHAR), Character.valueOf(CHANNELS_CHAR), Character.valueOf(SLASH_CHAR));
 
     public static final Set<Character> getDEFAULT_LEADING_IDENTIFIERS() {
         return DEFAULT_LEADING_IDENTIFIERS;
     }
 
     public static final Pair<String, Integer> getSelectedToken(CharSequence charSequence, int i) {
-        C12238m.checkNotNullParameter(charSequence, "content");
+        m.checkNotNullParameter(charSequence, "content");
         if ((charSequence.length() == 0) || i < 0) {
             return new Pair<>(null, -1);
         }
         boolean z2 = i == charSequence.length();
-        boolean z3 = i == 0 || C12084a.isWhitespace(charSequence.charAt(i + (-1)));
+        boolean z3 = i == 0 || a.isWhitespace(charSequence.charAt(i + (-1)));
         if (z2 && z3) {
             return new Pair<>(null, -1);
         }

@@ -2,6 +2,8 @@ package androidx.vectordrawable.graphics.drawable;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.Resources$NotFoundException;
+import android.content.res.Resources$Theme;
 import android.util.AttributeSet;
 import android.util.Xml;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -16,18 +18,19 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
+import b.d.b.a.a;
 import java.io.IOException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class AnimationUtilsCompat {
     private AnimationUtilsCompat() {
     }
 
-    private static Interpolator createInterpolatorFromXml(Context context, Resources resources, Resources.Theme theme, XmlPullParser xmlPullParser) throws XmlPullParserException, IOException {
+    private static Interpolator createInterpolatorFromXml(Context context, Resources resources, Resources$Theme resources$Theme, XmlPullParser xmlPullParser) throws XmlPullParserException, IOException {
         Interpolator accelerateInterpolator;
         int depth = xmlPullParser.getDepth();
         Interpolator linearInterpolator = null;
@@ -60,9 +63,9 @@ public class AnimationUtilsCompat {
                         linearInterpolator = new BounceInterpolator();
                     } else {
                         if (!name.equals("pathInterpolator")) {
-                            StringBuilder sbM833U = C1643a.m833U("Unknown interpolator name: ");
-                            sbM833U.append(xmlPullParser.getName());
-                            throw new RuntimeException(sbM833U.toString());
+                            StringBuilder sbU = a.U("Unknown interpolator name: ");
+                            sbU.append(xmlPullParser.getName());
+                            throw new RuntimeException(sbU.toString());
                         }
                         accelerateInterpolator = new PathInterpolatorCompat(context, attributeSetAsAttributeSet, xmlPullParser);
                     }
@@ -73,7 +76,7 @@ public class AnimationUtilsCompat {
         return linearInterpolator;
     }
 
-    public static Interpolator loadInterpolator(Context context, int i) throws Resources.NotFoundException {
+    public static Interpolator loadInterpolator(Context context, int i) throws Resources$NotFoundException {
         return AnimationUtils.loadInterpolator(context, i);
     }
 }

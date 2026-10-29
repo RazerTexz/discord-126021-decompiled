@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSearchResultSortChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +20,11 @@ public final /* data */ class TrackSearchResultSortChanged implements AnalyticsS
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "search_result_sort_changed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,7 +33,7 @@ public final /* data */ class TrackSearchResultSortChanged implements AnalyticsS
             return false;
         }
         TrackSearchResultSortChanged trackSearchResultSortChanged = (TrackSearchResultSortChanged) other;
-        return C12238m.areEqual(this.searchId, trackSearchResultSortChanged.searchId) && C12238m.areEqual(this.newSortType, trackSearchResultSortChanged.newSortType);
+        return m.areEqual(this.searchId, trackSearchResultSortChanged.searchId) && m.areEqual(this.newSortType, trackSearchResultSortChanged.newSortType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -50,16 +55,10 @@ public final /* data */ class TrackSearchResultSortChanged implements AnalyticsS
         return iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSearchResultSortChanged(searchId=");
-        sbM833U.append(this.searchId);
-        sbM833U.append(", newSortType=");
-        return C1643a.m817E(sbM833U, this.newSortType, ")");
+        StringBuilder sbU = a.U("TrackSearchResultSortChanged(searchId=");
+        sbU.append(this.searchId);
+        sbU.append(", newSortType=");
+        return a.E(sbU, this.newSortType, ")");
     }
 }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMobileOverlayOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,6 +21,11 @@ public final /* data */ class TrackMobileOverlayOpened implements AnalyticsSchem
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "mobile_overlay_opened";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,7 +34,7 @@ public final /* data */ class TrackMobileOverlayOpened implements AnalyticsSchem
             return false;
         }
         TrackMobileOverlayOpened trackMobileOverlayOpened = (TrackMobileOverlayOpened) other;
-        return C12238m.areEqual(this.type, trackMobileOverlayOpened.type) && C12238m.areEqual(this.rtcConnectionId, trackMobileOverlayOpened.rtcConnectionId) && C12238m.areEqual(this.previewEnabled, trackMobileOverlayOpened.previewEnabled);
+        return m.areEqual(this.type, trackMobileOverlayOpened.type) && m.areEqual(this.rtcConnectionId, trackMobileOverlayOpened.rtcConnectionId) && m.areEqual(this.previewEnabled, trackMobileOverlayOpened.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,18 +58,12 @@ public final /* data */ class TrackMobileOverlayOpened implements AnalyticsSchem
         return iHashCode2 + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMobileOverlayOpened(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", previewEnabled=");
-        return C1643a.m816D(sbM833U, this.previewEnabled, ")");
+        StringBuilder sbU = a.U("TrackMobileOverlayOpened(type=");
+        sbU.append(this.type);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", previewEnabled=");
+        return a.D(sbU, this.previewEnabled, ")");
     }
 }

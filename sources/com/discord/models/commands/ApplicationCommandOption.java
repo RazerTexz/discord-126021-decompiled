@@ -1,13 +1,13 @@
 package com.discord.models.commands;
 
+import b.d.b.a.a;
 import com.discord.api.commands.ApplicationCommandType;
 import com.discord.api.commands.CommandChoice;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationCommandOption.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,8 +26,8 @@ public final /* data */ class ApplicationCommandOption {
     private final ApplicationCommandType type;
 
     public ApplicationCommandOption(ApplicationCommandType applicationCommandType, String str, String str2, Integer num, boolean z2, boolean z3, List<Integer> list, List<CommandChoice> list2, List<ApplicationCommandOption> list3, boolean z4, Number number, Number number2) {
-        C12238m.checkNotNullParameter(applicationCommandType, "type");
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(applicationCommandType, "type");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.type = applicationCommandType;
         this.name = str;
         this.description = str2;
@@ -54,9 +54,14 @@ public final /* data */ class ApplicationCommandOption {
         return this.options;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ ApplicationCommandOption copy$default(ApplicationCommandOption applicationCommandOption, ApplicationCommandType applicationCommandType, String str, String str2, Integer num, boolean z2, boolean z3, List list, List list2, List list3, boolean z4, Number number, Number number2, int i, Object obj) {
+        return applicationCommandOption.copy((i & 1) != 0 ? applicationCommandOption.type : applicationCommandType, (i & 2) != 0 ? applicationCommandOption.name : str, (i & 4) != 0 ? applicationCommandOption.description : str2, (i & 8) != 0 ? applicationCommandOption.descriptionRes : num, (i & 16) != 0 ? applicationCommandOption.required : z2, (i & 32) != 0 ? applicationCommandOption.default : z3, (i & 64) != 0 ? applicationCommandOption.channelTypes : list, (i & 128) != 0 ? applicationCommandOption.choices : list2, (i & 256) != 0 ? applicationCommandOption.options : list3, (i & 512) != 0 ? applicationCommandOption.autocomplete : z4, (i & 1024) != 0 ? applicationCommandOption.minValue : number, (i & 2048) != 0 ? applicationCommandOption.maxValue : number2);
+    }
+
     public final ApplicationCommandOption copy(ApplicationCommandType type, String name, String description, Integer descriptionRes, boolean required, boolean z2, List<Integer> channelTypes, List<CommandChoice> choices, List<ApplicationCommandOption> options, boolean autocomplete, Number minValue, Number maxValue) {
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new ApplicationCommandOption(type, name, description, descriptionRes, required, z2, channelTypes, choices, options, autocomplete, minValue, maxValue);
     }
 
@@ -68,7 +73,7 @@ public final /* data */ class ApplicationCommandOption {
             return false;
         }
         ApplicationCommandOption applicationCommandOption = (ApplicationCommandOption) other;
-        return C12238m.areEqual(this.type, applicationCommandOption.type) && C12238m.areEqual(this.name, applicationCommandOption.name) && C12238m.areEqual(this.description, applicationCommandOption.description) && C12238m.areEqual(this.descriptionRes, applicationCommandOption.descriptionRes) && this.required == applicationCommandOption.required && this.default == applicationCommandOption.default && C12238m.areEqual(this.channelTypes, applicationCommandOption.channelTypes) && C12238m.areEqual(this.choices, applicationCommandOption.choices) && C12238m.areEqual(this.options, applicationCommandOption.options) && this.autocomplete == applicationCommandOption.autocomplete && C12238m.areEqual(this.minValue, applicationCommandOption.minValue) && C12238m.areEqual(this.maxValue, applicationCommandOption.maxValue);
+        return m.areEqual(this.type, applicationCommandOption.type) && m.areEqual(this.name, applicationCommandOption.name) && m.areEqual(this.description, applicationCommandOption.description) && m.areEqual(this.descriptionRes, applicationCommandOption.descriptionRes) && this.required == applicationCommandOption.required && this.default == applicationCommandOption.default && m.areEqual(this.channelTypes, applicationCommandOption.channelTypes) && m.areEqual(this.choices, applicationCommandOption.choices) && m.areEqual(this.options, applicationCommandOption.options) && this.autocomplete == applicationCommandOption.autocomplete && m.areEqual(this.minValue, applicationCommandOption.minValue) && m.areEqual(this.maxValue, applicationCommandOption.maxValue);
     }
 
     /* JADX INFO: renamed from: component10, reason: from getter */
@@ -211,35 +216,35 @@ public final /* data */ class ApplicationCommandOption {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApplicationCommandOption(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", descriptionRes=");
-        sbM833U.append(this.descriptionRes);
-        sbM833U.append(", required=");
-        sbM833U.append(this.required);
-        sbM833U.append(", default=");
-        sbM833U.append(this.default);
-        sbM833U.append(", channelTypes=");
-        sbM833U.append(this.channelTypes);
-        sbM833U.append(", choices=");
-        sbM833U.append(this.choices);
-        sbM833U.append(", options=");
-        sbM833U.append(this.options);
-        sbM833U.append(", autocomplete=");
-        sbM833U.append(this.autocomplete);
-        sbM833U.append(", minValue=");
-        sbM833U.append(this.minValue);
-        sbM833U.append(", maxValue=");
-        sbM833U.append(this.maxValue);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ApplicationCommandOption(type=");
+        sbU.append(this.type);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", descriptionRes=");
+        sbU.append(this.descriptionRes);
+        sbU.append(", required=");
+        sbU.append(this.required);
+        sbU.append(", default=");
+        sbU.append(this.default);
+        sbU.append(", channelTypes=");
+        sbU.append(this.channelTypes);
+        sbU.append(", choices=");
+        sbU.append(this.choices);
+        sbU.append(", options=");
+        sbU.append(this.options);
+        sbU.append(", autocomplete=");
+        sbU.append(this.autocomplete);
+        sbU.append(", minValue=");
+        sbU.append(this.minValue);
+        sbU.append(", maxValue=");
+        sbU.append(this.maxValue);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ ApplicationCommandOption(ApplicationCommandType applicationCommandType, String str, String str2, Integer num, boolean z2, boolean z3, List list, List list2, List list3, boolean z4, Number number, Number number2, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(applicationCommandType, str, (i & 4) != 0 ? null : str2, (i & 8) != 0 ? null : num, z2, z3, (i & 64) != 0 ? C12147n.emptyList() : list, (i & 128) != 0 ? null : list2, (i & 256) != 0 ? null : list3, (i & 512) != 0 ? false : z4, (i & 1024) != 0 ? null : number, (i & 2048) != 0 ? null : number2);
+        this(applicationCommandType, str, (i & 4) != 0 ? null : str2, (i & 8) != 0 ? null : num, z2, z3, (i & 64) != 0 ? n.emptyList() : list, (i & 128) != 0 ? null : list2, (i & 256) != 0 ? null : list3, (i & 512) != 0 ? false : z4, (i & 1024) != 0 ? null : number, (i & 2048) != 0 ? null : number2);
     }
 }

@@ -4,75 +4,42 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import androidx.annotation.ColorInt;
-import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.ItemTouchHelper$SimpleCallback;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView$ViewHolder;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SwipeableItemTouchHelper.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public abstract class SwipeableItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+public abstract class SwipeableItemTouchHelper extends ItemTouchHelper$SimpleCallback {
     private final ColorDrawable background;
-    private final SwipeRevealConfiguration endConfiguration;
-    private final SwipeRevealConfiguration startConfiguration;
-
-    /* JADX INFO: compiled from: SwipeableItemTouchHelper.kt */
-    public final class SwipeRevealConfiguration {
-        private final int backgroundColor;
-        private final Drawable icon;
-        private final int padding;
-
-        public SwipeRevealConfiguration() {
-            this(0, null, 0, 7, null);
-        }
-
-        public SwipeRevealConfiguration(@ColorInt int i, Drawable drawable, int i2) {
-            this.backgroundColor = i;
-            this.icon = drawable;
-            this.padding = i2;
-        }
-
-        public final int getBackgroundColor() {
-            return this.backgroundColor;
-        }
-
-        public final Drawable getIcon() {
-            return this.icon;
-        }
-
-        public final int getPadding() {
-            return this.padding;
-        }
-
-        public /* synthetic */ SwipeRevealConfiguration(int i, Drawable drawable, int i2, int i3, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i3 & 1) != 0 ? 0 : i, (i3 & 2) != 0 ? null : drawable, (i3 & 4) != 0 ? 0 : i2);
-        }
-    }
+    private final SwipeableItemTouchHelper$SwipeRevealConfiguration endConfiguration;
+    private final SwipeableItemTouchHelper$SwipeRevealConfiguration startConfiguration;
 
     public SwipeableItemTouchHelper() {
         this(0, 0, null, null, 15, null);
     }
 
-    public /* synthetic */ SwipeableItemTouchHelper(int i, int i2, SwipeRevealConfiguration swipeRevealConfiguration, SwipeRevealConfiguration swipeRevealConfiguration2, int i3, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i3 & 1) != 0 ? 0 : i, (i3 & 2) != 0 ? 12 : i2, (i3 & 4) != 0 ? null : swipeRevealConfiguration, (i3 & 8) != 0 ? null : swipeRevealConfiguration2);
+    public /* synthetic */ SwipeableItemTouchHelper(int i, int i2, SwipeableItemTouchHelper$SwipeRevealConfiguration swipeableItemTouchHelper$SwipeRevealConfiguration, SwipeableItemTouchHelper$SwipeRevealConfiguration swipeableItemTouchHelper$SwipeRevealConfiguration2, int i3, DefaultConstructorMarker defaultConstructorMarker) {
+        this((i3 & 1) != 0 ? 0 : i, (i3 & 2) != 0 ? 12 : i2, (i3 & 4) != 0 ? null : swipeableItemTouchHelper$SwipeRevealConfiguration, (i3 & 8) != 0 ? null : swipeableItemTouchHelper$SwipeRevealConfiguration2);
     }
 
-    public final SwipeRevealConfiguration getEndConfiguration() {
+    public final SwipeableItemTouchHelper$SwipeRevealConfiguration getEndConfiguration() {
         return this.endConfiguration;
     }
 
-    public final SwipeRevealConfiguration getStartConfiguration() {
+    public final SwipeableItemTouchHelper$SwipeRevealConfiguration getStartConfiguration() {
         return this.startConfiguration;
     }
 
-    @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
-    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-        C12238m.checkNotNullParameter(c, "c");
-        C12238m.checkNotNullParameter(recyclerView, "recyclerView");
-        C12238m.checkNotNullParameter(viewHolder, "viewHolder");
+    @Override // androidx.recyclerview.widget.ItemTouchHelper$Callback
+    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView$ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        m.checkNotNullParameter(c, "c");
+        m.checkNotNullParameter(recyclerView, "recyclerView");
+        m.checkNotNullParameter(viewHolder, "viewHolder");
         View view = viewHolder.itemView;
-        C12238m.checkNotNullExpressionValue(view, "viewHolder.itemView");
+        m.checkNotNullExpressionValue(view, "viewHolder.itemView");
         float f = 0;
         if (dX > f && this.startConfiguration != null) {
             int left = view.getLeft();
@@ -106,18 +73,18 @@ public abstract class SwipeableItemTouchHelper extends ItemTouchHelper.SimpleCal
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
-    @Override // androidx.recyclerview.widget.ItemTouchHelper.Callback
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        C12238m.checkNotNullParameter(recyclerView, "recyclerView");
-        C12238m.checkNotNullParameter(viewHolder, "viewHolder");
-        C12238m.checkNotNullParameter(target, "target");
+    @Override // androidx.recyclerview.widget.ItemTouchHelper$Callback
+    public boolean onMove(RecyclerView recyclerView, RecyclerView$ViewHolder viewHolder, RecyclerView$ViewHolder target) {
+        m.checkNotNullParameter(recyclerView, "recyclerView");
+        m.checkNotNullParameter(viewHolder, "viewHolder");
+        m.checkNotNullParameter(target, "target");
         return false;
     }
 
-    public SwipeableItemTouchHelper(int i, int i2, SwipeRevealConfiguration swipeRevealConfiguration, SwipeRevealConfiguration swipeRevealConfiguration2) {
+    public SwipeableItemTouchHelper(int i, int i2, SwipeableItemTouchHelper$SwipeRevealConfiguration swipeableItemTouchHelper$SwipeRevealConfiguration, SwipeableItemTouchHelper$SwipeRevealConfiguration swipeableItemTouchHelper$SwipeRevealConfiguration2) {
         super(i, i2);
-        this.startConfiguration = swipeRevealConfiguration;
-        this.endConfiguration = swipeRevealConfiguration2;
+        this.startConfiguration = swipeableItemTouchHelper$SwipeRevealConfiguration;
+        this.endConfiguration = swipeableItemTouchHelper$SwipeRevealConfiguration2;
         this.background = new ColorDrawable();
     }
 }

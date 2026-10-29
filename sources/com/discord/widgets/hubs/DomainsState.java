@@ -1,10 +1,10 @@
 package com.discord.widgets.hubs;
 
+import b.d.b.a.a;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubDomainsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,13 +12,12 @@ public final /* data */ class DomainsState {
     private final Long selectedGuildId;
     private final RestCallState<Object> verifyEmailAsync;
 
-    /* JADX WARN: Multi-variable type inference failed */
     public DomainsState() {
-        this(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
+        this(null, null, 3, null);
     }
 
     public DomainsState(Long l, RestCallState<? extends Object> restCallState) {
-        C12238m.checkNotNullParameter(restCallState, "verifyEmailAsync");
+        m.checkNotNullParameter(restCallState, "verifyEmailAsync");
         this.selectedGuildId = l;
         this.verifyEmailAsync = restCallState;
     }
@@ -39,7 +38,7 @@ public final /* data */ class DomainsState {
     }
 
     public final DomainsState copy(Long selectedGuildId, RestCallState<? extends Object> verifyEmailAsync) {
-        C12238m.checkNotNullParameter(verifyEmailAsync, "verifyEmailAsync");
+        m.checkNotNullParameter(verifyEmailAsync, "verifyEmailAsync");
         return new DomainsState(selectedGuildId, verifyEmailAsync);
     }
 
@@ -51,7 +50,7 @@ public final /* data */ class DomainsState {
             return false;
         }
         DomainsState domainsState = (DomainsState) other;
-        return C12238m.areEqual(this.selectedGuildId, domainsState.selectedGuildId) && C12238m.areEqual(this.verifyEmailAsync, domainsState.verifyEmailAsync);
+        return m.areEqual(this.selectedGuildId, domainsState.selectedGuildId) && m.areEqual(this.verifyEmailAsync, domainsState.verifyEmailAsync);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -75,12 +74,12 @@ public final /* data */ class DomainsState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("DomainsState(selectedGuildId=");
-        sbM833U.append(this.selectedGuildId);
-        sbM833U.append(", verifyEmailAsync=");
-        sbM833U.append(this.verifyEmailAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("DomainsState(selectedGuildId=");
+        sbU.append(this.selectedGuildId);
+        sbU.append(", verifyEmailAsync=");
+        sbU.append(this.verifyEmailAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ DomainsState(Long l, RestCallState restCallState, int i, DefaultConstructorMarker defaultConstructorMarker) {

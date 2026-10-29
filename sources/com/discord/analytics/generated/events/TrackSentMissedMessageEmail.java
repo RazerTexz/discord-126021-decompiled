@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSentMissedMessageEmail.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackSentMissedMessageEmail implements AnalyticsSc
             return false;
         }
         TrackSentMissedMessageEmail trackSentMissedMessageEmail = (TrackSentMissedMessageEmail) other;
-        return C12238m.areEqual(this.trackingPixelUuid, trackSentMissedMessageEmail.trackingPixelUuid) && C12238m.areEqual(this.subjectClassification, trackSentMissedMessageEmail.subjectClassification) && C12238m.areEqual(this.totalGuildsMissed, trackSentMissedMessageEmail.totalGuildsMissed) && C12238m.areEqual(this.totalChannelsMissed, trackSentMissedMessageEmail.totalChannelsMissed) && C12238m.areEqual(this.totalDmsMissed, trackSentMissedMessageEmail.totalDmsMissed) && C12238m.areEqual(this.totalApproximateMessagesMissed, trackSentMissedMessageEmail.totalApproximateMessagesMissed) && C12238m.areEqual(this.lastAckAt, trackSentMissedMessageEmail.lastAckAt) && C12238m.areEqual(this.didSend, trackSentMissedMessageEmail.didSend);
+        return m.areEqual(this.trackingPixelUuid, trackSentMissedMessageEmail.trackingPixelUuid) && m.areEqual(this.subjectClassification, trackSentMissedMessageEmail.subjectClassification) && m.areEqual(this.totalGuildsMissed, trackSentMissedMessageEmail.totalGuildsMissed) && m.areEqual(this.totalChannelsMissed, trackSentMissedMessageEmail.totalChannelsMissed) && m.areEqual(this.totalDmsMissed, trackSentMissedMessageEmail.totalDmsMissed) && m.areEqual(this.totalApproximateMessagesMissed, trackSentMissedMessageEmail.totalApproximateMessagesMissed) && m.areEqual(this.lastAckAt, trackSentMissedMessageEmail.lastAckAt) && m.areEqual(this.didSend, trackSentMissedMessageEmail.didSend);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,21 +57,21 @@ public final /* data */ class TrackSentMissedMessageEmail implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSentMissedMessageEmail(trackingPixelUuid=");
-        sbM833U.append(this.trackingPixelUuid);
-        sbM833U.append(", subjectClassification=");
-        sbM833U.append(this.subjectClassification);
-        sbM833U.append(", totalGuildsMissed=");
-        sbM833U.append(this.totalGuildsMissed);
-        sbM833U.append(", totalChannelsMissed=");
-        sbM833U.append(this.totalChannelsMissed);
-        sbM833U.append(", totalDmsMissed=");
-        sbM833U.append(this.totalDmsMissed);
-        sbM833U.append(", totalApproximateMessagesMissed=");
-        sbM833U.append(this.totalApproximateMessagesMissed);
-        sbM833U.append(", lastAckAt=");
-        sbM833U.append(this.lastAckAt);
-        sbM833U.append(", didSend=");
-        return C1643a.m816D(sbM833U, this.didSend, ")");
+        StringBuilder sbU = a.U("TrackSentMissedMessageEmail(trackingPixelUuid=");
+        sbU.append(this.trackingPixelUuid);
+        sbU.append(", subjectClassification=");
+        sbU.append(this.subjectClassification);
+        sbU.append(", totalGuildsMissed=");
+        sbU.append(this.totalGuildsMissed);
+        sbU.append(", totalChannelsMissed=");
+        sbU.append(this.totalChannelsMissed);
+        sbU.append(", totalDmsMissed=");
+        sbU.append(this.totalDmsMissed);
+        sbU.append(", totalApproximateMessagesMissed=");
+        sbU.append(this.totalApproximateMessagesMissed);
+        sbU.append(", lastAckAt=");
+        sbU.append(this.lastAckAt);
+        sbU.append(", didSend=");
+        return a.D(sbU, this.didSend, ")");
     }
 }

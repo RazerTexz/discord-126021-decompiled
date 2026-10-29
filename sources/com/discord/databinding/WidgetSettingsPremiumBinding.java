@@ -9,130 +9,111 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.a3;
+import b.a.i.a6;
+import b.a.i.b3;
+import b.a.i.f0;
+import b.a.i.s0;
+import b.a.i.z2;
 import com.discord.app.AppViewFlipper;
 import com.discord.views.ActiveSubscriptionView;
 import com.google.android.material.button.MaterialButton;
-import p007b.p008a.p025i.C0915a3;
-import p007b.p008a.p025i.C0918a6;
-import p007b.p008a.p025i.C0923b3;
-import p007b.p008a.p025i.C0952f0;
-import p007b.p008a.p025i.C1045s0;
-import p007b.p008a.p025i.C1096z2;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsPremiumBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f18029a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final C0952f0 f18030b;
+    public final f0 f2633b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final C1045s0 f18031c;
+    public final s0 c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final C1096z2 f18032d;
+    public final z2 d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ActiveSubscriptionView f18033e;
+    public final ActiveSubscriptionView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ActiveSubscriptionView f18034f;
+    public final ActiveSubscriptionView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final LinearLayout f18035g;
+    public final LinearLayout g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f18036h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f18037i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f18038j;
+    public final TextView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final C0918a6 f18039k;
+    public final a6 k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final MaterialButton f18040l;
+    public final MaterialButton l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final ScrollView f18041m;
+    public final ScrollView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final Button f18042n;
+    public final Button n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final CardView f18043o;
+    public final CardView o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final TextView f18044p;
+    public final TextView p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final LinearLayout f18045q;
+    public final LinearLayout q;
 
-    /* JADX INFO: renamed from: r */
     @NonNull
-    public final TextView f18046r;
+    public final TextView r;
 
-    /* JADX INFO: renamed from: s */
+    /* JADX INFO: renamed from: s, reason: collision with root package name */
     @NonNull
-    public final AppViewFlipper f18047s;
+    public final AppViewFlipper f2634s;
 
-    /* JADX INFO: renamed from: t */
     @NonNull
-    public final C0915a3 f18048t;
+    public final a3 t;
 
-    /* JADX INFO: renamed from: u */
     @NonNull
-    public final C0923b3 f18049u;
+    public final b3 u;
 
-    public WidgetSettingsPremiumBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull C0952f0 c0952f0, @NonNull C1045s0 c1045s0, @NonNull C1096z2 c1096z2, @NonNull ActiveSubscriptionView activeSubscriptionView, @NonNull ActiveSubscriptionView activeSubscriptionView2, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull C0918a6 c0918a6, @NonNull MaterialButton materialButton, @NonNull ScrollView scrollView, @NonNull Button button, @NonNull CardView cardView, @NonNull TextView textView4, @NonNull LinearLayout linearLayout2, @NonNull TextView textView5, @NonNull AppViewFlipper appViewFlipper, @NonNull C0915a3 c0915a3, @NonNull C0923b3 c0923b3) {
-        this.f18029a = coordinatorLayout;
-        this.f18030b = c0952f0;
-        this.f18031c = c1045s0;
-        this.f18032d = c1096z2;
-        this.f18033e = activeSubscriptionView;
-        this.f18034f = activeSubscriptionView2;
-        this.f18035g = linearLayout;
-        this.f18036h = textView;
-        this.f18037i = textView2;
-        this.f18038j = textView3;
-        this.f18039k = c0918a6;
-        this.f18040l = materialButton;
-        this.f18041m = scrollView;
-        this.f18042n = button;
-        this.f18043o = cardView;
-        this.f18044p = textView4;
-        this.f18045q = linearLayout2;
-        this.f18046r = textView5;
-        this.f18047s = appViewFlipper;
-        this.f18048t = c0915a3;
-        this.f18049u = c0923b3;
+    public WidgetSettingsPremiumBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull f0 f0Var, @NonNull s0 s0Var, @NonNull z2 z2Var, @NonNull ActiveSubscriptionView activeSubscriptionView, @NonNull ActiveSubscriptionView activeSubscriptionView2, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull a6 a6Var, @NonNull MaterialButton materialButton, @NonNull ScrollView scrollView, @NonNull Button button, @NonNull CardView cardView, @NonNull TextView textView4, @NonNull LinearLayout linearLayout2, @NonNull TextView textView5, @NonNull AppViewFlipper appViewFlipper, @NonNull a3 a3Var, @NonNull b3 b3Var) {
+        this.a = coordinatorLayout;
+        this.f2633b = f0Var;
+        this.c = s0Var;
+        this.d = z2Var;
+        this.e = activeSubscriptionView;
+        this.f = activeSubscriptionView2;
+        this.g = linearLayout;
+        this.h = textView;
+        this.i = textView2;
+        this.j = textView3;
+        this.k = a6Var;
+        this.l = materialButton;
+        this.m = scrollView;
+        this.n = button;
+        this.o = cardView;
+        this.p = textView4;
+        this.q = linearLayout2;
+        this.r = textView5;
+        this.f2634s = appViewFlipper;
+        this.t = a3Var;
+        this.u = b3Var;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18029a;
+        return this.a;
     }
 }

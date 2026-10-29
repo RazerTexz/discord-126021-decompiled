@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackFriendSuggestionSkipped.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackFriendSuggestionSkipped implements AnalyticsS
             return false;
         }
         TrackFriendSuggestionSkipped trackFriendSuggestionSkipped = (TrackFriendSuggestionSkipped) other;
-        return C12238m.areEqual(this.suggestedUserId, trackFriendSuggestionSkipped.suggestedUserId) && C12238m.areEqual(this.platformType, trackFriendSuggestionSkipped.platformType) && C12238m.areEqual(this.isNonMutual, trackFriendSuggestionSkipped.isNonMutual) && C12238m.areEqual(this.isReverseSuggestion, trackFriendSuggestionSkipped.isReverseSuggestion) && C12238m.areEqual(this.existingRelationshipType, trackFriendSuggestionSkipped.existingRelationshipType) && C12238m.areEqual(this.userAllowedInSuggestions, trackFriendSuggestionSkipped.userAllowedInSuggestions) && C12238m.areEqual(this.userConsents, trackFriendSuggestionSkipped.userConsents) && C12238m.areEqual(this.userIsDiscoverable, trackFriendSuggestionSkipped.userIsDiscoverable) && C12238m.areEqual(this.otherUserAllowedInSuggestions, trackFriendSuggestionSkipped.otherUserAllowedInSuggestions) && C12238m.areEqual(this.otherUserConsents, trackFriendSuggestionSkipped.otherUserConsents) && C12238m.areEqual(this.otherUserDiscoverable, trackFriendSuggestionSkipped.otherUserDiscoverable);
+        return m.areEqual(this.suggestedUserId, trackFriendSuggestionSkipped.suggestedUserId) && m.areEqual(this.platformType, trackFriendSuggestionSkipped.platformType) && m.areEqual(this.isNonMutual, trackFriendSuggestionSkipped.isNonMutual) && m.areEqual(this.isReverseSuggestion, trackFriendSuggestionSkipped.isReverseSuggestion) && m.areEqual(this.existingRelationshipType, trackFriendSuggestionSkipped.existingRelationshipType) && m.areEqual(this.userAllowedInSuggestions, trackFriendSuggestionSkipped.userAllowedInSuggestions) && m.areEqual(this.userConsents, trackFriendSuggestionSkipped.userConsents) && m.areEqual(this.userIsDiscoverable, trackFriendSuggestionSkipped.userIsDiscoverable) && m.areEqual(this.otherUserAllowedInSuggestions, trackFriendSuggestionSkipped.otherUserAllowedInSuggestions) && m.areEqual(this.otherUserConsents, trackFriendSuggestionSkipped.otherUserConsents) && m.areEqual(this.otherUserDiscoverable, trackFriendSuggestionSkipped.otherUserDiscoverable);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,27 +66,27 @@ public final /* data */ class TrackFriendSuggestionSkipped implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackFriendSuggestionSkipped(suggestedUserId=");
-        sbM833U.append(this.suggestedUserId);
-        sbM833U.append(", platformType=");
-        sbM833U.append(this.platformType);
-        sbM833U.append(", isNonMutual=");
-        sbM833U.append(this.isNonMutual);
-        sbM833U.append(", isReverseSuggestion=");
-        sbM833U.append(this.isReverseSuggestion);
-        sbM833U.append(", existingRelationshipType=");
-        sbM833U.append(this.existingRelationshipType);
-        sbM833U.append(", userAllowedInSuggestions=");
-        sbM833U.append(this.userAllowedInSuggestions);
-        sbM833U.append(", userConsents=");
-        sbM833U.append(this.userConsents);
-        sbM833U.append(", userIsDiscoverable=");
-        sbM833U.append(this.userIsDiscoverable);
-        sbM833U.append(", otherUserAllowedInSuggestions=");
-        sbM833U.append(this.otherUserAllowedInSuggestions);
-        sbM833U.append(", otherUserConsents=");
-        sbM833U.append(this.otherUserConsents);
-        sbM833U.append(", otherUserDiscoverable=");
-        return C1643a.m816D(sbM833U, this.otherUserDiscoverable, ")");
+        StringBuilder sbU = a.U("TrackFriendSuggestionSkipped(suggestedUserId=");
+        sbU.append(this.suggestedUserId);
+        sbU.append(", platformType=");
+        sbU.append(this.platformType);
+        sbU.append(", isNonMutual=");
+        sbU.append(this.isNonMutual);
+        sbU.append(", isReverseSuggestion=");
+        sbU.append(this.isReverseSuggestion);
+        sbU.append(", existingRelationshipType=");
+        sbU.append(this.existingRelationshipType);
+        sbU.append(", userAllowedInSuggestions=");
+        sbU.append(this.userAllowedInSuggestions);
+        sbU.append(", userConsents=");
+        sbU.append(this.userConsents);
+        sbU.append(", userIsDiscoverable=");
+        sbU.append(this.userIsDiscoverable);
+        sbU.append(", otherUserAllowedInSuggestions=");
+        sbU.append(this.otherUserAllowedInSuggestions);
+        sbU.append(", otherUserConsents=");
+        sbU.append(this.otherUserConsents);
+        sbU.append(", otherUserDiscoverable=");
+        return a.D(sbU, this.otherUserDiscoverable, ")");
     }
 }

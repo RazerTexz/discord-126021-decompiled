@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkInformation;
 import com.discord.analytics.generated.traits.TrackNetworkInformationReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVideoStreamStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -42,7 +42,7 @@ public final /* data */ class TrackVideoStreamStarted implements AnalyticsSchema
             return false;
         }
         TrackVideoStreamStarted trackVideoStreamStarted = (TrackVideoStreamStarted) other;
-        return C12238m.areEqual(this.guildId, trackVideoStreamStarted.guildId) && C12238m.areEqual(this.channelId, trackVideoStreamStarted.channelId) && C12238m.areEqual(this.rtcConnectionId, trackVideoStreamStarted.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackVideoStreamStarted.mediaSessionId) && C12238m.areEqual(this.parentMediaSessionId, trackVideoStreamStarted.parentMediaSessionId) && C12238m.areEqual(this.senderUserId, trackVideoStreamStarted.senderUserId) && C12238m.areEqual(this.context, trackVideoStreamStarted.context) && C12238m.areEqual(this.participantType, trackVideoStreamStarted.participantType) && C12238m.areEqual(this.shareApplicationName, trackVideoStreamStarted.shareApplicationName) && C12238m.areEqual(this.shareApplicationId, trackVideoStreamStarted.shareApplicationId) && C12238m.areEqual(this.shareApplicationExecutable, trackVideoStreamStarted.shareApplicationExecutable) && C12238m.areEqual(this.streamRegion, trackVideoStreamStarted.streamRegion) && C12238m.areEqual(this.guildRegion, trackVideoStreamStarted.guildRegion) && C12238m.areEqual(this.videoLayout, trackVideoStreamStarted.videoLayout) && C12238m.areEqual(this.videoInputResolution, trackVideoStreamStarted.videoInputResolution) && C12238m.areEqual(this.videoInputFrameRate, trackVideoStreamStarted.videoInputFrameRate) && C12238m.areEqual(this.soundshareSession, trackVideoStreamStarted.soundshareSession) && C12238m.areEqual(this.shareGameName, trackVideoStreamStarted.shareGameName) && C12238m.areEqual(this.shareGameId, trackVideoStreamStarted.shareGameId);
+        return m.areEqual(this.guildId, trackVideoStreamStarted.guildId) && m.areEqual(this.channelId, trackVideoStreamStarted.channelId) && m.areEqual(this.rtcConnectionId, trackVideoStreamStarted.rtcConnectionId) && m.areEqual(this.mediaSessionId, trackVideoStreamStarted.mediaSessionId) && m.areEqual(this.parentMediaSessionId, trackVideoStreamStarted.parentMediaSessionId) && m.areEqual(this.senderUserId, trackVideoStreamStarted.senderUserId) && m.areEqual(this.context, trackVideoStreamStarted.context) && m.areEqual(this.participantType, trackVideoStreamStarted.participantType) && m.areEqual(this.shareApplicationName, trackVideoStreamStarted.shareApplicationName) && m.areEqual(this.shareApplicationId, trackVideoStreamStarted.shareApplicationId) && m.areEqual(this.shareApplicationExecutable, trackVideoStreamStarted.shareApplicationExecutable) && m.areEqual(this.streamRegion, trackVideoStreamStarted.streamRegion) && m.areEqual(this.guildRegion, trackVideoStreamStarted.guildRegion) && m.areEqual(this.videoLayout, trackVideoStreamStarted.videoLayout) && m.areEqual(this.videoInputResolution, trackVideoStreamStarted.videoInputResolution) && m.areEqual(this.videoInputFrameRate, trackVideoStreamStarted.videoInputFrameRate) && m.areEqual(this.soundshareSession, trackVideoStreamStarted.soundshareSession) && m.areEqual(this.shareGameName, trackVideoStreamStarted.shareGameName) && m.areEqual(this.shareGameId, trackVideoStreamStarted.shareGameId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -93,43 +93,43 @@ public final /* data */ class TrackVideoStreamStarted implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVideoStreamStarted(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", parentMediaSessionId=");
-        sbM833U.append(this.parentMediaSessionId);
-        sbM833U.append(", senderUserId=");
-        sbM833U.append(this.senderUserId);
-        sbM833U.append(", context=");
-        sbM833U.append(this.context);
-        sbM833U.append(", participantType=");
-        sbM833U.append(this.participantType);
-        sbM833U.append(", shareApplicationName=");
-        sbM833U.append(this.shareApplicationName);
-        sbM833U.append(", shareApplicationId=");
-        sbM833U.append(this.shareApplicationId);
-        sbM833U.append(", shareApplicationExecutable=");
-        sbM833U.append(this.shareApplicationExecutable);
-        sbM833U.append(", streamRegion=");
-        sbM833U.append(this.streamRegion);
-        sbM833U.append(", guildRegion=");
-        sbM833U.append(this.guildRegion);
-        sbM833U.append(", videoLayout=");
-        sbM833U.append(this.videoLayout);
-        sbM833U.append(", videoInputResolution=");
-        sbM833U.append(this.videoInputResolution);
-        sbM833U.append(", videoInputFrameRate=");
-        sbM833U.append(this.videoInputFrameRate);
-        sbM833U.append(", soundshareSession=");
-        sbM833U.append(this.soundshareSession);
-        sbM833U.append(", shareGameName=");
-        sbM833U.append(this.shareGameName);
-        sbM833U.append(", shareGameId=");
-        return C1643a.m819G(sbM833U, this.shareGameId, ")");
+        StringBuilder sbU = a.U("TrackVideoStreamStarted(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", parentMediaSessionId=");
+        sbU.append(this.parentMediaSessionId);
+        sbU.append(", senderUserId=");
+        sbU.append(this.senderUserId);
+        sbU.append(", context=");
+        sbU.append(this.context);
+        sbU.append(", participantType=");
+        sbU.append(this.participantType);
+        sbU.append(", shareApplicationName=");
+        sbU.append(this.shareApplicationName);
+        sbU.append(", shareApplicationId=");
+        sbU.append(this.shareApplicationId);
+        sbU.append(", shareApplicationExecutable=");
+        sbU.append(this.shareApplicationExecutable);
+        sbU.append(", streamRegion=");
+        sbU.append(this.streamRegion);
+        sbU.append(", guildRegion=");
+        sbU.append(this.guildRegion);
+        sbU.append(", videoLayout=");
+        sbU.append(this.videoLayout);
+        sbU.append(", videoInputResolution=");
+        sbU.append(this.videoInputResolution);
+        sbU.append(", videoInputFrameRate=");
+        sbU.append(this.videoInputFrameRate);
+        sbU.append(", soundshareSession=");
+        sbU.append(this.soundshareSession);
+        sbU.append(", shareGameName=");
+        sbU.append(this.shareGameName);
+        sbU.append(", shareGameId=");
+        return a.G(sbU, this.shareGameId, ")");
     }
 }

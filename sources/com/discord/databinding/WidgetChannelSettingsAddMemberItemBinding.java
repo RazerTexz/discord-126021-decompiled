@@ -11,32 +11,29 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelSettingsAddMemberItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15900a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ChannelPermissionOwnerView f15901b;
+    public final ChannelPermissionOwnerView f2271b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialCheckBox f15902c;
+    public final MaterialCheckBox c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ConstraintLayout f15903d;
+    public final ConstraintLayout d;
 
     public WidgetChannelSettingsAddMemberItemBinding(@NonNull FrameLayout frameLayout, @NonNull ChannelPermissionOwnerView channelPermissionOwnerView, @NonNull MaterialCheckBox materialCheckBox, @NonNull ConstraintLayout constraintLayout) {
-        this.f15900a = frameLayout;
-        this.f15901b = channelPermissionOwnerView;
-        this.f15902c = materialCheckBox;
-        this.f15903d = constraintLayout;
+        this.a = frameLayout;
+        this.f2271b = channelPermissionOwnerView;
+        this.c = materialCheckBox;
+        this.d = constraintLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15900a;
+        return this.a;
     }
 }

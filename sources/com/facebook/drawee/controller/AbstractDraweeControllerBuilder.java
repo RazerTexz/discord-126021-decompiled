@@ -1,7 +1,12 @@
 package com.facebook.drawee.controller;
 
 import android.content.Context;
-import android.graphics.drawable.Animatable;
+import b.c.a.a0.d;
+import b.f.e.e;
+import b.f.e.g;
+import b.f.g.g.a;
+import b.f.h.b.a.b;
+import b.f.h.b.a.c;
 import com.facebook.common.internal.Supplier;
 import com.facebook.datasource.DataSource;
 import com.facebook.drawee.controller.AbstractDraweeControllerBuilder;
@@ -10,170 +15,112 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p007b.p109f.p129e.C1725e;
-import p007b.p109f.p129e.C1727g;
-import p007b.p109f.p132g.p138b.C1752d;
-import p007b.p109f.p132g.p139c.C1754b;
-import p007b.p109f.p132g.p139c.C1755c;
-import p007b.p109f.p132g.p144g.C1797a;
-import p007b.p109f.p148h.p158b.p159a.C1828c;
-import p007b.p109f.p148h.p158b.p159a.InterfaceC1827b;
-import p007b.p109f.p161j.p183r.C2030b;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class AbstractDraweeControllerBuilder<BUILDER extends AbstractDraweeControllerBuilder<BUILDER, REQUEST, IMAGE, INFO>, REQUEST, IMAGE, INFO> {
+    public final Context d;
+    public final Set<ControllerListener> e;
+    public final Set<b> f;
+    public static final ControllerListener<Object> a = new AbstractDraweeControllerBuilder$a();
 
-    /* JADX INFO: renamed from: d */
-    public final Context f19480d;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public static final NullPointerException f2888b = new NullPointerException("No image request was specified!");
+    public static final AtomicLong c = new AtomicLong();
+    public Object g = null;
+    public REQUEST h = null;
+    public REQUEST[] i = null;
+    public boolean j = true;
+    public ControllerListener<? super INFO> k = null;
+    public boolean l = false;
+    public boolean m = false;
+    public DraweeController n = null;
 
-    /* JADX INFO: renamed from: e */
-    public final Set<ControllerListener> f19481e;
+    public AbstractDraweeControllerBuilder(Context context, Set<ControllerListener> set, Set<b> set2) {
+        this.d = context;
+        this.e = set;
+        this.f = set2;
+    }
 
-    /* JADX INFO: renamed from: f */
-    public final Set<InterfaceC1827b> f19482f;
-
-    /* JADX INFO: renamed from: a */
-    public static final ControllerListener<Object> f19477a = new C10642a();
-
-    /* JADX INFO: renamed from: b */
-    public static final NullPointerException f19478b = new NullPointerException("No image request was specified!");
-
-    /* JADX INFO: renamed from: c */
-    public static final AtomicLong f19479c = new AtomicLong();
-
-    /* JADX INFO: renamed from: g */
-    public Object f19483g = null;
-
-    /* JADX INFO: renamed from: h */
-    public REQUEST f19484h = null;
-
-    /* JADX INFO: renamed from: i */
-    public REQUEST[] f19485i = null;
-
-    /* JADX INFO: renamed from: j */
-    public boolean f19486j = true;
-
-    /* JADX INFO: renamed from: k */
-    public ControllerListener<? super INFO> f19487k = null;
-
-    /* JADX INFO: renamed from: l */
-    public boolean f19488l = false;
-
-    /* JADX INFO: renamed from: m */
-    public boolean f19489m = false;
-
-    /* JADX INFO: renamed from: n */
-    public DraweeController f19490n = null;
-
-    /* JADX INFO: renamed from: com.facebook.drawee.controller.AbstractDraweeControllerBuilder$a */
-    public final class C10642a extends C1755c<Object> {
-        @Override // p007b.p109f.p132g.p139c.C1755c, com.facebook.drawee.controller.ControllerListener
-        public void onFinalImageSet(String str, Object obj, Animatable animatable) {
-            if (animatable != null) {
-                animatable.start();
-            }
+    public AbstractDraweeController a() {
+        d.C(this.i == null || this.h == null, "Cannot specify both ImageRequest and FirstAvailableImageRequests!");
+        d.C(true, "Cannot specify DataSourceSupplier with other ImageRequests! Use one or the other.");
+        if (this.h == null) {
+            REQUEST[] requestArr = this.i;
         }
-    }
-
-    /* JADX INFO: renamed from: com.facebook.drawee.controller.AbstractDraweeControllerBuilder$b */
-    public enum EnumC10643b {
-        FULL_FETCH,
-        DISK_CACHE,
-        BITMAP_MEMORY_CACHE
-    }
-
-    public AbstractDraweeControllerBuilder(Context context, Set<ControllerListener> set, Set<InterfaceC1827b> set2) {
-        this.f19480d = context;
-        this.f19481e = set;
-        this.f19482f = set2;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public AbstractDraweeController m8667a() {
-        C1460d.m423C(this.f19485i == null || this.f19484h == null, "Cannot specify both ImageRequest and FirstAvailableImageRequests!");
-        C1460d.m423C(true, "Cannot specify DataSourceSupplier with other ImageRequests! Use one or the other.");
-        if (this.f19484h == null) {
-            REQUEST[] requestArr = this.f19485i;
-        }
-        C2030b.m1527b();
-        AbstractDraweeController abstractDraweeControllerMo1057d = mo1057d();
-        abstractDraweeControllerMo1057d.f19468r = false;
-        abstractDraweeControllerMo1057d.f19469s = null;
-        boolean z2 = this.f19488l;
+        b.f.j.r.b.b();
+        AbstractDraweeController abstractDraweeControllerD = d();
+        abstractDraweeControllerD.r = false;
+        abstractDraweeControllerD.f2886s = null;
+        boolean z2 = this.l;
         if (z2) {
-            if (abstractDraweeControllerMo1057d.f19457g == null) {
-                abstractDraweeControllerMo1057d.f19457g = new C1752d();
+            if (abstractDraweeControllerD.g == null) {
+                abstractDraweeControllerD.g = new b.f.g.b.d();
             }
-            abstractDraweeControllerMo1057d.f19457g.f3288a = z2;
-            if (abstractDraweeControllerMo1057d.f19458h == null) {
-                C1797a c1797a = new C1797a(this.f19480d);
-                abstractDraweeControllerMo1057d.f19458h = c1797a;
-                c1797a.f3480a = abstractDraweeControllerMo1057d;
+            abstractDraweeControllerD.g.a = z2;
+            if (abstractDraweeControllerD.h == null) {
+                a aVar = new a(this.d);
+                abstractDraweeControllerD.h = aVar;
+                aVar.a = abstractDraweeControllerD;
             }
         }
-        Set<ControllerListener> set = this.f19481e;
+        Set<ControllerListener> set = this.e;
         if (set != null) {
             Iterator<ControllerListener> it = set.iterator();
             while (it.hasNext()) {
-                abstractDraweeControllerMo1057d.m8656f(it.next());
+                abstractDraweeControllerD.f(it.next());
             }
         }
-        Set<InterfaceC1827b> set2 = this.f19482f;
+        Set<b> set2 = this.f;
         if (set2 != null) {
-            for (InterfaceC1827b<INFO> interfaceC1827b : set2) {
-                C1828c<INFO> c1828c = abstractDraweeControllerMo1057d.f19460j;
-                synchronized (c1828c) {
-                    c1828c.f3568j.add(interfaceC1827b);
+            for (b<INFO> bVar : set2) {
+                c<INFO> cVar = abstractDraweeControllerD.j;
+                synchronized (cVar) {
+                    cVar.j.add(bVar);
                 }
             }
         }
-        ControllerListener<? super INFO> controllerListener = this.f19487k;
+        ControllerListener<? super INFO> controllerListener = this.k;
         if (controllerListener != null) {
-            abstractDraweeControllerMo1057d.m8656f(controllerListener);
+            abstractDraweeControllerD.f(controllerListener);
         }
-        if (this.f19489m) {
-            abstractDraweeControllerMo1057d.m8656f(f19477a);
+        if (this.m) {
+            abstractDraweeControllerD.f(a);
         }
-        C2030b.m1527b();
-        return abstractDraweeControllerMo1057d;
+        b.f.j.r.b.b();
+        return abstractDraweeControllerD;
     }
 
-    /* JADX INFO: renamed from: c */
-    public Supplier<DataSource<IMAGE>> m8668c(DraweeController draweeController, String str, REQUEST request) {
-        return new C1754b(this, draweeController, str, request, this.f19483g, EnumC10643b.FULL_FETCH);
+    public abstract DataSource<IMAGE> b(DraweeController draweeController, String str, REQUEST request, Object obj, AbstractDraweeControllerBuilder$b abstractDraweeControllerBuilder$b);
+
+    public Supplier<DataSource<IMAGE>> c(DraweeController draweeController, String str, REQUEST request) {
+        return new b.f.g.c.b(this, draweeController, str, request, this.g, AbstractDraweeControllerBuilder$b.FULL_FETCH);
     }
 
-    /* JADX INFO: renamed from: e */
-    public Supplier<DataSource<IMAGE>> m8669e(DraweeController draweeController, String str) {
-        Supplier<DataSource<IMAGE>> c1727g;
-        REQUEST request = this.f19484h;
+    public abstract AbstractDraweeController d();
+
+    public Supplier<DataSource<IMAGE>> e(DraweeController draweeController, String str) {
+        Supplier<DataSource<IMAGE>> gVar;
+        REQUEST request = this.h;
         if (request != null) {
-            c1727g = m8668c(draweeController, str, request);
+            gVar = c(draweeController, str, request);
         } else {
-            REQUEST[] requestArr = this.f19485i;
+            REQUEST[] requestArr = this.i;
             if (requestArr != null) {
-                boolean z2 = this.f19486j;
+                boolean z2 = this.j;
                 ArrayList arrayList = new ArrayList(requestArr.length * 2);
                 if (z2) {
                     for (REQUEST request2 : requestArr) {
-                        arrayList.add(new C1754b(this, draweeController, str, request2, this.f19483g, EnumC10643b.BITMAP_MEMORY_CACHE));
+                        arrayList.add(new b.f.g.c.b(this, draweeController, str, request2, this.g, AbstractDraweeControllerBuilder$b.BITMAP_MEMORY_CACHE));
                     }
                 }
                 for (REQUEST request3 : requestArr) {
-                    arrayList.add(m8668c(draweeController, str, request3));
+                    arrayList.add(c(draweeController, str, request3));
                 }
-                c1727g = new C1727g<>(arrayList);
+                gVar = new g<>(arrayList);
             } else {
-                c1727g = null;
+                gVar = null;
             }
         }
-        return c1727g == null ? new C1725e(f19478b) : c1727g;
+        return gVar == null ? new e(f2888b) : gVar;
     }
-
-    /* JADX INFO: renamed from: b */
-    public abstract DataSource<IMAGE> mo1056b(DraweeController draweeController, String str, REQUEST request, Object obj, EnumC10643b enumC10643b);
-
-    /* JADX INFO: renamed from: d */
-    public abstract AbstractDraweeController mo1057d();
 }

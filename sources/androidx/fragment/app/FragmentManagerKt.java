@@ -1,8 +1,8 @@
 package androidx.fragment.app;
 
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: FragmentManager.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,10 +11,10 @@ public final class FragmentManagerKt {
         if ((i & 1) != 0) {
             z2 = false;
         }
-        C12238m.checkNotNullParameter(fragmentManager, "$this$commit");
-        C12238m.checkNotNullParameter(function1, "body");
+        m.checkNotNullParameter(fragmentManager, "$this$commit");
+        m.checkNotNullParameter(function1, "body");
         FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
-        C12238m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
+        m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
         function1.invoke(fragmentTransactionBeginTransaction);
         if (z2) {
             fragmentTransactionBeginTransaction.commitAllowingStateLoss();
@@ -24,10 +24,10 @@ public final class FragmentManagerKt {
     }
 
     public static final void commit(FragmentManager fragmentManager, boolean z2, Function1<? super FragmentTransaction, Unit> function1) {
-        C12238m.checkNotNullParameter(fragmentManager, "$this$commit");
-        C12238m.checkNotNullParameter(function1, "body");
+        m.checkNotNullParameter(fragmentManager, "$this$commit");
+        m.checkNotNullParameter(function1, "body");
         FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
-        C12238m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
+        m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
         function1.invoke(fragmentTransactionBeginTransaction);
         if (z2) {
             fragmentTransactionBeginTransaction.commitAllowingStateLoss();
@@ -40,10 +40,10 @@ public final class FragmentManagerKt {
         if ((i & 1) != 0) {
             z2 = false;
         }
-        C12238m.checkNotNullParameter(fragmentManager, "$this$commitNow");
-        C12238m.checkNotNullParameter(function1, "body");
+        m.checkNotNullParameter(fragmentManager, "$this$commitNow");
+        m.checkNotNullParameter(function1, "body");
         FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
-        C12238m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
+        m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
         function1.invoke(fragmentTransactionBeginTransaction);
         if (z2) {
             fragmentTransactionBeginTransaction.commitNowAllowingStateLoss();
@@ -53,10 +53,10 @@ public final class FragmentManagerKt {
     }
 
     public static final void commitNow(FragmentManager fragmentManager, boolean z2, Function1<? super FragmentTransaction, Unit> function1) {
-        C12238m.checkNotNullParameter(fragmentManager, "$this$commitNow");
-        C12238m.checkNotNullParameter(function1, "body");
+        m.checkNotNullParameter(fragmentManager, "$this$commitNow");
+        m.checkNotNullParameter(function1, "body");
         FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
-        C12238m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
+        m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
         function1.invoke(fragmentTransactionBeginTransaction);
         if (z2) {
             fragmentTransactionBeginTransaction.commitNowAllowingStateLoss();
@@ -72,10 +72,10 @@ public final class FragmentManagerKt {
         if ((i & 2) != 0) {
             z3 = false;
         }
-        C12238m.checkNotNullParameter(fragmentManager, "$this$transaction");
-        C12238m.checkNotNullParameter(function1, "body");
+        m.checkNotNullParameter(fragmentManager, "$this$transaction");
+        m.checkNotNullParameter(function1, "body");
         FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
-        C12238m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
+        m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
         function1.invoke(fragmentTransactionBeginTransaction);
         if (z2) {
             if (z3) {
@@ -94,10 +94,10 @@ public final class FragmentManagerKt {
     }
 
     public static final void transaction(FragmentManager fragmentManager, boolean z2, boolean z3, Function1<? super FragmentTransaction, Unit> function1) {
-        C12238m.checkNotNullParameter(fragmentManager, "$this$transaction");
-        C12238m.checkNotNullParameter(function1, "body");
+        m.checkNotNullParameter(fragmentManager, "$this$transaction");
+        m.checkNotNullParameter(function1, "body");
         FragmentTransaction fragmentTransactionBeginTransaction = fragmentManager.beginTransaction();
-        C12238m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
+        m.checkNotNullExpressionValue(fragmentTransactionBeginTransaction, "beginTransaction()");
         function1.invoke(fragmentTransactionBeginTransaction);
         if (z2) {
             if (z3) {

@@ -10,27 +10,25 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildJoinBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16851a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f16852b;
+    public final MaterialButton f2423b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f16853c;
+    public final TextInputLayout c;
 
     public WidgetGuildJoinBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull MaterialButton materialButton, @NonNull TextInputLayout textInputLayout) {
-        this.f16851a = coordinatorLayout;
-        this.f16852b = materialButton;
-        this.f16853c = textInputLayout;
+        this.a = coordinatorLayout;
+        this.f2423b = materialButton;
+        this.c = textInputLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16851a;
+        return this.a;
     }
 }

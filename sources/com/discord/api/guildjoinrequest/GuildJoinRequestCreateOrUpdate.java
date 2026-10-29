@@ -1,7 +1,7 @@
 package com.discord.api.guildjoinrequest;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildJoinRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,7 +17,7 @@ public final /* data */ class GuildJoinRequestCreateOrUpdate {
             return false;
         }
         GuildJoinRequestCreateOrUpdate guildJoinRequestCreateOrUpdate = (GuildJoinRequestCreateOrUpdate) other;
-        return this.guildId == guildJoinRequestCreateOrUpdate.guildId && C12238m.areEqual(this.request, guildJoinRequestCreateOrUpdate.request);
+        return this.guildId == guildJoinRequestCreateOrUpdate.guildId && m.areEqual(this.request, guildJoinRequestCreateOrUpdate.request);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -38,11 +38,11 @@ public final /* data */ class GuildJoinRequestCreateOrUpdate {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildJoinRequestCreateOrUpdate(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", request=");
-        sbM833U.append(this.request);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("GuildJoinRequestCreateOrUpdate(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", request=");
+        sbU.append(this.request);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

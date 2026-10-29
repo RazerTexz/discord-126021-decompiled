@@ -36,21 +36,21 @@ public class BubblingConfigurationResolver implements ConfigurationResolver {
                     while (it.hasNext()) {
                         arrayDeque.push(it.next());
                     }
-                    ConfigurationSource.Result resultResolve = dVar.resolve(ConfigurationKeys.STOP_BUBBLING);
-                    z2 = z2 || (resultResolve != null && Boolean.TRUE.equals(resultResolve.getValue()));
-                    ConfigurationSource.Result resultResolve2 = dVar.resolve(configurationKey);
-                    if (resultResolve2 != null) {
+                    ConfigurationSource$Result configurationSource$ResultResolve = dVar.resolve(ConfigurationKeys.STOP_BUBBLING);
+                    z2 = z2 || (configurationSource$ResultResolve != null && Boolean.TRUE.equals(configurationSource$ResultResolve.getValue()));
+                    ConfigurationSource$Result configurationSource$ResultResolve2 = dVar.resolve(configurationKey);
+                    if (configurationSource$ResultResolve2 != null) {
                         if (zIsList) {
                             if (arrayList == null) {
                                 arrayList = new ArrayList();
                             }
-                            arrayList.add((List) resultResolve2.getValue());
+                            arrayList.add((List) configurationSource$ResultResolve2.getValue());
                         }
-                        if (resultResolve2.isAuthoritative()) {
+                        if (configurationSource$ResultResolve2.isAuthoritative()) {
                             if (zIsList) {
                                 break loop0;
                             }
-                            return (T) resultResolve2.getValue();
+                            return (T) configurationSource$ResultResolve2.getValue();
                         }
                     } else {
                         continue;
@@ -66,12 +66,12 @@ public class BubblingConfigurationResolver implements ConfigurationResolver {
         }
         ?? r0 = (T) new ArrayList();
         Collections.reverse(arrayList);
-        for (List<ConfigurationSource.ListModification> list : arrayList) {
+        for (List<ConfigurationSource$ListModification> list : arrayList) {
             if (list != null) {
-                for (ConfigurationSource.ListModification listModification : list) {
-                    r0.remove(listModification.getValue());
-                    if (listModification.isAdded()) {
-                        r0.add(listModification.getValue());
+                for (ConfigurationSource$ListModification configurationSource$ListModification : list) {
+                    r0.remove(configurationSource$ListModification.getValue());
+                    if (configurationSource$ListModification.isAdded()) {
+                        r0.add(configurationSource$ListModification.getValue());
                     }
                 }
             }

@@ -10,27 +10,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetHubEventsPageBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17185a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f17186b;
+    public final RecyclerView f2477b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17187c;
+    public final TextView c;
 
     public WidgetHubEventsPageBinding(@NonNull LinearLayout linearLayout, @NonNull RecyclerView recyclerView, @NonNull TextView textView) {
-        this.f17185a = linearLayout;
-        this.f17186b = recyclerView;
-        this.f17187c = textView;
+        this.a = linearLayout;
+        this.f2477b = recyclerView;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17185a;
+        return this.a;
     }
 }

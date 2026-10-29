@@ -1,15 +1,15 @@
 package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
-import java.util.Map;
+import d0.z.d.m;
+import d0.z.d.o;
+import java.util.Map$Entry;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: Add missing generic type declarations: [V, K] */
 /* JADX INFO: compiled from: ShallowPartitionMap.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ShallowPartitionMap$entries$2<K, V> extends AbstractC12240o implements Function1<Map.Entry<K, V>, Integer> {
+public final class ShallowPartitionMap$entries$2<K, V> extends o implements Function1<Map$Entry<K, V>, Integer> {
     public final /* synthetic */ ShallowPartitionMap this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -20,11 +20,11 @@ public final class ShallowPartitionMap$entries$2<K, V> extends AbstractC12240o i
 
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Integer invoke(Object obj) {
-        return Integer.valueOf(invoke((Map.Entry) obj));
+        return Integer.valueOf(invoke((Map$Entry) obj));
     }
 
-    public final int invoke(Map.Entry<K, V> entry) {
-        C12238m.checkNotNullParameter(entry, "it");
-        return this.this$0.getPartitionStrategy().invoke(entry.getKey()).intValue();
+    public final int invoke(Map$Entry<K, V> map$Entry) {
+        m.checkNotNullParameter(map$Entry, "it");
+        return this.this$0.getPartitionStrategy().invoke(map$Entry.getKey()).intValue();
     }
 }

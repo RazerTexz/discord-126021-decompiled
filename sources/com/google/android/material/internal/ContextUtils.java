@@ -5,9 +5,10 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class ContextUtils {
     @Nullable
     public static Activity getActivity(Context context) {

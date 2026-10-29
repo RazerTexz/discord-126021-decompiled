@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.input;
 
+import b.d.b.a.a;
 import com.discord.models.commands.Application;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetChatInputCategoriesAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -11,7 +11,7 @@ public final /* data */ class CommandCategoryItem {
     private final boolean isSelected;
 
     public CommandCategoryItem(Application application, boolean z2) {
-        C12238m.checkNotNullParameter(application, "application");
+        m.checkNotNullParameter(application, "application");
         this.application = application;
         this.isSelected = z2;
     }
@@ -27,7 +27,7 @@ public final /* data */ class CommandCategoryItem {
     }
 
     public final CommandCategoryItem copy(Application application, boolean isSelected) {
-        C12238m.checkNotNullParameter(application, "application");
+        m.checkNotNullParameter(application, "application");
         return new CommandCategoryItem(application, isSelected);
     }
 
@@ -39,7 +39,7 @@ public final /* data */ class CommandCategoryItem {
             return false;
         }
         CommandCategoryItem commandCategoryItem = (CommandCategoryItem) other;
-        return C12238m.areEqual(this.application, commandCategoryItem.application) && this.isSelected == commandCategoryItem.isSelected;
+        return m.areEqual(this.application, commandCategoryItem.application) && this.isSelected == commandCategoryItem.isSelected;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -77,9 +77,9 @@ public final /* data */ class CommandCategoryItem {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("CommandCategoryItem(application=");
-        sbM833U.append(this.application);
-        sbM833U.append(", isSelected=");
-        return C1643a.m827O(sbM833U, this.isSelected, ")");
+        StringBuilder sbU = a.U("CommandCategoryItem(application=");
+        sbU.append(this.application);
+        sbU.append(", isSelected=");
+        return a.O(sbU, this.isSelected, ")");
     }
 }

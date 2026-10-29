@@ -1,17 +1,17 @@
 package com.discord.utilities.textprocessing;
 
 import android.content.Context;
+import b.a.t.b.b.b;
+import b.a.t.b.b.e;
 import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.parser.Parser;
 import com.discord.utilities.textprocessing.node.EditedMessageNode;
 import com.discord.utilities.textprocessing.node.ZeroSpaceWidthNode;
 import com.facebook.drawee.span.DraweeSpanStringBuilder;
+import d0.z.d.m;
 import java.util.List;
 import java.util.regex.Pattern;
 import kotlin.NoWhenBranchMatchedException;
-import p007b.p008a.p050t.p052b.p054b.C1300b;
-import p007b.p008a.p050t.p052b.p054b.C1303e;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: DiscordParser.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -21,28 +21,6 @@ public final class DiscordParser {
     private static final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> MASKED_LINK_PARSER = createParser$default(true, true, false, false, false, 28, null);
     private static final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> REPLY_PARSER = createParser$default(false, true, false, false, false, 24, null);
     private static final Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> FORUM_POST_FIRST_MESSAGE = createParser$default(false, true, false, true, true, 4, null);
-
-    /* JADX INFO: compiled from: DiscordParser.kt */
-    public enum ParserOptions {
-        DEFAULT,
-        ALLOW_MASKED_LINKS,
-        REPLY,
-        FORUM_POST_FIRST_MESSAGE
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            ParserOptions.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[ParserOptions.DEFAULT.ordinal()] = 1;
-            iArr[ParserOptions.ALLOW_MASKED_LINKS.ordinal()] = 2;
-            iArr[ParserOptions.REPLY.ordinal()] = 3;
-            iArr[ParserOptions.FORUM_POST_FIRST_MESSAGE.ordinal()] = 4;
-        }
-    }
 
     private DiscordParser() {
     }
@@ -64,10 +42,10 @@ public final class DiscordParser {
         Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> parser = new Parser<>(false, 1, null);
         Rules rules = Rules.INSTANCE;
         parser.addRule(rules.createSoftHyphenRule());
-        C1303e c1303e = C1303e.f1988h;
-        Pattern pattern = C1303e.f1986f;
-        C12238m.checkNotNullExpressionValue(pattern, "PATTERN_ESCAPE");
-        parser.addRule(new C1300b(c1303e, pattern));
+        e eVar = e.h;
+        Pattern pattern = e.f;
+        m.checkNotNullExpressionValue(pattern, "PATTERN_ESCAPE");
+        parser.addRule(new b(eVar, pattern));
         if (renderBlockQuotes) {
             parser.addRule(rules.createBlockQuoteRule());
         }
@@ -95,17 +73,17 @@ public final class DiscordParser {
         if (renderLists) {
             parser.addRule(rules.createListItemRule());
         }
-        parser.addRules(C1303e.m371a(false, false));
+        parser.addRules(e.a(false, false));
         parser.addRule(rules.createTextReplacementRule());
         return parser;
     }
 
-    public static final DraweeSpanStringBuilder parseChannelMessage(Context context, String messageText, MessageRenderContext messageRenderContext, MessagePreprocessor preprocessor, ParserOptions parserOptions, boolean isEdited) {
+    public static final DraweeSpanStringBuilder parseChannelMessage(Context context, String messageText, MessageRenderContext messageRenderContext, MessagePreprocessor preprocessor, DiscordParser$ParserOptions parserOptions, boolean isEdited) {
         Parser<MessageRenderContext, Node<MessageRenderContext>, MessageParseState> parser;
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(messageRenderContext, "messageRenderContext");
-        C12238m.checkNotNullParameter(preprocessor, "preprocessor");
-        C12238m.checkNotNullParameter(parserOptions, "parserOptions");
+        m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(messageRenderContext, "messageRenderContext");
+        m.checkNotNullParameter(preprocessor, "preprocessor");
+        m.checkNotNullParameter(parserOptions, "parserOptions");
         int iOrdinal = parserOptions.ordinal();
         if (iOrdinal == 0) {
             parser = SAFE_LINK_PARSER;
@@ -123,7 +101,7 @@ public final class DiscordParser {
         if (messageText == null) {
             messageText = "";
         }
-        List list = Parser.parse$default(parser2, messageText, MessageParseState.INSTANCE.getInitialState(), null, 4, null);
+        List list = Parser.parse$default(parser2, messageText, MessageParseState.Companion.getInitialState(), null, 4, null);
         preprocessor.process(list);
         if (isEdited) {
             list.add(new EditedMessageNode(context));

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class CustomTabColorSchemeParams {
@@ -24,54 +23,6 @@ public final class CustomTabColorSchemeParams {
     @Nullable
     @ColorInt
     public final Integer toolbarColor;
-
-    public final class Builder {
-
-        @Nullable
-        @ColorInt
-        private Integer mNavigationBarColor;
-
-        @Nullable
-        @ColorInt
-        private Integer mNavigationBarDividerColor;
-
-        @Nullable
-        @ColorInt
-        private Integer mSecondaryToolbarColor;
-
-        @Nullable
-        @ColorInt
-        private Integer mToolbarColor;
-
-        @NonNull
-        public CustomTabColorSchemeParams build() {
-            return new CustomTabColorSchemeParams(this.mToolbarColor, this.mSecondaryToolbarColor, this.mNavigationBarColor, this.mNavigationBarDividerColor);
-        }
-
-        @NonNull
-        public Builder setNavigationBarColor(@ColorInt int i) {
-            this.mNavigationBarColor = Integer.valueOf(i | ViewCompat.MEASURED_STATE_MASK);
-            return this;
-        }
-
-        @NonNull
-        public Builder setNavigationBarDividerColor(@ColorInt int i) {
-            this.mNavigationBarDividerColor = Integer.valueOf(i);
-            return this;
-        }
-
-        @NonNull
-        public Builder setSecondaryToolbarColor(@ColorInt int i) {
-            this.mSecondaryToolbarColor = Integer.valueOf(i);
-            return this;
-        }
-
-        @NonNull
-        public Builder setToolbarColor(@ColorInt int i) {
-            this.mToolbarColor = Integer.valueOf(i | ViewCompat.MEASURED_STATE_MASK);
-            return this;
-        }
-    }
 
     public CustomTabColorSchemeParams(@Nullable @ColorInt Integer num, @Nullable @ColorInt Integer num2, @Nullable @ColorInt Integer num3, @Nullable @ColorInt Integer num4) {
         this.toolbarColor = num;

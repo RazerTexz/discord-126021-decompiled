@@ -1,17 +1,18 @@
 package com.discord.widgets.hubs;
 
+import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubDescriptionViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubDescriptionArgs implements Parcelable {
-    public static final Parcelable.Creator<HubDescriptionArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<HubDescriptionArgs> CREATOR = new HubDescriptionArgs$Creator();
     private final long channelId;
     private final String description;
     private final long guildId;
@@ -20,23 +21,8 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
     private final boolean isNewGuild;
     private final Integer primaryCategoryId;
 
-    public final class Creator implements Parcelable.Creator<HubDescriptionArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubDescriptionArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            return new HubDescriptionArgs(parcel.readLong(), parcel.readLong(), parcel.readInt() != 0, parcel.readString(), parcel.readInt() != 0, parcel.readString(), parcel.readInt() != 0 ? Integer.valueOf(parcel.readInt()) : null);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubDescriptionArgs[] newArray(int i) {
-            return new HubDescriptionArgs[i];
-        }
-    }
-
     public HubDescriptionArgs(long j, long j2, boolean z2, String str, boolean z3, String str2, Integer num) {
-        C12238m.checkNotNullParameter(str, "hubName");
+        m.checkNotNullParameter(str, "hubName");
         this.guildId = j;
         this.channelId = j2;
         this.isEditing = z2;
@@ -46,8 +32,12 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
         this.primaryCategoryId = num;
     }
 
+    public static /* synthetic */ HubDescriptionArgs copy$default(HubDescriptionArgs hubDescriptionArgs, long j, long j2, boolean z2, String str, boolean z3, String str2, Integer num, int i, Object obj) {
+        return hubDescriptionArgs.copy((i & 1) != 0 ? hubDescriptionArgs.guildId : j, (i & 2) != 0 ? hubDescriptionArgs.channelId : j2, (i & 4) != 0 ? hubDescriptionArgs.isEditing : z2, (i & 8) != 0 ? hubDescriptionArgs.hubName : str, (i & 16) != 0 ? hubDescriptionArgs.isNewGuild : z3, (i & 32) != 0 ? hubDescriptionArgs.description : str2, (i & 64) != 0 ? hubDescriptionArgs.primaryCategoryId : num);
+    }
+
     public final HubDescriptionArgs copy(long guildId, long channelId, boolean isEditing, String hubName, boolean isNewGuild, String description, Integer primaryCategoryId) {
-        C12238m.checkNotNullParameter(hubName, "hubName");
+        m.checkNotNullParameter(hubName, "hubName");
         return new HubDescriptionArgs(guildId, channelId, isEditing, hubName, isNewGuild, description, primaryCategoryId);
     }
 
@@ -64,7 +54,7 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
             return false;
         }
         HubDescriptionArgs hubDescriptionArgs = (HubDescriptionArgs) other;
-        return this.guildId == hubDescriptionArgs.guildId && this.channelId == hubDescriptionArgs.channelId && this.isEditing == hubDescriptionArgs.isEditing && C12238m.areEqual(this.hubName, hubDescriptionArgs.hubName) && this.isNewGuild == hubDescriptionArgs.isNewGuild && C12238m.areEqual(this.description, hubDescriptionArgs.description) && C12238m.areEqual(this.primaryCategoryId, hubDescriptionArgs.primaryCategoryId);
+        return this.guildId == hubDescriptionArgs.guildId && this.channelId == hubDescriptionArgs.channelId && this.isEditing == hubDescriptionArgs.isEditing && m.areEqual(this.hubName, hubDescriptionArgs.hubName) && this.isNewGuild == hubDescriptionArgs.isNewGuild && m.areEqual(this.description, hubDescriptionArgs.description) && m.areEqual(this.primaryCategoryId, hubDescriptionArgs.primaryCategoryId);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -132,13 +122,13 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
     /* JADX WARN: Type inference failed for: r2v1, types: [int] */
     /* JADX WARN: Type inference failed for: r2v2 */
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.channelId) + (C0002b.m3a(this.guildId) * 31)) * 31;
+        int iA = (b.a(this.channelId) + (b.a(this.guildId) * 31)) * 31;
         boolean z2 = this.isEditing;
         ?? r0 = z2;
         if (z2) {
             r0 = 1;
         }
-        int i = (iM3a + r0) * 31;
+        int i = (iA + r0) * 31;
         String str = this.hubName;
         int iHashCode = (i + (str != null ? str.hashCode() : 0)) * 31;
         boolean z3 = this.isNewGuild;
@@ -158,26 +148,26 @@ public final /* data */ class HubDescriptionArgs implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubDescriptionArgs(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", isEditing=");
-        sbM833U.append(this.isEditing);
-        sbM833U.append(", hubName=");
-        sbM833U.append(this.hubName);
-        sbM833U.append(", isNewGuild=");
-        sbM833U.append(this.isNewGuild);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", primaryCategoryId=");
-        return C1643a.m818F(sbM833U, this.primaryCategoryId, ")");
+        StringBuilder sbU = a.U("HubDescriptionArgs(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", isEditing=");
+        sbU.append(this.isEditing);
+        sbU.append(", hubName=");
+        sbU.append(this.hubName);
+        sbU.append(", isNewGuild=");
+        sbU.append(this.isNewGuild);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", primaryCategoryId=");
+        return a.F(sbU, this.primaryCategoryId, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
         int iIntValue;
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeLong(this.guildId);
         parcel.writeLong(this.channelId);
         parcel.writeInt(this.isEditing ? 1 : 0);

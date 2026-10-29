@@ -12,57 +12,49 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetBanUserBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15723a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15724b;
+    public final TextView f2240b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f15725c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f15726d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final CheckedSetting f15727e;
+    public final CheckedSetting e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final CheckedSetting f15728f;
+    public final CheckedSetting f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final CheckedSetting f15729g;
+    public final CheckedSetting g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextInputLayout f15730h;
+    public final TextInputLayout h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f15731i;
+    public final TextView i;
 
     public WidgetBanUserBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull LinearLayout linearLayout2, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull CheckedSetting checkedSetting, @NonNull CheckedSetting checkedSetting2, @NonNull CheckedSetting checkedSetting3, @NonNull TextInputLayout textInputLayout, @NonNull TextView textView2, @NonNull LinearLayout linearLayout3) {
-        this.f15723a = linearLayout;
-        this.f15724b = textView;
-        this.f15725c = materialButton;
-        this.f15726d = materialButton2;
-        this.f15727e = checkedSetting;
-        this.f15728f = checkedSetting2;
-        this.f15729g = checkedSetting3;
-        this.f15730h = textInputLayout;
-        this.f15731i = textView2;
+        this.a = linearLayout;
+        this.f2240b = textView;
+        this.c = materialButton;
+        this.d = materialButton2;
+        this.e = checkedSetting;
+        this.f = checkedSetting2;
+        this.g = checkedSetting3;
+        this.h = textInputLayout;
+        this.i = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15723a;
+        return this.a;
     }
 }

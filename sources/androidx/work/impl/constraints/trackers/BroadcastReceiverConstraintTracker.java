@@ -6,25 +6,19 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Logger;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public abstract class BroadcastReceiverConstraintTracker<T> extends ConstraintTracker<T> {
     private final BroadcastReceiver mBroadcastReceiver;
     private static final String TAG = Logger.tagWithPrefix("BrdcstRcvrCnstrntTrckr");
 
     public BroadcastReceiverConstraintTracker(@NonNull Context context, @NonNull TaskExecutor taskExecutor) {
         super(context, taskExecutor);
-        this.mBroadcastReceiver = new BroadcastReceiver() { // from class: androidx.work.impl.constraints.trackers.BroadcastReceiverConstraintTracker.1
-            @Override // android.content.BroadcastReceiver
-            public void onReceive(Context context2, Intent intent) {
-                if (intent != null) {
-                    BroadcastReceiverConstraintTracker.this.onBroadcastReceive(context2, intent);
-                }
-            }
-        };
+        this.mBroadcastReceiver = new BroadcastReceiverConstraintTracker$1(this);
     }
 
     public abstract IntentFilter getIntentFilter();

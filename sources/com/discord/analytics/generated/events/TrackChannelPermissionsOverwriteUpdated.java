@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChannelPermissionsOverwriteUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackChannelPermissionsOverwriteUpdated implements
             return false;
         }
         TrackChannelPermissionsOverwriteUpdated trackChannelPermissionsOverwriteUpdated = (TrackChannelPermissionsOverwriteUpdated) other;
-        return C12238m.areEqual(this.guildId, trackChannelPermissionsOverwriteUpdated.guildId) && C12238m.areEqual(this.channelId, trackChannelPermissionsOverwriteUpdated.channelId) && C12238m.areEqual(this.targetRoleId, trackChannelPermissionsOverwriteUpdated.targetRoleId) && C12238m.areEqual(this.targetUserId, trackChannelPermissionsOverwriteUpdated.targetUserId) && C12238m.areEqual(this.permissionsAllow, trackChannelPermissionsOverwriteUpdated.permissionsAllow) && C12238m.areEqual(this.permissionsDeny, trackChannelPermissionsOverwriteUpdated.permissionsDeny) && C12238m.areEqual(this.updateType, trackChannelPermissionsOverwriteUpdated.updateType);
+        return m.areEqual(this.guildId, trackChannelPermissionsOverwriteUpdated.guildId) && m.areEqual(this.channelId, trackChannelPermissionsOverwriteUpdated.channelId) && m.areEqual(this.targetRoleId, trackChannelPermissionsOverwriteUpdated.targetRoleId) && m.areEqual(this.targetUserId, trackChannelPermissionsOverwriteUpdated.targetUserId) && m.areEqual(this.permissionsAllow, trackChannelPermissionsOverwriteUpdated.permissionsAllow) && m.areEqual(this.permissionsDeny, trackChannelPermissionsOverwriteUpdated.permissionsDeny) && m.areEqual(this.updateType, trackChannelPermissionsOverwriteUpdated.updateType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackChannelPermissionsOverwriteUpdated implements
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChannelPermissionsOverwriteUpdated(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", targetRoleId=");
-        sbM833U.append(this.targetRoleId);
-        sbM833U.append(", targetUserId=");
-        sbM833U.append(this.targetUserId);
-        sbM833U.append(", permissionsAllow=");
-        sbM833U.append(this.permissionsAllow);
-        sbM833U.append(", permissionsDeny=");
-        sbM833U.append(this.permissionsDeny);
-        sbM833U.append(", updateType=");
-        return C1643a.m817E(sbM833U, this.updateType, ")");
+        StringBuilder sbU = a.U("TrackChannelPermissionsOverwriteUpdated(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", targetRoleId=");
+        sbU.append(this.targetRoleId);
+        sbU.append(", targetUserId=");
+        sbU.append(this.targetUserId);
+        sbU.append(", permissionsAllow=");
+        sbU.append(this.permissionsAllow);
+        sbU.append(", permissionsDeny=");
+        sbU.append(this.permissionsDeny);
+        sbU.append(", updateType=");
+        return a.E(sbU, this.updateType, ")");
     }
 }

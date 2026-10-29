@@ -14,8 +14,8 @@ public class Camera2Capturer extends CameraCapturer {
     private final CameraManager cameraManager;
     private final Context context;
 
-    public Camera2Capturer(Context context, String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
-        super(str, cameraEventsHandler, new Camera2Enumerator(context));
+    public Camera2Capturer(Context context, String str, CameraVideoCapturer$CameraEventsHandler cameraVideoCapturer$CameraEventsHandler) {
+        super(str, cameraVideoCapturer$CameraEventsHandler, new Camera2Enumerator(context));
         this.context = context;
         this.cameraManager = (CameraManager) context.getSystemService(ChatInputComponentTypes.CAMERA);
     }
@@ -26,8 +26,8 @@ public class Camera2Capturer extends CameraCapturer {
     }
 
     @Override // org.webrtc.CameraCapturer
-    public void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
-        Camera2Session.create(createSessionCallback, events, context, this.cameraManager, surfaceTextureHelper, str, i, i2, i3);
+    public void createCameraSession(CameraSession$CreateSessionCallback cameraSession$CreateSessionCallback, CameraSession$Events cameraSession$Events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
+        Camera2Session.create(cameraSession$CreateSessionCallback, cameraSession$Events, context, this.cameraManager, surfaceTextureHelper, str, i, i2, i3);
     }
 
     @Override // org.webrtc.CameraCapturer, org.webrtc.VideoCapturer
@@ -61,12 +61,12 @@ public class Camera2Capturer extends CameraCapturer {
     }
 
     @Override // org.webrtc.CameraCapturer, org.webrtc.CameraVideoCapturer
-    public /* bridge */ /* synthetic */ void switchCamera(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
-        super.switchCamera(cameraSwitchHandler);
+    public /* bridge */ /* synthetic */ void switchCamera(CameraVideoCapturer$CameraSwitchHandler cameraVideoCapturer$CameraSwitchHandler) {
+        super.switchCamera(cameraVideoCapturer$CameraSwitchHandler);
     }
 
     @Override // org.webrtc.CameraCapturer, org.webrtc.CameraVideoCapturer
-    public /* bridge */ /* synthetic */ void switchCamera(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
-        super.switchCamera(cameraSwitchHandler, str);
+    public /* bridge */ /* synthetic */ void switchCamera(CameraVideoCapturer$CameraSwitchHandler cameraVideoCapturer$CameraSwitchHandler, String str) {
+        super.switchCamera(cameraVideoCapturer$CameraSwitchHandler, str);
     }
 }

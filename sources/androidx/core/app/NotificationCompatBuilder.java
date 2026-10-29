@@ -1,14 +1,17 @@
 package androidx.core.app;
 
 import android.app.Notification;
+import android.app.Notification$Action$Builder;
+import android.app.Notification$Builder;
 import android.content.Context;
 import android.graphics.drawable.Icon;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.ArraySet;
 import androidx.core.content.LocusIdCompat;
 import androidx.core.graphics.drawable.IconCompat;
@@ -17,11 +20,11 @@ import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class NotificationCompatBuilder implements NotificationBuilderWithBuilderAccessor {
     private RemoteViews mBigContentView;
-    private final Notification.Builder mBuilder;
-    private final NotificationCompat.Builder mBuilderCompat;
+    private final Notification$Builder mBuilder;
+    private final NotificationCompat$Builder mBuilderCompat;
     private RemoteViews mContentView;
     private final Context mContext;
     private int mGroupAlertBehavior;
@@ -29,98 +32,98 @@ public class NotificationCompatBuilder implements NotificationBuilderWithBuilder
     private final List<Bundle> mActionExtrasList = new ArrayList();
     private final Bundle mExtras = new Bundle();
 
-    public NotificationCompatBuilder(NotificationCompat.Builder builder) {
+    public NotificationCompatBuilder(NotificationCompat$Builder notificationCompat$Builder) {
         Icon icon;
-        this.mBuilderCompat = builder;
-        this.mContext = builder.mContext;
-        if (Build.VERSION.SDK_INT >= 26) {
-            this.mBuilder = new Notification.Builder(builder.mContext, builder.mChannelId);
+        this.mBuilderCompat = notificationCompat$Builder;
+        this.mContext = notificationCompat$Builder.mContext;
+        if (Build$VERSION.SDK_INT >= 26) {
+            this.mBuilder = new Notification$Builder(notificationCompat$Builder.mContext, notificationCompat$Builder.mChannelId);
         } else {
-            this.mBuilder = new Notification.Builder(builder.mContext);
+            this.mBuilder = new Notification$Builder(notificationCompat$Builder.mContext);
         }
-        Notification notification = builder.mNotification;
-        this.mBuilder.setWhen(notification.when).setSmallIcon(notification.icon, notification.iconLevel).setContent(notification.contentView).setTicker(notification.tickerText, builder.mTickerView).setVibrate(notification.vibrate).setLights(notification.ledARGB, notification.ledOnMS, notification.ledOffMS).setOngoing((notification.flags & 2) != 0).setOnlyAlertOnce((notification.flags & 8) != 0).setAutoCancel((notification.flags & 16) != 0).setDefaults(notification.defaults).setContentTitle(builder.mContentTitle).setContentText(builder.mContentText).setContentInfo(builder.mContentInfo).setContentIntent(builder.mContentIntent).setDeleteIntent(notification.deleteIntent).setFullScreenIntent(builder.mFullScreenIntent, (notification.flags & 128) != 0).setLargeIcon(builder.mLargeIcon).setNumber(builder.mNumber).setProgress(builder.mProgressMax, builder.mProgress, builder.mProgressIndeterminate);
-        this.mBuilder.setSubText(builder.mSubText).setUsesChronometer(builder.mUseChronometer).setPriority(builder.mPriority);
-        Iterator<NotificationCompat.Action> it = builder.mActions.iterator();
+        Notification notification = notificationCompat$Builder.mNotification;
+        this.mBuilder.setWhen(notification.when).setSmallIcon(notification.icon, notification.iconLevel).setContent(notification.contentView).setTicker(notification.tickerText, notificationCompat$Builder.mTickerView).setVibrate(notification.vibrate).setLights(notification.ledARGB, notification.ledOnMS, notification.ledOffMS).setOngoing((notification.flags & 2) != 0).setOnlyAlertOnce((notification.flags & 8) != 0).setAutoCancel((notification.flags & 16) != 0).setDefaults(notification.defaults).setContentTitle(notificationCompat$Builder.mContentTitle).setContentText(notificationCompat$Builder.mContentText).setContentInfo(notificationCompat$Builder.mContentInfo).setContentIntent(notificationCompat$Builder.mContentIntent).setDeleteIntent(notification.deleteIntent).setFullScreenIntent(notificationCompat$Builder.mFullScreenIntent, (notification.flags & 128) != 0).setLargeIcon(notificationCompat$Builder.mLargeIcon).setNumber(notificationCompat$Builder.mNumber).setProgress(notificationCompat$Builder.mProgressMax, notificationCompat$Builder.mProgress, notificationCompat$Builder.mProgressIndeterminate);
+        this.mBuilder.setSubText(notificationCompat$Builder.mSubText).setUsesChronometer(notificationCompat$Builder.mUseChronometer).setPriority(notificationCompat$Builder.mPriority);
+        Iterator<NotificationCompat$Action> it = notificationCompat$Builder.mActions.iterator();
         while (it.hasNext()) {
             addAction(it.next());
         }
-        Bundle bundle = builder.mExtras;
+        Bundle bundle = notificationCompat$Builder.mExtras;
         if (bundle != null) {
             this.mExtras.putAll(bundle);
         }
-        int i = Build.VERSION.SDK_INT;
-        this.mContentView = builder.mContentView;
-        this.mBigContentView = builder.mBigContentView;
-        this.mBuilder.setShowWhen(builder.mShowWhen);
-        this.mBuilder.setLocalOnly(builder.mLocalOnly).setGroup(builder.mGroupKey).setGroupSummary(builder.mGroupSummary).setSortKey(builder.mSortKey);
-        this.mGroupAlertBehavior = builder.mGroupAlertBehavior;
-        this.mBuilder.setCategory(builder.mCategory).setColor(builder.mColor).setVisibility(builder.mVisibility).setPublicVersion(builder.mPublicVersion).setSound(notification.sound, notification.audioAttributes);
-        List listCombineLists = i < 28 ? combineLists(getPeople(builder.mPersonList), builder.mPeople) : builder.mPeople;
+        int i = Build$VERSION.SDK_INT;
+        this.mContentView = notificationCompat$Builder.mContentView;
+        this.mBigContentView = notificationCompat$Builder.mBigContentView;
+        this.mBuilder.setShowWhen(notificationCompat$Builder.mShowWhen);
+        this.mBuilder.setLocalOnly(notificationCompat$Builder.mLocalOnly).setGroup(notificationCompat$Builder.mGroupKey).setGroupSummary(notificationCompat$Builder.mGroupSummary).setSortKey(notificationCompat$Builder.mSortKey);
+        this.mGroupAlertBehavior = notificationCompat$Builder.mGroupAlertBehavior;
+        this.mBuilder.setCategory(notificationCompat$Builder.mCategory).setColor(notificationCompat$Builder.mColor).setVisibility(notificationCompat$Builder.mVisibility).setPublicVersion(notificationCompat$Builder.mPublicVersion).setSound(notification.sound, notification.audioAttributes);
+        List listCombineLists = i < 28 ? combineLists(getPeople(notificationCompat$Builder.mPersonList), notificationCompat$Builder.mPeople) : notificationCompat$Builder.mPeople;
         if (listCombineLists != null && !listCombineLists.isEmpty()) {
             Iterator it2 = listCombineLists.iterator();
             while (it2.hasNext()) {
                 this.mBuilder.addPerson((String) it2.next());
             }
         }
-        this.mHeadsUpContentView = builder.mHeadsUpContentView;
-        if (builder.mInvisibleActions.size() > 0) {
-            Bundle bundle2 = builder.getExtras().getBundle(NotificationCompat.CarExtender.EXTRA_CAR_EXTENDER);
+        this.mHeadsUpContentView = notificationCompat$Builder.mHeadsUpContentView;
+        if (notificationCompat$Builder.mInvisibleActions.size() > 0) {
+            Bundle bundle2 = notificationCompat$Builder.getExtras().getBundle(NotificationCompat$CarExtender.EXTRA_CAR_EXTENDER);
             bundle2 = bundle2 == null ? new Bundle() : bundle2;
             Bundle bundle3 = new Bundle(bundle2);
             Bundle bundle4 = new Bundle();
-            for (int i2 = 0; i2 < builder.mInvisibleActions.size(); i2++) {
-                bundle4.putBundle(Integer.toString(i2), NotificationCompatJellybean.getBundleForAction(builder.mInvisibleActions.get(i2)));
+            for (int i2 = 0; i2 < notificationCompat$Builder.mInvisibleActions.size(); i2++) {
+                bundle4.putBundle(Integer.toString(i2), NotificationCompatJellybean.getBundleForAction(notificationCompat$Builder.mInvisibleActions.get(i2)));
             }
-            bundle2.putBundle(NotificationCompat.CarExtender.EXTRA_INVISIBLE_ACTIONS, bundle4);
-            bundle3.putBundle(NotificationCompat.CarExtender.EXTRA_INVISIBLE_ACTIONS, bundle4);
-            builder.getExtras().putBundle(NotificationCompat.CarExtender.EXTRA_CAR_EXTENDER, bundle2);
-            this.mExtras.putBundle(NotificationCompat.CarExtender.EXTRA_CAR_EXTENDER, bundle3);
+            bundle2.putBundle(NotificationCompat$CarExtender.EXTRA_INVISIBLE_ACTIONS, bundle4);
+            bundle3.putBundle(NotificationCompat$CarExtender.EXTRA_INVISIBLE_ACTIONS, bundle4);
+            notificationCompat$Builder.getExtras().putBundle(NotificationCompat$CarExtender.EXTRA_CAR_EXTENDER, bundle2);
+            this.mExtras.putBundle(NotificationCompat$CarExtender.EXTRA_CAR_EXTENDER, bundle3);
         }
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 23 && (icon = builder.mSmallIcon) != null) {
+        int i3 = Build$VERSION.SDK_INT;
+        if (i3 >= 23 && (icon = notificationCompat$Builder.mSmallIcon) != null) {
             this.mBuilder.setSmallIcon(icon);
         }
         if (i3 >= 24) {
-            this.mBuilder.setExtras(builder.mExtras).setRemoteInputHistory(builder.mRemoteInputHistory);
-            RemoteViews remoteViews = builder.mContentView;
+            this.mBuilder.setExtras(notificationCompat$Builder.mExtras).setRemoteInputHistory(notificationCompat$Builder.mRemoteInputHistory);
+            RemoteViews remoteViews = notificationCompat$Builder.mContentView;
             if (remoteViews != null) {
                 this.mBuilder.setCustomContentView(remoteViews);
             }
-            RemoteViews remoteViews2 = builder.mBigContentView;
+            RemoteViews remoteViews2 = notificationCompat$Builder.mBigContentView;
             if (remoteViews2 != null) {
                 this.mBuilder.setCustomBigContentView(remoteViews2);
             }
-            RemoteViews remoteViews3 = builder.mHeadsUpContentView;
+            RemoteViews remoteViews3 = notificationCompat$Builder.mHeadsUpContentView;
             if (remoteViews3 != null) {
                 this.mBuilder.setCustomHeadsUpContentView(remoteViews3);
             }
         }
         if (i3 >= 26) {
-            this.mBuilder.setBadgeIconType(builder.mBadgeIcon).setSettingsText(builder.mSettingsText).setShortcutId(builder.mShortcutId).setTimeoutAfter(builder.mTimeout).setGroupAlertBehavior(builder.mGroupAlertBehavior);
-            if (builder.mColorizedSet) {
-                this.mBuilder.setColorized(builder.mColorized);
+            this.mBuilder.setBadgeIconType(notificationCompat$Builder.mBadgeIcon).setSettingsText(notificationCompat$Builder.mSettingsText).setShortcutId(notificationCompat$Builder.mShortcutId).setTimeoutAfter(notificationCompat$Builder.mTimeout).setGroupAlertBehavior(notificationCompat$Builder.mGroupAlertBehavior);
+            if (notificationCompat$Builder.mColorizedSet) {
+                this.mBuilder.setColorized(notificationCompat$Builder.mColorized);
             }
-            if (!TextUtils.isEmpty(builder.mChannelId)) {
+            if (!TextUtils.isEmpty(notificationCompat$Builder.mChannelId)) {
                 this.mBuilder.setSound(null).setDefaults(0).setLights(0, 0, 0).setVibrate(null);
             }
         }
         if (i3 >= 28) {
-            Iterator<Person> it3 = builder.mPersonList.iterator();
+            Iterator<Person> it3 = notificationCompat$Builder.mPersonList.iterator();
             while (it3.hasNext()) {
                 this.mBuilder.addPerson(it3.next().toAndroidPerson());
             }
         }
-        int i4 = Build.VERSION.SDK_INT;
+        int i4 = Build$VERSION.SDK_INT;
         if (i4 >= 29) {
-            this.mBuilder.setAllowSystemGeneratedContextualActions(builder.mAllowSystemGeneratedContextualActions);
-            this.mBuilder.setBubbleMetadata(NotificationCompat.BubbleMetadata.toPlatform(builder.mBubbleMetadata));
-            LocusIdCompat locusIdCompat = builder.mLocusId;
+            this.mBuilder.setAllowSystemGeneratedContextualActions(notificationCompat$Builder.mAllowSystemGeneratedContextualActions);
+            this.mBuilder.setBubbleMetadata(NotificationCompat$BubbleMetadata.toPlatform(notificationCompat$Builder.mBubbleMetadata));
+            LocusIdCompat locusIdCompat = notificationCompat$Builder.mLocusId;
             if (locusIdCompat != null) {
                 this.mBuilder.setLocusId(locusIdCompat.toLocusId());
             }
         }
-        if (builder.mSilent) {
+        if (notificationCompat$Builder.mSilent) {
             if (this.mBuilderCompat.mGroupSummary) {
                 this.mGroupAlertBehavior = 2;
             } else {
@@ -142,42 +145,42 @@ public class NotificationCompatBuilder implements NotificationBuilderWithBuilder
         }
     }
 
-    private void addAction(NotificationCompat.Action action) {
-        int i = Build.VERSION.SDK_INT;
-        IconCompat iconCompat = action.getIconCompat();
-        Notification.Action.Builder builder = i >= 23 ? new Notification.Action.Builder(iconCompat != null ? iconCompat.toIcon() : null, action.getTitle(), action.getActionIntent()) : new Notification.Action.Builder(iconCompat != null ? iconCompat.getResId() : 0, action.getTitle(), action.getActionIntent());
-        if (action.getRemoteInputs() != null) {
-            for (android.app.RemoteInput remoteInput : RemoteInput.fromCompat(action.getRemoteInputs())) {
-                builder.addRemoteInput(remoteInput);
+    private void addAction(NotificationCompat$Action notificationCompat$Action) {
+        int i = Build$VERSION.SDK_INT;
+        IconCompat iconCompat = notificationCompat$Action.getIconCompat();
+        Notification$Action$Builder notification$Action$Builder = i >= 23 ? new Notification$Action$Builder(iconCompat != null ? iconCompat.toIcon() : null, notificationCompat$Action.getTitle(), notificationCompat$Action.getActionIntent()) : new Notification$Action$Builder(iconCompat != null ? iconCompat.getResId() : 0, notificationCompat$Action.getTitle(), notificationCompat$Action.getActionIntent());
+        if (notificationCompat$Action.getRemoteInputs() != null) {
+            for (android.app.RemoteInput remoteInput : RemoteInput.fromCompat(notificationCompat$Action.getRemoteInputs())) {
+                notification$Action$Builder.addRemoteInput(remoteInput);
             }
         }
-        Bundle bundle = action.getExtras() != null ? new Bundle(action.getExtras()) : new Bundle();
-        bundle.putBoolean(NotificationCompatJellybean.EXTRA_ALLOW_GENERATED_REPLIES, action.getAllowGeneratedReplies());
-        int i2 = Build.VERSION.SDK_INT;
+        Bundle bundle = notificationCompat$Action.getExtras() != null ? new Bundle(notificationCompat$Action.getExtras()) : new Bundle();
+        bundle.putBoolean(NotificationCompatJellybean.EXTRA_ALLOW_GENERATED_REPLIES, notificationCompat$Action.getAllowGeneratedReplies());
+        int i2 = Build$VERSION.SDK_INT;
         if (i2 >= 24) {
-            builder.setAllowGeneratedReplies(action.getAllowGeneratedReplies());
+            notification$Action$Builder.setAllowGeneratedReplies(notificationCompat$Action.getAllowGeneratedReplies());
         }
-        bundle.putInt(NotificationCompat.Action.EXTRA_SEMANTIC_ACTION, action.getSemanticAction());
+        bundle.putInt(NotificationCompat$Action.EXTRA_SEMANTIC_ACTION, notificationCompat$Action.getSemanticAction());
         if (i2 >= 28) {
-            builder.setSemanticAction(action.getSemanticAction());
+            notification$Action$Builder.setSemanticAction(notificationCompat$Action.getSemanticAction());
         }
         if (i2 >= 29) {
-            builder.setContextual(action.isContextual());
+            notification$Action$Builder.setContextual(notificationCompat$Action.isContextual());
         }
-        bundle.putBoolean(NotificationCompat.Action.EXTRA_SHOWS_USER_INTERFACE, action.getShowsUserInterface());
-        builder.addExtras(bundle);
-        this.mBuilder.addAction(builder.build());
+        bundle.putBoolean(NotificationCompat$Action.EXTRA_SHOWS_USER_INTERFACE, notificationCompat$Action.getShowsUserInterface());
+        notification$Action$Builder.addExtras(bundle);
+        this.mBuilder.addAction(notification$Action$Builder.build());
     }
 
     public Notification build() {
         Bundle extras;
         RemoteViews remoteViewsMakeHeadsUpContentView;
         RemoteViews remoteViewsMakeBigContentView;
-        NotificationCompat.Style style = this.mBuilderCompat.mStyle;
-        if (style != null) {
-            style.apply(this);
+        NotificationCompat$Style notificationCompat$Style = this.mBuilderCompat.mStyle;
+        if (notificationCompat$Style != null) {
+            notificationCompat$Style.apply(this);
         }
-        RemoteViews remoteViewsMakeContentView = style != null ? style.makeContentView(this) : null;
+        RemoteViews remoteViewsMakeContentView = notificationCompat$Style != null ? notificationCompat$Style.makeContentView(this) : null;
         Notification notificationBuildInternal = buildInternal();
         if (remoteViewsMakeContentView != null) {
             notificationBuildInternal.contentView = remoteViewsMakeContentView;
@@ -187,20 +190,20 @@ public class NotificationCompatBuilder implements NotificationBuilderWithBuilder
                 notificationBuildInternal.contentView = remoteViews;
             }
         }
-        if (style != null && (remoteViewsMakeBigContentView = style.makeBigContentView(this)) != null) {
+        if (notificationCompat$Style != null && (remoteViewsMakeBigContentView = notificationCompat$Style.makeBigContentView(this)) != null) {
             notificationBuildInternal.bigContentView = remoteViewsMakeBigContentView;
         }
-        if (style != null && (remoteViewsMakeHeadsUpContentView = this.mBuilderCompat.mStyle.makeHeadsUpContentView(this)) != null) {
+        if (notificationCompat$Style != null && (remoteViewsMakeHeadsUpContentView = this.mBuilderCompat.mStyle.makeHeadsUpContentView(this)) != null) {
             notificationBuildInternal.headsUpContentView = remoteViewsMakeHeadsUpContentView;
         }
-        if (style != null && (extras = NotificationCompat.getExtras(notificationBuildInternal)) != null) {
-            style.addCompatExtras(extras);
+        if (notificationCompat$Style != null && (extras = NotificationCompat.getExtras(notificationBuildInternal)) != null) {
+            notificationCompat$Style.addCompatExtras(extras);
         }
         return notificationBuildInternal;
     }
 
     public Notification buildInternal() {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i >= 26) {
             return this.mBuilder.build();
         }
@@ -256,7 +259,7 @@ public class NotificationCompatBuilder implements NotificationBuilderWithBuilder
     }
 
     @Override // androidx.core.app.NotificationBuilderWithBuilderAccessor
-    public Notification.Builder getBuilder() {
+    public Notification$Builder getBuilder() {
         return this.mBuilder;
     }
 

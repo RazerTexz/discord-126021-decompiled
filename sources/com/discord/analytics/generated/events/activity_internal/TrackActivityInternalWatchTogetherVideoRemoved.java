@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherVideoRemoved.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackActivityInternalWatchTogetherVideoRemoved imp
             return false;
         }
         TrackActivityInternalWatchTogetherVideoRemoved trackActivityInternalWatchTogetherVideoRemoved = (TrackActivityInternalWatchTogetherVideoRemoved) other;
-        return C12238m.areEqual(this.isHost, trackActivityInternalWatchTogetherVideoRemoved.isHost) && C12238m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherVideoRemoved.isHostMode);
+        return m.areEqual(this.isHost, trackActivityInternalWatchTogetherVideoRemoved.isHost) && m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherVideoRemoved.isHostMode);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackActivityInternalWatchTogetherVideoRemoved imp
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalWatchTogetherVideoRemoved(isHost=");
-        sbM833U.append(this.isHost);
-        sbM833U.append(", isHostMode=");
-        return C1643a.m816D(sbM833U, this.isHostMode, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalWatchTogetherVideoRemoved(isHost=");
+        sbU.append(this.isHost);
+        sbU.append(", isHostMode=");
+        return a.D(sbU, this.isHostMode, ")");
     }
 }

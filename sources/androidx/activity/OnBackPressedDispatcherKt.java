@@ -1,9 +1,9 @@
 package androidx.activity;
 
 import androidx.view.LifecycleOwner;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: OnBackPressedDispatcher.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,20 +18,15 @@ public final class OnBackPressedDispatcherKt {
         return addCallback(onBackPressedDispatcher, lifecycleOwner, z2, function1);
     }
 
-    public static final OnBackPressedCallback addCallback(OnBackPressedDispatcher onBackPressedDispatcher, LifecycleOwner lifecycleOwner, final boolean z2, final Function1<? super OnBackPressedCallback, Unit> function1) {
-        C12238m.checkNotNullParameter(onBackPressedDispatcher, "$this$addCallback");
-        C12238m.checkNotNullParameter(function1, "onBackPressed");
-        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(z2) { // from class: androidx.activity.OnBackPressedDispatcherKt$addCallback$callback$1
-            @Override // androidx.activity.OnBackPressedCallback
-            public void handleOnBackPressed() {
-                function1.invoke(this);
-            }
-        };
+    public static final OnBackPressedCallback addCallback(OnBackPressedDispatcher onBackPressedDispatcher, LifecycleOwner lifecycleOwner, boolean z2, Function1<? super OnBackPressedCallback, Unit> function1) {
+        m.checkNotNullParameter(onBackPressedDispatcher, "$this$addCallback");
+        m.checkNotNullParameter(function1, "onBackPressed");
+        OnBackPressedDispatcherKt$addCallback$callback$1 onBackPressedDispatcherKt$addCallback$callback$1 = new OnBackPressedDispatcherKt$addCallback$callback$1(function1, z2, z2);
         if (lifecycleOwner != null) {
-            onBackPressedDispatcher.addCallback(lifecycleOwner, onBackPressedCallback);
+            onBackPressedDispatcher.addCallback(lifecycleOwner, onBackPressedDispatcherKt$addCallback$callback$1);
         } else {
-            onBackPressedDispatcher.addCallback(onBackPressedCallback);
+            onBackPressedDispatcher.addCallback(onBackPressedDispatcherKt$addCallback$callback$1);
         }
-        return onBackPressedCallback;
+        return onBackPressedDispatcherKt$addCallback$callback$1;
     }
 }

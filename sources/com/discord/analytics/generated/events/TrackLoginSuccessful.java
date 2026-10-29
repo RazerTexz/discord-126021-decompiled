@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGiftCodeMetadata;
 import com.discord.analytics.generated.traits.TrackGiftCodeMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLoginSuccessful.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackLoginSuccessful implements AnalyticsSchema, T
             return false;
         }
         TrackLoginSuccessful trackLoginSuccessful = (TrackLoginSuccessful) other;
-        return C12238m.areEqual(this.loginSource, trackLoginSuccessful.loginSource) && C12238m.areEqual(this.source, trackLoginSuccessful.source) && C12238m.areEqual(this.isNewUser, trackLoginSuccessful.isNewUser) && C12238m.areEqual(this.fingerprint, trackLoginSuccessful.fingerprint) && C12238m.areEqual(this.loginMethod, trackLoginSuccessful.loginMethod);
+        return m.areEqual(this.loginSource, trackLoginSuccessful.loginSource) && m.areEqual(this.source, trackLoginSuccessful.source) && m.areEqual(this.isNewUser, trackLoginSuccessful.isNewUser) && m.areEqual(this.fingerprint, trackLoginSuccessful.fingerprint) && m.areEqual(this.loginMethod, trackLoginSuccessful.loginMethod);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,15 +51,15 @@ public final /* data */ class TrackLoginSuccessful implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackLoginSuccessful(loginSource=");
-        sbM833U.append(this.loginSource);
-        sbM833U.append(", source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", isNewUser=");
-        sbM833U.append(this.isNewUser);
-        sbM833U.append(", fingerprint=");
-        sbM833U.append(this.fingerprint);
-        sbM833U.append(", loginMethod=");
-        return C1643a.m817E(sbM833U, this.loginMethod, ")");
+        StringBuilder sbU = a.U("TrackLoginSuccessful(loginSource=");
+        sbU.append(this.loginSource);
+        sbU.append(", source=");
+        sbU.append(this.source);
+        sbU.append(", isNewUser=");
+        sbU.append(this.isNewUser);
+        sbU.append(", fingerprint=");
+        sbU.append(this.fingerprint);
+        sbU.append(", loginMethod=");
+        return a.E(sbU, this.loginMethod, ")");
     }
 }

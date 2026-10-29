@@ -9,22 +9,21 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class GifItemViewBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CardView f15103a;
+    public final CardView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f15104b;
+    public final SimpleDraweeView f2112b;
 
     public GifItemViewBinding(@NonNull CardView cardView, @NonNull SimpleDraweeView simpleDraweeView) {
-        this.f15103a = cardView;
-        this.f15104b = simpleDraweeView;
+        this.a = cardView;
+        this.f2112b = simpleDraweeView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15103a;
+        return this.a;
     }
 }

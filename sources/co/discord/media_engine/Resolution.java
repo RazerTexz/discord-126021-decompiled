@@ -1,6 +1,6 @@
 package co.discord.media_engine;
 
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: Statistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -61,9 +61,9 @@ public final /* data */ class Resolution {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Resolution(width=");
-        sbM833U.append(this.width);
-        sbM833U.append(", height=");
-        return C1643a.m814B(sbM833U, this.height, ")");
+        StringBuilder sbU = a.U("Resolution(width=");
+        sbU.append(this.width);
+        sbU.append(", height=");
+        return a.B(sbU, this.height, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.api.guildrolesubscription;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionGroupListing.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,6 +29,19 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
         this.fullServerGate = z2;
     }
 
+    public static GuildRoleSubscriptionGroupListing a(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, long j, long j2, long j3, ImageAsset imageAsset, String str, List list, List list2, boolean z2, int i) {
+        long j4 = (i & 1) != 0 ? guildRoleSubscriptionGroupListing.id : j;
+        long j5 = (i & 2) != 0 ? guildRoleSubscriptionGroupListing.guildId : j2;
+        long j6 = (i & 4) != 0 ? guildRoleSubscriptionGroupListing.applicationId : j3;
+        ImageAsset imageAsset2 = (i & 8) != 0 ? guildRoleSubscriptionGroupListing.imageAsset : null;
+        String str2 = (i & 16) != 0 ? guildRoleSubscriptionGroupListing.description : null;
+        List<Long> list3 = (i & 32) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListingsIds : null;
+        List list4 = (i & 64) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListings : list2;
+        boolean z3 = (i & 128) != 0 ? guildRoleSubscriptionGroupListing.fullServerGate : z2;
+        Objects.requireNonNull(guildRoleSubscriptionGroupListing);
+        return new GuildRoleSubscriptionGroupListing(j4, j5, j6, imageAsset2, str2, list3, list4, z3);
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -37,7 +50,7 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
             return false;
         }
         GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing = (GuildRoleSubscriptionGroupListing) other;
-        return this.id == guildRoleSubscriptionGroupListing.id && this.guildId == guildRoleSubscriptionGroupListing.guildId && this.applicationId == guildRoleSubscriptionGroupListing.applicationId && C12238m.areEqual(this.imageAsset, guildRoleSubscriptionGroupListing.imageAsset) && C12238m.areEqual(this.description, guildRoleSubscriptionGroupListing.description) && C12238m.areEqual(this.subscriptionListingsIds, guildRoleSubscriptionGroupListing.subscriptionListingsIds) && C12238m.areEqual(this.subscriptionListings, guildRoleSubscriptionGroupListing.subscriptionListings) && this.fullServerGate == guildRoleSubscriptionGroupListing.fullServerGate;
+        return this.id == guildRoleSubscriptionGroupListing.id && this.guildId == guildRoleSubscriptionGroupListing.guildId && this.applicationId == guildRoleSubscriptionGroupListing.applicationId && m.areEqual(this.imageAsset, guildRoleSubscriptionGroupListing.imageAsset) && m.areEqual(this.description, guildRoleSubscriptionGroupListing.description) && m.areEqual(this.subscriptionListingsIds, guildRoleSubscriptionGroupListing.subscriptionListingsIds) && m.areEqual(this.subscriptionListings, guildRoleSubscriptionGroupListing.subscriptionListings) && this.fullServerGate == guildRoleSubscriptionGroupListing.fullServerGate;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -70,6 +83,10 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
         return this.imageAsset;
     }
 
+    public final List<GuildRoleSubscriptionTierListing> h() {
+        return this.subscriptionListings;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r0v15, types: [int] */
     /* JADX WARN: Type inference failed for: r0v16 */
@@ -97,46 +114,26 @@ public final /* data */ class GuildRoleSubscriptionGroupListing {
         return iHashCode4 + r0;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static GuildRoleSubscriptionGroupListing m7941a(GuildRoleSubscriptionGroupListing guildRoleSubscriptionGroupListing, long j, long j2, long j3, ImageAsset imageAsset, String str, List list, List list2, boolean z2, int i) {
-        long j4 = (i & 1) != 0 ? guildRoleSubscriptionGroupListing.id : j;
-        long j5 = (i & 2) != 0 ? guildRoleSubscriptionGroupListing.guildId : j2;
-        long j6 = (i & 4) != 0 ? guildRoleSubscriptionGroupListing.applicationId : j3;
-        ImageAsset imageAsset2 = (i & 8) != 0 ? guildRoleSubscriptionGroupListing.imageAsset : null;
-        String str2 = (i & 16) != 0 ? guildRoleSubscriptionGroupListing.description : null;
-        List<Long> list3 = (i & 32) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListingsIds : null;
-        List list4 = (i & 64) != 0 ? guildRoleSubscriptionGroupListing.subscriptionListings : list2;
-        boolean z3 = (i & 128) != 0 ? guildRoleSubscriptionGroupListing.fullServerGate : z2;
-        Objects.requireNonNull(guildRoleSubscriptionGroupListing);
-        return new GuildRoleSubscriptionGroupListing(j4, j5, j6, imageAsset2, str2, list3, list4, z3);
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final List<GuildRoleSubscriptionTierListing> m7948h() {
-        return this.subscriptionListings;
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final List<Long> m7949i() {
+    public final List<Long> i() {
         return this.subscriptionListingsIds;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildRoleSubscriptionGroupListing(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", imageAsset=");
-        sbM833U.append(this.imageAsset);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", subscriptionListingsIds=");
-        sbM833U.append(this.subscriptionListingsIds);
-        sbM833U.append(", subscriptionListings=");
-        sbM833U.append(this.subscriptionListings);
-        sbM833U.append(", fullServerGate=");
-        return C1643a.m827O(sbM833U, this.fullServerGate, ")");
+        StringBuilder sbU = a.U("GuildRoleSubscriptionGroupListing(id=");
+        sbU.append(this.id);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", imageAsset=");
+        sbU.append(this.imageAsset);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", subscriptionListingsIds=");
+        sbU.append(this.subscriptionListingsIds);
+        sbU.append(", subscriptionListings=");
+        sbU.append(this.subscriptionListings);
+        sbU.append(", fullServerGate=");
+        return a.O(sbU, this.fullServerGate, ")");
     }
 }

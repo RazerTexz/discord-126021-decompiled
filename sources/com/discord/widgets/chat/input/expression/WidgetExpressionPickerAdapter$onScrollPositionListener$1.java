@@ -1,12 +1,12 @@
 package com.discord.widgets.chat.input.expression;
 
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetExpressionPickerAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetExpressionPickerAdapter$onScrollPositionListener$1 extends AbstractC12240o implements Function1<Integer, Unit> {
+public final class WidgetExpressionPickerAdapter$onScrollPositionListener$1 extends o implements Function1<Integer, Unit> {
     public static final WidgetExpressionPickerAdapter$onScrollPositionListener$1 INSTANCE = new WidgetExpressionPickerAdapter$onScrollPositionListener$1();
 
     public WidgetExpressionPickerAdapter$onScrollPositionListener$1() {
@@ -19,6 +19,6 @@ public final class WidgetExpressionPickerAdapter$onScrollPositionListener$1 exte
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
         invoke(num.intValue());
-        return Unit.f27425a;
+        return Unit.a;
     }
 }

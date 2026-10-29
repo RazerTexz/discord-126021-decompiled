@@ -1,7 +1,7 @@
 package com.discord.analytics.generated.traits;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGiftCodeMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class TrackGiftCodeMetadata {
             return false;
         }
         TrackGiftCodeMetadata trackGiftCodeMetadata = (TrackGiftCodeMetadata) other;
-        return C12238m.areEqual(this.giftCode, trackGiftCodeMetadata.giftCode) && C12238m.areEqual(this.giftCodeSkuId, trackGiftCodeMetadata.giftCodeSkuId) && C12238m.areEqual(this.giftCodeMaxUses, trackGiftCodeMetadata.giftCodeMaxUses) && C12238m.areEqual(this.giftCodeMaxAge, trackGiftCodeMetadata.giftCodeMaxAge) && C12238m.areEqual(this.giftCodeSubscriptionPlanId, trackGiftCodeMetadata.giftCodeSubscriptionPlanId);
+        return m.areEqual(this.giftCode, trackGiftCodeMetadata.giftCode) && m.areEqual(this.giftCodeSkuId, trackGiftCodeMetadata.giftCodeSkuId) && m.areEqual(this.giftCodeMaxUses, trackGiftCodeMetadata.giftCodeMaxUses) && m.areEqual(this.giftCodeMaxAge, trackGiftCodeMetadata.giftCodeMaxAge) && m.areEqual(this.giftCodeSubscriptionPlanId, trackGiftCodeMetadata.giftCodeSubscriptionPlanId);
     }
 
     public int hashCode() {
@@ -37,15 +37,15 @@ public final /* data */ class TrackGiftCodeMetadata {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGiftCodeMetadata(giftCode=");
-        sbM833U.append(this.giftCode);
-        sbM833U.append(", giftCodeSkuId=");
-        sbM833U.append(this.giftCodeSkuId);
-        sbM833U.append(", giftCodeMaxUses=");
-        sbM833U.append(this.giftCodeMaxUses);
-        sbM833U.append(", giftCodeMaxAge=");
-        sbM833U.append(this.giftCodeMaxAge);
-        sbM833U.append(", giftCodeSubscriptionPlanId=");
-        return C1643a.m819G(sbM833U, this.giftCodeSubscriptionPlanId, ")");
+        StringBuilder sbU = a.U("TrackGiftCodeMetadata(giftCode=");
+        sbU.append(this.giftCode);
+        sbU.append(", giftCodeSkuId=");
+        sbU.append(this.giftCodeSkuId);
+        sbU.append(", giftCodeMaxUses=");
+        sbU.append(this.giftCodeMaxUses);
+        sbU.append(", giftCodeMaxAge=");
+        sbU.append(this.giftCodeMaxAge);
+        sbU.append(", giftCodeSubscriptionPlanId=");
+        return a.G(sbU, this.giftCodeSubscriptionPlanId, ")");
     }
 }

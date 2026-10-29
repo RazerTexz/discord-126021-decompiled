@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackFileUploadAlertViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,6 +28,11 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "file_upload_alert_viewed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,7 +41,7 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
             return false;
         }
         TrackFileUploadAlertViewed trackFileUploadAlertViewed = (TrackFileUploadAlertViewed) other;
-        return C12238m.areEqual(this.alertType, trackFileUploadAlertViewed.alertType) && C12238m.areEqual(this.numAttachments, trackFileUploadAlertViewed.numAttachments) && C12238m.areEqual(this.maxAttachmentSize, trackFileUploadAlertViewed.maxAttachmentSize) && C12238m.areEqual(this.totalAttachmentSize, trackFileUploadAlertViewed.totalAttachmentSize) && C12238m.areEqual(this.hasImage, trackFileUploadAlertViewed.hasImage) && C12238m.areEqual(this.hasVideo, trackFileUploadAlertViewed.hasVideo) && C12238m.areEqual(this.isPremium, trackFileUploadAlertViewed.isPremium) && C12238m.areEqual(this.imageCompressionQuality, trackFileUploadAlertViewed.imageCompressionQuality) && C12238m.areEqual(this.imageCompressionSettingEnabled, trackFileUploadAlertViewed.imageCompressionSettingEnabled) && C12238m.areEqual(this.previewEnabled, trackFileUploadAlertViewed.previewEnabled);
+        return m.areEqual(this.alertType, trackFileUploadAlertViewed.alertType) && m.areEqual(this.numAttachments, trackFileUploadAlertViewed.numAttachments) && m.areEqual(this.maxAttachmentSize, trackFileUploadAlertViewed.maxAttachmentSize) && m.areEqual(this.totalAttachmentSize, trackFileUploadAlertViewed.totalAttachmentSize) && m.areEqual(this.hasImage, trackFileUploadAlertViewed.hasImage) && m.areEqual(this.hasVideo, trackFileUploadAlertViewed.hasVideo) && m.areEqual(this.isPremium, trackFileUploadAlertViewed.isPremium) && m.areEqual(this.imageCompressionQuality, trackFileUploadAlertViewed.imageCompressionQuality) && m.areEqual(this.imageCompressionSettingEnabled, trackFileUploadAlertViewed.imageCompressionSettingEnabled) && m.areEqual(this.previewEnabled, trackFileUploadAlertViewed.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -74,32 +79,26 @@ public final /* data */ class TrackFileUploadAlertViewed implements AnalyticsSch
         return iHashCode9 + (bool5 != null ? bool5.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackFileUploadAlertViewed(alertType=");
-        sbM833U.append(this.alertType);
-        sbM833U.append(", numAttachments=");
-        sbM833U.append(this.numAttachments);
-        sbM833U.append(", maxAttachmentSize=");
-        sbM833U.append(this.maxAttachmentSize);
-        sbM833U.append(", totalAttachmentSize=");
-        sbM833U.append(this.totalAttachmentSize);
-        sbM833U.append(", hasImage=");
-        sbM833U.append(this.hasImage);
-        sbM833U.append(", hasVideo=");
-        sbM833U.append(this.hasVideo);
-        sbM833U.append(", isPremium=");
-        sbM833U.append(this.isPremium);
-        sbM833U.append(", imageCompressionQuality=");
-        sbM833U.append(this.imageCompressionQuality);
-        sbM833U.append(", imageCompressionSettingEnabled=");
-        sbM833U.append(this.imageCompressionSettingEnabled);
-        sbM833U.append(", previewEnabled=");
-        return C1643a.m816D(sbM833U, this.previewEnabled, ")");
+        StringBuilder sbU = a.U("TrackFileUploadAlertViewed(alertType=");
+        sbU.append(this.alertType);
+        sbU.append(", numAttachments=");
+        sbU.append(this.numAttachments);
+        sbU.append(", maxAttachmentSize=");
+        sbU.append(this.maxAttachmentSize);
+        sbU.append(", totalAttachmentSize=");
+        sbU.append(this.totalAttachmentSize);
+        sbU.append(", hasImage=");
+        sbU.append(this.hasImage);
+        sbU.append(", hasVideo=");
+        sbU.append(this.hasVideo);
+        sbU.append(", isPremium=");
+        sbU.append(this.isPremium);
+        sbU.append(", imageCompressionQuality=");
+        sbU.append(this.imageCompressionQuality);
+        sbU.append(", imageCompressionSettingEnabled=");
+        sbU.append(this.imageCompressionSettingEnabled);
+        sbU.append(", previewEnabled=");
+        return a.D(sbU, this.previewEnabled, ")");
     }
 }

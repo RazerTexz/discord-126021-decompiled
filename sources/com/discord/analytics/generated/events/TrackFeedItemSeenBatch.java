@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackFeedItemSeenBatch.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +20,11 @@ public final /* data */ class TrackFeedItemSeenBatch implements AnalyticsSchema,
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "feed_item_seen_batch";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,7 +33,7 @@ public final /* data */ class TrackFeedItemSeenBatch implements AnalyticsSchema,
             return false;
         }
         TrackFeedItemSeenBatch trackFeedItemSeenBatch = (TrackFeedItemSeenBatch) other;
-        return C12238m.areEqual(this.loadId, trackFeedItemSeenBatch.loadId) && C12238m.areEqual(this.feedItemIds, trackFeedItemSeenBatch.feedItemIds) && C12238m.areEqual(this.additionalSeenTimeMillis, trackFeedItemSeenBatch.additionalSeenTimeMillis) && C12238m.areEqual(this.homeSessionId, trackFeedItemSeenBatch.homeSessionId);
+        return m.areEqual(this.loadId, trackFeedItemSeenBatch.loadId) && m.areEqual(this.feedItemIds, trackFeedItemSeenBatch.feedItemIds) && m.areEqual(this.additionalSeenTimeMillis, trackFeedItemSeenBatch.additionalSeenTimeMillis) && m.areEqual(this.homeSessionId, trackFeedItemSeenBatch.homeSessionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,20 +59,14 @@ public final /* data */ class TrackFeedItemSeenBatch implements AnalyticsSchema,
         return iHashCode3 + (charSequence2 != null ? charSequence2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackFeedItemSeenBatch(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", feedItemIds=");
-        sbM833U.append(this.feedItemIds);
-        sbM833U.append(", additionalSeenTimeMillis=");
-        sbM833U.append(this.additionalSeenTimeMillis);
-        sbM833U.append(", homeSessionId=");
-        return C1643a.m817E(sbM833U, this.homeSessionId, ")");
+        StringBuilder sbU = a.U("TrackFeedItemSeenBatch(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", feedItemIds=");
+        sbU.append(this.feedItemIds);
+        sbU.append(", additionalSeenTimeMillis=");
+        sbU.append(this.additionalSeenTimeMillis);
+        sbU.append(", homeSessionId=");
+        return a.E(sbU, this.homeSessionId, ")");
     }
 }

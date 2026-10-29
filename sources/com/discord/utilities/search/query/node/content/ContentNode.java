@@ -2,10 +2,10 @@ package com.discord.utilities.search.query.node.content;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import b.d.b.a.a;
 import com.discord.utilities.search.query.node.QueryNode;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ContentNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,7 +13,7 @@ public final /* data */ class ContentNode extends QueryNode {
     private final CharSequence content;
 
     public ContentNode(CharSequence charSequence) {
-        C12238m.checkNotNullParameter(charSequence, "content");
+        m.checkNotNullParameter(charSequence, "content");
         this.content = charSequence;
     }
 
@@ -25,13 +25,13 @@ public final /* data */ class ContentNode extends QueryNode {
     }
 
     public final ContentNode copy(CharSequence content) {
-        C12238m.checkNotNullParameter(content, "content");
+        m.checkNotNullParameter(content, "content");
         return new ContentNode(content);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ContentNode) && C12238m.areEqual(this.content, ((ContentNode) other).content);
+            return (other instanceof ContentNode) && m.areEqual(this.content, ((ContentNode) other).content);
         }
         return true;
     }
@@ -45,6 +45,11 @@ public final /* data */ class ContentNode extends QueryNode {
         return this.content;
     }
 
+    @Override // com.discord.utilities.search.query.node.QueryNode
+    public /* bridge */ /* synthetic */ CharSequence getText() {
+        return getText();
+    }
+
     public int hashCode() {
         CharSequence charSequence = this.content;
         if (charSequence != null) {
@@ -53,15 +58,20 @@ public final /* data */ class ContentNode extends QueryNode {
         return 0;
     }
 
+    @Override // com.discord.simpleast.core.node.Node
+    public /* bridge */ /* synthetic */ void render(SpannableStringBuilder spannableStringBuilder, Context context) {
+        render2(spannableStringBuilder, context);
+    }
+
     public String toString() {
-        return C1643a.m817E(C1643a.m833U("ContentNode(content="), this.content, ")");
+        return a.E(a.U("ContentNode(content="), this.content, ")");
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public ContentNode(ContentNode contentNode, ContentNode contentNode2) {
         this("" + contentNode.content + ' ' + contentNode2.content);
-        C12238m.checkNotNullParameter(contentNode, "node1");
-        C12238m.checkNotNullParameter(contentNode2, "node2");
+        m.checkNotNullParameter(contentNode, "node1");
+        m.checkNotNullParameter(contentNode2, "node2");
     }
 
     @Override // com.discord.utilities.search.query.node.QueryNode
@@ -69,10 +79,10 @@ public final /* data */ class ContentNode extends QueryNode {
         return this.content.toString();
     }
 
-    @Override // com.discord.simpleast.core.node.Node
-    public void render(SpannableStringBuilder builder, Context renderContext) {
-        C12238m.checkNotNullParameter(builder, "builder");
-        C12238m.checkNotNullParameter(renderContext, "renderContext");
+    /* JADX INFO: renamed from: render, reason: avoid collision after fix types in other method */
+    public void render2(SpannableStringBuilder builder, Context renderContext) {
+        m.checkNotNullParameter(builder, "builder");
+        m.checkNotNullParameter(renderContext, "renderContext");
         builder.append(this.content).append(' ');
     }
 }

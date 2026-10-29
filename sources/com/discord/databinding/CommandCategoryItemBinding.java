@@ -4,33 +4,31 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.n;
 import com.facebook.drawee.view.SimpleDraweeView;
-import p007b.p008a.p025i.C1009n;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class CommandCategoryItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15018a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f15019b;
+    public final SimpleDraweeView f2090b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final C1009n f15020c;
+    public final n c;
 
-    public CommandCategoryItemBinding(@NonNull FrameLayout frameLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull C1009n c1009n) {
-        this.f15018a = frameLayout;
-        this.f15019b = simpleDraweeView;
-        this.f15020c = c1009n;
+    public CommandCategoryItemBinding(@NonNull FrameLayout frameLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull n nVar) {
+        this.a = frameLayout;
+        this.f2090b = simpleDraweeView;
+        this.c = nVar;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15018a;
+        return this.a;
     }
 }

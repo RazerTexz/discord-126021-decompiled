@@ -21,12 +21,12 @@ public class NativeCapturerObserver implements CapturerObserver {
 
     @Override // org.webrtc.CapturerObserver
     public void onFrameCaptured(VideoFrame videoFrame) {
-        VideoProcessor.FrameAdaptationParameters frameAdaptationParametersAdaptFrame = this.nativeAndroidVideoTrackSource.adaptFrame(videoFrame);
-        if (frameAdaptationParametersAdaptFrame == null) {
+        VideoProcessor$FrameAdaptationParameters videoProcessor$FrameAdaptationParametersAdaptFrame = this.nativeAndroidVideoTrackSource.adaptFrame(videoFrame);
+        if (videoProcessor$FrameAdaptationParametersAdaptFrame == null) {
             return;
         }
-        VideoFrame.Buffer bufferCropAndScale = videoFrame.getBuffer().cropAndScale(frameAdaptationParametersAdaptFrame.cropX, frameAdaptationParametersAdaptFrame.cropY, frameAdaptationParametersAdaptFrame.cropWidth, frameAdaptationParametersAdaptFrame.cropHeight, frameAdaptationParametersAdaptFrame.scaleWidth, frameAdaptationParametersAdaptFrame.scaleHeight);
-        this.nativeAndroidVideoTrackSource.onFrameCaptured(new VideoFrame(bufferCropAndScale, videoFrame.getRotation(), frameAdaptationParametersAdaptFrame.timestampNs));
-        bufferCropAndScale.release();
+        VideoFrame$Buffer videoFrame$BufferCropAndScale = videoFrame.getBuffer().cropAndScale(videoProcessor$FrameAdaptationParametersAdaptFrame.cropX, videoProcessor$FrameAdaptationParametersAdaptFrame.cropY, videoProcessor$FrameAdaptationParametersAdaptFrame.cropWidth, videoProcessor$FrameAdaptationParametersAdaptFrame.cropHeight, videoProcessor$FrameAdaptationParametersAdaptFrame.scaleWidth, videoProcessor$FrameAdaptationParametersAdaptFrame.scaleHeight);
+        this.nativeAndroidVideoTrackSource.onFrameCaptured(new VideoFrame(videoFrame$BufferCropAndScale, videoFrame.getRotation(), videoProcessor$FrameAdaptationParametersAdaptFrame.timestampNs));
+        videoFrame$BufferCropAndScale.release();
     }
 }

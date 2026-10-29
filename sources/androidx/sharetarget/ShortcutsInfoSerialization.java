@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Xml;
-import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 import androidx.collection.ArrayMap;
-import androidx.core.content.p004pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutInfoCompat$Builder;
 import androidx.core.util.AtomicFile;
+import b.d.b.a.a;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ShortcutsInfoSerialization {
@@ -45,19 +45,6 @@ public class ShortcutsInfoSerialization {
     private static final String TAG_ROOT = "share_targets";
     private static final String TAG_TARGET = "target";
 
-    public class ShortcutContainer {
-        public final String mBitmapPath;
-        public final String mResourceName;
-        public final ShortcutInfoCompat mShortcutInfo;
-
-        @AnyThread
-        public ShortcutContainer(ShortcutInfoCompat shortcutInfoCompat, String str, String str2) {
-            this.mShortcutInfo = shortcutInfoCompat;
-            this.mResourceName = str;
-            this.mBitmapPath = str2;
-        }
-    }
-
     private ShortcutsInfoSerialization() {
     }
 
@@ -68,8 +55,8 @@ public class ShortcutsInfoSerialization {
     }
 
     @WorkerThread
-    public static Map<String, ShortcutContainer> loadFromXml(File file, Context context) {
-        ShortcutContainer shortcutContainer;
+    public static Map<String, ShortcutsInfoSerialization$ShortcutContainer> loadFromXml(File file, Context context) {
+        ShortcutsInfoSerialization$ShortcutContainer shortcutContainer;
         ShortcutInfoCompat shortcutInfoCompat;
         ArrayMap arrayMap = new ArrayMap();
         try {
@@ -134,7 +121,7 @@ public class ShortcutsInfoSerialization {
     }
 
     @WorkerThread
-    private static ShortcutContainer parseShortcutContainer(XmlPullParser xmlPullParser, Context context) throws Exception {
+    private static ShortcutsInfoSerialization$ShortcutContainer parseShortcutContainer(XmlPullParser xmlPullParser, Context context) throws Exception {
         if (!xmlPullParser.getName().equals(TAG_TARGET)) {
             return null;
         }
@@ -177,7 +164,7 @@ public class ShortcutsInfoSerialization {
                 break;
             }
         }
-        ShortcutInfoCompat.Builder rank = new ShortcutInfoCompat.Builder(context, attributeValue).setShortLabel(attributeValue2).setRank(i);
+        ShortcutInfoCompat$Builder rank = new ShortcutInfoCompat$Builder(context, attributeValue).setShortLabel(attributeValue2).setRank(i);
         if (!TextUtils.isEmpty(attributeValue3)) {
             rank.setLongLabel(attributeValue3);
         }
@@ -193,10 +180,10 @@ public class ShortcutsInfoSerialization {
         if (!hashSet.isEmpty()) {
             rank.setCategories(hashSet);
         }
-        return new ShortcutContainer(rank.build(), attributeValue5, attributeValue6);
+        return new ShortcutsInfoSerialization$ShortcutContainer(rank.build(), attributeValue5, attributeValue6);
     }
 
-    public static void saveAsXml(List<ShortcutContainer> list, File file) {
+    public static void saveAsXml(List<ShortcutsInfoSerialization$ShortcutContainer> list, File file) {
         AtomicFile atomicFile = new AtomicFile(file);
         FileOutputStream fileOutputStream = null;
         try {
@@ -207,7 +194,7 @@ public class ShortcutsInfoSerialization {
                 xmlSerializerNewSerializer.setOutput(bufferedOutputStream, "UTF_8");
                 xmlSerializerNewSerializer.startDocument(null, Boolean.TRUE);
                 xmlSerializerNewSerializer.startTag(null, TAG_ROOT);
-                Iterator<ShortcutContainer> it = list.iterator();
+                Iterator<ShortcutsInfoSerialization$ShortcutContainer> it = list.iterator();
                 while (it.hasNext()) {
                     serializeShortcutContainer(xmlSerializerNewSerializer, it.next());
                 }
@@ -219,13 +206,13 @@ public class ShortcutsInfoSerialization {
             } catch (Exception e) {
                 e = e;
                 fileOutputStream = fileOutputStreamStartWrite;
-                StringBuilder sbM833U = C1643a.m833U("Failed to write to file ");
-                sbM833U.append(atomicFile.getBaseFile());
-                Log.e("ShortcutInfoCompatSaver", sbM833U.toString(), e);
+                StringBuilder sbU = a.U("Failed to write to file ");
+                sbU.append(atomicFile.getBaseFile());
+                Log.e("ShortcutInfoCompatSaver", sbU.toString(), e);
                 atomicFile.failWrite(fileOutputStream);
-                StringBuilder sbM833U2 = C1643a.m833U("Failed to write to file ");
-                sbM833U2.append(atomicFile.getBaseFile());
-                throw new RuntimeException(sbM833U2.toString(), e);
+                StringBuilder sbU2 = a.U("Failed to write to file ");
+                sbU2.append(atomicFile.getBaseFile());
+                throw new RuntimeException(sbU2.toString(), e);
             }
         } catch (Exception e2) {
             e = e2;
@@ -262,9 +249,9 @@ public class ShortcutsInfoSerialization {
     }
 
     @WorkerThread
-    private static void serializeShortcutContainer(XmlSerializer xmlSerializer, ShortcutContainer shortcutContainer) throws IOException {
+    private static void serializeShortcutContainer(XmlSerializer xmlSerializer, ShortcutsInfoSerialization$ShortcutContainer shortcutsInfoSerialization$ShortcutContainer) throws IOException {
         xmlSerializer.startTag(null, TAG_TARGET);
-        ShortcutInfoCompat shortcutInfoCompat = shortcutContainer.mShortcutInfo;
+        ShortcutInfoCompat shortcutInfoCompat = shortcutsInfoSerialization$ShortcutContainer.mShortcutInfo;
         serializeAttribute(xmlSerializer, "id", shortcutInfoCompat.getId());
         serializeAttribute(xmlSerializer, ATTR_SHORT_LABEL, shortcutInfoCompat.getShortLabel().toString());
         serializeAttribute(xmlSerializer, ATTR_RANK, Integer.toString(shortcutInfoCompat.getRank()));
@@ -277,11 +264,11 @@ public class ShortcutsInfoSerialization {
         if (shortcutInfoCompat.getActivity() != null) {
             serializeAttribute(xmlSerializer, ATTR_COMPONENT, shortcutInfoCompat.getActivity().flattenToString());
         }
-        if (!TextUtils.isEmpty(shortcutContainer.mResourceName)) {
-            serializeAttribute(xmlSerializer, ATTR_ICON_RES_NAME, shortcutContainer.mResourceName);
+        if (!TextUtils.isEmpty(shortcutsInfoSerialization$ShortcutContainer.mResourceName)) {
+            serializeAttribute(xmlSerializer, ATTR_ICON_RES_NAME, shortcutsInfoSerialization$ShortcutContainer.mResourceName);
         }
-        if (!TextUtils.isEmpty(shortcutContainer.mBitmapPath)) {
-            serializeAttribute(xmlSerializer, ATTR_ICON_BMP_PATH, shortcutContainer.mBitmapPath);
+        if (!TextUtils.isEmpty(shortcutsInfoSerialization$ShortcutContainer.mBitmapPath)) {
+            serializeAttribute(xmlSerializer, ATTR_ICON_BMP_PATH, shortcutsInfoSerialization$ShortcutContainer.mBitmapPath);
         }
         for (Intent intent : shortcutInfoCompat.getIntents()) {
             serializeIntent(xmlSerializer, intent);

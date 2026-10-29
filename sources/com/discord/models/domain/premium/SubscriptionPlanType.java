@@ -3,19 +3,10 @@ package com.discord.models.domain.premium;
 import androidx.room.RoomDatabase;
 import com.discord.api.premium.PremiumTier;
 import com.discord.api.premium.SubscriptionInterval;
-import com.discord.models.domain.ModelSubscription;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import d0.t.m0;
+import d0.t.n0;
+import d0.t.o0;
 import java.util.Set;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12146m0;
-import p507d0.p580t.C12148n0;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12150o0;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX WARN: Enum visitor error
 jadx.core.utils.exceptions.JadxRuntimeException: Init of enum field 'NONE_MONTH' uses external variables
@@ -31,9 +22,7 @@ jadx.core.utils.exceptions.JadxRuntimeException: Init of enum field 'NONE_MONTH'
 /* JADX INFO: loaded from: classes.dex */
 public final class SubscriptionPlanType {
     private static final /* synthetic */ SubscriptionPlanType[] $VALUES;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE;
+    public static final SubscriptionPlanType$Companion Companion;
     private static final Set<SubscriptionPlanType> LEGACY_PLANS;
     public static final SubscriptionPlanType NONE_3_MONTH;
     public static final SubscriptionPlanType NONE_6_MONTH;
@@ -63,124 +52,6 @@ public final class SubscriptionPlanType {
     private final String planTypeString;
     private final PremiumTier premiumTier;
     private final int price;
-
-    /* JADX INFO: compiled from: SubscriptionPlanType.kt */
-    public final class Companion {
-
-        public final /* synthetic */ class WhenMappings {
-            public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-            static {
-                SubscriptionInterval.values();
-                int[] iArr = new int[2];
-                $EnumSwitchMapping$0 = iArr;
-                iArr[SubscriptionInterval.MONTHLY.ordinal()] = 1;
-                iArr[SubscriptionInterval.YEARLY.ordinal()] = 2;
-            }
-        }
-
-        private Companion() {
-        }
-
-        /* JADX WARN: Code duplicated, block: B:14:0x001f A[RETURN] */
-        /* JADX WARN: Code duplicated, block: B:15:0x0020  */
-        public final SubscriptionPlanType from(long planId) {
-            SubscriptionPlanType subscriptionPlanType;
-            SubscriptionPlanType[] subscriptionPlanTypeArrValues = SubscriptionPlanType.values();
-            for (int i = 0; i < 17; i++) {
-                subscriptionPlanType = subscriptionPlanTypeArrValues[i];
-                if (subscriptionPlanType.getPlanId() == planId) {
-                    if (subscriptionPlanType != null) {
-                        return subscriptionPlanType;
-                    }
-                    throw new IllegalArgumentException(C1643a.m877t("unsupported type plan id: ", planId));
-                }
-            }
-            subscriptionPlanType = null;
-            if (subscriptionPlanType != null) {
-                return subscriptionPlanType;
-            }
-            throw new IllegalArgumentException(C1643a.m877t("unsupported type plan id: ", planId));
-        }
-
-        public final SubscriptionPlanType getBasePlanFromSubscriptionItems(List<ModelSubscription.SubscriptionItem> items, SubscriptionInterval interval, int intervalCount) {
-            Object next;
-            SubscriptionInterval interval2;
-            C12238m.checkNotNullParameter(items, "items");
-            C12238m.checkNotNullParameter(interval, "interval");
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(items, 10));
-            Iterator<T> it = items.iterator();
-            while (it.hasNext()) {
-                arrayList.add(SubscriptionPlanType.INSTANCE.from(((ModelSubscription.SubscriptionItem) it.next()).getPlanId()));
-            }
-            SubscriptionPlanType subscriptionPlanType = (SubscriptionPlanType) C12163u.firstOrNull((List) arrayList);
-            if (subscriptionPlanType != null && (interval2 = subscriptionPlanType.getInterval()) != null) {
-                interval = interval2;
-            }
-            Iterator it2 = arrayList.iterator();
-            do {
-                if (!it2.hasNext()) {
-                    next = null;
-                    break;
-                }
-                next = it2.next();
-            } while (!(((SubscriptionPlanType) next).getPremiumTier() != null));
-            SubscriptionPlanType subscriptionPlanType2 = (SubscriptionPlanType) next;
-            return subscriptionPlanType2 != null ? subscriptionPlanType2 : getNonePlanForIntervalType(interval, intervalCount);
-        }
-
-        public final Set<SubscriptionPlanType> getLEGACY_PLANS() {
-            return SubscriptionPlanType.LEGACY_PLANS;
-        }
-
-        private final SubscriptionPlanType getNonePlanForIntervalType(SubscriptionInterval interval, int intervalCount) {
-            int iOrdinal = interval.ordinal();
-            if (iOrdinal == 0) {
-                if (intervalCount != 3) {
-                    return intervalCount != 6 ? SubscriptionPlanType.NONE_MONTH : SubscriptionPlanType.NONE_6_MONTH;
-                }
-                return SubscriptionPlanType.NONE_3_MONTH;
-            }
-            if (iOrdinal == 1) {
-                return SubscriptionPlanType.NONE_YEAR;
-            }
-            throw new IllegalArgumentException("unsupported plan interval: " + interval);
-        }
-
-        public final Set<SubscriptionPlanType> getPREMIUM_GUILD_PLANS() {
-            return SubscriptionPlanType.PREMIUM_GUILD_PLANS;
-        }
-
-        public final Set<SubscriptionPlanType> getPREMIUM_PLANS() {
-            return SubscriptionPlanType.PREMIUM_PLANS;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        /* JADX WARN: Code duplicated, block: B:11:0x0022 A[RETURN] */
-        /* JADX WARN: Code duplicated, block: B:12:0x0023  */
-        public final SubscriptionPlanType from(String planTypeString) {
-            SubscriptionPlanType subscriptionPlanType;
-            C12238m.checkNotNullParameter(planTypeString, "planTypeString");
-            SubscriptionPlanType[] subscriptionPlanTypeArrValues = SubscriptionPlanType.values();
-            for (int i = 0; i < 17; i++) {
-                subscriptionPlanType = subscriptionPlanTypeArrValues[i];
-                if (C12238m.areEqual(subscriptionPlanType.getPlanTypeString(), planTypeString)) {
-                    if (subscriptionPlanType != null) {
-                        return subscriptionPlanType;
-                    }
-                    throw new IllegalArgumentException(C1643a.m883w("unsupported planTypeString: ", planTypeString));
-                }
-            }
-            subscriptionPlanType = null;
-            if (subscriptionPlanType != null) {
-                return subscriptionPlanType;
-            }
-            throw new IllegalArgumentException(C1643a.m883w("unsupported planTypeString: ", planTypeString));
-        }
-    }
 
     static {
         SubscriptionInterval subscriptionInterval = SubscriptionInterval.MONTHLY;
@@ -223,17 +94,17 @@ public final class SubscriptionPlanType {
         SubscriptionPlanType subscriptionPlanType17 = new SubscriptionPlanType("PREMIUM_GUILD_YEAR", 16, 4999, subscriptionInterval2, 1, null, 590665538238152709L, null);
         PREMIUM_GUILD_YEAR = subscriptionPlanType17;
         $VALUES = new SubscriptionPlanType[]{subscriptionPlanType, subscriptionPlanType2, subscriptionPlanType3, subscriptionPlanType4, subscriptionPlanType5, subscriptionPlanType6, subscriptionPlanType7, subscriptionPlanType8, subscriptionPlanType9, subscriptionPlanType10, subscriptionPlanType11, subscriptionPlanType12, subscriptionPlanType13, subscriptionPlanType14, subscriptionPlanType15, subscriptionPlanType16, subscriptionPlanType17};
-        INSTANCE = new Companion(null);
-        Set<SubscriptionPlanType> of = C12146m0.setOf(subscriptionPlanType13);
+        Companion = new SubscriptionPlanType$Companion(null);
+        Set<SubscriptionPlanType> of = m0.setOf(subscriptionPlanType13);
         TIER_0_PLANS = of;
-        Set<SubscriptionPlanType> of2 = C12148n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType8, subscriptionPlanType7});
+        Set<SubscriptionPlanType> of2 = n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType8, subscriptionPlanType7});
         TIER_1_PLANS = of2;
-        Set<SubscriptionPlanType> of3 = C12148n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType6, subscriptionPlanType5});
+        Set<SubscriptionPlanType> of3 = n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType6, subscriptionPlanType5});
         LEGACY_PLANS = of3;
-        Set<SubscriptionPlanType> setPlus = C12150o0.plus(C12148n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType9, subscriptionPlanType10, subscriptionPlanType11, subscriptionPlanType12}), (Iterable) of3);
+        Set<SubscriptionPlanType> setPlus = o0.plus(n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType9, subscriptionPlanType10, subscriptionPlanType11, subscriptionPlanType12}), (Iterable) of3);
         TIER_2_PLANS = setPlus;
-        PREMIUM_PLANS = C12150o0.plus(C12150o0.plus((Set) of, (Iterable) of2), (Iterable) setPlus);
-        PREMIUM_GUILD_PLANS = C12148n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType14, subscriptionPlanType10, subscriptionPlanType11, subscriptionPlanType17});
+        PREMIUM_PLANS = o0.plus(o0.plus((Set) of, (Iterable) of2), (Iterable) setPlus);
+        PREMIUM_GUILD_PLANS = n0.setOf((Object[]) new SubscriptionPlanType[]{subscriptionPlanType14, subscriptionPlanType10, subscriptionPlanType11, subscriptionPlanType17});
     }
 
     private SubscriptionPlanType(String str, int i, int i2, SubscriptionInterval subscriptionInterval, int i3, String str2, long j, PremiumTier premiumTier) {
@@ -244,6 +115,18 @@ public final class SubscriptionPlanType {
         this.planTypeString = str2;
         this.planId = j;
         this.premiumTier = premiumTier;
+    }
+
+    public static final /* synthetic */ Set access$getLEGACY_PLANS$cp() {
+        return LEGACY_PLANS;
+    }
+
+    public static final /* synthetic */ Set access$getPREMIUM_GUILD_PLANS$cp() {
+        return PREMIUM_GUILD_PLANS;
+    }
+
+    public static final /* synthetic */ Set access$getPREMIUM_PLANS$cp() {
+        return PREMIUM_PLANS;
     }
 
     public final SubscriptionInterval getInterval() {

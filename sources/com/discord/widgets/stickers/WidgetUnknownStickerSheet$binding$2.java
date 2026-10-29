@@ -3,16 +3,16 @@ package com.discord.widgets.stickers;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetUnknownStickerSheetBinding;
 import com.discord.views.sticker.StickerView;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetUnknownStickerSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final /* synthetic */ class WidgetUnknownStickerSheet$binding$2 extends C12236k implements Function1<View, WidgetUnknownStickerSheetBinding> {
+public final /* synthetic */ class WidgetUnknownStickerSheet$binding$2 extends k implements Function1<View, WidgetUnknownStickerSheetBinding> {
     public static final WidgetUnknownStickerSheet$binding$2 INSTANCE = new WidgetUnknownStickerSheet$binding$2();
 
     public WidgetUnknownStickerSheet$binding$2() {
@@ -20,13 +20,18 @@ public final /* synthetic */ class WidgetUnknownStickerSheet$binding$2 extends C
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetUnknownStickerSheetBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.unknown_sticker_sheet_sticker;
-        StickerView stickerView = (StickerView) view.findViewById(C5419R.id.unknown_sticker_sheet_sticker);
+    public /* bridge */ /* synthetic */ WidgetUnknownStickerSheetBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetUnknownStickerSheetBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.unknown_sticker_sheet_sticker;
+        StickerView stickerView = (StickerView) view.findViewById(R$id.unknown_sticker_sheet_sticker);
         if (stickerView != null) {
-            i = C5419R.id.unknown_sticker_sheet_sticker_name;
-            TextView textView = (TextView) view.findViewById(C5419R.id.unknown_sticker_sheet_sticker_name);
+            i = R$id.unknown_sticker_sheet_sticker_name;
+            TextView textView = (TextView) view.findViewById(R$id.unknown_sticker_sheet_sticker_name);
             if (textView != null) {
                 return new WidgetUnknownStickerSheetBinding((LinearLayout) view, stickerView, textView);
             }

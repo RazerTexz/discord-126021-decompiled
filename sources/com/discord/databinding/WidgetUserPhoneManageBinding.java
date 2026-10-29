@@ -12,47 +12,41 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserPhoneManageBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f18348a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final DimmerView f18349b;
+    public final DimmerView f2687b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f18350c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f18351d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialButton f18352e;
+    public final MaterialButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final PhoneOrEmailInputView f18353f;
+    public final PhoneOrEmailInputView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f18354g;
+    public final TextView g;
 
     public WidgetUserPhoneManageBinding(@NonNull FrameLayout frameLayout, @NonNull DimmerView dimmerView, @NonNull TextView textView, @NonNull TextView textView2, @NonNull MaterialButton materialButton, @NonNull PhoneOrEmailInputView phoneOrEmailInputView, @NonNull TextView textView3) {
-        this.f18348a = frameLayout;
-        this.f18349b = dimmerView;
-        this.f18350c = textView;
-        this.f18351d = textView2;
-        this.f18352e = materialButton;
-        this.f18353f = phoneOrEmailInputView;
-        this.f18354g = textView3;
+        this.a = frameLayout;
+        this.f2687b = dimmerView;
+        this.c = textView;
+        this.d = textView2;
+        this.e = materialButton;
+        this.f = phoneOrEmailInputView;
+        this.g = textView3;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18348a;
+        return this.a;
     }
 }

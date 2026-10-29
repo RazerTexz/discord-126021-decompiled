@@ -5,9 +5,10 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
-import androidx.constraintlayout.widget.C0201R;
 import androidx.constraintlayout.widget.ConstraintHelper;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
+import androidx.constraintlayout.widget.R$styleable;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Layer extends ConstraintHelper {
@@ -94,13 +95,13 @@ public class Layer extends ConstraintHelper {
         super.init(attributeSet);
         this.mUseViewMeasure = false;
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0201R.styleable.ConstraintLayout_Layout);
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$styleable.ConstraintLayout_Layout);
             int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             for (int i = 0; i < indexCount; i++) {
                 int index = typedArrayObtainStyledAttributes.getIndex(i);
-                if (index == C0201R.styleable.ConstraintLayout_Layout_android_visibility) {
+                if (index == R$styleable.ConstraintLayout_Layout_android_visibility) {
                     this.mApplyVisibilityOnAttach = true;
-                } else if (index == C0201R.styleable.ConstraintLayout_Layout_android_elevation) {
+                } else if (index == R$styleable.ConstraintLayout_Layout_android_elevation) {
                     this.mApplyElevationOnAttach = true;
                 }
             }
@@ -237,7 +238,7 @@ public class Layer extends ConstraintHelper {
         reCacheViews();
         this.mComputedCenterX = Float.NaN;
         this.mComputedCenterY = Float.NaN;
-        ConstraintWidget constraintWidget = ((ConstraintLayout.LayoutParams) getLayoutParams()).getConstraintWidget();
+        ConstraintWidget constraintWidget = ((ConstraintLayout$LayoutParams) getLayoutParams()).getConstraintWidget();
         constraintWidget.setWidth(0);
         constraintWidget.setHeight(0);
         calcCenters();

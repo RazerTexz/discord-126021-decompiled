@@ -10,27 +10,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemMentionFooterBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16253a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final View f16254b;
+    public final View f2326b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final View f16255c;
+    public final View c;
 
     public WidgetChatListAdapterItemMentionFooterBinding(@NonNull LinearLayout linearLayout, @NonNull View view, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull View view2) {
-        this.f16253a = linearLayout;
-        this.f16254b = view;
-        this.f16255c = view2;
+        this.a = linearLayout;
+        this.f2326b = view;
+        this.c = view2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16253a;
+        return this.a;
     }
 }

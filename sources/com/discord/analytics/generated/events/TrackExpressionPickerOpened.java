@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackExpressionPickerOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackExpressionPickerOpened implements AnalyticsSc
             return false;
         }
         TrackExpressionPickerOpened trackExpressionPickerOpened = (TrackExpressionPickerOpened) other;
-        return C12238m.areEqual(this.tab, trackExpressionPickerOpened.tab) && C12238m.areEqual(this.width, trackExpressionPickerOpened.width) && C12238m.areEqual(this.badged, trackExpressionPickerOpened.badged);
+        return m.areEqual(this.tab, trackExpressionPickerOpened.tab) && m.areEqual(this.width, trackExpressionPickerOpened.width) && m.areEqual(this.badged, trackExpressionPickerOpened.badged);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackExpressionPickerOpened implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackExpressionPickerOpened(tab=");
-        sbM833U.append(this.tab);
-        sbM833U.append(", width=");
-        sbM833U.append(this.width);
-        sbM833U.append(", badged=");
-        return C1643a.m816D(sbM833U, this.badged, ")");
+        StringBuilder sbU = a.U("TrackExpressionPickerOpened(tab=");
+        sbU.append(this.tab);
+        sbU.append(", width=");
+        sbU.append(this.width);
+        sbU.append(", badged=");
+        return a.D(sbU, this.badged, ")");
     }
 }

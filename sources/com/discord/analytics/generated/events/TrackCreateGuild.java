@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuildTemplate;
 import com.discord.analytics.generated.traits.TrackGuildTemplateReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackCreateGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackCreateGuild implements AnalyticsSchema, Track
             return false;
         }
         TrackCreateGuild trackCreateGuild = (TrackCreateGuild) other;
-        return C12238m.areEqual(this.guildId, trackCreateGuild.guildId) && C12238m.areEqual(this.guildName, trackCreateGuild.guildName);
+        return m.areEqual(this.guildId, trackCreateGuild.guildId) && m.areEqual(this.guildName, trackCreateGuild.guildName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackCreateGuild implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackCreateGuild(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guildName=");
-        return C1643a.m817E(sbM833U, this.guildName, ")");
+        StringBuilder sbU = a.U("TrackCreateGuild(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guildName=");
+        return a.E(sbU, this.guildName, ")");
     }
 }

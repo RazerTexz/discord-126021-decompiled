@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.impression;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackImpressionMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackImpressionGuildInviteSearch.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,6 +26,11 @@ public final /* data */ class TrackImpressionGuildInviteSearch implements Analyt
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "impression_guild_invite_search";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -34,7 +39,7 @@ public final /* data */ class TrackImpressionGuildInviteSearch implements Analyt
             return false;
         }
         TrackImpressionGuildInviteSearch trackImpressionGuildInviteSearch = (TrackImpressionGuildInviteSearch) other;
-        return C12238m.areEqual(this.inviteGuildId, trackImpressionGuildInviteSearch.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackImpressionGuildInviteSearch.inviteChannelId);
+        return m.areEqual(this.inviteGuildId, trackImpressionGuildInviteSearch.inviteGuildId) && m.areEqual(this.inviteChannelId, trackImpressionGuildInviteSearch.inviteChannelId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,16 +61,10 @@ public final /* data */ class TrackImpressionGuildInviteSearch implements Analyt
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackImpressionGuildInviteSearch(inviteGuildId=");
-        sbM833U.append(this.inviteGuildId);
-        sbM833U.append(", inviteChannelId=");
-        return C1643a.m819G(sbM833U, this.inviteChannelId, ")");
+        StringBuilder sbU = a.U("TrackImpressionGuildInviteSearch(inviteGuildId=");
+        sbU.append(this.inviteGuildId);
+        sbU.append(", inviteChannelId=");
+        return a.G(sbU, this.inviteChannelId, ")");
     }
 }

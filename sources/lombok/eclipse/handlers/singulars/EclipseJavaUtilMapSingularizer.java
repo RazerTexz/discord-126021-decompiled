@@ -10,7 +10,9 @@ import lombok.core.configuration.CheckerFrameworkVersion;
 import lombok.core.handlers.HandlerUtil;
 import lombok.eclipse.EclipseNode;
 import lombok.eclipse.handlers.EclipseHandlerUtil;
-import lombok.eclipse.handlers.EclipseSingularsRecipes;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$SingularData;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$StatementMaker;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$TypeReferenceMaker;
 import lombok.eclipse.handlers.HandleNonNull;
 import org.eclipse.jdt.internal.compiler.ast.Annotation;
 import org.eclipse.jdt.internal.compiler.ast.Argument;
@@ -37,17 +39,17 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
     private static final char[] EMPTY_NAVIGABLE_MAP = {'e', 'm', 'p', 't', 'y', 'N', 'a', 'v', 'i', 'g', 'a', 'b', 'l', 'e', 'M', 'a', 'p'};
     private static final char[] EMPTY_MAP = {'e', 'm', 'p', 't', 'y', 'M', 'a', 'p'};
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
     public LombokImmutableList<String> getSupportedTypes() {
-        return LombokImmutableList.m10921of("java.util.Map", "java.util.SortedMap", "java.util.NavigableMap");
+        return LombokImmutableList.of("java.util.Map", "java.util.SortedMap", "java.util.NavigableMap");
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
     protected char[][] getEmptyMakerReceiver(String targetFqn) {
         return JAVA_UTIL_COLLECTIONS;
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
     protected char[] getEmptyMakerSelector(String targetFqn) {
         if (targetFqn.endsWith("SortedMap")) {
             return EMPTY_SORTED_MAP;
@@ -55,8 +57,8 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         return targetFqn.endsWith("NavigableMap") ? EMPTY_NAVIGABLE_MAP : EMPTY_MAP;
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public List<char[]> listFieldsToBeGenerated(EclipseSingularsRecipes.SingularData data, EclipseNode builderType) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public List<char[]> listFieldsToBeGenerated(EclipseSingularsRecipes$SingularData data, EclipseNode builderType) {
         if (useGuavaInstead(builderType)) {
             return this.guavaMapSingularizer.listFieldsToBeGenerated(data, builderType);
         }
@@ -79,16 +81,16 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         return Arrays.asList(k, v);
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public List<char[]> listMethodsToBeGenerated(EclipseSingularsRecipes.SingularData data, EclipseNode builderType) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public List<char[]> listMethodsToBeGenerated(EclipseSingularsRecipes$SingularData data, EclipseNode builderType) {
         if (useGuavaInstead(builderType)) {
             return this.guavaMapSingularizer.listFieldsToBeGenerated(data, builderType);
         }
         return super.listMethodsToBeGenerated(data, builderType);
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public List<EclipseNode> generateFields(EclipseSingularsRecipes.SingularData data, EclipseNode builderType) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public List<EclipseNode> generateFields(EclipseSingularsRecipes$SingularData data, EclipseNode builderType) {
         if (useGuavaInstead(builderType)) {
             return this.guavaMapSingularizer.generateFields(data, builderType);
         }
@@ -115,18 +117,18 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         return Arrays.asList(keyFieldNode, valueFieldNode);
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public void generateMethods(CheckerFrameworkVersion cfv, EclipseSingularsRecipes.SingularData data, boolean deprecate, EclipseNode builderType, boolean fluent, EclipseSingularsRecipes.TypeReferenceMaker returnTypeMaker, EclipseSingularsRecipes.StatementMaker returnStatementMaker, AccessLevel access) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public void generateMethods(CheckerFrameworkVersion cfv, EclipseSingularsRecipes$SingularData data, boolean deprecate, EclipseNode builderType, boolean fluent, EclipseSingularsRecipes$TypeReferenceMaker returnTypeMaker, EclipseSingularsRecipes$StatementMaker returnStatementMaker, AccessLevel access) {
         if (useGuavaInstead(builderType)) {
             this.guavaMapSingularizer.generateMethods(cfv, data, deprecate, builderType, fluent, returnTypeMaker, returnStatementMaker, access);
             return;
         }
-        generateSingularMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo11563make(), data, builderType, fluent, access);
-        generatePluralMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo11563make(), data, builderType, fluent, access);
-        generateClearMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo11563make(), data, builderType, access);
+        generateSingularMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo186make(), data, builderType, fluent, access);
+        generatePluralMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo186make(), data, builderType, fluent, access);
+        generateClearMethod(cfv, deprecate, returnTypeMaker.make(), returnStatementMaker.mo186make(), data, builderType, access);
     }
 
-    private void generateClearMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes.SingularData data, EclipseNode builderType, AccessLevel access) {
+    private void generateClearMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes$SingularData data, EclipseNode builderType, AccessLevel access) {
         MethodDeclaration md = new MethodDeclaration(builderType.top().get().compilationResult);
         md.bits |= 8388608;
         md.modifiers = EclipseHandlerUtil.toEclipseModifier(access);
@@ -159,7 +161,7 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         EclipseHandlerUtil.injectMethod(builderType, md);
     }
 
-    private void generateSingularMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes.SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
+    private void generateSingularMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes$SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
         String str;
         MethodDeclaration md = new MethodDeclaration(builderType.top().get().compilationResult);
         md.bits |= 8388608;
@@ -212,7 +214,7 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         String setterName = HandlerUtil.buildAccessorName(setterPrefix, name);
         md.selector = setterName.toCharArray();
         Annotation[] selfReturnAnnotations = generateSelfReturnAnnotations(deprecate, cfv, data.getSource());
-        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToBuilderSingularSetterAnnotations(data.getAnnotation().m10925up())});
+        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToBuilderSingularSetterAnnotations(data.getAnnotation().up())});
         md.annotations = (Annotation[]) EclipseHandlerUtil.concat(selfReturnAnnotations, copyToSetterAnnotations, Annotation.class);
         if (returnStatement != null) {
             EclipseHandlerUtil.createRelevantNonNullAnnotation(builderType, md);
@@ -221,7 +223,7 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         HandleNonNull.INSTANCE.fix(EclipseHandlerUtil.injectMethod(builderType, md));
     }
 
-    private void generatePluralMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes.SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
+    private void generatePluralMethod(CheckerFrameworkVersion cfv, boolean deprecate, TypeReference returnType, Statement returnStatement, EclipseSingularsRecipes$SingularData data, EclipseNode builderType, boolean fluent, AccessLevel access) {
         String str;
         MethodDeclaration md = new MethodDeclaration(builderType.top().get().compilationResult);
         md.bits |= 8388608;
@@ -281,7 +283,7 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         String setterName = HandlerUtil.buildAccessorName(setterPrefix, name);
         md.selector = setterName.toCharArray();
         Annotation[] selfReturnAnnotations = generateSelfReturnAnnotations(deprecate, cfv, data.getSource());
-        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToSetterAnnotations(data.getAnnotation().m10925up())});
+        Annotation[] copyToSetterAnnotations = EclipseHandlerUtil.copyAnnotations(md, new Annotation[][]{EclipseHandlerUtil.findCopyableToSetterAnnotations(data.getAnnotation().up())});
         md.annotations = (Annotation[]) EclipseHandlerUtil.concat(selfReturnAnnotations, copyToSetterAnnotations, Annotation.class);
         if (returnStatement != null) {
             EclipseHandlerUtil.createRelevantNonNullAnnotation(builderType, md);
@@ -290,8 +292,8 @@ public class EclipseJavaUtilMapSingularizer extends EclipseJavaUtilSingularizer 
         EclipseHandlerUtil.injectMethod(builderType, md);
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public void appendBuildCode(EclipseSingularsRecipes.SingularData data, EclipseNode builderType, List<Statement> statements, char[] targetVariableName, String builderVariable) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public void appendBuildCode(EclipseSingularsRecipes$SingularData data, EclipseNode builderType, List<Statement> statements, char[] targetVariableName, String builderVariable) {
         if (useGuavaInstead(builderType)) {
             this.guavaMapSingularizer.appendBuildCode(data, builderType, statements, targetVariableName, builderVariable);
         } else if (data.getTargetFqn().equals("java.util.Map")) {

@@ -2,12 +2,12 @@ package com.discord.utilities.views.viewstub;
 
 import android.view.View;
 import android.view.ViewStub;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: LazyViewStubDelegate.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class LazyViewStubDelegate$viewField$1 extends AbstractC12240o implements Function0<View> {
+public final class LazyViewStubDelegate$viewField$1 extends o implements Function0<View> {
     public final /* synthetic */ ViewStub $stub;
     public final /* synthetic */ LazyViewStubDelegate this$0;
 
@@ -18,11 +18,16 @@ public final class LazyViewStubDelegate$viewField$1 extends AbstractC12240o impl
         this.$stub = viewStub;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ View invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final View invoke() {
         View viewInflate = this.$stub.inflate();
-        viewInflate.setOnClickListener(this.this$0.listener);
+        viewInflate.setOnClickListener(LazyViewStubDelegate.access$getListener$p(this.this$0));
         return viewInflate;
     }
 }

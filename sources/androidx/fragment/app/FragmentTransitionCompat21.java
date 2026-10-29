@@ -141,114 +141,27 @@ public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
-    public void scheduleHideFragmentView(Object obj, final View view, final ArrayList<View> arrayList) {
-        ((Transition) obj).addListener(new Transition.TransitionListener() { // from class: androidx.fragment.app.FragmentTransitionCompat21.2
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionCancel(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionEnd(Transition transition) {
-                transition.removeListener(this);
-                view.setVisibility(8);
-                int size = arrayList.size();
-                for (int i = 0; i < size; i++) {
-                    ((View) arrayList.get(i)).setVisibility(0);
-                }
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionPause(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionResume(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionStart(Transition transition) {
-                transition.removeListener(this);
-                transition.addListener(this);
-            }
-        });
+    public void scheduleHideFragmentView(Object obj, View view, ArrayList<View> arrayList) {
+        ((Transition) obj).addListener(new FragmentTransitionCompat21$2(this, view, arrayList));
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
-    public void scheduleRemoveTargets(Object obj, final Object obj2, final ArrayList<View> arrayList, final Object obj3, final ArrayList<View> arrayList2, final Object obj4, final ArrayList<View> arrayList3) {
-        ((Transition) obj).addListener(new Transition.TransitionListener() { // from class: androidx.fragment.app.FragmentTransitionCompat21.3
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionCancel(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionEnd(Transition transition) {
-                transition.removeListener(this);
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionPause(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionResume(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionStart(Transition transition) {
-                Object obj5 = obj2;
-                if (obj5 != null) {
-                    FragmentTransitionCompat21.this.replaceTargets(obj5, arrayList, null);
-                }
-                Object obj6 = obj3;
-                if (obj6 != null) {
-                    FragmentTransitionCompat21.this.replaceTargets(obj6, arrayList2, null);
-                }
-                Object obj7 = obj4;
-                if (obj7 != null) {
-                    FragmentTransitionCompat21.this.replaceTargets(obj7, arrayList3, null);
-                }
-            }
-        });
+    public void scheduleRemoveTargets(Object obj, Object obj2, ArrayList<View> arrayList, Object obj3, ArrayList<View> arrayList2, Object obj4, ArrayList<View> arrayList3) {
+        ((Transition) obj).addListener(new FragmentTransitionCompat21$3(this, obj2, arrayList, obj3, arrayList2, obj4, arrayList3));
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
     public void setEpicenter(Object obj, View view) {
         if (view != null) {
-            final Rect rect = new Rect();
+            Rect rect = new Rect();
             getBoundsOnScreen(view, rect);
-            ((Transition) obj).setEpicenterCallback(new Transition.EpicenterCallback() { // from class: androidx.fragment.app.FragmentTransitionCompat21.1
-                @Override // android.transition.Transition.EpicenterCallback
-                public Rect onGetEpicenter(Transition transition) {
-                    return rect;
-                }
-            });
+            ((Transition) obj).setEpicenterCallback(new FragmentTransitionCompat21$1(this, rect));
         }
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
-    public void setListenerForTransitionEnd(@NonNull Fragment fragment, @NonNull Object obj, @NonNull CancellationSignal cancellationSignal, @NonNull final Runnable runnable) {
-        ((Transition) obj).addListener(new Transition.TransitionListener() { // from class: androidx.fragment.app.FragmentTransitionCompat21.4
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionCancel(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionEnd(Transition transition) {
-                runnable.run();
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionPause(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionResume(Transition transition) {
-            }
-
-            @Override // android.transition.Transition.TransitionListener
-            public void onTransitionStart(Transition transition) {
-            }
-        });
+    public void setListenerForTransitionEnd(@NonNull Fragment fragment, @NonNull Object obj, @NonNull CancellationSignal cancellationSignal, @NonNull Runnable runnable) {
+        ((Transition) obj).addListener(new FragmentTransitionCompat21$4(this, runnable));
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
@@ -286,18 +199,9 @@ public class FragmentTransitionCompat21 extends FragmentTransitionImpl {
     }
 
     @Override // androidx.fragment.app.FragmentTransitionImpl
-    public void setEpicenter(Object obj, final Rect rect) {
+    public void setEpicenter(Object obj, Rect rect) {
         if (obj != null) {
-            ((Transition) obj).setEpicenterCallback(new Transition.EpicenterCallback() { // from class: androidx.fragment.app.FragmentTransitionCompat21.5
-                @Override // android.transition.Transition.EpicenterCallback
-                public Rect onGetEpicenter(Transition transition) {
-                    Rect rect2 = rect;
-                    if (rect2 == null || rect2.isEmpty()) {
-                        return null;
-                    }
-                    return rect;
-                }
-            });
+            ((Transition) obj).setEpicenterCallback(new FragmentTransitionCompat21$5(this, rect));
         }
     }
 }

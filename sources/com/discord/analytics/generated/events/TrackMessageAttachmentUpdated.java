@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMessageAttachmentUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,6 +22,11 @@ public final /* data */ class TrackMessageAttachmentUpdated implements Analytics
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "message_attachment_updated";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,7 +35,7 @@ public final /* data */ class TrackMessageAttachmentUpdated implements Analytics
             return false;
         }
         TrackMessageAttachmentUpdated trackMessageAttachmentUpdated = (TrackMessageAttachmentUpdated) other;
-        return C12238m.areEqual(this.source, trackMessageAttachmentUpdated.source) && C12238m.areEqual(this.actionType, trackMessageAttachmentUpdated.actionType) && C12238m.areEqual(this.mimeType, trackMessageAttachmentUpdated.mimeType) && C12238m.areEqual(this.totalAttachments, trackMessageAttachmentUpdated.totalAttachments);
+        return m.areEqual(this.source, trackMessageAttachmentUpdated.source) && m.areEqual(this.actionType, trackMessageAttachmentUpdated.actionType) && m.areEqual(this.mimeType, trackMessageAttachmentUpdated.mimeType) && m.areEqual(this.totalAttachments, trackMessageAttachmentUpdated.totalAttachments);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,20 +61,14 @@ public final /* data */ class TrackMessageAttachmentUpdated implements Analytics
         return iHashCode3 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMessageAttachmentUpdated(source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", actionType=");
-        sbM833U.append(this.actionType);
-        sbM833U.append(", mimeType=");
-        sbM833U.append(this.mimeType);
-        sbM833U.append(", totalAttachments=");
-        return C1643a.m819G(sbM833U, this.totalAttachments, ")");
+        StringBuilder sbU = a.U("TrackMessageAttachmentUpdated(source=");
+        sbU.append(this.source);
+        sbU.append(", actionType=");
+        sbU.append(this.actionType);
+        sbU.append(", mimeType=");
+        sbU.append(this.mimeType);
+        sbU.append(", totalAttachments=");
+        return a.G(sbU, this.totalAttachments, ")");
     }
 }

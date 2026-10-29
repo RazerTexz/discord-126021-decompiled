@@ -1,585 +1,65 @@
 package com.discord.widgets.channels;
 
+import android.content.Context;
+import b.a.d.d0;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.domain.ModelNotificationSettings;
-import com.discord.stores.StoreChannels;
-import com.discord.stores.StoreChannelsSelected;
-import com.discord.stores.StoreGuildsNsfw;
-import com.discord.stores.StoreNavigation;
-import com.discord.stores.StoreStream;
-import com.discord.stores.StoreUser;
-import com.discord.stores.StoreUserGuildSettings;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.models.domain.ModelNotificationSettings$ChannelOverride;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.NoWhenBranchMatchedException;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p008a.p018d.AbstractC0859d0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<ViewState> {
+public final class WidgetChannelSidebarActionsViewModel extends d0<WidgetChannelSidebarActionsViewModel$ViewState> {
+    public static final WidgetChannelSidebarActionsViewModel$Companion Companion = new WidgetChannelSidebarActionsViewModel$Companion(null);
 
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.WidgetChannelSidebarActionsViewModel$1 */
-    /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public final class C73471 extends AbstractC12240o implements Function1<StoreState, Unit> {
-        public C73471() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            C12238m.checkNotNullParameter(storeState, "storeState");
-            WidgetChannelSidebarActionsViewModel.this.handleStoreState(storeState);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ Observable observeStoreState$default(Companion companion, StoreNavigation storeNavigation, StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreUserGuildSettings storeUserGuildSettings, StoreGuildsNsfw storeGuildsNsfw, StoreUser storeUser, int i, Object obj) {
-            if ((i & 1) != 0) {
-                storeNavigation = StoreStream.INSTANCE.getNavigation();
-            }
-            if ((i & 2) != 0) {
-                storeChannels = StoreStream.INSTANCE.getChannels();
-            }
-            StoreChannels storeChannels2 = storeChannels;
-            if ((i & 4) != 0) {
-                storeChannelsSelected = StoreStream.INSTANCE.getChannelsSelected();
-            }
-            StoreChannelsSelected storeChannelsSelected2 = storeChannelsSelected;
-            if ((i & 8) != 0) {
-                storeUserGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
-            }
-            StoreUserGuildSettings storeUserGuildSettings2 = storeUserGuildSettings;
-            if ((i & 16) != 0) {
-                storeGuildsNsfw = StoreStream.INSTANCE.getGuildsNsfw();
-            }
-            StoreGuildsNsfw storeGuildsNsfw2 = storeGuildsNsfw;
-            if ((i & 32) != 0) {
-                storeUser = StoreStream.INSTANCE.getUsers();
-            }
-            return companion.observeStoreState(storeNavigation, storeChannels2, storeChannelsSelected2, storeUserGuildSettings2, storeGuildsNsfw2, storeUser);
-        }
-
-        private final Observable<StoreState> observeStoreState(StoreNavigation storeNavigation, StoreChannels storeChannels, StoreChannelsSelected storeChannelsSelected, StoreUserGuildSettings storeUserGuildSettings, StoreGuildsNsfw storeGuildNSFW, StoreUser storeUser) {
-            Observable observableM11099Y = storeNavigation.observeRightPanelState().m11099Y(new C7348x2d9fcf21(storeChannelsSelected, storeUserGuildSettings, storeUser, storeChannels, storeGuildNSFW));
-            C12238m.checkNotNullExpressionValue(observableM11099Y, "storeNavigation\n        …          }\n            }");
-            return observableM11099Y;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public abstract class StoreState {
-
-        /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public final /* data */ class ChannelFound extends StoreState {
-            private final Channel channel;
-            private final boolean disablePins;
-            private final ModelNotificationSettings guildNotificationSettings;
-            private final Channel parentChannel;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public ChannelFound(Channel channel, Channel channel2, ModelNotificationSettings modelNotificationSettings, boolean z2) {
-                super(null);
-                C12238m.checkNotNullParameter(channel, "channel");
-                this.channel = channel;
-                this.parentChannel = channel2;
-                this.guildNotificationSettings = modelNotificationSettings;
-                this.disablePins = z2;
-            }
-
-            public static /* synthetic */ ChannelFound copy$default(ChannelFound channelFound, Channel channel, Channel channel2, ModelNotificationSettings modelNotificationSettings, boolean z2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    channel = channelFound.channel;
-                }
-                if ((i & 2) != 0) {
-                    channel2 = channelFound.parentChannel;
-                }
-                if ((i & 4) != 0) {
-                    modelNotificationSettings = channelFound.guildNotificationSettings;
-                }
-                if ((i & 8) != 0) {
-                    z2 = channelFound.disablePins;
-                }
-                return channelFound.copy(channel, channel2, modelNotificationSettings, z2);
-            }
-
-            public final ChannelFound copy(Channel channel, Channel parentChannel, ModelNotificationSettings guildNotificationSettings, boolean disablePins) {
-                C12238m.checkNotNullParameter(channel, "channel");
-                return new ChannelFound(channel, parentChannel, guildNotificationSettings, disablePins);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof ChannelFound)) {
-                    return false;
-                }
-                ChannelFound channelFound = (ChannelFound) other;
-                return C12238m.areEqual(this.channel, channelFound.channel) && C12238m.areEqual(this.parentChannel, channelFound.parentChannel) && C12238m.areEqual(this.guildNotificationSettings, channelFound.guildNotificationSettings) && this.disablePins == channelFound.disablePins;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getDisablePins() {
-                return this.disablePins;
-            }
-
-            public final boolean getDisablePins() {
-                return this.disablePins;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final ModelNotificationSettings getGuildNotificationSettings() {
-                return this.guildNotificationSettings;
-            }
-
-            public final ModelNotificationSettings getGuildNotificationSettings() {
-                return this.guildNotificationSettings;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final Channel getParentChannel() {
-                return this.parentChannel;
-            }
-
-            public final Channel getParentChannel() {
-                return this.parentChannel;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v8, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v3, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v4 */
-            /* JADX WARN: Type inference failed for: r1v6 */
-            public int hashCode() {
-                Channel channel = this.channel;
-                int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
-                Channel channel2 = this.parentChannel;
-                int iHashCode2 = (iHashCode + (channel2 != null ? channel2.hashCode() : 0)) * 31;
-                ModelNotificationSettings modelNotificationSettings = this.guildNotificationSettings;
-                int iHashCode3 = (iHashCode2 + (modelNotificationSettings != null ? modelNotificationSettings.hashCode() : 0)) * 31;
-                boolean z2 = this.disablePins;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                return iHashCode3 + r1;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("ChannelFound(channel=");
-                sbM833U.append(this.channel);
-                sbM833U.append(", parentChannel=");
-                sbM833U.append(this.parentChannel);
-                sbM833U.append(", guildNotificationSettings=");
-                sbM833U.append(this.guildNotificationSettings);
-                sbM833U.append(", disablePins=");
-                return C1643a.m827O(sbM833U, this.disablePins, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public final class ChannelNotFound extends StoreState {
-            public static final ChannelNotFound INSTANCE = new ChannelNotFound();
-
-            private ChannelNotFound() {
-                super(null);
-            }
-        }
-
-        private StoreState() {
-        }
-
-        public /* synthetic */ StoreState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-    public abstract class ViewState {
-
-        /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public final /* data */ class Guild extends ViewState {
-            private final long channelId;
-            private final boolean disablePins;
-            private final long guildId;
-            private final boolean hasUnreadPins;
-            private final boolean isGuildForumChannel;
-            private final boolean isGuildForumPost;
-            private final boolean isMuted;
-            private final boolean isThread;
-            private final boolean shouldHideChannelSidebar;
-
-            public Guild(long j, long j2, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8) {
-                super(null);
-                this.channelId = j;
-                this.guildId = j2;
-                this.isMuted = z2;
-                this.hasUnreadPins = z3;
-                this.disablePins = z4;
-                this.isThread = z5;
-                this.isGuildForumPost = z6;
-                this.isGuildForumChannel = z7;
-                this.shouldHideChannelSidebar = z8;
-            }
-
-            public final Guild copy(long channelId, long guildId, boolean isMuted, boolean hasUnreadPins, boolean disablePins, boolean isThread, boolean isGuildForumPost, boolean isGuildForumChannel, boolean shouldHideChannelSidebar) {
-                return new Guild(channelId, guildId, isMuted, hasUnreadPins, disablePins, isThread, isGuildForumPost, isGuildForumChannel, shouldHideChannelSidebar);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Guild)) {
-                    return false;
-                }
-                Guild guild = (Guild) other;
-                return this.channelId == guild.channelId && this.guildId == guild.guildId && this.isMuted == guild.isMuted && this.hasUnreadPins == guild.hasUnreadPins && this.disablePins == guild.disablePins && this.isThread == guild.isThread && this.isGuildForumPost == guild.isGuildForumPost && this.isGuildForumChannel == guild.isGuildForumChannel && this.shouldHideChannelSidebar == guild.shouldHideChannelSidebar;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getDisablePins() {
-                return this.disablePins;
-            }
-
-            public final boolean getDisablePins() {
-                return this.disablePins;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final boolean getHasUnreadPins() {
-                return this.hasUnreadPins;
-            }
-
-            public final boolean getHasUnreadPins() {
-                return this.hasUnreadPins;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsGuildForumChannel() {
-                return this.isGuildForumChannel;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getIsGuildForumPost() {
-                return this.isGuildForumPost;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getIsMuted() {
-                return this.isMuted;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsThread() {
-                return this.isThread;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final boolean getShouldHideChannelSidebar() {
-                return this.shouldHideChannelSidebar;
-            }
-
-            public final boolean getShouldHideChannelSidebar() {
-                return this.shouldHideChannelSidebar;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v10, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v12, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v14, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v16 */
-            /* JADX WARN: Type inference failed for: r0v17 */
-            /* JADX WARN: Type inference failed for: r0v18 */
-            /* JADX WARN: Type inference failed for: r0v19 */
-            /* JADX WARN: Type inference failed for: r0v20 */
-            /* JADX WARN: Type inference failed for: r0v21 */
-            /* JADX WARN: Type inference failed for: r0v22 */
-            /* JADX WARN: Type inference failed for: r0v23 */
-            /* JADX WARN: Type inference failed for: r0v24 */
-            /* JADX WARN: Type inference failed for: r0v25 */
-            /* JADX WARN: Type inference failed for: r0v26 */
-            /* JADX WARN: Type inference failed for: r0v27 */
-            /* JADX WARN: Type inference failed for: r0v4, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v8, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v10, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v12, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v14, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v16, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v4, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v6, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v8, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v0 */
-            /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v2 */
-            public int hashCode() {
-                int iM3a = (C0002b.m3a(this.guildId) + (C0002b.m3a(this.channelId) * 31)) * 31;
-                boolean z2 = this.isMuted;
-                ?? r0 = z2;
-                if (z2) {
-                    r0 = 1;
-                }
-                int i = (iM3a + r0) * 31;
-                boolean z3 = this.hasUnreadPins;
-                ?? r1 = z3;
-                if (z3) {
-                    r1 = 1;
-                }
-                int i2 = (i + r1) * 31;
-                boolean z4 = this.disablePins;
-                ?? r2 = z4;
-                if (z4) {
-                    r2 = 1;
-                }
-                int i3 = (i2 + r2) * 31;
-                boolean z5 = this.isThread;
-                ?? r3 = z5;
-                if (z5) {
-                    r3 = 1;
-                }
-                int i4 = (i3 + r3) * 31;
-                boolean z6 = this.isGuildForumPost;
-                ?? r4 = z6;
-                if (z6) {
-                    r4 = 1;
-                }
-                int i5 = (i4 + r4) * 31;
-                boolean z7 = this.isGuildForumChannel;
-                ?? r5 = z7;
-                if (z7) {
-                    r5 = 1;
-                }
-                int i6 = (i5 + r5) * 31;
-                boolean z8 = this.shouldHideChannelSidebar;
-                return i6 + (z8 ? 1 : z8);
-            }
-
-            public final boolean isGuildForumChannel() {
-                return this.isGuildForumChannel;
-            }
-
-            public final boolean isGuildForumPost() {
-                return this.isGuildForumPost;
-            }
-
-            public final boolean isMuted() {
-                return this.isMuted;
-            }
-
-            public final boolean isThread() {
-                return this.isThread;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Guild(channelId=");
-                sbM833U.append(this.channelId);
-                sbM833U.append(", guildId=");
-                sbM833U.append(this.guildId);
-                sbM833U.append(", isMuted=");
-                sbM833U.append(this.isMuted);
-                sbM833U.append(", hasUnreadPins=");
-                sbM833U.append(this.hasUnreadPins);
-                sbM833U.append(", disablePins=");
-                sbM833U.append(this.disablePins);
-                sbM833U.append(", isThread=");
-                sbM833U.append(this.isThread);
-                sbM833U.append(", isGuildForumPost=");
-                sbM833U.append(this.isGuildForumPost);
-                sbM833U.append(", isGuildForumChannel=");
-                sbM833U.append(this.isGuildForumChannel);
-                sbM833U.append(", shouldHideChannelSidebar=");
-                return C1643a.m827O(sbM833U, this.shouldHideChannelSidebar, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public final /* data */ class Private extends ViewState {
-            private final long channelId;
-            private final boolean isMuted;
-
-            public Private(long j, boolean z2) {
-                super(null);
-                this.channelId = j;
-                this.isMuted = z2;
-            }
-
-            public static /* synthetic */ Private copy$default(Private r0, long j, boolean z2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    j = r0.channelId;
-                }
-                if ((i & 2) != 0) {
-                    z2 = r0.isMuted;
-                }
-                return r0.copy(j, z2);
-            }
-
-            public final Private copy(long channelId, boolean isMuted) {
-                return new Private(channelId, isMuted);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Private)) {
-                    return false;
-                }
-                Private r6 = (Private) other;
-                return this.channelId == r6.channelId && this.isMuted == r6.isMuted;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final boolean getIsMuted() {
-                return this.isMuted;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v2 */
-            /* JADX WARN: Type inference failed for: r1v3 */
-            public int hashCode() {
-                int iM3a = C0002b.m3a(this.channelId) * 31;
-                boolean z2 = this.isMuted;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                return iM3a + r1;
-            }
-
-            public final boolean isMuted() {
-                return this.isMuted;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Private(channelId=");
-                sbM833U.append(this.channelId);
-                sbM833U.append(", isMuted=");
-                return C1643a.m827O(sbM833U, this.isMuted, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetChannelSidebarActionsViewModel.kt */
-        public final class Uninitialized extends ViewState {
-            public static final Uninitialized INSTANCE = new Uninitialized();
-
-            private Uninitialized() {
-                super(null);
-            }
-        }
-
-        private ViewState() {
-        }
-
-        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
     public WidgetChannelSidebarActionsViewModel() {
-        this(null, 1, 0 == true ? 1 : 0);
+        this(null, 1, null);
     }
 
     public /* synthetic */ WidgetChannelSidebarActionsViewModel(Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? Companion.observeStoreState$default(INSTANCE, null, null, null, null, null, null, 63, null) : observable);
+        this((i & 1) != 0 ? WidgetChannelSidebarActionsViewModel$Companion.observeStoreState$default(Companion, null, null, null, null, null, null, 63, null) : observable);
     }
 
-    private final void handleStoreState(StoreState storeState) {
-        ModelNotificationSettings.ChannelOverride channelOverride;
-        List<ModelNotificationSettings.ChannelOverride> channelOverrides;
+    public static final /* synthetic */ void access$handleStoreState(WidgetChannelSidebarActionsViewModel widgetChannelSidebarActionsViewModel, WidgetChannelSidebarActionsViewModel$StoreState widgetChannelSidebarActionsViewModel$StoreState) {
+        widgetChannelSidebarActionsViewModel.handleStoreState(widgetChannelSidebarActionsViewModel$StoreState);
+    }
+
+    private final void handleStoreState(WidgetChannelSidebarActionsViewModel$StoreState storeState) {
+        ModelNotificationSettings$ChannelOverride channelOverride;
+        List<ModelNotificationSettings$ChannelOverride> channelOverrides;
         Object next;
-        ModelNotificationSettings.ChannelOverride channelOverride2;
-        if (C12238m.areEqual(storeState, StoreState.ChannelNotFound.INSTANCE)) {
-            updateViewState(ViewState.Uninitialized.INSTANCE);
+        ModelNotificationSettings$ChannelOverride modelNotificationSettings$ChannelOverride;
+        if (m.areEqual(storeState, WidgetChannelSidebarActionsViewModel$StoreState$ChannelNotFound.INSTANCE)) {
+            updateViewState(WidgetChannelSidebarActionsViewModel$ViewState$Uninitialized.INSTANCE);
             return;
         }
-        if (!(storeState instanceof StoreState.ChannelFound)) {
+        if (!(storeState instanceof WidgetChannelSidebarActionsViewModel$StoreState$ChannelFound)) {
             throw new NoWhenBranchMatchedException();
         }
-        StoreState.ChannelFound channelFound = (StoreState.ChannelFound) storeState;
+        WidgetChannelSidebarActionsViewModel$StoreState$ChannelFound widgetChannelSidebarActionsViewModel$StoreState$ChannelFound = (WidgetChannelSidebarActionsViewModel$StoreState$ChannelFound) storeState;
         boolean z2 = false;
-        if (!ChannelUtils.m7667B(channelFound.getChannel())) {
-            long id2 = channelFound.getChannel().getId();
-            long guildId = channelFound.getChannel().getGuildId();
-            ModelNotificationSettings guildNotificationSettings = channelFound.getGuildNotificationSettings();
+        if (!ChannelUtils.B(widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel())) {
+            long id2 = widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel().getId();
+            long guildId = widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel().getGuildId();
+            ModelNotificationSettings guildNotificationSettings = widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getGuildNotificationSettings();
             boolean z3 = (guildNotificationSettings == null || (channelOverride = guildNotificationSettings.getChannelOverride(id2)) == null || !channelOverride.isMuted()) ? false : true;
-            boolean disablePins = channelFound.getDisablePins();
-            boolean zM7673H = ChannelUtils.m7673H(channelFound.getChannel());
-            Channel parentChannel = channelFound.getParentChannel();
-            updateViewState(new ViewState.Guild(id2, guildId, z3, false, disablePins, zM7673H, parentChannel != null && ChannelUtils.m7693q(parentChannel), ChannelUtils.m7693q(channelFound.getChannel()), ChannelUtils.m7691o(channelFound.getChannel())));
+            boolean disablePins = widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getDisablePins();
+            boolean zH = ChannelUtils.H(widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel());
+            Channel parentChannel = widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getParentChannel();
+            updateViewState(new WidgetChannelSidebarActionsViewModel$ViewState$Guild(id2, guildId, z3, false, disablePins, zH, parentChannel != null && ChannelUtils.q(parentChannel), ChannelUtils.q(widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel()), ChannelUtils.o(widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel())));
             return;
         }
-        ModelNotificationSettings guildNotificationSettings2 = channelFound.getGuildNotificationSettings();
-        long id3 = channelFound.getChannel().getId();
+        ModelNotificationSettings guildNotificationSettings2 = widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getGuildNotificationSettings();
+        long id3 = widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel().getId();
         if (guildNotificationSettings2 != null && (channelOverrides = guildNotificationSettings2.getChannelOverrides()) != null) {
             Iterator<T> it = channelOverrides.iterator();
             do {
@@ -588,22 +68,22 @@ public final class WidgetChannelSidebarActionsViewModel extends AbstractC0859d0<
                     break;
                 } else {
                     next = it.next();
-                    channelOverride2 = (ModelNotificationSettings.ChannelOverride) next;
-                    C12238m.checkNotNullExpressionValue(channelOverride2, "channelOverride");
+                    modelNotificationSettings$ChannelOverride = (ModelNotificationSettings$ChannelOverride) next;
+                    m.checkNotNullExpressionValue(modelNotificationSettings$ChannelOverride, "channelOverride");
                 }
-            } while (!(channelOverride2.getChannelId() == id3));
-            ModelNotificationSettings.ChannelOverride channelOverride3 = (ModelNotificationSettings.ChannelOverride) next;
-            if (channelOverride3 != null && channelOverride3.isMuted()) {
+            } while (!(modelNotificationSettings$ChannelOverride.getChannelId() == id3));
+            ModelNotificationSettings$ChannelOverride modelNotificationSettings$ChannelOverride2 = (ModelNotificationSettings$ChannelOverride) next;
+            if (modelNotificationSettings$ChannelOverride2 != null && modelNotificationSettings$ChannelOverride2.isMuted()) {
                 z2 = true;
             }
         }
-        updateViewState(new ViewState.Private(channelFound.getChannel().getId(), z2));
+        updateViewState(new WidgetChannelSidebarActionsViewModel$ViewState$Private(widgetChannelSidebarActionsViewModel$StoreState$ChannelFound.getChannel().getId(), z2));
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetChannelSidebarActionsViewModel(Observable<StoreState> observable) {
-        super(ViewState.Uninitialized.INSTANCE);
-        C12238m.checkNotNullParameter(observable, "storeStateObservable");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observable, this, null, 2, null), (Class<?>) WidgetChannelSidebarActionsViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C73471());
+    public WidgetChannelSidebarActionsViewModel(Observable<WidgetChannelSidebarActionsViewModel$StoreState> observable) {
+        super(WidgetChannelSidebarActionsViewModel$ViewState$Uninitialized.INSTANCE);
+        m.checkNotNullParameter(observable, "storeStateObservable");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observable, this, null, 2, null), WidgetChannelSidebarActionsViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelSidebarActionsViewModel$1(this), 62, (Object) null);
     }
 }

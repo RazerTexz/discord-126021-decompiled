@@ -1,5 +1,7 @@
 package com.discord.widgets.guildscheduledevent;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.guildscheduledevent.GuildScheduledEventEntityMetadata;
 import com.discord.api.guildscheduledevent.GuildScheduledEventEntityType;
@@ -7,13 +9,14 @@ import com.discord.api.stageinstance.StageInstancePrivacyLevel;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.nullserializable.NullSerializable;
-import com.discord.restapi.RestAPIParams;
+import com.discord.nullserializable.NullSerializable$a;
+import com.discord.nullserializable.NullSerializable$b;
+import com.discord.restapi.RestAPIParams$CreateGuildScheduledEventBody;
+import com.discord.restapi.RestAPIParams$UpdateGuildScheduledEventBody;
 import com.discord.utilities.time.TimeUtils;
+import d0.z.d.m;
 import java.io.Serializable;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildScheduledEventModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -33,9 +36,9 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
     private final Integer userCount;
 
     public GuildScheduledEventModel(long j, String str, Long l, Long l2, GuildScheduledEventPickerDate guildScheduledEventPickerDate, GuildScheduledEventPickerTime guildScheduledEventPickerTime, GuildScheduledEventPickerDate guildScheduledEventPickerDate2, GuildScheduledEventPickerTime guildScheduledEventPickerTime2, String str2, GuildScheduledEventEntityType guildScheduledEventEntityType, GuildScheduledEventEntityMetadata guildScheduledEventEntityMetadata, Integer num, Boolean bool) {
-        C12238m.checkNotNullParameter(guildScheduledEventPickerDate, "startDate");
-        C12238m.checkNotNullParameter(guildScheduledEventPickerTime, "startTime");
-        C12238m.checkNotNullParameter(guildScheduledEventEntityType, "entityType");
+        m.checkNotNullParameter(guildScheduledEventPickerDate, "startDate");
+        m.checkNotNullParameter(guildScheduledEventPickerTime, "startTime");
+        m.checkNotNullParameter(guildScheduledEventEntityType, "entityType");
         this.guildId = j;
         this.name = str;
         this.channelId = l;
@@ -51,10 +54,14 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         this.broadcastToDirectoryChannels = bool;
     }
 
+    public static /* synthetic */ GuildScheduledEventModel copy$default(GuildScheduledEventModel guildScheduledEventModel, long j, String str, Long l, Long l2, GuildScheduledEventPickerDate guildScheduledEventPickerDate, GuildScheduledEventPickerTime guildScheduledEventPickerTime, GuildScheduledEventPickerDate guildScheduledEventPickerDate2, GuildScheduledEventPickerTime guildScheduledEventPickerTime2, String str2, GuildScheduledEventEntityType guildScheduledEventEntityType, GuildScheduledEventEntityMetadata guildScheduledEventEntityMetadata, Integer num, Boolean bool, int i, Object obj) {
+        return guildScheduledEventModel.copy((i & 1) != 0 ? guildScheduledEventModel.guildId : j, (i & 2) != 0 ? guildScheduledEventModel.name : str, (i & 4) != 0 ? guildScheduledEventModel.channelId : l, (i & 8) != 0 ? guildScheduledEventModel.creatorId : l2, (i & 16) != 0 ? guildScheduledEventModel.startDate : guildScheduledEventPickerDate, (i & 32) != 0 ? guildScheduledEventModel.startTime : guildScheduledEventPickerTime, (i & 64) != 0 ? guildScheduledEventModel.endDate : guildScheduledEventPickerDate2, (i & 128) != 0 ? guildScheduledEventModel.endTime : guildScheduledEventPickerTime2, (i & 256) != 0 ? guildScheduledEventModel.description : str2, (i & 512) != 0 ? guildScheduledEventModel.entityType : guildScheduledEventEntityType, (i & 1024) != 0 ? guildScheduledEventModel.entityMetadata : guildScheduledEventEntityMetadata, (i & 2048) != 0 ? guildScheduledEventModel.userCount : num, (i & 4096) != 0 ? guildScheduledEventModel.broadcastToDirectoryChannels : bool);
+    }
+
     public final GuildScheduledEventModel copy(long guildId, String name, Long channelId, Long creatorId, GuildScheduledEventPickerDate startDate, GuildScheduledEventPickerTime startTime, GuildScheduledEventPickerDate endDate, GuildScheduledEventPickerTime endTime, String description, GuildScheduledEventEntityType entityType, GuildScheduledEventEntityMetadata entityMetadata, Integer userCount, Boolean broadcastToDirectoryChannels) {
-        C12238m.checkNotNullParameter(startDate, "startDate");
-        C12238m.checkNotNullParameter(startTime, "startTime");
-        C12238m.checkNotNullParameter(entityType, "entityType");
+        m.checkNotNullParameter(startDate, "startDate");
+        m.checkNotNullParameter(startTime, "startTime");
+        m.checkNotNullParameter(entityType, "entityType");
         return new GuildScheduledEventModel(guildId, name, channelId, creatorId, startDate, startTime, endDate, endTime, description, entityType, entityMetadata, userCount, broadcastToDirectoryChannels);
     }
 
@@ -66,7 +73,7 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
             return false;
         }
         GuildScheduledEventModel guildScheduledEventModel = (GuildScheduledEventModel) other;
-        return this.guildId == guildScheduledEventModel.guildId && C12238m.areEqual(this.name, guildScheduledEventModel.name) && C12238m.areEqual(this.channelId, guildScheduledEventModel.channelId) && C12238m.areEqual(this.creatorId, guildScheduledEventModel.creatorId) && C12238m.areEqual(this.startDate, guildScheduledEventModel.startDate) && C12238m.areEqual(this.startTime, guildScheduledEventModel.startTime) && C12238m.areEqual(this.endDate, guildScheduledEventModel.endDate) && C12238m.areEqual(this.endTime, guildScheduledEventModel.endTime) && C12238m.areEqual(this.description, guildScheduledEventModel.description) && C12238m.areEqual(this.entityType, guildScheduledEventModel.entityType) && C12238m.areEqual(this.entityMetadata, guildScheduledEventModel.entityMetadata) && C12238m.areEqual(this.userCount, guildScheduledEventModel.userCount) && C12238m.areEqual(this.broadcastToDirectoryChannels, guildScheduledEventModel.broadcastToDirectoryChannels);
+        return this.guildId == guildScheduledEventModel.guildId && m.areEqual(this.name, guildScheduledEventModel.name) && m.areEqual(this.channelId, guildScheduledEventModel.channelId) && m.areEqual(this.creatorId, guildScheduledEventModel.creatorId) && m.areEqual(this.startDate, guildScheduledEventModel.startDate) && m.areEqual(this.startTime, guildScheduledEventModel.startTime) && m.areEqual(this.endDate, guildScheduledEventModel.endDate) && m.areEqual(this.endTime, guildScheduledEventModel.endTime) && m.areEqual(this.description, guildScheduledEventModel.description) && m.areEqual(this.entityType, guildScheduledEventModel.entityType) && m.areEqual(this.entityMetadata, guildScheduledEventModel.entityMetadata) && m.areEqual(this.userCount, guildScheduledEventModel.userCount) && m.areEqual(this.broadcastToDirectoryChannels, guildScheduledEventModel.broadcastToDirectoryChannels);
     }
 
     /* JADX INFO: renamed from: component13, reason: from getter */
@@ -187,9 +194,9 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
     }
 
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.guildId) * 31;
+        int iA = b.a(this.guildId) * 31;
         String str = this.name;
-        int iHashCode = (iM3a + (str != null ? str.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (str != null ? str.hashCode() : 0)) * 31;
         Long l = this.channelId;
         int iHashCode2 = (iHashCode + (l != null ? l.hashCode() : 0)) * 31;
         Long l2 = this.creatorId;
@@ -214,7 +221,7 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         return iHashCode11 + (bool != null ? bool.hashCode() : 0);
     }
 
-    public final RestAPIParams.CreateGuildScheduledEventBody toCreateRequestBody() {
+    public final RestAPIParams$CreateGuildScheduledEventBody toCreateRequestBody() {
         GuildScheduledEventPickerTime guildScheduledEventPickerTime;
         String str = this.name;
         String utcDateString = null;
@@ -227,41 +234,41 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         if (guildScheduledEventPickerDate != null && (guildScheduledEventPickerTime = this.endTime) != null) {
             utcDateString = guildScheduledEventPickerDateTime.toUtcDateString(guildScheduledEventPickerDate, guildScheduledEventPickerTime);
         }
-        return new RestAPIParams.CreateGuildScheduledEventBody(str, this.description, StageInstancePrivacyLevel.GUILD_ONLY, utcDateString2, utcDateString, this.channelId, this.entityType, this.entityMetadata, this.broadcastToDirectoryChannels);
+        return new RestAPIParams$CreateGuildScheduledEventBody(str, this.description, StageInstancePrivacyLevel.GUILD_ONLY, utcDateString2, utcDateString, this.channelId, this.entityType, this.entityMetadata, this.broadcastToDirectoryChannels);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventModel(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", creatorId=");
-        sbM833U.append(this.creatorId);
-        sbM833U.append(", startDate=");
-        sbM833U.append(this.startDate);
-        sbM833U.append(", startTime=");
-        sbM833U.append(this.startTime);
-        sbM833U.append(", endDate=");
-        sbM833U.append(this.endDate);
-        sbM833U.append(", endTime=");
-        sbM833U.append(this.endTime);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", entityType=");
-        sbM833U.append(this.entityType);
-        sbM833U.append(", entityMetadata=");
-        sbM833U.append(this.entityMetadata);
-        sbM833U.append(", userCount=");
-        sbM833U.append(this.userCount);
-        sbM833U.append(", broadcastToDirectoryChannels=");
-        return C1643a.m816D(sbM833U, this.broadcastToDirectoryChannels, ")");
+        StringBuilder sbU = a.U("GuildScheduledEventModel(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", creatorId=");
+        sbU.append(this.creatorId);
+        sbU.append(", startDate=");
+        sbU.append(this.startDate);
+        sbU.append(", startTime=");
+        sbU.append(this.startTime);
+        sbU.append(", endDate=");
+        sbU.append(this.endDate);
+        sbU.append(", endTime=");
+        sbU.append(this.endTime);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", entityType=");
+        sbU.append(this.entityType);
+        sbU.append(", entityMetadata=");
+        sbU.append(this.entityMetadata);
+        sbU.append(", userCount=");
+        sbU.append(this.userCount);
+        sbU.append(", broadcastToDirectoryChannels=");
+        return a.D(sbU, this.broadcastToDirectoryChannels, ")");
     }
 
-    public final RestAPIParams.UpdateGuildScheduledEventBody toUpdateRequestBody(GuildScheduledEvent currentEvent) {
+    public final RestAPIParams$UpdateGuildScheduledEventBody toUpdateRequestBody(GuildScheduledEvent currentEvent) {
         GuildScheduledEventPickerTime guildScheduledEventPickerTime;
-        C12238m.checkNotNullParameter(currentEvent, "currentEvent");
+        m.checkNotNullParameter(currentEvent, "currentEvent");
         String str = this.name;
         if (str == null) {
             return null;
@@ -271,14 +278,14 @@ public final /* data */ class GuildScheduledEventModel implements Serializable {
         GuildScheduledEventPickerDate guildScheduledEventPickerDate = this.endDate;
         Long lValueOf = (guildScheduledEventPickerDate == null || (guildScheduledEventPickerTime = this.endTime) == null) ? null : Long.valueOf(guildScheduledEventPickerDateTime.toMillis(guildScheduledEventPickerDate, guildScheduledEventPickerTime));
         Long l = this.channelId;
-        NullSerializable c5566b = l != null ? new NullSerializable.C5566b(l) : new NullSerializable.C5565a(null, 1);
+        NullSerializable nullSerializable$b = l != null ? new NullSerializable$b(l) : new NullSerializable$a(null, 1);
         GuildScheduledEventEntityMetadata guildScheduledEventEntityMetadata = this.entityMetadata;
-        NullSerializable c5565a = (guildScheduledEventEntityMetadata == null || guildScheduledEventEntityMetadata.m7991b()) ? new NullSerializable.C5565a(null, 1) : new NullSerializable.C5566b(this.entityMetadata);
+        NullSerializable nullSerializable$a = (guildScheduledEventEntityMetadata == null || guildScheduledEventEntityMetadata.b()) ? new NullSerializable$a(null, 1) : new NullSerializable$b(this.entityMetadata);
         String str2 = this.description;
         StageInstancePrivacyLevel stageInstancePrivacyLevel = StageInstancePrivacyLevel.GUILD_ONLY;
         String uTCDateTime$default = currentEvent.getScheduledStartTime().getDateTimeMillis() == millis ? null : TimeUtils.toUTCDateTime$default(Long.valueOf(millis), null, 2, null);
         UtcDateTime scheduledEndTime = currentEvent.getScheduledEndTime();
-        return new RestAPIParams.UpdateGuildScheduledEventBody(str, str2, stageInstancePrivacyLevel, uTCDateTime$default, C12238m.areEqual(scheduledEndTime != null ? Long.valueOf(scheduledEndTime.getDateTimeMillis()) : null, lValueOf) ? null : TimeUtils.toUTCDateTime$default(lValueOf, null, 2, null), c5566b, this.entityType, c5565a, null, this.broadcastToDirectoryChannels, 256, null);
+        return new RestAPIParams$UpdateGuildScheduledEventBody(str, str2, stageInstancePrivacyLevel, uTCDateTime$default, m.areEqual(scheduledEndTime != null ? Long.valueOf(scheduledEndTime.getDateTimeMillis()) : null, lValueOf) ? null : TimeUtils.toUTCDateTime$default(lValueOf, null, 2, null), nullSerializable$b, this.entityType, nullSerializable$a, null, this.broadcastToDirectoryChannels, 256, null);
     }
 
     public /* synthetic */ GuildScheduledEventModel(long j, String str, Long l, Long l2, GuildScheduledEventPickerDate guildScheduledEventPickerDate, GuildScheduledEventPickerTime guildScheduledEventPickerTime, GuildScheduledEventPickerDate guildScheduledEventPickerDate2, GuildScheduledEventPickerTime guildScheduledEventPickerTime2, String str2, GuildScheduledEventEntityType guildScheduledEventEntityType, GuildScheduledEventEntityMetadata guildScheduledEventEntityMetadata, Integer num, Boolean bool, int i, DefaultConstructorMarker defaultConstructorMarker) {

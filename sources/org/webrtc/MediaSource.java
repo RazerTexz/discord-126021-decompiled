@@ -1,31 +1,14 @@
 package org.webrtc;
 
-import org.webrtc.JniCommon;
+import h0.c.p;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MediaSource {
     private long nativeSource;
     private final RefCountDelegate refCountDelegate;
 
-    public enum State {
-        INITIALIZING,
-        LIVE,
-        ENDED,
-        MUTED;
-
-        @CalledByNative("State")
-        public static State fromNativeIndex(int i) {
-            return values()[i];
-        }
-    }
-
-    public MediaSource(final long j) {
-        this.refCountDelegate = new RefCountDelegate(new Runnable() { // from class: h0.c.p
-            @Override // java.lang.Runnable
-            public final void run() {
-                JniCommon.nativeReleaseRef(j);
-            }
-        });
+    public MediaSource(long j) {
+        this.refCountDelegate = new RefCountDelegate(new p(j));
         this.nativeSource = j;
     }
 
@@ -46,7 +29,7 @@ public class MediaSource {
         return this.nativeSource;
     }
 
-    private static native State nativeGetState(long j);
+    private static native MediaSource$State nativeGetState(long j);
 
     public void runWithReference(Runnable runnable) {
         if (this.refCountDelegate.safeRetain()) {
@@ -58,7 +41,7 @@ public class MediaSource {
         }
     }
 
-    public State state() {
+    public MediaSource$State state() {
         checkMediaSourceExists();
         return nativeGetState(this.nativeSource);
     }

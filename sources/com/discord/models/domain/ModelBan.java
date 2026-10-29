@@ -1,10 +1,10 @@
 package com.discord.models.domain;
 
 import androidx.annotation.Nullable;
+import b.d.b.a.a;
 import com.discord.api.user.User;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
 import java.io.IOException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelBan implements Model {
@@ -15,21 +15,21 @@ public class ModelBan implements Model {
     private User user;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "guild_id":
-                this.guildId = jsonReader.nextLong(-1L);
+                this.guildId = model$JsonReader.nextLong(-1L);
                 break;
             case "reason":
-                this.reason = jsonReader.nextStringOrNull();
+                this.reason = model$JsonReader.nextStringOrNull();
                 break;
             case "user":
-                this.user = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
+                this.user = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -81,13 +81,13 @@ public class ModelBan implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelBan(user=");
-        sbM833U.append(getUser());
-        sbM833U.append(", guildId=");
-        sbM833U.append(getGuildId());
-        sbM833U.append(", reason=");
-        sbM833U.append(getReason());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelBan(user=");
+        sbU.append(getUser());
+        sbU.append(", guildId=");
+        sbU.append(getGuildId());
+        sbU.append(", reason=");
+        sbU.append(getReason());
+        sbU.append(")");
+        return sbU.toString();
     }
 }

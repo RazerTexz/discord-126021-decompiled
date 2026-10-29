@@ -2,12 +2,12 @@ package androidx.appcompat.widget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.text.Editable;
 import android.util.AttributeSet;
-import android.view.ActionMode;
+import android.view.ActionMode$Callback;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.textclassifier.TextClassifier;
@@ -17,7 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$attr;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.TextViewCompat;
 
@@ -46,7 +47,7 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportBackgroundTintList() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -57,8 +58,8 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff.Mode getSupportBackgroundTintMode() {
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff$Mode getSupportBackgroundTintMode() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
             return appCompatBackgroundHelper.getSupportBackgroundTintMode();
@@ -66,12 +67,18 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
         return null;
     }
 
+    @Override // android.widget.EditText, android.widget.TextView
+    @Nullable
+    public /* bridge */ /* synthetic */ CharSequence getText() {
+        return getText();
+    }
+
     @Override // android.widget.TextView
     @NonNull
     @RequiresApi(api = 26)
     public TextClassifier getTextClassifier() {
         AppCompatTextClassifierHelper appCompatTextClassifierHelper;
-        return (Build.VERSION.SDK_INT >= 28 || (appCompatTextClassifierHelper = this.mTextClassifierHelper) == null) ? super.getTextClassifier() : appCompatTextClassifierHelper.getTextClassifier();
+        return (Build$VERSION.SDK_INT >= 28 || (appCompatTextClassifierHelper = this.mTextClassifierHelper) == null) ? super.getTextClassifier() : appCompatTextClassifierHelper.getTextClassifier();
     }
 
     @Override // android.widget.TextView, android.view.View
@@ -98,12 +105,12 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
     }
 
     @Override // android.widget.TextView
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, callback));
+    public void setCustomSelectionActionModeCallback(ActionMode$Callback actionMode$Callback) {
+        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, actionMode$Callback));
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportBackgroundTintList(@Nullable ColorStateList colorStateList) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -112,11 +119,11 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportBackgroundTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.setSupportBackgroundTintMode(mode);
+            appCompatBackgroundHelper.setSupportBackgroundTintMode(porterDuff$Mode);
         }
     }
 
@@ -133,7 +140,7 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
     @RequiresApi(api = 26)
     public void setTextClassifier(@Nullable TextClassifier textClassifier) {
         AppCompatTextClassifierHelper appCompatTextClassifierHelper;
-        if (Build.VERSION.SDK_INT >= 28 || (appCompatTextClassifierHelper = this.mTextClassifierHelper) == null) {
+        if (Build$VERSION.SDK_INT >= 28 || (appCompatTextClassifierHelper = this.mTextClassifierHelper) == null) {
             super.setTextClassifier(textClassifier);
         } else {
             appCompatTextClassifierHelper.setTextClassifier(textClassifier);
@@ -141,13 +148,13 @@ public class AppCompatEditText extends EditText implements TintableBackgroundVie
     }
 
     public AppCompatEditText(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0051R.attr.editTextStyle);
+        this(context, attributeSet, R$attr.editTextStyle);
     }
 
     @Override // android.widget.EditText, android.widget.TextView
     @Nullable
     public Editable getText() {
-        return Build.VERSION.SDK_INT >= 28 ? super.getText() : super.getEditableText();
+        return Build$VERSION.SDK_INT >= 28 ? super.getText() : super.getEditableText();
     }
 
     public AppCompatEditText(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {

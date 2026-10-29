@@ -1,12 +1,13 @@
 package androidx.constraintlayout.solver;
 
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
+import androidx.constraintlayout.solver.widgets.ConstraintAnchor$Type;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
+import b.d.b.a.a;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashMap;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class LinearSystem {
@@ -24,9 +25,9 @@ public class LinearSystem {
     public static boolean USE_DEPENDENCY_ORDERING = false;
     public static boolean USE_SYNONYMS = true;
     public final Cache mCache;
-    private Row mGoal;
+    private LinearSystem$Row mGoal;
     public ArrayRow[] mRows;
-    private Row mTempGoal;
+    private LinearSystem$Row mTempGoal;
     public static Metrics sMetrics;
     public boolean hasSimpleDefinition = false;
     public int mVariablesID = 0;
@@ -42,32 +43,6 @@ public class LinearSystem {
     private SolverVariable[] mPoolVariables = new SolverVariable[POOL_SIZE];
     private int mPoolVariablesCount = 0;
 
-    public interface Row {
-        void addError(SolverVariable solverVariable);
-
-        void clear();
-
-        SolverVariable getKey();
-
-        SolverVariable getPivotCandidate(LinearSystem linearSystem, boolean[] zArr);
-
-        void initFromRow(Row row);
-
-        boolean isEmpty();
-
-        void updateFromFinalVariable(LinearSystem linearSystem, SolverVariable solverVariable, boolean z2);
-
-        void updateFromRow(LinearSystem linearSystem, ArrayRow arrayRow, boolean z2);
-
-        void updateFromSystem(LinearSystem linearSystem);
-    }
-
-    public class ValuesRow extends ArrayRow {
-        public ValuesRow(Cache cache) {
-            this.variables = new SolverVariableValues(this, cache);
-        }
-    }
-
     public LinearSystem() {
         this.mRows = null;
         this.mRows = new ArrayRow[32];
@@ -76,20 +51,20 @@ public class LinearSystem {
         this.mCache = cache;
         this.mGoal = new PriorityGoalRow(cache);
         if (OPTIMIZED_ENGINE) {
-            this.mTempGoal = new ValuesRow(cache);
+            this.mTempGoal = new LinearSystem$ValuesRow(this, cache);
         } else {
             this.mTempGoal = new ArrayRow(cache);
         }
     }
 
-    private SolverVariable acquireSolverVariable(SolverVariable.Type type, String str) {
+    private SolverVariable acquireSolverVariable(SolverVariable$Type solverVariable$Type, String str) {
         SolverVariable solverVariableAcquire = this.mCache.solverVariablePool.acquire();
         if (solverVariableAcquire == null) {
-            solverVariableAcquire = new SolverVariable(type, str);
-            solverVariableAcquire.setType(type, str);
+            solverVariableAcquire = new SolverVariable(solverVariable$Type, str);
+            solverVariableAcquire.setType(solverVariable$Type, str);
         } else {
             solverVariableAcquire.reset();
-            solverVariableAcquire.setType(type, str);
+            solverVariableAcquire.setType(solverVariable$Type, str);
         }
         int i = this.mPoolVariablesCount;
         int i2 = POOL_SIZE;
@@ -106,18 +81,18 @@ public class LinearSystem {
     }
 
     public void addCenterPoint(ConstraintWidget constraintWidget, ConstraintWidget constraintWidget2, float f, int i) {
-        ConstraintAnchor.Type type = ConstraintAnchor.Type.LEFT;
-        SolverVariable solverVariableCreateObjectVariable = createObjectVariable(constraintWidget.getAnchor(type));
-        ConstraintAnchor.Type type2 = ConstraintAnchor.Type.TOP;
-        SolverVariable solverVariableCreateObjectVariable2 = createObjectVariable(constraintWidget.getAnchor(type2));
-        ConstraintAnchor.Type type3 = ConstraintAnchor.Type.RIGHT;
-        SolverVariable solverVariableCreateObjectVariable3 = createObjectVariable(constraintWidget.getAnchor(type3));
-        ConstraintAnchor.Type type4 = ConstraintAnchor.Type.BOTTOM;
-        SolverVariable solverVariableCreateObjectVariable4 = createObjectVariable(constraintWidget.getAnchor(type4));
-        SolverVariable solverVariableCreateObjectVariable5 = createObjectVariable(constraintWidget2.getAnchor(type));
-        SolverVariable solverVariableCreateObjectVariable6 = createObjectVariable(constraintWidget2.getAnchor(type2));
-        SolverVariable solverVariableCreateObjectVariable7 = createObjectVariable(constraintWidget2.getAnchor(type3));
-        SolverVariable solverVariableCreateObjectVariable8 = createObjectVariable(constraintWidget2.getAnchor(type4));
+        ConstraintAnchor$Type constraintAnchor$Type = ConstraintAnchor$Type.LEFT;
+        SolverVariable solverVariableCreateObjectVariable = createObjectVariable(constraintWidget.getAnchor(constraintAnchor$Type));
+        ConstraintAnchor$Type constraintAnchor$Type2 = ConstraintAnchor$Type.TOP;
+        SolverVariable solverVariableCreateObjectVariable2 = createObjectVariable(constraintWidget.getAnchor(constraintAnchor$Type2));
+        ConstraintAnchor$Type constraintAnchor$Type3 = ConstraintAnchor$Type.RIGHT;
+        SolverVariable solverVariableCreateObjectVariable3 = createObjectVariable(constraintWidget.getAnchor(constraintAnchor$Type3));
+        ConstraintAnchor$Type constraintAnchor$Type4 = ConstraintAnchor$Type.BOTTOM;
+        SolverVariable solverVariableCreateObjectVariable4 = createObjectVariable(constraintWidget.getAnchor(constraintAnchor$Type4));
+        SolverVariable solverVariableCreateObjectVariable5 = createObjectVariable(constraintWidget2.getAnchor(constraintAnchor$Type));
+        SolverVariable solverVariableCreateObjectVariable6 = createObjectVariable(constraintWidget2.getAnchor(constraintAnchor$Type2));
+        SolverVariable solverVariableCreateObjectVariable7 = createObjectVariable(constraintWidget2.getAnchor(constraintAnchor$Type3));
+        SolverVariable solverVariableCreateObjectVariable8 = createObjectVariable(constraintWidget2.getAnchor(constraintAnchor$Type4));
         ArrayRow arrayRowCreateRow = createRow();
         double d = f;
         double d2 = i;
@@ -397,11 +372,11 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable.Type.ERROR, str);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable$Type.ERROR, str);
         int i2 = this.mVariablesID + 1;
         this.mVariablesID = i2;
         this.mNumColumns++;
-        solverVariableAcquireSolverVariable.f110id = i2;
+        solverVariableAcquireSolverVariable.f30id = i2;
         solverVariableAcquireSolverVariable.strength = i;
         this.mCache.mIndexedVariables[i2] = solverVariableAcquireSolverVariable;
         this.mGoal.addError(solverVariableAcquireSolverVariable);
@@ -416,11 +391,11 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable.Type.SLACK, null);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable$Type.SLACK, null);
         int i = this.mVariablesID + 1;
         this.mVariablesID = i;
         this.mNumColumns++;
-        solverVariableAcquireSolverVariable.f110id = i;
+        solverVariableAcquireSolverVariable.f30id = i;
         this.mCache.mIndexedVariables[i] = solverVariableAcquireSolverVariable;
         return solverVariableAcquireSolverVariable;
     }
@@ -440,7 +415,7 @@ public class LinearSystem {
                 constraintAnchor.resetSolverVariable(this.mCache);
                 solverVariable = constraintAnchor.getSolverVariable();
             }
-            int i = solverVariable.f110id;
+            int i = solverVariable.f30id;
             if (i == -1 || i > this.mVariablesID || this.mCache.mIndexedVariables[i] == null) {
                 if (i != -1) {
                     solverVariable.reset();
@@ -448,8 +423,8 @@ public class LinearSystem {
                 int i2 = this.mVariablesID + 1;
                 this.mVariablesID = i2;
                 this.mNumColumns++;
-                solverVariable.f110id = i2;
-                solverVariable.mType = SolverVariable.Type.UNRESTRICTED;
+                solverVariable.f30id = i2;
+                solverVariable.mType = SolverVariable$Type.UNRESTRICTED;
                 this.mCache.mIndexedVariables[i2] = solverVariable;
             }
         }
@@ -461,7 +436,7 @@ public class LinearSystem {
         if (OPTIMIZED_ENGINE) {
             arrayRowAcquire = this.mCache.optimizedArrayRowPool.acquire();
             if (arrayRowAcquire == null) {
-                arrayRowAcquire = new ValuesRow(this.mCache);
+                arrayRowAcquire = new LinearSystem$ValuesRow(this, this.mCache);
                 OPTIMIZED_ARRAY_ROW_CREATION++;
             } else {
                 arrayRowAcquire.reset();
@@ -491,16 +466,16 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable.Type.SLACK, null);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(SolverVariable$Type.SLACK, null);
         int i = this.mVariablesID + 1;
         this.mVariablesID = i;
         this.mNumColumns++;
-        solverVariableAcquireSolverVariable.f110id = i;
+        solverVariableAcquireSolverVariable.f30id = i;
         this.mCache.mIndexedVariables[i] = solverVariableAcquireSolverVariable;
         return solverVariableAcquireSolverVariable;
     }
 
-    private SolverVariable createVariable(String str, SolverVariable.Type type) {
+    private SolverVariable createVariable(String str, SolverVariable$Type solverVariable$Type) {
         Metrics metrics = sMetrics;
         if (metrics != null) {
             metrics.variables++;
@@ -508,12 +483,12 @@ public class LinearSystem {
         if (this.mNumColumns + 1 >= this.mMaxColumns) {
             increaseTableSize();
         }
-        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(type, null);
+        SolverVariable solverVariableAcquireSolverVariable = acquireSolverVariable(solverVariable$Type, null);
         solverVariableAcquireSolverVariable.setName(str);
         int i = this.mVariablesID + 1;
         this.mVariablesID = i;
         this.mNumColumns++;
-        solverVariableAcquireSolverVariable.f110id = i;
+        solverVariableAcquireSolverVariable.f30id = i;
         if (this.mVariables == null) {
             this.mVariables = new HashMap<>();
         }
@@ -524,55 +499,55 @@ public class LinearSystem {
 
     public void displayReadableRows() {
         displaySolverVariables();
-        String strM814B = C1643a.m814B(C1643a.m833U(" num vars "), this.mVariablesID, "\n");
+        String strB = a.B(a.U(" num vars "), this.mVariablesID, "\n");
         for (int i = 0; i < this.mVariablesID + 1; i++) {
             SolverVariable solverVariable = this.mCache.mIndexedVariables[i];
             if (solverVariable != null && solverVariable.isFinalValue) {
-                strM814B = strM814B + " $[" + i + "] => " + solverVariable + " = " + solverVariable.computedValue + "\n";
+                strB = strB + " $[" + i + "] => " + solverVariable + " = " + solverVariable.computedValue + "\n";
             }
         }
-        String strM883w = C1643a.m883w(strM814B, "\n");
+        String strW = a.w(strB, "\n");
         for (int i2 = 0; i2 < this.mVariablesID + 1; i2++) {
             SolverVariable[] solverVariableArr = this.mCache.mIndexedVariables;
             SolverVariable solverVariable2 = solverVariableArr[i2];
             if (solverVariable2 != null && solverVariable2.isSynonym) {
-                strM883w = strM883w + " ~[" + i2 + "] => " + solverVariable2 + " = " + solverVariableArr[solverVariable2.synonym] + " + " + solverVariable2.synonymDelta + "\n";
+                strW = strW + " ~[" + i2 + "] => " + solverVariable2 + " = " + solverVariableArr[solverVariable2.synonym] + " + " + solverVariable2.synonymDelta + "\n";
             }
         }
-        String strM883w2 = C1643a.m883w(strM883w, "\n\n #  ");
+        String strW2 = a.w(strW, "\n\n #  ");
         for (int i3 = 0; i3 < this.mNumRows; i3++) {
-            StringBuilder sbM833U = C1643a.m833U(strM883w2);
-            sbM833U.append(this.mRows[i3].toReadableString());
-            strM883w2 = C1643a.m883w(sbM833U.toString(), "\n #  ");
+            StringBuilder sbU = a.U(strW2);
+            sbU.append(this.mRows[i3].toReadableString());
+            strW2 = a.w(sbU.toString(), "\n #  ");
         }
         if (this.mGoal != null) {
-            StringBuilder sbM836X = C1643a.m836X(strM883w2, "Goal: ");
-            sbM836X.append(this.mGoal);
-            sbM836X.append("\n");
-            strM883w2 = sbM836X.toString();
+            StringBuilder sbX = a.X(strW2, "Goal: ");
+            sbX.append(this.mGoal);
+            sbX.append("\n");
+            strW2 = sbX.toString();
         }
-        System.out.println(strM883w2);
+        System.out.println(strW2);
     }
 
     private void displayRows() {
         displaySolverVariables();
-        String strM883w = "";
+        String strW = "";
         for (int i = 0; i < this.mNumRows; i++) {
-            StringBuilder sbM833U = C1643a.m833U(strM883w);
-            sbM833U.append(this.mRows[i]);
-            strM883w = C1643a.m883w(sbM833U.toString(), "\n");
+            StringBuilder sbU = a.U(strW);
+            sbU.append(this.mRows[i]);
+            strW = a.w(sbU.toString(), "\n");
         }
-        StringBuilder sbM833U2 = C1643a.m833U(strM883w);
-        sbM833U2.append(this.mGoal);
-        sbM833U2.append("\n");
-        System.out.println(sbM833U2.toString());
+        StringBuilder sbU2 = a.U(strW);
+        sbU2.append(this.mGoal);
+        sbU2.append("\n");
+        System.out.println(sbU2.toString());
     }
 
     private void displaySolverVariables() {
-        StringBuilder sbM833U = C1643a.m833U("Display Rows (");
-        sbM833U.append(this.mNumRows);
-        sbM833U.append("x");
-        System.out.println(C1643a.m814B(sbM833U, this.mNumColumns, ")\n"));
+        StringBuilder sbU = a.U("Display Rows (");
+        sbU.append(this.mNumRows);
+        sbU.append("x");
+        System.out.println(a.B(sbU, this.mNumColumns, ")\n"));
     }
 
     public void displaySystemInformations() {
@@ -591,47 +566,47 @@ public class LinearSystem {
             }
         }
         PrintStream printStream = System.out;
-        StringBuilder sbM833U = C1643a.m833U("Linear System -> Table size: ");
-        sbM833U.append(this.TABLE_SIZE);
-        sbM833U.append(" (");
+        StringBuilder sbU = a.U("Linear System -> Table size: ");
+        sbU.append(this.TABLE_SIZE);
+        sbU.append(" (");
         int i3 = this.TABLE_SIZE;
-        sbM833U.append(getDisplaySize(i3 * i3));
-        sbM833U.append(") -- row sizes: ");
-        sbM833U.append(getDisplaySize(iSizeInBytes));
-        sbM833U.append(", actual size: ");
-        sbM833U.append(getDisplaySize(iSizeInBytes2));
-        sbM833U.append(" rows: ");
-        sbM833U.append(this.mNumRows);
-        sbM833U.append(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
-        sbM833U.append(this.mMaxRows);
-        sbM833U.append(" cols: ");
-        sbM833U.append(this.mNumColumns);
-        sbM833U.append(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
-        sbM833U.append(this.mMaxColumns);
-        sbM833U.append(" ");
-        sbM833U.append(0);
-        sbM833U.append(" occupied cells, ");
-        sbM833U.append(getDisplaySize(0));
-        printStream.println(sbM833U.toString());
+        sbU.append(getDisplaySize(i3 * i3));
+        sbU.append(") -- row sizes: ");
+        sbU.append(getDisplaySize(iSizeInBytes));
+        sbU.append(", actual size: ");
+        sbU.append(getDisplaySize(iSizeInBytes2));
+        sbU.append(" rows: ");
+        sbU.append(this.mNumRows);
+        sbU.append(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
+        sbU.append(this.mMaxRows);
+        sbU.append(" cols: ");
+        sbU.append(this.mNumColumns);
+        sbU.append(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
+        sbU.append(this.mMaxColumns);
+        sbU.append(" ");
+        sbU.append(0);
+        sbU.append(" occupied cells, ");
+        sbU.append(getDisplaySize(0));
+        printStream.println(sbU.toString());
     }
 
     public void displayVariablesReadableRows() {
         displaySolverVariables();
-        String strM883w = "";
+        String strW = "";
         for (int i = 0; i < this.mNumRows; i++) {
-            if (this.mRows[i].variable.mType == SolverVariable.Type.UNRESTRICTED) {
-                StringBuilder sbM833U = C1643a.m833U(strM883w);
-                sbM833U.append(this.mRows[i].toReadableString());
-                strM883w = C1643a.m883w(sbM833U.toString(), "\n");
+            if (this.mRows[i].variable.mType == SolverVariable$Type.UNRESTRICTED) {
+                StringBuilder sbU = a.U(strW);
+                sbU.append(this.mRows[i].toReadableString());
+                strW = a.w(sbU.toString(), "\n");
             }
         }
-        StringBuilder sbM833U2 = C1643a.m833U(strM883w);
-        sbM833U2.append(this.mGoal);
-        sbM833U2.append("\n");
-        System.out.println(sbM833U2.toString());
+        StringBuilder sbU2 = a.U(strW);
+        sbU2.append(this.mGoal);
+        sbU2.append("\n");
+        System.out.println(sbU2.toString());
     }
 
-    private int enforceBFS(Row row) throws Exception {
+    private int enforceBFS(LinearSystem$Row linearSystem$Row) throws Exception {
         boolean z2;
         int i = 0;
         while (true) {
@@ -640,7 +615,7 @@ public class LinearSystem {
                 break;
             }
             ArrayRow[] arrayRowArr = this.mRows;
-            if (arrayRowArr[i].variable.mType != SolverVariable.Type.UNRESTRICTED && arrayRowArr[i].constantValue < 0.0f) {
+            if (arrayRowArr[i].variable.mType != SolverVariable$Type.UNRESTRICTED && arrayRowArr[i].constantValue < 0.0f) {
                 z2 = true;
                 break;
             }
@@ -663,7 +638,7 @@ public class LinearSystem {
             int i5 = 0;
             for (int i6 = 0; i6 < this.mNumRows; i6++) {
                 ArrayRow arrayRow = this.mRows[i6];
-                if (arrayRow.variable.mType != SolverVariable.Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.constantValue < 0.0f) {
+                if (arrayRow.variable.mType != SolverVariable$Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.constantValue < 0.0f) {
                     int i7 = 9;
                     if (SKIP_COLUMNS) {
                         int currentSize = arrayRow.variables.getCurrentSize();
@@ -676,7 +651,7 @@ public class LinearSystem {
                                 while (i9 < i7) {
                                     float f3 = variable.strengthVector[i9] / f2;
                                     if ((f3 < f && i9 == i5) || i9 > i5) {
-                                        i4 = variable.f110id;
+                                        i4 = variable.f30id;
                                         i5 = i9;
                                         i3 = i6;
                                         f = f3;
@@ -741,9 +716,9 @@ public class LinearSystem {
         int i3 = i2 / 1024;
         int i4 = i3 / 1024;
         if (i4 > 0) {
-            return C1643a.m873r("", i4, " Mb");
+            return a.r("", i4, " Mb");
         }
-        return i3 > 0 ? C1643a.m873r("", i3, " Kb") : C1643a.m873r("", i2, " bytes");
+        return i3 > 0 ? a.r("", i3, " Kb") : a.r("", i2, " bytes");
     }
 
     private String getDisplayStrength(int i) {
@@ -768,7 +743,7 @@ public class LinearSystem {
         return i == 6 ? "BARRIER" : "NONE";
     }
 
-    public Row getGoal() {
+    public LinearSystem$Row getGoal() {
         return this.mGoal;
     }
 
@@ -808,19 +783,19 @@ public class LinearSystem {
     }
 
     public float getValueFor(String str) {
-        SolverVariable variable = getVariable(str, SolverVariable.Type.UNRESTRICTED);
+        SolverVariable variable = getVariable(str, SolverVariable$Type.UNRESTRICTED);
         if (variable == null) {
             return 0.0f;
         }
         return variable.computedValue;
     }
 
-    public SolverVariable getVariable(String str, SolverVariable.Type type) {
+    public SolverVariable getVariable(String str, SolverVariable$Type solverVariable$Type) {
         if (this.mVariables == null) {
             this.mVariables = new HashMap<>();
         }
         SolverVariable solverVariable = this.mVariables.get(str);
-        return solverVariable == null ? createVariable(str, type) : solverVariable;
+        return solverVariable == null ? createVariable(str, solverVariable$Type) : solverVariable;
     }
 
     private void increaseTableSize() {
@@ -882,7 +857,7 @@ public class LinearSystem {
         computeValues();
     }
 
-    public void minimizeGoal(Row row) throws Exception {
+    public void minimizeGoal(LinearSystem$Row linearSystem$Row) throws Exception {
         Metrics metrics = sMetrics;
         if (metrics != null) {
             metrics.minimizeGoal++;
@@ -890,12 +865,12 @@ public class LinearSystem {
             Metrics metrics2 = sMetrics;
             metrics2.maxRows = Math.max(metrics2.maxRows, this.mNumRows);
         }
-        enforceBFS(row);
-        optimize(row, false);
+        enforceBFS(linearSystem$Row);
+        optimize(linearSystem$Row, false);
         computeValues();
     }
 
-    private final int optimize(Row row, boolean z2) {
+    private final int optimize(LinearSystem$Row linearSystem$Row, boolean z2) {
         Metrics metrics = sMetrics;
         if (metrics != null) {
             metrics.optimize++;
@@ -914,13 +889,13 @@ public class LinearSystem {
             if (i2 >= this.mNumColumns * 2) {
                 return i2;
             }
-            if (row.getKey() != null) {
-                this.mAlreadyTestedCandidates[row.getKey().f110id] = true;
+            if (linearSystem$Row.getKey() != null) {
+                this.mAlreadyTestedCandidates[linearSystem$Row.getKey().f30id] = true;
             }
-            SolverVariable pivotCandidate = row.getPivotCandidate(this, this.mAlreadyTestedCandidates);
+            SolverVariable pivotCandidate = linearSystem$Row.getPivotCandidate(this, this.mAlreadyTestedCandidates);
             if (pivotCandidate != null) {
                 boolean[] zArr = this.mAlreadyTestedCandidates;
-                int i3 = pivotCandidate.f110id;
+                int i3 = pivotCandidate.f30id;
                 if (zArr[i3]) {
                     return i2;
                 }
@@ -931,7 +906,7 @@ public class LinearSystem {
                 int i4 = -1;
                 for (int i5 = 0; i5 < this.mNumRows; i5++) {
                     ArrayRow arrayRow = this.mRows[i5];
-                    if (arrayRow.variable.mType != SolverVariable.Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.hasVariable(pivotCandidate)) {
+                    if (arrayRow.variable.mType != SolverVariable$Type.UNRESTRICTED && !arrayRow.isSimpleDefinition && arrayRow.hasVariable(pivotCandidate)) {
                         float f2 = arrayRow.variables.get(pivotCandidate);
                         if (f2 < 0.0f) {
                             float f3 = (-arrayRow.constantValue) / f2;
@@ -1053,7 +1028,7 @@ public class LinearSystem {
         releaseRows();
         this.mNumRows = 0;
         if (OPTIMIZED_ENGINE) {
-            this.mTempGoal = new ValuesRow(this.mCache);
+            this.mTempGoal = new LinearSystem$ValuesRow(this, this.mCache);
         } else {
             this.mTempGoal = new ArrayRow(this.mCache);
         }
@@ -1069,7 +1044,7 @@ public class LinearSystem {
             solverVariable.setFinalValue(this, f);
             for (int i2 = 0; i2 < this.mVariablesID + 1; i2++) {
                 SolverVariable solverVariable2 = this.mCache.mIndexedVariables[i2];
-                if (solverVariable2 != null && solverVariable2.isSynonym && solverVariable2.synonym == solverVariable.f110id) {
+                if (solverVariable2 != null && solverVariable2.isSynonym && solverVariable2.synonym == solverVariable.f30id) {
                     solverVariable2.setFinalValue(this, solverVariable2.synonymDelta + f);
                 }
             }

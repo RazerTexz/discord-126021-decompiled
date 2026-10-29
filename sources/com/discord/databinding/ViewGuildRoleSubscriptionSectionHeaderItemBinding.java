@@ -8,46 +8,45 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.C5419R;
+import com.discord.R$id;
+import com.discord.R$layout;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewGuildRoleSubscriptionSectionHeaderItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15491a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15492b;
+    public final TextView f2198b;
 
     public ViewGuildRoleSubscriptionSectionHeaderItemBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2) {
-        this.f15491a = linearLayout;
-        this.f15492b = textView2;
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15491a;
+        this.a = linearLayout;
+        this.f2198b = textView2;
     }
 
     @NonNull
-    /* JADX INFO: renamed from: a */
-    public static ViewGuildRoleSubscriptionSectionHeaderItemBinding m8399a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(C5419R.layout.view_guild_role_subscription_section_header_item, viewGroup, false);
+    public static ViewGuildRoleSubscriptionSectionHeaderItemBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
+        View viewInflate = layoutInflater.inflate(R$layout.view_guild_role_subscription_section_header_item, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = C5419R.id.guild_role_subscription_section_description;
-        TextView textView = (TextView) viewInflate.findViewById(C5419R.id.guild_role_subscription_section_description);
+        int i = R$id.guild_role_subscription_section_description;
+        TextView textView = (TextView) viewInflate.findViewById(R$id.guild_role_subscription_section_description);
         if (textView != null) {
-            i = C5419R.id.guild_role_subscription_section_header;
-            TextView textView2 = (TextView) viewInflate.findViewById(C5419R.id.guild_role_subscription_section_header);
+            i = R$id.guild_role_subscription_section_header;
+            TextView textView2 = (TextView) viewInflate.findViewById(R$id.guild_role_subscription_section_header);
             if (textView2 != null) {
                 return new ViewGuildRoleSubscriptionSectionHeaderItemBinding((LinearLayout) viewInflate, textView, textView2);
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
+    }
+
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.a;
     }
 }

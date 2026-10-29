@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNativeEchoCancellationConfigured.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackNativeEchoCancellationConfigured implements A
             return false;
         }
         TrackNativeEchoCancellationConfigured trackNativeEchoCancellationConfigured = (TrackNativeEchoCancellationConfigured) other;
-        return C12238m.areEqual(this.builtinAecSupportedJava, trackNativeEchoCancellationConfigured.builtinAecSupportedJava) && C12238m.areEqual(this.builtinAecSupportedNative, trackNativeEchoCancellationConfigured.builtinAecSupportedNative) && C12238m.areEqual(this.builtinAecRequested, trackNativeEchoCancellationConfigured.builtinAecRequested) && C12238m.areEqual(this.builtinAecEnabled, trackNativeEchoCancellationConfigured.builtinAecEnabled) && C12238m.areEqual(this.aecEnabledInSettings, trackNativeEchoCancellationConfigured.aecEnabledInSettings) && C12238m.areEqual(this.aecEnabledInNativeConfig, trackNativeEchoCancellationConfigured.aecEnabledInNativeConfig) && C12238m.areEqual(this.aecMobileMode, trackNativeEchoCancellationConfigured.aecMobileMode) && C12238m.areEqual(this.aecEnabledByDefault, trackNativeEchoCancellationConfigured.aecEnabledByDefault) && C12238m.areEqual(this.aecMobileModeByDefault, trackNativeEchoCancellationConfigured.aecMobileModeByDefault);
+        return m.areEqual(this.builtinAecSupportedJava, trackNativeEchoCancellationConfigured.builtinAecSupportedJava) && m.areEqual(this.builtinAecSupportedNative, trackNativeEchoCancellationConfigured.builtinAecSupportedNative) && m.areEqual(this.builtinAecRequested, trackNativeEchoCancellationConfigured.builtinAecRequested) && m.areEqual(this.builtinAecEnabled, trackNativeEchoCancellationConfigured.builtinAecEnabled) && m.areEqual(this.aecEnabledInSettings, trackNativeEchoCancellationConfigured.aecEnabledInSettings) && m.areEqual(this.aecEnabledInNativeConfig, trackNativeEchoCancellationConfigured.aecEnabledInNativeConfig) && m.areEqual(this.aecMobileMode, trackNativeEchoCancellationConfigured.aecMobileMode) && m.areEqual(this.aecEnabledByDefault, trackNativeEchoCancellationConfigured.aecEnabledByDefault) && m.areEqual(this.aecMobileModeByDefault, trackNativeEchoCancellationConfigured.aecMobileModeByDefault);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,23 +60,23 @@ public final /* data */ class TrackNativeEchoCancellationConfigured implements A
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNativeEchoCancellationConfigured(builtinAecSupportedJava=");
-        sbM833U.append(this.builtinAecSupportedJava);
-        sbM833U.append(", builtinAecSupportedNative=");
-        sbM833U.append(this.builtinAecSupportedNative);
-        sbM833U.append(", builtinAecRequested=");
-        sbM833U.append(this.builtinAecRequested);
-        sbM833U.append(", builtinAecEnabled=");
-        sbM833U.append(this.builtinAecEnabled);
-        sbM833U.append(", aecEnabledInSettings=");
-        sbM833U.append(this.aecEnabledInSettings);
-        sbM833U.append(", aecEnabledInNativeConfig=");
-        sbM833U.append(this.aecEnabledInNativeConfig);
-        sbM833U.append(", aecMobileMode=");
-        sbM833U.append(this.aecMobileMode);
-        sbM833U.append(", aecEnabledByDefault=");
-        sbM833U.append(this.aecEnabledByDefault);
-        sbM833U.append(", aecMobileModeByDefault=");
-        return C1643a.m816D(sbM833U, this.aecMobileModeByDefault, ")");
+        StringBuilder sbU = a.U("TrackNativeEchoCancellationConfigured(builtinAecSupportedJava=");
+        sbU.append(this.builtinAecSupportedJava);
+        sbU.append(", builtinAecSupportedNative=");
+        sbU.append(this.builtinAecSupportedNative);
+        sbU.append(", builtinAecRequested=");
+        sbU.append(this.builtinAecRequested);
+        sbU.append(", builtinAecEnabled=");
+        sbU.append(this.builtinAecEnabled);
+        sbU.append(", aecEnabledInSettings=");
+        sbU.append(this.aecEnabledInSettings);
+        sbU.append(", aecEnabledInNativeConfig=");
+        sbU.append(this.aecEnabledInNativeConfig);
+        sbU.append(", aecMobileMode=");
+        sbU.append(this.aecMobileMode);
+        sbU.append(", aecEnabledByDefault=");
+        sbU.append(this.aecEnabledByDefault);
+        sbU.append(", aecMobileModeByDefault=");
+        return a.D(sbU, this.aecMobileModeByDefault, ")");
     }
 }

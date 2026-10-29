@@ -1,40 +1,29 @@
 package com.discord.stores;
 
 import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import d0.z.d.a0;
+import d0.z.d.m;
+import d0.z.d.s;
 import java.util.concurrent.TimeUnit;
-import kotlin.jvm.functions.Function0;
 import kotlin.reflect.KProperty;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12238m;
-import p507d0.p592z.p594d.C12244s;
-import p658rx.Observable;
+import rx.Observable;
 
 /* JADX INFO: compiled from: StoreConnectionOpen.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreConnectionOpen extends StoreV2 {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C12216a0.mutableProperty1(new C12244s(StoreConnectionOpen.class, "isConnectionOpen", "isConnectionOpen()Z", 0))};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a0.mutableProperty1(new s(StoreConnectionOpen.class, "isConnectionOpen", "isConnectionOpen()Z", 0))};
 
     /* JADX INFO: renamed from: isConnectionOpen$delegate, reason: from kotlin metadata */
-    private final StoreV2.MarkChangedDelegate isConnectionOpen = new StoreV2.MarkChangedDelegate(Boolean.FALSE, null, 2, null);
+    private final StoreV2$MarkChangedDelegate isConnectionOpen = new StoreV2$MarkChangedDelegate(Boolean.FALSE, null, 2, null);
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreConnectionOpen$observeConnectionOpen$1 */
-    /* JADX INFO: compiled from: StoreConnectionOpen.kt */
-    public final class C58521 extends AbstractC12240o implements Function0<Boolean> {
-        public C58521() {
-            super(0);
-        }
+    public static final /* synthetic */ boolean access$isConnectionOpen$p(StoreConnectionOpen storeConnectionOpen) {
+        return storeConnectionOpen.isConnectionOpen();
+    }
 
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Boolean invoke() {
-            return Boolean.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final boolean invoke2() {
-            return StoreConnectionOpen.this.isConnectionOpen();
-        }
+    public static final /* synthetic */ void access$setConnectionOpen$p(StoreConnectionOpen storeConnectionOpen, boolean z2) {
+        storeConnectionOpen.setConnectionOpen(z2);
     }
 
     @StoreThread
@@ -62,11 +51,11 @@ public final class StoreConnectionOpen extends StoreV2 {
     }
 
     public final Observable<Boolean> observeConnectionOpen(boolean delayForUI) {
-        Observable<Boolean> observableConnectRx$default = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck.UpdateSource[]{this}, false, null, null, new C58521(), 14, null);
+        Observable<Boolean> observableConnectRx$default = ObservationDeck.connectRx$default(ObservationDeckProvider.get(), new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreConnectionOpen$observeConnectionOpen$1(this), 14, null);
         if (delayForUI) {
-            observableConnectRx$default = observableConnectRx$default.m11111q(100L, TimeUnit.MILLISECONDS);
+            observableConnectRx$default = observableConnectRx$default.q(100L, TimeUnit.MILLISECONDS);
         }
-        C12238m.checkNotNullExpressionValue(observableConnectRx$default, "ObservationDeckProvider\n…            }\n          }");
+        m.checkNotNullExpressionValue(observableConnectRx$default, "ObservationDeckProvider\n…            }\n          }");
         return observableConnectRx$default;
     }
 

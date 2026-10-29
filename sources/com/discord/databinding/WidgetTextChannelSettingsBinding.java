@@ -15,102 +15,85 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetTextChannelSettingsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f18227a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f18228b;
+    public final CheckedSetting f2665b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f18229c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextInputLayout f18230d;
+    public final TextInputLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LinearLayout f18231e;
+    public final LinearLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final CheckedSetting f18232f;
+    public final CheckedSetting f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f18233g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f18234h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final LinearLayout f18235i;
+    public final LinearLayout i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final View f18236j;
+    public final View j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final FloatingActionButton f18237k;
+    public final FloatingActionButton k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final LinearLayout f18238l;
+    public final LinearLayout l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final LinearLayout f18239m;
+    public final LinearLayout m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final LinearLayout f18240n;
+    public final LinearLayout n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final LinearLayout f18241o;
+    public final LinearLayout o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final TextView f18242p;
+    public final TextView p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final SeekBar f18243q;
+    public final SeekBar q;
 
-    /* JADX INFO: renamed from: r */
     @NonNull
-    public final WidgetThreadArchiveActionsSheetBinding f18244r;
+    public final WidgetThreadArchiveActionsSheetBinding r;
 
     public WidgetTextChannelSettingsBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull CheckedSetting checkedSetting, @NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2, @NonNull LinearLayout linearLayout, @NonNull CheckedSetting checkedSetting2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull LinearLayout linearLayout2, @NonNull View view, @NonNull FloatingActionButton floatingActionButton, @NonNull LinearLayout linearLayout3, @NonNull LinearLayout linearLayout4, @NonNull LinearLayout linearLayout5, @NonNull LinearLayout linearLayout6, @NonNull TextView textView3, @NonNull SeekBar seekBar, @NonNull TextView textView4, @NonNull WidgetThreadArchiveActionsSheetBinding widgetThreadArchiveActionsSheetBinding, @NonNull NestedScrollView nestedScrollView) {
-        this.f18227a = coordinatorLayout;
-        this.f18228b = checkedSetting;
-        this.f18229c = textInputLayout;
-        this.f18230d = textInputLayout2;
-        this.f18231e = linearLayout;
-        this.f18232f = checkedSetting2;
-        this.f18233g = textView;
-        this.f18234h = textView2;
-        this.f18235i = linearLayout2;
-        this.f18236j = view;
-        this.f18237k = floatingActionButton;
-        this.f18238l = linearLayout3;
-        this.f18239m = linearLayout4;
-        this.f18240n = linearLayout5;
-        this.f18241o = linearLayout6;
-        this.f18242p = textView3;
-        this.f18243q = seekBar;
-        this.f18244r = widgetThreadArchiveActionsSheetBinding;
+        this.a = coordinatorLayout;
+        this.f2665b = checkedSetting;
+        this.c = textInputLayout;
+        this.d = textInputLayout2;
+        this.e = linearLayout;
+        this.f = checkedSetting2;
+        this.g = textView;
+        this.h = textView2;
+        this.i = linearLayout2;
+        this.j = view;
+        this.k = floatingActionButton;
+        this.l = linearLayout3;
+        this.m = linearLayout4;
+        this.n = linearLayout5;
+        this.o = linearLayout6;
+        this.p = textView3;
+        this.q = seekBar;
+        this.r = widgetThreadArchiveActionsSheetBinding;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18227a;
+        return this.a;
     }
 }

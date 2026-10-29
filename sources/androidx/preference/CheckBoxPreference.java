@@ -8,25 +8,12 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.Checkable;
 import android.widget.CompoundButton;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.res.TypedArrayUtils;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CheckBoxPreference extends TwoStatePreference {
-    private final Listener mListener;
-
-    public class Listener implements CompoundButton.OnCheckedChangeListener {
-        public Listener() {
-        }
-
-        @Override // android.widget.CompoundButton.OnCheckedChangeListener
-        public void onCheckedChanged(CompoundButton compoundButton, boolean z2) {
-            if (CheckBoxPreference.this.callChangeListener(Boolean.valueOf(z2))) {
-                CheckBoxPreference.this.setChecked(z2);
-            } else {
-                compoundButton.setChecked(!z2);
-            }
-        }
-    }
+    private final CheckBoxPreference$Listener mListener;
 
     public CheckBoxPreference(Context context, AttributeSet attributeSet, int i) {
         this(context, attributeSet, i, 0);
@@ -35,12 +22,12 @@ public class CheckBoxPreference extends TwoStatePreference {
     @Override // androidx.preference.Preference
     public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
         super.onBindViewHolder(preferenceViewHolder);
-        syncCheckboxView(preferenceViewHolder.findViewById(android.R.id.checkbox));
+        syncCheckboxView(preferenceViewHolder.findViewById(android.R$id.checkbox));
         syncSummaryView(preferenceViewHolder);
     }
 
     @Override // androidx.preference.Preference
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public void performClick(View view) {
         super.performClick(view);
         syncViewIfAccessibilityEnabled(view);
@@ -62,23 +49,23 @@ public class CheckBoxPreference extends TwoStatePreference {
 
     private void syncViewIfAccessibilityEnabled(View view) {
         if (((AccessibilityManager) getContext().getSystemService("accessibility")).isEnabled()) {
-            syncCheckboxView(view.findViewById(android.R.id.checkbox));
-            syncSummaryView(view.findViewById(android.R.id.summary));
+            syncCheckboxView(view.findViewById(android.R$id.checkbox));
+            syncSummaryView(view.findViewById(android.R$id.summary));
         }
     }
 
     public CheckBoxPreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
-        this.mListener = new Listener();
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0525R.styleable.CheckBoxPreference, i, i2);
-        setSummaryOn(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, C0525R.styleable.CheckBoxPreference_summaryOn, C0525R.styleable.CheckBoxPreference_android_summaryOn));
-        setSummaryOff(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, C0525R.styleable.CheckBoxPreference_summaryOff, C0525R.styleable.CheckBoxPreference_android_summaryOff));
-        setDisableDependentsState(TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, C0525R.styleable.CheckBoxPreference_disableDependentsState, C0525R.styleable.CheckBoxPreference_android_disableDependentsState, false));
+        this.mListener = new CheckBoxPreference$Listener(this);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.CheckBoxPreference, i, i2);
+        setSummaryOn(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.CheckBoxPreference_summaryOn, R$styleable.CheckBoxPreference_android_summaryOn));
+        setSummaryOff(TypedArrayUtils.getString(typedArrayObtainStyledAttributes, R$styleable.CheckBoxPreference_summaryOff, R$styleable.CheckBoxPreference_android_summaryOff));
+        setDisableDependentsState(TypedArrayUtils.getBoolean(typedArrayObtainStyledAttributes, R$styleable.CheckBoxPreference_disableDependentsState, R$styleable.CheckBoxPreference_android_disableDependentsState, false));
         typedArrayObtainStyledAttributes.recycle();
     }
 
     public CheckBoxPreference(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, TypedArrayUtils.getAttr(context, C0525R.attr.checkBoxPreferenceStyle, android.R.attr.checkBoxPreferenceStyle));
+        this(context, attributeSet, TypedArrayUtils.getAttr(context, R$attr.checkBoxPreferenceStyle, android.R$attr.checkBoxPreferenceStyle));
     }
 
     public CheckBoxPreference(Context context) {

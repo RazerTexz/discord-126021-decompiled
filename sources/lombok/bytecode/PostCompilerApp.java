@@ -1,11 +1,7 @@
 package lombok.bytecode;
 
 import com.zwitserloot.cmdreader.CmdReader;
-import com.zwitserloot.cmdreader.Description;
 import com.zwitserloot.cmdreader.InvalidCommandLineException;
-import com.zwitserloot.cmdreader.Mandatory;
-import com.zwitserloot.cmdreader.Sequential;
-import com.zwitserloot.cmdreader.Shorthand;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,35 +31,18 @@ public class PostCompilerApp extends LombokApp {
         return "post-compile";
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/bytecode/PostCompilerApp$CmdArgs.SCL.lombok */
-    public class CmdArgs {
-
-        @Mandatory
-        @Description("paths to class files to be converted. If a directory is named, all files (recursively) in that directory will be converted.")
-        @Sequential
-        private List<String> classFiles = new ArrayList();
-
-        @Description("Prints lots of status information as the post compiler runs")
-        @Shorthand({"v"})
-        boolean verbose = false;
-
-        @Description("Shows this help text")
-        @Shorthand({"h", "?"})
-        boolean help = false;
-    }
-
     @Override // lombok.core.LombokApp
     public int runApp(List<String> raw) throws Exception {
-        CmdReader<CmdArgs> reader = CmdReader.m9327of(CmdArgs.class);
+        CmdReader<PostCompilerApp$CmdArgs> reader = CmdReader.of(PostCompilerApp$CmdArgs.class);
         try {
-            CmdArgs args = reader.make((String[]) raw.toArray(new String[0]));
+            PostCompilerApp$CmdArgs args = reader.make((String[]) raw.toArray(new String[0]));
             if (args.help) {
                 System.out.println(reader.generateCommandLineHelp("java -jar lombok.jar post-compile"));
                 return 0;
             }
             int filesVisited = 0;
             int filesTouched = 0;
-            for (File file : cmdArgsToFiles(args.classFiles)) {
+            for (File file : cmdArgsToFiles(PostCompilerApp$CmdArgs.access$0(args))) {
                 if (!file.exists() || !file.isFile()) {
                     System.out.printf("Cannot find file '%s'\n", file);
                 } else {

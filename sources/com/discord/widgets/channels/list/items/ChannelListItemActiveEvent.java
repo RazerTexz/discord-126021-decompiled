@@ -1,6 +1,6 @@
 package com.discord.widgets.channels.list.items;
 
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemActiveEvent.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -10,7 +10,7 @@ public final class ChannelListItemActiveEvent implements ChannelListItem {
     private final int type;
 
     public ChannelListItemActiveEvent(ChannelListItemActiveEventData channelListItemActiveEventData) {
-        C12238m.checkNotNullParameter(channelListItemActiveEventData, "data");
+        m.checkNotNullParameter(channelListItemActiveEventData, "data");
         this.data = channelListItemActiveEventData;
         this.type = 15;
         this.key = getType() + channelListItemActiveEventData.getLocationInfo().getLocationName();

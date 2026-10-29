@@ -1,36 +1,37 @@
 package com.google.android.material.ripple;
 
-import android.R;
+import android.R$attr;
 import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import android.util.StateSet;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.graphics.ColorUtils;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class RippleUtils {
-    private static final int[] ENABLED_PRESSED_STATE_SET = {R.attr.state_enabled, R.attr.state_pressed};
-    private static final int[] HOVERED_FOCUSED_STATE_SET = {R.attr.state_hovered, R.attr.state_focused};
-    private static final int[] SELECTED_FOCUSED_STATE_SET = {R.attr.state_selected, R.attr.state_focused};
-    private static final int[] SELECTED_HOVERED_FOCUSED_STATE_SET = {R.attr.state_selected, R.attr.state_hovered, R.attr.state_focused};
-    private static final int[] SELECTED_HOVERED_STATE_SET = {R.attr.state_selected, R.attr.state_hovered};
-    private static final int[] SELECTED_PRESSED_STATE_SET = {R.attr.state_selected, R.attr.state_pressed};
+    private static final int[] ENABLED_PRESSED_STATE_SET = {R$attr.state_enabled, R$attr.state_pressed};
+    private static final int[] HOVERED_FOCUSED_STATE_SET = {R$attr.state_hovered, R$attr.state_focused};
+    private static final int[] SELECTED_FOCUSED_STATE_SET = {R$attr.state_selected, R$attr.state_focused};
+    private static final int[] SELECTED_HOVERED_FOCUSED_STATE_SET = {R$attr.state_selected, R$attr.state_hovered, R$attr.state_focused};
+    private static final int[] SELECTED_HOVERED_STATE_SET = {R$attr.state_selected, R$attr.state_hovered};
+    private static final int[] SELECTED_PRESSED_STATE_SET = {R$attr.state_selected, R$attr.state_pressed};
 
     @VisibleForTesting
     public static final String TRANSPARENT_DEFAULT_COLOR_WARNING = "Use a non-transparent color for the default color as it will be used to finish ripple animations.";
     public static final boolean USE_FRAMEWORK_RIPPLE = true;
-    private static final int[] PRESSED_STATE_SET = {R.attr.state_pressed};
-    private static final int[] FOCUSED_STATE_SET = {R.attr.state_focused};
-    private static final int[] HOVERED_STATE_SET = {R.attr.state_hovered};
-    private static final int[] SELECTED_STATE_SET = {R.attr.state_selected};
+    private static final int[] PRESSED_STATE_SET = {R$attr.state_pressed};
+    private static final int[] FOCUSED_STATE_SET = {R$attr.state_focused};
+    private static final int[] HOVERED_STATE_SET = {R$attr.state_hovered};
+    private static final int[] SELECTED_STATE_SET = {R$attr.state_selected};
 
     @VisibleForTesting
     public static final String LOG_TAG = RippleUtils.class.getSimpleName();
@@ -71,7 +72,7 @@ public class RippleUtils {
         if (colorStateList == null) {
             return ColorStateList.valueOf(0);
         }
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i >= 22 && i <= 27 && Color.alpha(colorStateList.getDefaultColor()) == 0 && Color.alpha(colorStateList.getColorForState(ENABLED_PRESSED_STATE_SET, 0)) != 0) {
             Log.w(LOG_TAG, TRANSPARENT_DEFAULT_COLOR_WARNING);
         }

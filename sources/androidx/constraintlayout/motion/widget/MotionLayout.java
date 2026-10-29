@@ -3,10 +3,7 @@ package androidx.constraintlayout.motion.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -14,37 +11,26 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.MotionEvent;
-import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.motion.utils.StopLogic;
-import androidx.constraintlayout.solver.widgets.Barrier;
-import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
-import androidx.constraintlayout.solver.widgets.Flow;
-import androidx.constraintlayout.solver.widgets.Guideline;
-import androidx.constraintlayout.solver.widgets.Helper;
-import androidx.constraintlayout.solver.widgets.HelperWidget;
-import androidx.constraintlayout.solver.widgets.VirtualLayout;
-import androidx.constraintlayout.widget.C0201R;
-import androidx.constraintlayout.widget.ConstraintHelper;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
 import androidx.constraintlayout.widget.ConstraintLayoutStates;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.Constraints;
+import androidx.constraintlayout.widget.R$styleable;
 import androidx.constraintlayout.widget.StateSet;
 import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.ViewCompat;
-import androidx.exifinterface.media.ExifInterface;
+import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MotionLayout extends ConstraintLayout implements NestedScrollingParent3 {
@@ -74,9 +60,9 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     private RectF mBoundsCheck;
     public int mCurrentState;
     public int mDebugPath;
-    private DecelerateInterpolator mDecelerateLogic;
+    private MotionLayout$DecelerateInterpolator mDecelerateLogic;
     private DesignTool mDesignTool;
-    public DevModeDraw mDevModeDraw;
+    public MotionLayout$DevModeDraw mDevModeDraw;
     private int mEndState;
     public int mEndWrapHeight;
     public int mEndWrapWidth;
@@ -101,7 +87,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     private float mListenerPosition;
     private int mListenerState;
     public boolean mMeasureDuringTransition;
-    public Model mModel;
+    public MotionLayout$Model mModel;
     private boolean mNeedsFireTransitionCompleted;
     public int mOldHeight;
     public int mOldWidth;
@@ -116,7 +102,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     public long mScrollTargetTime;
     public int mStartWrapHeight;
     public int mStartWrapWidth;
-    private StateCache mStateCache;
+    private MotionLayout$StateCache mStateCache;
     private StopLogic mStopLogic;
     private boolean mTemporalInterpolator;
     public ArrayList<Integer> mTransitionCompleted;
@@ -125,169 +111,12 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     private boolean mTransitionInstantly;
     public float mTransitionLastPosition;
     private long mTransitionLastTime;
-    private TransitionListener mTransitionListener;
-    private ArrayList<TransitionListener> mTransitionListeners;
+    private MotionLayout$TransitionListener mTransitionListener;
+    private ArrayList<MotionLayout$TransitionListener> mTransitionListeners;
     public float mTransitionPosition;
-    public TransitionState mTransitionState;
+    public MotionLayout$TransitionState mTransitionState;
     public boolean mUndergoingMotion;
     public int mWidthMeasureMode;
-
-    /* JADX INFO: renamed from: androidx.constraintlayout.motion.widget.MotionLayout$2 */
-    public /* synthetic */ class C01782 {
-
-        /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$motion$widget$MotionLayout$TransitionState */
-        public static final /* synthetic */ int[] f106xabc7e4ac;
-
-        static {
-            TransitionState.values();
-            int[] iArr = new int[4];
-            f106xabc7e4ac = iArr;
-            try {
-                iArr[TransitionState.UNDEFINED.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                f106xabc7e4ac[TransitionState.SETUP.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                f106xabc7e4ac[TransitionState.MOVING.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                f106xabc7e4ac[TransitionState.FINISHED.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-        }
-    }
-
-    public interface MotionTracker {
-        void addMovement(MotionEvent motionEvent);
-
-        void clear();
-
-        void computeCurrentVelocity(int i);
-
-        void computeCurrentVelocity(int i, float f);
-
-        float getXVelocity();
-
-        float getXVelocity(int i);
-
-        float getYVelocity();
-
-        float getYVelocity(int i);
-
-        void recycle();
-    }
-
-    public class MyTracker implements MotionTracker {
-        public VelocityTracker tracker;
-
-        /* JADX INFO: renamed from: me */
-        private static MyTracker f107me = new MyTracker();
-
-        private MyTracker() {
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public void addMovement(MotionEvent motionEvent) {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                velocityTracker.addMovement(motionEvent);
-            }
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public void clear() {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                velocityTracker.clear();
-            }
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public void computeCurrentVelocity(int i) {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                velocityTracker.computeCurrentVelocity(i);
-            }
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public float getXVelocity() {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                return velocityTracker.getXVelocity();
-            }
-            return 0.0f;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public float getYVelocity() {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                return velocityTracker.getYVelocity();
-            }
-            return 0.0f;
-        }
-
-        public static MyTracker obtain() {
-            f107me.tracker = VelocityTracker.obtain();
-            return f107me;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public void recycle() {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                velocityTracker.recycle();
-                this.tracker = null;
-            }
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public void computeCurrentVelocity(int i, float f) {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                velocityTracker.computeCurrentVelocity(i, f);
-            }
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public float getXVelocity(int i) {
-            VelocityTracker velocityTracker = this.tracker;
-            if (velocityTracker != null) {
-                return velocityTracker.getXVelocity(i);
-            }
-            return 0.0f;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionLayout.MotionTracker
-        public float getYVelocity(int i) {
-            if (this.tracker != null) {
-                return getYVelocity(i);
-            }
-            return 0.0f;
-        }
-    }
-
-    public interface TransitionListener {
-        void onTransitionChange(MotionLayout motionLayout, int i, int i2, float f);
-
-        void onTransitionCompleted(MotionLayout motionLayout, int i);
-
-        void onTransitionStarted(MotionLayout motionLayout, int i, int i2);
-
-        void onTransitionTrigger(MotionLayout motionLayout, int i, boolean z2, float f);
-    }
-
-    public enum TransitionState {
-        UNDEFINED,
-        SETUP,
-        MOVING,
-        FINISHED
-    }
 
     public MotionLayout(@NonNull Context context) {
         super(context);
@@ -309,7 +138,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         this.mDebugPath = 0;
         this.mTemporalInterpolator = false;
         this.mStopLogic = new StopLogic();
-        this.mDecelerateLogic = new DecelerateInterpolator();
+        this.mDecelerateLogic = new MotionLayout$DecelerateInterpolator(this);
         this.firstDown = true;
         this.mUndergoingMotion = false;
         this.mKeepAnimating = false;
@@ -325,8 +154,8 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         this.mMeasureDuringTransition = false;
         this.mKeyCache = new KeyCache();
         this.mInLayout = false;
-        this.mTransitionState = TransitionState.UNDEFINED;
-        this.mModel = new Model();
+        this.mTransitionState = MotionLayout$TransitionState.UNDEFINED;
+        this.mModel = new MotionLayout$Model(this);
         this.mNeedsFireTransitionCompleted = false;
         this.mBoundsCheck = new RectF();
         this.mRegionView = null;
@@ -334,11 +163,95 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         init(null);
     }
 
-    public void addTransitionListener(TransitionListener transitionListener) {
+    public static /* synthetic */ int access$000(MotionLayout motionLayout) {
+        return motionLayout.mEndState;
+    }
+
+    public static /* synthetic */ int access$100(MotionLayout motionLayout) {
+        return motionLayout.mBeginState;
+    }
+
+    public static /* synthetic */ int access$1000(MotionLayout motionLayout) {
+        return motionLayout.mLastHeightMeasureSpec;
+    }
+
+    public static /* synthetic */ void access$1100(MotionLayout motionLayout) {
+        motionLayout.setupMotionViews();
+    }
+
+    public static /* synthetic */ void access$1200(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ void access$1300(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ void access$1400(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ void access$1500(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ void access$1600(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ void access$1700(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ void access$1800(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ void access$1900(MotionLayout motionLayout, ConstraintWidgetContainer constraintWidgetContainer, int i, int i2, int i3) {
+        motionLayout.resolveSystem(constraintWidgetContainer, i, i2, i3);
+    }
+
+    public static /* synthetic */ ConstraintWidgetContainer access$200(MotionLayout motionLayout) {
+        return motionLayout.mLayoutWidget;
+    }
+
+    public static /* synthetic */ void access$2000(MotionLayout motionLayout, int i, int i2, int i3, int i4, boolean z2, boolean z3) {
+        motionLayout.resolveMeasuredDimension(i, i2, i3, i4, z2, z3);
+    }
+
+    public static /* synthetic */ ConstraintWidgetContainer access$300(MotionLayout motionLayout) {
+        return motionLayout.mLayoutWidget;
+    }
+
+    public static /* synthetic */ ConstraintWidgetContainer access$400(MotionLayout motionLayout) {
+        return motionLayout.mLayoutWidget;
+    }
+
+    public static /* synthetic */ ConstraintWidgetContainer access$500(MotionLayout motionLayout) {
+        return motionLayout.mLayoutWidget;
+    }
+
+    public static /* synthetic */ boolean access$600(MotionLayout motionLayout) {
+        return motionLayout.isRtl();
+    }
+
+    public static /* synthetic */ boolean access$700(MotionLayout motionLayout) {
+        return motionLayout.isRtl();
+    }
+
+    public static /* synthetic */ void access$800(MotionLayout motionLayout, boolean z2, View view, ConstraintWidget constraintWidget, ConstraintLayout$LayoutParams constraintLayout$LayoutParams, SparseArray sparseArray) {
+        motionLayout.applyConstraintsFromLayoutParams(z2, view, constraintWidget, constraintLayout$LayoutParams, sparseArray);
+    }
+
+    public static /* synthetic */ int access$900(MotionLayout motionLayout) {
+        return motionLayout.mLastWidthMeasureSpec;
+    }
+
+    public void addTransitionListener(MotionLayout$TransitionListener motionLayout$TransitionListener) {
         if (this.mTransitionListeners == null) {
             this.mTransitionListeners = new ArrayList<>();
         }
-        this.mTransitionListeners.add(transitionListener);
+        this.mTransitionListeners.add(motionLayout$TransitionListener);
     }
 
     public void animateTo(float f) {
@@ -379,13 +292,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         checkStructure(startId, motionScene2.getConstraintSet(motionScene2.getStartId()));
         SparseIntArray sparseIntArray = new SparseIntArray();
         SparseIntArray sparseIntArray2 = new SparseIntArray();
-        for (MotionScene.Transition transition : this.mScene.getDefinedTransitions()) {
-            if (transition == this.mScene.mCurrentTransition) {
+        for (MotionScene$Transition motionScene$Transition : this.mScene.getDefinedTransitions()) {
+            if (motionScene$Transition == this.mScene.mCurrentTransition) {
                 Log.v(TAG, "CHECK: CURRENT");
             }
-            checkStructure(transition);
-            int startConstraintSetId = transition.getStartConstraintSetId();
-            int endConstraintSetId = transition.getEndConstraintSetId();
+            checkStructure(motionScene$Transition);
+            int startConstraintSetId = motionScene$Transition.getStartConstraintSetId();
+            int endConstraintSetId = motionScene$Transition.getEndConstraintSetId();
             String name = Debug.getName(getContext(), startConstraintSetId);
             String name2 = Debug.getName(getContext(), endConstraintSetId);
             if (sparseIntArray.get(startConstraintSetId) == endConstraintSetId) {
@@ -419,18 +332,18 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     private void debugPos() {
         for (int i = 0; i < getChildCount(); i++) {
             View childAt = getChildAt(i);
-            StringBuilder sbM833U = C1643a.m833U(" ");
-            sbM833U.append(Debug.getLocation());
-            sbM833U.append(" ");
-            sbM833U.append(Debug.getName(this));
-            sbM833U.append(" ");
-            sbM833U.append(Debug.getName(getContext(), this.mCurrentState));
-            sbM833U.append(" ");
-            sbM833U.append(Debug.getName(childAt));
-            sbM833U.append(childAt.getLeft());
-            sbM833U.append(" ");
-            sbM833U.append(childAt.getTop());
-            Log.v(TAG, sbM833U.toString());
+            StringBuilder sbU = a.U(" ");
+            sbU.append(Debug.getLocation());
+            sbU.append(" ");
+            sbU.append(Debug.getName(this));
+            sbU.append(" ");
+            sbU.append(Debug.getName(getContext(), this.mCurrentState));
+            sbU.append(" ");
+            sbU.append(Debug.getName(childAt));
+            sbU.append(childAt.getLeft());
+            sbU.append(" ");
+            sbU.append(childAt.getTop());
+            Log.v(TAG, sbU.toString());
         }
     }
 
@@ -466,14 +379,14 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             Paint paint = new Paint();
             paint.setTextSize(42.0f);
             float progress = ((int) (getProgress() * 1000.0f)) / 10.0f;
-            StringBuilder sbM833U = C1643a.m833U(this.mLastFps + " fps " + Debug.getState(this, this.mBeginState) + " -> ");
-            sbM833U.append(Debug.getState(this, this.mEndState));
-            sbM833U.append(" (progress: ");
-            sbM833U.append(progress);
-            sbM833U.append(" ) state=");
+            StringBuilder sbU = a.U(this.mLastFps + " fps " + Debug.getState(this, this.mBeginState) + " -> ");
+            sbU.append(Debug.getState(this, this.mEndState));
+            sbU.append(" (progress: ");
+            sbU.append(progress);
+            sbU.append(" ) state=");
             int i = this.mCurrentState;
-            sbM833U.append(i == -1 ? "undefined" : Debug.getState(this, i));
-            String string = sbM833U.toString();
+            sbU.append(i == -1 ? "undefined" : Debug.getState(this, i));
+            String string = sbU.toString();
             paint.setColor(ViewCompat.MEASURED_STATE_MASK);
             canvas.drawText(string, 11.0f, getHeight() - 29, paint);
             paint.setColor(-7864184);
@@ -481,23 +394,23 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         }
         if (this.mDebugPath > 1) {
             if (this.mDevModeDraw == null) {
-                this.mDevModeDraw = new DevModeDraw();
+                this.mDevModeDraw = new MotionLayout$DevModeDraw(this);
             }
             this.mDevModeDraw.draw(canvas, this.mFrameArrayList, this.mScene.getDuration(), this.mDebugPath);
         }
     }
 
     public void enableTransition(int i, boolean z2) {
-        MotionScene.Transition transition = getTransition(i);
+        MotionScene$Transition transition = getTransition(i);
         if (z2) {
             transition.setEnable(true);
             return;
         }
         MotionScene motionScene = this.mScene;
         if (transition == motionScene.mCurrentTransition) {
-            for (MotionScene.Transition transition2 : motionScene.getTransitionsWithState(this.mCurrentState)) {
-                if (transition2.isEnabled()) {
-                    this.mScene.mCurrentTransition = transition2;
+            for (MotionScene$Transition motionScene$Transition : motionScene.getTransitionsWithState(this.mCurrentState)) {
+                if (motionScene$Transition.isEnabled()) {
+                    this.mScene.mCurrentTransition = motionScene$Transition;
                     break;
                 }
             }
@@ -578,7 +491,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
                 f3 = interpolation;
             }
             if (Math.abs(this.mLastVelocity) > EPSILON) {
-                setState(TransitionState.MOVING);
+                setState(MotionLayout$TransitionState.MOVING);
             }
             if ((fSignum > 0.0f && f3 >= this.mTransitionGoalPosition) || (fSignum <= 0.0f && f3 <= this.mTransitionGoalPosition)) {
                 f3 = this.mTransitionGoalPosition;
@@ -586,7 +499,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             }
             if (f3 >= 1.0f || f3 <= 0.0f) {
                 this.mInTransition = false;
-                setState(TransitionState.FINISHED);
+                setState(MotionLayout$TransitionState.FINISHED);
             }
             int childCount = getChildCount();
             this.mKeepAnimating = false;
@@ -601,7 +514,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             }
             boolean z6 = (fSignum > 0.0f && f3 >= this.mTransitionGoalPosition) || (fSignum <= 0.0f && f3 <= this.mTransitionGoalPosition);
             if (!this.mKeepAnimating && !this.mInTransition && z6) {
-                setState(TransitionState.FINISHED);
+                setState(MotionLayout$TransitionState.FINISHED);
             }
             if (this.mMeasureDuringTransition) {
                 requestLayout();
@@ -610,7 +523,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             if (f3 <= 0.0f && (i = this.mBeginState) != -1 && this.mCurrentState != i) {
                 this.mCurrentState = i;
                 this.mScene.getConstraintSet(i).applyCustomAttributes(this);
-                setState(TransitionState.FINISHED);
+                setState(MotionLayout$TransitionState.FINISHED);
                 z5 = true;
             }
             if (f3 >= 1.0d) {
@@ -619,14 +532,14 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
                 if (i3 != i4) {
                     this.mCurrentState = i4;
                     this.mScene.getConstraintSet(i4).applyCustomAttributes(this);
-                    setState(TransitionState.FINISHED);
+                    setState(MotionLayout$TransitionState.FINISHED);
                     z5 = true;
                 }
             }
             if (this.mKeepAnimating || this.mInTransition) {
                 invalidate();
             } else if ((fSignum > 0.0f && f3 == 1.0f) || (fSignum < 0.0f && f3 == 0.0f)) {
-                setState(TransitionState.FINISHED);
+                setState(MotionLayout$TransitionState.FINISHED);
             }
             if ((!this.mKeepAnimating && this.mInTransition && fSignum > 0.0f && f3 == 1.0f) || (fSignum < 0.0f && f3 == 0.0f)) {
                 onNewStateAttachHandlers();
@@ -695,18 +608,18 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     }
 
     private void fireTransitionChange() {
-        ArrayList<TransitionListener> arrayList;
+        ArrayList<MotionLayout$TransitionListener> arrayList;
         if ((this.mTransitionListener == null && ((arrayList = this.mTransitionListeners) == null || arrayList.isEmpty())) || this.mListenerPosition == this.mTransitionPosition) {
             return;
         }
         if (this.mListenerState != -1) {
-            TransitionListener transitionListener = this.mTransitionListener;
-            if (transitionListener != null) {
-                transitionListener.onTransitionStarted(this, this.mBeginState, this.mEndState);
+            MotionLayout$TransitionListener motionLayout$TransitionListener = this.mTransitionListener;
+            if (motionLayout$TransitionListener != null) {
+                motionLayout$TransitionListener.onTransitionStarted(this, this.mBeginState, this.mEndState);
             }
-            ArrayList<TransitionListener> arrayList2 = this.mTransitionListeners;
+            ArrayList<MotionLayout$TransitionListener> arrayList2 = this.mTransitionListeners;
             if (arrayList2 != null) {
-                Iterator<TransitionListener> it = arrayList2.iterator();
+                Iterator<MotionLayout$TransitionListener> it = arrayList2.iterator();
                 while (it.hasNext()) {
                     it.next().onTransitionStarted(this, this.mBeginState, this.mEndState);
                 }
@@ -716,13 +629,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         this.mListenerState = -1;
         float f = this.mTransitionPosition;
         this.mListenerPosition = f;
-        TransitionListener transitionListener2 = this.mTransitionListener;
-        if (transitionListener2 != null) {
-            transitionListener2.onTransitionChange(this, this.mBeginState, this.mEndState, f);
+        MotionLayout$TransitionListener motionLayout$TransitionListener2 = this.mTransitionListener;
+        if (motionLayout$TransitionListener2 != null) {
+            motionLayout$TransitionListener2.onTransitionChange(this, this.mBeginState, this.mEndState, f);
         }
-        ArrayList<TransitionListener> arrayList3 = this.mTransitionListeners;
+        ArrayList<MotionLayout$TransitionListener> arrayList3 = this.mTransitionListeners;
         if (arrayList3 != null) {
-            Iterator<TransitionListener> it2 = arrayList3.iterator();
+            Iterator<MotionLayout$TransitionListener> it2 = arrayList3.iterator();
             while (it2.hasNext()) {
                 it2.next().onTransitionChange(this, this.mBeginState, this.mEndState, this.mTransitionPosition);
             }
@@ -732,7 +645,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
 
     public void fireTransitionCompleted() {
         int iIntValue;
-        ArrayList<TransitionListener> arrayList;
+        ArrayList<MotionLayout$TransitionListener> arrayList;
         if ((this.mTransitionListener != null || ((arrayList = this.mTransitionListeners) != null && !arrayList.isEmpty())) && this.mListenerState == -1) {
             this.mListenerState = this.mCurrentState;
             if (this.mTransitionCompleted.isEmpty()) {
@@ -750,13 +663,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     }
 
     private void fireTransitionStarted(MotionLayout motionLayout, int i, int i2) {
-        TransitionListener transitionListener = this.mTransitionListener;
-        if (transitionListener != null) {
-            transitionListener.onTransitionStarted(this, i, i2);
+        MotionLayout$TransitionListener motionLayout$TransitionListener = this.mTransitionListener;
+        if (motionLayout$TransitionListener != null) {
+            motionLayout$TransitionListener.onTransitionStarted(this, i, i2);
         }
-        ArrayList<TransitionListener> arrayList = this.mTransitionListeners;
+        ArrayList<MotionLayout$TransitionListener> arrayList = this.mTransitionListeners;
         if (arrayList != null) {
-            Iterator<TransitionListener> it = arrayList.iterator();
+            Iterator<MotionLayout$TransitionListener> it = arrayList.iterator();
             while (it.hasNext()) {
                 it.next().onTransitionStarted(motionLayout, i, i2);
             }
@@ -764,13 +677,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     }
 
     public void fireTrigger(int i, boolean z2, float f) {
-        TransitionListener transitionListener = this.mTransitionListener;
-        if (transitionListener != null) {
-            transitionListener.onTransitionTrigger(this, i, z2, f);
+        MotionLayout$TransitionListener motionLayout$TransitionListener = this.mTransitionListener;
+        if (motionLayout$TransitionListener != null) {
+            motionLayout$TransitionListener.onTransitionTrigger(this, i, z2, f);
         }
-        ArrayList<TransitionListener> arrayList = this.mTransitionListeners;
+        ArrayList<MotionLayout$TransitionListener> arrayList = this.mTransitionListeners;
         if (arrayList != null) {
-            Iterator<TransitionListener> it = arrayList.iterator();
+            Iterator<MotionLayout$TransitionListener> it = arrayList.iterator();
             while (it.hasNext()) {
                 it.next().onTransitionTrigger(this, i, z2, f);
             }
@@ -788,7 +701,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             this.lastY = y2;
             return;
         }
-        Log.w(TAG, "WARNING could not find view id " + (viewById == null ? C1643a.m871q("", i) : viewById.getContext().getResources().getResourceName(i)));
+        Log.w(TAG, "WARNING could not find view id " + (viewById == null ? a.q("", i) : viewById.getContext().getResources().getResourceName(i)));
     }
 
     public ConstraintSet getConstraintSet(int i) {
@@ -824,7 +737,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         invalidate();
     }
 
-    public ArrayList<MotionScene.Transition> getDefinedTransitions() {
+    public ArrayList<MotionScene$Transition> getDefinedTransitions() {
         MotionScene motionScene = this.mScene;
         if (motionScene == null) {
             return null;
@@ -859,13 +772,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         return this.mTransitionGoalPosition;
     }
 
-    public MotionScene.Transition getTransition(int i) {
+    public MotionScene$Transition getTransition(int i) {
         return this.mScene.getTransitionById(i);
     }
 
     public Bundle getTransitionState() {
         if (this.mStateCache == null) {
-            this.mStateCache = new StateCache();
+            this.mStateCache = new MotionLayout$StateCache(this);
         }
         this.mStateCache.recordState();
         return this.mStateCache.getTransitionState();
@@ -937,25 +850,25 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         MotionScene motionScene;
         IS_IN_EDIT_MODE = isInEditMode();
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C0201R.styleable.MotionLayout);
+            TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$styleable.MotionLayout);
             int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
             boolean z2 = true;
             for (int i = 0; i < indexCount; i++) {
                 int index = typedArrayObtainStyledAttributes.getIndex(i);
-                if (index == C0201R.styleable.MotionLayout_layoutDescription) {
+                if (index == R$styleable.MotionLayout_layoutDescription) {
                     this.mScene = new MotionScene(getContext(), this, typedArrayObtainStyledAttributes.getResourceId(index, -1));
-                } else if (index == C0201R.styleable.MotionLayout_currentState) {
+                } else if (index == R$styleable.MotionLayout_currentState) {
                     this.mCurrentState = typedArrayObtainStyledAttributes.getResourceId(index, -1);
-                } else if (index == C0201R.styleable.MotionLayout_motionProgress) {
+                } else if (index == R$styleable.MotionLayout_motionProgress) {
                     this.mTransitionGoalPosition = typedArrayObtainStyledAttributes.getFloat(index, 0.0f);
                     this.mInTransition = true;
-                } else if (index == C0201R.styleable.MotionLayout_applyMotionScene) {
+                } else if (index == R$styleable.MotionLayout_applyMotionScene) {
                     z2 = typedArrayObtainStyledAttributes.getBoolean(index, z2);
-                } else if (index == C0201R.styleable.MotionLayout_showPaths) {
+                } else if (index == R$styleable.MotionLayout_showPaths) {
                     if (this.mDebugPath == 0) {
                         this.mDebugPath = typedArrayObtainStyledAttributes.getBoolean(index, false) ? 2 : 0;
                     }
-                } else if (index == C0201R.styleable.MotionLayout_motionDebug) {
+                } else if (index == R$styleable.MotionLayout_motionDebug) {
                     this.mDebugPath = typedArrayObtainStyledAttributes.getInt(index, 0);
                 }
             }
@@ -1014,13 +927,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         return motionScene.lookUpConstraintId(str);
     }
 
-    public MotionTracker obtainVelocityTracker() {
-        return MyTracker.obtain();
+    public MotionLayout$MotionTracker obtainVelocityTracker() {
+        return MotionLayout$MyTracker.obtain();
     }
 
     @Override // android.view.ViewGroup, android.view.View
     public void onAttachedToWindow() {
-        MotionScene.Transition transition;
+        MotionScene$Transition motionScene$Transition;
         int i;
         super.onAttachedToWindow();
         MotionScene motionScene = this.mScene;
@@ -1033,28 +946,28 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             this.mBeginState = this.mCurrentState;
         }
         onNewStateAttachHandlers();
-        StateCache stateCache = this.mStateCache;
-        if (stateCache != null) {
-            stateCache.apply();
+        MotionLayout$StateCache motionLayout$StateCache = this.mStateCache;
+        if (motionLayout$StateCache != null) {
+            motionLayout$StateCache.apply();
             return;
         }
         MotionScene motionScene2 = this.mScene;
-        if (motionScene2 == null || (transition = motionScene2.mCurrentTransition) == null || transition.getAutoTransition() != 4) {
+        if (motionScene2 == null || (motionScene$Transition = motionScene2.mCurrentTransition) == null || motionScene$Transition.getAutoTransition() != 4) {
             return;
         }
         transitionToEnd();
-        setState(TransitionState.SETUP);
-        setState(TransitionState.MOVING);
+        setState(MotionLayout$TransitionState.SETUP);
+        setState(MotionLayout$TransitionState.MOVING);
     }
 
     @Override // android.view.ViewGroup
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        MotionScene.Transition transition;
+        MotionScene$Transition motionScene$Transition;
         TouchResponse touchResponse;
         int touchRegionId;
         RectF touchRegion;
         MotionScene motionScene = this.mScene;
-        if (motionScene != null && this.mInteractionEnabled && (transition = motionScene.mCurrentTransition) != null && transition.isEnabled() && (touchResponse = transition.getTouchResponse()) != null && ((motionEvent.getAction() != 0 || (touchRegion = touchResponse.getTouchRegion(this, new RectF())) == null || touchRegion.contains(motionEvent.getX(), motionEvent.getY())) && (touchRegionId = touchResponse.getTouchRegionId()) != -1)) {
+        if (motionScene != null && this.mInteractionEnabled && (motionScene$Transition = motionScene.mCurrentTransition) != null && motionScene$Transition.isEnabled() && (touchResponse = motionScene$Transition.getTouchResponse()) != null && ((motionEvent.getAction() != 0 || (touchRegion = touchResponse.getTouchRegion(this, new RectF())) == null || touchRegion.contains(motionEvent.getX(), motionEvent.getY())) && (touchRegionId = touchResponse.getTouchRegionId()) != -1)) {
             View view = this.mRegionView;
             if (view == null || view.getId() != touchRegionId) {
                 this.mRegionView = findViewById(touchRegionId);
@@ -1154,16 +1067,16 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     }
 
     @Override // androidx.core.view.NestedScrollingParent2
-    public void onNestedPreScroll(final View view, int i, int i2, int[] iArr, int i3) {
-        MotionScene.Transition transition;
+    public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
+        MotionScene$Transition motionScene$Transition;
         TouchResponse touchResponse;
         int touchRegionId;
         MotionScene motionScene = this.mScene;
-        if (motionScene == null || (transition = motionScene.mCurrentTransition) == null || !transition.isEnabled()) {
+        if (motionScene == null || (motionScene$Transition = motionScene.mCurrentTransition) == null || !motionScene$Transition.isEnabled()) {
             return;
         }
-        MotionScene.Transition transition2 = this.mScene.mCurrentTransition;
-        if (transition2 == null || !transition2.isEnabled() || (touchResponse = transition2.getTouchResponse()) == null || (touchRegionId = touchResponse.getTouchRegionId()) == -1 || view.getId() == touchRegionId) {
+        MotionScene$Transition motionScene$Transition2 = this.mScene.mCurrentTransition;
+        if (motionScene$Transition2 == null || !motionScene$Transition2.isEnabled() || (touchResponse = motionScene$Transition2.getTouchResponse()) == null || (touchRegionId = touchResponse.getTouchRegionId()) == -1 || view.getId() == touchRegionId) {
             MotionScene motionScene2 = this.mScene;
             if (motionScene2 != null && motionScene2.getMoveWhenScrollAtTop()) {
                 float f = this.mTransitionPosition;
@@ -1171,17 +1084,12 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
                     return;
                 }
             }
-            if (transition2.getTouchResponse() != null && (this.mScene.mCurrentTransition.getTouchResponse().getFlags() & 1) != 0) {
+            if (motionScene$Transition2.getTouchResponse() != null && (this.mScene.mCurrentTransition.getTouchResponse().getFlags() & 1) != 0) {
                 float progressDirection = this.mScene.getProgressDirection(i, i2);
                 float f2 = this.mTransitionLastPosition;
                 if ((f2 <= 0.0f && progressDirection < 0.0f) || (f2 >= 1.0f && progressDirection > 0.0f)) {
                     view.setNestedScrollingEnabled(false);
-                    view.post(new Runnable() { // from class: androidx.constraintlayout.motion.widget.MotionLayout.1
-                        @Override // java.lang.Runnable
-                        public void run() {
-                            view.setNestedScrollingEnabled(true);
-                        }
-                    });
+                    view.post(new MotionLayout$1(this, view));
                     return;
                 }
             }
@@ -1251,9 +1159,9 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
 
     @Override // androidx.core.view.NestedScrollingParent2
     public boolean onStartNestedScroll(View view, View view2, int i, int i2) {
-        MotionScene.Transition transition;
+        MotionScene$Transition motionScene$Transition;
         MotionScene motionScene = this.mScene;
-        return (motionScene == null || (transition = motionScene.mCurrentTransition) == null || transition.getTouchResponse() == null || (this.mScene.mCurrentTransition.getTouchResponse().getFlags() & 2) != 0) ? false : true;
+        return (motionScene == null || (motionScene$Transition = motionScene.mCurrentTransition) == null || motionScene$Transition.getTouchResponse() == null || (this.mScene.mCurrentTransition.getTouchResponse().getFlags() & 2) != 0) ? false : true;
     }
 
     @Override // androidx.core.view.NestedScrollingParent2
@@ -1273,8 +1181,8 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         if (motionScene == null || !this.mInteractionEnabled || !motionScene.supportTouch()) {
             return super.onTouchEvent(motionEvent);
         }
-        MotionScene.Transition transition = this.mScene.mCurrentTransition;
-        if (transition != null && !transition.isEnabled()) {
+        MotionScene$Transition motionScene$Transition = this.mScene.mCurrentTransition;
+        if (motionScene$Transition != null && !motionScene$Transition.isEnabled()) {
             return super.onTouchEvent(motionEvent);
         }
         this.mScene.processTouchEvent(motionEvent, getCurrentState(), this);
@@ -1324,19 +1232,19 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     }
 
     private void processTransitionCompleted() {
-        ArrayList<TransitionListener> arrayList;
+        ArrayList<MotionLayout$TransitionListener> arrayList;
         if (this.mTransitionListener == null && ((arrayList = this.mTransitionListeners) == null || arrayList.isEmpty())) {
             return;
         }
         this.mIsAnimating = false;
         for (Integer num : this.mTransitionCompleted) {
-            TransitionListener transitionListener = this.mTransitionListener;
-            if (transitionListener != null) {
-                transitionListener.onTransitionCompleted(this, num.intValue());
+            MotionLayout$TransitionListener motionLayout$TransitionListener = this.mTransitionListener;
+            if (motionLayout$TransitionListener != null) {
+                motionLayout$TransitionListener.onTransitionCompleted(this, num.intValue());
             }
-            ArrayList<TransitionListener> arrayList2 = this.mTransitionListeners;
+            ArrayList<MotionLayout$TransitionListener> arrayList2 = this.mTransitionListeners;
             if (arrayList2 != null) {
-                Iterator<TransitionListener> it = arrayList2.iterator();
+                Iterator<MotionLayout$TransitionListener> it = arrayList2.iterator();
                 while (it.hasNext()) {
                     it.next().onTransitionCompleted(this, num.intValue());
                 }
@@ -1356,19 +1264,19 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         invalidate();
     }
 
-    public boolean removeTransitionListener(TransitionListener transitionListener) {
-        ArrayList<TransitionListener> arrayList = this.mTransitionListeners;
+    public boolean removeTransitionListener(MotionLayout$TransitionListener motionLayout$TransitionListener) {
+        ArrayList<MotionLayout$TransitionListener> arrayList = this.mTransitionListeners;
         if (arrayList == null) {
             return false;
         }
-        return arrayList.remove(transitionListener);
+        return arrayList.remove(motionLayout$TransitionListener);
     }
 
     @Override // androidx.constraintlayout.widget.ConstraintLayout, android.view.View, android.view.ViewParent
     public void requestLayout() {
         MotionScene motionScene;
-        MotionScene.Transition transition;
-        if (this.mMeasureDuringTransition || this.mCurrentState != -1 || (motionScene = this.mScene) == null || (transition = motionScene.mCurrentTransition) == null || transition.getLayoutDuringTransition() != 0) {
+        MotionScene$Transition motionScene$Transition;
+        if (this.mMeasureDuringTransition || this.mCurrentState != -1 || (motionScene = this.mScene) == null || (motionScene$Transition = motionScene.mCurrentTransition) == null || motionScene$Transition.getLayoutDuringTransition() != 0) {
             super.requestLayout();
         }
     }
@@ -1384,7 +1292,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
 
     public void setInterpolatedProgress(float f) {
         if (this.mScene != null) {
-            setState(TransitionState.MOVING);
+            setState(MotionLayout$TransitionState.MOVING);
             Interpolator interpolator = this.mScene.getInterpolator();
             if (interpolator != null) {
                 setProgress(interpolator.getInterpolation(f));
@@ -1417,13 +1325,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     public void setProgress(float f, float f2) {
         if (isAttachedToWindow()) {
             setProgress(f);
-            setState(TransitionState.MOVING);
+            setState(MotionLayout$TransitionState.MOVING);
             this.mLastVelocity = f2;
             animateTo(1.0f);
             return;
         }
         if (this.mStateCache == null) {
-            this.mStateCache = new StateCache();
+            this.mStateCache = new MotionLayout$StateCache(this);
         }
         this.mStateCache.setProgress(f);
         this.mStateCache.setVelocity(f2);
@@ -1435,29 +1343,29 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         rebuildScene();
     }
 
-    public void setState(TransitionState transitionState) {
-        TransitionState transitionState2 = TransitionState.FINISHED;
-        if (transitionState == transitionState2 && this.mCurrentState == -1) {
+    public void setState(MotionLayout$TransitionState motionLayout$TransitionState) {
+        MotionLayout$TransitionState motionLayout$TransitionState2 = MotionLayout$TransitionState.FINISHED;
+        if (motionLayout$TransitionState == motionLayout$TransitionState2 && this.mCurrentState == -1) {
             return;
         }
-        TransitionState transitionState3 = this.mTransitionState;
-        this.mTransitionState = transitionState;
-        TransitionState transitionState4 = TransitionState.MOVING;
-        if (transitionState3 == transitionState4 && transitionState == transitionState4) {
+        MotionLayout$TransitionState motionLayout$TransitionState3 = this.mTransitionState;
+        this.mTransitionState = motionLayout$TransitionState;
+        MotionLayout$TransitionState motionLayout$TransitionState4 = MotionLayout$TransitionState.MOVING;
+        if (motionLayout$TransitionState3 == motionLayout$TransitionState4 && motionLayout$TransitionState == motionLayout$TransitionState4) {
             fireTransitionChange();
         }
-        int iOrdinal = transitionState3.ordinal();
+        int iOrdinal = motionLayout$TransitionState3.ordinal();
         if (iOrdinal != 0 && iOrdinal != 1) {
-            if (iOrdinal == 2 && transitionState == transitionState2) {
+            if (iOrdinal == 2 && motionLayout$TransitionState == motionLayout$TransitionState2) {
                 fireTransitionCompleted();
                 return;
             }
             return;
         }
-        if (transitionState == transitionState4) {
+        if (motionLayout$TransitionState == motionLayout$TransitionState4) {
             fireTransitionChange();
         }
-        if (transitionState == transitionState2) {
+        if (motionLayout$TransitionState == motionLayout$TransitionState2) {
             fireTransitionCompleted();
         }
     }
@@ -1465,7 +1373,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
     public void setTransition(int i, int i2) {
         if (!isAttachedToWindow()) {
             if (this.mStateCache == null) {
-                this.mStateCache = new StateCache();
+                this.mStateCache = new MotionLayout$StateCache(this);
             }
             this.mStateCache.setStartState(i);
             this.mStateCache.setEndState(i2);
@@ -1492,13 +1400,13 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         }
     }
 
-    public void setTransitionListener(TransitionListener transitionListener) {
-        this.mTransitionListener = transitionListener;
+    public void setTransitionListener(MotionLayout$TransitionListener motionLayout$TransitionListener) {
+        this.mTransitionListener = motionLayout$TransitionListener;
     }
 
     public void setTransitionState(Bundle bundle) {
         if (this.mStateCache == null) {
-            this.mStateCache = new StateCache();
+            this.mStateCache = new MotionLayout$StateCache(this);
         }
         this.mStateCache.setTransitionState(bundle);
         if (isAttachedToWindow()) {
@@ -1651,7 +1559,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             return;
         }
         if (this.mStateCache == null) {
-            this.mStateCache = new StateCache();
+            this.mStateCache = new MotionLayout$StateCache(this);
         }
         this.mStateCache.setEndState(i);
     }
@@ -1674,794 +1582,6 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         }
         float f5 = (-f) / f3;
         return ((((f3 * f5) * f5) / 2.0f) + (f * f5)) + f2 < 0.0f;
-    }
-
-    public class DecelerateInterpolator extends MotionInterpolator {
-        public float maxA;
-        public float initalV = 0.0f;
-        public float currentP = 0.0f;
-
-        public DecelerateInterpolator() {
-        }
-
-        public void config(float f, float f2, float f3) {
-            this.initalV = f;
-            this.currentP = f2;
-            this.maxA = f3;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionInterpolator, android.animation.TimeInterpolator
-        public float getInterpolation(float f) {
-            float f2 = this.initalV;
-            if (f2 > 0.0f) {
-                float f3 = this.maxA;
-                if (f2 / f3 < f) {
-                    f = f2 / f3;
-                }
-                MotionLayout.this.mLastVelocity = f2 - (f3 * f);
-                return ((f2 * f) - (((f3 * f) * f) / 2.0f)) + this.currentP;
-            }
-            float f4 = this.maxA;
-            if ((-f2) / f4 < f) {
-                f = (-f2) / f4;
-            }
-            MotionLayout.this.mLastVelocity = (f4 * f) + f2;
-            return (((f4 * f) * f) / 2.0f) + (f2 * f) + this.currentP;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.MotionInterpolator
-        public float getVelocity() {
-            return MotionLayout.this.mLastVelocity;
-        }
-    }
-
-    public class DevModeDraw {
-        private static final int DEBUG_PATH_TICKS_PER_MS = 16;
-        public DashPathEffect mDashPathEffect;
-        public Paint mFillPaint;
-        public int mKeyFrameCount;
-        public float[] mKeyFramePoints;
-        public Paint mPaint;
-        public Paint mPaintGraph;
-        public Paint mPaintKeyframes;
-        public Path mPath;
-        public int[] mPathMode;
-        public float[] mPoints;
-        private float[] mRectangle;
-        public int mShadowTranslate;
-        public Paint mTextPaint;
-        public final int RED_COLOR = -21965;
-        public final int KEYFRAME_COLOR = -2067046;
-        public final int GRAPH_COLOR = -13391360;
-        public final int SHADOW_COLOR = 1996488704;
-        public final int DIAMOND_SIZE = 10;
-        public Rect mBounds = new Rect();
-        public boolean mPresentationMode = false;
-
-        public DevModeDraw() {
-            this.mShadowTranslate = 1;
-            Paint paint = new Paint();
-            this.mPaint = paint;
-            paint.setAntiAlias(true);
-            this.mPaint.setColor(-21965);
-            this.mPaint.setStrokeWidth(2.0f);
-            this.mPaint.setStyle(Paint.Style.STROKE);
-            Paint paint2 = new Paint();
-            this.mPaintKeyframes = paint2;
-            paint2.setAntiAlias(true);
-            this.mPaintKeyframes.setColor(-2067046);
-            this.mPaintKeyframes.setStrokeWidth(2.0f);
-            this.mPaintKeyframes.setStyle(Paint.Style.STROKE);
-            Paint paint3 = new Paint();
-            this.mPaintGraph = paint3;
-            paint3.setAntiAlias(true);
-            this.mPaintGraph.setColor(-13391360);
-            this.mPaintGraph.setStrokeWidth(2.0f);
-            this.mPaintGraph.setStyle(Paint.Style.STROKE);
-            Paint paint4 = new Paint();
-            this.mTextPaint = paint4;
-            paint4.setAntiAlias(true);
-            this.mTextPaint.setColor(-13391360);
-            this.mTextPaint.setTextSize(MotionLayout.this.getContext().getResources().getDisplayMetrics().density * 12.0f);
-            this.mRectangle = new float[8];
-            Paint paint5 = new Paint();
-            this.mFillPaint = paint5;
-            paint5.setAntiAlias(true);
-            DashPathEffect dashPathEffect = new DashPathEffect(new float[]{4.0f, 8.0f}, 0.0f);
-            this.mDashPathEffect = dashPathEffect;
-            this.mPaintGraph.setPathEffect(dashPathEffect);
-            this.mKeyFramePoints = new float[100];
-            this.mPathMode = new int[50];
-            if (this.mPresentationMode) {
-                this.mPaint.setStrokeWidth(8.0f);
-                this.mFillPaint.setStrokeWidth(8.0f);
-                this.mPaintKeyframes.setStrokeWidth(8.0f);
-                this.mShadowTranslate = 4;
-            }
-        }
-
-        public void draw(Canvas canvas, HashMap<View, MotionController> map, int i, int i2) {
-            if (map == null || map.size() == 0) {
-                return;
-            }
-            canvas.save();
-            if (!MotionLayout.this.isInEditMode() && (i2 & 1) == 2) {
-                String str = MotionLayout.this.getContext().getResources().getResourceName(MotionLayout.this.mEndState) + ":" + MotionLayout.this.getProgress();
-                canvas.drawText(str, 10.0f, MotionLayout.this.getHeight() - 30, this.mTextPaint);
-                canvas.drawText(str, 11.0f, MotionLayout.this.getHeight() - 29, this.mPaint);
-            }
-            for (MotionController motionController : map.values()) {
-                int drawPath = motionController.getDrawPath();
-                if (i2 > 0 && drawPath == 0) {
-                    drawPath = 1;
-                }
-                if (drawPath != 0) {
-                    this.mKeyFrameCount = motionController.buildKeyFrames(this.mKeyFramePoints, this.mPathMode);
-                    if (drawPath >= 1) {
-                        int i3 = i / 16;
-                        float[] fArr = this.mPoints;
-                        if (fArr == null || fArr.length != i3 * 2) {
-                            this.mPoints = new float[i3 * 2];
-                            this.mPath = new Path();
-                        }
-                        int i4 = this.mShadowTranslate;
-                        canvas.translate(i4, i4);
-                        this.mPaint.setColor(1996488704);
-                        this.mFillPaint.setColor(1996488704);
-                        this.mPaintKeyframes.setColor(1996488704);
-                        this.mPaintGraph.setColor(1996488704);
-                        motionController.buildPath(this.mPoints, i3);
-                        drawAll(canvas, drawPath, this.mKeyFrameCount, motionController);
-                        this.mPaint.setColor(-21965);
-                        this.mPaintKeyframes.setColor(-2067046);
-                        this.mFillPaint.setColor(-2067046);
-                        this.mPaintGraph.setColor(-13391360);
-                        int i5 = this.mShadowTranslate;
-                        canvas.translate(-i5, -i5);
-                        drawAll(canvas, drawPath, this.mKeyFrameCount, motionController);
-                        if (drawPath == 5) {
-                            drawRectangle(canvas, motionController);
-                        }
-                    }
-                }
-            }
-            canvas.restore();
-        }
-
-        public void drawAll(Canvas canvas, int i, int i2, MotionController motionController) {
-            if (i == 4) {
-                drawPathAsConfigured(canvas);
-            }
-            if (i == 2) {
-                drawPathRelative(canvas);
-            }
-            if (i == 3) {
-                drawPathCartesian(canvas);
-            }
-            drawBasicPath(canvas);
-            drawTicks(canvas, i, i2, motionController);
-        }
-
-        private void drawBasicPath(Canvas canvas) {
-            canvas.drawLines(this.mPoints, this.mPaint);
-        }
-
-        private void drawPathAsConfigured(Canvas canvas) {
-            boolean z2 = false;
-            boolean z3 = false;
-            for (int i = 0; i < this.mKeyFrameCount; i++) {
-                int[] iArr = this.mPathMode;
-                if (iArr[i] == 1) {
-                    z2 = true;
-                }
-                if (iArr[i] == 2) {
-                    z3 = true;
-                }
-            }
-            if (z2) {
-                drawPathRelative(canvas);
-            }
-            if (z3) {
-                drawPathCartesian(canvas);
-            }
-        }
-
-        private void drawPathCartesian(Canvas canvas) {
-            float[] fArr = this.mPoints;
-            float f = fArr[0];
-            float f2 = fArr[1];
-            float f3 = fArr[fArr.length - 2];
-            float f4 = fArr[fArr.length - 1];
-            canvas.drawLine(Math.min(f, f3), Math.max(f2, f4), Math.max(f, f3), Math.max(f2, f4), this.mPaintGraph);
-            canvas.drawLine(Math.min(f, f3), Math.min(f2, f4), Math.min(f, f3), Math.max(f2, f4), this.mPaintGraph);
-        }
-
-        private void drawPathCartesianTicks(Canvas canvas, float f, float f2) {
-            float[] fArr = this.mPoints;
-            float f3 = fArr[0];
-            float f4 = fArr[1];
-            float f5 = fArr[fArr.length - 2];
-            float f6 = fArr[fArr.length - 1];
-            float fMin = Math.min(f3, f5);
-            float fMax = Math.max(f4, f6);
-            float fMin2 = f - Math.min(f3, f5);
-            float fMax2 = Math.max(f4, f6) - f2;
-            StringBuilder sbM833U = C1643a.m833U("");
-            sbM833U.append(((int) (((double) ((fMin2 * 100.0f) / Math.abs(f5 - f3))) + 0.5d)) / 100.0f);
-            String string = sbM833U.toString();
-            getTextBounds(string, this.mTextPaint);
-            canvas.drawText(string, ((fMin2 / 2.0f) - (this.mBounds.width() / 2)) + fMin, f2 - 20.0f, this.mTextPaint);
-            canvas.drawLine(f, f2, Math.min(f3, f5), f2, this.mPaintGraph);
-            StringBuilder sbM833U2 = C1643a.m833U("");
-            sbM833U2.append(((int) (((double) ((fMax2 * 100.0f) / Math.abs(f6 - f4))) + 0.5d)) / 100.0f);
-            String string2 = sbM833U2.toString();
-            getTextBounds(string2, this.mTextPaint);
-            canvas.drawText(string2, f + 5.0f, fMax - ((fMax2 / 2.0f) - (this.mBounds.height() / 2)), this.mTextPaint);
-            canvas.drawLine(f, f2, f, Math.max(f4, f6), this.mPaintGraph);
-        }
-
-        private void drawPathRelative(Canvas canvas) {
-            float[] fArr = this.mPoints;
-            canvas.drawLine(fArr[0], fArr[1], fArr[fArr.length - 2], fArr[fArr.length - 1], this.mPaintGraph);
-        }
-
-        private void drawPathRelativeTicks(Canvas canvas, float f, float f2) {
-            float[] fArr = this.mPoints;
-            float f3 = fArr[0];
-            float f4 = fArr[1];
-            float f5 = fArr[fArr.length - 2];
-            float f6 = fArr[fArr.length - 1];
-            float fHypot = (float) Math.hypot(f3 - f5, f4 - f6);
-            float f7 = f5 - f3;
-            float f8 = f6 - f4;
-            float f9 = (((f2 - f4) * f8) + ((f - f3) * f7)) / (fHypot * fHypot);
-            float f10 = f3 + (f7 * f9);
-            float f11 = f4 + (f9 * f8);
-            Path path = new Path();
-            path.moveTo(f, f2);
-            path.lineTo(f10, f11);
-            float fHypot2 = (float) Math.hypot(f10 - f, f11 - f2);
-            StringBuilder sbM833U = C1643a.m833U("");
-            sbM833U.append(((int) ((fHypot2 * 100.0f) / fHypot)) / 100.0f);
-            String string = sbM833U.toString();
-            getTextBounds(string, this.mTextPaint);
-            canvas.drawTextOnPath(string, path, (fHypot2 / 2.0f) - (this.mBounds.width() / 2), -20.0f, this.mTextPaint);
-            canvas.drawLine(f, f2, f10, f11, this.mPaintGraph);
-        }
-
-        private void drawPathScreenTicks(Canvas canvas, float f, float f2, int i, int i2) {
-            StringBuilder sbM833U = C1643a.m833U("");
-            sbM833U.append(((int) (((double) (((f - (i / 2)) * 100.0f) / (MotionLayout.this.getWidth() - i))) + 0.5d)) / 100.0f);
-            String string = sbM833U.toString();
-            getTextBounds(string, this.mTextPaint);
-            canvas.drawText(string, ((f / 2.0f) - (this.mBounds.width() / 2)) + 0.0f, f2 - 20.0f, this.mTextPaint);
-            canvas.drawLine(f, f2, Math.min(0.0f, 1.0f), f2, this.mPaintGraph);
-            StringBuilder sbM833U2 = C1643a.m833U("");
-            sbM833U2.append(((int) (((double) (((f2 - (i2 / 2)) * 100.0f) / (MotionLayout.this.getHeight() - i2))) + 0.5d)) / 100.0f);
-            String string2 = sbM833U2.toString();
-            getTextBounds(string2, this.mTextPaint);
-            canvas.drawText(string2, f + 5.0f, 0.0f - ((f2 / 2.0f) - (this.mBounds.height() / 2)), this.mTextPaint);
-            canvas.drawLine(f, f2, f, Math.max(0.0f, 1.0f), this.mPaintGraph);
-        }
-
-        private void drawRectangle(Canvas canvas, MotionController motionController) {
-            this.mPath.reset();
-            for (int i = 0; i <= 50; i++) {
-                motionController.buildRect(i / 50, this.mRectangle, 0);
-                Path path = this.mPath;
-                float[] fArr = this.mRectangle;
-                path.moveTo(fArr[0], fArr[1]);
-                Path path2 = this.mPath;
-                float[] fArr2 = this.mRectangle;
-                path2.lineTo(fArr2[2], fArr2[3]);
-                Path path3 = this.mPath;
-                float[] fArr3 = this.mRectangle;
-                path3.lineTo(fArr3[4], fArr3[5]);
-                Path path4 = this.mPath;
-                float[] fArr4 = this.mRectangle;
-                path4.lineTo(fArr4[6], fArr4[7]);
-                this.mPath.close();
-            }
-            this.mPaint.setColor(1140850688);
-            canvas.translate(2.0f, 2.0f);
-            canvas.drawPath(this.mPath, this.mPaint);
-            canvas.translate(-2.0f, -2.0f);
-            this.mPaint.setColor(-65536);
-            canvas.drawPath(this.mPath, this.mPaint);
-        }
-
-        private void drawTicks(Canvas canvas, int i, int i2, MotionController motionController) {
-            int width;
-            int height;
-            int i3;
-            View view = motionController.mView;
-            if (view != null) {
-                width = view.getWidth();
-                height = motionController.mView.getHeight();
-            } else {
-                width = 0;
-                height = 0;
-            }
-            for (int i4 = 1; i4 < i2 - 1; i4++) {
-                if (i != 4 || this.mPathMode[i4 - 1] != 0) {
-                    float[] fArr = this.mKeyFramePoints;
-                    int i5 = i4 * 2;
-                    float f = fArr[i5];
-                    float f2 = fArr[i5 + 1];
-                    this.mPath.reset();
-                    this.mPath.moveTo(f, f2 + 10.0f);
-                    this.mPath.lineTo(f + 10.0f, f2);
-                    this.mPath.lineTo(f, f2 - 10.0f);
-                    this.mPath.lineTo(f - 10.0f, f2);
-                    this.mPath.close();
-                    int i6 = i4 - 1;
-                    motionController.getKeyFrame(i6);
-                    if (i == 4) {
-                        int[] iArr = this.mPathMode;
-                        if (iArr[i6] == 1) {
-                            drawPathRelativeTicks(canvas, f - 0.0f, f2 - 0.0f);
-                        } else if (iArr[i6] == 2) {
-                            drawPathCartesianTicks(canvas, f - 0.0f, f2 - 0.0f);
-                        } else {
-                            if (iArr[i6] == 3) {
-                                i3 = 3;
-                                drawPathScreenTicks(canvas, f - 0.0f, f2 - 0.0f, width, height);
-                            }
-                            canvas.drawPath(this.mPath, this.mFillPaint);
-                        }
-                        i3 = 3;
-                        canvas.drawPath(this.mPath, this.mFillPaint);
-                    } else {
-                        f2 = f2;
-                        f = f;
-                        i3 = 3;
-                    }
-                    if (i == 2) {
-                        drawPathRelativeTicks(canvas, f - 0.0f, f2 - 0.0f);
-                    }
-                    if (i == i3) {
-                        drawPathCartesianTicks(canvas, f - 0.0f, f2 - 0.0f);
-                    }
-                    if (i == 6) {
-                        drawPathScreenTicks(canvas, f - 0.0f, f2 - 0.0f, width, height);
-                    }
-                    canvas.drawPath(this.mPath, this.mFillPaint);
-                }
-            }
-            float[] fArr2 = this.mPoints;
-            if (fArr2.length > 1) {
-                canvas.drawCircle(fArr2[0], fArr2[1], 8.0f, this.mPaintKeyframes);
-                float[] fArr3 = this.mPoints;
-                canvas.drawCircle(fArr3[fArr3.length - 2], fArr3[fArr3.length - 1], 8.0f, this.mPaintKeyframes);
-            }
-        }
-
-        private void drawTranslation(Canvas canvas, float f, float f2, float f3, float f4) {
-            canvas.drawRect(f, f2, f3, f4, this.mPaintGraph);
-            canvas.drawLine(f, f2, f3, f4, this.mPaintGraph);
-        }
-
-        public void getTextBounds(String str, Paint paint) {
-            paint.getTextBounds(str, 0, str.length(), this.mBounds);
-        }
-    }
-
-    public class Model {
-        public int mEndId;
-        public int mStartId;
-        public ConstraintWidgetContainer mLayoutStart = new ConstraintWidgetContainer();
-        public ConstraintWidgetContainer mLayoutEnd = new ConstraintWidgetContainer();
-        public ConstraintSet mStart = null;
-        public ConstraintSet mEnd = null;
-
-        public Model() {
-        }
-
-        public void build() {
-            int childCount = MotionLayout.this.getChildCount();
-            MotionLayout.this.mFrameArrayList.clear();
-            for (int i = 0; i < childCount; i++) {
-                View childAt = MotionLayout.this.getChildAt(i);
-                MotionLayout.this.mFrameArrayList.put(childAt, new MotionController(childAt));
-            }
-            for (int i2 = 0; i2 < childCount; i2++) {
-                View childAt2 = MotionLayout.this.getChildAt(i2);
-                MotionController motionController = MotionLayout.this.mFrameArrayList.get(childAt2);
-                if (motionController != null) {
-                    if (this.mStart != null) {
-                        ConstraintWidget widget = getWidget(this.mLayoutStart, childAt2);
-                        if (widget != null) {
-                            motionController.setStartState(widget, this.mStart);
-                        } else if (MotionLayout.this.mDebugPath != 0) {
-                            Log.e(MotionLayout.TAG, Debug.getLocation() + "no widget for  " + Debug.getName(childAt2) + " (" + childAt2.getClass().getName() + ")");
-                        }
-                    }
-                    if (this.mEnd != null) {
-                        ConstraintWidget widget2 = getWidget(this.mLayoutEnd, childAt2);
-                        if (widget2 != null) {
-                            motionController.setEndState(widget2, this.mEnd);
-                        } else if (MotionLayout.this.mDebugPath != 0) {
-                            Log.e(MotionLayout.TAG, Debug.getLocation() + "no widget for  " + Debug.getName(childAt2) + " (" + childAt2.getClass().getName() + ")");
-                        }
-                    }
-                }
-            }
-        }
-
-        public void copy(ConstraintWidgetContainer constraintWidgetContainer, ConstraintWidgetContainer constraintWidgetContainer2) {
-            ConstraintWidget helperWidget;
-            ArrayList<ConstraintWidget> children = constraintWidgetContainer.getChildren();
-            HashMap<ConstraintWidget, ConstraintWidget> map = new HashMap<>();
-            map.put(constraintWidgetContainer, constraintWidgetContainer2);
-            constraintWidgetContainer2.getChildren().clear();
-            constraintWidgetContainer2.copy(constraintWidgetContainer, map);
-            for (ConstraintWidget constraintWidget : children) {
-                if (constraintWidget instanceof Barrier) {
-                    helperWidget = new Barrier();
-                } else if (constraintWidget instanceof Guideline) {
-                    helperWidget = new Guideline();
-                } else if (constraintWidget instanceof Flow) {
-                    helperWidget = new Flow();
-                } else {
-                    helperWidget = constraintWidget instanceof Helper ? new HelperWidget() : new ConstraintWidget();
-                }
-                constraintWidgetContainer2.add(helperWidget);
-                map.put(constraintWidget, helperWidget);
-            }
-            for (ConstraintWidget constraintWidget2 : children) {
-                map.get(constraintWidget2).copy(constraintWidget2, map);
-            }
-        }
-
-        private void debugLayout(String str, ConstraintWidgetContainer constraintWidgetContainer) {
-            View view = (View) constraintWidgetContainer.getCompanionWidget();
-            StringBuilder sbM836X = C1643a.m836X(str, " ");
-            sbM836X.append(Debug.getName(view));
-            String string = sbM836X.toString();
-            Log.v(MotionLayout.TAG, string + "  ========= " + constraintWidgetContainer);
-            int size = constraintWidgetContainer.getChildren().size();
-            for (int i = 0; i < size; i++) {
-                String str2 = string + "[" + i + "] ";
-                ConstraintWidget constraintWidget = constraintWidgetContainer.getChildren().get(i);
-                StringBuilder sbM833U = C1643a.m833U("");
-                sbM833U.append(constraintWidget.mTop.mTarget != null ? ExifInterface.GPS_DIRECTION_TRUE : "_");
-                StringBuilder sbM833U2 = C1643a.m833U(sbM833U.toString());
-                sbM833U2.append(constraintWidget.mBottom.mTarget != null ? "B" : "_");
-                StringBuilder sbM833U3 = C1643a.m833U(sbM833U2.toString());
-                sbM833U3.append(constraintWidget.mLeft.mTarget != null ? "L" : "_");
-                StringBuilder sbM833U4 = C1643a.m833U(sbM833U3.toString());
-                sbM833U4.append(constraintWidget.mRight.mTarget != null ? "R" : "_");
-                String string2 = sbM833U4.toString();
-                View view2 = (View) constraintWidget.getCompanionWidget();
-                String name = Debug.getName(view2);
-                if (view2 instanceof TextView) {
-                    StringBuilder sbM836X2 = C1643a.m836X(name, "(");
-                    sbM836X2.append((Object) ((TextView) view2).getText());
-                    sbM836X2.append(")");
-                    name = sbM836X2.toString();
-                }
-                Log.v(MotionLayout.TAG, str2 + "  " + name + " " + constraintWidget + " " + string2);
-            }
-            Log.v(MotionLayout.TAG, string + " done. ");
-        }
-
-        private void debugLayoutParam(String str, ConstraintLayout.LayoutParams layoutParams) {
-            StringBuilder sbM833U = C1643a.m833U(" ");
-            sbM833U.append(layoutParams.startToStart != -1 ? "SS" : "__");
-            StringBuilder sbM833U2 = C1643a.m833U(sbM833U.toString());
-            sbM833U2.append(layoutParams.startToEnd != -1 ? "|SE" : "|__");
-            StringBuilder sbM833U3 = C1643a.m833U(sbM833U2.toString());
-            sbM833U3.append(layoutParams.endToStart != -1 ? "|ES" : "|__");
-            StringBuilder sbM833U4 = C1643a.m833U(sbM833U3.toString());
-            sbM833U4.append(layoutParams.endToEnd != -1 ? "|EE" : "|__");
-            StringBuilder sbM833U5 = C1643a.m833U(sbM833U4.toString());
-            sbM833U5.append(layoutParams.leftToLeft != -1 ? "|LL" : "|__");
-            StringBuilder sbM833U6 = C1643a.m833U(sbM833U5.toString());
-            sbM833U6.append(layoutParams.leftToRight != -1 ? "|LR" : "|__");
-            StringBuilder sbM833U7 = C1643a.m833U(sbM833U6.toString());
-            sbM833U7.append(layoutParams.rightToLeft != -1 ? "|RL" : "|__");
-            StringBuilder sbM833U8 = C1643a.m833U(sbM833U7.toString());
-            sbM833U8.append(layoutParams.rightToRight != -1 ? "|RR" : "|__");
-            StringBuilder sbM833U9 = C1643a.m833U(sbM833U8.toString());
-            sbM833U9.append(layoutParams.topToTop != -1 ? "|TT" : "|__");
-            StringBuilder sbM833U10 = C1643a.m833U(sbM833U9.toString());
-            sbM833U10.append(layoutParams.topToBottom != -1 ? "|TB" : "|__");
-            StringBuilder sbM833U11 = C1643a.m833U(sbM833U10.toString());
-            sbM833U11.append(layoutParams.bottomToTop != -1 ? "|BT" : "|__");
-            StringBuilder sbM833U12 = C1643a.m833U(sbM833U11.toString());
-            sbM833U12.append(layoutParams.bottomToBottom != -1 ? "|BB" : "|__");
-            Log.v(MotionLayout.TAG, str + sbM833U12.toString());
-        }
-
-        private void debugWidget(String str, ConstraintWidget constraintWidget) {
-            String string;
-            String string2;
-            String string3;
-            StringBuilder sbM833U = C1643a.m833U(" ");
-            String string4 = "__";
-            if (constraintWidget.mTop.mTarget != null) {
-                StringBuilder sbM833U2 = C1643a.m833U(ExifInterface.GPS_DIRECTION_TRUE);
-                sbM833U2.append(constraintWidget.mTop.mTarget.mType == ConstraintAnchor.Type.TOP ? ExifInterface.GPS_DIRECTION_TRUE : "B");
-                string = sbM833U2.toString();
-            } else {
-                string = "__";
-            }
-            sbM833U.append(string);
-            StringBuilder sbM833U3 = C1643a.m833U(sbM833U.toString());
-            if (constraintWidget.mBottom.mTarget != null) {
-                StringBuilder sbM833U4 = C1643a.m833U("B");
-                sbM833U4.append(constraintWidget.mBottom.mTarget.mType == ConstraintAnchor.Type.TOP ? ExifInterface.GPS_DIRECTION_TRUE : "B");
-                string2 = sbM833U4.toString();
-            } else {
-                string2 = "__";
-            }
-            sbM833U3.append(string2);
-            StringBuilder sbM833U5 = C1643a.m833U(sbM833U3.toString());
-            if (constraintWidget.mLeft.mTarget != null) {
-                StringBuilder sbM833U6 = C1643a.m833U("L");
-                sbM833U6.append(constraintWidget.mLeft.mTarget.mType == ConstraintAnchor.Type.LEFT ? "L" : "R");
-                string3 = sbM833U6.toString();
-            } else {
-                string3 = "__";
-            }
-            sbM833U5.append(string3);
-            StringBuilder sbM833U7 = C1643a.m833U(sbM833U5.toString());
-            if (constraintWidget.mRight.mTarget != null) {
-                StringBuilder sbM833U8 = C1643a.m833U("R");
-                sbM833U8.append(constraintWidget.mRight.mTarget.mType == ConstraintAnchor.Type.LEFT ? "L" : "R");
-                string4 = sbM833U8.toString();
-            }
-            sbM833U7.append(string4);
-            Log.v(MotionLayout.TAG, str + sbM833U7.toString() + " ---  " + constraintWidget);
-        }
-
-        public ConstraintWidget getWidget(ConstraintWidgetContainer constraintWidgetContainer, View view) {
-            if (constraintWidgetContainer.getCompanionWidget() == view) {
-                return constraintWidgetContainer;
-            }
-            ArrayList<ConstraintWidget> children = constraintWidgetContainer.getChildren();
-            int size = children.size();
-            for (int i = 0; i < size; i++) {
-                ConstraintWidget constraintWidget = children.get(i);
-                if (constraintWidget.getCompanionWidget() == view) {
-                    return constraintWidget;
-                }
-            }
-            return null;
-        }
-
-        public void initFrom(ConstraintWidgetContainer constraintWidgetContainer, ConstraintSet constraintSet, ConstraintSet constraintSet2) {
-            this.mStart = constraintSet;
-            this.mEnd = constraintSet2;
-            this.mLayoutStart = new ConstraintWidgetContainer();
-            this.mLayoutEnd = new ConstraintWidgetContainer();
-            this.mLayoutStart.setMeasurer(MotionLayout.this.mLayoutWidget.getMeasurer());
-            this.mLayoutEnd.setMeasurer(MotionLayout.this.mLayoutWidget.getMeasurer());
-            this.mLayoutStart.removeAllChildren();
-            this.mLayoutEnd.removeAllChildren();
-            copy(MotionLayout.this.mLayoutWidget, this.mLayoutStart);
-            copy(MotionLayout.this.mLayoutWidget, this.mLayoutEnd);
-            if (MotionLayout.this.mTransitionLastPosition > 0.5d) {
-                if (constraintSet != null) {
-                    setupConstraintWidget(this.mLayoutStart, constraintSet);
-                }
-                setupConstraintWidget(this.mLayoutEnd, constraintSet2);
-            } else {
-                setupConstraintWidget(this.mLayoutEnd, constraintSet2);
-                if (constraintSet != null) {
-                    setupConstraintWidget(this.mLayoutStart, constraintSet);
-                }
-            }
-            this.mLayoutStart.setRtl(MotionLayout.this.isRtl());
-            this.mLayoutStart.updateHierarchy();
-            this.mLayoutEnd.setRtl(MotionLayout.this.isRtl());
-            this.mLayoutEnd.updateHierarchy();
-            ViewGroup.LayoutParams layoutParams = MotionLayout.this.getLayoutParams();
-            if (layoutParams != null) {
-                if (layoutParams.width == -2) {
-                    ConstraintWidgetContainer constraintWidgetContainer2 = this.mLayoutStart;
-                    ConstraintWidget.DimensionBehaviour dimensionBehaviour = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
-                    constraintWidgetContainer2.setHorizontalDimensionBehaviour(dimensionBehaviour);
-                    this.mLayoutEnd.setHorizontalDimensionBehaviour(dimensionBehaviour);
-                }
-                if (layoutParams.height == -2) {
-                    ConstraintWidgetContainer constraintWidgetContainer3 = this.mLayoutStart;
-                    ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
-                    constraintWidgetContainer3.setVerticalDimensionBehaviour(dimensionBehaviour2);
-                    this.mLayoutEnd.setVerticalDimensionBehaviour(dimensionBehaviour2);
-                }
-            }
-        }
-
-        public boolean isNotConfiguredWith(int i, int i2) {
-            return (i == this.mStartId && i2 == this.mEndId) ? false : true;
-        }
-
-        public void measure(int i, int i2) {
-            int mode = View.MeasureSpec.getMode(i);
-            int mode2 = View.MeasureSpec.getMode(i2);
-            MotionLayout motionLayout = MotionLayout.this;
-            motionLayout.mWidthMeasureMode = mode;
-            motionLayout.mHeightMeasureMode = mode2;
-            int optimizationLevel = motionLayout.getOptimizationLevel();
-            MotionLayout motionLayout2 = MotionLayout.this;
-            if (motionLayout2.mCurrentState == motionLayout2.getStartState()) {
-                MotionLayout.this.resolveSystem(this.mLayoutEnd, optimizationLevel, i, i2);
-                if (this.mStart != null) {
-                    MotionLayout.this.resolveSystem(this.mLayoutStart, optimizationLevel, i, i2);
-                }
-            } else {
-                if (this.mStart != null) {
-                    MotionLayout.this.resolveSystem(this.mLayoutStart, optimizationLevel, i, i2);
-                }
-                MotionLayout.this.resolveSystem(this.mLayoutEnd, optimizationLevel, i, i2);
-            }
-            if (((MotionLayout.this.getParent() instanceof MotionLayout) && mode == 1073741824 && mode2 == 1073741824) ? false : true) {
-                MotionLayout motionLayout3 = MotionLayout.this;
-                motionLayout3.mWidthMeasureMode = mode;
-                motionLayout3.mHeightMeasureMode = mode2;
-                if (motionLayout3.mCurrentState == motionLayout3.getStartState()) {
-                    MotionLayout.this.resolveSystem(this.mLayoutEnd, optimizationLevel, i, i2);
-                    if (this.mStart != null) {
-                        MotionLayout.this.resolveSystem(this.mLayoutStart, optimizationLevel, i, i2);
-                    }
-                } else {
-                    if (this.mStart != null) {
-                        MotionLayout.this.resolveSystem(this.mLayoutStart, optimizationLevel, i, i2);
-                    }
-                    MotionLayout.this.resolveSystem(this.mLayoutEnd, optimizationLevel, i, i2);
-                }
-                MotionLayout.this.mStartWrapWidth = this.mLayoutStart.getWidth();
-                MotionLayout.this.mStartWrapHeight = this.mLayoutStart.getHeight();
-                MotionLayout.this.mEndWrapWidth = this.mLayoutEnd.getWidth();
-                MotionLayout.this.mEndWrapHeight = this.mLayoutEnd.getHeight();
-                MotionLayout motionLayout4 = MotionLayout.this;
-                motionLayout4.mMeasureDuringTransition = (motionLayout4.mStartWrapWidth == motionLayout4.mEndWrapWidth && motionLayout4.mStartWrapHeight == motionLayout4.mEndWrapHeight) ? false : true;
-            }
-            MotionLayout motionLayout5 = MotionLayout.this;
-            int i3 = motionLayout5.mStartWrapWidth;
-            int i4 = motionLayout5.mStartWrapHeight;
-            int i5 = motionLayout5.mWidthMeasureMode;
-            if (i5 == Integer.MIN_VALUE || i5 == 0) {
-                i3 = (int) ((motionLayout5.mPostInterpolationPosition * (motionLayout5.mEndWrapWidth - i3)) + i3);
-            }
-            int i6 = motionLayout5.mHeightMeasureMode;
-            if (i6 == Integer.MIN_VALUE || i6 == 0) {
-                i4 = (int) ((motionLayout5.mPostInterpolationPosition * (motionLayout5.mEndWrapHeight - i4)) + i4);
-            }
-            MotionLayout.this.resolveMeasuredDimension(i, i2, i3, i4, this.mLayoutStart.isWidthMeasuredTooSmall() || this.mLayoutEnd.isWidthMeasuredTooSmall(), this.mLayoutStart.isHeightMeasuredTooSmall() || this.mLayoutEnd.isHeightMeasuredTooSmall());
-        }
-
-        public void reEvaluateState() {
-            measure(MotionLayout.this.mLastWidthMeasureSpec, MotionLayout.this.mLastHeightMeasureSpec);
-            MotionLayout.this.setupMotionViews();
-        }
-
-        public void setMeasuredId(int i, int i2) {
-            this.mStartId = i;
-            this.mEndId = i2;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        private void setupConstraintWidget(ConstraintWidgetContainer constraintWidgetContainer, ConstraintSet constraintSet) {
-            SparseArray<ConstraintWidget> sparseArray = new SparseArray<>();
-            Constraints.LayoutParams layoutParams = new Constraints.LayoutParams(-2, -2);
-            sparseArray.clear();
-            sparseArray.put(0, constraintWidgetContainer);
-            sparseArray.put(MotionLayout.this.getId(), constraintWidgetContainer);
-            for (ConstraintWidget constraintWidget : constraintWidgetContainer.getChildren()) {
-                sparseArray.put(((View) constraintWidget.getCompanionWidget()).getId(), constraintWidget);
-            }
-            for (ConstraintWidget constraintWidget2 : constraintWidgetContainer.getChildren()) {
-                View view = (View) constraintWidget2.getCompanionWidget();
-                constraintSet.applyToLayoutParams(view.getId(), layoutParams);
-                constraintWidget2.setWidth(constraintSet.getWidth(view.getId()));
-                constraintWidget2.setHeight(constraintSet.getHeight(view.getId()));
-                if (view instanceof ConstraintHelper) {
-                    constraintSet.applyToHelper((ConstraintHelper) view, constraintWidget2, layoutParams, sparseArray);
-                    if (view instanceof androidx.constraintlayout.widget.Barrier) {
-                        ((androidx.constraintlayout.widget.Barrier) view).validateParams();
-                    }
-                }
-                layoutParams.resolveLayoutDirection(MotionLayout.this.getLayoutDirection());
-                MotionLayout.this.applyConstraintsFromLayoutParams(false, view, constraintWidget2, layoutParams, sparseArray);
-                if (constraintSet.getVisibilityMode(view.getId()) == 1) {
-                    constraintWidget2.setVisibility(view.getVisibility());
-                } else {
-                    constraintWidget2.setVisibility(constraintSet.getVisibility(view.getId()));
-                }
-            }
-            for (ConstraintWidget constraintWidget3 : constraintWidgetContainer.getChildren()) {
-                if (constraintWidget3 instanceof VirtualLayout) {
-                    ConstraintHelper constraintHelper = (ConstraintHelper) constraintWidget3.getCompanionWidget();
-                    Helper helper = (Helper) constraintWidget3;
-                    constraintHelper.updatePreLayout(constraintWidgetContainer, helper, sparseArray);
-                    ((VirtualLayout) helper).captureWidgets();
-                }
-            }
-        }
-    }
-
-    public class StateCache {
-        public float mProgress = Float.NaN;
-        public float mVelocity = Float.NaN;
-        public int startState = -1;
-        public int endState = -1;
-        public final String KeyProgress = "motion.progress";
-        public final String KeyVelocity = "motion.velocity";
-        public final String KeyStartState = "motion.StartState";
-        public final String KeyEndState = "motion.EndState";
-
-        public StateCache() {
-        }
-
-        public void apply() {
-            int i = this.startState;
-            if (i != -1 || this.endState != -1) {
-                if (i == -1) {
-                    MotionLayout.this.transitionToState(this.endState);
-                } else {
-                    int i2 = this.endState;
-                    if (i2 == -1) {
-                        MotionLayout.this.setState(i, -1, -1);
-                    } else {
-                        MotionLayout.this.setTransition(i, i2);
-                    }
-                }
-                MotionLayout.this.setState(TransitionState.SETUP);
-            }
-            if (Float.isNaN(this.mVelocity)) {
-                if (Float.isNaN(this.mProgress)) {
-                    return;
-                }
-                MotionLayout.this.setProgress(this.mProgress);
-            } else {
-                MotionLayout.this.setProgress(this.mProgress, this.mVelocity);
-                this.mProgress = Float.NaN;
-                this.mVelocity = Float.NaN;
-                this.startState = -1;
-                this.endState = -1;
-            }
-        }
-
-        public Bundle getTransitionState() {
-            Bundle bundle = new Bundle();
-            bundle.putFloat("motion.progress", this.mProgress);
-            bundle.putFloat("motion.velocity", this.mVelocity);
-            bundle.putInt("motion.StartState", this.startState);
-            bundle.putInt("motion.EndState", this.endState);
-            return bundle;
-        }
-
-        public void recordState() {
-            this.endState = MotionLayout.this.mEndState;
-            this.startState = MotionLayout.this.mBeginState;
-            this.mVelocity = MotionLayout.this.getVelocity();
-            this.mProgress = MotionLayout.this.getProgress();
-        }
-
-        public void setEndState(int i) {
-            this.endState = i;
-        }
-
-        public void setProgress(float f) {
-            this.mProgress = f;
-        }
-
-        public void setStartState(int i) {
-            this.startState = i;
-        }
-
-        public void setTransitionState(Bundle bundle) {
-            this.mProgress = bundle.getFloat("motion.progress");
-            this.mVelocity = bundle.getFloat("motion.velocity");
-            this.startState = bundle.getInt("motion.StartState");
-            this.endState = bundle.getInt("motion.EndState");
-        }
-
-        public void setVelocity(float f) {
-            this.mVelocity = f;
-        }
     }
 
     public void transitionToState(int i, int i2, int i3) {
@@ -2556,7 +1676,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         }
         if (!isAttachedToWindow()) {
             if (this.mStateCache == null) {
-                this.mStateCache = new StateCache();
+                this.mStateCache = new MotionLayout$StateCache(this);
             }
             this.mStateCache.setProgress(f);
             return;
@@ -2564,16 +1684,16 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         if (f <= 0.0f) {
             this.mCurrentState = this.mBeginState;
             if (this.mTransitionLastPosition == 0.0f) {
-                setState(TransitionState.FINISHED);
+                setState(MotionLayout$TransitionState.FINISHED);
             }
         } else if (f >= 1.0f) {
             this.mCurrentState = this.mEndState;
             if (this.mTransitionLastPosition == 1.0f) {
-                setState(TransitionState.FINISHED);
+                setState(MotionLayout$TransitionState.FINISHED);
             }
         } else {
             this.mCurrentState = -1;
-            setState(TransitionState.MOVING);
+            setState(MotionLayout$TransitionState.MOVING);
         }
         if (this.mScene == null) {
             return;
@@ -2590,7 +1710,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
 
     @Override // androidx.constraintlayout.widget.ConstraintLayout
     public void setState(int i, int i2, int i3) {
-        setState(TransitionState.SETUP);
+        setState(MotionLayout$TransitionState.SETUP);
         this.mCurrentState = i;
         this.mBeginState = -1;
         this.mEndState = -1;
@@ -2607,12 +1727,12 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
 
     public void setTransition(int i) {
         if (this.mScene != null) {
-            MotionScene.Transition transition = getTransition(i);
+            MotionScene$Transition transition = getTransition(i);
             this.mBeginState = transition.getStartConstraintSetId();
             this.mEndState = transition.getEndConstraintSetId();
             if (!isAttachedToWindow()) {
                 if (this.mStateCache == null) {
-                    this.mStateCache = new StateCache();
+                    this.mStateCache = new MotionLayout$StateCache(this);
                 }
                 this.mStateCache.setStartState(this.mBeginState);
                 this.mStateCache.setEndState(this.mEndState);
@@ -2645,15 +1765,15 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             View childAt = getChildAt(i2);
             int id2 = childAt.getId();
             if (id2 == -1) {
-                StringBuilder sbM837Y = C1643a.m837Y("CHECK: ", name, " ALL VIEWS SHOULD HAVE ID's ");
-                sbM837Y.append(childAt.getClass().getName());
-                sbM837Y.append(" does not!");
-                Log.w(TAG, sbM837Y.toString());
+                StringBuilder sbY = a.Y("CHECK: ", name, " ALL VIEWS SHOULD HAVE ID's ");
+                sbY.append(childAt.getClass().getName());
+                sbY.append(" does not!");
+                Log.w(TAG, sbY.toString());
             }
             if (constraintSet.getConstraint(id2) == null) {
-                StringBuilder sbM837Y2 = C1643a.m837Y("CHECK: ", name, " NO CONSTRAINTS for ");
-                sbM837Y2.append(Debug.getName(childAt));
-                Log.w(TAG, sbM837Y2.toString());
+                StringBuilder sbY2 = a.Y("CHECK: ", name, " NO CONSTRAINTS for ");
+                sbY2.append(Debug.getName(childAt));
+                Log.w(TAG, sbY2.toString());
             }
         }
         int[] knownIds = constraintSet.getKnownIds();
@@ -2672,9 +1792,9 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         }
     }
 
-    public void setTransition(MotionScene.Transition transition) {
-        this.mScene.setTransition(transition);
-        setState(TransitionState.SETUP);
+    public void setTransition(MotionScene$Transition motionScene$Transition) {
+        this.mScene.setTransition(motionScene$Transition);
+        setState(MotionLayout$TransitionState.SETUP);
         if (this.mCurrentState == this.mScene.getEndId()) {
             this.mTransitionLastPosition = 1.0f;
             this.mTransitionPosition = 1.0f;
@@ -2684,7 +1804,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
             this.mTransitionPosition = 0.0f;
             this.mTransitionGoalPosition = 0.0f;
         }
-        this.mTransitionLastTime = transition.isTransitionFlag(1) ? -1L : getNanoTime();
+        this.mTransitionLastTime = motionScene$Transition.isTransitionFlag(1) ? -1L : getNanoTime();
         int startId = this.mScene.getStartId();
         int endId = this.mScene.getEndId();
         if (startId == this.mBeginState && endId == this.mEndState) {
@@ -2719,7 +1839,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         this.mDebugPath = 0;
         this.mTemporalInterpolator = false;
         this.mStopLogic = new StopLogic();
-        this.mDecelerateLogic = new DecelerateInterpolator();
+        this.mDecelerateLogic = new MotionLayout$DecelerateInterpolator(this);
         this.firstDown = true;
         this.mUndergoingMotion = false;
         this.mKeepAnimating = false;
@@ -2735,8 +1855,8 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         this.mMeasureDuringTransition = false;
         this.mKeyCache = new KeyCache();
         this.mInLayout = false;
-        this.mTransitionState = TransitionState.UNDEFINED;
-        this.mModel = new Model();
+        this.mTransitionState = MotionLayout$TransitionState.UNDEFINED;
+        this.mModel = new MotionLayout$Model(this);
         this.mNeedsFireTransitionCompleted = false;
         this.mBoundsCheck = new RectF();
         this.mRegionView = null;
@@ -2744,12 +1864,12 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         init(attributeSet);
     }
 
-    private void checkStructure(MotionScene.Transition transition) {
-        StringBuilder sbM833U = C1643a.m833U("CHECK: transition = ");
-        sbM833U.append(transition.debugString(getContext()));
-        Log.v(TAG, sbM833U.toString());
-        Log.v(TAG, "CHECK: transition.setDuration = " + transition.getDuration());
-        if (transition.getStartConstraintSetId() == transition.getEndConstraintSetId()) {
+    private void checkStructure(MotionScene$Transition motionScene$Transition) {
+        StringBuilder sbU = a.U("CHECK: transition = ");
+        sbU.append(motionScene$Transition.debugString(getContext()));
+        Log.v(TAG, sbU.toString());
+        Log.v(TAG, "CHECK: transition.setDuration = " + motionScene$Transition.getDuration());
+        if (motionScene$Transition.getStartConstraintSetId() == motionScene$Transition.getEndConstraintSetId()) {
             Log.e(TAG, "CHECK: start and end constraint set should not be the same!");
         }
     }
@@ -2774,7 +1894,7 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         this.mDebugPath = 0;
         this.mTemporalInterpolator = false;
         this.mStopLogic = new StopLogic();
-        this.mDecelerateLogic = new DecelerateInterpolator();
+        this.mDecelerateLogic = new MotionLayout$DecelerateInterpolator(this);
         this.firstDown = true;
         this.mUndergoingMotion = false;
         this.mKeepAnimating = false;
@@ -2790,8 +1910,8 @@ public class MotionLayout extends ConstraintLayout implements NestedScrollingPar
         this.mMeasureDuringTransition = false;
         this.mKeyCache = new KeyCache();
         this.mInLayout = false;
-        this.mTransitionState = TransitionState.UNDEFINED;
-        this.mModel = new Model();
+        this.mTransitionState = MotionLayout$TransitionState.UNDEFINED;
+        this.mModel = new MotionLayout$Model(this);
         this.mNeedsFireTransitionCompleted = false;
         this.mBoundsCheck = new RectF();
         this.mRegionView = null;

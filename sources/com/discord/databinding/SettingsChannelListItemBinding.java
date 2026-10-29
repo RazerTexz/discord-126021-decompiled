@@ -10,37 +10,33 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class SettingsChannelListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f15233a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f15234b;
+    public final ImageView f2141b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f15235c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15236d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final View f15237e;
+    public final View e;
 
     public SettingsChannelListItemBinding(@NonNull RelativeLayout relativeLayout, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull TextView textView, @NonNull View view) {
-        this.f15233a = relativeLayout;
-        this.f15234b = imageView;
-        this.f15235c = imageView2;
-        this.f15236d = textView;
-        this.f15237e = view;
+        this.a = relativeLayout;
+        this.f2141b = imageView;
+        this.c = imageView2;
+        this.d = textView;
+        this.e = view;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15233a;
+        return this.a;
     }
 }

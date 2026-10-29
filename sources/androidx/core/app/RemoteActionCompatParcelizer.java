@@ -2,11 +2,12 @@ package androidx.core.app;
 
 import android.app.PendingIntent;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.versionedparcelable.VersionedParcel;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class RemoteActionCompatParcelizer {
     public static RemoteActionCompat read(VersionedParcel versionedParcel) {
         RemoteActionCompat remoteActionCompat = new RemoteActionCompat();

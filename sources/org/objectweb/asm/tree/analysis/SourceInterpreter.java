@@ -14,8 +14,48 @@ import org.objectweb.asm.tree.MethodInsnNode;
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/analysis/SourceInterpreter.SCL.lombok */
 public class SourceInterpreter extends Interpreter<SourceValue> implements Opcodes {
     @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value binaryOperation(AbstractInsnNode abstractInsnNode, Value value, Value value2) throws AnalyzerException {
+        return binaryOperation(abstractInsnNode, (SourceValue) value, (SourceValue) value2);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value copyOperation(AbstractInsnNode abstractInsnNode, Value value) throws AnalyzerException {
+        return copyOperation(abstractInsnNode, (SourceValue) value);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value merge(Value value, Value value2) {
+        return merge((SourceValue) value, (SourceValue) value2);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public /* bridge */ /* synthetic */ Value naryOperation(AbstractInsnNode abstractInsnNode, List list) throws AnalyzerException {
         return naryOperation(abstractInsnNode, (List<? extends SourceValue>) list);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value newOperation(AbstractInsnNode abstractInsnNode) throws AnalyzerException {
+        return newOperation(abstractInsnNode);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value newValue(Type type) {
+        return newValue(type);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ void returnOperation(AbstractInsnNode abstractInsnNode, Value value, Value value2) throws AnalyzerException {
+        returnOperation(abstractInsnNode, (SourceValue) value, (SourceValue) value2);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value ternaryOperation(AbstractInsnNode abstractInsnNode, Value value, Value value2, Value value3) throws AnalyzerException {
+        return ternaryOperation(abstractInsnNode, (SourceValue) value, (SourceValue) value2, (SourceValue) value3);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value unaryOperation(AbstractInsnNode abstractInsnNode, Value value) throws AnalyzerException {
+        return unaryOperation(abstractInsnNode, (SourceValue) value);
     }
 
     public SourceInterpreter() {
@@ -61,12 +101,10 @@ public class SourceInterpreter extends Interpreter<SourceValue> implements Opcod
         return new SourceValue(size, insn);
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public SourceValue copyOperation(AbstractInsnNode insn, SourceValue value) {
         return new SourceValue(value.getSize(), insn);
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public SourceValue unaryOperation(AbstractInsnNode insn, SourceValue value) {
         int size;
         switch (insn.getOpcode()) {
@@ -90,7 +128,6 @@ public class SourceInterpreter extends Interpreter<SourceValue> implements Opcod
         return new SourceValue(size, insn);
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public SourceValue binaryOperation(AbstractInsnNode insn, SourceValue value1, SourceValue value2) {
         int size;
         switch (insn.getOpcode()) {
@@ -121,7 +158,6 @@ public class SourceInterpreter extends Interpreter<SourceValue> implements Opcod
         return new SourceValue(size, insn);
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public SourceValue ternaryOperation(AbstractInsnNode insn, SourceValue value1, SourceValue value2, SourceValue value3) {
         return new SourceValue(1, insn);
     }
@@ -140,11 +176,9 @@ public class SourceInterpreter extends Interpreter<SourceValue> implements Opcod
         return new SourceValue(size, insn);
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public void returnOperation(AbstractInsnNode insn, SourceValue value, SourceValue expected) {
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public SourceValue merge(SourceValue value1, SourceValue value2) {
         if ((value1.insns instanceof SmallSet) && (value2.insns instanceof SmallSet)) {
             Set<AbstractInsnNode> setUnion = ((SmallSet) value1.insns).union((SmallSet) value2.insns);

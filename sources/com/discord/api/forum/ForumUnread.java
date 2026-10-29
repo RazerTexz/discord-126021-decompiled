@@ -1,7 +1,7 @@
 package com.discord.api.forum;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ForumUnread.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class ForumUnread {
             return false;
         }
         ForumUnread forumUnread = (ForumUnread) other;
-        return this.threadId == forumUnread.threadId && this.missing == forumUnread.missing && C12238m.areEqual(this.count, forumUnread.count);
+        return this.threadId == forumUnread.threadId && this.missing == forumUnread.missing && m.areEqual(this.count, forumUnread.count);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -50,11 +50,11 @@ public final /* data */ class ForumUnread {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ForumUnread(threadId=");
-        sbM833U.append(this.threadId);
-        sbM833U.append(", missing=");
-        sbM833U.append(this.missing);
-        sbM833U.append(", count=");
-        return C1643a.m818F(sbM833U, this.count, ")");
+        StringBuilder sbU = a.U("ForumUnread(threadId=");
+        sbU.append(this.threadId);
+        sbU.append(", missing=");
+        sbU.append(this.missing);
+        sbU.append(", count=");
+        return a.F(sbU, this.count, ")");
     }
 }

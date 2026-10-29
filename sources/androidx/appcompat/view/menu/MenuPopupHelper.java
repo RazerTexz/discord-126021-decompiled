@@ -7,35 +7,37 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
-import android.widget.PopupWindow;
+import android.widget.PopupWindow$OnDismissListener;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$attr;
+import androidx.appcompat.R$dimen;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class MenuPopupHelper implements MenuHelper {
     private static final int TOUCH_EPICENTER_SIZE_DP = 48;
     private View mAnchorView;
     private final Context mContext;
     private int mDropDownGravity;
     private boolean mForceShowIcon;
-    private final PopupWindow.OnDismissListener mInternalOnDismissListener;
+    private final PopupWindow$OnDismissListener mInternalOnDismissListener;
     private final MenuBuilder mMenu;
-    private PopupWindow.OnDismissListener mOnDismissListener;
+    private PopupWindow$OnDismissListener mOnDismissListener;
     private final boolean mOverflowOnly;
     private MenuPopup mPopup;
     private final int mPopupStyleAttr;
     private final int mPopupStyleRes;
-    private MenuPresenter.Callback mPresenterCallback;
+    private MenuPresenter$Callback mPresenterCallback;
 
     public MenuPopupHelper(@NonNull Context context, @NonNull MenuBuilder menuBuilder) {
-        this(context, menuBuilder, null, false, C0051R.attr.popupMenuStyle, 0);
+        this(context, menuBuilder, null, false, R$attr.popupMenuStyle, 0);
     }
 
     @NonNull
@@ -43,7 +45,7 @@ public class MenuPopupHelper implements MenuHelper {
         Display defaultDisplay = ((WindowManager) this.mContext.getSystemService("window")).getDefaultDisplay();
         Point point = new Point();
         defaultDisplay.getRealSize(point);
-        MenuPopup cascadingMenuPopup = Math.min(point.x, point.y) >= this.mContext.getResources().getDimensionPixelSize(C0051R.dimen.abc_cascading_menus_min_smallest_width) ? new CascadingMenuPopup(this.mContext, this.mAnchorView, this.mPopupStyleAttr, this.mPopupStyleRes, this.mOverflowOnly) : new StandardMenuPopup(this.mContext, this.mMenu, this.mAnchorView, this.mPopupStyleAttr, this.mPopupStyleRes, this.mOverflowOnly);
+        MenuPopup cascadingMenuPopup = Math.min(point.x, point.y) >= this.mContext.getResources().getDimensionPixelSize(R$dimen.abc_cascading_menus_min_smallest_width) ? new CascadingMenuPopup(this.mContext, this.mAnchorView, this.mPopupStyleAttr, this.mPopupStyleRes, this.mOverflowOnly) : new StandardMenuPopup(this.mContext, this.mMenu, this.mAnchorView, this.mPopupStyleAttr, this.mPopupStyleRes, this.mOverflowOnly);
         cascadingMenuPopup.addMenu(this.mMenu);
         cascadingMenuPopup.setOnDismissListener(this.mInternalOnDismissListener);
         cascadingMenuPopup.setAnchorView(this.mAnchorView);
@@ -83,9 +85,9 @@ public class MenuPopupHelper implements MenuHelper {
 
     public void onDismiss() {
         this.mPopup = null;
-        PopupWindow.OnDismissListener onDismissListener = this.mOnDismissListener;
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss();
+        PopupWindow$OnDismissListener popupWindow$OnDismissListener = this.mOnDismissListener;
+        if (popupWindow$OnDismissListener != null) {
+            popupWindow$OnDismissListener.onDismiss();
         }
     }
 
@@ -105,16 +107,16 @@ public class MenuPopupHelper implements MenuHelper {
         this.mDropDownGravity = i;
     }
 
-    public void setOnDismissListener(@Nullable PopupWindow.OnDismissListener onDismissListener) {
-        this.mOnDismissListener = onDismissListener;
+    public void setOnDismissListener(@Nullable PopupWindow$OnDismissListener popupWindow$OnDismissListener) {
+        this.mOnDismissListener = popupWindow$OnDismissListener;
     }
 
     @Override // androidx.appcompat.view.menu.MenuHelper
-    public void setPresenterCallback(@Nullable MenuPresenter.Callback callback) {
-        this.mPresenterCallback = callback;
+    public void setPresenterCallback(@Nullable MenuPresenter$Callback menuPresenter$Callback) {
+        this.mPresenterCallback = menuPresenter$Callback;
         MenuPopup menuPopup = this.mPopup;
         if (menuPopup != null) {
-            menuPopup.setCallback(callback);
+            menuPopup.setCallback(menuPresenter$Callback);
         }
     }
 
@@ -151,7 +153,7 @@ public class MenuPopupHelper implements MenuHelper {
     }
 
     public MenuPopupHelper(@NonNull Context context, @NonNull MenuBuilder menuBuilder, @NonNull View view) {
-        this(context, menuBuilder, view, false, C0051R.attr.popupMenuStyle, 0);
+        this(context, menuBuilder, view, false, R$attr.popupMenuStyle, 0);
     }
 
     public MenuPopupHelper(@NonNull Context context, @NonNull MenuBuilder menuBuilder, @NonNull View view, boolean z2, @AttrRes int i) {
@@ -166,12 +168,7 @@ public class MenuPopupHelper implements MenuHelper {
 
     public MenuPopupHelper(@NonNull Context context, @NonNull MenuBuilder menuBuilder, @NonNull View view, boolean z2, @AttrRes int i, @StyleRes int i2) {
         this.mDropDownGravity = GravityCompat.START;
-        this.mInternalOnDismissListener = new PopupWindow.OnDismissListener() { // from class: androidx.appcompat.view.menu.MenuPopupHelper.1
-            @Override // android.widget.PopupWindow.OnDismissListener
-            public void onDismiss() {
-                MenuPopupHelper.this.onDismiss();
-            }
-        };
+        this.mInternalOnDismissListener = new MenuPopupHelper$1(this);
         this.mContext = context;
         this.mMenu = menuBuilder;
         this.mAnchorView = view;

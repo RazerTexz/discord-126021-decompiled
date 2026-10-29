@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: DeviceDescription.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,9 +12,9 @@ public final /* data */ class VideoInputDeviceDescription {
     private final String name;
 
     public VideoInputDeviceDescription(String str, String str2, VideoInputDeviceFacing videoInputDeviceFacing) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(str2, "guid");
-        C12238m.checkNotNullParameter(videoInputDeviceFacing, "facing");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str2, "guid");
+        m.checkNotNullParameter(videoInputDeviceFacing, "facing");
         this.name = str;
         this.guid = str2;
         this.facing = videoInputDeviceFacing;
@@ -34,9 +34,9 @@ public final /* data */ class VideoInputDeviceDescription {
     }
 
     public final VideoInputDeviceDescription copy(String name, String guid, VideoInputDeviceFacing facing) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(guid, "guid");
-        C12238m.checkNotNullParameter(facing, "facing");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(guid, "guid");
+        m.checkNotNullParameter(facing, "facing");
         return new VideoInputDeviceDescription(name, guid, facing);
     }
 
@@ -48,7 +48,7 @@ public final /* data */ class VideoInputDeviceDescription {
             return false;
         }
         VideoInputDeviceDescription videoInputDeviceDescription = (VideoInputDeviceDescription) other;
-        return C12238m.areEqual(this.name, videoInputDeviceDescription.name) && C12238m.areEqual(this.guid, videoInputDeviceDescription.guid) && C12238m.areEqual(this.facing, videoInputDeviceDescription.facing);
+        return m.areEqual(this.name, videoInputDeviceDescription.name) && m.areEqual(this.guid, videoInputDeviceDescription.guid) && m.areEqual(this.facing, videoInputDeviceDescription.facing);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -88,13 +88,13 @@ public final /* data */ class VideoInputDeviceDescription {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("VideoInputDeviceDescription(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", guid=");
-        sbM833U.append(this.guid);
-        sbM833U.append(", facing=");
-        sbM833U.append(this.facing);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("VideoInputDeviceDescription(name=");
+        sbU.append(this.name);
+        sbU.append(", guid=");
+        sbU.append(this.guid);
+        sbU.append(", facing=");
+        sbU.append(this.facing);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

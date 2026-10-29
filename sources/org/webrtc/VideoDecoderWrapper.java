@@ -1,18 +1,16 @@
 package org.webrtc;
 
-import org.webrtc.VideoDecoderWrapper;
-import org.webrtc.VideoFrame;
+import h0.c.b0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class VideoDecoderWrapper {
     @CalledByNative
-    public static VideoDecoder.Callback createDecoderCallback(final long j) {
-        return new VideoDecoder.Callback() { // from class: h0.c.b0
-            @Override // org.webrtc.VideoDecoder.Callback
-            public final void onDecodedFrame(VideoFrame videoFrame, Integer num, Integer num2) {
-                VideoDecoderWrapper.nativeOnDecodedFrame(j, videoFrame, num, null);
-            }
-        };
+    public static VideoDecoder$Callback createDecoderCallback(long j) {
+        return new b0(j);
+    }
+
+    public static /* synthetic */ void lambda$createDecoderCallback$0(long j, VideoFrame videoFrame, Integer num, Integer num2) {
+        nativeOnDecodedFrame(j, videoFrame, num, num2);
     }
 
     private static native void nativeOnDecodedFrame(long j, VideoFrame videoFrame, Integer num, Integer num2);

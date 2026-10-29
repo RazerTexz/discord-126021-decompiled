@@ -1,6 +1,6 @@
 package androidx.appcompat.app;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
@@ -10,7 +10,7 @@ import android.view.InflateException;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$styleable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.AppCompatButton;
@@ -30,75 +30,15 @@ import androidx.appcompat.widget.TintContextWrapper;
 import androidx.collection.SimpleArrayMap;
 import androidx.core.view.ViewCompat;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatViewInflater {
     private static final String LOG_TAG = "AppCompatViewInflater";
     private static final Class<?>[] sConstructorSignature = {Context.class, AttributeSet.class};
     private final Object[] mConstructorArgs = new Object[2];
-    private static final int[] sOnClickAttrs = {R.attr.onClick};
+    private static final int[] sOnClickAttrs = {R$attr.onClick};
     private static final String[] sClassPrefixList = {"android.widget.", "android.view.", "android.webkit."};
     private static final SimpleArrayMap<String, Constructor<? extends View>> sConstructorMap = new SimpleArrayMap<>();
-
-    public class DeclaredOnClickListener implements View.OnClickListener {
-        private final View mHostView;
-        private final String mMethodName;
-        private Context mResolvedContext;
-        private Method mResolvedMethod;
-
-        public DeclaredOnClickListener(@NonNull View view, @NonNull String str) {
-            this.mHostView = view;
-            this.mMethodName = str;
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(@NonNull View view) {
-            if (this.mResolvedMethod == null) {
-                resolveMethod(this.mHostView.getContext());
-            }
-            try {
-                this.mResolvedMethod.invoke(this.mResolvedContext, view);
-            } catch (IllegalAccessException e) {
-                throw new IllegalStateException("Could not execute non-public method for android:onClick", e);
-            } catch (InvocationTargetException e2) {
-                throw new IllegalStateException("Could not execute method for android:onClick", e2);
-            }
-        }
-
-        private void resolveMethod(@Nullable Context context) {
-            String string;
-            Method method;
-            while (context != null) {
-                try {
-                    if (!context.isRestricted() && (method = context.getClass().getMethod(this.mMethodName, View.class)) != null) {
-                        this.mResolvedMethod = method;
-                        this.mResolvedContext = context;
-                        return;
-                    }
-                } catch (NoSuchMethodException unused) {
-                }
-                context = context instanceof ContextWrapper ? ((ContextWrapper) context).getBaseContext() : null;
-            }
-            int id2 = this.mHostView.getId();
-            if (id2 == -1) {
-                string = "";
-            } else {
-                StringBuilder sbM833U = C1643a.m833U(" with id '");
-                sbM833U.append(this.mHostView.getContext().getResources().getResourceEntryName(id2));
-                sbM833U.append("'");
-                string = sbM833U.toString();
-            }
-            StringBuilder sbM833U2 = C1643a.m833U("Could not find method ");
-            sbM833U2.append(this.mMethodName);
-            sbM833U2.append("(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
-            sbM833U2.append(this.mHostView.getClass());
-            sbM833U2.append(string);
-            throw new IllegalStateException(sbM833U2.toString());
-        }
-    }
 
     private void checkOnClickListener(View view, AttributeSet attributeSet) {
         Context context = view.getContext();
@@ -106,7 +46,7 @@ public class AppCompatViewInflater {
             TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, sOnClickAttrs);
             String string = typedArrayObtainStyledAttributes.getString(0);
             if (string != null) {
-                view.setOnClickListener(new DeclaredOnClickListener(view, string));
+                view.setOnClickListener(new AppCompatViewInflater$DeclaredOnClickListener(view, string));
             }
             typedArrayObtainStyledAttributes.recycle();
         }
@@ -321,9 +261,9 @@ public class AppCompatViewInflater {
     }
 
     private static Context themifyContext(Context context, AttributeSet attributeSet, boolean z2, boolean z3) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0051R.styleable.View, 0, 0);
-        int resourceId = z2 ? typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.View_android_theme, 0) : 0;
-        if (z3 && resourceId == 0 && (resourceId = typedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.View_theme, 0)) != 0) {
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.View, 0, 0);
+        int resourceId = z2 ? typedArrayObtainStyledAttributes.getResourceId(R$styleable.View_android_theme, 0) : 0;
+        if (z3 && resourceId == 0 && (resourceId = typedArrayObtainStyledAttributes.getResourceId(R$styleable.View_theme, 0)) != 0) {
             Log.i(LOG_TAG, "app:theme is now deprecated. Please move to using android:theme instead.");
         }
         typedArrayObtainStyledAttributes.recycle();

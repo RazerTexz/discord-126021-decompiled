@@ -1,11 +1,11 @@
 package com.discord.widgets.voice.sheet;
 
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetVoiceBottomSheet.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetVoiceBottomSheet$channelId$2 extends AbstractC12240o implements Function0<Long> {
+public final class WidgetVoiceBottomSheet$channelId$2 extends o implements Function0<Long> {
     public final /* synthetic */ WidgetVoiceBottomSheet this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -21,6 +21,6 @@ public final class WidgetVoiceBottomSheet$channelId$2 extends AbstractC12240o im
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final long invoke2() {
-        return this.this$0.getArgumentsOrDefault().getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID");
+        return WidgetVoiceBottomSheet.access$getArgumentsOrDefault$p(this.this$0).getLong("com.discord.intent.extra.EXTRA_CHANNEL_ID");
     }
 }

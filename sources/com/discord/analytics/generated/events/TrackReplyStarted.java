@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackReplyStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackReplyStarted implements AnalyticsSchema, Trac
             return false;
         }
         TrackReplyStarted trackReplyStarted = (TrackReplyStarted) other;
-        return C12238m.areEqual(this.authorId, trackReplyStarted.authorId) && C12238m.areEqual(this.channelId, trackReplyStarted.channelId);
+        return m.areEqual(this.authorId, trackReplyStarted.authorId) && m.areEqual(this.channelId, trackReplyStarted.channelId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackReplyStarted implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackReplyStarted(authorId=");
-        sbM833U.append(this.authorId);
-        sbM833U.append(", channelId=");
-        return C1643a.m819G(sbM833U, this.channelId, ")");
+        StringBuilder sbU = a.U("TrackReplyStarted(authorId=");
+        sbU.append(this.authorId);
+        sbU.append(", channelId=");
+        return a.G(sbU, this.channelId, ")");
     }
 }

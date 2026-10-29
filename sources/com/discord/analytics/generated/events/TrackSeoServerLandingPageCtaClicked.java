@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSeoServerLandingPageCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackSeoServerLandingPageCtaClicked implements Ana
             return false;
         }
         TrackSeoServerLandingPageCtaClicked trackSeoServerLandingPageCtaClicked = (TrackSeoServerLandingPageCtaClicked) other;
-        return C12238m.areEqual(this.guildId, trackSeoServerLandingPageCtaClicked.guildId) && C12238m.areEqual(this.guildName, trackSeoServerLandingPageCtaClicked.guildName) && C12238m.areEqual(this.slug, trackSeoServerLandingPageCtaClicked.slug) && C12238m.areEqual(this.cta, trackSeoServerLandingPageCtaClicked.cta);
+        return m.areEqual(this.guildId, trackSeoServerLandingPageCtaClicked.guildId) && m.areEqual(this.guildName, trackSeoServerLandingPageCtaClicked.guildName) && m.areEqual(this.slug, trackSeoServerLandingPageCtaClicked.slug) && m.areEqual(this.cta, trackSeoServerLandingPageCtaClicked.cta);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackSeoServerLandingPageCtaClicked implements Ana
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSeoServerLandingPageCtaClicked(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", slug=");
-        sbM833U.append(this.slug);
-        sbM833U.append(", cta=");
-        return C1643a.m817E(sbM833U, this.cta, ")");
+        StringBuilder sbU = a.U("TrackSeoServerLandingPageCtaClicked(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", slug=");
+        sbU.append(this.slug);
+        sbU.append(", cta=");
+        return a.E(sbU, this.cta, ")");
     }
 }

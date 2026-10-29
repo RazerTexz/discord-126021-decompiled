@@ -4,7 +4,8 @@ import android.graphics.Rect;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import p007b.p100d.p104b.p105a.C1643a;
+import androidx.annotation.RestrictTo$Scope;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class Insets {
@@ -25,7 +26,7 @@ public final class Insets {
 
     @NonNull
     public static Insets add(@NonNull Insets insets, @NonNull Insets insets2) {
-        return m82of(insets.left + insets2.left, insets.top + insets2.top, insets.right + insets2.right, insets.bottom + insets2.bottom);
+        return of(insets.left + insets2.left, insets.top + insets2.top, insets.right + insets2.right, insets.bottom + insets2.bottom);
     }
 
     public boolean equals(Object obj) {
@@ -44,30 +45,29 @@ public final class Insets {
     }
 
     @NonNull
-    /* JADX INFO: renamed from: of */
-    public static Insets m82of(int i, int i2, int i3, int i4) {
-        return (i == 0 && i2 == 0 && i3 == 0 && i4 == 0) ? NONE : new Insets(i, i2, i3, i4);
-    }
-
-    @NonNull
     public static Insets max(@NonNull Insets insets, @NonNull Insets insets2) {
-        return m82of(Math.max(insets.left, insets2.left), Math.max(insets.top, insets2.top), Math.max(insets.right, insets2.right), Math.max(insets.bottom, insets2.bottom));
+        return of(Math.max(insets.left, insets2.left), Math.max(insets.top, insets2.top), Math.max(insets.right, insets2.right), Math.max(insets.bottom, insets2.bottom));
     }
 
     @NonNull
     public static Insets min(@NonNull Insets insets, @NonNull Insets insets2) {
-        return m82of(Math.min(insets.left, insets2.left), Math.min(insets.top, insets2.top), Math.min(insets.right, insets2.right), Math.min(insets.bottom, insets2.bottom));
+        return of(Math.min(insets.left, insets2.left), Math.min(insets.top, insets2.top), Math.min(insets.right, insets2.right), Math.min(insets.bottom, insets2.bottom));
+    }
+
+    @NonNull
+    public static Insets of(int i, int i2, int i3, int i4) {
+        return (i == 0 && i2 == 0 && i3 == 0 && i4 == 0) ? NONE : new Insets(i, i2, i3, i4);
     }
 
     @NonNull
     public static Insets subtract(@NonNull Insets insets, @NonNull Insets insets2) {
-        return m82of(insets.left - insets2.left, insets.top - insets2.top, insets.right - insets2.right, insets.bottom - insets2.bottom);
+        return of(insets.left - insets2.left, insets.top - insets2.top, insets.right - insets2.right, insets.bottom - insets2.bottom);
     }
 
     @NonNull
     @RequiresApi(api = 29)
     public static Insets toCompatInsets(@NonNull android.graphics.Insets insets) {
-        return m82of(insets.left, insets.top, insets.right, insets.bottom);
+        return of(insets.left, insets.top, insets.right, insets.bottom);
     }
 
     @NonNull
@@ -77,27 +77,26 @@ public final class Insets {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Insets{left=");
-        sbM833U.append(this.left);
-        sbM833U.append(", top=");
-        sbM833U.append(this.top);
-        sbM833U.append(", right=");
-        sbM833U.append(this.right);
-        sbM833U.append(", bottom=");
-        return C1643a.m813A(sbM833U, this.bottom, '}');
+        StringBuilder sbU = a.U("Insets{left=");
+        sbU.append(this.left);
+        sbU.append(", top=");
+        sbU.append(this.top);
+        sbU.append(", right=");
+        sbU.append(this.right);
+        sbU.append(", bottom=");
+        return a.A(sbU, this.bottom, '}');
     }
 
     @NonNull
     @Deprecated
     @RequiresApi(api = 29)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static Insets wrap(@NonNull android.graphics.Insets insets) {
         return toCompatInsets(insets);
     }
 
     @NonNull
-    /* JADX INFO: renamed from: of */
-    public static Insets m83of(@NonNull Rect rect) {
-        return m82of(rect.left, rect.top, rect.right, rect.bottom);
+    public static Insets of(@NonNull Rect rect) {
+        return of(rect.left, rect.top, rect.right, rect.bottom);
     }
 }

@@ -1,7 +1,7 @@
 package androidx.core.graphics;
 
 import android.graphics.Matrix;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Matrix.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -39,8 +39,8 @@ public final class MatrixKt {
     }
 
     public static final Matrix times(Matrix matrix, Matrix matrix2) {
-        C12238m.checkNotNullParameter(matrix, "<this>");
-        C12238m.checkNotNullParameter(matrix2, "m");
+        m.checkNotNullParameter(matrix, "<this>");
+        m.checkNotNullParameter(matrix2, "m");
         Matrix matrix3 = new Matrix(matrix);
         matrix3.preConcat(matrix2);
         return matrix3;
@@ -63,7 +63,7 @@ public final class MatrixKt {
     }
 
     public static final float[] values(Matrix matrix) {
-        C12238m.checkNotNullParameter(matrix, "<this>");
+        m.checkNotNullParameter(matrix, "<this>");
         float[] fArr = new float[9];
         matrix.getValues(fArr);
         return fArr;

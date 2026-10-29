@@ -4,7 +4,7 @@ import com.discord.api.botuikit.Component;
 import com.discord.api.botuikit.ComponentType;
 import com.discord.api.botuikit.UnknownComponent;
 import com.discord.gsonutils.RuntimeTypeAdapterFactory;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ComponentRuntimeTypeAdapter.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,18 +22,17 @@ public final class ComponentRuntimeTypeAdapter {
             if (clazz == null || strValueOf == null) {
                 throw null;
             }
-            if (runtimeTypeAdapterFactory.f18536m.containsKey(clazz) || runtimeTypeAdapterFactory.f18535l.containsKey(strValueOf)) {
+            if (runtimeTypeAdapterFactory.m.containsKey(clazz) || runtimeTypeAdapterFactory.l.containsKey(strValueOf)) {
                 throw new IllegalArgumentException("types and labels must be unique");
             }
-            runtimeTypeAdapterFactory.f18535l.put(strValueOf, clazz);
-            runtimeTypeAdapterFactory.f18536m.put(clazz, strValueOf);
+            runtimeTypeAdapterFactory.l.put(strValueOf, clazz);
+            runtimeTypeAdapterFactory.m.put(clazz, strValueOf);
         }
-        C12238m.checkNotNullExpressionValue(runtimeTypeAdapterFactory, "RuntimeTypeAdapterFactor…ype.toString())\n    }\n  }");
+        m.checkNotNullExpressionValue(runtimeTypeAdapterFactory, "RuntimeTypeAdapterFactor…ype.toString())\n    }\n  }");
         componentRuntimeTypeAdapterFactory = runtimeTypeAdapterFactory;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final RuntimeTypeAdapterFactory<Component> m7624a() {
+    public final RuntimeTypeAdapterFactory<Component> a() {
         return componentRuntimeTypeAdapterFactory;
     }
 }

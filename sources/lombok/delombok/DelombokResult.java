@@ -1,6 +1,6 @@
 package lombok.delombok;
 
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCCompilationUnit;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Date;
@@ -13,11 +13,11 @@ import lombok.javac.CommentInfo;
 public class DelombokResult {
     private final List<CommentInfo> comments;
     private final List<Integer> textBlockStarts;
-    private final JCTree.JCCompilationUnit compilationUnit;
+    private final JCTree$JCCompilationUnit compilationUnit;
     private final boolean changed;
     private final FormatPreferences formatPreferences;
 
-    public DelombokResult(List<CommentInfo> comments, List<Integer> textBlockStarts, JCTree.JCCompilationUnit compilationUnit, boolean changed, FormatPreferences formatPreferences) {
+    public DelombokResult(List<CommentInfo> comments, List<Integer> textBlockStarts, JCTree$JCCompilationUnit compilationUnit, boolean changed, FormatPreferences formatPreferences) {
         this.comments = comments;
         this.textBlockStarts = textBlockStarts;
         this.compilationUnit = compilationUnit;

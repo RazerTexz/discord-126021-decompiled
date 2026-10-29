@@ -1,9 +1,7 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
-import org.webrtc.VideoFrame;
-import org.webrtc.VideoSource;
-import p617h0.p628c.C12489t0;
+import h0.c.i0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class VideoSource extends MediaSource {
@@ -15,60 +13,32 @@ public class VideoSource extends MediaSource {
     private VideoProcessor videoProcessor;
     private final Object videoProcessorLock;
 
-    public class AspectRatio {
-        public final int height;
-        public final int width;
-        public static final AspectRatio UNDEFINED = new AspectRatio(0, 0);
-
-        public AspectRatio(int i, int i2) {
-            this.width = i;
-            this.height = i2;
-        }
-    }
-
     public VideoSource(long j) {
         super(j);
         this.videoProcessorLock = new Object();
-        this.capturerObserver = new CapturerObserver() { // from class: org.webrtc.VideoSource.1
-            @Override // org.webrtc.CapturerObserver
-            public void onCapturerStarted(boolean z2) {
-                VideoSource.this.nativeAndroidVideoTrackSource.setState(z2);
-                synchronized (VideoSource.this.videoProcessorLock) {
-                    VideoSource.this.isCapturerRunning = z2;
-                    if (VideoSource.this.videoProcessor != null) {
-                        VideoSource.this.videoProcessor.onCapturerStarted(z2);
-                    }
-                }
-            }
-
-            @Override // org.webrtc.CapturerObserver
-            public void onCapturerStopped() {
-                VideoSource.this.nativeAndroidVideoTrackSource.setState(false);
-                synchronized (VideoSource.this.videoProcessorLock) {
-                    VideoSource.this.isCapturerRunning = false;
-                    if (VideoSource.this.videoProcessor != null) {
-                        VideoSource.this.videoProcessor.onCapturerStopped();
-                    }
-                }
-            }
-
-            @Override // org.webrtc.CapturerObserver
-            public void onFrameCaptured(VideoFrame videoFrame) {
-                VideoProcessor.FrameAdaptationParameters frameAdaptationParametersAdaptFrame = VideoSource.this.nativeAndroidVideoTrackSource.adaptFrame(videoFrame);
-                synchronized (VideoSource.this.videoProcessorLock) {
-                    if (VideoSource.this.videoProcessor != null) {
-                        VideoSource.this.videoProcessor.onFrameCaptured(videoFrame, frameAdaptationParametersAdaptFrame);
-                        return;
-                    }
-                    VideoFrame videoFrameM10680b = C12489t0.m10680b(videoFrame, frameAdaptationParametersAdaptFrame);
-                    if (videoFrameM10680b != null) {
-                        VideoSource.this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrameM10680b);
-                        videoFrameM10680b.release();
-                    }
-                }
-            }
-        };
+        this.capturerObserver = new VideoSource$1(this);
         this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j);
+    }
+
+    public /* synthetic */ void a(VideoFrame videoFrame) {
+        this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
+    }
+
+    public static /* synthetic */ NativeAndroidVideoTrackSource access$000(VideoSource videoSource) {
+        return videoSource.nativeAndroidVideoTrackSource;
+    }
+
+    public static /* synthetic */ Object access$100(VideoSource videoSource) {
+        return videoSource.videoProcessorLock;
+    }
+
+    public static /* synthetic */ boolean access$202(VideoSource videoSource, boolean z2) {
+        videoSource.isCapturerRunning = z2;
+        return z2;
+    }
+
+    public static /* synthetic */ VideoProcessor access$300(VideoSource videoSource) {
+        return videoSource.videoProcessor;
     }
 
     public void adaptOutputFormat(int i, int i2, int i3) {
@@ -91,11 +61,6 @@ public class VideoSource extends MediaSource {
         return getNativeMediaSource();
     }
 
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ void m11053a(VideoFrame videoFrame) {
-        this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrame);
-    }
-
     public void setIsScreencast(boolean z2) {
         this.nativeAndroidVideoTrackSource.setIsScreencast(z2);
     }
@@ -111,18 +76,7 @@ public class VideoSource extends MediaSource {
             }
             this.videoProcessor = videoProcessor;
             if (videoProcessor != null) {
-                videoProcessor.setSink(new VideoSink() { // from class: h0.c.i0
-                    @Override // org.webrtc.VideoSink
-                    public final void onFrame(final VideoFrame videoFrame) {
-                        final VideoSource videoSource = this.f26438j;
-                        videoSource.runWithReference(new Runnable() { // from class: h0.c.h0
-                            @Override // java.lang.Runnable
-                            public final void run() {
-                                videoSource.m11053a(videoFrame);
-                            }
-                        });
-                    }
-                });
+                videoProcessor.setSink(new i0(this));
                 if (this.isCapturerRunning) {
                     videoProcessor.onCapturerStarted(true);
                 }
@@ -131,10 +85,10 @@ public class VideoSource extends MediaSource {
     }
 
     public void adaptOutputFormat(int i, int i2, int i3, int i4, int i5) {
-        adaptOutputFormat(new AspectRatio(i, i2), Integer.valueOf(i * i2), new AspectRatio(i3, i4), Integer.valueOf(i3 * i4), Integer.valueOf(i5));
+        adaptOutputFormat(new VideoSource$AspectRatio(i, i2), Integer.valueOf(i * i2), new VideoSource$AspectRatio(i3, i4), Integer.valueOf(i3 * i4), Integer.valueOf(i5));
     }
 
-    public void adaptOutputFormat(AspectRatio aspectRatio, @Nullable Integer num, AspectRatio aspectRatio2, @Nullable Integer num2, @Nullable Integer num3) {
-        this.nativeAndroidVideoTrackSource.adaptOutputFormat(aspectRatio, num, aspectRatio2, num2, num3);
+    public void adaptOutputFormat(VideoSource$AspectRatio videoSource$AspectRatio, @Nullable Integer num, VideoSource$AspectRatio videoSource$AspectRatio2, @Nullable Integer num2, @Nullable Integer num3) {
+        this.nativeAndroidVideoTrackSource.adaptOutputFormat(videoSource$AspectRatio, num, videoSource$AspectRatio2, num2, num3);
     }
 }

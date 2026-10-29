@@ -9,27 +9,8 @@ import java.util.concurrent.Executor;
 public class SerialExecutor implements Executor {
     private volatile Runnable mActive;
     private final Executor mExecutor;
-    private final ArrayDeque<Task> mTasks = new ArrayDeque<>();
+    private final ArrayDeque<SerialExecutor$Task> mTasks = new ArrayDeque<>();
     private final Object mLock = new Object();
-
-    public class Task implements Runnable {
-        public final Runnable mRunnable;
-        public final SerialExecutor mSerialExecutor;
-
-        public Task(@NonNull SerialExecutor serialExecutor, @NonNull Runnable runnable) {
-            this.mSerialExecutor = serialExecutor;
-            this.mRunnable = runnable;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            try {
-                this.mRunnable.run();
-            } finally {
-                this.mSerialExecutor.scheduleNext();
-            }
-        }
-    }
 
     public SerialExecutor(@NonNull Executor executor) {
         this.mExecutor = executor;
@@ -38,7 +19,7 @@ public class SerialExecutor implements Executor {
     @Override // java.util.concurrent.Executor
     public void execute(@NonNull Runnable runnable) {
         synchronized (this.mLock) {
-            this.mTasks.add(new Task(this, runnable));
+            this.mTasks.add(new SerialExecutor$Task(this, runnable));
             if (this.mActive == null) {
                 scheduleNext();
             }
@@ -61,9 +42,9 @@ public class SerialExecutor implements Executor {
 
     public void scheduleNext() {
         synchronized (this.mLock) {
-            Task taskPoll = this.mTasks.poll();
-            this.mActive = taskPoll;
-            if (taskPoll != null) {
+            SerialExecutor$Task serialExecutor$TaskPoll = this.mTasks.poll();
+            this.mActive = serialExecutor$TaskPoll;
+            if (serialExecutor$TaskPoll != null) {
                 this.mExecutor.execute(this.mActive);
             }
         }

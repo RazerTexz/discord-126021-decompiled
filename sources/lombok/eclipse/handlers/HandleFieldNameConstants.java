@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.ConfigurationKeys;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.configuration.IdentifierName;
 import lombok.core.handlers.HandlerUtil;
 import lombok.eclipse.EclipseAnnotationHandler;
 import lombok.eclipse.EclipseNode;
 import lombok.experimental.FieldNameConstants;
+import lombok.experimental.FieldNameConstants$Exclude;
+import lombok.experimental.FieldNameConstants$Include;
 import org.eclipse.jdt.internal.compiler.ASTVisitor;
 import org.eclipse.jdt.internal.compiler.ast.ASTNode;
 import org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration;
@@ -52,10 +54,10 @@ public class HandleFieldNameConstants extends EclipseAnnotationHandler<FieldName
     }
 
     private boolean fieldQualifiesForFieldNameConstantsGeneration(EclipseNode field, boolean onlyExplicit) {
-        if (field.getKind() != AST.Kind.FIELD || EclipseHandlerUtil.hasAnnotation((Class<? extends Annotation>) FieldNameConstants.Exclude.class, field)) {
+        if (field.getKind() != AST$Kind.FIELD || EclipseHandlerUtil.hasAnnotation((Class<? extends Annotation>) FieldNameConstants$Exclude.class, field)) {
             return false;
         }
-        if (EclipseHandlerUtil.hasAnnotation((Class<? extends Annotation>) FieldNameConstants.Include.class, field)) {
+        if (EclipseHandlerUtil.hasAnnotation((Class<? extends Annotation>) FieldNameConstants$Include.class, field)) {
             return true;
         }
         if (onlyExplicit) {
@@ -68,11 +70,11 @@ public class HandleFieldNameConstants extends EclipseAnnotationHandler<FieldName
     @Override // lombok.eclipse.EclipseAnnotationHandler
     public void handle(AnnotationValues<FieldNameConstants> annotation, org.eclipse.jdt.internal.compiler.ast.Annotation ast, EclipseNode annotationNode) {
         HandlerUtil.handleExperimentalFlagUsage(annotationNode, ConfigurationKeys.FIELD_NAME_CONSTANTS_FLAG_USAGE, "@FieldNameConstants");
-        EclipseNode node = annotationNode.m10925up();
+        EclipseNode node = annotationNode.up();
         FieldNameConstants annotationInstance = annotation.getInstance();
         AccessLevel level = annotationInstance.level();
         boolean asEnum = annotationInstance.asEnum();
-        boolean usingLombokv1_18_2 = annotation.isExplicit("prefix") || annotation.isExplicit("suffix") || node.getKind() == AST.Kind.FIELD;
+        boolean usingLombokv1_18_2 = annotation.isExplicit("prefix") || annotation.isExplicit("suffix") || node.getKind() == AST$Kind.FIELD;
         if (usingLombokv1_18_2) {
             annotationNode.addError("@FieldNameConstants has been redesigned in lombok v1.18.4; please upgrade your project dependency on lombok. See https://projectlombok.org/features/experimental/FieldNameConstants for more information.");
             return;
@@ -128,7 +130,7 @@ public class HandleFieldNameConstants extends EclipseAnnotationHandler<FieldName
                     errorNode.addError("Existing " + innerTypeName + " must be declared as a 'static class'.");
                     return;
                 }
-                genConstr = EclipseHandlerUtil.constructorExists(fieldsType) == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS;
+                genConstr = EclipseHandlerUtil.constructorExists(fieldsType) == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS;
             }
         }
         if (genConstr) {
@@ -156,7 +158,7 @@ public class HandleFieldNameConstants extends EclipseAnnotationHandler<FieldName
             if (uppercase) {
                 fName = HandlerUtil.camelCaseToConstant(new String(fName)).toCharArray();
             }
-            if (EclipseHandlerUtil.fieldExists(new String(fName), fieldsType) == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+            if (EclipseHandlerUtil.fieldExists(new String(fName), fieldsType) == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
                 int pS = source.sourceStart;
                 int pE = source.sourceEnd;
                 long p = (((long) pS) << 32) | ((long) pE);

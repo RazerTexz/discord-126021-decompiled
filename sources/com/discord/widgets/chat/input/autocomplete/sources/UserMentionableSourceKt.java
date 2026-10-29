@@ -5,6 +5,14 @@ import com.discord.api.channel.Channel;
 /* JADX INFO: compiled from: UserMentionableSource.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class UserMentionableSourceKt {
+    public static final /* synthetic */ boolean access$isDmOrGroupDm(Channel channel) {
+        return isDmOrGroupDm(channel);
+    }
+
+    public static final /* synthetic */ boolean access$isTextOrVoiceChannel(Channel channel) {
+        return isTextOrVoiceChannel(channel);
+    }
+
     private static final boolean isDmOrGroupDm(Channel channel) {
         return channel.getType() == 3 || channel.getType() == 1;
     }

@@ -11,32 +11,29 @@ import com.discord.views.SearchInputView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsRoleMembersBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17744a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final AppViewFlipper f17745b;
+    public final AppViewFlipper f2584b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f17746c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SearchInputView f17747d;
+    public final SearchInputView d;
 
     public WidgetServerSettingsRoleMembersBinding(@NonNull LinearLayout linearLayout, @NonNull AppViewFlipper appViewFlipper, @NonNull RecyclerView recyclerView, @NonNull SearchInputView searchInputView) {
-        this.f17744a = linearLayout;
-        this.f17745b = appViewFlipper;
-        this.f17746c = recyclerView;
-        this.f17747d = searchInputView;
+        this.a = linearLayout;
+        this.f2584b = appViewFlipper;
+        this.c = recyclerView;
+        this.d = searchInputView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17744a;
+        return this.a;
     }
 }

@@ -6,10 +6,9 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.pm.PackageManager$NameNotFoundException;
 import android.graphics.BitmapFactory;
-import android.os.Binder;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcelable;
@@ -19,9 +18,10 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.app.NotificationManagerCompat;
 import java.util.Locale;
-import p668x.p669a.p670a.p671d.InterfaceC13180b;
+import x.a.a.d.b$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class TrustedWebActivityService extends Service {
@@ -34,74 +34,7 @@ public abstract class TrustedWebActivityService extends Service {
     public static final int SMALL_ICON_NOT_SET = -1;
     private NotificationManager mNotificationManager;
     public int mVerifiedUid = -1;
-    private final InterfaceC13180b.a mBinder = new InterfaceC13180b.a() { // from class: androidx.browser.trusted.TrustedWebActivityService.1
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public Bundle areNotificationsEnabled(Bundle bundle) {
-            checkCaller();
-            return new TrustedWebActivityServiceConnection.ResultArgs(TrustedWebActivityService.this.onAreNotificationsEnabled(TrustedWebActivityServiceConnection.NotificationsEnabledArgs.fromBundle(bundle).channelName)).toBundle();
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public void cancelNotification(Bundle bundle) {
-            checkCaller();
-            TrustedWebActivityServiceConnection.CancelNotificationArgs cancelNotificationArgsFromBundle = TrustedWebActivityServiceConnection.CancelNotificationArgs.fromBundle(bundle);
-            TrustedWebActivityService.this.onCancelNotification(cancelNotificationArgsFromBundle.platformTag, cancelNotificationArgsFromBundle.platformId);
-        }
-
-        private void checkCaller() {
-            TrustedWebActivityService trustedWebActivityService = TrustedWebActivityService.this;
-            if (trustedWebActivityService.mVerifiedUid == -1) {
-                String[] packagesForUid = trustedWebActivityService.getPackageManager().getPackagesForUid(Binder.getCallingUid());
-                if (packagesForUid == null) {
-                    packagesForUid = new String[0];
-                }
-                Token tokenLoad = TrustedWebActivityService.this.getTokenStore().load();
-                PackageManager packageManager = TrustedWebActivityService.this.getPackageManager();
-                if (tokenLoad != null) {
-                    for (String str : packagesForUid) {
-                        if (tokenLoad.matches(str, packageManager)) {
-                            TrustedWebActivityService.this.mVerifiedUid = Binder.getCallingUid();
-                            break;
-                        }
-                    }
-                }
-            }
-            if (TrustedWebActivityService.this.mVerifiedUid != Binder.getCallingUid()) {
-                throw new SecurityException("Caller is not verified as Trusted Web Activity provider.");
-            }
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public Bundle extraCommand(String str, Bundle bundle, IBinder iBinder) {
-            checkCaller();
-            return TrustedWebActivityService.this.onExtraCommand(str, bundle, TrustedWebActivityCallbackRemote.fromBinder(iBinder));
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public Bundle getActiveNotifications() {
-            checkCaller();
-            return new TrustedWebActivityServiceConnection.ActiveNotificationsArgs(TrustedWebActivityService.this.onGetActiveNotifications()).toBundle();
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public Bundle getSmallIconBitmap() {
-            checkCaller();
-            return TrustedWebActivityService.this.onGetSmallIconBitmap();
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public int getSmallIconId() {
-            checkCaller();
-            return TrustedWebActivityService.this.onGetSmallIconId();
-        }
-
-        @Override // p668x.p669a.p670a.p671d.InterfaceC13180b
-        public Bundle notifyNotificationWithChannel(Bundle bundle) {
-            checkCaller();
-            TrustedWebActivityServiceConnection.NotifyNotificationArgs notifyNotificationArgsFromBundle = TrustedWebActivityServiceConnection.NotifyNotificationArgs.fromBundle(bundle);
-            return new TrustedWebActivityServiceConnection.ResultArgs(TrustedWebActivityService.this.onNotifyNotificationWithChannel(notifyNotificationArgsFromBundle.platformTag, notifyNotificationArgsFromBundle.platformId, notifyNotificationArgsFromBundle.notification, notifyNotificationArgsFromBundle.channelName)).toBundle();
-        }
-    };
+    private final b$a mBinder = new TrustedWebActivityService$1(this);
 
     private static String channelNameToId(String str) {
         return str.toLowerCase(Locale.ROOT).replace(' ', '_') + "_channel_id";
@@ -123,7 +56,7 @@ public abstract class TrustedWebActivityService extends Service {
         if (!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
             return false;
         }
-        if (Build.VERSION.SDK_INT < 26) {
+        if (Build$VERSION.SDK_INT < 26) {
             return true;
         }
         return NotificationApiHelperForO.isChannelEnabled(this.mNotificationManager, channelNameToId(str));
@@ -158,10 +91,10 @@ public abstract class TrustedWebActivityService extends Service {
 
     @NonNull
     @BinderThread
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public Parcelable[] onGetActiveNotifications() {
         ensureOnCreateCalled();
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return NotificationApiHelperForM.getActiveNotifications(this.mNotificationManager);
         }
         throw new IllegalStateException("onGetActiveNotifications cannot be called pre-M.");
@@ -187,7 +120,7 @@ public abstract class TrustedWebActivityService extends Service {
                 return -1;
             }
             return bundle.getInt(META_DATA_NAME_SMALL_ICON, -1);
-        } catch (PackageManager.NameNotFoundException unused) {
+        } catch (PackageManager$NameNotFoundException unused) {
             return -1;
         }
     }
@@ -198,7 +131,7 @@ public abstract class TrustedWebActivityService extends Service {
         if (!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
             return false;
         }
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             String strChannelNameToId = channelNameToId(str2);
             notification = NotificationApiHelperForO.copyNotificationOntoChannel(this, this.mNotificationManager, notification, strChannelNameToId, str2);
             if (!NotificationApiHelperForO.isChannelEnabled(this.mNotificationManager, strChannelNameToId)) {

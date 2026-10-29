@@ -9,22 +9,21 @@ import com.discord.views.CodeVerificationView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsEnableMfaInputBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17945a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CodeVerificationView f17946b;
+    public final CodeVerificationView f2617b;
 
     public WidgetSettingsEnableMfaInputBinding(@NonNull LinearLayout linearLayout, @NonNull CodeVerificationView codeVerificationView) {
-        this.f17945a = linearLayout;
-        this.f17946b = codeVerificationView;
+        this.a = linearLayout;
+        this.f2617b = codeVerificationView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17945a;
+        return this.a;
     }
 }

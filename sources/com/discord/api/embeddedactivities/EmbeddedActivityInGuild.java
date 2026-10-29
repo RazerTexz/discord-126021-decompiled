@@ -1,8 +1,8 @@
 package com.discord.api.embeddedactivities;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EmbeddedActivityInGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,6 +10,10 @@ public final /* data */ class EmbeddedActivityInGuild {
     private final long channelId;
     private final EmbeddedActivity embeddedActivity;
     private final List<Long> users;
+
+    public final List<Long> c() {
+        return this.users;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -19,7 +23,7 @@ public final /* data */ class EmbeddedActivityInGuild {
             return false;
         }
         EmbeddedActivityInGuild embeddedActivityInGuild = (EmbeddedActivityInGuild) other;
-        return this.channelId == embeddedActivityInGuild.channelId && C12238m.areEqual(this.embeddedActivity, embeddedActivityInGuild.embeddedActivity) && C12238m.areEqual(this.users, embeddedActivityInGuild.users);
+        return this.channelId == embeddedActivityInGuild.channelId && m.areEqual(this.embeddedActivity, embeddedActivityInGuild.embeddedActivity) && m.areEqual(this.users, embeddedActivityInGuild.users);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -41,17 +45,12 @@ public final /* data */ class EmbeddedActivityInGuild {
         return iHashCode + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: c */
-    public final List<Long> m7804c() {
-        return this.users;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EmbeddedActivityInGuild(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", embeddedActivity=");
-        sbM833U.append(this.embeddedActivity);
-        sbM833U.append(", users=");
-        return C1643a.m824L(sbM833U, this.users, ")");
+        StringBuilder sbU = a.U("EmbeddedActivityInGuild(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", embeddedActivity=");
+        sbU.append(this.embeddedActivity);
+        sbU.append(", users=");
+        return a.L(sbU, this.users, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackA11yRuntimeViolation.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackA11yRuntimeViolation implements AnalyticsSche
             return false;
         }
         TrackA11yRuntimeViolation trackA11yRuntimeViolation = (TrackA11yRuntimeViolation) other;
-        return C12238m.areEqual(this.ruleId, trackA11yRuntimeViolation.ruleId) && C12238m.areEqual(this.trace, trackA11yRuntimeViolation.trace) && C12238m.areEqual(this.message, trackA11yRuntimeViolation.message) && C12238m.areEqual(this.hash, trackA11yRuntimeViolation.hash);
+        return m.areEqual(this.ruleId, trackA11yRuntimeViolation.ruleId) && m.areEqual(this.trace, trackA11yRuntimeViolation.trace) && m.areEqual(this.message, trackA11yRuntimeViolation.message) && m.areEqual(this.hash, trackA11yRuntimeViolation.hash);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackA11yRuntimeViolation implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackA11yRuntimeViolation(ruleId=");
-        sbM833U.append(this.ruleId);
-        sbM833U.append(", trace=");
-        sbM833U.append(this.trace);
-        sbM833U.append(", message=");
-        sbM833U.append(this.message);
-        sbM833U.append(", hash=");
-        return C1643a.m817E(sbM833U, this.hash, ")");
+        StringBuilder sbU = a.U("TrackA11yRuntimeViolation(ruleId=");
+        sbU.append(this.ruleId);
+        sbU.append(", trace=");
+        sbU.append(this.trace);
+        sbU.append(", message=");
+        sbU.append(this.message);
+        sbU.append(", hash=");
+        return a.E(sbU, this.hash, ")");
     }
 }

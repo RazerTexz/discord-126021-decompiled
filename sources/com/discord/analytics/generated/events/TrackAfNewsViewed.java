@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackAfCard;
 import com.discord.analytics.generated.traits.TrackAfCardReceiver;
 import com.discord.analytics.generated.traits.TrackAfGame;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackAfGameReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAfNewsViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackAfNewsViewed implements AnalyticsSchema, Trac
             return false;
         }
         TrackAfNewsViewed trackAfNewsViewed = (TrackAfNewsViewed) other;
-        return C12238m.areEqual(this.newsUrl, trackAfNewsViewed.newsUrl) && C12238m.areEqual(this.newsIndex, trackAfNewsViewed.newsIndex);
+        return m.areEqual(this.newsUrl, trackAfNewsViewed.newsUrl) && m.areEqual(this.newsIndex, trackAfNewsViewed.newsIndex);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackAfNewsViewed implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAfNewsViewed(newsUrl=");
-        sbM833U.append(this.newsUrl);
-        sbM833U.append(", newsIndex=");
-        return C1643a.m819G(sbM833U, this.newsIndex, ")");
+        StringBuilder sbU = a.U("TrackAfNewsViewed(newsUrl=");
+        sbU.append(this.newsUrl);
+        sbU.append(", newsIndex=");
+        return a.G(sbU, this.newsIndex, ")");
     }
 }

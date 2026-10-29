@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDetectPlatformAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackDetectPlatformAccount implements AnalyticsSch
             return false;
         }
         TrackDetectPlatformAccount trackDetectPlatformAccount = (TrackDetectPlatformAccount) other;
-        return C12238m.areEqual(this.platformType, trackDetectPlatformAccount.platformType) && C12238m.areEqual(this.displayType, trackDetectPlatformAccount.displayType);
+        return m.areEqual(this.platformType, trackDetectPlatformAccount.platformType) && m.areEqual(this.displayType, trackDetectPlatformAccount.displayType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackDetectPlatformAccount implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDetectPlatformAccount(platformType=");
-        sbM833U.append(this.platformType);
-        sbM833U.append(", displayType=");
-        return C1643a.m817E(sbM833U, this.displayType, ")");
+        StringBuilder sbU = a.U("TrackDetectPlatformAccount(platformType=");
+        sbU.append(this.platformType);
+        sbU.append(", displayType=");
+        return a.E(sbU, this.displayType, ")");
     }
 }

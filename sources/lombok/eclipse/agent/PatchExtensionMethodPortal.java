@@ -1,7 +1,6 @@
 package lombok.eclipse.agent;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import lombok.Lombok;
 import org.eclipse.jdt.internal.compiler.lookup.TypeBinding;
 
@@ -16,14 +15,14 @@ public class PatchExtensionMethodPortal {
 
     public static TypeBinding resolveType(Object resolvedType, Object methodCall, Object scope) {
         try {
-            return (TypeBinding) Reflection.resolveType.invoke(null, resolvedType, methodCall, scope);
+            return (TypeBinding) PatchExtensionMethodPortal$Reflection.resolveType.invoke(null, resolvedType, methodCall, scope);
         } catch (IllegalAccessException e) {
             throw Lombok.sneakyThrow(e);
         } catch (NoClassDefFoundError unused) {
             return (TypeBinding) resolvedType;
         } catch (NullPointerException e2) {
             if (!"false".equals(System.getProperty("lombok.debug.reflection", "false"))) {
-                e2.initCause(Reflection.problem);
+                e2.initCause(PatchExtensionMethodPortal$Reflection.problem);
                 throw e2;
             }
             return (TypeBinding) resolvedType;
@@ -34,13 +33,13 @@ public class PatchExtensionMethodPortal {
 
     public static void errorNoMethodFor(Object problemReporter, Object messageSend, Object recType, Object params) {
         try {
-            Reflection.errorNoMethodFor.invoke(null, problemReporter, messageSend, recType, params);
+            PatchExtensionMethodPortal$Reflection.errorNoMethodFor.invoke(null, problemReporter, messageSend, recType, params);
         } catch (IllegalAccessException e) {
             throw Lombok.sneakyThrow(e);
         } catch (NoClassDefFoundError unused) {
         } catch (NullPointerException e2) {
             if (!"false".equals(System.getProperty("lombok.debug.reflection", "false"))) {
-                e2.initCause(Reflection.problem);
+                e2.initCause(PatchExtensionMethodPortal$Reflection.problem);
                 throw e2;
             }
         } catch (InvocationTargetException e3) {
@@ -50,46 +49,17 @@ public class PatchExtensionMethodPortal {
 
     public static void invalidMethod(Object problemReporter, Object messageSend, Object method) {
         try {
-            Reflection.invalidMethod.invoke(null, problemReporter, messageSend, method);
+            PatchExtensionMethodPortal$Reflection.invalidMethod.invoke(null, problemReporter, messageSend, method);
         } catch (IllegalAccessException e) {
             throw Lombok.sneakyThrow(e);
         } catch (NoClassDefFoundError unused) {
         } catch (NullPointerException e2) {
             if (!"false".equals(System.getProperty("lombok.debug.reflection", "false"))) {
-                e2.initCause(Reflection.problem);
+                e2.initCause(PatchExtensionMethodPortal$Reflection.problem);
                 throw e2;
             }
         } catch (InvocationTargetException e3) {
             throw Lombok.sneakyThrow(e3.getCause());
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethodPortal$Reflection.SCL.lombok */
-    final class Reflection {
-        public static final Method resolveType;
-        public static final Method errorNoMethodFor;
-        public static final Method invalidMethod;
-        public static final Throwable problem;
-
-        private Reflection() {
-        }
-
-        static {
-            Method m = null;
-            Method n = null;
-            Method o = null;
-            Throwable problem_ = null;
-            try {
-                m = PatchExtensionMethod.class.getMethod("resolveType", Class.forName(PatchExtensionMethodPortal.TYPE_BINDING), Class.forName(PatchExtensionMethodPortal.MESSAGE_SEND), Class.forName(PatchExtensionMethodPortal.BLOCK_SCOPE));
-                n = PatchExtensionMethod.class.getMethod("errorNoMethodFor", Class.forName(PatchExtensionMethodPortal.PROBLEM_REPORTER), Class.forName(PatchExtensionMethodPortal.MESSAGE_SEND), Class.forName(PatchExtensionMethodPortal.TYPE_BINDING), Class.forName(PatchExtensionMethodPortal.TYPE_BINDING_ARRAY));
-                o = PatchExtensionMethod.class.getMethod("invalidMethod", Class.forName(PatchExtensionMethodPortal.PROBLEM_REPORTER), Class.forName(PatchExtensionMethodPortal.MESSAGE_SEND), Class.forName(PatchExtensionMethodPortal.METHOD_BINDING));
-            } catch (Throwable t) {
-                problem_ = t;
-            }
-            resolveType = m;
-            errorNoMethodFor = n;
-            invalidMethod = o;
-            problem = problem_;
         }
     }
 }

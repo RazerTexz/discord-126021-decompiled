@@ -10,27 +10,25 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsEmojisEditBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17640a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextInputLayout f17641b;
+    public final TextInputLayout f2563b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final FloatingActionButton f17642c;
+    public final FloatingActionButton c;
 
     public WidgetServerSettingsEmojisEditBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextInputLayout textInputLayout, @NonNull FloatingActionButton floatingActionButton) {
-        this.f17640a = coordinatorLayout;
-        this.f17641b = textInputLayout;
-        this.f17642c = floatingActionButton;
+        this.a = coordinatorLayout;
+        this.f2563b = textInputLayout;
+        this.c = floatingActionButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17640a;
+        return this.a;
     }
 }

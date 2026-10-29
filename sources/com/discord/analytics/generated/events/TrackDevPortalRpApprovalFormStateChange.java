@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDevPortalRpApprovalFormStateChange.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackDevPortalRpApprovalFormStateChange implements
             return false;
         }
         TrackDevPortalRpApprovalFormStateChange trackDevPortalRpApprovalFormStateChange = (TrackDevPortalRpApprovalFormStateChange) other;
-        return C12238m.areEqual(this.applicationId, trackDevPortalRpApprovalFormStateChange.applicationId) && C12238m.areEqual(this.botId, trackDevPortalRpApprovalFormStateChange.botId) && C12238m.areEqual(this.name, trackDevPortalRpApprovalFormStateChange.name) && C12238m.areEqual(this.hasBot, trackDevPortalRpApprovalFormStateChange.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackDevPortalRpApprovalFormStateChange.hasRedirectUri) && C12238m.areEqual(this.state, trackDevPortalRpApprovalFormStateChange.state) && C12238m.areEqual(this.joinRequest, trackDevPortalRpApprovalFormStateChange.joinRequest) && C12238m.areEqual(this.spectate, trackDevPortalRpApprovalFormStateChange.spectate);
+        return m.areEqual(this.applicationId, trackDevPortalRpApprovalFormStateChange.applicationId) && m.areEqual(this.botId, trackDevPortalRpApprovalFormStateChange.botId) && m.areEqual(this.name, trackDevPortalRpApprovalFormStateChange.name) && m.areEqual(this.hasBot, trackDevPortalRpApprovalFormStateChange.hasBot) && m.areEqual(this.hasRedirectUri, trackDevPortalRpApprovalFormStateChange.hasRedirectUri) && m.areEqual(this.state, trackDevPortalRpApprovalFormStateChange.state) && m.areEqual(this.joinRequest, trackDevPortalRpApprovalFormStateChange.joinRequest) && m.areEqual(this.spectate, trackDevPortalRpApprovalFormStateChange.spectate);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -58,21 +58,21 @@ public final /* data */ class TrackDevPortalRpApprovalFormStateChange implements
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDevPortalRpApprovalFormStateChange(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", hasBot=");
-        sbM833U.append(this.hasBot);
-        sbM833U.append(", hasRedirectUri=");
-        sbM833U.append(this.hasRedirectUri);
-        sbM833U.append(", state=");
-        sbM833U.append(this.state);
-        sbM833U.append(", joinRequest=");
-        sbM833U.append(this.joinRequest);
-        sbM833U.append(", spectate=");
-        return C1643a.m816D(sbM833U, this.spectate, ")");
+        StringBuilder sbU = a.U("TrackDevPortalRpApprovalFormStateChange(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", botId=");
+        sbU.append(this.botId);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", hasBot=");
+        sbU.append(this.hasBot);
+        sbU.append(", hasRedirectUri=");
+        sbU.append(this.hasRedirectUri);
+        sbU.append(", state=");
+        sbU.append(this.state);
+        sbU.append(", joinRequest=");
+        sbU.append(this.joinRequest);
+        sbU.append(", spectate=");
+        return a.D(sbU, this.spectate, ")");
     }
 }

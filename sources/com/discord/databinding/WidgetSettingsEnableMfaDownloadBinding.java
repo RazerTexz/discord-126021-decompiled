@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsEnableMfaDownloadBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17943a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17944b;
+    public final TextView f2616b;
 
     public WidgetSettingsEnableMfaDownloadBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView) {
-        this.f17943a = linearLayout;
-        this.f17944b = textView;
+        this.a = linearLayout;
+        this.f2616b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17943a;
+        return this.a;
     }
 }

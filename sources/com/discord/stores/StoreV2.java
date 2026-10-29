@@ -1,65 +1,27 @@
 package com.discord.stores;
 
-import androidx.exifinterface.media.ExifInterface;
 import com.discord.app.AppLog;
-import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.utilities.logging.Logger;
+import d0.t.r;
+import d0.z.d.m;
 import java.util.HashSet;
 import java.util.Set;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.reflect.KProperty;
-import p507d0.p580t.C12160r;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreV2.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public abstract class StoreV2 extends Store implements DispatchHandler, ObservationDeck.UpdateSource {
-    private final Set<ObservationDeck.UpdateSource> updateSources = new HashSet();
-
-    /* JADX INFO: compiled from: StoreV2.kt */
-    public final class MarkChangedDelegate<T> {
-        private final ObservationDeck.UpdateSource overrideUpdateSource;
-        private T value;
-
-        public MarkChangedDelegate(T t, ObservationDeck.UpdateSource updateSource) {
-            this.value = t;
-            this.overrideUpdateSource = updateSource;
-        }
-
-        public final T getValue(StoreV2 thisRef, KProperty<?> property) {
-            C12238m.checkNotNullParameter(property, "property");
-            return this.value;
-        }
-
-        public final void setValue(StoreV2 thisRef, KProperty<?> property, T value) {
-            C12238m.checkNotNullParameter(property, "property");
-            if (!C12238m.areEqual(this.value, value)) {
-                this.value = value;
-                ObservationDeck.UpdateSource updateSource = this.overrideUpdateSource;
-                if (updateSource != null) {
-                    if (thisRef != null) {
-                        thisRef.markChanged(updateSource);
-                    }
-                } else if (thisRef != null) {
-                    thisRef.markChanged();
-                }
-            }
-        }
-
-        public /* synthetic */ MarkChangedDelegate(Object obj, ObservationDeck.UpdateSource updateSource, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this(obj, (i & 2) != 0 ? null : updateSource);
-        }
-    }
+public abstract class StoreV2 extends Store implements DispatchHandler, ObservationDeck$UpdateSource {
+    private final Set<ObservationDeck$UpdateSource> updateSources = new HashSet();
 
     private final void assertStoreThread() {
         Thread threadCurrentThread = Thread.currentThread();
-        C12238m.checkNotNullExpressionValue(threadCurrentThread, "Thread.currentThread()");
-        if (threadCurrentThread.getId() != StoreStream.INSTANCE.getSTORE_THREAD_ID()) {
-            Logger.e$default(AppLog.f14950g, "markChanged() should be run from the Store Dispatcher", new IllegalStateException("Dispatch not run on store thread"), null, 4, null);
+        m.checkNotNullExpressionValue(threadCurrentThread, "Thread.currentThread()");
+        if (threadCurrentThread.getId() != StoreStream.Companion.getSTORE_THREAD_ID()) {
+            Logger.e$default(AppLog.g, "markChanged() should be run from the Store Dispatcher", new IllegalStateException("Dispatch not run on store thread"), null, 4, null);
         }
     }
 
-    public final Set<ObservationDeck.UpdateSource> getUpdateSources() {
+    public final Set<ObservationDeck$UpdateSource> getUpdateSources() {
         return this.updateSources;
     }
 
@@ -68,8 +30,8 @@ public abstract class StoreV2 extends Store implements DispatchHandler, Observat
         this.updateSources.add(this);
     }
 
-    public final void markUnchanged(ObservationDeck.UpdateSource updateSource) {
-        C12238m.checkNotNullParameter(updateSource, "updateSource");
+    public final void markUnchanged(ObservationDeck$UpdateSource updateSource) {
+        m.checkNotNullParameter(updateSource, "updateSource");
         assertStoreThread();
         this.updateSources.remove(updateSource);
     }
@@ -82,10 +44,10 @@ public abstract class StoreV2 extends Store implements DispatchHandler, Observat
     public void snapshotData() {
     }
 
-    public final void markChanged(ObservationDeck.UpdateSource... updates) {
-        C12238m.checkNotNullParameter(updates, "updates");
+    public final void markChanged(ObservationDeck$UpdateSource... updates) {
+        m.checkNotNullParameter(updates, "updates");
         assertStoreThread();
         markChanged();
-        C12160r.addAll(this.updateSources, updates);
+        r.addAll(this.updateSources, updates);
     }
 }

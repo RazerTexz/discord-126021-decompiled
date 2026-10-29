@@ -10,37 +10,33 @@ import com.discord.utilities.view.recycler.MaxHeightRecyclerView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSelectComponentBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f17449a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17450b;
+    public final TextView f2532b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaxHeightRecyclerView f17451c;
+    public final MaxHeightRecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17452d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17453e;
+    public final TextView e;
 
     public WidgetSelectComponentBottomSheetBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ConstraintLayout constraintLayout2, @NonNull TextView textView, @NonNull MaxHeightRecyclerView maxHeightRecyclerView, @NonNull TextView textView2, @NonNull TextView textView3) {
-        this.f17449a = constraintLayout;
-        this.f17450b = textView;
-        this.f17451c = maxHeightRecyclerView;
-        this.f17452d = textView2;
-        this.f17453e = textView3;
+        this.a = constraintLayout;
+        this.f2532b = textView;
+        this.c = maxHeightRecyclerView;
+        this.d = textView2;
+        this.e = textView3;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17449a;
+        return this.a;
     }
 }

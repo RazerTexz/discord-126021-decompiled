@@ -4,16 +4,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetMemberVerificationPendingDialogBinding;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MemberVerificationPendingDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class MemberVerificationPendingDialog$binding$2 extends C12236k implements Function1<View, WidgetMemberVerificationPendingDialogBinding> {
+public final /* synthetic */ class MemberVerificationPendingDialog$binding$2 extends k implements Function1<View, WidgetMemberVerificationPendingDialogBinding> {
     public static final MemberVerificationPendingDialog$binding$2 INSTANCE = new MemberVerificationPendingDialog$binding$2();
 
     public MemberVerificationPendingDialog$binding$2() {
@@ -21,25 +21,30 @@ public final /* synthetic */ class MemberVerificationPendingDialog$binding$2 ext
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetMemberVerificationPendingDialogBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.member_verification_pending_img;
-        ImageView imageView = (ImageView) view.findViewById(C5419R.id.member_verification_pending_img);
+    public /* bridge */ /* synthetic */ WidgetMemberVerificationPendingDialogBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetMemberVerificationPendingDialogBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.member_verification_pending_img;
+        ImageView imageView = (ImageView) view.findViewById(R$id.member_verification_pending_img);
         if (imageView != null) {
-            i = C5419R.id.member_verification_primary_btn;
-            MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.member_verification_primary_btn);
+            i = R$id.member_verification_primary_btn;
+            MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.member_verification_primary_btn);
             if (materialButton != null) {
-                i = C5419R.id.member_verification_secondary_btn;
-                MaterialButton materialButton2 = (MaterialButton) view.findViewById(C5419R.id.member_verification_secondary_btn);
+                i = R$id.member_verification_secondary_btn;
+                MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.member_verification_secondary_btn);
                 if (materialButton2 != null) {
-                    i = C5419R.id.member_verification_tertiary_btn;
-                    TextView textView = (TextView) view.findViewById(C5419R.id.member_verification_tertiary_btn);
+                    i = R$id.member_verification_tertiary_btn;
+                    TextView textView = (TextView) view.findViewById(R$id.member_verification_tertiary_btn);
                     if (textView != null) {
-                        i = C5419R.id.pending_dialog_desc;
-                        TextView textView2 = (TextView) view.findViewById(C5419R.id.pending_dialog_desc);
+                        i = R$id.pending_dialog_desc;
+                        TextView textView2 = (TextView) view.findViewById(R$id.pending_dialog_desc);
                         if (textView2 != null) {
-                            i = C5419R.id.pending_dialog_title;
-                            TextView textView3 = (TextView) view.findViewById(C5419R.id.pending_dialog_title);
+                            i = R$id.pending_dialog_title;
+                            TextView textView3 = (TextView) view.findViewById(R$id.pending_dialog_title);
                             if (textView3 != null) {
                                 return new WidgetMemberVerificationPendingDialogBinding((RelativeLayout) view, imageView, materialButton, materialButton2, textView, textView2, textView3);
                             }

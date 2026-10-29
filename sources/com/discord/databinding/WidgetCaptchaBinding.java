@@ -11,32 +11,29 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetCaptchaBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f15795a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15796b;
+    public final TextView f2250b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f15797c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ScreenTitleView f15798d;
+    public final ScreenTitleView d;
 
     public WidgetCaptchaBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextView textView, @NonNull MaterialButton materialButton, @NonNull ScreenTitleView screenTitleView) {
-        this.f15795a = coordinatorLayout;
-        this.f15796b = textView;
-        this.f15797c = materialButton;
-        this.f15798d = screenTitleView;
+        this.a = coordinatorLayout;
+        this.f2250b = textView;
+        this.c = materialButton;
+        this.d = screenTitleView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15795a;
+        return this.a;
     }
 }

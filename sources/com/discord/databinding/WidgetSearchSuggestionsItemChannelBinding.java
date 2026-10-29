@@ -10,27 +10,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSearchSuggestionsItemChannelBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17432a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RelativeLayout f17433b;
+    public final RelativeLayout f2527b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17434c;
+    public final TextView c;
 
     public WidgetSearchSuggestionsItemChannelBinding(@NonNull RelativeLayout relativeLayout, @NonNull RelativeLayout relativeLayout2, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f17432a = relativeLayout;
-        this.f17433b = relativeLayout2;
-        this.f17434c = textView;
+        this.a = relativeLayout;
+        this.f2527b = relativeLayout2;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17432a;
+        return this.a;
     }
 }

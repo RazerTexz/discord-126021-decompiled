@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input.sticker;
 
+import b.d.b.a.a;
 import com.discord.api.sticker.Sticker;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StickerPackStoreSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,9 +14,9 @@ public final /* data */ class StickerPackStoreSheetAnalytics {
     private final StickerPackStoreSheetViewType type;
 
     public StickerPackStoreSheetAnalytics(Sticker sticker, StickerPackStoreSheetViewType stickerPackStoreSheetViewType, String str, String str2) {
-        C12238m.checkNotNullParameter(sticker, "sticker");
-        C12238m.checkNotNullParameter(stickerPackStoreSheetViewType, "type");
-        C12238m.checkNotNullParameter(str2, "section");
+        m.checkNotNullParameter(sticker, "sticker");
+        m.checkNotNullParameter(stickerPackStoreSheetViewType, "type");
+        m.checkNotNullParameter(str2, "section");
         this.sticker = sticker;
         this.type = stickerPackStoreSheetViewType;
         this.location = str;
@@ -40,9 +40,9 @@ public final /* data */ class StickerPackStoreSheetAnalytics {
     }
 
     public final StickerPackStoreSheetAnalytics copy(Sticker sticker, StickerPackStoreSheetViewType type, String location, String section) {
-        C12238m.checkNotNullParameter(sticker, "sticker");
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(section, "section");
+        m.checkNotNullParameter(sticker, "sticker");
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(section, "section");
         return new StickerPackStoreSheetAnalytics(sticker, type, location, section);
     }
 
@@ -54,7 +54,7 @@ public final /* data */ class StickerPackStoreSheetAnalytics {
             return false;
         }
         StickerPackStoreSheetAnalytics stickerPackStoreSheetAnalytics = (StickerPackStoreSheetAnalytics) other;
-        return C12238m.areEqual(this.sticker, stickerPackStoreSheetAnalytics.sticker) && C12238m.areEqual(this.type, stickerPackStoreSheetAnalytics.type) && C12238m.areEqual(this.location, stickerPackStoreSheetAnalytics.location) && C12238m.areEqual(this.section, stickerPackStoreSheetAnalytics.section);
+        return m.areEqual(this.sticker, stickerPackStoreSheetAnalytics.sticker) && m.areEqual(this.type, stickerPackStoreSheetAnalytics.type) && m.areEqual(this.location, stickerPackStoreSheetAnalytics.location) && m.areEqual(this.section, stickerPackStoreSheetAnalytics.section);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -105,13 +105,13 @@ public final /* data */ class StickerPackStoreSheetAnalytics {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StickerPackStoreSheetAnalytics(sticker=");
-        sbM833U.append(this.sticker);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", location=");
-        sbM833U.append(this.location);
-        sbM833U.append(", section=");
-        return C1643a.m822J(sbM833U, this.section, ")");
+        StringBuilder sbU = a.U("StickerPackStoreSheetAnalytics(sticker=");
+        sbU.append(this.sticker);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", location=");
+        sbU.append(this.location);
+        sbU.append(", section=");
+        return a.J(sbU, this.section, ")");
     }
 }

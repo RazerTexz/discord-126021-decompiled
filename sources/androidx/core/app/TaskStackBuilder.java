@@ -5,7 +5,7 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.pm.PackageManager$NameNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -19,11 +19,6 @@ public final class TaskStackBuilder implements Iterable<Intent> {
     private static final String TAG = "TaskStackBuilder";
     private final Context mSourceContext;
     private final ArrayList<Intent> mIntents = new ArrayList<>();
-
-    public interface SupportParentable {
-        @Nullable
-        Intent getSupportParentActivityIntent();
-    }
 
     private TaskStackBuilder(Context context) {
         this.mSourceContext = context;
@@ -51,7 +46,7 @@ public final class TaskStackBuilder implements Iterable<Intent> {
     /* JADX WARN: Multi-variable type inference failed */
     @NonNull
     public TaskStackBuilder addParentStack(@NonNull Activity activity) {
-        Intent supportParentActivityIntent = activity instanceof SupportParentable ? ((SupportParentable) activity).getSupportParentActivityIntent() : null;
+        Intent supportParentActivityIntent = activity instanceof TaskStackBuilder$SupportParentable ? ((TaskStackBuilder$SupportParentable) activity).getSupportParentActivityIntent() : null;
         if (supportParentActivityIntent == null) {
             supportParentActivityIntent = NavUtils.getParentActivityIntent(activity);
         }
@@ -159,7 +154,7 @@ public final class TaskStackBuilder implements Iterable<Intent> {
                 parentActivityIntent = NavUtils.getParentActivityIntent(this.mSourceContext, parentActivityIntent.getComponent());
             }
             return this;
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (PackageManager$NameNotFoundException e) {
             Log.e(TAG, "Bad ComponentName while traversing activity parent metadata");
             throw new IllegalArgumentException(e);
         }

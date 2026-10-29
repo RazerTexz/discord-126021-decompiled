@@ -10,32 +10,29 @@ import com.discord.views.LoadingButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetThreadStatusBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f18289a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ConstraintLayout f18290b;
+    public final ConstraintLayout f2673b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final LoadingButton f18291c;
+    public final LoadingButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final LinkifiedTextView f18292d;
+    public final LinkifiedTextView d;
 
     public WidgetThreadStatusBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ConstraintLayout constraintLayout2, @NonNull LoadingButton loadingButton, @NonNull LinkifiedTextView linkifiedTextView) {
-        this.f18289a = constraintLayout;
-        this.f18290b = constraintLayout2;
-        this.f18291c = loadingButton;
-        this.f18292d = linkifiedTextView;
+        this.a = constraintLayout;
+        this.f2673b = constraintLayout2;
+        this.c = loadingButton;
+        this.d = linkifiedTextView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18289a;
+        return this.a;
     }
 }

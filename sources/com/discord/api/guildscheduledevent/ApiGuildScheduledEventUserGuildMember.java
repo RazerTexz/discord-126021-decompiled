@@ -1,12 +1,12 @@
 package com.discord.api.guildscheduledevent;
 
+import b.d.b.a.a;
 import com.discord.api.guildmember.GuildMember;
 import com.discord.api.user.User;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApiGuildScheduledEventUser.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,6 +18,11 @@ public final /* data */ class ApiGuildScheduledEventUserGuildMember {
     private final String premiumSince;
     private final List<Long> roles;
 
+    public final GuildMember a(User user, long guildId) {
+        m.checkNotNullParameter(user, "user");
+        return new GuildMember(guildId, user, this.roles, this.nick, this.premiumSince, this.joinedAt, this.pending, null, Long.valueOf(user.getId()), this.avatar, null, null, null, 4096);
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -26,7 +31,7 @@ public final /* data */ class ApiGuildScheduledEventUserGuildMember {
             return false;
         }
         ApiGuildScheduledEventUserGuildMember apiGuildScheduledEventUserGuildMember = (ApiGuildScheduledEventUserGuildMember) other;
-        return C12238m.areEqual(this.roles, apiGuildScheduledEventUserGuildMember.roles) && C12238m.areEqual(this.nick, apiGuildScheduledEventUserGuildMember.nick) && C12238m.areEqual(this.premiumSince, apiGuildScheduledEventUserGuildMember.premiumSince) && C12238m.areEqual(this.joinedAt, apiGuildScheduledEventUserGuildMember.joinedAt) && this.pending == apiGuildScheduledEventUserGuildMember.pending && C12238m.areEqual(this.avatar, apiGuildScheduledEventUserGuildMember.avatar);
+        return m.areEqual(this.roles, apiGuildScheduledEventUserGuildMember.roles) && m.areEqual(this.nick, apiGuildScheduledEventUserGuildMember.nick) && m.areEqual(this.premiumSince, apiGuildScheduledEventUserGuildMember.premiumSince) && m.areEqual(this.joinedAt, apiGuildScheduledEventUserGuildMember.joinedAt) && this.pending == apiGuildScheduledEventUserGuildMember.pending && m.areEqual(this.avatar, apiGuildScheduledEventUserGuildMember.avatar);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -52,24 +57,18 @@ public final /* data */ class ApiGuildScheduledEventUserGuildMember {
         return i + (str3 != null ? str3.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final GuildMember m7970a(User user, long guildId) {
-        C12238m.checkNotNullParameter(user, "user");
-        return new GuildMember(guildId, user, this.roles, this.nick, this.premiumSince, this.joinedAt, this.pending, null, Long.valueOf(user.getId()), this.avatar, null, null, null, 4096);
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApiGuildScheduledEventUserGuildMember(roles=");
-        sbM833U.append(this.roles);
-        sbM833U.append(", nick=");
-        sbM833U.append(this.nick);
-        sbM833U.append(", premiumSince=");
-        sbM833U.append(this.premiumSince);
-        sbM833U.append(", joinedAt=");
-        sbM833U.append(this.joinedAt);
-        sbM833U.append(", pending=");
-        sbM833U.append(this.pending);
-        sbM833U.append(", avatar=");
-        return C1643a.m822J(sbM833U, this.avatar, ")");
+        StringBuilder sbU = a.U("ApiGuildScheduledEventUserGuildMember(roles=");
+        sbU.append(this.roles);
+        sbU.append(", nick=");
+        sbU.append(this.nick);
+        sbU.append(", premiumSince=");
+        sbU.append(this.premiumSince);
+        sbU.append(", joinedAt=");
+        sbU.append(this.joinedAt);
+        sbU.append(", pending=");
+        sbU.append(this.pending);
+        sbU.append(", avatar=");
+        return a.J(sbU, this.avatar, ")");
     }
 }

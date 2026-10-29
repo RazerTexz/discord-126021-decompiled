@@ -1,10 +1,10 @@
 package com.discord.widgets.chat.input;
 
 import androidx.exifinterface.media.ExifInterface;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetChatInputMentionsTags.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,8 +15,8 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
 
     /* JADX WARN: Multi-variable type inference failed */
     public WidgetChatInputMentionsTags(List<? extends T> list, char c, String str) {
-        C12238m.checkNotNullParameter(list, ModelAuditLogEntry.CHANGE_KEY_TAGS);
-        C12238m.checkNotNullParameter(str, "token");
+        m.checkNotNullParameter(list, ModelAuditLogEntry.CHANGE_KEY_TAGS);
+        m.checkNotNullParameter(str, "token");
         this.tags = list;
         this.tokenIdentifier = c;
         this.token = str;
@@ -41,8 +41,8 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
     }
 
     public final WidgetChatInputMentionsTags<T> copy(List<? extends T> tags, char tokenIdentifier, String token) {
-        C12238m.checkNotNullParameter(tags, ModelAuditLogEntry.CHANGE_KEY_TAGS);
-        C12238m.checkNotNullParameter(token, "token");
+        m.checkNotNullParameter(tags, ModelAuditLogEntry.CHANGE_KEY_TAGS);
+        m.checkNotNullParameter(token, "token");
         return new WidgetChatInputMentionsTags<>(tags, tokenIdentifier, token);
     }
 
@@ -54,7 +54,7 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
             return false;
         }
         WidgetChatInputMentionsTags widgetChatInputMentionsTags = (WidgetChatInputMentionsTags) other;
-        return C12238m.areEqual(this.tags, widgetChatInputMentionsTags.tags) && this.tokenIdentifier == widgetChatInputMentionsTags.tokenIdentifier && C12238m.areEqual(this.token, widgetChatInputMentionsTags.token);
+        return m.areEqual(this.tags, widgetChatInputMentionsTags.tags) && this.tokenIdentifier == widgetChatInputMentionsTags.tokenIdentifier && m.areEqual(this.token, widgetChatInputMentionsTags.token);
     }
 
     public final List<T> getTags() {
@@ -87,11 +87,11 @@ public final /* data */ class WidgetChatInputMentionsTags<T> {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("WidgetChatInputMentionsTags(tags=");
-        sbM833U.append(this.tags);
-        sbM833U.append(", tokenIdentifier=");
-        sbM833U.append(this.tokenIdentifier);
-        sbM833U.append(", token=");
-        return C1643a.m822J(sbM833U, this.token, ")");
+        StringBuilder sbU = a.U("WidgetChatInputMentionsTags(tags=");
+        sbU.append(this.tags);
+        sbU.append(", tokenIdentifier=");
+        sbU.append(this.tokenIdentifier);
+        sbU.append(", token=");
+        return a.J(sbU, this.token, ")");
     }
 }

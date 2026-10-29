@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelEmailChangeConfirm.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -9,7 +9,7 @@ public final /* data */ class ModelEmailChangeConfirm {
     private final String token;
 
     public ModelEmailChangeConfirm(String str) {
-        C12238m.checkNotNullParameter(str, "token");
+        m.checkNotNullParameter(str, "token");
         this.token = str;
     }
 
@@ -21,13 +21,13 @@ public final /* data */ class ModelEmailChangeConfirm {
     }
 
     public final ModelEmailChangeConfirm copy(String token) {
-        C12238m.checkNotNullParameter(token, "token");
+        m.checkNotNullParameter(token, "token");
         return new ModelEmailChangeConfirm(token);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ModelEmailChangeConfirm) && C12238m.areEqual(this.token, ((ModelEmailChangeConfirm) other).token);
+            return (other instanceof ModelEmailChangeConfirm) && m.areEqual(this.token, ((ModelEmailChangeConfirm) other).token);
         }
         return true;
     }
@@ -50,6 +50,6 @@ public final /* data */ class ModelEmailChangeConfirm {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("ModelEmailChangeConfirm(token="), this.token, ")");
+        return a.J(a.U("ModelEmailChangeConfirm(token="), this.token, ")");
     }
 }

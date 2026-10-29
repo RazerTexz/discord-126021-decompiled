@@ -11,32 +11,29 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetManageReactionsResultUserBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17224a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f17225b;
+    public final ImageView f2485b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f17226c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17227d;
+    public final TextView d;
 
     public WidgetManageReactionsResultUserBinding(@NonNull RelativeLayout relativeLayout, @NonNull ImageView imageView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView) {
-        this.f17224a = relativeLayout;
-        this.f17225b = imageView;
-        this.f17226c = simpleDraweeView;
-        this.f17227d = textView;
+        this.a = relativeLayout;
+        this.f2485b = imageView;
+        this.c = simpleDraweeView;
+        this.d = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17224a;
+        return this.a;
     }
 }

@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuildLfgGroup;
 import com.discord.analytics.generated.traits.TrackGuildLfgGroupReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackRemoveChannelRecipient.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackRemoveChannelRecipient implements AnalyticsSc
             return false;
         }
         TrackRemoveChannelRecipient trackRemoveChannelRecipient = (TrackRemoveChannelRecipient) other;
-        return C12238m.areEqual(this.channelId, trackRemoveChannelRecipient.channelId) && C12238m.areEqual(this.channelType, trackRemoveChannelRecipient.channelType) && C12238m.areEqual(this.owner, trackRemoveChannelRecipient.owner) && C12238m.areEqual(this.recipientId, trackRemoveChannelRecipient.recipientId) && C12238m.areEqual(this.recipientIds, trackRemoveChannelRecipient.recipientIds) && C12238m.areEqual(this.removeType, trackRemoveChannelRecipient.removeType);
+        return m.areEqual(this.channelId, trackRemoveChannelRecipient.channelId) && m.areEqual(this.channelType, trackRemoveChannelRecipient.channelType) && m.areEqual(this.owner, trackRemoveChannelRecipient.owner) && m.areEqual(this.recipientId, trackRemoveChannelRecipient.recipientId) && m.areEqual(this.recipientIds, trackRemoveChannelRecipient.recipientIds) && m.areEqual(this.removeType, trackRemoveChannelRecipient.removeType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -55,17 +55,17 @@ public final /* data */ class TrackRemoveChannelRecipient implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRemoveChannelRecipient(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", owner=");
-        sbM833U.append(this.owner);
-        sbM833U.append(", recipientId=");
-        sbM833U.append(this.recipientId);
-        sbM833U.append(", recipientIds=");
-        sbM833U.append(this.recipientIds);
-        sbM833U.append(", removeType=");
-        return C1643a.m817E(sbM833U, this.removeType, ")");
+        StringBuilder sbU = a.U("TrackRemoveChannelRecipient(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", owner=");
+        sbU.append(this.owner);
+        sbU.append(", recipientId=");
+        sbU.append(this.recipientId);
+        sbU.append(", recipientIds=");
+        sbU.append(this.recipientIds);
+        sbU.append(", removeType=");
+        return a.E(sbU, this.removeType, ")");
     }
 }

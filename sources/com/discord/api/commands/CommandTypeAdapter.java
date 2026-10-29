@@ -3,20 +3,20 @@ package com.discord.api.commands;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import d0.z.d.m;
 import java.io.IOException;
 import java.util.Objects;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationCommandType.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class CommandTypeAdapter extends TypeAdapter<ApplicationCommandType> {
     @Override // com.google.gson.TypeAdapter
     public ApplicationCommandType read(JsonReader jsonReader) throws IOException {
-        C12238m.checkNotNullParameter(jsonReader, "in");
-        ApplicationCommandType.Companion companion = ApplicationCommandType.INSTANCE;
-        int iMo6891y = jsonReader.mo6891y();
-        Objects.requireNonNull(companion);
-        switch (iMo6891y) {
+        m.checkNotNullParameter(jsonReader, "in");
+        ApplicationCommandType$Companion applicationCommandType$Companion = ApplicationCommandType.Companion;
+        int iY = jsonReader.y();
+        Objects.requireNonNull(applicationCommandType$Companion);
+        switch (iY) {
             case 1:
                 return ApplicationCommandType.SUBCOMMAND;
             case 2:
@@ -47,11 +47,11 @@ public final class CommandTypeAdapter extends TypeAdapter<ApplicationCommandType
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, ApplicationCommandType applicationCommandType) throws IOException {
         ApplicationCommandType applicationCommandType2 = applicationCommandType;
-        C12238m.checkNotNullParameter(jsonWriter, "out");
+        m.checkNotNullParameter(jsonWriter, "out");
         if (applicationCommandType2 != null) {
-            jsonWriter.mo6894D(Integer.valueOf(applicationCommandType2.getType()));
+            jsonWriter.D(Integer.valueOf(applicationCommandType2.getType()));
         } else {
-            jsonWriter.mo6905s();
+            jsonWriter.s();
         }
     }
 }

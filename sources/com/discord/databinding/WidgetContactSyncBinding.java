@@ -4,63 +4,56 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.j0;
+import b.a.i.k0;
+import b.a.i.l0;
+import b.a.i.m0;
+import b.a.i.n0;
+import b.a.i.p0;
 import com.discord.app.AppViewFlipper;
-import p007b.p008a.p025i.C0982j0;
-import p007b.p008a.p025i.C0989k0;
-import p007b.p008a.p025i.C0996l0;
-import p007b.p008a.p025i.C1003m0;
-import p007b.p008a.p025i.C1010n0;
-import p007b.p008a.p025i.C1024p0;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetContactSyncBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16409a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final C0982j0 f16410b;
+    public final j0 f2355b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final C1003m0 f16411c;
+    public final m0 c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final C1010n0 f16412d;
+    public final n0 d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final C0989k0 f16413e;
+    public final k0 e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final C0996l0 f16414f;
+    public final l0 f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final C1024p0 f16415g;
+    public final p0 g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final AppViewFlipper f16416h;
+    public final AppViewFlipper h;
 
-    public WidgetContactSyncBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull C0982j0 c0982j0, @NonNull C1003m0 c1003m0, @NonNull C1010n0 c1010n0, @NonNull C0989k0 c0989k0, @NonNull C0996l0 c0996l0, @NonNull C1024p0 c1024p0, @NonNull AppViewFlipper appViewFlipper) {
-        this.f16409a = coordinatorLayout;
-        this.f16410b = c0982j0;
-        this.f16411c = c1003m0;
-        this.f16412d = c1010n0;
-        this.f16413e = c0989k0;
-        this.f16414f = c0996l0;
-        this.f16415g = c1024p0;
-        this.f16416h = appViewFlipper;
+    public WidgetContactSyncBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull j0 j0Var, @NonNull m0 m0Var, @NonNull n0 n0Var, @NonNull k0 k0Var, @NonNull l0 l0Var, @NonNull p0 p0Var, @NonNull AppViewFlipper appViewFlipper) {
+        this.a = coordinatorLayout;
+        this.f2355b = j0Var;
+        this.c = m0Var;
+        this.d = n0Var;
+        this.e = k0Var;
+        this.f = l0Var;
+        this.g = p0Var;
+        this.h = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16409a;
+        return this.a;
     }
 }

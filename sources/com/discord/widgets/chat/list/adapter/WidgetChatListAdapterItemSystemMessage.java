@@ -8,8 +8,9 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
-import com.discord.C5419R;
-import com.discord.api.message.MessageReference;
+import b.d.b.a.a;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.api.message.embed.MessageEmbed;
 import com.discord.api.message.role_subscription.RoleSubscriptionData;
 import com.discord.api.user.User;
@@ -18,34 +19,26 @@ import com.discord.databinding.WidgetChatListAdapterItemSystemBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
+import com.discord.models.member.GuildMember$Companion;
 import com.discord.models.message.Message;
 import com.discord.models.user.CoreUser;
-import com.discord.utilities.analytics.AnalyticsTracker;
-import com.discord.utilities.analytics.Traits;
-import com.discord.utilities.channel.ChannelSelector;
+import com.discord.utilities.analytics.Traits$Payment$Type;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.guildautomod.AutoModUtils;
 import com.discord.utilities.icon.IconUtils;
-import com.discord.utilities.message.MessageUtils;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.sticker.StickerView;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageEntry;
-import com.discord.widgets.servers.guildboost.WidgetGuildBoost;
 import com.facebook.drawee.view.SimpleDraweeView;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Map;
 import kotlin.NoWhenBranchMatchedException;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
-import p007b.p008a.p027k.C1107b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Subscription;
+import rx.Subscription;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -53,185 +46,58 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
     private final WidgetChatListAdapterItemSystemBinding binding;
     private Subscription subscription;
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$1 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public final class C81301 extends AbstractC12240o implements Function1<Context, CharSequence> {
-        public final /* synthetic */ Function1 $actorRenderContext;
-        public final /* synthetic */ String $authorName;
-        public final /* synthetic */ Function1 $autoModRenderContext;
-        public final /* synthetic */ int $autoModSystemMessage;
-        public final /* synthetic */ Context $context;
-        public final /* synthetic */ Long $firstMentionedUserId;
-        public final /* synthetic */ String $firstMentionedUserName;
-        public final /* synthetic */ String $guildName;
-        public final /* synthetic */ Function1 $roleSubscriptionPurchaseContext;
-        public final /* synthetic */ Message $this_getSystemMessage;
-        public final /* synthetic */ Function1 $usernameRenderContext;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C81301(Message message, String str, String str2, Function1 function1, Long l, Context context, String str3, Function1 function2, int i, Function1 function3, Function1 function4) {
-            super(1);
-            this.$this_getSystemMessage = message;
-            this.$authorName = str;
-            this.$firstMentionedUserName = str2;
-            this.$usernameRenderContext = function1;
-            this.$firstMentionedUserId = l;
-            this.$context = context;
-            this.$guildName = str3;
-            this.$actorRenderContext = function2;
-            this.$autoModSystemMessage = i;
-            this.$autoModRenderContext = function3;
-            this.$roleSubscriptionPurchaseContext = function4;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public final CharSequence invoke(Context context) {
-            C12238m.checkNotNullParameter(context, "$this$getString");
-            Integer type = this.$this_getSystemMessage.getType();
-            if (type != null && type.intValue() == 1) {
-                return C1107b.m210b(context, C5419R.string.system_message_recipient_add, new Object[]{this.$authorName, this.$firstMentionedUserName}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 2) {
-                Long l = this.$firstMentionedUserId;
-                User author = this.$this_getSystemMessage.getAuthor();
-                return C12238m.areEqual(l, author != null ? Long.valueOf(author.getId()) : null) ? C1107b.m210b(context, C5419R.string.system_message_recipient_remove_self, new Object[]{this.$authorName}, this.$usernameRenderContext) : C1107b.m210b(context, C5419R.string.system_message_recipient_remove, new Object[]{this.$authorName, this.$firstMentionedUserName}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 4) {
-                return C1107b.m210b(context, C5419R.string.system_message_channel_name_change, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 5) {
-                return C1107b.m210b(context, C5419R.string.system_message_channel_icon_change, new Object[]{this.$authorName}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 6) {
-                return C1107b.m210b(context, C5419R.string.system_message_pinned_message_no_cta, new Object[]{this.$authorName}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 7) {
-                return C1107b.m210b(context, MessageUtils.INSTANCE.getSystemMessageUserJoin(this.$context, this.$this_getSystemMessage.getId()), new Object[]{this.$authorName}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 8) {
-                String content = this.$this_getSystemMessage.getContent();
-                int i = content == null || content.length() == 0 ? 1 : Integer.parseInt(this.$this_getSystemMessage.getContent());
-                return i > 1 ? C1107b.m210b(context, C5419R.string.system_message_guild_member_subscribed_many, new Object[]{this.$authorName, String.valueOf(i)}, this.$usernameRenderContext) : C1107b.m210b(context, C5419R.string.system_message_guild_member_subscribed, new Object[]{this.$authorName}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 9) {
-                return C1107b.m210b(context, C5419R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, C1107b.m216h(context, C5419R.string.premium_guild_tier_1, new Object[0], null, 4)}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 10) {
-                return C1107b.m210b(context, C5419R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, C1107b.m216h(context, C5419R.string.premium_guild_tier_2, new Object[0], null, 4)}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 11) {
-                return C1107b.m210b(context, C5419R.string.system_message_guild_member_subscribed_achieved_tier, new Object[]{this.$authorName, this.$guildName, C1107b.m216h(context, C5419R.string.premium_guild_tier_3, new Object[0], null, 4)}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 12) {
-                return C1107b.m210b(context, C5419R.string.system_message_channel_follow_add, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$usernameRenderContext);
-            }
-            if (type != null && type.intValue() == 14) {
-                return C1107b.m216h(context, C5419R.string.system_message_guild_discovery_disqualified_mobile, new Object[0], null, 4);
-            }
-            if (type != null && type.intValue() == 15) {
-                return C1107b.m216h(context, C5419R.string.system_message_guild_discovery_requalified, new Object[0], null, 4);
-            }
-            if (type != null && type.intValue() == 16) {
-                return C1107b.m216h(context, C5419R.string.system_message_guild_discovery_grace_period_initial_warning, new Object[0], null, 4);
-            }
-            if (type != null && type.intValue() == 17) {
-                return C1107b.m216h(context, C5419R.string.system_message_guild_discovery_grace_period_final_warning, new Object[0], null, 4);
-            }
-            if (type != null && type.intValue() == 18) {
-                return C1107b.m210b(context, C5419R.string.system_message_thread_created_mobile, new Object[]{this.$authorName, this.$this_getSystemMessage.getContent()}, this.$actorRenderContext);
-            }
-            if (type != null && type.intValue() == -7) {
-                return C1107b.m216h(context, C5419R.string.thread_starter_message_not_loaded, new Object[0], null, 4);
-            }
-            if (type != null && type.intValue() == 24) {
-                return C1107b.m210b(context, this.$autoModSystemMessage, new Object[0], this.$autoModRenderContext);
-            }
-            return (type != null && type.intValue() == 25) ? MessageUtils.INSTANCE.getSystemMessageRoleSubscriptionPurchase(this.$context, this.$guildName, this.$authorName, this.$this_getSystemMessage.getRoleSubscriptionData(), this.$roleSubscriptionPurchaseContext) : C1107b.m216h(context, C5419R.string.reply_quote_message_not_loaded, new Object[0], null, 4);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$onConfigure$2 */
-    /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public final class C81362 extends AbstractC12240o implements Function1<View, Unit> {
-        public final /* synthetic */ Message $message;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C81362(Message message) {
-            super(1);
-            this.$message = message;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-            WidgetChatListAdapter.EventHandler eventHandler = WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getEventHandler();
-            Message message = this.$message;
-            LinkifiedTextView linkifiedTextView = WidgetChatListAdapterItemSystemMessage.this.binding.f16313h;
-            C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
-            CharSequence text = linkifiedTextView.getText();
-            C12238m.checkNotNullExpressionValue(text, "binding.systemText.text");
-            eventHandler.onMessageLongClicked(message, text, false);
-        }
-    }
-
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetChatListAdapterItemSystemMessage(WidgetChatListAdapter widgetChatListAdapter) {
-        super(C5419R.layout.widget_chat_list_adapter_item_system, widgetChatListAdapter);
-        C12238m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        super(R$layout.widget_chat_list_adapter_item_system, widgetChatListAdapter);
+        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         View view = this.itemView;
-        int i = C5419R.id.chat_list_adapter_item_thread_embed_spine;
-        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(C5419R.id.chat_list_adapter_item_thread_embed_spine);
+        int i = R$id.chat_list_adapter_item_thread_embed_spine;
+        AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.chat_list_adapter_item_thread_embed_spine);
         if (appCompatImageView != null) {
-            i = C5419R.id.role_subscription_badge_dummy_view;
-            View viewFindViewById = view.findViewById(C5419R.id.role_subscription_badge_dummy_view);
+            i = R$id.role_subscription_badge_dummy_view;
+            View viewFindViewById = view.findViewById(R$id.role_subscription_badge_dummy_view);
             if (viewFindViewById != null) {
-                i = C5419R.id.role_subscription_purchase_badge;
-                AppCompatImageView appCompatImageView2 = (AppCompatImageView) view.findViewById(C5419R.id.role_subscription_purchase_badge);
+                i = R$id.role_subscription_purchase_badge;
+                AppCompatImageView appCompatImageView2 = (AppCompatImageView) view.findViewById(R$id.role_subscription_purchase_badge);
                 if (appCompatImageView2 != null) {
-                    i = C5419R.id.role_subscription_purchase_lanyard;
-                    AppCompatImageView appCompatImageView3 = (AppCompatImageView) view.findViewById(C5419R.id.role_subscription_purchase_lanyard);
+                    i = R$id.role_subscription_purchase_lanyard;
+                    AppCompatImageView appCompatImageView3 = (AppCompatImageView) view.findViewById(R$id.role_subscription_purchase_lanyard);
                     if (appCompatImageView3 != null) {
-                        i = C5419R.id.role_subscription_purchase_welcome;
-                        TextView textView = (TextView) view.findViewById(C5419R.id.role_subscription_purchase_welcome);
+                        i = R$id.role_subscription_purchase_welcome;
+                        TextView textView = (TextView) view.findViewById(R$id.role_subscription_purchase_welcome);
                         if (textView != null) {
-                            i = C5419R.id.role_subscription_purchase_welcome_card;
-                            ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(C5419R.id.role_subscription_purchase_welcome_card);
+                            i = R$id.role_subscription_purchase_welcome_card;
+                            ConstraintLayout constraintLayout = (ConstraintLayout) view.findViewById(R$id.role_subscription_purchase_welcome_card);
                             if (constraintLayout != null) {
-                                i = C5419R.id.role_subscription_purchaser_avatar;
-                                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(C5419R.id.role_subscription_purchaser_avatar);
+                                i = R$id.role_subscription_purchaser_avatar;
+                                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.role_subscription_purchaser_avatar);
                                 if (simpleDraweeView != null) {
-                                    i = C5419R.id.role_subscription_purchaser_username;
-                                    TextView textView2 = (TextView) view.findViewById(C5419R.id.role_subscription_purchaser_username);
+                                    i = R$id.role_subscription_purchaser_username;
+                                    TextView textView2 = (TextView) view.findViewById(R$id.role_subscription_purchaser_username);
                                     if (textView2 != null) {
-                                        i = C5419R.id.system_icon;
-                                        ImageView imageView = (ImageView) view.findViewById(C5419R.id.system_icon);
+                                        i = R$id.system_icon;
+                                        ImageView imageView = (ImageView) view.findViewById(R$id.system_icon);
                                         if (imageView != null) {
-                                            i = C5419R.id.system_icon_automod;
-                                            ImageView imageView2 = (ImageView) view.findViewById(C5419R.id.system_icon_automod);
+                                            i = R$id.system_icon_automod;
+                                            ImageView imageView2 = (ImageView) view.findViewById(R$id.system_icon_automod);
                                             if (imageView2 != null) {
-                                                i = C5419R.id.system_text;
-                                                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(C5419R.id.system_text);
+                                                i = R$id.system_text;
+                                                LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.system_text);
                                                 if (linkifiedTextView != null) {
-                                                    i = C5419R.id.system_timestamp;
-                                                    TextView textView3 = (TextView) view.findViewById(C5419R.id.system_timestamp);
+                                                    i = R$id.system_timestamp;
+                                                    TextView textView3 = (TextView) view.findViewById(R$id.system_timestamp);
                                                     if (textView3 != null) {
-                                                        i = C5419R.id.system_welcome_cta_button;
-                                                        LinearLayout linearLayout = (LinearLayout) view.findViewById(C5419R.id.system_welcome_cta_button);
+                                                        i = R$id.system_welcome_cta_button;
+                                                        LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.system_welcome_cta_button);
                                                         if (linearLayout != null) {
-                                                            i = C5419R.id.system_welcome_cta_button_sticker;
-                                                            StickerView stickerView = (StickerView) view.findViewById(C5419R.id.system_welcome_cta_button_sticker);
+                                                            i = R$id.system_welcome_cta_button_sticker;
+                                                            StickerView stickerView = (StickerView) view.findViewById(R$id.system_welcome_cta_button_sticker);
                                                             if (stickerView != null) {
-                                                                i = C5419R.id.uikit_chat_guideline;
-                                                                Guideline guideline = (Guideline) view.findViewById(C5419R.id.uikit_chat_guideline);
+                                                                i = 2131365922;
+                                                                Guideline guideline = (Guideline) view.findViewById(2131365922);
                                                                 if (guideline != null) {
                                                                     WidgetChatListAdapterItemSystemBinding widgetChatListAdapterItemSystemBinding = new WidgetChatListAdapterItemSystemBinding((ConstraintLayout) view, appCompatImageView, viewFindViewById, appCompatImageView2, appCompatImageView3, textView, constraintLayout, simpleDraweeView, textView2, imageView, imageView2, linkifiedTextView, textView3, linearLayout, stickerView, guideline);
-                                                                    C12238m.checkNotNullExpressionValue(widgetChatListAdapterItemSystemBinding, "WidgetChatListAdapterIte…temBinding.bind(itemView)");
+                                                                    m.checkNotNullExpressionValue(widgetChatListAdapterItemSystemBinding, "WidgetChatListAdapterIte…temBinding.bind(itemView)");
                                                                     this.binding = widgetChatListAdapterItemSystemBinding;
                                                                     return;
                                                                 }
@@ -256,45 +122,49 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
         return (WidgetChatListAdapter) widgetChatListAdapterItemSystemMessage.adapter;
     }
 
+    public static final /* synthetic */ WidgetChatListAdapterItemSystemBinding access$getBinding$p(WidgetChatListAdapterItemSystemMessage widgetChatListAdapterItemSystemMessage) {
+        return widgetChatListAdapterItemSystemMessage.binding;
+    }
+
     private final int getIcon(Message message) {
         Integer type = message.getType();
         if (type == null || type.intValue() != 1) {
             if (type != null && type.intValue() == 2) {
-                return C5419R.drawable.ic_group_leave;
+                return 2131231826;
             }
             if ((type != null && type.intValue() == 4) || (type != null && type.intValue() == 5)) {
-                return C5419R.drawable.ic_group_edit;
+                return 2131231824;
             }
             if (type != null && type.intValue() == 6) {
-                return C5419R.drawable.ic_channel_pinned_message;
+                return 2131231623;
             }
             if ((type == null || type.intValue() != 7) && (type == null || type.intValue() != 25)) {
                 if ((type != null && type.intValue() == 8) || ((type != null && type.intValue() == 9) || ((type != null && type.intValue() == 10) || (type != null && type.intValue() == 11)))) {
-                    return C5419R.drawable.ic_user_premium_guild_subscription;
+                    return 2131232231;
                 }
                 if (type == null || type.intValue() != 12) {
                     if (type == null || type.intValue() != 14) {
                         if (type != null && type.intValue() == 15) {
-                            return C5419R.drawable.ic_check_green_24dp;
+                            return 2131231658;
                         }
                         if (type != null && type.intValue() == 16) {
-                            return C5419R.drawable.ic_warning_circle_24dp;
+                            return 2131232266;
                         }
                         if (type != null && type.intValue() == 17) {
-                            return C5419R.drawable.ic_warning_circle_24dp;
+                            return 2131232266;
                         }
                         if (type != null && type.intValue() == 18) {
-                            return C5419R.drawable.ic_thread;
+                            return 2131232193;
                         }
                         if (type != null) {
                             type.intValue();
                         }
                     }
-                    return C5419R.drawable.ic_x_red_24dp;
+                    return 2131232267;
                 }
             }
         }
-        return C5419R.drawable.ic_group_join;
+        return 2131231825;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
@@ -305,142 +175,99 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
     private final CharSequence getSystemMessage(Message message, Context context, String str, int i, Long l, String str2, int i2, String str3, boolean z2, Long l2, Long l3) {
         int i3;
         if (z2) {
-            i3 = C5419R.string.guild_automod_system_message_text_flagged;
+            i3 = 2131889944;
         } else {
             if (z2) {
                 throw new NoWhenBranchMatchedException();
             }
-            i3 = C5419R.string.guild_automod_system_message_text;
+            i3 = 2131889943;
         }
-        return new C81301(message, str, str2, new C8134xc3c860c2(i, i2), l, context, str3, new C8131x9a8e51f(i), i3, new C8132x8c0e5d01(context), new C8133x2640c67a(this, message, i, context, l3)).invoke(context);
+        return new WidgetChatListAdapterItemSystemMessage$getSystemMessage$1(message, str, str2, new WidgetChatListAdapterItemSystemMessage$getSystemMessage$usernameRenderContext$1(i, i2), l, context, str3, new WidgetChatListAdapterItemSystemMessage$getSystemMessage$actorRenderContext$1(i), i3, new WidgetChatListAdapterItemSystemMessage$getSystemMessage$autoModRenderContext$1(context), new WidgetChatListAdapterItemSystemMessage$getSystemMessage$roleSubscriptionPurchaseContext$1(this, message, i, context, l3)).invoke2(context);
+    }
+
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem, com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+    public /* bridge */ /* synthetic */ void onConfigure(int i, ChatListEntry chatListEntry) {
+        onConfigure(i, chatListEntry);
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
-    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem, com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public void onConfigure(int position, final ChatListEntry data) {
+    @Override // com.discord.widgets.chat.list.adapter.WidgetChatListItem
+    public void onConfigure(int position, ChatListEntry data) {
         MessageEmbed messageEmbed;
         User user;
-        C12238m.checkNotNullParameter(data, "data");
+        m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
         MessageEntry messageEntry = (MessageEntry) data;
-        final Message messageComponent1 = messageEntry.getMessage();
-        GuildMember guildMemberComponent3 = messageEntry.getAuthor();
-        GuildMember guildMemberComponent4 = messageEntry.getFirstMentionedUser();
+        Message message = messageEntry.getMessage();
+        GuildMember author = messageEntry.getAuthor();
+        GuildMember firstMentionedUser = messageEntry.getFirstMentionedUser();
         Map<Long, String> mapComponent6 = messageEntry.component6();
-        User author = messageComponent1.getAuthor();
-        String str = mapComponent6.get(author != null ? Long.valueOf(author.getId()) : null);
+        User author2 = message.getAuthor();
+        String str = mapComponent6.get(author2 != null ? Long.valueOf(author2.getId()) : null);
         Guild guild = ((WidgetChatListAdapter) this.adapter).getData().getGuild();
         String name = guild != null ? guild.getName() : null;
-        List<User> mentions = messageComponent1.getMentions();
-        Long lValueOf = (mentions == null || (user = (User) C12163u.firstOrNull((List) mentions)) == null) ? null : Long.valueOf(user.getId());
+        List<User> mentions = message.getMentions();
+        Long lValueOf = (mentions == null || (user = (User) u.firstOrNull((List) mentions)) == null) ? null : Long.valueOf(user.getId());
         String str2 = lValueOf != null ? mapComponent6.get(Long.valueOf(lValueOf.longValue())) : null;
-        LinkifiedTextView linkifiedTextView = this.binding.f16313h;
-        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
-        int themedColor = ColorCompat.getThemedColor(linkifiedTextView.getContext(), C5419R.attr.colorHeaderPrimary);
-        GuildMember.Companion companion = GuildMember.INSTANCE;
-        int color = companion.getColor(guildMemberComponent3, themedColor);
-        int color2 = companion.getColor(guildMemberComponent4, themedColor);
-        List<MessageEmbed> embeds = messageComponent1.getEmbeds();
-        boolean z2 = (embeds == null || (messageEmbed = (MessageEmbed) C12163u.firstOrNull((List) embeds)) == null) ? false : !C12238m.areEqual(AutoModUtils.INSTANCE.getEmbedFieldValue(messageEmbed, WidgetChatListAdapterItemAutoModSystemMessageEmbedKt.getAUTOMOD_EMBED_FLAGGED_MESSAGE_ID()), "");
-        RoleSubscriptionData roleSubscriptionData = messageComponent1.getRoleSubscriptionData();
+        LinkifiedTextView linkifiedTextView = this.binding.h;
+        m.checkNotNullExpressionValue(linkifiedTextView, "binding.systemText");
+        int themedColor = ColorCompat.getThemedColor(linkifiedTextView.getContext(), 2130968989);
+        GuildMember$Companion guildMember$Companion = GuildMember.Companion;
+        int color = guildMember$Companion.getColor(author, themedColor);
+        int color2 = guildMember$Companion.getColor(firstMentionedUser, themedColor);
+        List<MessageEmbed> embeds = message.getEmbeds();
+        boolean z2 = (embeds == null || (messageEmbed = (MessageEmbed) u.firstOrNull((List) embeds)) == null) ? false : !m.areEqual(AutoModUtils.INSTANCE.getEmbedFieldValue(messageEmbed, WidgetChatListAdapterItemAutoModSystemMessageEmbedKt.getAUTOMOD_EMBED_FLAGGED_MESSAGE_ID()), "");
+        RoleSubscriptionData roleSubscriptionData = message.getRoleSubscriptionData();
         Long lValueOf2 = roleSubscriptionData != null ? Long.valueOf(roleSubscriptionData.getRoleSubscriptionListingId()) : null;
         Guild guild2 = ((WidgetChatListAdapter) this.adapter).getData().getGuild();
         Long lValueOf3 = guild2 != null ? Long.valueOf(guild2.getId()) : null;
-        LinkifiedTextView linkifiedTextView2 = this.binding.f16313h;
-        C12238m.checkNotNullExpressionValue(linkifiedTextView2, "binding.systemText");
+        LinkifiedTextView linkifiedTextView2 = this.binding.h;
+        m.checkNotNullExpressionValue(linkifiedTextView2, "binding.systemText");
         Context context = linkifiedTextView2.getContext();
-        C12238m.checkNotNullExpressionValue(context, "binding.systemText.context");
-        final Long l = lValueOf3;
-        CharSequence systemMessage = getSystemMessage(messageComponent1, context, str, color, lValueOf, str2, color2, name, z2, l, lValueOf2);
-        this.binding.f16306a.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage.onConfigure.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                Integer type = messageComponent1.getType();
-                if (type != null && type.intValue() == 7) {
-                    WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getEventHandler().onMessageAuthorNameClicked(messageComponent1, WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getData().getGuildId());
-                    return;
-                }
-                if ((type != null && type.intValue() == 8) || ((type != null && type.intValue() == 9) || ((type != null && type.intValue() == 10) || (type != null && type.intValue() == 11)))) {
-                    AnalyticsTracker.guildBoostPromotionOpened$default(AnalyticsTracker.INSTANCE, WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getData().getGuildId(), new Traits.Location(null, Traits.Location.Section.CHANNEL_TEXT_AREA, Traits.Location.Obj.BOOST_GEM_ICON, null, null, 25, null), null, 4, null);
-                    WidgetGuildBoost.Companion companion2 = WidgetGuildBoost.INSTANCE;
-                    LinkifiedTextView linkifiedTextView3 = WidgetChatListAdapterItemSystemMessage.this.binding.f16313h;
-                    C12238m.checkNotNullExpressionValue(linkifiedTextView3, "binding.systemText");
-                    Context context2 = linkifiedTextView3.getContext();
-                    C12238m.checkNotNullExpressionValue(context2, "binding.systemText.context");
-                    companion2.create(context2, WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getData().getGuildId());
-                    return;
-                }
-                if (type != null && type.intValue() == 12) {
-                    WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getEventHandler().onMessageAuthorNameClicked(messageComponent1, WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getData().getGuildId());
-                    return;
-                }
-                if (type != null && type.intValue() == 6) {
-                    WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getEventHandler().onOpenPinsClicked(messageComponent1);
-                    return;
-                }
-                if (type != null && type.intValue() == 18) {
-                    MessageReference messageReference = messageComponent1.getMessageReference();
-                    Long channelId = messageReference != null ? messageReference.getChannelId() : null;
-                    if (channelId != null) {
-                        ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getData().getGuildId(), channelId.longValue(), null, null, 12, null);
-                    }
-                }
-            }
-        });
-        ConstraintLayout constraintLayout = this.binding.f16306a;
-        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-        ViewExtensions.setOnLongClickListenerConsumeClick(constraintLayout, new C81362(messageComponent1));
-        TextView textView = this.binding.f16314i;
-        C12238m.checkNotNullExpressionValue(textView, "binding.systemTimestamp");
-        Context contextM885x = C1643a.m885x(this.itemView, "itemView", "itemView.context");
-        UtcDateTime timestamp = messageComponent1.getTimestamp();
-        textView.setText(TimeUtils.toReadableTimeString$default(contextM885x, timestamp != null ? timestamp.getDateTimeMillis() : 0L, null, 4, null));
-        LinkifiedTextView linkifiedTextView3 = this.binding.f16313h;
-        C12238m.checkNotNullExpressionValue(linkifiedTextView3, "binding.systemText");
+        m.checkNotNullExpressionValue(context, "binding.systemText.context");
+        Long l = lValueOf3;
+        CharSequence systemMessage = getSystemMessage(message, context, str, color, lValueOf, str2, color2, name, z2, l, lValueOf2);
+        this.binding.a.setOnClickListener(new WidgetChatListAdapterItemSystemMessage$onConfigure$1(this, message));
+        ConstraintLayout constraintLayout = this.binding.a;
+        m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+        ViewExtensions.setOnLongClickListenerConsumeClick(constraintLayout, new WidgetChatListAdapterItemSystemMessage$onConfigure$2(this, message));
+        TextView textView = this.binding.i;
+        m.checkNotNullExpressionValue(textView, "binding.systemTimestamp");
+        Context contextX = a.x(this.itemView, "itemView", "itemView.context");
+        UtcDateTime timestamp = message.getTimestamp();
+        textView.setText(TimeUtils.toReadableTimeString$default(contextX, timestamp != null ? timestamp.getDateTimeMillis() : 0L, null, 4, null));
+        LinkifiedTextView linkifiedTextView3 = this.binding.h;
+        m.checkNotNullExpressionValue(linkifiedTextView3, "binding.systemText");
         linkifiedTextView3.setText(systemMessage);
-        this.binding.f16311f.setImageResource(getIcon(messageComponent1));
-        ImageView imageView = this.binding.f16312g;
-        C12238m.checkNotNullExpressionValue(imageView, "binding.systemIconAutomod");
+        this.binding.f.setImageResource(getIcon(message));
+        ImageView imageView = this.binding.g;
+        m.checkNotNullExpressionValue(imageView, "binding.systemIconAutomod");
         Integer type = messageEntry.getMessage().getType();
         imageView.setVisibility(type != null && type.intValue() == 24 ? 0 : 8);
-        AppCompatImageView appCompatImageView = this.binding.f16307b;
-        C12238m.checkNotNullExpressionValue(appCompatImageView, "binding.chatListAdapterItemThreadEmbedSpine");
-        appCompatImageView.setVisibility(messageComponent1.hasThread() && !messageEntry.isThreadStarterMessage() ? 0 : 8);
-        LinearLayout linearLayout = this.binding.f16315j;
-        C12238m.checkNotNullExpressionValue(linearLayout, "binding.systemWelcomeCtaButton");
+        AppCompatImageView appCompatImageView = this.binding.f2337b;
+        m.checkNotNullExpressionValue(appCompatImageView, "binding.chatListAdapterItemThreadEmbedSpine");
+        appCompatImageView.setVisibility(message.hasThread() && !messageEntry.isThreadStarterMessage() ? 0 : 8);
+        LinearLayout linearLayout = this.binding.j;
+        m.checkNotNullExpressionValue(linearLayout, "binding.systemWelcomeCtaButton");
         linearLayout.setVisibility(messageEntry.getCtaData() != null ? 0 : 8);
         if (messageEntry.getCtaData() != null) {
-            StickerView.m8613e(this.binding.f16316k, messageEntry.getCtaData().getSticker(), null, 2);
-            this.binding.f16316k.m8614b();
-            this.binding.f16315j.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage.onConfigure.3
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getEventHandler().onSystemMessageCtaClicked(messageComponent1, ((MessageEntry) data).getCtaData().getChannel(), ((MessageEntry) data).getCtaData().getSticker());
-                }
-            });
+            StickerView.e(this.binding.k, messageEntry.getCtaData().getSticker(), null, 2);
+            this.binding.k.b();
+            this.binding.j.setOnClickListener(new WidgetChatListAdapterItemSystemMessage$onConfigure$3(this, message, data));
         }
-        boolean z3 = messageComponent1.getRoleSubscriptionData() != null && messageComponent1.getRoleSubscriptionData().getTotalMonthsSubscribed() <= 1;
-        ConstraintLayout constraintLayout2 = this.binding.f16308c;
-        C12238m.checkNotNullExpressionValue(constraintLayout2, "binding.roleSubscriptionPurchaseWelcomeCard");
+        boolean z3 = message.getRoleSubscriptionData() != null && message.getRoleSubscriptionData().getTotalMonthsSubscribed() <= 1;
+        ConstraintLayout constraintLayout2 = this.binding.c;
+        m.checkNotNullExpressionValue(constraintLayout2, "binding.roleSubscriptionPurchaseWelcomeCard");
         constraintLayout2.setVisibility(z3 ? 0 : 8);
         if (z3) {
-            TextView textView2 = this.binding.f16310e;
-            C12238m.checkNotNullExpressionValue(textView2, "binding.roleSubscriptionPurchaserUsername");
+            TextView textView2 = this.binding.e;
+            m.checkNotNullExpressionValue(textView2, "binding.roleSubscriptionPurchaserUsername");
             textView2.setText(str);
-            if (messageComponent1.getAuthor() != null) {
-                SimpleDraweeView simpleDraweeView = this.binding.f16309d;
-                C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.roleSubscriptionPurchaserAvatar");
-                IconUtils.setIcon$default(simpleDraweeView, new CoreUser(messageComponent1.getAuthor()), C5419R.dimen.avatar_size_large, null, null, messageEntry.getAuthor(), 24, null);
-                this.binding.f16309d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage.onConfigure.4
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        Long l2 = l;
-                        if (l2 != null) {
-                            l2.longValue();
-                            WidgetChatListAdapterItemSystemMessage.access$getAdapter$p(WidgetChatListAdapterItemSystemMessage.this).getEventHandler().onMessageAuthorAvatarClicked(messageComponent1, l.longValue());
-                        }
-                    }
-                });
+            if (message.getAuthor() != null) {
+                SimpleDraweeView simpleDraweeView = this.binding.d;
+                m.checkNotNullExpressionValue(simpleDraweeView, "binding.roleSubscriptionPurchaserAvatar");
+                IconUtils.setIcon$default(simpleDraweeView, new CoreUser(message.getAuthor()), 2131165293, null, null, messageEntry.getAuthor(), 24, null);
+                this.binding.d.setOnClickListener(new WidgetChatListAdapterItemSystemMessage$onConfigure$4(this, l, message));
             }
         }
     }

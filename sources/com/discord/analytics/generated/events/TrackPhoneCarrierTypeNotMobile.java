@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPhoneCarrierTypeNotMobile.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackPhoneCarrierTypeNotMobile implements Analytic
             return false;
         }
         TrackPhoneCarrierTypeNotMobile trackPhoneCarrierTypeNotMobile = (TrackPhoneCarrierTypeNotMobile) other;
-        return C12238m.areEqual(this.carrierName, trackPhoneCarrierTypeNotMobile.carrierName) && C12238m.areEqual(this.carrierType, trackPhoneCarrierTypeNotMobile.carrierType);
+        return m.areEqual(this.carrierName, trackPhoneCarrierTypeNotMobile.carrierName) && m.areEqual(this.carrierType, trackPhoneCarrierTypeNotMobile.carrierType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackPhoneCarrierTypeNotMobile implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPhoneCarrierTypeNotMobile(carrierName=");
-        sbM833U.append(this.carrierName);
-        sbM833U.append(", carrierType=");
-        return C1643a.m817E(sbM833U, this.carrierType, ")");
+        StringBuilder sbU = a.U("TrackPhoneCarrierTypeNotMobile(carrierName=");
+        sbU.append(this.carrierName);
+        sbU.append(", carrierType=");
+        return a.E(sbU, this.carrierType, ")");
     }
 }

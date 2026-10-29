@@ -1,24 +1,18 @@
 package lombok.installer;
 
 import com.zwitserloot.cmdreader.CmdReader;
-import com.zwitserloot.cmdreader.Description;
 import com.zwitserloot.cmdreader.InvalidCommandLineException;
-import com.zwitserloot.cmdreader.Sequential;
-import com.zwitserloot.cmdreader.Shorthand;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import lombok.Lombok;
-import lombok.core.LombokApp;
 import lombok.core.SpiLoadUtil;
 import lombok.core.Version;
 import lombok.patcher.ClassRootFinder;
@@ -85,63 +79,8 @@ public class Installer {
         return a.equals(b2);
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$GraphicalInstallerApp.SCL.lombok */
-    public class GraphicalInstallerApp extends LombokApp {
-        @Override // lombok.core.LombokApp
-        public String getAppName() {
-            return "installer";
-        }
-
-        @Override // lombok.core.LombokApp
-        public String getAppDescription() {
-            return "Runs the graphical installer tool (default).";
-        }
-
-        @Override // lombok.core.LombokApp
-        public List<String> getAppAliases() {
-            return Arrays.asList("");
-        }
-
-        @Override // lombok.core.LombokApp
-        public int runApp(List<String> args) throws Exception {
-            return Installer.guiInstaller();
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$CommandLineInstallerApp.SCL.lombok */
-    public class CommandLineInstallerApp extends LombokApp {
-        @Override // lombok.core.LombokApp
-        public String getAppName() {
-            return "install";
-        }
-
-        @Override // lombok.core.LombokApp
-        public String getAppDescription() {
-            return "Runs the 'handsfree' command line scriptable installer.";
-        }
-
-        @Override // lombok.core.LombokApp
-        public int runApp(List<String> args) throws Exception {
-            return Installer.cliInstaller(false, args);
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$CommandLineUninstallerApp.SCL.lombok */
-    public class CommandLineUninstallerApp extends LombokApp {
-        @Override // lombok.core.LombokApp
-        public String getAppName() {
-            return "uninstall";
-        }
-
-        @Override // lombok.core.LombokApp
-        public String getAppDescription() {
-            return "Runs the 'handsfree' command line scriptable uninstaller.";
-        }
-
-        @Override // lombok.core.LombokApp
-        public int runApp(List<String> args) throws Exception {
-            return Installer.cliInstaller(true, args);
-        }
+    static /* synthetic */ int access$0() {
+        return guiInstaller();
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -150,25 +89,12 @@ public class Installer {
     /* JADX WARN: Type inference failed for: r0v4, types: [java.lang.Throwable] */
     private static int guiInstaller() {
         int iIntValue;
-        if (OsUtils.getOS() == OsUtils.EnumC12884OS.MAC_OS_X) {
+        if (OsUtils.getOS() == OsUtils$OS.MAC_OS_X) {
             System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Lombok Installer");
             System.setProperty("com.apple.macos.use-file-dialog-packages", "true");
         }
         try {
-            SwingUtilities.invokeLater(new Runnable() { // from class: lombok.installer.Installer.1
-                @Override // java.lang.Runnable
-                public void run() {
-                    try {
-                        try {
-                            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        } catch (Exception unused) {
-                        }
-                        new InstallerGUI().show();
-                    } catch (HeadlessException unused2) {
-                        Installer.printHeadlessInfo();
-                    }
-                }
-            });
+            SwingUtilities.invokeLater(new Installer$1());
             ?? r0 = InstallerGUI.exitMarker;
             synchronized (r0) {
                 while (!Thread.interrupted() && InstallerGUI.exitMarker.get() == null) {
@@ -193,25 +119,10 @@ public class Installer {
         }
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/Installer$CmdArgs.SCL.lombok */
-    class CmdArgs {
-
-        @Description("Shows this help text")
-        @Shorthand({"h", "?"})
-        boolean help;
-
-        @Description("Specify paths to a location to install/uninstall. Use 'auto' to apply to all automatically discoverable installations.")
-        @Sequential
-        List<String> path = new ArrayList();
-
-        private CmdArgs() {
-        }
-    }
-
     public static int cliInstaller(boolean uninstall, List<String> rawArgs) {
-        CmdReader<CmdArgs> reader = CmdReader.m9327of(CmdArgs.class);
+        CmdReader<Installer$CmdArgs> reader = CmdReader.of(Installer$CmdArgs.class);
         try {
-            CmdArgs args = reader.make((String[]) rawArgs.toArray(new String[0]));
+            Installer$CmdArgs args = reader.make((String[]) rawArgs.toArray(new String[0]));
             if (args.help) {
                 System.out.println(generateCliHelp(uninstall, reader));
                 return 0;
@@ -289,8 +200,12 @@ public class Installer {
         }
     }
 
-    private static String generateCliHelp(boolean uninstall, CmdReader<CmdArgs> reader) {
+    private static String generateCliHelp(boolean uninstall, CmdReader<Installer$CmdArgs> reader) {
         return reader.generateCommandLineHelp("java -jar lombok.jar " + (uninstall ? "uninstall" : "install"));
+    }
+
+    static /* synthetic */ void access$1() {
+        printHeadlessInfo();
     }
 
     private static void printHeadlessInfo() {

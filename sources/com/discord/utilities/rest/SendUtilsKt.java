@@ -4,11 +4,11 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
 import com.discord.app.AppLog;
 import com.discord.utilities.logging.Logger;
-import p507d0.p591y.C12201b;
-import p507d0.p592z.p594d.C12238m;
+import d0.y.b;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: SendUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,8 +16,8 @@ public final class SendUtilsKt {
     public static final long computeFileSizeBytes(Uri uri, ContentResolver contentResolver) {
         long jLongValue;
         Long lValueOf;
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(contentResolver, "contentResolver");
+        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(contentResolver, "contentResolver");
         try {
             Cursor cursorQuery = contentResolver.query(uri, null, null, null, null);
             if (cursorQuery != null) {
@@ -31,7 +31,7 @@ public final class SendUtilsKt {
                     try {
                         throw th;
                     } catch (Throwable th2) {
-                        C12201b.closeFinally(cursorQuery, th);
+                        b.closeFinally(cursorQuery, th);
                         throw th2;
                     }
                 }
@@ -40,7 +40,7 @@ public final class SendUtilsKt {
             }
             if (lValueOf != null && lValueOf.longValue() > 0) {
                 jLongValue = lValueOf.longValue();
-                C12201b.closeFinally(cursorQuery, null);
+                b.closeFinally(cursorQuery, null);
                 return jLongValue;
             }
             ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = contentResolver.openFileDescriptor(uri, "r");
@@ -49,17 +49,17 @@ public final class SendUtilsKt {
                 parcelFileDescriptorOpenFileDescriptor.close();
             }
             long jLongValue2 = lValueOf2 != null ? lValueOf2.longValue() : -1L;
-            C12201b.closeFinally(cursorQuery, null);
+            b.closeFinally(cursorQuery, null);
             return jLongValue2;
         } catch (Exception e) {
-            Logger.e$default(AppLog.f14950g, "Failed querying size of file " + uri, e, null, 4, null);
+            Logger.e$default(AppLog.g, "Failed querying size of file " + uri, e, null, 4, null);
             return -1L;
         }
     }
 
     public static final float computeFileSizeMegabytes(Uri uri, ContentResolver contentResolver) {
-        C12238m.checkNotNullParameter(uri, NotificationCompat.MessagingStyle.Message.KEY_DATA_URI);
-        C12238m.checkNotNullParameter(contentResolver, "contentResolver");
+        m.checkNotNullParameter(uri, NotificationCompat$MessagingStyle$Message.KEY_DATA_URI);
+        m.checkNotNullParameter(contentResolver, "contentResolver");
         return computeFileSizeBytes(uri, contentResolver) / 1048576;
     }
 }

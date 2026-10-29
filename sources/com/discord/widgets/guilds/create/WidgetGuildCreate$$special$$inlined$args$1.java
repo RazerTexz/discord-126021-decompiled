@@ -1,14 +1,14 @@
 package com.discord.widgets.guilds.create;
 
 import android.os.Bundle;
+import b.d.b.a.a;
 import com.discord.app.AppFragment;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: ArgUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildCreate$$special$$inlined$args$1 extends AbstractC12240o implements Function0<WidgetGuildCreate.Options> {
+public final class WidgetGuildCreate$$special$$inlined$args$1 extends o implements Function0<WidgetGuildCreate$Options> {
     public final /* synthetic */ String $argsKey;
     public final /* synthetic */ AppFragment $this_args;
 
@@ -22,19 +22,25 @@ public final class WidgetGuildCreate$$special$$inlined$args$1 extends AbstractC1
     /* JADX WARN: Can't rename method to resolve collision */
     /* JADX WARN: Multi-variable type inference failed */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetGuildCreate.Options invoke() {
+    public final WidgetGuildCreate$Options invoke() {
         Bundle arguments = this.$this_args.getArguments();
         Object obj = arguments != null ? arguments.get(this.$argsKey) : null;
-        WidgetGuildCreate.Options options = (WidgetGuildCreate.Options) (obj instanceof WidgetGuildCreate.Options ? obj : null);
-        WidgetGuildCreate.Options parcelableExtra = options;
-        if (options == null) {
+        WidgetGuildCreate$Options widgetGuildCreate$Options = (WidgetGuildCreate$Options) (obj instanceof WidgetGuildCreate$Options ? obj : null);
+        WidgetGuildCreate$Options parcelableExtra = widgetGuildCreate$Options;
+        if (widgetGuildCreate$Options == null) {
             parcelableExtra = this.$this_args.getMostRecentIntent().getParcelableExtra(this.$argsKey);
         }
         if (parcelableExtra != 0) {
             return parcelableExtra;
         }
-        StringBuilder sbM833U = C1643a.m833U("Missing args for class type ");
-        C1643a.m862l0(WidgetGuildCreate.Options.class, sbM833U, " + key ");
-        throw new IllegalStateException(C1643a.m820H(sbM833U, this.$argsKey, '!'));
+        StringBuilder sbU = a.U("Missing args for class type ");
+        a.l0(WidgetGuildCreate$Options.class, sbU, " + key ");
+        throw new IllegalStateException(a.H(sbU, this.$argsKey, '!'));
+    }
+
+    /* JADX WARN: Type inference failed for: r0v0, types: [android.os.Parcelable, com.discord.widgets.guilds.create.WidgetGuildCreate$Options] */
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ WidgetGuildCreate$Options invoke() {
+        return invoke();
     }
 }

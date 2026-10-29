@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.circularreveal.CircularRevealHelper;
 import com.google.android.material.circularreveal.CircularRevealWidget;
+import com.google.android.material.circularreveal.CircularRevealWidget$RevealInfo;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class CircularRevealCoordinatorLayout extends CoordinatorLayout implements CircularRevealWidget {
@@ -21,12 +22,12 @@ public class CircularRevealCoordinatorLayout extends CoordinatorLayout implement
         this(context, null);
     }
 
-    @Override // com.google.android.material.circularreveal.CircularRevealHelper.Delegate
+    @Override // com.google.android.material.circularreveal.CircularRevealHelper$Delegate
     public void actualDraw(Canvas canvas) {
         super.draw(canvas);
     }
 
-    @Override // com.google.android.material.circularreveal.CircularRevealHelper.Delegate
+    @Override // com.google.android.material.circularreveal.CircularRevealHelper$Delegate
     public boolean actualIsOpaque() {
         return super.isOpaque();
     }
@@ -64,7 +65,7 @@ public class CircularRevealCoordinatorLayout extends CoordinatorLayout implement
 
     @Override // com.google.android.material.circularreveal.CircularRevealWidget
     @Nullable
-    public CircularRevealWidget.RevealInfo getRevealInfo() {
+    public CircularRevealWidget$RevealInfo getRevealInfo() {
         return this.helper.getRevealInfo();
     }
 
@@ -85,8 +86,8 @@ public class CircularRevealCoordinatorLayout extends CoordinatorLayout implement
     }
 
     @Override // com.google.android.material.circularreveal.CircularRevealWidget
-    public void setRevealInfo(@Nullable CircularRevealWidget.RevealInfo revealInfo) {
-        this.helper.setRevealInfo(revealInfo);
+    public void setRevealInfo(@Nullable CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo) {
+        this.helper.setRevealInfo(circularRevealWidget$RevealInfo);
     }
 
     public CircularRevealCoordinatorLayout(@NonNull Context context, AttributeSet attributeSet) {

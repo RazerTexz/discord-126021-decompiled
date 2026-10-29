@@ -1,7 +1,7 @@
 package com.discord.utilities.auth;
 
+import b.d.b.a.a;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: compiled from: GoogleSmartLockRepo.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -9,10 +9,8 @@ public final /* data */ class SmartLockSignInAttempt {
     private final boolean signedInWithoutError;
     private final boolean usedAutomaticCredentials;
 
-    /* JADX WARN: Illegal instructions before constructor call */
     public SmartLockSignInAttempt() {
-        boolean z2 = false;
-        this(z2, z2, 3, null);
+        this(false, false, 3, null);
     }
 
     public SmartLockSignInAttempt(boolean z2, boolean z3) {
@@ -83,10 +81,10 @@ public final /* data */ class SmartLockSignInAttempt {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("SmartLockSignInAttempt(usedAutomaticCredentials=");
-        sbM833U.append(this.usedAutomaticCredentials);
-        sbM833U.append(", signedInWithoutError=");
-        return C1643a.m827O(sbM833U, this.signedInWithoutError, ")");
+        StringBuilder sbU = a.U("SmartLockSignInAttempt(usedAutomaticCredentials=");
+        sbU.append(this.usedAutomaticCredentials);
+        sbU.append(", signedInWithoutError=");
+        return a.O(sbU, this.signedInWithoutError, ")");
     }
 
     public /* synthetic */ SmartLockSignInAttempt(boolean z2, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {

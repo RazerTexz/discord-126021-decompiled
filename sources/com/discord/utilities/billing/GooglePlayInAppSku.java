@@ -1,9 +1,9 @@
 package com.discord.utilities.billing;
 
+import b.d.b.a.a;
 import com.android.billingclient.api.SkuDetails;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GooglePlayInAppSku.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,8 +14,8 @@ public final /* data */ class GooglePlayInAppSku {
     private InAppSkuType type;
 
     public GooglePlayInAppSku(String str, InAppSkuType inAppSkuType, SkuDetails skuDetails, Long l) {
-        C12238m.checkNotNullParameter(str, "paymentGatewaySkuId");
-        C12238m.checkNotNullParameter(inAppSkuType, "type");
+        m.checkNotNullParameter(str, "paymentGatewaySkuId");
+        m.checkNotNullParameter(inAppSkuType, "type");
         this.paymentGatewaySkuId = str;
         this.type = inAppSkuType;
         this.skuDetails = skuDetails;
@@ -39,8 +39,8 @@ public final /* data */ class GooglePlayInAppSku {
     }
 
     public final GooglePlayInAppSku copy(String paymentGatewaySkuId, InAppSkuType type, SkuDetails skuDetails, Long skuId) {
-        C12238m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
-        C12238m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(paymentGatewaySkuId, "paymentGatewaySkuId");
+        m.checkNotNullParameter(type, "type");
         return new GooglePlayInAppSku(paymentGatewaySkuId, type, skuDetails, skuId);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class GooglePlayInAppSku {
             return false;
         }
         GooglePlayInAppSku googlePlayInAppSku = (GooglePlayInAppSku) other;
-        return C12238m.areEqual(this.paymentGatewaySkuId, googlePlayInAppSku.paymentGatewaySkuId) && C12238m.areEqual(this.type, googlePlayInAppSku.type) && C12238m.areEqual(this.skuDetails, googlePlayInAppSku.skuDetails) && C12238m.areEqual(this.skuId, googlePlayInAppSku.skuId);
+        return m.areEqual(this.paymentGatewaySkuId, googlePlayInAppSku.paymentGatewaySkuId) && m.areEqual(this.type, googlePlayInAppSku.type) && m.areEqual(this.skuDetails, googlePlayInAppSku.skuDetails) && m.areEqual(this.skuId, googlePlayInAppSku.skuId);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -107,19 +107,19 @@ public final /* data */ class GooglePlayInAppSku {
     }
 
     public final void setType(InAppSkuType inAppSkuType) {
-        C12238m.checkNotNullParameter(inAppSkuType, "<set-?>");
+        m.checkNotNullParameter(inAppSkuType, "<set-?>");
         this.type = inAppSkuType;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GooglePlayInAppSku(paymentGatewaySkuId=");
-        sbM833U.append(this.paymentGatewaySkuId);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", skuDetails=");
-        sbM833U.append(this.skuDetails);
-        sbM833U.append(", skuId=");
-        return C1643a.m819G(sbM833U, this.skuId, ")");
+        StringBuilder sbU = a.U("GooglePlayInAppSku(paymentGatewaySkuId=");
+        sbU.append(this.paymentGatewaySkuId);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", skuDetails=");
+        sbU.append(this.skuDetails);
+        sbU.append(", skuId=");
+        return a.G(sbU, this.skuId, ")");
     }
 
     public /* synthetic */ GooglePlayInAppSku(String str, InAppSkuType inAppSkuType, SkuDetails skuDetails, Long l, int i, DefaultConstructorMarker defaultConstructorMarker) {

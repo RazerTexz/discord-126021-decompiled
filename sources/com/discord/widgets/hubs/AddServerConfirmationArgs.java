@@ -1,35 +1,21 @@
 package com.discord.widgets.hubs;
 
+import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetHubAddServerConfirmationDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class AddServerConfirmationArgs implements Parcelable {
-    public static final Parcelable.Creator<AddServerConfirmationArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<AddServerConfirmationArgs> CREATOR = new AddServerConfirmationArgs$Creator();
     private final long guildId;
     private final String hubName;
 
-    public final class Creator implements Parcelable.Creator<AddServerConfirmationArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final AddServerConfirmationArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            return new AddServerConfirmationArgs(parcel.readLong(), parcel.readString());
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final AddServerConfirmationArgs[] newArray(int i) {
-            return new AddServerConfirmationArgs[i];
-        }
-    }
-
     public AddServerConfirmationArgs(long j, String str) {
-        C12238m.checkNotNullParameter(str, "hubName");
+        m.checkNotNullParameter(str, "hubName");
         this.guildId = j;
         this.hubName = str;
     }
@@ -45,7 +31,7 @@ public final /* data */ class AddServerConfirmationArgs implements Parcelable {
     }
 
     public final AddServerConfirmationArgs copy(long guildId, String hubName) {
-        C12238m.checkNotNullParameter(hubName, "hubName");
+        m.checkNotNullParameter(hubName, "hubName");
         return new AddServerConfirmationArgs(guildId, hubName);
     }
 
@@ -62,7 +48,7 @@ public final /* data */ class AddServerConfirmationArgs implements Parcelable {
             return false;
         }
         AddServerConfirmationArgs addServerConfirmationArgs = (AddServerConfirmationArgs) other;
-        return this.guildId == addServerConfirmationArgs.guildId && C12238m.areEqual(this.hubName, addServerConfirmationArgs.hubName);
+        return this.guildId == addServerConfirmationArgs.guildId && m.areEqual(this.hubName, addServerConfirmationArgs.hubName);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -84,21 +70,21 @@ public final /* data */ class AddServerConfirmationArgs implements Parcelable {
     }
 
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.guildId) * 31;
+        int iA = b.a(this.guildId) * 31;
         String str = this.hubName;
-        return iM3a + (str != null ? str.hashCode() : 0);
+        return iA + (str != null ? str.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AddServerConfirmationArgs(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", hubName=");
-        return C1643a.m822J(sbM833U, this.hubName, ")");
+        StringBuilder sbU = a.U("AddServerConfirmationArgs(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", hubName=");
+        return a.J(sbU, this.hubName, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeLong(this.guildId);
         parcel.writeString(this.hubName);
     }

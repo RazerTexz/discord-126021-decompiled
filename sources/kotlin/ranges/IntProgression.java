@@ -1,37 +1,23 @@
 package kotlin.ranges;
 
+import d0.d0.b;
+import d0.x.c;
+import d0.z.d.g0.a;
 import java.util.Iterator;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p512d0.C11222b;
-import p507d0.p588x.C12197c;
-import p507d0.p592z.p594d.p595g0.InterfaceC12228a;
 
 /* JADX INFO: compiled from: Progressions.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public class IntProgression implements Iterable<Integer>, InterfaceC12228a {
-
-    /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+public class IntProgression implements Iterable<Integer>, a {
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final int first;
+    public static final IntProgression$a j = new IntProgression$a(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final int last;
 
     /* JADX INFO: renamed from: m, reason: from kotlin metadata */
     public final int step;
-
-    /* JADX INFO: renamed from: kotlin.ranges.IntProgression$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: Progressions.kt */
-    public final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        public final IntProgression fromClosedRange(int i, int i2, int i3) {
-            return new IntProgression(i, i2, i3);
-        }
-    }
 
     public IntProgression(int i, int i2, int i3) {
         if (i3 == 0) {
@@ -41,7 +27,7 @@ public class IntProgression implements Iterable<Integer>, InterfaceC12228a {
             throw new IllegalArgumentException("Step must be greater than Int.MIN_VALUE to avoid overflow on negation.");
         }
         this.first = i;
-        this.last = C12197c.getProgressionLastElement(i, i2, i3);
+        this.last = c.getProgressionLastElement(i, i2, i3);
         this.step = i3;
     }
 
@@ -87,6 +73,12 @@ public class IntProgression implements Iterable<Integer>, InterfaceC12228a {
         return false;
     }
 
+    @Override // java.lang.Iterable
+    /* JADX INFO: renamed from: iterator, reason: avoid collision after fix types in other method */
+    public /* bridge */ /* synthetic */ Iterator<Integer> iterator2() {
+        return iterator();
+    }
+
     public String toString() {
         StringBuilder sb;
         int i;
@@ -110,8 +102,7 @@ public class IntProgression implements Iterable<Integer>, InterfaceC12228a {
     }
 
     @Override // java.lang.Iterable
-    /* JADX INFO: renamed from: iterator, reason: merged with bridge method [inline-methods] */
-    public Iterator<Integer> iterator2() {
-        return new C11222b(this.first, this.last, this.step);
+    public Iterator<Integer> iterator() {
+        return new b(this.first, this.last, this.step);
     }
 }

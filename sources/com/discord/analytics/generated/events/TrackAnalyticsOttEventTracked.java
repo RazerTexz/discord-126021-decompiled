@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAnalyticsOttEventTracked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackAnalyticsOttEventTracked implements Analytics
             return false;
         }
         TrackAnalyticsOttEventTracked trackAnalyticsOttEventTracked = (TrackAnalyticsOttEventTracked) other;
-        return C12238m.areEqual(this.kpi, trackAnalyticsOttEventTracked.kpi) && C12238m.areEqual(this.fpc, trackAnalyticsOttEventTracked.fpc) && C12238m.areEqual(this.pip, trackAnalyticsOttEventTracked.pip);
+        return m.areEqual(this.kpi, trackAnalyticsOttEventTracked.kpi) && m.areEqual(this.fpc, trackAnalyticsOttEventTracked.fpc) && m.areEqual(this.pip, trackAnalyticsOttEventTracked.pip);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackAnalyticsOttEventTracked implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAnalyticsOttEventTracked(kpi=");
-        sbM833U.append(this.kpi);
-        sbM833U.append(", fpc=");
-        sbM833U.append(this.fpc);
-        sbM833U.append(", pip=");
-        return C1643a.m817E(sbM833U, this.pip, ")");
+        StringBuilder sbU = a.U("TrackAnalyticsOttEventTracked(kpi=");
+        sbU.append(this.kpi);
+        sbU.append(", fpc=");
+        sbU.append(this.fpc);
+        sbU.append(", pip=");
+        return a.E(sbU, this.pip, ")");
     }
 }

@@ -2,13 +2,13 @@ package androidx.preference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class TwoStatePreference extends Preference {
@@ -17,38 +17,6 @@ public abstract class TwoStatePreference extends Preference {
     private boolean mDisableDependentsState;
     private CharSequence mSummaryOff;
     private CharSequence mSummaryOn;
-
-    public class SavedState extends Preference.BaseSavedState {
-        public boolean mChecked;
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.TwoStatePreference.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mChecked = parcel.readInt() == 1;
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.mChecked ? 1 : 0);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-    }
 
     public TwoStatePreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
@@ -86,13 +54,13 @@ public abstract class TwoStatePreference extends Preference {
 
     @Override // androidx.preference.Preference
     public void onRestoreInstanceState(Parcelable parcelable) {
-        if (parcelable == null || !parcelable.getClass().equals(SavedState.class)) {
+        if (parcelable == null || !parcelable.getClass().equals(TwoStatePreference$SavedState.class)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        SavedState savedState = (SavedState) parcelable;
-        super.onRestoreInstanceState(savedState.getSuperState());
-        setChecked(savedState.mChecked);
+        TwoStatePreference$SavedState twoStatePreference$SavedState = (TwoStatePreference$SavedState) parcelable;
+        super.onRestoreInstanceState(twoStatePreference$SavedState.getSuperState());
+        setChecked(twoStatePreference$SavedState.mChecked);
     }
 
     @Override // androidx.preference.Preference
@@ -101,9 +69,9 @@ public abstract class TwoStatePreference extends Preference {
         if (isPersistent()) {
             return parcelableOnSaveInstanceState;
         }
-        SavedState savedState = new SavedState(parcelableOnSaveInstanceState);
-        savedState.mChecked = isChecked();
-        return savedState;
+        TwoStatePreference$SavedState twoStatePreference$SavedState = new TwoStatePreference$SavedState(parcelableOnSaveInstanceState);
+        twoStatePreference$SavedState.mChecked = isChecked();
+        return twoStatePreference$SavedState;
     }
 
     @Override // androidx.preference.Preference
@@ -158,7 +126,7 @@ public abstract class TwoStatePreference extends Preference {
     }
 
     public void syncSummaryView(PreferenceViewHolder preferenceViewHolder) {
-        syncSummaryView(preferenceViewHolder.findViewById(android.R.id.summary));
+        syncSummaryView(preferenceViewHolder.findViewById(android.R$id.summary));
     }
 
     public TwoStatePreference(Context context, AttributeSet attributeSet, int i) {
@@ -174,7 +142,7 @@ public abstract class TwoStatePreference extends Preference {
     /* JADX WARN: Code duplicated, block: B:23:0x0043  */
     /* JADX WARN: Code duplicated, block: B:26:0x004b  */
     /* JADX WARN: Code duplicated, block: B:28:? A[RETURN, SYNTHETIC] */
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public void syncSummaryView(View view) {
         int i;
         CharSequence summary;

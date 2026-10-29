@@ -10,17 +10,16 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ModeratorStartStageHeaderItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15184a;
+    public final ConstraintLayout a;
 
     public ModeratorStartStageHeaderItemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull TextView textView2) {
-        this.f15184a = constraintLayout;
+        this.a = constraintLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15184a;
+        return this.a;
     }
 }

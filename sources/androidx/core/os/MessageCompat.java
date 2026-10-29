@@ -1,7 +1,7 @@
 package androidx.core.os;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Message;
 import androidx.annotation.NonNull;
 
@@ -15,7 +15,7 @@ public final class MessageCompat {
 
     @SuppressLint({"NewApi"})
     public static boolean isAsynchronous(@NonNull Message message) {
-        if (Build.VERSION.SDK_INT >= 22) {
+        if (Build$VERSION.SDK_INT >= 22) {
             return message.isAsynchronous();
         }
         if (sTryIsAsynchronous) {
@@ -30,7 +30,7 @@ public final class MessageCompat {
 
     @SuppressLint({"NewApi"})
     public static void setAsynchronous(@NonNull Message message, boolean z2) {
-        if (Build.VERSION.SDK_INT >= 22) {
+        if (Build$VERSION.SDK_INT >= 22) {
             message.setAsynchronous(z2);
         } else if (sTrySetAsynchronous) {
             try {

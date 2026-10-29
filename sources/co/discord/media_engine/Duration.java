@@ -1,6 +1,6 @@
 package co.discord.media_engine;
 
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: VoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -105,13 +105,13 @@ public final /* data */ class Duration {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Duration(listening=");
-        sbM833U.append(this.listening);
-        sbM833U.append(", speaking=");
-        sbM833U.append(this.speaking);
-        sbM833U.append(", participation=");
-        sbM833U.append(this.participation);
-        sbM833U.append(", connected=");
-        return C1643a.m814B(sbM833U, this.connected, ")");
+        StringBuilder sbU = a.U("Duration(listening=");
+        sbU.append(this.listening);
+        sbU.append(", speaking=");
+        sbU.append(this.speaking);
+        sbU.append(", participation=");
+        sbU.append(this.participation);
+        sbU.append(", connected=");
+        return a.B(sbU, this.connected, ")");
     }
 }

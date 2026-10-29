@@ -7,11 +7,12 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.work.Configuration;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.work.Configuration$Builder;
 import androidx.work.WorkManager;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class WorkManagerInitializer extends ContentProvider {
     @Override // android.content.ContentProvider
     public int delete(@NonNull Uri uri, @Nullable String str, @Nullable String[] strArr) {
@@ -32,7 +33,7 @@ public class WorkManagerInitializer extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public boolean onCreate() {
-        WorkManager.initialize(getContext(), new Configuration.Builder().build());
+        WorkManager.initialize(getContext(), new Configuration$Builder().build());
         return true;
     }
 

@@ -1,10 +1,10 @@
 package com.discord.api.presence;
 
+import b.d.b.a.a;
 import com.discord.api.activity.Activity;
 import com.discord.api.user.User;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Presence.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,13 +17,31 @@ public final /* data */ class Presence {
     private final Long userId;
 
     public Presence(ClientStatus clientStatus, List<Activity> list, ClientStatuses clientStatuses, User user, Long l, Long l2) {
-        C12238m.checkNotNullParameter(clientStatus, "status");
+        m.checkNotNullParameter(clientStatus, "status");
         this.status = clientStatus;
         this.activities = list;
         this.clientStatus = clientStatuses;
         this.user = user;
         this.userId = l;
         this.guildId = l2;
+    }
+
+    public static Presence a(Presence presence, ClientStatus clientStatus, List list, ClientStatuses clientStatuses, User user, Long l, Long l2, int i) {
+        ClientStatus clientStatus2 = (i & 1) != 0 ? presence.status : null;
+        List<Activity> list2 = (i & 2) != 0 ? presence.activities : null;
+        ClientStatuses clientStatuses2 = (i & 4) != 0 ? presence.clientStatus : null;
+        if ((i & 8) != 0) {
+            user = presence.user;
+        }
+        User user2 = user;
+        Long l3 = (i & 16) != 0 ? presence.userId : null;
+        Long l4 = (i & 32) != 0 ? presence.guildId : null;
+        m.checkNotNullParameter(clientStatus2, "status");
+        return new Presence(clientStatus2, list2, clientStatuses2, user2, l3, l4);
+    }
+
+    public final List<Activity> b() {
+        return this.activities;
     }
 
     public boolean equals(Object other) {
@@ -34,7 +52,7 @@ public final /* data */ class Presence {
             return false;
         }
         Presence presence = (Presence) other;
-        return C12238m.areEqual(this.status, presence.status) && C12238m.areEqual(this.activities, presence.activities) && C12238m.areEqual(this.clientStatus, presence.clientStatus) && C12238m.areEqual(this.user, presence.user) && C12238m.areEqual(this.userId, presence.userId) && C12238m.areEqual(this.guildId, presence.guildId);
+        return m.areEqual(this.status, presence.status) && m.areEqual(this.activities, presence.activities) && m.areEqual(this.clientStatus, presence.clientStatus) && m.areEqual(this.user, presence.user) && m.areEqual(this.userId, presence.userId) && m.areEqual(this.guildId, presence.guildId);
     }
 
     /* JADX INFO: renamed from: c, reason: from getter */
@@ -77,38 +95,18 @@ public final /* data */ class Presence {
         return iHashCode5 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public static Presence m8152a(Presence presence, ClientStatus clientStatus, List list, ClientStatuses clientStatuses, User user, Long l, Long l2, int i) {
-        ClientStatus clientStatus2 = (i & 1) != 0 ? presence.status : null;
-        List<Activity> list2 = (i & 2) != 0 ? presence.activities : null;
-        ClientStatuses clientStatuses2 = (i & 4) != 0 ? presence.clientStatus : null;
-        if ((i & 8) != 0) {
-            user = presence.user;
-        }
-        User user2 = user;
-        Long l3 = (i & 16) != 0 ? presence.userId : null;
-        Long l4 = (i & 32) != 0 ? presence.guildId : null;
-        C12238m.checkNotNullParameter(clientStatus2, "status");
-        return new Presence(clientStatus2, list2, clientStatuses2, user2, l3, l4);
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<Activity> m8153b() {
-        return this.activities;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Presence(status=");
-        sbM833U.append(this.status);
-        sbM833U.append(", activities=");
-        sbM833U.append(this.activities);
-        sbM833U.append(", clientStatus=");
-        sbM833U.append(this.clientStatus);
-        sbM833U.append(", user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", guildId=");
-        return C1643a.m819G(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("Presence(status=");
+        sbU.append(this.status);
+        sbU.append(", activities=");
+        sbU.append(this.activities);
+        sbU.append(", clientStatus=");
+        sbU.append(this.clientStatus);
+        sbU.append(", user=");
+        sbU.append(this.user);
+        sbU.append(", userId=");
+        sbU.append(this.userId);
+        sbU.append(", guildId=");
+        return a.G(sbU, this.guildId, ")");
     }
 }

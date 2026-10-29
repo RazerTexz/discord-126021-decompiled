@@ -22,6 +22,15 @@ public final class TrackImpressionChannelAddInfo implements AnalyticsSchema, Tra
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "impression_channel_add_info";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
+    public void e(TrackImpressionMetadata trackImpressionMetadata) {
+        this.trackImpressionMetadata = trackImpressionMetadata;
+    }
+
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */
     public String getAnalyticsSchemaTypeName() {
@@ -32,16 +41,5 @@ public final class TrackImpressionChannelAddInfo implements AnalyticsSchema, Tra
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void m7515e(TrackImpressionMetadata trackImpressionMetadata) {
-        this.trackImpressionMetadata = trackImpressionMetadata;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
     }
 }

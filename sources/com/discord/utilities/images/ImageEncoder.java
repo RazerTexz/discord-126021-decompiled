@@ -1,12 +1,13 @@
 package com.discord.utilities.images;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap$CompressFormat;
 import android.util.Base64;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ImageEncoder.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,16 +20,16 @@ public final class ImageEncoder {
     }
 
     public final String encodeBitmapAsJpegDataUrl(Bitmap bitmap, int jpegQuality) {
-        C12238m.checkNotNullParameter(bitmap, "bitmap");
+        m.checkNotNullParameter(bitmap, "bitmap");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, jpegQuality, byteArrayOutputStream);
+        bitmap.compress(Bitmap$CompressFormat.JPEG, jpegQuality, byteArrayOutputStream);
         String strEncodeToString = Base64.encodeToString(byteArrayOutputStream.toByteArray(), 2);
-        C12238m.checkNotNullExpressionValue(strEncodeToString, "Base64.encodeToString(jp…eArray(), Base64.NO_WRAP)");
-        return C1643a.m828P(new Object[]{"image/jpeg", strEncodeToString}, 2, "data:%s;base64,%s", "java.lang.String.format(format, *args)");
+        m.checkNotNullExpressionValue(strEncodeToString, "Base64.encodeToString(jp…eArray(), Base64.NO_WRAP)");
+        return a.P(new Object[]{"image/jpeg", strEncodeToString}, 2, "data:%s;base64,%s", "java.lang.String.format(format, *args)");
     }
 
     public final String getBase64EncodedString(InputStream inputStream, int flags) throws IOException {
-        C12238m.checkNotNullParameter(inputStream, "inputStream");
+        m.checkNotNullParameter(inputStream, "inputStream");
         byte[] bArr = new byte[8192];
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         while (true) {
@@ -41,8 +42,8 @@ public final class ImageEncoder {
     }
 
     public final String getDataUrl(String mimeType, InputStream inputStream) throws IOException {
-        C12238m.checkNotNullParameter(mimeType, "mimeType");
-        C12238m.checkNotNullParameter(inputStream, "inputStream");
-        return C1643a.m828P(new Object[]{mimeType, getBase64EncodedString(inputStream, 2)}, 2, "data:%s;base64,%s", "java.lang.String.format(format, *args)");
+        m.checkNotNullParameter(mimeType, "mimeType");
+        m.checkNotNullParameter(inputStream, "inputStream");
+        return a.P(new Object[]{mimeType, getBase64EncodedString(inputStream, 2)}, 2, "data:%s;base64,%s", "java.lang.String.format(format, *args)");
     }
 }

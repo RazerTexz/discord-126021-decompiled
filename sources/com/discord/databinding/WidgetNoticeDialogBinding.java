@@ -11,47 +11,41 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetNoticeDialogBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17295a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinearLayout f17296b;
+    public final LinearLayout f2500b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final LinkifiedTextView f17297c;
+    public final LinkifiedTextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f17298d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17299e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final LinearLayout f17300f;
+    public final LinearLayout f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final MaterialButton f17301g;
+    public final MaterialButton g;
 
     public WidgetNoticeDialogBinding(@NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout2, @NonNull LinkifiedTextView linkifiedTextView, @NonNull MaterialButton materialButton, @NonNull TextView textView, @NonNull LinearLayout linearLayout3, @NonNull MaterialButton materialButton2) {
-        this.f17295a = linearLayout;
-        this.f17296b = linearLayout2;
-        this.f17297c = linkifiedTextView;
-        this.f17298d = materialButton;
-        this.f17299e = textView;
-        this.f17300f = linearLayout3;
-        this.f17301g = materialButton2;
+        this.a = linearLayout;
+        this.f2500b = linearLayout2;
+        this.c = linkifiedTextView;
+        this.d = materialButton;
+        this.e = textView;
+        this.f = linearLayout3;
+        this.g = materialButton2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17295a;
+        return this.a;
     }
 }

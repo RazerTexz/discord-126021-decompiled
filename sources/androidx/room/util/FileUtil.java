@@ -1,9 +1,10 @@
 package androidx.room.util;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +14,7 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class FileUtil {
     private FileUtil() {
     }
@@ -21,7 +22,7 @@ public class FileUtil {
     @SuppressLint({"LambdaLast"})
     public static void copy(@NonNull ReadableByteChannel readableByteChannel, @NonNull FileChannel fileChannel) throws IOException {
         try {
-            if (Build.VERSION.SDK_INT <= 23) {
+            if (Build$VERSION.SDK_INT <= 23) {
                 InputStream inputStreamNewInputStream = Channels.newInputStream(readableByteChannel);
                 OutputStream outputStreamNewOutputStream = Channels.newOutputStream(fileChannel);
                 byte[] bArr = new byte[4096];

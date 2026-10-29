@@ -1,6 +1,6 @@
 package androidx.appcompat.widget;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -12,21 +12,22 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$styleable;
 import androidx.core.graphics.ColorUtils;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class ThemeUtils {
     public static final int[] NOT_PRESSED_OR_FOCUSED_STATE_SET = {-16842919, -16842908};
     private static final String TAG = "ThemeUtils";
     private static final ThreadLocal<TypedValue> TL_TYPED_VALUE = new ThreadLocal<>();
     public static final int[] DISABLED_STATE_SET = {-16842910};
-    public static final int[] FOCUSED_STATE_SET = {R.attr.state_focused};
-    public static final int[] ACTIVATED_STATE_SET = {R.attr.state_activated};
-    public static final int[] PRESSED_STATE_SET = {R.attr.state_pressed};
-    public static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
-    public static final int[] SELECTED_STATE_SET = {R.attr.state_selected};
+    public static final int[] FOCUSED_STATE_SET = {R$attr.state_focused};
+    public static final int[] ACTIVATED_STATE_SET = {R$attr.state_activated};
+    public static final int[] PRESSED_STATE_SET = {R$attr.state_pressed};
+    public static final int[] CHECKED_STATE_SET = {R$attr.state_checked};
+    public static final int[] SELECTED_STATE_SET = {R$attr.state_selected};
     public static final int[] EMPTY_STATE_SET = new int[0];
     private static final int[] TEMP_ARRAY = new int[1];
 
@@ -34,9 +35,9 @@ public class ThemeUtils {
     }
 
     public static void checkAppCompatTheme(@NonNull View view, @NonNull Context context) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(C0051R.styleable.AppCompatTheme);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(R$styleable.AppCompatTheme);
         try {
-            if (!typedArrayObtainStyledAttributes.hasValue(C0051R.styleable.AppCompatTheme_windowActionBar)) {
+            if (!typedArrayObtainStyledAttributes.hasValue(R$styleable.AppCompatTheme_windowActionBar)) {
                 Log.e(TAG, "View " + view.getClass() + " is an AppCompat widget that can only be used with a Theme.AppCompat theme (or descendant).");
             }
         } finally {
@@ -55,7 +56,7 @@ public class ThemeUtils {
             return themeAttrColorStateList.getColorForState(DISABLED_STATE_SET, themeAttrColorStateList.getDefaultColor());
         }
         TypedValue typedValue = getTypedValue();
-        context.getTheme().resolveAttribute(R.attr.disabledAlpha, typedValue, true);
+        context.getTheme().resolveAttribute(R$attr.disabledAlpha, typedValue, true);
         return getThemeAttrColor(context, i, typedValue.getFloat());
     }
 

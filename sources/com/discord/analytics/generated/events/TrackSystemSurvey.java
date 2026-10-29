@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSystemSurvey.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,7 +32,7 @@ public final /* data */ class TrackSystemSurvey implements AnalyticsSchema, Trac
             return false;
         }
         TrackSystemSurvey trackSystemSurvey = (TrackSystemSurvey) other;
-        return C12238m.areEqual(this.cpuBrand, trackSystemSurvey.cpuBrand) && C12238m.areEqual(this.cpuVendor, trackSystemSurvey.cpuVendor) && C12238m.areEqual(this.cpuMemory, trackSystemSurvey.cpuMemory) && C12238m.areEqual(this.gpuBrand, trackSystemSurvey.gpuBrand) && C12238m.areEqual(this.gpuCount, trackSystemSurvey.gpuCount) && C12238m.areEqual(this.gpuMemory, trackSystemSurvey.gpuMemory) && C12238m.areEqual(this.batteries, trackSystemSurvey.batteries) && C12238m.areEqual(this.displayMonitors, trackSystemSurvey.displayMonitors) && C12238m.areEqual(this.displayPrimaryWidth, trackSystemSurvey.displayPrimaryWidth) && C12238m.areEqual(this.displayPrimaryHeight, trackSystemSurvey.displayPrimaryHeight) && C12238m.areEqual(this.displayDesktopWidth, trackSystemSurvey.displayDesktopWidth) && C12238m.areEqual(this.displayDesktopHeight, trackSystemSurvey.displayDesktopHeight);
+        return m.areEqual(this.cpuBrand, trackSystemSurvey.cpuBrand) && m.areEqual(this.cpuVendor, trackSystemSurvey.cpuVendor) && m.areEqual(this.cpuMemory, trackSystemSurvey.cpuMemory) && m.areEqual(this.gpuBrand, trackSystemSurvey.gpuBrand) && m.areEqual(this.gpuCount, trackSystemSurvey.gpuCount) && m.areEqual(this.gpuMemory, trackSystemSurvey.gpuMemory) && m.areEqual(this.batteries, trackSystemSurvey.batteries) && m.areEqual(this.displayMonitors, trackSystemSurvey.displayMonitors) && m.areEqual(this.displayPrimaryWidth, trackSystemSurvey.displayPrimaryWidth) && m.areEqual(this.displayPrimaryHeight, trackSystemSurvey.displayPrimaryHeight) && m.areEqual(this.displayDesktopWidth, trackSystemSurvey.displayDesktopWidth) && m.areEqual(this.displayDesktopHeight, trackSystemSurvey.displayDesktopHeight);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,29 +69,29 @@ public final /* data */ class TrackSystemSurvey implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSystemSurvey(cpuBrand=");
-        sbM833U.append(this.cpuBrand);
-        sbM833U.append(", cpuVendor=");
-        sbM833U.append(this.cpuVendor);
-        sbM833U.append(", cpuMemory=");
-        sbM833U.append(this.cpuMemory);
-        sbM833U.append(", gpuBrand=");
-        sbM833U.append(this.gpuBrand);
-        sbM833U.append(", gpuCount=");
-        sbM833U.append(this.gpuCount);
-        sbM833U.append(", gpuMemory=");
-        sbM833U.append(this.gpuMemory);
-        sbM833U.append(", batteries=");
-        sbM833U.append(this.batteries);
-        sbM833U.append(", displayMonitors=");
-        sbM833U.append(this.displayMonitors);
-        sbM833U.append(", displayPrimaryWidth=");
-        sbM833U.append(this.displayPrimaryWidth);
-        sbM833U.append(", displayPrimaryHeight=");
-        sbM833U.append(this.displayPrimaryHeight);
-        sbM833U.append(", displayDesktopWidth=");
-        sbM833U.append(this.displayDesktopWidth);
-        sbM833U.append(", displayDesktopHeight=");
-        return C1643a.m819G(sbM833U, this.displayDesktopHeight, ")");
+        StringBuilder sbU = a.U("TrackSystemSurvey(cpuBrand=");
+        sbU.append(this.cpuBrand);
+        sbU.append(", cpuVendor=");
+        sbU.append(this.cpuVendor);
+        sbU.append(", cpuMemory=");
+        sbU.append(this.cpuMemory);
+        sbU.append(", gpuBrand=");
+        sbU.append(this.gpuBrand);
+        sbU.append(", gpuCount=");
+        sbU.append(this.gpuCount);
+        sbU.append(", gpuMemory=");
+        sbU.append(this.gpuMemory);
+        sbU.append(", batteries=");
+        sbU.append(this.batteries);
+        sbU.append(", displayMonitors=");
+        sbU.append(this.displayMonitors);
+        sbU.append(", displayPrimaryWidth=");
+        sbU.append(this.displayPrimaryWidth);
+        sbU.append(", displayPrimaryHeight=");
+        sbU.append(this.displayPrimaryHeight);
+        sbU.append(", displayDesktopWidth=");
+        sbU.append(this.displayDesktopWidth);
+        sbU.append(", displayDesktopHeight=");
+        return a.G(sbU, this.displayDesktopHeight, ")");
     }
 }

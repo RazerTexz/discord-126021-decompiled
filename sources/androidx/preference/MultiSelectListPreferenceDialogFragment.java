@@ -1,7 +1,6 @@
 package androidx.preference;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.AlertDialog$Builder;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import java.util.ArrayList;
@@ -73,25 +72,14 @@ public class MultiSelectListPreferenceDialogFragment extends PreferenceDialogFra
     }
 
     @Override // androidx.preference.PreferenceDialogFragment
-    public void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-        super.onPrepareDialogBuilder(builder);
+    public void onPrepareDialogBuilder(AlertDialog$Builder alertDialog$Builder) {
+        super.onPrepareDialogBuilder(alertDialog$Builder);
         int length = this.mEntryValues.length;
         boolean[] zArr = new boolean[length];
         for (int i = 0; i < length; i++) {
             zArr[i] = this.mNewValues.contains(this.mEntryValues[i].toString());
         }
-        builder.setMultiChoiceItems(this.mEntries, zArr, new DialogInterface.OnMultiChoiceClickListener() { // from class: androidx.preference.MultiSelectListPreferenceDialogFragment.1
-            @Override // android.content.DialogInterface.OnMultiChoiceClickListener
-            public void onClick(DialogInterface dialogInterface, int i2, boolean z2) {
-                if (z2) {
-                    MultiSelectListPreferenceDialogFragment multiSelectListPreferenceDialogFragment = MultiSelectListPreferenceDialogFragment.this;
-                    multiSelectListPreferenceDialogFragment.mPreferenceChanged = multiSelectListPreferenceDialogFragment.mNewValues.add(multiSelectListPreferenceDialogFragment.mEntryValues[i2].toString()) | multiSelectListPreferenceDialogFragment.mPreferenceChanged;
-                } else {
-                    MultiSelectListPreferenceDialogFragment multiSelectListPreferenceDialogFragment2 = MultiSelectListPreferenceDialogFragment.this;
-                    multiSelectListPreferenceDialogFragment2.mPreferenceChanged = multiSelectListPreferenceDialogFragment2.mNewValues.remove(multiSelectListPreferenceDialogFragment2.mEntryValues[i2].toString()) | multiSelectListPreferenceDialogFragment2.mPreferenceChanged;
-                }
-            }
-        });
+        alertDialog$Builder.setMultiChoiceItems(this.mEntries, zArr, new MultiSelectListPreferenceDialogFragment$1(this));
     }
 
     @Override // androidx.preference.PreferenceDialogFragment, android.app.DialogFragment, android.app.Fragment

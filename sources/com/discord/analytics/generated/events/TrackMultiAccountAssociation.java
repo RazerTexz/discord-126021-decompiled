@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackMultiAccountAssociation.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackMultiAccountAssociation implements AnalyticsS
             return false;
         }
         TrackMultiAccountAssociation trackMultiAccountAssociation = (TrackMultiAccountAssociation) other;
-        return C12238m.areEqual(this.lastUserId, trackMultiAccountAssociation.lastUserId) && C12238m.areEqual(this.linkedUserIds, trackMultiAccountAssociation.linkedUserIds);
+        return m.areEqual(this.lastUserId, trackMultiAccountAssociation.lastUserId) && m.areEqual(this.linkedUserIds, trackMultiAccountAssociation.linkedUserIds);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -40,9 +40,9 @@ public final /* data */ class TrackMultiAccountAssociation implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMultiAccountAssociation(lastUserId=");
-        sbM833U.append(this.lastUserId);
-        sbM833U.append(", linkedUserIds=");
-        return C1643a.m824L(sbM833U, this.linkedUserIds, ")");
+        StringBuilder sbU = a.U("TrackMultiAccountAssociation(lastUserId=");
+        sbU.append(this.lastUserId);
+        sbU.append(", linkedUserIds=");
+        return a.L(sbU, this.linkedUserIds, ")");
     }
 }

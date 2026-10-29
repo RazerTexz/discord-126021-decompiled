@@ -2,5 +2,5 @@ package org.webrtc;
 
 /* JADX INFO: loaded from: classes3.dex */
 public interface Loggable {
-    void onLogMessage(String str, Logging.Severity severity, String str2);
+    void onLogMessage(String str, Logging$Severity logging$Severity, String str2);
 }

@@ -1,12 +1,12 @@
 package com.discord.api.interaction;
 
+import b.d.b.a.a;
 import com.discord.api.botuikit.Component;
 import com.discord.api.commands.Application;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.io.Serializable;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: InteractionModalCreate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,6 +18,10 @@ public final /* data */ class InteractionModalCreate implements Serializable {
     private final String nonce;
     private final String title;
 
+    public final List<Component> b() {
+        return this.components;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -26,7 +30,7 @@ public final /* data */ class InteractionModalCreate implements Serializable {
             return false;
         }
         InteractionModalCreate interactionModalCreate = (InteractionModalCreate) other;
-        return this.id == interactionModalCreate.id && C12238m.areEqual(this.customId, interactionModalCreate.customId) && C12238m.areEqual(this.application, interactionModalCreate.application) && C12238m.areEqual(this.title, interactionModalCreate.title) && C12238m.areEqual(this.components, interactionModalCreate.components) && C12238m.areEqual(this.nonce, interactionModalCreate.nonce);
+        return this.id == interactionModalCreate.id && m.areEqual(this.customId, interactionModalCreate.customId) && m.areEqual(this.application, interactionModalCreate.application) && m.areEqual(this.title, interactionModalCreate.title) && m.areEqual(this.components, interactionModalCreate.components) && m.areEqual(this.nonce, interactionModalCreate.nonce);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -68,23 +72,18 @@ public final /* data */ class InteractionModalCreate implements Serializable {
         return iHashCode4 + (str3 != null ? str3.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<Component> m8010b() {
-        return this.components;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InteractionModalCreate(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", customId=");
-        sbM833U.append(this.customId);
-        sbM833U.append(", application=");
-        sbM833U.append(this.application);
-        sbM833U.append(", title=");
-        sbM833U.append(this.title);
-        sbM833U.append(", components=");
-        sbM833U.append(this.components);
-        sbM833U.append(", nonce=");
-        return C1643a.m822J(sbM833U, this.nonce, ")");
+        StringBuilder sbU = a.U("InteractionModalCreate(id=");
+        sbU.append(this.id);
+        sbU.append(", customId=");
+        sbU.append(this.customId);
+        sbU.append(", application=");
+        sbU.append(this.application);
+        sbU.append(", title=");
+        sbU.append(this.title);
+        sbU.append(", components=");
+        sbU.append(this.components);
+        sbU.append(", nonce=");
+        return a.J(sbU, this.nonce, ")");
     }
 }

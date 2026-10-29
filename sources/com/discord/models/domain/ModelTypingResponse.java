@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelTypingResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -36,7 +36,7 @@ public final /* data */ class ModelTypingResponse {
             return false;
         }
         ModelTypingResponse modelTypingResponse = (ModelTypingResponse) other;
-        return C12238m.areEqual(this.messageSendCooldownMs, modelTypingResponse.messageSendCooldownMs) && C12238m.areEqual(this.threadCreateCooldownMs, modelTypingResponse.threadCreateCooldownMs);
+        return m.areEqual(this.messageSendCooldownMs, modelTypingResponse.messageSendCooldownMs) && m.areEqual(this.threadCreateCooldownMs, modelTypingResponse.threadCreateCooldownMs);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -65,9 +65,9 @@ public final /* data */ class ModelTypingResponse {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelTypingResponse(messageSendCooldownMs=");
-        sbM833U.append(this.messageSendCooldownMs);
-        sbM833U.append(", threadCreateCooldownMs=");
-        return C1643a.m819G(sbM833U, this.threadCreateCooldownMs, ")");
+        StringBuilder sbU = a.U("ModelTypingResponse(messageSendCooldownMs=");
+        sbU.append(this.messageSendCooldownMs);
+        sbU.append(", threadCreateCooldownMs=");
+        return a.G(sbU, this.threadCreateCooldownMs, ")");
     }
 }

@@ -12,37 +12,33 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsAccountBackupCodesBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17780a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final DimmerView f17781b;
+    public final DimmerView f2590b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17782c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17783d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final RecyclerView f17784e;
+    public final RecyclerView e;
 
     public WidgetSettingsAccountBackupCodesBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull DimmerView dimmerView, @NonNull MaterialButton materialButton, @NonNull TextView textView, @NonNull RecyclerView recyclerView) {
-        this.f17780a = coordinatorLayout;
-        this.f17781b = dimmerView;
-        this.f17782c = materialButton;
-        this.f17783d = textView;
-        this.f17784e = recyclerView;
+        this.a = coordinatorLayout;
+        this.f2590b = dimmerView;
+        this.c = materialButton;
+        this.d = textView;
+        this.e = recyclerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17780a;
+        return this.a;
     }
 }

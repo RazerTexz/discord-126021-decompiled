@@ -4,16 +4,16 @@ import android.view.View;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.chips_view.ChipsView;
 import com.discord.databinding.GroupInviteFriendsBottomSheetBinding;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GroupInviteFriendsSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class GroupInviteFriendsSheet$binding$2 extends C12236k implements Function1<View, GroupInviteFriendsBottomSheetBinding> {
+public final /* synthetic */ class GroupInviteFriendsSheet$binding$2 extends k implements Function1<View, GroupInviteFriendsBottomSheetBinding> {
     public static final GroupInviteFriendsSheet$binding$2 INSTANCE = new GroupInviteFriendsSheet$binding$2();
 
     public GroupInviteFriendsSheet$binding$2() {
@@ -21,17 +21,22 @@ public final /* synthetic */ class GroupInviteFriendsSheet$binding$2 extends C12
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final GroupInviteFriendsBottomSheetBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.chips_view;
-        ChipsView chipsView = (ChipsView) view.findViewById(C5419R.id.chips_view);
+    public /* bridge */ /* synthetic */ GroupInviteFriendsBottomSheetBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final GroupInviteFriendsBottomSheetBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.chips_view;
+        ChipsView chipsView = (ChipsView) view.findViewById(R$id.chips_view);
         if (chipsView != null) {
-            i = C5419R.id.recycler_view;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(C5419R.id.recycler_view);
+            i = 2131364898;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(2131364898);
             if (recyclerView != null) {
                 ConstraintLayout constraintLayout = (ConstraintLayout) view;
-                i = C5419R.id.search_icon;
-                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(C5419R.id.search_icon);
+                i = R$id.search_icon;
+                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.search_icon);
                 if (appCompatImageView != null) {
                     return new GroupInviteFriendsBottomSheetBinding(constraintLayout, chipsView, recyclerView, constraintLayout, appCompatImageView);
                 }

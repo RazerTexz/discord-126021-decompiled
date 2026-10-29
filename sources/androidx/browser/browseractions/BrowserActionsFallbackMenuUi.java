@@ -1,35 +1,34 @@
 package androidx.browser.browseractions;
 
 import android.app.PendingIntent;
-import android.content.ClipData;
-import android.content.ClipboardManager;
+import android.app.PendingIntent$CanceledException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView$OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
-import androidx.browser.C0143R;
-import androidx.core.widget.TextViewCompat;
+import androidx.browser.R$id;
+import androidx.browser.R$layout;
+import androidx.browser.R$string;
 import com.discord.restapi.RestAPIBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
-public class BrowserActionsFallbackMenuUi implements AdapterView.OnItemClickListener {
+public class BrowserActionsFallbackMenuUi implements AdapterView$OnItemClickListener {
     private static final String TAG = "BrowserActionskMenuUi";
 
     @Nullable
@@ -38,14 +37,8 @@ public class BrowserActionsFallbackMenuUi implements AdapterView.OnItemClickList
     private final List<BrowserActionItem> mMenuItems;
 
     @Nullable
-    public BrowserActionsFallMenuUiListener mMenuUiListener;
+    public BrowserActionsFallbackMenuUi$BrowserActionsFallMenuUiListener mMenuUiListener;
     public final Uri mUri;
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    @VisibleForTesting
-    public interface BrowserActionsFallMenuUiListener {
-        void onMenuShown(View view);
-    }
 
     public BrowserActionsFallbackMenuUi(@NonNull Context context, @NonNull Uri uri, @NonNull List<BrowserActionItem> list) {
         this.mContext = context;
@@ -54,21 +47,15 @@ public class BrowserActionsFallbackMenuUi implements AdapterView.OnItemClickList
     }
 
     private Runnable buildCopyAction() {
-        return new Runnable() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuUi.1
-            @Override // java.lang.Runnable
-            public void run() {
-                ((ClipboardManager) BrowserActionsFallbackMenuUi.this.mContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("url", BrowserActionsFallbackMenuUi.this.mUri.toString()));
-                Toast.makeText(BrowserActionsFallbackMenuUi.this.mContext, BrowserActionsFallbackMenuUi.this.mContext.getString(C0143R.string.copy_toast_msg), 0).show();
-            }
-        };
+        return new BrowserActionsFallbackMenuUi$1(this);
     }
 
     @NonNull
     private List<BrowserActionItem> buildFallbackMenuItemList(List<BrowserActionItem> list) {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new BrowserActionItem(this.mContext.getString(C0143R.string.fallback_menu_item_open_in_browser), buildOpenInBrowserAction()));
-        arrayList.add(new BrowserActionItem(this.mContext.getString(C0143R.string.fallback_menu_item_copy_link), buildCopyAction()));
-        arrayList.add(new BrowserActionItem(this.mContext.getString(C0143R.string.fallback_menu_item_share_link), buildShareAction()));
+        arrayList.add(new BrowserActionItem(this.mContext.getString(R$string.fallback_menu_item_open_in_browser), buildOpenInBrowserAction()));
+        arrayList.add(new BrowserActionItem(this.mContext.getString(R$string.fallback_menu_item_copy_link), buildCopyAction()));
+        arrayList.add(new BrowserActionItem(this.mContext.getString(R$string.fallback_menu_item_share_link), buildShareAction()));
         arrayList.addAll(list);
         return arrayList;
     }
@@ -85,55 +72,34 @@ public class BrowserActionsFallbackMenuUi implements AdapterView.OnItemClickList
     }
 
     public void displayMenu() {
-        final View viewInflate = LayoutInflater.from(this.mContext).inflate(C0143R.layout.browser_actions_context_menu_page, (ViewGroup) null);
+        View viewInflate = LayoutInflater.from(this.mContext).inflate(R$layout.browser_actions_context_menu_page, (ViewGroup) null);
         BrowserActionsFallbackMenuDialog browserActionsFallbackMenuDialog = new BrowserActionsFallbackMenuDialog(this.mContext, initMenuView(viewInflate));
         this.mBrowserActionsDialog = browserActionsFallbackMenuDialog;
         browserActionsFallbackMenuDialog.setContentView(viewInflate);
         if (this.mMenuUiListener != null) {
-            this.mBrowserActionsDialog.setOnShowListener(new DialogInterface.OnShowListener() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuUi.2
-                @Override // android.content.DialogInterface.OnShowListener
-                public void onShow(DialogInterface dialogInterface) {
-                    BrowserActionsFallMenuUiListener browserActionsFallMenuUiListener = BrowserActionsFallbackMenuUi.this.mMenuUiListener;
-                    if (browserActionsFallMenuUiListener == null) {
-                        Log.e(BrowserActionsFallbackMenuUi.TAG, "Cannot trigger menu item listener, it is null");
-                    } else {
-                        browserActionsFallMenuUiListener.onMenuShown(viewInflate);
-                    }
-                }
-            });
+            this.mBrowserActionsDialog.setOnShowListener(new BrowserActionsFallbackMenuUi$2(this, viewInflate));
         }
         this.mBrowserActionsDialog.show();
     }
 
     private BrowserActionsFallbackMenuView initMenuView(View view) {
-        BrowserActionsFallbackMenuView browserActionsFallbackMenuView = (BrowserActionsFallbackMenuView) view.findViewById(C0143R.id.browser_actions_menu_view);
-        final TextView textView = (TextView) view.findViewById(C0143R.id.browser_actions_header_text);
+        BrowserActionsFallbackMenuView browserActionsFallbackMenuView = (BrowserActionsFallbackMenuView) view.findViewById(R$id.browser_actions_menu_view);
+        TextView textView = (TextView) view.findViewById(R$id.browser_actions_header_text);
         textView.setText(this.mUri.toString());
-        textView.setOnClickListener(new View.OnClickListener() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuUi.3
-            @Override // android.view.View.OnClickListener
-            public void onClick(View view2) {
-                if (TextViewCompat.getMaxLines(textView) == Integer.MAX_VALUE) {
-                    textView.setMaxLines(1);
-                    textView.setEllipsize(TextUtils.TruncateAt.END);
-                } else {
-                    textView.setMaxLines(Integer.MAX_VALUE);
-                    textView.setEllipsize(null);
-                }
-            }
-        });
-        ListView listView = (ListView) view.findViewById(C0143R.id.browser_actions_menu_items);
+        textView.setOnClickListener(new BrowserActionsFallbackMenuUi$3(this, textView));
+        ListView listView = (ListView) view.findViewById(R$id.browser_actions_menu_items);
         listView.setAdapter((ListAdapter) new BrowserActionsFallbackMenuAdapter(this.mMenuItems, this.mContext));
         listView.setOnItemClickListener(this);
         return browserActionsFallbackMenuView;
     }
 
-    @Override // android.widget.AdapterView.OnItemClickListener
+    @Override // android.widget.AdapterView$OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
         BrowserActionItem browserActionItem = this.mMenuItems.get(i);
         if (browserActionItem.getAction() != null) {
             try {
                 browserActionItem.getAction().send();
-            } catch (PendingIntent.CanceledException e) {
+            } catch (PendingIntent$CanceledException e) {
                 Log.e(TAG, "Failed to send custom item action", e);
             }
         } else if (browserActionItem.getRunnableAction() != null) {
@@ -147,9 +113,9 @@ public class BrowserActionsFallbackMenuUi implements AdapterView.OnItemClickList
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     @VisibleForTesting
-    public void setMenuUiListener(@Nullable BrowserActionsFallMenuUiListener browserActionsFallMenuUiListener) {
-        this.mMenuUiListener = browserActionsFallMenuUiListener;
+    public void setMenuUiListener(@Nullable BrowserActionsFallbackMenuUi$BrowserActionsFallMenuUiListener browserActionsFallbackMenuUi$BrowserActionsFallMenuUiListener) {
+        this.mMenuUiListener = browserActionsFallbackMenuUi$BrowserActionsFallMenuUiListener;
     }
 }

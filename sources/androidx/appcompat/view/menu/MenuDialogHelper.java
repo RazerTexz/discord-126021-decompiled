@@ -1,22 +1,27 @@
 package androidx.appcompat.view.menu;
 
 import android.content.DialogInterface;
+import android.content.DialogInterface$OnClickListener;
+import android.content.DialogInterface$OnDismissListener;
+import android.content.DialogInterface$OnKeyListener;
 import android.os.IBinder;
 import android.view.KeyEvent;
+import android.view.KeyEvent$DispatcherState;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
+import android.view.WindowManager$LayoutParams;
 import androidx.annotation.NonNull;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$layout;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog$Builder;
 import androidx.core.view.PointerIconCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-public class MenuDialogHelper implements DialogInterface.OnKeyListener, DialogInterface.OnClickListener, DialogInterface.OnDismissListener, MenuPresenter.Callback {
+public class MenuDialogHelper implements DialogInterface$OnKeyListener, DialogInterface$OnClickListener, DialogInterface$OnDismissListener, MenuPresenter$Callback {
     private AlertDialog mDialog;
     private MenuBuilder mMenu;
     public ListMenuPresenter mPresenter;
-    private MenuPresenter.Callback mPresenterCallback;
+    private MenuPresenter$Callback mPresenterCallback;
 
     public MenuDialogHelper(MenuBuilder menuBuilder) {
         this.mMenu = menuBuilder;
@@ -29,34 +34,34 @@ public class MenuDialogHelper implements DialogInterface.OnKeyListener, DialogIn
         }
     }
 
-    @Override // android.content.DialogInterface.OnClickListener
+    @Override // android.content.DialogInterface$OnClickListener
     public void onClick(DialogInterface dialogInterface, int i) {
         this.mMenu.performItemAction((MenuItemImpl) this.mPresenter.getAdapter().getItem(i), 0);
     }
 
-    @Override // androidx.appcompat.view.menu.MenuPresenter.Callback
+    @Override // androidx.appcompat.view.menu.MenuPresenter$Callback
     public void onCloseMenu(@NonNull MenuBuilder menuBuilder, boolean z2) {
         if (z2 || menuBuilder == this.mMenu) {
             dismiss();
         }
-        MenuPresenter.Callback callback = this.mPresenterCallback;
-        if (callback != null) {
-            callback.onCloseMenu(menuBuilder, z2);
+        MenuPresenter$Callback menuPresenter$Callback = this.mPresenterCallback;
+        if (menuPresenter$Callback != null) {
+            menuPresenter$Callback.onCloseMenu(menuBuilder, z2);
         }
     }
 
-    @Override // android.content.DialogInterface.OnDismissListener
+    @Override // android.content.DialogInterface$OnDismissListener
     public void onDismiss(DialogInterface dialogInterface) {
         this.mPresenter.onCloseMenu(this.mMenu, true);
     }
 
-    @Override // android.content.DialogInterface.OnKeyListener
+    @Override // android.content.DialogInterface$OnKeyListener
     public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
         Window window;
         View decorView;
-        KeyEvent.DispatcherState keyDispatcherState;
+        KeyEvent$DispatcherState keyDispatcherState;
         View decorView2;
-        KeyEvent.DispatcherState keyDispatcherState2;
+        KeyEvent$DispatcherState keyDispatcherState2;
         if (i == 82 || i == 4) {
             if (keyEvent.getAction() == 0 && keyEvent.getRepeatCount() == 0) {
                 Window window2 = this.mDialog.getWindow();
@@ -73,38 +78,38 @@ public class MenuDialogHelper implements DialogInterface.OnKeyListener, DialogIn
         return this.mMenu.performShortcut(i, keyEvent, 0);
     }
 
-    @Override // androidx.appcompat.view.menu.MenuPresenter.Callback
+    @Override // androidx.appcompat.view.menu.MenuPresenter$Callback
     public boolean onOpenSubMenu(@NonNull MenuBuilder menuBuilder) {
-        MenuPresenter.Callback callback = this.mPresenterCallback;
-        if (callback != null) {
-            return callback.onOpenSubMenu(menuBuilder);
+        MenuPresenter$Callback menuPresenter$Callback = this.mPresenterCallback;
+        if (menuPresenter$Callback != null) {
+            return menuPresenter$Callback.onOpenSubMenu(menuBuilder);
         }
         return false;
     }
 
-    public void setPresenterCallback(MenuPresenter.Callback callback) {
-        this.mPresenterCallback = callback;
+    public void setPresenterCallback(MenuPresenter$Callback menuPresenter$Callback) {
+        this.mPresenterCallback = menuPresenter$Callback;
     }
 
     public void show(IBinder iBinder) {
         MenuBuilder menuBuilder = this.mMenu;
-        AlertDialog.Builder builder = new AlertDialog.Builder(menuBuilder.getContext());
-        ListMenuPresenter listMenuPresenter = new ListMenuPresenter(builder.getContext(), C0051R.layout.abc_list_menu_item_layout);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(menuBuilder.getContext());
+        ListMenuPresenter listMenuPresenter = new ListMenuPresenter(alertDialog$Builder.getContext(), R$layout.abc_list_menu_item_layout);
         this.mPresenter = listMenuPresenter;
         listMenuPresenter.setCallback(this);
         this.mMenu.addMenuPresenter(this.mPresenter);
-        builder.setAdapter(this.mPresenter.getAdapter(), this);
+        alertDialog$Builder.setAdapter(this.mPresenter.getAdapter(), this);
         View headerView = menuBuilder.getHeaderView();
         if (headerView != null) {
-            builder.setCustomTitle(headerView);
+            alertDialog$Builder.setCustomTitle(headerView);
         } else {
-            builder.setIcon(menuBuilder.getHeaderIcon()).setTitle(menuBuilder.getHeaderTitle());
+            alertDialog$Builder.setIcon(menuBuilder.getHeaderIcon()).setTitle(menuBuilder.getHeaderTitle());
         }
-        builder.setOnKeyListener(this);
-        AlertDialog alertDialogCreate = builder.create();
+        alertDialog$Builder.setOnKeyListener(this);
+        AlertDialog alertDialogCreate = alertDialog$Builder.create();
         this.mDialog = alertDialogCreate;
         alertDialogCreate.setOnDismissListener(this);
-        WindowManager.LayoutParams attributes = this.mDialog.getWindow().getAttributes();
+        WindowManager$LayoutParams attributes = this.mDialog.getWindow().getAttributes();
         attributes.type = PointerIconCompat.TYPE_HELP;
         if (iBinder != null) {
             attributes.token = iBinder;

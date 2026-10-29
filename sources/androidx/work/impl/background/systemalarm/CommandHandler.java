@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.WorkerThread;
 import androidx.work.Logger;
 import androidx.work.impl.ExecutionListener;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class CommandHandler implements ExecutionListener {
     public static final String ACTION_CONSTRAINTS_CHANGED = "ACTION_CONSTRAINTS_CHANGED";
     public static final String ACTION_DELAY_MET = "ACTION_DELAY_MET";
@@ -132,7 +133,7 @@ public class CommandHandler implements ExecutionListener {
             if (workSpec.hasConstraints()) {
                 Logger.get().debug(str, String.format("Opportunistically setting an alarm for %s at %s", string, Long.valueOf(jCalculateNextRunTime)), new Throwable[0]);
                 Alarms.setAlarm(this.mContext, systemAlarmDispatcher.getWorkManager(), string, jCalculateNextRunTime);
-                systemAlarmDispatcher.postOnMainThread(new SystemAlarmDispatcher.AddRunnable(systemAlarmDispatcher, createConstraintsChangedIntent(this.mContext), i));
+                systemAlarmDispatcher.postOnMainThread(new SystemAlarmDispatcher$AddRunnable(systemAlarmDispatcher, createConstraintsChangedIntent(this.mContext), i));
             } else {
                 Logger.get().debug(str, String.format("Setting up Alarms for %s at %s", string, Long.valueOf(jCalculateNextRunTime)), new Throwable[0]);
                 Alarms.setAlarm(this.mContext, systemAlarmDispatcher.getWorkManager(), string, jCalculateNextRunTime);

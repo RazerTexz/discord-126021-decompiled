@@ -10,10 +10,11 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.ConfigurationKeys;
 import lombok.Getter;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.configuration.CheckerFrameworkVersion;
 import lombok.core.handlers.HandlerUtil;
+import lombok.core.handlers.HandlerUtil$FieldAccess;
 import lombok.eclipse.Eclipse;
 import lombok.eclipse.EclipseAnnotationHandler;
 import lombok.eclipse.EclipseNode;
@@ -51,88 +52,83 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleGetter.SCL.lombok */
 public class HandleGetter extends EclipseAnnotationHandler<Getter> {
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult;
     private static final int PARENTHESIZED = 2097152;
     public static final Map<String, char[][]> TYPE_MAP;
     private static char[] actualValueName;
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27471xb87c1847;
     private static char[] valueName;
     private static final Annotation[] EMPTY_ANNOTATIONS_ARRAY = new Annotation[0];
-
-    /* JADX INFO: renamed from: AR */
-    private static final char[][] f27470AR = Eclipse.fromQualifiedName("java.util.concurrent.atomic.AtomicReference");
+    private static final char[][] AR = Eclipse.fromQualifiedName("java.util.concurrent.atomic.AtomicReference");
 
     static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$AST$Kind() {
         int[] iArr = $SWITCH_TABLE$lombok$core$AST$Kind;
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[AST.Kind.valuesCustom().length];
+        int[] iArr2 = new int[AST$Kind.valuesCustom().length];
         try {
-            iArr2[AST.Kind.ANNOTATION.ordinal()] = 6;
+            iArr2[AST$Kind.ANNOTATION.ordinal()] = 6;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[AST.Kind.ARGUMENT.ordinal()] = 7;
+            iArr2[AST$Kind.ARGUMENT.ordinal()] = 7;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[AST.Kind.COMPILATION_UNIT.ordinal()] = 1;
+            iArr2[AST$Kind.COMPILATION_UNIT.ordinal()] = 1;
         } catch (NoSuchFieldError unused3) {
         }
         try {
-            iArr2[AST.Kind.FIELD.ordinal()] = 3;
+            iArr2[AST$Kind.FIELD.ordinal()] = 3;
         } catch (NoSuchFieldError unused4) {
         }
         try {
-            iArr2[AST.Kind.INITIALIZER.ordinal()] = 4;
+            iArr2[AST$Kind.INITIALIZER.ordinal()] = 4;
         } catch (NoSuchFieldError unused5) {
         }
         try {
-            iArr2[AST.Kind.LOCAL.ordinal()] = 8;
+            iArr2[AST$Kind.LOCAL.ordinal()] = 8;
         } catch (NoSuchFieldError unused6) {
         }
         try {
-            iArr2[AST.Kind.METHOD.ordinal()] = 5;
+            iArr2[AST$Kind.METHOD.ordinal()] = 5;
         } catch (NoSuchFieldError unused7) {
         }
         try {
-            iArr2[AST.Kind.STATEMENT.ordinal()] = 9;
+            iArr2[AST$Kind.STATEMENT.ordinal()] = 9;
         } catch (NoSuchFieldError unused8) {
         }
         try {
-            iArr2[AST.Kind.TYPE.ordinal()] = 2;
+            iArr2[AST$Kind.TYPE.ordinal()] = 2;
         } catch (NoSuchFieldError unused9) {
         }
         try {
-            iArr2[AST.Kind.TYPE_USE.ordinal()] = 10;
+            iArr2[AST$Kind.TYPE_USE.ordinal()] = 10;
         } catch (NoSuchFieldError unused10) {
         }
         $SWITCH_TABLE$lombok$core$AST$Kind = iArr2;
         return iArr2;
     }
 
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    static /* synthetic */ int[] m10931xb87c1847() {
-        int[] iArr = f27471xb87c1847;
+    static /* synthetic */ int[] $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult() {
+        int[] iArr = $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult;
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[EclipseHandlerUtil.MemberExistsResult.valuesCustom().length];
+        int[] iArr2 = new int[EclipseHandlerUtil$MemberExistsResult.valuesCustom().length];
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
         } catch (NoSuchFieldError unused3) {
         }
-        f27471xb87c1847 = iArr2;
+        $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult = iArr2;
         return iArr2;
     }
 
@@ -171,7 +167,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
     }
 
     public static boolean fieldQualifiesForGetterGeneration(EclipseNode field) {
-        if (field.getKind() != AST.Kind.FIELD) {
+        if (field.getKind() != AST$Kind.FIELD) {
             return false;
         }
         FieldDeclaration fieldDecl = field.get();
@@ -188,7 +184,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
     @Override // lombok.eclipse.EclipseAnnotationHandler
     public void handle(AnnotationValues<Getter> annotation, Annotation ast, EclipseNode annotationNode) {
         HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.GETTER_FLAG_USAGE, "@Getter");
-        EclipseNode node = annotationNode.m10925up();
+        EclipseNode node = annotationNode.up();
         Getter annotationInstance = annotation.getInstance();
         AccessLevel level = annotationInstance.value();
         boolean lazy = annotationInstance.lazy();
@@ -225,7 +221,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
     }
 
     public void createGetterForField(AccessLevel level, EclipseNode fieldNode, EclipseNode errorNode, ASTNode source, boolean whineIfExists, boolean lazy, List<Annotation> onMethod) {
-        if (fieldNode.getKind() != AST.Kind.FIELD) {
+        if (fieldNode.getKind() != AST$Kind.FIELD) {
             errorNode.addError("@Getter is only supported on a class or a field.");
             return;
         }
@@ -251,7 +247,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
         }
         int modifier = EclipseHandlerUtil.toEclipseModifier(level) | (field.modifiers & 8);
         for (String altName : EclipseHandlerUtil.toAllGetterNames(fieldNode, isBoolean)) {
-            switch (m10931xb87c1847()[EclipseHandlerUtil.methodExists(altName, fieldNode, false, 0).ordinal()]) {
+            switch ($SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult()[EclipseHandlerUtil.methodExists(altName, fieldNode, false, 0).ordinal()]) {
                 case 1:
                 default:
                     break;
@@ -266,8 +262,8 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
                     return;
             }
         }
-        MethodDeclaration method = createGetter((TypeDeclaration) fieldNode.m10925up().get(), fieldNode, getterName, modifier, source, lazy, onMethod);
-        EclipseHandlerUtil.injectMethod(fieldNode.m10925up(), method);
+        MethodDeclaration method = createGetter((TypeDeclaration) fieldNode.up().get(), fieldNode, getterName, modifier, source, lazy, onMethod);
+        EclipseHandlerUtil.injectMethod(fieldNode.up(), method);
     }
 
     public static Annotation[] findDelegatesAndMarkAsHandled(EclipseNode fieldNode) {
@@ -336,13 +332,13 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
             method.annotations = EclipseHandlerUtil.addAnnotation(source, method.annotations, TypeConstants.JAVA_LANG_SUPPRESSWARNINGS, arrayInitializer);
         }
         method.traverse(new SetGeneratedByVisitor(source), parent.scope);
-        EclipseHandlerUtil.copyJavadoc(fieldNode, method, EclipseHandlerUtil.CopyJavadoc.GETTER);
+        EclipseHandlerUtil.copyJavadoc(fieldNode, method, EclipseHandlerUtil$CopyJavadoc.GETTER);
         return method;
     }
 
     public Statement[] createSimpleGetterBody(ASTNode source, EclipseNode fieldNode) {
         FieldDeclaration field = fieldNode.get();
-        Expression fieldRef = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil.FieldAccess.ALWAYS_FIELD, source);
+        Expression fieldRef = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil$FieldAccess.ALWAYS_FIELD, source);
         Statement returnStatement = new ReturnStatement(fieldRef, field.sourceStart, field.sourceEnd);
         return new Statement[]{returnStatement};
     }
@@ -378,12 +374,12 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
         getter.sourceEnd = pE;
         getter.statementEnd = pE;
         getter.selector = new char[]{'g', 'e', 't'};
-        getter.receiver = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil.FieldAccess.ALWAYS_FIELD, source);
+        getter.receiver = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil$FieldAccess.ALWAYS_FIELD, source);
         valueDecl.initialization = getter;
         statements[0] = valueDecl;
         EqualExpression cond = new EqualExpression(new SingleNameReference(valueName, p), new NullLiteral(pS, pE), 18);
         Block then = new Block(0);
-        Expression lock = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil.FieldAccess.ALWAYS_FIELD, source);
+        Expression lock = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil$FieldAccess.ALWAYS_FIELD, source);
         Block inner = new Block(0);
         inner.statements = new Statement[2];
         MessageSend getter2 = new MessageSend();
@@ -391,7 +387,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
         getter2.statementEnd = pE;
         getter2.sourceEnd = pE;
         getter2.selector = new char[]{'g', 'e', 't'};
-        getter2.receiver = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil.FieldAccess.ALWAYS_FIELD, source);
+        getter2.receiver = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil$FieldAccess.ALWAYS_FIELD, source);
         Statement assignment = new Assignment(new SingleNameReference(valueName, p), getter2, pE);
         ((Assignment) assignment).sourceStart = pS;
         ((Assignment) assignment).sourceEnd = pE;
@@ -424,7 +420,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
             avIsNull.sourceStart = pS;
             avIsNull.statementEnd = pE;
             avIsNull.sourceEnd = pE;
-            Expression fieldRef = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil.FieldAccess.ALWAYS_FIELD, source);
+            Expression fieldRef = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil$FieldAccess.ALWAYS_FIELD, source);
             ConditionalExpression ternary = new ConditionalExpression(avIsNull, fieldRef, new SingleNameReference(actualValueName, p));
             ternary.sourceStart = pS;
             ternary.statementEnd = pE;
@@ -439,7 +435,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
         ((MessageSend) messageSend).sourceStart = pS;
         ((MessageSend) messageSend).statementEnd = pE;
         ((MessageSend) messageSend).sourceEnd = pE;
-        ((MessageSend) messageSend).receiver = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil.FieldAccess.ALWAYS_FIELD, source);
+        ((MessageSend) messageSend).receiver = EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil$FieldAccess.ALWAYS_FIELD, source);
         ((MessageSend) messageSend).selector = new char[]{'s', 'e', 't'};
         ((MessageSend) messageSend).arguments = new Expression[]{new SingleNameReference(valueName, p)};
         innerThen.statements[2] = messageSend;
@@ -452,7 +448,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
             statements[2] = new ReturnStatement(cast, pS, pE);
         }
         if (!isPrimitive) {
-            EqualExpression vIsThisFieldName = new EqualExpression(new SingleNameReference(valueName, p), EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil.FieldAccess.ALWAYS_FIELD, source), 18);
+            EqualExpression vIsThisFieldName = new EqualExpression(new SingleNameReference(valueName, p), EclipseHandlerUtil.createFieldAccessor(fieldNode, HandlerUtil$FieldAccess.ALWAYS_FIELD, source), 18);
             vIsThisFieldName.sourceStart = pS;
             vIsThisFieldName.statementEnd = pE;
             vIsThisFieldName.sourceEnd = pE;
@@ -467,7 +463,7 @@ public class HandleGetter extends EclipseAnnotationHandler<Getter> {
         TypeReference innerType = new QualifiedTypeReference(TypeConstants.JAVA_LANG_OBJECT, Eclipse.poss(source, 3));
         TypeReference[][] typeParams = new TypeReference[5][];
         typeParams[4] = new TypeReference[]{innerType};
-        ParameterizedQualifiedTypeReference parameterizedQualifiedTypeReference = new ParameterizedQualifiedTypeReference(f27470AR, typeParams, 0, Eclipse.poss(source, 5));
+        ParameterizedQualifiedTypeReference parameterizedQualifiedTypeReference = new ParameterizedQualifiedTypeReference(AR, typeParams, 0, Eclipse.poss(source, 5));
         ((TypeReference) parameterizedQualifiedTypeReference).sourceStart = -1;
         ((TypeReference) parameterizedQualifiedTypeReference).sourceEnd = -2;
         field.type = parameterizedQualifiedTypeReference;

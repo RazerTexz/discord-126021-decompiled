@@ -1,8 +1,6 @@
 package androidx.transition;
 
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArrayMap;
@@ -19,74 +17,6 @@ public class TransitionManager {
     private static ThreadLocal<WeakReference<ArrayMap<ViewGroup, ArrayList<Transition>>>> sRunningTransitions = new ThreadLocal<>();
     private ArrayMap<Scene, ArrayMap<Scene, Transition>> mScenePairTransitions = new ArrayMap<>();
     public static ArrayList<ViewGroup> sPendingTransitions = new ArrayList<>();
-
-    public class MultiListener implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
-        public ViewGroup mSceneRoot;
-        public Transition mTransition;
-
-        public MultiListener(Transition transition, ViewGroup viewGroup) {
-            this.mTransition = transition;
-            this.mSceneRoot = viewGroup;
-        }
-
-        @Override // android.view.ViewTreeObserver.OnPreDrawListener
-        public boolean onPreDraw() {
-            removeListeners();
-            if (!TransitionManager.sPendingTransitions.remove(this.mSceneRoot)) {
-                return true;
-            }
-            final ArrayMap<ViewGroup, ArrayList<Transition>> runningTransitions = TransitionManager.getRunningTransitions();
-            ArrayList<Transition> arrayList = runningTransitions.get(this.mSceneRoot);
-            ArrayList arrayList2 = null;
-            if (arrayList == null) {
-                arrayList = new ArrayList<>();
-                runningTransitions.put(this.mSceneRoot, arrayList);
-            } else if (arrayList.size() > 0) {
-                arrayList2 = new ArrayList(arrayList);
-            }
-            arrayList.add(this.mTransition);
-            this.mTransition.addListener(new TransitionListenerAdapter() { // from class: androidx.transition.TransitionManager.MultiListener.1
-                /* JADX WARN: Multi-variable type inference failed */
-                @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-                public void onTransitionEnd(@NonNull Transition transition) {
-                    ((ArrayList) runningTransitions.get(MultiListener.this.mSceneRoot)).remove(transition);
-                    transition.removeListener(this);
-                }
-            });
-            this.mTransition.captureValues(this.mSceneRoot, false);
-            if (arrayList2 != null) {
-                Iterator it = arrayList2.iterator();
-                while (it.hasNext()) {
-                    ((Transition) it.next()).resume(this.mSceneRoot);
-                }
-            }
-            this.mTransition.playTransition(this.mSceneRoot);
-            return true;
-        }
-
-        @Override // android.view.View.OnAttachStateChangeListener
-        public void onViewAttachedToWindow(View view) {
-        }
-
-        @Override // android.view.View.OnAttachStateChangeListener
-        public void onViewDetachedFromWindow(View view) {
-            removeListeners();
-            TransitionManager.sPendingTransitions.remove(this.mSceneRoot);
-            ArrayList<Transition> arrayList = TransitionManager.getRunningTransitions().get(this.mSceneRoot);
-            if (arrayList != null && arrayList.size() > 0) {
-                Iterator<Transition> it = arrayList.iterator();
-                while (it.hasNext()) {
-                    it.next().resume(this.mSceneRoot);
-                }
-            }
-            this.mTransition.clearValues(true);
-        }
-
-        private void removeListeners() {
-            this.mSceneRoot.getViewTreeObserver().removeOnPreDrawListener(this);
-            this.mSceneRoot.removeOnAttachStateChangeListener(this);
-        }
-    }
 
     public static void beginDelayedTransition(@NonNull ViewGroup viewGroup) {
         beginDelayedTransition(viewGroup, null);
@@ -106,14 +36,14 @@ public class TransitionManager {
             return;
         }
         sPendingTransitions.add(sceneRoot);
-        Transition transitionMo11382clone = transition.mo11382clone();
-        transitionMo11382clone.setSceneRoot(sceneRoot);
+        Transition transitionClone = transition.clone();
+        transitionClone.setSceneRoot(sceneRoot);
         if (currentScene != null && currentScene.isCreatedFromLayoutResource()) {
-            transitionMo11382clone.setCanRemoveViews(true);
+            transitionClone.setCanRemoveViews(true);
         }
-        sceneChangeSetup(sceneRoot, transitionMo11382clone);
+        sceneChangeSetup(sceneRoot, transitionClone);
         scene.enter();
-        sceneChangeRunTransition(sceneRoot, transitionMo11382clone);
+        sceneChangeRunTransition(sceneRoot, transitionClone);
     }
 
     public static void endTransitions(ViewGroup viewGroup) {
@@ -151,8 +81,7 @@ public class TransitionManager {
         return transition2 != null ? transition2 : sDefaultTransition;
     }
 
-    /* JADX INFO: renamed from: go */
-    public static void m96go(@NonNull Scene scene) {
+    public static void go(@NonNull Scene scene) {
         changeScene(scene, sDefaultTransition);
     }
 
@@ -160,9 +89,9 @@ public class TransitionManager {
         if (transition == null || viewGroup == null) {
             return;
         }
-        MultiListener multiListener = new MultiListener(transition, viewGroup);
-        viewGroup.addOnAttachStateChangeListener(multiListener);
-        viewGroup.getViewTreeObserver().addOnPreDrawListener(multiListener);
+        TransitionManager$MultiListener transitionManager$MultiListener = new TransitionManager$MultiListener(transition, viewGroup);
+        viewGroup.addOnAttachStateChangeListener(transitionManager$MultiListener);
+        viewGroup.getViewTreeObserver().addOnPreDrawListener(transitionManager$MultiListener);
     }
 
     private static void sceneChangeSetup(ViewGroup viewGroup, Transition transition) {
@@ -198,14 +127,13 @@ public class TransitionManager {
         if (transition == null) {
             transition = sDefaultTransition;
         }
-        Transition transitionMo11382clone = transition.mo11382clone();
-        sceneChangeSetup(viewGroup, transitionMo11382clone);
+        Transition transitionClone = transition.clone();
+        sceneChangeSetup(viewGroup, transitionClone);
         Scene.setCurrentScene(viewGroup, null);
-        sceneChangeRunTransition(viewGroup, transitionMo11382clone);
+        sceneChangeRunTransition(viewGroup, transitionClone);
     }
 
-    /* JADX INFO: renamed from: go */
-    public static void m97go(@NonNull Scene scene, @Nullable Transition transition) {
+    public static void go(@NonNull Scene scene, @Nullable Transition transition) {
         changeScene(scene, transition);
     }
 

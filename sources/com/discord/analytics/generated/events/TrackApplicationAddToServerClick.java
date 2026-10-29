@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackApplicationAddToServerClick.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackApplicationAddToServerClick implements Analyt
             return false;
         }
         TrackApplicationAddToServerClick trackApplicationAddToServerClick = (TrackApplicationAddToServerClick) other;
-        return C12238m.areEqual(this.applicationId, trackApplicationAddToServerClick.applicationId) && C12238m.areEqual(this.authType, trackApplicationAddToServerClick.authType);
+        return m.areEqual(this.applicationId, trackApplicationAddToServerClick.applicationId) && m.areEqual(this.authType, trackApplicationAddToServerClick.authType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackApplicationAddToServerClick implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackApplicationAddToServerClick(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", authType=");
-        return C1643a.m817E(sbM833U, this.authType, ")");
+        StringBuilder sbU = a.U("TrackApplicationAddToServerClick(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", authType=");
+        return a.E(sbU, this.authType, ")");
     }
 }

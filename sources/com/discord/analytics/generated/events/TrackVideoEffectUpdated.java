@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVideoEffectUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -34,7 +34,7 @@ public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema
             return false;
         }
         TrackVideoEffectUpdated trackVideoEffectUpdated = (TrackVideoEffectUpdated) other;
-        return C12238m.areEqual(this.effectType, trackVideoEffectUpdated.effectType) && C12238m.areEqual(this.effectDetail, trackVideoEffectUpdated.effectDetail) && C12238m.areEqual(this.effectState, trackVideoEffectUpdated.effectState) && C12238m.areEqual(this.channelId, trackVideoEffectUpdated.channelId) && C12238m.areEqual(this.channelType, trackVideoEffectUpdated.channelType) && C12238m.areEqual(this.guildId, trackVideoEffectUpdated.guildId) && C12238m.areEqual(this.videoStreamCount, trackVideoEffectUpdated.videoStreamCount) && C12238m.areEqual(this.voiceStateCount, trackVideoEffectUpdated.voiceStateCount) && C12238m.areEqual(this.mediaSessionId, trackVideoEffectUpdated.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackVideoEffectUpdated.rtcConnectionId) && C12238m.areEqual(this.isAnimated, trackVideoEffectUpdated.isAnimated);
+        return m.areEqual(this.effectType, trackVideoEffectUpdated.effectType) && m.areEqual(this.effectDetail, trackVideoEffectUpdated.effectDetail) && m.areEqual(this.effectState, trackVideoEffectUpdated.effectState) && m.areEqual(this.channelId, trackVideoEffectUpdated.channelId) && m.areEqual(this.channelType, trackVideoEffectUpdated.channelType) && m.areEqual(this.guildId, trackVideoEffectUpdated.guildId) && m.areEqual(this.videoStreamCount, trackVideoEffectUpdated.videoStreamCount) && m.areEqual(this.voiceStateCount, trackVideoEffectUpdated.voiceStateCount) && m.areEqual(this.mediaSessionId, trackVideoEffectUpdated.mediaSessionId) && m.areEqual(this.rtcConnectionId, trackVideoEffectUpdated.rtcConnectionId) && m.areEqual(this.isAnimated, trackVideoEffectUpdated.isAnimated);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,27 +69,27 @@ public final /* data */ class TrackVideoEffectUpdated implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVideoEffectUpdated(effectType=");
-        sbM833U.append(this.effectType);
-        sbM833U.append(", effectDetail=");
-        sbM833U.append(this.effectDetail);
-        sbM833U.append(", effectState=");
-        sbM833U.append(this.effectState);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", videoStreamCount=");
-        sbM833U.append(this.videoStreamCount);
-        sbM833U.append(", voiceStateCount=");
-        sbM833U.append(this.voiceStateCount);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", isAnimated=");
-        return C1643a.m816D(sbM833U, this.isAnimated, ")");
+        StringBuilder sbU = a.U("TrackVideoEffectUpdated(effectType=");
+        sbU.append(this.effectType);
+        sbU.append(", effectDetail=");
+        sbU.append(this.effectDetail);
+        sbU.append(", effectState=");
+        sbU.append(this.effectState);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", videoStreamCount=");
+        sbU.append(this.videoStreamCount);
+        sbU.append(", voiceStateCount=");
+        sbU.append(this.voiceStateCount);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", isAnimated=");
+        return a.D(sbU, this.isAnimated, ")");
     }
 }

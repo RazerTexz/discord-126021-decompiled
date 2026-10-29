@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.Arrays;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EncryptionSettings.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class EncryptionSettings {
     private final int[] secretKey;
 
     public EncryptionSettings(String str, int[] iArr) {
-        C12238m.checkNotNullParameter(str, "mode");
-        C12238m.checkNotNullParameter(iArr, "secretKey");
+        m.checkNotNullParameter(str, "mode");
+        m.checkNotNullParameter(iArr, "secretKey");
         this.mode = str;
         this.secretKey = iArr;
     }
@@ -28,8 +28,8 @@ public final /* data */ class EncryptionSettings {
     }
 
     public final EncryptionSettings copy(String mode, int[] secretKey) {
-        C12238m.checkNotNullParameter(mode, "mode");
-        C12238m.checkNotNullParameter(secretKey, "secretKey");
+        m.checkNotNullParameter(mode, "mode");
+        m.checkNotNullParameter(secretKey, "secretKey");
         return new EncryptionSettings(mode, secretKey);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class EncryptionSettings {
             return false;
         }
         EncryptionSettings encryptionSettings = (EncryptionSettings) other;
-        return C12238m.areEqual(this.mode, encryptionSettings.mode) && C12238m.areEqual(this.secretKey, encryptionSettings.secretKey);
+        return m.areEqual(this.mode, encryptionSettings.mode) && m.areEqual(this.secretKey, encryptionSettings.secretKey);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -70,11 +70,11 @@ public final /* data */ class EncryptionSettings {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EncryptionSettings(mode=");
-        sbM833U.append(this.mode);
-        sbM833U.append(", secretKey=");
-        sbM833U.append(Arrays.toString(this.secretKey));
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("EncryptionSettings(mode=");
+        sbU.append(this.mode);
+        sbU.append(", secretKey=");
+        sbU.append(Arrays.toString(this.secretKey));
+        sbU.append(")");
+        return sbU.toString();
     }
 }

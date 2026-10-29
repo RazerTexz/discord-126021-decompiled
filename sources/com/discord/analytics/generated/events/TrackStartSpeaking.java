@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStartSpeaking.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,6 +33,11 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
     private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "start_speaking";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -41,7 +46,7 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
             return false;
         }
         TrackStartSpeaking trackStartSpeaking = (TrackStartSpeaking) other;
-        return C12238m.areEqual(this.channel, trackStartSpeaking.channel) && C12238m.areEqual(this.mode, trackStartSpeaking.mode) && C12238m.areEqual(this.priority, trackStartSpeaking.priority) && C12238m.areEqual(this.server, trackStartSpeaking.server) && C12238m.areEqual(this.gamePlatform, trackStartSpeaking.gamePlatform) && C12238m.areEqual(this.gameName, trackStartSpeaking.gameName) && C12238m.areEqual(this.gameExeName, trackStartSpeaking.gameExeName) && C12238m.areEqual(this.gameId, trackStartSpeaking.gameId) && C12238m.areEqual(this.mediaSessionId, trackStartSpeaking.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackStartSpeaking.rtcConnectionId) && C12238m.areEqual(this.packetsSent, trackStartSpeaking.packetsSent) && C12238m.areEqual(this.packetsSentLost, trackStartSpeaking.packetsSentLost) && C12238m.areEqual(this.packetsReceived, trackStartSpeaking.packetsReceived) && C12238m.areEqual(this.packetsReceivedLost, trackStartSpeaking.packetsReceivedLost) && C12238m.areEqual(this.voiceStateCount, trackStartSpeaking.voiceStateCount);
+        return m.areEqual(this.channel, trackStartSpeaking.channel) && m.areEqual(this.mode, trackStartSpeaking.mode) && m.areEqual(this.priority, trackStartSpeaking.priority) && m.areEqual(this.server, trackStartSpeaking.server) && m.areEqual(this.gamePlatform, trackStartSpeaking.gamePlatform) && m.areEqual(this.gameName, trackStartSpeaking.gameName) && m.areEqual(this.gameExeName, trackStartSpeaking.gameExeName) && m.areEqual(this.gameId, trackStartSpeaking.gameId) && m.areEqual(this.mediaSessionId, trackStartSpeaking.mediaSessionId) && m.areEqual(this.rtcConnectionId, trackStartSpeaking.rtcConnectionId) && m.areEqual(this.packetsSent, trackStartSpeaking.packetsSent) && m.areEqual(this.packetsSentLost, trackStartSpeaking.packetsSentLost) && m.areEqual(this.packetsReceived, trackStartSpeaking.packetsReceived) && m.areEqual(this.packetsReceivedLost, trackStartSpeaking.packetsReceivedLost) && m.areEqual(this.voiceStateCount, trackStartSpeaking.voiceStateCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -89,42 +94,36 @@ public final /* data */ class TrackStartSpeaking implements AnalyticsSchema, Tra
         return iHashCode14 + (l8 != null ? l8.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStartSpeaking(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", mode=");
-        sbM833U.append(this.mode);
-        sbM833U.append(", priority=");
-        sbM833U.append(this.priority);
-        sbM833U.append(", server=");
-        sbM833U.append(this.server);
-        sbM833U.append(", gamePlatform=");
-        sbM833U.append(this.gamePlatform);
-        sbM833U.append(", gameName=");
-        sbM833U.append(this.gameName);
-        sbM833U.append(", gameExeName=");
-        sbM833U.append(this.gameExeName);
-        sbM833U.append(", gameId=");
-        sbM833U.append(this.gameId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", packetsSent=");
-        sbM833U.append(this.packetsSent);
-        sbM833U.append(", packetsSentLost=");
-        sbM833U.append(this.packetsSentLost);
-        sbM833U.append(", packetsReceived=");
-        sbM833U.append(this.packetsReceived);
-        sbM833U.append(", packetsReceivedLost=");
-        sbM833U.append(this.packetsReceivedLost);
-        sbM833U.append(", voiceStateCount=");
-        return C1643a.m819G(sbM833U, this.voiceStateCount, ")");
+        StringBuilder sbU = a.U("TrackStartSpeaking(channel=");
+        sbU.append(this.channel);
+        sbU.append(", mode=");
+        sbU.append(this.mode);
+        sbU.append(", priority=");
+        sbU.append(this.priority);
+        sbU.append(", server=");
+        sbU.append(this.server);
+        sbU.append(", gamePlatform=");
+        sbU.append(this.gamePlatform);
+        sbU.append(", gameName=");
+        sbU.append(this.gameName);
+        sbU.append(", gameExeName=");
+        sbU.append(this.gameExeName);
+        sbU.append(", gameId=");
+        sbU.append(this.gameId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", packetsSent=");
+        sbU.append(this.packetsSent);
+        sbU.append(", packetsSentLost=");
+        sbU.append(this.packetsSentLost);
+        sbU.append(", packetsReceived=");
+        sbU.append(this.packetsReceived);
+        sbU.append(", packetsReceivedLost=");
+        sbU.append(this.packetsReceivedLost);
+        sbU.append(", voiceStateCount=");
+        return a.G(sbU, this.voiceStateCount, ")");
     }
 }

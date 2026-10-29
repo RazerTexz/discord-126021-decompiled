@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackGuildSettingsDiscoveryUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackGuildSettingsDiscoveryUpdated implements Anal
             return false;
         }
         TrackGuildSettingsDiscoveryUpdated trackGuildSettingsDiscoveryUpdated = (TrackGuildSettingsDiscoveryUpdated) other;
-        return C12238m.areEqual(this.guildId, trackGuildSettingsDiscoveryUpdated.guildId) && C12238m.areEqual(this.automatic, trackGuildSettingsDiscoveryUpdated.automatic) && C12238m.areEqual(this.discoverySplashEditType, trackGuildSettingsDiscoveryUpdated.discoverySplashEditType) && C12238m.areEqual(this.rulesChannelId, trackGuildSettingsDiscoveryUpdated.rulesChannelId) && C12238m.areEqual(this.isDiscoverable, trackGuildSettingsDiscoveryUpdated.isDiscoverable) && C12238m.areEqual(this.failedReasons, trackGuildSettingsDiscoveryUpdated.failedReasons);
+        return m.areEqual(this.guildId, trackGuildSettingsDiscoveryUpdated.guildId) && m.areEqual(this.automatic, trackGuildSettingsDiscoveryUpdated.automatic) && m.areEqual(this.discoverySplashEditType, trackGuildSettingsDiscoveryUpdated.discoverySplashEditType) && m.areEqual(this.rulesChannelId, trackGuildSettingsDiscoveryUpdated.rulesChannelId) && m.areEqual(this.isDiscoverable, trackGuildSettingsDiscoveryUpdated.isDiscoverable) && m.areEqual(this.failedReasons, trackGuildSettingsDiscoveryUpdated.failedReasons);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -52,17 +52,17 @@ public final /* data */ class TrackGuildSettingsDiscoveryUpdated implements Anal
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildSettingsDiscoveryUpdated(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", automatic=");
-        sbM833U.append(this.automatic);
-        sbM833U.append(", discoverySplashEditType=");
-        sbM833U.append(this.discoverySplashEditType);
-        sbM833U.append(", rulesChannelId=");
-        sbM833U.append(this.rulesChannelId);
-        sbM833U.append(", isDiscoverable=");
-        sbM833U.append(this.isDiscoverable);
-        sbM833U.append(", failedReasons=");
-        return C1643a.m824L(sbM833U, this.failedReasons, ")");
+        StringBuilder sbU = a.U("TrackGuildSettingsDiscoveryUpdated(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", automatic=");
+        sbU.append(this.automatic);
+        sbU.append(", discoverySplashEditType=");
+        sbU.append(this.discoverySplashEditType);
+        sbU.append(", rulesChannelId=");
+        sbU.append(this.rulesChannelId);
+        sbU.append(", isDiscoverable=");
+        sbU.append(this.isDiscoverable);
+        sbU.append(", failedReasons=");
+        return a.L(sbU, this.failedReasons, ")");
     }
 }

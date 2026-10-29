@@ -1,49 +1,40 @@
 package com.discord.stores;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.SharedPreferences$Editor;
 import androidx.appcompat.widget.ActivityChooserModel;
-import com.discord.C5419R;
 import com.discord.app.AppActivity;
 import com.discord.models.domain.Consents;
 import com.discord.models.domain.ModelCustomStatusSetting;
 import com.discord.models.domain.ModelGuildFolder;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.domain.ModelUserSettings;
-import com.discord.restapi.RestAPIParams;
+import com.discord.models.domain.ModelUserSettings$FriendSourceFlags;
+import com.discord.restapi.RestAPIParams$UserSettings;
+import com.discord.restapi.RestAPIParams$UserSettingsCustomStatus;
 import com.discord.utilities.analytics.AnalyticsTracker;
-import com.discord.utilities.analytics.Traits;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
+import d0.d0.f;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p512d0.C11226f;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p641k.InterfaceC12589b;
-import p658rx.Observable;
-import p658rx.Subscription;
-import p658rx.functions.Action1;
-import p658rx.functions.Func2;
-import p658rx.subjects.BehaviorSubject;
-import p658rx.subjects.SerializedSubject;
+import rx.Observable;
+import rx.Subscription;
+import rx.subjects.BehaviorSubject;
+import rx.subjects.SerializedSubject;
 
 /* JADX INFO: compiled from: StoreUserSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreUserSettings extends Store {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final StoreUserSettings$Companion Companion = new StoreUserSettings$Companion(null);
     private final StoreAccessibility accessibilityStore;
     private final Persister<Boolean> allowAccessibilityDetectionPublisher;
     private final Persister<Boolean> allowAnimatedEmojisPublisher;
@@ -55,7 +46,7 @@ public final class StoreUserSettings extends Store {
     private Subscription expireCustomStatusSubscription;
     private final SerializedSubject<Integer, Integer> explicitContentFilterSubject;
     private final SerializedSubject<Integer, Integer> friendDiscoveryFlagsSubject;
-    private final SerializedSubject<ModelUserSettings.FriendSourceFlags, ModelUserSettings.FriendSourceFlags> friendSourceFlagsSubject;
+    private final SerializedSubject<ModelUserSettings$FriendSourceFlags, ModelUserSettings$FriendSourceFlags> friendSourceFlagsSubject;
     private final Persister<List<ModelGuildFolder>> guildFoldersPublisher;
     private final Persister<List<Long>> restrictedGuildIdsPublisher;
     private final SerializedSubject<Boolean, Boolean> shouldRenderEmbedsSubject;
@@ -63,142 +54,17 @@ public final class StoreUserSettings extends Store {
     private final Persister<Integer> stickerAnimationSettingsPublisher;
     private final Persister<Boolean> stickerSuggestionsPublisher;
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$expireCustomStatus$1 */
-    /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class C65971 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
-        public static final C65971 INSTANCE = new C65971();
-
-        public C65971() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
-            invoke2(modelUserSettings);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelUserSettings modelUserSettings) {
-            C12238m.checkNotNullParameter(modelUserSettings, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateAllowAccessibilityDetectionInternal$1 */
-    /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class C66001 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ boolean $allowAccessibilityDetection;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66001(boolean z2) {
-            super(0);
-            this.$allowAccessibilityDetection = z2;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreUserSettings.this.accessibilityStore.updateDetectionAllowed(this.$allowAccessibilityDetection);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateContactSyncShown$1 */
-    /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class C66011 extends AbstractC12240o implements Function1<ModelUserSettings, Unit> {
-        public static final C66011 INSTANCE = new C66011();
-
-        public C66011() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ModelUserSettings modelUserSettings) {
-            invoke2(modelUserSettings);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ModelUserSettings modelUserSettings) {
-            C12238m.checkNotNullParameter(modelUserSettings, "it");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$1 */
-    /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class C66021 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C66021() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            StoreUserSettings.this.expireCustomStatusSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreUserSettings$updateLocalCustomStatus$2 */
-    /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class C66032 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C66032() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            StoreUserSettings.this.expireCustomStatus();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreUserSettings.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ void updateUserSettings$default(Companion companion, AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num, int i, Object obj) {
-            if ((i & 2) != 0) {
-                num = null;
-            }
-            companion.updateUserSettings(appActivity, userSettings, num);
-        }
-
-        private final void updateUserSettings(AppActivity appActivity, RestAPIParams.UserSettings userSettings, Integer num) {
-            ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(userSettings), false, 1, null), appActivity, null, 2, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : appActivity, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new StoreUserSettings$Companion$updateUserSettings$1(appActivity, num));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public StoreUserSettings(Dispatcher dispatcher, StoreAccessibility storeAccessibility) {
-        C12238m.checkNotNullParameter(dispatcher, "dispatcher");
-        C12238m.checkNotNullParameter(storeAccessibility, "accessibilityStore");
+        m.checkNotNullParameter(dispatcher, "dispatcher");
+        m.checkNotNullParameter(storeAccessibility, "accessibilityStore");
         this.dispatcher = dispatcher;
         this.accessibilityStore = storeAccessibility;
-        this.shouldRenderEmbedsSubject = new SerializedSubject<>(BehaviorSubject.m11129k0());
-        this.explicitContentFilterSubject = new SerializedSubject<>(BehaviorSubject.m11129k0());
-        this.defaultGuildsRestrictedSubject = new SerializedSubject<>(BehaviorSubject.m11129k0());
-        this.friendSourceFlagsSubject = new SerializedSubject<>(BehaviorSubject.m11129k0());
-        this.friendDiscoveryFlagsSubject = new SerializedSubject<>(BehaviorSubject.m11130l0(0));
-        this.customStatusSubject = new SerializedSubject<>(BehaviorSubject.m11129k0());
+        this.shouldRenderEmbedsSubject = new SerializedSubject<>(BehaviorSubject.k0());
+        this.explicitContentFilterSubject = new SerializedSubject<>(BehaviorSubject.k0());
+        this.defaultGuildsRestrictedSubject = new SerializedSubject<>(BehaviorSubject.k0());
+        this.friendSourceFlagsSubject = new SerializedSubject<>(BehaviorSubject.k0());
+        this.friendDiscoveryFlagsSubject = new SerializedSubject<>(BehaviorSubject.l0(0));
+        this.customStatusSubject = new SerializedSubject<>(BehaviorSubject.k0());
         this.restrictedGuildIdsPublisher = new Persister<>("RESTRICTED_GUILD_IDS", new ArrayList());
         this.guildFoldersPublisher = new Persister<>("STORE_SETTINGS_FOLDERS_V1", new ArrayList());
         Boolean bool = Boolean.TRUE;
@@ -210,8 +76,28 @@ public final class StoreUserSettings extends Store {
         this.autoPlayGifsPublisher = new Persister<>("STORE_SETTINGS_AUTO_PLAY_GIFS", bool);
     }
 
+    public static final /* synthetic */ void access$expireCustomStatus(StoreUserSettings storeUserSettings) {
+        storeUserSettings.expireCustomStatus();
+    }
+
+    public static final /* synthetic */ StoreAccessibility access$getAccessibilityStore$p(StoreUserSettings storeUserSettings) {
+        return storeUserSettings.accessibilityStore;
+    }
+
+    public static final /* synthetic */ Subscription access$getExpireCustomStatusSubscription$p(StoreUserSettings storeUserSettings) {
+        return storeUserSettings.expireCustomStatusSubscription;
+    }
+
+    public static final /* synthetic */ void access$setExpireCustomStatusSubscription$p(StoreUserSettings storeUserSettings, Subscription subscription) {
+        storeUserSettings.expireCustomStatusSubscription = subscription;
+    }
+
+    public static final /* synthetic */ void access$updateAllowAccessibilityDetectionInternal(StoreUserSettings storeUserSettings, boolean z2) {
+        storeUserSettings.updateAllowAccessibilityDetectionInternal(z2);
+    }
+
     private final void expireCustomStatus() {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(updateCustomStatus(null), false, 1, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C65971.INSTANCE);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(updateCustomStatus(null), false, 1, null), StoreUserSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, StoreUserSettings$expireCustomStatus$1.INSTANCE, 62, (Object) null);
     }
 
     public final Boolean getContactSyncUpsellShown() {
@@ -267,9 +153,9 @@ public final class StoreUserSettings extends Store {
     }
 
     public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
+        m.checkNotNullParameter(payload, "payload");
         ModelUserSettings userSettings = payload.getUserSettings();
-        C12238m.checkNotNullExpressionValue(userSettings, "userSettings");
+        m.checkNotNullExpressionValue(userSettings, "userSettings");
         handleUserSettings(userSettings);
     }
 
@@ -279,27 +165,27 @@ public final class StoreUserSettings extends Store {
         if (getIsSyncTextAndImagesEnabled()) {
             if (userSettings.getInlineEmbedMedia() != null) {
                 Boolean inlineEmbedMedia = userSettings.getInlineEmbedMedia();
-                C12238m.checkNotNullExpressionValue(inlineEmbedMedia, "userSettings.inlineEmbedMedia");
+                m.checkNotNullExpressionValue(inlineEmbedMedia, "userSettings.inlineEmbedMedia");
                 setIsEmbedMediaInlined(null, inlineEmbedMedia.booleanValue());
             }
             if (userSettings.getInlineAttachmentMedia() != null) {
                 Boolean inlineAttachmentMedia = userSettings.getInlineAttachmentMedia();
-                C12238m.checkNotNullExpressionValue(inlineAttachmentMedia, "userSettings.inlineAttachmentMedia");
+                m.checkNotNullExpressionValue(inlineAttachmentMedia, "userSettings.inlineAttachmentMedia");
                 setIsAttachmentMediaInline(null, inlineAttachmentMedia.booleanValue());
             }
             if (userSettings.getRenderEmbeds() != null) {
                 Boolean renderEmbeds = userSettings.getRenderEmbeds();
-                C12238m.checkNotNullExpressionValue(renderEmbeds, "userSettings.renderEmbeds");
+                m.checkNotNullExpressionValue(renderEmbeds, "userSettings.renderEmbeds");
                 setIsRenderEmbedsEnabled(null, renderEmbeds.booleanValue());
             }
             if (userSettings.getAnimateEmoji() != null) {
                 Boolean animateEmoji = userSettings.getAnimateEmoji();
-                C12238m.checkNotNullExpressionValue(animateEmoji, "userSettings.animateEmoji");
+                m.checkNotNullExpressionValue(animateEmoji, "userSettings.animateEmoji");
                 setIsAnimatedEmojisEnabled(null, animateEmoji.booleanValue());
             }
             if (userSettings.getAnimateStickers() != null) {
                 Integer animateStickers = userSettings.getAnimateStickers();
-                C12238m.checkNotNullExpressionValue(animateStickers, "userSettings.animateStickers");
+                m.checkNotNullExpressionValue(animateStickers, "userSettings.animateStickers");
                 setStickerAnimationSettings(null, animateStickers.intValue());
             }
         }
@@ -311,33 +197,33 @@ public final class StoreUserSettings extends Store {
         }
         if (userSettings.getDeveloperMode() != null) {
             Boolean developerMode = userSettings.getDeveloperMode();
-            C12238m.checkNotNullExpressionValue(developerMode, "userSettings.developerMode");
+            m.checkNotNullExpressionValue(developerMode, "userSettings.developerMode");
             setDeveloperModeInternal(developerMode.booleanValue());
         }
         if (userSettings.getShowCurrentGame() != null) {
             Persister<Boolean> persister = this.showCurrentGame;
             Boolean showCurrentGame = userSettings.getShowCurrentGame();
-            C12238m.checkNotNullExpressionValue(showCurrentGame, "userSettings.showCurrentGame");
+            m.checkNotNullExpressionValue(showCurrentGame, "userSettings.showCurrentGame");
             Persister.set$default(persister, showCurrentGame, false, 2, null);
         }
         if (userSettings.getExplicitContentFilter() != null) {
             SerializedSubject<Integer, Integer> serializedSubject = this.explicitContentFilterSubject;
-            serializedSubject.f27653k.onNext(userSettings.getExplicitContentFilter());
+            serializedSubject.k.onNext(userSettings.getExplicitContentFilter());
         }
         if (userSettings.getFriendSourceFlags() != null) {
-            SerializedSubject<ModelUserSettings.FriendSourceFlags, ModelUserSettings.FriendSourceFlags> serializedSubject2 = this.friendSourceFlagsSubject;
-            serializedSubject2.f27653k.onNext(userSettings.getFriendSourceFlags());
+            SerializedSubject<ModelUserSettings$FriendSourceFlags, ModelUserSettings$FriendSourceFlags> serializedSubject2 = this.friendSourceFlagsSubject;
+            serializedSubject2.k.onNext(userSettings.getFriendSourceFlags());
         }
         if (userSettings.getDefaultGuildsRestricted() != null) {
             SerializedSubject<Boolean, Boolean> serializedSubject3 = this.defaultGuildsRestrictedSubject;
-            serializedSubject3.f27653k.onNext(userSettings.getDefaultGuildsRestricted());
+            serializedSubject3.k.onNext(userSettings.getDefaultGuildsRestricted());
         }
         if (userSettings.getCustomStatus() != null) {
             updateLocalCustomStatus(userSettings.getCustomStatus());
         }
         if (userSettings.getFriendDiscoveryFlags() != null) {
             SerializedSubject<Integer, Integer> serializedSubject4 = this.friendDiscoveryFlagsSubject;
-            serializedSubject4.f27653k.onNext(userSettings.getFriendDiscoveryFlags());
+            serializedSubject4.k.onNext(userSettings.getFriendDiscoveryFlags());
         }
         if (userSettings.getContactSyncUpsellShown() != null) {
             this.contactSyncUpsellShown = userSettings.getContactSyncUpsellShown();
@@ -346,64 +232,59 @@ public final class StoreUserSettings extends Store {
 
     @StoreThread
     public final void handleUserSettingsUpdate(ModelUserSettings userSettings) {
-        C12238m.checkNotNullParameter(userSettings, "userSettings");
+        m.checkNotNullParameter(userSettings, "userSettings");
         handleUserSettings(userSettings);
     }
 
     @Override // com.discord.stores.Store
     @StoreThread
     public void init(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         super.init(context);
         SerializedSubject<Boolean, Boolean> serializedSubject = this.shouldRenderEmbedsSubject;
-        serializedSubject.f27653k.onNext(Boolean.valueOf(getIsRenderEmbedsEnabled()));
+        serializedSubject.k.onNext(Boolean.valueOf(getIsRenderEmbedsEnabled()));
     }
 
     public final Observable<Consents> observeConsents() {
-        Observable<Consents> observableM11087M = RestAPI.INSTANCE.getApi().getConsents().m11087M(new InterfaceC12589b<Throwable, Consents>() { // from class: com.discord.stores.StoreUserSettings.observeConsents.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Consents call(Throwable th) {
-                return Consents.INSTANCE.getDEFAULT();
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11087M, "RestAPI\n          .api\n …turn { Consents.DEFAULT }");
-        return ObservableExtensionsKt.restSubscribeOn$default(observableM11087M, false, 1, null);
+        Observable<Consents> observableM = RestAPI.Companion.getApi().getConsents().M(StoreUserSettings$observeConsents$1.INSTANCE);
+        m.checkNotNullExpressionValue(observableM, "RestAPI\n          .api\n …turn { Consents.DEFAULT }");
+        return ObservableExtensionsKt.restSubscribeOn$default(observableM, false, 1, null);
     }
 
     public final Observable<ModelCustomStatusSetting> observeCustomStatus() {
-        Observable<ModelCustomStatusSetting> observableM11112r = ObservableExtensionsKt.computationLatest(this.customStatusSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "customStatusSubject\n    …  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<ModelCustomStatusSetting> observableR = ObservableExtensionsKt.computationLatest(this.customStatusSubject).r();
+        m.checkNotNullExpressionValue(observableR, "customStatusSubject\n    …  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Integer> observeExplicitContentFilter() {
-        Observable<Integer> observableM11112r = ObservableExtensionsKt.computationLatest(this.explicitContentFilterSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "explicitContentFilterSub…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Integer> observableR = ObservableExtensionsKt.computationLatest(this.explicitContentFilterSubject).r();
+        m.checkNotNullExpressionValue(observableR, "explicitContentFilterSub…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Integer> observeFriendDiscoveryFlags() {
-        Observable<Integer> observableM11112r = ObservableExtensionsKt.computationLatest(this.friendDiscoveryFlagsSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "friendDiscoveryFlagsSubj…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Integer> observableR = ObservableExtensionsKt.computationLatest(this.friendDiscoveryFlagsSubject).r();
+        m.checkNotNullExpressionValue(observableR, "friendDiscoveryFlagsSubj…  .distinctUntilChanged()");
+        return observableR;
     }
 
-    public final Observable<ModelUserSettings.FriendSourceFlags> observeFriendSourceFlags() {
-        Observable<ModelUserSettings.FriendSourceFlags> observableM11112r = ObservableExtensionsKt.computationLatest(this.friendSourceFlagsSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "friendSourceFlagsSubject…  .distinctUntilChanged()");
-        return observableM11112r;
+    public final Observable<ModelUserSettings$FriendSourceFlags> observeFriendSourceFlags() {
+        Observable<ModelUserSettings$FriendSourceFlags> observableR = ObservableExtensionsKt.computationLatest(this.friendSourceFlagsSubject).r();
+        m.checkNotNullExpressionValue(observableR, "friendSourceFlagsSubject…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<List<ModelGuildFolder>> observeGuildFolders() {
-        Observable<List<ModelGuildFolder>> observableM11112r = ObservableExtensionsKt.computationLatest(this.guildFoldersPublisher.getObservable()).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "guildFoldersPublisher\n  …  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<List<ModelGuildFolder>> observableR = ObservableExtensionsKt.computationLatest(this.guildFoldersPublisher.getObservable()).r();
+        m.checkNotNullExpressionValue(observableR, "guildFoldersPublisher\n  …  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Boolean> observeIsAccessibilityDetectionAllowed() {
-        Observable<Boolean> observableM11112r = this.allowAccessibilityDetectionPublisher.getObservable().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "allowAccessibilityDetect…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = this.allowAccessibilityDetectionPublisher.getObservable().r();
+        m.checkNotNullExpressionValue(observableR, "allowAccessibilityDetect…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public static /* synthetic */ Observable observeIsAnimatedEmojisEnabled$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
@@ -416,17 +297,11 @@ public final class StoreUserSettings extends Store {
     public final Observable<Boolean> observeIsAnimatedEmojisEnabled(boolean respectReducedMotion) {
         Observable<Boolean> observable = this.allowAnimatedEmojisPublisher.getObservable();
         if (respectReducedMotion) {
-            observable = Observable.m11076j(observable, this.accessibilityStore.observeReducedMotionEnabled(), new Func2<Boolean, Boolean, Boolean>() { // from class: com.discord.stores.StoreUserSettings$observeIsAnimatedEmojisEnabled$1$1
-                @Override // p658rx.functions.Func2
-                public final Boolean call(Boolean bool, Boolean bool2) {
-                    C12238m.checkNotNullExpressionValue(bool, "allowAnimatedEmojis");
-                    return Boolean.valueOf(bool.booleanValue() && !bool2.booleanValue());
-                }
-            });
+            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings$observeIsAnimatedEmojisEnabled$1$1.INSTANCE);
         }
-        Observable<Boolean> observableM11112r = observable.m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "allowAnimatedEmojisPubli…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = observable.r();
+        m.checkNotNullExpressionValue(observableR, "allowAnimatedEmojisPubli…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public static /* synthetic */ Observable observeIsAutoPlayGifsEnabled$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
@@ -439,29 +314,23 @@ public final class StoreUserSettings extends Store {
     public final Observable<Boolean> observeIsAutoPlayGifsEnabled(boolean respectReducedMotion) {
         Observable<Boolean> observable = this.autoPlayGifsPublisher.getObservable();
         if (respectReducedMotion) {
-            observable = Observable.m11076j(observable, this.accessibilityStore.observeReducedMotionEnabled(), new Func2<Boolean, Boolean, Boolean>() { // from class: com.discord.stores.StoreUserSettings$observeIsAutoPlayGifsEnabled$1$1
-                @Override // p658rx.functions.Func2
-                public final Boolean call(Boolean bool, Boolean bool2) {
-                    C12238m.checkNotNullExpressionValue(bool, "autoPlayGifs");
-                    return Boolean.valueOf(bool.booleanValue() && !bool2.booleanValue());
-                }
-            });
+            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings$observeIsAutoPlayGifsEnabled$1$1.INSTANCE);
         }
-        Observable<Boolean> observableM11112r = observable.m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "autoPlayGifsPublisher\n  …  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = observable.r();
+        m.checkNotNullExpressionValue(observableR, "autoPlayGifsPublisher\n  …  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Boolean> observeIsDefaultGuildsRestricted() {
-        Observable<Boolean> observableM11112r = ObservableExtensionsKt.computationLatest(this.defaultGuildsRestrictedSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "defaultGuildsRestrictedS…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = ObservableExtensionsKt.computationLatest(this.defaultGuildsRestrictedSubject).r();
+        m.checkNotNullExpressionValue(observableR, "defaultGuildsRestrictedS…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Boolean> observeIsRenderEmbedsEnabled() {
-        Observable<Boolean> observableM11112r = ObservableExtensionsKt.computationLatest(this.shouldRenderEmbedsSubject).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "shouldRenderEmbedsSubjec…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Boolean> observableR = ObservableExtensionsKt.computationLatest(this.shouldRenderEmbedsSubject).r();
+        m.checkNotNullExpressionValue(observableR, "shouldRenderEmbedsSubjec…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final Observable<Boolean> observeIsShowCurrentGameEnabled() {
@@ -473,9 +342,9 @@ public final class StoreUserSettings extends Store {
     }
 
     public final Observable<List<Long>> observeRestrictedGuildIds() {
-        Observable<List<Long>> observableM11112r = ObservableExtensionsKt.computationLatest(this.restrictedGuildIdsPublisher.getObservable()).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "restrictedGuildIdsPublis…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<List<Long>> observableR = ObservableExtensionsKt.computationLatest(this.restrictedGuildIdsPublisher.getObservable()).r();
+        m.checkNotNullExpressionValue(observableR, "restrictedGuildIdsPublis…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public static /* synthetic */ Observable observeStickerAnimationSettings$default(StoreUserSettings storeUserSettings, boolean z2, int i, Object obj) {
@@ -488,23 +357,11 @@ public final class StoreUserSettings extends Store {
     public final Observable<Integer> observeStickerAnimationSettings(boolean respectReducedMotion) {
         Observable<Integer> observable = this.stickerAnimationSettingsPublisher.getObservable();
         if (respectReducedMotion) {
-            observable = Observable.m11076j(observable, this.accessibilityStore.observeReducedMotionEnabled(), new Func2<Integer, Boolean, Integer>() { // from class: com.discord.stores.StoreUserSettings$observeStickerAnimationSettings$1$1
-                @Override // p658rx.functions.Func2
-                public final Integer call(Integer num, Boolean bool) {
-                    if (num == null || num.intValue() != 0) {
-                        return num;
-                    }
-                    C12238m.checkNotNullExpressionValue(bool, "useReducedMotion");
-                    if (bool.booleanValue()) {
-                        return 1;
-                    }
-                    return num;
-                }
-            });
+            observable = Observable.j(observable, this.accessibilityStore.observeReducedMotionEnabled(), StoreUserSettings$observeStickerAnimationSettings$1$1.INSTANCE);
         }
-        Observable<Integer> observableM11112r = observable.m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "stickerAnimationSettings…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Integer> observableR = observable.r();
+        m.checkNotNullExpressionValue(observableR, "stickerAnimationSettings…  .distinctUntilChanged()");
+        return observableR;
     }
 
     public final void setContactSyncUpsellShown(Boolean bool) {
@@ -513,7 +370,7 @@ public final class StoreUserSettings extends Store {
 
     public final void setDefaultGuildsRestricted(AppActivity activity, boolean defaultGuildsRestricted, Collection<Long> restrictedGuilds) {
         if (activity != null) {
-            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithRestrictedGuilds(Boolean.valueOf(defaultGuildsRestricted), restrictedGuilds), null, 2, null);
+            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithRestrictedGuilds(Boolean.valueOf(defaultGuildsRestricted), restrictedGuilds), null, 2, null);
         }
     }
 
@@ -523,31 +380,26 @@ public final class StoreUserSettings extends Store {
 
     public final void setExplicitContentFilter(AppActivity activity, int explicitContentFilter) {
         if (activity != null) {
-            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithExplicitContentFilter(explicitContentFilter), null, 2, null);
+            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithExplicitContentFilter(explicitContentFilter), null, 2, null);
         }
     }
 
     public final void setFriendDiscoveryFlags(AppActivity activity, int flags) {
         if (activity != null) {
-            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithFriendDiscoveryFlags(Integer.valueOf(flags)), null, 2, null);
+            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithFriendDiscoveryFlags(Integer.valueOf(flags)), null, 2, null);
         }
     }
 
     public final void setFriendSourceFlags(AppActivity activity, Boolean all, Boolean mutualGuilds, Boolean mutualFriends) {
         if (activity != null) {
-            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithFriendSourceFlags(all, mutualGuilds, mutualFriends), null, 2, null);
+            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithFriendSourceFlags(all, mutualGuilds, mutualFriends), null, 2, null);
         }
     }
 
-    public final Observable<ModelUserSettings> setIsAccessibilityDetectionAllowed(final boolean allowAccessibilityDetection) {
-        Observable<ModelUserSettings> observableM11115u = RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithAllowAccessibilityDetection(Boolean.valueOf(allowAccessibilityDetection))).m11115u(new Action1<ModelUserSettings>() { // from class: com.discord.stores.StoreUserSettings.setIsAccessibilityDetectionAllowed.1
-            @Override // p658rx.functions.Action1
-            public final void call(ModelUserSettings modelUserSettings) {
-                StoreUserSettings.this.updateAllowAccessibilityDetectionInternal(allowAccessibilityDetection);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11115u, "RestAPI\n          .api\n …AccessibilityDetection) }");
-        return observableM11115u;
+    public final Observable<ModelUserSettings> setIsAccessibilityDetectionAllowed(boolean allowAccessibilityDetection) {
+        Observable<ModelUserSettings> observableU = RestAPI.Companion.getApi().updateUserSettings(RestAPIParams$UserSettings.Companion.createWithAllowAccessibilityDetection(Boolean.valueOf(allowAccessibilityDetection))).u(new StoreUserSettings$setIsAccessibilityDetectionAllowed$1(this, allowAccessibilityDetection));
+        m.checkNotNullExpressionValue(observableU, "RestAPI\n          .api\n …AccessibilityDetection) }");
+        return observableU;
     }
 
     public final void setIsAnimatedEmojisEnabled(AppActivity activity, boolean isAnimatedEmojisEnabled) {
@@ -555,7 +407,7 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithAllowAnimatedEmojis(Boolean.valueOf(isAnimatedEmojisEnabled)), null, 2, null);
+        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithAllowAnimatedEmojis(Boolean.valueOf(isAnimatedEmojisEnabled)), null, 2, null);
     }
 
     public final void setIsAttachmentMediaInline(AppActivity activity, boolean isAttachmentMediaInline) {
@@ -565,7 +417,7 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithInlineAttachmentMedia(isAttachmentMediaInline), null, 2, null);
+        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithInlineAttachmentMedia(isAttachmentMediaInline), null, 2, null);
     }
 
     public final void setIsAutoImageCompressionEnabled(boolean isAutoImageCompressionEnabled) {
@@ -579,16 +431,16 @@ public final class StoreUserSettings extends Store {
     }
 
     public final void setIsChromeCustomTabsEnabled(boolean isUseChromeCustomTabsEnabled) {
-        SharedPreferences.Editor editorEdit = getPrefs().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-        editorEdit.putBoolean("CACHE_KEY_USE_CHROME_CUSTOM_TABS", isUseChromeCustomTabsEnabled);
-        editorEdit.apply();
+        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_USE_CHROME_CUSTOM_TABS", isUseChromeCustomTabsEnabled);
+        sharedPreferences$EditorEdit.apply();
     }
 
     public final void setIsDeveloperMode(AppActivity activity, boolean isDeveloperMode) {
         if (getIsDeveloperMode() != isDeveloperMode) {
             if (activity != null) {
-                INSTANCE.updateUserSettings(activity, RestAPIParams.UserSettings.INSTANCE.createWithDeveloperMode(isDeveloperMode), Integer.valueOf(C5419R.string.theme_updated));
+                StoreUserSettings$Companion.access$updateUserSettings(Companion, activity, RestAPIParams$UserSettings.Companion.createWithDeveloperMode(isDeveloperMode), 2131896338);
             }
             setDeveloperModeInternal(isDeveloperMode);
         }
@@ -601,44 +453,44 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithInlineEmbedMedia(isInlineEmbedMediaEnabled), null, 2, null);
+        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithInlineEmbedMedia(isInlineEmbedMediaEnabled), null, 2, null);
     }
 
     public final void setIsMobileOverlayEnabled(boolean isMobileOverlayEnabled) {
-        SharedPreferences.Editor editorEdit = getPrefs().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
+        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
         if (getIsMobileOverlayEnabled() != isMobileOverlayEnabled) {
-            editorEdit.putBoolean("CACHE_KEY_MOBILE_OVERLAY", isMobileOverlayEnabled);
+            sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_MOBILE_OVERLAY", isMobileOverlayEnabled);
             AnalyticsTracker.overlayToggled(isMobileOverlayEnabled);
         }
-        editorEdit.apply();
+        sharedPreferences$EditorEdit.apply();
     }
 
     public final void setIsRenderEmbedsEnabled(AppActivity activity, boolean isRenderEmbedsEnabled) {
         if (getIsRenderEmbedsEnabled() != isRenderEmbedsEnabled) {
             getPrefs().edit().putBoolean("CACHE_KEY_RENDER_EMBEDS", isRenderEmbedsEnabled).apply();
             SerializedSubject<Boolean, Boolean> serializedSubject = this.shouldRenderEmbedsSubject;
-            serializedSubject.f27653k.onNext(Boolean.valueOf(isRenderEmbedsEnabled));
+            serializedSubject.k.onNext(Boolean.valueOf(isRenderEmbedsEnabled));
         }
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithRenderEmbeds(isRenderEmbedsEnabled), null, 2, null);
+        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithRenderEmbeds(isRenderEmbedsEnabled), null, 2, null);
     }
 
     public final void setIsShiftEnterToSendEnabled(boolean isShiftEnterToSendEnabled) {
-        SharedPreferences.Editor editorEdit = getPrefs().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
+        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
         if (getIsShiftEnterToSendEnabled() != isShiftEnterToSendEnabled) {
-            editorEdit.putBoolean("CACHE_KEY_SHIFT_ENTER_TO_SEND", isShiftEnterToSendEnabled);
+            sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_SHIFT_ENTER_TO_SEND", isShiftEnterToSendEnabled);
         }
-        editorEdit.apply();
+        sharedPreferences$EditorEdit.apply();
     }
 
     public final void setIsShowCurrentGameEnabled(AppActivity activity, boolean isShowCurrentGameEnabled) {
         Persister.set$default(this.showCurrentGame, Boolean.valueOf(isShowCurrentGameEnabled), false, 2, null);
         if (activity != null) {
-            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithShowCurrentGame(isShowCurrentGameEnabled), null, 2, null);
+            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithShowCurrentGame(isShowCurrentGameEnabled), null, 2, null);
         }
     }
 
@@ -659,7 +511,7 @@ public final class StoreUserSettings extends Store {
             arrayList.remove(Long.valueOf(guildId));
         }
         if (activity != null) {
-            Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithRestrictedGuilds(null, arrayList), null, 2, null);
+            StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithRestrictedGuilds(null, arrayList), null, 2, null);
         }
     }
 
@@ -668,45 +520,45 @@ public final class StoreUserSettings extends Store {
         if (!getIsSyncTextAndImagesEnabled() || activity == null) {
             return;
         }
-        Companion.updateUserSettings$default(INSTANCE, activity, RestAPIParams.UserSettings.INSTANCE.createWithStickerAnimationSettings(Integer.valueOf(stickerAnimationSettings)), null, 2, null);
+        StoreUserSettings$Companion.updateUserSettings$default(Companion, activity, RestAPIParams$UserSettings.Companion.createWithStickerAnimationSettings(Integer.valueOf(stickerAnimationSettings)), null, 2, null);
     }
 
     private final void updateAllowAccessibilityDetectionInternal(boolean allowAccessibilityDetection) {
         Persister.set$default(this.allowAccessibilityDetectionPublisher, Boolean.valueOf(allowAccessibilityDetection), false, 2, null);
-        this.dispatcher.schedule(new C66001(allowAccessibilityDetection));
+        this.dispatcher.schedule(new StoreUserSettings$updateAllowAccessibilityDetectionInternal$1(this, allowAccessibilityDetection));
     }
 
     public final void updateContactSyncShown() {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().updateUserSettings(RestAPIParams.UserSettings.INSTANCE.createWithContactSyncUpsellShown()), false, 1, null), (Class<?>) StoreUserSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C66011.INSTANCE);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().updateUserSettings(RestAPIParams$UserSettings.Companion.createWithContactSyncUpsellShown()), false, 1, null), StoreUserSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, StoreUserSettings$updateContactSyncShown$1.INSTANCE, 62, (Object) null);
     }
 
     public final Observable<ModelUserSettings> updateCustomStatus(ModelCustomStatusSetting customStatus) {
-        return RestAPI.INSTANCE.getApiSerializeNulls().updateUserSettingsCustomStatus(new RestAPIParams.UserSettingsCustomStatus(customStatus));
+        return RestAPI.Companion.getApiSerializeNulls().updateUserSettingsCustomStatus(new RestAPIParams$UserSettingsCustomStatus(customStatus));
     }
 
     private final synchronized void updateLocalCustomStatus(ModelCustomStatusSetting customStatus) {
         Subscription subscription = this.expireCustomStatusSubscription;
         if (subscription != null) {
-            C12238m.checkNotNull(subscription);
+            m.checkNotNull(subscription);
             subscription.unsubscribe();
         }
-        this.customStatusSubject.f27653k.onNext(customStatus);
-        if (!C12238m.areEqual(customStatus, ModelCustomStatusSetting.INSTANCE.getCLEAR())) {
-            C12238m.checkNotNull(customStatus);
+        this.customStatusSubject.k.onNext(customStatus);
+        if (!m.areEqual(customStatus, ModelCustomStatusSetting.Companion.getCLEAR())) {
+            m.checkNotNull(customStatus);
             if (customStatus.getExpiresAt() != null) {
-                Observable<Long> observableM11068d0 = Observable.m11068d0(C11226f.coerceAtLeast(TimeUtils.parseUTCDate(customStatus.getExpiresAt()) - ClockFactory.get().currentTimeMillis(), 0L), TimeUnit.MILLISECONDS);
-                C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable\n            .…l, TimeUnit.MILLISECONDS)");
-                ObservableExtensionsKt.appSubscribe(observableM11068d0, (Class<?>) getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C66021()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C66032());
+                Observable<Long> observableD0 = Observable.d0(f.coerceAtLeast(TimeUtils.parseUTCDate(customStatus.getExpiresAt()) - ClockFactory.get().currentTimeMillis(), 0L), TimeUnit.MILLISECONDS);
+                m.checkNotNullExpressionValue(observableD0, "Observable\n            .…l, TimeUnit.MILLISECONDS)");
+                ObservableExtensionsKt.appSubscribe$default(observableD0, getClass(), (Context) null, new StoreUserSettings$updateLocalCustomStatus$1(this), (Function1) null, (Function0) null, (Function0) null, new StoreUserSettings$updateLocalCustomStatus$2(this), 58, (Object) null);
             }
         }
     }
 
     public final void getIsSyncTextAndImagesEnabled(boolean isSyncTextAndImagesEnabled) {
-        SharedPreferences.Editor editorEdit = getPrefs().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
+        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefs().edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
         if (getIsSyncTextAndImagesEnabled() != isSyncTextAndImagesEnabled) {
-            editorEdit.putBoolean("CACHE_KEY_SYNC_TEXT_AND_IMAGES", isSyncTextAndImagesEnabled);
+            sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_SYNC_TEXT_AND_IMAGES", isSyncTextAndImagesEnabled);
         }
-        editorEdit.apply();
+        sharedPreferences$EditorEdit.apply();
     }
 }

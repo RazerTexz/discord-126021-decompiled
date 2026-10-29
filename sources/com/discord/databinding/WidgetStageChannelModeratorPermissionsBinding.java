@@ -10,32 +10,29 @@ import com.discord.widgets.channels.permissions.PermissionOwnerListView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStageChannelModeratorPermissionsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f18151a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final AddPermissionOwnerView f18152b;
+    public final AddPermissionOwnerView f2652b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final PermissionOwnerListView f18153c;
+    public final PermissionOwnerListView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final PermissionOwnerListView f18154d;
+    public final PermissionOwnerListView d;
 
     public WidgetStageChannelModeratorPermissionsBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AddPermissionOwnerView addPermissionOwnerView, @NonNull PermissionOwnerListView permissionOwnerListView, @NonNull PermissionOwnerListView permissionOwnerListView2) {
-        this.f18151a = coordinatorLayout;
-        this.f18152b = addPermissionOwnerView;
-        this.f18153c = permissionOwnerListView;
-        this.f18154d = permissionOwnerListView2;
+        this.a = coordinatorLayout;
+        this.f2652b = addPermissionOwnerView;
+        this.c = permissionOwnerListView;
+        this.d = permissionOwnerListView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18151a;
+        return this.a;
     }
 }

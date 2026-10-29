@@ -1,21 +1,18 @@
 package com.discord.models.user;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.premium.PremiumTier;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.nullserializable.NullSerializable;
-import kotlin.NoWhenBranchMatchedException;
+import d0.g0.s;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12102s;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: CoreUser.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class CoreUser implements User {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final CoreUser$Companion Companion = new CoreUser$Companion(null);
     private final String avatar;
     private final String banner;
     private final String bannerColor;
@@ -29,104 +26,9 @@ public final /* data */ class CoreUser implements User {
     private final int publicFlags;
     private final String username;
 
-    /* JADX INFO: compiled from: CoreUser.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        /* JADX WARN: Code duplicated, block: B:56:0x00dc  */
-        /* JADX WARN: Code duplicated, block: B:59:0x00e6  */
-        /* JADX WARN: Code duplicated, block: B:62:0x00fd  */
-        public final CoreUser merge(CoreUser oldUser, com.discord.api.user.User newUser) {
-            String avatar;
-            String banner;
-            String bio;
-            String str;
-            NullSerializable<String> nullSerializableM8290c;
-            String strMo8429a;
-            C12238m.checkNotNullParameter(oldUser, "oldUser");
-            C12238m.checkNotNullParameter(newUser, "newUser");
-            long id2 = newUser.getId();
-            String username = newUser.getUsername();
-            NullSerializable<String> nullSerializableM8288a = newUser.m8288a();
-            if (nullSerializableM8288a instanceof NullSerializable.C5566b) {
-                avatar = (String) ((NullSerializable.C5566b) nullSerializableM8288a).mo8429a();
-            } else if (nullSerializableM8288a instanceof NullSerializable.C5565a) {
-                avatar = null;
-            } else {
-                if (nullSerializableM8288a != null) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                avatar = oldUser.getAvatar();
-            }
-            NullSerializable<String> nullSerializableM8289b = newUser.m8289b();
-            if (nullSerializableM8289b instanceof NullSerializable.C5566b) {
-                banner = (String) ((NullSerializable.C5566b) nullSerializableM8289b).mo8429a();
-            } else if (nullSerializableM8289b instanceof NullSerializable.C5565a) {
-                banner = null;
-            } else {
-                if (nullSerializableM8289b != null) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                banner = oldUser.getBanner();
-            }
-            Boolean bot = newUser.getBot();
-            boolean zBooleanValue = bot != null ? bot.booleanValue() : oldUser.getIsBot();
-            Boolean system = newUser.getSystem();
-            boolean zBooleanValue2 = system != null ? system.booleanValue() : oldUser.getIsSystemUser();
-            Integer intOrNull = C12102s.toIntOrNull(newUser.getDiscriminator());
-            int iIntValue = intOrNull != null ? intOrNull.intValue() : oldUser.getDiscriminator();
-            PremiumTier premiumType = newUser.getPremiumType();
-            if (premiumType == null) {
-                premiumType = oldUser.getPremiumTier();
-            }
-            Integer flags = newUser.getFlags();
-            int iIntValue2 = flags != null ? flags.intValue() : oldUser.getFlags();
-            Integer publicFlags = newUser.getPublicFlags();
-            int iIntValue3 = publicFlags != null ? publicFlags.intValue() : oldUser.getPublicFlags();
-            NullSerializable<String> nullSerializableM8291d = newUser.m8291d();
-            if (!(nullSerializableM8291d instanceof NullSerializable.C5566b)) {
-                if (nullSerializableM8291d instanceof NullSerializable.C5565a) {
-                    str = null;
-                } else {
-                    if (nullSerializableM8291d != null) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    bio = oldUser.getBio();
-                }
-                nullSerializableM8290c = newUser.m8290c();
-                if (!(nullSerializableM8290c instanceof NullSerializable.C5566b) || (nullSerializableM8290c instanceof NullSerializable.C5565a)) {
-                    strMo8429a = nullSerializableM8290c.mo8429a();
-                } else {
-                    if (nullSerializableM8290c == null) {
-                        throw new NoWhenBranchMatchedException();
-                    }
-                    strMo8429a = oldUser.getBannerColor();
-                }
-                return new CoreUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, iIntValue2, iIntValue3, str, strMo8429a);
-            }
-            bio = (String) ((NullSerializable.C5566b) nullSerializableM8291d).mo8429a();
-            str = bio;
-            nullSerializableM8290c = newUser.m8290c();
-            if (!(nullSerializableM8290c instanceof NullSerializable.C5566b)) {
-                strMo8429a = nullSerializableM8290c.mo8429a();
-            } else {
-                if (nullSerializableM8290c == null) {
-                    throw new NoWhenBranchMatchedException();
-                }
-                strMo8429a = oldUser.getBannerColor();
-            }
-            return new CoreUser(id2, username, avatar, banner, zBooleanValue, zBooleanValue2, iIntValue, premiumType, iIntValue2, iIntValue3, str, strMo8429a);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public CoreUser(long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, int i2, int i3, String str4, String str5) {
-        C12238m.checkNotNullParameter(str, "username");
-        C12238m.checkNotNullParameter(premiumTier, "premiumTier");
+        m.checkNotNullParameter(str, "username");
+        m.checkNotNullParameter(premiumTier, "premiumTier");
         this.id = j;
         this.username = str;
         this.avatar = str2;
@@ -189,9 +91,13 @@ public final /* data */ class CoreUser implements User {
         return getFlags();
     }
 
+    public static /* synthetic */ CoreUser copy$default(CoreUser coreUser, long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, int i2, int i3, String str4, String str5, int i4, Object obj) {
+        return coreUser.copy((i4 & 1) != 0 ? coreUser.getId() : j, (i4 & 2) != 0 ? coreUser.getUsername() : str, (i4 & 4) != 0 ? coreUser.getAvatar() : str2, (i4 & 8) != 0 ? coreUser.getBanner() : str3, (i4 & 16) != 0 ? coreUser.getIsBot() : z2, (i4 & 32) != 0 ? coreUser.getIsSystemUser() : z3, (i4 & 64) != 0 ? coreUser.getDiscriminator() : i, (i4 & 128) != 0 ? coreUser.getPremiumTier() : premiumTier, (i4 & 256) != 0 ? coreUser.getFlags() : i2, (i4 & 512) != 0 ? coreUser.getPublicFlags() : i3, (i4 & 1024) != 0 ? coreUser.getBio() : str4, (i4 & 2048) != 0 ? coreUser.getBannerColor() : str5);
+    }
+
     public final CoreUser copy(long id2, String username, String avatar, String banner, boolean isBot, boolean isSystemUser, int discriminator, PremiumTier premiumTier, int flags, int publicFlags, String bio, String bannerColor) {
-        C12238m.checkNotNullParameter(username, "username");
-        C12238m.checkNotNullParameter(premiumTier, "premiumTier");
+        m.checkNotNullParameter(username, "username");
+        m.checkNotNullParameter(premiumTier, "premiumTier");
         return new CoreUser(id2, username, avatar, banner, isBot, isSystemUser, discriminator, premiumTier, flags, publicFlags, bio, bannerColor);
     }
 
@@ -203,7 +109,7 @@ public final /* data */ class CoreUser implements User {
             return false;
         }
         CoreUser coreUser = (CoreUser) other;
-        return getId() == coreUser.getId() && C12238m.areEqual(getUsername(), coreUser.getUsername()) && C12238m.areEqual(getAvatar(), coreUser.getAvatar()) && C12238m.areEqual(getBanner(), coreUser.getBanner()) && getIsBot() == coreUser.getIsBot() && getIsSystemUser() == coreUser.getIsSystemUser() && getDiscriminator() == coreUser.getDiscriminator() && C12238m.areEqual(getPremiumTier(), coreUser.getPremiumTier()) && getFlags() == coreUser.getFlags() && getPublicFlags() == coreUser.getPublicFlags() && C12238m.areEqual(getBio(), coreUser.getBio()) && C12238m.areEqual(getBannerColor(), coreUser.getBannerColor());
+        return getId() == coreUser.getId() && m.areEqual(getUsername(), coreUser.getUsername()) && m.areEqual(getAvatar(), coreUser.getAvatar()) && m.areEqual(getBanner(), coreUser.getBanner()) && getIsBot() == coreUser.getIsBot() && getIsSystemUser() == coreUser.getIsSystemUser() && getDiscriminator() == coreUser.getDiscriminator() && m.areEqual(getPremiumTier(), coreUser.getPremiumTier()) && getFlags() == coreUser.getFlags() && getPublicFlags() == coreUser.getPublicFlags() && m.areEqual(getBio(), coreUser.getBio()) && m.areEqual(getBannerColor(), coreUser.getBannerColor());
     }
 
     @Override // com.discord.models.user.User
@@ -269,9 +175,9 @@ public final /* data */ class CoreUser implements User {
     }
 
     public int hashCode() {
-        int iM3a = C0002b.m3a(getId()) * 31;
+        int iA = b.a(getId()) * 31;
         String username = getUsername();
-        int iHashCode = (iM3a + (username != null ? username.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (username != null ? username.hashCode() : 0)) * 31;
         String avatar = getAvatar();
         int iHashCode2 = (iHashCode + (avatar != null ? avatar.hashCode() : 0)) * 31;
         String banner = getBanner();
@@ -293,32 +199,32 @@ public final /* data */ class CoreUser implements User {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("CoreUser(id=");
-        sbM833U.append(getId());
-        sbM833U.append(", username=");
-        sbM833U.append(getUsername());
-        sbM833U.append(", avatar=");
-        sbM833U.append(getAvatar());
-        sbM833U.append(", banner=");
-        sbM833U.append(getBanner());
-        sbM833U.append(", isBot=");
-        sbM833U.append(getIsBot());
-        sbM833U.append(", isSystemUser=");
-        sbM833U.append(getIsSystemUser());
-        sbM833U.append(", discriminator=");
-        sbM833U.append(getDiscriminator());
-        sbM833U.append(", premiumTier=");
-        sbM833U.append(getPremiumTier());
-        sbM833U.append(", flags=");
-        sbM833U.append(getFlags());
-        sbM833U.append(", publicFlags=");
-        sbM833U.append(getPublicFlags());
-        sbM833U.append(", bio=");
-        sbM833U.append(getBio());
-        sbM833U.append(", bannerColor=");
-        sbM833U.append(getBannerColor());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("CoreUser(id=");
+        sbU.append(getId());
+        sbU.append(", username=");
+        sbU.append(getUsername());
+        sbU.append(", avatar=");
+        sbU.append(getAvatar());
+        sbU.append(", banner=");
+        sbU.append(getBanner());
+        sbU.append(", isBot=");
+        sbU.append(getIsBot());
+        sbU.append(", isSystemUser=");
+        sbU.append(getIsSystemUser());
+        sbU.append(", discriminator=");
+        sbU.append(getDiscriminator());
+        sbU.append(", premiumTier=");
+        sbU.append(getPremiumTier());
+        sbU.append(", flags=");
+        sbU.append(getFlags());
+        sbU.append(", publicFlags=");
+        sbU.append(getPublicFlags());
+        sbU.append(", bio=");
+        sbU.append(getBio());
+        sbU.append(", bannerColor=");
+        sbU.append(getBannerColor());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ CoreUser(long j, String str, String str2, String str3, boolean z2, boolean z3, int i, PremiumTier premiumTier, int i2, int i3, String str4, String str5, int i4, DefaultConstructorMarker defaultConstructorMarker) {
@@ -327,18 +233,18 @@ public final /* data */ class CoreUser implements User {
 
     /* JADX WARN: Illegal instructions before constructor call */
     public CoreUser(com.discord.api.user.User user) {
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(user, "user");
         long id2 = user.getId();
         String username = user.getUsername();
-        NullSerializable<String> nullSerializableM8288a = user.m8288a();
-        String strMo8429a = nullSerializableM8288a != null ? nullSerializableM8288a.mo8429a() : null;
-        NullSerializable<String> nullSerializableM8289b = user.m8289b();
-        String strMo8429a2 = nullSerializableM8289b != null ? nullSerializableM8289b.mo8429a() : null;
+        NullSerializable<String> nullSerializableA = user.a();
+        String strA = nullSerializableA != null ? nullSerializableA.a() : null;
+        NullSerializable<String> nullSerializableB = user.b();
+        String strA2 = nullSerializableB != null ? nullSerializableB.a() : null;
         Boolean bot = user.getBot();
         boolean zBooleanValue = bot != null ? bot.booleanValue() : false;
         Boolean system = user.getSystem();
         boolean zBooleanValue2 = system != null ? system.booleanValue() : false;
-        Integer intOrNull = C12102s.toIntOrNull(user.getDiscriminator());
+        Integer intOrNull = s.toIntOrNull(user.getDiscriminator());
         int iIntValue = intOrNull != null ? intOrNull.intValue() : 0;
         PremiumTier premiumType = user.getPremiumType();
         premiumType = premiumType == null ? PremiumTier.NONE : premiumType;
@@ -346,9 +252,9 @@ public final /* data */ class CoreUser implements User {
         int iIntValue2 = flags != null ? flags.intValue() : 0;
         Integer publicFlags = user.getPublicFlags();
         int iIntValue3 = publicFlags != null ? publicFlags.intValue() : 0;
-        NullSerializable<String> nullSerializableM8291d = user.m8291d();
-        String strMo8429a3 = nullSerializableM8291d != null ? nullSerializableM8291d.mo8429a() : null;
-        NullSerializable<String> nullSerializableM8290c = user.m8290c();
-        this(id2, username, strMo8429a, strMo8429a2, zBooleanValue, zBooleanValue2, iIntValue, premiumType, iIntValue2, iIntValue3, strMo8429a3, nullSerializableM8290c != null ? nullSerializableM8290c.mo8429a() : null);
+        NullSerializable<String> nullSerializableD = user.d();
+        String strA3 = nullSerializableD != null ? nullSerializableD.a() : null;
+        NullSerializable<String> nullSerializableC = user.c();
+        this(id2, username, strA, strA2, zBooleanValue, zBooleanValue2, iIntValue, premiumType, iIntValue2, iIntValue3, strA3, nullSerializableC != null ? nullSerializableC.a() : null);
     }
 }

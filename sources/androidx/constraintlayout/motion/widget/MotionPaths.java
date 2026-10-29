@@ -1,11 +1,14 @@
 package androidx.constraintlayout.motion.widget;
 
 import android.view.View;
+import android.view.View$MeasureSpec;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.motion.utils.Easing;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.constraintlayout.widget.ConstraintAttribute$AttributeType;
+import androidx.constraintlayout.widget.ConstraintSet$Constraint;
+import androidx.constraintlayout.widget.ConstraintSet$Motion;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -26,11 +29,11 @@ public class MotionPaths implements Comparable<MotionPaths> {
     public static final String TAG = "MotionPaths";
     public LinkedHashMap<String, ConstraintAttribute> attributes;
 
-    /* JADX INFO: renamed from: x */
-    public float f108x;
+    /* JADX INFO: renamed from: x, reason: collision with root package name */
+    public float f28x;
 
-    /* JADX INFO: renamed from: y */
-    public float f109y;
+    /* JADX INFO: renamed from: y, reason: collision with root package name */
+    public float f29y;
     public float height;
     public int mDrawPath;
     public Easing mKeyFrameEasing;
@@ -56,19 +59,24 @@ public class MotionPaths implements Comparable<MotionPaths> {
         this.mTempDelta = new double[18];
     }
 
-    public void applyParameters(ConstraintSet.Constraint constraint) {
-        this.mKeyFrameEasing = Easing.getInterpolator(constraint.motion.mTransitionEasing);
-        ConstraintSet.Motion motion = constraint.motion;
-        this.mPathMotionArc = motion.mPathMotionArc;
-        this.mPathRotate = motion.mPathRotate;
-        this.mDrawPath = motion.mDrawPath;
-        this.mProgress = constraint.propertySet.mProgress;
-        for (String str : constraint.mCustomConstraints.keySet()) {
-            ConstraintAttribute constraintAttribute = constraint.mCustomConstraints.get(str);
-            if (constraintAttribute.getType() != ConstraintAttribute.AttributeType.STRING_TYPE) {
+    public void applyParameters(ConstraintSet$Constraint constraintSet$Constraint) {
+        this.mKeyFrameEasing = Easing.getInterpolator(constraintSet$Constraint.motion.mTransitionEasing);
+        ConstraintSet$Motion constraintSet$Motion = constraintSet$Constraint.motion;
+        this.mPathMotionArc = constraintSet$Motion.mPathMotionArc;
+        this.mPathRotate = constraintSet$Motion.mPathRotate;
+        this.mDrawPath = constraintSet$Motion.mDrawPath;
+        this.mProgress = constraintSet$Constraint.propertySet.mProgress;
+        for (String str : constraintSet$Constraint.mCustomConstraints.keySet()) {
+            ConstraintAttribute constraintAttribute = constraintSet$Constraint.mCustomConstraints.get(str);
+            if (constraintAttribute.getType() != ConstraintAttribute$AttributeType.STRING_TYPE) {
                 this.attributes.put(str, constraintAttribute);
             }
         }
+    }
+
+    @Override // java.lang.Comparable
+    public /* bridge */ /* synthetic */ int compareTo(@NonNull MotionPaths motionPaths) {
+        return compareTo2(motionPaths);
     }
 
     private boolean diff(float f, float f2) {
@@ -80,14 +88,14 @@ public class MotionPaths implements Comparable<MotionPaths> {
 
     public void different(MotionPaths motionPaths, boolean[] zArr, String[] strArr, boolean z2) {
         zArr[0] = zArr[0] | diff(this.position, motionPaths.position);
-        zArr[1] = zArr[1] | diff(this.f108x, motionPaths.f108x) | z2;
-        zArr[2] = z2 | diff(this.f109y, motionPaths.f109y) | zArr[2];
+        zArr[1] = zArr[1] | diff(this.f28x, motionPaths.f28x) | z2;
+        zArr[2] = z2 | diff(this.f29y, motionPaths.f29y) | zArr[2];
         zArr[3] = zArr[3] | diff(this.width, motionPaths.width);
         zArr[4] = diff(this.height, motionPaths.height) | zArr[4];
     }
 
     public void fillStandard(double[] dArr, int[] iArr) {
-        float[] fArr = {this.position, this.f108x, this.f109y, this.width, this.height, this.mPathRotate};
+        float[] fArr = {this.position, this.f28x, this.f29y, this.width, this.height, this.mPathRotate};
         int i = 0;
         for (int i2 = 0; i2 < iArr.length; i2++) {
             if (iArr[i2] < 6) {
@@ -114,8 +122,8 @@ public class MotionPaths implements Comparable<MotionPaths> {
     }
 
     public void getCenter(int[] iArr, double[] dArr, float[] fArr, int i) {
-        float f = this.f108x;
-        float f2 = this.f109y;
+        float f = this.f28x;
+        float f2 = this.f29y;
         float f3 = this.width;
         float f4 = this.height;
         for (int i2 = 0; i2 < iArr.length; i2++) {
@@ -158,8 +166,8 @@ public class MotionPaths implements Comparable<MotionPaths> {
     }
 
     public void getRect(int[] iArr, double[] dArr, float[] fArr, int i) {
-        float f = this.f108x;
-        float f2 = this.f109y;
+        float f = this.f28x;
+        float f2 = this.f29y;
         float f3 = this.width;
         float f4 = this.height;
         for (int i2 = 0; i2 < iArr.length; i2++) {
@@ -212,17 +220,17 @@ public class MotionPaths implements Comparable<MotionPaths> {
         float f8 = motionPaths.height;
         float f9 = f7 - f8;
         this.position = this.time;
-        float f10 = motionPaths.f108x;
-        float f11 = motionPaths.f109y;
-        float f12 = ((f4 / 2.0f) + motionPaths2.f108x) - ((f5 / 2.0f) + f10);
-        float f13 = ((f7 / 2.0f) + motionPaths2.f109y) - ((f8 / 2.0f) + f11);
+        float f10 = motionPaths.f28x;
+        float f11 = motionPaths.f29y;
+        float f12 = ((f4 / 2.0f) + motionPaths2.f28x) - ((f5 / 2.0f) + f10);
+        float f13 = ((f7 / 2.0f) + motionPaths2.f29y) - ((f8 / 2.0f) + f11);
         float f14 = f6 * f2;
         float f15 = f14 / 2.0f;
-        this.f108x = (int) (((f12 * f) + f10) - f15);
+        this.f28x = (int) (((f12 * f) + f10) - f15);
         float f16 = (f13 * f) + f11;
         float f17 = f9 * f3;
         float f18 = f17 / 2.0f;
-        this.f109y = (int) (f16 - f18);
+        this.f29y = (int) (f16 - f18);
         this.width = (int) (f5 + f14);
         this.height = (int) (f8 + f17);
         float f19 = Float.isNaN(keyPosition.mPercentX) ? f : keyPosition.mPercentX;
@@ -232,8 +240,8 @@ public class MotionPaths implements Comparable<MotionPaths> {
         }
         float f21 = Float.isNaN(keyPosition.mAltPercentX) ? 0.0f : keyPosition.mAltPercentX;
         this.mMode = 2;
-        this.f108x = (int) (((f21 * f13) + ((f19 * f12) + motionPaths.f108x)) - f15);
-        this.f109y = (int) (((f13 * f) + ((f12 * f20) + motionPaths.f109y)) - f18);
+        this.f28x = (int) (((f21 * f13) + ((f19 * f12) + motionPaths.f28x)) - f15);
+        this.f29y = (int) (((f13 * f) + ((f12 * f20) + motionPaths.f29y)) - f18);
         this.mKeyFrameEasing = Easing.getInterpolator(keyPosition.mTransitionEasing);
         this.mPathMotionArc = keyPosition.mPathMotionArc;
     }
@@ -250,30 +258,30 @@ public class MotionPaths implements Comparable<MotionPaths> {
         if (!Float.isNaN(keyPosition.mPercentX)) {
             f = keyPosition.mPercentX;
         }
-        float f6 = motionPaths.f108x;
+        float f6 = motionPaths.f28x;
         float f7 = motionPaths.width;
-        float f8 = motionPaths.f109y;
+        float f8 = motionPaths.f29y;
         float f9 = motionPaths.height;
-        float f10 = ((motionPaths2.width / 2.0f) + motionPaths2.f108x) - ((f7 / 2.0f) + f6);
-        float f11 = ((motionPaths2.height / 2.0f) + motionPaths2.f109y) - ((f9 / 2.0f) + f8);
+        float f10 = ((motionPaths2.width / 2.0f) + motionPaths2.f28x) - ((f7 / 2.0f) + f6);
+        float f11 = ((motionPaths2.height / 2.0f) + motionPaths2.f29y) - ((f9 / 2.0f) + f8);
         float f12 = f10 * f;
         float f13 = f4 * f2;
         float f14 = f13 / 2.0f;
-        this.f108x = (int) ((f6 + f12) - f14);
+        this.f28x = (int) ((f6 + f12) - f14);
         float f15 = f * f11;
         float f16 = f5 * f3;
         float f17 = f16 / 2.0f;
-        this.f109y = (int) ((f8 + f15) - f17);
+        this.f29y = (int) ((f8 + f15) - f17);
         this.width = (int) (f7 + f13);
         this.height = (int) (f9 + f16);
         float f18 = Float.isNaN(keyPosition.mPercentY) ? 0.0f : keyPosition.mPercentY;
         this.mMode = 1;
-        float f19 = (int) ((motionPaths.f108x + f12) - f14);
-        this.f108x = f19;
-        float f20 = (int) ((motionPaths.f109y + f15) - f17);
-        this.f109y = f20;
-        this.f108x = f19 + ((-f11) * f18);
-        this.f109y = f20 + (f10 * f18);
+        float f19 = (int) ((motionPaths.f28x + f12) - f14);
+        this.f28x = f19;
+        float f20 = (int) ((motionPaths.f29y + f15) - f17);
+        this.f29y = f20;
+        this.f28x = f19 + ((-f11) * f18);
+        this.f29y = f20 + (f10 * f18);
         this.mKeyFrameEasing = Easing.getInterpolator(keyPosition.mTransitionEasing);
         this.mPathMotionArc = keyPosition.mPathMotionArc;
     }
@@ -291,30 +299,30 @@ public class MotionPaths implements Comparable<MotionPaths> {
         float f8 = motionPaths.height;
         float f9 = f7 - f8;
         this.position = this.time;
-        float f10 = motionPaths.f108x;
-        float f11 = motionPaths.f109y;
-        float f12 = (f4 / 2.0f) + motionPaths2.f108x;
-        float f13 = (f7 / 2.0f) + motionPaths2.f109y;
+        float f10 = motionPaths.f28x;
+        float f11 = motionPaths.f29y;
+        float f12 = (f4 / 2.0f) + motionPaths2.f28x;
+        float f13 = (f7 / 2.0f) + motionPaths2.f29y;
         float f14 = f6 * f2;
-        this.f108x = (int) ((((f12 - ((f5 / 2.0f) + f10)) * f) + f10) - (f14 / 2.0f));
+        this.f28x = (int) ((((f12 - ((f5 / 2.0f) + f10)) * f) + f10) - (f14 / 2.0f));
         float f15 = f9 * f3;
-        this.f109y = (int) ((((f13 - ((f8 / 2.0f) + f11)) * f) + f11) - (f15 / 2.0f));
+        this.f29y = (int) ((((f13 - ((f8 / 2.0f) + f11)) * f) + f11) - (f15 / 2.0f));
         this.width = (int) (f5 + f14);
         this.height = (int) (f8 + f15);
         this.mMode = 3;
         if (!Float.isNaN(keyPosition.mPercentX)) {
-            this.f108x = (int) (keyPosition.mPercentX * ((int) (i - this.width)));
+            this.f28x = (int) (keyPosition.mPercentX * ((int) (i - this.width)));
         }
         if (!Float.isNaN(keyPosition.mPercentY)) {
-            this.f109y = (int) (keyPosition.mPercentY * ((int) (i2 - this.height)));
+            this.f29y = (int) (keyPosition.mPercentY * ((int) (i2 - this.height)));
         }
         this.mKeyFrameEasing = Easing.getInterpolator(keyPosition.mTransitionEasing);
         this.mPathMotionArc = keyPosition.mPathMotionArc;
     }
 
     public void setBounds(float f, float f2, float f3, float f4) {
-        this.f108x = f;
-        this.f109y = f2;
+        this.f28x = f;
+        this.f29y = f2;
         this.width = f3;
         this.height = f4;
     }
@@ -346,8 +354,8 @@ public class MotionPaths implements Comparable<MotionPaths> {
 
     public void setView(View view, int[] iArr, double[] dArr, double[] dArr2, double[] dArr3) {
         float f;
-        float f2 = this.f108x;
-        float f3 = this.f109y;
+        float f2 = this.f28x;
+        float f3 = this.f29y;
         float f4 = this.width;
         float f5 = this.height;
         if (iArr.length != 0 && this.mTempValue.length <= iArr[iArr.length - 1]) {
@@ -417,7 +425,7 @@ public class MotionPaths implements Comparable<MotionPaths> {
         int i8 = i6 - i4;
         int i9 = i7 - i5;
         if ((i8 == view.getMeasuredWidth() && i9 == view.getMeasuredHeight()) ? false : true) {
-            view.measure(View.MeasureSpec.makeMeasureSpec(i8, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(i9, BasicMeasure.EXACTLY));
+            view.measure(View$MeasureSpec.makeMeasureSpec(i8, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(i9, BasicMeasure.EXACTLY));
         }
         view.layout(i4, i5, i6, i7);
     }
@@ -430,8 +438,8 @@ public class MotionPaths implements Comparable<MotionPaths> {
         return ((f6 - f4) * f2) + ((f5 - f3) * f) + f4;
     }
 
-    @Override // java.lang.Comparable
-    public int compareTo(@NonNull MotionPaths motionPaths) {
+    /* JADX INFO: renamed from: compareTo, reason: avoid collision after fix types in other method */
+    public int compareTo2(@NonNull MotionPaths motionPaths) {
         return Float.compare(this.position, motionPaths.position);
     }
 

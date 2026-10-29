@@ -1,7 +1,7 @@
 package com.discord.analytics.generated.traits;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildScheduledEvent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,7 +17,7 @@ public final /* data */ class TrackGuildScheduledEvent {
             return false;
         }
         TrackGuildScheduledEvent trackGuildScheduledEvent = (TrackGuildScheduledEvent) other;
-        return C12238m.areEqual(this.isEveryoneRoleVisible, trackGuildScheduledEvent.isEveryoneRoleVisible) && C12238m.areEqual(this.associatedToDirectoryChannel, trackGuildScheduledEvent.associatedToDirectoryChannel);
+        return m.areEqual(this.isEveryoneRoleVisible, trackGuildScheduledEvent.isEveryoneRoleVisible) && m.areEqual(this.associatedToDirectoryChannel, trackGuildScheduledEvent.associatedToDirectoryChannel);
     }
 
     public int hashCode() {
@@ -28,9 +28,9 @@ public final /* data */ class TrackGuildScheduledEvent {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildScheduledEvent(isEveryoneRoleVisible=");
-        sbM833U.append(this.isEveryoneRoleVisible);
-        sbM833U.append(", associatedToDirectoryChannel=");
-        return C1643a.m816D(sbM833U, this.associatedToDirectoryChannel, ")");
+        StringBuilder sbU = a.U("TrackGuildScheduledEvent(isEveryoneRoleVisible=");
+        sbU.append(this.isEveryoneRoleVisible);
+        sbU.append(", associatedToDirectoryChannel=");
+        return a.D(sbU, this.associatedToDirectoryChannel, ")");
     }
 }

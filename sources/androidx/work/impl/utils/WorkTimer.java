@@ -2,6 +2,7 @@ package androidx.work.impl.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.Logger;
 import java.util.HashMap;
@@ -10,68 +11,24 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class WorkTimer {
     private final ThreadFactory mBackgroundThreadFactory;
     private final ScheduledExecutorService mExecutorService;
-    public final Map<String, TimeLimitExceededListener> mListeners;
+    public final Map<String, WorkTimer$TimeLimitExceededListener> mListeners;
     public final Object mLock;
-    public final Map<String, WorkTimerRunnable> mTimerMap;
+    public final Map<String, WorkTimer$WorkTimerRunnable> mTimerMap;
     private static final String TAG = Logger.tagWithPrefix("WorkTimer");
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public interface TimeLimitExceededListener {
-        void onTimeLimitExceeded(@NonNull String str);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public class WorkTimerRunnable implements Runnable {
-        public static final String TAG = "WrkTimerRunnable";
-        private final String mWorkSpecId;
-        private final WorkTimer mWorkTimer;
-
-        public WorkTimerRunnable(@NonNull WorkTimer workTimer, @NonNull String str) {
-            this.mWorkTimer = workTimer;
-            this.mWorkSpecId = str;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            synchronized (this.mWorkTimer.mLock) {
-                if (this.mWorkTimer.mTimerMap.remove(this.mWorkSpecId) != null) {
-                    TimeLimitExceededListener timeLimitExceededListenerRemove = this.mWorkTimer.mListeners.remove(this.mWorkSpecId);
-                    if (timeLimitExceededListenerRemove != null) {
-                        timeLimitExceededListenerRemove.onTimeLimitExceeded(this.mWorkSpecId);
-                    }
-                } else {
-                    Logger.get().debug(TAG, String.format("Timer with %s is already marked as complete.", this.mWorkSpecId), new Throwable[0]);
-                }
-            }
-        }
-    }
-
     public WorkTimer() {
-        ThreadFactory threadFactory = new ThreadFactory() { // from class: androidx.work.impl.utils.WorkTimer.1
-            private int mThreadsCreated = 0;
-
-            @Override // java.util.concurrent.ThreadFactory
-            public Thread newThread(@NonNull Runnable runnable) {
-                Thread threadNewThread = Executors.defaultThreadFactory().newThread(runnable);
-                StringBuilder sbM833U = C1643a.m833U("WorkManager-WorkTimer-thread-");
-                sbM833U.append(this.mThreadsCreated);
-                threadNewThread.setName(sbM833U.toString());
-                this.mThreadsCreated++;
-                return threadNewThread;
-            }
-        };
-        this.mBackgroundThreadFactory = threadFactory;
+        WorkTimer$1 workTimer$1 = new WorkTimer$1(this);
+        this.mBackgroundThreadFactory = workTimer$1;
         this.mTimerMap = new HashMap();
         this.mListeners = new HashMap();
         this.mLock = new Object();
-        this.mExecutorService = Executors.newSingleThreadScheduledExecutor(threadFactory);
+        this.mExecutorService = Executors.newSingleThreadScheduledExecutor(workTimer$1);
     }
 
     @NonNull
@@ -82,13 +39,13 @@ public class WorkTimer {
 
     @NonNull
     @VisibleForTesting
-    public synchronized Map<String, TimeLimitExceededListener> getListeners() {
+    public synchronized Map<String, WorkTimer$TimeLimitExceededListener> getListeners() {
         return this.mListeners;
     }
 
     @NonNull
     @VisibleForTesting
-    public synchronized Map<String, WorkTimerRunnable> getTimerMap() {
+    public synchronized Map<String, WorkTimer$WorkTimerRunnable> getTimerMap() {
         return this.mTimerMap;
     }
 
@@ -99,14 +56,14 @@ public class WorkTimer {
         this.mExecutorService.shutdownNow();
     }
 
-    public void startTimer(@NonNull String str, long j, @NonNull TimeLimitExceededListener timeLimitExceededListener) {
+    public void startTimer(@NonNull String str, long j, @NonNull WorkTimer$TimeLimitExceededListener workTimer$TimeLimitExceededListener) {
         synchronized (this.mLock) {
             Logger.get().debug(TAG, String.format("Starting timer for %s", str), new Throwable[0]);
             stopTimer(str);
-            WorkTimerRunnable workTimerRunnable = new WorkTimerRunnable(this, str);
-            this.mTimerMap.put(str, workTimerRunnable);
-            this.mListeners.put(str, timeLimitExceededListener);
-            this.mExecutorService.schedule(workTimerRunnable, j, TimeUnit.MILLISECONDS);
+            WorkTimer$WorkTimerRunnable workTimer$WorkTimerRunnable = new WorkTimer$WorkTimerRunnable(this, str);
+            this.mTimerMap.put(str, workTimer$WorkTimerRunnable);
+            this.mListeners.put(str, workTimer$TimeLimitExceededListener);
+            this.mExecutorService.schedule(workTimer$WorkTimerRunnable, j, TimeUnit.MILLISECONDS);
         }
     }
 

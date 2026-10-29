@@ -20,41 +20,8 @@ public class ChangeImageTransform extends Transition {
     private static final String PROPNAME_MATRIX = "android:changeImageTransform:matrix";
     private static final String PROPNAME_BOUNDS = "android:changeImageTransform:bounds";
     private static final String[] sTransitionProperties = {PROPNAME_MATRIX, PROPNAME_BOUNDS};
-    private static final TypeEvaluator<Matrix> NULL_MATRIX_EVALUATOR = new TypeEvaluator<Matrix>() { // from class: androidx.transition.ChangeImageTransform.1
-        @Override // android.animation.TypeEvaluator
-        public Matrix evaluate(float f, Matrix matrix, Matrix matrix2) {
-            return null;
-        }
-    };
-    private static final Property<ImageView, Matrix> ANIMATED_TRANSFORM_PROPERTY = new Property<ImageView, Matrix>(Matrix.class, "animatedTransform") { // from class: androidx.transition.ChangeImageTransform.2
-        @Override // android.util.Property
-        public Matrix get(ImageView imageView) {
-            return null;
-        }
-
-        @Override // android.util.Property
-        public void set(ImageView imageView, Matrix matrix) {
-            ImageViewUtils.animateTransform(imageView, matrix);
-        }
-    };
-
-    /* JADX INFO: renamed from: androidx.transition.ChangeImageTransform$3 */
-    public /* synthetic */ class C06473 {
-        public static final /* synthetic */ int[] $SwitchMap$android$widget$ImageView$ScaleType;
-
-        static {
-            int[] iArr = new int[ImageView.ScaleType.values().length];
-            $SwitchMap$android$widget$ImageView$ScaleType = iArr;
-            try {
-                iArr[ImageView.ScaleType.FIT_XY.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$android$widget$ImageView$ScaleType[ImageView.ScaleType.CENTER_CROP.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-        }
-    }
+    private static final TypeEvaluator<Matrix> NULL_MATRIX_EVALUATOR = new ChangeImageTransform$1();
+    private static final Property<ImageView, Matrix> ANIMATED_TRANSFORM_PROPERTY = new ChangeImageTransform$2(Matrix.class, "animatedTransform");
 
     public ChangeImageTransform() {
     }
@@ -103,7 +70,7 @@ public class ChangeImageTransform extends Transition {
     private static Matrix copyImageMatrix(@NonNull ImageView imageView) {
         Drawable drawable = imageView.getDrawable();
         if (drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
-            int i = C06473.$SwitchMap$android$widget$ImageView$ScaleType[imageView.getScaleType().ordinal()];
+            int i = ChangeImageTransform$3.$SwitchMap$android$widget$ImageView$ScaleType[imageView.getScaleType().ordinal()];
             if (i == 1) {
                 return fitXYMatrix(imageView);
             }
@@ -148,7 +115,7 @@ public class ChangeImageTransform extends Transition {
     }
 
     private ObjectAnimator createMatrixAnimator(ImageView imageView, Matrix matrix, Matrix matrix2) {
-        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) ANIMATED_TRANSFORM_PROPERTY, (TypeEvaluator) new TransitionUtils.MatrixEvaluator(), (Object[]) new Matrix[]{matrix, matrix2});
+        return ObjectAnimator.ofObject(imageView, (Property<ImageView, V>) ANIMATED_TRANSFORM_PROPERTY, (TypeEvaluator) new TransitionUtils$MatrixEvaluator(), (Object[]) new Matrix[]{matrix, matrix2});
     }
 
     @NonNull

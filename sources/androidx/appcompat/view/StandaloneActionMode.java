@@ -7,16 +7,18 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuBuilder$Callback;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.view.menu.SubMenuBuilder;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-public class StandaloneActionMode extends ActionMode implements MenuBuilder.Callback {
-    private ActionMode.Callback mCallback;
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+public class StandaloneActionMode extends ActionMode implements MenuBuilder$Callback {
+    private ActionMode$Callback mCallback;
     private Context mContext;
     private ActionBarContextView mContextView;
     private WeakReference<View> mCustomView;
@@ -24,10 +26,10 @@ public class StandaloneActionMode extends ActionMode implements MenuBuilder.Call
     private boolean mFocusable;
     private MenuBuilder mMenu;
 
-    public StandaloneActionMode(Context context, ActionBarContextView actionBarContextView, ActionMode.Callback callback, boolean z2) {
+    public StandaloneActionMode(Context context, ActionBarContextView actionBarContextView, ActionMode$Callback actionMode$Callback, boolean z2) {
         this.mContext = context;
         this.mContextView = actionBarContextView;
-        this.mCallback = callback;
+        this.mCallback = actionMode$Callback;
         MenuBuilder defaultShowAsAction = new MenuBuilder(actionBarContextView.getContext()).setDefaultShowAsAction(1);
         this.mMenu = defaultShowAsAction;
         defaultShowAsAction.setCallback(this);
@@ -94,12 +96,12 @@ public class StandaloneActionMode extends ActionMode implements MenuBuilder.Call
     public void onCloseSubMenu(SubMenuBuilder subMenuBuilder) {
     }
 
-    @Override // androidx.appcompat.view.menu.MenuBuilder.Callback
+    @Override // androidx.appcompat.view.menu.MenuBuilder$Callback
     public boolean onMenuItemSelected(@NonNull MenuBuilder menuBuilder, @NonNull MenuItem menuItem) {
         return this.mCallback.onActionItemClicked(this, menuItem);
     }
 
-    @Override // androidx.appcompat.view.menu.MenuBuilder.Callback
+    @Override // androidx.appcompat.view.menu.MenuBuilder$Callback
     public void onMenuModeChange(@NonNull MenuBuilder menuBuilder) {
         invalidate();
         this.mContextView.showOverflowMenu();

@@ -2,16 +2,15 @@ package co.discord.media_engine.internal;
 
 import android.content.Context;
 import android.util.Log;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.hammerandchisel.libdiscord.C11150R;
+import com.hammerandchisel.libdiscord.R$string;
+import d0.y.h;
+import d0.z.d.m;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p591y.C12200a;
-import p507d0.p591y.C12207h;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AssetManagement.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +18,7 @@ public final class AssetManagement {
     private final Context ctx;
 
     public AssetManagement(Context context) {
-        C12238m.checkNotNullParameter(context, "ctx");
+        m.checkNotNullParameter(context, "ctx");
         this.ctx = context;
     }
 
@@ -27,22 +26,22 @@ public final class AssetManagement {
         try {
             File file = new File(this.ctx.getFilesDir(), "thz");
             if (file.exists()) {
-                C12207h.deleteRecursively(file);
+                h.deleteRecursively(file);
             }
         } catch (Exception e) {
-            StringBuilder sbM833U = C1643a.m833U("Failed removing krisp model files: ");
-            sbM833U.append(e.getMessage());
-            sbM833U.append(": ");
-            sbM833U.append(e.toString());
-            Log.e("DiscordKrisp", sbM833U.toString());
+            StringBuilder sbU = a.U("Failed removing krisp model files: ");
+            sbU.append(e.getMessage());
+            sbU.append(": ");
+            sbU.append(e.toString());
+            Log.e("DiscordKrisp", sbU.toString());
         }
     }
 
     private final void copy(File dir, String name) throws IOException {
         InputStream inputStreamOpen = this.ctx.getAssets().open("thz/" + name);
-        C12238m.checkNotNullExpressionValue(inputStreamOpen, "ctx.assets.open(\"thz/\" + name)");
+        m.checkNotNullExpressionValue(inputStreamOpen, "ctx.assets.open(\"thz/\" + name)");
         FileOutputStream fileOutputStream = new FileOutputStream(new File(dir, name));
-        C12200a.copyTo(inputStreamOpen, fileOutputStream, 1024);
+        d0.y.a.copyTo(inputStreamOpen, fileOutputStream, 1024);
         inputStreamOpen.close();
         fileOutputStream.close();
     }
@@ -54,8 +53,8 @@ public final class AssetManagement {
         }
         try {
             File file = new File(this.ctx.getFilesDir(), "thz");
-            String string = this.ctx.getString(C11150R.string.krisp_model_version);
-            C12238m.checkNotNullExpressionValue(string, "ctx.getString(R.string.krisp_model_version)");
+            String string = this.ctx.getString(R$string.krisp_model_version);
+            m.checkNotNullExpressionValue(string, "ctx.getString(R.string.krisp_model_version)");
             if (new File(file, string).exists()) {
                 return;
             }
@@ -69,15 +68,15 @@ public final class AssetManagement {
                 list = new String[0];
             }
             for (String str : list) {
-                C12238m.checkNotNullExpressionValue(str, "file");
+                m.checkNotNullExpressionValue(str, "file");
                 copy(file3, str);
             }
         } catch (Exception e) {
-            StringBuilder sbM833U = C1643a.m833U("Failed copying krisp model files: ");
-            sbM833U.append(e.getMessage());
-            sbM833U.append(": ");
-            sbM833U.append(e.toString());
-            Log.e("DiscordKrisp", sbM833U.toString());
+            StringBuilder sbU = a.U("Failed copying krisp model files: ");
+            sbU.append(e.getMessage());
+            sbU.append(": ");
+            sbU.append(e.toString());
+            Log.e("DiscordKrisp", sbU.toString());
             cleanup();
         }
     }

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.URL;
@@ -35,7 +34,7 @@ public class SpiLoadUtil {
         return findServices(target, Thread.currentThread().getContextClassLoader());
     }
 
-    public static <C> Iterable<C> findServices(final Class<C> target, ClassLoader loader) throws IOException {
+    public static <C> Iterable<C> findServices(Class<C> target, ClassLoader loader) throws IOException {
         if (loader == null) {
             loader = ClassLoader.getSystemClassLoader();
         }
@@ -45,46 +44,9 @@ public class SpiLoadUtil {
             URL url = resources.nextElement();
             readServicesFromUrl(entries, url);
         }
-        final Iterator<String> names = entries.iterator();
-        final ClassLoader fLoader = loader;
-        return new Iterable<C>() { // from class: lombok.core.SpiLoadUtil.1
-            @Override // java.lang.Iterable
-            public Iterator<C> iterator() {
-                final Iterator it = names;
-                final Class cls = target;
-                final ClassLoader classLoader = fLoader;
-                return new Iterator<C>() { // from class: lombok.core.SpiLoadUtil.1.1
-                    @Override // java.util.Iterator
-                    public boolean hasNext() {
-                        return it.hasNext();
-                    }
-
-                    @Override // java.util.Iterator
-                    public C next() {
-                        try {
-                            return (C) cls.cast(Class.forName((String) it.next(), true, classLoader).getConstructor(new Class[0]).newInstance(new Object[0]));
-                        } catch (Exception e) {
-                            Throwable cause = e;
-                            if (cause instanceof InvocationTargetException) {
-                                cause = cause.getCause();
-                            }
-                            if (cause instanceof RuntimeException) {
-                                throw ((RuntimeException) cause);
-                            }
-                            if (cause instanceof Error) {
-                                throw ((Error) cause);
-                            }
-                            throw new RuntimeException(cause);
-                        }
-                    }
-
-                    @Override // java.util.Iterator
-                    public void remove() {
-                        throw new UnsupportedOperationException();
-                    }
-                };
-            }
-        };
+        Iterator<String> names = entries.iterator();
+        ClassLoader fLoader = loader;
+        return new SpiLoadUtil$1(names, target, fLoader);
     }
 
     /* JADX WARN: Code duplicated, block: B:30:0x0085 A[Catch: Throwable -> 0x008c, FINALLY_INSNS, TRY_LEAVE, TryCatch #0 {Throwable -> 0x008c, blocks: (B:27:0x007d, B:30:0x0085), top: B:42:0x007d }] */

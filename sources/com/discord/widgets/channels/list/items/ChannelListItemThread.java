@@ -1,32 +1,33 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import com.discord.widgets.channels.list.WidgetChannelListModel;
-import com.discord.widgets.channels.list.WidgetChannelListUnreads;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import com.discord.widgets.channels.list.WidgetChannelListModel$ThreadSpineType;
+import com.discord.widgets.channels.list.WidgetChannelListModel$ThreadSpineType$Single;
+import com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemThread.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class ChannelListItemThread implements ChannelListItem, WidgetChannelListUnreads.UnreadItem {
+public final /* data */ class ChannelListItemThread implements ChannelListItem, WidgetChannelListUnreads$UnreadItem {
     private final Channel channel;
     private final boolean isLocked;
     private final boolean isUnread;
     private final int mentionCount;
     private final boolean muted;
     private final boolean selected;
-    private WidgetChannelListModel.ThreadSpineType spineType;
+    private WidgetChannelListModel$ThreadSpineType spineType;
     private final int type;
 
     public ChannelListItemThread(Channel channel, boolean z2, int i, boolean z3, boolean z4, boolean z5) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.selected = z2;
         this.mentionCount = i;
         this.isUnread = z3;
         this.isLocked = z4;
         this.muted = z5;
-        this.spineType = WidgetChannelListModel.ThreadSpineType.Single.INSTANCE;
+        this.spineType = WidgetChannelListModel$ThreadSpineType$Single.INSTANCE;
         this.type = 12;
     }
 
@@ -65,7 +66,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
     }
 
     public final ChannelListItemThread copy(Channel channel, boolean selected, int mentionCount, boolean isUnread, boolean isLocked, boolean muted) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemThread(channel, selected, mentionCount, isUnread, isLocked, muted);
     }
 
@@ -77,7 +78,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
             return false;
         }
         ChannelListItemThread channelListItemThread = (ChannelListItemThread) other;
-        return C12238m.areEqual(this.channel, channelListItemThread.channel) && this.selected == channelListItemThread.selected && getMentionCount() == channelListItemThread.getMentionCount() && getIsUnread() == channelListItemThread.getIsUnread() && this.isLocked == channelListItemThread.isLocked && this.muted == channelListItemThread.muted;
+        return m.areEqual(this.channel, channelListItemThread.channel) && this.selected == channelListItemThread.selected && getMentionCount() == channelListItemThread.getMentionCount() && getIsUnread() == channelListItemThread.getIsUnread() && this.isLocked == channelListItemThread.isLocked && this.muted == channelListItemThread.muted;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -94,7 +95,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return this.isLocked;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
     /* JADX INFO: renamed from: isUnread, reason: from getter */
     public boolean getIsUnread() {
         return this.isUnread;
@@ -105,7 +106,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return "" + getType() + this.channel.getId() + this.spineType + this.muted;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
     public int getMentionCount() {
         return this.mentionCount;
     }
@@ -128,7 +129,7 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return this.selected;
     }
 
-    public final WidgetChannelListModel.ThreadSpineType getSpineType() {
+    public final WidgetChannelListModel$ThreadSpineType getSpineType() {
         return this.spineType;
     }
 
@@ -182,23 +183,23 @@ public final /* data */ class ChannelListItemThread implements ChannelListItem, 
         return this.isLocked;
     }
 
-    public final void setSpineType(WidgetChannelListModel.ThreadSpineType threadSpineType) {
-        C12238m.checkNotNullParameter(threadSpineType, "<set-?>");
-        this.spineType = threadSpineType;
+    public final void setSpineType(WidgetChannelListModel$ThreadSpineType widgetChannelListModel$ThreadSpineType) {
+        m.checkNotNullParameter(widgetChannelListModel$ThreadSpineType, "<set-?>");
+        this.spineType = widgetChannelListModel$ThreadSpineType;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemThread(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", selected=");
-        sbM833U.append(this.selected);
-        sbM833U.append(", mentionCount=");
-        sbM833U.append(getMentionCount());
-        sbM833U.append(", isUnread=");
-        sbM833U.append(getIsUnread());
-        sbM833U.append(", isLocked=");
-        sbM833U.append(this.isLocked);
-        sbM833U.append(", muted=");
-        return C1643a.m827O(sbM833U, this.muted, ")");
+        StringBuilder sbU = a.U("ChannelListItemThread(channel=");
+        sbU.append(this.channel);
+        sbU.append(", selected=");
+        sbU.append(this.selected);
+        sbU.append(", mentionCount=");
+        sbU.append(getMentionCount());
+        sbU.append(", isUnread=");
+        sbU.append(getIsUnread());
+        sbU.append(", isLocked=");
+        sbU.append(this.isLocked);
+        sbU.append(", muted=");
+        return a.O(sbU, this.muted, ")");
     }
 }

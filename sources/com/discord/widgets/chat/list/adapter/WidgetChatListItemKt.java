@@ -2,19 +2,19 @@ package com.discord.widgets.chat.list.adapter;
 
 import com.discord.api.user.User;
 import com.discord.models.message.Message;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetChatListItem.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChatListItemKt {
     public static final boolean isUserMentioned(WidgetChatListAdapter widgetChatListAdapter, Message message) {
         boolean z2;
-        C12238m.checkNotNullParameter(widgetChatListAdapter, "$this$isUserMentioned");
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(widgetChatListAdapter, "$this$isUserMentioned");
+        m.checkNotNullParameter(message, "message");
         if (widgetChatListAdapter.getMentionMeMessageLevelHighlighting()) {
-            if (C12238m.areEqual(message.getMentionEveryone(), Boolean.TRUE)) {
+            if (m.areEqual(message.getMentionEveryone(), Boolean.TRUE)) {
                 return true;
             }
             List<User> mentions = message.getMentions();

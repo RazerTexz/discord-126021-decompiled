@@ -2,10 +2,11 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
+import androidx.constraintlayout.solver.widgets.ConstraintWidget$DimensionBehaviour;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
+import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.Iterator;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ChainRun extends WidgetRun {
@@ -179,11 +180,11 @@ public class ChainRun extends WidgetRun {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChainRun ");
-        sbM833U.append(this.orientation == 0 ? "horizontal : " : "vertical : ");
-        String string = sbM833U.toString();
+        StringBuilder sbU = a.U("ChainRun ");
+        sbU.append(this.orientation == 0 ? "horizontal : " : "vertical : ");
+        String string = sbU.toString();
         for (WidgetRun widgetRun : this.widgets) {
-            string = C1643a.m883w(C1643a.m883w(string, "<") + widgetRun, "> ");
+            string = a.w(a.w(string, "<") + widgetRun, "> ");
         }
         return string;
     }
@@ -266,7 +267,7 @@ public class ChainRun extends WidgetRun {
                         }
                         DimensionDependency dimensionDependency = widgetRun.dimension;
                         int i19 = dimensionDependency.value;
-                        boolean z4 = widgetRun.dimensionBehavior != ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
+                        boolean z4 = widgetRun.dimensionBehavior != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
                         if (z4) {
                             int i20 = this.orientation;
                             if (i20 == 0 && !widgetRun.widget.horizontalRun.dimension.resolved) {
@@ -352,7 +353,7 @@ public class ChainRun extends WidgetRun {
                     WidgetRun widgetRun2 = this.widgets.get(i23);
                     int i25 = i22;
                     int i26 = i4;
-                    if (widgetRun2.widget.getVisibility() != 8 && widgetRun2.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+                    if (widgetRun2.widget.getVisibility() != 8 && widgetRun2.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
                         DimensionDependency dimensionDependency2 = widgetRun2.dimension;
                         if (dimensionDependency2.resolved) {
                             z3 = zIsRtl;
@@ -472,7 +473,7 @@ public class ChainRun extends WidgetRun {
                         }
                         DimensionDependency dimensionDependency3 = widgetRun4.dimension;
                         int i38 = dimensionDependency3.value;
-                        if (widgetRun4.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && widgetRun4.matchConstraintsType == 1) {
+                        if (widgetRun4.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && widgetRun4.matchConstraintsType == 1) {
                             i38 = dimensionDependency3.wrapValue;
                         }
                         i36 = z2 ? i36 - i38 : i36 + i38;
@@ -513,7 +514,7 @@ public class ChainRun extends WidgetRun {
                         }
                         DimensionDependency dimensionDependency4 = widgetRun5.dimension;
                         int iMin = dimensionDependency4.value;
-                        if (widgetRun5.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && widgetRun5.matchConstraintsType == 1) {
+                        if (widgetRun5.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && widgetRun5.matchConstraintsType == 1) {
                             iMin = Math.min(iMin, dimensionDependency4.wrapValue);
                         }
                         i41 = z2 ? i43 - iMin : i43 + iMin;
@@ -555,7 +556,7 @@ public class ChainRun extends WidgetRun {
                         }
                         DimensionDependency dimensionDependency5 = widgetRun6.dimension;
                         int i47 = dimensionDependency5.value;
-                        if (widgetRun6.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && widgetRun6.matchConstraintsType == 1) {
+                        if (widgetRun6.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && widgetRun6.matchConstraintsType == 1) {
                             i47 = dimensionDependency5.wrapValue;
                         }
                         i45 = z2 ? i45 - i47 : i45 + i47;

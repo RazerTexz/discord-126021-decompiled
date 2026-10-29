@@ -1,45 +1,19 @@
 package com.discord.widgets.forums;
 
-import com.discord.api.channel.ForumTag;
+import b.d.b.a.a;
 import com.discord.api.message.reaction.MessageReactionEmoji;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: PostData.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class PostTagData {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final PostTagData$Companion Companion = new PostTagData$Companion(null);
     private final MessageReactionEmoji messageReactionEmoji;
     private final String tagName;
 
-    /* JADX INFO: compiled from: PostData.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ PostTagData fromTag$default(Companion companion, ForumTag forumTag, boolean z2, int i, Object obj) {
-            if ((i & 2) != 0) {
-                z2 = false;
-            }
-            return companion.fromTag(forumTag, z2);
-        }
-
-        public final PostTagData fromTag(ForumTag tag, boolean animated) {
-            C12238m.checkNotNullParameter(tag, "tag");
-            return new PostTagData(new MessageReactionEmoji(tag.getCustomEmojiId(), tag.getEmojiName(), animated), tag.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public PostTagData(MessageReactionEmoji messageReactionEmoji, String str) {
-        C12238m.checkNotNullParameter(messageReactionEmoji, "messageReactionEmoji");
-        C12238m.checkNotNullParameter(str, "tagName");
+        m.checkNotNullParameter(messageReactionEmoji, "messageReactionEmoji");
+        m.checkNotNullParameter(str, "tagName");
         this.messageReactionEmoji = messageReactionEmoji;
         this.tagName = str;
     }
@@ -55,8 +29,8 @@ public final /* data */ class PostTagData {
     }
 
     public final PostTagData copy(MessageReactionEmoji messageReactionEmoji, String tagName) {
-        C12238m.checkNotNullParameter(messageReactionEmoji, "messageReactionEmoji");
-        C12238m.checkNotNullParameter(tagName, "tagName");
+        m.checkNotNullParameter(messageReactionEmoji, "messageReactionEmoji");
+        m.checkNotNullParameter(tagName, "tagName");
         return new PostTagData(messageReactionEmoji, tagName);
     }
 
@@ -68,7 +42,7 @@ public final /* data */ class PostTagData {
             return false;
         }
         PostTagData postTagData = (PostTagData) other;
-        return C12238m.areEqual(this.messageReactionEmoji, postTagData.messageReactionEmoji) && C12238m.areEqual(this.tagName, postTagData.tagName);
+        return m.areEqual(this.messageReactionEmoji, postTagData.messageReactionEmoji) && m.areEqual(this.tagName, postTagData.tagName);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -97,9 +71,9 @@ public final /* data */ class PostTagData {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PostTagData(messageReactionEmoji=");
-        sbM833U.append(this.messageReactionEmoji);
-        sbM833U.append(", tagName=");
-        return C1643a.m822J(sbM833U, this.tagName, ")");
+        StringBuilder sbU = a.U("PostTagData(messageReactionEmoji=");
+        sbU.append(this.messageReactionEmoji);
+        sbU.append(", tagName=");
+        return a.J(sbU, this.tagName, ")");
     }
 }

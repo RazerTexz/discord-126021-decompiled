@@ -6,47 +6,5 @@ import java.util.List;
 public interface ConfigurationSource {
     List<ConfigurationFile> imports();
 
-    Result resolve(ConfigurationKey<?> configurationKey);
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationSource$Result.SCL.lombok */
-    public final class Result {
-        private final Object value;
-        private final boolean authoritative;
-
-        public Result(Object value, boolean authoritative) {
-            this.value = value;
-            this.authoritative = authoritative;
-        }
-
-        public Object getValue() {
-            return this.value;
-        }
-
-        public boolean isAuthoritative() {
-            return this.authoritative;
-        }
-
-        public String toString() {
-            return String.valueOf(String.valueOf(this.value)) + (this.authoritative ? " (set)" : " (delta)");
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/ConfigurationSource$ListModification.SCL.lombok */
-    public final class ListModification {
-        private final Object value;
-        private final boolean added;
-
-        public ListModification(Object value, boolean added) {
-            this.value = value;
-            this.added = added;
-        }
-
-        public Object getValue() {
-            return this.value;
-        }
-
-        public boolean isAdded() {
-            return this.added;
-        }
-    }
+    ConfigurationSource$Result resolve(ConfigurationKey<?> configurationKey);
 }

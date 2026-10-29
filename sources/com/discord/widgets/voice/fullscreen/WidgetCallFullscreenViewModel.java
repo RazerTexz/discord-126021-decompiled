@@ -1,84 +1,97 @@
 package com.discord.widgets.voice.fullscreen;
 
+import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.MainThread;
-import androidx.annotation.StringRes;
-import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import androidx.core.app.NotificationCompat;
+import b.a.d.d0;
 import co.discord.media_engine.VideoInputDeviceDescription;
 import co.discord.media_engine.VideoInputDeviceFacing;
-import com.discord.C5419R;
 import com.discord.api.application.Application;
-import com.discord.api.application.ApplicationAsset;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.guild.GuildMaxVideoChannelUsers;
+import com.discord.api.guild.GuildMaxVideoChannelUsers$Limited;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.guildscheduledevent.GuildScheduledEventStatus;
 import com.discord.api.permission.Permission;
-import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.models.domain.ModelApplicationStream;
 import com.discord.models.embeddedactivities.EmbeddedActivity;
-import com.discord.models.experiments.domain.Experiment;
 import com.discord.models.guild.Guild;
 import com.discord.models.user.User;
 import com.discord.rtcconnection.RtcConnection;
+import com.discord.rtcconnection.RtcConnection$Metadata;
+import com.discord.rtcconnection.RtcConnection$Quality;
 import com.discord.rtcconnection.VideoMetadata;
-import com.discord.rtcconnection.audio.DiscordAudioManager;
-import com.discord.rtcconnection.mediaengine.MediaEngineConnection;
-import com.discord.rtcconnection.socket.p499io.Payloads;
+import com.discord.rtcconnection.audio.DiscordAudioManager$AudioDevice;
+import com.discord.rtcconnection.audio.DiscordAudioManager$DeviceTypes;
+import com.discord.rtcconnection.mediaengine.MediaEngineConnection$InputMode;
+import com.discord.rtcconnection.socket.io.Payloads$ResolutionType;
 import com.discord.stores.SelectedChannelAnalyticsLocation;
 import com.discord.stores.StoreAccessibility;
 import com.discord.stores.StoreAnalytics;
 import com.discord.stores.StoreApplication;
 import com.discord.stores.StoreApplicationAssets;
 import com.discord.stores.StoreApplicationStreaming;
+import com.discord.stores.StoreApplicationStreaming$ActiveApplicationStream;
+import com.discord.stores.StoreApplicationStreaming$ActiveApplicationStream$State;
 import com.discord.stores.StoreAudioManagerV2;
+import com.discord.stores.StoreAudioManagerV2$State;
 import com.discord.stores.StoreChannels;
 import com.discord.stores.StoreChannelsSelected;
 import com.discord.stores.StoreConnectivity;
+import com.discord.stores.StoreConnectivity$State;
 import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreGuildSelected;
 import com.discord.stores.StoreMediaEngine;
 import com.discord.stores.StoreMediaSettings;
+import com.discord.stores.StoreMediaSettings$SelfMuteFailure;
 import com.discord.stores.StoreMentions;
 import com.discord.stores.StoreNavigation;
+import com.discord.stores.StoreNavigation$PanelAction;
 import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreStageChannels;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreStreamRtcConnection;
 import com.discord.stores.StoreTabsNavigation;
 import com.discord.stores.StoreUserSettings;
-import com.discord.stores.StoreVideoStreams;
+import com.discord.stores.StoreVideoStreams$UserStreams;
 import com.discord.stores.StoreVoiceChannelSelected;
-import com.discord.stores.StoreVoiceParticipants;
+import com.discord.stores.StoreVoiceParticipants$VoiceUser;
 import com.discord.utilities.EmbeddedActivityUtilsKt;
-import com.discord.utilities.analytics.AnalyticsTracker;
-import com.discord.utilities.analytics.Traits;
 import com.discord.utilities.channel.ChannelSelector;
-import com.discord.utilities.error.Error;
 import com.discord.utilities.guildscheduledevent.GuildScheduledEventUtilitiesKt;
-import com.discord.utilities.p501rx.ObservableCombineLatestOverloadsKt;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.permissions.PermissionUtils;
 import com.discord.utilities.permissions.VideoPermissionsManager;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
-import com.discord.utilities.user.UserUtils;
 import com.discord.utilities.video.VideoPlayerIdleDetector;
 import com.discord.utilities.voice.PerceptualVolumeUtils;
 import com.discord.utilities.voice.VoiceEngineServiceController;
-import com.discord.views.calls.VideoCallParticipantView;
+import com.discord.views.calls.VideoCallParticipantView$ParticipantData;
+import com.discord.views.calls.VideoCallParticipantView$ParticipantData$ApplicationStreamState;
+import com.discord.views.calls.VideoCallParticipantView$ParticipantData$Type;
+import com.discord.views.calls.VideoCallParticipantView$ParticipantData$a;
+import com.discord.views.calls.VideoCallParticipantView$StreamFps;
+import com.discord.views.calls.VideoCallParticipantView$StreamResolution;
+import com.discord.views.calls.VideoCallParticipantView$StreamResolution$a;
+import com.discord.views.calls.VideoCallParticipantView$StreamResolution$b;
 import com.discord.widgets.channels.TextInVoiceOnboardingManager;
-import com.discord.widgets.chat.list.TextInVoiceFeatureFlag;
 import com.discord.widgets.stage.StageRoles;
 import com.discord.widgets.stage.model.StageCallModel;
 import com.discord.widgets.stage.model.StageMediaParticipant;
 import com.discord.widgets.voice.controls.VoiceControlsOutputSelectorState;
 import com.discord.widgets.voice.model.CallModel;
 import com.discord.widgets.voice.model.CameraState;
+import d0.d0.f;
+import d0.t.h0;
+import d0.t.n;
+import d0.t.o;
+import d0.t.u;
+import d0.z.d.m;
+import j0.p.a;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -86,43 +99,22 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import kotlin.Lazy;
 import kotlin.NoWhenBranchMatchedException;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function14;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import org.webrtc.RendererCommon;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p008a.p018d.AbstractC0859d0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.C12116o;
-import p507d0.p512d0.C11226f;
-import p507d0.p579g0.C12103t;
-import p507d0.p580t.C12136h0;
-import p507d0.p580t.C12145m;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12148n0;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12163u;
-import p507d0.p582u.C12169a;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p641k.InterfaceC12589b;
-import p637j0.p653p.C12781a;
-import p658rx.Observable;
-import p658rx.Scheduler;
-import p658rx.Subscription;
-import p658rx.subjects.PublishSubject;
+import org.webrtc.RendererCommon$ScalingType;
+import rx.Observable;
+import rx.Scheduler;
+import rx.Subscription;
+import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewState> {
+public final class WidgetCallFullscreenViewModel extends d0<WidgetCallFullscreenViewModel$ViewState> {
     private final StoreAccessibility accessibilityStore;
     private List<? extends CallParticipant> allVideoParticipants;
     private final StoreAnalytics analyticsStore;
@@ -137,18 +129,18 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     private final StoreChannelsSelected channelsSelectedStore;
     private final Clock clock;
     private final StoreConnectivity connectivityStore;
-    private final PublishSubject<Event> eventSubject;
+    private final PublishSubject<WidgetCallFullscreenViewModel$Event> eventSubject;
     private final StoreExperiments experimentsStore;
     private String focusedVideoParticipantKey;
     private Subscription forwardVideoGridInteractionSubscription;
     private final StoreGuildSelected guildSelectedStore;
-    private ParticipantTap lastParticipantTap;
+    private WidgetCallFullscreenViewModel$ParticipantTap lastParticipantTap;
     private boolean logStreamQualityIndicatorViewed;
     private final StoreMediaEngine mediaEngineStore;
     private final StoreMediaSettings mediaSettingsStore;
     private final StoreMentions mentionsStore;
-    private StoreState mostRecentStoreState;
-    private final PublishSubject<List<VideoCallParticipantView.ParticipantData>> offScreenSubject;
+    private WidgetCallFullscreenViewModel$StoreState mostRecentStoreState;
+    private final PublishSubject<List<VideoCallParticipantView$ParticipantData>> offScreenSubject;
     private final StorePermissions permissionsStore;
     private final StoreVoiceChannelSelected selectedVoiceChannelStore;
     private boolean showStageCallBottomSheet;
@@ -168,2079 +160,126 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     private boolean wasEverConnected;
     private boolean wasEverMultiParticipant;
 
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$1 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105091 extends AbstractC12240o implements Function1<List<? extends VideoCallParticipantView.ParticipantData>, Unit> {
-        public C105091() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends VideoCallParticipantView.ParticipantData> list) {
-            invoke2((List<VideoCallParticipantView.ParticipantData>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<VideoCallParticipantView.ParticipantData> list) {
-            WidgetCallFullscreenViewModel widgetCallFullscreenViewModel = WidgetCallFullscreenViewModel.this;
-            C12238m.checkNotNullExpressionValue(list, "it");
-            widgetCallFullscreenViewModel.setOffScreenVideoParticipants(list);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$moveMeToAudience$1 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105131 extends AbstractC12240o implements Function0<Unit> {
-        public C105131() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ViewState viewStateAccess$getViewState$p = WidgetCallFullscreenViewModel.access$getViewState$p(WidgetCallFullscreenViewModel.this);
-            if (!(viewStateAccess$getViewState$p instanceof ViewState.Valid)) {
-                viewStateAccess$getViewState$p = null;
-            }
-            ViewState.Valid valid = (ViewState.Valid) viewStateAccess$getViewState$p;
-            if (valid != null) {
-                WidgetCallFullscreenViewModel.this.updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, null, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -16777217, 7, null));
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$moveMeToAudience$2 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105142 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C105142 INSTANCE = new C105142();
-
-        public C105142() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$observeStoreState$1 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105151<T, R> implements InterfaceC12589b<Channel, Observable<? extends StoreState>> {
-        public C105151() {
-        }
-
-        @Override // p637j0.p641k.InterfaceC12589b
-        public final Observable<? extends StoreState> call(final Channel channel) {
-            return CallModel.INSTANCE.get(WidgetCallFullscreenViewModel.this.channelId).m11099Y(new InterfaceC12589b<CallModel, Observable<? extends StoreState>>() { // from class: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel.observeStoreState.1.1
-
-                /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$observeStoreState$1$1$1, reason: invalid class name and collision with other inner class name */
-                /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-                public final class C132981 extends AbstractC12240o implements Function14<StageCallModel, Long, Float, RtcConnection.Quality, Boolean, Integer, StoreConnectivity.DelayedState, StageRoles, Experiment, Boolean, Channel, Map<Long, ? extends Integer>, Integer, Map<Long, ? extends ApplicationAsset>, StoreState> {
-                    public final /* synthetic */ CallModel $callModel;
-
-                    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-                    public C132981(CallModel callModel) {
-                        super(14);
-                        this.$callModel = callModel;
-                    }
-
-                    @Override // kotlin.jvm.functions.Function14
-                    public /* bridge */ /* synthetic */ StoreState invoke(StageCallModel stageCallModel, Long l, Float f, RtcConnection.Quality quality, Boolean bool, Integer num, StoreConnectivity.DelayedState delayedState, StageRoles stageRoles, Experiment experiment, Boolean bool2, Channel channel, Map<Long, ? extends Integer> map, Integer num2, Map<Long, ? extends ApplicationAsset> map2) {
-                        return invoke(stageCallModel, l, f, quality, bool.booleanValue(), num.intValue(), delayedState, stageRoles, experiment, bool2.booleanValue(), channel, (Map<Long, Integer>) map, num2.intValue(), (Map<Long, ApplicationAsset>) map2);
-                    }
-
-                    public final StoreState invoke(StageCallModel stageCallModel, Long l, Float f, RtcConnection.Quality quality, boolean z2, int i, StoreConnectivity.DelayedState delayedState, StageRoles stageRoles, Experiment experiment, boolean z3, Channel channel, Map<Long, Integer> map, int i2, Map<Long, ApplicationAsset> map2) {
-                        C12238m.checkNotNullParameter(delayedState, "connectivityState");
-                        C12238m.checkNotNullParameter(map, "mentionsMap");
-                        C12238m.checkNotNullParameter(map2, "embeddedAppBackgrounds");
-                        CallModel callModel = this.$callModel;
-                        if (callModel == null) {
-                            return StoreState.Invalid.INSTANCE;
-                        }
-                        boolean z4 = callModel.getVoiceSettings().getNoiseProcessing() == StoreMediaSettings.NoiseProcessing.Cancellation;
-                        CallModel callModel2 = this.$callModel;
-                        Boolean boolValueOf = Boolean.valueOf(z4);
-                        C12238m.checkNotNullExpressionValue(f, "streamVolume");
-                        float fFloatValue = f.floatValue();
-                        boolean z5 = experiment != null && experiment.getBucket() == 1;
-                        boolean z6 = channel != null && ChannelUtils.m7675J(channel);
-                        Integer num = map.get(Long.valueOf(WidgetCallFullscreenViewModel.this.channelId));
-                        return new StoreState.Valid(callModel2, stageCallModel, boolValueOf, l, fFloatValue, quality, z2, i, delayedState, stageRoles, z5, z3, z6, num != null ? num.intValue() : 0, i2, map2, null);
-                    }
-                }
-
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends StoreState> call(CallModel callModel) {
-                    Observable<StageCallModel> observableObserveStageCallModel = StageCallModel.INSTANCE.observeStageCallModel(WidgetCallFullscreenViewModel.this.channelId);
-                    Observable<Long> observableObservePermissionsForChannel = WidgetCallFullscreenViewModel.this.permissionsStore.observePermissionsForChannel(WidgetCallFullscreenViewModel.this.channelId);
-                    Observable<Float> observableM11112r = WidgetCallFullscreenViewModel.this.streamRtcConnectionStore.observeStreamVolume().m11112r();
-                    C12238m.checkNotNullExpressionValue(observableM11112r, "streamRtcConnectionStore…().distinctUntilChanged()");
-                    Observable<RtcConnection.Quality> observableM11112r2 = WidgetCallFullscreenViewModel.this.streamRtcConnectionStore.observeConnectionQuality().m11112r();
-                    C12238m.checkNotNullExpressionValue(observableM11112r2, "streamRtcConnectionStore…().distinctUntilChanged()");
-                    Observable<Boolean> observableObserveScreenreaderEnabled = WidgetCallFullscreenViewModel.this.accessibilityStore.observeScreenreaderEnabled();
-                    Observable<Integer> observableObserveTotalMentions = WidgetCallFullscreenViewModel.this.mentionsStore.observeTotalMentions();
-                    Observable<StoreConnectivity.DelayedState> observableObserveState = WidgetCallFullscreenViewModel.this.connectivityStore.observeState();
-                    Observable<StageRoles> observableM11112r3 = WidgetCallFullscreenViewModel.this.stageStore.observeMyRoles(WidgetCallFullscreenViewModel.this.channelId).m11112r();
-                    C12238m.checkNotNullExpressionValue(observableM11112r3, "stageStore.observeMyRole…d).distinctUntilChanged()");
-                    Observable<Experiment> observableObserveUserExperiment = WidgetCallFullscreenViewModel.this.experimentsStore.observeUserExperiment("2021-03_stop_offscreen_video_streams", true);
-                    TextInVoiceFeatureFlag instance = TextInVoiceFeatureFlag.INSTANCE.getINSTANCE();
-                    Channel channel2 = channel;
-                    Observable<Boolean> observableObserveEnabled = instance.observeEnabled(channel2 != null ? Long.valueOf(channel2.getGuildId()) : null);
-                    Observable<Channel> observableObserveSelectedChannel = WidgetCallFullscreenViewModel.this.channelsSelectedStore.observeSelectedChannel();
-                    StoreStream.Companion companion = StoreStream.INSTANCE;
-                    return ObservableCombineLatestOverloadsKt.combineLatest(observableObserveStageCallModel, observableObservePermissionsForChannel, observableM11112r, observableM11112r2, observableObserveScreenreaderEnabled, observableObserveTotalMentions, observableObserveState, observableM11112r3, observableObserveUserExperiment, observableObserveEnabled, observableObserveSelectedChannel, companion.getMentions().observeMentionCounts(), companion.getReadStates().observeUnreadCountForChannel(WidgetCallFullscreenViewModel.this.channelId, new UtcDateTime(callModel != null ? callModel.getTimeConnectedMs() : 0L)), WidgetCallFullscreenViewModel.this.applicationAssetsStore.observeEmbeddedAppBackgrounds(), new C132981(callModel));
-                }
-            });
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$setTargetChannelId$1 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105161 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C105161() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            WidgetCallFullscreenViewModel.this.storeObservableSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$setTargetChannelId$2 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105172 extends AbstractC12240o implements Function1<StoreState, Unit> {
-        public C105172() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            WidgetCallFullscreenViewModel widgetCallFullscreenViewModel = WidgetCallFullscreenViewModel.this;
-            C12238m.checkNotNullExpressionValue(storeState, "storeState");
-            widgetCallFullscreenViewModel.handleStoreState(storeState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$startTapForwardingJob$1 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105181 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C105181() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            WidgetCallFullscreenViewModel.this.forwardVideoGridInteractionSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$startTapForwardingJob$2 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105192 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C105192() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke2(l);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Long l) {
-            boolean isIdle = WidgetCallFullscreenViewModel.this.videoPlayerIdleDetectorFooter.getIsIdle();
-            WidgetCallFullscreenViewModel.this.videoPlayerIdleDetectorFooter.onInteraction(WidgetCallFullscreenViewModel.this.videoPlayerIdleDetectorHeader.getIsIdle());
-            WidgetCallFullscreenViewModel.this.videoPlayerIdleDetectorHeader.onInteraction(isIdle);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$toggleRequestToSpeak$1 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105201 extends AbstractC12240o implements Function0<Unit> {
-        public C105201() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ViewState viewStateAccess$getViewState$p = WidgetCallFullscreenViewModel.access$getViewState$p(WidgetCallFullscreenViewModel.this);
-            if (!(viewStateAccess$getViewState$p instanceof ViewState.Valid)) {
-                viewStateAccess$getViewState$p = null;
-            }
-            ViewState.Valid valid = (ViewState.Valid) viewStateAccess$getViewState$p;
-            if (valid != null) {
-                WidgetCallFullscreenViewModel.this.updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, null, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -8388609, 7, null));
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$toggleRequestToSpeak$2 */
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final class C105212 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Channel $channel;
-        public final /* synthetic */ boolean $isRaisingMyHand;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C105212(boolean z2, Channel channel) {
-            super(1);
-            this.$isRaisingMyHand = z2;
-            this.$channel = channel;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r3) {
-            if (this.$isRaisingMyHand) {
-                AnalyticsTracker.INSTANCE.requestToSpeakInitiated(this.$channel.getId());
-            }
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public enum DisplayMode {
-        GRID,
-        STAGE,
-        PRIVATE_CALL_PARTICIPANTS
-    }
-
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public abstract class Event {
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class AccessibilityAnnouncement extends Event {
-            private final int messageResId;
-
-            public AccessibilityAnnouncement(@StringRes int i) {
-                super(null);
-                this.messageResId = i;
-            }
-
-            public static /* synthetic */ AccessibilityAnnouncement copy$default(AccessibilityAnnouncement accessibilityAnnouncement, int i, int i2, Object obj) {
-                if ((i2 & 1) != 0) {
-                    i = accessibilityAnnouncement.messageResId;
-                }
-                return accessibilityAnnouncement.copy(i);
-            }
-
-            public final AccessibilityAnnouncement copy(@StringRes int messageResId) {
-                return new AccessibilityAnnouncement(messageResId);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof AccessibilityAnnouncement) && this.messageResId == ((AccessibilityAnnouncement) other).messageResId;
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getMessageResId() {
-                return this.messageResId;
-            }
-
-            public final int getMessageResId() {
-                return this.messageResId;
-            }
-
-            public int hashCode() {
-                return this.messageResId;
-            }
-
-            public String toString() {
-                return C1643a.m814B(C1643a.m833U("AccessibilityAnnouncement(messageResId="), this.messageResId, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class EnqueueCallFeedbackSheet extends Event {
-            private final long callDuration;
-            private final long channelId;
-            private final String mediaSessionId;
-            private final String rtcConnectionId;
-            private final int triggerRateDenominator;
-
-            public EnqueueCallFeedbackSheet(long j, String str, String str2, long j2, int i) {
-                super(null);
-                this.channelId = j;
-                this.rtcConnectionId = str;
-                this.mediaSessionId = str2;
-                this.callDuration = j2;
-                this.triggerRateDenominator = i;
-            }
-
-            public final EnqueueCallFeedbackSheet copy(long channelId, String rtcConnectionId, String mediaSessionId, long callDuration, int triggerRateDenominator) {
-                return new EnqueueCallFeedbackSheet(channelId, rtcConnectionId, mediaSessionId, callDuration, triggerRateDenominator);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof EnqueueCallFeedbackSheet)) {
-                    return false;
-                }
-                EnqueueCallFeedbackSheet enqueueCallFeedbackSheet = (EnqueueCallFeedbackSheet) other;
-                return this.channelId == enqueueCallFeedbackSheet.channelId && C12238m.areEqual(this.rtcConnectionId, enqueueCallFeedbackSheet.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, enqueueCallFeedbackSheet.mediaSessionId) && this.callDuration == enqueueCallFeedbackSheet.callDuration && this.triggerRateDenominator == enqueueCallFeedbackSheet.triggerRateDenominator;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final long getCallDuration() {
-                return this.callDuration;
-            }
-
-            public final long getCallDuration() {
-                return this.callDuration;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getMediaSessionId() {
-                return this.mediaSessionId;
-            }
-
-            public final String getMediaSessionId() {
-                return this.mediaSessionId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getRtcConnectionId() {
-                return this.rtcConnectionId;
-            }
-
-            public final String getRtcConnectionId() {
-                return this.rtcConnectionId;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final int getTriggerRateDenominator() {
-                return this.triggerRateDenominator;
-            }
-
-            public final int getTriggerRateDenominator() {
-                return this.triggerRateDenominator;
-            }
-
-            public int hashCode() {
-                int iM3a = C0002b.m3a(this.channelId) * 31;
-                String str = this.rtcConnectionId;
-                int iHashCode = (iM3a + (str != null ? str.hashCode() : 0)) * 31;
-                String str2 = this.mediaSessionId;
-                return ((C0002b.m3a(this.callDuration) + ((iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31)) * 31) + this.triggerRateDenominator;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("EnqueueCallFeedbackSheet(channelId=");
-                sbM833U.append(this.channelId);
-                sbM833U.append(", rtcConnectionId=");
-                sbM833U.append(this.rtcConnectionId);
-                sbM833U.append(", mediaSessionId=");
-                sbM833U.append(this.mediaSessionId);
-                sbM833U.append(", callDuration=");
-                sbM833U.append(this.callDuration);
-                sbM833U.append(", triggerRateDenominator=");
-                return C1643a.m814B(sbM833U, this.triggerRateDenominator, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class EnqueueStreamFeedbackSheet extends Event {
-            private final String mediaSessionId;
-            private final String streamKey;
-            private final int triggerRateDenominator;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public EnqueueStreamFeedbackSheet(String str, String str2, int i) {
-                super(null);
-                C12238m.checkNotNullParameter(str, "streamKey");
-                this.streamKey = str;
-                this.mediaSessionId = str2;
-                this.triggerRateDenominator = i;
-            }
-
-            public static /* synthetic */ EnqueueStreamFeedbackSheet copy$default(EnqueueStreamFeedbackSheet enqueueStreamFeedbackSheet, String str, String str2, int i, int i2, Object obj) {
-                if ((i2 & 1) != 0) {
-                    str = enqueueStreamFeedbackSheet.streamKey;
-                }
-                if ((i2 & 2) != 0) {
-                    str2 = enqueueStreamFeedbackSheet.mediaSessionId;
-                }
-                if ((i2 & 4) != 0) {
-                    i = enqueueStreamFeedbackSheet.triggerRateDenominator;
-                }
-                return enqueueStreamFeedbackSheet.copy(str, str2, i);
-            }
-
-            public final EnqueueStreamFeedbackSheet copy(String streamKey, String mediaSessionId, int triggerRateDenominator) {
-                C12238m.checkNotNullParameter(streamKey, "streamKey");
-                return new EnqueueStreamFeedbackSheet(streamKey, mediaSessionId, triggerRateDenominator);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof EnqueueStreamFeedbackSheet)) {
-                    return false;
-                }
-                EnqueueStreamFeedbackSheet enqueueStreamFeedbackSheet = (EnqueueStreamFeedbackSheet) other;
-                return C12238m.areEqual(this.streamKey, enqueueStreamFeedbackSheet.streamKey) && C12238m.areEqual(this.mediaSessionId, enqueueStreamFeedbackSheet.mediaSessionId) && this.triggerRateDenominator == enqueueStreamFeedbackSheet.triggerRateDenominator;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getMediaSessionId() {
-                return this.mediaSessionId;
-            }
-
-            public final String getMediaSessionId() {
-                return this.mediaSessionId;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getStreamKey() {
-                return this.streamKey;
-            }
-
-            public final String getStreamKey() {
-                return this.streamKey;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getTriggerRateDenominator() {
-                return this.triggerRateDenominator;
-            }
-
-            public final int getTriggerRateDenominator() {
-                return this.triggerRateDenominator;
-            }
-
-            public int hashCode() {
-                String str = this.streamKey;
-                int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-                String str2 = this.mediaSessionId;
-                return ((iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31) + this.triggerRateDenominator;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("EnqueueStreamFeedbackSheet(streamKey=");
-                sbM833U.append(this.streamKey);
-                sbM833U.append(", mediaSessionId=");
-                sbM833U.append(this.mediaSessionId);
-                sbM833U.append(", triggerRateDenominator=");
-                return C1643a.m814B(sbM833U, this.triggerRateDenominator, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class NavigateToPremiumSettings extends Event {
-            public static final NavigateToPremiumSettings INSTANCE = new NavigateToPremiumSettings();
-
-            private NavigateToPremiumSettings() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class OnIdleStateChanged extends Event {
-            private final boolean isIdle;
-
-            public OnIdleStateChanged(boolean z2) {
-                super(null);
-                this.isIdle = z2;
-            }
-
-            public static /* synthetic */ OnIdleStateChanged copy$default(OnIdleStateChanged onIdleStateChanged, boolean z2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    z2 = onIdleStateChanged.isIdle;
-                }
-                return onIdleStateChanged.copy(z2);
-            }
-
-            public final OnIdleStateChanged copy(boolean isIdle) {
-                return new OnIdleStateChanged(isIdle);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof OnIdleStateChanged) && this.isIdle == ((OnIdleStateChanged) other).isIdle;
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final boolean getIsIdle() {
-                return this.isIdle;
-            }
-
-            public int hashCode() {
-                boolean z2 = this.isIdle;
-                if (z2) {
-                    return 1;
-                }
-                return z2 ? 1 : 0;
-            }
-
-            public final boolean isIdle() {
-                return this.isIdle;
-            }
-
-            public String toString() {
-                return C1643a.m827O(C1643a.m833U("OnIdleStateChanged(isIdle="), this.isIdle, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class RequestStartStream extends Event {
-            public static final RequestStartStream INSTANCE = new RequestStartStream();
-
-            private RequestStartStream() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowActivitiesDesktopOnlyDialog extends Event {
-            public static final ShowActivitiesDesktopOnlyDialog INSTANCE = new ShowActivitiesDesktopOnlyDialog();
-
-            private ShowActivitiesDesktopOnlyDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class ShowCameraCapacityDialog extends Event {
-            private final int guildMaxVideoChannelUsers;
-
-            public ShowCameraCapacityDialog(int i) {
-                super(null);
-                this.guildMaxVideoChannelUsers = i;
-            }
-
-            public static /* synthetic */ ShowCameraCapacityDialog copy$default(ShowCameraCapacityDialog showCameraCapacityDialog, int i, int i2, Object obj) {
-                if ((i2 & 1) != 0) {
-                    i = showCameraCapacityDialog.guildMaxVideoChannelUsers;
-                }
-                return showCameraCapacityDialog.copy(i);
-            }
-
-            public final ShowCameraCapacityDialog copy(int guildMaxVideoChannelUsers) {
-                return new ShowCameraCapacityDialog(guildMaxVideoChannelUsers);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof ShowCameraCapacityDialog) && this.guildMaxVideoChannelUsers == ((ShowCameraCapacityDialog) other).guildMaxVideoChannelUsers;
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getGuildMaxVideoChannelUsers() {
-                return this.guildMaxVideoChannelUsers;
-            }
-
-            public final int getGuildMaxVideoChannelUsers() {
-                return this.guildMaxVideoChannelUsers;
-            }
-
-            public int hashCode() {
-                return this.guildMaxVideoChannelUsers;
-            }
-
-            public String toString() {
-                return C1643a.m814B(C1643a.m833U("ShowCameraCapacityDialog(guildMaxVideoChannelUsers="), this.guildMaxVideoChannelUsers, ")");
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowGuildVideoAtCapacityDialog extends Event {
-            public static final ShowGuildVideoAtCapacityDialog INSTANCE = new ShowGuildVideoAtCapacityDialog();
-
-            private ShowGuildVideoAtCapacityDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowNoScreenSharePermissionDialog extends Event {
-            public static final ShowNoScreenSharePermissionDialog INSTANCE = new ShowNoScreenSharePermissionDialog();
-
-            private ShowNoScreenSharePermissionDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowNoVadPermissionDialog extends Event {
-            public static final ShowNoVadPermissionDialog INSTANCE = new ShowNoVadPermissionDialog();
-
-            private ShowNoVadPermissionDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowNoVideoPermissionDialog extends Event {
-            public static final ShowNoVideoPermissionDialog INSTANCE = new ShowNoVideoPermissionDialog();
-
-            private ShowNoVideoPermissionDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowRequestCameraPermissionsDialog extends Event {
-            public static final ShowRequestCameraPermissionsDialog INSTANCE = new ShowRequestCameraPermissionsDialog();
-
-            private ShowRequestCameraPermissionsDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowServerDeafenedDialog extends Event {
-            public static final ShowServerDeafenedDialog INSTANCE = new ShowServerDeafenedDialog();
-
-            private ShowServerDeafenedDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowServerMutedDialog extends Event {
-            public static final ShowServerMutedDialog INSTANCE = new ShowServerMutedDialog();
-
-            private ShowServerMutedDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowSuppressedDialog extends Event {
-            public static final ShowSuppressedDialog INSTANCE = new ShowSuppressedDialog();
-
-            private ShowSuppressedDialog() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class ShowTextInVoiceNux extends Event {
-            public static final ShowTextInVoiceNux INSTANCE = new ShowTextInVoiceNux();
-
-            private ShowTextInVoiceNux() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class ShowUserSheet extends Event {
-            private final long channelId;
-            private final long userId;
-
-            public ShowUserSheet(long j, long j2) {
-                super(null);
-                this.userId = j;
-                this.channelId = j2;
-            }
-
-            public static /* synthetic */ ShowUserSheet copy$default(ShowUserSheet showUserSheet, long j, long j2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    j = showUserSheet.userId;
-                }
-                if ((i & 2) != 0) {
-                    j2 = showUserSheet.channelId;
-                }
-                return showUserSheet.copy(j, j2);
-            }
-
-            public final ShowUserSheet copy(long userId, long channelId) {
-                return new ShowUserSheet(userId, channelId);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof ShowUserSheet)) {
-                    return false;
-                }
-                ShowUserSheet showUserSheet = (ShowUserSheet) other;
-                return this.userId == showUserSheet.userId && this.channelId == showUserSheet.channelId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            public final long getChannelId() {
-                return this.channelId;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getUserId() {
-                return this.userId;
-            }
-
-            public final long getUserId() {
-                return this.userId;
-            }
-
-            public int hashCode() {
-                return C0002b.m3a(this.channelId) + (C0002b.m3a(this.userId) * 31);
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("ShowUserSheet(userId=");
-                sbM833U.append(this.userId);
-                sbM833U.append(", channelId=");
-                return C1643a.m815C(sbM833U, this.channelId, ")");
-            }
-        }
-
-        private Event() {
-        }
-
-        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public enum MenuItem {
-        LAUNCH_OVERLAY,
-        CHANNEL_SETTINGS,
-        VOICE_SETTINGS,
-        SWITCH_CAMERA,
-        SHOW_PARTICIPANT_LIST,
-        TEXT_IN_VOICE
-    }
-
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public enum OverlayStatus {
-        DISABLED,
-        ENABLED
-    }
-
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public final /* data */ class ParticipantTap {
-        private final String participantFocusKey;
-        private final long timestamp;
-
-        public ParticipantTap(String str, long j) {
-            C12238m.checkNotNullParameter(str, "participantFocusKey");
-            this.participantFocusKey = str;
-            this.timestamp = j;
-        }
-
-        public static /* synthetic */ ParticipantTap copy$default(ParticipantTap participantTap, String str, long j, int i, Object obj) {
-            if ((i & 1) != 0) {
-                str = participantTap.participantFocusKey;
-            }
-            if ((i & 2) != 0) {
-                j = participantTap.timestamp;
-            }
-            return participantTap.copy(str, j);
-        }
-
-        public final ParticipantTap copy(String participantFocusKey, long timestamp) {
-            C12238m.checkNotNullParameter(participantFocusKey, "participantFocusKey");
-            return new ParticipantTap(participantFocusKey, timestamp);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ParticipantTap)) {
-                return false;
-            }
-            ParticipantTap participantTap = (ParticipantTap) other;
-            return C12238m.areEqual(this.participantFocusKey, participantTap.participantFocusKey) && this.timestamp == participantTap.timestamp;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getParticipantFocusKey() {
-            return this.participantFocusKey;
-        }
-
-        public final String getParticipantFocusKey() {
-            return this.participantFocusKey;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getTimestamp() {
-            return this.timestamp;
-        }
-
-        public final long getTimestamp() {
-            return this.timestamp;
-        }
-
-        public int hashCode() {
-            String str = this.participantFocusKey;
-            return C0002b.m3a(this.timestamp) + ((str != null ? str.hashCode() : 0) * 31);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ParticipantTap(participantFocusKey=");
-            sbM833U.append(this.participantFocusKey);
-            sbM833U.append(", timestamp=");
-            return C1643a.m815C(sbM833U, this.timestamp, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public abstract class StoreState {
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class Invalid extends StoreState {
-            public static final Invalid INSTANCE = new Invalid();
-
-            private Invalid() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class Valid extends StoreState {
-            private final CallModel callModel;
-            private final int channelMentionsCount;
-            private final StoreConnectivity.DelayedState connectivityState;
-            private final Map<Long, ApplicationAsset> embeddedAppBackgrounds;
-            private final boolean isScreenReaderEnabled;
-            private final boolean isTextInVoiceChannelSelected;
-            private final boolean isTextInVoiceEnabled;
-            private final Long myPermissions;
-            private final StageRoles myStageRoles;
-            private final Boolean noiseCancellation;
-            private final StageCallModel stageCallModel;
-            private final boolean stopOffscreenVideo;
-            private final RtcConnection.Quality streamQuality;
-            private final float streamVolume;
-            private final int totalMentionsCount;
-            private final int unreadsCount;
-
-            public /* synthetic */ Valid(CallModel callModel, StageCallModel stageCallModel, Boolean bool, Long l, float f, RtcConnection.Quality quality, boolean z2, int i, StoreConnectivity.DelayedState delayedState, StageRoles stageRoles, boolean z3, boolean z4, boolean z5, int i2, int i3, Map map, DefaultConstructorMarker defaultConstructorMarker) {
-                this(callModel, stageCallModel, bool, l, f, quality, z2, i, delayedState, stageRoles, z3, z4, z5, i2, i3, map);
-            }
-
-            public final Map<Long, ApplicationAsset> component16() {
-                return this.embeddedAppBackgrounds;
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Valid)) {
-                    return false;
-                }
-                Valid valid = (Valid) other;
-                return C12238m.areEqual(this.callModel, valid.callModel) && C12238m.areEqual(this.stageCallModel, valid.stageCallModel) && C12238m.areEqual(this.noiseCancellation, valid.noiseCancellation) && C12238m.areEqual(this.myPermissions, valid.myPermissions) && Float.compare(this.streamVolume, valid.streamVolume) == 0 && C12238m.areEqual(this.streamQuality, valid.streamQuality) && this.isScreenReaderEnabled == valid.isScreenReaderEnabled && this.totalMentionsCount == valid.totalMentionsCount && C12238m.areEqual(this.connectivityState, valid.connectivityState) && C12238m.areEqual(this.myStageRoles, valid.myStageRoles) && this.stopOffscreenVideo == valid.stopOffscreenVideo && this.isTextInVoiceEnabled == valid.isTextInVoiceEnabled && this.isTextInVoiceChannelSelected == valid.isTextInVoiceChannelSelected && this.channelMentionsCount == valid.channelMentionsCount && this.unreadsCount == valid.unreadsCount && C12238m.areEqual(this.embeddedAppBackgrounds, valid.embeddedAppBackgrounds);
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final CallModel getCallModel() {
-                return this.callModel;
-            }
-
-            public final CallModel getCallModel() {
-                return this.callModel;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final int getChannelMentionsCount() {
-                return this.channelMentionsCount;
-            }
-
-            public final int getChannelMentionsCount() {
-                return this.channelMentionsCount;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final StoreConnectivity.DelayedState getConnectivityState() {
-                return this.connectivityState;
-            }
-
-            public final StoreConnectivity.DelayedState getConnectivityState() {
-                return this.connectivityState;
-            }
-
-            public final Map<Long, ApplicationAsset> getEmbeddedAppBackgrounds() {
-                return this.embeddedAppBackgrounds;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getIsScreenReaderEnabled() {
-                return this.isScreenReaderEnabled;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final boolean getIsTextInVoiceChannelSelected() {
-                return this.isTextInVoiceChannelSelected;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final boolean getIsTextInVoiceEnabled() {
-                return this.isTextInVoiceEnabled;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final Long getMyPermissions() {
-                return this.myPermissions;
-            }
-
-            public final Long getMyPermissions() {
-                return this.myPermissions;
-            }
-
-            /* JADX INFO: renamed from: component10-twRsX-0, reason: not valid java name and from getter */
-            public final StageRoles getMyStageRoles() {
-                return this.myStageRoles;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final Boolean getNoiseCancellation() {
-                return this.noiseCancellation;
-            }
-
-            public final Boolean getNoiseCancellation() {
-                return this.noiseCancellation;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final StageCallModel getStageCallModel() {
-                return this.stageCallModel;
-            }
-
-            public final StageCallModel getStageCallModel() {
-                return this.stageCallModel;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final boolean getStopOffscreenVideo() {
-                return this.stopOffscreenVideo;
-            }
-
-            public final boolean getStopOffscreenVideo() {
-                return this.stopOffscreenVideo;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final RtcConnection.Quality getStreamQuality() {
-                return this.streamQuality;
-            }
-
-            public final RtcConnection.Quality getStreamQuality() {
-                return this.streamQuality;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final float getStreamVolume() {
-                return this.streamVolume;
-            }
-
-            public final float getStreamVolume() {
-                return this.streamVolume;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final int getTotalMentionsCount() {
-                return this.totalMentionsCount;
-            }
-
-            public final int getTotalMentionsCount() {
-                return this.totalMentionsCount;
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final int getUnreadsCount() {
-                return this.unreadsCount;
-            }
-
-            public final int getUnreadsCount() {
-                return this.unreadsCount;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v14, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v23, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v25, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v30 */
-            /* JADX WARN: Type inference failed for: r0v31 */
-            /* JADX WARN: Type inference failed for: r0v34 */
-            /* JADX WARN: Type inference failed for: r0v37 */
-            /* JADX WARN: Type inference failed for: r0v38 */
-            /* JADX WARN: Type inference failed for: r0v39 */
-            /* JADX WARN: Type inference failed for: r2v15, types: [int] */
-            /* JADX WARN: Type inference failed for: r3v0 */
-            /* JADX WARN: Type inference failed for: r3v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r3v2 */
-            public int hashCode() {
-                CallModel callModel = this.callModel;
-                int iHashCode = (callModel != null ? callModel.hashCode() : 0) * 31;
-                StageCallModel stageCallModel = this.stageCallModel;
-                int iHashCode2 = (iHashCode + (stageCallModel != null ? stageCallModel.hashCode() : 0)) * 31;
-                Boolean bool = this.noiseCancellation;
-                int iHashCode3 = (iHashCode2 + (bool != null ? bool.hashCode() : 0)) * 31;
-                Long l = this.myPermissions;
-                int iFloatToIntBits = (Float.floatToIntBits(this.streamVolume) + ((iHashCode3 + (l != null ? l.hashCode() : 0)) * 31)) * 31;
-                RtcConnection.Quality quality = this.streamQuality;
-                int iHashCode4 = (iFloatToIntBits + (quality != null ? quality.hashCode() : 0)) * 31;
-                boolean z2 = this.isScreenReaderEnabled;
-                ?? r0 = z2;
-                if (z2) {
-                    r0 = 1;
-                }
-                int i = (((iHashCode4 + r0) * 31) + this.totalMentionsCount) * 31;
-                StoreConnectivity.DelayedState delayedState = this.connectivityState;
-                int iHashCode5 = (i + (delayedState != null ? delayedState.hashCode() : 0)) * 31;
-                StageRoles stageRoles = this.myStageRoles;
-                int iHashCode6 = (iHashCode5 + (stageRoles != null ? stageRoles.hashCode() : 0)) * 31;
-                boolean z3 = this.stopOffscreenVideo;
-                ?? r1 = z3;
-                if (z3) {
-                    r1 = 1;
-                }
-                int i2 = (iHashCode6 + r1) * 31;
-                boolean z4 = this.isTextInVoiceEnabled;
-                ?? r2 = z4;
-                if (z4) {
-                    r2 = 1;
-                }
-                int i3 = (i2 + r2) * 31;
-                boolean z5 = this.isTextInVoiceChannelSelected;
-                int i4 = (((((i3 + (z5 ? 1 : z5)) * 31) + this.channelMentionsCount) * 31) + this.unreadsCount) * 31;
-                Map<Long, ApplicationAsset> map = this.embeddedAppBackgrounds;
-                return i4 + (map != null ? map.hashCode() : 0);
-            }
-
-            public final boolean isScreenReaderEnabled() {
-                return this.isScreenReaderEnabled;
-            }
-
-            public final boolean isTextInVoiceChannelSelected() {
-                return this.isTextInVoiceChannelSelected;
-            }
-
-            public final boolean isTextInVoiceEnabled() {
-                return this.isTextInVoiceEnabled;
-            }
-
-            /* JADX INFO: renamed from: copy-G15NlYY, reason: not valid java name */
-            public final Valid m11444copyG15NlYY(CallModel callModel, StageCallModel stageCallModel, Boolean noiseCancellation, Long myPermissions, float streamVolume, RtcConnection.Quality streamQuality, boolean isScreenReaderEnabled, int totalMentionsCount, StoreConnectivity.DelayedState connectivityState, StageRoles myStageRoles, boolean stopOffscreenVideo, boolean isTextInVoiceEnabled, boolean isTextInVoiceChannelSelected, int channelMentionsCount, int unreadsCount, Map<Long, ApplicationAsset> embeddedAppBackgrounds) {
-                C12238m.checkNotNullParameter(callModel, "callModel");
-                C12238m.checkNotNullParameter(connectivityState, "connectivityState");
-                C12238m.checkNotNullParameter(embeddedAppBackgrounds, "embeddedAppBackgrounds");
-                return new Valid(callModel, stageCallModel, noiseCancellation, myPermissions, streamVolume, streamQuality, isScreenReaderEnabled, totalMentionsCount, connectivityState, myStageRoles, stopOffscreenVideo, isTextInVoiceEnabled, isTextInVoiceChannelSelected, channelMentionsCount, unreadsCount, embeddedAppBackgrounds);
-            }
-
-            /* JADX INFO: renamed from: getMyStageRoles-twRsX-0, reason: not valid java name */
-            public final StageRoles m11445getMyStageRolestwRsX0() {
-                return this.myStageRoles;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Valid(callModel=");
-                sbM833U.append(this.callModel);
-                sbM833U.append(", stageCallModel=");
-                sbM833U.append(this.stageCallModel);
-                sbM833U.append(", noiseCancellation=");
-                sbM833U.append(this.noiseCancellation);
-                sbM833U.append(", myPermissions=");
-                sbM833U.append(this.myPermissions);
-                sbM833U.append(", streamVolume=");
-                sbM833U.append(this.streamVolume);
-                sbM833U.append(", streamQuality=");
-                sbM833U.append(this.streamQuality);
-                sbM833U.append(", isScreenReaderEnabled=");
-                sbM833U.append(this.isScreenReaderEnabled);
-                sbM833U.append(", totalMentionsCount=");
-                sbM833U.append(this.totalMentionsCount);
-                sbM833U.append(", connectivityState=");
-                sbM833U.append(this.connectivityState);
-                sbM833U.append(", myStageRoles=");
-                sbM833U.append(this.myStageRoles);
-                sbM833U.append(", stopOffscreenVideo=");
-                sbM833U.append(this.stopOffscreenVideo);
-                sbM833U.append(", isTextInVoiceEnabled=");
-                sbM833U.append(this.isTextInVoiceEnabled);
-                sbM833U.append(", isTextInVoiceChannelSelected=");
-                sbM833U.append(this.isTextInVoiceChannelSelected);
-                sbM833U.append(", channelMentionsCount=");
-                sbM833U.append(this.channelMentionsCount);
-                sbM833U.append(", unreadsCount=");
-                sbM833U.append(this.unreadsCount);
-                sbM833U.append(", embeddedAppBackgrounds=");
-                return C1643a.m825M(sbM833U, this.embeddedAppBackgrounds, ")");
-            }
-
-            private Valid(CallModel callModel, StageCallModel stageCallModel, Boolean bool, Long l, float f, RtcConnection.Quality quality, boolean z2, int i, StoreConnectivity.DelayedState delayedState, StageRoles stageRoles, boolean z3, boolean z4, boolean z5, int i2, int i3, Map<Long, ApplicationAsset> map) {
-                super(null);
-                this.callModel = callModel;
-                this.stageCallModel = stageCallModel;
-                this.noiseCancellation = bool;
-                this.myPermissions = l;
-                this.streamVolume = f;
-                this.streamQuality = quality;
-                this.isScreenReaderEnabled = z2;
-                this.totalMentionsCount = i;
-                this.connectivityState = delayedState;
-                this.myStageRoles = stageRoles;
-                this.stopOffscreenVideo = z3;
-                this.isTextInVoiceEnabled = z4;
-                this.isTextInVoiceChannelSelected = z5;
-                this.channelMentionsCount = i2;
-                this.unreadsCount = i3;
-                this.embeddedAppBackgrounds = map;
-            }
-        }
-
-        private StoreState() {
-        }
-
-        public /* synthetic */ StoreState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-    public abstract class ViewState {
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class Invalid extends ViewState {
-            public static final Invalid INSTANCE = new Invalid();
-
-            private Invalid() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final class Uninitialized extends ViewState {
-            public static final Uninitialized INSTANCE = new Uninitialized();
-
-            private Uninitialized() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetCallFullscreenViewModel.kt */
-        public final /* data */ class Valid extends ViewState {
-            private final GuildScheduledEvent activeEvent;
-            private final Map<String, CallParticipant.UserOrStreamParticipant> allVideoParticipants;
-
-            /* JADX INFO: renamed from: analyticsVideoLayout$delegate, reason: from kotlin metadata */
-            private final Lazy analyticsVideoLayout;
-            private final CallModel callModel;
-            private final CameraState cameraState;
-            private final Long channelPermissions;
-            private final DisplayMode displayMode;
-            private final String focusedParticipantKey;
-            private final boolean isAnyoneUsingVideo;
-            private final boolean isControlFadingDisabled;
-            private final boolean isDeafened;
-            private final boolean isIdleFooter;
-            private final boolean isIdleHeader;
-            private final boolean isMovingToAudience;
-            private final boolean isPushToTalk;
-            private final boolean isStreamFocused;
-            private final boolean isSwitchCameraButtonVisible;
-            private final boolean isTextInVoiceChannelSelected;
-            private final boolean isTextInVoiceEnabled;
-            private final boolean isUpdatingRequestToSpeak;
-            private final boolean isVideoCallGridVisible;
-            private final boolean lockCallScreenControls;
-
-            /* JADX INFO: renamed from: menuItems$delegate, reason: from kotlin metadata */
-            private final Lazy menuItems;
-            private final Boolean noiseCancellation;
-            private final VoiceControlsOutputSelectorState outputSelectorState;
-            private final OverlayStatus overlayStatus;
-            private final float perceptualStreamVolume;
-            private final CallParticipant.UserOrStreamParticipant pipParticipant;
-            private final List<StoreVoiceParticipants.VoiceUser> privateCallUserListItems;
-            private final int requestingToSpeakCount;
-            private final boolean showFooter;
-            private final boolean showHeader;
-            private final boolean showLowConnectivityBar;
-            private final boolean showParticipantsHiddenView;
-            private final boolean showStreamVolume;
-            private final StageCallModel stageCallModel;
-            private final StageRoles stageRoles;
-            private final GuildScheduledEvent startableEvent;
-            private final boolean startedAsVideo;
-            private final boolean stopOffscreenVideo;
-            private final int textInVoiceMentionsCount;
-            private final int textInVoiceUnreadsCount;
-
-            /* JADX INFO: renamed from: titleText$delegate, reason: from kotlin metadata */
-            private final Lazy titleText;
-            private final int totalMentionsCount;
-            private final List<CallParticipant> visibleVideoParticipants;
-
-            public /* synthetic */ Valid(CallModel callModel, StageCallModel stageCallModel, OverlayStatus overlayStatus, List list, boolean z2, boolean z3, boolean z4, boolean z5, CameraState cameraState, DisplayMode displayMode, VoiceControlsOutputSelectorState voiceControlsOutputSelectorState, String str, boolean z6, CallParticipant.UserOrStreamParticipant userOrStreamParticipant, Boolean bool, List list2, boolean z7, boolean z8, boolean z9, float f, int i, boolean z10, StageRoles stageRoles, boolean z11, boolean z12, int i2, boolean z13, Long l, GuildScheduledEvent guildScheduledEvent, GuildScheduledEvent guildScheduledEvent2, int i3, int i4, boolean z14, boolean z15, Map map, DefaultConstructorMarker defaultConstructorMarker) {
-                this(callModel, stageCallModel, overlayStatus, list, z2, z3, z4, z5, cameraState, displayMode, voiceControlsOutputSelectorState, str, z6, userOrStreamParticipant, bool, list2, z7, z8, z9, f, i, z10, stageRoles, z11, z12, i2, z13, l, guildScheduledEvent, guildScheduledEvent2, i3, i4, z14, z15, map);
-            }
-
-            public final List<StoreVoiceParticipants.VoiceUser> component16() {
-                return this.privateCallUserListItems;
-            }
-
-            public final Map<String, CallParticipant.UserOrStreamParticipant> component35() {
-                return this.allVideoParticipants;
-            }
-
-            public final List<CallParticipant> component4() {
-                return this.visibleVideoParticipants;
-            }
-
-            private final Set<MenuItem> computeMenuItems(boolean canManageChannel, boolean isConnected, boolean isStageChannel, VideoInputDeviceDescription selectedVideoInputDevice, List<VideoInputDeviceDescription> availableVideoInputDevices, boolean isTextInVoiceEnabled) {
-                HashSet hashSetHashSetOf = C12148n0.hashSetOf(MenuItem.VOICE_SETTINGS);
-                if (canManageChannel) {
-                    hashSetHashSetOf.add(MenuItem.CHANNEL_SETTINGS);
-                }
-                if (isConnected && StoreStream.INSTANCE.getUserSettings().getIsMobileOverlayEnabled()) {
-                    hashSetHashSetOf.add(MenuItem.LAUNCH_OVERLAY);
-                }
-                if (selectedVideoInputDevice != null && availableVideoInputDevices.size() > 1) {
-                    hashSetHashSetOf.add(MenuItem.SWITCH_CAMERA);
-                }
-                if (!isStageChannel && isTextInVoiceEnabled) {
-                    hashSetHashSetOf.add(MenuItem.TEXT_IN_VOICE);
-                }
-                if (!isStageChannel) {
-                    hashSetHashSetOf.add(MenuItem.SHOW_PARTICIPANT_LIST);
-                }
-                return hashSetHashSetOf;
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Valid)) {
-                    return false;
-                }
-                Valid valid = (Valid) other;
-                return C12238m.areEqual(this.callModel, valid.callModel) && C12238m.areEqual(this.stageCallModel, valid.stageCallModel) && C12238m.areEqual(this.overlayStatus, valid.overlayStatus) && C12238m.areEqual(this.visibleVideoParticipants, valid.visibleVideoParticipants) && this.isIdleFooter == valid.isIdleFooter && this.isIdleHeader == valid.isIdleHeader && this.isControlFadingDisabled == valid.isControlFadingDisabled && this.isSwitchCameraButtonVisible == valid.isSwitchCameraButtonVisible && C12238m.areEqual(this.cameraState, valid.cameraState) && C12238m.areEqual(this.displayMode, valid.displayMode) && C12238m.areEqual(this.outputSelectorState, valid.outputSelectorState) && C12238m.areEqual(this.focusedParticipantKey, valid.focusedParticipantKey) && this.isAnyoneUsingVideo == valid.isAnyoneUsingVideo && C12238m.areEqual(this.pipParticipant, valid.pipParticipant) && C12238m.areEqual(this.noiseCancellation, valid.noiseCancellation) && C12238m.areEqual(this.privateCallUserListItems, valid.privateCallUserListItems) && this.showParticipantsHiddenView == valid.showParticipantsHiddenView && this.lockCallScreenControls == valid.lockCallScreenControls && this.startedAsVideo == valid.startedAsVideo && Float.compare(this.perceptualStreamVolume, valid.perceptualStreamVolume) == 0 && this.totalMentionsCount == valid.totalMentionsCount && this.showLowConnectivityBar == valid.showLowConnectivityBar && C12238m.areEqual(this.stageRoles, valid.stageRoles) && this.isUpdatingRequestToSpeak == valid.isUpdatingRequestToSpeak && this.isMovingToAudience == valid.isMovingToAudience && this.requestingToSpeakCount == valid.requestingToSpeakCount && this.stopOffscreenVideo == valid.stopOffscreenVideo && C12238m.areEqual(this.channelPermissions, valid.channelPermissions) && C12238m.areEqual(this.startableEvent, valid.startableEvent) && C12238m.areEqual(this.activeEvent, valid.activeEvent) && this.textInVoiceMentionsCount == valid.textInVoiceMentionsCount && this.textInVoiceUnreadsCount == valid.textInVoiceUnreadsCount && this.isTextInVoiceEnabled == valid.isTextInVoiceEnabled && this.isTextInVoiceChannelSelected == valid.isTextInVoiceChannelSelected && C12238m.areEqual(this.allVideoParticipants, valid.allVideoParticipants);
-            }
-
-            /* JADX INFO: renamed from: component30, reason: from getter */
-            public final GuildScheduledEvent getActiveEvent() {
-                return this.activeEvent;
-            }
-
-            public final GuildScheduledEvent getActiveEvent() {
-                return this.activeEvent;
-            }
-
-            public final Map<String, CallParticipant.UserOrStreamParticipant> getAllVideoParticipants() {
-                return this.allVideoParticipants;
-            }
-
-            public final String getAnalyticsVideoLayout() {
-                return (String) this.analyticsVideoLayout.getValue();
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final CallModel getCallModel() {
-                return this.callModel;
-            }
-
-            public final CallModel getCallModel() {
-                return this.callModel;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final CameraState getCameraState() {
-                return this.cameraState;
-            }
-
-            public final CameraState getCameraState() {
-                return this.cameraState;
-            }
-
-            /* JADX INFO: renamed from: component28, reason: from getter */
-            public final Long getChannelPermissions() {
-                return this.channelPermissions;
-            }
-
-            public final Long getChannelPermissions() {
-                return this.channelPermissions;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final DisplayMode getDisplayMode() {
-                return this.displayMode;
-            }
-
-            public final DisplayMode getDisplayMode() {
-                return this.displayMode;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final String getFocusedParticipantKey() {
-                return this.focusedParticipantKey;
-            }
-
-            public final String getFocusedParticipantKey() {
-                return this.focusedParticipantKey;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final boolean getIsAnyoneUsingVideo() {
-                return this.isAnyoneUsingVideo;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final boolean getIsControlFadingDisabled() {
-                return this.isControlFadingDisabled;
-            }
-
-            /* JADX INFO: renamed from: isDeafened, reason: from getter */
-            public final boolean getIsDeafened() {
-                return this.isDeafened;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final boolean getIsIdleFooter() {
-                return this.isIdleFooter;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final boolean getIsIdleHeader() {
-                return this.isIdleHeader;
-            }
-
-            /* JADX INFO: renamed from: component25, reason: from getter */
-            public final boolean getIsMovingToAudience() {
-                return this.isMovingToAudience;
-            }
-
-            /* JADX INFO: renamed from: isPushToTalk, reason: from getter */
-            public final boolean getIsPushToTalk() {
-                return this.isPushToTalk;
-            }
-
-            /* JADX INFO: renamed from: isStreamFocused, reason: from getter */
-            public final boolean getIsStreamFocused() {
-                return this.isStreamFocused;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final boolean getIsSwitchCameraButtonVisible() {
-                return this.isSwitchCameraButtonVisible;
-            }
-
-            /* JADX INFO: renamed from: component34, reason: from getter */
-            public final boolean getIsTextInVoiceChannelSelected() {
-                return this.isTextInVoiceChannelSelected;
-            }
-
-            /* JADX INFO: renamed from: component33, reason: from getter */
-            public final boolean getIsTextInVoiceEnabled() {
-                return this.isTextInVoiceEnabled;
-            }
-
-            /* JADX INFO: renamed from: component24, reason: from getter */
-            public final boolean getIsUpdatingRequestToSpeak() {
-                return this.isUpdatingRequestToSpeak;
-            }
-
-            /* JADX INFO: renamed from: isVideoCallGridVisible, reason: from getter */
-            public final boolean getIsVideoCallGridVisible() {
-                return this.isVideoCallGridVisible;
-            }
-
-            /* JADX INFO: renamed from: component18, reason: from getter */
-            public final boolean getLockCallScreenControls() {
-                return this.lockCallScreenControls;
-            }
-
-            public final boolean getLockCallScreenControls() {
-                return this.lockCallScreenControls;
-            }
-
-            public final Set<MenuItem> getMenuItems() {
-                return (Set) this.menuItems.getValue();
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final Boolean getNoiseCancellation() {
-                return this.noiseCancellation;
-            }
-
-            public final Boolean getNoiseCancellation() {
-                return this.noiseCancellation;
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final VoiceControlsOutputSelectorState getOutputSelectorState() {
-                return this.outputSelectorState;
-            }
-
-            public final VoiceControlsOutputSelectorState getOutputSelectorState() {
-                return this.outputSelectorState;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final OverlayStatus getOverlayStatus() {
-                return this.overlayStatus;
-            }
-
-            public final OverlayStatus getOverlayStatus() {
-                return this.overlayStatus;
-            }
-
-            /* JADX INFO: renamed from: component20, reason: from getter */
-            public final float getPerceptualStreamVolume() {
-                return this.perceptualStreamVolume;
-            }
-
-            public final float getPerceptualStreamVolume() {
-                return this.perceptualStreamVolume;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final CallParticipant.UserOrStreamParticipant getPipParticipant() {
-                return this.pipParticipant;
-            }
-
-            public final CallParticipant.UserOrStreamParticipant getPipParticipant() {
-                return this.pipParticipant;
-            }
-
-            public final List<StoreVoiceParticipants.VoiceUser> getPrivateCallUserListItems() {
-                return this.privateCallUserListItems;
-            }
-
-            /* JADX INFO: renamed from: component26, reason: from getter */
-            public final int getRequestingToSpeakCount() {
-                return this.requestingToSpeakCount;
-            }
-
-            public final int getRequestingToSpeakCount() {
-                return this.requestingToSpeakCount;
-            }
-
-            public final boolean getShowFooter() {
-                return this.showFooter;
-            }
-
-            public final boolean getShowHeader() {
-                return this.showHeader;
-            }
-
-            /* JADX INFO: renamed from: component22, reason: from getter */
-            public final boolean getShowLowConnectivityBar() {
-                return this.showLowConnectivityBar;
-            }
-
-            public final boolean getShowLowConnectivityBar() {
-                return this.showLowConnectivityBar;
-            }
-
-            /* JADX INFO: renamed from: component17, reason: from getter */
-            public final boolean getShowParticipantsHiddenView() {
-                return this.showParticipantsHiddenView;
-            }
-
-            public final boolean getShowParticipantsHiddenView() {
-                return this.showParticipantsHiddenView;
-            }
-
-            public final boolean getShowStreamVolume() {
-                return this.showStreamVolume;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final StageCallModel getStageCallModel() {
-                return this.stageCallModel;
-            }
-
-            public final StageCallModel getStageCallModel() {
-                return this.stageCallModel;
-            }
-
-            /* JADX INFO: renamed from: component23-twRsX-0, reason: not valid java name and from getter */
-            public final StageRoles getStageRoles() {
-                return this.stageRoles;
-            }
-
-            /* JADX INFO: renamed from: component29, reason: from getter */
-            public final GuildScheduledEvent getStartableEvent() {
-                return this.startableEvent;
-            }
-
-            public final GuildScheduledEvent getStartableEvent() {
-                return this.startableEvent;
-            }
-
-            /* JADX INFO: renamed from: component19, reason: from getter */
-            public final boolean getStartedAsVideo() {
-                return this.startedAsVideo;
-            }
-
-            public final boolean getStartedAsVideo() {
-                return this.startedAsVideo;
-            }
-
-            /* JADX INFO: renamed from: component27, reason: from getter */
-            public final boolean getStopOffscreenVideo() {
-                return this.stopOffscreenVideo;
-            }
-
-            public final boolean getStopOffscreenVideo() {
-                return this.stopOffscreenVideo;
-            }
-
-            /* JADX INFO: renamed from: component31, reason: from getter */
-            public final int getTextInVoiceMentionsCount() {
-                return this.textInVoiceMentionsCount;
-            }
-
-            public final int getTextInVoiceMentionsCount() {
-                return this.textInVoiceMentionsCount;
-            }
-
-            /* JADX INFO: renamed from: component32, reason: from getter */
-            public final int getTextInVoiceUnreadsCount() {
-                return this.textInVoiceUnreadsCount;
-            }
-
-            public final int getTextInVoiceUnreadsCount() {
-                return this.textInVoiceUnreadsCount;
-            }
-
-            public final String getTitleText() {
-                return (String) this.titleText.getValue();
-            }
-
-            /* JADX INFO: renamed from: component21, reason: from getter */
-            public final int getTotalMentionsCount() {
-                return this.totalMentionsCount;
-            }
-
-            public final int getTotalMentionsCount() {
-                return this.totalMentionsCount;
-            }
-
-            public final List<CallParticipant> getVisibleVideoParticipants() {
-                return this.visibleVideoParticipants;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v10, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v42, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v47, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v49, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v52, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v65, types: [int] */
-            /* JADX WARN: Type inference failed for: r0v68 */
-            /* JADX WARN: Type inference failed for: r0v72 */
-            /* JADX WARN: Type inference failed for: r0v73 */
-            /* JADX WARN: Type inference failed for: r0v74 */
-            /* JADX WARN: Type inference failed for: r0v76 */
-            /* JADX WARN: Type inference failed for: r0v78 */
-            /* JADX WARN: Type inference failed for: r0v79 */
-            /* JADX WARN: Type inference failed for: r0v80 */
-            /* JADX WARN: Type inference failed for: r0v81 */
-            /* JADX WARN: Type inference failed for: r0v82 */
-            /* JADX WARN: Type inference failed for: r2v10, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v100 */
-            /* JADX WARN: Type inference failed for: r2v101 */
-            /* JADX WARN: Type inference failed for: r2v102 */
-            /* JADX WARN: Type inference failed for: r2v103 */
-            /* JADX WARN: Type inference failed for: r2v104 */
-            /* JADX WARN: Type inference failed for: r2v12, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v14, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v16, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v30, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v41, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v43, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v45, types: [int] */
-            /* JADX WARN: Type inference failed for: r2v79 */
-            /* JADX WARN: Type inference failed for: r2v80 */
-            /* JADX WARN: Type inference failed for: r2v81 */
-            /* JADX WARN: Type inference failed for: r2v85 */
-            /* JADX WARN: Type inference failed for: r2v90 */
-            /* JADX WARN: Type inference failed for: r2v91 */
-            /* JADX WARN: Type inference failed for: r2v92 */
-            /* JADX WARN: Type inference failed for: r2v93 */
-            /* JADX WARN: Type inference failed for: r2v97 */
-            /* JADX WARN: Type inference failed for: r2v98 */
-            /* JADX WARN: Type inference failed for: r2v99 */
-            /* JADX WARN: Type inference failed for: r3v0 */
-            /* JADX WARN: Type inference failed for: r3v1, types: [int] */
-            /* JADX WARN: Type inference failed for: r3v2 */
-            public int hashCode() {
-                CallModel callModel = this.callModel;
-                int iHashCode = (callModel != null ? callModel.hashCode() : 0) * 31;
-                StageCallModel stageCallModel = this.stageCallModel;
-                int iHashCode2 = (iHashCode + (stageCallModel != null ? stageCallModel.hashCode() : 0)) * 31;
-                OverlayStatus overlayStatus = this.overlayStatus;
-                int iHashCode3 = (iHashCode2 + (overlayStatus != null ? overlayStatus.hashCode() : 0)) * 31;
-                List<CallParticipant> list = this.visibleVideoParticipants;
-                int iHashCode4 = (iHashCode3 + (list != null ? list.hashCode() : 0)) * 31;
-                boolean z2 = this.isIdleFooter;
-                ?? r2 = z2;
-                if (z2) {
-                    r2 = 1;
-                }
-                int i = (iHashCode4 + r2) * 31;
-                boolean z3 = this.isIdleHeader;
-                ?? r3 = z3;
-                if (z3) {
-                    r3 = 1;
-                }
-                int i2 = (i + r3) * 31;
-                boolean z4 = this.isControlFadingDisabled;
-                ?? r4 = z4;
-                if (z4) {
-                    r4 = 1;
-                }
-                int i3 = (i2 + r4) * 31;
-                boolean z5 = this.isSwitchCameraButtonVisible;
-                ?? r5 = z5;
-                if (z5) {
-                    r5 = 1;
-                }
-                int i4 = (i3 + r5) * 31;
-                CameraState cameraState = this.cameraState;
-                int iHashCode5 = (i4 + (cameraState != null ? cameraState.hashCode() : 0)) * 31;
-                DisplayMode displayMode = this.displayMode;
-                int iHashCode6 = (iHashCode5 + (displayMode != null ? displayMode.hashCode() : 0)) * 31;
-                VoiceControlsOutputSelectorState voiceControlsOutputSelectorState = this.outputSelectorState;
-                int iHashCode7 = (iHashCode6 + (voiceControlsOutputSelectorState != null ? voiceControlsOutputSelectorState.hashCode() : 0)) * 31;
-                String str = this.focusedParticipantKey;
-                int iHashCode8 = (iHashCode7 + (str != null ? str.hashCode() : 0)) * 31;
-                boolean z6 = this.isAnyoneUsingVideo;
-                ?? r6 = z6;
-                if (z6) {
-                    r6 = 1;
-                }
-                int i5 = (iHashCode8 + r6) * 31;
-                CallParticipant.UserOrStreamParticipant userOrStreamParticipant = this.pipParticipant;
-                int iHashCode9 = (i5 + (userOrStreamParticipant != null ? userOrStreamParticipant.hashCode() : 0)) * 31;
-                Boolean bool = this.noiseCancellation;
-                int iHashCode10 = (iHashCode9 + (bool != null ? bool.hashCode() : 0)) * 31;
-                List<StoreVoiceParticipants.VoiceUser> list2 = this.privateCallUserListItems;
-                int iHashCode11 = (iHashCode10 + (list2 != null ? list2.hashCode() : 0)) * 31;
-                boolean z7 = this.showParticipantsHiddenView;
-                ?? r7 = z7;
-                if (z7) {
-                    r7 = 1;
-                }
-                int i6 = (iHashCode11 + r7) * 31;
-                boolean z8 = this.lockCallScreenControls;
-                ?? r8 = z8;
-                if (z8) {
-                    r8 = 1;
-                }
-                int i7 = (i6 + r8) * 31;
-                boolean z9 = this.startedAsVideo;
-                ?? r9 = z9;
-                if (z9) {
-                    r9 = 1;
-                }
-                int iFloatToIntBits = (((Float.floatToIntBits(this.perceptualStreamVolume) + ((i7 + r9) * 31)) * 31) + this.totalMentionsCount) * 31;
-                boolean z10 = this.showLowConnectivityBar;
-                ?? r0 = z10;
-                if (z10) {
-                    r0 = 1;
-                }
-                int i8 = (iFloatToIntBits + r0) * 31;
-                StageRoles stageRoles = this.stageRoles;
-                int iHashCode12 = (i8 + (stageRoles != null ? stageRoles.hashCode() : 0)) * 31;
-                boolean z11 = this.isUpdatingRequestToSpeak;
-                ?? r1 = z11;
-                if (z11) {
-                    r1 = 1;
-                }
-                int i9 = (iHashCode12 + r1) * 31;
-                boolean z12 = this.isMovingToAudience;
-                ?? r10 = z12;
-                if (z12) {
-                    r10 = 1;
-                }
-                int i10 = (((i9 + r10) * 31) + this.requestingToSpeakCount) * 31;
-                boolean z13 = this.stopOffscreenVideo;
-                ?? r11 = z13;
-                if (z13) {
-                    r11 = 1;
-                }
-                int i11 = (i10 + r11) * 31;
-                Long l = this.channelPermissions;
-                int iHashCode13 = (i11 + (l != null ? l.hashCode() : 0)) * 31;
-                GuildScheduledEvent guildScheduledEvent = this.startableEvent;
-                int iHashCode14 = (iHashCode13 + (guildScheduledEvent != null ? guildScheduledEvent.hashCode() : 0)) * 31;
-                GuildScheduledEvent guildScheduledEvent2 = this.activeEvent;
-                int iHashCode15 = (((((iHashCode14 + (guildScheduledEvent2 != null ? guildScheduledEvent2.hashCode() : 0)) * 31) + this.textInVoiceMentionsCount) * 31) + this.textInVoiceUnreadsCount) * 31;
-                boolean z14 = this.isTextInVoiceEnabled;
-                ?? r12 = z14;
-                if (z14) {
-                    r12 = 1;
-                }
-                int i12 = (iHashCode15 + r12) * 31;
-                boolean z15 = this.isTextInVoiceChannelSelected;
-                int i13 = (i12 + (z15 ? 1 : z15)) * 31;
-                Map<String, CallParticipant.UserOrStreamParticipant> map = this.allVideoParticipants;
-                return i13 + (map != null ? map.hashCode() : 0);
-            }
-
-            public final boolean isAnyoneUsingVideo() {
-                return this.isAnyoneUsingVideo;
-            }
-
-            public final boolean isControlFadingDisabled() {
-                return this.isControlFadingDisabled;
-            }
-
-            public final boolean isIdleFooter() {
-                return this.isIdleFooter;
-            }
-
-            public final boolean isIdleHeader() {
-                return this.isIdleHeader;
-            }
-
-            public final boolean isMovingToAudience() {
-                return this.isMovingToAudience;
-            }
-
-            public final boolean isSwitchCameraButtonVisible() {
-                return this.isSwitchCameraButtonVisible;
-            }
-
-            public final boolean isTextInVoiceChannelSelected() {
-                return this.isTextInVoiceChannelSelected;
-            }
-
-            public final boolean isTextInVoiceEnabled() {
-                return this.isTextInVoiceEnabled;
-            }
-
-            public final boolean isUpdatingRequestToSpeak() {
-                return this.isUpdatingRequestToSpeak;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX INFO: renamed from: copy-J3xfKWQ$default, reason: not valid java name */
-            public static /* synthetic */ Valid m11446copyJ3xfKWQ$default(Valid valid, CallModel callModel, StageCallModel stageCallModel, OverlayStatus overlayStatus, List list, boolean z2, boolean z3, boolean z4, boolean z5, CameraState cameraState, DisplayMode displayMode, VoiceControlsOutputSelectorState voiceControlsOutputSelectorState, String str, boolean z6, CallParticipant.UserOrStreamParticipant userOrStreamParticipant, Boolean bool, List list2, boolean z7, boolean z8, boolean z9, float f, int i, boolean z10, StageRoles stageRoles, boolean z11, boolean z12, int i2, boolean z13, Long l, GuildScheduledEvent guildScheduledEvent, GuildScheduledEvent guildScheduledEvent2, int i3, int i4, boolean z14, boolean z15, Map map, int i5, int i6, Object obj) {
-                return valid.m11448copyJ3xfKWQ((i5 & 1) != 0 ? valid.callModel : callModel, (i5 & 2) != 0 ? valid.stageCallModel : stageCallModel, (i5 & 4) != 0 ? valid.overlayStatus : overlayStatus, (i5 & 8) != 0 ? valid.visibleVideoParticipants : list, (i5 & 16) != 0 ? valid.isIdleFooter : z2, (i5 & 32) != 0 ? valid.isIdleHeader : z3, (i5 & 64) != 0 ? valid.isControlFadingDisabled : z4, (i5 & 128) != 0 ? valid.isSwitchCameraButtonVisible : z5, (i5 & 256) != 0 ? valid.cameraState : cameraState, (i5 & 512) != 0 ? valid.displayMode : displayMode, (i5 & 1024) != 0 ? valid.outputSelectorState : voiceControlsOutputSelectorState, (i5 & 2048) != 0 ? valid.focusedParticipantKey : str, (i5 & 4096) != 0 ? valid.isAnyoneUsingVideo : z6, (i5 & 8192) != 0 ? valid.pipParticipant : userOrStreamParticipant, (i5 & 16384) != 0 ? valid.noiseCancellation : bool, (i5 & 32768) != 0 ? valid.privateCallUserListItems : list2, (i5 & 65536) != 0 ? valid.showParticipantsHiddenView : z7, (i5 & 131072) != 0 ? valid.lockCallScreenControls : z8, (i5 & 262144) != 0 ? valid.startedAsVideo : z9, (i5 & 524288) != 0 ? valid.perceptualStreamVolume : f, (i5 & 1048576) != 0 ? valid.totalMentionsCount : i, (i5 & 2097152) != 0 ? valid.showLowConnectivityBar : z10, (i5 & 4194304) != 0 ? valid.stageRoles : stageRoles, (i5 & 8388608) != 0 ? valid.isUpdatingRequestToSpeak : z11, (i5 & 16777216) != 0 ? valid.isMovingToAudience : z12, (i5 & 33554432) != 0 ? valid.requestingToSpeakCount : i2, (i5 & 67108864) != 0 ? valid.stopOffscreenVideo : z13, (i5 & 134217728) != 0 ? valid.channelPermissions : l, (i5 & 268435456) != 0 ? valid.startableEvent : guildScheduledEvent, (i5 & 536870912) != 0 ? valid.activeEvent : guildScheduledEvent2, (i5 & BasicMeasure.EXACTLY) != 0 ? valid.textInVoiceMentionsCount : i3, (i5 & Integer.MIN_VALUE) != 0 ? valid.textInVoiceUnreadsCount : i4, (i6 & 1) != 0 ? valid.isTextInVoiceEnabled : z14, (i6 & 2) != 0 ? valid.isTextInVoiceChannelSelected : z15, (i6 & 4) != 0 ? valid.allVideoParticipants : map);
-            }
-
-            /* JADX INFO: renamed from: copy-J3xfKWQ, reason: not valid java name */
-            public final Valid m11448copyJ3xfKWQ(CallModel callModel, StageCallModel stageCallModel, OverlayStatus overlayStatus, List<? extends CallParticipant> visibleVideoParticipants, boolean isIdleFooter, boolean isIdleHeader, boolean isControlFadingDisabled, boolean isSwitchCameraButtonVisible, CameraState cameraState, DisplayMode displayMode, VoiceControlsOutputSelectorState outputSelectorState, String focusedParticipantKey, boolean isAnyoneUsingVideo, CallParticipant.UserOrStreamParticipant pipParticipant, Boolean noiseCancellation, List<StoreVoiceParticipants.VoiceUser> privateCallUserListItems, boolean showParticipantsHiddenView, boolean lockCallScreenControls, boolean startedAsVideo, float perceptualStreamVolume, int totalMentionsCount, boolean showLowConnectivityBar, StageRoles stageRoles, boolean isUpdatingRequestToSpeak, boolean isMovingToAudience, int requestingToSpeakCount, boolean stopOffscreenVideo, Long channelPermissions, GuildScheduledEvent startableEvent, GuildScheduledEvent activeEvent, int textInVoiceMentionsCount, int textInVoiceUnreadsCount, boolean isTextInVoiceEnabled, boolean isTextInVoiceChannelSelected, Map<String, CallParticipant.UserOrStreamParticipant> allVideoParticipants) {
-                C12238m.checkNotNullParameter(callModel, "callModel");
-                C12238m.checkNotNullParameter(overlayStatus, "overlayStatus");
-                C12238m.checkNotNullParameter(visibleVideoParticipants, "visibleVideoParticipants");
-                C12238m.checkNotNullParameter(cameraState, "cameraState");
-                C12238m.checkNotNullParameter(displayMode, "displayMode");
-                C12238m.checkNotNullParameter(outputSelectorState, "outputSelectorState");
-                C12238m.checkNotNullParameter(privateCallUserListItems, "privateCallUserListItems");
-                C12238m.checkNotNullParameter(allVideoParticipants, "allVideoParticipants");
-                return new Valid(callModel, stageCallModel, overlayStatus, visibleVideoParticipants, isIdleFooter, isIdleHeader, isControlFadingDisabled, isSwitchCameraButtonVisible, cameraState, displayMode, outputSelectorState, focusedParticipantKey, isAnyoneUsingVideo, pipParticipant, noiseCancellation, privateCallUserListItems, showParticipantsHiddenView, lockCallScreenControls, startedAsVideo, perceptualStreamVolume, totalMentionsCount, showLowConnectivityBar, stageRoles, isUpdatingRequestToSpeak, isMovingToAudience, requestingToSpeakCount, stopOffscreenVideo, channelPermissions, startableEvent, activeEvent, textInVoiceMentionsCount, textInVoiceUnreadsCount, isTextInVoiceEnabled, isTextInVoiceChannelSelected, allVideoParticipants);
-            }
-
-            /* JADX INFO: renamed from: getStageRoles-twRsX-0, reason: not valid java name */
-            public final StageRoles m11449getStageRolestwRsX0() {
-                return this.stageRoles;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Valid(callModel=");
-                sbM833U.append(this.callModel);
-                sbM833U.append(", stageCallModel=");
-                sbM833U.append(this.stageCallModel);
-                sbM833U.append(", overlayStatus=");
-                sbM833U.append(this.overlayStatus);
-                sbM833U.append(", visibleVideoParticipants=");
-                sbM833U.append(this.visibleVideoParticipants);
-                sbM833U.append(", isIdleFooter=");
-                sbM833U.append(this.isIdleFooter);
-                sbM833U.append(", isIdleHeader=");
-                sbM833U.append(this.isIdleHeader);
-                sbM833U.append(", isControlFadingDisabled=");
-                sbM833U.append(this.isControlFadingDisabled);
-                sbM833U.append(", isSwitchCameraButtonVisible=");
-                sbM833U.append(this.isSwitchCameraButtonVisible);
-                sbM833U.append(", cameraState=");
-                sbM833U.append(this.cameraState);
-                sbM833U.append(", displayMode=");
-                sbM833U.append(this.displayMode);
-                sbM833U.append(", outputSelectorState=");
-                sbM833U.append(this.outputSelectorState);
-                sbM833U.append(", focusedParticipantKey=");
-                sbM833U.append(this.focusedParticipantKey);
-                sbM833U.append(", isAnyoneUsingVideo=");
-                sbM833U.append(this.isAnyoneUsingVideo);
-                sbM833U.append(", pipParticipant=");
-                sbM833U.append(this.pipParticipant);
-                sbM833U.append(", noiseCancellation=");
-                sbM833U.append(this.noiseCancellation);
-                sbM833U.append(", privateCallUserListItems=");
-                sbM833U.append(this.privateCallUserListItems);
-                sbM833U.append(", showParticipantsHiddenView=");
-                sbM833U.append(this.showParticipantsHiddenView);
-                sbM833U.append(", lockCallScreenControls=");
-                sbM833U.append(this.lockCallScreenControls);
-                sbM833U.append(", startedAsVideo=");
-                sbM833U.append(this.startedAsVideo);
-                sbM833U.append(", perceptualStreamVolume=");
-                sbM833U.append(this.perceptualStreamVolume);
-                sbM833U.append(", totalMentionsCount=");
-                sbM833U.append(this.totalMentionsCount);
-                sbM833U.append(", showLowConnectivityBar=");
-                sbM833U.append(this.showLowConnectivityBar);
-                sbM833U.append(", stageRoles=");
-                sbM833U.append(this.stageRoles);
-                sbM833U.append(", isUpdatingRequestToSpeak=");
-                sbM833U.append(this.isUpdatingRequestToSpeak);
-                sbM833U.append(", isMovingToAudience=");
-                sbM833U.append(this.isMovingToAudience);
-                sbM833U.append(", requestingToSpeakCount=");
-                sbM833U.append(this.requestingToSpeakCount);
-                sbM833U.append(", stopOffscreenVideo=");
-                sbM833U.append(this.stopOffscreenVideo);
-                sbM833U.append(", channelPermissions=");
-                sbM833U.append(this.channelPermissions);
-                sbM833U.append(", startableEvent=");
-                sbM833U.append(this.startableEvent);
-                sbM833U.append(", activeEvent=");
-                sbM833U.append(this.activeEvent);
-                sbM833U.append(", textInVoiceMentionsCount=");
-                sbM833U.append(this.textInVoiceMentionsCount);
-                sbM833U.append(", textInVoiceUnreadsCount=");
-                sbM833U.append(this.textInVoiceUnreadsCount);
-                sbM833U.append(", isTextInVoiceEnabled=");
-                sbM833U.append(this.isTextInVoiceEnabled);
-                sbM833U.append(", isTextInVoiceChannelSelected=");
-                sbM833U.append(this.isTextInVoiceChannelSelected);
-                sbM833U.append(", allVideoParticipants=");
-                return C1643a.m825M(sbM833U, this.allVideoParticipants, ")");
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            private Valid(CallModel callModel, StageCallModel stageCallModel, OverlayStatus overlayStatus, List<? extends CallParticipant> list, boolean z2, boolean z3, boolean z4, boolean z5, CameraState cameraState, DisplayMode displayMode, VoiceControlsOutputSelectorState voiceControlsOutputSelectorState, String str, boolean z6, CallParticipant.UserOrStreamParticipant userOrStreamParticipant, Boolean bool, List<StoreVoiceParticipants.VoiceUser> list2, boolean z7, boolean z8, boolean z9, float f, int i, boolean z10, StageRoles stageRoles, boolean z11, boolean z12, int i2, boolean z13, Long l, GuildScheduledEvent guildScheduledEvent, GuildScheduledEvent guildScheduledEvent2, int i3, int i4, boolean z14, boolean z15, Map<String, CallParticipant.UserOrStreamParticipant> map) {
-                super(null);
-                this.callModel = callModel;
-                this.stageCallModel = stageCallModel;
-                this.overlayStatus = overlayStatus;
-                this.visibleVideoParticipants = list;
-                this.isIdleFooter = z2;
-                this.isIdleHeader = z3;
-                this.isControlFadingDisabled = z4;
-                this.isSwitchCameraButtonVisible = z5;
-                this.cameraState = cameraState;
-                this.displayMode = displayMode;
-                this.outputSelectorState = voiceControlsOutputSelectorState;
-                this.focusedParticipantKey = str;
-                this.isAnyoneUsingVideo = z6;
-                this.pipParticipant = userOrStreamParticipant;
-                this.noiseCancellation = bool;
-                this.privateCallUserListItems = list2;
-                this.showParticipantsHiddenView = z7;
-                this.lockCallScreenControls = z8;
-                this.startedAsVideo = z9;
-                this.perceptualStreamVolume = f;
-                this.totalMentionsCount = i;
-                this.showLowConnectivityBar = z10;
-                this.stageRoles = stageRoles;
-                this.isUpdatingRequestToSpeak = z11;
-                this.isMovingToAudience = z12;
-                this.requestingToSpeakCount = i2;
-                this.stopOffscreenVideo = z13;
-                this.channelPermissions = l;
-                this.startableEvent = guildScheduledEvent;
-                this.activeEvent = guildScheduledEvent2;
-                this.textInVoiceMentionsCount = i3;
-                this.textInVoiceUnreadsCount = i4;
-                this.isTextInVoiceEnabled = z14;
-                this.isTextInVoiceChannelSelected = z15;
-                this.allVideoParticipants = map;
-                this.menuItems = C12083g.lazy(new WidgetCallFullscreenViewModel$ViewState$Valid$menuItems$2(this));
-                this.titleText = C12083g.lazy(new WidgetCallFullscreenViewModel$ViewState$Valid$titleText$2(this));
-                boolean z16 = false;
-                this.isStreamFocused = str != null && C12103t.endsWith$default(str, "STREAM", false, 2, null);
-                boolean z17 = (list.isEmpty() ^ true) && !callModel.isStreaming() && displayMode == DisplayMode.GRID;
-                this.isVideoCallGridVisible = z17;
-                this.isPushToTalk = callModel.getInputMode() == MediaEngineConnection.InputMode.PUSH_TO_TALK;
-                this.showFooter = (z17 && z2 && !z8) ? false : true;
-                this.showHeader = (z17 && z3 && !z8) ? false : true;
-                if (callModel.getActiveStream() != null && !callModel.isStreaming()) {
-                    z16 = true;
-                }
-                this.showStreamVolume = z16;
-                this.analyticsVideoLayout = C12083g.lazy(new C10510x6f60b30a(this));
-                this.isDeafened = callModel.isDeafenedByAnySource();
-            }
-        }
-
-        private ViewState() {
-        }
-
-        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$2;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$3;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$4;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$5;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$6;
-
-        static {
-            DisplayMode.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[DisplayMode.GRID.ordinal()] = 1;
-            iArr[DisplayMode.PRIVATE_CALL_PARTICIPANTS.ordinal()] = 2;
-            VideoCallParticipantView.ParticipantData.Type.values();
-            int[] iArr2 = new int[2];
-            $EnumSwitchMapping$1 = iArr2;
-            VideoCallParticipantView.ParticipantData.Type type = VideoCallParticipantView.ParticipantData.Type.DEFAULT;
-            iArr2[type.ordinal()] = 1;
-            VideoCallParticipantView.ParticipantData.Type type2 = VideoCallParticipantView.ParticipantData.Type.APPLICATION_STREAMING;
-            iArr2[type2.ordinal()] = 2;
-            DiscordAudioManager.DeviceTypes.values();
-            int[] iArr3 = new int[6];
-            $EnumSwitchMapping$2 = iArr3;
-            iArr3[DiscordAudioManager.DeviceTypes.BLUETOOTH_HEADSET.ordinal()] = 1;
-            iArr3[DiscordAudioManager.DeviceTypes.SPEAKERPHONE.ordinal()] = 2;
-            VideoCallParticipantView.ParticipantData.Type.values();
-            int[] iArr4 = new int[2];
-            $EnumSwitchMapping$3 = iArr4;
-            iArr4[type2.ordinal()] = 1;
-            iArr4[type.ordinal()] = 2;
-            VideoCallParticipantView.ParticipantData.Type.values();
-            int[] iArr5 = new int[2];
-            $EnumSwitchMapping$4 = iArr5;
-            iArr5[type2.ordinal()] = 1;
-            iArr5[type.ordinal()] = 2;
-            StoreApplicationStreaming.ActiveApplicationStream.State.values();
-            int[] iArr6 = new int[6];
-            $EnumSwitchMapping$5 = iArr6;
-            iArr6[StoreApplicationStreaming.ActiveApplicationStream.State.CONNECTING.ordinal()] = 1;
-            iArr6[StoreApplicationStreaming.ActiveApplicationStream.State.RECONNECTING.ordinal()] = 2;
-            iArr6[StoreApplicationStreaming.ActiveApplicationStream.State.ACTIVE.ordinal()] = 3;
-            iArr6[StoreApplicationStreaming.ActiveApplicationStream.State.PAUSED.ordinal()] = 4;
-            iArr6[StoreApplicationStreaming.ActiveApplicationStream.State.DENIED_FULL.ordinal()] = 5;
-            iArr6[StoreApplicationStreaming.ActiveApplicationStream.State.ENDED.ordinal()] = 6;
-            StoreMediaSettings.SelfMuteFailure.values();
-            int[] iArr7 = new int[1];
-            $EnumSwitchMapping$6 = iArr7;
-            iArr7[StoreMediaSettings.SelfMuteFailure.CANNOT_USE_VAD.ordinal()] = 1;
-        }
-    }
-
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ WidgetCallFullscreenViewModel(long j, StoreChannels storeChannels, StoreNavigation storeNavigation, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreGuildSelected storeGuildSelected, StoreTabsNavigation storeTabsNavigation, StoreUserSettings storeUserSettings, StoreApplicationStreaming storeApplicationStreaming, StoreMediaEngine storeMediaEngine, StoreMediaSettings storeMediaSettings, StorePermissions storePermissions, Clock clock, Scheduler scheduler, VideoPermissionsManager videoPermissionsManager, VoiceEngineServiceController voiceEngineServiceController, StoreStreamRtcConnection storeStreamRtcConnection, StoreAccessibility storeAccessibility, StoreAudioManagerV2 storeAudioManagerV2, StoreMentions storeMentions, StoreAnalytics storeAnalytics, StoreConnectivity storeConnectivity, StoreStageChannels storeStageChannels, StoreAnalytics storeAnalytics2, StoreExperiments storeExperiments, StoreChannelsSelected storeChannelsSelected, StoreApplication storeApplication, StoreApplicationAssets storeApplicationAssets, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
         Scheduler scheduler2;
-        StoreChannels channels = (i & 2) != 0 ? StoreStream.INSTANCE.getChannels() : storeChannels;
-        StoreNavigation navigation = (i & 4) != 0 ? StoreStream.INSTANCE.getNavigation() : storeNavigation;
-        StoreVoiceChannelSelected voiceChannelSelected = (i & 8) != 0 ? StoreStream.INSTANCE.getVoiceChannelSelected() : storeVoiceChannelSelected;
-        StoreGuildSelected guildSelected = (i & 16) != 0 ? StoreStream.INSTANCE.getGuildSelected() : storeGuildSelected;
-        StoreTabsNavigation tabsNavigation = (i & 32) != 0 ? StoreStream.INSTANCE.getTabsNavigation() : storeTabsNavigation;
-        StoreUserSettings userSettings = (i & 64) != 0 ? StoreStream.INSTANCE.getUserSettings() : storeUserSettings;
-        StoreApplicationStreaming applicationStreaming = (i & 128) != 0 ? StoreStream.INSTANCE.getApplicationStreaming() : storeApplicationStreaming;
-        StoreMediaEngine mediaEngine = (i & 256) != 0 ? StoreStream.INSTANCE.getMediaEngine() : storeMediaEngine;
-        StoreMediaSettings mediaSettings = (i & 512) != 0 ? StoreStream.INSTANCE.getMediaSettings() : storeMediaSettings;
-        StorePermissions permissions = (i & 1024) != 0 ? StoreStream.INSTANCE.getPermissions() : storePermissions;
+        StoreChannels channels = (i & 2) != 0 ? StoreStream.Companion.getChannels() : storeChannels;
+        StoreNavigation navigation = (i & 4) != 0 ? StoreStream.Companion.getNavigation() : storeNavigation;
+        StoreVoiceChannelSelected voiceChannelSelected = (i & 8) != 0 ? StoreStream.Companion.getVoiceChannelSelected() : storeVoiceChannelSelected;
+        StoreGuildSelected guildSelected = (i & 16) != 0 ? StoreStream.Companion.getGuildSelected() : storeGuildSelected;
+        StoreTabsNavigation tabsNavigation = (i & 32) != 0 ? StoreStream.Companion.getTabsNavigation() : storeTabsNavigation;
+        StoreUserSettings userSettings = (i & 64) != 0 ? StoreStream.Companion.getUserSettings() : storeUserSettings;
+        StoreApplicationStreaming applicationStreaming = (i & 128) != 0 ? StoreStream.Companion.getApplicationStreaming() : storeApplicationStreaming;
+        StoreMediaEngine mediaEngine = (i & 256) != 0 ? StoreStream.Companion.getMediaEngine() : storeMediaEngine;
+        StoreMediaSettings mediaSettings = (i & 512) != 0 ? StoreStream.Companion.getMediaSettings() : storeMediaSettings;
+        StorePermissions permissions = (i & 1024) != 0 ? StoreStream.Companion.getPermissions() : storePermissions;
         Clock clock2 = (i & 2048) != 0 ? ClockFactory.get() : clock;
         if ((i & 4096) != 0) {
-            Scheduler schedulerM10873a = C12781a.m10873a();
-            C12238m.checkNotNullExpressionValue(schedulerM10873a, "Schedulers.computation()");
-            scheduler2 = schedulerM10873a;
+            Scheduler schedulerA = a.a();
+            m.checkNotNullExpressionValue(schedulerA, "Schedulers.computation()");
+            scheduler2 = schedulerA;
         } else {
             scheduler2 = scheduler;
         }
-        this(j, channels, navigation, voiceChannelSelected, guildSelected, tabsNavigation, userSettings, applicationStreaming, mediaEngine, mediaSettings, permissions, clock2, scheduler2, (i & 8192) != 0 ? new VideoPermissionsManager(null, 1, null) : videoPermissionsManager, (i & 16384) != 0 ? VoiceEngineServiceController.INSTANCE.getINSTANCE() : voiceEngineServiceController, (32768 & i) != 0 ? StoreStream.INSTANCE.getStreamRtcConnection() : storeStreamRtcConnection, (65536 & i) != 0 ? StoreStream.INSTANCE.getAccessibility() : storeAccessibility, (131072 & i) != 0 ? StoreStream.INSTANCE.getAudioManagerV2() : storeAudioManagerV2, (262144 & i) != 0 ? StoreStream.INSTANCE.getMentions() : storeMentions, (524288 & i) != 0 ? StoreStream.INSTANCE.getAnalytics() : storeAnalytics, (1048576 & i) != 0 ? StoreStream.INSTANCE.getConnectivity() : storeConnectivity, (2097152 & i) != 0 ? StoreStream.INSTANCE.getStageChannels() : storeStageChannels, (4194304 & i) != 0 ? StoreStream.INSTANCE.getAnalytics() : storeAnalytics2, (8388608 & i) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments, (16777216 & i) != 0 ? StoreStream.INSTANCE.getChannelsSelected() : storeChannelsSelected, (33554432 & i) != 0 ? StoreStream.INSTANCE.getApplication() : storeApplication, (i & 67108864) != 0 ? StoreStream.INSTANCE.getApplicationAssets() : storeApplicationAssets, str);
+        this(j, channels, navigation, voiceChannelSelected, guildSelected, tabsNavigation, userSettings, applicationStreaming, mediaEngine, mediaSettings, permissions, clock2, scheduler2, (i & 8192) != 0 ? new VideoPermissionsManager(null, 1, null) : videoPermissionsManager, (i & 16384) != 0 ? VoiceEngineServiceController.Companion.getINSTANCE() : voiceEngineServiceController, (32768 & i) != 0 ? StoreStream.Companion.getStreamRtcConnection() : storeStreamRtcConnection, (65536 & i) != 0 ? StoreStream.Companion.getAccessibility() : storeAccessibility, (131072 & i) != 0 ? StoreStream.Companion.getAudioManagerV2() : storeAudioManagerV2, (262144 & i) != 0 ? StoreStream.Companion.getMentions() : storeMentions, (524288 & i) != 0 ? StoreStream.Companion.getAnalytics() : storeAnalytics, (1048576 & i) != 0 ? StoreStream.Companion.getConnectivity() : storeConnectivity, (2097152 & i) != 0 ? StoreStream.Companion.getStageChannels() : storeStageChannels, (4194304 & i) != 0 ? StoreStream.Companion.getAnalytics() : storeAnalytics2, (8388608 & i) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments, (16777216 & i) != 0 ? StoreStream.Companion.getChannelsSelected() : storeChannelsSelected, (33554432 & i) != 0 ? StoreStream.Companion.getApplication() : storeApplication, (i & 67108864) != 0 ? StoreStream.Companion.getApplicationAssets() : storeApplicationAssets, str);
     }
 
-    public static final /* synthetic */ ViewState access$getViewState$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+    public static final /* synthetic */ StoreAccessibility access$getAccessibilityStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.accessibilityStore;
+    }
+
+    public static final /* synthetic */ StoreApplicationAssets access$getApplicationAssetsStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.applicationAssetsStore;
+    }
+
+    public static final /* synthetic */ long access$getChannelId$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.channelId;
+    }
+
+    public static final /* synthetic */ StoreChannelsSelected access$getChannelsSelectedStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.channelsSelectedStore;
+    }
+
+    public static final /* synthetic */ StoreConnectivity access$getConnectivityStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.connectivityStore;
+    }
+
+    public static final /* synthetic */ StoreExperiments access$getExperimentsStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.experimentsStore;
+    }
+
+    public static final /* synthetic */ Subscription access$getForwardVideoGridInteractionSubscription$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.forwardVideoGridInteractionSubscription;
+    }
+
+    public static final /* synthetic */ StoreMentions access$getMentionsStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.mentionsStore;
+    }
+
+    public static final /* synthetic */ StorePermissions access$getPermissionsStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.permissionsStore;
+    }
+
+    public static final /* synthetic */ StoreStageChannels access$getStageStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.stageStore;
+    }
+
+    public static final /* synthetic */ Subscription access$getStoreObservableSubscription$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.storeObservableSubscription;
+    }
+
+    public static final /* synthetic */ StoreStreamRtcConnection access$getStreamRtcConnectionStore$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.streamRtcConnectionStore;
+    }
+
+    public static final /* synthetic */ VideoPlayerIdleDetector access$getVideoPlayerIdleDetectorFooter$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.videoPlayerIdleDetectorFooter;
+    }
+
+    public static final /* synthetic */ VideoPlayerIdleDetector access$getVideoPlayerIdleDetectorHeader$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
+        return widgetCallFullscreenViewModel.videoPlayerIdleDetectorHeader;
+    }
+
+    public static final /* synthetic */ WidgetCallFullscreenViewModel$ViewState access$getViewState$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel) {
         return widgetCallFullscreenViewModel.getViewState();
     }
 
-    private final CallParticipant addStreamQualityMetadata(CallParticipant callParticipant, RtcConnection.Quality streamQuality) {
-        boolean z2 = callParticipant instanceof CallParticipant.UserOrStreamParticipant;
-        if (z2 || (callParticipant instanceof CallParticipant.EmbeddedActivityParticipant)) {
+    public static final /* synthetic */ void access$setChannelId$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel, long j) {
+        widgetCallFullscreenViewModel.channelId = j;
+    }
+
+    public static final /* synthetic */ void access$setForwardVideoGridInteractionSubscription$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel, Subscription subscription) {
+        widgetCallFullscreenViewModel.forwardVideoGridInteractionSubscription = subscription;
+    }
+
+    public static final /* synthetic */ void access$setOffScreenVideoParticipants(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel, List list) {
+        widgetCallFullscreenViewModel.setOffScreenVideoParticipants(list);
+    }
+
+    public static final /* synthetic */ void access$setStoreObservableSubscription$p(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel, Subscription subscription) {
+        widgetCallFullscreenViewModel.storeObservableSubscription = subscription;
+    }
+
+    private final CallParticipant addStreamQualityMetadata(CallParticipant callParticipant, RtcConnection$Quality streamQuality) {
+        boolean z2 = callParticipant instanceof CallParticipant$UserOrStreamParticipant;
+        if (z2 || (callParticipant instanceof CallParticipant$EmbeddedActivityParticipant)) {
             return callParticipant;
         }
         if (!z2) {
             throw new NoWhenBranchMatchedException();
         }
-        CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) callParticipant;
-        VideoCallParticipantView.ParticipantData participantData = userOrStreamParticipant.getParticipantData();
-        StoreVideoStreams.UserStreams streams = participantData.voiceParticipant.getStreams();
+        CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) callParticipant;
+        VideoCallParticipantView$ParticipantData participantData = callParticipant$UserOrStreamParticipant.getParticipantData();
+        StoreVideoStreams$UserStreams streams = participantData.voiceParticipant.getStreams();
         VideoMetadata applicationStreamMetadata = streams != null ? streams.getApplicationStreamMetadata() : null;
         if (applicationStreamMetadata != null) {
-            C12238m.checkNotNullParameter(applicationStreamMetadata, "metadata");
-            VideoCallParticipantView.StreamResolution c7108a = applicationStreamMetadata.type == Payloads.ResolutionType.Source ? VideoCallParticipantView.StreamResolution.C7109b.f19255a : new VideoCallParticipantView.StreamResolution.C7108a(applicationStreamMetadata.maxHeight);
+            m.checkNotNullParameter(applicationStreamMetadata, "metadata");
+            VideoCallParticipantView$StreamResolution videoCallParticipantView$StreamResolution$a = applicationStreamMetadata.type == Payloads$ResolutionType.Source ? VideoCallParticipantView$StreamResolution$b.a : new VideoCallParticipantView$StreamResolution$a(applicationStreamMetadata.maxHeight);
             Integer num = applicationStreamMetadata.maxFrameRate;
-            VideoCallParticipantView.StreamFps streamFps = num != null ? new VideoCallParticipantView.StreamFps(num.intValue()) : null;
-            participantData = VideoCallParticipantView.ParticipantData.m8584a(participantData, null, false, null, null, null, null, false, false, new VideoCallParticipantView.ParticipantData.C7107a(c7108a.m8588b() || (streamFps != null && streamFps.m8586a()), c7108a, streamFps, streamQuality == RtcConnection.Quality.BAD), 255);
+            VideoCallParticipantView$StreamFps videoCallParticipantView$StreamFps = num != null ? new VideoCallParticipantView$StreamFps(num.intValue()) : null;
+            participantData = VideoCallParticipantView$ParticipantData.a(participantData, null, false, null, null, null, null, false, false, new VideoCallParticipantView$ParticipantData$a(videoCallParticipantView$StreamResolution$a.b() || (videoCallParticipantView$StreamFps != null && videoCallParticipantView$StreamFps.a()), videoCallParticipantView$StreamResolution$a, videoCallParticipantView$StreamFps, streamQuality == RtcConnection$Quality.BAD), 255);
         }
-        return userOrStreamParticipant.copy(participantData);
+        return callParticipant$UserOrStreamParticipant.copy(participantData);
     }
 
     @MainThread
@@ -2254,21 +293,21 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     @MainThread
     private final void clearFocusedVideoParticipant() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
             this.focusedVideoParticipantKey = null;
             stopWatchingStreamIfEnded();
-            updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, computeVisibleVideoParticipants(), false, false, false, false, null, null, null, this.focusedVideoParticipantKey, false, computePipParticipant(valid.getCallModel().getMyId(), valid.getCallModel().getSelectedVideoDevice(), valid.getCallModel().isStreaming(), valid.getCameraState()), null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -10249, 7, null));
+            updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, computeVisibleVideoParticipants(), false, false, false, false, null, null, null, this.focusedVideoParticipantKey, false, computePipParticipant(widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getMyId(), widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getSelectedVideoDevice(), widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().isStreaming(), widgetCallFullscreenViewModel$ViewState$Valid.getCameraState()), null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -10249, 7, null));
         }
     }
 
     /* JADX WARN: Code duplicated, block: B:17:0x0047  */
     @MainThread
-    private final CallParticipant.UserOrStreamParticipant computePipParticipant(long myUserId, VideoInputDeviceDescription selectedVideoInputDevice, boolean isStreaming, CameraState cameraState) {
+    private final CallParticipant$UserOrStreamParticipant computePipParticipant(long myUserId, VideoInputDeviceDescription selectedVideoInputDevice, boolean isStreaming, CameraState cameraState) {
         Object next;
         boolean z2;
         if (this.allVideoParticipants.isEmpty()) {
@@ -2282,10 +321,10 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
             }
             next = it.next();
             CallParticipant callParticipant = (CallParticipant) next;
-            if (callParticipant instanceof CallParticipant.UserOrStreamParticipant) {
-                CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) callParticipant;
-                VoiceState voiceState = userOrStreamParticipant.getParticipantData().voiceParticipant.getVoiceState();
-                if (voiceState != null && voiceState.getSelfVideo() && userOrStreamParticipant.getParticipantData().voiceParticipant.isMe()) {
+            if (callParticipant instanceof CallParticipant$UserOrStreamParticipant) {
+                CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) callParticipant;
+                VoiceState voiceState = callParticipant$UserOrStreamParticipant.getParticipantData().voiceParticipant.getVoiceState();
+                if (voiceState != null && voiceState.getSelfVideo() && callParticipant$UserOrStreamParticipant.getParticipantData().voiceParticipant.isMe()) {
                     z2 = true;
                 } else {
                     z2 = false;
@@ -2297,12 +336,12 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         CallParticipant callParticipant2 = (CallParticipant) next;
         boolean z3 = isStreaming && cameraState == CameraState.CAMERA_ON;
         String str = this.focusedVideoParticipantKey;
-        boolean z4 = isOneOnOneMeCall(this.allVideoParticipants) || (str != null && !C12238m.areEqual(str, String.valueOf(myUserId))) || z3;
-        if (callParticipant2 == null || !(callParticipant2 instanceof CallParticipant.UserOrStreamParticipant) || !z4) {
+        boolean z4 = isOneOnOneMeCall(this.allVideoParticipants) || (str != null && !m.areEqual(str, String.valueOf(myUserId))) || z3;
+        if (callParticipant2 == null || !(callParticipant2 instanceof CallParticipant$UserOrStreamParticipant) || !z4) {
             return null;
         }
-        CallParticipant.UserOrStreamParticipant userOrStreamParticipant2 = (CallParticipant.UserOrStreamParticipant) callParticipant2;
-        return userOrStreamParticipant2.copy(VideoCallParticipantView.ParticipantData.m8584a(userOrStreamParticipant2.getParticipantData(), null, (selectedVideoInputDevice != null ? selectedVideoInputDevice.getFacing() : null) == VideoInputDeviceFacing.Front, null, null, null, null, false, false, null, 445));
+        CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant2 = (CallParticipant$UserOrStreamParticipant) callParticipant2;
+        return callParticipant$UserOrStreamParticipant2.copy(VideoCallParticipantView$ParticipantData.a(callParticipant$UserOrStreamParticipant2.getParticipantData(), null, (selectedVideoInputDevice != null ? selectedVideoInputDevice.getFacing() : null) == VideoInputDeviceFacing.Front, null, null, null, null, false, false, null, 445));
     }
 
     @MainThread
@@ -2319,27 +358,27 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                     break;
                 }
                 next = it.next();
-            } while (!C12238m.areEqual(getParticipantFocusKey((CallParticipant) next), str));
+            } while (!m.areEqual(getParticipantFocusKey((CallParticipant) next), str));
             CallParticipant callParticipant = (CallParticipant) next;
             if (callParticipant != null) {
-                if (callParticipant instanceof CallParticipant.UserOrStreamParticipant) {
-                    CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) callParticipant;
-                    VideoCallParticipantView.ParticipantData participantData = userOrStreamParticipant.getParticipantData();
-                    RendererCommon.ScalingType scalingType = participantData.scalingType;
-                    RendererCommon.ScalingType scalingType2 = participantData.scalingTypeMismatchOrientation;
-                    RendererCommon.ScalingType scalingType3 = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
-                    objCopy = userOrStreamParticipant;
-                    if (scalingType != scalingType3 || scalingType2 != scalingType3) {
-                        objCopy = userOrStreamParticipant.copy(VideoCallParticipantView.ParticipantData.m8584a(userOrStreamParticipant.getParticipantData(), null, false, scalingType3, scalingType3, null, null, false, false, null, 499));
+                if (callParticipant instanceof CallParticipant$UserOrStreamParticipant) {
+                    CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) callParticipant;
+                    VideoCallParticipantView$ParticipantData participantData = callParticipant$UserOrStreamParticipant.getParticipantData();
+                    RendererCommon$ScalingType rendererCommon$ScalingType = participantData.scalingType;
+                    RendererCommon$ScalingType rendererCommon$ScalingType2 = participantData.scalingTypeMismatchOrientation;
+                    RendererCommon$ScalingType rendererCommon$ScalingType3 = RendererCommon$ScalingType.SCALE_ASPECT_FIT;
+                    objCopy = callParticipant$UserOrStreamParticipant;
+                    if (rendererCommon$ScalingType != rendererCommon$ScalingType3 || rendererCommon$ScalingType2 != rendererCommon$ScalingType3) {
+                        objCopy = callParticipant$UserOrStreamParticipant.copy(VideoCallParticipantView$ParticipantData.a(callParticipant$UserOrStreamParticipant.getParticipantData(), null, false, rendererCommon$ScalingType3, rendererCommon$ScalingType3, null, null, false, false, null, 499));
                     }
                 } else {
-                    boolean z2 = callParticipant instanceof CallParticipant.EmbeddedActivityParticipant;
+                    boolean z2 = callParticipant instanceof CallParticipant$EmbeddedActivityParticipant;
                     objCopy = callParticipant;
                     if (!z2) {
                         throw new NoWhenBranchMatchedException();
                     }
                 }
-                return C12145m.listOf(objCopy);
+                return d0.t.m.listOf(objCopy);
             }
             this.focusedVideoParticipantKey = null;
             stopWatchingStreamIfEnded();
@@ -2347,21 +386,21 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         if (isOneOnOneMeCall(this.allVideoParticipants)) {
             for (Object obj2 : this.allVideoParticipants) {
                 CallParticipant callParticipant2 = (CallParticipant) obj2;
-                if ((callParticipant2 instanceof CallParticipant.EmbeddedActivityParticipant) || ((callParticipant2 instanceof CallParticipant.UserOrStreamParticipant) && !((CallParticipant.UserOrStreamParticipant) callParticipant2).getParticipantData().voiceParticipant.isMe())) {
+                if ((callParticipant2 instanceof CallParticipant$EmbeddedActivityParticipant) || ((callParticipant2 instanceof CallParticipant$UserOrStreamParticipant) && !((CallParticipant$UserOrStreamParticipant) callParticipant2).getParticipantData().voiceParticipant.isMe())) {
                     obj = obj2;
                     break;
                 }
             }
             CallParticipant callParticipant3 = (CallParticipant) obj;
             if (callParticipant3 != null) {
-                return C12145m.listOf(callParticipant3);
+                return d0.t.m.listOf(callParticipant3);
             }
         }
         return this.allVideoParticipants;
     }
 
-    private final List<StoreVoiceParticipants.VoiceUser> createPrivateCallParticipantListItems(CallModel callModel) {
-        return C12163u.toList(callModel.getParticipants().values());
+    private final List<StoreVoiceParticipants$VoiceUser> createPrivateCallParticipantListItems(CallModel callModel) {
+        return u.toList(callModel.getParticipants().values());
     }
 
     public static /* synthetic */ Comparator createUserItemsComparator$default(WidgetCallFullscreenViewModel widgetCallFullscreenViewModel, boolean z2, String str, int i, Object obj) {
@@ -2374,71 +413,28 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         return widgetCallFullscreenViewModel.createUserItemsComparator(z2, str);
     }
 
-    private final Comparator<StoreVoiceParticipants.VoiceUser> createUserItemsComparator(final boolean prioritizeSpectators, final String mySpectatingStreamKey) {
-        return new Comparator<StoreVoiceParticipants.VoiceUser>() { // from class: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel.createUserItemsComparator.1
-            @Override // java.util.Comparator
-            public final int compare(StoreVoiceParticipants.VoiceUser voiceUser, StoreVoiceParticipants.VoiceUser voiceUser2) {
-                boolean z2 = false;
-                boolean z3 = mySpectatingStreamKey != null;
-                ModelApplicationStream applicationStream = voiceUser.getApplicationStream();
-                String encodedStreamKey = applicationStream != null ? applicationStream.getEncodedStreamKey() : null;
-                ModelApplicationStream applicationStream2 = voiceUser2.getApplicationStream();
-                String encodedStreamKey2 = applicationStream2 != null ? applicationStream2.getEncodedStreamKey() : null;
-                boolean z4 = encodedStreamKey != null;
-                boolean z5 = encodedStreamKey2 != null;
-                VoiceState voiceState = voiceUser.getVoiceState();
-                boolean z6 = voiceState != null && voiceState.getSelfVideo();
-                VoiceState voiceState2 = voiceUser2.getVoiceState();
-                boolean z7 = voiceState2 != null && voiceState2.getSelfVideo();
-                boolean z8 = z3 && C12238m.areEqual(encodedStreamKey, mySpectatingStreamKey);
-                if (z3 && C12238m.areEqual(encodedStreamKey2, mySpectatingStreamKey)) {
-                    z2 = true;
-                }
-                boolean z9 = prioritizeSpectators;
-                if (!z9 || !z8) {
-                    if (z9 && z2) {
-                        return 1;
-                    }
-                    if (!z9 || !z3 || !C12238m.areEqual(voiceUser.getWatchingStream(), mySpectatingStreamKey) || !(!C12238m.areEqual(voiceUser2.getWatchingStream(), mySpectatingStreamKey))) {
-                        if (prioritizeSpectators && z3 && C12238m.areEqual(voiceUser2.getWatchingStream(), mySpectatingStreamKey) && (!C12238m.areEqual(voiceUser.getWatchingStream(), mySpectatingStreamKey))) {
-                            return 1;
-                        }
-                        if (!z4 || z5) {
-                            if (!z4 && z5) {
-                                return 1;
-                            }
-                            if (!z6 || z7) {
-                                if (z6 || !z7) {
-                                    return UserUtils.INSTANCE.compareUserNames(voiceUser.getUser(), voiceUser2.getUser(), voiceUser.getNickname(), voiceUser2.getNickname());
-                                }
-                                return 1;
-                            }
-                        }
-                    }
-                }
-                return -1;
-            }
-        };
+    private final Comparator<StoreVoiceParticipants$VoiceUser> createUserItemsComparator(boolean prioritizeSpectators, String mySpectatingStreamKey) {
+        return new WidgetCallFullscreenViewModel$createUserItemsComparator$1(mySpectatingStreamKey, prioritizeSpectators);
     }
 
-    private final List<CallParticipant> createVideoGridEntriesForParticipant(StoreVoiceParticipants.VoiceUser participant, long channelId, StoreApplicationStreaming.ActiveApplicationStream activeApplicationStream, RtcConnection.Quality streamQuality, VideoInputDeviceDescription selectedVideoInputDevice, boolean showLabels) {
+    private final List<CallParticipant> createVideoGridEntriesForParticipant(StoreVoiceParticipants$VoiceUser participant, long channelId, StoreApplicationStreaming$ActiveApplicationStream activeApplicationStream, RtcConnection$Quality streamQuality, VideoInputDeviceDescription selectedVideoInputDevice, boolean showLabels) {
         VoiceState voiceState;
         ModelApplicationStream stream;
         ArrayList arrayList = new ArrayList();
         if (!participant.isConnected() && !participant.isRinging()) {
-            return C12147n.emptyList();
+            return n.emptyList();
         }
         String encodedStreamKey = null;
-        arrayList.add(new CallParticipant.UserOrStreamParticipant(new VideoCallParticipantView.ParticipantData(participant, participant.isMe() && ((selectedVideoInputDevice != null ? selectedVideoInputDevice.getFacing() : null) == VideoInputDeviceFacing.Front), null, null, null, null, showLabels, false, null, 444)));
+        arrayList.add(new CallParticipant$UserOrStreamParticipant(new VideoCallParticipantView$ParticipantData(participant, participant.isMe() && ((selectedVideoInputDevice != null ? selectedVideoInputDevice.getFacing() : null) == VideoInputDeviceFacing.Front), null, null, null, null, showLabels, false, null, 444)));
         if (participant.getApplicationStream() == null || (voiceState = participant.getVoiceState()) == null || !voiceState.getSelfStream()) {
             if (activeApplicationStream != null) {
                 ModelApplicationStream stream2 = activeApplicationStream.getStream();
                 if (participant.getUser().getId() == stream2.getOwnerId()) {
-                    VideoCallParticipantView.ParticipantData.ApplicationStreamState participantStreamState = getParticipantStreamState(activeApplicationStream.getState());
-                    RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
-                    VideoCallParticipantView.ParticipantData participantData = new VideoCallParticipantView.ParticipantData(participant, false, scalingType, scalingType, participantStreamState, VideoCallParticipantView.ParticipantData.Type.APPLICATION_STREAMING, showLabels, false, null, 384);
+                    VideoCallParticipantView$ParticipantData$ApplicationStreamState participantStreamState = getParticipantStreamState(activeApplicationStream.getState());
+                    RendererCommon$ScalingType rendererCommon$ScalingType = RendererCommon$ScalingType.SCALE_ASPECT_FIT;
+                    VideoCallParticipantView$ParticipantData videoCallParticipantView$ParticipantData = new VideoCallParticipantView$ParticipantData(participant, false, rendererCommon$ScalingType, rendererCommon$ScalingType, participantStreamState, VideoCallParticipantView$ParticipantData$Type.APPLICATION_STREAMING, showLabels, false, null, 384);
                     if (isStreamFocused(stream2)) {
-                        arrayList.add(new CallParticipant.UserOrStreamParticipant(participantData));
+                        arrayList.add(new CallParticipant$UserOrStreamParticipant(videoCallParticipantView$ParticipantData));
                     } else {
                         stopWatchingStreamIfEnded();
                     }
@@ -2451,11 +447,11 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
             if (activeApplicationStream != null && (stream = activeApplicationStream.getStream()) != null) {
                 encodedStreamKey = stream.getEncodedStreamKey();
             }
-            VideoCallParticipantView.ParticipantData.ApplicationStreamState participantStreamState2 = C12238m.areEqual(encodedStreamKey, participant.getApplicationStream().getEncodedStreamKey()) ? getParticipantStreamState(activeApplicationStream.getState()) : VideoCallParticipantView.ParticipantData.ApplicationStreamState.INACTIVE;
-            RendererCommon.ScalingType scalingType2 = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
-            arrayList.add(new CallParticipant.UserOrStreamParticipant(new VideoCallParticipantView.ParticipantData(participant, false, scalingType2, scalingType2, participantStreamState2, VideoCallParticipantView.ParticipantData.Type.APPLICATION_STREAMING, showLabels, false, null, 384)));
+            VideoCallParticipantView$ParticipantData$ApplicationStreamState participantStreamState2 = m.areEqual(encodedStreamKey, participant.getApplicationStream().getEncodedStreamKey()) ? getParticipantStreamState(activeApplicationStream.getState()) : VideoCallParticipantView$ParticipantData$ApplicationStreamState.INACTIVE;
+            RendererCommon$ScalingType rendererCommon$ScalingType2 = RendererCommon$ScalingType.SCALE_ASPECT_FIT;
+            arrayList.add(new CallParticipant$UserOrStreamParticipant(new VideoCallParticipantView$ParticipantData(participant, false, rendererCommon$ScalingType2, rendererCommon$ScalingType2, participantStreamState2, VideoCallParticipantView$ParticipantData$Type.APPLICATION_STREAMING, showLabels, false, null, 384)));
         }
-        ArrayList arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(arrayList, 10));
+        ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(arrayList, 10));
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             arrayList2.add(addStreamQualityMetadata((CallParticipant) it.next(), streamQuality));
@@ -2464,13 +460,13 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     }
 
     public final void disableControlFading() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null && !valid.isControlFadingDisabled()) {
-            updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, null, false, false, true, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -65, 7, null));
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null && !widgetCallFullscreenViewModel$ViewState$Valid.isControlFadingDisabled()) {
+            updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, null, false, false, true, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -65, 7, null));
         }
     }
 
@@ -2480,80 +476,80 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         this.videoPlayerIdleDetectorHeader.onPreventIdle();
         this.selectedVoiceChannelStore.clear();
         if (!this.wasEverConnected || this.wasEverMultiParticipant) {
-            ViewState viewState = getViewState();
-            if (!(viewState instanceof ViewState.Valid)) {
+            WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+            if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
                 viewState = null;
             }
-            ViewState.Valid valid = (ViewState.Valid) viewState;
-            if (valid != null) {
-                CallModel callModel = valid.getCallModel();
-                RtcConnection.Metadata rtcConnectionMetadata = callModel.getRtcConnectionMetadata();
-                this.eventSubject.f27650k.onNext(new Event.EnqueueCallFeedbackSheet(this.channelId, rtcConnectionMetadata != null ? rtcConnectionMetadata.rtcConnectionId : null, rtcConnectionMetadata != null ? rtcConnectionMetadata.mediaSessionId : null, callModel.getCallDurationMs(this.clock), callModel.getCallFeedbackTriggerRateDenominator()));
+            WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+            if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+                CallModel callModel = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel();
+                RtcConnection$Metadata rtcConnectionMetadata = callModel.getRtcConnectionMetadata();
+                this.eventSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$EnqueueCallFeedbackSheet(this.channelId, rtcConnectionMetadata != null ? rtcConnectionMetadata.rtcConnectionId : null, rtcConnectionMetadata != null ? rtcConnectionMetadata.mediaSessionId : null, callModel.getCallDurationMs(this.clock), callModel.getCallFeedbackTriggerRateDenominator()));
             }
         }
     }
 
     private final void emitServerDeafenedDialogEvent() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowServerDeafenedDialog.INSTANCE);
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowServerDeafenedDialog.INSTANCE);
     }
 
     private final void emitServerMutedDialogEvent() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowServerMutedDialog.INSTANCE);
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowServerMutedDialog.INSTANCE);
     }
 
     private final void emitShowNoScreenSharePermissionDialogEvent() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowNoScreenSharePermissionDialog.INSTANCE);
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowNoScreenSharePermissionDialog.INSTANCE);
     }
 
     private final void emitShowNoVadPermissionDialogEvent() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowNoVadPermissionDialog.INSTANCE);
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowNoVadPermissionDialog.INSTANCE);
     }
 
     private final void emitShowNoVideoPermissionDialogEvent() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowNoVideoPermissionDialog.INSTANCE);
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowNoVideoPermissionDialog.INSTANCE);
     }
 
     private final void emitSuppressedDialogEvent() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowSuppressedDialog.INSTANCE);
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowSuppressedDialog.INSTANCE);
     }
 
     private final void enqueueStreamFeedbackSheet(String streamKey, String mediaSessionId, int triggerRateDenominator) {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.EnqueueStreamFeedbackSheet(streamKey, mediaSessionId, triggerRateDenominator));
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$EnqueueStreamFeedbackSheet(streamKey, mediaSessionId, triggerRateDenominator));
     }
 
     @MainThread
     public final void focusVideoParticipant(String participantKey) {
-        C12238m.checkNotNullParameter(participantKey, "participantKey");
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        m.checkNotNullParameter(participantKey, "participantKey");
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
             if (!isOneOnOneMeCall(this.allVideoParticipants)) {
                 this.focusedVideoParticipantKey = participantKey;
             }
-            updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, computeVisibleVideoParticipants(), false, false, false, false, null, null, null, this.focusedVideoParticipantKey, false, computePipParticipant(valid.getCallModel().getMyId(), valid.getCallModel().getSelectedVideoDevice(), valid.getCallModel().isStreaming(), valid.getCameraState()), null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -10249, 7, null));
+            updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, computeVisibleVideoParticipants(), false, false, false, false, null, null, null, this.focusedVideoParticipantKey, false, computePipParticipant(widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getMyId(), widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getSelectedVideoDevice(), widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().isStreaming(), widgetCallFullscreenViewModel$ViewState$Valid.getCameraState()), null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -10249, 7, null));
         }
     }
 
     private final String getParticipantFocusKey(CallParticipant callParticipant) {
-        if (!(callParticipant instanceof CallParticipant.UserOrStreamParticipant)) {
-            if (callParticipant instanceof CallParticipant.EmbeddedActivityParticipant) {
-                return String.valueOf(((CallParticipant.EmbeddedActivityParticipant) callParticipant).getApplication().getId());
+        if (!(callParticipant instanceof CallParticipant$UserOrStreamParticipant)) {
+            if (callParticipant instanceof CallParticipant$EmbeddedActivityParticipant) {
+                return String.valueOf(((CallParticipant$EmbeddedActivityParticipant) callParticipant).getApplication().getId());
             }
             throw new NoWhenBranchMatchedException();
         }
-        CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) callParticipant;
-        long id2 = userOrStreamParticipant.getParticipantData().voiceParticipant.getUser().getId();
-        int iOrdinal = userOrStreamParticipant.getParticipantData().type.ordinal();
+        CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) callParticipant;
+        long id2 = callParticipant$UserOrStreamParticipant.getParticipantData().voiceParticipant.getUser().getId();
+        int iOrdinal = callParticipant$UserOrStreamParticipant.getParticipantData().type.ordinal();
         if (iOrdinal == 0) {
             return String.valueOf(id2);
         }
@@ -2563,26 +559,26 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         return id2 + "--STREAM";
     }
 
-    private final VideoCallParticipantView.ParticipantData.ApplicationStreamState getParticipantStreamState(StoreApplicationStreaming.ActiveApplicationStream.State applicationStreamState) {
+    private final VideoCallParticipantView$ParticipantData$ApplicationStreamState getParticipantStreamState(StoreApplicationStreaming$ActiveApplicationStream$State applicationStreamState) {
         int iOrdinal = applicationStreamState.ordinal();
         if (iOrdinal != 0) {
             if (iOrdinal == 1) {
-                return VideoCallParticipantView.ParticipantData.ApplicationStreamState.ACTIVE;
+                return VideoCallParticipantView$ParticipantData$ApplicationStreamState.ACTIVE;
             }
             if (iOrdinal != 2) {
                 if (iOrdinal == 3) {
-                    return VideoCallParticipantView.ParticipantData.ApplicationStreamState.ENDED;
+                    return VideoCallParticipantView$ParticipantData$ApplicationStreamState.ENDED;
                 }
                 if (iOrdinal == 4) {
-                    return VideoCallParticipantView.ParticipantData.ApplicationStreamState.PAUSED;
+                    return VideoCallParticipantView$ParticipantData$ApplicationStreamState.PAUSED;
                 }
                 if (iOrdinal == 5) {
-                    return VideoCallParticipantView.ParticipantData.ApplicationStreamState.INACTIVE;
+                    return VideoCallParticipantView$ParticipantData$ApplicationStreamState.INACTIVE;
                 }
                 throw new NoWhenBranchMatchedException();
             }
         }
-        return VideoCallParticipantView.ParticipantData.ApplicationStreamState.CONNECTING;
+        return VideoCallParticipantView$ParticipantData$ApplicationStreamState.CONNECTING;
     }
 
     public final boolean getShowStageCallBottomSheet() {
@@ -2596,7 +592,7 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     /* JADX WARN: Code duplicated, block: B:141:0x034a  */
     @MainThread
-    public final void handleStoreState(StoreState storeState) {
+    public final void handleStoreState(WidgetCallFullscreenViewModel$StoreState storeState) {
         boolean z2;
         VoiceState voiceState;
         VoiceState voiceState2;
@@ -2608,43 +604,43 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         StageCallModel stageCallModel;
         List<StageMediaParticipant> mediaParticipants;
         VoiceControlsOutputSelectorState voiceControlsOutputSelectorState;
-        ViewState viewState;
+        WidgetCallFullscreenViewModel$ViewState widgetCallFullscreenViewModel$ViewState;
         boolean z3;
         Object next;
         Object next2;
         String str;
-        StageRoles stageRolesM11445getMyStageRolestwRsX0;
-        StageRoles stageRolesM11445getMyStageRolestwRsX1;
+        StageRoles stageRolesM68getMyStageRolestwRsX0;
+        StageRoles stageRolesM68getMyStageRolestwRsX1;
         boolean z4;
         ModelApplicationStream applicationStream;
         ModelApplicationStream stream;
         CallModel callModel2;
-        C12238m.checkNotNullParameter(storeState, "storeState");
-        if (C12238m.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
-            updateViewState((ViewState) ViewState.Invalid.INSTANCE);
-        } else if (storeState instanceof StoreState.Valid) {
-            StoreState.Valid valid = (StoreState.Valid) storeState;
-            boolean zM7669D = ChannelUtils.m7669D(valid.getCallModel().getChannel());
-            if (!zM7669D && new TextInVoiceOnboardingManager().shouldShowTextInVoiceOnboarding(valid.getCallModel().getMyId(), Long.valueOf(valid.getCallModel().getChannel().getGuildId()))) {
-                this.eventSubject.f27650k.onNext(Event.ShowTextInVoiceNux.INSTANCE);
+        m.checkNotNullParameter(storeState, "storeState");
+        if (m.areEqual(storeState, WidgetCallFullscreenViewModel$StoreState$Invalid.INSTANCE)) {
+            updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Invalid.INSTANCE);
+        } else if (storeState instanceof WidgetCallFullscreenViewModel$StoreState$Valid) {
+            WidgetCallFullscreenViewModel$StoreState$Valid widgetCallFullscreenViewModel$StoreState$Valid = (WidgetCallFullscreenViewModel$StoreState$Valid) storeState;
+            boolean zD = ChannelUtils.D(widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getChannel());
+            if (!zD && new TextInVoiceOnboardingManager().shouldShowTextInVoiceOnboarding(widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getMyId(), Long.valueOf(widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getChannel().getGuildId()))) {
+                this.eventSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowTextInVoiceNux.INSTANCE);
             }
             if (this.startedAsVideo == null) {
-                this.startedAsVideo = Boolean.valueOf(valid.getCallModel().getIsVideoCall());
+                this.startedAsVideo = Boolean.valueOf(widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getIsVideoCall());
             }
-            StoreState storeState2 = this.mostRecentStoreState;
-            if (!(storeState2 instanceof StoreState.Valid)) {
-                storeState2 = null;
+            WidgetCallFullscreenViewModel$StoreState widgetCallFullscreenViewModel$StoreState = this.mostRecentStoreState;
+            if (!(widgetCallFullscreenViewModel$StoreState instanceof WidgetCallFullscreenViewModel$StoreState$Valid)) {
+                widgetCallFullscreenViewModel$StoreState = null;
             }
-            StoreState.Valid valid2 = (StoreState.Valid) storeState2;
-            boolean zIsChannelSelected = (valid2 == null || (callModel2 = valid2.getCallModel()) == null) ? false : callModel2.isChannelSelected();
-            boolean zIsChannelSelected2 = valid.getCallModel().isChannelSelected();
+            WidgetCallFullscreenViewModel$StoreState$Valid widgetCallFullscreenViewModel$StoreState$Valid2 = (WidgetCallFullscreenViewModel$StoreState$Valid) widgetCallFullscreenViewModel$StoreState;
+            boolean zIsChannelSelected = (widgetCallFullscreenViewModel$StoreState$Valid2 == null || (callModel2 = widgetCallFullscreenViewModel$StoreState$Valid2.getCallModel()) == null) ? false : callModel2.isChannelSelected();
+            boolean zIsChannelSelected2 = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().isChannelSelected();
             if (zIsChannelSelected && !zIsChannelSelected2) {
-                updateViewState((ViewState) ViewState.Invalid.INSTANCE);
+                updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Invalid.INSTANCE);
                 return;
             }
-            OverlayStatus overlayStatus = this.userSettingsStore.getIsMobileOverlayEnabled() ? OverlayStatus.ENABLED : OverlayStatus.DISABLED;
-            VideoInputDeviceDescription selectedVideoDevice = valid.getCallModel().getSelectedVideoDevice();
-            Collection<StoreVoiceParticipants.VoiceUser> collectionValues = valid.getCallModel().getParticipants().values();
+            WidgetCallFullscreenViewModel$OverlayStatus widgetCallFullscreenViewModel$OverlayStatus = this.userSettingsStore.getIsMobileOverlayEnabled() ? WidgetCallFullscreenViewModel$OverlayStatus.ENABLED : WidgetCallFullscreenViewModel$OverlayStatus.DISABLED;
+            VideoInputDeviceDescription selectedVideoDevice = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getSelectedVideoDevice();
+            Collection<StoreVoiceParticipants$VoiceUser> collectionValues = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getParticipants().values();
             if (!(collectionValues instanceof Collection) || !collectionValues.isEmpty()) {
                 Iterator<T> it = collectionValues.iterator();
                 while (true) {
@@ -2652,8 +648,8 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                         z2 = false;
                         break;
                     }
-                    StoreVoiceParticipants.VoiceUser voiceUser = (StoreVoiceParticipants.VoiceUser) it.next();
-                    if (voiceUser.isConnected() && (((voiceState = voiceUser.getVoiceState()) != null && voiceState.getSelfVideo()) || ((voiceState2 = voiceUser.getVoiceState()) != null && voiceState2.getSelfStream()))) {
+                    StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser = (StoreVoiceParticipants$VoiceUser) it.next();
+                    if (storeVoiceParticipants$VoiceUser.isConnected() && (((voiceState = storeVoiceParticipants$VoiceUser.getVoiceState()) != null && voiceState.getSelfVideo()) || ((voiceState2 = storeVoiceParticipants$VoiceUser.getVoiceState()) != null && voiceState2.getSelfStream()))) {
                         z2 = true;
                         break;
                     }
@@ -2662,55 +658,55 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 z2 = false;
                 break;
             }
-            StoreState storeState3 = this.mostRecentStoreState;
-            if (!(storeState3 instanceof StoreState.Valid)) {
-                storeState3 = null;
+            WidgetCallFullscreenViewModel$StoreState widgetCallFullscreenViewModel$StoreState2 = this.mostRecentStoreState;
+            if (!(widgetCallFullscreenViewModel$StoreState2 instanceof WidgetCallFullscreenViewModel$StoreState$Valid)) {
+                widgetCallFullscreenViewModel$StoreState2 = null;
             }
-            StoreState.Valid valid3 = (StoreState.Valid) storeState3;
-            int channelMentionsCount = valid3 != null ? valid3.getChannelMentionsCount() : 0;
-            StoreState storeState4 = this.mostRecentStoreState;
-            if (!(storeState4 instanceof StoreState.Valid)) {
-                storeState4 = null;
+            WidgetCallFullscreenViewModel$StoreState$Valid widgetCallFullscreenViewModel$StoreState$Valid3 = (WidgetCallFullscreenViewModel$StoreState$Valid) widgetCallFullscreenViewModel$StoreState2;
+            int channelMentionsCount = widgetCallFullscreenViewModel$StoreState$Valid3 != null ? widgetCallFullscreenViewModel$StoreState$Valid3.getChannelMentionsCount() : 0;
+            WidgetCallFullscreenViewModel$StoreState widgetCallFullscreenViewModel$StoreState3 = this.mostRecentStoreState;
+            if (!(widgetCallFullscreenViewModel$StoreState3 instanceof WidgetCallFullscreenViewModel$StoreState$Valid)) {
+                widgetCallFullscreenViewModel$StoreState3 = null;
             }
-            StoreState.Valid valid4 = (StoreState.Valid) storeState4;
-            int unreadsCount = valid4 != null ? valid4.getUnreadsCount() : 0;
-            ViewState viewState2 = getViewState();
-            if (!(viewState2 instanceof ViewState.Valid)) {
+            WidgetCallFullscreenViewModel$StoreState$Valid widgetCallFullscreenViewModel$StoreState$Valid4 = (WidgetCallFullscreenViewModel$StoreState$Valid) widgetCallFullscreenViewModel$StoreState3;
+            int unreadsCount = widgetCallFullscreenViewModel$StoreState$Valid4 != null ? widgetCallFullscreenViewModel$StoreState$Valid4.getUnreadsCount() : 0;
+            WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+            if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
+                viewState = null;
+            }
+            WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+            boolean zIsIdleFooter = widgetCallFullscreenViewModel$ViewState$Valid != null ? widgetCallFullscreenViewModel$ViewState$Valid.isIdleFooter() : false;
+            WidgetCallFullscreenViewModel$ViewState viewState2 = getViewState();
+            if (!(viewState2 instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
                 viewState2 = null;
             }
-            ViewState.Valid valid5 = (ViewState.Valid) viewState2;
-            boolean zIsIdleFooter = valid5 != null ? valid5.isIdleFooter() : false;
-            ViewState viewState3 = getViewState();
-            if (!(viewState3 instanceof ViewState.Valid)) {
+            WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid2 = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState2;
+            boolean zIsIdleHeader = widgetCallFullscreenViewModel$ViewState$Valid2 != null ? widgetCallFullscreenViewModel$ViewState$Valid2.isIdleHeader() : false;
+            WidgetCallFullscreenViewModel$ViewState viewState3 = getViewState();
+            if (!(viewState3 instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
                 viewState3 = null;
             }
-            ViewState.Valid valid6 = (ViewState.Valid) viewState3;
-            boolean zIsIdleHeader = valid6 != null ? valid6.isIdleHeader() : false;
-            ViewState viewState4 = getViewState();
-            if (!(viewState4 instanceof ViewState.Valid)) {
-                viewState4 = null;
-            }
-            ViewState.Valid valid7 = (ViewState.Valid) viewState4;
-            boolean zIsControlFadingDisabled = valid7 != null ? valid7.isControlFadingDisabled() : false;
-            StoreApplicationStreaming.ActiveApplicationStream activeStream = valid.getCallModel().getActiveStream();
+            WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid3 = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState3;
+            boolean zIsControlFadingDisabled = widgetCallFullscreenViewModel$ViewState$Valid3 != null ? widgetCallFullscreenViewModel$ViewState$Valid3.isControlFadingDisabled() : false;
+            StoreApplicationStreaming$ActiveApplicationStream activeStream = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getActiveStream();
             String encodedStreamKey = (activeStream == null || (stream = activeStream.getStream()) == null) ? null : stream.getEncodedStreamKey();
-            CallModel callModel3 = valid.getCallModel();
-            if (!callModel3.isConnected() || zM7669D) {
+            CallModel callModel3 = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel();
+            if (!callModel3.isConnected() || zD) {
                 callModel = callModel3;
                 i = unreadsCount;
                 i2 = channelMentionsCount;
                 i3 = 10;
-                if (!valid.getCallModel().isConnected() || (stageCallModel = valid.getStageCallModel()) == null || (mediaParticipants = stageCallModel.getMediaParticipants()) == null) {
-                    listEmptyList = C12147n.emptyList();
+                if (!widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().isConnected() || (stageCallModel = widgetCallFullscreenViewModel$StoreState$Valid.getStageCallModel()) == null || (mediaParticipants = stageCallModel.getMediaParticipants()) == null) {
+                    listEmptyList = n.emptyList();
                 } else {
-                    ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(mediaParticipants, 10));
+                    ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(mediaParticipants, 10));
                     Iterator<T> it2 = mediaParticipants.iterator();
                     while (it2.hasNext()) {
-                        arrayList.add(createVideoGridEntriesForParticipant(((StageMediaParticipant) it2.next()).getVoiceUser(), valid.getCallModel().getChannel().getId(), valid.getCallModel().getActiveStream(), valid.getStreamQuality(), valid.getCallModel().getSelectedVideoDevice(), !zIsIdleFooter));
+                        arrayList.add(createVideoGridEntriesForParticipant(((StageMediaParticipant) it2.next()).getVoiceUser(), widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getChannel().getId(), widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getActiveStream(), widgetCallFullscreenViewModel$StoreState$Valid.getStreamQuality(), widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getSelectedVideoDevice(), !zIsIdleFooter));
                     }
-                    listEmptyList = C12149o.flatten(arrayList);
+                    listEmptyList = o.flatten(arrayList);
                     if (listEmptyList == null) {
-                        listEmptyList = C12147n.emptyList();
+                        listEmptyList = n.emptyList();
                     }
                 }
             } else {
@@ -2722,23 +718,23 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                     this.applicationAssetsStore.fetchIfNonExisting(jLongValue);
                 }
                 ArrayList arrayList2 = new ArrayList(embeddedActivitiesForChannel.size());
-                Iterator<Map.Entry<Long, EmbeddedActivity>> it4 = embeddedActivitiesForChannel.entrySet().iterator();
+                Iterator<Map$Entry<Long, EmbeddedActivity>> it4 = embeddedActivitiesForChannel.entrySet().iterator();
                 while (it4.hasNext()) {
-                    Map.Entry<Long, EmbeddedActivity> next3 = it4.next();
+                    Map$Entry<Long, EmbeddedActivity> next3 = it4.next();
                     long jLongValue2 = next3.getKey().longValue();
                     EmbeddedActivity value = next3.getValue();
                     Application application = callModel3.getApplications().get(Long.valueOf(jLongValue2));
-                    arrayList2.add(application != null ? new CallParticipant.EmbeddedActivityParticipant(value, EmbeddedActivityUtilsKt.getActivityParticipants(value, callModel3.getParticipants()), com.discord.models.commands.Application.INSTANCE.fromApiApplication(application), valid.getEmbeddedAppBackgrounds().get(Long.valueOf(jLongValue2))) : null);
+                    arrayList2.add(application != null ? new CallParticipant$EmbeddedActivityParticipant(value, EmbeddedActivityUtilsKt.getActivityParticipants(value, callModel3.getParticipants()), com.discord.models.commands.Application.Companion.fromApiApplication(application), widgetCallFullscreenViewModel$StoreState$Valid.getEmbeddedAppBackgrounds().get(Long.valueOf(jLongValue2))) : null);
                     it4 = it4;
                     unreadsCount = unreadsCount;
                 }
                 int i4 = unreadsCount;
-                List listFilterNotNull = C12163u.filterNotNull(arrayList2);
-                List listSortedWith = C12163u.sortedWith(callModel3.getParticipants().values(), createUserItemsComparator$default(this, false, encodedStreamKey, 1, null));
-                ArrayList arrayList3 = new ArrayList(C12149o.collectionSizeOrDefault(listSortedWith, 10));
+                List listFilterNotNull = u.filterNotNull(arrayList2);
+                List listSortedWith = u.sortedWith(callModel3.getParticipants().values(), createUserItemsComparator$default(this, false, encodedStreamKey, 1, null));
+                ArrayList arrayList3 = new ArrayList(o.collectionSizeOrDefault(listSortedWith, 10));
                 Iterator it5 = listSortedWith.iterator();
                 while (it5.hasNext()) {
-                    arrayList3.add(createVideoGridEntriesForParticipant((StoreVoiceParticipants.VoiceUser) it5.next(), valid.getCallModel().getChannel().getId(), valid.getCallModel().getActiveStream(), valid.getStreamQuality(), valid.getCallModel().getSelectedVideoDevice(), !zIsIdleFooter));
+                    arrayList3.add(createVideoGridEntriesForParticipant((StoreVoiceParticipants$VoiceUser) it5.next(), widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getChannel().getId(), widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getActiveStream(), widgetCallFullscreenViewModel$StoreState$Valid.getStreamQuality(), widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getSelectedVideoDevice(), !zIsIdleFooter));
                     callModel3 = callModel3;
                     it5 = it5;
                     channelMentionsCount = channelMentionsCount;
@@ -2747,14 +743,14 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 i2 = channelMentionsCount;
                 i = i4;
                 i3 = 10;
-                List listFlatten = C12149o.flatten(arrayList3);
+                List listFlatten = o.flatten(arrayList3);
                 ArrayList arrayList4 = new ArrayList();
                 for (Object obj : listFlatten) {
-                    if (!valid.getCallModel().getVoiceSettings().getVoiceParticipantsHidden() || ((CallParticipant) obj).hasActiveVideo()) {
+                    if (!widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getVoiceSettings().getVoiceParticipantsHidden() || ((CallParticipant) obj).hasActiveVideo()) {
                         arrayList4.add(obj);
                     }
                 }
-                listEmptyList = C12163u.plus((Collection) listFilterNotNull, (Iterable) arrayList4);
+                listEmptyList = u.plus((Collection) listFilterNotNull, (Iterable) arrayList4);
             }
             List<? extends CallParticipant> list = listEmptyList;
             this.allVideoParticipants = list;
@@ -2762,18 +758,18 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 this.focusedVideoParticipantKey = null;
             }
             List<CallParticipant> listComputeVisibleVideoParticipants = computeVisibleVideoParticipants();
-            CameraState cameraState = (!zM7669D && callModel.isConnected()) ? selectedVideoDevice != null ? CameraState.CAMERA_ON : CameraState.CAMERA_OFF : CameraState.CAMERA_DISABLED;
+            CameraState cameraState = (!zD && callModel.isConnected()) ? selectedVideoDevice != null ? CameraState.CAMERA_ON : CameraState.CAMERA_OFF : CameraState.CAMERA_DISABLED;
             CameraState cameraState2 = cameraState;
             boolean z5 = (callModel.getVideoDevices().size() >= 2) && cameraState2 == CameraState.CAMERA_ON;
-            DisplayMode displayMode = (!ChannelUtils.m7667B(callModel.getChannel()) || z2) ? zM7669D ? DisplayMode.STAGE : DisplayMode.GRID : DisplayMode.PRIVATE_CALL_PARTICIPANTS;
-            StoreAudioManagerV2.State audioManagerState = callModel.getAudioManagerState();
-            boolean zShouldShowMoreAudioOutputs = shouldShowMoreAudioOutputs(valid.getCallModel());
-            DiscordAudioManager.DeviceTypes activeAudioDevice = audioManagerState.getActiveAudioDevice();
+            WidgetCallFullscreenViewModel$DisplayMode widgetCallFullscreenViewModel$DisplayMode = (!ChannelUtils.B(callModel.getChannel()) || z2) ? zD ? WidgetCallFullscreenViewModel$DisplayMode.STAGE : WidgetCallFullscreenViewModel$DisplayMode.GRID : WidgetCallFullscreenViewModel$DisplayMode.PRIVATE_CALL_PARTICIPANTS;
+            StoreAudioManagerV2$State audioManagerState = callModel.getAudioManagerState();
+            boolean zShouldShowMoreAudioOutputs = shouldShowMoreAudioOutputs(widgetCallFullscreenViewModel$StoreState$Valid.getCallModel());
+            DiscordAudioManager$DeviceTypes activeAudioDevice = audioManagerState.getActiveAudioDevice();
             if (zShouldShowMoreAudioOutputs) {
                 int iOrdinal = activeAudioDevice.ordinal();
                 voiceControlsOutputSelectorState = iOrdinal != 2 ? iOrdinal != 5 ? VoiceControlsOutputSelectorState.SPEAKER_OFF_AND_MORE : VoiceControlsOutputSelectorState.BLUETOOTH_ON_AND_MORE : VoiceControlsOutputSelectorState.SPEAKER_ON_AND_MORE;
             } else {
-                voiceControlsOutputSelectorState = activeAudioDevice == DiscordAudioManager.DeviceTypes.SPEAKERPHONE ? VoiceControlsOutputSelectorState.SPEAKER_ON : VoiceControlsOutputSelectorState.SPEAKER_OFF;
+                voiceControlsOutputSelectorState = activeAudioDevice == DiscordAudioManager$DeviceTypes.SPEAKERPHONE ? VoiceControlsOutputSelectorState.SPEAKER_ON : VoiceControlsOutputSelectorState.SPEAKER_OFF;
             }
             VoiceControlsOutputSelectorState voiceControlsOutputSelectorState2 = voiceControlsOutputSelectorState;
             String str2 = this.autotargetStreamKey;
@@ -2786,11 +782,11 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                             break;
                         }
                         CallParticipant callParticipant = (CallParticipant) it6.next();
-                        if (!(callParticipant instanceof CallParticipant.UserOrStreamParticipant)) {
+                        if (!(callParticipant instanceof CallParticipant$UserOrStreamParticipant)) {
                             callParticipant = null;
                         }
-                        CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) callParticipant;
-                        if (C12238m.areEqual((userOrStreamParticipant == null || (applicationStream = userOrStreamParticipant.getParticipantData().voiceParticipant.getApplicationStream()) == null) ? null : applicationStream.getEncodedStreamKey(), str2)) {
+                        CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) callParticipant;
+                        if (m.areEqual((callParticipant$UserOrStreamParticipant == null || (applicationStream = callParticipant$UserOrStreamParticipant.getParticipantData().voiceParticipant.getApplicationStream()) == null) ? null : applicationStream.getEncodedStreamKey(), str2)) {
                             z4 = true;
                             break;
                         }
@@ -2804,33 +800,33 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 }
                 this.autotargetStreamKey = null;
             }
-            CallParticipant.UserOrStreamParticipant userOrStreamParticipantComputePipParticipant = computePipParticipant(callModel.getMyId(), callModel.getSelectedVideoDevice(), callModel.isStreaming(), cameraState2);
+            CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipantComputePipParticipant = computePipParticipant(callModel.getMyId(), callModel.getSelectedVideoDevice(), callModel.isStreaming(), cameraState2);
             CallModel callModel4 = callModel;
-            List<StoreVoiceParticipants.VoiceUser> listCreatePrivateCallParticipantListItems = createPrivateCallParticipantListItems(callModel4);
-            StoreConnectivity.State state = valid.getConnectivityState().getState();
-            boolean z6 = (state == StoreConnectivity.State.OFFLINE || state == StoreConnectivity.State.OFFLINE_AIRPLANE_MODE) && displayMode == DisplayMode.PRIVATE_CALL_PARTICIPANTS;
-            if (ChannelUtils.m7669D(callModel4.getChannel())) {
-                StoreState storeState5 = this.mostRecentStoreState;
-                if (!(storeState5 instanceof StoreState.Valid)) {
-                    storeState5 = null;
+            List<StoreVoiceParticipants$VoiceUser> listCreatePrivateCallParticipantListItems = createPrivateCallParticipantListItems(callModel4);
+            StoreConnectivity$State state = widgetCallFullscreenViewModel$StoreState$Valid.getConnectivityState().getState();
+            boolean z6 = (state == StoreConnectivity$State.OFFLINE || state == StoreConnectivity$State.OFFLINE_AIRPLANE_MODE) && widgetCallFullscreenViewModel$DisplayMode == WidgetCallFullscreenViewModel$DisplayMode.PRIVATE_CALL_PARTICIPANTS;
+            if (ChannelUtils.D(callModel4.getChannel())) {
+                WidgetCallFullscreenViewModel$StoreState widgetCallFullscreenViewModel$StoreState4 = this.mostRecentStoreState;
+                if (!(widgetCallFullscreenViewModel$StoreState4 instanceof WidgetCallFullscreenViewModel$StoreState$Valid)) {
+                    widgetCallFullscreenViewModel$StoreState4 = null;
                 }
-                StoreState.Valid valid8 = (StoreState.Valid) storeState5;
-                if (valid8 != null && (stageRolesM11445getMyStageRolestwRsX0 = valid8.m11445getMyStageRolestwRsX0()) != null && !StageRoles.m11410isSpeakerimpl(stageRolesM11445getMyStageRolestwRsX0.m11412unboximpl()) && (stageRolesM11445getMyStageRolestwRsX1 = valid.m11445getMyStageRolestwRsX0()) != null && StageRoles.m11410isSpeakerimpl(stageRolesM11445getMyStageRolestwRsX1.m11412unboximpl()) && !PermissionUtils.can(Permission.USE_VAD, valid.getMyPermissions()) && callModel4.getInputMode() != MediaEngineConnection.InputMode.PUSH_TO_TALK) {
+                WidgetCallFullscreenViewModel$StoreState$Valid widgetCallFullscreenViewModel$StoreState$Valid5 = (WidgetCallFullscreenViewModel$StoreState$Valid) widgetCallFullscreenViewModel$StoreState4;
+                if (widgetCallFullscreenViewModel$StoreState$Valid5 != null && (stageRolesM68getMyStageRolestwRsX0 = widgetCallFullscreenViewModel$StoreState$Valid5.m68getMyStageRolestwRsX0()) != null && !StageRoles.m33isSpeakerimpl(stageRolesM68getMyStageRolestwRsX0.m35unboximpl()) && (stageRolesM68getMyStageRolestwRsX1 = widgetCallFullscreenViewModel$StoreState$Valid.m68getMyStageRolestwRsX0()) != null && StageRoles.m33isSpeakerimpl(stageRolesM68getMyStageRolestwRsX1.m35unboximpl()) && !PermissionUtils.can(Permission.USE_VAD, widgetCallFullscreenViewModel$StoreState$Valid.getMyPermissions()) && callModel4.getInputMode() != MediaEngineConnection$InputMode.PUSH_TO_TALK) {
                     emitShowNoVadPermissionDialogEvent();
                 }
             }
-            this.wasEverMultiParticipant = this.wasEverMultiParticipant || valid.getCallModel().getNumUsersConnected() > 1;
-            this.wasEverConnected = this.wasEverConnected || valid.getCallModel().isConnected();
-            ArrayList<CallParticipant.UserOrStreamParticipant> arrayList5 = new ArrayList();
+            this.wasEverMultiParticipant = this.wasEverMultiParticipant || widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getNumUsersConnected() > 1;
+            this.wasEverConnected = this.wasEverConnected || widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().isConnected();
+            ArrayList<CallParticipant$UserOrStreamParticipant> arrayList5 = new ArrayList();
             for (Object obj2 : list) {
-                if (obj2 instanceof CallParticipant.UserOrStreamParticipant) {
+                if (obj2 instanceof CallParticipant$UserOrStreamParticipant) {
                     arrayList5.add(obj2);
                 }
             }
-            ArrayList arrayList6 = new ArrayList(C12149o.collectionSizeOrDefault(arrayList5, i3));
-            for (CallParticipant.UserOrStreamParticipant userOrStreamParticipant2 : arrayList5) {
-                Objects.requireNonNull(userOrStreamParticipant2, "null cannot be cast to non-null type com.discord.widgets.voice.fullscreen.CallParticipant.UserOrStreamParticipant");
-                int iOrdinal2 = userOrStreamParticipant2.getParticipantData().type.ordinal();
+            ArrayList arrayList6 = new ArrayList(o.collectionSizeOrDefault(arrayList5, i3));
+            for (CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant2 : arrayList5) {
+                Objects.requireNonNull(callParticipant$UserOrStreamParticipant2, "null cannot be cast to non-null type com.discord.widgets.voice.fullscreen.CallParticipant.UserOrStreamParticipant");
+                int iOrdinal2 = callParticipant$UserOrStreamParticipant2.getParticipantData().type.ordinal();
                 if (iOrdinal2 == 0) {
                     str = "USER";
                 } else {
@@ -2839,59 +835,53 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                     }
                     str = "STREAM";
                 }
-                arrayList6.add(C12116o.m10073to(str + '-' + userOrStreamParticipant2.getParticipantData().voiceParticipant.getUser().getId(), userOrStreamParticipant2));
+                arrayList6.add(d0.o.to(str + '-' + callParticipant$UserOrStreamParticipant2.getParticipantData().voiceParticipant.getUser().getId(), callParticipant$UserOrStreamParticipant2));
             }
-            Map map = C12136h0.toMap(arrayList6);
-            if (i2 < valid.getChannelMentionsCount() || i < valid.getUnreadsCount()) {
-                viewState = null;
+            Map map = h0.toMap(arrayList6);
+            if (i2 < widgetCallFullscreenViewModel$StoreState$Valid.getChannelMentionsCount() || i < widgetCallFullscreenViewModel$StoreState$Valid.getUnreadsCount()) {
+                widgetCallFullscreenViewModel$ViewState = null;
                 VideoPlayerIdleDetector.onInteraction$default(this.videoPlayerIdleDetectorHeader, false, 1, null);
                 z3 = false;
             } else {
                 z3 = zIsIdleHeader;
-                viewState = null;
+                widgetCallFullscreenViewModel$ViewState = null;
             }
-            StageCallModel stageCallModel2 = valid.getStageCallModel();
+            StageCallModel stageCallModel2 = widgetCallFullscreenViewModel$StoreState$Valid.getStageCallModel();
             String str3 = this.focusedVideoParticipantKey;
-            Boolean noiseCancellation = valid.getNoiseCancellation();
-            boolean z7 = valid.getCallModel().getVoiceSettings().getVoiceParticipantsHidden() && !callModel4.isStreaming() && listComputeVisibleVideoParticipants.isEmpty() && displayMode == DisplayMode.GRID;
-            boolean zIsScreenReaderEnabled = valid.isScreenReaderEnabled();
+            Boolean noiseCancellation = widgetCallFullscreenViewModel$StoreState$Valid.getNoiseCancellation();
+            boolean z7 = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getVoiceSettings().getVoiceParticipantsHidden() && !callModel4.isStreaming() && listComputeVisibleVideoParticipants.isEmpty() && widgetCallFullscreenViewModel$DisplayMode == WidgetCallFullscreenViewModel$DisplayMode.GRID;
+            boolean zIsScreenReaderEnabled = widgetCallFullscreenViewModel$StoreState$Valid.isScreenReaderEnabled();
             Boolean bool = this.startedAsVideo;
             boolean zBooleanValue = bool != null ? bool.booleanValue() : false;
-            float fAmplitudeToPerceptual = PerceptualVolumeUtils.INSTANCE.amplitudeToPerceptual(valid.getStreamVolume(), 300.0f);
-            int iCoerceAtLeast = C11226f.coerceAtLeast(valid.getTotalMentionsCount() - valid.getChannelMentionsCount(), 0);
-            StageRoles stageRolesM11445getMyStageRolestwRsX2 = valid.m11445getMyStageRolestwRsX0();
-            ViewState viewState5 = getViewState();
-            if (!(viewState5 instanceof ViewState.Valid)) {
-                viewState5 = viewState;
+            float fAmplitudeToPerceptual = PerceptualVolumeUtils.INSTANCE.amplitudeToPerceptual(widgetCallFullscreenViewModel$StoreState$Valid.getStreamVolume(), 300.0f);
+            int iCoerceAtLeast = f.coerceAtLeast(widgetCallFullscreenViewModel$StoreState$Valid.getTotalMentionsCount() - widgetCallFullscreenViewModel$StoreState$Valid.getChannelMentionsCount(), 0);
+            StageRoles stageRolesM68getMyStageRolestwRsX2 = widgetCallFullscreenViewModel$StoreState$Valid.m68getMyStageRolestwRsX0();
+            WidgetCallFullscreenViewModel$ViewState viewState4 = getViewState();
+            if (!(viewState4 instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
+                viewState4 = widgetCallFullscreenViewModel$ViewState;
             }
-            ViewState.Valid valid9 = (ViewState.Valid) viewState5;
-            boolean z8 = valid9 != null && valid9.isUpdatingRequestToSpeak();
-            ViewState viewState6 = getViewState();
-            if (!(viewState6 instanceof ViewState.Valid)) {
-                viewState6 = viewState;
+            WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid4 = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState4;
+            boolean z8 = widgetCallFullscreenViewModel$ViewState$Valid4 != null && widgetCallFullscreenViewModel$ViewState$Valid4.isUpdatingRequestToSpeak();
+            WidgetCallFullscreenViewModel$ViewState viewState5 = getViewState();
+            if (!(viewState5 instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
+                viewState5 = widgetCallFullscreenViewModel$ViewState;
             }
-            ViewState.Valid valid10 = (ViewState.Valid) viewState6;
-            boolean z9 = valid10 != null && valid10.isMovingToAudience();
-            StageCallModel stageCallModel3 = valid.getStageCallModel();
+            WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid5 = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState5;
+            boolean z9 = widgetCallFullscreenViewModel$ViewState$Valid5 != null && widgetCallFullscreenViewModel$ViewState$Valid5.isMovingToAudience();
+            StageCallModel stageCallModel3 = widgetCallFullscreenViewModel$StoreState$Valid.getStageCallModel();
             int requestingToSpeakCount = stageCallModel3 != null ? stageCallModel3.getRequestingToSpeakCount() : 0;
-            boolean stopOffscreenVideo = valid.getStopOffscreenVideo();
-            Long myPermissions = valid.getMyPermissions();
-            Iterator it7 = C12163u.sortedWith(valid.getCallModel().getGuildScheduledEvents(), new Comparator() { // from class: com.discord.widgets.voice.fullscreen.WidgetCallFullscreenViewModel$handleStoreState$$inlined$sortedBy$1
-                /* JADX WARN: Multi-variable type inference failed */
-                @Override // java.util.Comparator
-                public final int compare(T t, T t2) {
-                    return C12169a.compareValues(((GuildScheduledEvent) t).getScheduledStartTime(), ((GuildScheduledEvent) t2).getScheduledStartTime());
-                }
-            }).iterator();
+            boolean stopOffscreenVideo = widgetCallFullscreenViewModel$StoreState$Valid.getStopOffscreenVideo();
+            Long myPermissions = widgetCallFullscreenViewModel$StoreState$Valid.getMyPermissions();
+            Iterator it7 = u.sortedWith(widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getGuildScheduledEvents(), new WidgetCallFullscreenViewModel$handleStoreState$$inlined$sortedBy$1()).iterator();
             do {
                 if (!it7.hasNext()) {
-                    next = viewState;
+                    next = widgetCallFullscreenViewModel$ViewState;
                     break;
                 }
                 next = it7.next();
             } while (!GuildScheduledEventUtilitiesKt.getEventTiming((GuildScheduledEvent) next).isStartable());
             GuildScheduledEvent guildScheduledEvent = (GuildScheduledEvent) next;
-            Iterator<T> it8 = valid.getCallModel().getGuildScheduledEvents().iterator();
+            Iterator<T> it8 = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getGuildScheduledEvents().iterator();
             do {
                 if (!it8.hasNext()) {
                     next2 = null;
@@ -2899,24 +889,24 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 }
                 next2 = it8.next();
             } while (!(((GuildScheduledEvent) next2).getStatus() == GuildScheduledEventStatus.ACTIVE));
-            updateViewState((ViewState) new ViewState.Valid(callModel4, stageCallModel2, overlayStatus, listComputeVisibleVideoParticipants, zIsIdleFooter, z3, zIsControlFadingDisabled, z5, cameraState2, displayMode, voiceControlsOutputSelectorState2, str3, z2, userOrStreamParticipantComputePipParticipant, noiseCancellation, listCreatePrivateCallParticipantListItems, z7, zIsScreenReaderEnabled, zBooleanValue, fAmplitudeToPerceptual, iCoerceAtLeast, z6, stageRolesM11445getMyStageRolestwRsX2, z8, z9, requestingToSpeakCount, stopOffscreenVideo, myPermissions, guildScheduledEvent, (GuildScheduledEvent) next2, valid.getChannelMentionsCount(), valid.getUnreadsCount(), valid.isTextInVoiceEnabled(), valid.isTextInVoiceChannelSelected(), map, null));
+            updateViewState2((WidgetCallFullscreenViewModel$ViewState) new WidgetCallFullscreenViewModel$ViewState$Valid(callModel4, stageCallModel2, widgetCallFullscreenViewModel$OverlayStatus, listComputeVisibleVideoParticipants, zIsIdleFooter, z3, zIsControlFadingDisabled, z5, cameraState2, widgetCallFullscreenViewModel$DisplayMode, voiceControlsOutputSelectorState2, str3, z2, callParticipant$UserOrStreamParticipantComputePipParticipant, noiseCancellation, listCreatePrivateCallParticipantListItems, z7, zIsScreenReaderEnabled, zBooleanValue, fAmplitudeToPerceptual, iCoerceAtLeast, z6, stageRolesM68getMyStageRolestwRsX2, z8, z9, requestingToSpeakCount, stopOffscreenVideo, myPermissions, guildScheduledEvent, (GuildScheduledEvent) next2, widgetCallFullscreenViewModel$StoreState$Valid.getChannelMentionsCount(), widgetCallFullscreenViewModel$StoreState$Valid.getUnreadsCount(), widgetCallFullscreenViewModel$StoreState$Valid.isTextInVoiceEnabled(), widgetCallFullscreenViewModel$StoreState$Valid.isTextInVoiceChannelSelected(), map, null));
         }
         this.mostRecentStoreState = storeState;
     }
 
     private final boolean hasVideoPermission() {
-        StoreState storeState = this.mostRecentStoreState;
-        if (!(storeState instanceof StoreState.Valid)) {
-            storeState = null;
+        WidgetCallFullscreenViewModel$StoreState widgetCallFullscreenViewModel$StoreState = this.mostRecentStoreState;
+        if (!(widgetCallFullscreenViewModel$StoreState instanceof WidgetCallFullscreenViewModel$StoreState$Valid)) {
+            widgetCallFullscreenViewModel$StoreState = null;
         }
-        StoreState.Valid valid = (StoreState.Valid) storeState;
-        if (valid == null) {
+        WidgetCallFullscreenViewModel$StoreState$Valid widgetCallFullscreenViewModel$StoreState$Valid = (WidgetCallFullscreenViewModel$StoreState$Valid) widgetCallFullscreenViewModel$StoreState;
+        if (widgetCallFullscreenViewModel$StoreState$Valid == null) {
             return false;
         }
         VideoPermissionsManager videoPermissionsManager = this.videoPermissionsManager;
-        Channel channel = valid.getCallModel().getChannel();
-        Guild guild = valid.getCallModel().getGuild();
-        return videoPermissionsManager.hasVideoPermission(channel, guild != null ? guild.getAfkChannelId() : null, valid.getMyPermissions());
+        Channel channel = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getChannel();
+        Guild guild = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel().getGuild();
+        return videoPermissionsManager.hasVideoPermission(channel, guild != null ? guild.getAfkChannelId() : null, widgetCallFullscreenViewModel$StoreState$Valid.getMyPermissions());
     }
 
     private final boolean isOneOnOneMeCall(List<? extends CallParticipant> callParticipants) {
@@ -2926,7 +916,7 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 z2 = false;
             } else {
                 for (CallParticipant callParticipant : callParticipants) {
-                    if ((callParticipant instanceof CallParticipant.UserOrStreamParticipant) && ((CallParticipant.UserOrStreamParticipant) callParticipant).getParticipantData().voiceParticipant.isMe()) {
+                    if ((callParticipant instanceof CallParticipant$UserOrStreamParticipant) && ((CallParticipant$UserOrStreamParticipant) callParticipant).getParticipantData().voiceParticipant.isMe()) {
                         z2 = true;
                     }
                 }
@@ -2940,43 +930,48 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     }
 
     private final boolean isStreamFocused(ModelApplicationStream stream) {
-        return C12238m.areEqual(this.focusedVideoParticipantKey, stream.getOwnerId() + "--STREAM");
+        return m.areEqual(this.focusedVideoParticipantKey, stream.getOwnerId() + "--STREAM");
+    }
+
+    @Override // b.a.d.d0
+    public /* bridge */ /* synthetic */ WidgetCallFullscreenViewModel$ViewState modifyPendingViewState(WidgetCallFullscreenViewModel$ViewState widgetCallFullscreenViewModel$ViewState, WidgetCallFullscreenViewModel$ViewState widgetCallFullscreenViewModel$ViewState2) {
+        return modifyPendingViewState2(widgetCallFullscreenViewModel$ViewState, widgetCallFullscreenViewModel$ViewState2);
     }
 
     @MainThread
     public final void moveMeToAudience() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || valid.isMovingToAudience()) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || widgetCallFullscreenViewModel$ViewState$Valid.isMovingToAudience()) {
             return;
         }
-        updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, null, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, true, 0, false, null, null, null, 0, 0, false, false, null, -16777217, 7, null));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(valid.getCallModel().getChannel(), true), false, 1, null), this, null, 2, null), (Class<?>) WidgetCallFullscreenViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C105131()), C105142.INSTANCE);
+        updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, null, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, true, 0, false, null, null, null, 0, 0, false, false, null, -16777217, 7, null));
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApiSerializeNulls().setMeSuppressed(widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getChannel(), true), false, 1, null), this, null, 2, null), WidgetCallFullscreenViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, new WidgetCallFullscreenViewModel$moveMeToAudience$1(this), WidgetCallFullscreenViewModel$moveMeToAudience$2.INSTANCE, 30, (Object) null);
     }
 
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+    public final Observable<WidgetCallFullscreenViewModel$Event> observeEvents() {
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
-    private final Observable<StoreState> observeStoreState() {
-        Observable observableM11099Y = this.storeChannels.observeChannel(this.channelId).m11099Y(new C105151());
-        C12238m.checkNotNullExpressionValue(observableM11099Y, "storeChannels.observeCha…}\n        }\n      }\n    }");
-        return observableM11099Y;
+    private final Observable<WidgetCallFullscreenViewModel$StoreState> observeStoreState() {
+        Observable observableY = this.storeChannels.observeChannel(this.channelId).Y(new WidgetCallFullscreenViewModel$observeStoreState$1(this));
+        m.checkNotNullExpressionValue(observableY, "storeChannels.observeCha…}\n        }\n      }\n    }");
+        return observableY;
     }
 
     @MainThread
     public final void onCameraPermissionsGranted() {
         StoreMediaEngine.selectDefaultVideoDevice$default(this.mediaEngineStore, null, 1, null);
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.AccessibilityAnnouncement(C5419R.string.camera_a11y_turned_on));
+        PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$AccessibilityAnnouncement(2131887386));
     }
 
-    @Override // p007b.p008a.p018d.AbstractC0859d0, androidx.view.ViewModel
+    @Override // b.a.d.d0, androidx.view.ViewModel
     @MainThread
     public void onCleared() {
         super.onCleared();
@@ -2989,20 +984,20 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         CallModel callModel;
         this.videoPlayerIdleDetectorFooter.onPreventIdle();
         this.videoPlayerIdleDetectorHeader.onPreventIdle();
-        StoreState storeState = this.mostRecentStoreState;
-        if (!(storeState instanceof StoreState.Valid)) {
-            storeState = null;
+        WidgetCallFullscreenViewModel$StoreState widgetCallFullscreenViewModel$StoreState = this.mostRecentStoreState;
+        if (!(widgetCallFullscreenViewModel$StoreState instanceof WidgetCallFullscreenViewModel$StoreState$Valid)) {
+            widgetCallFullscreenViewModel$StoreState = null;
         }
-        StoreState.Valid valid = (StoreState.Valid) storeState;
-        if (valid != null && (callModel = valid.getCallModel()) != null && callModel.isServerDeafened()) {
+        WidgetCallFullscreenViewModel$StoreState$Valid widgetCallFullscreenViewModel$StoreState$Valid = (WidgetCallFullscreenViewModel$StoreState$Valid) widgetCallFullscreenViewModel$StoreState;
+        if (widgetCallFullscreenViewModel$StoreState$Valid != null && (callModel = widgetCallFullscreenViewModel$StoreState$Valid.getCallModel()) != null && callModel.isServerDeafened()) {
             emitServerDeafenedDialogEvent();
             return;
         }
         this.mediaSettingsStore.toggleSelfDeafened();
-        ViewState viewState = getViewState();
-        ViewState.Valid valid2 = (ViewState.Valid) (viewState instanceof ViewState.Valid ? viewState : null);
-        if (valid2 != null) {
-            this.eventSubject.f27650k.onNext(new Event.AccessibilityAnnouncement(valid2.getIsDeafened() ? C5419R.string.voice_channel_undeafened : C5419R.string.voice_channel_deafened));
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) (viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid ? viewState : null);
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+            this.eventSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$AccessibilityAnnouncement(widgetCallFullscreenViewModel$ViewState$Valid.getIsDeafened() ? 2131897172 : 2131897156));
         }
     }
 
@@ -3013,35 +1008,35 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     @MainThread
     public final void onGridParticipantLongPressed(CallParticipant participant) {
-        C12238m.checkNotNullParameter(participant, "participant");
-        if (participant instanceof CallParticipant.UserOrStreamParticipant) {
-            CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) participant;
-            if (userOrStreamParticipant.getParticipantData().type == VideoCallParticipantView.ParticipantData.Type.DEFAULT) {
-                PublishSubject<Event> publishSubject = this.eventSubject;
-                publishSubject.f27650k.onNext(new Event.ShowUserSheet(userOrStreamParticipant.getParticipantData().voiceParticipant.getUser().getId(), this.channelId));
+        m.checkNotNullParameter(participant, "participant");
+        if (participant instanceof CallParticipant$UserOrStreamParticipant) {
+            CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) participant;
+            if (callParticipant$UserOrStreamParticipant.getParticipantData().type == VideoCallParticipantView$ParticipantData$Type.DEFAULT) {
+                PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+                publishSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$ShowUserSheet(callParticipant$UserOrStreamParticipant.getParticipantData().voiceParticipant.getUser().getId(), this.channelId));
             }
         }
     }
 
     @MainThread
     public final void onGridParticipantTapped(CallParticipant callParticipant) {
-        C12238m.checkNotNullParameter(callParticipant, "callParticipant");
-        if (callParticipant instanceof CallParticipant.EmbeddedActivityParticipant) {
-            this.eventSubject.f27650k.onNext(Event.ShowActivitiesDesktopOnlyDialog.INSTANCE);
+        m.checkNotNullParameter(callParticipant, "callParticipant");
+        if (callParticipant instanceof CallParticipant$EmbeddedActivityParticipant) {
+            this.eventSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowActivitiesDesktopOnlyDialog.INSTANCE);
         }
         String participantFocusKey = getParticipantFocusKey(callParticipant);
-        ParticipantTap participantTap = new ParticipantTap(participantFocusKey, this.clock.currentTimeMillis());
-        ParticipantTap participantTap2 = this.lastParticipantTap;
-        this.lastParticipantTap = participantTap;
-        if (participantTap2 == null || (!C12238m.areEqual(participantTap2.getParticipantFocusKey(), participantFocusKey))) {
+        WidgetCallFullscreenViewModel$ParticipantTap widgetCallFullscreenViewModel$ParticipantTap = new WidgetCallFullscreenViewModel$ParticipantTap(participantFocusKey, this.clock.currentTimeMillis());
+        WidgetCallFullscreenViewModel$ParticipantTap widgetCallFullscreenViewModel$ParticipantTap2 = this.lastParticipantTap;
+        this.lastParticipantTap = widgetCallFullscreenViewModel$ParticipantTap;
+        if (widgetCallFullscreenViewModel$ParticipantTap2 == null || (!m.areEqual(widgetCallFullscreenViewModel$ParticipantTap2.getParticipantFocusKey(), participantFocusKey))) {
             startTapForwardingJob();
             return;
         }
-        if (!(participantTap.getTimestamp() - participantTap2.getTimestamp() <= 255) || !(callParticipant instanceof CallParticipant.UserOrStreamParticipant)) {
+        if (!(widgetCallFullscreenViewModel$ParticipantTap.getTimestamp() - widgetCallFullscreenViewModel$ParticipantTap2.getTimestamp() <= 255) || !(callParticipant instanceof CallParticipant$UserOrStreamParticipant)) {
             startTapForwardingJob();
             return;
         }
-        if (!C12238m.areEqual(this.focusedVideoParticipantKey, participantFocusKey)) {
+        if (!m.areEqual(this.focusedVideoParticipantKey, participantFocusKey)) {
             focusVideoParticipant(participantFocusKey);
         } else {
             clearFocusedVideoParticipant();
@@ -3062,29 +1057,29 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     @MainThread
     private final void onIdleStateChanged(Boolean isIdleFooter, Boolean isIdleHeader) {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null) {
-            boolean z2 = isIdleFooter != null && (C12238m.areEqual(isIdleFooter, Boolean.valueOf(valid.isIdleFooter())) ^ true);
-            boolean z3 = isIdleHeader != null && (C12238m.areEqual(isIdleHeader, Boolean.valueOf(valid.isIdleHeader())) ^ true);
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+            boolean z2 = isIdleFooter != null && (m.areEqual(isIdleFooter, Boolean.valueOf(widgetCallFullscreenViewModel$ViewState$Valid.isIdleFooter())) ^ true);
+            boolean z3 = isIdleHeader != null && (m.areEqual(isIdleHeader, Boolean.valueOf(widgetCallFullscreenViewModel$ViewState$Valid.isIdleHeader())) ^ true);
             if (z2) {
                 if (isIdleFooter != null) {
                     isIdleFooter.booleanValue();
-                    updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, null, isIdleFooter.booleanValue(), false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -17, 7, null));
+                    updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, null, isIdleFooter.booleanValue(), false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -17, 7, null));
                 }
                 if (isIdleFooter != null) {
                     isIdleFooter.booleanValue();
-                    this.eventSubject.f27650k.onNext(new Event.OnIdleStateChanged(isIdleFooter.booleanValue()));
+                    this.eventSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$OnIdleStateChanged(isIdleFooter.booleanValue()));
                 }
             }
             if (!z3 || isIdleHeader == null) {
                 return;
             }
             isIdleHeader.booleanValue();
-            updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, null, false, isIdleHeader.booleanValue(), false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -33, 7, null));
+            updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, null, false, isIdleHeader.booleanValue(), false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -33, 7, null));
         }
     }
 
@@ -3092,13 +1087,13 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     public final void onMuteClicked() {
         this.videoPlayerIdleDetectorFooter.onPreventIdle();
         this.videoPlayerIdleDetectorHeader.onPreventIdle();
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null) {
-            CallModel callModel = valid.getCallModel();
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+            CallModel callModel = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel();
             if (callModel.isSuppressed()) {
                 emitSuppressedDialogEvent();
                 return;
@@ -3107,15 +1102,15 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 return;
             }
         }
-        StoreMediaSettings.SelfMuteFailure selfMuteFailure = this.mediaSettingsStore.toggleSelfMuted();
-        if (selfMuteFailure != null) {
-            if (selfMuteFailure.ordinal() != 0) {
+        StoreMediaSettings$SelfMuteFailure storeMediaSettings$SelfMuteFailure = this.mediaSettingsStore.toggleSelfMuted();
+        if (storeMediaSettings$SelfMuteFailure != null) {
+            if (storeMediaSettings$SelfMuteFailure.ordinal() != 0) {
                 return;
             }
             emitShowNoVadPermissionDialogEvent();
-        } else if (valid != null) {
-            boolean zIsMeMutedByAnySource = valid.getCallModel().isMeMutedByAnySource();
-            this.eventSubject.f27650k.onNext(new Event.AccessibilityAnnouncement(zIsMeMutedByAnySource ? C5419R.string.voice_channel_unmuted : C5419R.string.voice_channel_muted));
+        } else if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+            boolean zIsMeMutedByAnySource = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().isMeMutedByAnySource();
+            this.eventSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$AccessibilityAnnouncement(zIsMeMutedByAnySource ? 2131897173 : 2131897169));
         }
     }
 
@@ -3132,21 +1127,21 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     @MainThread
     public final void onScreenShareClick() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null) {
-            if (valid.getCallModel().isStreaming()) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+            if (widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().isStreaming()) {
                 stopScreenShare();
             } else {
                 if (!hasVideoPermission()) {
                     emitShowNoScreenSharePermissionDialogEvent();
                     return;
                 }
-                PublishSubject<Event> publishSubject = this.eventSubject;
-                publishSubject.f27650k.onNext(Event.RequestStartStream.INSTANCE);
+                PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+                publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$RequestStartStream.INSTANCE);
             }
         }
     }
@@ -3164,96 +1159,96 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     }
 
     @MainThread
-    public final void onStreamQualityIndicatorClicked(VideoCallParticipantView.StreamResolution resolution, VideoCallParticipantView.StreamFps fps) {
-        C12238m.checkNotNullParameter(resolution, "resolution");
-        if (resolution.m8588b() || (fps != null && fps.m8586a())) {
-            PublishSubject<Event> publishSubject = this.eventSubject;
-            publishSubject.f27650k.onNext(Event.NavigateToPremiumSettings.INSTANCE);
+    public final void onStreamQualityIndicatorClicked(VideoCallParticipantView$StreamResolution resolution, VideoCallParticipantView$StreamFps fps) {
+        m.checkNotNullParameter(resolution, "resolution");
+        if (resolution.b() || (fps != null && fps.a())) {
+            PublishSubject<WidgetCallFullscreenViewModel$Event> publishSubject = this.eventSubject;
+            publishSubject.k.onNext(WidgetCallFullscreenViewModel$Event$NavigateToPremiumSettings.INSTANCE);
         }
     }
 
     @MainThread
-    public final void onStreamQualityIndicatorShown(VideoCallParticipantView.StreamResolution resolution, VideoCallParticipantView.StreamFps fps) {
-        C12238m.checkNotNullParameter(resolution, "resolution");
-        boolean zM8588b = resolution.m8588b();
-        Boolean boolValueOf = fps != null ? Boolean.valueOf(fps.m8586a()) : null;
+    public final void onStreamQualityIndicatorShown(VideoCallParticipantView$StreamResolution resolution, VideoCallParticipantView$StreamFps fps) {
+        m.checkNotNullParameter(resolution, "resolution");
+        boolean zB = resolution.b();
+        Boolean boolValueOf = fps != null ? Boolean.valueOf(fps.a()) : null;
         if (this.logStreamQualityIndicatorViewed) {
-            if (zM8588b || C12238m.areEqual(boolValueOf, Boolean.TRUE)) {
+            if (zB || m.areEqual(boolValueOf, Boolean.TRUE)) {
                 this.logStreamQualityIndicatorViewed = false;
-                this.storeAnalytics.streamQualityIndicatorViewed(zM8588b, boolValueOf);
+                this.storeAnalytics.streamQualityIndicatorViewed(zB, boolValueOf);
             }
         }
     }
 
     @MainThread
     public final void onTextInVoiceTapped() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null) {
-            ChannelSelector.selectChannel$default(ChannelSelector.INSTANCE.getInstance(), valid.getCallModel().getChannel(), null, SelectedChannelAnalyticsLocation.TEXT_IN_VOICE, 2, null);
-            StoreNavigation.setNavigationPanelAction$default(this.storeNavigation, StoreNavigation.PanelAction.CLOSE, null, 2, null);
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+            ChannelSelector.selectChannel$default(ChannelSelector.Companion.getInstance(), widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getChannel(), null, SelectedChannelAnalyticsLocation.TEXT_IN_VOICE, 2, null);
+            StoreNavigation.setNavigationPanelAction$default(this.storeNavigation, StoreNavigation$PanelAction.CLOSE, null, 2, null);
         }
     }
 
     public final void onVisitCommunityButtonClicked(long guildId) {
         this.guildSelectedStore.set(guildId);
-        StoreTabsNavigation.selectHomeTab$default(this.tabsNavigationStore, StoreNavigation.PanelAction.CLOSE, false, 2, null);
+        StoreTabsNavigation.selectHomeTab$default(this.tabsNavigationStore, StoreNavigation$PanelAction.CLOSE, false, 2, null);
     }
 
     public final void requestStopWatchingStreamFromUserInput() {
-        StoreApplicationStreaming.ActiveApplicationStream activeStream;
+        StoreApplicationStreaming$ActiveApplicationStream activeStream;
         ModelApplicationStream stream;
         stopWatchingStream();
-        ViewState viewStateRequireViewState = requireViewState();
-        if (!(viewStateRequireViewState instanceof ViewState.Valid)) {
-            viewStateRequireViewState = null;
+        WidgetCallFullscreenViewModel$ViewState widgetCallFullscreenViewModel$ViewStateRequireViewState = requireViewState();
+        if (!(widgetCallFullscreenViewModel$ViewStateRequireViewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
+            widgetCallFullscreenViewModel$ViewStateRequireViewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewStateRequireViewState;
-        if (valid == null || (activeStream = valid.getCallModel().getActiveStream()) == null || (stream = activeStream.getStream()) == null) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) widgetCallFullscreenViewModel$ViewStateRequireViewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || (activeStream = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getActiveStream()) == null || (stream = activeStream.getStream()) == null) {
             return;
         }
-        CallModel callModel = valid.getCallModel();
+        CallModel callModel = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel();
         String encodedStreamKey = stream.getEncodedStreamKey();
-        RtcConnection.Metadata rtcConnectionMetadata = callModel.getRtcConnectionMetadata();
+        RtcConnection$Metadata rtcConnectionMetadata = callModel.getRtcConnectionMetadata();
         enqueueStreamFeedbackSheet(encodedStreamKey, rtcConnectionMetadata != null ? rtcConnectionMetadata.mediaSessionId : null, callModel.getStreamFeedbackTriggerRateDenominator());
     }
 
     public final void selectTextChannelAfterFinish() {
         Guild guild;
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || !valid.isTextInVoiceEnabled() || !valid.isTextInVoiceChannelSelected() || (guild = valid.getCallModel().getGuild()) == null) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || !widgetCallFullscreenViewModel$ViewState$Valid.isTextInVoiceEnabled() || !widgetCallFullscreenViewModel$ViewState$Valid.isTextInVoiceChannelSelected() || (guild = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getGuild()) == null) {
             return;
         }
-        ChannelSelector.INSTANCE.getInstance().selectPreviousChannel(guild.getId());
+        ChannelSelector.Companion.getInstance().selectPreviousChannel(guild.getId());
     }
 
     @MainThread
-    private final void setOffScreenVideoParticipants(List<VideoCallParticipantView.ParticipantData> visibleVideoParticipants) {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+    private final void setOffScreenVideoParticipants(List<VideoCallParticipantView$ParticipantData> visibleVideoParticipants) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || !valid.getStopOffscreenVideo()) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || !widgetCallFullscreenViewModel$ViewState$Valid.getStopOffscreenVideo()) {
             return;
         }
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(visibleVideoParticipants, 10));
+        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(visibleVideoParticipants, 10));
         Iterator<T> it = visibleVideoParticipants.iterator();
         while (it.hasNext()) {
-            arrayList.add(((VideoCallParticipantView.ParticipantData) it.next()).com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_ID java.lang.String);
+            arrayList.add(((VideoCallParticipantView$ParticipantData) it.next()).com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_ID java.lang.String);
         }
-        HashSet hashSet = C12163u.toHashSet(arrayList);
+        HashSet hashSet = u.toHashSet(arrayList);
         for (CallParticipant callParticipant : computeVisibleVideoParticipants()) {
-            if (callParticipant instanceof CallParticipant.UserOrStreamParticipant) {
-                VideoCallParticipantView.ParticipantData participantData = ((CallParticipant.UserOrStreamParticipant) callParticipant).getParticipantData();
-                if (participantData.type == VideoCallParticipantView.ParticipantData.Type.DEFAULT) {
+            if (callParticipant instanceof CallParticipant$UserOrStreamParticipant) {
+                VideoCallParticipantView$ParticipantData participantData = ((CallParticipant$UserOrStreamParticipant) callParticipant).getParticipantData();
+                if (participantData.type == VideoCallParticipantView$ParticipantData$Type.DEFAULT) {
                     this.mediaSettingsStore.setUserOffScreen(participantData.voiceParticipant.getUser().getId(), !hashSet.contains(participantData.com.discord.models.domain.ModelAuditLogEntry.CHANGE_KEY_ID java.lang.String));
                 }
             }
@@ -3270,16 +1265,16 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
             subscription.unsubscribe();
         }
         this.channelId = channelId;
-        Observable<StoreState> observableM11112r = observeStoreState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observeStoreState()\n    …  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableM11112r), this, null, 2, null), (Class<?>) WidgetCallFullscreenViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C105161()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105172());
+        Observable<WidgetCallFullscreenViewModel$StoreState> observableR = observeStoreState().r();
+        m.checkNotNullExpressionValue(observableR, "observeStoreState()\n    …  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observableR), this, null, 2, null), WidgetCallFullscreenViewModel.class, (Context) null, new WidgetCallFullscreenViewModel$setTargetChannelId$1(this), (Function1) null, (Function0) null, (Function0) null, new WidgetCallFullscreenViewModel$setTargetChannelId$2(this), 58, (Object) null);
     }
 
     private final boolean shouldShowMoreAudioOutputs(CallModel callModel) {
-        List<DiscordAudioManager.AudioDevice> audioDevices = callModel.getAudioManagerState().getAudioDevices();
+        List<DiscordAudioManager$AudioDevice> audioDevices = callModel.getAudioManagerState().getAudioDevices();
         if (!(audioDevices instanceof Collection) || !audioDevices.isEmpty()) {
-            for (DiscordAudioManager.AudioDevice audioDevice : audioDevices) {
-                if (audioDevice.type == DiscordAudioManager.DeviceTypes.BLUETOOTH_HEADSET && audioDevice.isAvailable) {
+            for (DiscordAudioManager$AudioDevice discordAudioManager$AudioDevice : audioDevices) {
+                if (discordAudioManager$AudioDevice.type == DiscordAudioManager$DeviceTypes.BLUETOOTH_HEADSET && discordAudioManager$AudioDevice.isAvailable) {
                     return true;
                 }
             }
@@ -3289,12 +1284,12 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     @MainThread
     public final void startIdle() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || valid.isControlFadingDisabled() || valid.getDisplayMode() != DisplayMode.GRID) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || widgetCallFullscreenViewModel$ViewState$Valid.isControlFadingDisabled() || widgetCallFullscreenViewModel$ViewState$Valid.getDisplayMode() != WidgetCallFullscreenViewModel$DisplayMode.GRID) {
             return;
         }
         Integer num = this.bottomSheetState;
@@ -3307,7 +1302,7 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     @MainThread
     public final void startScreenShare(Intent intent) {
-        C12238m.checkNotNullParameter(intent, "intent");
+        m.checkNotNullParameter(intent, "intent");
         this.videoPlayerIdleDetectorFooter.onPreventIdle();
         this.videoPlayerIdleDetectorHeader.onPreventIdle();
         this.voiceEngineServiceController.startStream(intent);
@@ -3316,9 +1311,9 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     @MainThread
     private final void startTapForwardingJob() {
         cancelTapForwardingJob();
-        Observable<Long> observableM11070e0 = Observable.m11070e0(255L, TimeUnit.MILLISECONDS, this.backgroundThreadScheduler);
-        C12238m.checkNotNullExpressionValue(observableM11070e0, "Observable\n        .time…ackgroundThreadScheduler)");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11070e0, this, null, 2, null), (Class<?>) WidgetCallFullscreenViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C105181()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105192());
+        Observable<Long> observableE0 = Observable.e0(255L, TimeUnit.MILLISECONDS, this.backgroundThreadScheduler);
+        m.checkNotNullExpressionValue(observableE0, "Observable\n        .time…ackgroundThreadScheduler)");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableE0, this, null, 2, null), WidgetCallFullscreenViewModel.class, (Context) null, new WidgetCallFullscreenViewModel$startTapForwardingJob$1(this), (Function1) null, (Function0) null, (Function0) null, new WidgetCallFullscreenViewModel$startTapForwardingJob$2(this), 58, (Object) null);
     }
 
     @MainThread
@@ -3329,59 +1324,59 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     @MainThread
     public final void stopScreenShare() {
-        StoreApplicationStreaming.ActiveApplicationStream activeStream;
+        StoreApplicationStreaming$ActiveApplicationStream activeStream;
         ModelApplicationStream stream;
         this.videoPlayerIdleDetectorFooter.onPreventIdle();
         this.videoPlayerIdleDetectorHeader.onPreventIdle();
         this.voiceEngineServiceController.stopStream();
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || (activeStream = valid.getCallModel().getActiveStream()) == null || (stream = activeStream.getStream()) == null) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || (activeStream = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getActiveStream()) == null || (stream = activeStream.getStream()) == null) {
             return;
         }
-        CallModel callModel = valid.getCallModel();
+        CallModel callModel = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel();
         String encodedStreamKey = stream.getEncodedStreamKey();
-        RtcConnection.Metadata rtcConnectionMetadata = callModel.getRtcConnectionMetadata();
+        RtcConnection$Metadata rtcConnectionMetadata = callModel.getRtcConnectionMetadata();
         enqueueStreamFeedbackSheet(encodedStreamKey, rtcConnectionMetadata != null ? rtcConnectionMetadata.mediaSessionId : null, callModel.getStreamFeedbackTriggerRateDenominator());
     }
 
     @MainThread
     private final void stopWatchingStream() {
-        StoreApplicationStreaming.ActiveApplicationStream activeStream;
+        StoreApplicationStreaming$ActiveApplicationStream activeStream;
         ModelApplicationStream stream;
-        ViewState viewStateRequireViewState = requireViewState();
-        if (!(viewStateRequireViewState instanceof ViewState.Valid)) {
-            viewStateRequireViewState = null;
+        WidgetCallFullscreenViewModel$ViewState widgetCallFullscreenViewModel$ViewStateRequireViewState = requireViewState();
+        if (!(widgetCallFullscreenViewModel$ViewStateRequireViewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
+            widgetCallFullscreenViewModel$ViewStateRequireViewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewStateRequireViewState;
-        if (valid == null || (activeStream = valid.getCallModel().getActiveStream()) == null || (stream = activeStream.getStream()) == null) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) widgetCallFullscreenViewModel$ViewStateRequireViewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || (activeStream = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getActiveStream()) == null || (stream = activeStream.getStream()) == null) {
             return;
         }
         this.applicationStreamingStore.stopStream(stream.getEncodedStreamKey());
-        CallModel callModel = valid.getCallModel();
+        CallModel callModel = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel();
         if (isStreamFocused(stream)) {
             this.focusedVideoParticipantKey = null;
-            updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, computeVisibleVideoParticipants(), false, false, false, false, null, null, null, this.focusedVideoParticipantKey, false, computePipParticipant(callModel.getMyId(), callModel.getSelectedVideoDevice(), callModel.isStreaming(), valid.getCameraState()), null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -10249, 7, null));
+            updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, computeVisibleVideoParticipants(), false, false, false, false, null, null, null, this.focusedVideoParticipantKey, false, computePipParticipant(callModel.getMyId(), callModel.getSelectedVideoDevice(), callModel.isStreaming(), widgetCallFullscreenViewModel$ViewState$Valid.getCameraState()), null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -10249, 7, null));
         }
     }
 
     @MainThread
     private final void stopWatchingStreamIfEnded() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid != null) {
-            StoreApplicationStreaming.ActiveApplicationStream activeStream = valid.getCallModel().getActiveStream();
-            StoreApplicationStreaming.ActiveApplicationStream activeStream2 = valid.getCallModel().getActiveStream();
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid != null) {
+            StoreApplicationStreaming$ActiveApplicationStream activeStream = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getActiveStream();
+            StoreApplicationStreaming$ActiveApplicationStream activeStream2 = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getActiveStream();
             if (activeStream2 != null) {
                 activeStream2.getStream();
             }
-            if ((activeStream != null ? activeStream.getState() : null) == StoreApplicationStreaming.ActiveApplicationStream.State.ENDED) {
+            if ((activeStream != null ? activeStream.getState() : null) == StoreApplicationStreaming$ActiveApplicationStream$State.ENDED) {
                 stopWatchingStream();
             }
         }
@@ -3391,29 +1386,29 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     public final void switchCameraInputPressed() {
         this.videoPlayerIdleDetectorFooter.onPreventIdle();
         this.videoPlayerIdleDetectorHeader.onPreventIdle();
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || valid.getCameraState() == CameraState.CAMERA_DISABLED) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || widgetCallFullscreenViewModel$ViewState$Valid.getCameraState() == CameraState.CAMERA_DISABLED) {
             return;
         }
-        if (valid.getCameraState() == CameraState.CAMERA_ON) {
+        if (widgetCallFullscreenViewModel$ViewState$Valid.getCameraState() == CameraState.CAMERA_ON) {
             this.mediaEngineStore.cycleVideoInputDevice();
         }
     }
 
     @MainThread
     public final void targetAndFocusStream(String streamKey) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
+        m.checkNotNullParameter(streamKey, "streamKey");
         targetStream(streamKey);
-        focusVideoParticipant(ModelApplicationStream.INSTANCE.decodeStreamKey(streamKey).getOwnerId() + "--STREAM");
+        focusVideoParticipant(ModelApplicationStream.Companion.decodeStreamKey(streamKey).getOwnerId() + "--STREAM");
     }
 
     @MainThread
     public final void targetStream(String streamKey) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
+        m.checkNotNullParameter(streamKey, "streamKey");
         StoreApplicationStreaming.targetStream$default(this.applicationStreamingStore, streamKey, false, 2, null);
     }
 
@@ -3421,49 +1416,49 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
     public final void toggleCameraPressed() {
         this.videoPlayerIdleDetectorFooter.onPreventIdle();
         this.videoPlayerIdleDetectorHeader.onPreventIdle();
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || valid.getCameraState() == CameraState.CAMERA_DISABLED) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || widgetCallFullscreenViewModel$ViewState$Valid.getCameraState() == CameraState.CAMERA_DISABLED) {
             return;
         }
         if (!hasVideoPermission()) {
             emitShowNoVideoPermissionDialogEvent();
             return;
         }
-        if (valid.getCameraState() == CameraState.CAMERA_ON) {
+        if (widgetCallFullscreenViewModel$ViewState$Valid.getCameraState() == CameraState.CAMERA_ON) {
             this.mediaEngineStore.selectVideoInputDevice(null);
-            this.eventSubject.f27650k.onNext(new Event.AccessibilityAnnouncement(C5419R.string.camera_a11y_turned_off));
+            this.eventSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$AccessibilityAnnouncement(2131887385));
             return;
         }
-        int numUsersConnected = valid.getCallModel().getNumUsersConnected();
-        GuildMaxVideoChannelUsers guildMaxVideoChannelMembers = valid.getCallModel().getGuildMaxVideoChannelMembers();
-        if (guildMaxVideoChannelMembers instanceof GuildMaxVideoChannelUsers.Limited) {
-            GuildMaxVideoChannelUsers.Limited limited = (GuildMaxVideoChannelUsers.Limited) guildMaxVideoChannelMembers;
-            if (numUsersConnected > limited.getLimit()) {
-                this.eventSubject.f27650k.onNext(new Event.ShowCameraCapacityDialog(limited.getLimit()));
+        int numUsersConnected = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getNumUsersConnected();
+        GuildMaxVideoChannelUsers guildMaxVideoChannelMembers = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getGuildMaxVideoChannelMembers();
+        if (guildMaxVideoChannelMembers instanceof GuildMaxVideoChannelUsers$Limited) {
+            GuildMaxVideoChannelUsers$Limited guildMaxVideoChannelUsers$Limited = (GuildMaxVideoChannelUsers$Limited) guildMaxVideoChannelMembers;
+            if (numUsersConnected > guildMaxVideoChannelUsers$Limited.getLimit()) {
+                this.eventSubject.k.onNext(new WidgetCallFullscreenViewModel$Event$ShowCameraCapacityDialog(guildMaxVideoChannelUsers$Limited.getLimit()));
                 return;
             }
         }
-        this.eventSubject.f27650k.onNext(Event.ShowRequestCameraPermissionsDialog.INSTANCE);
+        this.eventSubject.k.onNext(WidgetCallFullscreenViewModel$Event$ShowRequestCameraPermissionsDialog.INSTANCE);
     }
 
     @MainThread
     public final void toggleRequestToSpeak() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState;
-        if (valid == null || valid.isUpdatingRequestToSpeak()) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        if (widgetCallFullscreenViewModel$ViewState$Valid == null || widgetCallFullscreenViewModel$ViewState$Valid.isUpdatingRequestToSpeak()) {
             return;
         }
-        updateViewState((ViewState) ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, null, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, true, false, 0, false, null, null, null, 0, 0, false, false, null, -8388609, 7, null));
-        Channel channel = valid.getCallModel().getChannel();
-        boolean z2 = !valid.getCallModel().isMyHandRaised();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(!z2 ? RestAPI.INSTANCE.getApiSerializeNulls().setMeSuppressed(channel, true) : RestAPI.requestToSpeak$default(RestAPI.INSTANCE.getApi(), channel, null, 2, null), false, 1, null), this, null, 2, null), (Class<?>) WidgetCallFullscreenViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C105201()), new C105212(z2, channel));
+        updateViewState2((WidgetCallFullscreenViewModel$ViewState) WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, null, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, true, false, 0, false, null, null, null, 0, 0, false, false, null, -8388609, 7, null));
+        Channel channel = widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().getChannel();
+        boolean z2 = !widgetCallFullscreenViewModel$ViewState$Valid.getCallModel().isMyHandRaised();
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(!z2 ? RestAPI.Companion.getApiSerializeNulls().setMeSuppressed(channel, true) : RestAPI.requestToSpeak$default(RestAPI.Companion.getApi(), channel, null, 2, null), false, 1, null), this, null, 2, null), WidgetCallFullscreenViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, new WidgetCallFullscreenViewModel$toggleRequestToSpeak$1(this), new WidgetCallFullscreenViewModel$toggleRequestToSpeak$2(z2, channel), 30, (Object) null);
     }
 
     @MainThread
@@ -3471,71 +1466,76 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         this.selectedVoiceChannelStore.selectVoiceChannel(this.channelId);
     }
 
-    public final void updateOffScreenParticipantsFromScroll(List<VideoCallParticipantView.ParticipantData> visibleVideoParticipants) {
-        C12238m.checkNotNullParameter(visibleVideoParticipants, "visibleVideoParticipants");
-        this.offScreenSubject.f27650k.onNext(visibleVideoParticipants);
+    public final void updateOffScreenParticipantsFromScroll(List<VideoCallParticipantView$ParticipantData> visibleVideoParticipants) {
+        m.checkNotNullParameter(visibleVideoParticipants, "visibleVideoParticipants");
+        this.offScreenSubject.k.onNext(visibleVideoParticipants);
     }
 
-    @Override // p007b.p008a.p018d.AbstractC0859d0
-    public ViewState modifyPendingViewState(ViewState previousViewState, ViewState pendingViewState) {
-        C12238m.checkNotNullParameter(pendingViewState, "pendingViewState");
-        if (!(previousViewState instanceof ViewState.Valid) || !(pendingViewState instanceof ViewState.Valid)) {
+    @Override // b.a.d.d0
+    public /* bridge */ /* synthetic */ void updateViewState(WidgetCallFullscreenViewModel$ViewState widgetCallFullscreenViewModel$ViewState) {
+        updateViewState2(widgetCallFullscreenViewModel$ViewState);
+    }
+
+    /* JADX INFO: renamed from: modifyPendingViewState, reason: avoid collision after fix types in other method */
+    public WidgetCallFullscreenViewModel$ViewState modifyPendingViewState2(WidgetCallFullscreenViewModel$ViewState previousViewState, WidgetCallFullscreenViewModel$ViewState pendingViewState) {
+        m.checkNotNullParameter(pendingViewState, "pendingViewState");
+        if (!(previousViewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid) || !(pendingViewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             return pendingViewState;
         }
-        ViewState.Valid valid = (ViewState.Valid) pendingViewState;
-        boolean zIsIdleFooter = valid.isIdleFooter();
-        List<CallParticipant> visibleVideoParticipants = valid.getVisibleVideoParticipants();
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(visibleVideoParticipants, 10));
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) pendingViewState;
+        boolean zIsIdleFooter = widgetCallFullscreenViewModel$ViewState$Valid.isIdleFooter();
+        List<CallParticipant> visibleVideoParticipants = widgetCallFullscreenViewModel$ViewState$Valid.getVisibleVideoParticipants();
+        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(visibleVideoParticipants, 10));
         for (Object objCopy : visibleVideoParticipants) {
-            boolean z2 = (zIsIdleFooter || valid.getVisibleVideoParticipants().size() == 1) ? false : true;
+            boolean z2 = (zIsIdleFooter || widgetCallFullscreenViewModel$ViewState$Valid.getVisibleVideoParticipants().size() == 1) ? false : true;
             boolean z3 = this.focusedVideoParticipantKey != null;
-            if (objCopy instanceof CallParticipant.UserOrStreamParticipant) {
-                CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) objCopy;
-                if (userOrStreamParticipant.getParticipantData().showLabel != z2 || userOrStreamParticipant.getParticipantData().isFocused != z3) {
-                    objCopy = userOrStreamParticipant.copy(VideoCallParticipantView.ParticipantData.m8584a(userOrStreamParticipant.getParticipantData(), null, false, null, null, null, null, z2, z3, null, 319));
+            if (objCopy instanceof CallParticipant$UserOrStreamParticipant) {
+                CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) objCopy;
+                if (callParticipant$UserOrStreamParticipant.getParticipantData().showLabel != z2 || callParticipant$UserOrStreamParticipant.getParticipantData().isFocused != z3) {
+                    objCopy = callParticipant$UserOrStreamParticipant.copy(VideoCallParticipantView$ParticipantData.a(callParticipant$UserOrStreamParticipant.getParticipantData(), null, false, null, null, null, null, z2, z3, null, 319));
                 }
             }
             arrayList.add(objCopy);
         }
-        return ViewState.Valid.m11446copyJ3xfKWQ$default(valid, null, null, null, arrayList, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -9, 7, null);
+        return WidgetCallFullscreenViewModel$ViewState$Valid.m69copyJ3xfKWQ$default(widgetCallFullscreenViewModel$ViewState$Valid, null, null, null, arrayList, false, false, false, false, null, null, null, null, false, null, null, null, false, false, false, 0.0f, 0, false, null, false, false, 0, false, null, null, null, 0, 0, false, false, null, -9, 7, null);
     }
 
-    @Override // p007b.p008a.p018d.AbstractC0859d0
-    public void updateViewState(ViewState viewState) {
+    /* JADX INFO: renamed from: updateViewState, reason: avoid collision after fix types in other method */
+    public void updateViewState2(WidgetCallFullscreenViewModel$ViewState viewState) {
         Object next;
-        StoreVoiceParticipants.VoiceUser voiceUser;
+        StoreVoiceParticipants$VoiceUser storeVoiceParticipants$VoiceUser;
         User user;
         CallModel callModel;
-        C12238m.checkNotNullParameter(viewState, "viewState");
-        ViewState viewState2 = getViewState();
-        if (!(viewState2 instanceof ViewState.Valid)) {
+        m.checkNotNullParameter(viewState, "viewState");
+        WidgetCallFullscreenViewModel$ViewState viewState2 = getViewState();
+        if (!(viewState2 instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             viewState2 = null;
         }
-        ViewState.Valid valid = (ViewState.Valid) viewState2;
-        String analyticsVideoLayout = valid != null ? valid.getAnalyticsVideoLayout() : null;
-        DisplayMode displayMode = valid != null ? valid.getDisplayMode() : null;
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState2;
+        String analyticsVideoLayout = widgetCallFullscreenViewModel$ViewState$Valid != null ? widgetCallFullscreenViewModel$ViewState$Valid.getAnalyticsVideoLayout() : null;
+        WidgetCallFullscreenViewModel$DisplayMode displayMode = widgetCallFullscreenViewModel$ViewState$Valid != null ? widgetCallFullscreenViewModel$ViewState$Valid.getDisplayMode() : null;
         super.updateViewState(viewState);
-        if (!(viewState instanceof ViewState.Valid)) {
+        if (!(viewState instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
             this.streamRtcConnectionStore.updateFocusedParticipant(null);
-            RtcConnection rtcConnection = StoreStream.INSTANCE.getRtcConnection().getRtcConnection();
+            RtcConnection rtcConnection = StoreStream.Companion.getRtcConnection().getRtcConnection();
             if (rtcConnection != null) {
-                rtcConnection.m8480w(null);
+                rtcConnection.w(null);
                 return;
             }
             return;
         }
-        ViewState.Valid valid2 = (ViewState.Valid) viewState;
-        String analyticsVideoLayout2 = valid2.getAnalyticsVideoLayout();
-        if (analyticsVideoLayout2 != null && (!C12238m.areEqual(analyticsVideoLayout2, analyticsVideoLayout))) {
-            long myId = valid2.getCallModel().getMyId();
-            ViewState viewState3 = getViewState();
-            if (!(viewState3 instanceof ViewState.Valid)) {
+        WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid2 = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState;
+        String analyticsVideoLayout2 = widgetCallFullscreenViewModel$ViewState$Valid2.getAnalyticsVideoLayout();
+        if (analyticsVideoLayout2 != null && (!m.areEqual(analyticsVideoLayout2, analyticsVideoLayout))) {
+            long myId = widgetCallFullscreenViewModel$ViewState$Valid2.getCallModel().getMyId();
+            WidgetCallFullscreenViewModel$ViewState viewState3 = getViewState();
+            if (!(viewState3 instanceof WidgetCallFullscreenViewModel$ViewState$Valid)) {
                 viewState3 = null;
             }
-            ViewState.Valid valid3 = (ViewState.Valid) viewState3;
-            this.analyticsStore.trackVideoLayoutToggled(analyticsVideoLayout2, myId, (valid3 == null || (callModel = valid3.getCallModel()) == null) ? null : callModel.getChannel());
+            WidgetCallFullscreenViewModel$ViewState$Valid widgetCallFullscreenViewModel$ViewState$Valid3 = (WidgetCallFullscreenViewModel$ViewState$Valid) viewState3;
+            this.analyticsStore.trackVideoLayoutToggled(analyticsVideoLayout2, myId, (widgetCallFullscreenViewModel$ViewState$Valid3 == null || (callModel = widgetCallFullscreenViewModel$ViewState$Valid3.getCallModel()) == null) ? null : callModel.getChannel());
         }
-        DisplayMode displayMode2 = valid2.getDisplayMode();
+        WidgetCallFullscreenViewModel$DisplayMode displayMode2 = widgetCallFullscreenViewModel$ViewState$Valid2.getDisplayMode();
         if (displayMode2 != displayMode) {
             int iOrdinal = displayMode2.ordinal();
             if (iOrdinal == 0) {
@@ -3545,47 +1545,47 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
                 this.videoPlayerIdleDetectorFooter.endIdleDetection();
             }
         }
-        String focusedParticipantKey = valid2.getFocusedParticipantKey();
-        Iterator<T> it = valid2.getVisibleVideoParticipants().iterator();
+        String focusedParticipantKey = widgetCallFullscreenViewModel$ViewState$Valid2.getFocusedParticipantKey();
+        Iterator<T> it = widgetCallFullscreenViewModel$ViewState$Valid2.getVisibleVideoParticipants().iterator();
         do {
             if (!it.hasNext()) {
                 next = null;
                 break;
             }
             next = it.next();
-        } while (!C12238m.areEqual(getParticipantFocusKey((CallParticipant) next), focusedParticipantKey));
+        } while (!m.areEqual(getParticipantFocusKey((CallParticipant) next), focusedParticipantKey));
         CallParticipant callParticipant = (CallParticipant) next;
-        if (callParticipant != null ? callParticipant instanceof CallParticipant.UserOrStreamParticipant : true) {
-            CallParticipant.UserOrStreamParticipant userOrStreamParticipant = (CallParticipant.UserOrStreamParticipant) callParticipant;
-            VideoCallParticipantView.ParticipantData participantData = userOrStreamParticipant != null ? userOrStreamParticipant.getParticipantData() : null;
-            Long lValueOf = (participantData == null || (voiceUser = participantData.voiceParticipant) == null || (user = voiceUser.getUser()) == null) ? null : Long.valueOf(user.getId());
-            VideoCallParticipantView.ParticipantData.Type type = participantData != null ? participantData.type : null;
-            if (type == null) {
+        if (callParticipant != null ? callParticipant instanceof CallParticipant$UserOrStreamParticipant : true) {
+            CallParticipant$UserOrStreamParticipant callParticipant$UserOrStreamParticipant = (CallParticipant$UserOrStreamParticipant) callParticipant;
+            VideoCallParticipantView$ParticipantData participantData = callParticipant$UserOrStreamParticipant != null ? callParticipant$UserOrStreamParticipant.getParticipantData() : null;
+            Long lValueOf = (participantData == null || (storeVoiceParticipants$VoiceUser = participantData.voiceParticipant) == null || (user = storeVoiceParticipants$VoiceUser.getUser()) == null) ? null : Long.valueOf(user.getId());
+            VideoCallParticipantView$ParticipantData$Type videoCallParticipantView$ParticipantData$Type = participantData != null ? participantData.type : null;
+            if (videoCallParticipantView$ParticipantData$Type == null) {
                 this.streamRtcConnectionStore.updateFocusedParticipant(null);
-                RtcConnection rtcConnection2 = StoreStream.INSTANCE.getRtcConnection().getRtcConnection();
+                RtcConnection rtcConnection2 = StoreStream.Companion.getRtcConnection().getRtcConnection();
                 if (rtcConnection2 != null) {
-                    rtcConnection2.m8480w(null);
+                    rtcConnection2.w(null);
                     return;
                 }
                 return;
             }
-            int iOrdinal2 = type.ordinal();
+            int iOrdinal2 = videoCallParticipantView$ParticipantData$Type.ordinal();
             if (iOrdinal2 != 0) {
                 if (iOrdinal2 != 1) {
                     return;
                 }
                 this.streamRtcConnectionStore.updateFocusedParticipant(lValueOf);
-                RtcConnection rtcConnection3 = StoreStream.INSTANCE.getRtcConnection().getRtcConnection();
+                RtcConnection rtcConnection3 = StoreStream.Companion.getRtcConnection().getRtcConnection();
                 if (rtcConnection3 != null) {
-                    rtcConnection3.m8480w(null);
+                    rtcConnection3.w(null);
                     return;
                 }
                 return;
             }
             this.streamRtcConnectionStore.updateFocusedParticipant(null);
-            RtcConnection rtcConnection4 = StoreStream.INSTANCE.getRtcConnection().getRtcConnection();
+            RtcConnection rtcConnection4 = StoreStream.Companion.getRtcConnection().getRtcConnection();
             if (rtcConnection4 != null) {
-                rtcConnection4.m8480w(lValueOf);
+                rtcConnection4.w(lValueOf);
             }
             if (lValueOf != null) {
                 this.mediaSettingsStore.setUserOffScreen(lValueOf.longValue(), false);
@@ -3595,33 +1595,33 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetCallFullscreenViewModel(long j, StoreChannels storeChannels, StoreNavigation storeNavigation, StoreVoiceChannelSelected storeVoiceChannelSelected, StoreGuildSelected storeGuildSelected, StoreTabsNavigation storeTabsNavigation, StoreUserSettings storeUserSettings, StoreApplicationStreaming storeApplicationStreaming, StoreMediaEngine storeMediaEngine, StoreMediaSettings storeMediaSettings, StorePermissions storePermissions, Clock clock, Scheduler scheduler, VideoPermissionsManager videoPermissionsManager, VoiceEngineServiceController voiceEngineServiceController, StoreStreamRtcConnection storeStreamRtcConnection, StoreAccessibility storeAccessibility, StoreAudioManagerV2 storeAudioManagerV2, StoreMentions storeMentions, StoreAnalytics storeAnalytics, StoreConnectivity storeConnectivity, StoreStageChannels storeStageChannels, StoreAnalytics storeAnalytics2, StoreExperiments storeExperiments, StoreChannelsSelected storeChannelsSelected, StoreApplication storeApplication, StoreApplicationAssets storeApplicationAssets, String str) {
-        super(ViewState.Uninitialized.INSTANCE);
-        C12238m.checkNotNullParameter(storeChannels, "storeChannels");
-        C12238m.checkNotNullParameter(storeNavigation, "storeNavigation");
-        C12238m.checkNotNullParameter(storeVoiceChannelSelected, "selectedVoiceChannelStore");
-        C12238m.checkNotNullParameter(storeGuildSelected, "guildSelectedStore");
-        C12238m.checkNotNullParameter(storeTabsNavigation, "tabsNavigationStore");
-        C12238m.checkNotNullParameter(storeUserSettings, "userSettingsStore");
-        C12238m.checkNotNullParameter(storeApplicationStreaming, "applicationStreamingStore");
-        C12238m.checkNotNullParameter(storeMediaEngine, "mediaEngineStore");
-        C12238m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
-        C12238m.checkNotNullParameter(storePermissions, "permissionsStore");
-        C12238m.checkNotNullParameter(clock, "clock");
-        C12238m.checkNotNullParameter(scheduler, "backgroundThreadScheduler");
-        C12238m.checkNotNullParameter(videoPermissionsManager, "videoPermissionsManager");
-        C12238m.checkNotNullParameter(voiceEngineServiceController, "voiceEngineServiceController");
-        C12238m.checkNotNullParameter(storeStreamRtcConnection, "streamRtcConnectionStore");
-        C12238m.checkNotNullParameter(storeAccessibility, "accessibilityStore");
-        C12238m.checkNotNullParameter(storeAudioManagerV2, "audioManagerStore");
-        C12238m.checkNotNullParameter(storeMentions, "mentionsStore");
-        C12238m.checkNotNullParameter(storeAnalytics, "analyticsStore");
-        C12238m.checkNotNullParameter(storeConnectivity, "connectivityStore");
-        C12238m.checkNotNullParameter(storeStageChannels, "stageStore");
-        C12238m.checkNotNullParameter(storeAnalytics2, "storeAnalytics");
-        C12238m.checkNotNullParameter(storeExperiments, "experimentsStore");
-        C12238m.checkNotNullParameter(storeChannelsSelected, "channelsSelectedStore");
-        C12238m.checkNotNullParameter(storeApplication, "applicationStore");
-        C12238m.checkNotNullParameter(storeApplicationAssets, "applicationAssetsStore");
+        super(WidgetCallFullscreenViewModel$ViewState$Uninitialized.INSTANCE);
+        m.checkNotNullParameter(storeChannels, "storeChannels");
+        m.checkNotNullParameter(storeNavigation, "storeNavigation");
+        m.checkNotNullParameter(storeVoiceChannelSelected, "selectedVoiceChannelStore");
+        m.checkNotNullParameter(storeGuildSelected, "guildSelectedStore");
+        m.checkNotNullParameter(storeTabsNavigation, "tabsNavigationStore");
+        m.checkNotNullParameter(storeUserSettings, "userSettingsStore");
+        m.checkNotNullParameter(storeApplicationStreaming, "applicationStreamingStore");
+        m.checkNotNullParameter(storeMediaEngine, "mediaEngineStore");
+        m.checkNotNullParameter(storeMediaSettings, "mediaSettingsStore");
+        m.checkNotNullParameter(storePermissions, "permissionsStore");
+        m.checkNotNullParameter(clock, "clock");
+        m.checkNotNullParameter(scheduler, "backgroundThreadScheduler");
+        m.checkNotNullParameter(videoPermissionsManager, "videoPermissionsManager");
+        m.checkNotNullParameter(voiceEngineServiceController, "voiceEngineServiceController");
+        m.checkNotNullParameter(storeStreamRtcConnection, "streamRtcConnectionStore");
+        m.checkNotNullParameter(storeAccessibility, "accessibilityStore");
+        m.checkNotNullParameter(storeAudioManagerV2, "audioManagerStore");
+        m.checkNotNullParameter(storeMentions, "mentionsStore");
+        m.checkNotNullParameter(storeAnalytics, "analyticsStore");
+        m.checkNotNullParameter(storeConnectivity, "connectivityStore");
+        m.checkNotNullParameter(storeStageChannels, "stageStore");
+        m.checkNotNullParameter(storeAnalytics2, "storeAnalytics");
+        m.checkNotNullParameter(storeExperiments, "experimentsStore");
+        m.checkNotNullParameter(storeChannelsSelected, "channelsSelectedStore");
+        m.checkNotNullParameter(storeApplication, "applicationStore");
+        m.checkNotNullParameter(storeApplicationAssets, "applicationAssetsStore");
         this.channelId = j;
         this.storeChannels = storeChannels;
         this.storeNavigation = storeNavigation;
@@ -3649,25 +1649,20 @@ public final class WidgetCallFullscreenViewModel extends AbstractC0859d0<ViewSta
         this.channelsSelectedStore = storeChannelsSelected;
         this.applicationStore = storeApplication;
         this.applicationAssetsStore = storeApplicationAssets;
-        this.showStageCallBottomSheet = j != StoreStream.INSTANCE.getVoiceChannelSelected().getSelectedVoiceChannelId();
+        this.showStageCallBottomSheet = j != StoreStream.Companion.getVoiceChannelSelected().getSelectedVoiceChannelId();
         this.logStreamQualityIndicatorViewed = true;
-        this.eventSubject = PublishSubject.m11133k0();
-        PublishSubject<List<VideoCallParticipantView.ParticipantData>> publishSubjectM11133k0 = PublishSubject.m11133k0();
-        this.offScreenSubject = publishSubjectM11133k0;
-        long j2 = 0;
-        Scheduler scheduler2 = null;
-        Scheduler scheduler3 = null;
-        int i = 7;
-        DefaultConstructorMarker defaultConstructorMarker = null;
-        this.videoPlayerIdleDetectorFooter = new VideoPlayerIdleDetector(j2, scheduler2, scheduler3, new WidgetCallFullscreenViewModel$videoPlayerIdleDetectorFooter$1(this), i, defaultConstructorMarker);
-        this.videoPlayerIdleDetectorHeader = new VideoPlayerIdleDetector(j2, scheduler2, scheduler3, new WidgetCallFullscreenViewModel$videoPlayerIdleDetectorHeader$1(this), i, defaultConstructorMarker);
-        this.allVideoParticipants = C12147n.emptyList();
+        this.eventSubject = PublishSubject.k0();
+        PublishSubject<List<VideoCallParticipantView$ParticipantData>> publishSubjectK0 = PublishSubject.k0();
+        this.offScreenSubject = publishSubjectK0;
+        this.videoPlayerIdleDetectorFooter = new VideoPlayerIdleDetector(0L, null, null, new WidgetCallFullscreenViewModel$videoPlayerIdleDetectorFooter$1(this), 7, null);
+        this.videoPlayerIdleDetectorHeader = new VideoPlayerIdleDetector(0L, null, null, new WidgetCallFullscreenViewModel$videoPlayerIdleDetectorHeader$1(this), 7, null);
+        this.allVideoParticipants = n.emptyList();
         if (str != null) {
             this.autotargetStreamKey = str;
-            storeVoiceChannelSelected.selectVoiceChannel(ModelApplicationStream.INSTANCE.decodeStreamKey(str).getChannelId());
+            storeVoiceChannelSelected.selectVoiceChannel(ModelApplicationStream.Companion.decodeStreamKey(str).getChannelId());
         }
-        Observable<List<VideoCallParticipantView.ParticipantData>> observableM11110p = publishSubjectM11133k0.m11110p(1000L, TimeUnit.MILLISECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11110p, "offScreenSubject\n       …0, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe(observableM11110p, (Class<?>) WidgetCallFullscreenViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C105091());
+        Observable<List<VideoCallParticipantView$ParticipantData>> observableP = publishSubjectK0.p(1000L, TimeUnit.MILLISECONDS);
+        m.checkNotNullExpressionValue(observableP, "offScreenSubject\n       …0, TimeUnit.MILLISECONDS)");
+        ObservableExtensionsKt.appSubscribe$default(observableP, WidgetCallFullscreenViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetCallFullscreenViewModel$1(this), 62, (Object) null);
     }
 }

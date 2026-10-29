@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalClientStatus.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackActivityInternalClientStatus implements Analy
             return false;
         }
         TrackActivityInternalClientStatus trackActivityInternalClientStatus = (TrackActivityInternalClientStatus) other;
-        return C12238m.areEqual(this.activityWidth, trackActivityInternalClientStatus.activityWidth) && C12238m.areEqual(this.activityHeight, trackActivityInternalClientStatus.activityHeight) && C12238m.areEqual(this.networkLatencyMs, trackActivityInternalClientStatus.networkLatencyMs) && C12238m.areEqual(this.networkAttempts, trackActivityInternalClientStatus.networkAttempts) && C12238m.areEqual(this.intervalRateMs, trackActivityInternalClientStatus.intervalRateMs) && C12238m.areEqual(this.fpsAvg, trackActivityInternalClientStatus.fpsAvg);
+        return m.areEqual(this.activityWidth, trackActivityInternalClientStatus.activityWidth) && m.areEqual(this.activityHeight, trackActivityInternalClientStatus.activityHeight) && m.areEqual(this.networkLatencyMs, trackActivityInternalClientStatus.networkLatencyMs) && m.areEqual(this.networkAttempts, trackActivityInternalClientStatus.networkAttempts) && m.areEqual(this.intervalRateMs, trackActivityInternalClientStatus.intervalRateMs) && m.areEqual(this.fpsAvg, trackActivityInternalClientStatus.fpsAvg);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackActivityInternalClientStatus implements Analy
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalClientStatus(activityWidth=");
-        sbM833U.append(this.activityWidth);
-        sbM833U.append(", activityHeight=");
-        sbM833U.append(this.activityHeight);
-        sbM833U.append(", networkLatencyMs=");
-        sbM833U.append(this.networkLatencyMs);
-        sbM833U.append(", networkAttempts=");
-        sbM833U.append(this.networkAttempts);
-        sbM833U.append(", intervalRateMs=");
-        sbM833U.append(this.intervalRateMs);
-        sbM833U.append(", fpsAvg=");
-        sbM833U.append(this.fpsAvg);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TrackActivityInternalClientStatus(activityWidth=");
+        sbU.append(this.activityWidth);
+        sbU.append(", activityHeight=");
+        sbU.append(this.activityHeight);
+        sbU.append(", networkLatencyMs=");
+        sbU.append(this.networkLatencyMs);
+        sbU.append(", networkAttempts=");
+        sbU.append(this.networkAttempts);
+        sbU.append(", intervalRateMs=");
+        sbU.append(this.intervalRateMs);
+        sbU.append(", fpsAvg=");
+        sbU.append(this.fpsAvg);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

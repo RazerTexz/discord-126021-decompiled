@@ -1,12 +1,12 @@
 package com.discord.widgets.tos;
 
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetTos.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetTos$configureAgreementUI$1$1$1 extends AbstractC12240o implements Function1<Void, Unit> {
+public final class WidgetTos$configureAgreementUI$1$1$1 extends o implements Function1<Void, Unit> {
     public static final WidgetTos$configureAgreementUI$1$1$1 INSTANCE = new WidgetTos$configureAgreementUI$1$1$1();
 
     public WidgetTos$configureAgreementUI$1$1$1() {
@@ -16,7 +16,7 @@ public final class WidgetTos$configureAgreementUI$1$1$1 extends AbstractC12240o 
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
         invoke2(r1);
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */

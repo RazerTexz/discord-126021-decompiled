@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -13,8 +14,7 @@ import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadata;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPaymentFlowStep.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -42,7 +42,7 @@ public final /* data */ class TrackPaymentFlowStep implements AnalyticsSchema, T
             return false;
         }
         TrackPaymentFlowStep trackPaymentFlowStep = (TrackPaymentFlowStep) other;
-        return C12238m.areEqual(this.toStep, trackPaymentFlowStep.toStep) && C12238m.areEqual(this.fromStep, trackPaymentFlowStep.fromStep) && C12238m.areEqual(this.loadId, trackPaymentFlowStep.loadId) && C12238m.areEqual(this.stepDurationMs, trackPaymentFlowStep.stepDurationMs) && C12238m.areEqual(this.flowDurationMs, trackPaymentFlowStep.flowDurationMs) && C12238m.areEqual(this.eligibleForTrial, trackPaymentFlowStep.eligibleForTrial) && C12238m.areEqual(this.guildId, trackPaymentFlowStep.guildId);
+        return m.areEqual(this.toStep, trackPaymentFlowStep.toStep) && m.areEqual(this.fromStep, trackPaymentFlowStep.fromStep) && m.areEqual(this.loadId, trackPaymentFlowStep.loadId) && m.areEqual(this.stepDurationMs, trackPaymentFlowStep.stepDurationMs) && m.areEqual(this.flowDurationMs, trackPaymentFlowStep.flowDurationMs) && m.areEqual(this.eligibleForTrial, trackPaymentFlowStep.eligibleForTrial) && m.areEqual(this.guildId, trackPaymentFlowStep.guildId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,19 +69,19 @@ public final /* data */ class TrackPaymentFlowStep implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPaymentFlowStep(toStep=");
-        sbM833U.append(this.toStep);
-        sbM833U.append(", fromStep=");
-        sbM833U.append(this.fromStep);
-        sbM833U.append(", loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", stepDurationMs=");
-        sbM833U.append(this.stepDurationMs);
-        sbM833U.append(", flowDurationMs=");
-        sbM833U.append(this.flowDurationMs);
-        sbM833U.append(", eligibleForTrial=");
-        sbM833U.append(this.eligibleForTrial);
-        sbM833U.append(", guildId=");
-        return C1643a.m819G(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("TrackPaymentFlowStep(toStep=");
+        sbU.append(this.toStep);
+        sbU.append(", fromStep=");
+        sbU.append(this.fromStep);
+        sbU.append(", loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", stepDurationMs=");
+        sbU.append(this.stepDurationMs);
+        sbU.append(", flowDurationMs=");
+        sbU.append(this.flowDurationMs);
+        sbU.append(", eligibleForTrial=");
+        sbU.append(this.eligibleForTrial);
+        sbU.append(", guildId=");
+        return a.G(sbU, this.guildId, ")");
     }
 }

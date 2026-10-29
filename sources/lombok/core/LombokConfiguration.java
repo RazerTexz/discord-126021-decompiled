@@ -1,8 +1,6 @@
 package lombok.core;
 
 import java.net.URI;
-import java.util.Collections;
-import lombok.core.configuration.BubblingConfigurationResolver;
 import lombok.core.configuration.ConfigurationFileToSource;
 import lombok.core.configuration.ConfigurationKey;
 import lombok.core.configuration.ConfigurationParser;
@@ -14,28 +12,23 @@ import lombok.core.configuration.FileSystemSourceCache;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/LombokConfiguration.SCL.lombok */
 public class LombokConfiguration {
     private static ConfigurationResolverFactory configurationResolverFactory;
-    private static final ConfigurationResolver NULL_RESOLVER = new ConfigurationResolver() { // from class: lombok.core.LombokConfiguration.1
-        @Override // lombok.core.configuration.ConfigurationResolver
-        public <T> T resolve(ConfigurationKey<T> configurationKey) {
-            if (configurationKey.getType().isList()) {
-                return (T) Collections.emptyList();
-            }
-            return null;
-        }
-    };
+    private static final ConfigurationResolver NULL_RESOLVER = new LombokConfiguration$1();
     private static FileSystemSourceCache cache = new FileSystemSourceCache();
+
+    static /* synthetic */ ConfigurationResolver access$0() {
+        return NULL_RESOLVER;
+    }
 
     static {
         if (System.getProperty("lombok.disableConfig") != null) {
-            configurationResolverFactory = new ConfigurationResolverFactory() { // from class: lombok.core.LombokConfiguration.2
-                @Override // lombok.core.configuration.ConfigurationResolverFactory
-                public ConfigurationResolver createResolver(URI sourceLocation) {
-                    return LombokConfiguration.NULL_RESOLVER;
-                }
-            };
+            configurationResolverFactory = new LombokConfiguration$2();
         } else {
             configurationResolverFactory = createFileSystemBubblingResolverFactory();
         }
+    }
+
+    static /* synthetic */ FileSystemSourceCache access$1() {
+        return cache;
     }
 
     private LombokConfiguration() {
@@ -54,12 +47,7 @@ public class LombokConfiguration {
     }
 
     private static ConfigurationResolverFactory createFileSystemBubblingResolverFactory() {
-        final ConfigurationFileToSource fileToSource = cache.fileToSource(new ConfigurationParser(ConfigurationProblemReporter.CONSOLE));
-        return new ConfigurationResolverFactory() { // from class: lombok.core.LombokConfiguration.3
-            @Override // lombok.core.configuration.ConfigurationResolverFactory
-            public ConfigurationResolver createResolver(URI sourceLocation) {
-                return new BubblingConfigurationResolver(LombokConfiguration.cache.forUri(sourceLocation), fileToSource);
-            }
-        };
+        ConfigurationFileToSource fileToSource = cache.fileToSource(new ConfigurationParser(ConfigurationProblemReporter.CONSOLE));
+        return new LombokConfiguration$3(fileToSource);
     }
 }

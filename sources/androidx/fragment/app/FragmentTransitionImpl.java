@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.os.CancellationSignal;
 import androidx.core.view.OneShotPreDrawListener;
 import androidx.core.view.ViewCompat;
@@ -14,10 +15,11 @@ import androidx.core.view.ViewGroupCompat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"UnknownNullness"})
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public abstract class FragmentTransitionImpl {
     public abstract void addTarget(Object obj, View view);
 
@@ -78,9 +80,9 @@ public abstract class FragmentTransitionImpl {
     }
 
     public static String findKeyForValue(Map<String, String> map, String str) {
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            if (str.equals(entry.getValue())) {
-                return entry.getKey();
+        for (Map$Entry<String, String> map$Entry : map.entrySet()) {
+            if (str.equals(map$Entry.getValue())) {
+                return map$Entry.getKey();
             }
         }
         return null;
@@ -148,17 +150,8 @@ public abstract class FragmentTransitionImpl {
 
     public abstract void scheduleHideFragmentView(Object obj, View view, ArrayList<View> arrayList);
 
-    public void scheduleNameReset(ViewGroup viewGroup, final ArrayList<View> arrayList, final Map<String, String> map) {
-        OneShotPreDrawListener.add(viewGroup, new Runnable() { // from class: androidx.fragment.app.FragmentTransitionImpl.3
-            @Override // java.lang.Runnable
-            public void run() {
-                int size = arrayList.size();
-                for (int i = 0; i < size; i++) {
-                    View view = (View) arrayList.get(i);
-                    ViewCompat.setTransitionName(view, (String) map.get(ViewCompat.getTransitionName(view)));
-                }
-            }
-        });
+    public void scheduleNameReset(ViewGroup viewGroup, ArrayList<View> arrayList, Map<String, String> map) {
+        OneShotPreDrawListener.add(viewGroup, new FragmentTransitionImpl$3(this, arrayList, map));
     }
 
     public abstract void scheduleRemoveTargets(Object obj, Object obj2, ArrayList<View> arrayList, Object obj3, ArrayList<View> arrayList2, Object obj4, ArrayList<View> arrayList3);
@@ -171,25 +164,13 @@ public abstract class FragmentTransitionImpl {
         runnable.run();
     }
 
-    public void setNameOverridesOrdered(View view, final ArrayList<View> arrayList, final Map<String, String> map) {
-        OneShotPreDrawListener.add(view, new Runnable() { // from class: androidx.fragment.app.FragmentTransitionImpl.2
-            @Override // java.lang.Runnable
-            public void run() {
-                int size = arrayList.size();
-                for (int i = 0; i < size; i++) {
-                    View view2 = (View) arrayList.get(i);
-                    String transitionName = ViewCompat.getTransitionName(view2);
-                    if (transitionName != null) {
-                        ViewCompat.setTransitionName(view2, FragmentTransitionImpl.findKeyForValue(map, transitionName));
-                    }
-                }
-            }
-        });
+    public void setNameOverridesOrdered(View view, ArrayList<View> arrayList, Map<String, String> map) {
+        OneShotPreDrawListener.add(view, new FragmentTransitionImpl$2(this, arrayList, map));
     }
 
-    public void setNameOverridesReordered(View view, final ArrayList<View> arrayList, final ArrayList<View> arrayList2, final ArrayList<String> arrayList3, Map<String, String> map) {
-        final int size = arrayList2.size();
-        final ArrayList arrayList4 = new ArrayList();
+    public void setNameOverridesReordered(View view, ArrayList<View> arrayList, ArrayList<View> arrayList2, ArrayList<String> arrayList3, Map<String, String> map) {
+        int size = arrayList2.size();
+        ArrayList arrayList4 = new ArrayList();
         for (int i = 0; i < size; i++) {
             View view2 = arrayList.get(i);
             String transitionName = ViewCompat.getTransitionName(view2);
@@ -205,15 +186,7 @@ public abstract class FragmentTransitionImpl {
                 }
             }
         }
-        OneShotPreDrawListener.add(view, new Runnable() { // from class: androidx.fragment.app.FragmentTransitionImpl.1
-            @Override // java.lang.Runnable
-            public void run() {
-                for (int i3 = 0; i3 < size; i3++) {
-                    ViewCompat.setTransitionName((View) arrayList2.get(i3), (String) arrayList3.get(i3));
-                    ViewCompat.setTransitionName((View) arrayList.get(i3), (String) arrayList4.get(i3));
-                }
-            }
-        });
+        OneShotPreDrawListener.add(view, new FragmentTransitionImpl$1(this, size, arrayList2, arrayList3, arrayList, arrayList4));
     }
 
     public abstract void setSharedElementTargets(Object obj, View view, ArrayList<View> arrayList);

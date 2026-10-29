@@ -1,15 +1,15 @@
 package com.discord.utilities.search.query.node.answer;
 
-import androidx.core.app.NotificationCompat;
-import com.discord.utilities.search.network.SearchQuery;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import b.d.b.a.a;
+import com.discord.utilities.search.network.SearchQuery$Builder;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.strings.SearchStringProvider;
 import com.discord.utilities.search.validation.SearchData;
+import d0.t.m0;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12146m0;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: HasNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -18,8 +18,8 @@ public final /* data */ class HasNode extends AnswerNode {
     private final CharSequence text;
 
     public HasNode(HasAnswerOption hasAnswerOption, CharSequence charSequence) {
-        C12238m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
-        C12238m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
+        m.checkNotNullParameter(charSequence, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         this.hasAnswerOption = hasAnswerOption;
         this.text = charSequence;
     }
@@ -39,8 +39,8 @@ public final /* data */ class HasNode extends AnswerNode {
     }
 
     public final HasNode copy(HasAnswerOption hasAnswerOption, CharSequence text) {
-        C12238m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
-        C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(hasAnswerOption, "hasAnswerOption");
+        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         return new HasNode(hasAnswerOption, text);
     }
 
@@ -52,7 +52,7 @@ public final /* data */ class HasNode extends AnswerNode {
             return false;
         }
         HasNode hasNode = (HasNode) other;
-        return C12238m.areEqual(this.hasAnswerOption, hasNode.hasAnswerOption) && C12238m.areEqual(getText(), hasNode.getText());
+        return m.areEqual(this.hasAnswerOption, hasNode.hasAnswerOption) && m.areEqual(getText(), hasNode.getText());
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -67,7 +67,7 @@ public final /* data */ class HasNode extends AnswerNode {
 
     @Override // com.discord.utilities.search.query.node.answer.AnswerNode
     public Set<FilterType> getValidFilters() {
-        return C12146m0.setOf(FilterType.HAS);
+        return m0.setOf(FilterType.HAS);
     }
 
     public int hashCode() {
@@ -79,32 +79,32 @@ public final /* data */ class HasNode extends AnswerNode {
 
     @Override // com.discord.utilities.search.query.node.answer.AnswerNode
     public boolean isValid(SearchData searchData) {
-        C12238m.checkNotNullParameter(searchData, "searchData");
+        m.checkNotNullParameter(searchData, "searchData");
         return true;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HasNode(hasAnswerOption=");
-        sbM833U.append(this.hasAnswerOption);
-        sbM833U.append(", text=");
-        sbM833U.append(getText());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HasNode(hasAnswerOption=");
+        sbU.append(this.hasAnswerOption);
+        sbU.append(", text=");
+        sbU.append(getText());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     @Override // com.discord.utilities.search.query.node.answer.AnswerNode
-    public void updateQuery(SearchQuery.Builder queryBuilder, SearchData searchData, FilterType filterType) {
-        C12238m.checkNotNullParameter(queryBuilder, "queryBuilder");
-        C12238m.checkNotNullParameter(searchData, "searchData");
-        if (C12163u.contains(getValidFilters(), filterType)) {
+    public void updateQuery(SearchQuery$Builder queryBuilder, SearchData searchData, FilterType filterType) {
+        m.checkNotNullParameter(queryBuilder, "queryBuilder");
+        m.checkNotNullParameter(searchData, "searchData");
+        if (u.contains(getValidFilters(), filterType)) {
             queryBuilder.appendParam("has", this.hasAnswerOption.getRestParamValue());
         }
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public HasNode(String str, SearchStringProvider searchStringProvider) {
-        this(HasAnswerOption.INSTANCE.getOptionFromString(str, searchStringProvider), str);
-        C12238m.checkNotNullParameter(str, "match");
-        C12238m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+        this(HasAnswerOption.Companion.getOptionFromString(str, searchStringProvider), str);
+        m.checkNotNullParameter(str, "match");
+        m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
     }
 }

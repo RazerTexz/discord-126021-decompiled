@@ -13,47 +13,41 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetHubAddServerBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17144a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f17145b;
+    public final MaterialButton f2468b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ScreenTitleView f17146c;
+    public final ScreenTitleView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final RecyclerView f17147d;
+    public final RecyclerView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final SegmentedControlContainer f17148e;
+    public final SegmentedControlContainer e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final CardSegment f17149f;
+    public final CardSegment f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final CardSegment f17150g;
+    public final CardSegment g;
 
     public WidgetHubAddServerBinding(@NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull ScreenTitleView screenTitleView, @NonNull RecyclerView recyclerView, @NonNull SegmentedControlContainer segmentedControlContainer, @NonNull CardSegment cardSegment, @NonNull CardSegment cardSegment2) {
-        this.f17144a = linearLayout;
-        this.f17145b = materialButton;
-        this.f17146c = screenTitleView;
-        this.f17147d = recyclerView;
-        this.f17148e = segmentedControlContainer;
-        this.f17149f = cardSegment;
-        this.f17150g = cardSegment2;
+        this.a = linearLayout;
+        this.f2468b = materialButton;
+        this.c = screenTitleView;
+        this.d = recyclerView;
+        this.e = segmentedControlContainer;
+        this.f = cardSegment;
+        this.g = cardSegment2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17144a;
+        return this.a;
     }
 }

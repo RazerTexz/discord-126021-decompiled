@@ -1,9 +1,9 @@
 package com.discord.models.store.dto;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelStoreDirectoryLayout.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,7 +12,7 @@ public final /* data */ class ModelStoreDirectoryLayout {
     private final long id;
 
     public ModelStoreDirectoryLayout(long j, List<Long> list) {
-        C12238m.checkNotNullParameter(list, "allSkus");
+        m.checkNotNullParameter(list, "allSkus");
         this.id = j;
         this.allSkus = list;
     }
@@ -33,7 +33,7 @@ public final /* data */ class ModelStoreDirectoryLayout {
     }
 
     public final ModelStoreDirectoryLayout copy(long id2, List<Long> allSkus) {
-        C12238m.checkNotNullParameter(allSkus, "allSkus");
+        m.checkNotNullParameter(allSkus, "allSkus");
         return new ModelStoreDirectoryLayout(id2, allSkus);
     }
 
@@ -45,7 +45,7 @@ public final /* data */ class ModelStoreDirectoryLayout {
             return false;
         }
         ModelStoreDirectoryLayout modelStoreDirectoryLayout = (ModelStoreDirectoryLayout) other;
-        return this.id == modelStoreDirectoryLayout.id && C12238m.areEqual(this.allSkus, modelStoreDirectoryLayout.allSkus);
+        return this.id == modelStoreDirectoryLayout.id && m.areEqual(this.allSkus, modelStoreDirectoryLayout.allSkus);
     }
 
     public final List<Long> getAllSkus() {
@@ -69,9 +69,9 @@ public final /* data */ class ModelStoreDirectoryLayout {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelStoreDirectoryLayout(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", allSkus=");
-        return C1643a.m824L(sbM833U, this.allSkus, ")");
+        StringBuilder sbU = a.U("ModelStoreDirectoryLayout(id=");
+        sbU.append(this.id);
+        sbU.append(", allSkus=");
+        return a.L(sbU, this.allSkus, ")");
     }
 }

@@ -4,19 +4,24 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$attr;
+import com.google.android.material.R$dimen;
+import com.google.android.material.R$id;
+import com.google.android.material.R$styleable;
 import com.google.android.material.color.MaterialColors;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class SnackbarContentLayout extends LinearLayout implements ContentViewCallback {
     private Button actionView;
     private int maxInlineActionWidth;
@@ -62,8 +67,8 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
     @Override // android.view.View
     public void onFinishInflate() {
         super.onFinishInflate();
-        this.messageView = (TextView) findViewById(C10817R.id.snackbar_text);
-        this.actionView = (Button) findViewById(C10817R.id.snackbar_action);
+        this.messageView = (TextView) findViewById(R$id.snackbar_text);
+        this.actionView = (Button) findViewById(R$id.snackbar_action);
     }
 
     /* JADX WARN: Code duplicated, block: B:24:0x0060  */
@@ -74,12 +79,12 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
             int measuredWidth = getMeasuredWidth();
             int i3 = this.maxWidth;
             if (measuredWidth > i3) {
-                i = View.MeasureSpec.makeMeasureSpec(i3, BasicMeasure.EXACTLY);
+                i = View$MeasureSpec.makeMeasureSpec(i3, BasicMeasure.EXACTLY);
                 super.onMeasure(i, i2);
             }
         }
-        int dimensionPixelSize = getResources().getDimensionPixelSize(C10817R.dimen.design_snackbar_padding_vertical_2lines);
-        int dimensionPixelSize2 = getResources().getDimensionPixelSize(C10817R.dimen.design_snackbar_padding_vertical);
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R$dimen.design_snackbar_padding_vertical_2lines);
+        int dimensionPixelSize2 = getResources().getDimensionPixelSize(R$dimen.design_snackbar_padding_vertical);
         boolean z2 = false;
         boolean z3 = this.messageView.getLayout().getLineCount() > 1;
         if (!z3 || this.maxInlineActionWidth <= 0 || this.actionView.getMeasuredWidth() <= this.maxInlineActionWidth) {
@@ -103,7 +108,7 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
 
     public void updateActionTextColorAlphaIfNeeded(float f) {
         if (f != 1.0f) {
-            this.actionView.setTextColor(MaterialColors.layer(MaterialColors.getColor(this, C10817R.attr.colorSurface), this.actionView.getCurrentTextColor(), f));
+            this.actionView.setTextColor(MaterialColors.layer(MaterialColors.getColor(this, R$attr.colorSurface), this.actionView.getCurrentTextColor(), f));
         }
     }
 
@@ -132,9 +137,9 @@ public class SnackbarContentLayout extends LinearLayout implements ContentViewCa
 
     public SnackbarContentLayout(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         super(context, attributeSet);
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C10817R.styleable.SnackbarLayout);
-        this.maxWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.SnackbarLayout_android_maxWidth, -1);
-        this.maxInlineActionWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(C10817R.styleable.SnackbarLayout_maxActionInlineWidth, -1);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.SnackbarLayout);
+        this.maxWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.SnackbarLayout_android_maxWidth, -1);
+        this.maxInlineActionWidth = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.SnackbarLayout_maxActionInlineWidth, -1);
         typedArrayObtainStyledAttributes.recycle();
     }
 }

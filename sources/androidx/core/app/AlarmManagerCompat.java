@@ -1,8 +1,9 @@
 package androidx.core.app;
 
 import android.app.AlarmManager;
+import android.app.AlarmManager$AlarmClockInfo;
 import android.app.PendingIntent;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -11,11 +12,11 @@ public final class AlarmManagerCompat {
     }
 
     public static void setAlarmClock(@NonNull AlarmManager alarmManager, long j, @NonNull PendingIntent pendingIntent, @NonNull PendingIntent pendingIntent2) {
-        alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(j, pendingIntent), pendingIntent2);
+        alarmManager.setAlarmClock(new AlarmManager$AlarmClockInfo(j, pendingIntent), pendingIntent2);
     }
 
     public static void setAndAllowWhileIdle(@NonNull AlarmManager alarmManager, int i, long j, @NonNull PendingIntent pendingIntent) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             alarmManager.setAndAllowWhileIdle(i, j, pendingIntent);
         } else {
             alarmManager.set(i, j, pendingIntent);
@@ -27,7 +28,7 @@ public final class AlarmManagerCompat {
     }
 
     public static void setExactAndAllowWhileIdle(@NonNull AlarmManager alarmManager, int i, long j, @NonNull PendingIntent pendingIntent) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             alarmManager.setExactAndAllowWhileIdle(i, j, pendingIntent);
         } else {
             setExact(alarmManager, i, j, pendingIntent);

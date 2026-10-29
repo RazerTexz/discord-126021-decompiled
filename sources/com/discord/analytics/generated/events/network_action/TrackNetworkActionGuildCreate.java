@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionGuildCreate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,6 +26,11 @@ public final /* data */ class TrackNetworkActionGuildCreate implements Analytics
         this.analyticsSchemaTypeName = "network_action_guild_create";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -34,7 +39,7 @@ public final /* data */ class TrackNetworkActionGuildCreate implements Analytics
             return false;
         }
         TrackNetworkActionGuildCreate trackNetworkActionGuildCreate = (TrackNetworkActionGuildCreate) other;
-        return C12238m.areEqual(this.templateName, trackNetworkActionGuildCreate.templateName) && C12238m.areEqual(this.isCommunityIntent, trackNetworkActionGuildCreate.isCommunityIntent);
+        return m.areEqual(this.templateName, trackNetworkActionGuildCreate.templateName) && m.areEqual(this.isCommunityIntent, trackNetworkActionGuildCreate.isCommunityIntent);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -50,17 +55,11 @@ public final /* data */ class TrackNetworkActionGuildCreate implements Analytics
         return iHashCode + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionGuildCreate(templateName=");
-        sbM833U.append(this.templateName);
-        sbM833U.append(", isCommunityIntent=");
-        return C1643a.m816D(sbM833U, this.isCommunityIntent, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionGuildCreate(templateName=");
+        sbU.append(this.templateName);
+        sbU.append(", isCommunityIntent=");
+        return a.D(sbU, this.isCommunityIntent, ")");
     }
 
     public TrackNetworkActionGuildCreate(CharSequence charSequence, Boolean bool) {

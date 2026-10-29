@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.impression;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackImpressionMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackImpressionEnableCreatorMonetizationCreateRequestLanding.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -34,6 +34,11 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationCreateRequ
         this.analyticsSchemaTypeName = "impression_enable_creator_monetization_create_request_landing";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -42,7 +47,7 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationCreateRequ
             return false;
         }
         TrackImpressionEnableCreatorMonetizationCreateRequestLanding trackImpressionEnableCreatorMonetizationCreateRequestLanding = (TrackImpressionEnableCreatorMonetizationCreateRequestLanding) other;
-        return C12238m.areEqual(this.isEligible, trackImpressionEnableCreatorMonetizationCreateRequestLanding.isEligible) && C12238m.areEqual(this.isApplicationPending, trackImpressionEnableCreatorMonetizationCreateRequestLanding.isApplicationPending) && C12238m.areEqual(this.monetizationRequirementsJson, trackImpressionEnableCreatorMonetizationCreateRequestLanding.monetizationRequirementsJson);
+        return m.areEqual(this.isEligible, trackImpressionEnableCreatorMonetizationCreateRequestLanding.isEligible) && m.areEqual(this.isApplicationPending, trackImpressionEnableCreatorMonetizationCreateRequestLanding.isApplicationPending) && m.areEqual(this.monetizationRequirementsJson, trackImpressionEnableCreatorMonetizationCreateRequestLanding.monetizationRequirementsJson);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,19 +71,13 @@ public final /* data */ class TrackImpressionEnableCreatorMonetizationCreateRequ
         return iHashCode2 + (charSequence != null ? charSequence.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackImpressionEnableCreatorMonetizationCreateRequestLanding(isEligible=");
-        sbM833U.append(this.isEligible);
-        sbM833U.append(", isApplicationPending=");
-        sbM833U.append(this.isApplicationPending);
-        sbM833U.append(", monetizationRequirementsJson=");
-        return C1643a.m817E(sbM833U, this.monetizationRequirementsJson, ")");
+        StringBuilder sbU = a.U("TrackImpressionEnableCreatorMonetizationCreateRequestLanding(isEligible=");
+        sbU.append(this.isEligible);
+        sbU.append(", isApplicationPending=");
+        sbU.append(this.isApplicationPending);
+        sbU.append(", monetizationRequirementsJson=");
+        return a.E(sbU, this.monetizationRequirementsJson, ")");
     }
 
     public TrackImpressionEnableCreatorMonetizationCreateRequestLanding(Boolean bool, Boolean bool2, CharSequence charSequence) {

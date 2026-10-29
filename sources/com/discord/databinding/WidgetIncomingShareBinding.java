@@ -17,77 +17,65 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetIncomingShareBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17192a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final DimmerView f17193b;
+    public final DimmerView f2479b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ViewEmbedGameInvite f17194c;
+    public final ViewEmbedGameInvite c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextInputLayout f17195d;
+    public final TextInputLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final RecyclerView f17196e;
+    public final RecyclerView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final CardView f17197f;
+    public final CardView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextInputLayout f17198g;
+    public final TextInputLayout g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final RecyclerView f17199h;
+    public final RecyclerView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final AppViewFlipper f17200i;
+    public final AppViewFlipper i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final NestedScrollView f17201j;
+    public final NestedScrollView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final AppViewFlipper f17202k;
+    public final AppViewFlipper k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final ViewGlobalSearchItem f17203l;
+    public final ViewGlobalSearchItem l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final ImageView f17204m;
+    public final ImageView m;
 
     public WidgetIncomingShareBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull DimmerView dimmerView, @NonNull ViewEmbedGameInvite viewEmbedGameInvite, @NonNull TextInputLayout textInputLayout, @NonNull RecyclerView recyclerView, @NonNull CardView cardView, @NonNull TextInputLayout textInputLayout2, @NonNull RecyclerView recyclerView2, @NonNull ImageView imageView, @NonNull AppViewFlipper appViewFlipper, @NonNull NestedScrollView nestedScrollView, @NonNull AppViewFlipper appViewFlipper2, @NonNull ViewGlobalSearchItem viewGlobalSearchItem, @NonNull ImageView imageView2) {
-        this.f17192a = coordinatorLayout;
-        this.f17193b = dimmerView;
-        this.f17194c = viewEmbedGameInvite;
-        this.f17195d = textInputLayout;
-        this.f17196e = recyclerView;
-        this.f17197f = cardView;
-        this.f17198g = textInputLayout2;
-        this.f17199h = recyclerView2;
-        this.f17200i = appViewFlipper;
-        this.f17201j = nestedScrollView;
-        this.f17202k = appViewFlipper2;
-        this.f17203l = viewGlobalSearchItem;
-        this.f17204m = imageView2;
+        this.a = coordinatorLayout;
+        this.f2479b = dimmerView;
+        this.c = viewEmbedGameInvite;
+        this.d = textInputLayout;
+        this.e = recyclerView;
+        this.f = cardView;
+        this.g = textInputLayout2;
+        this.h = recyclerView2;
+        this.i = appViewFlipper;
+        this.j = nestedScrollView;
+        this.k = appViewFlipper2;
+        this.l = viewGlobalSearchItem;
+        this.m = imageView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17192a;
+        return this.a;
     }
 }

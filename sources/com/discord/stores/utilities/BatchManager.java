@@ -1,15 +1,16 @@
 package com.discord.stores.utilities;
 
 import androidx.exifinterface.media.ExifInterface;
+import b.i.a.f.e.o.f;
 import com.discord.utilities.time.Clock;
 import com.discord.utilities.time.ClockFactory;
+import d0.z.d.m;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map$Entry;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.CoroutineScope;
-import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: BatchManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,10 +20,10 @@ public final class BatchManager {
     private final CoroutineScope scope;
 
     public BatchManager(CoroutineDispatcher coroutineDispatcher, Clock clock) {
-        C12238m.checkNotNullParameter(coroutineDispatcher, "dispatcher");
-        C12238m.checkNotNullParameter(clock, "clock");
+        m.checkNotNullParameter(coroutineDispatcher, "dispatcher");
+        m.checkNotNullParameter(clock, "clock");
         this.clock = clock;
-        this.scope = C3404f.m4275c(coroutineDispatcher);
+        this.scope = f.c(coroutineDispatcher);
         this.batches = new LinkedHashMap();
     }
 
@@ -38,21 +39,21 @@ public final class BatchManager {
     }
 
     public final <T> Batched<T> createBatched(String type, long debounceDelayMs, long maxDebounceDelayMs) {
-        C12238m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(type, "type");
         Batched<T> batched = new Batched<>(type, debounceDelayMs, maxDebounceDelayMs, this.scope, this.clock);
         this.batches.put(type, batched);
         return batched;
     }
 
     public final void dispose() {
-        C3404f.m4335r(this.scope, null);
+        f.r(this.scope, null);
     }
 
     public final void flushBatches(String incomingType) {
-        for (Map.Entry<String, Batched<?>> entry : this.batches.entrySet()) {
-            String key = entry.getKey();
-            Batched<?> value = entry.getValue();
-            if (!C12238m.areEqual(key, incomingType)) {
+        for (Map$Entry<String, Batched<?>> map$Entry : this.batches.entrySet()) {
+            String key = map$Entry.getKey();
+            Batched<?> value = map$Entry.getValue();
+            if (!m.areEqual(key, incomingType)) {
                 value.flush();
             }
         }

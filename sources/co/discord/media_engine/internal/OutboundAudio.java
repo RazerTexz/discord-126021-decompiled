@@ -1,9 +1,8 @@
 package co.discord.media_engine.internal;
 
-import p001a0.p002a.p003a.C0001a;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import a0.a.a.a;
+import a0.a.a.b;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: NativeStatistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -34,7 +33,7 @@ public final /* data */ class OutboundAudio {
     private final Long voiceActivityDetectorProcessTime;
 
     public OutboundAudio(int i, long j, String str, int i2, int i3, int i4, double d, double d2, float f, int i5, int i6, long j2, double d3, double d4, long j3, long j4, long j5, boolean z2, long j6, long j7, Boolean bool, Long l, Boolean bool2, Long l2) {
-        C12238m.checkNotNullParameter(str, "codecName");
+        m.checkNotNullParameter(str, "codecName");
         this.audioLevel = i;
         this.bytesSent = j;
         this.codecName = str;
@@ -61,8 +60,12 @@ public final /* data */ class OutboundAudio {
         this.voiceActivityDetectorProcessTime = l2;
     }
 
+    public static /* synthetic */ OutboundAudio copy$default(OutboundAudio outboundAudio, int i, long j, String str, int i2, int i3, int i4, double d, double d2, float f, int i5, int i6, long j2, double d3, double d4, long j3, long j4, long j5, boolean z2, long j6, long j7, Boolean bool, Long l, Boolean bool2, Long l2, int i7, Object obj) {
+        return outboundAudio.copy((i7 & 1) != 0 ? outboundAudio.audioLevel : i, (i7 & 2) != 0 ? outboundAudio.bytesSent : j, (i7 & 4) != 0 ? outboundAudio.codecName : str, (i7 & 8) != 0 ? outboundAudio.codecPayloadType : i2, (i7 & 16) != 0 ? outboundAudio.delayMedian : i3, (i7 & 32) != 0 ? outboundAudio.delayStd : i4, (i7 & 64) != 0 ? outboundAudio.echoReturnLoss : d, (i7 & 128) != 0 ? outboundAudio.echoReturnLossEnchancement : d2, (i7 & 256) != 0 ? outboundAudio.fractionLost : f, (i7 & 512) != 0 ? outboundAudio.jitter : i5, (i7 & 1024) != 0 ? outboundAudio.packetsLost : i6, (i7 & 2048) != 0 ? outboundAudio.packetsSent : j2, (i7 & 4096) != 0 ? outboundAudio.residualEchoLikelihood : d3, (i7 & 8192) != 0 ? outboundAudio.residualEchoLikelihoodRecentMax : d4, (i7 & 16384) != 0 ? outboundAudio.rtt : j3, (i7 & 32768) != 0 ? outboundAudio.speaking : j4, (i7 & 65536) != 0 ? outboundAudio.ssrc : j5, (i7 & 131072) != 0 ? outboundAudio.typingNoiseDetected : z2, (262144 & i7) != 0 ? outboundAudio.framesCaptured : j6, (i7 & 524288) != 0 ? outboundAudio.framesRendered : j7, (i7 & 1048576) != 0 ? outboundAudio.noiseCancellerIsEnabled : bool, (2097152 & i7) != 0 ? outboundAudio.noiseCancellerProcessTime : l, (i7 & 4194304) != 0 ? outboundAudio.voiceActivityDetectorIsEnabled : bool2, (i7 & 8388608) != 0 ? outboundAudio.voiceActivityDetectorProcessTime : l2);
+    }
+
     public final OutboundAudio copy(int audioLevel, long bytesSent, String codecName, int codecPayloadType, int delayMedian, int delayStd, double echoReturnLoss, double echoReturnLossEnchancement, float fractionLost, int jitter, int packetsLost, long packetsSent, double residualEchoLikelihood, double residualEchoLikelihoodRecentMax, long rtt, long speaking, long ssrc, boolean typingNoiseDetected, long framesCaptured, long framesRendered, Boolean noiseCancellerIsEnabled, Long noiseCancellerProcessTime, Boolean voiceActivityDetectorIsEnabled, Long voiceActivityDetectorProcessTime) {
-        C12238m.checkNotNullParameter(codecName, "codecName");
+        m.checkNotNullParameter(codecName, "codecName");
         return new OutboundAudio(audioLevel, bytesSent, codecName, codecPayloadType, delayMedian, delayStd, echoReturnLoss, echoReturnLossEnchancement, fractionLost, jitter, packetsLost, packetsSent, residualEchoLikelihood, residualEchoLikelihoodRecentMax, rtt, speaking, ssrc, typingNoiseDetected, framesCaptured, framesRendered, noiseCancellerIsEnabled, noiseCancellerProcessTime, voiceActivityDetectorIsEnabled, voiceActivityDetectorProcessTime);
     }
 
@@ -74,7 +77,7 @@ public final /* data */ class OutboundAudio {
             return false;
         }
         OutboundAudio outboundAudio = (OutboundAudio) other;
-        return this.audioLevel == outboundAudio.audioLevel && this.bytesSent == outboundAudio.bytesSent && C12238m.areEqual(this.codecName, outboundAudio.codecName) && this.codecPayloadType == outboundAudio.codecPayloadType && this.delayMedian == outboundAudio.delayMedian && this.delayStd == outboundAudio.delayStd && Double.compare(this.echoReturnLoss, outboundAudio.echoReturnLoss) == 0 && Double.compare(this.echoReturnLossEnchancement, outboundAudio.echoReturnLossEnchancement) == 0 && Float.compare(this.fractionLost, outboundAudio.fractionLost) == 0 && this.jitter == outboundAudio.jitter && this.packetsLost == outboundAudio.packetsLost && this.packetsSent == outboundAudio.packetsSent && Double.compare(this.residualEchoLikelihood, outboundAudio.residualEchoLikelihood) == 0 && Double.compare(this.residualEchoLikelihoodRecentMax, outboundAudio.residualEchoLikelihoodRecentMax) == 0 && this.rtt == outboundAudio.rtt && this.speaking == outboundAudio.speaking && this.ssrc == outboundAudio.ssrc && this.typingNoiseDetected == outboundAudio.typingNoiseDetected && this.framesCaptured == outboundAudio.framesCaptured && this.framesRendered == outboundAudio.framesRendered && C12238m.areEqual(this.noiseCancellerIsEnabled, outboundAudio.noiseCancellerIsEnabled) && C12238m.areEqual(this.noiseCancellerProcessTime, outboundAudio.noiseCancellerProcessTime) && C12238m.areEqual(this.voiceActivityDetectorIsEnabled, outboundAudio.voiceActivityDetectorIsEnabled) && C12238m.areEqual(this.voiceActivityDetectorProcessTime, outboundAudio.voiceActivityDetectorProcessTime);
+        return this.audioLevel == outboundAudio.audioLevel && this.bytesSent == outboundAudio.bytesSent && m.areEqual(this.codecName, outboundAudio.codecName) && this.codecPayloadType == outboundAudio.codecPayloadType && this.delayMedian == outboundAudio.delayMedian && this.delayStd == outboundAudio.delayStd && Double.compare(this.echoReturnLoss, outboundAudio.echoReturnLoss) == 0 && Double.compare(this.echoReturnLossEnchancement, outboundAudio.echoReturnLossEnchancement) == 0 && Float.compare(this.fractionLost, outboundAudio.fractionLost) == 0 && this.jitter == outboundAudio.jitter && this.packetsLost == outboundAudio.packetsLost && this.packetsSent == outboundAudio.packetsSent && Double.compare(this.residualEchoLikelihood, outboundAudio.residualEchoLikelihood) == 0 && Double.compare(this.residualEchoLikelihoodRecentMax, outboundAudio.residualEchoLikelihoodRecentMax) == 0 && this.rtt == outboundAudio.rtt && this.speaking == outboundAudio.speaking && this.ssrc == outboundAudio.ssrc && this.typingNoiseDetected == outboundAudio.typingNoiseDetected && this.framesCaptured == outboundAudio.framesCaptured && this.framesRendered == outboundAudio.framesRendered && m.areEqual(this.noiseCancellerIsEnabled, outboundAudio.noiseCancellerIsEnabled) && m.areEqual(this.noiseCancellerProcessTime, outboundAudio.noiseCancellerProcessTime) && m.areEqual(this.voiceActivityDetectorIsEnabled, outboundAudio.voiceActivityDetectorIsEnabled) && m.areEqual(this.voiceActivityDetectorProcessTime, outboundAudio.voiceActivityDetectorProcessTime);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -299,17 +302,17 @@ public final /* data */ class OutboundAudio {
     /* JADX WARN: Type inference failed for: r1v44 */
     /* JADX WARN: Type inference failed for: r1v45 */
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.bytesSent) + (this.audioLevel * 31)) * 31;
+        int iA = (b.a(this.bytesSent) + (this.audioLevel * 31)) * 31;
         String str = this.codecName;
-        int iM3a2 = (C0002b.m3a(this.ssrc) + ((C0002b.m3a(this.speaking) + ((C0002b.m3a(this.rtt) + ((C0001a.m2a(this.residualEchoLikelihoodRecentMax) + ((C0001a.m2a(this.residualEchoLikelihood) + ((C0002b.m3a(this.packetsSent) + ((((((Float.floatToIntBits(this.fractionLost) + ((C0001a.m2a(this.echoReturnLossEnchancement) + ((C0001a.m2a(this.echoReturnLoss) + ((((((((iM3a + (str != null ? str.hashCode() : 0)) * 31) + this.codecPayloadType) * 31) + this.delayMedian) * 31) + this.delayStd) * 31)) * 31)) * 31)) * 31) + this.jitter) * 31) + this.packetsLost) * 31)) * 31)) * 31)) * 31)) * 31)) * 31)) * 31;
+        int iA2 = (b.a(this.ssrc) + ((b.a(this.speaking) + ((b.a(this.rtt) + ((a.a(this.residualEchoLikelihoodRecentMax) + ((a.a(this.residualEchoLikelihood) + ((b.a(this.packetsSent) + ((((((Float.floatToIntBits(this.fractionLost) + ((a.a(this.echoReturnLossEnchancement) + ((a.a(this.echoReturnLoss) + ((((((((iA + (str != null ? str.hashCode() : 0)) * 31) + this.codecPayloadType) * 31) + this.delayMedian) * 31) + this.delayStd) * 31)) * 31)) * 31)) * 31) + this.jitter) * 31) + this.packetsLost) * 31)) * 31)) * 31)) * 31)) * 31)) * 31)) * 31;
         boolean z2 = this.typingNoiseDetected;
         ?? r1 = z2;
         if (z2) {
             r1 = 1;
         }
-        int iM3a3 = (C0002b.m3a(this.framesRendered) + ((C0002b.m3a(this.framesCaptured) + ((iM3a2 + r1) * 31)) * 31)) * 31;
+        int iA3 = (b.a(this.framesRendered) + ((b.a(this.framesCaptured) + ((iA2 + r1) * 31)) * 31)) * 31;
         Boolean bool = this.noiseCancellerIsEnabled;
-        int iHashCode = (iM3a3 + (bool != null ? bool.hashCode() : 0)) * 31;
+        int iHashCode = (iA3 + (bool != null ? bool.hashCode() : 0)) * 31;
         Long l = this.noiseCancellerProcessTime;
         int iHashCode2 = (iHashCode + (l != null ? l.hashCode() : 0)) * 31;
         Boolean bool2 = this.voiceActivityDetectorIsEnabled;
@@ -319,53 +322,53 @@ public final /* data */ class OutboundAudio {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("OutboundAudio(audioLevel=");
-        sbM833U.append(this.audioLevel);
-        sbM833U.append(", bytesSent=");
-        sbM833U.append(this.bytesSent);
-        sbM833U.append(", codecName=");
-        sbM833U.append(this.codecName);
-        sbM833U.append(", codecPayloadType=");
-        sbM833U.append(this.codecPayloadType);
-        sbM833U.append(", delayMedian=");
-        sbM833U.append(this.delayMedian);
-        sbM833U.append(", delayStd=");
-        sbM833U.append(this.delayStd);
-        sbM833U.append(", echoReturnLoss=");
-        sbM833U.append(this.echoReturnLoss);
-        sbM833U.append(", echoReturnLossEnchancement=");
-        sbM833U.append(this.echoReturnLossEnchancement);
-        sbM833U.append(", fractionLost=");
-        sbM833U.append(this.fractionLost);
-        sbM833U.append(", jitter=");
-        sbM833U.append(this.jitter);
-        sbM833U.append(", packetsLost=");
-        sbM833U.append(this.packetsLost);
-        sbM833U.append(", packetsSent=");
-        sbM833U.append(this.packetsSent);
-        sbM833U.append(", residualEchoLikelihood=");
-        sbM833U.append(this.residualEchoLikelihood);
-        sbM833U.append(", residualEchoLikelihoodRecentMax=");
-        sbM833U.append(this.residualEchoLikelihoodRecentMax);
-        sbM833U.append(", rtt=");
-        sbM833U.append(this.rtt);
-        sbM833U.append(", speaking=");
-        sbM833U.append(this.speaking);
-        sbM833U.append(", ssrc=");
-        sbM833U.append(this.ssrc);
-        sbM833U.append(", typingNoiseDetected=");
-        sbM833U.append(this.typingNoiseDetected);
-        sbM833U.append(", framesCaptured=");
-        sbM833U.append(this.framesCaptured);
-        sbM833U.append(", framesRendered=");
-        sbM833U.append(this.framesRendered);
-        sbM833U.append(", noiseCancellerIsEnabled=");
-        sbM833U.append(this.noiseCancellerIsEnabled);
-        sbM833U.append(", noiseCancellerProcessTime=");
-        sbM833U.append(this.noiseCancellerProcessTime);
-        sbM833U.append(", voiceActivityDetectorIsEnabled=");
-        sbM833U.append(this.voiceActivityDetectorIsEnabled);
-        sbM833U.append(", voiceActivityDetectorProcessTime=");
-        return C1643a.m819G(sbM833U, this.voiceActivityDetectorProcessTime, ")");
+        StringBuilder sbU = b.d.b.a.a.U("OutboundAudio(audioLevel=");
+        sbU.append(this.audioLevel);
+        sbU.append(", bytesSent=");
+        sbU.append(this.bytesSent);
+        sbU.append(", codecName=");
+        sbU.append(this.codecName);
+        sbU.append(", codecPayloadType=");
+        sbU.append(this.codecPayloadType);
+        sbU.append(", delayMedian=");
+        sbU.append(this.delayMedian);
+        sbU.append(", delayStd=");
+        sbU.append(this.delayStd);
+        sbU.append(", echoReturnLoss=");
+        sbU.append(this.echoReturnLoss);
+        sbU.append(", echoReturnLossEnchancement=");
+        sbU.append(this.echoReturnLossEnchancement);
+        sbU.append(", fractionLost=");
+        sbU.append(this.fractionLost);
+        sbU.append(", jitter=");
+        sbU.append(this.jitter);
+        sbU.append(", packetsLost=");
+        sbU.append(this.packetsLost);
+        sbU.append(", packetsSent=");
+        sbU.append(this.packetsSent);
+        sbU.append(", residualEchoLikelihood=");
+        sbU.append(this.residualEchoLikelihood);
+        sbU.append(", residualEchoLikelihoodRecentMax=");
+        sbU.append(this.residualEchoLikelihoodRecentMax);
+        sbU.append(", rtt=");
+        sbU.append(this.rtt);
+        sbU.append(", speaking=");
+        sbU.append(this.speaking);
+        sbU.append(", ssrc=");
+        sbU.append(this.ssrc);
+        sbU.append(", typingNoiseDetected=");
+        sbU.append(this.typingNoiseDetected);
+        sbU.append(", framesCaptured=");
+        sbU.append(this.framesCaptured);
+        sbU.append(", framesRendered=");
+        sbU.append(this.framesRendered);
+        sbU.append(", noiseCancellerIsEnabled=");
+        sbU.append(this.noiseCancellerIsEnabled);
+        sbU.append(", noiseCancellerProcessTime=");
+        sbU.append(this.noiseCancellerProcessTime);
+        sbU.append(", voiceActivityDetectorIsEnabled=");
+        sbU.append(this.voiceActivityDetectorIsEnabled);
+        sbU.append(", voiceActivityDetectorProcessTime=");
+        return b.d.b.a.a.G(sbU, this.voiceActivityDetectorProcessTime, ")");
     }
 }

@@ -8,22 +8,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewNitroBoostPerksListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final TextView f15527a;
+    public final TextView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15528b;
+    public final TextView f2205b;
 
     public ViewNitroBoostPerksListItemBinding(@NonNull TextView textView, @NonNull TextView textView2) {
-        this.f15527a = textView;
-        this.f15528b = textView2;
+        this.a = textView;
+        this.f2205b = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15527a;
+        return this.a;
     }
 }

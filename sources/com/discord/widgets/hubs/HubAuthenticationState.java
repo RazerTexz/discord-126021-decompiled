@@ -1,13 +1,13 @@
 package com.discord.widgets.hubs;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.api.hubs.EmailVerification;
 import com.discord.api.hubs.EmailVerificationCode;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubAuthenticationlViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -21,8 +21,8 @@ public final /* data */ class HubAuthenticationState {
     }
 
     public HubAuthenticationState(String str, RestCallState<EmailVerification> restCallState, RestCallState<EmailVerificationCode> restCallState2) {
-        C12238m.checkNotNullParameter(restCallState, "resendEmailAsync");
-        C12238m.checkNotNullParameter(restCallState2, "authenticationAsync");
+        m.checkNotNullParameter(restCallState, "resendEmailAsync");
+        m.checkNotNullParameter(restCallState2, "authenticationAsync");
         this.email = str;
         this.resendEmailAsync = restCallState;
         this.authenticationAsync = restCallState2;
@@ -51,8 +51,8 @@ public final /* data */ class HubAuthenticationState {
     }
 
     public final HubAuthenticationState copy(String email, RestCallState<EmailVerification> resendEmailAsync, RestCallState<EmailVerificationCode> authenticationAsync) {
-        C12238m.checkNotNullParameter(resendEmailAsync, "resendEmailAsync");
-        C12238m.checkNotNullParameter(authenticationAsync, "authenticationAsync");
+        m.checkNotNullParameter(resendEmailAsync, "resendEmailAsync");
+        m.checkNotNullParameter(authenticationAsync, "authenticationAsync");
         return new HubAuthenticationState(email, resendEmailAsync, authenticationAsync);
     }
 
@@ -64,7 +64,7 @@ public final /* data */ class HubAuthenticationState {
             return false;
         }
         HubAuthenticationState hubAuthenticationState = (HubAuthenticationState) other;
-        return C12238m.areEqual(this.email, hubAuthenticationState.email) && C12238m.areEqual(this.resendEmailAsync, hubAuthenticationState.resendEmailAsync) && C12238m.areEqual(this.authenticationAsync, hubAuthenticationState.authenticationAsync);
+        return m.areEqual(this.email, hubAuthenticationState.email) && m.areEqual(this.resendEmailAsync, hubAuthenticationState.resendEmailAsync) && m.areEqual(this.authenticationAsync, hubAuthenticationState.authenticationAsync);
     }
 
     public final RestCallState<EmailVerificationCode> getAuthenticationAsync() {
@@ -94,14 +94,14 @@ public final /* data */ class HubAuthenticationState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubAuthenticationState(email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", resendEmailAsync=");
-        sbM833U.append(this.resendEmailAsync);
-        sbM833U.append(", authenticationAsync=");
-        sbM833U.append(this.authenticationAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HubAuthenticationState(email=");
+        sbU.append(this.email);
+        sbU.append(", resendEmailAsync=");
+        sbU.append(this.resendEmailAsync);
+        sbU.append(", authenticationAsync=");
+        sbU.append(this.authenticationAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ HubAuthenticationState(String str, RestCallState restCallState, RestCallState restCallState2, int i, DefaultConstructorMarker defaultConstructorMarker) {

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSoundshareFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackSoundshareFailed implements AnalyticsSchema, 
             return false;
         }
         TrackSoundshareFailed trackSoundshareFailed = (TrackSoundshareFailed) other;
-        return C12238m.areEqual(this.soundshareFailureCode, trackSoundshareFailed.soundshareFailureCode) && C12238m.areEqual(this.soundshareFailureReason, trackSoundshareFailed.soundshareFailureReason) && C12238m.areEqual(this.soundshareFailureWillRetry, trackSoundshareFailed.soundshareFailureWillRetry) && C12238m.areEqual(this.soundshareSession, trackSoundshareFailed.soundshareSession) && C12238m.areEqual(this.shareGameName, trackSoundshareFailed.shareGameName) && C12238m.areEqual(this.shareGameId, trackSoundshareFailed.shareGameId);
+        return m.areEqual(this.soundshareFailureCode, trackSoundshareFailed.soundshareFailureCode) && m.areEqual(this.soundshareFailureReason, trackSoundshareFailed.soundshareFailureReason) && m.areEqual(this.soundshareFailureWillRetry, trackSoundshareFailed.soundshareFailureWillRetry) && m.areEqual(this.soundshareSession, trackSoundshareFailed.soundshareSession) && m.areEqual(this.shareGameName, trackSoundshareFailed.shareGameName) && m.areEqual(this.shareGameId, trackSoundshareFailed.shareGameId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackSoundshareFailed implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSoundshareFailed(soundshareFailureCode=");
-        sbM833U.append(this.soundshareFailureCode);
-        sbM833U.append(", soundshareFailureReason=");
-        sbM833U.append(this.soundshareFailureReason);
-        sbM833U.append(", soundshareFailureWillRetry=");
-        sbM833U.append(this.soundshareFailureWillRetry);
-        sbM833U.append(", soundshareSession=");
-        sbM833U.append(this.soundshareSession);
-        sbM833U.append(", shareGameName=");
-        sbM833U.append(this.shareGameName);
-        sbM833U.append(", shareGameId=");
-        return C1643a.m819G(sbM833U, this.shareGameId, ")");
+        StringBuilder sbU = a.U("TrackSoundshareFailed(soundshareFailureCode=");
+        sbU.append(this.soundshareFailureCode);
+        sbU.append(", soundshareFailureReason=");
+        sbU.append(this.soundshareFailureReason);
+        sbU.append(", soundshareFailureWillRetry=");
+        sbU.append(this.soundshareFailureWillRetry);
+        sbU.append(", soundshareSession=");
+        sbU.append(this.soundshareSession);
+        sbU.append(", shareGameName=");
+        sbU.append(this.shareGameName);
+        sbU.append(", shareGameId=");
+        return a.G(sbU, this.shareGameId, ")");
     }
 }

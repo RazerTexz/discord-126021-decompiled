@@ -1,9 +1,9 @@
 package com.discord.utilities.collections;
 
+import d0.t.u;
+import d0.z.d.m;
 import java.util.Iterator;
 import kotlin.collections.ArrayDeque;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: FixedSizeLineBuffer.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,7 +19,7 @@ public final class FixedSizeLineBuffer {
 
     public final void addLine(String line) {
         String strRemoveFirstOrNull;
-        C12238m.checkNotNullParameter(line, "line");
+        m.checkNotNullParameter(line, "line");
         synchronized (this.sync) {
             this.output.add(line);
             this.outputLength = line.length() + 1 + this.outputLength;
@@ -30,14 +30,14 @@ public final class FixedSizeLineBuffer {
     }
 
     public final void appendString(StringBuilder sb) {
-        C12238m.checkNotNullParameter(sb, "sb");
+        m.checkNotNullParameter(sb, "sb");
         synchronized (this.sync) {
             Iterator<String> it = this.output.iterator();
             while (it.hasNext()) {
                 sb.append(it.next());
-                C12238m.checkNotNullExpressionValue(sb, "append(value)");
+                m.checkNotNullExpressionValue(sb, "append(value)");
                 sb.append('\n');
-                C12238m.checkNotNullExpressionValue(sb, "append('\\n')");
+                m.checkNotNullExpressionValue(sb, "append('\\n')");
             }
         }
     }
@@ -45,7 +45,7 @@ public final class FixedSizeLineBuffer {
     public final String getString() {
         String strJoinToString$default;
         synchronized (this.sync) {
-            strJoinToString$default = C12163u.joinToString$default(this.output, "\n", null, null, 0, null, null, 62, null);
+            strJoinToString$default = u.joinToString$default(this.output, "\n", null, null, 0, null, null, 62, null);
         }
         return strJoinToString$default;
     }

@@ -3,57 +3,30 @@ package androidx.constraintlayout.solver.widgets.analyzer;
 import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.widgets.Chain;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
+import androidx.constraintlayout.solver.widgets.ConstraintWidget$DimensionBehaviour;
 import androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer;
-import java.lang.ref.WeakReference;
+import b.d.b.a.a;
 import java.util.ArrayList;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class WidgetGroup {
     private static final boolean DEBUG = false;
     public static int count;
 
-    /* JADX INFO: renamed from: id */
-    public int f123id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    public int f33id;
     public int orientation;
     public ArrayList<ConstraintWidget> widgets = new ArrayList<>();
     public boolean authoritative = false;
-    public ArrayList<MeasureResult> results = null;
+    public ArrayList<WidgetGroup$MeasureResult> results = null;
     private int moveTo = -1;
 
-    public class MeasureResult {
-        public int baseline;
-        public int bottom;
-        public int left;
-        public int orientation;
-        public int right;
-        public int top;
-        public WeakReference<ConstraintWidget> widgetRef;
-
-        public MeasureResult(ConstraintWidget constraintWidget, LinearSystem linearSystem, int i) {
-            this.widgetRef = new WeakReference<>(constraintWidget);
-            this.left = linearSystem.getObjectVariableValue(constraintWidget.mLeft);
-            this.top = linearSystem.getObjectVariableValue(constraintWidget.mTop);
-            this.right = linearSystem.getObjectVariableValue(constraintWidget.mRight);
-            this.bottom = linearSystem.getObjectVariableValue(constraintWidget.mBottom);
-            this.baseline = linearSystem.getObjectVariableValue(constraintWidget.mBaseline);
-            this.orientation = i;
-        }
-
-        public void apply() {
-            ConstraintWidget constraintWidget = this.widgetRef.get();
-            if (constraintWidget != null) {
-                constraintWidget.setFinalFrame(this.left, this.top, this.right, this.bottom, this.baseline, this.orientation);
-            }
-        }
-    }
-
     public WidgetGroup(int i) {
-        this.f123id = -1;
+        this.f33id = -1;
         this.orientation = 0;
         int i2 = count;
         count = i2 + 1;
-        this.f123id = i2;
+        this.f33id = i2;
         this.orientation = i;
     }
 
@@ -78,7 +51,7 @@ public class WidgetGroup {
         if (this.moveTo != -1 && size > 0) {
             for (int i = 0; i < arrayList.size(); i++) {
                 WidgetGroup widgetGroup = arrayList.get(i);
-                if (this.moveTo == widgetGroup.f123id) {
+                if (this.moveTo == widgetGroup.f33id) {
                     moveTo(this.orientation, widgetGroup);
                 }
             }
@@ -97,7 +70,7 @@ public class WidgetGroup {
     }
 
     public int getId() {
-        return this.f123id;
+        return this.f33id;
     }
 
     public int getOrientation() {
@@ -129,8 +102,8 @@ public class WidgetGroup {
     }
 
     private int measureWrap(int i, ConstraintWidget constraintWidget) {
-        ConstraintWidget.DimensionBehaviour dimensionBehaviour = constraintWidget.getDimensionBehaviour(i);
-        if (dimensionBehaviour == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT || dimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_PARENT || dimensionBehaviour == ConstraintWidget.DimensionBehaviour.FIXED) {
+        ConstraintWidget$DimensionBehaviour dimensionBehaviour = constraintWidget.getDimensionBehaviour(i);
+        if (dimensionBehaviour == ConstraintWidget$DimensionBehaviour.WRAP_CONTENT || dimensionBehaviour == ConstraintWidget$DimensionBehaviour.MATCH_PARENT || dimensionBehaviour == ConstraintWidget$DimensionBehaviour.FIXED) {
             return i == 0 ? constraintWidget.getWidth() : constraintWidget.getHeight();
         }
         return -1;
@@ -145,7 +118,7 @@ public class WidgetGroup {
                 constraintWidget.verticalGroup = widgetGroup.getId();
             }
         }
-        this.moveTo = widgetGroup.f123id;
+        this.moveTo = widgetGroup.f33id;
     }
 
     public void setAuthoritative(boolean z2) {
@@ -182,7 +155,7 @@ public class WidgetGroup {
         }
         this.results = new ArrayList<>();
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            this.results.add(new MeasureResult(arrayList.get(i3), linearSystem, i));
+            this.results.add(new WidgetGroup$MeasureResult(this, arrayList.get(i3), linearSystem, i));
         }
         if (i == 0) {
             objectVariableValue = linearSystem.getObjectVariableValue(constraintWidgetContainer.mLeft);
@@ -200,13 +173,13 @@ public class WidgetGroup {
         StringBuilder sb = new StringBuilder();
         sb.append(getOrientationString());
         sb.append(" [");
-        String strM814B = C1643a.m814B(sb, this.f123id, "] <");
+        String strB = a.B(sb, this.f33id, "] <");
         for (ConstraintWidget constraintWidget : this.widgets) {
-            StringBuilder sbM836X = C1643a.m836X(strM814B, " ");
-            sbM836X.append(constraintWidget.getDebugName());
-            strM814B = sbM836X.toString();
+            StringBuilder sbX = a.X(strB, " ");
+            sbX.append(constraintWidget.getDebugName());
+            strB = sbX.toString();
         }
-        return C1643a.m883w(strM814B, " >");
+        return a.w(strB, " >");
     }
 
     public int measureWrap(LinearSystem linearSystem, int i) {

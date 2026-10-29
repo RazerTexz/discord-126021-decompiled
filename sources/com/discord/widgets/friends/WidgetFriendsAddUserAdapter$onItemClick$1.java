@@ -1,12 +1,12 @@
 package com.discord.widgets.friends;
 
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetFriendsAddUserAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetFriendsAddUserAdapter$onItemClick$1 extends AbstractC12240o implements Function1<Long, Unit> {
+public final class WidgetFriendsAddUserAdapter$onItemClick$1 extends o implements Function1<Long, Unit> {
     public static final WidgetFriendsAddUserAdapter$onItemClick$1 INSTANCE = new WidgetFriendsAddUserAdapter$onItemClick$1();
 
     public WidgetFriendsAddUserAdapter$onItemClick$1() {
@@ -19,6 +19,6 @@ public final class WidgetFriendsAddUserAdapter$onItemClick$1 extends AbstractC12
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(Long l) {
         invoke(l.longValue());
-        return Unit.f27425a;
+        return Unit.a;
     }
 }

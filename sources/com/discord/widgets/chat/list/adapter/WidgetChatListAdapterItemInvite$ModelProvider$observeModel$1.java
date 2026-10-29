@@ -10,12 +10,12 @@ import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreUser;
 import com.discord.utilities.time.ClockFactory;
 import com.discord.widgets.chat.list.entries.InviteEntry;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetChatListAdapterItemInvite.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChatListAdapterItemInvite$ModelProvider$observeModel$1 extends AbstractC12240o implements Function0<WidgetChatListAdapterItemInvite.Model> {
+public final class WidgetChatListAdapterItemInvite$ModelProvider$observeModel$1 extends o implements Function0<WidgetChatListAdapterItemInvite$Model> {
     public final /* synthetic */ StoreAccessibility $accessibilityStore;
     public final /* synthetic */ StoreChannels $channelStore;
     public final /* synthetic */ StoreGuilds $guildStore;
@@ -34,9 +34,14 @@ public final class WidgetChatListAdapterItemInvite$ModelProvider$observeModel$1 
         this.$accessibilityStore = storeAccessibility;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ WidgetChatListAdapterItemInvite$Model invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetChatListAdapterItemInvite.Model invoke() {
+    public final WidgetChatListAdapterItemInvite$Model invoke() {
         Guild guild;
         Channel channel;
         long id2 = this.$userStore.getMeSnapshot().getId();
@@ -54,6 +59,6 @@ public final class WidgetChatListAdapterItemInvite$ModelProvider$observeModel$1 
         } else {
             channel = null;
         }
-        return (this.$invite.getExpirationTime() >= ClockFactory.get().currentTimeMillis() || this.$invite.isRevoked()) ? new WidgetChatListAdapterItemInvite.Model.Invalid(user, id2, channel) : new WidgetChatListAdapterItemInvite.Model.Resolved(this.$invite, id2, user, z2, channel, !this.$accessibilityStore.getReducedMotionEnabled());
+        return (this.$invite.getExpirationTime() >= ClockFactory.get().currentTimeMillis() || this.$invite.isRevoked()) ? new WidgetChatListAdapterItemInvite$Model$Invalid(user, id2, channel) : new WidgetChatListAdapterItemInvite$Model$Resolved(this.$invite, id2, user, z2, channel, !this.$accessibilityStore.getReducedMotionEnabled());
     }
 }

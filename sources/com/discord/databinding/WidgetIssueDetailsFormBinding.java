@@ -11,32 +11,29 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetIssueDetailsFormBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f17205a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinkifiedTextView f17206b;
+    public final LinkifiedTextView f2480b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f17207c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f17208d;
+    public final MaterialButton d;
 
     public WidgetIssueDetailsFormBinding(@NonNull NestedScrollView nestedScrollView, @NonNull LinkifiedTextView linkifiedTextView, @NonNull TextInputLayout textInputLayout, @NonNull MaterialButton materialButton) {
-        this.f17205a = nestedScrollView;
-        this.f17206b = linkifiedTextView;
-        this.f17207c = textInputLayout;
-        this.f17208d = materialButton;
+        this.a = nestedScrollView;
+        this.f2480b = linkifiedTextView;
+        this.c = textInputLayout;
+        this.d = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17205a;
+        return this.a;
     }
 }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.impression;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackImpressionMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackImpressionActivityShelfSelectChannel.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,6 +26,11 @@ public final /* data */ class TrackImpressionActivityShelfSelectChannel implemen
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "impression_activity_shelf_select_channel";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -34,7 +39,7 @@ public final /* data */ class TrackImpressionActivityShelfSelectChannel implemen
             return false;
         }
         TrackImpressionActivityShelfSelectChannel trackImpressionActivityShelfSelectChannel = (TrackImpressionActivityShelfSelectChannel) other;
-        return C12238m.areEqual(this.applicationId, trackImpressionActivityShelfSelectChannel.applicationId) && C12238m.areEqual(this.sourceSection, trackImpressionActivityShelfSelectChannel.sourceSection);
+        return m.areEqual(this.applicationId, trackImpressionActivityShelfSelectChannel.applicationId) && m.areEqual(this.sourceSection, trackImpressionActivityShelfSelectChannel.sourceSection);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,16 +61,10 @@ public final /* data */ class TrackImpressionActivityShelfSelectChannel implemen
         return iHashCode + (charSequence != null ? charSequence.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackImpressionActivityShelfSelectChannel(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", sourceSection=");
-        return C1643a.m817E(sbM833U, this.sourceSection, ")");
+        StringBuilder sbU = a.U("TrackImpressionActivityShelfSelectChannel(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", sourceSection=");
+        return a.E(sbU, this.sourceSection, ")");
     }
 }

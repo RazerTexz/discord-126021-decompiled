@@ -3,16 +3,16 @@ package com.discord.widgets.hubs;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.models.hubs.DirectoryEntryCategory;
+import com.discord.models.hubs.DirectoryEntryCategory$Companion;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.List;
 import kotlin.jvm.functions.Function1;
-import p507d0.p580t.C12149o;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubDescription.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetHubDescription$selectorArgs$1 extends AbstractC12240o implements Function1<HubDescriptionState, List<? extends RadioSelectorItem>> {
+public final class WidgetHubDescription$selectorArgs$1 extends o implements Function1<HubDescriptionState, List<? extends RadioSelectorItem>> {
     public final /* synthetic */ WidgetHubDescription this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -22,12 +22,17 @@ public final class WidgetHubDescription$selectorArgs$1 extends AbstractC12240o i
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final List<RadioSelectorItem> invoke(HubDescriptionState hubDescriptionState) {
-        C12238m.checkNotNullParameter(hubDescriptionState, "state");
-        DirectoryEntryCategory.Companion companion = DirectoryEntryCategory.INSTANCE;
+    public /* bridge */ /* synthetic */ List<? extends RadioSelectorItem> invoke(HubDescriptionState hubDescriptionState) {
+        return invoke2(hubDescriptionState);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final List<RadioSelectorItem> invoke2(HubDescriptionState hubDescriptionState) {
+        m.checkNotNullParameter(hubDescriptionState, "state");
+        DirectoryEntryCategory$Companion directoryEntryCategory$Companion = DirectoryEntryCategory.Companion;
         Channel channel = hubDescriptionState.getChannel();
-        List<DirectoryEntryCategory> categories = companion.getCategories(channel != null && ChannelUtils.m7700x(channel));
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(categories, 10));
+        List<DirectoryEntryCategory> categories = directoryEntryCategory$Companion.getCategories(channel != null && ChannelUtils.x(channel));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(categories, 10));
         for (DirectoryEntryCategory directoryEntryCategory : categories) {
             int key = directoryEntryCategory.getKey();
             DirectoryEntryCategory category = this.this$0.getViewModel().getCategory();

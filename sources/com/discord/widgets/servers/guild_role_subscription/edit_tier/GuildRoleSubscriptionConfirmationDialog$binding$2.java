@@ -3,16 +3,16 @@ package com.discord.widgets.servers.guild_role_subscription.edit_tier;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.DialogGuiildRoleSubscriptionConfirmationBinding;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionConfirmationDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class GuildRoleSubscriptionConfirmationDialog$binding$2 extends C12236k implements Function1<View, DialogGuiildRoleSubscriptionConfirmationBinding> {
+public final /* synthetic */ class GuildRoleSubscriptionConfirmationDialog$binding$2 extends k implements Function1<View, DialogGuiildRoleSubscriptionConfirmationBinding> {
     public static final GuildRoleSubscriptionConfirmationDialog$binding$2 INSTANCE = new GuildRoleSubscriptionConfirmationDialog$binding$2();
 
     public GuildRoleSubscriptionConfirmationDialog$binding$2() {
@@ -20,19 +20,24 @@ public final /* synthetic */ class GuildRoleSubscriptionConfirmationDialog$bindi
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final DialogGuiildRoleSubscriptionConfirmationBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.cancel;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.cancel);
+    public /* bridge */ /* synthetic */ DialogGuiildRoleSubscriptionConfirmationBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final DialogGuiildRoleSubscriptionConfirmationBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.cancel;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.cancel);
         if (materialButton != null) {
-            i = C5419R.id.confirm;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(C5419R.id.confirm);
+            i = R$id.confirm;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.confirm);
             if (materialButton2 != null) {
-                i = C5419R.id.guild_role_subscription_confirmation_subtitle;
-                TextView textView = (TextView) view.findViewById(C5419R.id.guild_role_subscription_confirmation_subtitle);
+                i = R$id.guild_role_subscription_confirmation_subtitle;
+                TextView textView = (TextView) view.findViewById(R$id.guild_role_subscription_confirmation_subtitle);
                 if (textView != null) {
-                    i = C5419R.id.guild_role_subscription_confirmation_title;
-                    TextView textView2 = (TextView) view.findViewById(C5419R.id.guild_role_subscription_confirmation_title);
+                    i = R$id.guild_role_subscription_confirmation_title;
+                    TextView textView2 = (TextView) view.findViewById(R$id.guild_role_subscription_confirmation_title);
                     if (textView2 != null) {
                         return new DialogGuiildRoleSubscriptionConfirmationBinding((LinearLayout) view, materialButton, materialButton2, textView, textView2);
                     }

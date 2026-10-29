@@ -5,12 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public abstract class BaseMenuPresenter implements MenuPresenter {
-    private MenuPresenter.Callback mCallback;
+    private MenuPresenter$Callback mCallback;
     public Context mContext;
     private int mId;
     public LayoutInflater mInflater;
@@ -36,15 +37,15 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
         ((ViewGroup) this.mMenuView).addView(view, i);
     }
 
-    public abstract void bindItemView(MenuItemImpl menuItemImpl, MenuView.ItemView itemView);
+    public abstract void bindItemView(MenuItemImpl menuItemImpl, MenuView$ItemView menuView$ItemView);
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public boolean collapseItemActionView(MenuBuilder menuBuilder, MenuItemImpl menuItemImpl) {
         return false;
     }
 
-    public MenuView.ItemView createItemView(ViewGroup viewGroup) {
-        return (MenuView.ItemView) this.mSystemInflater.inflate(this.mItemLayoutRes, viewGroup, false);
+    public MenuView$ItemView createItemView(ViewGroup viewGroup) {
+        return (MenuView$ItemView) this.mSystemInflater.inflate(this.mItemLayoutRes, viewGroup, false);
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
@@ -62,7 +63,7 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
         return false;
     }
 
-    public MenuPresenter.Callback getCallback() {
+    public MenuPresenter$Callback getCallback() {
         return this.mCallback;
     }
 
@@ -73,9 +74,9 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
 
     /* JADX WARN: Multi-variable type inference failed */
     public View getItemView(MenuItemImpl menuItemImpl, View view, ViewGroup viewGroup) {
-        MenuView.ItemView itemViewCreateItemView = view instanceof MenuView.ItemView ? (MenuView.ItemView) view : createItemView(viewGroup);
-        bindItemView(menuItemImpl, itemViewCreateItemView);
-        return (View) itemViewCreateItemView;
+        MenuView$ItemView menuView$ItemViewCreateItemView = view instanceof MenuView$ItemView ? (MenuView$ItemView) view : createItemView(viewGroup);
+        bindItemView(menuItemImpl, menuView$ItemViewCreateItemView);
+        return (View) menuView$ItemViewCreateItemView;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
@@ -98,9 +99,9 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public void onCloseMenu(MenuBuilder menuBuilder, boolean z2) {
-        MenuPresenter.Callback callback = this.mCallback;
-        if (callback != null) {
-            callback.onCloseMenu(menuBuilder, z2);
+        MenuPresenter$Callback menuPresenter$Callback = this.mCallback;
+        if (menuPresenter$Callback != null) {
+            menuPresenter$Callback.onCloseMenu(menuBuilder, z2);
         }
     }
 
@@ -116,20 +117,20 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
      */
     @Override // androidx.appcompat.view.menu.MenuPresenter
     public boolean onSubMenuSelected(SubMenuBuilder subMenuBuilder) {
-        MenuPresenter.Callback callback = this.mCallback;
+        MenuPresenter$Callback menuPresenter$Callback = this.mCallback;
         MenuBuilder menuBuilder = subMenuBuilder;
-        if (callback == null) {
+        if (menuPresenter$Callback == null) {
             return false;
         }
         if (subMenuBuilder == null) {
             menuBuilder = this.mMenu;
         }
-        return callback.onOpenSubMenu(menuBuilder);
+        return menuPresenter$Callback.onOpenSubMenu(menuBuilder);
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
-    public void setCallback(MenuPresenter.Callback callback) {
-        this.mCallback = callback;
+    public void setCallback(MenuPresenter$Callback menuPresenter$Callback) {
+        this.mCallback = menuPresenter$Callback;
     }
 
     public void setId(int i) {
@@ -158,7 +159,7 @@ public abstract class BaseMenuPresenter implements MenuPresenter {
                 MenuItemImpl menuItemImpl = visibleItems.get(i3);
                 if (shouldIncludeItem(i2, menuItemImpl)) {
                     View childAt = viewGroup.getChildAt(i2);
-                    MenuItemImpl itemData = childAt instanceof MenuView.ItemView ? ((MenuView.ItemView) childAt).getItemData() : null;
+                    MenuItemImpl itemData = childAt instanceof MenuView$ItemView ? ((MenuView$ItemView) childAt).getItemData() : null;
                     View itemView = getItemView(menuItemImpl, childAt, viewGroup);
                     if (menuItemImpl != itemData) {
                         itemView.setPressed(false);

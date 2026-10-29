@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNewsCardEditorViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,6 +23,11 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "news_card_editor_viewed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +36,7 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
             return false;
         }
         TrackNewsCardEditorViewed trackNewsCardEditorViewed = (TrackNewsCardEditorViewed) other;
-        return C12238m.areEqual(this.applicationName, trackNewsCardEditorViewed.applicationName) && C12238m.areEqual(this.applicationId, trackNewsCardEditorViewed.applicationId) && C12238m.areEqual(this.messageId, trackNewsCardEditorViewed.messageId) && C12238m.areEqual(this.newsUrl, trackNewsCardEditorViewed.newsUrl) && C12238m.areEqual(this.newsCardEditorStep, trackNewsCardEditorViewed.newsCardEditorStep);
+        return m.areEqual(this.applicationName, trackNewsCardEditorViewed.applicationName) && m.areEqual(this.applicationId, trackNewsCardEditorViewed.applicationId) && m.areEqual(this.messageId, trackNewsCardEditorViewed.messageId) && m.areEqual(this.newsUrl, trackNewsCardEditorViewed.newsUrl) && m.areEqual(this.newsCardEditorStep, trackNewsCardEditorViewed.newsCardEditorStep);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -59,22 +64,16 @@ public final /* data */ class TrackNewsCardEditorViewed implements AnalyticsSche
         return iHashCode4 + (charSequence3 != null ? charSequence3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNewsCardEditorViewed(applicationName=");
-        sbM833U.append(this.applicationName);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", newsUrl=");
-        sbM833U.append(this.newsUrl);
-        sbM833U.append(", newsCardEditorStep=");
-        return C1643a.m817E(sbM833U, this.newsCardEditorStep, ")");
+        StringBuilder sbU = a.U("TrackNewsCardEditorViewed(applicationName=");
+        sbU.append(this.applicationName);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", newsUrl=");
+        sbU.append(this.newsUrl);
+        sbU.append(", newsCardEditorStep=");
+        return a.E(sbU, this.newsCardEditorStep, ")");
     }
 }

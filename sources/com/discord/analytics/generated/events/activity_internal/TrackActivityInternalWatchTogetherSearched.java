@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherSearched.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackActivityInternalWatchTogetherSearched impleme
             return false;
         }
         TrackActivityInternalWatchTogetherSearched trackActivityInternalWatchTogetherSearched = (TrackActivityInternalWatchTogetherSearched) other;
-        return C12238m.areEqual(this.isHost, trackActivityInternalWatchTogetherSearched.isHost) && C12238m.areEqual(this.searchType, trackActivityInternalWatchTogetherSearched.searchType);
+        return m.areEqual(this.isHost, trackActivityInternalWatchTogetherSearched.isHost) && m.areEqual(this.searchType, trackActivityInternalWatchTogetherSearched.searchType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackActivityInternalWatchTogetherSearched impleme
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalWatchTogetherSearched(isHost=");
-        sbM833U.append(this.isHost);
-        sbM833U.append(", searchType=");
-        return C1643a.m817E(sbM833U, this.searchType, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalWatchTogetherSearched(isHost=");
+        sbU.append(this.isHost);
+        sbU.append(", searchType=");
+        return a.E(sbU, this.searchType, ")");
     }
 }

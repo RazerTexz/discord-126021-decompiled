@@ -16,15 +16,14 @@ public final class TrackNetworkActionUserPasswordlessInfoFetch implements Analyt
     private TrackNetworkMetadata trackNetworkMetadata;
     private final transient String analyticsSchemaTypeName = "network_action_user_passwordless_info_fetch";
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */
     public String getAnalyticsSchemaTypeName() {
         return this.analyticsSchemaTypeName;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
     }
 }

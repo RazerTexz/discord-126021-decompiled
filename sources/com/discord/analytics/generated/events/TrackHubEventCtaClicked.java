@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackHubEventCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,6 +25,11 @@ public final /* data */ class TrackHubEventCtaClicked implements AnalyticsSchema
         this.analyticsSchemaTypeName = "hub_event_cta_clicked";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -33,7 +38,7 @@ public final /* data */ class TrackHubEventCtaClicked implements AnalyticsSchema
             return false;
         }
         TrackHubEventCtaClicked trackHubEventCtaClicked = (TrackHubEventCtaClicked) other;
-        return C12238m.areEqual(this.guildScheduledEventId, trackHubEventCtaClicked.guildScheduledEventId) && C12238m.areEqual(this.guildScheduledEventGuildId, trackHubEventCtaClicked.guildScheduledEventGuildId) && C12238m.areEqual(this.type, trackHubEventCtaClicked.type);
+        return m.areEqual(this.guildScheduledEventId, trackHubEventCtaClicked.guildScheduledEventId) && m.areEqual(this.guildScheduledEventGuildId, trackHubEventCtaClicked.guildScheduledEventGuildId) && m.areEqual(this.type, trackHubEventCtaClicked.type);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,19 +62,13 @@ public final /* data */ class TrackHubEventCtaClicked implements AnalyticsSchema
         return iHashCode2 + (charSequence != null ? charSequence.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackHubEventCtaClicked(guildScheduledEventId=");
-        sbM833U.append(this.guildScheduledEventId);
-        sbM833U.append(", guildScheduledEventGuildId=");
-        sbM833U.append(this.guildScheduledEventGuildId);
-        sbM833U.append(", type=");
-        return C1643a.m817E(sbM833U, this.type, ")");
+        StringBuilder sbU = a.U("TrackHubEventCtaClicked(guildScheduledEventId=");
+        sbU.append(this.guildScheduledEventId);
+        sbU.append(", guildScheduledEventGuildId=");
+        sbU.append(this.guildScheduledEventGuildId);
+        sbU.append(", type=");
+        return a.E(sbU, this.type, ")");
     }
 
     public TrackHubEventCtaClicked(Long l, Long l2, CharSequence charSequence) {

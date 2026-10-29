@@ -1,29 +1,21 @@
 package com.discord.api.report;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ReportNodeElement {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final ReportNodeElement$Companion Companion = new ReportNodeElement$Companion(null);
     private final List<ReportNodeElementData> data;
     private final String name;
     private final boolean should_submit_data;
     private final String type;
 
-    /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public final class Companion {
-        public Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
+    public final List<ReportNodeElementData> a() {
+        return this.data;
     }
 
     public boolean equals(Object other) {
@@ -34,7 +26,7 @@ public final /* data */ class ReportNodeElement {
             return false;
         }
         ReportNodeElement reportNodeElement = (ReportNodeElement) other;
-        return C12238m.areEqual(this.type, reportNodeElement.type) && C12238m.areEqual(this.name, reportNodeElement.name) && C12238m.areEqual(this.data, reportNodeElement.data) && this.should_submit_data == reportNodeElement.should_submit_data;
+        return m.areEqual(this.type, reportNodeElement.type) && m.areEqual(this.name, reportNodeElement.name) && m.areEqual(this.data, reportNodeElement.data) && this.should_submit_data == reportNodeElement.should_submit_data;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -67,19 +59,14 @@ public final /* data */ class ReportNodeElement {
         return iHashCode3 + r1;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<ReportNodeElementData> m8182a() {
-        return this.data;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ReportNodeElement(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", data=");
-        sbM833U.append(this.data);
-        sbM833U.append(", should_submit_data=");
-        return C1643a.m827O(sbM833U, this.should_submit_data, ")");
+        StringBuilder sbU = a.U("ReportNodeElement(type=");
+        sbU.append(this.type);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", data=");
+        sbU.append(this.data);
+        sbU.append(", should_submit_data=");
+        return a.O(sbU, this.should_submit_data, ")");
     }
 }

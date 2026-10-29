@@ -12,42 +12,37 @@ import com.discord.app.AppViewFlipper;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsAuditLogBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17506a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17507b;
+    public final TextView f2539b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f17508c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17509d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final AppViewFlipper f17510e;
+    public final AppViewFlipper e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final AppViewFlipper f17511f;
+    public final AppViewFlipper f;
 
     public WidgetServerSettingsAuditLogBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull LinearLayout linearLayout, @NonNull RecyclerView recyclerView, @NonNull TextView textView4, @NonNull LinearLayout linearLayout2, @NonNull AppViewFlipper appViewFlipper, @NonNull AppViewFlipper appViewFlipper2) {
-        this.f17506a = coordinatorLayout;
-        this.f17507b = textView3;
-        this.f17508c = recyclerView;
-        this.f17509d = textView4;
-        this.f17510e = appViewFlipper;
-        this.f17511f = appViewFlipper2;
+        this.a = coordinatorLayout;
+        this.f2539b = textView3;
+        this.c = recyclerView;
+        this.d = textView4;
+        this.e = appViewFlipper;
+        this.f = appViewFlipper2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17506a;
+        return this.a;
     }
 }

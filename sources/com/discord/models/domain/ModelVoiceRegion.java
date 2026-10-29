@@ -1,48 +1,48 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import java.io.IOException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelVoiceRegion implements Model {
     private boolean deprecated;
     private boolean hidden;
 
-    /* JADX INFO: renamed from: id */
-    private String f18585id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private String f2736id;
     private String name;
     private boolean optimal;
     private String sampleHostname;
     private int samplePort;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "deprecated":
-                this.deprecated = jsonReader.nextBoolean(this.deprecated);
+                this.deprecated = model$JsonReader.nextBoolean(this.deprecated);
                 break;
             case "optimal":
-                this.optimal = jsonReader.nextBoolean(this.optimal);
+                this.optimal = model$JsonReader.nextBoolean(this.optimal);
                 break;
             case "hidden":
-                this.hidden = jsonReader.nextBoolean(this.hidden);
+                this.hidden = model$JsonReader.nextBoolean(this.hidden);
                 break;
             case "id":
-                this.f18585id = jsonReader.nextString(this.f18585id);
+                this.f2736id = model$JsonReader.nextString(this.f2736id);
                 break;
             case "name":
-                this.name = jsonReader.nextString(this.name);
+                this.name = model$JsonReader.nextString(this.name);
                 break;
             case "sample_hostname":
-                this.sampleHostname = jsonReader.nextString(this.sampleHostname);
+                this.sampleHostname = model$JsonReader.nextString(this.sampleHostname);
                 break;
             case "sample_port":
-                this.samplePort = jsonReader.nextInt(this.samplePort);
+                this.samplePort = model$JsonReader.nextInt(this.samplePort);
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -78,7 +78,7 @@ public class ModelVoiceRegion implements Model {
     }
 
     public String getId() {
-        return this.f18585id;
+        return this.f2736id;
     }
 
     public String getName() {
@@ -117,21 +117,21 @@ public class ModelVoiceRegion implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelVoiceRegion(id=");
-        sbM833U.append(getId());
-        sbM833U.append(", name=");
-        sbM833U.append(getName());
-        sbM833U.append(", optimal=");
-        sbM833U.append(isOptimal());
-        sbM833U.append(", samplePort=");
-        sbM833U.append(getSamplePort());
-        sbM833U.append(", sampleHostname=");
-        sbM833U.append(getSampleHostname());
-        sbM833U.append(", deprecated=");
-        sbM833U.append(isDeprecated());
-        sbM833U.append(", hidden=");
-        sbM833U.append(isHidden());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelVoiceRegion(id=");
+        sbU.append(getId());
+        sbU.append(", name=");
+        sbU.append(getName());
+        sbU.append(", optimal=");
+        sbU.append(isOptimal());
+        sbU.append(", samplePort=");
+        sbU.append(getSamplePort());
+        sbU.append(", sampleHostname=");
+        sbU.append(getSampleHostname());
+        sbU.append(", deprecated=");
+        sbU.append(isDeprecated());
+        sbU.append(", hidden=");
+        sbU.append(isHidden());
+        sbU.append(")");
+        return sbU.toString();
     }
 }

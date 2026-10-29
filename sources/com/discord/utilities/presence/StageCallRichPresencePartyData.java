@@ -1,7 +1,7 @@
 package com.discord.utilities.presence;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
+import a0.a.a.b;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: ActivityUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -24,6 +24,10 @@ public final /* data */ class StageCallRichPresencePartyData {
         this.guildIsVerified = z4;
         this.speakerCount = j4;
         this.audienceSize = j5;
+    }
+
+    public static /* synthetic */ StageCallRichPresencePartyData copy$default(StageCallRichPresencePartyData stageCallRichPresencePartyData, long j, long j2, boolean z2, long j3, boolean z3, boolean z4, long j4, long j5, int i, Object obj) {
+        return stageCallRichPresencePartyData.copy((i & 1) != 0 ? stageCallRichPresencePartyData.stageInstanceId : j, (i & 2) != 0 ? stageCallRichPresencePartyData.channelId : j2, (i & 4) != 0 ? stageCallRichPresencePartyData.userIsSpeaker : z2, (i & 8) != 0 ? stageCallRichPresencePartyData.guildId : j3, (i & 16) != 0 ? stageCallRichPresencePartyData.guildIsPartnered : z3, (i & 32) != 0 ? stageCallRichPresencePartyData.guildIsVerified : z4, (i & 64) != 0 ? stageCallRichPresencePartyData.speakerCount : j4, (i & 128) != 0 ? stageCallRichPresencePartyData.audienceSize : j5);
     }
 
     public final StageCallRichPresencePartyData copy(long stageInstanceId, long channelId, boolean userIsSpeaker, long guildId, boolean guildIsPartnered, boolean guildIsVerified, long speakerCount, long audienceSize) {
@@ -127,39 +131,39 @@ public final /* data */ class StageCallRichPresencePartyData {
     /* JADX WARN: Type inference failed for: r2v1, types: [int] */
     /* JADX WARN: Type inference failed for: r2v3 */
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.channelId) + (C0002b.m3a(this.stageInstanceId) * 31)) * 31;
+        int iA = (b.a(this.channelId) + (b.a(this.stageInstanceId) * 31)) * 31;
         boolean z2 = this.userIsSpeaker;
         ?? r0 = z2;
         if (z2) {
             r0 = 1;
         }
-        int iM3a2 = (C0002b.m3a(this.guildId) + ((iM3a + r0) * 31)) * 31;
+        int iA2 = (b.a(this.guildId) + ((iA + r0) * 31)) * 31;
         boolean z3 = this.guildIsPartnered;
         ?? r1 = z3;
         if (z3) {
             r1 = 1;
         }
-        int i = (iM3a2 + r1) * 31;
+        int i = (iA2 + r1) * 31;
         boolean z4 = this.guildIsVerified;
-        return C0002b.m3a(this.audienceSize) + ((C0002b.m3a(this.speakerCount) + ((i + (z4 ? 1 : z4)) * 31)) * 31);
+        return b.a(this.audienceSize) + ((b.a(this.speakerCount) + ((i + (z4 ? 1 : z4)) * 31)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StageCallRichPresencePartyData(stageInstanceId=");
-        sbM833U.append(this.stageInstanceId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", userIsSpeaker=");
-        sbM833U.append(this.userIsSpeaker);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guildIsPartnered=");
-        sbM833U.append(this.guildIsPartnered);
-        sbM833U.append(", guildIsVerified=");
-        sbM833U.append(this.guildIsVerified);
-        sbM833U.append(", speakerCount=");
-        sbM833U.append(this.speakerCount);
-        sbM833U.append(", audienceSize=");
-        return C1643a.m815C(sbM833U, this.audienceSize, ")");
+        StringBuilder sbU = a.U("StageCallRichPresencePartyData(stageInstanceId=");
+        sbU.append(this.stageInstanceId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", userIsSpeaker=");
+        sbU.append(this.userIsSpeaker);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guildIsPartnered=");
+        sbU.append(this.guildIsPartnered);
+        sbU.append(", guildIsVerified=");
+        sbU.append(this.guildIsVerified);
+        sbU.append(", speakerCount=");
+        sbU.append(this.speakerCount);
+        sbU.append(", audienceSize=");
+        return a.C(sbU, this.audienceSize, ")");
     }
 }

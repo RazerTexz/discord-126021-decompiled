@@ -1,8 +1,8 @@
 package com.hcaptcha.sdk;
 
 import androidx.annotation.Nullable;
+import b.d.b.a.a;
 import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class HCaptchaException extends Exception {
@@ -10,6 +10,10 @@ public class HCaptchaException extends Exception {
 
     public HCaptchaException(HCaptchaError hCaptchaError) {
         this.hCaptchaError = hCaptchaError;
+    }
+
+    public HCaptchaError a() {
+        return this.hCaptchaError;
     }
 
     public boolean equals(Object obj) {
@@ -41,16 +45,11 @@ public class HCaptchaException extends Exception {
         return (iHashCode * 59) + (hCaptchaError == null ? 43 : hCaptchaError.hashCode());
     }
 
-    /* JADX INFO: renamed from: a */
-    public HCaptchaError m9265a() {
-        return this.hCaptchaError;
-    }
-
     @Override // java.lang.Throwable
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HCaptchaException(hCaptchaError=");
-        sbM833U.append(this.hCaptchaError);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HCaptchaException(hCaptchaError=");
+        sbU.append(this.hCaptchaError);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

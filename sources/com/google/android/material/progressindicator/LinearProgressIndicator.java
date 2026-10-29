@@ -5,13 +5,11 @@ import android.util.AttributeSet;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
-import com.google.android.material.C10817R;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import p007b.p225i.p226a.p341g.p348g.C4424j;
-import p007b.p225i.p226a.p341g.p348g.C4426l;
+import b.i.a.g.g.j;
+import b.i.a.g.g.l;
+import com.google.android.material.R$attr;
+import com.google.android.material.R$style;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class LinearProgressIndicator extends BaseProgressIndicator<LinearProgressIndicatorSpec> {
@@ -21,20 +19,15 @@ public final class LinearProgressIndicator extends BaseProgressIndicator<LinearP
     public static final int INDICATOR_DIRECTION_LEFT_TO_RIGHT = 0;
     public static final int INDICATOR_DIRECTION_RIGHT_TO_LEFT = 1;
     public static final int INDICATOR_DIRECTION_START_TO_END = 2;
-    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_LinearProgressIndicator;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface IndeterminateAnimationType {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface IndicatorDirection {
-    }
+    public static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_LinearProgressIndicator;
 
     public LinearProgressIndicator(@NonNull Context context) {
         this(context, null);
+    }
+
+    @Override // com.google.android.material.progressindicator.BaseProgressIndicator
+    public /* bridge */ /* synthetic */ BaseProgressIndicatorSpec createSpec(@NonNull Context context, @NonNull AttributeSet attributeSet) {
+        return createSpec(context, attributeSet);
     }
 
     public int getIndeterminateAnimationType() {
@@ -87,9 +80,9 @@ public final class LinearProgressIndicator extends BaseProgressIndicator<LinearP
         linearProgressIndicatorSpec.indeterminateAnimationType = i;
         linearProgressIndicatorSpec.validateSpec();
         if (i == 0) {
-            getIndeterminateDrawable().setAnimatorDelegate(new C4424j((LinearProgressIndicatorSpec) this.spec));
+            getIndeterminateDrawable().setAnimatorDelegate(new j((LinearProgressIndicatorSpec) this.spec));
         } else {
-            getIndeterminateDrawable().setAnimatorDelegate(new C4426l(getContext(), (LinearProgressIndicatorSpec) this.spec));
+            getIndeterminateDrawable().setAnimatorDelegate(new l(getContext(), (LinearProgressIndicatorSpec) this.spec));
         }
         invalidate();
     }
@@ -129,7 +122,7 @@ public final class LinearProgressIndicator extends BaseProgressIndicator<LinearP
     }
 
     public LinearProgressIndicator(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C10817R.attr.linearProgressIndicatorStyle);
+        this(context, attributeSet, R$attr.linearProgressIndicatorStyle);
     }
 
     @Override // com.google.android.material.progressindicator.BaseProgressIndicator

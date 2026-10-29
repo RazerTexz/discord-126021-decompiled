@@ -8,7 +8,8 @@ import lombok.ConfigurationKeys;
 import lombok.eclipse.Eclipse;
 import lombok.eclipse.EclipseNode;
 import lombok.eclipse.handlers.EclipseHandlerUtil;
-import lombok.eclipse.handlers.EclipseSingularsRecipes;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$SingularData;
 import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;
 import org.eclipse.jdt.internal.compiler.ast.Assignment;
 import org.eclipse.jdt.internal.compiler.ast.BinaryExpression;
@@ -35,14 +36,14 @@ import org.eclipse.jdt.internal.compiler.ast.TypeReference;
 import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/singulars/EclipseJavaUtilSingularizer.SCL.lombok */
-abstract class EclipseJavaUtilSingularizer extends EclipseSingularsRecipes.EclipseSingularizer {
+abstract class EclipseJavaUtilSingularizer extends EclipseSingularsRecipes$EclipseSingularizer {
     protected static final char[][] JAVA_UTIL_ARRAYLIST = {new char[]{'j', 'a', 'v', 'a'}, new char[]{'u', 't', 'i', 'l'}, new char[]{'A', 'r', 'r', 'a', 'y', 'L', 'i', 's', 't'}};
     protected static final char[][] JAVA_UTIL_LIST = {new char[]{'j', 'a', 'v', 'a'}, new char[]{'u', 't', 'i', 'l'}, new char[]{'L', 'i', 's', 't'}};
     protected static final char[][] JAVA_UTIL_MAP = {new char[]{'j', 'a', 'v', 'a'}, new char[]{'u', 't', 'i', 'l'}, new char[]{'M', 'a', 'p'}};
     protected static final char[][] JAVA_UTIL_MAP_ENTRY = {new char[]{'j', 'a', 'v', 'a'}, new char[]{'u', 't', 'i', 'l'}, new char[]{'M', 'a', 'p'}, new char[]{'E', 'n', 't', 'r', 'y'}};
     protected static final char[][] JAVA_UTIL_COLLECTIONS = {new char[]{'j', 'a', 'v', 'a'}, new char[]{'u', 't', 'i', 'l'}, new char[]{'C', 'o', 'l', 'l', 'e', 'c', 't', 'i', 'o', 'n', 's'}};
-    protected final EclipseSingularsRecipes.EclipseSingularizer guavaListSetSingularizer = new EclipseGuavaSetListSingularizer();
-    protected final EclipseSingularsRecipes.EclipseSingularizer guavaMapSingularizer = new EclipseGuavaMapSingularizer();
+    protected final EclipseSingularsRecipes$EclipseSingularizer guavaListSetSingularizer = new EclipseGuavaSetListSingularizer();
+    protected final EclipseSingularsRecipes$EclipseSingularizer guavaMapSingularizer = new EclipseGuavaMapSingularizer();
 
     EclipseJavaUtilSingularizer() {
     }
@@ -51,7 +52,7 @@ abstract class EclipseJavaUtilSingularizer extends EclipseSingularsRecipes.Eclip
         return Boolean.TRUE.equals(node.getAst().readConfiguration(ConfigurationKeys.SINGULAR_USE_GUAVA));
     }
 
-    protected List<Statement> createJavaUtilSetMapInitialCapacitySwitchStatements(EclipseSingularsRecipes.SingularData data, EclipseNode builderType, boolean mapMode, String emptyCollectionMethod, String singletonCollectionMethod, String targetType, String builderVariable) {
+    protected List<Statement> createJavaUtilSetMapInitialCapacitySwitchStatements(EclipseSingularsRecipes$SingularData data, EclipseNode builderType, boolean mapMode, String emptyCollectionMethod, String singletonCollectionMethod, String targetType, String builderVariable) {
         Expression[] args;
         List<Statement> switchContents = new ArrayList<>();
         char[] keyName = mapMode ? (String.valueOf(new String(data.getPluralName())) + "$key").toCharArray() : data.getPluralName();
@@ -101,7 +102,7 @@ abstract class EclipseJavaUtilSingularizer extends EclipseSingularsRecipes.Eclip
         return Arrays.asList(localDeclaration, switchStatement);
     }
 
-    protected List<Statement> createJavaUtilSimpleCreationAndFillStatements(EclipseSingularsRecipes.SingularData data, EclipseNode builderType, boolean mapMode, boolean defineVar, boolean addInitialCapacityArg, boolean nullGuard, String targetType, String builderVariable) {
+    protected List<Statement> createJavaUtilSimpleCreationAndFillStatements(EclipseSingularsRecipes$SingularData data, EclipseNode builderType, boolean mapMode, boolean defineVar, boolean addInitialCapacityArg, boolean nullGuard, String targetType, String builderVariable) {
         LocalDeclaration assignment;
         ForStatement ifStatement;
         char[] varName = mapMode ? (String.valueOf(new String(data.getPluralName())) + "$key").toCharArray() : data.getPluralName();
@@ -170,7 +171,7 @@ abstract class EclipseJavaUtilSingularizer extends EclipseSingularsRecipes.Eclip
         return Arrays.asList(assignment, ifStatement, unmodifiableStat);
     }
 
-    protected Statement createConstructBuilderVarIfNeeded(EclipseSingularsRecipes.SingularData data, EclipseNode builderType, boolean mapMode) {
+    protected Statement createConstructBuilderVarIfNeeded(EclipseSingularsRecipes$SingularData data, EclipseNode builderType, boolean mapMode) {
         char[] v1Name;
         char[] v2Name;
         Statement thenPart;

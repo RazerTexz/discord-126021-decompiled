@@ -6,6 +6,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
@@ -44,13 +45,13 @@ public class BrowserActionItem {
     }
 
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public Uri getIconUri() {
         return this.mIconUri;
     }
 
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public Runnable getRunnableAction() {
         return this.mRunnableAction;
     }
@@ -60,7 +61,7 @@ public class BrowserActionItem {
         return this.mTitle;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public BrowserActionItem(@NonNull String str, @NonNull PendingIntent pendingIntent, @NonNull Uri uri) {
         this.mTitle = str;
         this.mAction = pendingIntent;

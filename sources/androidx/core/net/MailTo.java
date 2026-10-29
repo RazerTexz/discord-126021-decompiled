@@ -4,24 +4,21 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Preconditions;
+import b.d.b.a.a;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class MailTo {
     private static final String BCC = "bcc";
     private static final String BODY = "body";
+    private static final String CC = "cc";
     private static final String MAILTO = "mailto";
     public static final String MAILTO_SCHEME = "mailto:";
     private static final String SUBJECT = "subject";
-
-    /* JADX INFO: renamed from: CC */
-    private static final String f132CC = "cc";
-
-    /* JADX INFO: renamed from: TO */
-    private static final String f133TO = "to";
+    private static final String TO = "to";
     private HashMap<String, String> mHeaders = new HashMap<>();
 
     private MailTo() {
@@ -39,7 +36,7 @@ public final class MailTo {
 
     @Nullable
     public String getCc() {
-        return this.mHeaders.get(f132CC);
+        return this.mHeaders.get(CC);
     }
 
     @Nullable
@@ -54,7 +51,7 @@ public final class MailTo {
 
     @Nullable
     public String getTo() {
-        return this.mHeaders.get(f133TO);
+        return this.mHeaders.get(TO);
     }
 
     public static boolean isMailTo(@Nullable String str) {
@@ -92,9 +89,9 @@ public final class MailTo {
         }
         String to = mailTo.getTo();
         if (to != null) {
-            strDecode = C1643a.m886y(strDecode, ", ", to);
+            strDecode = a.y(strDecode, ", ", to);
         }
-        mailTo.mHeaders.put(f133TO, strDecode);
+        mailTo.mHeaders.put(TO, strDecode);
         return mailTo;
     }
 
@@ -102,10 +99,10 @@ public final class MailTo {
     public String toString() {
         StringBuilder sb = new StringBuilder(MAILTO_SCHEME);
         sb.append('?');
-        for (Map.Entry<String, String> entry : this.mHeaders.entrySet()) {
-            sb.append(Uri.encode(entry.getKey()));
+        for (Map$Entry<String, String> map$Entry : this.mHeaders.entrySet()) {
+            sb.append(Uri.encode(map$Entry.getKey()));
             sb.append('=');
-            sb.append(Uri.encode(entry.getValue()));
+            sb.append(Uri.encode(map$Entry.getValue()));
             sb.append('&');
         }
         return sb.toString();

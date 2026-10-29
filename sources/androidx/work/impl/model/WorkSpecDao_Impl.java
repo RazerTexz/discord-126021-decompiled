@@ -9,16 +9,15 @@ import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.room.util.StringUtil;
-import androidx.sqlite.p006db.SupportSQLiteStatement;
+import androidx.sqlite.db.SupportSQLiteStatement;
 import androidx.view.LiveData;
 import androidx.work.Constraints;
 import androidx.work.Data;
-import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WorkSpecDao_Impl implements WorkSpecDao {
@@ -27,9 +26,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     private final SharedSQLiteStatement __preparedStmtOfDelete;
     private final SharedSQLiteStatement __preparedStmtOfIncrementWorkSpecRunAttemptCount;
     private final SharedSQLiteStatement __preparedStmtOfMarkWorkSpecScheduled;
-
-    /* JADX INFO: renamed from: __preparedStmtOfPruneFinishedWorkWithZeroDependentsIgnoringKeepForAtLeast */
-    private final SharedSQLiteStatement f166xd91a9514;
+    private final SharedSQLiteStatement __preparedStmtOfPruneFinishedWorkWithZeroDependentsIgnoringKeepForAtLeast;
     private final SharedSQLiteStatement __preparedStmtOfResetScheduledState;
     private final SharedSQLiteStatement __preparedStmtOfResetWorkSpecRunAttemptCount;
     private final SharedSQLiteStatement __preparedStmtOfSetOutput;
@@ -37,130 +34,15 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
 
     public WorkSpecDao_Impl(RoomDatabase roomDatabase) {
         this.__db = roomDatabase;
-        this.__insertionAdapterOfWorkSpec = new EntityInsertionAdapter<WorkSpec>(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.1
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "INSERT OR IGNORE INTO `WorkSpec` (`id`,`state`,`worker_class_name`,`input_merger_class_name`,`input`,`output`,`initial_delay`,`interval_duration`,`flex_duration`,`run_attempt_count`,`backoff_policy`,`backoff_delay_duration`,`period_start_time`,`minimum_retention_duration`,`schedule_requested_at`,`run_in_foreground`,`required_network_type`,`requires_charging`,`requires_device_idle`,`requires_battery_not_low`,`requires_storage_not_low`,`trigger_content_update_delay`,`trigger_max_content_delay`,`content_uri_triggers`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            }
-
-            @Override // androidx.room.EntityInsertionAdapter
-            public void bind(SupportSQLiteStatement supportSQLiteStatement, WorkSpec workSpec) throws Throwable {
-                String str = workSpec.f163id;
-                if (str == null) {
-                    supportSQLiteStatement.bindNull(1);
-                } else {
-                    supportSQLiteStatement.bindString(1, str);
-                }
-                supportSQLiteStatement.bindLong(2, WorkTypeConverters.stateToInt(workSpec.state));
-                String str2 = workSpec.workerClassName;
-                if (str2 == null) {
-                    supportSQLiteStatement.bindNull(3);
-                } else {
-                    supportSQLiteStatement.bindString(3, str2);
-                }
-                String str3 = workSpec.inputMergerClassName;
-                if (str3 == null) {
-                    supportSQLiteStatement.bindNull(4);
-                } else {
-                    supportSQLiteStatement.bindString(4, str3);
-                }
-                byte[] byteArrayInternal = Data.toByteArrayInternal(workSpec.input);
-                if (byteArrayInternal == null) {
-                    supportSQLiteStatement.bindNull(5);
-                } else {
-                    supportSQLiteStatement.bindBlob(5, byteArrayInternal);
-                }
-                byte[] byteArrayInternal2 = Data.toByteArrayInternal(workSpec.output);
-                if (byteArrayInternal2 == null) {
-                    supportSQLiteStatement.bindNull(6);
-                } else {
-                    supportSQLiteStatement.bindBlob(6, byteArrayInternal2);
-                }
-                supportSQLiteStatement.bindLong(7, workSpec.initialDelay);
-                supportSQLiteStatement.bindLong(8, workSpec.intervalDuration);
-                supportSQLiteStatement.bindLong(9, workSpec.flexDuration);
-                supportSQLiteStatement.bindLong(10, workSpec.runAttemptCount);
-                supportSQLiteStatement.bindLong(11, WorkTypeConverters.backoffPolicyToInt(workSpec.backoffPolicy));
-                supportSQLiteStatement.bindLong(12, workSpec.backoffDelayDuration);
-                supportSQLiteStatement.bindLong(13, workSpec.periodStartTime);
-                supportSQLiteStatement.bindLong(14, workSpec.minimumRetentionDuration);
-                supportSQLiteStatement.bindLong(15, workSpec.scheduleRequestedAt);
-                supportSQLiteStatement.bindLong(16, workSpec.runInForeground ? 1L : 0L);
-                Constraints constraints = workSpec.constraints;
-                if (constraints == null) {
-                    supportSQLiteStatement.bindNull(17);
-                    supportSQLiteStatement.bindNull(18);
-                    supportSQLiteStatement.bindNull(19);
-                    supportSQLiteStatement.bindNull(20);
-                    supportSQLiteStatement.bindNull(21);
-                    supportSQLiteStatement.bindNull(22);
-                    supportSQLiteStatement.bindNull(23);
-                    supportSQLiteStatement.bindNull(24);
-                    return;
-                }
-                supportSQLiteStatement.bindLong(17, WorkTypeConverters.networkTypeToInt(constraints.getRequiredNetworkType()));
-                supportSQLiteStatement.bindLong(18, constraints.requiresCharging() ? 1L : 0L);
-                supportSQLiteStatement.bindLong(19, constraints.requiresDeviceIdle() ? 1L : 0L);
-                supportSQLiteStatement.bindLong(20, constraints.requiresBatteryNotLow() ? 1L : 0L);
-                supportSQLiteStatement.bindLong(21, constraints.requiresStorageNotLow() ? 1L : 0L);
-                supportSQLiteStatement.bindLong(22, constraints.getTriggerContentUpdateDelay());
-                supportSQLiteStatement.bindLong(23, constraints.getTriggerMaxContentDelay());
-                byte[] bArrContentUriTriggersToByteArray = WorkTypeConverters.contentUriTriggersToByteArray(constraints.getContentUriTriggers());
-                if (bArrContentUriTriggersToByteArray == null) {
-                    supportSQLiteStatement.bindNull(24);
-                } else {
-                    supportSQLiteStatement.bindBlob(24, bArrContentUriTriggersToByteArray);
-                }
-            }
-        };
-        this.__preparedStmtOfDelete = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.2
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "DELETE FROM workspec WHERE id=?";
-            }
-        };
-        this.__preparedStmtOfSetOutput = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.3
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "UPDATE workspec SET output=? WHERE id=?";
-            }
-        };
-        this.__preparedStmtOfSetPeriodStartTime = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.4
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "UPDATE workspec SET period_start_time=? WHERE id=?";
-            }
-        };
-        this.__preparedStmtOfIncrementWorkSpecRunAttemptCount = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.5
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "UPDATE workspec SET run_attempt_count=run_attempt_count+1 WHERE id=?";
-            }
-        };
-        this.__preparedStmtOfResetWorkSpecRunAttemptCount = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.6
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "UPDATE workspec SET run_attempt_count=0 WHERE id=?";
-            }
-        };
-        this.__preparedStmtOfMarkWorkSpecScheduled = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.7
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "UPDATE workspec SET schedule_requested_at=? WHERE id=?";
-            }
-        };
-        this.__preparedStmtOfResetScheduledState = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.8
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "UPDATE workspec SET schedule_requested_at=-1 WHERE state NOT IN (2, 3, 5)";
-            }
-        };
-        this.f166xd91a9514 = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkSpecDao_Impl.9
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "DELETE FROM workspec WHERE state IN (2, 3, 5) AND (SELECT COUNT(*)=0 FROM dependency WHERE     prerequisite_id=id AND     work_spec_id NOT IN         (SELECT id FROM workspec WHERE state IN (2, 3, 5)))";
-            }
-        };
+        this.__insertionAdapterOfWorkSpec = new WorkSpecDao_Impl$1(this, roomDatabase);
+        this.__preparedStmtOfDelete = new WorkSpecDao_Impl$2(this, roomDatabase);
+        this.__preparedStmtOfSetOutput = new WorkSpecDao_Impl$3(this, roomDatabase);
+        this.__preparedStmtOfSetPeriodStartTime = new WorkSpecDao_Impl$4(this, roomDatabase);
+        this.__preparedStmtOfIncrementWorkSpecRunAttemptCount = new WorkSpecDao_Impl$5(this, roomDatabase);
+        this.__preparedStmtOfResetWorkSpecRunAttemptCount = new WorkSpecDao_Impl$6(this, roomDatabase);
+        this.__preparedStmtOfMarkWorkSpecScheduled = new WorkSpecDao_Impl$7(this, roomDatabase);
+        this.__preparedStmtOfResetScheduledState = new WorkSpecDao_Impl$8(this, roomDatabase);
+        this.__preparedStmtOfPruneFinishedWorkWithZeroDependentsIgnoringKeepForAtLeast = new WorkSpecDao_Impl$9(this, roomDatabase);
     }
 
     private void __fetchRelationshipWorkProgressAsandroidxWorkData(ArrayMap<String, ArrayList<Data>> arrayMap) {
@@ -289,6 +171,18 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
             cursorQuery.close();
             throw th;
         }
+    }
+
+    public static /* synthetic */ RoomDatabase access$000(WorkSpecDao_Impl workSpecDao_Impl) {
+        return workSpecDao_Impl.__db;
+    }
+
+    public static /* synthetic */ void access$100(WorkSpecDao_Impl workSpecDao_Impl, ArrayMap arrayMap) {
+        workSpecDao_Impl.__fetchRelationshipWorkTagAsjavaLangString(arrayMap);
+    }
+
+    public static /* synthetic */ void access$200(WorkSpecDao_Impl workSpecDao_Impl, ArrayMap arrayMap) {
+        workSpecDao_Impl.__fetchRelationshipWorkProgressAsandroidxWorkData(arrayMap);
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
@@ -958,7 +852,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public WorkInfo.State getState(String str) {
+    public WorkInfo$State getState(String str) {
         RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT state FROM workspec WHERE id=?", 1);
         if (str == null) {
             roomSQLiteQueryAcquire.bindNull(1);
@@ -1112,7 +1006,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public List<WorkSpec.IdAndState> getWorkSpecIdAndStatesForName(String str) {
+    public List<WorkSpec$IdAndState> getWorkSpecIdAndStatesForName(String str) {
         RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state FROM workspec WHERE id IN (SELECT work_spec_id FROM workname WHERE name=?)", 1);
         if (str == null) {
             roomSQLiteQueryAcquire.bindNull(1);
@@ -1126,10 +1020,10 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
             int columnIndexOrThrow2 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "state");
             ArrayList arrayList = new ArrayList(cursorQuery.getCount());
             while (cursorQuery.moveToNext()) {
-                WorkSpec.IdAndState idAndState = new WorkSpec.IdAndState();
-                idAndState.f164id = cursorQuery.getString(columnIndexOrThrow);
-                idAndState.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                arrayList.add(idAndState);
+                WorkSpec$IdAndState workSpec$IdAndState = new WorkSpec$IdAndState();
+                workSpec$IdAndState.f39id = cursorQuery.getString(columnIndexOrThrow);
+                workSpec$IdAndState.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
+                arrayList.add(workSpec$IdAndState);
             }
             cursorQuery.close();
             roomSQLiteQueryAcquire.release();
@@ -1276,7 +1170,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public WorkSpec.WorkInfoPojo getWorkStatusPojoForId(String str) {
+    public WorkSpec$WorkInfoPojo getWorkStatusPojoForId(String str) {
         RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state, output, run_attempt_count FROM workspec WHERE id=?", 1);
         if (str == null) {
             roomSQLiteQueryAcquire.bindNull(1);
@@ -1286,7 +1180,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
         this.__db.assertNotSuspendingTransaction();
         this.__db.beginTransaction();
         try {
-            WorkSpec.WorkInfoPojo workInfoPojo = null;
+            WorkSpec$WorkInfoPojo workSpec$WorkInfoPojo = null;
             Cursor cursorQuery = DBUtil.query(this.__db, roomSQLiteQueryAcquire, true, null);
             try {
                 int columnIndexOrThrow = CursorUtil.getColumnIndexOrThrow(cursorQuery, ModelAuditLogEntry.CHANGE_KEY_ID);
@@ -1321,20 +1215,20 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
                     if (arrayList2 == null) {
                         arrayList2 = new ArrayList<>();
                     }
-                    WorkSpec.WorkInfoPojo workInfoPojo2 = new WorkSpec.WorkInfoPojo();
-                    workInfoPojo2.f165id = cursorQuery.getString(columnIndexOrThrow);
-                    workInfoPojo2.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                    workInfoPojo2.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
-                    workInfoPojo2.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
-                    workInfoPojo2.tags = arrayList;
-                    workInfoPojo2.progress = arrayList2;
-                    workInfoPojo = workInfoPojo2;
+                    WorkSpec$WorkInfoPojo workSpec$WorkInfoPojo2 = new WorkSpec$WorkInfoPojo();
+                    workSpec$WorkInfoPojo2.f40id = cursorQuery.getString(columnIndexOrThrow);
+                    workSpec$WorkInfoPojo2.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
+                    workSpec$WorkInfoPojo2.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
+                    workSpec$WorkInfoPojo2.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
+                    workSpec$WorkInfoPojo2.tags = arrayList;
+                    workSpec$WorkInfoPojo2.progress = arrayList2;
+                    workSpec$WorkInfoPojo = workSpec$WorkInfoPojo2;
                 }
                 this.__db.setTransactionSuccessful();
                 cursorQuery.close();
                 roomSQLiteQueryAcquire.release();
                 this.__db.endTransaction();
-                return workInfoPojo;
+                return workSpec$WorkInfoPojo;
             } catch (Throwable th) {
                 cursorQuery.close();
                 roomSQLiteQueryAcquire.release();
@@ -1347,7 +1241,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public List<WorkSpec.WorkInfoPojo> getWorkStatusPojoForIds(List<String> list) {
+    public List<WorkSpec$WorkInfoPojo> getWorkStatusPojoForIds(List<String> list) {
         StringBuilder sbNewStringBuilder = StringUtil.newStringBuilder();
         sbNewStringBuilder.append("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (");
         int size = list.size();
@@ -1401,14 +1295,14 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
                     if (arrayList3 == null) {
                         arrayList3 = new ArrayList<>();
                     }
-                    WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
-                    workInfoPojo.f165id = cursorQuery.getString(columnIndexOrThrow);
-                    workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                    workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
-                    workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
-                    workInfoPojo.tags = arrayList2;
-                    workInfoPojo.progress = arrayList3;
-                    arrayList.add(workInfoPojo);
+                    WorkSpec$WorkInfoPojo workSpec$WorkInfoPojo = new WorkSpec$WorkInfoPojo();
+                    workSpec$WorkInfoPojo.f40id = cursorQuery.getString(columnIndexOrThrow);
+                    workSpec$WorkInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
+                    workSpec$WorkInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
+                    workSpec$WorkInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
+                    workSpec$WorkInfoPojo.tags = arrayList2;
+                    workSpec$WorkInfoPojo.progress = arrayList3;
+                    arrayList.add(workSpec$WorkInfoPojo);
                 }
                 this.__db.setTransactionSuccessful();
                 cursorQuery.close();
@@ -1427,7 +1321,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public List<WorkSpec.WorkInfoPojo> getWorkStatusPojoForName(String str) {
+    public List<WorkSpec$WorkInfoPojo> getWorkStatusPojoForName(String str) {
         RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM workname WHERE name=?)", 1);
         if (str == null) {
             roomSQLiteQueryAcquire.bindNull(1);
@@ -1472,14 +1366,14 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
                     if (arrayList3 == null) {
                         arrayList3 = new ArrayList<>();
                     }
-                    WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
-                    workInfoPojo.f165id = cursorQuery.getString(columnIndexOrThrow);
-                    workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                    workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
-                    workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
-                    workInfoPojo.tags = arrayList2;
-                    workInfoPojo.progress = arrayList3;
-                    arrayList.add(workInfoPojo);
+                    WorkSpec$WorkInfoPojo workSpec$WorkInfoPojo = new WorkSpec$WorkInfoPojo();
+                    workSpec$WorkInfoPojo.f40id = cursorQuery.getString(columnIndexOrThrow);
+                    workSpec$WorkInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
+                    workSpec$WorkInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
+                    workSpec$WorkInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
+                    workSpec$WorkInfoPojo.tags = arrayList2;
+                    workSpec$WorkInfoPojo.progress = arrayList3;
+                    arrayList.add(workSpec$WorkInfoPojo);
                 }
                 this.__db.setTransactionSuccessful();
                 cursorQuery.close();
@@ -1498,7 +1392,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public List<WorkSpec.WorkInfoPojo> getWorkStatusPojoForTag(String str) {
+    public List<WorkSpec$WorkInfoPojo> getWorkStatusPojoForTag(String str) {
         RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM worktag WHERE tag=?)", 1);
         if (str == null) {
             roomSQLiteQueryAcquire.bindNull(1);
@@ -1543,14 +1437,14 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
                     if (arrayList3 == null) {
                         arrayList3 = new ArrayList<>();
                     }
-                    WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
-                    workInfoPojo.f165id = cursorQuery.getString(columnIndexOrThrow);
-                    workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                    workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
-                    workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
-                    workInfoPojo.tags = arrayList2;
-                    workInfoPojo.progress = arrayList3;
-                    arrayList.add(workInfoPojo);
+                    WorkSpec$WorkInfoPojo workSpec$WorkInfoPojo = new WorkSpec$WorkInfoPojo();
+                    workSpec$WorkInfoPojo.f40id = cursorQuery.getString(columnIndexOrThrow);
+                    workSpec$WorkInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
+                    workSpec$WorkInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
+                    workSpec$WorkInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
+                    workSpec$WorkInfoPojo.tags = arrayList2;
+                    workSpec$WorkInfoPojo.progress = arrayList3;
+                    arrayList.add(workSpec$WorkInfoPojo);
                 }
                 this.__db.setTransactionSuccessful();
                 cursorQuery.close();
@@ -1569,13 +1463,13 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public LiveData<List<WorkSpec.WorkInfoPojo>> getWorkStatusPojoLiveDataForIds(List<String> list) {
+    public LiveData<List<WorkSpec$WorkInfoPojo>> getWorkStatusPojoLiveDataForIds(List<String> list) {
         StringBuilder sbNewStringBuilder = StringUtil.newStringBuilder();
         sbNewStringBuilder.append("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (");
         int size = list.size();
         StringUtil.appendPlaceholders(sbNewStringBuilder, size);
         sbNewStringBuilder.append(")");
-        final RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire(sbNewStringBuilder.toString(), size + 0);
+        RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire(sbNewStringBuilder.toString(), size + 0);
         int i = 1;
         for (String str : list) {
             if (str == null) {
@@ -1585,230 +1479,29 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
             }
             i++;
         }
-        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress", "workspec"}, true, new Callable<List<WorkSpec.WorkInfoPojo>>() { // from class: androidx.work.impl.model.WorkSpecDao_Impl.10
-            public void finalize() {
-                roomSQLiteQueryAcquire.release();
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            @Override // java.util.concurrent.Callable
-            public List<WorkSpec.WorkInfoPojo> call() throws Exception {
-                WorkSpecDao_Impl.this.__db.beginTransaction();
-                try {
-                    Cursor cursorQuery = DBUtil.query(WorkSpecDao_Impl.this.__db, roomSQLiteQueryAcquire, true, null);
-                    try {
-                        int columnIndexOrThrow = CursorUtil.getColumnIndexOrThrow(cursorQuery, ModelAuditLogEntry.CHANGE_KEY_ID);
-                        int columnIndexOrThrow2 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "state");
-                        int columnIndexOrThrow3 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "output");
-                        int columnIndexOrThrow4 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "run_attempt_count");
-                        ArrayMap arrayMap = new ArrayMap();
-                        ArrayMap arrayMap2 = new ArrayMap();
-                        while (cursorQuery.moveToNext()) {
-                            if (!cursorQuery.isNull(columnIndexOrThrow)) {
-                                String string = cursorQuery.getString(columnIndexOrThrow);
-                                if (((ArrayList) arrayMap.get(string)) == null) {
-                                    arrayMap.put(string, new ArrayList());
-                                }
-                            }
-                            if (!cursorQuery.isNull(columnIndexOrThrow)) {
-                                String string2 = cursorQuery.getString(columnIndexOrThrow);
-                                if (((ArrayList) arrayMap2.get(string2)) == null) {
-                                    arrayMap2.put(string2, new ArrayList());
-                                }
-                            }
-                        }
-                        cursorQuery.moveToPosition(-1);
-                        WorkSpecDao_Impl.this.__fetchRelationshipWorkTagAsjavaLangString(arrayMap);
-                        WorkSpecDao_Impl.this.__fetchRelationshipWorkProgressAsandroidxWorkData(arrayMap2);
-                        ArrayList arrayList = new ArrayList(cursorQuery.getCount());
-                        while (cursorQuery.moveToNext()) {
-                            ArrayList arrayList2 = !cursorQuery.isNull(columnIndexOrThrow) ? (ArrayList) arrayMap.get(cursorQuery.getString(columnIndexOrThrow)) : null;
-                            if (arrayList2 == null) {
-                                arrayList2 = new ArrayList();
-                            }
-                            ArrayList arrayList3 = !cursorQuery.isNull(columnIndexOrThrow) ? (ArrayList) arrayMap2.get(cursorQuery.getString(columnIndexOrThrow)) : null;
-                            if (arrayList3 == null) {
-                                arrayList3 = new ArrayList();
-                            }
-                            WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
-                            workInfoPojo.f165id = cursorQuery.getString(columnIndexOrThrow);
-                            workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                            workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
-                            workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
-                            workInfoPojo.tags = arrayList2;
-                            workInfoPojo.progress = arrayList3;
-                            arrayList.add(workInfoPojo);
-                        }
-                        WorkSpecDao_Impl.this.__db.setTransactionSuccessful();
-                        cursorQuery.close();
-                        WorkSpecDao_Impl.this.__db.endTransaction();
-                        return arrayList;
-                    } catch (Throwable th) {
-                        cursorQuery.close();
-                        throw th;
-                    }
-                } catch (Throwable th2) {
-                    WorkSpecDao_Impl.this.__db.endTransaction();
-                    throw th2;
-                }
-            }
-        });
+        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress", "workspec"}, true, new WorkSpecDao_Impl$10(this, roomSQLiteQueryAcquire));
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public LiveData<List<WorkSpec.WorkInfoPojo>> getWorkStatusPojoLiveDataForName(String str) {
-        final RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM workname WHERE name=?)", 1);
+    public LiveData<List<WorkSpec$WorkInfoPojo>> getWorkStatusPojoLiveDataForName(String str) {
+        RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM workname WHERE name=?)", 1);
         if (str == null) {
             roomSQLiteQueryAcquire.bindNull(1);
         } else {
             roomSQLiteQueryAcquire.bindString(1, str);
         }
-        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress", "workspec", "workname"}, true, new Callable<List<WorkSpec.WorkInfoPojo>>() { // from class: androidx.work.impl.model.WorkSpecDao_Impl.12
-            public void finalize() {
-                roomSQLiteQueryAcquire.release();
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            @Override // java.util.concurrent.Callable
-            public List<WorkSpec.WorkInfoPojo> call() throws Exception {
-                WorkSpecDao_Impl.this.__db.beginTransaction();
-                try {
-                    Cursor cursorQuery = DBUtil.query(WorkSpecDao_Impl.this.__db, roomSQLiteQueryAcquire, true, null);
-                    try {
-                        int columnIndexOrThrow = CursorUtil.getColumnIndexOrThrow(cursorQuery, ModelAuditLogEntry.CHANGE_KEY_ID);
-                        int columnIndexOrThrow2 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "state");
-                        int columnIndexOrThrow3 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "output");
-                        int columnIndexOrThrow4 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "run_attempt_count");
-                        ArrayMap arrayMap = new ArrayMap();
-                        ArrayMap arrayMap2 = new ArrayMap();
-                        while (cursorQuery.moveToNext()) {
-                            if (!cursorQuery.isNull(columnIndexOrThrow)) {
-                                String string = cursorQuery.getString(columnIndexOrThrow);
-                                if (((ArrayList) arrayMap.get(string)) == null) {
-                                    arrayMap.put(string, new ArrayList());
-                                }
-                            }
-                            if (!cursorQuery.isNull(columnIndexOrThrow)) {
-                                String string2 = cursorQuery.getString(columnIndexOrThrow);
-                                if (((ArrayList) arrayMap2.get(string2)) == null) {
-                                    arrayMap2.put(string2, new ArrayList());
-                                }
-                            }
-                        }
-                        cursorQuery.moveToPosition(-1);
-                        WorkSpecDao_Impl.this.__fetchRelationshipWorkTagAsjavaLangString(arrayMap);
-                        WorkSpecDao_Impl.this.__fetchRelationshipWorkProgressAsandroidxWorkData(arrayMap2);
-                        ArrayList arrayList = new ArrayList(cursorQuery.getCount());
-                        while (cursorQuery.moveToNext()) {
-                            ArrayList arrayList2 = !cursorQuery.isNull(columnIndexOrThrow) ? (ArrayList) arrayMap.get(cursorQuery.getString(columnIndexOrThrow)) : null;
-                            if (arrayList2 == null) {
-                                arrayList2 = new ArrayList();
-                            }
-                            ArrayList arrayList3 = !cursorQuery.isNull(columnIndexOrThrow) ? (ArrayList) arrayMap2.get(cursorQuery.getString(columnIndexOrThrow)) : null;
-                            if (arrayList3 == null) {
-                                arrayList3 = new ArrayList();
-                            }
-                            WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
-                            workInfoPojo.f165id = cursorQuery.getString(columnIndexOrThrow);
-                            workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                            workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
-                            workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
-                            workInfoPojo.tags = arrayList2;
-                            workInfoPojo.progress = arrayList3;
-                            arrayList.add(workInfoPojo);
-                        }
-                        WorkSpecDao_Impl.this.__db.setTransactionSuccessful();
-                        cursorQuery.close();
-                        WorkSpecDao_Impl.this.__db.endTransaction();
-                        return arrayList;
-                    } catch (Throwable th) {
-                        cursorQuery.close();
-                        throw th;
-                    }
-                } catch (Throwable th2) {
-                    WorkSpecDao_Impl.this.__db.endTransaction();
-                    throw th2;
-                }
-            }
-        });
+        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress", "workspec", "workname"}, true, new WorkSpecDao_Impl$12(this, roomSQLiteQueryAcquire));
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public LiveData<List<WorkSpec.WorkInfoPojo>> getWorkStatusPojoLiveDataForTag(String str) {
-        final RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM worktag WHERE tag=?)", 1);
+    public LiveData<List<WorkSpec$WorkInfoPojo>> getWorkStatusPojoLiveDataForTag(String str) {
+        RoomSQLiteQuery roomSQLiteQueryAcquire = RoomSQLiteQuery.acquire("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM worktag WHERE tag=?)", 1);
         if (str == null) {
             roomSQLiteQueryAcquire.bindNull(1);
         } else {
             roomSQLiteQueryAcquire.bindString(1, str);
         }
-        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress", "workspec", "worktag"}, true, new Callable<List<WorkSpec.WorkInfoPojo>>() { // from class: androidx.work.impl.model.WorkSpecDao_Impl.11
-            public void finalize() {
-                roomSQLiteQueryAcquire.release();
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            @Override // java.util.concurrent.Callable
-            public List<WorkSpec.WorkInfoPojo> call() throws Exception {
-                WorkSpecDao_Impl.this.__db.beginTransaction();
-                try {
-                    Cursor cursorQuery = DBUtil.query(WorkSpecDao_Impl.this.__db, roomSQLiteQueryAcquire, true, null);
-                    try {
-                        int columnIndexOrThrow = CursorUtil.getColumnIndexOrThrow(cursorQuery, ModelAuditLogEntry.CHANGE_KEY_ID);
-                        int columnIndexOrThrow2 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "state");
-                        int columnIndexOrThrow3 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "output");
-                        int columnIndexOrThrow4 = CursorUtil.getColumnIndexOrThrow(cursorQuery, "run_attempt_count");
-                        ArrayMap arrayMap = new ArrayMap();
-                        ArrayMap arrayMap2 = new ArrayMap();
-                        while (cursorQuery.moveToNext()) {
-                            if (!cursorQuery.isNull(columnIndexOrThrow)) {
-                                String string = cursorQuery.getString(columnIndexOrThrow);
-                                if (((ArrayList) arrayMap.get(string)) == null) {
-                                    arrayMap.put(string, new ArrayList());
-                                }
-                            }
-                            if (!cursorQuery.isNull(columnIndexOrThrow)) {
-                                String string2 = cursorQuery.getString(columnIndexOrThrow);
-                                if (((ArrayList) arrayMap2.get(string2)) == null) {
-                                    arrayMap2.put(string2, new ArrayList());
-                                }
-                            }
-                        }
-                        cursorQuery.moveToPosition(-1);
-                        WorkSpecDao_Impl.this.__fetchRelationshipWorkTagAsjavaLangString(arrayMap);
-                        WorkSpecDao_Impl.this.__fetchRelationshipWorkProgressAsandroidxWorkData(arrayMap2);
-                        ArrayList arrayList = new ArrayList(cursorQuery.getCount());
-                        while (cursorQuery.moveToNext()) {
-                            ArrayList arrayList2 = !cursorQuery.isNull(columnIndexOrThrow) ? (ArrayList) arrayMap.get(cursorQuery.getString(columnIndexOrThrow)) : null;
-                            if (arrayList2 == null) {
-                                arrayList2 = new ArrayList();
-                            }
-                            ArrayList arrayList3 = !cursorQuery.isNull(columnIndexOrThrow) ? (ArrayList) arrayMap2.get(cursorQuery.getString(columnIndexOrThrow)) : null;
-                            if (arrayList3 == null) {
-                                arrayList3 = new ArrayList();
-                            }
-                            WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
-                            workInfoPojo.f165id = cursorQuery.getString(columnIndexOrThrow);
-                            workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndexOrThrow2));
-                            workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndexOrThrow3));
-                            workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndexOrThrow4);
-                            workInfoPojo.tags = arrayList2;
-                            workInfoPojo.progress = arrayList3;
-                            arrayList.add(workInfoPojo);
-                        }
-                        WorkSpecDao_Impl.this.__db.setTransactionSuccessful();
-                        cursorQuery.close();
-                        WorkSpecDao_Impl.this.__db.endTransaction();
-                        return arrayList;
-                    } catch (Throwable th) {
-                        cursorQuery.close();
-                        throw th;
-                    }
-                } catch (Throwable th2) {
-                    WorkSpecDao_Impl.this.__db.endTransaction();
-                    throw th2;
-                }
-            }
-        });
+        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress", "workspec", "worktag"}, true, new WorkSpecDao_Impl$11(this, roomSQLiteQueryAcquire));
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
@@ -1867,14 +1560,14 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     @Override // androidx.work.impl.model.WorkSpecDao
     public void pruneFinishedWorkWithZeroDependentsIgnoringKeepForAtLeast() {
         this.__db.assertNotSuspendingTransaction();
-        SupportSQLiteStatement supportSQLiteStatementAcquire = this.f166xd91a9514.acquire();
+        SupportSQLiteStatement supportSQLiteStatementAcquire = this.__preparedStmtOfPruneFinishedWorkWithZeroDependentsIgnoringKeepForAtLeast.acquire();
         this.__db.beginTransaction();
         try {
             supportSQLiteStatementAcquire.executeUpdateDelete();
             this.__db.setTransactionSuccessful();
         } finally {
             this.__db.endTransaction();
-            this.f166xd91a9514.release(supportSQLiteStatementAcquire);
+            this.__preparedStmtOfPruneFinishedWorkWithZeroDependentsIgnoringKeepForAtLeast.release(supportSQLiteStatementAcquire);
         }
     }
 
@@ -1914,7 +1607,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public void setOutput(String str, Data data) throws Throwable {
+    public void setOutput(String str, Data data) {
         this.__db.assertNotSuspendingTransaction();
         SupportSQLiteStatement supportSQLiteStatementAcquire = this.__preparedStmtOfSetOutput.acquire();
         byte[] byteArrayInternal = Data.toByteArrayInternal(data);
@@ -1959,7 +1652,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
     }
 
     @Override // androidx.work.impl.model.WorkSpecDao
-    public int setState(WorkInfo.State state, String... strArr) {
+    public int setState(WorkInfo$State workInfo$State, String... strArr) {
         this.__db.assertNotSuspendingTransaction();
         StringBuilder sbNewStringBuilder = StringUtil.newStringBuilder();
         sbNewStringBuilder.append("UPDATE workspec SET state=");
@@ -1968,7 +1661,7 @@ public final class WorkSpecDao_Impl implements WorkSpecDao {
         StringUtil.appendPlaceholders(sbNewStringBuilder, strArr.length);
         sbNewStringBuilder.append(")");
         SupportSQLiteStatement supportSQLiteStatementCompileStatement = this.__db.compileStatement(sbNewStringBuilder.toString());
-        supportSQLiteStatementCompileStatement.bindLong(1, WorkTypeConverters.stateToInt(state));
+        supportSQLiteStatementCompileStatement.bindLong(1, WorkTypeConverters.stateToInt(workInfo$State));
         int i = 2;
         for (String str : strArr) {
             if (str == null) {

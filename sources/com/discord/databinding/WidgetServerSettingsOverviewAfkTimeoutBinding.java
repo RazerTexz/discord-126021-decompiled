@@ -9,42 +9,37 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsOverviewAfkTimeoutBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f17724a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17725b;
+    public final TextView f2581b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17726c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17727d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17728e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f17729f;
+    public final TextView f;
 
     public WidgetServerSettingsOverviewAfkTimeoutBinding(@NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull TextView textView5, @NonNull TextView textView6) {
-        this.f17724a = nestedScrollView;
-        this.f17725b = textView2;
-        this.f17726c = textView3;
-        this.f17727d = textView4;
-        this.f17728e = textView5;
-        this.f17729f = textView6;
+        this.a = nestedScrollView;
+        this.f2581b = textView2;
+        this.c = textView3;
+        this.d = textView4;
+        this.e = textView5;
+        this.f = textView6;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17724a;
+        return this.a;
     }
 }

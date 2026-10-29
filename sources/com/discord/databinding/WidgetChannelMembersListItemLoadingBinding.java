@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelMembersListItemLoadingBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15859a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final Guideline f15860b;
+    public final Guideline f2260b;
 
     public WidgetChannelMembersListItemLoadingBinding(@NonNull ConstraintLayout constraintLayout, @NonNull View view, @NonNull View view2, @NonNull Guideline guideline) {
-        this.f15859a = constraintLayout;
-        this.f15860b = guideline;
+        this.a = constraintLayout;
+        this.f2260b = guideline;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15859a;
+        return this.a;
     }
 }

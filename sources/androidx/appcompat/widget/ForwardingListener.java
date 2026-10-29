@@ -3,14 +3,16 @@ package androidx.appcompat.widget;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$OnAttachStateChangeListener;
+import android.view.View$OnTouchListener;
 import android.view.ViewConfiguration;
-import android.view.ViewParent;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.view.menu.ShowableListMenu;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-public abstract class ForwardingListener implements View.OnTouchListener, View.OnAttachStateChangeListener {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+public abstract class ForwardingListener implements View$OnTouchListener, View$OnAttachStateChangeListener {
     private int mActivePointerId;
     private Runnable mDisallowIntercept;
     private boolean mForwarding;
@@ -20,29 +22,6 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
     private final int mTapTimeout;
     private Runnable mTriggerLongPress;
     private final int[] mTmpLocation = new int[2];
-
-    public class DisallowIntercept implements Runnable {
-        public DisallowIntercept() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            ViewParent parent = ForwardingListener.this.mSrc.getParent();
-            if (parent != null) {
-                parent.requestDisallowInterceptTouchEvent(true);
-            }
-        }
-    }
-
-    public class TriggerLongPress implements Runnable {
-        public TriggerLongPress() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            ForwardingListener.this.onLongPress();
-        }
-    }
 
     public ForwardingListener(View view) {
         this.mSrc = view;
@@ -98,7 +77,7 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         }
     }
 
-    @Override // android.view.View.OnTouchListener
+    @Override // android.view.View$OnTouchListener
     public boolean onTouch(View view, MotionEvent motionEvent) {
         boolean z2;
         boolean z3 = this.mForwarding;
@@ -143,11 +122,11 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         if (actionMasked == 0) {
             this.mActivePointerId = motionEvent.getPointerId(0);
             if (this.mDisallowIntercept == null) {
-                this.mDisallowIntercept = new DisallowIntercept();
+                this.mDisallowIntercept = new ForwardingListener$DisallowIntercept(this);
             }
             view.postDelayed(this.mDisallowIntercept, this.mTapTimeout);
             if (this.mTriggerLongPress == null) {
-                this.mTriggerLongPress = new TriggerLongPress();
+                this.mTriggerLongPress = new ForwardingListener$TriggerLongPress(this);
             }
             view.postDelayed(this.mTriggerLongPress, this.mLongPressTimeout);
         } else if (actionMasked == 1) {
@@ -165,11 +144,11 @@ public abstract class ForwardingListener implements View.OnTouchListener, View.O
         return false;
     }
 
-    @Override // android.view.View.OnAttachStateChangeListener
+    @Override // android.view.View$OnAttachStateChangeListener
     public void onViewAttachedToWindow(View view) {
     }
 
-    @Override // android.view.View.OnAttachStateChangeListener
+    @Override // android.view.View$OnAttachStateChangeListener
     public void onViewDetachedFromWindow(View view) {
         this.mForwarding = false;
         this.mActivePointerId = -1;

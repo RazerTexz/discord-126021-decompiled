@@ -14,37 +14,33 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsMembersBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17708a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextInputLayout f17709b;
+    public final TextInputLayout f2579b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f17710c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final Spinner f17711d;
+    public final Spinner d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final AppViewFlipper f17712e;
+    public final AppViewFlipper e;
 
     public WidgetServerSettingsMembersBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextView textView, @NonNull LinearLayout linearLayout, @NonNull TextInputLayout textInputLayout, @NonNull RecyclerView recyclerView, @NonNull Spinner spinner, @NonNull AppViewFlipper appViewFlipper) {
-        this.f17708a = coordinatorLayout;
-        this.f17709b = textInputLayout;
-        this.f17710c = recyclerView;
-        this.f17711d = spinner;
-        this.f17712e = appViewFlipper;
+        this.a = coordinatorLayout;
+        this.f2579b = textInputLayout;
+        this.c = recyclerView;
+        this.d = spinner;
+        this.e = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17708a;
+        return this.a;
     }
 }

@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackOverlayLayoutUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,7 +32,7 @@ public final /* data */ class TrackOverlayLayoutUpdated implements AnalyticsSche
             return false;
         }
         TrackOverlayLayoutUpdated trackOverlayLayoutUpdated = (TrackOverlayLayoutUpdated) other;
-        return C12238m.areEqual(this.wasResized, trackOverlayLayoutUpdated.wasResized) && C12238m.areEqual(this.wasDragged, trackOverlayLayoutUpdated.wasDragged) && C12238m.areEqual(this.widgetType, trackOverlayLayoutUpdated.widgetType) && C12238m.areEqual(this.windowWidth, trackOverlayLayoutUpdated.windowWidth) && C12238m.areEqual(this.windowHeight, trackOverlayLayoutUpdated.windowHeight) && C12238m.areEqual(this.widgetWidth, trackOverlayLayoutUpdated.widgetWidth) && C12238m.areEqual(this.widgetHeight, trackOverlayLayoutUpdated.widgetHeight) && C12238m.areEqual(this.widgetLeft, trackOverlayLayoutUpdated.widgetLeft) && C12238m.areEqual(this.widgetTop, trackOverlayLayoutUpdated.widgetTop);
+        return m.areEqual(this.wasResized, trackOverlayLayoutUpdated.wasResized) && m.areEqual(this.wasDragged, trackOverlayLayoutUpdated.wasDragged) && m.areEqual(this.widgetType, trackOverlayLayoutUpdated.widgetType) && m.areEqual(this.windowWidth, trackOverlayLayoutUpdated.windowWidth) && m.areEqual(this.windowHeight, trackOverlayLayoutUpdated.windowHeight) && m.areEqual(this.widgetWidth, trackOverlayLayoutUpdated.widgetWidth) && m.areEqual(this.widgetHeight, trackOverlayLayoutUpdated.widgetHeight) && m.areEqual(this.widgetLeft, trackOverlayLayoutUpdated.widgetLeft) && m.areEqual(this.widgetTop, trackOverlayLayoutUpdated.widgetTop);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,23 +63,23 @@ public final /* data */ class TrackOverlayLayoutUpdated implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackOverlayLayoutUpdated(wasResized=");
-        sbM833U.append(this.wasResized);
-        sbM833U.append(", wasDragged=");
-        sbM833U.append(this.wasDragged);
-        sbM833U.append(", widgetType=");
-        sbM833U.append(this.widgetType);
-        sbM833U.append(", windowWidth=");
-        sbM833U.append(this.windowWidth);
-        sbM833U.append(", windowHeight=");
-        sbM833U.append(this.windowHeight);
-        sbM833U.append(", widgetWidth=");
-        sbM833U.append(this.widgetWidth);
-        sbM833U.append(", widgetHeight=");
-        sbM833U.append(this.widgetHeight);
-        sbM833U.append(", widgetLeft=");
-        sbM833U.append(this.widgetLeft);
-        sbM833U.append(", widgetTop=");
-        return C1643a.m819G(sbM833U, this.widgetTop, ")");
+        StringBuilder sbU = a.U("TrackOverlayLayoutUpdated(wasResized=");
+        sbU.append(this.wasResized);
+        sbU.append(", wasDragged=");
+        sbU.append(this.wasDragged);
+        sbU.append(", widgetType=");
+        sbU.append(this.widgetType);
+        sbU.append(", windowWidth=");
+        sbU.append(this.windowWidth);
+        sbU.append(", windowHeight=");
+        sbU.append(this.windowHeight);
+        sbU.append(", widgetWidth=");
+        sbU.append(this.widgetWidth);
+        sbU.append(", widgetHeight=");
+        sbU.append(this.widgetHeight);
+        sbU.append(", widgetLeft=");
+        sbU.append(this.widgetLeft);
+        sbU.append(", widgetTop=");
+        return a.G(sbU, this.widgetTop, ")");
     }
 }

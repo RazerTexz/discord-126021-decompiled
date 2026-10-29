@@ -17,92 +17,77 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ForumBrowserPostViewBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final View f15080a;
+    public final View a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15081b;
+    public final TextView f2109b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeSpanTextView f15082c;
+    public final SimpleDraweeSpanTextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f15083d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f15084e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ForumPostTagView f15085f;
+    public final ForumPostTagView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final SimpleDraweeView f15086g;
+    public final SimpleDraweeView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f15087h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final LinearLayout f15088i;
+    public final LinearLayout i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final ImageView f15089j;
+    public final ImageView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final ImageView f15090k;
+    public final ImageView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final ReactionView f15091l;
+    public final ReactionView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final TextView f15092m;
+    public final TextView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TypingDots f15093n;
+    public final TypingDots n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final UserSummaryView f15094o;
+    public final UserSummaryView o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final TextView f15095p;
+    public final TextView p;
 
     public ForumBrowserPostViewBinding(@NonNull View view, @NonNull Barrier barrier, @NonNull TextView textView, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView2, @NonNull ForumPostTagView forumPostTagView, @NonNull Barrier barrier2, @NonNull SimpleDraweeView simpleDraweeView2, @NonNull TextView textView3, @NonNull LinearLayout linearLayout, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull ReactionView reactionView, @NonNull TextView textView4, @NonNull TypingDots typingDots, @NonNull UserSummaryView userSummaryView, @NonNull TextView textView5) {
-        this.f15080a = view;
-        this.f15081b = textView;
-        this.f15082c = simpleDraweeSpanTextView;
-        this.f15083d = simpleDraweeView;
-        this.f15084e = textView2;
-        this.f15085f = forumPostTagView;
-        this.f15086g = simpleDraweeView2;
-        this.f15087h = textView3;
-        this.f15088i = linearLayout;
-        this.f15089j = imageView;
-        this.f15090k = imageView2;
-        this.f15091l = reactionView;
-        this.f15092m = textView4;
-        this.f15093n = typingDots;
-        this.f15094o = userSummaryView;
-        this.f15095p = textView5;
+        this.a = view;
+        this.f2109b = textView;
+        this.c = simpleDraweeSpanTextView;
+        this.d = simpleDraweeView;
+        this.e = textView2;
+        this.f = forumPostTagView;
+        this.g = simpleDraweeView2;
+        this.h = textView3;
+        this.i = linearLayout;
+        this.j = imageView;
+        this.k = imageView2;
+        this.l = reactionView;
+        this.m = textView4;
+        this.n = typingDots;
+        this.o = userSummaryView;
+        this.p = textView5;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15080a;
+        return this.a;
     }
 }

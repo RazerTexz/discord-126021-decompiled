@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSubscriptionRemoved.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackSubscriptionRemoved implements AnalyticsSchem
             return false;
         }
         TrackSubscriptionRemoved trackSubscriptionRemoved = (TrackSubscriptionRemoved) other;
-        return C12238m.areEqual(this.subscriptionId, trackSubscriptionRemoved.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionRemoved.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionRemoved.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionRemoved.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionRemoved.paymentGateway) && C12238m.areEqual(this.removalType, trackSubscriptionRemoved.removalType);
+        return m.areEqual(this.subscriptionId, trackSubscriptionRemoved.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionRemoved.subscriptionType) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionRemoved.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionRemoved.planId) && m.areEqual(this.paymentGateway, trackSubscriptionRemoved.paymentGateway) && m.areEqual(this.removalType, trackSubscriptionRemoved.removalType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackSubscriptionRemoved implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSubscriptionRemoved(subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", subscriptionType=");
-        sbM833U.append(this.subscriptionType);
-        sbM833U.append(", paymentGatewayPlanId=");
-        sbM833U.append(this.paymentGatewayPlanId);
-        sbM833U.append(", planId=");
-        sbM833U.append(this.planId);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", removalType=");
-        return C1643a.m817E(sbM833U, this.removalType, ")");
+        StringBuilder sbU = a.U("TrackSubscriptionRemoved(subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", subscriptionType=");
+        sbU.append(this.subscriptionType);
+        sbU.append(", paymentGatewayPlanId=");
+        sbU.append(this.paymentGatewayPlanId);
+        sbU.append(", planId=");
+        sbU.append(this.planId);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", removalType=");
+        return a.E(sbU, this.removalType, ")");
     }
 }

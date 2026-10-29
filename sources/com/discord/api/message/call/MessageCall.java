@@ -1,15 +1,19 @@
 package com.discord.api.message.call;
 
+import b.d.b.a.a;
 import com.discord.api.utcdatetime.UtcDateTime;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MessageCall.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class MessageCall {
     private final UtcDateTime endedTimestamp;
     private final List<Long> participants;
+
+    public final List<Long> b() {
+        return this.participants;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -19,7 +23,7 @@ public final /* data */ class MessageCall {
             return false;
         }
         MessageCall messageCall = (MessageCall) other;
-        return C12238m.areEqual(this.participants, messageCall.participants) && C12238m.areEqual(this.endedTimestamp, messageCall.endedTimestamp);
+        return m.areEqual(this.participants, messageCall.participants) && m.areEqual(this.endedTimestamp, messageCall.endedTimestamp);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -34,17 +38,12 @@ public final /* data */ class MessageCall {
         return iHashCode + (utcDateTime != null ? utcDateTime.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<Long> m8075b() {
-        return this.participants;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MessageCall(participants=");
-        sbM833U.append(this.participants);
-        sbM833U.append(", endedTimestamp=");
-        sbM833U.append(this.endedTimestamp);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("MessageCall(participants=");
+        sbU.append(this.participants);
+        sbU.append(", endedTimestamp=");
+        sbU.append(this.endedTimestamp);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

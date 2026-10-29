@@ -1,7 +1,7 @@
 package com.discord.utilities.debug;
 
+import d0.z.d.m;
 import java.lang.ref.WeakReference;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: DebugPrintable.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -10,7 +10,7 @@ public final class DebugPrintableRef {
     private final String tag;
 
     public DebugPrintableRef(String str, DebugPrintable debugPrintable) {
-        C12238m.checkNotNullParameter(debugPrintable, "debugPrintable");
+        m.checkNotNullParameter(debugPrintable, "debugPrintable");
         this.tag = str;
         this.reference = new WeakReference<>(debugPrintable);
     }

@@ -3,29 +3,32 @@ package androidx.appcompat.view.menu;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
 import android.view.ActionProvider;
-import android.view.ContextMenu;
+import android.view.ContextMenu$ContextMenuInfo;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MenuItem$OnActionExpandListener;
+import android.view.MenuItem$OnMenuItemClickListener;
 import android.view.SubMenu;
 import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.internal.view.SupportMenuItem;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ActionMenuItem implements SupportMenuItem {
     private static final int CHECKABLE = 1;
     private static final int CHECKED = 2;
     private static final int ENABLED = 16;
     private static final int EXCLUSIVE = 4;
     private static final int HIDDEN = 8;
-    private MenuItem.OnMenuItemClickListener mClickListener;
+    private MenuItem$OnMenuItemClickListener mClickListener;
     private CharSequence mContentDescription;
     private Context mContext;
     private final int mGroup;
@@ -41,7 +44,7 @@ public class ActionMenuItem implements SupportMenuItem {
     private int mShortcutNumericModifiers = 4096;
     private int mShortcutAlphabeticModifiers = 4096;
     private ColorStateList mIconTintList = null;
-    private PorterDuff.Mode mIconTintMode = null;
+    private PorterDuff$Mode mIconTintMode = null;
     private boolean mHasIconTint = false;
     private boolean mHasIconTintMode = false;
     private int mFlags = 16;
@@ -123,7 +126,7 @@ public class ActionMenuItem implements SupportMenuItem {
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
-    public PorterDuff.Mode getIconTintMode() {
+    public PorterDuff$Mode getIconTintMode() {
         return this.mIconTintMode;
     }
 
@@ -138,7 +141,7 @@ public class ActionMenuItem implements SupportMenuItem {
     }
 
     @Override // android.view.MenuItem
-    public ContextMenu.ContextMenuInfo getMenuInfo() {
+    public ContextMenu$ContextMenuInfo getMenuInfo() {
         return null;
     }
 
@@ -189,8 +192,8 @@ public class ActionMenuItem implements SupportMenuItem {
     }
 
     public boolean invoke() {
-        MenuItem.OnMenuItemClickListener onMenuItemClickListener = this.mClickListener;
-        if (onMenuItemClickListener != null && onMenuItemClickListener.onMenuItemClick(this)) {
+        MenuItem$OnMenuItemClickListener menuItem$OnMenuItemClickListener = this.mClickListener;
+        if (menuItem$OnMenuItemClickListener != null && menuItem$OnMenuItemClickListener.onMenuItemClick(this)) {
             return true;
         }
         Intent intent = this.mIntent;
@@ -241,6 +244,11 @@ public class ActionMenuItem implements SupportMenuItem {
         throw new UnsupportedOperationException();
     }
 
+    @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
+    public /* bridge */ /* synthetic */ MenuItem setActionView(int i) {
+        return setActionView(i);
+    }
+
     @Override // android.view.MenuItem
     public MenuItem setAlphabeticShortcut(char c) {
         this.mShortcutAlphabeticChar = Character.toLowerCase(c);
@@ -257,6 +265,11 @@ public class ActionMenuItem implements SupportMenuItem {
     public MenuItem setChecked(boolean z2) {
         this.mFlags = (z2 ? 2 : 0) | (this.mFlags & (-3));
         return this;
+    }
+
+    @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
+    public /* bridge */ /* synthetic */ MenuItem setContentDescription(CharSequence charSequence) {
+        return setContentDescription(charSequence);
     }
 
     @Override // android.view.MenuItem
@@ -286,8 +299,8 @@ public class ActionMenuItem implements SupportMenuItem {
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
-    public MenuItem setIconTintMode(PorterDuff.Mode mode) {
-        this.mIconTintMode = mode;
+    public MenuItem setIconTintMode(PorterDuff$Mode porterDuff$Mode) {
+        this.mIconTintMode = porterDuff$Mode;
         this.mHasIconTintMode = true;
         applyIconTint();
         return this;
@@ -306,13 +319,13 @@ public class ActionMenuItem implements SupportMenuItem {
     }
 
     @Override // android.view.MenuItem
-    public MenuItem setOnActionExpandListener(MenuItem.OnActionExpandListener onActionExpandListener) {
+    public MenuItem setOnActionExpandListener(MenuItem$OnActionExpandListener menuItem$OnActionExpandListener) {
         throw new UnsupportedOperationException();
     }
 
     @Override // android.view.MenuItem
-    public MenuItem setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
-        this.mClickListener = onMenuItemClickListener;
+    public MenuItem setOnMenuItemClickListener(MenuItem$OnMenuItemClickListener menuItem$OnMenuItemClickListener) {
+        this.mClickListener = menuItem$OnMenuItemClickListener;
         return this;
     }
 
@@ -325,6 +338,11 @@ public class ActionMenuItem implements SupportMenuItem {
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
     public void setShowAsAction(int i) {
+    }
+
+    @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
+    public /* bridge */ /* synthetic */ MenuItem setShowAsActionFlags(int i) {
+        return setShowAsActionFlags(i);
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem
@@ -344,10 +362,20 @@ public class ActionMenuItem implements SupportMenuItem {
         return this;
     }
 
+    @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
+    public /* bridge */ /* synthetic */ MenuItem setTooltipText(CharSequence charSequence) {
+        return setTooltipText(charSequence);
+    }
+
     @Override // android.view.MenuItem
     public MenuItem setVisible(boolean z2) {
         this.mFlags = (this.mFlags & 8) | (z2 ? 0 : 8);
         return this;
+    }
+
+    @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem
+    public /* bridge */ /* synthetic */ MenuItem setActionView(View view) {
+        return setActionView(view);
     }
 
     @Override // androidx.core.internal.view.SupportMenuItem, android.view.MenuItem

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAppFirstLaunched.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public final /* data */ class TrackAppFirstLaunched implements AnalyticsSchema, 
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackAppFirstLaunched) && C12238m.areEqual(this.platform, ((TrackAppFirstLaunched) other).platform);
+            return (other instanceof TrackAppFirstLaunched) && m.areEqual(this.platform, ((TrackAppFirstLaunched) other).platform);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackAppFirstLaunched implements AnalyticsSchema, 
     }
 
     public String toString() {
-        return C1643a.m817E(C1643a.m833U("TrackAppFirstLaunched(platform="), this.platform, ")");
+        return a.E(a.U("TrackAppFirstLaunched(platform="), this.platform, ")");
     }
 }

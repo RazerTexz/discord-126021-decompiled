@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ThreadBrowserItemHeaderBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15308a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15309b;
+    public final TextView f2158b;
 
     public ThreadBrowserItemHeaderBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextView textView) {
-        this.f15308a = constraintLayout;
-        this.f15309b = textView;
+        this.a = constraintLayout;
+        this.f2158b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15308a;
+        return this.a;
     }
 }

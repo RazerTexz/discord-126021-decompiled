@@ -24,14 +24,26 @@ public class PathProperty<T> extends Property<T, Float> {
         this.mPathLength = pathMeasure.getLength();
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // android.util.Property
+    public /* bridge */ /* synthetic */ Float get(Object obj) {
+        return get(obj);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    @Override // android.util.Property
+    public /* bridge */ /* synthetic */ void set(Object obj, Float f) {
+        set2(obj, f);
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // android.util.Property
     public Float get(T t) {
         return Float.valueOf(this.mCurrentFraction);
     }
 
-    @Override // android.util.Property
-    public void set(T t, Float f) {
+    /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+    public void set2(T t, Float f) {
         this.mCurrentFraction = f.floatValue();
         this.mPathMeasure.getPosTan(f.floatValue() * this.mPathLength, this.mPosition, null);
         PointF pointF = this.mPointF;

@@ -2,13 +2,13 @@ package com.discord.widgets.playstation;
 
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.stores.StoreExperiments;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: PlaystationExperimentUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class PlaystationExperimentUtilsKt {
     public static final boolean canSeePlaystationAccountIntegration(StoreExperiments storeExperiments) {
-        C12238m.checkNotNullParameter(storeExperiments, "experimentStore");
+        m.checkNotNullParameter(storeExperiments, "experimentStore");
         Integer experimentBucket = getExperimentBucket(storeExperiments);
         if (experimentBucket != null && experimentBucket.intValue() == 1) {
             return true;
@@ -17,7 +17,7 @@ public final class PlaystationExperimentUtilsKt {
     }
 
     public static final boolean canSeePlaystationUpsells(StoreExperiments storeExperiments) {
-        C12238m.checkNotNullParameter(storeExperiments, "experimentStore");
+        m.checkNotNullParameter(storeExperiments, "experimentStore");
         Integer experimentBucket = getExperimentBucket(storeExperiments);
         return experimentBucket != null && experimentBucket.intValue() == 1;
     }

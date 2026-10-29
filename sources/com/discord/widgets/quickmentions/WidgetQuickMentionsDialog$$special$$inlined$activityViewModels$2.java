@@ -1,14 +1,14 @@
 package com.discord.widgets.quickmentions;
 
 import androidx.fragment.app.Fragment;
-import androidx.view.ViewModelProvider;
+import androidx.view.ViewModelProvider$Factory;
+import b.d.b.a.a;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetQuickMentionsDialog$$special$$inlined$activityViewModels$2 extends AbstractC12240o implements Function0<ViewModelProvider.Factory> {
+public final class WidgetQuickMentionsDialog$$special$$inlined$activityViewModels$2 extends o implements Function0<ViewModelProvider$Factory> {
     public final /* synthetic */ Fragment $this_activityViewModels;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -19,7 +19,12 @@ public final class WidgetQuickMentionsDialog$$special$$inlined$activityViewModel
 
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final ViewModelProvider.Factory invoke() {
-        return C1643a.m848e0(this.$this_activityViewModels, "requireActivity()");
+    public final ViewModelProvider$Factory invoke() {
+        return a.e0(this.$this_activityViewModels, "requireActivity()");
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ ViewModelProvider$Factory invoke() {
+        return invoke();
     }
 }

@@ -3,6 +3,7 @@ package androidx.view;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class Lifecycling {
     private static final int GENERATED_CALLBACK = 2;
     private static final int REFLECTIVE_CALLBACK = 1;
@@ -66,13 +67,7 @@ public class Lifecycling {
     @NonNull
     @Deprecated
     public static GenericLifecycleObserver getCallback(Object obj) {
-        final LifecycleEventObserver lifecycleEventObserver = lifecycleEventObserver(obj);
-        return new GenericLifecycleObserver() { // from class: androidx.lifecycle.Lifecycling.1
-            @Override // androidx.view.LifecycleEventObserver
-            public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-                lifecycleEventObserver.onStateChanged(lifecycleOwner, event);
-            }
-        };
+        return new Lifecycling$1(lifecycleEventObserver(obj));
     }
 
     private static int getObserverConstructorType(Class<?> cls) {

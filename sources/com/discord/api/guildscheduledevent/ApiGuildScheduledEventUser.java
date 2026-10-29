@@ -1,9 +1,9 @@
 package com.discord.api.guildscheduledevent;
 
+import b.d.b.a.a;
 import com.discord.api.guildmember.GuildMember;
 import com.discord.api.user.User;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ApiGuildScheduledEventUser.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,6 +11,15 @@ public final /* data */ class ApiGuildScheduledEventUser {
     private final long guildScheduledEventId;
     private final ApiGuildScheduledEventUserGuildMember member;
     private final User user;
+
+    public final GuildMember a(long guildId) {
+        ApiGuildScheduledEventUserGuildMember apiGuildScheduledEventUserGuildMember;
+        User user = this.user;
+        if (user == null || (apiGuildScheduledEventUserGuildMember = this.member) == null) {
+            return null;
+        }
+        return apiGuildScheduledEventUserGuildMember.a(user, guildId);
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -20,7 +29,7 @@ public final /* data */ class ApiGuildScheduledEventUser {
             return false;
         }
         ApiGuildScheduledEventUser apiGuildScheduledEventUser = (ApiGuildScheduledEventUser) other;
-        return C12238m.areEqual(this.user, apiGuildScheduledEventUser.user) && C12238m.areEqual(this.member, apiGuildScheduledEventUser.member) && this.guildScheduledEventId == apiGuildScheduledEventUser.guildScheduledEventId;
+        return m.areEqual(this.user, apiGuildScheduledEventUser.user) && m.areEqual(this.member, apiGuildScheduledEventUser.member) && this.guildScheduledEventId == apiGuildScheduledEventUser.guildScheduledEventId;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -42,22 +51,12 @@ public final /* data */ class ApiGuildScheduledEventUser {
         return iHashCode2 + ((int) (j ^ (j >>> 32)));
     }
 
-    /* JADX INFO: renamed from: a */
-    public final GuildMember m7967a(long guildId) {
-        ApiGuildScheduledEventUserGuildMember apiGuildScheduledEventUserGuildMember;
-        User user = this.user;
-        if (user == null || (apiGuildScheduledEventUserGuildMember = this.member) == null) {
-            return null;
-        }
-        return apiGuildScheduledEventUserGuildMember.m7970a(user, guildId);
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApiGuildScheduledEventUser(user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", member=");
-        sbM833U.append(this.member);
-        sbM833U.append(", guildScheduledEventId=");
-        return C1643a.m815C(sbM833U, this.guildScheduledEventId, ")");
+        StringBuilder sbU = a.U("ApiGuildScheduledEventUser(user=");
+        sbU.append(this.user);
+        sbU.append(", member=");
+        sbU.append(this.member);
+        sbU.append(", guildScheduledEventId=");
+        return a.C(sbU, this.guildScheduledEventId, ")");
     }
 }

@@ -9,22 +9,21 @@ import com.discord.views.calls.StageCallSpeakerView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStageChannelSpeakerBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f18158a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final StageCallSpeakerView f18159b;
+    public final StageCallSpeakerView f2654b;
 
     public WidgetStageChannelSpeakerBinding(@NonNull ConstraintLayout constraintLayout, @NonNull StageCallSpeakerView stageCallSpeakerView) {
-        this.f18158a = constraintLayout;
-        this.f18159b = stageCallSpeakerView;
+        this.a = constraintLayout;
+        this.f2654b = stageCallSpeakerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18158a;
+        return this.a;
     }
 }

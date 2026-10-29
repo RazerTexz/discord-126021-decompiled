@@ -4,7 +4,7 @@ import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.pm.PackageManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class AccessibilityServiceInfoCompat {
@@ -39,27 +39,27 @@ public final class AccessibilityServiceInfoCompat {
 
     @NonNull
     public static String feedbackTypeToString(int i) {
-        StringBuilder sbM833U = C1643a.m833U("[");
+        StringBuilder sbU = a.U("[");
         while (i > 0) {
             int iNumberOfTrailingZeros = 1 << Integer.numberOfTrailingZeros(i);
             i &= ~iNumberOfTrailingZeros;
-            if (sbM833U.length() > 1) {
-                sbM833U.append(", ");
+            if (sbU.length() > 1) {
+                sbU.append(", ");
             }
             if (iNumberOfTrailingZeros == 1) {
-                sbM833U.append("FEEDBACK_SPOKEN");
+                sbU.append("FEEDBACK_SPOKEN");
             } else if (iNumberOfTrailingZeros == 2) {
-                sbM833U.append("FEEDBACK_HAPTIC");
+                sbU.append("FEEDBACK_HAPTIC");
             } else if (iNumberOfTrailingZeros == 4) {
-                sbM833U.append("FEEDBACK_AUDIBLE");
+                sbU.append("FEEDBACK_AUDIBLE");
             } else if (iNumberOfTrailingZeros == 8) {
-                sbM833U.append("FEEDBACK_VISUAL");
+                sbU.append("FEEDBACK_VISUAL");
             } else if (iNumberOfTrailingZeros == 16) {
-                sbM833U.append("FEEDBACK_GENERIC");
+                sbU.append("FEEDBACK_GENERIC");
             }
         }
-        sbM833U.append("]");
-        return sbM833U.toString();
+        sbU.append("]");
+        return sbU.toString();
     }
 
     @Nullable

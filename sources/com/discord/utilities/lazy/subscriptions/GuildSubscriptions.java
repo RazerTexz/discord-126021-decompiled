@@ -1,14 +1,14 @@
 package com.discord.utilities.lazy.subscriptions;
 
+import b.d.b.a.a;
+import d0.g;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.ranges.IntRange;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildSubscriptions.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -35,7 +35,7 @@ public final /* data */ class GuildSubscriptions {
         this.members = set;
         this.threads = bool3;
         this.threadMemberLists = list;
-        this.serializedRanges = C12083g.lazy(new GuildSubscriptions$serializedRanges$2(this));
+        this.serializedRanges = g.lazy(new GuildSubscriptions$serializedRanges$2(this));
     }
 
     public final Map<Long, List<IntRange>> component1() {
@@ -89,7 +89,7 @@ public final /* data */ class GuildSubscriptions {
             return false;
         }
         GuildSubscriptions guildSubscriptions = (GuildSubscriptions) other;
-        return C12238m.areEqual(this.channels, guildSubscriptions.channels) && C12238m.areEqual(this.typing, guildSubscriptions.typing) && C12238m.areEqual(this.activities, guildSubscriptions.activities) && C12238m.areEqual(this.members, guildSubscriptions.members) && C12238m.areEqual(this.threads, guildSubscriptions.threads) && C12238m.areEqual(this.threadMemberLists, guildSubscriptions.threadMemberLists);
+        return m.areEqual(this.channels, guildSubscriptions.channels) && m.areEqual(this.typing, guildSubscriptions.typing) && m.areEqual(this.activities, guildSubscriptions.activities) && m.areEqual(this.members, guildSubscriptions.members) && m.areEqual(this.threads, guildSubscriptions.threads) && m.areEqual(this.threadMemberLists, guildSubscriptions.threadMemberLists);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -151,18 +151,18 @@ public final /* data */ class GuildSubscriptions {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildSubscriptions(channels=");
-        sbM833U.append(this.channels);
-        sbM833U.append(", typing=");
-        sbM833U.append(this.typing);
-        sbM833U.append(", activities=");
-        sbM833U.append(this.activities);
-        sbM833U.append(", members=");
-        sbM833U.append(this.members);
-        sbM833U.append(", threads=");
-        sbM833U.append(this.threads);
-        sbM833U.append(", threadMemberLists=");
-        return C1643a.m824L(sbM833U, this.threadMemberLists, ")");
+        StringBuilder sbU = a.U("GuildSubscriptions(channels=");
+        sbU.append(this.channels);
+        sbU.append(", typing=");
+        sbU.append(this.typing);
+        sbU.append(", activities=");
+        sbU.append(this.activities);
+        sbU.append(", members=");
+        sbU.append(this.members);
+        sbU.append(", threads=");
+        sbU.append(this.threads);
+        sbU.append(", threadMemberLists=");
+        return a.L(sbU, this.threadMemberLists, ")");
     }
 
     public /* synthetic */ GuildSubscriptions(Map map, Boolean bool, Boolean bool2, Set set, Boolean bool3, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {

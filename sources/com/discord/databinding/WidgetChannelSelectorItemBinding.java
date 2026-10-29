@@ -8,22 +8,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelSelectorItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final TextView f15893a;
+    public final TextView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15894b;
+    public final TextView f2268b;
 
     public WidgetChannelSelectorItemBinding(@NonNull TextView textView, @NonNull TextView textView2) {
-        this.f15893a = textView;
-        this.f15894b = textView2;
+        this.a = textView;
+        this.f2268b = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15893a;
+        return this.a;
     }
 }

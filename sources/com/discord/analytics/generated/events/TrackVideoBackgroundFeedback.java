@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVideoBackgroundFeedback.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -37,7 +37,7 @@ public final /* data */ class TrackVideoBackgroundFeedback implements AnalyticsS
             return false;
         }
         TrackVideoBackgroundFeedback trackVideoBackgroundFeedback = (TrackVideoBackgroundFeedback) other;
-        return C12238m.areEqual(this.reason, trackVideoBackgroundFeedback.reason) && C12238m.areEqual(this.rating, trackVideoBackgroundFeedback.rating) && C12238m.areEqual(this.feedback, trackVideoBackgroundFeedback.feedback) && C12238m.areEqual(this.guildId, trackVideoBackgroundFeedback.guildId) && C12238m.areEqual(this.channelId, trackVideoBackgroundFeedback.channelId) && C12238m.areEqual(this.channelType, trackVideoBackgroundFeedback.channelType) && C12238m.areEqual(this.mediaSessionId, trackVideoBackgroundFeedback.mediaSessionId) && C12238m.areEqual(this.rtcConnectionId, trackVideoBackgroundFeedback.rtcConnectionId) && C12238m.areEqual(this.duration, trackVideoBackgroundFeedback.duration) && C12238m.areEqual(this.videoDeviceName, trackVideoBackgroundFeedback.videoDeviceName) && C12238m.areEqual(this.videoEnabled, trackVideoBackgroundFeedback.videoEnabled) && C12238m.areEqual(this.videoHardwareScalingEnabled, trackVideoBackgroundFeedback.videoHardwareScalingEnabled) && C12238m.areEqual(this.videoStreamCount, trackVideoBackgroundFeedback.videoStreamCount) && C12238m.areEqual(this.voiceStateCount, trackVideoBackgroundFeedback.voiceStateCount) && C12238m.areEqual(this.videoEffectType, trackVideoBackgroundFeedback.videoEffectType) && C12238m.areEqual(this.videoEffectDetail, trackVideoBackgroundFeedback.videoEffectDetail);
+        return m.areEqual(this.reason, trackVideoBackgroundFeedback.reason) && m.areEqual(this.rating, trackVideoBackgroundFeedback.rating) && m.areEqual(this.feedback, trackVideoBackgroundFeedback.feedback) && m.areEqual(this.guildId, trackVideoBackgroundFeedback.guildId) && m.areEqual(this.channelId, trackVideoBackgroundFeedback.channelId) && m.areEqual(this.channelType, trackVideoBackgroundFeedback.channelType) && m.areEqual(this.mediaSessionId, trackVideoBackgroundFeedback.mediaSessionId) && m.areEqual(this.rtcConnectionId, trackVideoBackgroundFeedback.rtcConnectionId) && m.areEqual(this.duration, trackVideoBackgroundFeedback.duration) && m.areEqual(this.videoDeviceName, trackVideoBackgroundFeedback.videoDeviceName) && m.areEqual(this.videoEnabled, trackVideoBackgroundFeedback.videoEnabled) && m.areEqual(this.videoHardwareScalingEnabled, trackVideoBackgroundFeedback.videoHardwareScalingEnabled) && m.areEqual(this.videoStreamCount, trackVideoBackgroundFeedback.videoStreamCount) && m.areEqual(this.voiceStateCount, trackVideoBackgroundFeedback.voiceStateCount) && m.areEqual(this.videoEffectType, trackVideoBackgroundFeedback.videoEffectType) && m.areEqual(this.videoEffectDetail, trackVideoBackgroundFeedback.videoEffectDetail);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -82,37 +82,37 @@ public final /* data */ class TrackVideoBackgroundFeedback implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVideoBackgroundFeedback(reason=");
-        sbM833U.append(this.reason);
-        sbM833U.append(", rating=");
-        sbM833U.append(this.rating);
-        sbM833U.append(", feedback=");
-        sbM833U.append(this.feedback);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", duration=");
-        sbM833U.append(this.duration);
-        sbM833U.append(", videoDeviceName=");
-        sbM833U.append(this.videoDeviceName);
-        sbM833U.append(", videoEnabled=");
-        sbM833U.append(this.videoEnabled);
-        sbM833U.append(", videoHardwareScalingEnabled=");
-        sbM833U.append(this.videoHardwareScalingEnabled);
-        sbM833U.append(", videoStreamCount=");
-        sbM833U.append(this.videoStreamCount);
-        sbM833U.append(", voiceStateCount=");
-        sbM833U.append(this.voiceStateCount);
-        sbM833U.append(", videoEffectType=");
-        sbM833U.append(this.videoEffectType);
-        sbM833U.append(", videoEffectDetail=");
-        return C1643a.m817E(sbM833U, this.videoEffectDetail, ")");
+        StringBuilder sbU = a.U("TrackVideoBackgroundFeedback(reason=");
+        sbU.append(this.reason);
+        sbU.append(", rating=");
+        sbU.append(this.rating);
+        sbU.append(", feedback=");
+        sbU.append(this.feedback);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", duration=");
+        sbU.append(this.duration);
+        sbU.append(", videoDeviceName=");
+        sbU.append(this.videoDeviceName);
+        sbU.append(", videoEnabled=");
+        sbU.append(this.videoEnabled);
+        sbU.append(", videoHardwareScalingEnabled=");
+        sbU.append(this.videoHardwareScalingEnabled);
+        sbU.append(", videoStreamCount=");
+        sbU.append(this.videoStreamCount);
+        sbU.append(", voiceStateCount=");
+        sbU.append(this.voiceStateCount);
+        sbU.append(", videoEffectType=");
+        sbU.append(this.videoEffectType);
+        sbU.append(", videoEffectDetail=");
+        return a.E(sbU, this.videoEffectDetail, ")");
     }
 }

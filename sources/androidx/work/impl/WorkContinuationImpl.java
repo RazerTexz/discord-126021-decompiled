@@ -4,11 +4,13 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
 import androidx.work.ArrayCreatingInputMerger;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.Logger;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.OneTimeWorkRequest$Builder;
 import androidx.work.Operation;
 import androidx.work.WorkContinuation;
 import androidx.work.WorkInfo;
@@ -16,16 +18,16 @@ import androidx.work.WorkRequest;
 import androidx.work.impl.utils.EnqueueRunnable;
 import androidx.work.impl.utils.StatusRunnable;
 import androidx.work.impl.workers.CombineContinuationsWorker;
+import b.i.b.d.a.a;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class WorkContinuationImpl extends WorkContinuation {
     private final List<String> mAllIds;
     private boolean mEnqueued;
@@ -45,7 +47,7 @@ public class WorkContinuationImpl extends WorkContinuation {
     @Override // androidx.work.WorkContinuation
     @NonNull
     public WorkContinuation combineInternal(@NonNull List<WorkContinuation> list) {
-        OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest.Builder(CombineContinuationsWorker.class).setInputMerger(ArrayCreatingInputMerger.class).build();
+        OneTimeWorkRequest oneTimeWorkRequestBuild = new OneTimeWorkRequest$Builder(CombineContinuationsWorker.class).setInputMerger(ArrayCreatingInputMerger.class).build();
         ArrayList arrayList = new ArrayList(list.size());
         Iterator<WorkContinuation> it = list.iterator();
         while (it.hasNext()) {
@@ -96,7 +98,7 @@ public class WorkContinuationImpl extends WorkContinuation {
 
     @Override // androidx.work.WorkContinuation
     @NonNull
-    public InterfaceFutureC4539a<List<WorkInfo>> getWorkInfos() {
+    public a<List<WorkInfo>> getWorkInfos() {
         StatusRunnable<List<WorkInfo>> statusRunnableForStringIds = StatusRunnable.forStringIds(this.mWorkManagerImpl, this.mAllIds);
         this.mWorkManagerImpl.getWorkTaskExecutor().executeOnBackgroundThread(statusRunnableForStringIds);
         return statusRunnableForStringIds.getFuture();
@@ -113,7 +115,7 @@ public class WorkContinuationImpl extends WorkContinuation {
         return this.mWorkManagerImpl;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public boolean hasCycles() {
         return hasCycles(this, new HashSet());
     }
@@ -126,7 +128,7 @@ public class WorkContinuationImpl extends WorkContinuation {
         this.mEnqueued = true;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public static Set<String> prerequisitesFor(WorkContinuationImpl workContinuationImpl) {
         HashSet hashSet = new HashSet();
         List<WorkContinuationImpl> parents = workContinuationImpl.getParents();
@@ -149,7 +151,7 @@ public class WorkContinuationImpl extends WorkContinuation {
         this(workManagerImpl, str, existingWorkPolicy, list, null);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     private static boolean hasCycles(@NonNull WorkContinuationImpl workContinuationImpl, @NonNull Set<String> set) {
         set.addAll(workContinuationImpl.getIds());
         Set<String> setPrerequisitesFor = prerequisitesFor(workContinuationImpl);

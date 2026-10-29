@@ -6,7 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import com.discord.C5419R;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.databinding.WidgetStageChannelAudienceBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.user.User;
@@ -14,8 +15,8 @@ import com.discord.utilities.drawable.DrawableCompat;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.views.CutoutView;
 import com.facebook.drawee.view.SimpleDraweeView;
+import d0.z.d.m;
 import org.objectweb.asm.Opcodes;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StageCallViewHolder.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,24 +25,24 @@ public final class AudienceViewHolder extends StageCallViewHolder {
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AudienceViewHolder(StageCallAdapter stageCallAdapter) {
-        super(C5419R.layout.widget_stage_channel_audience, stageCallAdapter, null);
-        C12238m.checkNotNullParameter(stageCallAdapter, "adapter");
+        super(R$layout.widget_stage_channel_audience, stageCallAdapter, null);
+        m.checkNotNullParameter(stageCallAdapter, "adapter");
         View view = this.itemView;
         ConstraintLayout constraintLayout = (ConstraintLayout) view;
-        int i = C5419R.id.stage_channel_audience_member_icon;
-        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(C5419R.id.stage_channel_audience_member_icon);
+        int i = R$id.stage_channel_audience_member_icon;
+        SimpleDraweeView simpleDraweeView = (SimpleDraweeView) view.findViewById(R$id.stage_channel_audience_member_icon);
         if (simpleDraweeView != null) {
-            i = C5419R.id.stage_channel_audience_member_icon_container;
-            CutoutView cutoutView = (CutoutView) view.findViewById(C5419R.id.stage_channel_audience_member_icon_container);
+            i = R$id.stage_channel_audience_member_icon_container;
+            CutoutView cutoutView = (CutoutView) view.findViewById(R$id.stage_channel_audience_member_icon_container);
             if (cutoutView != null) {
-                i = C5419R.id.stage_channel_audience_member_name;
-                TextView textView = (TextView) view.findViewById(C5419R.id.stage_channel_audience_member_name);
+                i = R$id.stage_channel_audience_member_name;
+                TextView textView = (TextView) view.findViewById(R$id.stage_channel_audience_member_name);
                 if (textView != null) {
-                    i = C5419R.id.stage_channel_audience_member_raised_hand;
-                    ImageView imageView = (ImageView) view.findViewById(C5419R.id.stage_channel_audience_member_raised_hand);
+                    i = R$id.stage_channel_audience_member_raised_hand;
+                    ImageView imageView = (ImageView) view.findViewById(R$id.stage_channel_audience_member_raised_hand);
                     if (imageView != null) {
                         WidgetStageChannelAudienceBinding widgetStageChannelAudienceBinding = new WidgetStageChannelAudienceBinding((ConstraintLayout) view, constraintLayout, simpleDraweeView, cutoutView, textView, imageView);
-                        C12238m.checkNotNullExpressionValue(widgetStageChannelAudienceBinding, "WidgetStageChannelAudienceBinding.bind(itemView)");
+                        m.checkNotNullExpressionValue(widgetStageChannelAudienceBinding, "WidgetStageChannelAudienceBinding.bind(itemView)");
                         this.binding = widgetStageChannelAudienceBinding;
                         return;
                     }
@@ -52,29 +53,34 @@ public final class AudienceViewHolder extends StageCallViewHolder {
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public void onConfigure(int position, StageCallItem data) {
+    public /* bridge */ /* synthetic */ void onConfigure(int i, StageCallItem stageCallItem) {
+        onConfigure2(i, stageCallItem);
+    }
+
+    /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+    public void onConfigure2(int position, StageCallItem data) {
         Drawable drawable;
-        C12238m.checkNotNullParameter(data, "data");
+        m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
-        StageCallItem.AudienceItem audienceItem = (StageCallItem.AudienceItem) data;
-        this.binding.f18134c.setCutoutEnabled(audienceItem.getVoiceUser().getIsRequestingToSpeak());
-        ImageView imageView = this.binding.f18136e;
-        imageView.setVisibility(audienceItem.getVoiceUser().getIsRequestingToSpeak() ? 0 : 8);
-        imageView.setActivated(audienceItem.getVoiceUser().getIsInvitedToSpeak());
-        TextView textView = this.binding.f18135d;
-        textView.setText(audienceItem.getVoiceUser().getDisplayName());
-        if (audienceItem.isBlocked()) {
-            drawable = ContextCompat.getDrawable(textView.getContext(), C5419R.drawable.ic_blocked_12dp);
+        StageCallItem$AudienceItem stageCallItem$AudienceItem = (StageCallItem$AudienceItem) data;
+        this.binding.c.setCutoutEnabled(stageCallItem$AudienceItem.getVoiceUser().getIsRequestingToSpeak());
+        ImageView imageView = this.binding.e;
+        imageView.setVisibility(stageCallItem$AudienceItem.getVoiceUser().getIsRequestingToSpeak() ? 0 : 8);
+        imageView.setActivated(stageCallItem$AudienceItem.getVoiceUser().getIsInvitedToSpeak());
+        TextView textView = this.binding.d;
+        textView.setText(stageCallItem$AudienceItem.getVoiceUser().getDisplayName());
+        if (stageCallItem$AudienceItem.isBlocked()) {
+            drawable = ContextCompat.getDrawable(textView.getContext(), 2131231578);
             if (drawable != null) {
-                drawable.setTint(ContextCompat.getColor(textView.getContext(), C5419R.color.status_red_500));
+                drawable.setTint(ContextCompat.getColor(textView.getContext(), 2131100382));
             }
         } else {
             drawable = null;
         }
-        DrawableCompat.setCompoundDrawablesCompat$default(textView, drawable, (Drawable) null, audienceItem.getVoiceUser().isBooster() ? ContextCompat.getDrawable(textView.getContext(), C5419R.drawable.ic_boosted_badge_12dp) : null, (Drawable) null, 10, (Object) null);
-        User user = audienceItem.getVoiceUser().getUser();
-        SimpleDraweeView simpleDraweeView = this.binding.f18133b;
-        C12238m.checkNotNullExpressionValue(simpleDraweeView, "binding.stageChannelAudienceMemberIcon");
-        IconUtils.setIcon$default(simpleDraweeView, user.getUsername(), Long.valueOf(user.getId()), user.getAvatar(), Integer.valueOf(user.getDiscriminator()), C5419R.dimen.avatar_size_large, null, null, audienceItem.getVoiceUser().getGuildMember(), Opcodes.CHECKCAST, null);
+        DrawableCompat.setCompoundDrawablesCompat$default(textView, drawable, (Drawable) null, stageCallItem$AudienceItem.getVoiceUser().isBooster() ? ContextCompat.getDrawable(textView.getContext(), 2131231581) : null, (Drawable) null, 10, (Object) null);
+        User user = stageCallItem$AudienceItem.getVoiceUser().getUser();
+        SimpleDraweeView simpleDraweeView = this.binding.f2649b;
+        m.checkNotNullExpressionValue(simpleDraweeView, "binding.stageChannelAudienceMemberIcon");
+        IconUtils.setIcon$default(simpleDraweeView, user.getUsername(), Long.valueOf(user.getId()), user.getAvatar(), Integer.valueOf(user.getDiscriminator()), 2131165293, null, null, stageCallItem$AudienceItem.getVoiceUser().getGuildMember(), Opcodes.CHECKCAST, null);
     }
 }

@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalPurchaseStepCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackActivityInternalPurchaseStepCompleted impleme
             return false;
         }
         TrackActivityInternalPurchaseStepCompleted trackActivityInternalPurchaseStepCompleted = (TrackActivityInternalPurchaseStepCompleted) other;
-        return C12238m.areEqual(this.step, trackActivityInternalPurchaseStepCompleted.step) && C12238m.areEqual(this.nextStep, trackActivityInternalPurchaseStepCompleted.nextStep) && C12238m.areEqual(this.purchaseType, trackActivityInternalPurchaseStepCompleted.purchaseType) && C12238m.areEqual(this.purchaseName, trackActivityInternalPurchaseStepCompleted.purchaseName) && C12238m.areEqual(this.skuId, trackActivityInternalPurchaseStepCompleted.skuId) && C12238m.areEqual(this.activityDurationMs, trackActivityInternalPurchaseStepCompleted.activityDurationMs) && C12238m.areEqual(this.success, trackActivityInternalPurchaseStepCompleted.success);
+        return m.areEqual(this.step, trackActivityInternalPurchaseStepCompleted.step) && m.areEqual(this.nextStep, trackActivityInternalPurchaseStepCompleted.nextStep) && m.areEqual(this.purchaseType, trackActivityInternalPurchaseStepCompleted.purchaseType) && m.areEqual(this.purchaseName, trackActivityInternalPurchaseStepCompleted.purchaseName) && m.areEqual(this.skuId, trackActivityInternalPurchaseStepCompleted.skuId) && m.areEqual(this.activityDurationMs, trackActivityInternalPurchaseStepCompleted.activityDurationMs) && m.areEqual(this.success, trackActivityInternalPurchaseStepCompleted.success);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,19 +57,19 @@ public final /* data */ class TrackActivityInternalPurchaseStepCompleted impleme
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalPurchaseStepCompleted(step=");
-        sbM833U.append(this.step);
-        sbM833U.append(", nextStep=");
-        sbM833U.append(this.nextStep);
-        sbM833U.append(", purchaseType=");
-        sbM833U.append(this.purchaseType);
-        sbM833U.append(", purchaseName=");
-        sbM833U.append(this.purchaseName);
-        sbM833U.append(", skuId=");
-        sbM833U.append(this.skuId);
-        sbM833U.append(", activityDurationMs=");
-        sbM833U.append(this.activityDurationMs);
-        sbM833U.append(", success=");
-        return C1643a.m816D(sbM833U, this.success, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalPurchaseStepCompleted(step=");
+        sbU.append(this.step);
+        sbU.append(", nextStep=");
+        sbU.append(this.nextStep);
+        sbU.append(", purchaseType=");
+        sbU.append(this.purchaseType);
+        sbU.append(", purchaseName=");
+        sbU.append(this.purchaseName);
+        sbU.append(", skuId=");
+        sbU.append(this.skuId);
+        sbU.append(", activityDurationMs=");
+        sbU.append(this.activityDurationMs);
+        sbU.append(", success=");
+        return a.D(sbU, this.success, ")");
     }
 }

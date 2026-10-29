@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackRoleSubscriptionListingDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,6 +19,11 @@ public final /* data */ class TrackRoleSubscriptionListingDeleted implements Ana
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_subscription_listing_deleted";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -27,7 +32,7 @@ public final /* data */ class TrackRoleSubscriptionListingDeleted implements Ana
             return false;
         }
         TrackRoleSubscriptionListingDeleted trackRoleSubscriptionListingDeleted = (TrackRoleSubscriptionListingDeleted) other;
-        return C12238m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingDeleted.roleSubscriptionListingId) && C12238m.areEqual(this.name, trackRoleSubscriptionListingDeleted.name) && C12238m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingDeleted.roleSubscriptionGroupListingId);
+        return m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingDeleted.roleSubscriptionListingId) && m.areEqual(this.name, trackRoleSubscriptionListingDeleted.name) && m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingDeleted.roleSubscriptionGroupListingId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,18 +56,12 @@ public final /* data */ class TrackRoleSubscriptionListingDeleted implements Ana
         return iHashCode2 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRoleSubscriptionListingDeleted(roleSubscriptionListingId=");
-        sbM833U.append(this.roleSubscriptionListingId);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", roleSubscriptionGroupListingId=");
-        return C1643a.m819G(sbM833U, this.roleSubscriptionGroupListingId, ")");
+        StringBuilder sbU = a.U("TrackRoleSubscriptionListingDeleted(roleSubscriptionListingId=");
+        sbU.append(this.roleSubscriptionListingId);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", roleSubscriptionGroupListingId=");
+        return a.G(sbU, this.roleSubscriptionGroupListingId, ")");
     }
 }

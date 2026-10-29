@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Statistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -39,8 +39,8 @@ public final /* data */ class InboundRtpAudio {
     private final String type;
 
     public InboundRtpAudio(String str, long j, StatsCodec statsCodec, long j2, long j3, long j4, float f, boolean z2, long j5, long j6, long j7, long j8, int i, int i2, int i3, int i4, int i5, Long l, Long l2, Long l3, Long l4, Long l5, Long l6, Long l7, PlayoutMetric playoutMetric, PlayoutMetric playoutMetric2, PlayoutMetric playoutMetric3, PlayoutMetric playoutMetric4, PlayoutMetric playoutMetric5, PlayoutMetric playoutMetric6) {
-        C12238m.checkNotNullParameter(str, "type");
-        C12238m.checkNotNullParameter(statsCodec, "codec");
+        m.checkNotNullParameter(str, "type");
+        m.checkNotNullParameter(statsCodec, "codec");
         this.type = str;
         this.ssrc = j;
         this.codec = statsCodec;
@@ -73,9 +73,13 @@ public final /* data */ class InboundRtpAudio {
         this.relativePlayoutDelay = playoutMetric6;
     }
 
+    public static /* synthetic */ InboundRtpAudio copy$default(InboundRtpAudio inboundRtpAudio, String str, long j, StatsCodec statsCodec, long j2, long j3, long j4, float f, boolean z2, long j5, long j6, long j7, long j8, int i, int i2, int i3, int i4, int i5, Long l, Long l2, Long l3, Long l4, Long l5, Long l6, Long l7, PlayoutMetric playoutMetric, PlayoutMetric playoutMetric2, PlayoutMetric playoutMetric3, PlayoutMetric playoutMetric4, PlayoutMetric playoutMetric5, PlayoutMetric playoutMetric6, int i6, Object obj) {
+        return inboundRtpAudio.copy((i6 & 1) != 0 ? inboundRtpAudio.type : str, (i6 & 2) != 0 ? inboundRtpAudio.ssrc : j, (i6 & 4) != 0 ? inboundRtpAudio.codec : statsCodec, (i6 & 8) != 0 ? inboundRtpAudio.bytesReceived : j2, (i6 & 16) != 0 ? inboundRtpAudio.packetsReceived : j3, (i6 & 32) != 0 ? inboundRtpAudio.packetsLost : j4, (i6 & 64) != 0 ? inboundRtpAudio.audioLevel : f, (i6 & 128) != 0 ? inboundRtpAudio.audioDetected : z2, (i6 & 256) != 0 ? inboundRtpAudio.jitter : j5, (i6 & 512) != 0 ? inboundRtpAudio.jitterBuffer : j6, (i6 & 1024) != 0 ? inboundRtpAudio.jitterBufferPreferred : j7, (i6 & 2048) != 0 ? inboundRtpAudio.delayEstimate : j8, (i6 & 4096) != 0 ? inboundRtpAudio.decodingCNG : i, (i6 & 8192) != 0 ? inboundRtpAudio.decodingMutedOutput : i2, (i6 & 16384) != 0 ? inboundRtpAudio.decodingNormal : i3, (i6 & 32768) != 0 ? inboundRtpAudio.decodingPLC : i4, (i6 & 65536) != 0 ? inboundRtpAudio.decodingPLCCNG : i5, (i6 & 131072) != 0 ? inboundRtpAudio.opSilence : l, (i6 & 262144) != 0 ? inboundRtpAudio.opNormal : l2, (i6 & 524288) != 0 ? inboundRtpAudio.opMerge : l3, (i6 & 1048576) != 0 ? inboundRtpAudio.opExpand : l4, (i6 & 2097152) != 0 ? inboundRtpAudio.opAccelerate : l5, (i6 & 4194304) != 0 ? inboundRtpAudio.opPreemptiveExpand : l6, (i6 & 8388608) != 0 ? inboundRtpAudio.opCNG : l7, (i6 & 16777216) != 0 ? inboundRtpAudio.audioJitterBuffer : playoutMetric, (i6 & 33554432) != 0 ? inboundRtpAudio.audioJitterDelay : playoutMetric2, (i6 & 67108864) != 0 ? inboundRtpAudio.audioJitterTarget : playoutMetric3, (i6 & 134217728) != 0 ? inboundRtpAudio.audioPlayoutUnderruns : playoutMetric4, (i6 & 268435456) != 0 ? inboundRtpAudio.relativeReceptionDelay : playoutMetric5, (i6 & 536870912) != 0 ? inboundRtpAudio.relativePlayoutDelay : playoutMetric6);
+    }
+
     public final InboundRtpAudio copy(String type, long ssrc, StatsCodec codec, long bytesReceived, long packetsReceived, long packetsLost, float audioLevel, boolean audioDetected, long jitter, long jitterBuffer, long jitterBufferPreferred, long delayEstimate, int decodingCNG, int decodingMutedOutput, int decodingNormal, int decodingPLC, int decodingPLCCNG, Long opSilence, Long opNormal, Long opMerge, Long opExpand, Long opAccelerate, Long opPreemptiveExpand, Long opCNG, PlayoutMetric audioJitterBuffer, PlayoutMetric audioJitterDelay, PlayoutMetric audioJitterTarget, PlayoutMetric audioPlayoutUnderruns, PlayoutMetric relativeReceptionDelay, PlayoutMetric relativePlayoutDelay) {
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(codec, "codec");
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(codec, "codec");
         return new InboundRtpAudio(type, ssrc, codec, bytesReceived, packetsReceived, packetsLost, audioLevel, audioDetected, jitter, jitterBuffer, jitterBufferPreferred, delayEstimate, decodingCNG, decodingMutedOutput, decodingNormal, decodingPLC, decodingPLCCNG, opSilence, opNormal, opMerge, opExpand, opAccelerate, opPreemptiveExpand, opCNG, audioJitterBuffer, audioJitterDelay, audioJitterTarget, audioPlayoutUnderruns, relativeReceptionDelay, relativePlayoutDelay);
     }
 
@@ -87,7 +91,7 @@ public final /* data */ class InboundRtpAudio {
             return false;
         }
         InboundRtpAudio inboundRtpAudio = (InboundRtpAudio) other;
-        return C12238m.areEqual(this.type, inboundRtpAudio.type) && this.ssrc == inboundRtpAudio.ssrc && C12238m.areEqual(this.codec, inboundRtpAudio.codec) && this.bytesReceived == inboundRtpAudio.bytesReceived && this.packetsReceived == inboundRtpAudio.packetsReceived && this.packetsLost == inboundRtpAudio.packetsLost && Float.compare(this.audioLevel, inboundRtpAudio.audioLevel) == 0 && this.audioDetected == inboundRtpAudio.audioDetected && this.jitter == inboundRtpAudio.jitter && this.jitterBuffer == inboundRtpAudio.jitterBuffer && this.jitterBufferPreferred == inboundRtpAudio.jitterBufferPreferred && this.delayEstimate == inboundRtpAudio.delayEstimate && this.decodingCNG == inboundRtpAudio.decodingCNG && this.decodingMutedOutput == inboundRtpAudio.decodingMutedOutput && this.decodingNormal == inboundRtpAudio.decodingNormal && this.decodingPLC == inboundRtpAudio.decodingPLC && this.decodingPLCCNG == inboundRtpAudio.decodingPLCCNG && C12238m.areEqual(this.opSilence, inboundRtpAudio.opSilence) && C12238m.areEqual(this.opNormal, inboundRtpAudio.opNormal) && C12238m.areEqual(this.opMerge, inboundRtpAudio.opMerge) && C12238m.areEqual(this.opExpand, inboundRtpAudio.opExpand) && C12238m.areEqual(this.opAccelerate, inboundRtpAudio.opAccelerate) && C12238m.areEqual(this.opPreemptiveExpand, inboundRtpAudio.opPreemptiveExpand) && C12238m.areEqual(this.opCNG, inboundRtpAudio.opCNG) && C12238m.areEqual(this.audioJitterBuffer, inboundRtpAudio.audioJitterBuffer) && C12238m.areEqual(this.audioJitterDelay, inboundRtpAudio.audioJitterDelay) && C12238m.areEqual(this.audioJitterTarget, inboundRtpAudio.audioJitterTarget) && C12238m.areEqual(this.audioPlayoutUnderruns, inboundRtpAudio.audioPlayoutUnderruns) && C12238m.areEqual(this.relativeReceptionDelay, inboundRtpAudio.relativeReceptionDelay) && C12238m.areEqual(this.relativePlayoutDelay, inboundRtpAudio.relativePlayoutDelay);
+        return m.areEqual(this.type, inboundRtpAudio.type) && this.ssrc == inboundRtpAudio.ssrc && m.areEqual(this.codec, inboundRtpAudio.codec) && this.bytesReceived == inboundRtpAudio.bytesReceived && this.packetsReceived == inboundRtpAudio.packetsReceived && this.packetsLost == inboundRtpAudio.packetsLost && Float.compare(this.audioLevel, inboundRtpAudio.audioLevel) == 0 && this.audioDetected == inboundRtpAudio.audioDetected && this.jitter == inboundRtpAudio.jitter && this.jitterBuffer == inboundRtpAudio.jitterBuffer && this.jitterBufferPreferred == inboundRtpAudio.jitterBufferPreferred && this.delayEstimate == inboundRtpAudio.delayEstimate && this.decodingCNG == inboundRtpAudio.decodingCNG && this.decodingMutedOutput == inboundRtpAudio.decodingMutedOutput && this.decodingNormal == inboundRtpAudio.decodingNormal && this.decodingPLC == inboundRtpAudio.decodingPLC && this.decodingPLCCNG == inboundRtpAudio.decodingPLCCNG && m.areEqual(this.opSilence, inboundRtpAudio.opSilence) && m.areEqual(this.opNormal, inboundRtpAudio.opNormal) && m.areEqual(this.opMerge, inboundRtpAudio.opMerge) && m.areEqual(this.opExpand, inboundRtpAudio.opExpand) && m.areEqual(this.opAccelerate, inboundRtpAudio.opAccelerate) && m.areEqual(this.opPreemptiveExpand, inboundRtpAudio.opPreemptiveExpand) && m.areEqual(this.opCNG, inboundRtpAudio.opCNG) && m.areEqual(this.audioJitterBuffer, inboundRtpAudio.audioJitterBuffer) && m.areEqual(this.audioJitterDelay, inboundRtpAudio.audioJitterDelay) && m.areEqual(this.audioJitterTarget, inboundRtpAudio.audioJitterTarget) && m.areEqual(this.audioPlayoutUnderruns, inboundRtpAudio.audioPlayoutUnderruns) && m.areEqual(this.relativeReceptionDelay, inboundRtpAudio.relativeReceptionDelay) && m.areEqual(this.relativePlayoutDelay, inboundRtpAudio.relativePlayoutDelay);
     }
 
     /* JADX INFO: renamed from: component8, reason: from getter */
@@ -367,17 +371,17 @@ public final /* data */ class InboundRtpAudio {
     /* JADX WARN: Type inference failed for: r2v14, types: [int] */
     public int hashCode() {
         String str = this.type;
-        int iM3a = (C0002b.m3a(this.ssrc) + ((str != null ? str.hashCode() : 0) * 31)) * 31;
+        int iA = (b.a(this.ssrc) + ((str != null ? str.hashCode() : 0) * 31)) * 31;
         StatsCodec statsCodec = this.codec;
-        int iFloatToIntBits = (Float.floatToIntBits(this.audioLevel) + ((C0002b.m3a(this.packetsLost) + ((C0002b.m3a(this.packetsReceived) + ((C0002b.m3a(this.bytesReceived) + ((iM3a + (statsCodec != null ? statsCodec.hashCode() : 0)) * 31)) * 31)) * 31)) * 31)) * 31;
+        int iFloatToIntBits = (Float.floatToIntBits(this.audioLevel) + ((b.a(this.packetsLost) + ((b.a(this.packetsReceived) + ((b.a(this.bytesReceived) + ((iA + (statsCodec != null ? statsCodec.hashCode() : 0)) * 31)) * 31)) * 31)) * 31)) * 31;
         boolean z2 = this.audioDetected;
         ?? r0 = z2;
         if (z2) {
             r0 = 1;
         }
-        int iM3a2 = (((((((((((C0002b.m3a(this.delayEstimate) + ((C0002b.m3a(this.jitterBufferPreferred) + ((C0002b.m3a(this.jitterBuffer) + ((C0002b.m3a(this.jitter) + ((iFloatToIntBits + r0) * 31)) * 31)) * 31)) * 31)) * 31) + this.decodingCNG) * 31) + this.decodingMutedOutput) * 31) + this.decodingNormal) * 31) + this.decodingPLC) * 31) + this.decodingPLCCNG) * 31;
+        int iA2 = (((((((((((b.a(this.delayEstimate) + ((b.a(this.jitterBufferPreferred) + ((b.a(this.jitterBuffer) + ((b.a(this.jitter) + ((iFloatToIntBits + r0) * 31)) * 31)) * 31)) * 31)) * 31) + this.decodingCNG) * 31) + this.decodingMutedOutput) * 31) + this.decodingNormal) * 31) + this.decodingPLC) * 31) + this.decodingPLCCNG) * 31;
         Long l = this.opSilence;
-        int iHashCode = (iM3a2 + (l != null ? l.hashCode() : 0)) * 31;
+        int iHashCode = (iA2 + (l != null ? l.hashCode() : 0)) * 31;
         Long l2 = this.opNormal;
         int iHashCode2 = (iHashCode + (l2 != null ? l2.hashCode() : 0)) * 31;
         Long l3 = this.opMerge;
@@ -405,67 +409,67 @@ public final /* data */ class InboundRtpAudio {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InboundRtpAudio(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", ssrc=");
-        sbM833U.append(this.ssrc);
-        sbM833U.append(", codec=");
-        sbM833U.append(this.codec);
-        sbM833U.append(", bytesReceived=");
-        sbM833U.append(this.bytesReceived);
-        sbM833U.append(", packetsReceived=");
-        sbM833U.append(this.packetsReceived);
-        sbM833U.append(", packetsLost=");
-        sbM833U.append(this.packetsLost);
-        sbM833U.append(", audioLevel=");
-        sbM833U.append(this.audioLevel);
-        sbM833U.append(", audioDetected=");
-        sbM833U.append(this.audioDetected);
-        sbM833U.append(", jitter=");
-        sbM833U.append(this.jitter);
-        sbM833U.append(", jitterBuffer=");
-        sbM833U.append(this.jitterBuffer);
-        sbM833U.append(", jitterBufferPreferred=");
-        sbM833U.append(this.jitterBufferPreferred);
-        sbM833U.append(", delayEstimate=");
-        sbM833U.append(this.delayEstimate);
-        sbM833U.append(", decodingCNG=");
-        sbM833U.append(this.decodingCNG);
-        sbM833U.append(", decodingMutedOutput=");
-        sbM833U.append(this.decodingMutedOutput);
-        sbM833U.append(", decodingNormal=");
-        sbM833U.append(this.decodingNormal);
-        sbM833U.append(", decodingPLC=");
-        sbM833U.append(this.decodingPLC);
-        sbM833U.append(", decodingPLCCNG=");
-        sbM833U.append(this.decodingPLCCNG);
-        sbM833U.append(", opSilence=");
-        sbM833U.append(this.opSilence);
-        sbM833U.append(", opNormal=");
-        sbM833U.append(this.opNormal);
-        sbM833U.append(", opMerge=");
-        sbM833U.append(this.opMerge);
-        sbM833U.append(", opExpand=");
-        sbM833U.append(this.opExpand);
-        sbM833U.append(", opAccelerate=");
-        sbM833U.append(this.opAccelerate);
-        sbM833U.append(", opPreemptiveExpand=");
-        sbM833U.append(this.opPreemptiveExpand);
-        sbM833U.append(", opCNG=");
-        sbM833U.append(this.opCNG);
-        sbM833U.append(", audioJitterBuffer=");
-        sbM833U.append(this.audioJitterBuffer);
-        sbM833U.append(", audioJitterDelay=");
-        sbM833U.append(this.audioJitterDelay);
-        sbM833U.append(", audioJitterTarget=");
-        sbM833U.append(this.audioJitterTarget);
-        sbM833U.append(", audioPlayoutUnderruns=");
-        sbM833U.append(this.audioPlayoutUnderruns);
-        sbM833U.append(", relativeReceptionDelay=");
-        sbM833U.append(this.relativeReceptionDelay);
-        sbM833U.append(", relativePlayoutDelay=");
-        sbM833U.append(this.relativePlayoutDelay);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("InboundRtpAudio(type=");
+        sbU.append(this.type);
+        sbU.append(", ssrc=");
+        sbU.append(this.ssrc);
+        sbU.append(", codec=");
+        sbU.append(this.codec);
+        sbU.append(", bytesReceived=");
+        sbU.append(this.bytesReceived);
+        sbU.append(", packetsReceived=");
+        sbU.append(this.packetsReceived);
+        sbU.append(", packetsLost=");
+        sbU.append(this.packetsLost);
+        sbU.append(", audioLevel=");
+        sbU.append(this.audioLevel);
+        sbU.append(", audioDetected=");
+        sbU.append(this.audioDetected);
+        sbU.append(", jitter=");
+        sbU.append(this.jitter);
+        sbU.append(", jitterBuffer=");
+        sbU.append(this.jitterBuffer);
+        sbU.append(", jitterBufferPreferred=");
+        sbU.append(this.jitterBufferPreferred);
+        sbU.append(", delayEstimate=");
+        sbU.append(this.delayEstimate);
+        sbU.append(", decodingCNG=");
+        sbU.append(this.decodingCNG);
+        sbU.append(", decodingMutedOutput=");
+        sbU.append(this.decodingMutedOutput);
+        sbU.append(", decodingNormal=");
+        sbU.append(this.decodingNormal);
+        sbU.append(", decodingPLC=");
+        sbU.append(this.decodingPLC);
+        sbU.append(", decodingPLCCNG=");
+        sbU.append(this.decodingPLCCNG);
+        sbU.append(", opSilence=");
+        sbU.append(this.opSilence);
+        sbU.append(", opNormal=");
+        sbU.append(this.opNormal);
+        sbU.append(", opMerge=");
+        sbU.append(this.opMerge);
+        sbU.append(", opExpand=");
+        sbU.append(this.opExpand);
+        sbU.append(", opAccelerate=");
+        sbU.append(this.opAccelerate);
+        sbU.append(", opPreemptiveExpand=");
+        sbU.append(this.opPreemptiveExpand);
+        sbU.append(", opCNG=");
+        sbU.append(this.opCNG);
+        sbU.append(", audioJitterBuffer=");
+        sbU.append(this.audioJitterBuffer);
+        sbU.append(", audioJitterDelay=");
+        sbU.append(this.audioJitterDelay);
+        sbU.append(", audioJitterTarget=");
+        sbU.append(this.audioJitterTarget);
+        sbU.append(", audioPlayoutUnderruns=");
+        sbU.append(this.audioPlayoutUnderruns);
+        sbU.append(", relativeReceptionDelay=");
+        sbU.append(this.relativeReceptionDelay);
+        sbU.append(", relativePlayoutDelay=");
+        sbU.append(this.relativePlayoutDelay);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

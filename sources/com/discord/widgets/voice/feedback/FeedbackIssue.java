@@ -1,35 +1,34 @@
 package com.discord.widgets.voice.feedback;
 
-import com.discord.C5419R;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
 
 /* JADX INFO: compiled from: FeedbackIssue.kt */
 /* JADX INFO: loaded from: classes.dex */
 public enum FeedbackIssue implements MGRecyclerDataPayload {
-    OTHER(C5419R.string.call_feedback_option_other),
-    COULD_NOT_HEAR_AUDIO(C5419R.string.call_feedback_option_could_not_hear_audio),
-    NOBODY_COULD_HEAR_ME(C5419R.string.call_feedback_option_nobody_could_hear_me),
-    AUDIO_ECHOS(C5419R.string.call_feedback_option_audio_echos),
-    AUDIO_ROBOTIC(C5419R.string.call_feedback_option_audio_robotic),
-    AUDIO_CUT_IN_AND_OUT(C5419R.string.call_feedback_option_audio_cut),
-    VOLUME_TOO_LOW_OR_HIGH(C5419R.string.call_feedback_option_bad_volume),
-    BACKGROUND_NOISE_TOO_LOUD(C5419R.string.call_feedback_option_background_noise),
-    SPEAKERPHONE_ISSUE(C5419R.string.call_feedback_option_speakerphone),
-    HEADSET_OR_BLUETOOTH_ISSUE(C5419R.string.call_feedback_option_headset),
-    STREAM_REPORT_ENDED_BLACK(C5419R.string.stream_report_ended_black),
-    STREAM_REPORT_ENDED_BLURRY(C5419R.string.stream_report_ended_blurry),
-    STREAM_REPORT_ENDED_LAGGING(C5419R.string.stream_report_ended_lagging),
-    STREAM_REPORT_ENDED_OUT_OF_SYNC(C5419R.string.stream_report_ended_out_of_sync),
-    STREAM_REPORT_ENDED_AUDIO_MISSING(C5419R.string.stream_report_ended_audio_missing),
-    STREAM_REPORT_ENDED_AUDIO_POOR(C5419R.string.stream_report_ended_audio_poor),
-    STREAM_REPORT_ENDED_STREAM_STOPPED_UNEXPECTEDLY(C5419R.string.stream_report_ended_stream_stopped_unexpectedly),
-    GUILD_DELETE_TOO_HARD(C5419R.string.guild_delete_feedback_too_hard),
-    GUILD_DELETE_TEST(C5419R.string.guild_delete_feedback_test),
-    GUILD_DELETE_ACCIDENT(C5419R.string.guild_delete_feedback_accident),
-    GUILD_DELETE_TEMPLATE(C5419R.string.guild_delete_feedback_template),
-    GUILD_DELETE_LONELY(C5419R.string.guild_delete_feedback_lonely),
-    GUILD_DELETE_INACTIVE(C5419R.string.guild_delete_feedback_inactive),
-    GUILD_DELETE_OTHER(C5419R.string.guild_delete_feedback_other);
+    OTHER(2131887374),
+    COULD_NOT_HEAR_AUDIO(2131887371),
+    NOBODY_COULD_HEAR_ME(2131887373),
+    AUDIO_ECHOS(2131887367),
+    AUDIO_ROBOTIC(2131887368),
+    AUDIO_CUT_IN_AND_OUT(2131887366),
+    VOLUME_TOO_LOW_OR_HIGH(2131887370),
+    BACKGROUND_NOISE_TOO_LOUD(2131887369),
+    SPEAKERPHONE_ISSUE(2131887375),
+    HEADSET_OR_BLUETOOTH_ISSUE(2131887372),
+    STREAM_REPORT_ENDED_BLACK(2131896057),
+    STREAM_REPORT_ENDED_BLURRY(2131896058),
+    STREAM_REPORT_ENDED_LAGGING(2131896059),
+    STREAM_REPORT_ENDED_OUT_OF_SYNC(2131896060),
+    STREAM_REPORT_ENDED_AUDIO_MISSING(2131896055),
+    STREAM_REPORT_ENDED_AUDIO_POOR(2131896056),
+    STREAM_REPORT_ENDED_STREAM_STOPPED_UNEXPECTEDLY(2131896061),
+    GUILD_DELETE_TOO_HARD(2131890011),
+    GUILD_DELETE_TEST(2131890010),
+    GUILD_DELETE_ACCIDENT(2131890002),
+    GUILD_DELETE_TEMPLATE(2131890009),
+    GUILD_DELETE_LONELY(2131890006),
+    GUILD_DELETE_INACTIVE(2131890005),
+    GUILD_DELETE_OTHER(2131890007);
 
     private final int reasonStringRes;
     private final int type;

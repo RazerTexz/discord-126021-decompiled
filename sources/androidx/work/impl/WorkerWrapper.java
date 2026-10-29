@@ -1,19 +1,24 @@
 package androidx.work.impl;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.work.Configuration;
 import androidx.work.Data;
 import androidx.work.InputMerger;
 import androidx.work.ListenableWorker;
+import androidx.work.ListenableWorker$Result;
+import androidx.work.ListenableWorker$Result$Failure;
+import androidx.work.ListenableWorker$Result$Retry;
+import androidx.work.ListenableWorker$Result$Success;
 import androidx.work.Logger;
-import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import androidx.work.WorkerParameters;
+import androidx.work.WorkerParameters$RuntimeExtras;
 import androidx.work.impl.background.systemalarm.RescheduleReceiver;
 import androidx.work.impl.foreground.ForegroundProcessor;
 import androidx.work.impl.model.DependencyDao;
@@ -25,24 +30,22 @@ import androidx.work.impl.utils.WorkForegroundUpdater;
 import androidx.work.impl.utils.WorkProgressUpdater;
 import androidx.work.impl.utils.futures.SettableFuture;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
+import b.i.b.d.a.a;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class WorkerWrapper implements Runnable {
     public Context mAppContext;
     private Configuration mConfiguration;
     private DependencyDao mDependencyDao;
     private ForegroundProcessor mForegroundProcessor;
     private volatile boolean mInterrupted;
-    private WorkerParameters.RuntimeExtras mRuntimeExtras;
+    private WorkerParameters$RuntimeExtras mRuntimeExtras;
     private List<Scheduler> mSchedulers;
     private List<String> mTags;
     private WorkDatabase mWorkDatabase;
@@ -56,24 +59,24 @@ public class WorkerWrapper implements Runnable {
     public static final String TAG = Logger.tagWithPrefix("WorkerWrapper");
 
     @NonNull
-    public ListenableWorker.Result mResult = ListenableWorker.Result.failure();
+    public ListenableWorker$Result mResult = ListenableWorker$Result.failure();
 
     @NonNull
     public SettableFuture<Boolean> mFuture = SettableFuture.create();
 
     @Nullable
-    public InterfaceFutureC4539a<ListenableWorker.Result> mInnerFuture = null;
+    public a<ListenableWorker$Result> mInnerFuture = null;
 
-    public WorkerWrapper(@NonNull Builder builder) {
-        this.mAppContext = builder.mAppContext;
-        this.mWorkTaskExecutor = builder.mWorkTaskExecutor;
-        this.mForegroundProcessor = builder.mForegroundProcessor;
-        this.mWorkSpecId = builder.mWorkSpecId;
-        this.mSchedulers = builder.mSchedulers;
-        this.mRuntimeExtras = builder.mRuntimeExtras;
-        this.mWorker = builder.mWorker;
-        this.mConfiguration = builder.mConfiguration;
-        WorkDatabase workDatabase = builder.mWorkDatabase;
+    public WorkerWrapper(@NonNull WorkerWrapper$Builder workerWrapper$Builder) {
+        this.mAppContext = workerWrapper$Builder.mAppContext;
+        this.mWorkTaskExecutor = workerWrapper$Builder.mWorkTaskExecutor;
+        this.mForegroundProcessor = workerWrapper$Builder.mForegroundProcessor;
+        this.mWorkSpecId = workerWrapper$Builder.mWorkSpecId;
+        this.mSchedulers = workerWrapper$Builder.mSchedulers;
+        this.mRuntimeExtras = workerWrapper$Builder.mRuntimeExtras;
+        this.mWorker = workerWrapper$Builder.mWorker;
+        this.mConfiguration = workerWrapper$Builder.mConfiguration;
+        WorkDatabase workDatabase = workerWrapper$Builder.mWorkDatabase;
         this.mWorkDatabase = workDatabase;
         this.mWorkSpecDao = workDatabase.workSpecDao();
         this.mDependencyDao = this.mWorkDatabase.dependencyDao();
@@ -98,12 +101,12 @@ public class WorkerWrapper implements Runnable {
     }
 
     @NonNull
-    public InterfaceFutureC4539a<Boolean> getFuture() {
+    public a<Boolean> getFuture() {
         return this.mFuture;
     }
 
-    private void handleResult(ListenableWorker.Result result) {
-        if (result instanceof ListenableWorker.Result.Success) {
+    private void handleResult(ListenableWorker$Result listenableWorker$Result) {
+        if (listenableWorker$Result instanceof ListenableWorker$Result$Success) {
             Logger.get().info(TAG, String.format("Worker result SUCCESS for %s", this.mWorkDescription), new Throwable[0]);
             if (this.mWorkSpec.isPeriodic()) {
                 resetPeriodicAndResolve();
@@ -113,7 +116,7 @@ public class WorkerWrapper implements Runnable {
                 return;
             }
         }
-        if (result instanceof ListenableWorker.Result.Retry) {
+        if (listenableWorker$Result instanceof ListenableWorker$Result$Retry) {
             Logger.get().info(TAG, String.format("Worker result RETRY for %s", this.mWorkDescription), new Throwable[0]);
             rescheduleAndResolve();
             return;
@@ -126,14 +129,14 @@ public class WorkerWrapper implements Runnable {
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public void interrupt() {
         boolean zIsDone;
         this.mInterrupted = true;
         tryCheckForInterruptionAndResolve();
-        InterfaceFutureC4539a<ListenableWorker.Result> interfaceFutureC4539a = this.mInnerFuture;
-        if (interfaceFutureC4539a != null) {
-            zIsDone = interfaceFutureC4539a.isDone();
+        a<ListenableWorker$Result> aVar = this.mInnerFuture;
+        if (aVar != null) {
+            zIsDone = aVar.isDone();
             this.mInnerFuture.cancel(true);
         } else {
             zIsDone = false;
@@ -151,8 +154,8 @@ public class WorkerWrapper implements Runnable {
         linkedList.add(str);
         while (!linkedList.isEmpty()) {
             String str2 = (String) linkedList.remove();
-            if (this.mWorkSpecDao.getState(str2) != WorkInfo.State.CANCELLED) {
-                this.mWorkSpecDao.setState(WorkInfo.State.FAILED, str2);
+            if (this.mWorkSpecDao.getState(str2) != WorkInfo$State.CANCELLED) {
+                this.mWorkSpecDao.setState(WorkInfo$State.FAILED, str2);
             }
             linkedList.addAll(this.mDependencyDao.getDependentWorkIds(str2));
         }
@@ -162,11 +165,11 @@ public class WorkerWrapper implements Runnable {
         if (!tryCheckForInterruptionAndResolve()) {
             this.mWorkDatabase.beginTransaction();
             try {
-                WorkInfo.State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
+                WorkInfo$State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
                 this.mWorkDatabase.workProgressDao().delete(this.mWorkSpecId);
                 if (state == null) {
                     resolve(false);
-                } else if (state == WorkInfo.State.RUNNING) {
+                } else if (state == WorkInfo$State.RUNNING) {
                     handleResult(this.mResult);
                 } else if (!state.isFinished()) {
                     rescheduleAndResolve();
@@ -191,7 +194,7 @@ public class WorkerWrapper implements Runnable {
     private void rescheduleAndResolve() {
         this.mWorkDatabase.beginTransaction();
         try {
-            this.mWorkSpecDao.setState(WorkInfo.State.ENQUEUED, this.mWorkSpecId);
+            this.mWorkSpecDao.setState(WorkInfo$State.ENQUEUED, this.mWorkSpecId);
             this.mWorkSpecDao.setPeriodStartTime(this.mWorkSpecId, System.currentTimeMillis());
             this.mWorkSpecDao.markWorkSpecScheduled(this.mWorkSpecId, -1L);
             this.mWorkDatabase.setTransactionSuccessful();
@@ -205,7 +208,7 @@ public class WorkerWrapper implements Runnable {
         this.mWorkDatabase.beginTransaction();
         try {
             this.mWorkSpecDao.setPeriodStartTime(this.mWorkSpecId, System.currentTimeMillis());
-            this.mWorkSpecDao.setState(WorkInfo.State.ENQUEUED, this.mWorkSpecId);
+            this.mWorkSpecDao.setState(WorkInfo$State.ENQUEUED, this.mWorkSpecId);
             this.mWorkSpecDao.resetWorkSpecRunAttemptCount(this.mWorkSpecId);
             this.mWorkSpecDao.markWorkSpecScheduled(this.mWorkSpecId, -1L);
             this.mWorkDatabase.setTransactionSuccessful();
@@ -239,8 +242,8 @@ public class WorkerWrapper implements Runnable {
     }
 
     private void resolveIncorrectStatus() {
-        WorkInfo.State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
-        if (state == WorkInfo.State.RUNNING) {
+        WorkInfo$State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
+        if (state == WorkInfo$State.RUNNING) {
             Logger.get().debug(TAG, String.format("Status for %s is RUNNING;not doing any work and rescheduling for later execution", this.mWorkSpecId), new Throwable[0]);
             resolve(true);
         } else {
@@ -273,7 +276,7 @@ public class WorkerWrapper implements Runnable {
                 this.mWorkDatabase.endTransaction();
                 return;
             }
-            if (workSpec.state != WorkInfo.State.ENQUEUED) {
+            if (workSpec.state != WorkInfo$State.ENQUEUED) {
                 resolveIncorrectStatus();
                 this.mWorkDatabase.setTransactionSuccessful();
                 Logger.get().debug(TAG, String.format("%s is not in ENQUEUED state. Nothing more to do.", this.mWorkSpec.workerClassName), new Throwable[0]);
@@ -329,51 +332,9 @@ public class WorkerWrapper implements Runnable {
                 if (tryCheckForInterruptionAndResolve()) {
                     return;
                 }
-                final SettableFuture settableFutureCreate = SettableFuture.create();
-                this.mWorkTaskExecutor.getMainThreadExecutor().execute(new Runnable() { // from class: androidx.work.impl.WorkerWrapper.1
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        try {
-                            Logger.get().debug(WorkerWrapper.TAG, String.format("Starting work for %s", WorkerWrapper.this.mWorkSpec.workerClassName), new Throwable[0]);
-                            WorkerWrapper workerWrapper = WorkerWrapper.this;
-                            workerWrapper.mInnerFuture = workerWrapper.mWorker.startWork();
-                            settableFutureCreate.setFuture(WorkerWrapper.this.mInnerFuture);
-                        } catch (Throwable th) {
-                            settableFutureCreate.setException(th);
-                        }
-                    }
-                });
-                final String str = this.mWorkDescription;
-                settableFutureCreate.addListener(new Runnable() { // from class: androidx.work.impl.WorkerWrapper.2
-                    /* JADX WARN: Multi-variable type inference failed */
-                    @Override // java.lang.Runnable
-                    @SuppressLint({"SyntheticAccessor"})
-                    public void run() {
-                        try {
-                            try {
-                                ListenableWorker.Result result = (ListenableWorker.Result) settableFutureCreate.get();
-                                if (result == null) {
-                                    Logger.get().error(WorkerWrapper.TAG, String.format("%s returned a null result. Treating it as a failure.", WorkerWrapper.this.mWorkSpec.workerClassName), new Throwable[0]);
-                                } else {
-                                    Logger.get().debug(WorkerWrapper.TAG, String.format("%s returned a %s result.", WorkerWrapper.this.mWorkSpec.workerClassName, result), new Throwable[0]);
-                                    WorkerWrapper.this.mResult = result;
-                                }
-                            } catch (InterruptedException e) {
-                                e = e;
-                                Logger.get().error(WorkerWrapper.TAG, String.format("%s failed because it threw an exception/error", str), e);
-                            } catch (CancellationException e2) {
-                                Logger.get().info(WorkerWrapper.TAG, String.format("%s was cancelled", str), e2);
-                            } catch (ExecutionException e3) {
-                                e = e3;
-                                Logger.get().error(WorkerWrapper.TAG, String.format("%s failed because it threw an exception/error", str), e);
-                            }
-                            WorkerWrapper.this.onWorkFinished();
-                        } catch (Throwable th) {
-                            WorkerWrapper.this.onWorkFinished();
-                            throw th;
-                        }
-                    }
-                }, this.mWorkTaskExecutor.getBackgroundExecutor());
+                SettableFuture settableFutureCreate = SettableFuture.create();
+                this.mWorkTaskExecutor.getMainThreadExecutor().execute(new WorkerWrapper$1(this, settableFutureCreate));
+                settableFutureCreate.addListener(new WorkerWrapper$2(this, settableFutureCreate, this.mWorkDescription), this.mWorkTaskExecutor.getBackgroundExecutor());
             }
         } catch (Throwable th) {
             this.mWorkDatabase.endTransaction();
@@ -386,7 +347,7 @@ public class WorkerWrapper implements Runnable {
         this.mWorkDatabase.beginTransaction();
         try {
             iterativelyFailWorkAndDependents(this.mWorkSpecId);
-            this.mWorkSpecDao.setOutput(this.mWorkSpecId, ((ListenableWorker.Result.Failure) this.mResult).getOutputData());
+            this.mWorkSpecDao.setOutput(this.mWorkSpecId, ((ListenableWorker$Result$Failure) this.mResult).getOutputData());
             this.mWorkDatabase.setTransactionSuccessful();
         } finally {
             this.mWorkDatabase.endTransaction();
@@ -397,13 +358,13 @@ public class WorkerWrapper implements Runnable {
     private void setSucceededAndResolve() {
         this.mWorkDatabase.beginTransaction();
         try {
-            this.mWorkSpecDao.setState(WorkInfo.State.SUCCEEDED, this.mWorkSpecId);
-            this.mWorkSpecDao.setOutput(this.mWorkSpecId, ((ListenableWorker.Result.Success) this.mResult).getOutputData());
+            this.mWorkSpecDao.setState(WorkInfo$State.SUCCEEDED, this.mWorkSpecId);
+            this.mWorkSpecDao.setOutput(this.mWorkSpecId, ((ListenableWorker$Result$Success) this.mResult).getOutputData());
             long jCurrentTimeMillis = System.currentTimeMillis();
             for (String str : this.mDependencyDao.getDependentWorkIds(this.mWorkSpecId)) {
-                if (this.mWorkSpecDao.getState(str) == WorkInfo.State.BLOCKED && this.mDependencyDao.hasCompletedAllPrerequisites(str)) {
+                if (this.mWorkSpecDao.getState(str) == WorkInfo$State.BLOCKED && this.mDependencyDao.hasCompletedAllPrerequisites(str)) {
                     Logger.get().info(TAG, String.format("Setting status to enqueued for %s", str), new Throwable[0]);
-                    this.mWorkSpecDao.setState(WorkInfo.State.ENQUEUED, str);
+                    this.mWorkSpecDao.setState(WorkInfo$State.ENQUEUED, str);
                     this.mWorkSpecDao.setPeriodStartTime(str, jCurrentTimeMillis);
                 }
             }
@@ -419,7 +380,7 @@ public class WorkerWrapper implements Runnable {
             return false;
         }
         Logger.get().debug(TAG, String.format("Work interrupted for %s", this.mWorkDescription), new Throwable[0]);
-        WorkInfo.State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
+        WorkInfo$State state = this.mWorkSpecDao.getState(this.mWorkSpecId);
         if (state == null) {
             resolve(false);
         } else {
@@ -432,8 +393,8 @@ public class WorkerWrapper implements Runnable {
         this.mWorkDatabase.beginTransaction();
         try {
             boolean z2 = true;
-            if (this.mWorkSpecDao.getState(this.mWorkSpecId) == WorkInfo.State.ENQUEUED) {
-                this.mWorkSpecDao.setState(WorkInfo.State.RUNNING, this.mWorkSpecId);
+            if (this.mWorkSpecDao.getState(this.mWorkSpecId) == WorkInfo$State.ENQUEUED) {
+                this.mWorkSpecDao.setState(WorkInfo$State.RUNNING, this.mWorkSpecId);
                 this.mWorkSpecDao.incrementWorkSpecRunAttemptCount(this.mWorkSpecId);
             } else {
                 z2 = false;
@@ -442,69 +403,6 @@ public class WorkerWrapper implements Runnable {
             return z2;
         } finally {
             this.mWorkDatabase.endTransaction();
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public class Builder {
-
-        @NonNull
-        public Context mAppContext;
-
-        @NonNull
-        public Configuration mConfiguration;
-
-        @NonNull
-        public ForegroundProcessor mForegroundProcessor;
-        public List<Scheduler> mSchedulers;
-
-        @NonNull
-        public WorkDatabase mWorkDatabase;
-
-        @NonNull
-        public String mWorkSpecId;
-
-        @NonNull
-        public TaskExecutor mWorkTaskExecutor;
-
-        @Nullable
-        public ListenableWorker mWorker;
-
-        @NonNull
-        public WorkerParameters.RuntimeExtras mRuntimeExtras = new WorkerParameters.RuntimeExtras();
-
-        public Builder(@NonNull Context context, @NonNull Configuration configuration, @NonNull TaskExecutor taskExecutor, @NonNull ForegroundProcessor foregroundProcessor, @NonNull WorkDatabase workDatabase, @NonNull String str) {
-            this.mAppContext = context.getApplicationContext();
-            this.mWorkTaskExecutor = taskExecutor;
-            this.mForegroundProcessor = foregroundProcessor;
-            this.mConfiguration = configuration;
-            this.mWorkDatabase = workDatabase;
-            this.mWorkSpecId = str;
-        }
-
-        public WorkerWrapper build() {
-            return new WorkerWrapper(this);
-        }
-
-        @NonNull
-        public Builder withRuntimeExtras(@Nullable WorkerParameters.RuntimeExtras runtimeExtras) {
-            if (runtimeExtras != null) {
-                this.mRuntimeExtras = runtimeExtras;
-            }
-            return this;
-        }
-
-        @NonNull
-        public Builder withSchedulers(@NonNull List<Scheduler> list) {
-            this.mSchedulers = list;
-            return this;
-        }
-
-        @NonNull
-        @VisibleForTesting
-        public Builder withWorker(@NonNull ListenableWorker listenableWorker) {
-            this.mWorker = listenableWorker;
-            return this;
         }
     }
 }

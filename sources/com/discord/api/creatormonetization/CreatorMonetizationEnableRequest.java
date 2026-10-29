@@ -1,21 +1,14 @@
 package com.discord.api.creatormonetization;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: CreatorMonetizationEnableRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class CreatorMonetizationEnableRequest {
     private final long id;
-    private final State state;
-
-    /* JADX INFO: compiled from: CreatorMonetizationEnableRequest.kt */
-    public enum State {
-        OPEN,
-        REJECTED,
-        APPROVED
-    }
+    private final CreatorMonetizationEnableRequest$State state;
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -25,7 +18,7 @@ public final /* data */ class CreatorMonetizationEnableRequest {
             return false;
         }
         CreatorMonetizationEnableRequest creatorMonetizationEnableRequest = (CreatorMonetizationEnableRequest) other;
-        return this.id == creatorMonetizationEnableRequest.id && C12238m.areEqual(this.state, creatorMonetizationEnableRequest.state);
+        return this.id == creatorMonetizationEnableRequest.id && m.areEqual(this.state, creatorMonetizationEnableRequest.state);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -34,23 +27,23 @@ public final /* data */ class CreatorMonetizationEnableRequest {
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
-    public final State getState() {
+    public final CreatorMonetizationEnableRequest$State getState() {
         return this.state;
     }
 
     public int hashCode() {
         long j = this.id;
         int i = ((int) (j ^ (j >>> 32))) * 31;
-        State state = this.state;
-        return i + (state != null ? state.hashCode() : 0);
+        CreatorMonetizationEnableRequest$State creatorMonetizationEnableRequest$State = this.state;
+        return i + (creatorMonetizationEnableRequest$State != null ? creatorMonetizationEnableRequest$State.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("CreatorMonetizationEnableRequest(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", state=");
-        sbM833U.append(this.state);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("CreatorMonetizationEnableRequest(id=");
+        sbU.append(this.id);
+        sbU.append(", state=");
+        sbU.append(this.state);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

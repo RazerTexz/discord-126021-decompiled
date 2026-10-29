@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GiftEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,7 +15,7 @@ public final /* data */ class GiftEntry extends ChatListEntry {
     private final long userId;
 
     public GiftEntry(long j, long j2, long j3, String str) {
-        C12238m.checkNotNullParameter(str, "giftCode");
+        m.checkNotNullParameter(str, "giftCode");
         this.userId = j;
         this.messageId = j2;
         this.channelId = j3;
@@ -24,8 +24,12 @@ public final /* data */ class GiftEntry extends ChatListEntry {
         this.key = "26 -- " + j2 + " -- " + str;
     }
 
+    public static /* synthetic */ GiftEntry copy$default(GiftEntry giftEntry, long j, long j2, long j3, String str, int i, Object obj) {
+        return giftEntry.copy((i & 1) != 0 ? giftEntry.userId : j, (i & 2) != 0 ? giftEntry.messageId : j2, (i & 4) != 0 ? giftEntry.channelId : j3, (i & 8) != 0 ? giftEntry.giftCode : str);
+    }
+
     public final GiftEntry copy(long userId, long messageId, long channelId, String giftCode) {
-        C12238m.checkNotNullParameter(giftCode, "giftCode");
+        m.checkNotNullParameter(giftCode, "giftCode");
         return new GiftEntry(userId, messageId, channelId, giftCode);
     }
 
@@ -37,7 +41,7 @@ public final /* data */ class GiftEntry extends ChatListEntry {
             return false;
         }
         GiftEntry giftEntry = (GiftEntry) other;
-        return this.userId == giftEntry.userId && this.messageId == giftEntry.messageId && this.channelId == giftEntry.channelId && C12238m.areEqual(this.giftCode, giftEntry.giftCode);
+        return this.userId == giftEntry.userId && this.messageId == giftEntry.messageId && this.channelId == giftEntry.channelId && m.areEqual(this.giftCode, giftEntry.giftCode);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -87,19 +91,19 @@ public final /* data */ class GiftEntry extends ChatListEntry {
     }
 
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.channelId) + ((C0002b.m3a(this.messageId) + (C0002b.m3a(this.userId) * 31)) * 31)) * 31;
+        int iA = (b.a(this.channelId) + ((b.a(this.messageId) + (b.a(this.userId) * 31)) * 31)) * 31;
         String str = this.giftCode;
-        return iM3a + (str != null ? str.hashCode() : 0);
+        return iA + (str != null ? str.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GiftEntry(userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", giftCode=");
-        return C1643a.m822J(sbM833U, this.giftCode, ")");
+        StringBuilder sbU = a.U("GiftEntry(userId=");
+        sbU.append(this.userId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", giftCode=");
+        return a.J(sbU, this.giftCode, ")");
     }
 }

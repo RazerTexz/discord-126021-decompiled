@@ -11,12 +11,14 @@ import android.util.TypedValue;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.content.res.ResourcesCompat$FontCallback;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class TintTypedArray {
     private final Context mContext;
     private TypedValue mTypedValue;
@@ -76,7 +78,7 @@ public class TintTypedArray {
     }
 
     @Nullable
-    public Typeface getFont(@StyleableRes int i, int i2, @Nullable ResourcesCompat.FontCallback fontCallback) {
+    public Typeface getFont(@StyleableRes int i, int i2, @Nullable ResourcesCompat$FontCallback resourcesCompat$FontCallback) {
         int resourceId = this.mWrapped.getResourceId(i, 0);
         if (resourceId == 0) {
             return null;
@@ -84,7 +86,7 @@ public class TintTypedArray {
         if (this.mTypedValue == null) {
             this.mTypedValue = new TypedValue();
         }
-        return ResourcesCompat.getFont(this.mContext, resourceId, this.mTypedValue, i2, fontCallback);
+        return ResourcesCompat.getFont(this.mContext, resourceId, this.mTypedValue, i2, resourcesCompat$FontCallback);
     }
 
     public float getFraction(int i, int i2, int i3, float f) {

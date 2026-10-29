@@ -12,12 +12,16 @@ import java.util.Set;
 import lombok.AccessLevel;
 import lombok.ConfigurationKeys;
 import lombok.EqualsAndHashCode;
-import lombok.core.AST;
+import lombok.EqualsAndHashCode$CacheStrategy;
+import lombok.EqualsAndHashCode$Include;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.configuration.CallSuperType;
 import lombok.core.configuration.CheckerFrameworkVersion;
 import lombok.core.handlers.HandlerUtil;
+import lombok.core.handlers.HandlerUtil$FieldAccess;
 import lombok.core.handlers.InclusionExclusionUtils;
+import lombok.core.handlers.InclusionExclusionUtils$Included;
 import lombok.eclipse.Eclipse;
 import lombok.eclipse.EclipseAnnotationHandler;
 import lombok.eclipse.EclipseNode;
@@ -60,10 +64,8 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/handlers/HandleEqualsAndHashCode.SCL.lombok */
 public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndHashCode> {
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType;
+    private static /* synthetic */ int[] $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult;
     private static final String HASH_CODE_CACHE_NAME = "$hashCodeCache";
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    private static /* synthetic */ int[] f27469xb87c1847;
     private final char[] HASH_CODE_CACHE_NAME_ARR = HASH_CODE_CACHE_NAME.toCharArray();
     private final char[] PRIME = "PRIME".toCharArray();
     private final char[] RESULT = "result".toCharArray();
@@ -93,26 +95,25 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
         return iArr2;
     }
 
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult */
-    static /* synthetic */ int[] m10930xb87c1847() {
-        int[] iArr = f27469xb87c1847;
+    static /* synthetic */ int[] $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult() {
+        int[] iArr = $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult;
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[EclipseHandlerUtil.MemberExistsResult.valuesCustom().length];
+        int[] iArr2 = new int[EclipseHandlerUtil$MemberExistsResult.valuesCustom().length];
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
+            iArr2[EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
         } catch (NoSuchFieldError unused3) {
         }
-        f27469xb87c1847 = iArr2;
+        $SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult = iArr2;
         return iArr2;
     }
 
@@ -120,7 +121,7 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
     public void handle(AnnotationValues<EqualsAndHashCode> annotation, Annotation ast, EclipseNode annotationNode) {
         HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.EQUALS_AND_HASH_CODE_FLAG_USAGE, "@EqualsAndHashCode");
         EqualsAndHashCode ann = annotation.getInstance();
-        List<InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include>> members = InclusionExclusionUtils.handleEqualsAndHashCodeMarking(annotationNode.m10925up(), annotation, annotationNode);
+        List<InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include>> members = InclusionExclusionUtils.handleEqualsAndHashCodeMarking(annotationNode.up(), annotation, annotationNode);
         if (members == null) {
             return;
         }
@@ -131,22 +132,22 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
         }
         Boolean doNotUseGettersConfiguration = (Boolean) annotationNode.getAst().readConfiguration(ConfigurationKeys.EQUALS_AND_HASH_CODE_DO_NOT_USE_GETTERS);
         boolean doNotUseGetters = (annotation.isExplicit("doNotUseGetters") || doNotUseGettersConfiguration == null) ? ann.doNotUseGetters() : doNotUseGettersConfiguration.booleanValue();
-        HandlerUtil.FieldAccess fieldAccess = doNotUseGetters ? HandlerUtil.FieldAccess.PREFER_FIELD : HandlerUtil.FieldAccess.GETTER;
-        boolean cacheHashCode = ann.cacheStrategy() == EqualsAndHashCode.CacheStrategy.LAZY;
-        generateMethods(annotationNode.m10925up(), annotationNode, members, callSuper, true, cacheHashCode, fieldAccess, onParam);
+        HandlerUtil$FieldAccess fieldAccess = doNotUseGetters ? HandlerUtil$FieldAccess.PREFER_FIELD : HandlerUtil$FieldAccess.GETTER;
+        boolean cacheHashCode = ann.cacheStrategy() == EqualsAndHashCode$CacheStrategy.LAZY;
+        generateMethods(annotationNode.up(), annotationNode, members, callSuper, true, cacheHashCode, fieldAccess, onParam);
     }
 
     public void generateEqualsAndHashCodeForType(EclipseNode typeNode, EclipseNode errorNode) {
         if (EclipseHandlerUtil.hasAnnotation((Class<? extends java.lang.annotation.Annotation>) EqualsAndHashCode.class, typeNode)) {
             return;
         }
-        List<InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include>> members = InclusionExclusionUtils.handleEqualsAndHashCodeMarking(typeNode, null, null);
+        List<InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include>> members = InclusionExclusionUtils.handleEqualsAndHashCodeMarking(typeNode, null, null);
         Boolean doNotUseGettersConfiguration = (Boolean) typeNode.getAst().readConfiguration(ConfigurationKeys.EQUALS_AND_HASH_CODE_DO_NOT_USE_GETTERS);
-        HandlerUtil.FieldAccess access = (doNotUseGettersConfiguration == null || !doNotUseGettersConfiguration.booleanValue()) ? HandlerUtil.FieldAccess.GETTER : HandlerUtil.FieldAccess.PREFER_FIELD;
+        HandlerUtil$FieldAccess access = (doNotUseGettersConfiguration == null || !doNotUseGettersConfiguration.booleanValue()) ? HandlerUtil$FieldAccess.GETTER : HandlerUtil$FieldAccess.PREFER_FIELD;
         generateMethods(typeNode, errorNode, members, null, false, false, access, new ArrayList());
     }
 
-    public void generateMethods(EclipseNode typeNode, EclipseNode errorNode, List<InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include>> members, Boolean callSuper, boolean whineIfExists, boolean cacheHashCode, HandlerUtil.FieldAccess fieldAccess, List<Annotation> onParam) {
+    public void generateMethods(EclipseNode typeNode, EclipseNode errorNode, List<InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include>> members, Boolean callSuper, boolean whineIfExists, boolean cacheHashCode, HandlerUtil$FieldAccess fieldAccess, List<Annotation> onParam) {
         TypeDeclaration typeDecl = null;
         if (typeNode.get() instanceof TypeDeclaration) {
             typeDecl = (TypeDeclaration) typeNode.get();
@@ -191,22 +192,22 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
         }
         boolean isFinal = (typeDecl.modifiers & 16) != 0;
         boolean needsCanEqual = (isFinal && isDirectDescendantOfObject) ? false : true;
-        EclipseHandlerUtil.MemberExistsResult equalsExists = EclipseHandlerUtil.methodExists("equals", typeNode, 1);
-        EclipseHandlerUtil.MemberExistsResult hashCodeExists = EclipseHandlerUtil.methodExists("hashCode", typeNode, 0);
-        EclipseHandlerUtil.MemberExistsResult canEqualExists = EclipseHandlerUtil.methodExists("canEqual", typeNode, 1);
-        switch (m10930xb87c1847()[((EclipseHandlerUtil.MemberExistsResult) Collections.max(Arrays.asList(equalsExists, hashCodeExists))).ordinal()]) {
+        EclipseHandlerUtil$MemberExistsResult equalsExists = EclipseHandlerUtil.methodExists("equals", typeNode, 1);
+        EclipseHandlerUtil$MemberExistsResult hashCodeExists = EclipseHandlerUtil.methodExists("hashCode", typeNode, 0);
+        EclipseHandlerUtil$MemberExistsResult canEqualExists = EclipseHandlerUtil.methodExists("canEqual", typeNode, 1);
+        switch ($SWITCH_TABLE$lombok$eclipse$handlers$EclipseHandlerUtil$MemberExistsResult()[((EclipseHandlerUtil$MemberExistsResult) Collections.max(Arrays.asList(equalsExists, hashCodeExists))).ordinal()]) {
             case 1:
             default:
                 MethodDeclaration equalsMethod = createEquals(typeNode, members, callSuper.booleanValue(), errorNode.get(), fieldAccess, needsCanEqual, onParam);
                 equalsMethod.traverse(new SetGeneratedByVisitor(errorNode.get()), typeNode.get().scope);
                 EclipseHandlerUtil.injectMethod(typeNode, equalsMethod);
-                if (needsCanEqual && canEqualExists == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+                if (needsCanEqual && canEqualExists == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
                     MethodDeclaration canEqualMethod = createCanEqual(typeNode, errorNode.get(), onParam);
                     canEqualMethod.traverse(new SetGeneratedByVisitor(errorNode.get()), typeNode.get().scope);
                     EclipseHandlerUtil.injectMethod(typeNode, canEqualMethod);
                 }
                 if (cacheHashCode) {
-                    if (EclipseHandlerUtil.fieldExists(HASH_CODE_CACHE_NAME, typeNode) != EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+                    if (EclipseHandlerUtil.fieldExists(HASH_CODE_CACHE_NAME, typeNode) != EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
                         String msg = String.format("Not caching the result of hashCode: A field named %s already exists.", HASH_CODE_CACHE_NAME);
                         errorNode.addWarning(msg);
                         cacheHashCode = false;
@@ -225,9 +226,9 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
                     errorNode.addWarning("Not generating equals and hashCode: A method with one of those names already exists. (Either both or none of these methods will be generated).");
                     return;
                 }
-                if (equalsExists == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS || hashCodeExists == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+                if (equalsExists == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS || hashCodeExists == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
                     Object[] objArr = new Object[1];
-                    objArr[0] = equalsExists == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS ? "equals" : "hashCode";
+                    objArr[0] = equalsExists == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS ? "equals" : "hashCode";
                     String msg2 = String.format("Not generating %s: One of equals or hashCode exists. You should either write both of these or none of these (in the latter case, lombok generates them).", objArr);
                     errorNode.addWarning(msg2);
                     return;
@@ -247,7 +248,7 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
         EclipseHandlerUtil.setGeneratedBy(hashCodeCacheDecl.type, source);
     }
 
-    public MethodDeclaration createHashCode(EclipseNode type, Collection<InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include>> members, boolean callSuper, boolean cacheHashCode, ASTNode source, HandlerUtil.FieldAccess fieldAccess) {
+    public MethodDeclaration createHashCode(EclipseNode type, Collection<InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include>> members, boolean callSuper, boolean cacheHashCode, ASTNode source, HandlerUtil$FieldAccess fieldAccess) {
         MessageSend messageSendMakeIntLiteral;
         int pS = source.sourceStart;
         int pE = source.sourceEnd;
@@ -281,7 +282,7 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
         method.arguments = null;
         List<Statement> statements = new ArrayList<>();
         boolean isEmpty = true;
-        for (InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include> member : members) {
+        for (InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include> member : members) {
             if (EclipseHandlerUtil.getFieldType(member.getNode(), fieldAccess).getLastToken() != null) {
                 isEmpty = false;
                 break;
@@ -334,9 +335,9 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
         }
         EclipseHandlerUtil.setGeneratedBy(resultDecl.type, source);
         statements.add(resultDecl);
-        for (InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include> member2 : members) {
+        for (InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include> member2 : members) {
             EclipseNode memberNode = member2.getNode();
-            boolean isMethod = memberNode.getKind() == AST.Kind.METHOD;
+            boolean isMethod = memberNode.getKind() == AST$Kind.METHOD;
             TypeReference fType = EclipseHandlerUtil.getFieldType(memberNode, fieldAccess);
             char[] dollarFieldName = (String.valueOf(isMethod ? "$$" : "$") + memberNode.getName()).toCharArray();
             char[] token = fType.getLastToken();
@@ -508,11 +509,11 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
             genericsCount.add(Integer.valueOf(arraySizeOf(type.get().typeParameters)));
         }
         boolean staticContext = (type.get().modifiers & 8) != 0;
-        EclipseNode tNode = type.m10925up();
-        if (!staticContext && tNode.getKind() == AST.Kind.TYPE && (tNode.get().modifiers & 512) != 0) {
+        EclipseNode tNode = type.up();
+        if (!staticContext && tNode.getKind() == AST$Kind.TYPE && (tNode.get().modifiers & 512) != 0) {
             staticContext = true;
         }
-        while (tNode != null && tNode.getKind() == AST.Kind.TYPE) {
+        while (tNode != null && tNode.getKind() == AST$Kind.TYPE) {
             list.add(tNode.getName());
             if (addWildcards) {
                 genericsCount.add(Integer.valueOf(staticContext ? 0 : arraySizeOf(tNode.get().typeParameters)));
@@ -520,8 +521,8 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
             if (!staticContext) {
                 staticContext = (tNode.get().modifiers & 8) != 0;
             }
-            tNode = tNode.m10925up();
-            if (!staticContext && tNode.getKind() == AST.Kind.TYPE && (tNode.get().modifiers & 512) != 0) {
+            tNode = tNode.up();
+            if (!staticContext && tNode.getKind() == AST$Kind.TYPE && (tNode.get().modifiers & 512) != 0) {
                 staticContext = true;
             }
         }
@@ -582,7 +583,7 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
         return arr.length;
     }
 
-    public MethodDeclaration createEquals(EclipseNode type, Collection<InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include>> members, boolean callSuper, ASTNode source, HandlerUtil.FieldAccess fieldAccess, boolean needsCanEqual, List<Annotation> onParam) {
+    public MethodDeclaration createEquals(EclipseNode type, Collection<InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include>> members, boolean callSuper, ASTNode source, HandlerUtil$FieldAccess fieldAccess, boolean needsCanEqual, List<Annotation> onParam) {
         int pS = source.sourceStart;
         int pE = source.sourceEnd;
         long p = (((long) pS) << 32) | ((long) pE);
@@ -726,9 +727,9 @@ public class HandleEqualsAndHashCode extends EclipseAnnotationHandler<EqualsAndH
             EclipseHandlerUtil.setGeneratedBy(ifSuperEquals, source);
             statements.add(ifSuperEquals);
         }
-        for (InclusionExclusionUtils.Included<EclipseNode, EqualsAndHashCode.Include> member : members) {
+        for (InclusionExclusionUtils$Included<EclipseNode, EqualsAndHashCode$Include> member : members) {
             EclipseNode memberNode = member.getNode();
-            boolean isMethod = memberNode.getKind() == AST.Kind.METHOD;
+            boolean isMethod = memberNode.getKind() == AST$Kind.METHOD;
             TypeReference fType = EclipseHandlerUtil.getFieldType(memberNode, fieldAccess);
             char[] token = fType.getLastToken();
             Expression thisFieldAccessor = isMethod ? EclipseHandlerUtil.createMethodAccessor(memberNode, source) : EclipseHandlerUtil.createFieldAccessor(memberNode, fieldAccess, source);

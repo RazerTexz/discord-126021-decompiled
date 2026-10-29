@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildTemplateOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackGuildTemplateOpened implements AnalyticsSchem
             return false;
         }
         TrackGuildTemplateOpened trackGuildTemplateOpened = (TrackGuildTemplateOpened) other;
-        return C12238m.areEqual(this.guildTemplateCode, trackGuildTemplateOpened.guildTemplateCode) && C12238m.areEqual(this.loadTime, trackGuildTemplateOpened.loadTime);
+        return m.areEqual(this.guildTemplateCode, trackGuildTemplateOpened.guildTemplateCode) && m.areEqual(this.loadTime, trackGuildTemplateOpened.loadTime);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackGuildTemplateOpened implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildTemplateOpened(guildTemplateCode=");
-        sbM833U.append(this.guildTemplateCode);
-        sbM833U.append(", loadTime=");
-        return C1643a.m819G(sbM833U, this.loadTime, ")");
+        StringBuilder sbU = a.U("TrackGuildTemplateOpened(guildTemplateCode=");
+        sbU.append(this.guildTemplateCode);
+        sbU.append(", loadTime=");
+        return a.G(sbU, this.loadTime, ")");
     }
 }

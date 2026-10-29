@@ -12,42 +12,37 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetHomePanelCenterNsfwBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17132a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f17133b;
+    public final ImageView f2466b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17134c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f17135d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LinkifiedTextView f17136e;
+    public final LinkifiedTextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f17137f;
+    public final TextView f;
 
     public WidgetHomePanelCenterNsfwBinding(@NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout2, @NonNull ImageView imageView, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull LinkifiedTextView linkifiedTextView, @NonNull TextView textView) {
-        this.f17132a = linearLayout;
-        this.f17133b = imageView;
-        this.f17134c = materialButton;
-        this.f17135d = materialButton2;
-        this.f17136e = linkifiedTextView;
-        this.f17137f = textView;
+        this.a = linearLayout;
+        this.f2466b = imageView;
+        this.c = materialButton;
+        this.d = materialButton2;
+        this.e = linkifiedTextView;
+        this.f = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17132a;
+        return this.a;
     }
 }

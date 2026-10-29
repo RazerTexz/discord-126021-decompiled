@@ -1,5 +1,6 @@
 package com.discord.widgets.hubs;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.directory.DirectoryEntryGuild;
@@ -14,23 +15,22 @@ import com.discord.stores.StorePermissions;
 import com.discord.stores.utilities.RestCallState;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.permissions.PermissionUtils;
+import d0.t.n;
+import d0.t.u;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Pair;
 import kotlin.jvm.functions.Function0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetHubAddServerViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends AbstractC12240o implements Function0<HubAddServerState> {
+public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends o implements Function0<HubAddServerState> {
     public final /* synthetic */ StoreChannelsSelected $channelsSelectedStore;
     public final /* synthetic */ StoreChannels $channelsStore;
     public final /* synthetic */ StoreDirectories $directoriesStore;
@@ -47,6 +47,11 @@ public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends
         this.$channelsSelectedStore = storeChannelsSelected;
         this.$channelsStore = storeChannels;
         this.$directoriesStore = storeDirectories;
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ HubAddServerState invoke() {
+        return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
@@ -66,7 +71,7 @@ public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends
         long id2;
         Iterator<T> it;
         Object next2;
-        Map.Entry entry;
+        Map$Entry map$Entry;
         boolean z2;
         List<DirectoryEntryGuild> listEmptyList;
         Collection<Guild> collectionValues = this.$guildsStore.getGuilds().values();
@@ -80,11 +85,11 @@ public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends
         } while (!(((Guild) next).getId() == this.$guildsSelected.getSelectedGuildId()));
         Guild guild = (Guild) next;
         if (guild == null) {
-            WidgetHubAddServerViewModel.Companion companion = WidgetHubAddServerViewModel.INSTANCE;
-            AppLog appLog = AppLog.f14950g;
-            StringBuilder sbM833U = C1643a.m833U("Missing guild for guild id: ");
-            sbM833U.append(this.$guildsSelected.getSelectedGuildId());
-            Logger.e$default(appLog, sbM833U.toString(), null, null, 6, null);
+            WidgetHubAddServerViewModel$Companion widgetHubAddServerViewModel$Companion = WidgetHubAddServerViewModel.Companion;
+            AppLog appLog = AppLog.g;
+            StringBuilder sbU = a.U("Missing guild for guild id: ");
+            sbU.append(this.$guildsSelected.getSelectedGuildId());
+            Logger.e$default(appLog, sbU.toString(), null, null, 6, null);
             guild = null;
         }
         Map<Long, Long> guildPermissions = this.$permissionsStore.getGuildPermissions();
@@ -103,20 +108,20 @@ public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends
                     break;
                 }
                 next2 = it.next();
-                if (((Channel) ((Map.Entry) next2).getValue()).getType() == 14) {
+                if (((Channel) ((Map$Entry) next2).getValue()).getType() == 14) {
                     z2 = true;
                 } else {
                     z2 = false;
                 }
             } while (!z2);
-            entry = (Map.Entry) next2;
-            if (entry != null) {
-                selectedChannel = (Channel) entry.getValue();
+            map$Entry = (Map$Entry) next2;
+            if (map$Entry != null) {
+                selectedChannel = (Channel) map$Entry.getValue();
             } else {
                 selectedChannel = null;
             }
         } else {
-            if (!ChannelUtils.m7691o(selectedChannel)) {
+            if (!ChannelUtils.o(selectedChannel)) {
                 selectedChannel = null;
             }
             if (selectedChannel == null) {
@@ -133,26 +138,26 @@ public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends
                         break;
                     }
                     next2 = it.next();
-                    if (((Channel) ((Map.Entry) next2).getValue()).getType() == 14) {
+                    if (((Channel) ((Map$Entry) next2).getValue()).getType() == 14) {
                         z2 = true;
                     } else {
                         z2 = false;
                     }
                 } while (!z2);
-                entry = (Map.Entry) next2;
-                if (entry != null) {
-                    selectedChannel = (Channel) entry.getValue();
+                map$Entry = (Map$Entry) next2;
+                if (map$Entry != null) {
+                    selectedChannel = (Channel) map$Entry.getValue();
                 } else {
                     selectedChannel = null;
                 }
             }
         }
         if (selectedChannel == null) {
-            WidgetHubAddServerViewModel.Companion companion2 = WidgetHubAddServerViewModel.INSTANCE;
-            AppLog appLog2 = AppLog.f14950g;
-            StringBuilder sbM833U2 = C1643a.m833U("Guild has no directory channels for id: ");
-            sbM833U2.append(guild != null ? Long.valueOf(guild.getId()) : null);
-            Logger.e$default(appLog2, sbM833U2.toString(), null, null, 6, null);
+            WidgetHubAddServerViewModel$Companion widgetHubAddServerViewModel$Companion2 = WidgetHubAddServerViewModel.Companion;
+            AppLog appLog2 = AppLog.g;
+            StringBuilder sbU2 = a.U("Guild has no directory channels for id: ");
+            sbU2.append(guild != null ? Long.valueOf(guild.getId()) : null);
+            Logger.e$default(appLog2, sbU2.toString(), null, null, 6, null);
             selectedChannel = null;
         }
         if (selectedChannel != null) {
@@ -166,17 +171,17 @@ public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends
             listEmptyList = null;
         }
         if (listEmptyList == null) {
-            listEmptyList = C12147n.emptyList();
+            listEmptyList = n.emptyList();
         }
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(listEmptyList, 10));
+        ArrayList arrayList = new ArrayList(d0.t.o.collectionSizeOrDefault(listEmptyList, 10));
         Iterator it3 = listEmptyList.iterator();
         while (it3.hasNext()) {
             arrayList.add(Long.valueOf(((DirectoryEntryGuild) it3.next()).getGuild().getId()));
         }
-        Set set = C12163u.toSet(arrayList);
+        Set set = u.toSet(arrayList);
         ArrayList arrayList2 = new ArrayList();
         for (Object obj : collectionValues) {
-            if (PermissionUtils.can(8L, (Long) C1643a.m847e((Guild) obj, guildPermissions))) {
+            if (PermissionUtils.can(8L, (Long) a.e((Guild) obj, guildPermissions))) {
                 arrayList2.add(obj);
             }
         }
@@ -192,7 +197,7 @@ public final class WidgetHubAddServerViewModel$Companion$observeStores$1 extends
         Pair pair = new Pair(arrayList3, arrayList4);
         List list = (List) pair.component1();
         List list2 = (List) pair.component2();
-        ArrayList arrayList5 = new ArrayList(C12149o.collectionSizeOrDefault(list2, 10));
+        ArrayList arrayList5 = new ArrayList(d0.t.o.collectionSizeOrDefault(list2, 10));
         Iterator it4 = list2.iterator();
         while (it4.hasNext()) {
             arrayList5.add(Long.valueOf(((Guild) it4.next()).getId()));

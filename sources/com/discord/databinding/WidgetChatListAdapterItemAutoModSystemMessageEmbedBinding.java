@@ -12,47 +12,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemAutoModSystemMessageEmbedBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16160a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16161b;
+    public final TextView f2311b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f16162c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f16163d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final SimpleDraweeSpanTextView f16164e;
+    public final SimpleDraweeSpanTextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f16165f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f16166g;
+    public final TextView g;
 
     public WidgetChatListAdapterItemAutoModSystemMessageEmbedBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextView textView, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView, @NonNull TextView textView4, @NonNull TextView textView5) {
-        this.f16160a = constraintLayout;
-        this.f16161b = textView;
-        this.f16162c = simpleDraweeView;
-        this.f16163d = textView3;
-        this.f16164e = simpleDraweeSpanTextView;
-        this.f16165f = textView4;
-        this.f16166g = textView5;
+        this.a = constraintLayout;
+        this.f2311b = textView;
+        this.c = simpleDraweeView;
+        this.d = textView3;
+        this.e = simpleDraweeSpanTextView;
+        this.f = textView4;
+        this.g = textView5;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16160a;
+        return this.a;
     }
 }

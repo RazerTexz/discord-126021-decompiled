@@ -2,17 +2,18 @@ package androidx.core.graphics.drawable;
 
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable$ConstantState;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class WrappedDrawableState extends Drawable.ConstantState {
+public final class WrappedDrawableState extends Drawable$ConstantState {
     public int mChangingConfigurations;
-    public Drawable.ConstantState mDrawableState;
+    public Drawable$ConstantState mDrawableState;
     public ColorStateList mTint;
-    public PorterDuff.Mode mTintMode;
+    public PorterDuff$Mode mTintMode;
 
     public WrappedDrawableState(@Nullable WrappedDrawableState wrappedDrawableState) {
         this.mTint = null;
@@ -29,20 +30,20 @@ public final class WrappedDrawableState extends Drawable.ConstantState {
         return this.mDrawableState != null;
     }
 
-    @Override // android.graphics.drawable.Drawable.ConstantState
+    @Override // android.graphics.drawable.Drawable$ConstantState
     public int getChangingConfigurations() {
         int i = this.mChangingConfigurations;
-        Drawable.ConstantState constantState = this.mDrawableState;
-        return i | (constantState != null ? constantState.getChangingConfigurations() : 0);
+        Drawable$ConstantState drawable$ConstantState = this.mDrawableState;
+        return i | (drawable$ConstantState != null ? drawable$ConstantState.getChangingConfigurations() : 0);
     }
 
-    @Override // android.graphics.drawable.Drawable.ConstantState
+    @Override // android.graphics.drawable.Drawable$ConstantState
     @NonNull
     public Drawable newDrawable() {
         return newDrawable(null);
     }
 
-    @Override // android.graphics.drawable.Drawable.ConstantState
+    @Override // android.graphics.drawable.Drawable$ConstantState
     @NonNull
     public Drawable newDrawable(@Nullable Resources resources) {
         return new WrappedDrawableApi21(this, resources);

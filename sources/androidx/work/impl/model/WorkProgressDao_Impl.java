@@ -7,7 +7,7 @@ import androidx.room.RoomSQLiteQuery;
 import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.DBUtil;
 import androidx.room.util.StringUtil;
-import androidx.sqlite.p006db.SupportSQLiteStatement;
+import androidx.sqlite.db.SupportSQLiteStatement;
 import androidx.work.Data;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,40 +21,9 @@ public final class WorkProgressDao_Impl implements WorkProgressDao {
 
     public WorkProgressDao_Impl(RoomDatabase roomDatabase) {
         this.__db = roomDatabase;
-        this.__insertionAdapterOfWorkProgress = new EntityInsertionAdapter<WorkProgress>(roomDatabase) { // from class: androidx.work.impl.model.WorkProgressDao_Impl.1
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "INSERT OR REPLACE INTO `WorkProgress` (`work_spec_id`,`progress`) VALUES (?,?)";
-            }
-
-            @Override // androidx.room.EntityInsertionAdapter
-            public void bind(SupportSQLiteStatement supportSQLiteStatement, WorkProgress workProgress) throws Throwable {
-                String str = workProgress.mWorkSpecId;
-                if (str == null) {
-                    supportSQLiteStatement.bindNull(1);
-                } else {
-                    supportSQLiteStatement.bindString(1, str);
-                }
-                byte[] byteArrayInternal = Data.toByteArrayInternal(workProgress.mProgress);
-                if (byteArrayInternal == null) {
-                    supportSQLiteStatement.bindNull(2);
-                } else {
-                    supportSQLiteStatement.bindBlob(2, byteArrayInternal);
-                }
-            }
-        };
-        this.__preparedStmtOfDelete = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkProgressDao_Impl.2
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "DELETE from WorkProgress where work_spec_id=?";
-            }
-        };
-        this.__preparedStmtOfDeleteAll = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.WorkProgressDao_Impl.3
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "DELETE FROM WorkProgress";
-            }
-        };
+        this.__insertionAdapterOfWorkProgress = new WorkProgressDao_Impl$1(this, roomDatabase);
+        this.__preparedStmtOfDelete = new WorkProgressDao_Impl$2(this, roomDatabase);
+        this.__preparedStmtOfDeleteAll = new WorkProgressDao_Impl$3(this, roomDatabase);
     }
 
     @Override // androidx.work.impl.model.WorkProgressDao

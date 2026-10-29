@@ -1,14 +1,15 @@
 package com.discord.widgets.guilds.invite;
 
+import d0.k;
+import d0.k$a;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function0;
-import p507d0.C12112k;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: InviteJoinHelper.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class InviteJoinHelper$joinViaInvite$4$hasMicrophonePermissions$1$1 extends AbstractC12240o implements Function0<Unit> {
+public final class InviteJoinHelper$joinViaInvite$4$hasMicrophonePermissions$1$1 extends o implements Function0<Unit> {
     public final /* synthetic */ Continuation $cont;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -20,14 +21,14 @@ public final class InviteJoinHelper$joinViaInvite$4$hasMicrophonePermissions$1$1
     @Override // kotlin.jvm.functions.Function0
     public /* bridge */ /* synthetic */ Unit invoke() {
         invoke2();
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
         Continuation continuation = this.$cont;
         Boolean bool = Boolean.FALSE;
-        C12112k.a aVar = C12112k.f25169j;
-        continuation.resumeWith(C12112k.m11474constructorimpl(bool));
+        k$a k_a = k.j;
+        continuation.resumeWith(k.m97constructorimpl(bool));
     }
 }

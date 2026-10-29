@@ -12,19 +12,6 @@ import java.io.PrintWriter;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class LoaderManager {
-
-    public interface LoaderCallbacks<D> {
-        @NonNull
-        @MainThread
-        Loader<D> onCreateLoader(int i, @Nullable Bundle bundle);
-
-        @MainThread
-        void onLoadFinished(@NonNull Loader<D> loader, D d);
-
-        @MainThread
-        void onLoaderReset(@NonNull Loader<D> loader);
-    }
-
     @MainThread
     public abstract void destroyLoader(int i);
 
@@ -49,11 +36,11 @@ public abstract class LoaderManager {
 
     @NonNull
     @MainThread
-    public abstract <D> Loader<D> initLoader(int i, @Nullable Bundle bundle, @NonNull LoaderCallbacks<D> loaderCallbacks);
+    public abstract <D> Loader<D> initLoader(int i, @Nullable Bundle bundle, @NonNull LoaderManager$LoaderCallbacks<D> loaderManager$LoaderCallbacks);
 
     public abstract void markForRedelivery();
 
     @NonNull
     @MainThread
-    public abstract <D> Loader<D> restartLoader(int i, @Nullable Bundle bundle, @NonNull LoaderCallbacks<D> loaderCallbacks);
+    public abstract <D> Loader<D> restartLoader(int i, @Nullable Bundle bundle, @NonNull LoaderManager$LoaderCallbacks<D> loaderManager$LoaderCallbacks);
 }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -13,8 +14,7 @@ import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSettingsPaneViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,6 +31,11 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
     private TrackSourceMetadata trackSourceMetadata;
     private final transient String analyticsSchemaTypeName = "settings_pane_viewed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -39,7 +44,7 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
             return false;
         }
         TrackSettingsPaneViewed trackSettingsPaneViewed = (TrackSettingsPaneViewed) other;
-        return C12238m.areEqual(this.settingsType, trackSettingsPaneViewed.settingsType) && C12238m.areEqual(this.originPane, trackSettingsPaneViewed.originPane) && C12238m.areEqual(this.destinationPane, trackSettingsPaneViewed.destinationPane) && C12238m.areEqual(this.previewEnabled, trackSettingsPaneViewed.previewEnabled);
+        return m.areEqual(this.settingsType, trackSettingsPaneViewed.settingsType) && m.areEqual(this.originPane, trackSettingsPaneViewed.originPane) && m.areEqual(this.destinationPane, trackSettingsPaneViewed.destinationPane) && m.areEqual(this.previewEnabled, trackSettingsPaneViewed.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -65,20 +70,14 @@ public final /* data */ class TrackSettingsPaneViewed implements AnalyticsSchema
         return iHashCode3 + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSettingsPaneViewed(settingsType=");
-        sbM833U.append(this.settingsType);
-        sbM833U.append(", originPane=");
-        sbM833U.append(this.originPane);
-        sbM833U.append(", destinationPane=");
-        sbM833U.append(this.destinationPane);
-        sbM833U.append(", previewEnabled=");
-        return C1643a.m816D(sbM833U, this.previewEnabled, ")");
+        StringBuilder sbU = a.U("TrackSettingsPaneViewed(settingsType=");
+        sbU.append(this.settingsType);
+        sbU.append(", originPane=");
+        sbU.append(this.originPane);
+        sbU.append(", destinationPane=");
+        sbU.append(this.destinationPane);
+        sbU.append(", previewEnabled=");
+        return a.D(sbU, this.previewEnabled, ")");
     }
 }

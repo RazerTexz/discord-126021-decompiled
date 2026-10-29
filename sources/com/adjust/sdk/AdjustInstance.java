@@ -17,7 +17,7 @@ public class AdjustInstance {
     private Boolean startEnabled = null;
     private boolean startOffline = false;
 
-    public void addSessionCallbackParameter(final String str, final String str2) {
+    public void addSessionCallbackParameter(String str, String str2) {
         if (checkActivityHandler("adding session callback parameter")) {
             this.activityHandler.addSessionCallbackParameter(str, str2);
             return;
@@ -25,15 +25,10 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new IRunActivityHandler() { // from class: com.adjust.sdk.AdjustInstance.1
-            @Override // com.adjust.sdk.IRunActivityHandler
-            public void run(ActivityHandler activityHandler) {
-                activityHandler.addSessionCallbackParameterI(str, str2);
-            }
-        });
+        this.preLaunchActionsArray.add(new AdjustInstance$1(this, str, str2));
     }
 
-    public void addSessionPartnerParameter(final String str, final String str2) {
+    public void addSessionPartnerParameter(String str, String str2) {
         if (checkActivityHandler("adding session partner parameter")) {
             this.activityHandler.addSessionPartnerParameter(str, str2);
             return;
@@ -41,12 +36,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new IRunActivityHandler() { // from class: com.adjust.sdk.AdjustInstance.2
-            @Override // com.adjust.sdk.IRunActivityHandler
-            public void run(ActivityHandler activityHandler) {
-                activityHandler.addSessionPartnerParameterI(str, str2);
-            }
-        });
+        this.preLaunchActionsArray.add(new AdjustInstance$2(this, str, str2));
     }
 
     public void appWillOpenUrl(Uri uri) {
@@ -137,7 +127,7 @@ public class AdjustInstance {
         }
     }
 
-    public void removeSessionCallbackParameter(final String str) {
+    public void removeSessionCallbackParameter(String str) {
         if (checkActivityHandler("removing session callback parameter")) {
             this.activityHandler.removeSessionCallbackParameter(str);
             return;
@@ -145,15 +135,10 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new IRunActivityHandler() { // from class: com.adjust.sdk.AdjustInstance.3
-            @Override // com.adjust.sdk.IRunActivityHandler
-            public void run(ActivityHandler activityHandler) {
-                activityHandler.removeSessionCallbackParameterI(str);
-            }
-        });
+        this.preLaunchActionsArray.add(new AdjustInstance$3(this, str));
     }
 
-    public void removeSessionPartnerParameter(final String str) {
+    public void removeSessionPartnerParameter(String str) {
         if (checkActivityHandler("removing session partner parameter")) {
             this.activityHandler.removeSessionPartnerParameter(str);
             return;
@@ -161,12 +146,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new IRunActivityHandler() { // from class: com.adjust.sdk.AdjustInstance.4
-            @Override // com.adjust.sdk.IRunActivityHandler
-            public void run(ActivityHandler activityHandler) {
-                activityHandler.removeSessionPartnerParameterI(str);
-            }
-        });
+        this.preLaunchActionsArray.add(new AdjustInstance$4(this, str));
     }
 
     public void resetSessionCallbackParameters() {
@@ -177,12 +157,7 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new IRunActivityHandler() { // from class: com.adjust.sdk.AdjustInstance.5
-            @Override // com.adjust.sdk.IRunActivityHandler
-            public void run(ActivityHandler activityHandler) {
-                activityHandler.resetSessionCallbackParametersI();
-            }
-        });
+        this.preLaunchActionsArray.add(new AdjustInstance$5(this));
     }
 
     public void resetSessionPartnerParameters() {
@@ -193,48 +168,23 @@ public class AdjustInstance {
         if (this.preLaunchActionsArray == null) {
             this.preLaunchActionsArray = new ArrayList();
         }
-        this.preLaunchActionsArray.add(new IRunActivityHandler() { // from class: com.adjust.sdk.AdjustInstance.6
-            @Override // com.adjust.sdk.IRunActivityHandler
-            public void run(ActivityHandler activityHandler) {
-                activityHandler.resetSessionPartnerParametersI();
-            }
-        });
+        this.preLaunchActionsArray.add(new AdjustInstance$6(this));
     }
 
-    private void saveDisableThirdPartySharing(final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.10
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).setDisableThirdPartySharing();
-            }
-        });
+    private void saveDisableThirdPartySharing(Context context) {
+        Util.runInBackground(new AdjustInstance$10(this, context));
     }
 
-    private void saveGdprForgetMe(final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.9
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).setGdprForgetMe();
-            }
-        });
+    private void saveGdprForgetMe(Context context) {
+        Util.runInBackground(new AdjustInstance$9(this, context));
     }
 
-    private void savePushToken(final String str, final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.8
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).savePushToken(str);
-            }
-        });
+    private void savePushToken(String str, Context context) {
+        Util.runInBackground(new AdjustInstance$8(this, context, str));
     }
 
-    private void saveRawReferrer(final String str, final long j, final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.7
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).saveRawReferrer(str, j);
-            }
-        });
+    private void saveRawReferrer(String str, long j, Context context) {
+        Util.runInBackground(new AdjustInstance$7(this, context, str, j));
     }
 
     public void sendFirstPackages() {
@@ -277,13 +227,8 @@ public class AdjustInstance {
         }
     }
 
-    private void setSendingReferrersAsNotSent(final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.11
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).setSendingReferrersAsNotSent();
-            }
-        });
+    private void setSendingReferrersAsNotSent(Context context) {
+        Util.runInBackground(new AdjustInstance$11(this, context));
     }
 
     public void setTestOptions(AdjustTestOptions adjustTestOptions) {

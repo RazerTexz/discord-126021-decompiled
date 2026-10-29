@@ -3,16 +3,16 @@ package androidx.work.impl.constraints.trackers;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Logger;
 import androidx.work.impl.constraints.ConstraintListener;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public abstract class ConstraintTracker<T> {
     public final Context mAppContext;
     public T mCurrentState;
@@ -54,16 +54,7 @@ public abstract class ConstraintTracker<T> {
             T t2 = this.mCurrentState;
             if (t2 != t && (t2 == null || !t2.equals(t))) {
                 this.mCurrentState = t;
-                final ArrayList arrayList = new ArrayList(this.mListeners);
-                this.mTaskExecutor.getMainThreadExecutor().execute(new Runnable() { // from class: androidx.work.impl.constraints.trackers.ConstraintTracker.1
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        Iterator it = arrayList.iterator();
-                        while (it.hasNext()) {
-                            ((ConstraintListener) it.next()).onConstraintChanged(ConstraintTracker.this.mCurrentState);
-                        }
-                    }
-                });
+                this.mTaskExecutor.getMainThreadExecutor().execute(new ConstraintTracker$1(this, new ArrayList(this.mListeners)));
             }
         }
     }

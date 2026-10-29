@@ -34,12 +34,7 @@ public class InstallReferrer implements InvocationHandler {
         this.context = context;
         this.shouldTryToRead = new AtomicBoolean(true);
         this.retries = 0;
-        this.retryTimer = new TimerOnce(new Runnable() { // from class: com.adjust.sdk.InstallReferrer.1
-            @Override // java.lang.Runnable
-            public void run() {
-                InstallReferrer.this.startConnection();
-            }
-        }, "InstallReferrer");
+        this.retryTimer = new TimerOnce(new InstallReferrer$1(this), "InstallReferrer");
         this.referrerCallback = installReferrerReadListener;
     }
 

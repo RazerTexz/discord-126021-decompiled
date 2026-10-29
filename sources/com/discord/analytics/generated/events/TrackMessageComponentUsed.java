@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMessageComponentUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackMessageComponentUsed implements AnalyticsSche
             return false;
         }
         TrackMessageComponentUsed trackMessageComponentUsed = (TrackMessageComponentUsed) other;
-        return C12238m.areEqual(this.applicationId, trackMessageComponentUsed.applicationId) && C12238m.areEqual(this.interactionId, trackMessageComponentUsed.interactionId) && C12238m.areEqual(this.actionType, trackMessageComponentUsed.actionType) && C12238m.areEqual(this.messageId, trackMessageComponentUsed.messageId);
+        return m.areEqual(this.applicationId, trackMessageComponentUsed.applicationId) && m.areEqual(this.interactionId, trackMessageComponentUsed.interactionId) && m.areEqual(this.actionType, trackMessageComponentUsed.actionType) && m.areEqual(this.messageId, trackMessageComponentUsed.messageId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackMessageComponentUsed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMessageComponentUsed(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", interactionId=");
-        sbM833U.append(this.interactionId);
-        sbM833U.append(", actionType=");
-        sbM833U.append(this.actionType);
-        sbM833U.append(", messageId=");
-        return C1643a.m819G(sbM833U, this.messageId, ")");
+        StringBuilder sbU = a.U("TrackMessageComponentUsed(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", interactionId=");
+        sbU.append(this.interactionId);
+        sbU.append(", actionType=");
+        sbU.append(this.actionType);
+        sbU.append(", messageId=");
+        return a.G(sbU, this.messageId, ")");
     }
 }

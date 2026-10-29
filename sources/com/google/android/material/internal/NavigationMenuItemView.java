@@ -1,16 +1,18 @@
 package com.google.android.material.internal;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable$ConstantState;
 import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup$MarginLayoutParams;
 import android.view.ViewStub;
 import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
@@ -18,22 +20,24 @@ import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.view.menu.MenuItemImpl;
-import androidx.appcompat.view.menu.MenuView;
-import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.view.menu.MenuView$ItemView;
+import androidx.appcompat.widget.LinearLayoutCompat$LayoutParams;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.widget.TextViewCompat;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$dimen;
+import com.google.android.material.R$drawable;
+import com.google.android.material.R$id;
+import com.google.android.material.R$layout;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-public class NavigationMenuItemView extends ForegroundLinearLayout implements MenuView.ItemView {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+public class NavigationMenuItemView extends ForegroundLinearLayout implements MenuView$ItemView {
     private final AccessibilityDelegateCompat accessibilityDelegate;
     private FrameLayout actionArea;
     public boolean checkable;
@@ -44,19 +48,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     private MenuItemImpl itemData;
     private boolean needsEmptyIcon;
     private final CheckedTextView textView;
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.NavigationMenuItemView$a */
-    public class C10927a extends AccessibilityDelegateCompat {
-        public C10927a() {
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
-            accessibilityNodeInfoCompat.setCheckable(NavigationMenuItemView.this.checkable);
-        }
-    }
+    private static final int[] CHECKED_STATE_SET = {R$attr.state_checked};
 
     public NavigationMenuItemView(@NonNull Context context) {
         this(context, null);
@@ -67,9 +59,9 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
             this.textView.setVisibility(8);
             FrameLayout frameLayout = this.actionArea;
             if (frameLayout != null) {
-                LinearLayoutCompat.LayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) frameLayout.getLayoutParams();
-                ((ViewGroup.MarginLayoutParams) layoutParams).width = -1;
-                this.actionArea.setLayoutParams(layoutParams);
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) frameLayout.getLayoutParams();
+                ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width = -1;
+                this.actionArea.setLayoutParams(linearLayoutCompat$LayoutParams);
                 return;
             }
             return;
@@ -77,16 +69,16 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         this.textView.setVisibility(0);
         FrameLayout frameLayout2 = this.actionArea;
         if (frameLayout2 != null) {
-            LinearLayoutCompat.LayoutParams layoutParams2 = (LinearLayoutCompat.LayoutParams) frameLayout2.getLayoutParams();
-            ((ViewGroup.MarginLayoutParams) layoutParams2).width = -2;
-            this.actionArea.setLayoutParams(layoutParams2);
+            LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams2 = (LinearLayoutCompat$LayoutParams) frameLayout2.getLayoutParams();
+            ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).width = -2;
+            this.actionArea.setLayoutParams(linearLayoutCompat$LayoutParams2);
         }
     }
 
     @Nullable
     private StateListDrawable createDefaultBackground() {
         TypedValue typedValue = new TypedValue();
-        if (!getContext().getTheme().resolveAttribute(C0051R.attr.colorControlHighlight, typedValue, true)) {
+        if (!getContext().getTheme().resolveAttribute(androidx.appcompat.R$attr.colorControlHighlight, typedValue, true)) {
             return null;
         }
         StateListDrawable stateListDrawable = new StateListDrawable();
@@ -95,12 +87,12 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         return stateListDrawable;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public MenuItemImpl getItemData() {
         return this.itemData;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void initialize(@NonNull MenuItemImpl menuItemImpl, int i) {
         this.itemData = menuItemImpl;
         if (menuItemImpl.getItemId() > 0) {
@@ -131,7 +123,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         return iArrOnCreateDrawableState;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public boolean prefersCondensedTitle() {
         return false;
     }
@@ -147,14 +139,14 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
     private void setActionView(@Nullable View view) {
         if (view != null) {
             if (this.actionArea == null) {
-                this.actionArea = (FrameLayout) ((ViewStub) findViewById(C10817R.id.design_menu_item_action_area_stub)).inflate();
+                this.actionArea = (FrameLayout) ((ViewStub) findViewById(R$id.design_menu_item_action_area_stub)).inflate();
             }
             this.actionArea.removeAllViews();
             this.actionArea.addView(view);
         }
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setCheckable(boolean z2) {
         refreshDrawableState();
         if (this.checkable != z2) {
@@ -163,7 +155,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         }
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setChecked(boolean z2) {
         refreshDrawableState();
         this.textView.setChecked(z2);
@@ -173,11 +165,11 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         setPadding(i, 0, i, 0);
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setIcon(@Nullable Drawable drawable) {
         if (drawable != null) {
             if (this.hasIconTintList) {
-                Drawable.ConstantState constantState = drawable.getConstantState();
+                Drawable$ConstantState constantState = drawable.getConstantState();
                 if (constantState != null) {
                     drawable = constantState.newDrawable();
                 }
@@ -188,7 +180,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
             drawable.setBounds(0, 0, i, i);
         } else if (this.needsEmptyIcon) {
             if (this.emptyDrawable == null) {
-                Drawable drawable2 = ResourcesCompat.getDrawable(getResources(), C10817R.drawable.navigation_empty_icon, getContext().getTheme());
+                Drawable drawable2 = ResourcesCompat.getDrawable(getResources(), R$drawable.navigation_empty_icon, getContext().getTheme());
                 this.emptyDrawable = drawable2;
                 if (drawable2 != null) {
                     int i2 = this.iconSize;
@@ -225,7 +217,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         this.needsEmptyIcon = z2;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setShortcut(boolean z2, char c) {
     }
 
@@ -237,7 +229,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         this.textView.setTextColor(colorStateList);
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setTitle(CharSequence charSequence) {
         this.textView.setText(charSequence);
     }
@@ -246,7 +238,7 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
         return this.itemData.getTitle() == null && this.itemData.getIcon() == null && this.itemData.getActionView() != null;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public boolean showsIcon() {
         return true;
     }
@@ -257,14 +249,14 @@ public class NavigationMenuItemView extends ForegroundLinearLayout implements Me
 
     public NavigationMenuItemView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        C10927a c10927a = new C10927a();
-        this.accessibilityDelegate = c10927a;
+        NavigationMenuItemView$a navigationMenuItemView$a = new NavigationMenuItemView$a(this);
+        this.accessibilityDelegate = navigationMenuItemView$a;
         setOrientation(0);
-        LayoutInflater.from(context).inflate(C10817R.layout.design_navigation_menu_item, (ViewGroup) this, true);
-        setIconSize(context.getResources().getDimensionPixelSize(C10817R.dimen.design_navigation_icon_size));
-        CheckedTextView checkedTextView = (CheckedTextView) findViewById(C10817R.id.design_menu_item_text);
+        LayoutInflater.from(context).inflate(R$layout.design_navigation_menu_item, (ViewGroup) this, true);
+        setIconSize(context.getResources().getDimensionPixelSize(R$dimen.design_navigation_icon_size));
+        CheckedTextView checkedTextView = (CheckedTextView) findViewById(R$id.design_menu_item_text);
         this.textView = checkedTextView;
         checkedTextView.setDuplicateParentStateEnabled(true);
-        ViewCompat.setAccessibilityDelegate(checkedTextView, c10927a);
+        ViewCompat.setAccessibilityDelegate(checkedTextView, navigationMenuItemView$a);
     }
 }

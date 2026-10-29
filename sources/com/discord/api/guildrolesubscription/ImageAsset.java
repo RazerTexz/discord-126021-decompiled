@@ -1,8 +1,8 @@
 package com.discord.api.guildrolesubscription;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ImageAsset.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class ImageAsset {
             return false;
         }
         ImageAsset imageAsset = (ImageAsset) other;
-        return this.id == imageAsset.id && C12238m.areEqual(this.size, imageAsset.size) && C12238m.areEqual(this.mimeType, imageAsset.mimeType) && C12238m.areEqual(this.filename, imageAsset.filename) && C12238m.areEqual(this.width, imageAsset.width) && C12238m.areEqual(this.height, imageAsset.height);
+        return this.id == imageAsset.id && m.areEqual(this.size, imageAsset.size) && m.areEqual(this.mimeType, imageAsset.mimeType) && m.areEqual(this.filename, imageAsset.filename) && m.areEqual(this.width, imageAsset.width) && m.areEqual(this.height, imageAsset.height);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,17 +46,17 @@ public final /* data */ class ImageAsset {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ImageAsset(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", size=");
-        sbM833U.append(this.size);
-        sbM833U.append(", mimeType=");
-        sbM833U.append(this.mimeType);
-        sbM833U.append(", filename=");
-        sbM833U.append(this.filename);
-        sbM833U.append(", width=");
-        sbM833U.append(this.width);
-        sbM833U.append(", height=");
-        return C1643a.m818F(sbM833U, this.height, ")");
+        StringBuilder sbU = a.U("ImageAsset(id=");
+        sbU.append(this.id);
+        sbU.append(", size=");
+        sbU.append(this.size);
+        sbU.append(", mimeType=");
+        sbU.append(this.mimeType);
+        sbU.append(", filename=");
+        sbU.append(this.filename);
+        sbU.append(", width=");
+        sbU.append(this.width);
+        sbU.append(", height=");
+        return a.F(sbU, this.height, ")");
     }
 }

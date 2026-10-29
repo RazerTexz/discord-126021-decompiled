@@ -2,9 +2,10 @@ package androidx.work.impl.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.annotation.WorkerThread;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Operation;
-import androidx.work.WorkInfo;
+import androidx.work.Operation$State$FAILURE;
+import androidx.work.WorkInfo$State;
 import androidx.work.impl.OperationImpl;
 import androidx.work.impl.Scheduler;
 import androidx.work.impl.Schedulers;
@@ -17,7 +18,7 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public abstract class CancelWorkRunnable implements Runnable {
     private final OperationImpl mOperation = new OperationImpl();
 
@@ -30,93 +31,20 @@ public abstract class CancelWorkRunnable implements Runnable {
         }
     }
 
-    public static CancelWorkRunnable forAll(@NonNull final WorkManagerImpl workManagerImpl) {
-        return new CancelWorkRunnable() { // from class: androidx.work.impl.utils.CancelWorkRunnable.4
-            @Override // androidx.work.impl.utils.CancelWorkRunnable
-            @WorkerThread
-            public void runInternal() {
-                WorkDatabase workDatabase = workManagerImpl.getWorkDatabase();
-                workDatabase.beginTransaction();
-                try {
-                    Iterator<String> it = workDatabase.workSpecDao().getAllUnfinishedWork().iterator();
-                    while (it.hasNext()) {
-                        cancel(workManagerImpl, it.next());
-                    }
-                    new PreferenceUtils(workManagerImpl.getWorkDatabase()).setLastCancelAllTimeMillis(System.currentTimeMillis());
-                    workDatabase.setTransactionSuccessful();
-                } finally {
-                    workDatabase.endTransaction();
-                }
-            }
-        };
+    public static CancelWorkRunnable forAll(@NonNull WorkManagerImpl workManagerImpl) {
+        return new CancelWorkRunnable$4(workManagerImpl);
     }
 
-    public static CancelWorkRunnable forId(@NonNull final UUID uuid, @NonNull final WorkManagerImpl workManagerImpl) {
-        return new CancelWorkRunnable() { // from class: androidx.work.impl.utils.CancelWorkRunnable.1
-            @Override // androidx.work.impl.utils.CancelWorkRunnable
-            @WorkerThread
-            public void runInternal() {
-                WorkDatabase workDatabase = workManagerImpl.getWorkDatabase();
-                workDatabase.beginTransaction();
-                try {
-                    cancel(workManagerImpl, uuid.toString());
-                    workDatabase.setTransactionSuccessful();
-                    workDatabase.endTransaction();
-                    reschedulePendingWorkers(workManagerImpl);
-                } catch (Throwable th) {
-                    workDatabase.endTransaction();
-                    throw th;
-                }
-            }
-        };
+    public static CancelWorkRunnable forId(@NonNull UUID uuid, @NonNull WorkManagerImpl workManagerImpl) {
+        return new CancelWorkRunnable$1(workManagerImpl, uuid);
     }
 
-    public static CancelWorkRunnable forName(@NonNull final String str, @NonNull final WorkManagerImpl workManagerImpl, final boolean z2) {
-        return new CancelWorkRunnable() { // from class: androidx.work.impl.utils.CancelWorkRunnable.3
-            @Override // androidx.work.impl.utils.CancelWorkRunnable
-            @WorkerThread
-            public void runInternal() {
-                WorkDatabase workDatabase = workManagerImpl.getWorkDatabase();
-                workDatabase.beginTransaction();
-                try {
-                    Iterator<String> it = workDatabase.workSpecDao().getUnfinishedWorkWithName(str).iterator();
-                    while (it.hasNext()) {
-                        cancel(workManagerImpl, it.next());
-                    }
-                    workDatabase.setTransactionSuccessful();
-                    workDatabase.endTransaction();
-                    if (z2) {
-                        reschedulePendingWorkers(workManagerImpl);
-                    }
-                } catch (Throwable th) {
-                    workDatabase.endTransaction();
-                    throw th;
-                }
-            }
-        };
+    public static CancelWorkRunnable forName(@NonNull String str, @NonNull WorkManagerImpl workManagerImpl, boolean z2) {
+        return new CancelWorkRunnable$3(workManagerImpl, str, z2);
     }
 
-    public static CancelWorkRunnable forTag(@NonNull final String str, @NonNull final WorkManagerImpl workManagerImpl) {
-        return new CancelWorkRunnable() { // from class: androidx.work.impl.utils.CancelWorkRunnable.2
-            @Override // androidx.work.impl.utils.CancelWorkRunnable
-            @WorkerThread
-            public void runInternal() {
-                WorkDatabase workDatabase = workManagerImpl.getWorkDatabase();
-                workDatabase.beginTransaction();
-                try {
-                    Iterator<String> it = workDatabase.workSpecDao().getUnfinishedWorkWithTag(str).iterator();
-                    while (it.hasNext()) {
-                        cancel(workManagerImpl, it.next());
-                    }
-                    workDatabase.setTransactionSuccessful();
-                    workDatabase.endTransaction();
-                    reschedulePendingWorkers(workManagerImpl);
-                } catch (Throwable th) {
-                    workDatabase.endTransaction();
-                    throw th;
-                }
-            }
-        };
+    public static CancelWorkRunnable forTag(@NonNull String str, @NonNull WorkManagerImpl workManagerImpl) {
+        return new CancelWorkRunnable$2(workManagerImpl, str);
     }
 
     public Operation getOperation() {
@@ -130,9 +58,9 @@ public abstract class CancelWorkRunnable implements Runnable {
         linkedList.add(str);
         while (!linkedList.isEmpty()) {
             String str2 = (String) linkedList.remove();
-            WorkInfo.State state = workSpecDao.getState(str2);
-            if (state != WorkInfo.State.SUCCEEDED && state != WorkInfo.State.FAILED) {
-                workSpecDao.setState(WorkInfo.State.CANCELLED, str2);
+            WorkInfo$State state = workSpecDao.getState(str2);
+            if (state != WorkInfo$State.SUCCEEDED && state != WorkInfo$State.FAILED) {
+                workSpecDao.setState(WorkInfo$State.CANCELLED, str2);
             }
             linkedList.addAll(dependencyDao.getDependentWorkIds(str2));
         }
@@ -148,7 +76,7 @@ public abstract class CancelWorkRunnable implements Runnable {
             runInternal();
             this.mOperation.setState(Operation.SUCCESS);
         } catch (Throwable th) {
-            this.mOperation.setState(new Operation.State.FAILURE(th));
+            this.mOperation.setState(new Operation$State$FAILURE(th));
         }
     }
 

@@ -10,42 +10,37 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelsListItemChannelBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f16011a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f16012b;
+    public final ImageView f2287b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f16013c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f16014d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16015e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ImageView f16016f;
+    public final ImageView f;
 
     public WidgetChannelsListItemChannelBinding(@NonNull RelativeLayout relativeLayout, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull ImageView imageView3) {
-        this.f16011a = relativeLayout;
-        this.f16012b = imageView;
-        this.f16013c = imageView2;
-        this.f16014d = textView;
-        this.f16015e = textView2;
-        this.f16016f = imageView3;
+        this.a = relativeLayout;
+        this.f2287b = imageView;
+        this.c = imageView2;
+        this.d = textView;
+        this.e = textView2;
+        this.f = imageView3;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16011a;
+        return this.a;
     }
 }

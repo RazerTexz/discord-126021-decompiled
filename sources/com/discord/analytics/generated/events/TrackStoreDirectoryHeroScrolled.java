@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackPaymentMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackPaymentMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStoreDirectoryHeroScrolled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackStoreDirectoryHeroScrolled implements Analyti
             return false;
         }
         TrackStoreDirectoryHeroScrolled trackStoreDirectoryHeroScrolled = (TrackStoreDirectoryHeroScrolled) other;
-        return C12238m.areEqual(this.loadId, trackStoreDirectoryHeroScrolled.loadId) && C12238m.areEqual(this.cardIndex, trackStoreDirectoryHeroScrolled.cardIndex) && C12238m.areEqual(this.cardType, trackStoreDirectoryHeroScrolled.cardType);
+        return m.areEqual(this.loadId, trackStoreDirectoryHeroScrolled.loadId) && m.areEqual(this.cardIndex, trackStoreDirectoryHeroScrolled.cardIndex) && m.areEqual(this.cardType, trackStoreDirectoryHeroScrolled.cardType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,11 +48,11 @@ public final /* data */ class TrackStoreDirectoryHeroScrolled implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStoreDirectoryHeroScrolled(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", cardIndex=");
-        sbM833U.append(this.cardIndex);
-        sbM833U.append(", cardType=");
-        return C1643a.m817E(sbM833U, this.cardType, ")");
+        StringBuilder sbU = a.U("TrackStoreDirectoryHeroScrolled(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", cardIndex=");
+        sbU.append(this.cardIndex);
+        sbU.append(", cardType=");
+        return a.E(sbU, this.cardType, ")");
     }
 }

@@ -1,7 +1,5 @@
 package com.google.android.material.transformation;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -17,18 +15,12 @@ public abstract class ExpandableTransformationBehavior extends ExpandableBehavio
     @Nullable
     private AnimatorSet currentAnimation;
 
-    /* JADX INFO: renamed from: com.google.android.material.transformation.ExpandableTransformationBehavior$a */
-    public class C11034a extends AnimatorListenerAdapter {
-        public C11034a() {
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            ExpandableTransformationBehavior.this.currentAnimation = null;
-        }
+    public ExpandableTransformationBehavior() {
     }
 
-    public ExpandableTransformationBehavior() {
+    public static /* synthetic */ AnimatorSet access$002(ExpandableTransformationBehavior expandableTransformationBehavior, AnimatorSet animatorSet) {
+        expandableTransformationBehavior.currentAnimation = animatorSet;
+        return animatorSet;
     }
 
     @NonNull
@@ -44,7 +36,7 @@ public abstract class ExpandableTransformationBehavior extends ExpandableBehavio
         }
         AnimatorSet animatorSetOnCreateExpandedStateChangeAnimation = onCreateExpandedStateChangeAnimation(view, view2, z2, z4);
         this.currentAnimation = animatorSetOnCreateExpandedStateChangeAnimation;
-        animatorSetOnCreateExpandedStateChangeAnimation.addListener(new C11034a());
+        animatorSetOnCreateExpandedStateChangeAnimation.addListener(new ExpandableTransformationBehavior$a(this));
         this.currentAnimation.start();
         if (!z3) {
             this.currentAnimation.end();

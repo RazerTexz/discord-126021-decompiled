@@ -3,10 +3,9 @@ package androidx.appcompat.content.res;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -24,42 +23,32 @@ import java.util.WeakHashMap;
 public final class AppCompatResources {
     private static final String LOG_TAG = "AppCompatResources";
     private static final ThreadLocal<TypedValue> TL_TYPED_VALUE = new ThreadLocal<>();
-    private static final WeakHashMap<Context, SparseArray<ColorStateListCacheEntry>> sColorStateCaches = new WeakHashMap<>(0);
+    private static final WeakHashMap<Context, SparseArray<AppCompatResources$ColorStateListCacheEntry>> sColorStateCaches = new WeakHashMap<>(0);
     private static final Object sColorStateCacheLock = new Object();
-
-    public class ColorStateListCacheEntry {
-        public final Configuration configuration;
-        public final ColorStateList value;
-
-        public ColorStateListCacheEntry(@NonNull ColorStateList colorStateList, @NonNull Configuration configuration) {
-            this.value = colorStateList;
-            this.configuration = configuration;
-        }
-    }
 
     private AppCompatResources() {
     }
 
     private static void addColorStateListToCache(@NonNull Context context, @ColorRes int i, @NonNull ColorStateList colorStateList) {
         synchronized (sColorStateCacheLock) {
-            WeakHashMap<Context, SparseArray<ColorStateListCacheEntry>> weakHashMap = sColorStateCaches;
-            SparseArray<ColorStateListCacheEntry> sparseArray = weakHashMap.get(context);
+            WeakHashMap<Context, SparseArray<AppCompatResources$ColorStateListCacheEntry>> weakHashMap = sColorStateCaches;
+            SparseArray<AppCompatResources$ColorStateListCacheEntry> sparseArray = weakHashMap.get(context);
             if (sparseArray == null) {
                 sparseArray = new SparseArray<>();
                 weakHashMap.put(context, sparseArray);
             }
-            sparseArray.append(i, new ColorStateListCacheEntry(colorStateList, context.getResources().getConfiguration()));
+            sparseArray.append(i, new AppCompatResources$ColorStateListCacheEntry(colorStateList, context.getResources().getConfiguration()));
         }
     }
 
     @Nullable
     private static ColorStateList getCachedColorStateList(@NonNull Context context, @ColorRes int i) {
-        ColorStateListCacheEntry colorStateListCacheEntry;
+        AppCompatResources$ColorStateListCacheEntry appCompatResources$ColorStateListCacheEntry;
         synchronized (sColorStateCacheLock) {
-            SparseArray<ColorStateListCacheEntry> sparseArray = sColorStateCaches.get(context);
-            if (sparseArray != null && sparseArray.size() > 0 && (colorStateListCacheEntry = sparseArray.get(i)) != null) {
-                if (colorStateListCacheEntry.configuration.equals(context.getResources().getConfiguration())) {
-                    return colorStateListCacheEntry.value;
+            SparseArray<AppCompatResources$ColorStateListCacheEntry> sparseArray = sColorStateCaches.get(context);
+            if (sparseArray != null && sparseArray.size() > 0 && (appCompatResources$ColorStateListCacheEntry = sparseArray.get(i)) != null) {
+                if (appCompatResources$ColorStateListCacheEntry.configuration.equals(context.getResources().getConfiguration())) {
+                    return appCompatResources$ColorStateListCacheEntry.value;
                 }
                 sparseArray.remove(i);
             }
@@ -68,7 +57,7 @@ public final class AppCompatResources {
     }
 
     public static ColorStateList getColorStateList(@NonNull Context context, @ColorRes int i) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return context.getColorStateList(i);
         }
         ColorStateList cachedColorStateList = getCachedColorStateList(context, i);

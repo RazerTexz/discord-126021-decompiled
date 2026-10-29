@@ -1,78 +1,30 @@
 package com.discord.models.domain.spotify;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelSpotifyAlbum.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelSpotifyAlbum {
     private final String albumType;
     private final String id;
-    private final List<AlbumImage> images;
+    private final List<ModelSpotifyAlbum$AlbumImage> images;
     private final String name;
 
-    /* JADX INFO: compiled from: ModelSpotifyAlbum.kt */
-    public final /* data */ class AlbumImage {
-        private final String url;
-
-        public AlbumImage(String str) {
-            this.url = str;
-        }
-
-        public static /* synthetic */ AlbumImage copy$default(AlbumImage albumImage, String str, int i, Object obj) {
-            if ((i & 1) != 0) {
-                str = albumImage.url;
-            }
-            return albumImage.copy(str);
-        }
-
-        public final AlbumImage copy(String url) {
-            return new AlbumImage(url);
-        }
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof AlbumImage) && C12238m.areEqual(this.url, ((AlbumImage) other).url);
-            }
-            return true;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getUrl() {
-            return this.url;
-        }
-
-        public final String getUrl() {
-            return this.url;
-        }
-
-        public int hashCode() {
-            String str = this.url;
-            if (str != null) {
-                return str.hashCode();
-            }
-            return 0;
-        }
-
-        public String toString() {
-            return C1643a.m822J(C1643a.m833U("AlbumImage(url="), this.url, ")");
-        }
-    }
-
-    public ModelSpotifyAlbum(String str, String str2, List<AlbumImage> list, String str3) {
-        C12238m.checkNotNullParameter(str, "albumType");
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(list, "images");
-        C12238m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_NAME);
+    public ModelSpotifyAlbum(String str, String str2, List<ModelSpotifyAlbum$AlbumImage> list, String str3) {
+        m.checkNotNullParameter(str, "albumType");
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(list, "images");
+        m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.albumType = str;
         this.id = str2;
         this.images = list;
         this.name = str3;
     }
 
-    public final List<AlbumImage> component3() {
+    public final List<ModelSpotifyAlbum$AlbumImage> component3() {
         return this.images;
     }
 
@@ -93,11 +45,11 @@ public final /* data */ class ModelSpotifyAlbum {
         return modelSpotifyAlbum.copy(str, str2, list, str3);
     }
 
-    public final ModelSpotifyAlbum copy(String albumType, String id2, List<AlbumImage> images, String name) {
-        C12238m.checkNotNullParameter(albumType, "albumType");
-        C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(images, "images");
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+    public final ModelSpotifyAlbum copy(String albumType, String id2, List<ModelSpotifyAlbum$AlbumImage> images, String name) {
+        m.checkNotNullParameter(albumType, "albumType");
+        m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(images, "images");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new ModelSpotifyAlbum(albumType, id2, images, name);
     }
 
@@ -109,7 +61,7 @@ public final /* data */ class ModelSpotifyAlbum {
             return false;
         }
         ModelSpotifyAlbum modelSpotifyAlbum = (ModelSpotifyAlbum) other;
-        return C12238m.areEqual(this.albumType, modelSpotifyAlbum.albumType) && C12238m.areEqual(this.id, modelSpotifyAlbum.id) && C12238m.areEqual(this.images, modelSpotifyAlbum.images) && C12238m.areEqual(this.name, modelSpotifyAlbum.name);
+        return m.areEqual(this.albumType, modelSpotifyAlbum.albumType) && m.areEqual(this.id, modelSpotifyAlbum.id) && m.areEqual(this.images, modelSpotifyAlbum.images) && m.areEqual(this.name, modelSpotifyAlbum.name);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -130,7 +82,7 @@ public final /* data */ class ModelSpotifyAlbum {
         return this.id;
     }
 
-    public final List<AlbumImage> getImages() {
+    public final List<ModelSpotifyAlbum$AlbumImage> getImages() {
         return this.images;
     }
 
@@ -148,20 +100,20 @@ public final /* data */ class ModelSpotifyAlbum {
         int iHashCode = (str != null ? str.hashCode() : 0) * 31;
         String str2 = this.id;
         int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
-        List<AlbumImage> list = this.images;
+        List<ModelSpotifyAlbum$AlbumImage> list = this.images;
         int iHashCode3 = (iHashCode2 + (list != null ? list.hashCode() : 0)) * 31;
         String str3 = this.name;
         return iHashCode3 + (str3 != null ? str3.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelSpotifyAlbum(albumType=");
-        sbM833U.append(this.albumType);
-        sbM833U.append(", id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", images=");
-        sbM833U.append(this.images);
-        sbM833U.append(", name=");
-        return C1643a.m822J(sbM833U, this.name, ")");
+        StringBuilder sbU = a.U("ModelSpotifyAlbum(albumType=");
+        sbU.append(this.albumType);
+        sbU.append(", id=");
+        sbU.append(this.id);
+        sbU.append(", images=");
+        sbU.append(this.images);
+        sbU.append(", name=");
+        return a.J(sbU, this.name, ")");
     }
 }

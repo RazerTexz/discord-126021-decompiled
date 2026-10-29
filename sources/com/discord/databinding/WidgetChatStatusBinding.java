@@ -10,32 +10,29 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatStatusBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16370a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinearLayout f16371b;
+    public final LinearLayout f2346b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f16372c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f16373d;
+    public final TextView d;
 
     public WidgetChatStatusBinding(@NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout2, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f16370a = linearLayout;
-        this.f16371b = linearLayout2;
-        this.f16372c = imageView;
-        this.f16373d = textView;
+        this.a = linearLayout;
+        this.f2346b = linearLayout2;
+        this.c = imageView;
+        this.d = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16370a;
+        return this.a;
     }
 }

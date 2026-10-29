@@ -6,9 +6,7 @@ import kotlin.jvm.functions.Function0;
 /* JADX INFO: compiled from: AppPermissions.kt */
 /* JADX INFO: loaded from: classes.dex */
 public interface AppPermissionsRequests {
-
-    /* JADX INFO: renamed from: a */
-    public static final /* synthetic */ int f14960a = 0;
+    public static final /* synthetic */ int a = 0;
 
     boolean hasMedia();
 

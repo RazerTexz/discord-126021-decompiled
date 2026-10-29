@@ -1,13 +1,13 @@
 package androidx.core.database;
 
 import android.database.Cursor;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Cursor.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class CursorKt {
     public static final byte[] getBlobOrNull(Cursor cursor, int i) {
-        C12238m.checkNotNullParameter(cursor, "<this>");
+        m.checkNotNullParameter(cursor, "<this>");
         if (cursor.isNull(i)) {
             return null;
         }
@@ -15,7 +15,7 @@ public final class CursorKt {
     }
 
     public static final Double getDoubleOrNull(Cursor cursor, int i) {
-        C12238m.checkNotNullParameter(cursor, "<this>");
+        m.checkNotNullParameter(cursor, "<this>");
         if (cursor.isNull(i)) {
             return null;
         }
@@ -23,7 +23,7 @@ public final class CursorKt {
     }
 
     public static final Float getFloatOrNull(Cursor cursor, int i) {
-        C12238m.checkNotNullParameter(cursor, "<this>");
+        m.checkNotNullParameter(cursor, "<this>");
         if (cursor.isNull(i)) {
             return null;
         }
@@ -31,7 +31,7 @@ public final class CursorKt {
     }
 
     public static final Integer getIntOrNull(Cursor cursor, int i) {
-        C12238m.checkNotNullParameter(cursor, "<this>");
+        m.checkNotNullParameter(cursor, "<this>");
         if (cursor.isNull(i)) {
             return null;
         }
@@ -39,7 +39,7 @@ public final class CursorKt {
     }
 
     public static final Long getLongOrNull(Cursor cursor, int i) {
-        C12238m.checkNotNullParameter(cursor, "<this>");
+        m.checkNotNullParameter(cursor, "<this>");
         if (cursor.isNull(i)) {
             return null;
         }
@@ -47,7 +47,7 @@ public final class CursorKt {
     }
 
     public static final Short getShortOrNull(Cursor cursor, int i) {
-        C12238m.checkNotNullParameter(cursor, "<this>");
+        m.checkNotNullParameter(cursor, "<this>");
         if (cursor.isNull(i)) {
             return null;
         }
@@ -55,7 +55,7 @@ public final class CursorKt {
     }
 
     public static final String getStringOrNull(Cursor cursor, int i) {
-        C12238m.checkNotNullParameter(cursor, "<this>");
+        m.checkNotNullParameter(cursor, "<this>");
         if (cursor.isNull(i)) {
             return null;
         }

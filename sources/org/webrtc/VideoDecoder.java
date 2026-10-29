@@ -2,39 +2,11 @@ package org.webrtc;
 
 /* JADX INFO: loaded from: classes3.dex */
 public interface VideoDecoder {
-
-    public interface Callback {
-        void onDecodedFrame(VideoFrame videoFrame, Integer num, Integer num2);
-    }
-
-    public class DecodeInfo {
-        public final boolean isMissingFrames;
-        public final long renderTimeMs;
-
-        public DecodeInfo(boolean z2, long j) {
-            this.isMissingFrames = z2;
-            this.renderTimeMs = j;
-        }
-    }
-
-    public class Settings {
-        public final int height;
-        public final int numberOfCores;
-        public final int width;
-
-        @CalledByNative("Settings")
-        public Settings(int i, int i2, int i3) {
-            this.numberOfCores = i;
-            this.width = i2;
-            this.height = i3;
-        }
-    }
-
     @CalledByNative
     long createNativeVideoDecoder();
 
     @CalledByNative
-    VideoCodecStatus decode(EncodedImage encodedImage, DecodeInfo decodeInfo);
+    VideoCodecStatus decode(EncodedImage encodedImage, VideoDecoder$DecodeInfo videoDecoder$DecodeInfo);
 
     @CalledByNative
     String getImplementationName();
@@ -42,7 +14,7 @@ public interface VideoDecoder {
     boolean getPrefersLateDecoding();
 
     @CalledByNative
-    VideoCodecStatus initDecode(Settings settings, Callback callback);
+    VideoCodecStatus initDecode(VideoDecoder$Settings videoDecoder$Settings, VideoDecoder$Callback videoDecoder$Callback);
 
     @CalledByNative
     VideoCodecStatus release();

@@ -3,44 +3,29 @@ package com.discord.widgets.chat.input.emoji;
 import com.discord.models.experiments.domain.Experiment;
 import com.discord.stores.StoreExperiments;
 import com.discord.stores.StoreStream;
+import d0.g;
+import d0.z.d.m;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EmojiAutocompletePremiumUpsellFeatureFlag.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EmojiAutocompletePremiumUpsellFeatureFlag {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final EmojiAutocompletePremiumUpsellFeatureFlag$Companion Companion = new EmojiAutocompletePremiumUpsellFeatureFlag$Companion(null);
     private final StoreExperiments storeExperiments;
-    private static final Lazy INSTANCE$delegate = C12083g.lazy(EmojiAutocompletePremiumUpsellFeatureFlag$Companion$INSTANCE$2.INSTANCE);
+    private static final Lazy INSTANCE$delegate = g.lazy(EmojiAutocompletePremiumUpsellFeatureFlag$Companion$INSTANCE$2.INSTANCE);
 
-    /* JADX INFO: compiled from: EmojiAutocompletePremiumUpsellFeatureFlag.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final EmojiAutocompletePremiumUpsellFeatureFlag getINSTANCE() {
-            Lazy lazy = EmojiAutocompletePremiumUpsellFeatureFlag.INSTANCE$delegate;
-            Companion companion = EmojiAutocompletePremiumUpsellFeatureFlag.INSTANCE;
-            return (EmojiAutocompletePremiumUpsellFeatureFlag) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
     public EmojiAutocompletePremiumUpsellFeatureFlag() {
-        this(null, 1, 0 == true ? 1 : 0);
+        this(null, 1, null);
     }
 
     public EmojiAutocompletePremiumUpsellFeatureFlag(StoreExperiments storeExperiments) {
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        m.checkNotNullParameter(storeExperiments, "storeExperiments");
         this.storeExperiments = storeExperiments;
+    }
+
+    public static final /* synthetic */ Lazy access$getINSTANCE$cp() {
+        return INSTANCE$delegate;
     }
 
     public final boolean isEnabled() {
@@ -49,6 +34,6 @@ public final class EmojiAutocompletePremiumUpsellFeatureFlag {
     }
 
     public /* synthetic */ EmojiAutocompletePremiumUpsellFeatureFlag(StoreExperiments storeExperiments, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.INSTANCE.getExperiments() : storeExperiments);
+        this((i & 1) != 0 ? StoreStream.Companion.getExperiments() : storeExperiments);
     }
 }

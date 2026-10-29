@@ -2,19 +2,19 @@ package com.discord.widgets.user.search;
 
 import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.guild.Guild;
+import d0.t.u;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import kotlin.jvm.functions.Function1;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extends AbstractC12240o implements Function1<Guild, WidgetGlobalSearchGuildsModel.Item> {
+public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extends o implements Function1<Guild, WidgetGlobalSearchGuildsModel$Item> {
     public final /* synthetic */ Map $channelIds;
     public final /* synthetic */ Map $guildSettings;
     public final /* synthetic */ Map $mentionCounts;
@@ -34,10 +34,15 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extend
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetGlobalSearchGuildsModel.Item invoke(Guild guild) {
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchGuildsModel$Item invoke(Guild guild) {
+        return invoke2(guild);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetGlobalSearchGuildsModel$Item invoke2(Guild guild) {
         int iSumOfInt;
         boolean z2;
-        C12238m.checkNotNullParameter(guild, "guild");
+        m.checkNotNullParameter(guild, "guild");
         long id2 = guild.getId();
         List list = (List) this.$channelIds.get(Long.valueOf(id2));
         if (list != null) {
@@ -49,7 +54,7 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extend
                     arrayList.add(num);
                 }
             }
-            iSumOfInt = C12163u.sumOfInt(arrayList);
+            iSumOfInt = u.sumOfInt(arrayList);
         } else {
             iSumOfInt = 0;
         }
@@ -68,6 +73,6 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asGuildItems$1 extend
             }
             z2 = false;
         }
-        return WidgetGlobalSearchGuildsModel.Item.INSTANCE.createGuild$app_productionGoogleRelease(guild, iSumOfInt, zContains, z3, z2);
+        return WidgetGlobalSearchGuildsModel$Item.Companion.createGuild$app_productionGoogleRelease(guild, iSumOfInt, zContains, z3, z2);
     }
 }

@@ -1,48 +1,25 @@
 package androidx.constraintlayout.solver.widgets.analyzer;
 
 import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
+import androidx.constraintlayout.solver.widgets.ConstraintAnchor$Type;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
+import androidx.constraintlayout.solver.widgets.ConstraintWidget$DimensionBehaviour;
 import androidx.constraintlayout.solver.widgets.Helper;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class VerticalWidgetRun extends WidgetRun {
     public DependencyNode baseline;
     public DimensionDependency baselineDimension;
 
-    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.analyzer.VerticalWidgetRun$1 */
-    public /* synthetic */ class C01931 {
-
-        /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$analyzer$WidgetRun$RunType */
-        public static final /* synthetic */ int[] f122xbf6f0c8e;
-
-        static {
-            WidgetRun.RunType.values();
-            int[] iArr = new int[4];
-            f122xbf6f0c8e = iArr;
-            try {
-                iArr[WidgetRun.RunType.START.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                f122xbf6f0c8e[WidgetRun.RunType.END.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                f122xbf6f0c8e[WidgetRun.RunType.CENTER.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-        }
-    }
-
     public VerticalWidgetRun(ConstraintWidget constraintWidget) {
         super(constraintWidget);
         DependencyNode dependencyNode = new DependencyNode(this);
         this.baseline = dependencyNode;
         this.baselineDimension = null;
-        this.start.type = DependencyNode.Type.TOP;
-        this.end.type = DependencyNode.Type.BOTTOM;
-        dependencyNode.type = DependencyNode.Type.BASELINE;
+        this.start.type = DependencyNode$Type.TOP;
+        this.end.type = DependencyNode$Type.BOTTOM;
+        dependencyNode.type = DependencyNode$Type.BASELINE;
         this.orientation = 1;
     }
 
@@ -59,20 +36,20 @@ public class VerticalWidgetRun extends WidgetRun {
             if (this.widget.hasBaseline()) {
                 this.baselineDimension = new BaselineDimensionDependency(this);
             }
-            ConstraintWidget.DimensionBehaviour dimensionBehaviour = this.dimensionBehavior;
-            if (dimensionBehaviour != ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
-                if (dimensionBehaviour == ConstraintWidget.DimensionBehaviour.MATCH_PARENT && (parent2 = this.widget.getParent()) != null && parent2.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.FIXED) {
+            ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = this.dimensionBehavior;
+            if (constraintWidget$DimensionBehaviour != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
+                if (constraintWidget$DimensionBehaviour == ConstraintWidget$DimensionBehaviour.MATCH_PARENT && (parent2 = this.widget.getParent()) != null && parent2.getVerticalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.FIXED) {
                     int height = (parent2.getHeight() - this.widget.mTop.getMargin()) - this.widget.mBottom.getMargin();
                     addTarget(this.start, parent2.verticalRun.start, this.widget.mTop.getMargin());
                     addTarget(this.end, parent2.verticalRun.end, -this.widget.mBottom.getMargin());
                     this.dimension.resolve(height);
                     return;
                 }
-                if (this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.FIXED) {
+                if (this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.FIXED) {
                     this.dimension.resolve(this.widget.getHeight());
                 }
             }
-        } else if (this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_PARENT && (parent = this.widget.getParent()) != null && parent.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.FIXED) {
+        } else if (this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_PARENT && (parent = this.widget.getParent()) != null && parent.getVerticalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.FIXED) {
             addTarget(this.start, parent.verticalRun.start, this.widget.mTop.getMargin());
             addTarget(this.end, parent.verticalRun.end, -this.widget.mBottom.getMargin());
             return;
@@ -140,7 +117,7 @@ public class VerticalWidgetRun extends WidgetRun {
                     }
                     return;
                 }
-                if ((constraintWidget2 instanceof Helper) || constraintWidget2.getParent() == null || this.widget.getAnchor(ConstraintAnchor.Type.CENTER).mTarget != null) {
+                if ((constraintWidget2 instanceof Helper) || constraintWidget2.getParent() == null || this.widget.getAnchor(ConstraintAnchor$Type.CENTER).mTarget != null) {
                     return;
                 }
                 addTarget(this.start, this.widget.getParent().verticalRun.start, this.widget.getY());
@@ -152,7 +129,7 @@ public class VerticalWidgetRun extends WidgetRun {
                 return;
             }
         }
-        if (z2 || this.dimensionBehavior != ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+        if (z2 || this.dimensionBehavior != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
             dimensionDependency.addDependency(this);
         } else {
             ConstraintWidget constraintWidget3 = this.widget;
@@ -192,7 +169,7 @@ public class VerticalWidgetRun extends WidgetRun {
                 DependencyNode target7 = getTarget(this.widget.mListAnchors[3]);
                 target6.addDependency(this);
                 target7.addDependency(this);
-                this.mRunType = WidgetRun.RunType.CENTER;
+                this.mRunType = WidgetRun$RunType.CENTER;
             }
             if (this.widget.hasBaseline()) {
                 addTarget(this.baseline, this.start, 1, this.baselineDimension);
@@ -205,11 +182,11 @@ public class VerticalWidgetRun extends WidgetRun {
                 if (this.widget.hasBaseline()) {
                     addTarget(this.baseline, this.start, 1, this.baselineDimension);
                 }
-                ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = this.dimensionBehavior;
-                ConstraintWidget.DimensionBehaviour dimensionBehaviour3 = ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
-                if (dimensionBehaviour2 == dimensionBehaviour3 && this.widget.getDimensionRatio() > 0.0f) {
+                ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = this.dimensionBehavior;
+                ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour3 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
+                if (constraintWidget$DimensionBehaviour2 == constraintWidget$DimensionBehaviour3 && this.widget.getDimensionRatio() > 0.0f) {
                     HorizontalWidgetRun horizontalWidgetRun = this.widget.horizontalRun;
-                    if (horizontalWidgetRun.dimensionBehavior == dimensionBehaviour3) {
+                    if (horizontalWidgetRun.dimensionBehavior == constraintWidget$DimensionBehaviour3) {
                         horizontalWidgetRun.dimension.dependencies.add(this.dimension);
                         this.dimension.targets.add(this.widget.horizontalRun.dimension);
                         this.dimension.updateDelegate = this;
@@ -238,11 +215,11 @@ public class VerticalWidgetRun extends WidgetRun {
             if (this.widget.hasBaseline()) {
                 addTarget(this.baseline, this.start, 1, this.baselineDimension);
             }
-            ConstraintWidget.DimensionBehaviour dimensionBehaviour4 = this.dimensionBehavior;
-            ConstraintWidget.DimensionBehaviour dimensionBehaviour5 = ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
-            if (dimensionBehaviour4 == dimensionBehaviour5 && this.widget.getDimensionRatio() > 0.0f) {
+            ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour4 = this.dimensionBehavior;
+            ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour5 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
+            if (constraintWidget$DimensionBehaviour4 == constraintWidget$DimensionBehaviour5 && this.widget.getDimensionRatio() > 0.0f) {
                 HorizontalWidgetRun horizontalWidgetRun2 = this.widget.horizontalRun;
-                if (horizontalWidgetRun2.dimensionBehavior == dimensionBehaviour5) {
+                if (horizontalWidgetRun2.dimensionBehavior == constraintWidget$DimensionBehaviour5) {
                     horizontalWidgetRun2.dimension.dependencies.add(this.dimension);
                     this.dimension.targets.add(this.widget.horizontalRun.dimension);
                     this.dimension.updateDelegate = this;
@@ -286,13 +263,13 @@ public class VerticalWidgetRun extends WidgetRun {
 
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun
     public boolean supportsWrapComputation() {
-        return this.dimensionBehavior != ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT || this.widget.mMatchConstraintDefaultHeight == 0;
+        return this.dimensionBehavior != ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT || this.widget.mMatchConstraintDefaultHeight == 0;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("VerticalRun ");
-        sbM833U.append(this.widget.getDebugName());
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("VerticalRun ");
+        sbU.append(this.widget.getDebugName());
+        return sbU.toString();
     }
 
     @Override // androidx.constraintlayout.solver.widgets.analyzer.WidgetRun, androidx.constraintlayout.solver.widgets.analyzer.Dependency
@@ -311,7 +288,7 @@ public class VerticalWidgetRun extends WidgetRun {
             return;
         }
         DimensionDependency dimensionDependency = this.dimension;
-        if (dimensionDependency.readyToSolve && !dimensionDependency.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+        if (dimensionDependency.readyToSolve && !dimensionDependency.resolved && this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
             ConstraintWidget constraintWidget2 = this.widget;
             int i = constraintWidget2.mMatchConstraintDefaultHeight;
             if (i == 2) {
@@ -352,7 +329,7 @@ public class VerticalWidgetRun extends WidgetRun {
                 if (dependencyNode.resolved && dependencyNode2.resolved && this.dimension.resolved) {
                     return;
                 }
-                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT) {
+                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT) {
                     ConstraintWidget constraintWidget6 = this.widget;
                     if (constraintWidget6.mMatchConstraintDefaultWidth == 0 && !constraintWidget6.isInVerticalChain()) {
                         DependencyNode dependencyNode3 = this.start.targets.get(0);
@@ -367,7 +344,7 @@ public class VerticalWidgetRun extends WidgetRun {
                         return;
                     }
                 }
-                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && this.matchConstraintsType == 1 && this.start.targets.size() > 0 && this.end.targets.size() > 0) {
+                if (!this.dimension.resolved && this.dimensionBehavior == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && this.matchConstraintsType == 1 && this.start.targets.size() > 0 && this.end.targets.size() > 0) {
                     DependencyNode dependencyNode6 = this.start.targets.get(0);
                     int i5 = (this.end.targets.get(0).value + this.end.margin) - (dependencyNode6.value + this.start.margin);
                     DimensionDependency dimensionDependency3 = this.dimension;

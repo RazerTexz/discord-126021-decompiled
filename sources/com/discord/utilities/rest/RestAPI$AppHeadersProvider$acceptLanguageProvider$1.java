@@ -1,18 +1,18 @@
 package com.discord.utilities.rest;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.LocaleList;
+import d0.d0.f;
+import d0.t.u;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Locale;
 import kotlin.jvm.functions.Function0;
-import p507d0.p512d0.C11226f;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: RestAPI.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class RestAPI$AppHeadersProvider$acceptLanguageProvider$1 extends AbstractC12240o implements Function0<String> {
+public final class RestAPI$AppHeadersProvider$acceptLanguageProvider$1 extends o implements Function0<String> {
     public static final RestAPI$AppHeadersProvider$acceptLanguageProvider$1 INSTANCE = new RestAPI$AppHeadersProvider$acceptLanguageProvider$1();
 
     public RestAPI$AppHeadersProvider$acceptLanguageProvider$1() {
@@ -20,11 +20,17 @@ public final class RestAPI$AppHeadersProvider$acceptLanguageProvider$1 extends A
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public final String invoke() {
+    public /* bridge */ /* synthetic */ String invoke() {
+        return invoke2();
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final String invoke2() {
         ArrayList arrayList = new ArrayList();
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             LocaleList adjustedDefault = LocaleList.getAdjustedDefault();
-            C12238m.checkNotNullExpressionValue(adjustedDefault, "LocaleList.getAdjustedDefault()");
+            m.checkNotNullExpressionValue(adjustedDefault, "LocaleList.getAdjustedDefault()");
             int iCoerceAtLeast = 10;
             int size = adjustedDefault.size();
             for (int i = 0; i < size; i++) {
@@ -34,11 +40,11 @@ public final class RestAPI$AppHeadersProvider$acceptLanguageProvider$1 extends A
                 } else {
                     arrayList.add(languageTag);
                 }
-                iCoerceAtLeast = C11226f.coerceAtLeast(1, iCoerceAtLeast - 1);
+                iCoerceAtLeast = f.coerceAtLeast(1, iCoerceAtLeast - 1);
             }
         } else {
             arrayList.add(Locale.getDefault().toLanguageTag());
         }
-        return C12163u.joinToString$default(arrayList, ",", null, null, 0, null, null, 62, null);
+        return u.joinToString$default(arrayList, ",", null, null, 0, null, null, 62, null);
     }
 }

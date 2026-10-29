@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.IntentSender$SendIntentException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -97,7 +98,7 @@ public abstract class FragmentHostCallback<E> extends FragmentContainer {
     }
 
     @Deprecated
-    public void onStartIntentSenderFromFragment(@NonNull Fragment fragment, @SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender.SendIntentException {
+    public void onStartIntentSenderFromFragment(@NonNull Fragment fragment, @SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender$SendIntentException {
         if (i != -1) {
             throw new IllegalStateException("Starting intent sender with a requestCode requires a FragmentActivity host");
         }

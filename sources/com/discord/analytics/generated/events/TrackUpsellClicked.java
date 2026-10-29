@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUpsellClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, Tra
             return false;
         }
         TrackUpsellClicked trackUpsellClicked = (TrackUpsellClicked) other;
-        return C12238m.areEqual(this.type, trackUpsellClicked.type) && C12238m.areEqual(this.subtype, trackUpsellClicked.subtype) && C12238m.areEqual(this.action, trackUpsellClicked.action);
+        return m.areEqual(this.type, trackUpsellClicked.type) && m.areEqual(this.subtype, trackUpsellClicked.subtype) && m.areEqual(this.action, trackUpsellClicked.action);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,11 +48,11 @@ public final /* data */ class TrackUpsellClicked implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpsellClicked(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", subtype=");
-        sbM833U.append(this.subtype);
-        sbM833U.append(", action=");
-        return C1643a.m817E(sbM833U, this.action, ")");
+        StringBuilder sbU = a.U("TrackUpsellClicked(type=");
+        sbU.append(this.type);
+        sbU.append(", subtype=");
+        sbU.append(this.subtype);
+        sbU.append(", action=");
+        return a.E(sbU, this.action, ")");
     }
 }

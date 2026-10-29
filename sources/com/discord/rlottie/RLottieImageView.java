@@ -2,13 +2,13 @@ package com.discord.rlottie;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.WindowManager;
 import androidx.appcompat.widget.AppCompatImageView;
+import d0.z.d.m;
 import kotlin.TypeCastException;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: RLottieImageView.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,19 +26,18 @@ public class RLottieImageView extends AppCompatImageView {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public RLottieImageView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkParameterIsNotNull(context, "context");
-        RLottieDrawable.PlaybackMode playbackMode = RLottieDrawable.PlaybackMode.FREEZE;
+        m.checkParameterIsNotNull(context, "context");
+        RLottieDrawable$PlaybackMode rLottieDrawable$PlaybackMode = RLottieDrawable$PlaybackMode.FREEZE;
     }
 
     @SuppressLint({"AnnotateVersionCheck"})
-    /* JADX INFO: renamed from: a */
-    public final Display m8448a(Context context) {
-        if (Build.VERSION.SDK_INT >= 30) {
+    public final Display a(Context context) {
+        if (Build$VERSION.SDK_INT >= 30) {
             Display display = context.getDisplay();
             if (display == null) {
-                C12238m.throwNpe();
+                m.throwNpe();
             }
-            C12238m.checkExpressionValueIsNotNull(display, "display!!");
+            m.checkExpressionValueIsNotNull(display, "display!!");
             return display;
         }
         Object systemService = context.getSystemService("window");
@@ -46,12 +45,11 @@ public class RLottieImageView extends AppCompatImageView {
             throw new TypeCastException("null cannot be cast to non-null type android.view.WindowManager");
         }
         Display defaultDisplay = ((WindowManager) systemService).getDefaultDisplay();
-        C12238m.checkExpressionValueIsNotNull(defaultDisplay, "(getSystemService(Contex…owManager).defaultDisplay");
+        m.checkExpressionValueIsNotNull(defaultDisplay, "(getSystemService(Contex…owManager).defaultDisplay");
         return defaultDisplay;
     }
 
-    /* JADX INFO: renamed from: b */
-    public final void m8449b() {
+    public final void b() {
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable == null) {
             return;
@@ -63,21 +61,20 @@ public class RLottieImageView extends AppCompatImageView {
         rLottieDrawable.start();
     }
 
-    /* JADX INFO: renamed from: c */
-    public final void m8450c(int resId, int w, int h) {
-        RLottieDrawable.PlaybackMode playbackMode = RLottieDrawable.PlaybackMode.LOOP;
-        C12238m.checkParameterIsNotNull(playbackMode, "playbackMode");
+    public final void c(int resId, int w, int h) {
+        RLottieDrawable$PlaybackMode rLottieDrawable$PlaybackMode = RLottieDrawable$PlaybackMode.LOOP;
+        m.checkParameterIsNotNull(rLottieDrawable$PlaybackMode, "playbackMode");
         Context context = getContext();
-        C12238m.checkExpressionValueIsNotNull(context, "context");
+        m.checkExpressionValueIsNotNull(context, "context");
         String strValueOf = String.valueOf(resId);
         Context context2 = getContext();
-        C12238m.checkExpressionValueIsNotNull(context2, "context");
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(context, resId, strValueOf, w, h, m8448a(context2).getRefreshRate(), false, (int[]) null);
+        m.checkExpressionValueIsNotNull(context2, "context");
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(context, resId, strValueOf, w, h, a(context2).getRefreshRate(), false, (int[]) null);
         this.drawable = rLottieDrawable;
-        rLottieDrawable.m8447f(playbackMode);
+        rLottieDrawable.f(rLottieDrawable$PlaybackMode);
         RLottieDrawable rLottieDrawable2 = this.drawable;
         if (rLottieDrawable2 != null) {
-            rLottieDrawable2.m8446e(true);
+            rLottieDrawable2.e(true);
         }
         setImageDrawable(this.drawable);
     }
@@ -99,15 +96,15 @@ public class RLottieImageView extends AppCompatImageView {
         this.attachedToWindow = false;
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable != null) {
-            rLottieDrawable.f18711P = false;
+            rLottieDrawable.P = false;
         }
     }
 
-    public final void setPlaybackMode(RLottieDrawable.PlaybackMode playbackMode) {
-        C12238m.checkParameterIsNotNull(playbackMode, "playbackMode");
+    public final void setPlaybackMode(RLottieDrawable$PlaybackMode playbackMode) {
+        m.checkParameterIsNotNull(playbackMode, "playbackMode");
         RLottieDrawable rLottieDrawable = this.drawable;
         if (rLottieDrawable != null) {
-            rLottieDrawable.m8447f(playbackMode);
+            rLottieDrawable.f(playbackMode);
         }
     }
 
@@ -119,11 +116,11 @@ public class RLottieImageView extends AppCompatImageView {
             } else if (progress > 1.0f) {
                 progress = 1.0f;
             }
-            rLottieDrawable.f18704I = (int) (rLottieDrawable.f18722r[0] * progress);
-            rLottieDrawable.f18730z = false;
-            rLottieDrawable.f18702G = false;
-            if (!rLottieDrawable.m8445d()) {
-                rLottieDrawable.f18703H = true;
+            rLottieDrawable.I = (int) (rLottieDrawable.r[0] * progress);
+            rLottieDrawable.f2769z = false;
+            rLottieDrawable.G = false;
+            if (!rLottieDrawable.d()) {
+                rLottieDrawable.H = true;
             }
             rLottieDrawable.invalidateSelf();
         }

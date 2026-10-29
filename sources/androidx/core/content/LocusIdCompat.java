@@ -1,38 +1,22 @@
 package androidx.core.content;
 
 import android.content.LocusId;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.util.Preconditions;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class LocusIdCompat {
     private final String mId;
     private final LocusId mWrapped;
 
-    @RequiresApi(29)
-    public class Api29Impl {
-        private Api29Impl() {
-        }
-
-        @NonNull
-        public static LocusId create(@NonNull String str) {
-            return new LocusId(str);
-        }
-
-        @NonNull
-        public static String getId(@NonNull LocusId locusId) {
-            return locusId.getId();
-        }
-    }
-
     public LocusIdCompat(@NonNull String str) {
         this.mId = (String) Preconditions.checkStringNotEmpty(str, "id cannot be empty");
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.mWrapped = Api29Impl.create(str);
+        if (Build$VERSION.SDK_INT >= 29) {
+            this.mWrapped = LocusIdCompat$Api29Impl.create(str);
         } else {
             this.mWrapped = null;
         }
@@ -78,11 +62,11 @@ public final class LocusIdCompat {
     @RequiresApi(29)
     public static LocusIdCompat toLocusIdCompat(@NonNull LocusId locusId) {
         Preconditions.checkNotNull(locusId, "locusId cannot be null");
-        return new LocusIdCompat((String) Preconditions.checkStringNotEmpty(Api29Impl.getId(locusId), "id cannot be empty"));
+        return new LocusIdCompat((String) Preconditions.checkStringNotEmpty(LocusIdCompat$Api29Impl.getId(locusId), "id cannot be empty"));
     }
 
     @NonNull
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("LocusIdCompat["), getSanitizedId(), "]");
+        return a.J(a.U("LocusIdCompat["), getSanitizedId(), "]");
     }
 }

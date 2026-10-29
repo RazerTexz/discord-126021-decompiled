@@ -1,10 +1,13 @@
 package lombok.javac.handlers;
 
 import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCAnnotation;
+import com.sun.tools.javac.tree.JCTree$JCClassDecl;
+import com.sun.tools.javac.tree.JCTree$JCVariableDecl;
 import java.lang.annotation.Annotation;
 import lombok.AccessLevel;
 import lombok.ConfigurationKeys;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.handlers.HandlerUtil;
@@ -21,7 +24,7 @@ public class HandleFieldDefaults extends JavacASTAdapter {
         if (checkForTypeLevelFieldDefaults && JavacHandlerUtil.hasAnnotation((Class<? extends Annotation>) FieldDefaults.class, typeNode)) {
             return true;
         }
-        JCTree.JCClassDecl typeDecl = typeNode.get() instanceof JCTree.JCClassDecl ? (JCTree.JCClassDecl) typeNode.get() : null;
+        JCTree$JCClassDecl typeDecl = typeNode.get() instanceof JCTree$JCClassDecl ? (JCTree$JCClassDecl) typeNode.get() : null;
         long modifiers = typeDecl == null ? 0L : typeDecl.mods.flags;
         boolean notAClass = (modifiers & 8704) != 0;
         if (typeDecl == null || notAClass) {
@@ -29,8 +32,8 @@ public class HandleFieldDefaults extends JavacASTAdapter {
             return false;
         }
         for (JavacNode field : typeNode.down()) {
-            if (field.getKind() == AST.Kind.FIELD) {
-                JCTree.JCVariableDecl fieldDecl = field.get();
+            if (field.getKind() == AST$Kind.FIELD) {
+                JCTree$JCVariableDecl fieldDecl = field.get();
                 if (!fieldDecl.name.toString().startsWith("$")) {
                     setFieldDefaultsForField(field, level, makeFinal);
                 }
@@ -40,7 +43,7 @@ public class HandleFieldDefaults extends JavacASTAdapter {
     }
 
     public void setFieldDefaultsForField(JavacNode fieldNode, AccessLevel level, boolean makeFinal) {
-        JCTree.JCVariableDecl field = fieldNode.get();
+        JCTree$JCVariableDecl field = fieldNode.get();
         if (level != null && level != AccessLevel.NONE && (field.mods.flags & 7) == 0 && !JavacHandlerUtil.hasAnnotationAndDeleteIfNeccessary(PackagePrivate.class, fieldNode) && (field.mods.flags & 8) == 0) {
             field.mods.flags |= (long) JavacHandlerUtil.toJavacModifier(level);
         }
@@ -51,15 +54,15 @@ public class HandleFieldDefaults extends JavacASTAdapter {
     }
 
     @Override // lombok.javac.JavacASTAdapter, lombok.javac.JavacASTVisitor
-    public void visitType(JavacNode typeNode, JCTree.JCClassDecl type) {
+    public void visitType(JavacNode typeNode, JCTree$JCClassDecl type) {
         AnnotationValues<FieldDefaults> fieldDefaults = null;
         JavacNode source = typeNode;
         boolean levelIsExplicit = false;
         boolean makeFinalIsExplicit = false;
         FieldDefaults fd = null;
         for (JavacNode jn : typeNode.down()) {
-            if (jn.getKind() == AST.Kind.ANNOTATION) {
-                JCTree.JCAnnotation ann = jn.get();
+            if (jn.getKind() == AST$Kind.ANNOTATION) {
+                JCTree$JCAnnotation ann = jn.get();
                 JCTree typeTree = ann.annotationType;
                 if (typeTree == null) {
                     continue;

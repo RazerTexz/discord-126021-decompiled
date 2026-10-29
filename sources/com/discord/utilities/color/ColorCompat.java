@@ -1,12 +1,12 @@
 package com.discord.utilities.color;
 
-import android.R;
+import android.R$attr;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
+import android.content.res.Resources$Theme;
 import android.graphics.Color;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
@@ -17,9 +17,9 @@ import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ColorCompat.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -30,7 +30,7 @@ public final class ColorCompat {
     }
 
     public final ColorStateList createDefaultColorStateList(@ColorInt int color) {
-        return new ColorStateList(new int[][]{new int[]{R.attr.state_enabled}, new int[]{-16842910}, new int[]{-16842912}, new int[]{R.attr.state_pressed}}, new int[]{color, color, color, color});
+        return new ColorStateList(new int[][]{new int[]{R$attr.state_enabled}, new int[]{-16842910}, new int[]{-16842912}, new int[]{R$attr.state_pressed}}, new int[]{color, color, color, color});
     }
 
     @ColorInt
@@ -42,13 +42,13 @@ public final class ColorCompat {
     }
 
     public final String getColorHexFromColorInt(@ColorInt int colorInt) {
-        return C1643a.m828P(new Object[]{Integer.valueOf(colorInt & ViewCompat.MEASURED_SIZE_MASK)}, 1, "#%06X", "java.lang.String.format(format, *args)");
+        return a.P(new Object[]{Integer.valueOf(colorInt & ViewCompat.MEASURED_SIZE_MASK)}, 1, "#%06X", "java.lang.String.format(format, *args)");
     }
 
     @ColorInt
     public static final int getThemedColor(Context context, @AttrRes int attributeResourceId) {
         TypedValue typedValue = new TypedValue();
-        Resources.Theme theme = context != null ? context.getTheme() : null;
+        Resources$Theme theme = context != null ? context.getTheme() : null;
         if (theme != null) {
             theme.resolveAttribute(attributeResourceId, typedValue, true);
         }
@@ -94,23 +94,23 @@ public final class ColorCompat {
     }
 
     public static final void setStatusBarColor(Fragment fragment, @ColorInt int color, boolean forceDarkUi) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
-        setStatusBarColor(fragment.m95e(), color, forceDarkUi);
+        m.checkNotNullParameter(fragment, "fragment");
+        setStatusBarColor(fragment.getActivity(), color, forceDarkUi);
     }
 
     public static final void setStatusBarColorResourceId(Fragment fragment, @ColorRes int colorResourceId) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
-        setStatusBarColorResourceId(fragment.m95e(), colorResourceId);
+        m.checkNotNullParameter(fragment, "fragment");
+        setStatusBarColorResourceId(fragment.getActivity(), colorResourceId);
     }
 
     public static final void setStatusBarTranslucent(Fragment fragment) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
-        setStatusBarTranslucent(fragment.m95e());
+        m.checkNotNullParameter(fragment, "fragment");
+        setStatusBarTranslucent(fragment.getActivity());
     }
 
     @ColorInt
     public static final int getColor(View view, @ColorRes int colorResourceId) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         return getColor(view.getContext(), colorResourceId);
     }
 
@@ -135,7 +135,7 @@ public final class ColorCompat {
 
     @ColorInt
     public static final int getColor(Fragment fragment, @ColorRes int colorResourceId) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
+        m.checkNotNullParameter(fragment, "fragment");
         return getColor(fragment.getContext(), colorResourceId);
     }
 
@@ -157,7 +157,7 @@ public final class ColorCompat {
         if (window != null) {
             window.setStatusBarColor(color);
         }
-        if (Build.VERSION.SDK_INT < 23 || !forceDarkUi || window == null || (decorView = window.getDecorView()) == null) {
+        if (Build$VERSION.SDK_INT < 23 || !forceDarkUi || window == null || (decorView = window.getDecorView()) == null) {
             return;
         }
         decorView.setSystemUiVisibility(0);
@@ -175,13 +175,13 @@ public final class ColorCompat {
 
     @ColorInt
     public static final int getThemedColor(View view, @AttrRes int attributeResourceId) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         return getThemedColor(view.getContext(), attributeResourceId);
     }
 
     @ColorInt
     public static final int getThemedColor(Fragment fragment, @AttrRes int attributeResourceId) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
+        m.checkNotNullParameter(fragment, "fragment");
         return getThemedColor(fragment.getContext(), attributeResourceId);
     }
 }

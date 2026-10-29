@@ -20,7 +20,12 @@ public class NetworkUnmeteredController extends ConstraintController<NetworkStat
     }
 
     @Override // androidx.work.impl.constraints.controllers.ConstraintController
-    public boolean isConstrained(@NonNull NetworkState networkState) {
+    public /* bridge */ /* synthetic */ boolean isConstrained(@NonNull NetworkState networkState) {
+        return isConstrained2(networkState);
+    }
+
+    /* JADX INFO: renamed from: isConstrained, reason: avoid collision after fix types in other method */
+    public boolean isConstrained2(@NonNull NetworkState networkState) {
         return !networkState.isConnected() || networkState.isMetered();
     }
 }

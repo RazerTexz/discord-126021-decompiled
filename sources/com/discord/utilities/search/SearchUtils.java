@@ -1,11 +1,11 @@
 package com.discord.utilities.search;
 
+import d0.g0.w;
+import d0.t.n0;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.Set;
 import kotlin.text.Regex;
-import p507d0.p579g0.C12106w;
-import p507d0.p580t.C12148n0;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SearchUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,13 +16,13 @@ public final class SearchUtils {
     }
 
     public final boolean fuzzyMatch(String query, String target) {
-        C12238m.checkNotNullParameter(query, "query");
-        C12238m.checkNotNullParameter(target, "target");
+        m.checkNotNullParameter(query, "query");
+        m.checkNotNullParameter(target, "target");
         if (query.length() > target.length()) {
             return false;
         }
         if (query.length() == target.length()) {
-            return C12238m.areEqual(query, target);
+            return m.areEqual(query, target);
         }
         int length = query.length();
         int i = 0;
@@ -45,7 +45,7 @@ public final class SearchUtils {
     }
 
     public final Set<String> getQueriesFromSearchText(String searchText) {
-        C12238m.checkNotNullParameter(searchText, "searchText");
-        return searchText.length() == 0 ? C12148n0.emptySet() : C12163u.toSet(C12106w.split$default((CharSequence) new Regex("(\\n|\\t|\\s)").replace(new Regex("([!.;,\\-—–?\"'])").replace(C12106w.trim(searchText).toString(), ""), " "), new char[]{' '}, false, 0, 6, (Object) null));
+        m.checkNotNullParameter(searchText, "searchText");
+        return searchText.length() == 0 ? n0.emptySet() : u.toSet(w.split$default((CharSequence) new Regex("(\\n|\\t|\\s)").replace(new Regex("([!.;,\\-—–?\"'])").replace(w.trim(searchText).toString(), ""), " "), new char[]{' '}, false, 0, 6, (Object) null));
     }
 }

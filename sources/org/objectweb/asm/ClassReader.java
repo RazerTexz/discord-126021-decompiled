@@ -16,9 +16,9 @@ public class ClassReader {
     static final int EXPAND_ASM_INSNS = 256;
     private static final int INPUT_STREAM_DATA_CHUNK_SIZE = 4096;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @Deprecated
-    public final byte[] f27597b;
+    public final byte[] f3818b;
     public final int header;
     final byte[] classFileBuffer;
     private final int[] cpInfoOffsets;
@@ -38,7 +38,7 @@ public class ClassReader {
     ClassReader(byte[] classFileBuffer, int classFileOffset, boolean checkClassVersion) {
         int cpInfoSize;
         this.classFileBuffer = classFileBuffer;
-        this.f27597b = classFileBuffer;
+        this.f3818b = classFileBuffer;
         if (checkClassVersion && readShort(classFileOffset + 6) > 60) {
             throw new IllegalArgumentException("Unsupported class file major version " + ((int) readShort(classFileOffset + 6)));
         }

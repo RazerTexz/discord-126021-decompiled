@@ -11,8 +11,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
-import android.view.ContextMenu;
-import android.view.KeyCharacterMap;
+import android.view.ContextMenu$ContextMenuInfo;
+import android.view.KeyCharacterMap$KeyData;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.ContextCompat;
 import androidx.core.internal.view.SupportMenu;
 import androidx.core.view.ActionProvider;
@@ -30,15 +31,15 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class MenuBuilder implements SupportMenu {
     private static final String ACTION_VIEW_STATES_KEY = "android:menu:actionviewstates";
     private static final String EXPANDED_ACTION_VIEW_ID = "android:menu:expandedactionview";
     private static final String PRESENTER_KEY = "android:menu:presenters";
     private static final String TAG = "MenuBuilder";
-    private Callback mCallback;
+    private MenuBuilder$Callback mCallback;
     private final Context mContext;
-    private ContextMenu.ContextMenuInfo mCurrentMenuInfo;
+    private ContextMenu$ContextMenuInfo mCurrentMenuInfo;
     private MenuItemImpl mExpandedItem;
     public Drawable mHeaderIcon;
     public CharSequence mHeaderTitle;
@@ -63,18 +64,6 @@ public class MenuBuilder implements SupportMenu {
     private ArrayList<MenuItemImpl> mActionItems = new ArrayList<>();
     private ArrayList<MenuItemImpl> mNonActionItems = new ArrayList<>();
     private boolean mIsActionItemsStale = true;
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public interface Callback {
-        boolean onMenuItemSelected(@NonNull MenuBuilder menuBuilder, @NonNull MenuItem menuItem);
-
-        void onMenuModeChange(@NonNull MenuBuilder menuBuilder);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public interface ItemInvoker {
-        boolean invokeItem(MenuItemImpl menuItemImpl);
-    }
 
     public MenuBuilder(Context context) {
         this.mContext = context;
@@ -113,9 +102,9 @@ public class MenuBuilder implements SupportMenu {
     public MenuItem addInternal(int i, int i2, int i3, CharSequence charSequence) {
         int ordering = getOrdering(i3);
         MenuItemImpl menuItemImplCreateNewMenuItem = createNewMenuItem(i, i2, i3, ordering, charSequence, this.mDefaultShowAsAction);
-        ContextMenu.ContextMenuInfo contextMenuInfo = this.mCurrentMenuInfo;
-        if (contextMenuInfo != null) {
-            menuItemImplCreateNewMenuItem.setMenuInfo(contextMenuInfo);
+        ContextMenu$ContextMenuInfo contextMenu$ContextMenuInfo = this.mCurrentMenuInfo;
+        if (contextMenu$ContextMenuInfo != null) {
+            menuItemImplCreateNewMenuItem.setMenuInfo(contextMenu$ContextMenuInfo);
         }
         ArrayList<MenuItemImpl> arrayList = this.mItems;
         arrayList.add(findInsertIndex(arrayList, ordering), menuItemImplCreateNewMenuItem);
@@ -133,9 +122,9 @@ public class MenuBuilder implements SupportMenu {
     }
 
     public void changeMenuMode() {
-        Callback callback = this.mCallback;
-        if (callback != null) {
-            callback.onMenuModeChange(this);
+        MenuBuilder$Callback menuBuilder$Callback = this.mCallback;
+        if (menuBuilder$Callback != null) {
+            menuBuilder$Callback.onMenuModeChange(this);
         }
     }
 
@@ -211,8 +200,8 @@ public class MenuBuilder implements SupportMenu {
     }
 
     public boolean dispatchMenuItemSelected(@NonNull MenuBuilder menuBuilder, @NonNull MenuItem menuItem) {
-        Callback callback = this.mCallback;
-        return callback != null && callback.onMenuItemSelected(menuBuilder, menuItem);
+        MenuBuilder$Callback menuBuilder$Callback = this.mCallback;
+        return menuBuilder$Callback != null && menuBuilder$Callback.onMenuItemSelected(menuBuilder, menuItem);
     }
 
     private void dispatchPresenterUpdate(boolean z2) {
@@ -357,8 +346,8 @@ public class MenuBuilder implements SupportMenu {
             return null;
         }
         int metaState = keyEvent.getMetaState();
-        KeyCharacterMap.KeyData keyData = new KeyCharacterMap.KeyData();
-        keyEvent.getKeyData(keyData);
+        KeyCharacterMap$KeyData keyCharacterMap$KeyData = new KeyCharacterMap$KeyData();
+        keyEvent.getKeyData(keyCharacterMap$KeyData);
         int size = arrayList.size();
         if (size == 1) {
             return arrayList.get(0);
@@ -367,7 +356,7 @@ public class MenuBuilder implements SupportMenu {
         for (int i2 = 0; i2 < size; i2++) {
             MenuItemImpl menuItemImpl = arrayList.get(i2);
             char alphabeticShortcut = zIsQwertyMode ? menuItemImpl.getAlphabeticShortcut() : menuItemImpl.getNumericShortcut();
-            char[] cArr = keyData.meta;
+            char[] cArr = keyCharacterMap$KeyData.meta;
             if ((alphabeticShortcut == cArr[0] && (metaState & 2) == 0) || ((alphabeticShortcut == cArr[2] && (metaState & 2) != 0) || (zIsQwertyMode && alphabeticShortcut == '\b' && i == 67))) {
                 return menuItemImpl;
             }
@@ -378,8 +367,8 @@ public class MenuBuilder implements SupportMenu {
     public void findItemsWithShortcutForKey(List<MenuItemImpl> list, int i, KeyEvent keyEvent) {
         boolean zIsQwertyMode = isQwertyMode();
         int modifiers = keyEvent.getModifiers();
-        KeyCharacterMap.KeyData keyData = new KeyCharacterMap.KeyData();
-        if (keyEvent.getKeyData(keyData) || i == 67) {
+        KeyCharacterMap$KeyData keyCharacterMap$KeyData = new KeyCharacterMap$KeyData();
+        if (keyEvent.getKeyData(keyCharacterMap$KeyData) || i == 67) {
             int size = this.mItems.size();
             for (int i2 = 0; i2 < size; i2++) {
                 MenuItemImpl menuItemImpl = this.mItems.get(i2);
@@ -388,7 +377,7 @@ public class MenuBuilder implements SupportMenu {
                 }
                 char alphabeticShortcut = zIsQwertyMode ? menuItemImpl.getAlphabeticShortcut() : menuItemImpl.getNumericShortcut();
                 if (((modifiers & SupportMenu.SUPPORTED_MODIFIERS_MASK) == ((zIsQwertyMode ? menuItemImpl.getAlphabeticModifiers() : menuItemImpl.getNumericModifiers()) & SupportMenu.SUPPORTED_MODIFIERS_MASK)) && alphabeticShortcut != 0) {
-                    char[] cArr = keyData.meta;
+                    char[] cArr = keyCharacterMap$KeyData.meta;
                     if ((alphabeticShortcut == cArr[0] || alphabeticShortcut == cArr[2] || (zIsQwertyMode && alphabeticShortcut == '\b' && i == 67)) && menuItemImpl.isEnabled()) {
                         list.add(menuItemImpl);
                     }
@@ -688,12 +677,12 @@ public class MenuBuilder implements SupportMenu {
         dispatchSaveInstanceState(bundle);
     }
 
-    public void setCallback(Callback callback) {
-        this.mCallback = callback;
+    public void setCallback(MenuBuilder$Callback menuBuilder$Callback) {
+        this.mCallback = menuBuilder$Callback;
     }
 
-    public void setCurrentMenuInfo(ContextMenu.ContextMenuInfo contextMenuInfo) {
-        this.mCurrentMenuInfo = contextMenuInfo;
+    public void setCurrentMenuInfo(ContextMenu$ContextMenuInfo contextMenu$ContextMenuInfo) {
+        this.mCurrentMenuInfo = contextMenu$ContextMenuInfo;
     }
 
     public MenuBuilder setDefaultShowAsAction(int i) {

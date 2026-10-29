@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.browser.customtabs.CustomTabColorSchemeParams;
 import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.browser.customtabs.CustomTabsIntent$Builder;
 import androidx.browser.customtabs.CustomTabsSession;
 import androidx.browser.customtabs.TrustedWebUtils;
 import androidx.browser.trusted.sharing.ShareData;
@@ -47,10 +48,10 @@ public class TrustedWebActivityIntentBuilder {
     private final Uri mUri;
 
     @NonNull
-    private final CustomTabsIntent.Builder mIntentBuilder = new CustomTabsIntent.Builder();
+    private final CustomTabsIntent$Builder mIntentBuilder = new CustomTabsIntent$Builder();
 
     @NonNull
-    private TrustedWebActivityDisplayMode mDisplayMode = new TrustedWebActivityDisplayMode.DefaultMode();
+    private TrustedWebActivityDisplayMode mDisplayMode = new TrustedWebActivityDisplayMode$DefaultMode();
     private int mScreenOrientation = 0;
 
     public TrustedWebActivityIntentBuilder(@NonNull Uri uri) {

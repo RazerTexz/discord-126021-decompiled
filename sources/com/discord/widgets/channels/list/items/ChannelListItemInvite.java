@@ -1,7 +1,7 @@
 package com.discord.widgets.channels.list.items;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
+import a0.a.a.b;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: ChannelListItemInvite.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -57,7 +57,7 @@ public final /* data */ class ChannelListItemInvite implements ChannelListItem {
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
-        return ChannelListItem.DefaultImpls.getKey(this);
+        return ChannelListItem$DefaultImpls.getKey(this);
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
@@ -71,13 +71,13 @@ public final /* data */ class ChannelListItemInvite implements ChannelListItem {
     /* JADX WARN: Type inference failed for: r1v2 */
     /* JADX WARN: Type inference failed for: r1v3 */
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.guildId) * 31;
+        int iA = b.a(this.guildId) * 31;
         boolean z2 = this.isHub;
         ?? r1 = z2;
         if (z2) {
             r1 = 1;
         }
-        return iM3a + r1;
+        return iA + r1;
     }
 
     public final boolean isHub() {
@@ -85,9 +85,9 @@ public final /* data */ class ChannelListItemInvite implements ChannelListItem {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemInvite(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", isHub=");
-        return C1643a.m827O(sbM833U, this.isHub, ")");
+        StringBuilder sbU = a.U("ChannelListItemInvite(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", isHub=");
+        return a.O(sbU, this.isHub, ")");
     }
 }

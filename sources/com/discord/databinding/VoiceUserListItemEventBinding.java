@@ -9,22 +9,21 @@ import com.discord.widgets.guildscheduledevent.GuildScheduledEventItemView;
 /* JADX INFO: loaded from: classes.dex */
 public final class VoiceUserListItemEventBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15619a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final GuildScheduledEventItemView f15620b;
+    public final GuildScheduledEventItemView f2220b;
 
     public VoiceUserListItemEventBinding(@NonNull FrameLayout frameLayout, @NonNull GuildScheduledEventItemView guildScheduledEventItemView) {
-        this.f15619a = frameLayout;
-        this.f15620b = guildScheduledEventItemView;
+        this.a = frameLayout;
+        this.f2220b = guildScheduledEventItemView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15619a;
+        return this.a;
     }
 }

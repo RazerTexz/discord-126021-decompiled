@@ -1,20 +1,24 @@
 package com.discord.widgets.channels.memberlist;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import androidx.recyclerview.widget.RecyclerView$LayoutManager;
+import b.a.d.g0;
+import b.a.d.i0;
+import com.discord.R$layout;
 import com.discord.app.AppFragment;
-import com.discord.utilities.channel.ChannelInviteLaunchUtils;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.rest.RestAPIAbortMessages;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.views.StickyHeaderItemDecoration;
 import com.discord.widgets.channels.memberlist.adapter.ChannelMembersListAdapter;
-import com.discord.widgets.user.usersheet.WidgetUserSheet;
+import d0.d0.f;
+import d0.g;
+import d0.z.d.a0;
+import d0.z.d.m;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import kotlin.Lazy;
@@ -22,206 +26,80 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.ranges.IntRange;
-import p007b.p008a.p018d.C0865g0;
-import p007b.p008a.p018d.C0869i0;
-import p007b.p008a.p018d.C0876m;
-import p507d0.C12083g;
-import p507d0.p512d0.C11226f;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
-import p658rx.subjects.PublishSubject;
+import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetChannelMembersList extends AppFragment {
+    public static final WidgetChannelMembersList$Companion Companion = new WidgetChannelMembersList$Companion(null);
     private static final String SOURCE = "WidgetChannelMembersList";
     private ChannelMembersListAdapter adapter;
     private int memberCellHeightPx;
 
     /* JADX INFO: renamed from: recycler$delegate, reason: from kotlin metadata */
     private final Lazy recycler;
-    private final RxOnScrollListener scrollListener;
+    private final WidgetChannelMembersList$RxOnScrollListener scrollListener;
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersList$configureLoadedUI$1 */
-    /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
-    public final class C74881 extends AbstractC12240o implements Function1<Long, Unit> {
-        public final /* synthetic */ WidgetChannelMembersListViewModel.ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74881(WidgetChannelMembersListViewModel.ViewState.Loaded loaded) {
-            super(1);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            WidgetUserSheet.Companion companion = WidgetUserSheet.INSTANCE;
-            Long lValueOf = Long.valueOf(this.$viewState.getChannel().getId());
-            FragmentManager parentFragmentManager = WidgetChannelMembersList.this.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-            WidgetUserSheet.Companion.show$default(companion, j, lValueOf, parentFragmentManager, Long.valueOf(this.$viewState.getChannel().getGuildId()), null, null, null, 112, null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersList$configureLoadedUI$2 */
-    /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
-    public final class C74892 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ WidgetChannelMembersListViewModel.ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74892(WidgetChannelMembersListViewModel.ViewState.Loaded loaded) {
-            super(0);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ChannelInviteLaunchUtils.INSTANCE.inviteToChannel(WidgetChannelMembersList.this, this.$viewState.getChannel(), WidgetChannelMembersList.SOURCE, (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? null : null);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersList$configureLoadedUI$3 */
-    /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
-    public final class C74903 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ WidgetChannelMembersListViewModel.ViewState.Loaded $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C74903(WidgetChannelMembersListViewModel.ViewState.Loaded loaded) {
-            super(0);
-            this.$viewState = loaded;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            WidgetChannelMembersList.this.getViewModel().onThreadJoinLeaveClicked(this.$viewState.getChannel().getId(), this.$viewState.isThreadJoined());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersList$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
-    public final class C74911 extends AbstractC12240o implements Function1<WidgetChannelMembersListViewModel.ViewState, Unit> {
-        public C74911() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelMembersListViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetChannelMembersListViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetChannelMembersList.this.configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersList$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
-    public final class C74922 extends AbstractC12240o implements Function1<WidgetChannelMembersListViewModel.Event, Unit> {
-        public C74922() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetChannelMembersListViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetChannelMembersListViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            if (C12238m.areEqual(event, WidgetChannelMembersListViewModel.Event.ScrollToTop.INSTANCE)) {
-                WidgetChannelMembersList.this.scrollToTop();
-            } else if (C12238m.areEqual(event, WidgetChannelMembersListViewModel.Event.UpdateRanges.INSTANCE)) {
-                WidgetChannelMembersList.this.updateRanges();
-            } else if (event instanceof WidgetChannelMembersListViewModel.Event.Error) {
-                WidgetChannelMembersList.this.showError((WidgetChannelMembersListViewModel.Event.Error) event);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.memberlist.WidgetChannelMembersList$onViewBoundOrOnResume$3 */
-    /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
-    public final class C74933 extends AbstractC12240o implements Function1<Unit, Unit> {
-        public C74933() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Unit unit) {
-            invoke2(unit);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Unit unit) {
-            WidgetChannelMembersList.this.updateRanges();
-        }
-    }
-
     public WidgetChannelMembersList() {
-        super(C5419R.layout.widget_channel_members_list);
-        this.recycler = C12083g.lazy(new WidgetChannelMembersList$recycler$2(this));
-        this.scrollListener = new RxOnScrollListener();
+        super(R$layout.widget_channel_members_list);
+        this.recycler = g.lazy(new WidgetChannelMembersList$recycler$2(this));
+        this.scrollListener = new WidgetChannelMembersList$RxOnScrollListener();
         WidgetChannelMembersList$viewModel$2 widgetChannelMembersList$viewModel$2 = WidgetChannelMembersList$viewModel$2.INSTANCE;
-        C0865g0 c0865g0 = new C0865g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetChannelMembersListViewModel.class), new WidgetChannelMembersList$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetChannelMembersList$viewModel$2));
+        g0 g0Var = new g0(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetChannelMembersListViewModel.class), new WidgetChannelMembersList$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetChannelMembersList$viewModel$2));
     }
 
-    private final void configureLoadedUI(WidgetChannelMembersListViewModel.ViewState.Loaded viewState) {
+    public static final /* synthetic */ void access$configureUI(WidgetChannelMembersList widgetChannelMembersList, WidgetChannelMembersListViewModel$ViewState widgetChannelMembersListViewModel$ViewState) {
+        widgetChannelMembersList.configureUI(widgetChannelMembersListViewModel$ViewState);
+    }
+
+    public static final /* synthetic */ WidgetChannelMembersListViewModel access$getViewModel$p(WidgetChannelMembersList widgetChannelMembersList) {
+        return widgetChannelMembersList.getViewModel();
+    }
+
+    public static final /* synthetic */ void access$scrollToTop(WidgetChannelMembersList widgetChannelMembersList) {
+        widgetChannelMembersList.scrollToTop();
+    }
+
+    public static final /* synthetic */ void access$showError(WidgetChannelMembersList widgetChannelMembersList, WidgetChannelMembersListViewModel$Event$Error widgetChannelMembersListViewModel$Event$Error) {
+        widgetChannelMembersList.showError(widgetChannelMembersListViewModel$Event$Error);
+    }
+
+    public static final /* synthetic */ void access$updateRanges(WidgetChannelMembersList widgetChannelMembersList) {
+        widgetChannelMembersList.updateRanges();
+    }
+
+    private final void configureLoadedUI(WidgetChannelMembersListViewModel$ViewState$Loaded viewState) {
         if (viewState.getChannel() != null) {
             ChannelMembersListAdapter channelMembersListAdapter = this.adapter;
             if (channelMembersListAdapter == null) {
-                C12238m.throwUninitializedPropertyAccessException("adapter");
+                m.throwUninitializedPropertyAccessException("adapter");
             }
-            channelMembersListAdapter.setOnUserClicked(new C74881(viewState));
+            channelMembersListAdapter.setOnUserClicked(new WidgetChannelMembersList$configureLoadedUI$1(this, viewState));
             ChannelMembersListAdapter channelMembersListAdapter2 = this.adapter;
             if (channelMembersListAdapter2 == null) {
-                C12238m.throwUninitializedPropertyAccessException("adapter");
+                m.throwUninitializedPropertyAccessException("adapter");
             }
-            channelMembersListAdapter2.setOnAddMemberClicked(new C74892(viewState));
+            channelMembersListAdapter2.setOnAddMemberClicked(new WidgetChannelMembersList$configureLoadedUI$2(this, viewState));
             ChannelMembersListAdapter channelMembersListAdapter3 = this.adapter;
             if (channelMembersListAdapter3 == null) {
-                C12238m.throwUninitializedPropertyAccessException("adapter");
+                m.throwUninitializedPropertyAccessException("adapter");
             }
-            channelMembersListAdapter3.setOnJoinLeaveThreadClicked(new C74903(viewState));
+            channelMembersListAdapter3.setOnJoinLeaveThreadClicked(new WidgetChannelMembersList$configureLoadedUI$3(this, viewState));
         }
         ChannelMembersListAdapter channelMembersListAdapter4 = this.adapter;
         if (channelMembersListAdapter4 == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
+            m.throwUninitializedPropertyAccessException("adapter");
         }
         channelMembersListAdapter4.setData(viewState.getListItems().getListId(), viewState.getListItems(), true);
     }
 
-    private final void configureUI(WidgetChannelMembersListViewModel.ViewState viewState) {
-        if (!C12238m.areEqual(viewState, WidgetChannelMembersListViewModel.ViewState.Empty.INSTANCE) && (viewState instanceof WidgetChannelMembersListViewModel.ViewState.Loaded)) {
-            configureLoadedUI((WidgetChannelMembersListViewModel.ViewState.Loaded) viewState);
+    private final void configureUI(WidgetChannelMembersListViewModel$ViewState viewState) {
+        if (!m.areEqual(viewState, WidgetChannelMembersListViewModel$ViewState$Empty.INSTANCE) && (viewState instanceof WidgetChannelMembersListViewModel$ViewState$Loaded)) {
+            configureLoadedUI((WidgetChannelMembersListViewModel$ViewState$Loaded) viewState);
         }
     }
 
@@ -239,7 +117,7 @@ public final class WidgetChannelMembersList extends AppFragment {
         ChannelMembersListAdapter channelMembersListAdapter = new ChannelMembersListAdapter();
         this.adapter = channelMembersListAdapter;
         if (channelMembersListAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
+            m.throwUninitializedPropertyAccessException("adapter");
         }
         channelMembersListAdapter.setHasStableIds(true);
     }
@@ -248,7 +126,7 @@ public final class WidgetChannelMembersList extends AppFragment {
     public void onDestroy() {
         ChannelMembersListAdapter channelMembersListAdapter = this.adapter;
         if (channelMembersListAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
+            m.throwUninitializedPropertyAccessException("adapter");
         }
         channelMembersListAdapter.dispose();
         super.onDestroy();
@@ -256,7 +134,7 @@ public final class WidgetChannelMembersList extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         setupRecyclerView();
     }
@@ -264,11 +142,11 @@ public final class WidgetChannelMembersList extends AppFragment {
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetChannelMembersList.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74911());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetChannelMembersList.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74922());
-        Observable<Unit> observableM11110p = this.scrollListener.observeScrollChanges().m11110p(100L, TimeUnit.MILLISECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11110p, "scrollListener\n        .…S, TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11110p, this, null, 2, null), (Class<?>) WidgetChannelMembersList.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C74933());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetChannelMembersList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelMembersList$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetChannelMembersList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelMembersList$onViewBoundOrOnResume$2(this), 62, (Object) null);
+        Observable<Unit> observableP = this.scrollListener.observeScrollChanges().p(100L, TimeUnit.MILLISECONDS);
+        m.checkNotNullExpressionValue(observableP, "scrollListener\n        .…S, TimeUnit.MILLISECONDS)");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observableP, this, null, 2, null), WidgetChannelMembersList.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetChannelMembersList$onViewBoundOrOnResume$3(this), 62, (Object) null);
     }
 
     private final void scrollToTop() {
@@ -276,13 +154,13 @@ public final class WidgetChannelMembersList extends AppFragment {
     }
 
     private final void setupRecyclerView() {
-        this.memberCellHeightPx = getResources().getDimensionPixelSize(C5419R.dimen.channel_list_row_height);
+        this.memberCellHeightPx = getResources().getDimensionPixelSize(2131165311);
         getRecycler().setHasFixedSize(true);
         getRecycler().removeOnScrollListener(this.scrollListener);
         getRecycler().addOnScrollListener(this.scrollListener);
         ChannelMembersListAdapter channelMembersListAdapter = this.adapter;
         if (channelMembersListAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
+            m.throwUninitializedPropertyAccessException("adapter");
         }
         StickyHeaderItemDecoration stickyHeaderItemDecoration = new StickyHeaderItemDecoration(channelMembersListAdapter);
         getRecycler().addItemDecoration(stickyHeaderItemDecoration);
@@ -290,43 +168,24 @@ public final class WidgetChannelMembersList extends AppFragment {
         RecyclerView recycler = getRecycler();
         ChannelMembersListAdapter channelMembersListAdapter2 = this.adapter;
         if (channelMembersListAdapter2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("adapter");
+            m.throwUninitializedPropertyAccessException("adapter");
         }
         recycler.setAdapter(channelMembersListAdapter2);
     }
 
-    private final void showError(WidgetChannelMembersListViewModel.Event.Error event) {
+    private final void showError(WidgetChannelMembersListViewModel$Event$Error event) {
         Integer abortCodeMessageResId = RestAPIAbortMessages.getAbortCodeMessageResId(event.getCode());
-        C0876m.m171i(this, abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : C5419R.string.network_error_bad_request, 0, 4);
+        b.a.d.m.i(this, abortCodeMessageResId != null ? abortCodeMessageResId.intValue() : 2131893169, 0, 4);
     }
 
     private final void updateRanges() {
         View view = getView();
         if (view != null) {
             int height = (view.getHeight() / this.memberCellHeightPx) + 1;
-            RecyclerView.LayoutManager layoutManager = getRecycler().getLayoutManager();
+            RecyclerView$LayoutManager layoutManager = getRecycler().getLayoutManager();
             Objects.requireNonNull(layoutManager, "null cannot be cast to non-null type androidx.recyclerview.widget.LinearLayoutManager");
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-            getViewModel().updateSubscriptionsForChannel(new IntRange(C11226f.coerceAtLeast(linearLayoutManager.findFirstVisibleItemPosition() - height, 0), linearLayoutManager.findLastVisibleItemPosition() + height));
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetChannelMembersList.kt */
-    public final class RxOnScrollListener extends RecyclerView.OnScrollListener {
-        private final PublishSubject<Unit> scrollYSubject = PublishSubject.m11133k0();
-
-        public final Observable<Unit> observeScrollChanges() {
-            PublishSubject<Unit> publishSubject = this.scrollYSubject;
-            C12238m.checkNotNullExpressionValue(publishSubject, "scrollYSubject");
-            return publishSubject;
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            C12238m.checkNotNullParameter(recyclerView, "recyclerView");
-            super.onScrolled(recyclerView, dx, dy);
-            PublishSubject<Unit> publishSubject = this.scrollYSubject;
-            publishSubject.f27650k.onNext(Unit.f27425a);
+            getViewModel().updateSubscriptionsForChannel(new IntRange(f.coerceAtLeast(linearLayoutManager.findFirstVisibleItemPosition() - height, 0), linearLayoutManager.findLastVisibleItemPosition() + height));
         }
     }
 }

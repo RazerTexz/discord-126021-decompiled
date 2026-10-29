@@ -8,17 +8,16 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class LoadingGifItemViewBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CardView f15182a;
+    public final CardView a;
 
     public LoadingGifItemViewBinding(@NonNull CardView cardView) {
-        this.f15182a = cardView;
+        this.a = cardView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15182a;
+        return this.a;
     }
 }

@@ -9,32 +9,29 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemBotComponentRowBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16169a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinearLayout f16170b;
+    public final LinearLayout f2313b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final View f16171c;
+    public final View c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final View f16172d;
+    public final View d;
 
     public WidgetChatListAdapterItemBotComponentRowBinding(@NonNull ConstraintLayout constraintLayout, @NonNull LinearLayout linearLayout, @NonNull View view, @NonNull View view2) {
-        this.f16169a = constraintLayout;
-        this.f16170b = linearLayout;
-        this.f16171c = view;
-        this.f16172d = view2;
+        this.a = constraintLayout;
+        this.f2313b = linearLayout;
+        this.c = view;
+        this.d = view2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16169a;
+        return this.a;
     }
 }

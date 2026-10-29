@@ -1,7 +1,7 @@
 package com.discord.stores;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StoreGooglePlayPurchases.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -11,7 +11,7 @@ public final /* data */ class PendingDowngrade {
     private final String subscriptionId;
 
     public PendingDowngrade(String str, String str2, String str3) {
-        C1643a.m872q0(str, "purchaseToken", str2, "subscriptionId", str3, "newSkuName");
+        a.q0(str, "purchaseToken", str2, "subscriptionId", str3, "newSkuName");
         this.purchaseToken = str;
         this.subscriptionId = str2;
         this.newSkuName = str3;
@@ -31,9 +31,9 @@ public final /* data */ class PendingDowngrade {
     }
 
     public final PendingDowngrade copy(String purchaseToken, String subscriptionId, String newSkuName) {
-        C12238m.checkNotNullParameter(purchaseToken, "purchaseToken");
-        C12238m.checkNotNullParameter(subscriptionId, "subscriptionId");
-        C12238m.checkNotNullParameter(newSkuName, "newSkuName");
+        m.checkNotNullParameter(purchaseToken, "purchaseToken");
+        m.checkNotNullParameter(subscriptionId, "subscriptionId");
+        m.checkNotNullParameter(newSkuName, "newSkuName");
         return new PendingDowngrade(purchaseToken, subscriptionId, newSkuName);
     }
 
@@ -45,7 +45,7 @@ public final /* data */ class PendingDowngrade {
             return false;
         }
         PendingDowngrade pendingDowngrade = (PendingDowngrade) other;
-        return C12238m.areEqual(this.purchaseToken, pendingDowngrade.purchaseToken) && C12238m.areEqual(this.subscriptionId, pendingDowngrade.subscriptionId) && C12238m.areEqual(this.newSkuName, pendingDowngrade.newSkuName);
+        return m.areEqual(this.purchaseToken, pendingDowngrade.purchaseToken) && m.areEqual(this.subscriptionId, pendingDowngrade.subscriptionId) && m.areEqual(this.newSkuName, pendingDowngrade.newSkuName);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -85,11 +85,11 @@ public final /* data */ class PendingDowngrade {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PendingDowngrade(purchaseToken=");
-        sbM833U.append(this.purchaseToken);
-        sbM833U.append(", subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", newSkuName=");
-        return C1643a.m822J(sbM833U, this.newSkuName, ")");
+        StringBuilder sbU = a.U("PendingDowngrade(purchaseToken=");
+        sbU.append(this.purchaseToken);
+        sbU.append(", subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", newSkuName=");
+        return a.J(sbU, this.newSkuName, ")");
     }
 }

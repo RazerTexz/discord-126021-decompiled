@@ -1,7 +1,7 @@
 package kotlinx.coroutines;
 
+import d0.z.d.m;
 import java.util.concurrent.CancellationException;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Exceptions.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -20,7 +20,7 @@ public final class JobCancellationException extends CancellationException {
         if (other != this) {
             if (other instanceof JobCancellationException) {
                 JobCancellationException jobCancellationException = (JobCancellationException) other;
-                if (!C12238m.areEqual(jobCancellationException.getMessage(), getMessage()) || !C12238m.areEqual(jobCancellationException.job, this.job) || !C12238m.areEqual(jobCancellationException.getCause(), getCause())) {
+                if (!m.areEqual(jobCancellationException.getMessage(), getMessage()) || !m.areEqual(jobCancellationException.job, this.job) || !m.areEqual(jobCancellationException.getCause(), getCause())) {
                 }
             }
             return false;
@@ -36,7 +36,7 @@ public final class JobCancellationException extends CancellationException {
 
     public int hashCode() {
         String message = getMessage();
-        C12238m.checkNotNull(message);
+        m.checkNotNull(message);
         int iHashCode = (this.job.hashCode() + (message.hashCode() * 31)) * 31;
         Throwable cause = getCause();
         return iHashCode + (cause != null ? cause.hashCode() : 0);

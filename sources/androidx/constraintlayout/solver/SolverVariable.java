@@ -1,9 +1,9 @@
 package androidx.constraintlayout.solver;
 
 import androidx.exifinterface.media.ExifInterface;
+import b.d.b.a.a;
 import java.util.Arrays;
 import java.util.HashSet;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SolverVariable {
@@ -28,8 +28,8 @@ public class SolverVariable {
     public int definitionId;
     public float[] goalStrengthVector;
 
-    /* JADX INFO: renamed from: id */
-    public int f110id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    public int f30id;
     public boolean inGoal;
     public HashSet<ArrayRow> inRows;
     public boolean isFinalValue;
@@ -37,54 +37,15 @@ public class SolverVariable {
     public ArrayRow[] mClientEquations;
     public int mClientEquationsCount;
     private String mName;
-    public Type mType;
+    public SolverVariable$Type mType;
     public int strength;
     public float[] strengthVector;
     public int synonym;
     public float synonymDelta;
     public int usageInRowCount;
 
-    /* JADX INFO: renamed from: androidx.constraintlayout.solver.SolverVariable$1 */
-    public /* synthetic */ class C01831 {
-        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type;
-
-        static {
-            Type.values();
-            int[] iArr = new int[5];
-            $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type = iArr;
-            try {
-                iArr[Type.UNRESTRICTED.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.CONSTANT.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.SLACK.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.ERROR.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$androidx$constraintlayout$solver$SolverVariable$Type[Type.UNKNOWN.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-        }
-    }
-
-    public enum Type {
-        UNRESTRICTED,
-        CONSTANT,
-        SLACK,
-        ERROR,
-        UNKNOWN
-    }
-
-    public SolverVariable(String str, Type type) {
-        this.f110id = -1;
+    public SolverVariable(String str, SolverVariable$Type solverVariable$Type) {
+        this.f30id = -1;
         this.definitionId = -1;
         this.strength = 0;
         this.isFinalValue = false;
@@ -98,7 +59,7 @@ public class SolverVariable {
         this.synonymDelta = 0.0f;
         this.inRows = null;
         this.mName = str;
-        this.mType = type;
+        this.mType = solverVariable$Type;
     }
 
     public final void addToRow(ArrayRow arrayRow) {
@@ -134,49 +95,49 @@ public class SolverVariable {
         return this.mName;
     }
 
-    private static String getUniqueName(Type type, String str) {
+    private static String getUniqueName(SolverVariable$Type solverVariable$Type, String str) {
         if (str != null) {
-            StringBuilder sbM833U = C1643a.m833U(str);
-            sbM833U.append(uniqueErrorId);
-            return sbM833U.toString();
+            StringBuilder sbU = a.U(str);
+            sbU.append(uniqueErrorId);
+            return sbU.toString();
         }
-        int iOrdinal = type.ordinal();
+        int iOrdinal = solverVariable$Type.ordinal();
         if (iOrdinal == 0) {
-            StringBuilder sbM833U2 = C1643a.m833U("U");
+            StringBuilder sbU2 = a.U("U");
             int i = uniqueUnrestrictedId + 1;
             uniqueUnrestrictedId = i;
-            sbM833U2.append(i);
-            return sbM833U2.toString();
+            sbU2.append(i);
+            return sbU2.toString();
         }
         if (iOrdinal == 1) {
-            StringBuilder sbM833U3 = C1643a.m833U("C");
+            StringBuilder sbU3 = a.U("C");
             int i2 = uniqueConstantId + 1;
             uniqueConstantId = i2;
-            sbM833U3.append(i2);
-            return sbM833U3.toString();
+            sbU3.append(i2);
+            return sbU3.toString();
         }
         if (iOrdinal == 2) {
-            StringBuilder sbM833U4 = C1643a.m833U(ExifInterface.LATITUDE_SOUTH);
+            StringBuilder sbU4 = a.U(ExifInterface.LATITUDE_SOUTH);
             int i3 = uniqueSlackId + 1;
             uniqueSlackId = i3;
-            sbM833U4.append(i3);
-            return sbM833U4.toString();
+            sbU4.append(i3);
+            return sbU4.toString();
         }
         if (iOrdinal == 3) {
-            StringBuilder sbM833U5 = C1643a.m833U("e");
+            StringBuilder sbU5 = a.U("e");
             int i4 = uniqueErrorId + 1;
             uniqueErrorId = i4;
-            sbM833U5.append(i4);
-            return sbM833U5.toString();
+            sbU5.append(i4);
+            return sbU5.toString();
         }
         if (iOrdinal != 4) {
-            throw new AssertionError(type.name());
+            throw new AssertionError(solverVariable$Type.name());
         }
-        StringBuilder sbM833U6 = C1643a.m833U(ExifInterface.GPS_MEASUREMENT_INTERRUPTED);
+        StringBuilder sbU6 = a.U(ExifInterface.GPS_MEASUREMENT_INTERRUPTED);
         int i5 = uniqueId + 1;
         uniqueId = i5;
-        sbM833U6.append(i5);
-        return sbM833U6.toString();
+        sbU6.append(i5);
+        return sbU6.toString();
     }
 
     public static void increaseErrorId() {
@@ -203,9 +164,9 @@ public class SolverVariable {
 
     public void reset() {
         this.mName = null;
-        this.mType = Type.UNKNOWN;
+        this.mType = SolverVariable$Type.UNKNOWN;
         this.strength = 0;
-        this.f110id = -1;
+        this.f30id = -1;
         this.definitionId = -1;
         this.computedValue = 0.0f;
         this.isFinalValue = false;
@@ -242,7 +203,7 @@ public class SolverVariable {
 
     public void setSynonym(LinearSystem linearSystem, SolverVariable solverVariable, float f) {
         this.isSynonym = true;
-        this.synonym = solverVariable.f110id;
+        this.synonym = solverVariable.f30id;
         this.synonymDelta = f;
         int i = this.mClientEquationsCount;
         this.definitionId = -1;
@@ -253,19 +214,19 @@ public class SolverVariable {
         linearSystem.displayReadableRows();
     }
 
-    public void setType(Type type, String str) {
-        this.mType = type;
+    public void setType(SolverVariable$Type solverVariable$Type, String str) {
+        this.mType = solverVariable$Type;
     }
 
     public String strengthsToString() {
-        String strM883w = this + "[";
+        String strW = this + "[";
         int i = 0;
         boolean z2 = false;
         boolean z3 = true;
         while (i < this.strengthVector.length) {
-            StringBuilder sbM833U = C1643a.m833U(strM883w);
-            sbM833U.append(this.strengthVector[i]);
-            String string = sbM833U.toString();
+            StringBuilder sbU = a.U(strW);
+            sbU.append(this.strengthVector[i]);
+            String string = sbU.toString();
             float[] fArr = this.strengthVector;
             if (fArr[i] > 0.0f) {
                 z2 = false;
@@ -275,24 +236,24 @@ public class SolverVariable {
             if (fArr[i] != 0.0f) {
                 z3 = false;
             }
-            strM883w = i < fArr.length + (-1) ? C1643a.m883w(string, ", ") : C1643a.m883w(string, "] ");
+            strW = i < fArr.length + (-1) ? a.w(string, ", ") : a.w(string, "] ");
             i++;
         }
         if (z2) {
-            strM883w = C1643a.m883w(strM883w, " (-)");
+            strW = a.w(strW, " (-)");
         }
-        return z3 ? C1643a.m883w(strM883w, " (*)") : strM883w;
+        return z3 ? a.w(strW, " (*)") : strW;
     }
 
     public String toString() {
         if (this.mName != null) {
-            StringBuilder sbM833U = C1643a.m833U("");
-            sbM833U.append(this.mName);
-            return sbM833U.toString();
+            StringBuilder sbU = a.U("");
+            sbU.append(this.mName);
+            return sbU.toString();
         }
-        StringBuilder sbM833U2 = C1643a.m833U("");
-        sbM833U2.append(this.f110id);
-        return sbM833U2.toString();
+        StringBuilder sbU2 = a.U("");
+        sbU2.append(this.f30id);
+        return sbU2.toString();
     }
 
     public final void updateReferencesWithNewDefinition(LinearSystem linearSystem, ArrayRow arrayRow) {
@@ -303,8 +264,8 @@ public class SolverVariable {
         this.mClientEquationsCount = 0;
     }
 
-    public SolverVariable(Type type, String str) {
-        this.f110id = -1;
+    public SolverVariable(SolverVariable$Type solverVariable$Type, String str) {
+        this.f30id = -1;
         this.definitionId = -1;
         this.strength = 0;
         this.isFinalValue = false;
@@ -317,6 +278,6 @@ public class SolverVariable {
         this.synonym = -1;
         this.synonymDelta = 0.0f;
         this.inRows = null;
-        this.mType = type;
+        this.mType = solverVariable$Type;
     }
 }

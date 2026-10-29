@@ -1,39 +1,26 @@
 package com.discord.models.domain;
 
-import com.discord.restapi.RestAPIParams;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import com.discord.restapi.RestAPIParams$Consents$Type;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelUserConsents.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Consents {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final Consents$Companion Companion = new Consents$Companion(null);
     private final Consent personalization;
     private final Consent usageStatistics;
     private static final Consents DEFAULT = new Consents(new Consent(false, null, 3, null), new Consent(false, null, 3, null));
 
-    /* JADX INFO: compiled from: ModelUserConsents.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final Consents getDEFAULT() {
-            return Consents.DEFAULT;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public Consents(Consent consent, Consent consent2) {
-        C12238m.checkNotNullParameter(consent, "usageStatistics");
-        C12238m.checkNotNullParameter(consent2, RestAPIParams.Consents.Type.PERSONALIZATION);
+        m.checkNotNullParameter(consent, "usageStatistics");
+        m.checkNotNullParameter(consent2, RestAPIParams$Consents$Type.PERSONALIZATION);
         this.usageStatistics = consent;
         this.personalization = consent2;
+    }
+
+    public static final /* synthetic */ Consents access$getDEFAULT$cp() {
+        return DEFAULT;
     }
 
     public static /* synthetic */ Consents copy$default(Consents consents, Consent consent, Consent consent2, int i, Object obj) {
@@ -47,8 +34,8 @@ public final /* data */ class Consents {
     }
 
     public final Consents copy(Consent usageStatistics, Consent personalization) {
-        C12238m.checkNotNullParameter(usageStatistics, "usageStatistics");
-        C12238m.checkNotNullParameter(personalization, RestAPIParams.Consents.Type.PERSONALIZATION);
+        m.checkNotNullParameter(usageStatistics, "usageStatistics");
+        m.checkNotNullParameter(personalization, RestAPIParams$Consents$Type.PERSONALIZATION);
         return new Consents(usageStatistics, personalization);
     }
 
@@ -60,7 +47,7 @@ public final /* data */ class Consents {
             return false;
         }
         Consents consents = (Consents) other;
-        return C12238m.areEqual(this.usageStatistics, consents.usageStatistics) && C12238m.areEqual(this.personalization, consents.personalization);
+        return m.areEqual(this.usageStatistics, consents.usageStatistics) && m.areEqual(this.personalization, consents.personalization);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -89,11 +76,11 @@ public final /* data */ class Consents {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Consents(usageStatistics=");
-        sbM833U.append(this.usageStatistics);
-        sbM833U.append(", personalization=");
-        sbM833U.append(this.personalization);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("Consents(usageStatistics=");
+        sbU.append(this.usageStatistics);
+        sbU.append(", personalization=");
+        sbU.append(this.personalization);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

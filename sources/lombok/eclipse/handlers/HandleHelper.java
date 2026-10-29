@@ -1,11 +1,10 @@
 package lombok.eclipse.handlers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lombok.ConfigurationKeys;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.handlers.HandlerUtil;
 import lombok.eclipse.EclipseAnnotationHandler;
@@ -18,13 +17,10 @@ import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;
 import org.eclipse.jdt.internal.compiler.ast.Annotation;
 import org.eclipse.jdt.internal.compiler.ast.Block;
 import org.eclipse.jdt.internal.compiler.ast.LocalDeclaration;
-import org.eclipse.jdt.internal.compiler.ast.MessageSend;
 import org.eclipse.jdt.internal.compiler.ast.MethodDeclaration;
-import org.eclipse.jdt.internal.compiler.ast.SingleNameReference;
 import org.eclipse.jdt.internal.compiler.ast.SingleTypeReference;
 import org.eclipse.jdt.internal.compiler.ast.Statement;
 import org.eclipse.jdt.internal.compiler.ast.SwitchStatement;
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import org.eclipse.jdt.internal.compiler.ast.TypeDeclaration;
 import org.eclipse.jdt.internal.compiler.lookup.BlockScope;
 
@@ -62,10 +58,10 @@ public class HandleHelper extends EclipseAnnotationHandler<Helper> {
     public void handle(AnnotationValues<Helper> annotation, Annotation ast, EclipseNode annotationNode) {
         char[] name;
         HandlerUtil.handleExperimentalFlagUsage(annotationNode, ConfigurationKeys.HELPER_FLAG_USAGE, "@Helper");
-        EclipseNode annotatedType = annotationNode.m10925up();
+        EclipseNode annotatedType = annotationNode.up();
         EclipseNode containingBlock = annotatedType == null ? null : annotatedType.directUp();
         Statement[] origStatements = getStatementsFromAstNode(containingBlock == null ? null : containingBlock.get());
-        if (annotatedType == null || annotatedType.getKind() != AST.Kind.TYPE || origStatements == null) {
+        if (annotatedType == null || annotatedType.getKind() != AST$Kind.TYPE || origStatements == null) {
             annotationNode.addError("@Helper is legal only on method-local classes.");
             return;
         }
@@ -84,33 +80,12 @@ public class HandleHelper extends EclipseAnnotationHandler<Helper> {
             }
         }
         Collections.sort(knownMethodNames);
-        final String[] knownMethodNames_ = (String[]) knownMethodNames.toArray(new String[0]);
-        final char[] helperName = new char[((TypeDeclaration) statement).name.length + 1];
-        final boolean[] helperUsed = new boolean[1];
+        String[] knownMethodNames_ = (String[]) knownMethodNames.toArray(new String[0]);
+        char[] helperName = new char[((TypeDeclaration) statement).name.length + 1];
+        boolean[] helperUsed = new boolean[1];
         helperName[0] = '$';
         System.arraycopy(((TypeDeclaration) statement).name, 0, helperName, 1, helperName.length - 1);
-        ASTVisitor visitor = new ASTVisitor() { // from class: lombok.eclipse.handlers.HandleHelper.1
-            public boolean visit(MessageSend messageSend, BlockScope scope) {
-                if (messageSend.receiver instanceof ThisReference) {
-                    if ((messageSend.receiver.bits & 4) == 0) {
-                        return true;
-                    }
-                } else if (messageSend.receiver != null) {
-                    return true;
-                }
-                char[] name2 = messageSend.selector;
-                if (name2 == null || name2.length == 0 || name2[0] == '<') {
-                    return true;
-                }
-                String n = new String(name2);
-                if (Arrays.binarySearch(knownMethodNames_, n) < 0) {
-                    return true;
-                }
-                messageSend.receiver = new SingleNameReference(helperName, messageSend.nameSourcePosition);
-                helperUsed[0] = true;
-                return true;
-            }
-        };
+        ASTVisitor visitor = new HandleHelper$1(this, knownMethodNames_, helperName, helperUsed);
         for (int i2 = indexOfType + 1; i2 < origStatements.length; i2++) {
             origStatements[i2].traverse(visitor, (BlockScope) null);
         }

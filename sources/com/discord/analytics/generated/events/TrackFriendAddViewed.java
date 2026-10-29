@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackFriendAddViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackFriendAddViewed implements AnalyticsSchema, T
             return false;
         }
         TrackFriendAddViewed trackFriendAddViewed = (TrackFriendAddViewed) other;
-        return C12238m.areEqual(this.suggestionCount, trackFriendAddViewed.suggestionCount) && C12238m.areEqual(this.friendAddType, trackFriendAddViewed.friendAddType);
+        return m.areEqual(this.suggestionCount, trackFriendAddViewed.suggestionCount) && m.areEqual(this.friendAddType, trackFriendAddViewed.friendAddType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackFriendAddViewed implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackFriendAddViewed(suggestionCount=");
-        sbM833U.append(this.suggestionCount);
-        sbM833U.append(", friendAddType=");
-        return C1643a.m817E(sbM833U, this.friendAddType, ")");
+        StringBuilder sbU = a.U("TrackFriendAddViewed(suggestionCount=");
+        sbU.append(this.suggestionCount);
+        sbU.append(", friendAddType=");
+        return a.E(sbU, this.friendAddType, ")");
     }
 }

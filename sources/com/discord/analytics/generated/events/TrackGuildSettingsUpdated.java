@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildSettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -41,7 +41,7 @@ public final /* data */ class TrackGuildSettingsUpdated implements AnalyticsSche
             return false;
         }
         TrackGuildSettingsUpdated trackGuildSettingsUpdated = (TrackGuildSettingsUpdated) other;
-        return C12238m.areEqual(this.guildId, trackGuildSettingsUpdated.guildId) && C12238m.areEqual(this.iconEditType, trackGuildSettingsUpdated.iconEditType) && C12238m.areEqual(this.guildName, trackGuildSettingsUpdated.guildName) && C12238m.areEqual(this.oldGuildName, trackGuildSettingsUpdated.oldGuildName) && C12238m.areEqual(this.animatedIcon, trackGuildSettingsUpdated.animatedIcon) && C12238m.areEqual(this.bannerEditType, trackGuildSettingsUpdated.bannerEditType) && C12238m.areEqual(this.splashEditType, trackGuildSettingsUpdated.splashEditType) && C12238m.areEqual(this.vanityUrlCodeEditType, trackGuildSettingsUpdated.vanityUrlCodeEditType) && C12238m.areEqual(this.vanityUrlCode, trackGuildSettingsUpdated.vanityUrlCode) && C12238m.areEqual(this.oldVanityUrlCode, trackGuildSettingsUpdated.oldVanityUrlCode) && C12238m.areEqual(this.discoverySplashEditType, trackGuildSettingsUpdated.discoverySplashEditType) && C12238m.areEqual(this.description, trackGuildSettingsUpdated.description) && C12238m.areEqual(this.preferredLocale, trackGuildSettingsUpdated.preferredLocale) && C12238m.areEqual(this.isPublic, trackGuildSettingsUpdated.isPublic) && C12238m.areEqual(this.isDiscoverable, trackGuildSettingsUpdated.isDiscoverable) && C12238m.areEqual(this.isFeaturable, trackGuildSettingsUpdated.isFeaturable) && C12238m.areEqual(this.rulesChannelId, trackGuildSettingsUpdated.rulesChannelId) && C12238m.areEqual(this.publicUpdatesChannelId, trackGuildSettingsUpdated.publicUpdatesChannelId) && C12238m.areEqual(this.premiumProgressBarEnabled, trackGuildSettingsUpdated.premiumProgressBarEnabled) && C12238m.areEqual(this.animatedBanner, trackGuildSettingsUpdated.animatedBanner);
+        return m.areEqual(this.guildId, trackGuildSettingsUpdated.guildId) && m.areEqual(this.iconEditType, trackGuildSettingsUpdated.iconEditType) && m.areEqual(this.guildName, trackGuildSettingsUpdated.guildName) && m.areEqual(this.oldGuildName, trackGuildSettingsUpdated.oldGuildName) && m.areEqual(this.animatedIcon, trackGuildSettingsUpdated.animatedIcon) && m.areEqual(this.bannerEditType, trackGuildSettingsUpdated.bannerEditType) && m.areEqual(this.splashEditType, trackGuildSettingsUpdated.splashEditType) && m.areEqual(this.vanityUrlCodeEditType, trackGuildSettingsUpdated.vanityUrlCodeEditType) && m.areEqual(this.vanityUrlCode, trackGuildSettingsUpdated.vanityUrlCode) && m.areEqual(this.oldVanityUrlCode, trackGuildSettingsUpdated.oldVanityUrlCode) && m.areEqual(this.discoverySplashEditType, trackGuildSettingsUpdated.discoverySplashEditType) && m.areEqual(this.description, trackGuildSettingsUpdated.description) && m.areEqual(this.preferredLocale, trackGuildSettingsUpdated.preferredLocale) && m.areEqual(this.isPublic, trackGuildSettingsUpdated.isPublic) && m.areEqual(this.isDiscoverable, trackGuildSettingsUpdated.isDiscoverable) && m.areEqual(this.isFeaturable, trackGuildSettingsUpdated.isFeaturable) && m.areEqual(this.rulesChannelId, trackGuildSettingsUpdated.rulesChannelId) && m.areEqual(this.publicUpdatesChannelId, trackGuildSettingsUpdated.publicUpdatesChannelId) && m.areEqual(this.premiumProgressBarEnabled, trackGuildSettingsUpdated.premiumProgressBarEnabled) && m.areEqual(this.animatedBanner, trackGuildSettingsUpdated.animatedBanner);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -94,45 +94,45 @@ public final /* data */ class TrackGuildSettingsUpdated implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildSettingsUpdated(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", iconEditType=");
-        sbM833U.append(this.iconEditType);
-        sbM833U.append(", guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", oldGuildName=");
-        sbM833U.append(this.oldGuildName);
-        sbM833U.append(", animatedIcon=");
-        sbM833U.append(this.animatedIcon);
-        sbM833U.append(", bannerEditType=");
-        sbM833U.append(this.bannerEditType);
-        sbM833U.append(", splashEditType=");
-        sbM833U.append(this.splashEditType);
-        sbM833U.append(", vanityUrlCodeEditType=");
-        sbM833U.append(this.vanityUrlCodeEditType);
-        sbM833U.append(", vanityUrlCode=");
-        sbM833U.append(this.vanityUrlCode);
-        sbM833U.append(", oldVanityUrlCode=");
-        sbM833U.append(this.oldVanityUrlCode);
-        sbM833U.append(", discoverySplashEditType=");
-        sbM833U.append(this.discoverySplashEditType);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", preferredLocale=");
-        sbM833U.append(this.preferredLocale);
-        sbM833U.append(", isPublic=");
-        sbM833U.append(this.isPublic);
-        sbM833U.append(", isDiscoverable=");
-        sbM833U.append(this.isDiscoverable);
-        sbM833U.append(", isFeaturable=");
-        sbM833U.append(this.isFeaturable);
-        sbM833U.append(", rulesChannelId=");
-        sbM833U.append(this.rulesChannelId);
-        sbM833U.append(", publicUpdatesChannelId=");
-        sbM833U.append(this.publicUpdatesChannelId);
-        sbM833U.append(", premiumProgressBarEnabled=");
-        sbM833U.append(this.premiumProgressBarEnabled);
-        sbM833U.append(", animatedBanner=");
-        return C1643a.m816D(sbM833U, this.animatedBanner, ")");
+        StringBuilder sbU = a.U("TrackGuildSettingsUpdated(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", iconEditType=");
+        sbU.append(this.iconEditType);
+        sbU.append(", guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", oldGuildName=");
+        sbU.append(this.oldGuildName);
+        sbU.append(", animatedIcon=");
+        sbU.append(this.animatedIcon);
+        sbU.append(", bannerEditType=");
+        sbU.append(this.bannerEditType);
+        sbU.append(", splashEditType=");
+        sbU.append(this.splashEditType);
+        sbU.append(", vanityUrlCodeEditType=");
+        sbU.append(this.vanityUrlCodeEditType);
+        sbU.append(", vanityUrlCode=");
+        sbU.append(this.vanityUrlCode);
+        sbU.append(", oldVanityUrlCode=");
+        sbU.append(this.oldVanityUrlCode);
+        sbU.append(", discoverySplashEditType=");
+        sbU.append(this.discoverySplashEditType);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", preferredLocale=");
+        sbU.append(this.preferredLocale);
+        sbU.append(", isPublic=");
+        sbU.append(this.isPublic);
+        sbU.append(", isDiscoverable=");
+        sbU.append(this.isDiscoverable);
+        sbU.append(", isFeaturable=");
+        sbU.append(this.isFeaturable);
+        sbU.append(", rulesChannelId=");
+        sbU.append(this.rulesChannelId);
+        sbU.append(", publicUpdatesChannelId=");
+        sbU.append(this.publicUpdatesChannelId);
+        sbU.append(", premiumProgressBarEnabled=");
+        sbU.append(this.premiumProgressBarEnabled);
+        sbU.append(", animatedBanner=");
+        return a.D(sbU, this.animatedBanner, ")");
     }
 }

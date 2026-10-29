@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.WorkerThread;
 import androidx.work.Logger;
 import androidx.work.impl.constraints.WorkConstraintsTracker;
@@ -13,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class ConstraintsCommandHandler {
     private final Context mContext;
     private final SystemAlarmDispatcher mDispatcher;
@@ -36,18 +37,18 @@ public class ConstraintsCommandHandler {
         ArrayList arrayList = new ArrayList(scheduledWork.size());
         long jCurrentTimeMillis = System.currentTimeMillis();
         for (WorkSpec workSpec : scheduledWork) {
-            String str = workSpec.f163id;
+            String str = workSpec.f38id;
             if (jCurrentTimeMillis >= workSpec.calculateNextRunTime() && (!workSpec.hasConstraints() || this.mWorkConstraintsTracker.areAllConstraintsMet(str))) {
                 arrayList.add(workSpec);
             }
         }
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            String str2 = ((WorkSpec) it.next()).f163id;
+            String str2 = ((WorkSpec) it.next()).f38id;
             Intent intentCreateDelayMetIntent = CommandHandler.createDelayMetIntent(this.mContext, str2);
             Logger.get().debug(TAG, String.format("Creating a delay_met command for workSpec with id (%s)", str2), new Throwable[0]);
             SystemAlarmDispatcher systemAlarmDispatcher = this.mDispatcher;
-            systemAlarmDispatcher.postOnMainThread(new SystemAlarmDispatcher.AddRunnable(systemAlarmDispatcher, intentCreateDelayMetIntent, this.mStartId));
+            systemAlarmDispatcher.postOnMainThread(new SystemAlarmDispatcher$AddRunnable(systemAlarmDispatcher, intentCreateDelayMetIntent, this.mStartId));
         }
         this.mWorkConstraintsTracker.reset();
     }

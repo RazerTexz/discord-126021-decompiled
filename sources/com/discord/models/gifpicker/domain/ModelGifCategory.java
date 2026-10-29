@@ -1,8 +1,8 @@
 package com.discord.models.gifpicker.domain;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.io.Serializable;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelGifCategory.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class ModelGifCategory implements Serializable {
     private final String gifPreviewUrl;
 
     public ModelGifCategory(String str, String str2) {
-        C12238m.checkNotNullParameter(str, "categoryName");
-        C12238m.checkNotNullParameter(str2, "gifPreviewUrl");
+        m.checkNotNullParameter(str, "categoryName");
+        m.checkNotNullParameter(str2, "gifPreviewUrl");
         this.categoryName = str;
         this.gifPreviewUrl = str2;
     }
@@ -28,8 +28,8 @@ public final /* data */ class ModelGifCategory implements Serializable {
     }
 
     public final ModelGifCategory copy(String categoryName, String gifPreviewUrl) {
-        C12238m.checkNotNullParameter(categoryName, "categoryName");
-        C12238m.checkNotNullParameter(gifPreviewUrl, "gifPreviewUrl");
+        m.checkNotNullParameter(categoryName, "categoryName");
+        m.checkNotNullParameter(gifPreviewUrl, "gifPreviewUrl");
         return new ModelGifCategory(categoryName, gifPreviewUrl);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class ModelGifCategory implements Serializable {
             return false;
         }
         ModelGifCategory modelGifCategory = (ModelGifCategory) other;
-        return C12238m.areEqual(this.categoryName, modelGifCategory.categoryName) && C12238m.areEqual(this.gifPreviewUrl, modelGifCategory.gifPreviewUrl);
+        return m.areEqual(this.categoryName, modelGifCategory.categoryName) && m.areEqual(this.gifPreviewUrl, modelGifCategory.gifPreviewUrl);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -70,9 +70,9 @@ public final /* data */ class ModelGifCategory implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelGifCategory(categoryName=");
-        sbM833U.append(this.categoryName);
-        sbM833U.append(", gifPreviewUrl=");
-        return C1643a.m822J(sbM833U, this.gifPreviewUrl, ")");
+        StringBuilder sbU = a.U("ModelGifCategory(categoryName=");
+        sbU.append(this.categoryName);
+        sbU.append(", gifPreviewUrl=");
+        return a.J(sbU, this.gifPreviewUrl, ")");
     }
 }

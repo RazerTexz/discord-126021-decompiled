@@ -1,6 +1,5 @@
 package lombok.eclipse;
 
-import androidx.recyclerview.widget.RecyclerView;
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Map;
@@ -12,14 +11,7 @@ import lombok.core.debug.HistogramTracker;
 import lombok.eclipse.handlers.EclipseHandlerUtil;
 import lombok.patcher.Symbols;
 import lombok.permit.Permit;
-import org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration;
-import org.eclipse.jdt.internal.compiler.ast.Annotation;
-import org.eclipse.jdt.internal.compiler.ast.Argument;
 import org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration;
-import org.eclipse.jdt.internal.compiler.ast.FieldDeclaration;
-import org.eclipse.jdt.internal.compiler.ast.LocalDeclaration;
-import org.eclipse.jdt.internal.compiler.ast.TypeDeclaration;
-import org.eclipse.jdt.internal.compiler.ast.TypeReference;
 import org.eclipse.jdt.internal.compiler.parser.Parser;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/TransformEclipseAST.SCL.lombok */
@@ -29,21 +21,10 @@ public class TransformEclipseAST {
     public static boolean disableLombok;
     private static final HandlerLibrary handlers;
     private static final HistogramTracker lombokTracker;
-    private static Map<CompilationUnitDeclaration, State> transformationStates = Collections.synchronizedMap(new WeakHashMap());
+    private static Map<CompilationUnitDeclaration, TransformEclipseAST$State> transformationStates = Collections.synchronizedMap(new WeakHashMap());
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/TransformEclipseAST$State.SCL.lombok */
-    enum State {
-        DIET,
-        FULL;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static State[] valuesCustom() {
-            State[] stateArrValuesCustom = values();
-            int length = stateArrValuesCustom.length;
-            State[] stateArr = new State[length];
-            System.arraycopy(stateArrValuesCustom, 0, stateArr, 0, length);
-            return stateArr;
-        }
+    static /* synthetic */ HandlerLibrary access$0() {
+        return handlers;
     }
 
     static {
@@ -110,18 +91,18 @@ public class TransformEclipseAST {
     }
 
     public static boolean alreadyTransformed(CompilationUnitDeclaration ast) {
-        State state = transformationStates.get(ast);
-        if (state == State.FULL) {
+        TransformEclipseAST$State state = transformationStates.get(ast);
+        if (state == TransformEclipseAST$State.FULL) {
             return true;
         }
-        if (state == State.DIET) {
+        if (state == TransformEclipseAST$State.DIET) {
             if (!EclipseAST.isComplete(ast)) {
                 return true;
             }
-            transformationStates.put(ast, State.FULL);
+            transformationStates.put(ast, TransformEclipseAST$State.FULL);
             return false;
         }
-        transformationStates.put(ast, State.DIET);
+        transformationStates.put(ast, TransformEclipseAST$State.DIET);
         return false;
     }
 
@@ -133,7 +114,7 @@ public class TransformEclipseAST {
             DebugSnapshotStore.INSTANCE.snapshot(ast, "transform entry", new Object[0]);
             long histoToken = lombokTracker == null ? 0L : lombokTracker.start();
             EclipseAST existing = getAST(ast, false);
-            new TransformEclipseAST(existing).m10927go();
+            new TransformEclipseAST(existing).go();
             if (lombokTracker != null) {
                 lombokTracker.end(histoToken);
             }
@@ -158,66 +139,15 @@ public class TransformEclipseAST {
         this.ast = ast;
     }
 
-    /* JADX INFO: renamed from: go */
-    public void m10927go() {
+    public void go() {
         long nextPriority = Long.MIN_VALUE;
         for (Long d : handlers.getPriorities()) {
             if (nextPriority <= d.longValue()) {
-                AnnotationVisitor visitor = new AnnotationVisitor(d.longValue());
+                TransformEclipseAST$AnnotationVisitor visitor = new TransformEclipseAST$AnnotationVisitor(d.longValue());
                 this.ast.traverse(visitor);
                 long nextPriority2 = visitor.getNextPriority();
                 nextPriority = Math.min(nextPriority2, handlers.callASTVisitors(this.ast, d.longValue(), this.ast.isCompleteParse()));
             }
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/TransformEclipseAST$AnnotationVisitor.SCL.lombok */
-    class AnnotationVisitor extends EclipseASTAdapter {
-        private final long priority;
-        private long nextPriority = RecyclerView.FOREVER_NS;
-
-        public AnnotationVisitor(long priority) {
-            this.priority = priority;
-        }
-
-        public long getNextPriority() {
-            return this.nextPriority;
-        }
-
-        @Override // lombok.eclipse.EclipseASTAdapter, lombok.eclipse.EclipseASTVisitor
-        public void visitAnnotationOnField(FieldDeclaration field, EclipseNode annotationNode, Annotation annotation) {
-            CompilationUnitDeclaration top = annotationNode.top().get();
-            this.nextPriority = Math.min(this.nextPriority, TransformEclipseAST.handlers.handleAnnotation(top, annotationNode, annotation, this.priority));
-        }
-
-        @Override // lombok.eclipse.EclipseASTAdapter, lombok.eclipse.EclipseASTVisitor
-        public void visitAnnotationOnMethodArgument(Argument arg, AbstractMethodDeclaration method, EclipseNode annotationNode, Annotation annotation) {
-            CompilationUnitDeclaration top = annotationNode.top().get();
-            this.nextPriority = Math.min(this.nextPriority, TransformEclipseAST.handlers.handleAnnotation(top, annotationNode, annotation, this.priority));
-        }
-
-        @Override // lombok.eclipse.EclipseASTAdapter, lombok.eclipse.EclipseASTVisitor
-        public void visitAnnotationOnLocal(LocalDeclaration local, EclipseNode annotationNode, Annotation annotation) {
-            CompilationUnitDeclaration top = annotationNode.top().get();
-            this.nextPriority = Math.min(this.nextPriority, TransformEclipseAST.handlers.handleAnnotation(top, annotationNode, annotation, this.priority));
-        }
-
-        @Override // lombok.eclipse.EclipseASTAdapter, lombok.eclipse.EclipseASTVisitor
-        public void visitAnnotationOnMethod(AbstractMethodDeclaration method, EclipseNode annotationNode, Annotation annotation) {
-            CompilationUnitDeclaration top = annotationNode.top().get();
-            this.nextPriority = Math.min(this.nextPriority, TransformEclipseAST.handlers.handleAnnotation(top, annotationNode, annotation, this.priority));
-        }
-
-        @Override // lombok.eclipse.EclipseASTAdapter, lombok.eclipse.EclipseASTVisitor
-        public void visitAnnotationOnType(TypeDeclaration type, EclipseNode annotationNode, Annotation annotation) {
-            CompilationUnitDeclaration top = annotationNode.top().get();
-            this.nextPriority = Math.min(this.nextPriority, TransformEclipseAST.handlers.handleAnnotation(top, annotationNode, annotation, this.priority));
-        }
-
-        @Override // lombok.eclipse.EclipseASTAdapter, lombok.eclipse.EclipseASTVisitor
-        public void visitAnnotationOnTypeUse(TypeReference typeUse, EclipseNode annotationNode, Annotation annotation) {
-            CompilationUnitDeclaration top = annotationNode.top().get();
-            this.nextPriority = Math.min(this.nextPriority, TransformEclipseAST.handlers.handleAnnotation(top, annotationNode, annotation, this.priority));
         }
     }
 }

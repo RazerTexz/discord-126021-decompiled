@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelChannelFollowerStatsDto.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -60,7 +60,7 @@ public final /* data */ class ModelChannelFollowerStatsDto {
             return false;
         }
         ModelChannelFollowerStatsDto modelChannelFollowerStatsDto = (ModelChannelFollowerStatsDto) other;
-        return C12238m.areEqual(this.guildsFollowing, modelChannelFollowerStatsDto.guildsFollowing) && C12238m.areEqual(this.channelsFollowing, modelChannelFollowerStatsDto.channelsFollowing) && C12238m.areEqual(this.guildMembers, modelChannelFollowerStatsDto.guildMembers) && C12238m.areEqual(this.usersSeenEver, modelChannelFollowerStatsDto.usersSeenEver) && C12238m.areEqual(this.subscribersGainedSinceLastPost, modelChannelFollowerStatsDto.subscribersGainedSinceLastPost) && C12238m.areEqual(this.subscribersLostSinceLastPost, modelChannelFollowerStatsDto.subscribersLostSinceLastPost);
+        return m.areEqual(this.guildsFollowing, modelChannelFollowerStatsDto.guildsFollowing) && m.areEqual(this.channelsFollowing, modelChannelFollowerStatsDto.channelsFollowing) && m.areEqual(this.guildMembers, modelChannelFollowerStatsDto.guildMembers) && m.areEqual(this.usersSeenEver, modelChannelFollowerStatsDto.usersSeenEver) && m.areEqual(this.subscribersGainedSinceLastPost, modelChannelFollowerStatsDto.subscribersGainedSinceLastPost) && m.areEqual(this.subscribersLostSinceLastPost, modelChannelFollowerStatsDto.subscribersLostSinceLastPost);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -133,17 +133,17 @@ public final /* data */ class ModelChannelFollowerStatsDto {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelChannelFollowerStatsDto(guildsFollowing=");
-        sbM833U.append(this.guildsFollowing);
-        sbM833U.append(", channelsFollowing=");
-        sbM833U.append(this.channelsFollowing);
-        sbM833U.append(", guildMembers=");
-        sbM833U.append(this.guildMembers);
-        sbM833U.append(", usersSeenEver=");
-        sbM833U.append(this.usersSeenEver);
-        sbM833U.append(", subscribersGainedSinceLastPost=");
-        sbM833U.append(this.subscribersGainedSinceLastPost);
-        sbM833U.append(", subscribersLostSinceLastPost=");
-        return C1643a.m818F(sbM833U, this.subscribersLostSinceLastPost, ")");
+        StringBuilder sbU = a.U("ModelChannelFollowerStatsDto(guildsFollowing=");
+        sbU.append(this.guildsFollowing);
+        sbU.append(", channelsFollowing=");
+        sbU.append(this.channelsFollowing);
+        sbU.append(", guildMembers=");
+        sbU.append(this.guildMembers);
+        sbU.append(", usersSeenEver=");
+        sbU.append(this.usersSeenEver);
+        sbU.append(", subscribersGainedSinceLastPost=");
+        sbU.append(this.subscribersGainedSinceLastPost);
+        sbU.append(", subscribersLostSinceLastPost=");
+        return a.F(sbU, this.subscribersLostSinceLastPost, ")");
     }
 }

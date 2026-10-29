@@ -1,9 +1,9 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.Arrays;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: RtcRegion.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,8 +12,8 @@ public final /* data */ class RtcRegion {
     private final String region;
 
     public RtcRegion(String str, String[] strArr) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REGION);
-        C12238m.checkNotNullParameter(strArr, "ips");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REGION);
+        m.checkNotNullParameter(strArr, "ips");
         this.region = str;
         this.ips = strArr;
     }
@@ -29,8 +29,8 @@ public final /* data */ class RtcRegion {
     }
 
     public final RtcRegion copy(String region, String[] ips) {
-        C12238m.checkNotNullParameter(region, ModelAuditLogEntry.CHANGE_KEY_REGION);
-        C12238m.checkNotNullParameter(ips, "ips");
+        m.checkNotNullParameter(region, ModelAuditLogEntry.CHANGE_KEY_REGION);
+        m.checkNotNullParameter(ips, "ips");
         return new RtcRegion(region, ips);
     }
 
@@ -42,7 +42,7 @@ public final /* data */ class RtcRegion {
             return false;
         }
         RtcRegion rtcRegion = (RtcRegion) other;
-        return C12238m.areEqual(this.region, rtcRegion.region) && C12238m.areEqual(this.ips, rtcRegion.ips);
+        return m.areEqual(this.region, rtcRegion.region) && m.areEqual(this.ips, rtcRegion.ips);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -71,9 +71,9 @@ public final /* data */ class RtcRegion {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("RtcRegion(region=");
-        sbM833U.append(this.region);
-        sbM833U.append(", ips=");
-        return C1643a.m822J(sbM833U, Arrays.toString(this.ips), ")");
+        StringBuilder sbU = a.U("RtcRegion(region=");
+        sbU.append(this.region);
+        sbU.append(", ips=");
+        return a.J(sbU, Arrays.toString(this.ips), ")");
     }
 }

@@ -17,77 +17,65 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildScheduledEventLocationSelectBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f17014a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextInputEditText f17015b;
+    public final TextInputEditText f2447b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f17016c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ImageView f17017d;
+    public final ImageView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextInputEditText f17018e;
+    public final TextInputEditText e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextInputLayout f17019f;
+    public final TextInputLayout f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final CheckedSetting f17020g;
+    public final CheckedSetting g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f17021h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final MaterialButton f17022i;
+    public final MaterialButton i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final CheckedSetting f17023j;
+    public final CheckedSetting j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final TextView f17024k;
+    public final TextView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final View f17025l;
+    public final View l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final CheckedSetting f17026m;
+    public final CheckedSetting m;
 
     public WidgetGuildScheduledEventLocationSelectBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextInputEditText textInputEditText, @NonNull TextInputLayout textInputLayout, @NonNull ImageView imageView, @NonNull View view, @NonNull TextInputEditText textInputEditText2, @NonNull TextInputLayout textInputLayout2, @NonNull CheckedSetting checkedSetting, @NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull CheckedSetting checkedSetting2, @NonNull TextView textView2, @NonNull ScreenTitleView screenTitleView, @NonNull ConstraintLayout constraintLayout2, @NonNull View view2, @NonNull CheckedSetting checkedSetting3) {
-        this.f17014a = constraintLayout;
-        this.f17015b = textInputEditText;
-        this.f17016c = textInputLayout;
-        this.f17017d = imageView;
-        this.f17018e = textInputEditText2;
-        this.f17019f = textInputLayout2;
-        this.f17020g = checkedSetting;
-        this.f17021h = textView;
-        this.f17022i = materialButton;
-        this.f17023j = checkedSetting2;
-        this.f17024k = textView2;
-        this.f17025l = view2;
-        this.f17026m = checkedSetting3;
+        this.a = constraintLayout;
+        this.f2447b = textInputEditText;
+        this.c = textInputLayout;
+        this.d = imageView;
+        this.e = textInputEditText2;
+        this.f = textInputLayout2;
+        this.g = checkedSetting;
+        this.h = textView;
+        this.i = materialButton;
+        this.j = checkedSetting2;
+        this.k = textView2;
+        this.l = view2;
+        this.m = checkedSetting3;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17014a;
+        return this.a;
     }
 }

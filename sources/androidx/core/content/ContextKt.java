@@ -6,16 +6,16 @@ import android.util.AttributeSet;
 import androidx.annotation.AttrRes;
 import androidx.annotation.StyleRes;
 import androidx.exifinterface.media.ExifInterface;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Context.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ContextKt {
     public static final /* synthetic */ <T> T getSystemService(Context context) {
-        C12238m.checkNotNullParameter(context, "<this>");
-        C12238m.reifiedOperationMarker(4, ExifInterface.GPS_DIRECTION_TRUE);
+        m.checkNotNullParameter(context, "<this>");
+        m.reifiedOperationMarker(4, ExifInterface.GPS_DIRECTION_TRUE);
         return (T) ContextCompat.getSystemService(context, Object.class);
     }
 
@@ -29,31 +29,31 @@ public final class ContextKt {
         if ((i3 & 8) != 0) {
             i2 = 0;
         }
-        C12238m.checkNotNullParameter(context, "<this>");
-        C12238m.checkNotNullParameter(iArr, "attrs");
-        C12238m.checkNotNullParameter(function1, "block");
+        m.checkNotNullParameter(context, "<this>");
+        m.checkNotNullParameter(iArr, "attrs");
+        m.checkNotNullParameter(function1, "block");
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr, i, i2);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)");
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)");
         function1.invoke(typedArrayObtainStyledAttributes);
         typedArrayObtainStyledAttributes.recycle();
     }
 
     public static final void withStyledAttributes(Context context, AttributeSet attributeSet, int[] iArr, @AttrRes int i, @StyleRes int i2, Function1<? super TypedArray, Unit> function1) {
-        C12238m.checkNotNullParameter(context, "<this>");
-        C12238m.checkNotNullParameter(iArr, "attrs");
-        C12238m.checkNotNullParameter(function1, "block");
+        m.checkNotNullParameter(context, "<this>");
+        m.checkNotNullParameter(iArr, "attrs");
+        m.checkNotNullParameter(function1, "block");
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr, i, i2);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)");
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(set, attrs, defStyleAttr, defStyleRes)");
         function1.invoke(typedArrayObtainStyledAttributes);
         typedArrayObtainStyledAttributes.recycle();
     }
 
     public static final void withStyledAttributes(Context context, @StyleRes int i, int[] iArr, Function1<? super TypedArray, Unit> function1) {
-        C12238m.checkNotNullParameter(context, "<this>");
-        C12238m.checkNotNullParameter(iArr, "attrs");
-        C12238m.checkNotNullParameter(function1, "block");
+        m.checkNotNullParameter(context, "<this>");
+        m.checkNotNullParameter(iArr, "attrs");
+        m.checkNotNullParameter(function1, "block");
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(i, iArr);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(resourceId, attrs)");
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(resourceId, attrs)");
         function1.invoke(typedArrayObtainStyledAttributes);
         typedArrayObtainStyledAttributes.recycle();
     }

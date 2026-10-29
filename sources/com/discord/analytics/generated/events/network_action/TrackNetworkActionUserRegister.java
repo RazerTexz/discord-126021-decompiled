@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionUserRegister.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,6 +28,11 @@ public final /* data */ class TrackNetworkActionUserRegister implements Analytic
         this.analyticsSchemaTypeName = "network_action_user_register";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,7 +41,7 @@ public final /* data */ class TrackNetworkActionUserRegister implements Analytic
             return false;
         }
         TrackNetworkActionUserRegister trackNetworkActionUserRegister = (TrackNetworkActionUserRegister) other;
-        return C12238m.areEqual(this.inviteCode, trackNetworkActionUserRegister.inviteCode) && C12238m.areEqual(this.promotionalEmailOptIn, trackNetworkActionUserRegister.promotionalEmailOptIn) && C12238m.areEqual(this.promotionalEmailPreChecked, trackNetworkActionUserRegister.promotionalEmailPreChecked);
+        return m.areEqual(this.inviteCode, trackNetworkActionUserRegister.inviteCode) && m.areEqual(this.promotionalEmailOptIn, trackNetworkActionUserRegister.promotionalEmailOptIn) && m.areEqual(this.promotionalEmailPreChecked, trackNetworkActionUserRegister.promotionalEmailPreChecked);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +59,13 @@ public final /* data */ class TrackNetworkActionUserRegister implements Analytic
         return iHashCode2 + (bool2 != null ? bool2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionUserRegister(inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", promotionalEmailOptIn=");
-        sbM833U.append(this.promotionalEmailOptIn);
-        sbM833U.append(", promotionalEmailPreChecked=");
-        return C1643a.m816D(sbM833U, this.promotionalEmailPreChecked, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionUserRegister(inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", promotionalEmailOptIn=");
+        sbU.append(this.promotionalEmailOptIn);
+        sbU.append(", promotionalEmailPreChecked=");
+        return a.D(sbU, this.promotionalEmailPreChecked, ")");
     }
 
     public TrackNetworkActionUserRegister(CharSequence charSequence, Boolean bool, Boolean bool2) {

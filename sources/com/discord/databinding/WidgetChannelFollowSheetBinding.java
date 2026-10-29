@@ -14,62 +14,53 @@ import com.google.android.material.card.MaterialCardView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelFollowSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f15831a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15832b;
+    public final TextView f2255b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15833c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f15834d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialCardView f15835e;
+    public final MaterialCardView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final MaterialCardView f15836f;
+    public final MaterialCardView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f15837g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f15838h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final MaterialButton f15839i;
+    public final MaterialButton i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final AppViewFlipper f15840j;
+    public final AppViewFlipper j;
 
     public WidgetChannelFollowSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull TextView textView2, @NonNull ImageView imageView2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull MaterialCardView materialCardView, @NonNull MaterialCardView materialCardView2, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull MaterialButton materialButton, @NonNull AppViewFlipper appViewFlipper) {
-        this.f15831a = nestedScrollView;
-        this.f15832b = textView;
-        this.f15833c = textView2;
-        this.f15834d = simpleDraweeView;
-        this.f15835e = materialCardView;
-        this.f15836f = materialCardView2;
-        this.f15837g = textView3;
-        this.f15838h = textView4;
-        this.f15839i = materialButton;
-        this.f15840j = appViewFlipper;
+        this.a = nestedScrollView;
+        this.f2255b = textView;
+        this.c = textView2;
+        this.d = simpleDraweeView;
+        this.e = materialCardView;
+        this.f = materialCardView2;
+        this.g = textView3;
+        this.h = textView4;
+        this.i = materialButton;
+        this.j = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15831a;
+        return this.a;
     }
 }

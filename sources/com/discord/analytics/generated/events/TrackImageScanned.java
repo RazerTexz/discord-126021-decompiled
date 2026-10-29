@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackImageScanned.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackImageScanned implements AnalyticsSchema, Trac
             return false;
         }
         TrackImageScanned trackImageScanned = (TrackImageScanned) other;
-        return C12238m.areEqual(this.scanUuid, trackImageScanned.scanUuid) && C12238m.areEqual(this.provider, trackImageScanned.provider) && C12238m.areEqual(this.safeSearchAdultLikelihood, trackImageScanned.safeSearchAdultLikelihood) && C12238m.areEqual(this.safeSearchMedicalLikelihood, trackImageScanned.safeSearchMedicalLikelihood) && C12238m.areEqual(this.safeSearchRacyLikelihood, trackImageScanned.safeSearchRacyLikelihood) && C12238m.areEqual(this.safeSearchSpoofLikelihood, trackImageScanned.safeSearchSpoofLikelihood) && C12238m.areEqual(this.safeSearchViolenceLikelihood, trackImageScanned.safeSearchViolenceLikelihood) && C12238m.areEqual(this.openNsfwSfw, trackImageScanned.openNsfwSfw) && C12238m.areEqual(this.openNsfwNsfw, trackImageScanned.openNsfwNsfw) && C12238m.areEqual(this.guildId, trackImageScanned.guildId);
+        return m.areEqual(this.scanUuid, trackImageScanned.scanUuid) && m.areEqual(this.provider, trackImageScanned.provider) && m.areEqual(this.safeSearchAdultLikelihood, trackImageScanned.safeSearchAdultLikelihood) && m.areEqual(this.safeSearchMedicalLikelihood, trackImageScanned.safeSearchMedicalLikelihood) && m.areEqual(this.safeSearchRacyLikelihood, trackImageScanned.safeSearchRacyLikelihood) && m.areEqual(this.safeSearchSpoofLikelihood, trackImageScanned.safeSearchSpoofLikelihood) && m.areEqual(this.safeSearchViolenceLikelihood, trackImageScanned.safeSearchViolenceLikelihood) && m.areEqual(this.openNsfwSfw, trackImageScanned.openNsfwSfw) && m.areEqual(this.openNsfwNsfw, trackImageScanned.openNsfwNsfw) && m.areEqual(this.guildId, trackImageScanned.guildId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,25 +63,25 @@ public final /* data */ class TrackImageScanned implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackImageScanned(scanUuid=");
-        sbM833U.append(this.scanUuid);
-        sbM833U.append(", provider=");
-        sbM833U.append(this.provider);
-        sbM833U.append(", safeSearchAdultLikelihood=");
-        sbM833U.append(this.safeSearchAdultLikelihood);
-        sbM833U.append(", safeSearchMedicalLikelihood=");
-        sbM833U.append(this.safeSearchMedicalLikelihood);
-        sbM833U.append(", safeSearchRacyLikelihood=");
-        sbM833U.append(this.safeSearchRacyLikelihood);
-        sbM833U.append(", safeSearchSpoofLikelihood=");
-        sbM833U.append(this.safeSearchSpoofLikelihood);
-        sbM833U.append(", safeSearchViolenceLikelihood=");
-        sbM833U.append(this.safeSearchViolenceLikelihood);
-        sbM833U.append(", openNsfwSfw=");
-        sbM833U.append(this.openNsfwSfw);
-        sbM833U.append(", openNsfwNsfw=");
-        sbM833U.append(this.openNsfwNsfw);
-        sbM833U.append(", guildId=");
-        return C1643a.m819G(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("TrackImageScanned(scanUuid=");
+        sbU.append(this.scanUuid);
+        sbU.append(", provider=");
+        sbU.append(this.provider);
+        sbU.append(", safeSearchAdultLikelihood=");
+        sbU.append(this.safeSearchAdultLikelihood);
+        sbU.append(", safeSearchMedicalLikelihood=");
+        sbU.append(this.safeSearchMedicalLikelihood);
+        sbU.append(", safeSearchRacyLikelihood=");
+        sbU.append(this.safeSearchRacyLikelihood);
+        sbU.append(", safeSearchSpoofLikelihood=");
+        sbU.append(this.safeSearchSpoofLikelihood);
+        sbU.append(", safeSearchViolenceLikelihood=");
+        sbU.append(this.safeSearchViolenceLikelihood);
+        sbU.append(", openNsfwSfw=");
+        sbU.append(this.openNsfwSfw);
+        sbU.append(", openNsfwNsfw=");
+        sbU.append(this.openNsfwNsfw);
+        sbU.append(", guildId=");
+        return a.G(sbU, this.guildId, ")");
     }
 }

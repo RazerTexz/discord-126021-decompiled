@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotifyStreamSettingUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackNotifyStreamSettingUpdate implements Analytic
             return false;
         }
         TrackNotifyStreamSettingUpdate trackNotifyStreamSettingUpdate = (TrackNotifyStreamSettingUpdate) other;
-        return C12238m.areEqual(this.value, trackNotifyStreamSettingUpdate.value) && C12238m.areEqual(this.prechecked, trackNotifyStreamSettingUpdate.prechecked);
+        return m.areEqual(this.value, trackNotifyStreamSettingUpdate.value) && m.areEqual(this.prechecked, trackNotifyStreamSettingUpdate.prechecked);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackNotifyStreamSettingUpdate implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotifyStreamSettingUpdate(value=");
-        sbM833U.append(this.value);
-        sbM833U.append(", prechecked=");
-        return C1643a.m816D(sbM833U, this.prechecked, ")");
+        StringBuilder sbU = a.U("TrackNotifyStreamSettingUpdate(value=");
+        sbU.append(this.value);
+        sbU.append(", prechecked=");
+        return a.D(sbU, this.prechecked, ")");
     }
 }

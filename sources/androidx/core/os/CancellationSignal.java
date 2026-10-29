@@ -7,11 +7,7 @@ public final class CancellationSignal {
     private boolean mCancelInProgress;
     private Object mCancellationSignalObj;
     private boolean mIsCanceled;
-    private OnCancelListener mOnCancelListener;
-
-    public interface OnCancelListener {
-        void onCancel();
-    }
+    private CancellationSignal$OnCancelListener mOnCancelListener;
 
     public void cancel() {
         synchronized (this) {
@@ -20,11 +16,11 @@ public final class CancellationSignal {
             }
             this.mIsCanceled = true;
             this.mCancelInProgress = true;
-            OnCancelListener onCancelListener = this.mOnCancelListener;
+            CancellationSignal$OnCancelListener cancellationSignal$OnCancelListener = this.mOnCancelListener;
             Object obj = this.mCancellationSignalObj;
-            if (onCancelListener != null) {
+            if (cancellationSignal$OnCancelListener != null) {
                 try {
-                    onCancelListener.onCancel();
+                    cancellationSignal$OnCancelListener.onCancel();
                 } catch (Throwable th) {
                     synchronized (this) {
                         this.mCancelInProgress = false;
@@ -67,15 +63,15 @@ public final class CancellationSignal {
         return z2;
     }
 
-    public void setOnCancelListener(@Nullable OnCancelListener onCancelListener) {
+    public void setOnCancelListener(@Nullable CancellationSignal$OnCancelListener cancellationSignal$OnCancelListener) {
         synchronized (this) {
             waitForCancelFinishedLocked();
-            if (this.mOnCancelListener == onCancelListener) {
+            if (this.mOnCancelListener == cancellationSignal$OnCancelListener) {
                 return;
             }
-            this.mOnCancelListener = onCancelListener;
-            if (this.mIsCanceled && onCancelListener != null) {
-                onCancelListener.onCancel();
+            this.mOnCancelListener = cancellationSignal$OnCancelListener;
+            if (this.mIsCanceled && cancellationSignal$OnCancelListener != null) {
+                cancellationSignal$OnCancelListener.onCancel();
             }
         }
     }

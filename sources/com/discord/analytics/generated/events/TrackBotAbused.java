@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackBotAbused.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackBotAbused implements AnalyticsSchema, TrackBa
             return false;
         }
         TrackBotAbused trackBotAbused = (TrackBotAbused) other;
-        return C12238m.areEqual(this.botId, trackBotAbused.botId) && C12238m.areEqual(this.reason, trackBotAbused.reason);
+        return m.areEqual(this.botId, trackBotAbused.botId) && m.areEqual(this.reason, trackBotAbused.reason);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -40,9 +40,9 @@ public final /* data */ class TrackBotAbused implements AnalyticsSchema, TrackBa
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackBotAbused(botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", reason=");
-        return C1643a.m817E(sbM833U, this.reason, ")");
+        StringBuilder sbU = a.U("TrackBotAbused(botId=");
+        sbU.append(this.botId);
+        sbU.append(", reason=");
+        return a.E(sbU, this.reason, ")");
     }
 }

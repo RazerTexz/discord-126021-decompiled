@@ -7,16 +7,17 @@ import android.util.SparseArray;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
+import android.view.Window$Callback;
+import android.widget.AdapterView$OnItemSelectedListener;
 import android.widget.SpinnerAdapter;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuPresenter;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.view.menu.MenuBuilder$Callback;
+import androidx.appcompat.view.menu.MenuPresenter$Callback;
 import androidx.core.view.ViewPropertyAnimatorCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public interface DecorToolbar {
     void animateToVisibility(int i);
 
@@ -86,7 +87,7 @@ public interface DecorToolbar {
 
     void setDisplayOptions(int i);
 
-    void setDropdownParams(SpinnerAdapter spinnerAdapter, AdapterView.OnItemSelectedListener onItemSelectedListener);
+    void setDropdownParams(SpinnerAdapter spinnerAdapter, AdapterView$OnItemSelectedListener adapterView$OnItemSelectedListener);
 
     void setDropdownSelectedPosition(int i);
 
@@ -102,9 +103,9 @@ public interface DecorToolbar {
 
     void setLogo(Drawable drawable);
 
-    void setMenu(Menu menu, MenuPresenter.Callback callback);
+    void setMenu(Menu menu, MenuPresenter$Callback menuPresenter$Callback);
 
-    void setMenuCallbacks(MenuPresenter.Callback callback, MenuBuilder.Callback callback2);
+    void setMenuCallbacks(MenuPresenter$Callback menuPresenter$Callback, MenuBuilder$Callback menuBuilder$Callback);
 
     void setMenuPrepared();
 
@@ -124,7 +125,7 @@ public interface DecorToolbar {
 
     void setVisibility(int i);
 
-    void setWindowCallback(Window.Callback callback);
+    void setWindowCallback(Window$Callback window$Callback);
 
     void setWindowTitle(CharSequence charSequence);
 

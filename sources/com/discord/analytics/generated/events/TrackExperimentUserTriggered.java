@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackExperimentUserTriggered.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackExperimentUserTriggered implements AnalyticsS
             return false;
         }
         TrackExperimentUserTriggered trackExperimentUserTriggered = (TrackExperimentUserTriggered) other;
-        return C12238m.areEqual(this.name, trackExperimentUserTriggered.name) && C12238m.areEqual(this.bucket, trackExperimentUserTriggered.bucket) && C12238m.areEqual(this.revision, trackExperimentUserTriggered.revision) && C12238m.areEqual(this.population, trackExperimentUserTriggered.population) && C12238m.areEqual(this.contextType, trackExperimentUserTriggered.contextType) && C12238m.areEqual(this.contextGuildId, trackExperimentUserTriggered.contextGuildId) && C12238m.areEqual(this.contextChannelId, trackExperimentUserTriggered.contextChannelId);
+        return m.areEqual(this.name, trackExperimentUserTriggered.name) && m.areEqual(this.bucket, trackExperimentUserTriggered.bucket) && m.areEqual(this.revision, trackExperimentUserTriggered.revision) && m.areEqual(this.population, trackExperimentUserTriggered.population) && m.areEqual(this.contextType, trackExperimentUserTriggered.contextType) && m.areEqual(this.contextGuildId, trackExperimentUserTriggered.contextGuildId) && m.areEqual(this.contextChannelId, trackExperimentUserTriggered.contextChannelId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -55,19 +55,19 @@ public final /* data */ class TrackExperimentUserTriggered implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackExperimentUserTriggered(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", bucket=");
-        sbM833U.append(this.bucket);
-        sbM833U.append(", revision=");
-        sbM833U.append(this.revision);
-        sbM833U.append(", population=");
-        sbM833U.append(this.population);
-        sbM833U.append(", contextType=");
-        sbM833U.append(this.contextType);
-        sbM833U.append(", contextGuildId=");
-        sbM833U.append(this.contextGuildId);
-        sbM833U.append(", contextChannelId=");
-        return C1643a.m819G(sbM833U, this.contextChannelId, ")");
+        StringBuilder sbU = a.U("TrackExperimentUserTriggered(name=");
+        sbU.append(this.name);
+        sbU.append(", bucket=");
+        sbU.append(this.bucket);
+        sbU.append(", revision=");
+        sbU.append(this.revision);
+        sbU.append(", population=");
+        sbU.append(this.population);
+        sbU.append(", contextType=");
+        sbU.append(this.contextType);
+        sbU.append(", contextGuildId=");
+        sbU.append(this.contextGuildId);
+        sbU.append(", contextChannelId=");
+        return a.G(sbU, this.contextChannelId, ")");
     }
 }

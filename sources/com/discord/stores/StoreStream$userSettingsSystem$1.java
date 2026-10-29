@@ -1,12 +1,12 @@
 package com.discord.stores;
 
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: StoreStream.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreStream$userSettingsSystem$1 extends AbstractC12240o implements Function1<Integer, Unit> {
+public final class StoreStream$userSettingsSystem$1 extends o implements Function1<Integer, Unit> {
     public final /* synthetic */ StoreStream this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -18,7 +18,7 @@ public final class StoreStream$userSettingsSystem$1 extends AbstractC12240o impl
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(Integer num) {
         invoke(num.intValue());
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     public final void invoke(int i) {

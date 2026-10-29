@@ -1,10 +1,10 @@
 package com.discord.api.sticker;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.io.Serializable;
 import kotlin.NoWhenBranchMatchedException;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StickerPartial.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -13,26 +13,32 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
     private final long id;
     private final String name;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            StickerFormatType.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[StickerFormatType.UNKNOWN.ordinal()] = 1;
-            iArr[StickerFormatType.PNG.ordinal()] = 2;
-            iArr[StickerFormatType.APNG.ordinal()] = 3;
-            iArr[StickerFormatType.LOTTIE.ordinal()] = 4;
-        }
-    }
-
     public StickerPartial(long j, StickerFormatType stickerFormatType, String str) {
-        C12238m.checkNotNullParameter(stickerFormatType, "formatType");
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(stickerFormatType, "formatType");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.id = j;
         this.formatType = stickerFormatType;
         this.name = str;
+    }
+
+    @Override // com.discord.api.sticker.BaseSticker
+    public String b() {
+        int iOrdinal = this.formatType.ordinal();
+        if (iOrdinal == 0) {
+            return "";
+        }
+        if (iOrdinal == 1 || iOrdinal == 2) {
+            return ".png";
+        }
+        if (iOrdinal == 3) {
+            return ".json";
+        }
+        throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // com.discord.api.sticker.BaseSticker
+    public StickerPartial c() {
+        return this;
     }
 
     public boolean equals(Object other) {
@@ -43,7 +49,7 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
             return false;
         }
         StickerPartial stickerPartial = (StickerPartial) other;
-        return this.id == stickerPartial.id && C12238m.areEqual(this.formatType, stickerPartial.formatType) && C12238m.areEqual(this.name, stickerPartial.name);
+        return this.id == stickerPartial.id && m.areEqual(this.formatType, stickerPartial.formatType) && m.areEqual(this.name, stickerPartial.name);
     }
 
     @Override // com.discord.api.sticker.BaseSticker
@@ -76,34 +82,12 @@ public final /* data */ class StickerPartial implements Serializable, BaseSticke
         return iHashCode + (str != null ? str.hashCode() : 0);
     }
 
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: b */
-    public String mo8228b() {
-        int iOrdinal = this.formatType.ordinal();
-        if (iOrdinal == 0) {
-            return "";
-        }
-        if (iOrdinal == 1 || iOrdinal == 2) {
-            return ".png";
-        }
-        if (iOrdinal == 3) {
-            return ".json";
-        }
-        throw new NoWhenBranchMatchedException();
-    }
-
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: c */
-    public StickerPartial mo8229c() {
-        return this;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StickerPartial(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", formatType=");
-        sbM833U.append(this.formatType);
-        sbM833U.append(", name=");
-        return C1643a.m822J(sbM833U, this.name, ")");
+        StringBuilder sbU = a.U("StickerPartial(id=");
+        sbU.append(this.id);
+        sbU.append(", formatType=");
+        sbU.append(this.formatType);
+        sbU.append(", name=");
+        return a.J(sbU, this.name, ")");
     }
 }

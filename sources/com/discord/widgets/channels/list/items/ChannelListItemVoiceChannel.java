@@ -1,15 +1,15 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.guild.GuildMaxVideoChannelUsers;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
-import com.discord.widgets.channels.list.WidgetChannelListUnreads;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemVoiceChannel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class ChannelListItemVoiceChannel implements ChannelListItem, ChannelListVocalItem, WidgetChannelListUnreads.UnreadItem {
+public final /* data */ class ChannelListItemVoiceChannel implements ChannelListItem, ChannelListVocalItem, WidgetChannelListUnreads$UnreadItem {
     private final Channel channel;
     private final GuildMaxVideoChannelUsers guildMaxVideoChannelUsers;
     private final GuildScheduledEvent guildScheduledEvent;
@@ -28,8 +28,8 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
     private final boolean voiceSelected;
 
     public ChannelListItemVoiceChannel(Channel channel, boolean z2, boolean z3, Long l, int i, boolean z4, int i2, boolean z5, boolean z6, boolean z7, GuildMaxVideoChannelUsers guildMaxVideoChannelUsers, boolean z8, boolean z9, GuildScheduledEvent guildScheduledEvent) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(guildMaxVideoChannelUsers, "guildMaxVideoChannelUsers");
+        m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(guildMaxVideoChannelUsers, "guildMaxVideoChannelUsers");
         this.channel = channel;
         this.textSelected = z2;
         this.voiceSelected = z3;
@@ -64,9 +64,13 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         return getNumUsersConnected();
     }
 
+    public static /* synthetic */ ChannelListItemVoiceChannel copy$default(ChannelListItemVoiceChannel channelListItemVoiceChannel, Channel channel, boolean z2, boolean z3, Long l, int i, boolean z4, int i2, boolean z5, boolean z6, boolean z7, GuildMaxVideoChannelUsers guildMaxVideoChannelUsers, boolean z8, boolean z9, GuildScheduledEvent guildScheduledEvent, int i3, Object obj) {
+        return channelListItemVoiceChannel.copy((i3 & 1) != 0 ? channelListItemVoiceChannel.getChannel() : channel, (i3 & 2) != 0 ? channelListItemVoiceChannel.textSelected : z2, (i3 & 4) != 0 ? channelListItemVoiceChannel.voiceSelected : z3, (i3 & 8) != 0 ? channelListItemVoiceChannel.permission : l, (i3 & 16) != 0 ? channelListItemVoiceChannel.getMentionCount() : i, (i3 & 32) != 0 ? channelListItemVoiceChannel.getIsUnread() : z4, (i3 & 64) != 0 ? channelListItemVoiceChannel.getNumUsersConnected() : i2, (i3 & 128) != 0 ? channelListItemVoiceChannel.isLocked : z5, (i3 & 256) != 0 ? channelListItemVoiceChannel.isNsfw : z6, (i3 & 512) != 0 ? channelListItemVoiceChannel.isAnyoneUsingVideo : z7, (i3 & 1024) != 0 ? channelListItemVoiceChannel.guildMaxVideoChannelUsers : guildMaxVideoChannelUsers, (i3 & 2048) != 0 ? channelListItemVoiceChannel.isGuildRoleSubscriptionLockedChannel : z8, (i3 & 4096) != 0 ? channelListItemVoiceChannel.isGuildRoleSubscriptionChannel : z9, (i3 & 8192) != 0 ? channelListItemVoiceChannel.guildScheduledEvent : guildScheduledEvent);
+    }
+
     public final ChannelListItemVoiceChannel copy(Channel channel, boolean textSelected, boolean voiceSelected, Long permission, int mentionCount, boolean isUnread, int numUsersConnected, boolean isLocked, boolean isNsfw, boolean isAnyoneUsingVideo, GuildMaxVideoChannelUsers guildMaxVideoChannelUsers, boolean isGuildRoleSubscriptionLockedChannel, boolean isGuildRoleSubscriptionChannel, GuildScheduledEvent guildScheduledEvent) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(guildMaxVideoChannelUsers, "guildMaxVideoChannelUsers");
+        m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(guildMaxVideoChannelUsers, "guildMaxVideoChannelUsers");
         return new ChannelListItemVoiceChannel(channel, textSelected, voiceSelected, permission, mentionCount, isUnread, numUsersConnected, isLocked, isNsfw, isAnyoneUsingVideo, guildMaxVideoChannelUsers, isGuildRoleSubscriptionLockedChannel, isGuildRoleSubscriptionChannel, guildScheduledEvent);
     }
 
@@ -78,7 +82,7 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
             return false;
         }
         ChannelListItemVoiceChannel channelListItemVoiceChannel = (ChannelListItemVoiceChannel) other;
-        return C12238m.areEqual(getChannel(), channelListItemVoiceChannel.getChannel()) && this.textSelected == channelListItemVoiceChannel.textSelected && this.voiceSelected == channelListItemVoiceChannel.voiceSelected && C12238m.areEqual(this.permission, channelListItemVoiceChannel.permission) && getMentionCount() == channelListItemVoiceChannel.getMentionCount() && getIsUnread() == channelListItemVoiceChannel.getIsUnread() && getNumUsersConnected() == channelListItemVoiceChannel.getNumUsersConnected() && this.isLocked == channelListItemVoiceChannel.isLocked && this.isNsfw == channelListItemVoiceChannel.isNsfw && this.isAnyoneUsingVideo == channelListItemVoiceChannel.isAnyoneUsingVideo && C12238m.areEqual(this.guildMaxVideoChannelUsers, channelListItemVoiceChannel.guildMaxVideoChannelUsers) && this.isGuildRoleSubscriptionLockedChannel == channelListItemVoiceChannel.isGuildRoleSubscriptionLockedChannel && this.isGuildRoleSubscriptionChannel == channelListItemVoiceChannel.isGuildRoleSubscriptionChannel && C12238m.areEqual(this.guildScheduledEvent, channelListItemVoiceChannel.guildScheduledEvent);
+        return m.areEqual(getChannel(), channelListItemVoiceChannel.getChannel()) && this.textSelected == channelListItemVoiceChannel.textSelected && this.voiceSelected == channelListItemVoiceChannel.voiceSelected && m.areEqual(this.permission, channelListItemVoiceChannel.permission) && getMentionCount() == channelListItemVoiceChannel.getMentionCount() && getIsUnread() == channelListItemVoiceChannel.getIsUnread() && getNumUsersConnected() == channelListItemVoiceChannel.getNumUsersConnected() && this.isLocked == channelListItemVoiceChannel.isLocked && this.isNsfw == channelListItemVoiceChannel.isNsfw && this.isAnyoneUsingVideo == channelListItemVoiceChannel.isAnyoneUsingVideo && m.areEqual(this.guildMaxVideoChannelUsers, channelListItemVoiceChannel.guildMaxVideoChannelUsers) && this.isGuildRoleSubscriptionLockedChannel == channelListItemVoiceChannel.isGuildRoleSubscriptionLockedChannel && this.isGuildRoleSubscriptionChannel == channelListItemVoiceChannel.isGuildRoleSubscriptionChannel && m.areEqual(this.guildScheduledEvent, channelListItemVoiceChannel.guildScheduledEvent);
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListVocalItem
@@ -129,7 +133,7 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         return this.isNsfw;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
     /* JADX INFO: renamed from: isUnread, reason: from getter */
     public boolean getIsUnread() {
         return this.isUnread;
@@ -140,7 +144,7 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
         return this.key;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
     public int getMentionCount() {
         return this.mentionCount;
     }
@@ -282,35 +286,35 @@ public final /* data */ class ChannelListItemVoiceChannel implements ChannelList
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemVoiceChannel(channel=");
-        sbM833U.append(getChannel());
-        sbM833U.append(", textSelected=");
-        sbM833U.append(this.textSelected);
-        sbM833U.append(", voiceSelected=");
-        sbM833U.append(this.voiceSelected);
-        sbM833U.append(", permission=");
-        sbM833U.append(this.permission);
-        sbM833U.append(", mentionCount=");
-        sbM833U.append(getMentionCount());
-        sbM833U.append(", isUnread=");
-        sbM833U.append(getIsUnread());
-        sbM833U.append(", numUsersConnected=");
-        sbM833U.append(getNumUsersConnected());
-        sbM833U.append(", isLocked=");
-        sbM833U.append(this.isLocked);
-        sbM833U.append(", isNsfw=");
-        sbM833U.append(this.isNsfw);
-        sbM833U.append(", isAnyoneUsingVideo=");
-        sbM833U.append(this.isAnyoneUsingVideo);
-        sbM833U.append(", guildMaxVideoChannelUsers=");
-        sbM833U.append(this.guildMaxVideoChannelUsers);
-        sbM833U.append(", isGuildRoleSubscriptionLockedChannel=");
-        sbM833U.append(this.isGuildRoleSubscriptionLockedChannel);
-        sbM833U.append(", isGuildRoleSubscriptionChannel=");
-        sbM833U.append(this.isGuildRoleSubscriptionChannel);
-        sbM833U.append(", guildScheduledEvent=");
-        sbM833U.append(this.guildScheduledEvent);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ChannelListItemVoiceChannel(channel=");
+        sbU.append(getChannel());
+        sbU.append(", textSelected=");
+        sbU.append(this.textSelected);
+        sbU.append(", voiceSelected=");
+        sbU.append(this.voiceSelected);
+        sbU.append(", permission=");
+        sbU.append(this.permission);
+        sbU.append(", mentionCount=");
+        sbU.append(getMentionCount());
+        sbU.append(", isUnread=");
+        sbU.append(getIsUnread());
+        sbU.append(", numUsersConnected=");
+        sbU.append(getNumUsersConnected());
+        sbU.append(", isLocked=");
+        sbU.append(this.isLocked);
+        sbU.append(", isNsfw=");
+        sbU.append(this.isNsfw);
+        sbU.append(", isAnyoneUsingVideo=");
+        sbU.append(this.isAnyoneUsingVideo);
+        sbU.append(", guildMaxVideoChannelUsers=");
+        sbU.append(this.guildMaxVideoChannelUsers);
+        sbU.append(", isGuildRoleSubscriptionLockedChannel=");
+        sbU.append(this.isGuildRoleSubscriptionLockedChannel);
+        sbU.append(", isGuildRoleSubscriptionChannel=");
+        sbU.append(this.isGuildRoleSubscriptionChannel);
+        sbU.append(", guildScheduledEvent=");
+        sbU.append(this.guildScheduledEvent);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

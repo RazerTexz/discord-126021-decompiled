@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildCreationIntentSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackGuildCreationIntentSelected implements Analyt
             return false;
         }
         TrackGuildCreationIntentSelected trackGuildCreationIntentSelected = (TrackGuildCreationIntentSelected) other;
-        return C12238m.areEqual(this.isCommunity, trackGuildCreationIntentSelected.isCommunity) && C12238m.areEqual(this.skipped, trackGuildCreationIntentSelected.skipped);
+        return m.areEqual(this.isCommunity, trackGuildCreationIntentSelected.isCommunity) && m.areEqual(this.skipped, trackGuildCreationIntentSelected.skipped);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackGuildCreationIntentSelected implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildCreationIntentSelected(isCommunity=");
-        sbM833U.append(this.isCommunity);
-        sbM833U.append(", skipped=");
-        return C1643a.m816D(sbM833U, this.skipped, ")");
+        StringBuilder sbU = a.U("TrackGuildCreationIntentSelected(isCommunity=");
+        sbU.append(this.isCommunity);
+        sbU.append(", skipped=");
+        return a.D(sbU, this.skipped, ")");
     }
 }

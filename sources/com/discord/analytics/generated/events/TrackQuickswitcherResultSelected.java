@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackQuickswitcherResultSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -44,7 +44,7 @@ public final /* data */ class TrackQuickswitcherResultSelected implements Analyt
             return false;
         }
         TrackQuickswitcherResultSelected trackQuickswitcherResultSelected = (TrackQuickswitcherResultSelected) other;
-        return C12238m.areEqual(this.selectedType, trackQuickswitcherResultSelected.selectedType) && C12238m.areEqual(this.selectedScore, trackQuickswitcherResultSelected.selectedScore) && C12238m.areEqual(this.selectedIndex, trackQuickswitcherResultSelected.selectedIndex) && C12238m.areEqual(this.selectedGuildId, trackQuickswitcherResultSelected.selectedGuildId) && C12238m.areEqual(this.selectedChannelId, trackQuickswitcherResultSelected.selectedChannelId) && C12238m.areEqual(this.selectedUserId, trackQuickswitcherResultSelected.selectedUserId) && C12238m.areEqual(this.currentChannelId, trackQuickswitcherResultSelected.currentChannelId) && C12238m.areEqual(this.currentChannelType, trackQuickswitcherResultSelected.currentChannelType) && C12238m.areEqual(this.currentGuildId, trackQuickswitcherResultSelected.currentGuildId) && C12238m.areEqual(this.queryMode, trackQuickswitcherResultSelected.queryMode) && C12238m.areEqual(this.queryLength, trackQuickswitcherResultSelected.queryLength) && C12238m.areEqual(this.maxQueryLength, trackQuickswitcherResultSelected.maxQueryLength) && C12238m.areEqual(this.topResultType, trackQuickswitcherResultSelected.topResultType) && C12238m.areEqual(this.topResultScore, trackQuickswitcherResultSelected.topResultScore) && C12238m.areEqual(this.numResultsTotal, trackQuickswitcherResultSelected.numResultsTotal) && C12238m.areEqual(this.numResultsUsers, trackQuickswitcherResultSelected.numResultsUsers) && C12238m.areEqual(this.numResultsTextChannels, trackQuickswitcherResultSelected.numResultsTextChannels) && C12238m.areEqual(this.numResultsVoiceChannels, trackQuickswitcherResultSelected.numResultsVoiceChannels) && C12238m.areEqual(this.numResultsGuilds, trackQuickswitcherResultSelected.numResultsGuilds) && C12238m.areEqual(this.numResultsGroupDms, trackQuickswitcherResultSelected.numResultsGroupDms) && C12238m.areEqual(this.isEmailLike, trackQuickswitcherResultSelected.isEmailLike) && C12238m.areEqual(this.isPhoneLike, trackQuickswitcherResultSelected.isPhoneLike) && C12238m.areEqual(this.isUsernameLike, trackQuickswitcherResultSelected.isUsernameLike) && C12238m.areEqual(this.query, trackQuickswitcherResultSelected.query);
+        return m.areEqual(this.selectedType, trackQuickswitcherResultSelected.selectedType) && m.areEqual(this.selectedScore, trackQuickswitcherResultSelected.selectedScore) && m.areEqual(this.selectedIndex, trackQuickswitcherResultSelected.selectedIndex) && m.areEqual(this.selectedGuildId, trackQuickswitcherResultSelected.selectedGuildId) && m.areEqual(this.selectedChannelId, trackQuickswitcherResultSelected.selectedChannelId) && m.areEqual(this.selectedUserId, trackQuickswitcherResultSelected.selectedUserId) && m.areEqual(this.currentChannelId, trackQuickswitcherResultSelected.currentChannelId) && m.areEqual(this.currentChannelType, trackQuickswitcherResultSelected.currentChannelType) && m.areEqual(this.currentGuildId, trackQuickswitcherResultSelected.currentGuildId) && m.areEqual(this.queryMode, trackQuickswitcherResultSelected.queryMode) && m.areEqual(this.queryLength, trackQuickswitcherResultSelected.queryLength) && m.areEqual(this.maxQueryLength, trackQuickswitcherResultSelected.maxQueryLength) && m.areEqual(this.topResultType, trackQuickswitcherResultSelected.topResultType) && m.areEqual(this.topResultScore, trackQuickswitcherResultSelected.topResultScore) && m.areEqual(this.numResultsTotal, trackQuickswitcherResultSelected.numResultsTotal) && m.areEqual(this.numResultsUsers, trackQuickswitcherResultSelected.numResultsUsers) && m.areEqual(this.numResultsTextChannels, trackQuickswitcherResultSelected.numResultsTextChannels) && m.areEqual(this.numResultsVoiceChannels, trackQuickswitcherResultSelected.numResultsVoiceChannels) && m.areEqual(this.numResultsGuilds, trackQuickswitcherResultSelected.numResultsGuilds) && m.areEqual(this.numResultsGroupDms, trackQuickswitcherResultSelected.numResultsGroupDms) && m.areEqual(this.isEmailLike, trackQuickswitcherResultSelected.isEmailLike) && m.areEqual(this.isPhoneLike, trackQuickswitcherResultSelected.isPhoneLike) && m.areEqual(this.isUsernameLike, trackQuickswitcherResultSelected.isUsernameLike) && m.areEqual(this.query, trackQuickswitcherResultSelected.query);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -105,53 +105,53 @@ public final /* data */ class TrackQuickswitcherResultSelected implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackQuickswitcherResultSelected(selectedType=");
-        sbM833U.append(this.selectedType);
-        sbM833U.append(", selectedScore=");
-        sbM833U.append(this.selectedScore);
-        sbM833U.append(", selectedIndex=");
-        sbM833U.append(this.selectedIndex);
-        sbM833U.append(", selectedGuildId=");
-        sbM833U.append(this.selectedGuildId);
-        sbM833U.append(", selectedChannelId=");
-        sbM833U.append(this.selectedChannelId);
-        sbM833U.append(", selectedUserId=");
-        sbM833U.append(this.selectedUserId);
-        sbM833U.append(", currentChannelId=");
-        sbM833U.append(this.currentChannelId);
-        sbM833U.append(", currentChannelType=");
-        sbM833U.append(this.currentChannelType);
-        sbM833U.append(", currentGuildId=");
-        sbM833U.append(this.currentGuildId);
-        sbM833U.append(", queryMode=");
-        sbM833U.append(this.queryMode);
-        sbM833U.append(", queryLength=");
-        sbM833U.append(this.queryLength);
-        sbM833U.append(", maxQueryLength=");
-        sbM833U.append(this.maxQueryLength);
-        sbM833U.append(", topResultType=");
-        sbM833U.append(this.topResultType);
-        sbM833U.append(", topResultScore=");
-        sbM833U.append(this.topResultScore);
-        sbM833U.append(", numResultsTotal=");
-        sbM833U.append(this.numResultsTotal);
-        sbM833U.append(", numResultsUsers=");
-        sbM833U.append(this.numResultsUsers);
-        sbM833U.append(", numResultsTextChannels=");
-        sbM833U.append(this.numResultsTextChannels);
-        sbM833U.append(", numResultsVoiceChannels=");
-        sbM833U.append(this.numResultsVoiceChannels);
-        sbM833U.append(", numResultsGuilds=");
-        sbM833U.append(this.numResultsGuilds);
-        sbM833U.append(", numResultsGroupDms=");
-        sbM833U.append(this.numResultsGroupDms);
-        sbM833U.append(", isEmailLike=");
-        sbM833U.append(this.isEmailLike);
-        sbM833U.append(", isPhoneLike=");
-        sbM833U.append(this.isPhoneLike);
-        sbM833U.append(", isUsernameLike=");
-        sbM833U.append(this.isUsernameLike);
-        sbM833U.append(", query=");
-        return C1643a.m817E(sbM833U, this.query, ")");
+        StringBuilder sbU = a.U("TrackQuickswitcherResultSelected(selectedType=");
+        sbU.append(this.selectedType);
+        sbU.append(", selectedScore=");
+        sbU.append(this.selectedScore);
+        sbU.append(", selectedIndex=");
+        sbU.append(this.selectedIndex);
+        sbU.append(", selectedGuildId=");
+        sbU.append(this.selectedGuildId);
+        sbU.append(", selectedChannelId=");
+        sbU.append(this.selectedChannelId);
+        sbU.append(", selectedUserId=");
+        sbU.append(this.selectedUserId);
+        sbU.append(", currentChannelId=");
+        sbU.append(this.currentChannelId);
+        sbU.append(", currentChannelType=");
+        sbU.append(this.currentChannelType);
+        sbU.append(", currentGuildId=");
+        sbU.append(this.currentGuildId);
+        sbU.append(", queryMode=");
+        sbU.append(this.queryMode);
+        sbU.append(", queryLength=");
+        sbU.append(this.queryLength);
+        sbU.append(", maxQueryLength=");
+        sbU.append(this.maxQueryLength);
+        sbU.append(", topResultType=");
+        sbU.append(this.topResultType);
+        sbU.append(", topResultScore=");
+        sbU.append(this.topResultScore);
+        sbU.append(", numResultsTotal=");
+        sbU.append(this.numResultsTotal);
+        sbU.append(", numResultsUsers=");
+        sbU.append(this.numResultsUsers);
+        sbU.append(", numResultsTextChannels=");
+        sbU.append(this.numResultsTextChannels);
+        sbU.append(", numResultsVoiceChannels=");
+        sbU.append(this.numResultsVoiceChannels);
+        sbU.append(", numResultsGuilds=");
+        sbU.append(this.numResultsGuilds);
+        sbU.append(", numResultsGroupDms=");
+        sbU.append(this.numResultsGroupDms);
+        sbU.append(", isEmailLike=");
+        sbU.append(this.isEmailLike);
+        sbU.append(", isPhoneLike=");
+        sbU.append(this.isPhoneLike);
+        sbU.append(", isUsernameLike=");
+        sbU.append(this.isUsernameLike);
+        sbU.append(", query=");
+        return a.E(sbU, this.query, ")");
     }
 }

@@ -2,14 +2,14 @@ package com.discord.widgets.channels;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TextInVoiceOnboardingManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class TextInVoiceOnboardingManager$show$textInVoiceOnboardingNotice$1 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+public final class TextInVoiceOnboardingManager$show$textInVoiceOnboardingNotice$1 extends o implements Function1<FragmentActivity, Boolean> {
     public final /* synthetic */ Function0 $onCtaClicked;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -25,11 +25,11 @@ public final class TextInVoiceOnboardingManager$show$textInVoiceOnboardingNotice
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
-        C12238m.checkNotNullParameter(fragmentActivity, "appActivity");
-        WidgetTextInVoiceOnboarding.Companion companion = WidgetTextInVoiceOnboarding.INSTANCE;
+        m.checkNotNullParameter(fragmentActivity, "appActivity");
+        WidgetTextInVoiceOnboarding$Companion widgetTextInVoiceOnboarding$Companion = WidgetTextInVoiceOnboarding.Companion;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
-        C12238m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
-        companion.show(supportFragmentManager, this.$onCtaClicked);
+        m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
+        widgetTextInVoiceOnboarding$Companion.show(supportFragmentManager, this.$onCtaClicked);
         return true;
     }
 }

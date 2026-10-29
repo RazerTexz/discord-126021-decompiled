@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotificationPermissionPrepromptAcked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackNotificationPermissionPrepromptAcked implemen
             return false;
         }
         TrackNotificationPermissionPrepromptAcked trackNotificationPermissionPrepromptAcked = (TrackNotificationPermissionPrepromptAcked) other;
-        return C12238m.areEqual(this.actionType, trackNotificationPermissionPrepromptAcked.actionType) && C12238m.areEqual(this.actionLocation, trackNotificationPermissionPrepromptAcked.actionLocation) && C12238m.areEqual(this.permissionGranted, trackNotificationPermissionPrepromptAcked.permissionGranted);
+        return m.areEqual(this.actionType, trackNotificationPermissionPrepromptAcked.actionType) && m.areEqual(this.actionLocation, trackNotificationPermissionPrepromptAcked.actionLocation) && m.areEqual(this.permissionGranted, trackNotificationPermissionPrepromptAcked.permissionGranted);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackNotificationPermissionPrepromptAcked implemen
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotificationPermissionPrepromptAcked(actionType=");
-        sbM833U.append(this.actionType);
-        sbM833U.append(", actionLocation=");
-        sbM833U.append(this.actionLocation);
-        sbM833U.append(", permissionGranted=");
-        return C1643a.m816D(sbM833U, this.permissionGranted, ")");
+        StringBuilder sbU = a.U("TrackNotificationPermissionPrepromptAcked(actionType=");
+        sbU.append(this.actionType);
+        sbU.append(", actionLocation=");
+        sbU.append(this.actionLocation);
+        sbU.append(", permissionGranted=");
+        return a.D(sbU, this.permissionGranted, ")");
     }
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.annotation.NonNull;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -22,19 +23,7 @@ public final class FragmentState implements Parcelable {
     public Bundle mSavedFragmentState;
     public final String mTag;
     public final String mWho;
-    public static final Parcelable.Creator<FragmentState> CREATOR = new Parcelable.Creator<FragmentState>() { // from class: androidx.fragment.app.FragmentState.1
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public FragmentState createFromParcel(Parcel parcel) {
-            return new FragmentState(parcel);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public FragmentState[] newArray(int i) {
-            return new FragmentState[i];
-        }
-    };
+    public static final Parcelable$Creator<FragmentState> CREATOR = new FragmentState$1();
 
     public FragmentState(Fragment fragment) {
         this.mClassName = fragment.getClass().getName();

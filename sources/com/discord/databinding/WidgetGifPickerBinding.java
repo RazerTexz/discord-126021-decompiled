@@ -10,32 +10,29 @@ import com.discord.widgets.chat.input.gifpicker.GifLoadingView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGifPickerBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f16698a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f16699b;
+    public final RecyclerView f2401b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final FrameLayout f16700c;
+    public final FrameLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final GifLoadingView f16701d;
+    public final GifLoadingView d;
 
     public WidgetGifPickerBinding(@NonNull FrameLayout frameLayout, @NonNull RecyclerView recyclerView, @NonNull FrameLayout frameLayout2, @NonNull GifLoadingView gifLoadingView) {
-        this.f16698a = frameLayout;
-        this.f16699b = recyclerView;
-        this.f16700c = frameLayout2;
-        this.f16701d = gifLoadingView;
+        this.a = frameLayout;
+        this.f2401b = recyclerView;
+        this.c = frameLayout2;
+        this.d = gifLoadingView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16698a;
+        return this.a;
     }
 }

@@ -1,6 +1,6 @@
 package androidx.core.widget;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import android.view.View;
 import android.widget.PopupWindow;
@@ -22,7 +22,7 @@ public final class PopupWindowCompat {
     }
 
     public static boolean getOverlapAnchor(@NonNull PopupWindow popupWindow) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return popupWindow.getOverlapAnchor();
         }
         if (!sOverlapAnchorFieldAttempted) {
@@ -48,7 +48,7 @@ public final class PopupWindowCompat {
     }
 
     public static int getWindowLayoutType(@NonNull PopupWindow popupWindow) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return popupWindow.getWindowLayoutType();
         }
         if (!sGetWindowLayoutTypeMethodAttempted) {
@@ -71,7 +71,7 @@ public final class PopupWindowCompat {
     }
 
     public static void setOverlapAnchor(@NonNull PopupWindow popupWindow, boolean z2) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             popupWindow.setOverlapAnchor(z2);
             return;
         }
@@ -96,7 +96,7 @@ public final class PopupWindowCompat {
     }
 
     public static void setWindowLayoutType(@NonNull PopupWindow popupWindow, int i) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             popupWindow.setWindowLayoutType(i);
             return;
         }

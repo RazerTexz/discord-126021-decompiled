@@ -1,29 +1,18 @@
 package com.adjust.sdk;
 
 import android.content.Context;
+import b.d.b.a.a;
 import com.discord.stores.StoreGuildScheduledEvents;
 import java.io.IOException;
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AdjustFactory {
     private static IActivityHandler activityHandler = null;
     private static IAttributionHandler attributionHandler = null;
     private static String baseUrl = "https://app.adjust.com";
-    private static UtilNetworking.IConnectionOptions connectionOptions = null;
+    private static UtilNetworking$IConnectionOptions connectionOptions = null;
     private static String gdprUrl = "https://gdpr.adjust.com";
     private static HttpsURLConnection httpsURLConnection = null;
     private static BackoffStrategy installSessionBackoffStrategy = null;
@@ -41,14 +30,8 @@ public class AdjustFactory {
     private static long timerStart = -1;
     private static boolean tryInstallReferrer = true;
 
-    public class URLGetConnection {
-        public HttpsURLConnection httpsURLConnection;
-        public URL url;
-
-        public URLGetConnection(HttpsURLConnection httpsURLConnection, URL url) {
-            this.httpsURLConnection = httpsURLConnection;
-            this.url = url;
-        }
+    public static /* synthetic */ String access$000(byte[] bArr) {
+        return byte2HexFormatted(bArr);
     }
 
     private static String byte2HexFormatted(byte[] bArr) {
@@ -57,7 +40,7 @@ public class AdjustFactory {
             String hexString = Integer.toHexString(b2);
             int length = hexString.length();
             if (length == 1) {
-                hexString = C1643a.m883w("0", hexString);
+                hexString = a.w("0", hexString);
             }
             if (length > 2) {
                 hexString = hexString.substring(length - 2, length);
@@ -98,9 +81,9 @@ public class AdjustFactory {
         return str == null ? Constants.BASE_URL : str;
     }
 
-    public static UtilNetworking.IConnectionOptions getConnectionOptions() {
-        UtilNetworking.IConnectionOptions iConnectionOptions = connectionOptions;
-        return iConnectionOptions == null ? new UtilNetworking.ConnectionOptions() : iConnectionOptions;
+    public static UtilNetworking$IConnectionOptions getConnectionOptions() {
+        UtilNetworking$IConnectionOptions utilNetworking$IConnectionOptions = connectionOptions;
+        return utilNetworking$IConnectionOptions == null ? new UtilNetworking$ConnectionOptions() : utilNetworking$IConnectionOptions;
     }
 
     public static String getGdprUrl() {
@@ -303,51 +286,6 @@ public class AdjustFactory {
     }
 
     public static void useTestConnectionOptions() {
-        connectionOptions = new UtilNetworking.IConnectionOptions() { // from class: com.adjust.sdk.AdjustFactory.1
-            @Override // com.adjust.sdk.UtilNetworking.IConnectionOptions
-            public void applyConnectionOptions(HttpsURLConnection httpsURLConnection2, String str) {
-                new UtilNetworking.ConnectionOptions().applyConnectionOptions(httpsURLConnection2, str);
-                try {
-                    SSLContext sSLContext = SSLContext.getInstance("TLS");
-                    sSLContext.init(null, new TrustManager[]{new X509TrustManager() { // from class: com.adjust.sdk.AdjustFactory.1.1
-                        @Override // javax.net.ssl.X509TrustManager
-                        public void checkClientTrusted(X509Certificate[] x509CertificateArr, String str2) {
-                            AdjustFactory.getLogger().verbose("checkClientTrusted ", new Object[0]);
-                        }
-
-                        @Override // javax.net.ssl.X509TrustManager
-                        public void checkServerTrusted(X509Certificate[] x509CertificateArr, String str2) throws CertificateException {
-                            AdjustFactory.getLogger().verbose("checkServerTrusted ", new Object[0]);
-                            try {
-                                if (AdjustFactory.byte2HexFormatted(MessageDigest.getInstance("SHA1").digest(x509CertificateArr[0].getEncoded())).equalsIgnoreCase("7BCFF44099A35BC093BB48C5A6B9A516CDFDA0D1")) {
-                                } else {
-                                    throw new CertificateException();
-                                }
-                            } catch (NoSuchAlgorithmException e) {
-                                AdjustFactory.getLogger().error("testingMode error %s", e.getMessage());
-                            } catch (CertificateEncodingException e2) {
-                                AdjustFactory.getLogger().error("testingMode error %s", e2.getMessage());
-                            }
-                        }
-
-                        @Override // javax.net.ssl.X509TrustManager
-                        public X509Certificate[] getAcceptedIssuers() {
-                            AdjustFactory.getLogger().verbose("getAcceptedIssuers", new Object[0]);
-                            return null;
-                        }
-                    }}, new SecureRandom());
-                    httpsURLConnection2.setSSLSocketFactory(sSLContext.getSocketFactory());
-                    httpsURLConnection2.setHostnameVerifier(new HostnameVerifier() { // from class: com.adjust.sdk.AdjustFactory.1.2
-                        @Override // javax.net.ssl.HostnameVerifier
-                        public boolean verify(String str2, SSLSession sSLSession) {
-                            AdjustFactory.getLogger().verbose("verify hostname ", new Object[0]);
-                            return true;
-                        }
-                    });
-                } catch (Exception e) {
-                    AdjustFactory.getLogger().error("testingMode error %s", e.getMessage());
-                }
-            }
-        };
+        connectionOptions = new AdjustFactory$1();
     }
 }

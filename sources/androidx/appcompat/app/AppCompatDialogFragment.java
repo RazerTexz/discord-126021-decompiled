@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.fragment.app.DialogFragment;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -16,7 +17,7 @@ public class AppCompatDialogFragment extends DialogFragment {
     }
 
     @Override // androidx.fragment.app.DialogFragment
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void setupDialog(@NonNull Dialog dialog, int i) {
         if (!(dialog instanceof AppCompatDialog)) {
             super.setupDialog(dialog, i);

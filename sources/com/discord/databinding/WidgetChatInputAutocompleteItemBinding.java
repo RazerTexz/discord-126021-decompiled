@@ -13,47 +13,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatInputAutocompleteItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16087a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f16088b;
+    public final SimpleDraweeView f2302b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16089c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeSpanTextView f16090d;
+    public final SimpleDraweeSpanTextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16091e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f16092f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final StatusView f16093g;
+    public final StatusView g;
 
     public WidgetChatInputAutocompleteItemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull Barrier barrier, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView, @NonNull View view, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull StatusView statusView) {
-        this.f16087a = constraintLayout;
-        this.f16088b = simpleDraweeView;
-        this.f16089c = textView;
-        this.f16090d = simpleDraweeSpanTextView;
-        this.f16091e = textView2;
-        this.f16092f = textView3;
-        this.f16093g = statusView;
+        this.a = constraintLayout;
+        this.f2302b = simpleDraweeView;
+        this.c = textView;
+        this.d = simpleDraweeSpanTextView;
+        this.e = textView2;
+        this.f = textView3;
+        this.g = statusView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16087a;
+        return this.a;
     }
 }

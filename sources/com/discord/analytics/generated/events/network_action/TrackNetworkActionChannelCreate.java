@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionChannelCreate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,6 +32,11 @@ public final /* data */ class TrackNetworkActionChannelCreate implements Analyti
         this.analyticsSchemaTypeName = "network_action_channel_create";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -40,7 +45,7 @@ public final /* data */ class TrackNetworkActionChannelCreate implements Analyti
             return false;
         }
         TrackNetworkActionChannelCreate trackNetworkActionChannelCreate = (TrackNetworkActionChannelCreate) other;
-        return C12238m.areEqual(this.isPrivate, trackNetworkActionChannelCreate.isPrivate) && C12238m.areEqual(this.channelType, trackNetworkActionChannelCreate.channelType) && C12238m.areEqual(this.channelId, trackNetworkActionChannelCreate.channelId) && C12238m.areEqual(this.parentId, trackNetworkActionChannelCreate.parentId) && C12238m.areEqual(this.guildId, trackNetworkActionChannelCreate.guildId);
+        return m.areEqual(this.isPrivate, trackNetworkActionChannelCreate.isPrivate) && m.areEqual(this.channelType, trackNetworkActionChannelCreate.channelType) && m.areEqual(this.channelId, trackNetworkActionChannelCreate.channelId) && m.areEqual(this.parentId, trackNetworkActionChannelCreate.parentId) && m.areEqual(this.guildId, trackNetworkActionChannelCreate.guildId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -62,23 +67,17 @@ public final /* data */ class TrackNetworkActionChannelCreate implements Analyti
         return iHashCode4 + (l4 != null ? l4.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionChannelCreate(isPrivate=");
-        sbM833U.append(this.isPrivate);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", parentId=");
-        sbM833U.append(this.parentId);
-        sbM833U.append(", guildId=");
-        return C1643a.m819G(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionChannelCreate(isPrivate=");
+        sbU.append(this.isPrivate);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", parentId=");
+        sbU.append(this.parentId);
+        sbU.append(", guildId=");
+        return a.G(sbU, this.guildId, ")");
     }
 
     public TrackNetworkActionChannelCreate() {

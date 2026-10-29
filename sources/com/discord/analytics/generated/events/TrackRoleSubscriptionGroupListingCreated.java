@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackRoleSubscriptionGroupListingCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,9 +16,14 @@ public final /* data */ class TrackRoleSubscriptionGroupListingCreated implement
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_subscription_group_listing_created";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackRoleSubscriptionGroupListingCreated) && C12238m.areEqual(this.roleSubscriptionGroupListingId, ((TrackRoleSubscriptionGroupListingCreated) other).roleSubscriptionGroupListingId);
+            return (other instanceof TrackRoleSubscriptionGroupListingCreated) && m.areEqual(this.roleSubscriptionGroupListingId, ((TrackRoleSubscriptionGroupListingCreated) other).roleSubscriptionGroupListingId);
         }
         return true;
     }
@@ -43,13 +48,7 @@ public final /* data */ class TrackRoleSubscriptionGroupListingCreated implement
         return 0;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        return C1643a.m819G(C1643a.m833U("TrackRoleSubscriptionGroupListingCreated(roleSubscriptionGroupListingId="), this.roleSubscriptionGroupListingId, ")");
+        return a.G(a.U("TrackRoleSubscriptionGroupListingCreated(roleSubscriptionGroupListingId="), this.roleSubscriptionGroupListingId, ")");
     }
 }

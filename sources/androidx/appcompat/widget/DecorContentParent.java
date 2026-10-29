@@ -4,12 +4,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import android.view.Menu;
-import android.view.Window;
+import android.view.Window$Callback;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.view.menu.MenuPresenter;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.view.menu.MenuPresenter$Callback;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public interface DecorContentParent {
     boolean canShowOverflowMenu();
 
@@ -39,13 +40,13 @@ public interface DecorContentParent {
 
     void setLogo(int i);
 
-    void setMenu(Menu menu, MenuPresenter.Callback callback);
+    void setMenu(Menu menu, MenuPresenter$Callback menuPresenter$Callback);
 
     void setMenuPrepared();
 
     void setUiOptions(int i);
 
-    void setWindowCallback(Window.Callback callback);
+    void setWindowCallback(Window$Callback window$Callback);
 
     void setWindowTitle(CharSequence charSequence);
 

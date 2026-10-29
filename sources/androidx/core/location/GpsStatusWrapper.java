@@ -2,14 +2,15 @@ package androidx.core.location;
 
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Preconditions;
 import java.util.Iterator;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class GpsStatusWrapper extends GnssStatusCompat {
     private static final int BEIDOU_PRN_COUNT = 35;
     private static final int BEIDOU_PRN_OFFSET = 200;
@@ -93,7 +94,7 @@ public class GpsStatusWrapper extends GnssStatusCompat {
 
     @Override // androidx.core.location.GnssStatusCompat
     public int getConstellationType(int i) {
-        if (Build.VERSION.SDK_INT < 24) {
+        if (Build$VERSION.SDK_INT < 24) {
             return 1;
         }
         return getConstellationFromPrn(getSatellite(i).getPrn());
@@ -145,7 +146,7 @@ public class GpsStatusWrapper extends GnssStatusCompat {
 
     @Override // androidx.core.location.GnssStatusCompat
     public int getSvid(int i) {
-        return Build.VERSION.SDK_INT < 24 ? getSatellite(i).getPrn() : getSvidFromPrn(getSatellite(i).getPrn());
+        return Build$VERSION.SDK_INT < 24 ? getSatellite(i).getPrn() : getSvidFromPrn(getSatellite(i).getPrn());
     }
 
     private static int getSvidFromPrn(int i) {

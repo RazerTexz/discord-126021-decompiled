@@ -2,11 +2,15 @@ package com.google.android.gms.nearby.messages.internal;
 
 import android.os.Parcel;
 import android.os.ParcelUuid;
-import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import android.util.Log;
 import android.util.SparseArray;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
+import b.c.a.a0.d;
+import b.d.b.a.a;
+import b.i.a.f.h.m.e;
+import b.i.a.f.j.b.e.k0;
 import com.esotericsoftware.kryo.Kryo;
 import com.google.android.gms.common.internal.ReflectedParcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
@@ -15,42 +19,28 @@ import com.google.android.gms.nearby.messages.Message;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p225i.p226a.p288f.p313h.p326m.C3928e;
-import p007b.p225i.p226a.p288f.p333j.p334b.p335e.C4291k0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class Update extends AbstractSafeParcelable implements ReflectedParcelable {
-    public static final Parcelable.Creator<Update> CREATOR = new C4291k0();
+    public static final Parcelable$Creator<Update> CREATOR = new k0();
+    public final int j;
+    public final int k;
+    public final Message l;
 
-    /* JADX INFO: renamed from: j */
-    public final int f20764j;
-
-    /* JADX INFO: renamed from: k */
-    public final int f20765k;
-
-    /* JADX INFO: renamed from: l */
-    public final Message f20766l;
-
-    /* JADX INFO: renamed from: m */
     @Nullable
-    public final zze f20767m;
+    public final zze m;
 
-    /* JADX INFO: renamed from: n */
     @Nullable
-    public final zza f20768n;
+    public final zza n;
 
-    /* JADX INFO: renamed from: o */
     @Nullable
-    public final zzgs f20769o;
+    public final zzgs o;
 
-    /* JADX INFO: renamed from: p */
     @Nullable
-    public final byte[] f20770p;
+    public final byte[] p;
 
     public Update(int i, int i2, Message message, @Nullable zze zzeVar, @Nullable zza zzaVar, @Nullable zzgs zzgsVar, @Nullable byte[] bArr) {
-        this.f20764j = i;
+        this.j = i;
         if ((i2 & 2) != 0) {
             i2 = 2;
             zzeVar = null;
@@ -58,12 +48,12 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
             zzgsVar = null;
             bArr = null;
         }
-        this.f20765k = i2;
-        this.f20766l = message;
-        this.f20767m = zzeVar;
-        this.f20768n = zzaVar;
-        this.f20769o = zzgsVar;
-        this.f20770p = bArr;
+        this.k = i2;
+        this.l = message;
+        this.m = zzeVar;
+        this.n = zzaVar;
+        this.o = zzgsVar;
+        this.p = bArr;
     }
 
     public boolean equals(Object obj) {
@@ -74,16 +64,11 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
             return false;
         }
         Update update = (Update) obj;
-        return this.f20765k == update.f20765k && C1460d.m524h0(this.f20766l, update.f20766l) && C1460d.m524h0(this.f20767m, update.f20767m) && C1460d.m524h0(this.f20768n, update.f20768n) && C1460d.m524h0(this.f20769o, update.f20769o) && Arrays.equals(this.f20770p, update.f20770p);
+        return this.k == update.k && d.h0(this.l, update.l) && d.h0(this.m, update.m) && d.h0(this.n, update.n) && d.h0(this.o, update.o) && Arrays.equals(this.p, update.p);
     }
 
     public int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20765k), this.f20766l, this.f20767m, this.f20768n, this.f20769o, this.f20770p});
-    }
-
-    /* JADX INFO: renamed from: w0 */
-    public final boolean m9123w0(int i) {
-        return (i & this.f20765k) != 0;
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.k), this.l, this.m, this.n, this.o, this.p});
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -97,32 +82,32 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
         String str2;
         ArrayList arrayList;
         ArraySet arraySet = new ArraySet();
-        if (m9123w0(1)) {
+        if (w0(1)) {
             arraySet.add("FOUND");
         }
-        if (m9123w0(2)) {
+        if (w0(2)) {
             arraySet.add("LOST");
         }
-        if (m9123w0(4)) {
+        if (w0(4)) {
             arraySet.add("DISTANCE");
         }
-        if (m9123w0(8)) {
+        if (w0(8)) {
             arraySet.add("BLE_SIGNAL");
         }
-        if (m9123w0(16)) {
+        if (w0(16)) {
             arraySet.add("DEVICE");
         }
-        if (m9123w0(32)) {
+        if (w0(32)) {
             arraySet.add("BLE_RECORD");
         }
         String strValueOf2 = String.valueOf(arraySet);
-        String strValueOf3 = String.valueOf(this.f20766l);
-        String strValueOf4 = String.valueOf(this.f20767m);
-        String strValueOf5 = String.valueOf(this.f20768n);
-        String strValueOf6 = String.valueOf(this.f20769o);
-        byte[] bArr = this.f20770p;
-        ParcelUuid parcelUuid = C3928e.f10450a;
-        C3928e c3928e = null;
+        String strValueOf3 = String.valueOf(this.l);
+        String strValueOf4 = String.valueOf(this.m);
+        String strValueOf5 = String.valueOf(this.n);
+        String strValueOf6 = String.valueOf(this.o);
+        byte[] bArr = this.p;
+        ParcelUuid parcelUuid = e.a;
+        e eVar = null;
         if (bArr == null) {
             str = strValueOf6;
         } else {
@@ -144,7 +129,7 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
                             int i7 = bArr[i3] & 255;
                             str = strValueOf6;
                             if (i7 == 22) {
-                                map.put(C3928e.m5405c(C3928e.m5404b(bArr, i6, 2)), C3928e.m5404b(bArr, i6 + 2, i5 - 2));
+                                map.put(e.c(e.b(bArr, i6, 2)), e.b(bArr, i6 + 2, i5 - 2));
                             } else if (i7 != 255) {
                                 switch (i7) {
                                     case 1:
@@ -152,19 +137,19 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
                                         break;
                                     case 2:
                                     case 3:
-                                        C3928e.m5403a(bArr, i6, i5, 2, arrayList2);
+                                        e.a(bArr, i6, i5, 2, arrayList2);
                                         break;
                                     case 4:
                                     case 5:
-                                        C3928e.m5403a(bArr, i6, i5, 4, arrayList2);
+                                        e.a(bArr, i6, i5, 4, arrayList2);
                                         break;
                                     case 6:
                                     case 7:
-                                        C3928e.m5403a(bArr, i6, i5, 16, arrayList2);
+                                        e.a(bArr, i6, i5, 16, arrayList2);
                                         break;
                                     case 8:
                                     case 9:
-                                        str3 = new String(C3928e.m5404b(bArr, i6, i5));
+                                        str3 = new String(e.b(bArr, i6, i5));
                                         break;
                                     case 10:
                                         b2 = bArr[i6];
@@ -173,7 +158,7 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
                                         break;
                                 }
                             } else {
-                                sparseArray.put(((bArr[i6 + 1] & 255) << 8) + (bArr[i6] & 255), C3928e.m5404b(bArr, i6 + 2, i5 - 2));
+                                sparseArray.put(((bArr[i6 + 1] & 255) << 8) + (bArr[i6] & 255), e.b(bArr, i6 + 2, i5 - 2));
                             }
                             try {
                                 i = i5 + i6;
@@ -188,7 +173,7 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
                             } else {
                                 arrayList = arrayList2;
                             }
-                            c3928e = new C3928e(arrayList, sparseArray, map, i2, b2, str3, bArr);
+                            eVar = new e(arrayList, sparseArray, map, i2, b2, str3, bArr);
                         }
                         e = e;
                     } catch (Exception e2) {
@@ -203,7 +188,7 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
                     }
                     Log.w("BleRecord", str2, e);
                 }
-                c3928e = new C3928e(arrayList, sparseArray, map, i2, b2, str3, bArr);
+                eVar = new e(arrayList, sparseArray, map, i2, b2, str3, bArr);
             } catch (Exception e3) {
                 e = e3;
                 strValueOf = String.valueOf(Arrays.toString(bArr));
@@ -221,28 +206,32 @@ public class Update extends AbstractSafeParcelable implements ReflectedParcelabl
                 arrayList = arrayList2;
             }
         }
-        String strValueOf7 = String.valueOf(c3928e);
-        StringBuilder sbM831S = C1643a.m831S(strValueOf7.length() + str.length() + strValueOf5.length() + strValueOf4.length() + strValueOf3.length() + strValueOf2.length() + 68, "Update{types=", strValueOf2, ", message=", strValueOf3);
-        C1643a.m876s0(sbM831S, ", distance=", strValueOf4, ", bleSignal=", strValueOf5);
-        C1643a.m876s0(sbM831S, ", device=", str, ", bleRecord=", strValueOf7);
-        sbM831S.append("}");
-        return sbM831S.toString();
+        String strValueOf7 = String.valueOf(eVar);
+        StringBuilder sbS = a.S(strValueOf7.length() + str.length() + strValueOf5.length() + strValueOf4.length() + strValueOf3.length() + strValueOf2.length() + 68, "Update{types=", strValueOf2, ", message=", strValueOf3);
+        a.s0(sbS, ", distance=", strValueOf4, ", bleSignal=", strValueOf5);
+        a.s0(sbS, ", device=", str, ", bleRecord=", strValueOf7);
+        sbS.append("}");
+        return sbS.toString();
+    }
+
+    public final boolean w0(int i) {
+        return (i & this.k) != 0;
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
-        int iM594y2 = C1460d.m594y2(parcel, 20293);
-        int i2 = this.f20764j;
+        int iY2 = d.y2(parcel, 20293);
+        int i2 = this.j;
         parcel.writeInt(262145);
         parcel.writeInt(i2);
-        int i3 = this.f20765k;
+        int i3 = this.k;
         parcel.writeInt(262146);
         parcel.writeInt(i3);
-        C1460d.m570s2(parcel, 3, this.f20766l, i, false);
-        C1460d.m570s2(parcel, 4, this.f20767m, i, false);
-        C1460d.m570s2(parcel, 5, this.f20768n, i, false);
-        C1460d.m570s2(parcel, 6, this.f20769o, i, false);
-        C1460d.m562q2(parcel, 7, this.f20770p, false);
-        C1460d.m418A2(parcel, iM594y2);
+        d.s2(parcel, 3, this.l, i, false);
+        d.s2(parcel, 4, this.m, i, false);
+        d.s2(parcel, 5, this.n, i, false);
+        d.s2(parcel, 6, this.o, i, false);
+        d.q2(parcel, 7, this.p, false);
+        d.A2(parcel, iY2);
     }
 }

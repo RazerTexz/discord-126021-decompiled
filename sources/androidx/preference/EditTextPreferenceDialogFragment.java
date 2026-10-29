@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
@@ -22,7 +23,7 @@ public class EditTextPreferenceDialogFragment extends PreferenceDialogFragment {
     }
 
     @Override // androidx.preference.PreferenceDialogFragment
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public boolean needInputMethod() {
         return true;
     }
@@ -39,7 +40,7 @@ public class EditTextPreferenceDialogFragment extends PreferenceDialogFragment {
     @Override // androidx.preference.PreferenceDialogFragment
     public void onBindDialogView(View view) {
         super.onBindDialogView(view);
-        EditText editText = (EditText) view.findViewById(android.R.id.edit);
+        EditText editText = (EditText) view.findViewById(android.R$id.edit);
         this.mEditText = editText;
         editText.requestFocus();
         EditText editText2 = this.mEditText;

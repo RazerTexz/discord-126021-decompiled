@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionUserSurveyFetch.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,9 +24,14 @@ public final /* data */ class TrackNetworkActionUserSurveyFetch implements Analy
         this.analyticsSchemaTypeName = "network_action_user_survey_fetch";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackNetworkActionUserSurveyFetch) && C12238m.areEqual(this.key, ((TrackNetworkActionUserSurveyFetch) other).key);
+            return (other instanceof TrackNetworkActionUserSurveyFetch) && m.areEqual(this.key, ((TrackNetworkActionUserSurveyFetch) other).key);
         }
         return true;
     }
@@ -45,14 +50,8 @@ public final /* data */ class TrackNetworkActionUserSurveyFetch implements Analy
         return 0;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        return C1643a.m817E(C1643a.m833U("TrackNetworkActionUserSurveyFetch(key="), this.key, ")");
+        return a.E(a.U("TrackNetworkActionUserSurveyFetch(key="), this.key, ")");
     }
 
     public TrackNetworkActionUserSurveyFetch(CharSequence charSequence) {

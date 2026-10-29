@@ -1,7 +1,7 @@
 package com.discord.analytics.generated.traits;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPaymentMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class TrackPaymentMetadata {
             return false;
         }
         TrackPaymentMetadata trackPaymentMetadata = (TrackPaymentMetadata) other;
-        return C12238m.areEqual(this.paymentType, trackPaymentMetadata.paymentType) && C12238m.areEqual(this.price, trackPaymentMetadata.price) && C12238m.areEqual(this.regularPrice, trackPaymentMetadata.regularPrice) && C12238m.areEqual(this.currency, trackPaymentMetadata.currency) && C12238m.areEqual(this.isGift, trackPaymentMetadata.isGift);
+        return m.areEqual(this.paymentType, trackPaymentMetadata.paymentType) && m.areEqual(this.price, trackPaymentMetadata.price) && m.areEqual(this.regularPrice, trackPaymentMetadata.regularPrice) && m.areEqual(this.currency, trackPaymentMetadata.currency) && m.areEqual(this.isGift, trackPaymentMetadata.isGift);
     }
 
     public int hashCode() {
@@ -37,15 +37,15 @@ public final /* data */ class TrackPaymentMetadata {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPaymentMetadata(paymentType=");
-        sbM833U.append(this.paymentType);
-        sbM833U.append(", price=");
-        sbM833U.append(this.price);
-        sbM833U.append(", regularPrice=");
-        sbM833U.append(this.regularPrice);
-        sbM833U.append(", currency=");
-        sbM833U.append(this.currency);
-        sbM833U.append(", isGift=");
-        return C1643a.m816D(sbM833U, this.isGift, ")");
+        StringBuilder sbU = a.U("TrackPaymentMetadata(paymentType=");
+        sbU.append(this.paymentType);
+        sbU.append(", price=");
+        sbU.append(this.price);
+        sbU.append(", regularPrice=");
+        sbU.append(this.regularPrice);
+        sbU.append(", currency=");
+        sbU.append(this.currency);
+        sbU.append(", isGift=");
+        return a.D(sbU, this.isGift, ")");
     }
 }

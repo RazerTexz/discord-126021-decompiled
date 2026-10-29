@@ -9,22 +9,21 @@ import com.discord.utilities.view.text.LinkifiedTextView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelsListItemMfaBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16052a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinkifiedTextView f16053b;
+    public final LinkifiedTextView f2296b;
 
     public WidgetChannelsListItemMfaBinding(@NonNull LinearLayout linearLayout, @NonNull LinkifiedTextView linkifiedTextView) {
-        this.f16052a = linearLayout;
-        this.f16053b = linkifiedTextView;
+        this.a = linearLayout;
+        this.f2296b = linkifiedTextView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16052a;
+        return this.a;
     }
 }

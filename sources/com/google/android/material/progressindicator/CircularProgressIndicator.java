@@ -6,24 +6,22 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
-import androidx.annotation.RestrictTo;
-import com.google.android.material.C10817R;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import com.google.android.material.R$attr;
+import com.google.android.material.R$style;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class CircularProgressIndicator extends BaseProgressIndicator<CircularProgressIndicatorSpec> {
     public static final int INDICATOR_DIRECTION_CLOCKWISE = 0;
     public static final int INDICATOR_DIRECTION_COUNTERCLOCKWISE = 1;
-    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_CircularProgressIndicator;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface IndicatorDirection {
-    }
+    public static final int DEF_STYLE_RES = R$style.Widget_MaterialComponents_CircularProgressIndicator;
 
     public CircularProgressIndicator(@NonNull Context context) {
         this(context, null);
+    }
+
+    @Override // com.google.android.material.progressindicator.BaseProgressIndicator
+    public /* bridge */ /* synthetic */ BaseProgressIndicatorSpec createSpec(@NonNull Context context, @NonNull AttributeSet attributeSet) {
+        return createSpec(context, attributeSet);
     }
 
     public int getIndicatorDirection() {
@@ -74,7 +72,7 @@ public final class CircularProgressIndicator extends BaseProgressIndicator<Circu
     }
 
     public CircularProgressIndicator(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C10817R.attr.circularProgressIndicatorStyle);
+        this(context, attributeSet, R$attr.circularProgressIndicatorStyle);
     }
 
     @Override // com.google.android.material.progressindicator.BaseProgressIndicator

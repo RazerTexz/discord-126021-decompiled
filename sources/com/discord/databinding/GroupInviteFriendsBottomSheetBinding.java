@@ -11,37 +11,33 @@ import com.discord.chips_view.ChipsView;
 /* JADX INFO: loaded from: classes.dex */
 public final class GroupInviteFriendsBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15108a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ChipsView f15109b;
+    public final ChipsView f2114b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f15110c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ConstraintLayout f15111d;
+    public final ConstraintLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final AppCompatImageView f15112e;
+    public final AppCompatImageView e;
 
     public GroupInviteFriendsBottomSheetBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ChipsView chipsView, @NonNull RecyclerView recyclerView, @NonNull ConstraintLayout constraintLayout2, @NonNull AppCompatImageView appCompatImageView) {
-        this.f15108a = constraintLayout;
-        this.f15109b = chipsView;
-        this.f15110c = recyclerView;
-        this.f15111d = constraintLayout2;
-        this.f15112e = appCompatImageView;
+        this.a = constraintLayout;
+        this.f2114b = chipsView;
+        this.c = recyclerView;
+        this.d = constraintLayout2;
+        this.e = appCompatImageView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15108a;
+        return this.a;
     }
 }

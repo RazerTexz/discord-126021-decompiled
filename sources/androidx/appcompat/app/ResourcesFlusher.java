@@ -1,7 +1,7 @@
 package androidx.appcompat.app;
 
 import android.content.res.Resources;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import android.util.LongSparseArray;
 import androidx.annotation.NonNull;
@@ -25,7 +25,7 @@ public class ResourcesFlusher {
     }
 
     public static void flush(@NonNull Resources resources) {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i >= 28) {
             return;
         }

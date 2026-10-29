@@ -2,6 +2,7 @@ package androidx.constraintlayout.solver.widgets;
 
 import androidx.constraintlayout.solver.Cache;
 import androidx.constraintlayout.solver.SolverVariable;
+import androidx.constraintlayout.solver.SolverVariable$Type;
 import androidx.constraintlayout.solver.widgets.analyzer.Grouping;
 import androidx.constraintlayout.solver.widgets.analyzer.WidgetGroup;
 import java.util.ArrayList;
@@ -18,75 +19,14 @@ public class ConstraintAnchor {
     public final ConstraintWidget mOwner;
     public SolverVariable mSolverVariable;
     public ConstraintAnchor mTarget;
-    public final Type mType;
+    public final ConstraintAnchor$Type mType;
     private HashSet<ConstraintAnchor> mDependents = null;
     public int mMargin = 0;
     public int mGoneMargin = -1;
 
-    /* JADX INFO: renamed from: androidx.constraintlayout.solver.widgets.ConstraintAnchor$1 */
-    public /* synthetic */ class C01891 {
-
-        /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$widgets$ConstraintAnchor$Type */
-        public static final /* synthetic */ int[] f113x4c44d048;
-
-        static {
-            Type.values();
-            int[] iArr = new int[9];
-            f113x4c44d048 = iArr;
-            try {
-                iArr[Type.CENTER.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                f113x4c44d048[Type.LEFT.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                f113x4c44d048[Type.RIGHT.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                f113x4c44d048[Type.TOP.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                f113x4c44d048[Type.BOTTOM.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                f113x4c44d048[Type.BASELINE.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                f113x4c44d048[Type.CENTER_X.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-            try {
-                f113x4c44d048[Type.CENTER_Y.ordinal()] = 8;
-            } catch (NoSuchFieldError unused8) {
-            }
-            try {
-                f113x4c44d048[Type.NONE.ordinal()] = 9;
-            } catch (NoSuchFieldError unused9) {
-            }
-        }
-    }
-
-    public enum Type {
-        NONE,
-        LEFT,
-        TOP,
-        RIGHT,
-        BOTTOM,
-        BASELINE,
-        CENTER,
-        CENTER_X,
-        CENTER_Y
-    }
-
-    public ConstraintAnchor(ConstraintWidget constraintWidget, Type type) {
+    public ConstraintAnchor(ConstraintWidget constraintWidget, ConstraintAnchor$Type constraintAnchor$Type) {
         this.mOwner = constraintWidget;
-        this.mType = type;
+        this.mType = constraintAnchor$Type;
     }
 
     public boolean connect(ConstraintAnchor constraintAnchor, int i, int i2, boolean z2) {
@@ -199,7 +139,7 @@ public class ConstraintAnchor {
         return this.mTarget;
     }
 
-    public Type getType() {
+    public ConstraintAnchor$Type getType() {
         return this.mType;
     }
 
@@ -272,25 +212,25 @@ public class ConstraintAnchor {
     }
 
     public boolean isSimilarDimensionConnection(ConstraintAnchor constraintAnchor) {
-        Type type = constraintAnchor.getType();
-        Type type2 = this.mType;
-        if (type == type2) {
+        ConstraintAnchor$Type type = constraintAnchor.getType();
+        ConstraintAnchor$Type constraintAnchor$Type = this.mType;
+        if (type == constraintAnchor$Type) {
             return true;
         }
-        switch (type2) {
+        switch (constraintAnchor$Type) {
             case NONE:
                 return false;
             case LEFT:
             case RIGHT:
             case CENTER_X:
-                return type == Type.LEFT || type == Type.RIGHT || type == Type.CENTER_X;
+                return type == ConstraintAnchor$Type.LEFT || type == ConstraintAnchor$Type.RIGHT || type == ConstraintAnchor$Type.CENTER_X;
             case TOP:
             case BOTTOM:
             case BASELINE:
             case CENTER_Y:
-                return type == Type.TOP || type == Type.BOTTOM || type == Type.CENTER_Y || type == Type.BASELINE;
+                return type == ConstraintAnchor$Type.TOP || type == ConstraintAnchor$Type.BOTTOM || type == ConstraintAnchor$Type.CENTER_Y || type == ConstraintAnchor$Type.BASELINE;
             case CENTER:
-                return type != Type.BASELINE;
+                return type != ConstraintAnchor$Type.BASELINE;
             default:
                 throw new AssertionError(this.mType.name());
         }
@@ -300,12 +240,12 @@ public class ConstraintAnchor {
         if (constraintAnchor == null) {
             return false;
         }
-        Type type = constraintAnchor.getType();
-        Type type2 = this.mType;
-        if (type == type2) {
-            return type2 != Type.BASELINE || (constraintAnchor.getOwner().hasBaseline() && getOwner().hasBaseline());
+        ConstraintAnchor$Type type = constraintAnchor.getType();
+        ConstraintAnchor$Type constraintAnchor$Type = this.mType;
+        if (type == constraintAnchor$Type) {
+            return constraintAnchor$Type != ConstraintAnchor$Type.BASELINE || (constraintAnchor.getOwner().hasBaseline() && getOwner().hasBaseline());
         }
-        switch (type2) {
+        switch (constraintAnchor$Type) {
             case NONE:
             case BASELINE:
             case CENTER_X:
@@ -313,20 +253,20 @@ public class ConstraintAnchor {
                 return false;
             case LEFT:
             case RIGHT:
-                boolean z2 = type == Type.LEFT || type == Type.RIGHT;
+                boolean z2 = type == ConstraintAnchor$Type.LEFT || type == ConstraintAnchor$Type.RIGHT;
                 if (constraintAnchor.getOwner() instanceof Guideline) {
-                    return z2 || type == Type.CENTER_X;
+                    return z2 || type == ConstraintAnchor$Type.CENTER_X;
                 }
                 return z2;
             case TOP:
             case BOTTOM:
-                boolean z3 = type == Type.TOP || type == Type.BOTTOM;
+                boolean z3 = type == ConstraintAnchor$Type.TOP || type == ConstraintAnchor$Type.BOTTOM;
                 if (constraintAnchor.getOwner() instanceof Guideline) {
-                    return z3 || type == Type.CENTER_Y;
+                    return z3 || type == ConstraintAnchor$Type.CENTER_Y;
                 }
                 return z3;
             case CENTER:
-                return (type == Type.BASELINE || type == Type.CENTER_X || type == Type.CENTER_Y) ? false : true;
+                return (type == ConstraintAnchor$Type.BASELINE || type == ConstraintAnchor$Type.CENTER_X || type == ConstraintAnchor$Type.CENTER_Y) ? false : true;
             default:
                 throw new AssertionError(this.mType.name());
         }
@@ -375,7 +315,7 @@ public class ConstraintAnchor {
     public void resetSolverVariable(Cache cache) {
         SolverVariable solverVariable = this.mSolverVariable;
         if (solverVariable == null) {
-            this.mSolverVariable = new SolverVariable(SolverVariable.Type.UNRESTRICTED, (String) null);
+            this.mSolverVariable = new SolverVariable(SolverVariable$Type.UNRESTRICTED, (String) null);
         } else {
             solverVariable.reset();
         }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUpsellViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackUpsellViewed implements AnalyticsSchema, Trac
             return false;
         }
         TrackUpsellViewed trackUpsellViewed = (TrackUpsellViewed) other;
-        return C12238m.areEqual(this.type, trackUpsellViewed.type) && C12238m.areEqual(this.subtype, trackUpsellViewed.subtype);
+        return m.areEqual(this.type, trackUpsellViewed.type) && m.areEqual(this.subtype, trackUpsellViewed.subtype);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackUpsellViewed implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpsellViewed(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", subtype=");
-        return C1643a.m817E(sbM833U, this.subtype, ")");
+        StringBuilder sbU = a.U("TrackUpsellViewed(type=");
+        sbU.append(this.type);
+        sbU.append(", subtype=");
+        return a.E(sbU, this.subtype, ")");
     }
 }

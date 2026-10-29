@@ -5,17 +5,18 @@ import android.app.PendingIntent;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
 import androidx.work.impl.WorkManagerImpl;
+import b.i.b.d.a.a;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"AddedAbstractMethod"})
 public abstract class WorkManager {
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public WorkManager() {
     }
 
@@ -80,28 +81,28 @@ public abstract class WorkManager {
     }
 
     @NonNull
-    public abstract InterfaceFutureC4539a<Long> getLastCancelAllTimeMillis();
+    public abstract a<Long> getLastCancelAllTimeMillis();
 
     @NonNull
     public abstract LiveData<Long> getLastCancelAllTimeMillisLiveData();
 
     @NonNull
-    public abstract InterfaceFutureC4539a<WorkInfo> getWorkInfoById(@NonNull UUID uuid);
+    public abstract a<WorkInfo> getWorkInfoById(@NonNull UUID uuid);
 
     @NonNull
     public abstract LiveData<WorkInfo> getWorkInfoByIdLiveData(@NonNull UUID uuid);
 
     @NonNull
-    public abstract InterfaceFutureC4539a<List<WorkInfo>> getWorkInfos(@NonNull WorkQuery workQuery);
+    public abstract a<List<WorkInfo>> getWorkInfos(@NonNull WorkQuery workQuery);
 
     @NonNull
-    public abstract InterfaceFutureC4539a<List<WorkInfo>> getWorkInfosByTag(@NonNull String str);
+    public abstract a<List<WorkInfo>> getWorkInfosByTag(@NonNull String str);
 
     @NonNull
     public abstract LiveData<List<WorkInfo>> getWorkInfosByTagLiveData(@NonNull String str);
 
     @NonNull
-    public abstract InterfaceFutureC4539a<List<WorkInfo>> getWorkInfosForUniqueWork(@NonNull String str);
+    public abstract a<List<WorkInfo>> getWorkInfosForUniqueWork(@NonNull String str);
 
     @NonNull
     public abstract LiveData<List<WorkInfo>> getWorkInfosForUniqueWorkLiveData(@NonNull String str);

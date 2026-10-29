@@ -1,9 +1,9 @@
 package com.discord.models.domain.spotify;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelSpotifyTrack.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,9 +16,9 @@ public final /* data */ class ModelSpotifyTrack {
     private final String name;
 
     public ModelSpotifyTrack(String str, String str2, long j, ModelSpotifyAlbum modelSpotifyAlbum, List<ModelSpotifyArtist> list, boolean z2) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(list, "artists");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(list, "artists");
         this.id = str;
         this.name = str2;
         this.durationMs = j;
@@ -59,9 +59,9 @@ public final /* data */ class ModelSpotifyTrack {
     }
 
     public final ModelSpotifyTrack copy(String id2, String name, long durationMs, ModelSpotifyAlbum album, List<ModelSpotifyArtist> artists, boolean isLocal) {
-        C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(artists, "artists");
+        m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(artists, "artists");
         return new ModelSpotifyTrack(id2, name, durationMs, album, artists, isLocal);
     }
 
@@ -73,7 +73,7 @@ public final /* data */ class ModelSpotifyTrack {
             return false;
         }
         ModelSpotifyTrack modelSpotifyTrack = (ModelSpotifyTrack) other;
-        return C12238m.areEqual(this.id, modelSpotifyTrack.id) && C12238m.areEqual(this.name, modelSpotifyTrack.name) && this.durationMs == modelSpotifyTrack.durationMs && C12238m.areEqual(this.album, modelSpotifyTrack.album) && C12238m.areEqual(this.artists, modelSpotifyTrack.artists) && this.isLocal == modelSpotifyTrack.isLocal;
+        return m.areEqual(this.id, modelSpotifyTrack.id) && m.areEqual(this.name, modelSpotifyTrack.name) && this.durationMs == modelSpotifyTrack.durationMs && m.areEqual(this.album, modelSpotifyTrack.album) && m.areEqual(this.artists, modelSpotifyTrack.artists) && this.isLocal == modelSpotifyTrack.isLocal;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -150,17 +150,17 @@ public final /* data */ class ModelSpotifyTrack {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelSpotifyTrack(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", durationMs=");
-        sbM833U.append(this.durationMs);
-        sbM833U.append(", album=");
-        sbM833U.append(this.album);
-        sbM833U.append(", artists=");
-        sbM833U.append(this.artists);
-        sbM833U.append(", isLocal=");
-        return C1643a.m827O(sbM833U, this.isLocal, ")");
+        StringBuilder sbU = a.U("ModelSpotifyTrack(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", durationMs=");
+        sbU.append(this.durationMs);
+        sbU.append(", album=");
+        sbU.append(this.album);
+        sbU.append(", artists=");
+        sbU.append(this.artists);
+        sbU.append(", isLocal=");
+        return a.O(sbU, this.isLocal, ")");
     }
 }

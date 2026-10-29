@@ -1,27 +1,17 @@
 package com.esotericsoftware.kryo.serializers;
 
+import b.e.a.a;
+import b.e.a.a$a;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
-import com.esotericsoftware.kryo.p502io.Input;
-import com.esotericsoftware.kryo.p502io.Output;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p106e.p107a.C1644a;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 /* JADX INFO: loaded from: classes.dex */
 public class VersionFieldSerializer<T> extends FieldSerializer<T> {
     private boolean compatible;
     private int[] fieldVersion;
     private int typeVersion;
-
-    @Target({ElementType.FIELD})
-    @Retention(RetentionPolicy.RUNTIME)
-    public @interface Since {
-        int value() default 0;
-    }
 
     public VersionFieldSerializer(Kryo kryo, Class cls) {
         super(kryo, cls);
@@ -32,20 +22,20 @@ public class VersionFieldSerializer<T> extends FieldSerializer<T> {
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer
     public void initializeCachedFields() {
-        FieldSerializer.CachedField[] fields = getFields();
+        FieldSerializer$CachedField[] fields = getFields();
         this.fieldVersion = new int[fields.length];
         int length = fields.length;
         for (int i = 0; i < length; i++) {
-            Since since = (Since) fields[i].getField().getAnnotation(Since.class);
-            if (since != null) {
-                this.fieldVersion[i] = since.value();
+            VersionFieldSerializer$Since versionFieldSerializer$Since = (VersionFieldSerializer$Since) fields[i].getField().getAnnotation(VersionFieldSerializer$Since.class);
+            if (versionFieldSerializer$Since != null) {
+                this.fieldVersion[i] = versionFieldSerializer$Since.value();
                 this.typeVersion = Math.max(this.fieldVersion[i], this.typeVersion);
             } else {
                 this.fieldVersion[i] = 0;
             }
         }
         this.removedFields.clear();
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer, com.esotericsoftware.kryo.Serializer
@@ -54,15 +44,15 @@ public class VersionFieldSerializer<T> extends FieldSerializer<T> {
         kryo.reference(tCreate);
         int varInt = input.readVarInt(true);
         if (!this.compatible && varInt != this.typeVersion) {
-            StringBuilder sbM834V = C1643a.m834V("Version not compatible: ", varInt, " <-> ");
-            sbM834V.append(this.typeVersion);
-            throw new KryoException(sbM834V.toString());
+            StringBuilder sbV = b.d.b.a.a.V("Version not compatible: ", varInt, " <-> ");
+            sbV.append(this.typeVersion);
+            throw new KryoException(sbV.toString());
         }
-        FieldSerializer.CachedField[] fields = getFields();
+        FieldSerializer$CachedField[] fields = getFields();
         int length = fields.length;
         for (int i = 0; i < length; i++) {
             if (this.fieldVersion[i] > varInt) {
-                C1644a.a aVar = C1644a.f3007a;
+                a$a a_a = a.a;
             } else {
                 fields[i].read(input, tCreate);
             }
@@ -78,16 +68,16 @@ public class VersionFieldSerializer<T> extends FieldSerializer<T> {
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer, com.esotericsoftware.kryo.Serializer
     public void write(Kryo kryo, Output output, T t) {
-        FieldSerializer.CachedField[] fields = getFields();
+        FieldSerializer$CachedField[] fields = getFields();
         output.writeVarInt(this.typeVersion, true);
-        for (FieldSerializer.CachedField cachedField : fields) {
-            cachedField.write(output, t);
+        for (FieldSerializer$CachedField fieldSerializer$CachedField : fields) {
+            fieldSerializer$CachedField.write(output, t);
         }
     }
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer
-    public void removeField(FieldSerializer.CachedField cachedField) {
-        super.removeField(cachedField);
+    public void removeField(FieldSerializer$CachedField fieldSerializer$CachedField) {
+        super.removeField(fieldSerializer$CachedField);
         initializeCachedFields();
     }
 

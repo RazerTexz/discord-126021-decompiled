@@ -1,8 +1,8 @@
 package com.discord.utilities.channel;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ChannelPermissionUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -18,7 +18,7 @@ public final /* data */ class PermissionLabelOverrides {
     private final String voiceChannelSubtext;
 
     public PermissionLabelOverrides(CharSequence charSequence, String str, String str2, CharSequence charSequence2, String str3, String str4, String str5, CharSequence charSequence3, CharSequence charSequence4) {
-        C12238m.checkNotNullParameter(charSequence, "categorySubtext");
+        m.checkNotNullParameter(charSequence, "categorySubtext");
         this.categorySubtext = charSequence;
         this.categoryLabel = str;
         this.voiceChannelSubtext = str2;
@@ -30,8 +30,12 @@ public final /* data */ class PermissionLabelOverrides {
         this.announcementChannelSubtext = charSequence4;
     }
 
+    public static /* synthetic */ PermissionLabelOverrides copy$default(PermissionLabelOverrides permissionLabelOverrides, CharSequence charSequence, String str, String str2, CharSequence charSequence2, String str3, String str4, String str5, CharSequence charSequence3, CharSequence charSequence4, int i, Object obj) {
+        return permissionLabelOverrides.copy((i & 1) != 0 ? permissionLabelOverrides.categorySubtext : charSequence, (i & 2) != 0 ? permissionLabelOverrides.categoryLabel : str, (i & 4) != 0 ? permissionLabelOverrides.voiceChannelSubtext : str2, (i & 8) != 0 ? permissionLabelOverrides.stageChannelSubtext : charSequence2, (i & 16) != 0 ? permissionLabelOverrides.textChannelEveryoneSubtext : str3, (i & 32) != 0 ? permissionLabelOverrides.voiceChannelEveryoneSubtext : str4, (i & 64) != 0 ? permissionLabelOverrides.stageChannelEveryoneSubtext : str5, (i & 128) != 0 ? permissionLabelOverrides.categoryEveryoneSubtext : charSequence3, (i & 256) != 0 ? permissionLabelOverrides.announcementChannelSubtext : charSequence4);
+    }
+
     public final PermissionLabelOverrides copy(CharSequence categorySubtext, String categoryLabel, String voiceChannelSubtext, CharSequence stageChannelSubtext, String textChannelEveryoneSubtext, String voiceChannelEveryoneSubtext, String stageChannelEveryoneSubtext, CharSequence categoryEveryoneSubtext, CharSequence announcementChannelSubtext) {
-        C12238m.checkNotNullParameter(categorySubtext, "categorySubtext");
+        m.checkNotNullParameter(categorySubtext, "categorySubtext");
         return new PermissionLabelOverrides(categorySubtext, categoryLabel, voiceChannelSubtext, stageChannelSubtext, textChannelEveryoneSubtext, voiceChannelEveryoneSubtext, stageChannelEveryoneSubtext, categoryEveryoneSubtext, announcementChannelSubtext);
     }
 
@@ -43,7 +47,7 @@ public final /* data */ class PermissionLabelOverrides {
             return false;
         }
         PermissionLabelOverrides permissionLabelOverrides = (PermissionLabelOverrides) other;
-        return C12238m.areEqual(this.categorySubtext, permissionLabelOverrides.categorySubtext) && C12238m.areEqual(this.categoryLabel, permissionLabelOverrides.categoryLabel) && C12238m.areEqual(this.voiceChannelSubtext, permissionLabelOverrides.voiceChannelSubtext) && C12238m.areEqual(this.stageChannelSubtext, permissionLabelOverrides.stageChannelSubtext) && C12238m.areEqual(this.textChannelEveryoneSubtext, permissionLabelOverrides.textChannelEveryoneSubtext) && C12238m.areEqual(this.voiceChannelEveryoneSubtext, permissionLabelOverrides.voiceChannelEveryoneSubtext) && C12238m.areEqual(this.stageChannelEveryoneSubtext, permissionLabelOverrides.stageChannelEveryoneSubtext) && C12238m.areEqual(this.categoryEveryoneSubtext, permissionLabelOverrides.categoryEveryoneSubtext) && C12238m.areEqual(this.announcementChannelSubtext, permissionLabelOverrides.announcementChannelSubtext);
+        return m.areEqual(this.categorySubtext, permissionLabelOverrides.categorySubtext) && m.areEqual(this.categoryLabel, permissionLabelOverrides.categoryLabel) && m.areEqual(this.voiceChannelSubtext, permissionLabelOverrides.voiceChannelSubtext) && m.areEqual(this.stageChannelSubtext, permissionLabelOverrides.stageChannelSubtext) && m.areEqual(this.textChannelEveryoneSubtext, permissionLabelOverrides.textChannelEveryoneSubtext) && m.areEqual(this.voiceChannelEveryoneSubtext, permissionLabelOverrides.voiceChannelEveryoneSubtext) && m.areEqual(this.stageChannelEveryoneSubtext, permissionLabelOverrides.stageChannelEveryoneSubtext) && m.areEqual(this.categoryEveryoneSubtext, permissionLabelOverrides.categoryEveryoneSubtext) && m.areEqual(this.announcementChannelSubtext, permissionLabelOverrides.announcementChannelSubtext);
     }
 
     /* JADX INFO: renamed from: component9, reason: from getter */
@@ -149,24 +153,24 @@ public final /* data */ class PermissionLabelOverrides {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PermissionLabelOverrides(categorySubtext=");
-        sbM833U.append(this.categorySubtext);
-        sbM833U.append(", categoryLabel=");
-        sbM833U.append(this.categoryLabel);
-        sbM833U.append(", voiceChannelSubtext=");
-        sbM833U.append(this.voiceChannelSubtext);
-        sbM833U.append(", stageChannelSubtext=");
-        sbM833U.append(this.stageChannelSubtext);
-        sbM833U.append(", textChannelEveryoneSubtext=");
-        sbM833U.append(this.textChannelEveryoneSubtext);
-        sbM833U.append(", voiceChannelEveryoneSubtext=");
-        sbM833U.append(this.voiceChannelEveryoneSubtext);
-        sbM833U.append(", stageChannelEveryoneSubtext=");
-        sbM833U.append(this.stageChannelEveryoneSubtext);
-        sbM833U.append(", categoryEveryoneSubtext=");
-        sbM833U.append(this.categoryEveryoneSubtext);
-        sbM833U.append(", announcementChannelSubtext=");
-        return C1643a.m817E(sbM833U, this.announcementChannelSubtext, ")");
+        StringBuilder sbU = a.U("PermissionLabelOverrides(categorySubtext=");
+        sbU.append(this.categorySubtext);
+        sbU.append(", categoryLabel=");
+        sbU.append(this.categoryLabel);
+        sbU.append(", voiceChannelSubtext=");
+        sbU.append(this.voiceChannelSubtext);
+        sbU.append(", stageChannelSubtext=");
+        sbU.append(this.stageChannelSubtext);
+        sbU.append(", textChannelEveryoneSubtext=");
+        sbU.append(this.textChannelEveryoneSubtext);
+        sbU.append(", voiceChannelEveryoneSubtext=");
+        sbU.append(this.voiceChannelEveryoneSubtext);
+        sbU.append(", stageChannelEveryoneSubtext=");
+        sbU.append(this.stageChannelEveryoneSubtext);
+        sbU.append(", categoryEveryoneSubtext=");
+        sbU.append(this.categoryEveryoneSubtext);
+        sbU.append(", announcementChannelSubtext=");
+        return a.E(sbU, this.announcementChannelSubtext, ")");
     }
 
     public /* synthetic */ PermissionLabelOverrides(CharSequence charSequence, String str, String str2, CharSequence charSequence2, String str3, String str4, String str5, CharSequence charSequence3, CharSequence charSequence4, int i, DefaultConstructorMarker defaultConstructorMarker) {

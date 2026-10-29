@@ -2,6 +2,7 @@ package com.google.android.material.shape;
 
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver$OnScrollChangedListener;
 import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 
@@ -12,18 +13,7 @@ public class InterpolateOnScrollPositionChangeHelper {
     private View shapedView;
     private final int[] scrollLocation = new int[2];
     private final int[] containerLocation = new int[2];
-    private final ViewTreeObserver.OnScrollChangedListener scrollChangedListener = new ViewTreeObserverOnScrollChangedListenerC10964a();
-
-    /* JADX INFO: renamed from: com.google.android.material.shape.InterpolateOnScrollPositionChangeHelper$a */
-    public class ViewTreeObserverOnScrollChangedListenerC10964a implements ViewTreeObserver.OnScrollChangedListener {
-        public ViewTreeObserverOnScrollChangedListenerC10964a() {
-        }
-
-        @Override // android.view.ViewTreeObserver.OnScrollChangedListener
-        public void onScrollChanged() {
-            InterpolateOnScrollPositionChangeHelper.this.updateInterpolationForScreenPosition();
-        }
-    }
+    private final ViewTreeObserver$OnScrollChangedListener scrollChangedListener = new InterpolateOnScrollPositionChangeHelper$a(this);
 
     public InterpolateOnScrollPositionChangeHelper(View view, MaterialShapeDrawable materialShapeDrawable, ScrollView scrollView) {
         this.shapedView = view;

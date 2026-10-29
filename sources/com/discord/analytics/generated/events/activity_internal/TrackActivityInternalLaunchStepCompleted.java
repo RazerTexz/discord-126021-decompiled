@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalLaunchStepCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackActivityInternalLaunchStepCompleted implement
             return false;
         }
         TrackActivityInternalLaunchStepCompleted trackActivityInternalLaunchStepCompleted = (TrackActivityInternalLaunchStepCompleted) other;
-        return C12238m.areEqual(this.step, trackActivityInternalLaunchStepCompleted.step) && C12238m.areEqual(this.nextStep, trackActivityInternalLaunchStepCompleted.nextStep) && C12238m.areEqual(this.durationMs, trackActivityInternalLaunchStepCompleted.durationMs) && C12238m.areEqual(this.success, trackActivityInternalLaunchStepCompleted.success) && C12238m.areEqual(this.errorCode, trackActivityInternalLaunchStepCompleted.errorCode) && C12238m.areEqual(this.errorMessage, trackActivityInternalLaunchStepCompleted.errorMessage);
+        return m.areEqual(this.step, trackActivityInternalLaunchStepCompleted.step) && m.areEqual(this.nextStep, trackActivityInternalLaunchStepCompleted.nextStep) && m.areEqual(this.durationMs, trackActivityInternalLaunchStepCompleted.durationMs) && m.areEqual(this.success, trackActivityInternalLaunchStepCompleted.success) && m.areEqual(this.errorCode, trackActivityInternalLaunchStepCompleted.errorCode) && m.areEqual(this.errorMessage, trackActivityInternalLaunchStepCompleted.errorMessage);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,17 +54,17 @@ public final /* data */ class TrackActivityInternalLaunchStepCompleted implement
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalLaunchStepCompleted(step=");
-        sbM833U.append(this.step);
-        sbM833U.append(", nextStep=");
-        sbM833U.append(this.nextStep);
-        sbM833U.append(", durationMs=");
-        sbM833U.append(this.durationMs);
-        sbM833U.append(", success=");
-        sbM833U.append(this.success);
-        sbM833U.append(", errorCode=");
-        sbM833U.append(this.errorCode);
-        sbM833U.append(", errorMessage=");
-        return C1643a.m817E(sbM833U, this.errorMessage, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalLaunchStepCompleted(step=");
+        sbU.append(this.step);
+        sbU.append(", nextStep=");
+        sbU.append(this.nextStep);
+        sbU.append(", durationMs=");
+        sbU.append(this.durationMs);
+        sbU.append(", success=");
+        sbU.append(this.success);
+        sbU.append(", errorCode=");
+        sbU.append(this.errorCode);
+        sbU.append(", errorMessage=");
+        return a.E(sbU, this.errorMessage, ")");
     }
 }

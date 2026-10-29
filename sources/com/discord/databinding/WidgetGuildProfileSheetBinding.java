@@ -18,122 +18,102 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildProfileSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f16889a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f16890b;
+    public final SimpleDraweeView f2431b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f16891c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ConstraintLayout f16892d;
+    public final ConstraintLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final View f16893e;
+    public final View e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f16894f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final AppViewFlipper f16895g;
+    public final AppViewFlipper g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final ImageView f16896h;
+    public final ImageView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final SimpleDraweeView f16897i;
+    public final SimpleDraweeView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final CardView f16898j;
+    public final CardView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final TextView f16899k;
+    public final TextView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final MaterialButton f16900l;
+    public final MaterialButton l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final LinearLayout f16901m;
+    public final LinearLayout m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f16902n;
+    public final TextView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final TextView f16903o;
+    public final TextView o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final MaterialButton f16904p;
+    public final MaterialButton p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final LinearLayout f16905q;
+    public final LinearLayout q;
 
-    /* JADX INFO: renamed from: r */
     @NonNull
-    public final TextView f16906r;
+    public final TextView r;
 
-    /* JADX INFO: renamed from: s */
+    /* JADX INFO: renamed from: s, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f16907s;
+    public final MaterialButton f2432s;
 
-    /* JADX INFO: renamed from: t */
     @NonNull
-    public final LinearLayout f16908t;
+    public final LinearLayout t;
 
-    /* JADX INFO: renamed from: u */
     @NonNull
-    public final ViewStub f16909u;
+    public final ViewStub u;
 
-    /* JADX INFO: renamed from: v */
     @NonNull
-    public final ViewStub f16910v;
+    public final ViewStub v;
 
     public WidgetGuildProfileSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull Barrier barrier, @NonNull SimpleDraweeView simpleDraweeView, @NonNull MaterialButton materialButton, @NonNull ConstraintLayout constraintLayout, @NonNull LinearLayout linearLayout, @NonNull View view, @NonNull TextView textView, @NonNull AppViewFlipper appViewFlipper, @NonNull ImageView imageView, @NonNull SimpleDraweeView simpleDraweeView2, @NonNull CardView cardView, @NonNull TextView textView2, @NonNull MaterialButton materialButton2, @NonNull LinearLayout linearLayout2, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull MaterialButton materialButton3, @NonNull LinearLayout linearLayout3, @NonNull TextView textView5, @NonNull MaterialButton materialButton4, @NonNull LinearLayout linearLayout4, @NonNull ViewStub viewStub, @NonNull ViewStub viewStub2) {
-        this.f16889a = nestedScrollView;
-        this.f16890b = simpleDraweeView;
-        this.f16891c = materialButton;
-        this.f16892d = constraintLayout;
-        this.f16893e = view;
-        this.f16894f = textView;
-        this.f16895g = appViewFlipper;
-        this.f16896h = imageView;
-        this.f16897i = simpleDraweeView2;
-        this.f16898j = cardView;
-        this.f16899k = textView2;
-        this.f16900l = materialButton2;
-        this.f16901m = linearLayout2;
-        this.f16902n = textView3;
-        this.f16903o = textView4;
-        this.f16904p = materialButton3;
-        this.f16905q = linearLayout3;
-        this.f16906r = textView5;
-        this.f16907s = materialButton4;
-        this.f16908t = linearLayout4;
-        this.f16909u = viewStub;
-        this.f16910v = viewStub2;
+        this.a = nestedScrollView;
+        this.f2431b = simpleDraweeView;
+        this.c = materialButton;
+        this.d = constraintLayout;
+        this.e = view;
+        this.f = textView;
+        this.g = appViewFlipper;
+        this.h = imageView;
+        this.i = simpleDraweeView2;
+        this.j = cardView;
+        this.k = textView2;
+        this.l = materialButton2;
+        this.m = linearLayout2;
+        this.n = textView3;
+        this.o = textView4;
+        this.p = materialButton3;
+        this.q = linearLayout3;
+        this.r = textView5;
+        this.f2432s = materialButton4;
+        this.t = linearLayout4;
+        this.u = viewStub;
+        this.v = viewStub2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16889a;
+        return this.a;
     }
 }

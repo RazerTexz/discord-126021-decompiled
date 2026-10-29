@@ -5,21 +5,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /* JADX INFO: loaded from: classes.dex */
 public class FocusStrategy {
-
-    public interface BoundsAdapter<T> {
-        void obtainBounds(T t, Rect rect);
-    }
-
-    public interface CollectionAdapter<T, V> {
-        V get(T t, int i);
-
-        int size(T t);
-    }
-
     private FocusStrategy() {
     }
 
@@ -45,7 +33,7 @@ public class FocusStrategy {
         return rect2.bottom >= rect.top && rect2.top <= rect.bottom;
     }
 
-    public static <L, T> T findNextFocusInAbsoluteDirection(@NonNull L l, @NonNull CollectionAdapter<L, T> collectionAdapter, @NonNull BoundsAdapter<T> boundsAdapter, @Nullable T t, @NonNull Rect rect, int i) {
+    public static <L, T> T findNextFocusInAbsoluteDirection(@NonNull L l, @NonNull FocusStrategy$CollectionAdapter<L, T> focusStrategy$CollectionAdapter, @NonNull FocusStrategy$BoundsAdapter<T> focusStrategy$BoundsAdapter, @Nullable T t, @NonNull Rect rect, int i) {
         Rect rect2 = new Rect(rect);
         if (i == 17) {
             rect2.offset(rect.width() + 1, 0);
@@ -60,12 +48,12 @@ public class FocusStrategy {
             rect2.offset(0, -(rect.height() + 1));
         }
         T t2 = null;
-        int size = collectionAdapter.size(l);
+        int size = focusStrategy$CollectionAdapter.size(l);
         Rect rect3 = new Rect();
         for (int i2 = 0; i2 < size; i2++) {
-            T t3 = collectionAdapter.get(l, i2);
+            T t3 = focusStrategy$CollectionAdapter.get(l, i2);
             if (t3 != t) {
-                boundsAdapter.obtainBounds(t3, rect3);
+                focusStrategy$BoundsAdapter.obtainBounds(t3, rect3);
                 if (isBetterCandidate(i, rect, rect3, rect2)) {
                     rect2.set(rect3);
                     t2 = t3;
@@ -75,13 +63,13 @@ public class FocusStrategy {
         return t2;
     }
 
-    public static <L, T> T findNextFocusInRelativeDirection(@NonNull L l, @NonNull CollectionAdapter<L, T> collectionAdapter, @NonNull BoundsAdapter<T> boundsAdapter, @Nullable T t, int i, boolean z2, boolean z3) {
-        int size = collectionAdapter.size(l);
+    public static <L, T> T findNextFocusInRelativeDirection(@NonNull L l, @NonNull FocusStrategy$CollectionAdapter<L, T> focusStrategy$CollectionAdapter, @NonNull FocusStrategy$BoundsAdapter<T> focusStrategy$BoundsAdapter, @Nullable T t, int i, boolean z2, boolean z3) {
+        int size = focusStrategy$CollectionAdapter.size(l);
         ArrayList arrayList = new ArrayList(size);
         for (int i2 = 0; i2 < size; i2++) {
-            arrayList.add(collectionAdapter.get(l, i2));
+            arrayList.add(focusStrategy$CollectionAdapter.get(l, i2));
         }
-        Collections.sort(arrayList, new SequentialComparator(z2, boundsAdapter));
+        Collections.sort(arrayList, new FocusStrategy$SequentialComparator(z2, focusStrategy$BoundsAdapter));
         if (i == 1) {
             return (T) getPreviousFocusable(t, arrayList, z3);
         }
@@ -233,58 +221,5 @@ public class FocusStrategy {
             return Math.abs(((rect.width() / 2) + rect.left) - ((rect2.width() / 2) + rect2.left));
         }
         return Math.abs(((rect.height() / 2) + rect.top) - ((rect2.height() / 2) + rect2.top));
-    }
-
-    public class SequentialComparator<T> implements Comparator<T> {
-        private final BoundsAdapter<T> mAdapter;
-        private final boolean mIsLayoutRtl;
-        private final Rect mTemp1 = new Rect();
-        private final Rect mTemp2 = new Rect();
-
-        public SequentialComparator(boolean z2, BoundsAdapter<T> boundsAdapter) {
-            this.mIsLayoutRtl = z2;
-            this.mAdapter = boundsAdapter;
-        }
-
-        @Override // java.util.Comparator
-        public int compare(T t, T t2) {
-            Rect rect = this.mTemp1;
-            Rect rect2 = this.mTemp2;
-            this.mAdapter.obtainBounds(t, rect);
-            this.mAdapter.obtainBounds(t2, rect2);
-            int i = rect.top;
-            int i2 = rect2.top;
-            if (i < i2) {
-                return -1;
-            }
-            if (i > i2) {
-                return 1;
-            }
-            int i3 = rect.left;
-            int i4 = rect2.left;
-            if (i3 < i4) {
-                return this.mIsLayoutRtl ? 1 : -1;
-            }
-            if (i3 > i4) {
-                return this.mIsLayoutRtl ? -1 : 1;
-            }
-            int i5 = rect.bottom;
-            int i6 = rect2.bottom;
-            if (i5 < i6) {
-                return -1;
-            }
-            if (i5 > i6) {
-                return 1;
-            }
-            int i7 = rect.right;
-            int i8 = rect2.right;
-            if (i7 < i8) {
-                return this.mIsLayoutRtl ? 1 : -1;
-            }
-            if (i7 > i8) {
-                return this.mIsLayoutRtl ? -1 : 1;
-            }
-            return 0;
-        }
     }
 }

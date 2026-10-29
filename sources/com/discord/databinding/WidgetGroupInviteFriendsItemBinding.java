@@ -14,47 +14,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGroupInviteFriendsItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16733a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RelativeLayout f16734b;
+    public final RelativeLayout f2407b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f16735c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeSpanTextView f16736d;
+    public final SimpleDraweeSpanTextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16737e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final StatusView f16738f;
+    public final StatusView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final CheckBox f16739g;
+    public final CheckBox g;
 
     public WidgetGroupInviteFriendsItemBinding(@NonNull LinearLayout linearLayout, @NonNull RelativeLayout relativeLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull RelativeLayout relativeLayout2, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView, @NonNull TextView textView, @NonNull StatusView statusView, @NonNull CheckBox checkBox) {
-        this.f16733a = linearLayout;
-        this.f16734b = relativeLayout;
-        this.f16735c = simpleDraweeView;
-        this.f16736d = simpleDraweeSpanTextView;
-        this.f16737e = textView;
-        this.f16738f = statusView;
-        this.f16739g = checkBox;
+        this.a = linearLayout;
+        this.f2407b = relativeLayout;
+        this.c = simpleDraweeView;
+        this.d = simpleDraweeSpanTextView;
+        this.e = textView;
+        this.f = statusView;
+        this.g = checkBox;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16733a;
+        return this.a;
     }
 }

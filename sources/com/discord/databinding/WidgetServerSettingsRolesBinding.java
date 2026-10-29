@@ -11,32 +11,29 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsRolesBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17748a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final DimmerView f17749b;
+    public final DimmerView f2585b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final FloatingActionButton f17750c;
+    public final FloatingActionButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final RecyclerView f17751d;
+    public final RecyclerView d;
 
     public WidgetServerSettingsRolesBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull DimmerView dimmerView, @NonNull FloatingActionButton floatingActionButton, @NonNull RecyclerView recyclerView) {
-        this.f17748a = coordinatorLayout;
-        this.f17749b = dimmerView;
-        this.f17750c = floatingActionButton;
-        this.f17751d = recyclerView;
+        this.a = coordinatorLayout;
+        this.f2585b = dimmerView;
+        this.c = floatingActionButton;
+        this.d = recyclerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17748a;
+        return this.a;
     }
 }

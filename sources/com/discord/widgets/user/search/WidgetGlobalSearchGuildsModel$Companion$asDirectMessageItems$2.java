@@ -1,15 +1,15 @@
 package com.discord.widgets.user.search;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Map;
 import kotlin.jvm.functions.Function1;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchGuildsModel$Companion$asDirectMessageItems$2 extends AbstractC12240o implements Function1<Channel, WidgetGlobalSearchGuildsModel.Item> {
+public final class WidgetGlobalSearchGuildsModel$Companion$asDirectMessageItems$2 extends o implements Function1<Channel, WidgetGlobalSearchGuildsModel$Item> {
     public final /* synthetic */ Map $mentionCounts;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -19,10 +19,15 @@ public final class WidgetGlobalSearchGuildsModel$Companion$asDirectMessageItems$
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetGlobalSearchGuildsModel.Item invoke(Channel channel) {
-        C12238m.checkNotNullParameter(channel, "it");
-        WidgetGlobalSearchGuildsModel.Item.Companion companion = WidgetGlobalSearchGuildsModel.Item.INSTANCE;
-        Integer num = (Integer) C1643a.m845d(channel, this.$mentionCounts);
-        return companion.createDirectMessage$app_productionGoogleRelease(channel, num != null ? num.intValue() : 0);
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchGuildsModel$Item invoke(Channel channel) {
+        return invoke2(channel);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetGlobalSearchGuildsModel$Item invoke2(Channel channel) {
+        m.checkNotNullParameter(channel, "it");
+        WidgetGlobalSearchGuildsModel$Item$Companion widgetGlobalSearchGuildsModel$Item$Companion = WidgetGlobalSearchGuildsModel$Item.Companion;
+        Integer num = (Integer) a.d(channel, this.$mentionCounts);
+        return widgetGlobalSearchGuildsModel$Item$Companion.createDirectMessage$app_productionGoogleRelease(channel, num != null ? num.intValue() : 0);
     }
 }

@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.discord.utilities.fcm.NotificationClient;
 import com.discord.widgets.settings.WidgetSettingsNotifications;
+import com.discord.widgets.settings.WidgetSettingsNotifications$Companion;
 import com.discord.widgets.settings.WidgetSettingsNotificationsOs;
-import p507d0.p592z.p594d.C12238m;
+import com.discord.widgets.settings.WidgetSettingsNotificationsOs$Companion;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: NotificationUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -17,17 +19,17 @@ public final class NotificationUtils {
     }
 
     public final void showNotificationPage(Fragment fragment) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
+        m.checkNotNullParameter(fragment, "fragment");
         if (NotificationClient.INSTANCE.isOsLevelNotificationEnabled()) {
-            WidgetSettingsNotificationsOs.Companion companion = WidgetSettingsNotificationsOs.INSTANCE;
+            WidgetSettingsNotificationsOs$Companion widgetSettingsNotificationsOs$Companion = WidgetSettingsNotificationsOs.Companion;
             FragmentManager parentFragmentManager = fragment.getParentFragmentManager();
-            C12238m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
-            companion.show(parentFragmentManager);
+            m.checkNotNullExpressionValue(parentFragmentManager, "fragment.parentFragmentManager");
+            widgetSettingsNotificationsOs$Companion.show(parentFragmentManager);
             return;
         }
-        WidgetSettingsNotifications.Companion companion2 = WidgetSettingsNotifications.INSTANCE;
+        WidgetSettingsNotifications$Companion widgetSettingsNotifications$Companion = WidgetSettingsNotifications.Companion;
         Context contextRequireContext = fragment.requireContext();
-        C12238m.checkNotNullExpressionValue(contextRequireContext, "fragment.requireContext()");
-        companion2.launch(contextRequireContext);
+        m.checkNotNullExpressionValue(contextRequireContext, "fragment.requireContext()");
+        widgetSettingsNotifications$Companion.launch(contextRequireContext);
     }
 }

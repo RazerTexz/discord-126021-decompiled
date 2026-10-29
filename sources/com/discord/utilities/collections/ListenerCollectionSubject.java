@@ -2,11 +2,11 @@ package com.discord.utilities.collections;
 
 import android.util.Log;
 import androidx.exifinterface.media.ExifInterface;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArraySet;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ListenerCollection.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -23,7 +23,7 @@ public final class ListenerCollectionSubject<T> implements ListenerCollection<T>
     }
 
     public final void notify(Function1<? super T, Unit> action) {
-        C12238m.checkNotNullParameter(action, "action");
+        m.checkNotNullParameter(action, "action");
         Iterator<T> it = this.listeners.iterator();
         while (it.hasNext()) {
             try {

@@ -3,9 +3,7 @@ package org.objectweb.asm;
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/FieldVisitor.SCL.lombok */
 public abstract class FieldVisitor {
     protected final int api;
-
-    /* JADX INFO: renamed from: fv */
-    protected FieldVisitor f27599fv;
+    protected FieldVisitor fv;
 
     public FieldVisitor(int api) {
         this(api, null);
@@ -19,12 +17,12 @@ public abstract class FieldVisitor {
             Constants.checkAsmExperimental(this);
         }
         this.api = api;
-        this.f27599fv = fieldVisitor;
+        this.fv = fieldVisitor;
     }
 
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-        if (this.f27599fv != null) {
-            return this.f27599fv.visitAnnotation(descriptor, visible);
+        if (this.fv != null) {
+            return this.fv.visitAnnotation(descriptor, visible);
         }
         return null;
     }
@@ -33,21 +31,21 @@ public abstract class FieldVisitor {
         if (this.api < 327680) {
             throw new UnsupportedOperationException("This feature requires ASM5");
         }
-        if (this.f27599fv != null) {
-            return this.f27599fv.visitTypeAnnotation(typeRef, typePath, descriptor, visible);
+        if (this.fv != null) {
+            return this.fv.visitTypeAnnotation(typeRef, typePath, descriptor, visible);
         }
         return null;
     }
 
     public void visitAttribute(Attribute attribute) {
-        if (this.f27599fv != null) {
-            this.f27599fv.visitAttribute(attribute);
+        if (this.fv != null) {
+            this.fv.visitAttribute(attribute);
         }
     }
 
     public void visitEnd() {
-        if (this.f27599fv != null) {
-            this.f27599fv.visitEnd();
+        if (this.fv != null) {
+            this.fv.visitEnd();
         }
     }
 }

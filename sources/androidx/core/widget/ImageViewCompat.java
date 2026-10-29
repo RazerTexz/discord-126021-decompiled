@@ -1,9 +1,9 @@
 package androidx.core.widget;
 
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,13 +19,13 @@ public class ImageViewCompat {
     }
 
     @Nullable
-    public static PorterDuff.Mode getImageTintMode(@NonNull ImageView imageView) {
+    public static PorterDuff$Mode getImageTintMode(@NonNull ImageView imageView) {
         return imageView.getImageTintMode();
     }
 
     public static void setImageTintList(@NonNull ImageView imageView, @Nullable ColorStateList colorStateList) {
         Drawable drawable;
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         imageView.setImageTintList(colorStateList);
         if (i != 21 || (drawable = imageView.getDrawable()) == null || imageView.getImageTintList() == null) {
             return;
@@ -36,10 +36,10 @@ public class ImageViewCompat {
         imageView.setImageDrawable(drawable);
     }
 
-    public static void setImageTintMode(@NonNull ImageView imageView, @Nullable PorterDuff.Mode mode) {
+    public static void setImageTintMode(@NonNull ImageView imageView, @Nullable PorterDuff$Mode porterDuff$Mode) {
         Drawable drawable;
-        int i = Build.VERSION.SDK_INT;
-        imageView.setImageTintMode(mode);
+        int i = Build$VERSION.SDK_INT;
+        imageView.setImageTintMode(porterDuff$Mode);
         if (i != 21 || (drawable = imageView.getDrawable()) == null || imageView.getImageTintList() == null) {
             return;
         }

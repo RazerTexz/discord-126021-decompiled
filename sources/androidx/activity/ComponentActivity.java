@@ -4,15 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.os.Build;
+import android.content.IntentSender$SendIntentException;
+import android.os.Build$VERSION;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Process;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.ViewGroup$LayoutParams;
 import androidx.activity.contextaware.ContextAware;
 import androidx.activity.contextaware.ContextAwareHelper;
 import androidx.activity.contextaware.OnContextAvailableListener;
@@ -21,21 +17,18 @@ import androidx.activity.result.ActivityResultCaller;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.result.ActivityResultRegistryOwner;
-import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.activity.result.contract.ActivityResultContracts$RequestMultiplePermissions;
 import androidx.annotation.CallSuper;
 import androidx.annotation.ContentView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.tracing.Trace;
 import androidx.view.HasDefaultViewModelProviderFactory;
 import androidx.view.Lifecycle;
-import androidx.view.LifecycleEventObserver;
+import androidx.view.Lifecycle$State;
 import androidx.view.LifecycleOwner;
 import androidx.view.LifecycleRegistry;
 import androidx.view.ReportFragment;
@@ -43,15 +36,14 @@ import androidx.view.SavedStateRegistry;
 import androidx.view.SavedStateRegistryController;
 import androidx.view.SavedStateRegistryOwner;
 import androidx.view.SavedStateViewModelFactory;
-import androidx.view.ViewModelProvider;
+import androidx.view.ViewModelProvider$Factory;
 import androidx.view.ViewModelStore;
 import androidx.view.ViewModelStoreOwner;
 import androidx.view.ViewTreeLifecycleOwner;
 import androidx.view.ViewTreeSavedStateRegistryOwner;
 import androidx.view.ViewTreeViewModelStoreOwner;
-import java.util.ArrayList;
+import b.d.b.a.a;
 import java.util.concurrent.atomic.AtomicInteger;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ComponentActivity extends androidx.core.app.ComponentActivity implements ContextAware, LifecycleOwner, ViewModelStoreOwner, HasDefaultViewModelProviderFactory, SavedStateRegistryOwner, OnBackPressedDispatcherOwner, ActivityResultRegistryOwner, ActivityResultCaller {
@@ -60,137 +52,40 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     @LayoutRes
     private int mContentLayoutId;
     public final ContextAwareHelper mContextAwareHelper;
-    private ViewModelProvider.Factory mDefaultFactory;
+    private ViewModelProvider$Factory mDefaultFactory;
     private final LifecycleRegistry mLifecycleRegistry;
     private final AtomicInteger mNextLocalRequestCode;
     private final OnBackPressedDispatcher mOnBackPressedDispatcher;
     public final SavedStateRegistryController mSavedStateRegistryController;
     private ViewModelStore mViewModelStore;
 
-    public final class NonConfigurationInstances {
-        public Object custom;
-        public ViewModelStore viewModelStore;
-    }
-
     public ComponentActivity() {
         this.mContextAwareHelper = new ContextAwareHelper();
         this.mLifecycleRegistry = new LifecycleRegistry(this);
         this.mSavedStateRegistryController = SavedStateRegistryController.create(this);
-        this.mOnBackPressedDispatcher = new OnBackPressedDispatcher(new Runnable() { // from class: androidx.activity.ComponentActivity.1
-            @Override // java.lang.Runnable
-            public void run() {
-                try {
-                    ComponentActivity.super.onBackPressed();
-                } catch (IllegalStateException e) {
-                    if (!TextUtils.equals(e.getMessage(), "Can not perform this action after onSaveInstanceState")) {
-                        throw e;
-                    }
-                }
-            }
-        });
+        this.mOnBackPressedDispatcher = new OnBackPressedDispatcher(new ComponentActivity$1(this));
         this.mNextLocalRequestCode = new AtomicInteger();
-        this.mActivityResultRegistry = new ActivityResultRegistry() { // from class: androidx.activity.ComponentActivity.2
-            @Override // androidx.activity.result.ActivityResultRegistry
-            public <I, O> void onLaunch(final int i, @NonNull ActivityResultContract<I, O> activityResultContract, I i2, @Nullable ActivityOptionsCompat activityOptionsCompat) {
-                ComponentActivity componentActivity = ComponentActivity.this;
-                final ActivityResultContract.SynchronousResult<O> synchronousResult = activityResultContract.getSynchronousResult(componentActivity, i2);
-                if (synchronousResult != null) {
-                    new Handler(Looper.getMainLooper()).post(new Runnable() { // from class: androidx.activity.ComponentActivity.2.1
-                        @Override // java.lang.Runnable
-                        public void run() {
-                            dispatchResult(i, synchronousResult.getValue());
-                        }
-                    });
-                    return;
-                }
-                Intent intentCreateIntent = activityResultContract.createIntent(componentActivity, i2);
-                Bundle bundle = null;
-                if (intentCreateIntent.hasExtra(ActivityResultContracts.StartActivityForResult.EXTRA_ACTIVITY_OPTIONS_BUNDLE)) {
-                    bundle = intentCreateIntent.getBundleExtra(ActivityResultContracts.StartActivityForResult.EXTRA_ACTIVITY_OPTIONS_BUNDLE);
-                    intentCreateIntent.removeExtra(ActivityResultContracts.StartActivityForResult.EXTRA_ACTIVITY_OPTIONS_BUNDLE);
-                } else if (activityOptionsCompat != null) {
-                    bundle = activityOptionsCompat.toBundle();
-                }
-                Bundle bundle2 = bundle;
-                if (!ActivityResultContracts.RequestMultiplePermissions.ACTION_REQUEST_PERMISSIONS.equals(intentCreateIntent.getAction())) {
-                    if (!ActivityResultContracts.StartIntentSenderForResult.ACTION_INTENT_SENDER_REQUEST.equals(intentCreateIntent.getAction())) {
-                        ActivityCompat.startActivityForResult(componentActivity, intentCreateIntent, i, bundle2);
-                        return;
-                    }
-                    IntentSenderRequest intentSenderRequest = (IntentSenderRequest) intentCreateIntent.getParcelableExtra(ActivityResultContracts.StartIntentSenderForResult.EXTRA_INTENT_SENDER_REQUEST);
-                    try {
-                        ActivityCompat.startIntentSenderForResult(componentActivity, intentSenderRequest.getIntentSender(), i, intentSenderRequest.getFillInIntent(), intentSenderRequest.getFlagsMask(), intentSenderRequest.getFlagsValues(), 0, bundle2);
-                        return;
-                    } catch (IntentSender.SendIntentException e) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() { // from class: androidx.activity.ComponentActivity.2.2
-                            @Override // java.lang.Runnable
-                            public void run() {
-                                dispatchResult(i, 0, new Intent().setAction(ActivityResultContracts.StartIntentSenderForResult.ACTION_INTENT_SENDER_REQUEST).putExtra(ActivityResultContracts.StartIntentSenderForResult.EXTRA_SEND_INTENT_EXCEPTION, e));
-                            }
-                        });
-                        return;
-                    }
-                }
-                String[] stringArrayExtra = intentCreateIntent.getStringArrayExtra(ActivityResultContracts.RequestMultiplePermissions.EXTRA_PERMISSIONS);
-                if (stringArrayExtra == null) {
-                    return;
-                }
-                ArrayList arrayList = new ArrayList();
-                for (String str : stringArrayExtra) {
-                    if (ComponentActivity.this.checkPermission(str, Process.myPid(), Process.myUid()) != 0) {
-                        arrayList.add(str);
-                    }
-                }
-                if (arrayList.isEmpty()) {
-                    return;
-                }
-                ActivityCompat.requestPermissions(componentActivity, (String[]) arrayList.toArray(new String[0]), i);
-            }
-        };
+        this.mActivityResultRegistry = new ComponentActivity$2(this);
         if (getLifecycle() == null) {
             throw new IllegalStateException("getLifecycle() returned null in ComponentActivity's constructor. Please make sure you are lazily constructing your Lifecycle in the first call to getLifecycle() rather than relying on field initialization.");
         }
-        int i = Build.VERSION.SDK_INT;
-        getLifecycle().addObserver(new LifecycleEventObserver() { // from class: androidx.activity.ComponentActivity.3
-            @Override // androidx.view.LifecycleEventObserver
-            public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-                if (event == Lifecycle.Event.ON_STOP) {
-                    Window window = ComponentActivity.this.getWindow();
-                    View viewPeekDecorView = window != null ? window.peekDecorView() : null;
-                    if (viewPeekDecorView != null) {
-                        viewPeekDecorView.cancelPendingInputEvents();
-                    }
-                }
-            }
-        });
-        getLifecycle().addObserver(new LifecycleEventObserver() { // from class: androidx.activity.ComponentActivity.4
-            @Override // androidx.view.LifecycleEventObserver
-            public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-                if (event == Lifecycle.Event.ON_DESTROY) {
-                    ComponentActivity.this.mContextAwareHelper.clearAvailableContext();
-                    if (ComponentActivity.this.isChangingConfigurations()) {
-                        return;
-                    }
-                    ComponentActivity.this.getViewModelStore().clear();
-                }
-            }
-        });
-        getLifecycle().addObserver(new LifecycleEventObserver() { // from class: androidx.activity.ComponentActivity.5
-            @Override // androidx.view.LifecycleEventObserver
-            public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-                ComponentActivity.this.ensureViewModelStore();
-                ComponentActivity.this.getLifecycle().removeObserver(this);
-            }
-        });
+        int i = Build$VERSION.SDK_INT;
+        getLifecycle().addObserver(new ComponentActivity$3(this));
+        getLifecycle().addObserver(new ComponentActivity$4(this));
+        getLifecycle().addObserver(new ComponentActivity$5(this));
         if (i <= 23) {
             getLifecycle().addObserver(new ImmLeaksCleaner(this));
         }
     }
 
+    public static /* synthetic */ void access$001(ComponentActivity componentActivity) {
+        super.onBackPressed();
+    }
+
     @Override // android.app.Activity
-    public void addContentView(@SuppressLint({"UnknownNullness", "MissingNullability"}) View view, @SuppressLint({"UnknownNullness", "MissingNullability"}) ViewGroup.LayoutParams layoutParams) {
+    public void addContentView(@SuppressLint({"UnknownNullness", "MissingNullability"}) View view, @SuppressLint({"UnknownNullness", "MissingNullability"}) ViewGroup$LayoutParams viewGroup$LayoutParams) {
         initViewTreeOwners();
-        super.addContentView(view, layoutParams);
+        super.addContentView(view, viewGroup$LayoutParams);
     }
 
     @Override // androidx.activity.contextaware.ContextAware
@@ -200,9 +95,9 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
 
     public void ensureViewModelStore() {
         if (this.mViewModelStore == null) {
-            NonConfigurationInstances nonConfigurationInstances = (NonConfigurationInstances) getLastNonConfigurationInstance();
-            if (nonConfigurationInstances != null) {
-                this.mViewModelStore = nonConfigurationInstances.viewModelStore;
+            ComponentActivity$NonConfigurationInstances componentActivity$NonConfigurationInstances = (ComponentActivity$NonConfigurationInstances) getLastNonConfigurationInstance();
+            if (componentActivity$NonConfigurationInstances != null) {
+                this.mViewModelStore = componentActivity$NonConfigurationInstances.viewModelStore;
             }
             if (this.mViewModelStore == null) {
                 this.mViewModelStore = new ViewModelStore();
@@ -218,7 +113,7 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
 
     @Override // androidx.view.HasDefaultViewModelProviderFactory
     @NonNull
-    public ViewModelProvider.Factory getDefaultViewModelProviderFactory() {
+    public ViewModelProvider$Factory getDefaultViewModelProviderFactory() {
         if (getApplication() == null) {
             throw new IllegalStateException("Your activity is not yet attached to the Application instance. You can't request ViewModel before onCreate call.");
         }
@@ -231,9 +126,9 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     @Nullable
     @Deprecated
     public Object getLastCustomNonConfigurationInstance() {
-        NonConfigurationInstances nonConfigurationInstances = (NonConfigurationInstances) getLastNonConfigurationInstance();
-        if (nonConfigurationInstances != null) {
-            return nonConfigurationInstances.custom;
+        ComponentActivity$NonConfigurationInstances componentActivity$NonConfigurationInstances = (ComponentActivity$NonConfigurationInstances) getLastNonConfigurationInstance();
+        if (componentActivity$NonConfigurationInstances != null) {
+            return componentActivity$NonConfigurationInstances.custom;
         }
         return null;
     }
@@ -305,7 +200,7 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     @CallSuper
     @Deprecated
     public void onRequestPermissionsResult(int i, @NonNull String[] strArr, @NonNull int[] iArr) {
-        if (this.mActivityResultRegistry.dispatchResult(i, -1, new Intent().putExtra(ActivityResultContracts.RequestMultiplePermissions.EXTRA_PERMISSIONS, strArr).putExtra(ActivityResultContracts.RequestMultiplePermissions.EXTRA_PERMISSION_GRANT_RESULTS, iArr)) || Build.VERSION.SDK_INT < 23) {
+        if (this.mActivityResultRegistry.dispatchResult(i, -1, new Intent().putExtra(ActivityResultContracts$RequestMultiplePermissions.EXTRA_PERMISSIONS, strArr).putExtra(ActivityResultContracts$RequestMultiplePermissions.EXTRA_PERMISSION_GRANT_RESULTS, iArr)) || Build$VERSION.SDK_INT < 23) {
             return;
         }
         super.onRequestPermissionsResult(i, strArr, iArr);
@@ -320,19 +215,19 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     @Override // android.app.Activity
     @Nullable
     public final Object onRetainNonConfigurationInstance() {
-        NonConfigurationInstances nonConfigurationInstances;
+        ComponentActivity$NonConfigurationInstances componentActivity$NonConfigurationInstances;
         Object objOnRetainCustomNonConfigurationInstance = onRetainCustomNonConfigurationInstance();
         ViewModelStore viewModelStore = this.mViewModelStore;
-        if (viewModelStore == null && (nonConfigurationInstances = (NonConfigurationInstances) getLastNonConfigurationInstance()) != null) {
-            viewModelStore = nonConfigurationInstances.viewModelStore;
+        if (viewModelStore == null && (componentActivity$NonConfigurationInstances = (ComponentActivity$NonConfigurationInstances) getLastNonConfigurationInstance()) != null) {
+            viewModelStore = componentActivity$NonConfigurationInstances.viewModelStore;
         }
         if (viewModelStore == null && objOnRetainCustomNonConfigurationInstance == null) {
             return null;
         }
-        NonConfigurationInstances nonConfigurationInstances2 = new NonConfigurationInstances();
-        nonConfigurationInstances2.custom = objOnRetainCustomNonConfigurationInstance;
-        nonConfigurationInstances2.viewModelStore = viewModelStore;
-        return nonConfigurationInstances2;
+        ComponentActivity$NonConfigurationInstances componentActivity$NonConfigurationInstances2 = new ComponentActivity$NonConfigurationInstances();
+        componentActivity$NonConfigurationInstances2.custom = objOnRetainCustomNonConfigurationInstance;
+        componentActivity$NonConfigurationInstances2.viewModelStore = viewModelStore;
+        return componentActivity$NonConfigurationInstances2;
     }
 
     @Override // androidx.core.app.ComponentActivity, android.app.Activity
@@ -340,7 +235,7 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     public void onSaveInstanceState(@NonNull Bundle bundle) {
         Lifecycle lifecycle = getLifecycle();
         if (lifecycle instanceof LifecycleRegistry) {
-            ((LifecycleRegistry) lifecycle).setCurrentState(Lifecycle.State.CREATED);
+            ((LifecycleRegistry) lifecycle).setCurrentState(Lifecycle$State.CREATED);
         }
         super.onSaveInstanceState(bundle);
         this.mSavedStateRegistryController.performSave(bundle);
@@ -356,9 +251,9 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     @Override // androidx.activity.result.ActivityResultCaller
     @NonNull
     public final <I, O> ActivityResultLauncher<I> registerForActivityResult(@NonNull ActivityResultContract<I, O> activityResultContract, @NonNull ActivityResultRegistry activityResultRegistry, @NonNull ActivityResultCallback<O> activityResultCallback) {
-        StringBuilder sbM833U = C1643a.m833U("activity_rq#");
-        sbM833U.append(this.mNextLocalRequestCode.getAndIncrement());
-        return activityResultRegistry.register(sbM833U.toString(), this, activityResultContract, activityResultCallback);
+        StringBuilder sbU = a.U("activity_rq#");
+        sbU.append(this.mNextLocalRequestCode.getAndIncrement());
+        return activityResultRegistry.register(sbU.toString(), this, activityResultContract, activityResultCallback);
     }
 
     @Override // androidx.activity.contextaware.ContextAware
@@ -392,7 +287,7 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
 
     @Override // android.app.Activity
     @Deprecated
-    public void startIntentSenderForResult(@SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4) throws IntentSender.SendIntentException {
+    public void startIntentSenderForResult(@SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4) throws IntentSender$SendIntentException {
         super.startIntentSenderForResult(intentSender, i, intent, i2, i3, i4);
     }
 
@@ -404,7 +299,7 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
 
     @Override // android.app.Activity
     @Deprecated
-    public void startIntentSenderForResult(@SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender.SendIntentException {
+    public void startIntentSenderForResult(@SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender$SendIntentException {
         super.startIntentSenderForResult(intentSender, i, intent, i2, i3, i4, bundle);
     }
 
@@ -421,9 +316,9 @@ public class ComponentActivity extends androidx.core.app.ComponentActivity imple
     }
 
     @Override // android.app.Activity
-    public void setContentView(@SuppressLint({"UnknownNullness", "MissingNullability"}) View view, @SuppressLint({"UnknownNullness", "MissingNullability"}) ViewGroup.LayoutParams layoutParams) {
+    public void setContentView(@SuppressLint({"UnknownNullness", "MissingNullability"}) View view, @SuppressLint({"UnknownNullness", "MissingNullability"}) ViewGroup$LayoutParams viewGroup$LayoutParams) {
         initViewTreeOwners();
-        super.setContentView(view, layoutParams);
+        super.setContentView(view, viewGroup$LayoutParams);
     }
 
     @ContentView

@@ -4,13 +4,13 @@ import android.widget.LinearLayout;
 import com.discord.models.domain.emoji.Emoji;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.widgets.chat.input.autocomplete.EmojiUpsellPlaceholder;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EmojiAutocompleteUpsellViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class EmojiAutocompleteUpsellViewHolder$bind$$inlined$map$lambda$1 extends AbstractC12240o implements Function1<Integer, String> {
+public final class EmojiAutocompleteUpsellViewHolder$bind$$inlined$map$lambda$1 extends o implements Function1<Integer, String> {
     public final /* synthetic */ EmojiUpsellPlaceholder $emojiUpsellPlaceholder$inlined;
     public final /* synthetic */ Emoji $it;
     public final /* synthetic */ EmojiAutocompleteUpsellViewHolder this$0;
@@ -32,8 +32,8 @@ public final class EmojiAutocompleteUpsellViewHolder$bind$$inlined$map$lambda$1 
         int mediaProxySize = IconUtils.getMediaProxySize(i);
         Emoji emoji = this.$it;
         boolean allowEmojiToAnimate = this.$emojiUpsellPlaceholder$inlined.getAllowEmojiToAnimate();
-        LinearLayout linearLayout = this.this$0.binding.f16117a;
-        C12238m.checkNotNullExpressionValue(linearLayout, "binding.root");
+        LinearLayout linearLayout = EmojiAutocompleteUpsellViewHolder.access$getBinding$p(this.this$0).a;
+        m.checkNotNullExpressionValue(linearLayout, "binding.root");
         return emoji.getImageUri(allowEmojiToAnimate, mediaProxySize, linearLayout.getContext());
     }
 }

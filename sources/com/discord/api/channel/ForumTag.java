@@ -1,8 +1,8 @@
 package com.discord.api.channel;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ForumTag.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,7 +21,7 @@ public final /* data */ class ForumTag {
             return false;
         }
         ForumTag forumTag = (ForumTag) other;
-        return this.id == forumTag.id && C12238m.areEqual(this.name, forumTag.name) && C12238m.areEqual(this.emojiId, forumTag.emojiId) && C12238m.areEqual(this.emojiName, forumTag.emojiName);
+        return this.id == forumTag.id && m.areEqual(this.name, forumTag.name) && m.areEqual(this.emojiId, forumTag.emojiId) && m.areEqual(this.emojiName, forumTag.emojiName);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -56,13 +56,13 @@ public final /* data */ class ForumTag {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ForumTag(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", emojiId=");
-        sbM833U.append(this.emojiId);
-        sbM833U.append(", emojiName=");
-        return C1643a.m822J(sbM833U, this.emojiName, ")");
+        StringBuilder sbU = a.U("ForumTag(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", emojiId=");
+        sbU.append(this.emojiId);
+        sbU.append(", emojiName=");
+        return a.J(sbU, this.emojiName, ")");
     }
 }

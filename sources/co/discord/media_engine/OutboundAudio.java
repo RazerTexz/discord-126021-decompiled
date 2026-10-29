@@ -1,7 +1,7 @@
 package co.discord.media_engine;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
+import a0.a.a.b;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: VoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -58,13 +58,13 @@ public final /* data */ class OutboundAudio {
     }
 
     public int hashCode() {
-        return (C0002b.m3a(this.packetsSent) * 31) + this.packetsLost;
+        return (b.a(this.packetsSent) * 31) + this.packetsLost;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("OutboundAudio(packetsSent=");
-        sbM833U.append(this.packetsSent);
-        sbM833U.append(", packetsLost=");
-        return C1643a.m814B(sbM833U, this.packetsLost, ")");
+        StringBuilder sbU = a.U("OutboundAudio(packetsSent=");
+        sbU.append(this.packetsSent);
+        sbU.append(", packetsLost=");
+        return a.B(sbU, this.packetsLost, ")");
     }
 }

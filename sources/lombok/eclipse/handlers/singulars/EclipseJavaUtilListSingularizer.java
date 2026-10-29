@@ -8,7 +8,9 @@ import lombok.core.configuration.CheckerFrameworkVersion;
 import lombok.eclipse.Eclipse;
 import lombok.eclipse.EclipseNode;
 import lombok.eclipse.handlers.EclipseHandlerUtil;
-import lombok.eclipse.handlers.EclipseSingularsRecipes;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$SingularData;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$StatementMaker;
+import lombok.eclipse.handlers.EclipseSingularsRecipes$TypeReferenceMaker;
 import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;
 import org.eclipse.jdt.internal.compiler.ast.Assignment;
 import org.eclipse.jdt.internal.compiler.ast.BreakStatement;
@@ -27,43 +29,43 @@ import org.eclipse.jdt.internal.compiler.ast.TypeReference;
 public class EclipseJavaUtilListSingularizer extends EclipseJavaUtilListSetSingularizer {
     private static final char[] EMPTY_LIST = {'e', 'm', 'p', 't', 'y', 'L', 'i', 's', 't'};
 
-    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public /* bridge */ /* synthetic */ List generateFields(EclipseSingularsRecipes.SingularData singularData, EclipseNode eclipseNode) {
-        return super.generateFields(singularData, eclipseNode);
+    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public /* bridge */ /* synthetic */ List generateFields(EclipseSingularsRecipes$SingularData eclipseSingularsRecipes$SingularData, EclipseNode eclipseNode) {
+        return super.generateFields(eclipseSingularsRecipes$SingularData, eclipseNode);
     }
 
-    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public /* bridge */ /* synthetic */ void generateMethods(CheckerFrameworkVersion checkerFrameworkVersion, EclipseSingularsRecipes.SingularData singularData, boolean z2, EclipseNode eclipseNode, boolean z3, EclipseSingularsRecipes.TypeReferenceMaker typeReferenceMaker, EclipseSingularsRecipes.StatementMaker statementMaker, AccessLevel accessLevel) {
-        super.generateMethods(checkerFrameworkVersion, singularData, z2, eclipseNode, z3, typeReferenceMaker, statementMaker, accessLevel);
+    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public /* bridge */ /* synthetic */ void generateMethods(CheckerFrameworkVersion checkerFrameworkVersion, EclipseSingularsRecipes$SingularData eclipseSingularsRecipes$SingularData, boolean z2, EclipseNode eclipseNode, boolean z3, EclipseSingularsRecipes$TypeReferenceMaker eclipseSingularsRecipes$TypeReferenceMaker, EclipseSingularsRecipes$StatementMaker eclipseSingularsRecipes$StatementMaker, AccessLevel accessLevel) {
+        super.generateMethods(checkerFrameworkVersion, eclipseSingularsRecipes$SingularData, z2, eclipseNode, z3, eclipseSingularsRecipes$TypeReferenceMaker, eclipseSingularsRecipes$StatementMaker, accessLevel);
     }
 
-    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public /* bridge */ /* synthetic */ List listFieldsToBeGenerated(EclipseSingularsRecipes.SingularData singularData, EclipseNode eclipseNode) {
-        return super.listFieldsToBeGenerated(singularData, eclipseNode);
+    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public /* bridge */ /* synthetic */ List listFieldsToBeGenerated(EclipseSingularsRecipes$SingularData eclipseSingularsRecipes$SingularData, EclipseNode eclipseNode) {
+        return super.listFieldsToBeGenerated(eclipseSingularsRecipes$SingularData, eclipseNode);
     }
 
-    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public /* bridge */ /* synthetic */ List listMethodsToBeGenerated(EclipseSingularsRecipes.SingularData singularData, EclipseNode eclipseNode) {
-        return super.listMethodsToBeGenerated(singularData, eclipseNode);
+    @Override // lombok.eclipse.handlers.singulars.EclipseJavaUtilListSetSingularizer, lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public /* bridge */ /* synthetic */ List listMethodsToBeGenerated(EclipseSingularsRecipes$SingularData eclipseSingularsRecipes$SingularData, EclipseNode eclipseNode) {
+        return super.listMethodsToBeGenerated(eclipseSingularsRecipes$SingularData, eclipseNode);
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
     public LombokImmutableList<String> getSupportedTypes() {
-        return LombokImmutableList.m10921of("java.util.List", "java.util.Collection", "java.lang.Iterable");
+        return LombokImmutableList.of("java.util.List", "java.util.Collection", "java.lang.Iterable");
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
     protected char[][] getEmptyMakerReceiver(String targetFqn) {
         return JAVA_UTIL_COLLECTIONS;
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
     protected char[] getEmptyMakerSelector(String targetFqn) {
         return EMPTY_LIST;
     }
 
-    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes.EclipseSingularizer
-    public void appendBuildCode(EclipseSingularsRecipes.SingularData data, EclipseNode builderType, List<Statement> statements, char[] targetVariableName, String builderVariable) {
+    @Override // lombok.eclipse.handlers.EclipseSingularsRecipes$EclipseSingularizer
+    public void appendBuildCode(EclipseSingularsRecipes$SingularData data, EclipseNode builderType, List<Statement> statements, char[] targetVariableName, String builderVariable) {
         if (useGuavaInstead(builderType)) {
             this.guavaListSetSingularizer.appendBuildCode(data, builderType, statements, targetVariableName, builderVariable);
             return;

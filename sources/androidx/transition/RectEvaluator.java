@@ -10,12 +10,17 @@ public class RectEvaluator implements TypeEvaluator<Rect> {
     public RectEvaluator() {
     }
 
+    @Override // android.animation.TypeEvaluator
+    public /* bridge */ /* synthetic */ Rect evaluate(float f, Rect rect, Rect rect2) {
+        return evaluate2(f, rect, rect2);
+    }
+
     public RectEvaluator(Rect rect) {
         this.mRect = rect;
     }
 
-    @Override // android.animation.TypeEvaluator
-    public Rect evaluate(float f, Rect rect, Rect rect2) {
+    /* JADX INFO: renamed from: evaluate, reason: avoid collision after fix types in other method */
+    public Rect evaluate2(float f, Rect rect, Rect rect2) {
         int i = rect.left;
         int i2 = i + ((int) ((rect2.left - i) * f));
         int i3 = rect.top;

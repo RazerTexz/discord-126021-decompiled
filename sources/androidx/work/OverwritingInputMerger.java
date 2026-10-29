@@ -10,13 +10,13 @@ public final class OverwritingInputMerger extends InputMerger {
     @Override // androidx.work.InputMerger
     @NonNull
     public Data merge(@NonNull List<Data> list) {
-        Data.Builder builder = new Data.Builder();
+        Data$Builder data$Builder = new Data$Builder();
         HashMap map = new HashMap();
         Iterator<Data> it = list.iterator();
         while (it.hasNext()) {
             map.putAll(it.next().getKeyValueMap());
         }
-        builder.putAll(map);
-        return builder.build();
+        data$Builder.putAll(map);
+        return data$Builder.build();
     }
 }

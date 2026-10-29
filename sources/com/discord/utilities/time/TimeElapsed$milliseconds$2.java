@@ -1,11 +1,11 @@
 package com.discord.utilities.time;
 
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: TimeElapsed.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class TimeElapsed$milliseconds$2 extends AbstractC12240o implements Function0<Long> {
+public final class TimeElapsed$milliseconds$2 extends o implements Function0<Long> {
     public final /* synthetic */ Clock $clock;
     public final /* synthetic */ TimeElapsed this$0;
 
@@ -23,6 +23,6 @@ public final class TimeElapsed$milliseconds$2 extends AbstractC12240o implements
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final long invoke2() {
-        return this.$clock.currentTimeMillis() - this.this$0.startTime;
+        return this.$clock.currentTimeMillis() - TimeElapsed.access$getStartTime$p(this.this$0);
     }
 }

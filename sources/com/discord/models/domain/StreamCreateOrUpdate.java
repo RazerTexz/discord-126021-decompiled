@@ -1,13 +1,8 @@
 package com.discord.models.domain;
 
-import java.io.IOException;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import kotlin.jvm.internal.Ref$BooleanRef;
-import kotlin.jvm.internal.Ref$ObjectRef;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
 
 /* JADX INFO: compiled from: ModelApplicationStream.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,90 +12,9 @@ public final /* data */ class StreamCreateOrUpdate {
     private final String streamKey;
     private final List<Long> viewerIds;
 
-    /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public final class Parser implements Model.Parser<StreamCreateOrUpdate> {
-        public static final Parser INSTANCE = new Parser();
-
-        private Parser() {
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // com.discord.models.domain.Model.Parser
-        public StreamCreateOrUpdate parse(final Model.JsonReader reader) throws IOException {
-            final Ref$ObjectRef ref$ObjectRefM844c0 = C1643a.m844c0(reader, "reader");
-            ref$ObjectRefM844c0.element = null;
-            final Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
-            ref$ObjectRef.element = null;
-            final Ref$BooleanRef ref$BooleanRef = new Ref$BooleanRef();
-            ref$BooleanRef.element = false;
-            final Ref$ObjectRef ref$ObjectRef2 = new Ref$ObjectRef();
-            ref$ObjectRef2.element = null;
-            reader.nextObject(new Action1<String>() { // from class: com.discord.models.domain.StreamCreateOrUpdate$Parser$parse$1
-                /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-                @Override // p658rx.functions.Action1
-                public final void call(String str) throws IOException {
-                    if (str != null) {
-                        switch (str.hashCode()) {
-                            case -1349214453:
-                                if (str.equals("viewer_ids")) {
-                                    ref$ObjectRef2.element = (T) reader.nextList(new Model.JsonReader.ItemFactory<Long>() { // from class: com.discord.models.domain.StreamCreateOrUpdate$Parser$parse$1.1
-                                        /* JADX WARN: Can't rename method to resolve collision */
-                                        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                                        public final Long get() {
-                                            return Long.valueOf(reader.nextLong(0L));
-                                        }
-                                    });
-                                    return;
-                                }
-                                break;
-                            case -1194435296:
-                                if (str.equals("stream_key")) {
-                                    Ref$ObjectRef ref$ObjectRef3 = ref$ObjectRefM844c0;
-                                    T t = (T) reader.nextStringOrNull();
-                                    C12238m.checkNotNull(t);
-                                    ref$ObjectRef3.element = t;
-                                    return;
-                                }
-                                break;
-                            case -995321554:
-                                if (str.equals("paused")) {
-                                    Ref$BooleanRef ref$BooleanRef2 = ref$BooleanRef;
-                                    Boolean boolNextBooleanOrNull = reader.nextBooleanOrNull();
-                                    C12238m.checkNotNullExpressionValue(boolNextBooleanOrNull, "reader.nextBooleanOrNull()");
-                                    ref$BooleanRef2.element = boolNextBooleanOrNull.booleanValue();
-                                    return;
-                                }
-                                break;
-                            case -490387655:
-                                if (str.equals("rtc_server_id")) {
-                                    ref$ObjectRef.element = (T) reader.nextStringOrNull();
-                                    return;
-                                }
-                                break;
-                        }
-                    }
-                    reader.skipValue();
-                }
-            });
-            T t = ref$ObjectRefM844c0.element;
-            if (t == 0) {
-                C12238m.throwUninitializedPropertyAccessException("streamKey");
-            }
-            String str = (String) t;
-            String str2 = (String) ref$ObjectRef.element;
-            boolean z2 = ref$BooleanRef.element;
-            List listEmptyList = (List) ref$ObjectRef2.element;
-            if (listEmptyList == null) {
-                listEmptyList = C12147n.emptyList();
-            }
-            return new StreamCreateOrUpdate(str, str2, z2, listEmptyList);
-        }
-    }
-
     public StreamCreateOrUpdate(String str, String str2, boolean z2, List<Long> list) {
-        C12238m.checkNotNullParameter(str, "streamKey");
-        C12238m.checkNotNullParameter(list, "viewerIds");
+        m.checkNotNullParameter(str, "streamKey");
+        m.checkNotNullParameter(list, "viewerIds");
         this.streamKey = str;
         this.rtcServerId = str2;
         this.paused = z2;
@@ -129,8 +43,8 @@ public final /* data */ class StreamCreateOrUpdate {
     }
 
     public final StreamCreateOrUpdate copy(String streamKey, String rtcServerId, boolean paused, List<Long> viewerIds) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
-        C12238m.checkNotNullParameter(viewerIds, "viewerIds");
+        m.checkNotNullParameter(streamKey, "streamKey");
+        m.checkNotNullParameter(viewerIds, "viewerIds");
         return new StreamCreateOrUpdate(streamKey, rtcServerId, paused, viewerIds);
     }
 
@@ -142,7 +56,7 @@ public final /* data */ class StreamCreateOrUpdate {
             return false;
         }
         StreamCreateOrUpdate streamCreateOrUpdate = (StreamCreateOrUpdate) other;
-        return C12238m.areEqual(this.streamKey, streamCreateOrUpdate.streamKey) && C12238m.areEqual(this.rtcServerId, streamCreateOrUpdate.rtcServerId) && this.paused == streamCreateOrUpdate.paused && C12238m.areEqual(this.viewerIds, streamCreateOrUpdate.viewerIds);
+        return m.areEqual(this.streamKey, streamCreateOrUpdate.streamKey) && m.areEqual(this.rtcServerId, streamCreateOrUpdate.rtcServerId) && this.paused == streamCreateOrUpdate.paused && m.areEqual(this.viewerIds, streamCreateOrUpdate.viewerIds);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -197,13 +111,13 @@ public final /* data */ class StreamCreateOrUpdate {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StreamCreateOrUpdate(streamKey=");
-        sbM833U.append(this.streamKey);
-        sbM833U.append(", rtcServerId=");
-        sbM833U.append(this.rtcServerId);
-        sbM833U.append(", paused=");
-        sbM833U.append(this.paused);
-        sbM833U.append(", viewerIds=");
-        return C1643a.m824L(sbM833U, this.viewerIds, ")");
+        StringBuilder sbU = a.U("StreamCreateOrUpdate(streamKey=");
+        sbU.append(this.streamKey);
+        sbU.append(", rtcServerId=");
+        sbU.append(this.rtcServerId);
+        sbU.append(", paused=");
+        sbU.append(this.paused);
+        sbU.append(", viewerIds=");
+        return a.L(sbU, this.viewerIds, ")");
     }
 }

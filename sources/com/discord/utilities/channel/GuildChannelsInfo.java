@@ -1,43 +1,31 @@
 package com.discord.utilities.channel;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
-import com.discord.api.channel.ChannelUtils$getSortByNameAndType$1;
-import com.discord.api.guild.GuildFeature;
-import com.discord.api.permission.Permission;
 import com.discord.api.role.GuildRole;
 import com.discord.models.domain.ModelNotificationSettings;
 import com.discord.models.guild.Guild;
-import com.discord.models.user.MeUser;
-import com.discord.stores.StoreStream;
-import com.discord.utilities.p501rx.ObservableWithLeadingEdgeThrottle;
 import com.discord.utilities.permissions.ManageGuildContext;
 import com.discord.utilities.permissions.PermissionUtils;
+import d0.t.n;
+import d0.t.r;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.concurrent.TimeUnit;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12160r;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.functions.Func8;
 
 /* JADX INFO: compiled from: GuildChannelsInfo.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildChannelsInfo {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final GuildChannelsInfo$Companion Companion = new GuildChannelsInfo$Companion(null);
     private final boolean ableToInstantInvite;
     private final boolean canChangeNickname;
     private final Map<Long, Long> channelPermissions;
@@ -50,64 +38,10 @@ public final /* data */ class GuildChannelsInfo {
     private final ModelNotificationSettings notificationSettings;
     private final boolean unelevated;
 
-    /* JADX INFO: compiled from: GuildChannelsInfo.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final Observable<GuildChannelsInfo> get(long guildId) {
-            StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<GuildChannelsInfo> observableM11112r = ObservableWithLeadingEdgeThrottle.combineLatest(companion.getUsers().observeMe(true), companion.getGuilds().observeGuild(guildId), companion.getUserGuildSettings().observeGuildSettings(guildId), companion.getUserGuildSettings().observeHideMutedChannels(guildId), companion.getGuilds().observeRoles(guildId), companion.getPermissions().observePermissionsForGuild(guildId), companion.getPermissions().observeChannelPermissionsForGuild(guildId), companion.getChannels().observeChannelCategories(guildId), new Func8<MeUser, Guild, ModelNotificationSettings, Boolean, Map<Long, ? extends GuildRole>, Long, Map<Long, ? extends Long>, List<? extends Channel>, GuildChannelsInfo>() { // from class: com.discord.utilities.channel.GuildChannelsInfo$Companion$get$1
-                @Override // p658rx.functions.Func8
-                public /* bridge */ /* synthetic */ GuildChannelsInfo call(MeUser meUser, Guild guild, ModelNotificationSettings modelNotificationSettings, Boolean bool, Map<Long, ? extends GuildRole> map, Long l, Map<Long, ? extends Long> map2, List<? extends Channel> list) {
-                    return call2(meUser, guild, modelNotificationSettings, bool, (Map<Long, GuildRole>) map, l, (Map<Long, Long>) map2, (List<Channel>) list);
-                }
-
-                /* JADX WARN: Code duplicated, block: B:25:0x0042  */
-                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                public final GuildChannelsInfo call2(MeUser meUser, Guild guild, ModelNotificationSettings modelNotificationSettings, Boolean bool, Map<Long, GuildRole> map, Long l, Map<Long, Long> map2, List<Channel> list) {
-                    boolean z2;
-                    Set<GuildFeature> features;
-                    boolean z3 = meUser != null && meUser.getMfaEnabled();
-                    int mfaLevel = guild != null ? guild.getMfaLevel() : 0;
-                    boolean zIsElevated = PermissionUtils.isElevated(16L, z3, mfaLevel);
-                    boolean z4 = zIsElevated && PermissionUtils.can(16L, l);
-                    if (PermissionUtils.can(1L, l)) {
-                        z2 = true;
-                    } else {
-                        if ((guild != null ? guild.getVanityUrlCode() : null) != null) {
-                            z2 = true;
-                        } else {
-                            z2 = false;
-                        }
-                    }
-                    GuildRole guildRole = guild != null ? (GuildRole) C1643a.m847e(guild, map) : null;
-                    boolean z5 = !zIsElevated && z4;
-                    boolean zContains = (guild == null || (features = guild.getFeatures()) == null) ? false : features.contains(GuildFeature.VERIFIED);
-                    ManageGuildContext.Companion companion2 = ManageGuildContext.INSTANCE;
-                    C12238m.checkNotNullExpressionValue(list, "categories");
-                    boolean z6 = ((guild != null ? Long.valueOf(guild.getOwnerId()) : null) == null || meUser == null || meUser.getId() != guild.getOwnerId()) ? false : true;
-                    C12238m.checkNotNullExpressionValue(map2, "channelPermissions");
-                    ManageGuildContext manageGuildContextFrom = companion2.from(list, z6, l, map2, mfaLevel, meUser != null ? meUser.getMfaEnabled() : false);
-                    boolean zCan = PermissionUtils.can(Permission.CHANGE_NICKNAME, l);
-                    C12238m.checkNotNullExpressionValue(modelNotificationSettings, "guildSettings");
-                    C12238m.checkNotNullExpressionValue(bool, "hideMuted");
-                    return new GuildChannelsInfo(guild, guildRole, modelNotificationSettings, bool.booleanValue(), map2, z2, z5, zContains, manageGuildContextFrom, zCan, map);
-                }
-            }, 500L, TimeUnit.MILLISECONDS).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r, "ObservableWithLeadingEdg…  .distinctUntilChanged()");
-            return observableM11112r;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public GuildChannelsInfo(Guild guild, GuildRole guildRole, ModelNotificationSettings modelNotificationSettings, boolean z2, Map<Long, Long> map, boolean z3, boolean z4, boolean z5, ManageGuildContext manageGuildContext, boolean z6, Map<Long, GuildRole> map2) {
-        C12238m.checkNotNullParameter(modelNotificationSettings, "notificationSettings");
-        C12238m.checkNotNullParameter(map, "channelPermissions");
-        C12238m.checkNotNullParameter(manageGuildContext, "manageGuildContext");
+        m.checkNotNullParameter(modelNotificationSettings, "notificationSettings");
+        m.checkNotNullParameter(map, "channelPermissions");
+        m.checkNotNullParameter(manageGuildContext, "manageGuildContext");
         this.guild = guild;
         this.everyoneRole = guildRole;
         this.notificationSettings = modelNotificationSettings;
@@ -129,10 +63,15 @@ public final /* data */ class GuildChannelsInfo {
         return this.channelPermissions;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ GuildChannelsInfo copy$default(GuildChannelsInfo guildChannelsInfo, Guild guild, GuildRole guildRole, ModelNotificationSettings modelNotificationSettings, boolean z2, Map map, boolean z3, boolean z4, boolean z5, ManageGuildContext manageGuildContext, boolean z6, Map map2, int i, Object obj) {
+        return guildChannelsInfo.copy((i & 1) != 0 ? guildChannelsInfo.guild : guild, (i & 2) != 0 ? guildChannelsInfo.everyoneRole : guildRole, (i & 4) != 0 ? guildChannelsInfo.notificationSettings : modelNotificationSettings, (i & 8) != 0 ? guildChannelsInfo.hideMutedChannels : z2, (i & 16) != 0 ? guildChannelsInfo.channelPermissions : map, (i & 32) != 0 ? guildChannelsInfo.ableToInstantInvite : z3, (i & 64) != 0 ? guildChannelsInfo.unelevated : z4, (i & 128) != 0 ? guildChannelsInfo.isVerifiedServer : z5, (i & 256) != 0 ? guildChannelsInfo.manageGuildContext : manageGuildContext, (i & 512) != 0 ? guildChannelsInfo.canChangeNickname : z6, (i & 1024) != 0 ? guildChannelsInfo.guildRoles : map2);
+    }
+
     public final GuildChannelsInfo copy(Guild guild, GuildRole everyoneRole, ModelNotificationSettings notificationSettings, boolean hideMutedChannels, Map<Long, Long> channelPermissions, boolean ableToInstantInvite, boolean unelevated, boolean isVerifiedServer, ManageGuildContext manageGuildContext, boolean canChangeNickname, Map<Long, GuildRole> guildRoles) {
-        C12238m.checkNotNullParameter(notificationSettings, "notificationSettings");
-        C12238m.checkNotNullParameter(channelPermissions, "channelPermissions");
-        C12238m.checkNotNullParameter(manageGuildContext, "manageGuildContext");
+        m.checkNotNullParameter(notificationSettings, "notificationSettings");
+        m.checkNotNullParameter(channelPermissions, "channelPermissions");
+        m.checkNotNullParameter(manageGuildContext, "manageGuildContext");
         return new GuildChannelsInfo(guild, everyoneRole, notificationSettings, hideMutedChannels, channelPermissions, ableToInstantInvite, unelevated, isVerifiedServer, manageGuildContext, canChangeNickname, guildRoles);
     }
 
@@ -144,7 +83,7 @@ public final /* data */ class GuildChannelsInfo {
             return false;
         }
         GuildChannelsInfo guildChannelsInfo = (GuildChannelsInfo) other;
-        return C12238m.areEqual(this.guild, guildChannelsInfo.guild) && C12238m.areEqual(this.everyoneRole, guildChannelsInfo.everyoneRole) && C12238m.areEqual(this.notificationSettings, guildChannelsInfo.notificationSettings) && this.hideMutedChannels == guildChannelsInfo.hideMutedChannels && C12238m.areEqual(this.channelPermissions, guildChannelsInfo.channelPermissions) && this.ableToInstantInvite == guildChannelsInfo.ableToInstantInvite && this.unelevated == guildChannelsInfo.unelevated && this.isVerifiedServer == guildChannelsInfo.isVerifiedServer && C12238m.areEqual(this.manageGuildContext, guildChannelsInfo.manageGuildContext) && this.canChangeNickname == guildChannelsInfo.canChangeNickname && C12238m.areEqual(this.guildRoles, guildChannelsInfo.guildRoles);
+        return m.areEqual(this.guild, guildChannelsInfo.guild) && m.areEqual(this.everyoneRole, guildChannelsInfo.everyoneRole) && m.areEqual(this.notificationSettings, guildChannelsInfo.notificationSettings) && this.hideMutedChannels == guildChannelsInfo.hideMutedChannels && m.areEqual(this.channelPermissions, guildChannelsInfo.channelPermissions) && this.ableToInstantInvite == guildChannelsInfo.ableToInstantInvite && this.unelevated == guildChannelsInfo.unelevated && this.isVerifiedServer == guildChannelsInfo.isVerifiedServer && m.areEqual(this.manageGuildContext, guildChannelsInfo.manageGuildContext) && this.canChangeNickname == guildChannelsInfo.canChangeNickname && m.areEqual(this.guildRoles, guildChannelsInfo.guildRoles);
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -223,20 +162,14 @@ public final /* data */ class GuildChannelsInfo {
         return this.notificationSettings;
     }
 
-    public final Map<Long, Collection<Channel>> getSortedCategories(final Map<Long, Channel> guildChannels) {
-        C12238m.checkNotNullParameter(guildChannels, "guildChannels");
-        TreeMap treeMap = new TreeMap(new Comparator<Long>() { // from class: com.discord.utilities.channel.GuildChannelsInfo$getSortedCategories$sortedCategories$1
-            /* JADX WARN: Multi-variable type inference failed */
-            @Override // java.util.Comparator
-            public final int compare(Long l, Long l2) {
-                return ((ChannelUtils$getSortByNameAndType$1) ChannelUtils.m7684h(Channel.INSTANCE)).compare(guildChannels.get(l), guildChannels.get(l2));
-            }
-        });
-        for (Channel channel : C12163u.filterNotNull(guildChannels.values())) {
-            Long lValueOf = Long.valueOf(ChannelUtils.m7687k(channel) ? channel.getId() : channel.getParentId());
+    public final Map<Long, Collection<Channel>> getSortedCategories(Map<Long, Channel> guildChannels) {
+        m.checkNotNullParameter(guildChannels, "guildChannels");
+        TreeMap treeMap = new TreeMap(new GuildChannelsInfo$getSortedCategories$sortedCategories$1(guildChannels));
+        for (Channel channel : u.filterNotNull(guildChannels.values())) {
+            Long lValueOf = Long.valueOf(ChannelUtils.k(channel) ? channel.getId() : channel.getParentId());
             Object treeSet = treeMap.get(lValueOf);
             if (treeSet == null) {
-                treeSet = new TreeSet(ChannelUtils.m7684h(Channel.INSTANCE));
+                treeSet = new TreeSet(ChannelUtils.h(Channel.Companion));
                 treeMap.put(lValueOf, treeSet);
             }
             ((Set) treeSet).add(channel);
@@ -245,23 +178,23 @@ public final /* data */ class GuildChannelsInfo {
     }
 
     public final List<Channel> getSortedVisibleChannels(Map<Long, Channel> guildChannels) {
-        C12238m.checkNotNullParameter(guildChannels, "guildChannels");
+        m.checkNotNullParameter(guildChannels, "guildChannels");
         Map<Long, Collection<Channel>> sortedCategories = getSortedCategories(guildChannels);
         ArrayList arrayList = new ArrayList();
-        Iterator<Map.Entry<Long, Collection<Channel>>> it = sortedCategories.entrySet().iterator();
+        Iterator<Map$Entry<Long, Collection<Channel>>> it = sortedCategories.entrySet().iterator();
         while (it.hasNext()) {
             Collection<Channel> value = it.next().getValue();
             List arrayList2 = new ArrayList();
             for (Object obj : value) {
                 Channel channel = (Channel) obj;
-                if (PermissionUtils.INSTANCE.hasAccess(channel, (Long) C1643a.m845d(channel, this.channelPermissions))) {
+                if (PermissionUtils.INSTANCE.hasAccess(channel, (Long) a.d(channel, this.channelPermissions))) {
                     arrayList2.add(obj);
                 }
             }
             if (arrayList2.size() == 1) {
-                arrayList2 = C12147n.emptyList();
+                arrayList2 = n.emptyList();
             }
-            C12160r.addAll(arrayList, arrayList2);
+            r.addAll(arrayList, arrayList2);
         }
         return arrayList;
     }
@@ -338,27 +271,27 @@ public final /* data */ class GuildChannelsInfo {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildChannelsInfo(guild=");
-        sbM833U.append(this.guild);
-        sbM833U.append(", everyoneRole=");
-        sbM833U.append(this.everyoneRole);
-        sbM833U.append(", notificationSettings=");
-        sbM833U.append(this.notificationSettings);
-        sbM833U.append(", hideMutedChannels=");
-        sbM833U.append(this.hideMutedChannels);
-        sbM833U.append(", channelPermissions=");
-        sbM833U.append(this.channelPermissions);
-        sbM833U.append(", ableToInstantInvite=");
-        sbM833U.append(this.ableToInstantInvite);
-        sbM833U.append(", unelevated=");
-        sbM833U.append(this.unelevated);
-        sbM833U.append(", isVerifiedServer=");
-        sbM833U.append(this.isVerifiedServer);
-        sbM833U.append(", manageGuildContext=");
-        sbM833U.append(this.manageGuildContext);
-        sbM833U.append(", canChangeNickname=");
-        sbM833U.append(this.canChangeNickname);
-        sbM833U.append(", guildRoles=");
-        return C1643a.m825M(sbM833U, this.guildRoles, ")");
+        StringBuilder sbU = a.U("GuildChannelsInfo(guild=");
+        sbU.append(this.guild);
+        sbU.append(", everyoneRole=");
+        sbU.append(this.everyoneRole);
+        sbU.append(", notificationSettings=");
+        sbU.append(this.notificationSettings);
+        sbU.append(", hideMutedChannels=");
+        sbU.append(this.hideMutedChannels);
+        sbU.append(", channelPermissions=");
+        sbU.append(this.channelPermissions);
+        sbU.append(", ableToInstantInvite=");
+        sbU.append(this.ableToInstantInvite);
+        sbU.append(", unelevated=");
+        sbU.append(this.unelevated);
+        sbU.append(", isVerifiedServer=");
+        sbU.append(this.isVerifiedServer);
+        sbU.append(", manageGuildContext=");
+        sbU.append(this.manageGuildContext);
+        sbU.append(", canChangeNickname=");
+        sbU.append(this.canChangeNickname);
+        sbU.append(", guildRoles=");
+        return a.M(sbU, this.guildRoles, ")");
     }
 }

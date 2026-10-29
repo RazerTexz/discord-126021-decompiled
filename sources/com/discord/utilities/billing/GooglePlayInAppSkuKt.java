@@ -1,8 +1,8 @@
 package com.discord.utilities.billing;
 
 import com.discord.models.domain.ModelSkuKt;
+import d0.t.n;
 import java.util.List;
-import p507d0.p580t.C12147n;
 
 /* JADX INFO: compiled from: GooglePlayInAppSku.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -25,7 +25,7 @@ public final class GooglePlayInAppSkuKt {
         premiumTier2Month = googlePlayInAppSku3;
         GooglePlayInAppSku googlePlayInAppSku4 = new GooglePlayInAppSku("premium_year_tier_2", inAppSkuType, null, lValueOf2, 4, null);
         premiumTier2Year = googlePlayInAppSku4;
-        premiumGifts = C12147n.listOf((Object[]) new GooglePlayInAppSku[]{googlePlayInAppSku, googlePlayInAppSku2, googlePlayInAppSku3, googlePlayInAppSku4});
+        premiumGifts = n.listOf((Object[]) new GooglePlayInAppSku[]{googlePlayInAppSku, googlePlayInAppSku2, googlePlayInAppSku3, googlePlayInAppSku4});
     }
 
     public static final List<GooglePlayInAppSku> getPremiumGifts() {

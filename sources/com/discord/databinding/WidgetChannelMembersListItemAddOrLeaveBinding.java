@@ -9,51 +9,49 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
-import com.discord.C5419R;
+import com.discord.R$id;
+import com.discord.R$layout;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelMembersListItemAddOrLeaveBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15853a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f15854b;
+    public final ImageView f2258b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15855c;
+    public final TextView c;
 
     public WidgetChannelMembersListItemAddOrLeaveBinding(@NonNull LinearLayout linearLayout, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f15853a = linearLayout;
-        this.f15854b = imageView;
-        this.f15855c = textView;
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15853a;
+        this.a = linearLayout;
+        this.f2258b = imageView;
+        this.c = textView;
     }
 
     @NonNull
-    /* JADX INFO: renamed from: a */
-    public static WidgetChannelMembersListItemAddOrLeaveBinding m8403a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
-        View viewInflate = layoutInflater.inflate(C5419R.layout.widget_channel_members_list_item_add_or_leave, viewGroup, false);
+    public static WidgetChannelMembersListItemAddOrLeaveBinding a(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, boolean z2) {
+        View viewInflate = layoutInflater.inflate(R$layout.widget_channel_members_list_item_add_or_leave, viewGroup, false);
         if (z2) {
             viewGroup.addView(viewInflate);
         }
-        int i = C5419R.id.channel_members_list_item_add_or_leave;
-        ImageView imageView = (ImageView) viewInflate.findViewById(C5419R.id.channel_members_list_item_add_or_leave);
+        int i = R$id.channel_members_list_item_add_or_leave;
+        ImageView imageView = (ImageView) viewInflate.findViewById(R$id.channel_members_list_item_add_or_leave);
         if (imageView != null) {
-            i = C5419R.id.channel_members_list_item_add_or_leave_title;
-            TextView textView = (TextView) viewInflate.findViewById(C5419R.id.channel_members_list_item_add_or_leave_title);
+            i = R$id.channel_members_list_item_add_or_leave_title;
+            TextView textView = (TextView) viewInflate.findViewById(R$id.channel_members_list_item_add_or_leave_title);
             if (textView != null) {
                 return new WidgetChannelMembersListItemAddOrLeaveBinding((LinearLayout) viewInflate, imageView, textView);
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewInflate.getResources().getResourceName(i)));
+    }
+
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.a;
     }
 }

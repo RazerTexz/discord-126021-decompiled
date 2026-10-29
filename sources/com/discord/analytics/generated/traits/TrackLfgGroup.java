@@ -1,8 +1,8 @@
 package com.discord.analytics.generated.traits;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLfgGroup.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackLfgGroup {
             return false;
         }
         TrackLfgGroup trackLfgGroup = (TrackLfgGroup) other;
-        return C12238m.areEqual(this.gameName, trackLfgGroup.gameName) && C12238m.areEqual(this.gameId, trackLfgGroup.gameId) && C12238m.areEqual(this.totalSize, trackLfgGroup.totalSize) && C12238m.areEqual(this.freeSize, trackLfgGroup.freeSize) && C12238m.areEqual(this.ownerId, trackLfgGroup.ownerId) && C12238m.areEqual(this.title, trackLfgGroup.title) && C12238m.areEqual(this.description, trackLfgGroup.description);
+        return m.areEqual(this.gameName, trackLfgGroup.gameName) && m.areEqual(this.gameId, trackLfgGroup.gameId) && m.areEqual(this.totalSize, trackLfgGroup.totalSize) && m.areEqual(this.freeSize, trackLfgGroup.freeSize) && m.areEqual(this.ownerId, trackLfgGroup.ownerId) && m.areEqual(this.title, trackLfgGroup.title) && m.areEqual(this.description, trackLfgGroup.description);
     }
 
     public int hashCode() {
@@ -44,19 +44,19 @@ public final /* data */ class TrackLfgGroup {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackLfgGroup(gameName=");
-        sbM833U.append(this.gameName);
-        sbM833U.append(", gameId=");
-        sbM833U.append(this.gameId);
-        sbM833U.append(", totalSize=");
-        sbM833U.append(this.totalSize);
-        sbM833U.append(", freeSize=");
-        sbM833U.append(this.freeSize);
-        sbM833U.append(", ownerId=");
-        sbM833U.append(this.ownerId);
-        sbM833U.append(", title=");
-        sbM833U.append(this.title);
-        sbM833U.append(", description=");
-        return C1643a.m817E(sbM833U, this.description, ")");
+        StringBuilder sbU = a.U("TrackLfgGroup(gameName=");
+        sbU.append(this.gameName);
+        sbU.append(", gameId=");
+        sbU.append(this.gameId);
+        sbU.append(", totalSize=");
+        sbU.append(this.totalSize);
+        sbU.append(", freeSize=");
+        sbU.append(this.freeSize);
+        sbU.append(", ownerId=");
+        sbU.append(this.ownerId);
+        sbU.append(", title=");
+        sbU.append(this.title);
+        sbU.append(", description=");
+        return a.E(sbU, this.description, ")");
     }
 }

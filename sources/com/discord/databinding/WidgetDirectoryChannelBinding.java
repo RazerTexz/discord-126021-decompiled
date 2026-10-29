@@ -6,49 +6,44 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewpager2.widget.ViewPager2;
+import b.a.i.d5;
 import com.discord.views.directories.ServerDiscoveryHeader;
 import com.google.android.material.tabs.TabLayout;
-import p007b.p008a.p025i.C0941d5;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetDirectoryChannelBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16461a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final Toolbar f16462b;
+    public final Toolbar f2365b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ServerDiscoveryHeader f16463c;
+    public final ServerDiscoveryHeader c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TabLayout f16464d;
+    public final TabLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ViewPager2 f16465e;
+    public final ViewPager2 e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final C0941d5 f16466f;
+    public final d5 f;
 
-    public WidgetDirectoryChannelBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull Toolbar toolbar, @NonNull ServerDiscoveryHeader serverDiscoveryHeader, @NonNull TabLayout tabLayout, @NonNull ViewPager2 viewPager2, @NonNull C0941d5 c0941d5) {
-        this.f16461a = coordinatorLayout;
-        this.f16462b = toolbar;
-        this.f16463c = serverDiscoveryHeader;
-        this.f16464d = tabLayout;
-        this.f16465e = viewPager2;
-        this.f16466f = c0941d5;
+    public WidgetDirectoryChannelBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull Toolbar toolbar, @NonNull ServerDiscoveryHeader serverDiscoveryHeader, @NonNull TabLayout tabLayout, @NonNull ViewPager2 viewPager2, @NonNull d5 d5Var) {
+        this.a = coordinatorLayout;
+        this.f2365b = toolbar;
+        this.c = serverDiscoveryHeader;
+        this.d = tabLayout;
+        this.e = viewPager2;
+        this.f = d5Var;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16461a;
+        return this.a;
     }
 }

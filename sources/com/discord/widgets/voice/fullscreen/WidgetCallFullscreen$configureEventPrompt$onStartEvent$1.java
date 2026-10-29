@@ -3,13 +3,16 @@ package com.discord.widgets.voice.fullscreen;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.widgets.guildscheduledevent.GuildScheduledEventModelKt;
 import com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent;
+import com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$Companion;
+import com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$Companion$Action;
+import com.discord.widgets.guildscheduledevent.WidgetPreviewGuildScheduledEvent$Companion$ExistingEventData;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetCallFullscreen.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetCallFullscreen$configureEventPrompt$onStartEvent$1 extends AbstractC12240o implements Function0<Unit> {
+public final class WidgetCallFullscreen$configureEventPrompt$onStartEvent$1 extends o implements Function0<Unit> {
     public final /* synthetic */ GuildScheduledEvent $startableEvent;
     public final /* synthetic */ WidgetCallFullscreen this$0;
 
@@ -23,7 +26,7 @@ public final class WidgetCallFullscreen$configureEventPrompt$onStartEvent$1 exte
     @Override // kotlin.jvm.functions.Function0
     public /* bridge */ /* synthetic */ Unit invoke() {
         invoke2();
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
@@ -31,6 +34,6 @@ public final class WidgetCallFullscreen$configureEventPrompt$onStartEvent$1 exte
         if (this.$startableEvent == null) {
             return;
         }
-        WidgetPreviewGuildScheduledEvent.INSTANCE.launch(this.this$0.requireContext(), GuildScheduledEventModelKt.toModel(this.$startableEvent), (24 & 4) != 0 ? null : new WidgetPreviewGuildScheduledEvent.Companion.ExistingEventData(this.$startableEvent.getId(), WidgetPreviewGuildScheduledEvent.Companion.Action.START_EVENT), (24 & 8) != 0 ? null : null, (24 & 16) != 0 ? false : false);
+        WidgetPreviewGuildScheduledEvent$Companion.launch$default(WidgetPreviewGuildScheduledEvent.Companion, this.this$0.requireContext(), GuildScheduledEventModelKt.toModel(this.$startableEvent), new WidgetPreviewGuildScheduledEvent$Companion$ExistingEventData(this.$startableEvent.getId(), WidgetPreviewGuildScheduledEvent$Companion$Action.START_EVENT), null, false, 24, null);
     }
 }

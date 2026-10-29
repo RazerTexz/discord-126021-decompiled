@@ -1,7 +1,7 @@
 package androidx.core.app;
 
 import android.app.Dialog;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.View;
 import androidx.annotation.NonNull;
 
@@ -12,7 +12,7 @@ public class DialogCompat {
 
     @NonNull
     public static View requireViewById(@NonNull Dialog dialog, int i) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             return dialog.requireViewById(i);
         }
         View viewFindViewById = dialog.findViewById(i);

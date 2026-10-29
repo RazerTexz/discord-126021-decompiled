@@ -1,12 +1,12 @@
 package com.discord.widgets.user.search;
 
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$getForSend$2 extends AbstractC12240o implements Function1<WidgetGlobalSearchModel.SearchContext, Long> {
+public final class WidgetGlobalSearchModel$Companion$getForSend$2 extends o implements Function1<WidgetGlobalSearchModel$SearchContext, Long> {
     public static final WidgetGlobalSearchModel$Companion$getForSend$2 INSTANCE = new WidgetGlobalSearchModel$Companion$getForSend$2();
 
     public WidgetGlobalSearchModel$Companion$getForSend$2() {
@@ -14,13 +14,13 @@ public final class WidgetGlobalSearchModel$Companion$getForSend$2 extends Abstra
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Long invoke(WidgetGlobalSearchModel.SearchContext searchContext) {
-        return Long.valueOf(invoke2(searchContext));
+    public /* bridge */ /* synthetic */ Long invoke(WidgetGlobalSearchModel$SearchContext widgetGlobalSearchModel$SearchContext) {
+        return Long.valueOf(invoke2(widgetGlobalSearchModel$SearchContext));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final long invoke2(WidgetGlobalSearchModel.SearchContext searchContext) {
-        C12238m.checkNotNullParameter(searchContext, "it");
-        return searchContext.getSelectedChannelId();
+    public final long invoke2(WidgetGlobalSearchModel$SearchContext widgetGlobalSearchModel$SearchContext) {
+        m.checkNotNullParameter(widgetGlobalSearchModel$SearchContext, "it");
+        return widgetGlobalSearchModel$SearchContext.getSelectedChannelId();
     }
 }

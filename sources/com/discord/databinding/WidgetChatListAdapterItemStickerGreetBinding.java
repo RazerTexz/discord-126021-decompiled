@@ -10,27 +10,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemStickerGreetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16299a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final StickerView f16300b;
+    public final StickerView f2335b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f16301c;
+    public final MaterialButton c;
 
     public WidgetChatListAdapterItemStickerGreetBinding(@NonNull LinearLayout linearLayout, @NonNull StickerView stickerView, @NonNull MaterialButton materialButton) {
-        this.f16299a = linearLayout;
-        this.f16300b = stickerView;
-        this.f16301c = materialButton;
+        this.a = linearLayout;
+        this.f2335b = stickerView;
+        this.c = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16299a;
+        return this.a;
     }
 }

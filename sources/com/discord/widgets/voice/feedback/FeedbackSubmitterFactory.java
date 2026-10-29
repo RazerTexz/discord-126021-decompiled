@@ -1,11 +1,10 @@
 package com.discord.widgets.voice.feedback;
 
-import com.discord.stores.StoreAnalytics;
 import com.discord.widgets.guild_delete_feedback.GuildDeleteFeedbackSubmitter;
 import com.discord.widgets.voice.feedback.call.CallFeedbackSubmitter;
 import com.discord.widgets.voice.feedback.stream.StreamFeedbackSubmitter;
+import d0.z.d.m;
 import kotlin.NoWhenBranchMatchedException;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: FeedbackSubmitterFactory.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,22 +14,16 @@ public final class FeedbackSubmitterFactory {
     private FeedbackSubmitterFactory() {
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
     public final FeedbackSubmitter create(PendingFeedback pendingFeedback) {
-        C12238m.checkNotNullParameter(pendingFeedback, "pendingFeedback");
-        int i = 2;
-        StoreAnalytics storeAnalytics = null;
-        Object[] objArr = 0;
-        Object[] objArr2 = 0;
-        Object[] objArr3 = 0;
-        if (pendingFeedback instanceof PendingFeedback.CallFeedback) {
-            return new CallFeedbackSubmitter((PendingFeedback.CallFeedback) pendingFeedback, storeAnalytics, i, objArr3 == true ? 1 : 0);
+        m.checkNotNullParameter(pendingFeedback, "pendingFeedback");
+        if (pendingFeedback instanceof PendingFeedback$CallFeedback) {
+            return new CallFeedbackSubmitter((PendingFeedback$CallFeedback) pendingFeedback, null, 2, null);
         }
-        if (pendingFeedback instanceof PendingFeedback.StreamFeedback) {
-            return new StreamFeedbackSubmitter((PendingFeedback.StreamFeedback) pendingFeedback, objArr2 == true ? 1 : 0, i, objArr == true ? 1 : 0);
+        if (pendingFeedback instanceof PendingFeedback$StreamFeedback) {
+            return new StreamFeedbackSubmitter((PendingFeedback$StreamFeedback) pendingFeedback, null, 2, null);
         }
-        if (pendingFeedback instanceof PendingFeedback.GuildDeleteFeedback) {
-            return new GuildDeleteFeedbackSubmitter((PendingFeedback.GuildDeleteFeedback) pendingFeedback);
+        if (pendingFeedback instanceof PendingFeedback$GuildDeleteFeedback) {
+            return new GuildDeleteFeedbackSubmitter((PendingFeedback$GuildDeleteFeedback) pendingFeedback);
         }
         throw new NoWhenBranchMatchedException();
     }

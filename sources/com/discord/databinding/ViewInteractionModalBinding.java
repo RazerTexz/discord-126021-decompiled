@@ -14,52 +14,45 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewInteractionModalBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15499a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f15500b;
+    public final ImageView f2200b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final LinearLayout f15501c;
+    public final LinearLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final LinearLayout f15502d;
+    public final LinearLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final SimpleDraweeView f15503e;
+    public final SimpleDraweeView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final MaterialButton f15504f;
+    public final MaterialButton f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f15505g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f15506h;
+    public final TextView h;
 
     public ViewInteractionModalBinding(@NonNull LinearLayout linearLayout, @NonNull ImageView imageView, @NonNull LinearLayout linearLayout2, @NonNull ScrollView scrollView, @NonNull LinearLayout linearLayout3, @NonNull SimpleDraweeView simpleDraweeView, @NonNull MaterialButton materialButton, @NonNull TextView textView, @NonNull ConstraintLayout constraintLayout, @NonNull TextView textView2) {
-        this.f15499a = linearLayout;
-        this.f15500b = imageView;
-        this.f15501c = linearLayout2;
-        this.f15502d = linearLayout3;
-        this.f15503e = simpleDraweeView;
-        this.f15504f = materialButton;
-        this.f15505g = textView;
-        this.f15506h = textView2;
+        this.a = linearLayout;
+        this.f2200b = imageView;
+        this.c = linearLayout2;
+        this.d = linearLayout3;
+        this.e = simpleDraweeView;
+        this.f = materialButton;
+        this.g = textView;
+        this.h = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15499a;
+        return this.a;
     }
 }

@@ -5,10 +5,11 @@ import android.graphics.Rect;
 import android.text.method.TransformationMethod;
 import android.view.View;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.Locale;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class AllCapsTransformationMethod implements TransformationMethod {
     private Locale mLocale;
 

@@ -1,8 +1,8 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelUserConsents.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,9 +10,8 @@ public final /* data */ class Consent {
     private final String changedAt;
     private final boolean consented;
 
-    /* JADX WARN: Multi-variable type inference failed */
     public Consent() {
-        this(false, null, 3, 0 == true ? 1 : 0);
+        this(false, null, 3, null);
     }
 
     public Consent(boolean z2, String str) {
@@ -42,7 +41,7 @@ public final /* data */ class Consent {
             return false;
         }
         Consent consent = (Consent) other;
-        return this.consented == consent.consented && C12238m.areEqual(this.changedAt, consent.changedAt);
+        return this.consented == consent.consented && m.areEqual(this.changedAt, consent.changedAt);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -79,10 +78,10 @@ public final /* data */ class Consent {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Consent(consented=");
-        sbM833U.append(this.consented);
-        sbM833U.append(", changedAt=");
-        return C1643a.m822J(sbM833U, this.changedAt, ")");
+        StringBuilder sbU = a.U("Consent(consented=");
+        sbU.append(this.consented);
+        sbU.append(", changedAt=");
+        return a.J(sbU, this.changedAt, ")");
     }
 
     public /* synthetic */ Consent(boolean z2, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {

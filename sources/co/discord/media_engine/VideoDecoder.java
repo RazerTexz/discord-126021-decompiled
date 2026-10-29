@@ -1,10 +1,10 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.Map;
 import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Codecs.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,8 +17,8 @@ public final /* data */ class VideoDecoder {
     private final int type;
 
     public VideoDecoder(String str, int i, int i2, Map<String, String> map) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(map, "params");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(map, "params");
         this.name = str;
         this.type = i;
         this.rtxType = i2;
@@ -53,8 +53,8 @@ public final /* data */ class VideoDecoder {
     }
 
     public final VideoDecoder copy(String name, int type, int rtxType, Map<String, String> params) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(params, "params");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(params, "params");
         return new VideoDecoder(name, type, rtxType, params);
     }
 
@@ -66,7 +66,7 @@ public final /* data */ class VideoDecoder {
             return false;
         }
         VideoDecoder videoDecoder = (VideoDecoder) other;
-        return C12238m.areEqual(this.name, videoDecoder.name) && this.type == videoDecoder.type && this.rtxType == videoDecoder.rtxType && C12238m.areEqual(this.params, videoDecoder.params);
+        return m.areEqual(this.name, videoDecoder.name) && this.type == videoDecoder.type && this.rtxType == videoDecoder.rtxType && m.areEqual(this.params, videoDecoder.params);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -116,13 +116,13 @@ public final /* data */ class VideoDecoder {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("VideoDecoder(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", rtxType=");
-        sbM833U.append(this.rtxType);
-        sbM833U.append(", params=");
-        return C1643a.m825M(sbM833U, this.params, ")");
+        StringBuilder sbU = a.U("VideoDecoder(name=");
+        sbU.append(this.name);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", rtxType=");
+        sbU.append(this.rtxType);
+        sbU.append(", params=");
+        return a.M(sbU, this.params, ")");
     }
 }

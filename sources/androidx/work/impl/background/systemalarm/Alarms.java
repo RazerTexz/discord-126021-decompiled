@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.app.NotificationCompat;
 import androidx.work.Logger;
 import androidx.work.impl.WorkDatabase;
@@ -14,7 +15,7 @@ import androidx.work.impl.model.SystemIdInfoDao;
 import androidx.work.impl.utils.IdGenerator;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class Alarms {
     private static final String TAG = Logger.tagWithPrefix("Alarms");
 

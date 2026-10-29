@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackHomeEventClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,6 +18,11 @@ public final /* data */ class TrackHomeEventClicked implements AnalyticsSchema, 
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "home_event_clicked";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -26,7 +31,7 @@ public final /* data */ class TrackHomeEventClicked implements AnalyticsSchema, 
             return false;
         }
         TrackHomeEventClicked trackHomeEventClicked = (TrackHomeEventClicked) other;
-        return C12238m.areEqual(this.guildScheduledEventId, trackHomeEventClicked.guildScheduledEventId) && C12238m.areEqual(this.homeSessionId, trackHomeEventClicked.homeSessionId) && C12238m.areEqual(this.isActive, trackHomeEventClicked.isActive);
+        return m.areEqual(this.guildScheduledEventId, trackHomeEventClicked.guildScheduledEventId) && m.areEqual(this.homeSessionId, trackHomeEventClicked.homeSessionId) && m.areEqual(this.isActive, trackHomeEventClicked.isActive);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -50,18 +55,12 @@ public final /* data */ class TrackHomeEventClicked implements AnalyticsSchema, 
         return iHashCode2 + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackHomeEventClicked(guildScheduledEventId=");
-        sbM833U.append(this.guildScheduledEventId);
-        sbM833U.append(", homeSessionId=");
-        sbM833U.append(this.homeSessionId);
-        sbM833U.append(", isActive=");
-        return C1643a.m816D(sbM833U, this.isActive, ")");
+        StringBuilder sbU = a.U("TrackHomeEventClicked(guildScheduledEventId=");
+        sbU.append(this.guildScheduledEventId);
+        sbU.append(", homeSessionId=");
+        sbU.append(this.homeSessionId);
+        sbU.append(", isActive=");
+        return a.D(sbU, this.isActive, ")");
     }
 }

@@ -6,7 +6,7 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.view.Lifecycle;
+import androidx.view.Lifecycle$Event;
 import androidx.view.LifecycleEventObserver;
 import androidx.view.LifecycleOwner;
 import java.lang.reflect.Field;
@@ -46,8 +46,8 @@ public final class ImmLeaksCleaner implements LifecycleEventObserver {
     }
 
     @Override // androidx.view.LifecycleEventObserver
-    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-        if (event != Lifecycle.Event.ON_DESTROY) {
+    public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle$Event lifecycle$Event) {
+        if (lifecycle$Event != Lifecycle$Event.ON_DESTROY) {
             return;
         }
         if (sReflectedFieldsInitialized == 0) {

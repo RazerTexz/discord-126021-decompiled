@@ -12,27 +12,25 @@ import com.google.android.material.appbar.AppBarLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildRoleSubscriptionEntryPointBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16921a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16922b;
+    public final TextView f2434b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16923c;
+    public final TextView c;
 
     public WidgetGuildRoleSubscriptionEntryPointBinding(@NonNull ConstraintLayout constraintLayout, @NonNull Toolbar toolbar, @NonNull AppBarLayout appBarLayout, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull TextView textView2) {
-        this.f16921a = constraintLayout;
-        this.f16922b = textView;
-        this.f16923c = textView2;
+        this.a = constraintLayout;
+        this.f2434b = textView;
+        this.c = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16921a;
+        return this.a;
     }
 }

@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPaymentBlocked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -48,7 +48,7 @@ public final /* data */ class TrackPaymentBlocked implements AnalyticsSchema, Tr
             return false;
         }
         TrackPaymentBlocked trackPaymentBlocked = (TrackPaymentBlocked) other;
-        return C12238m.areEqual(this.paymentId, trackPaymentBlocked.paymentId) && C12238m.areEqual(this.createdAt, trackPaymentBlocked.createdAt) && C12238m.areEqual(this.paymentType, trackPaymentBlocked.paymentType) && C12238m.areEqual(this.paymentGateway, trackPaymentBlocked.paymentGateway) && C12238m.areEqual(this.price, trackPaymentBlocked.price) && C12238m.areEqual(this.currency, trackPaymentBlocked.currency) && C12238m.areEqual(this.amount, trackPaymentBlocked.amount) && C12238m.areEqual(this.amountRefunded, trackPaymentBlocked.amountRefunded) && C12238m.areEqual(this.tax, trackPaymentBlocked.tax) && C12238m.areEqual(this.taxInclusive, trackPaymentBlocked.taxInclusive) && C12238m.areEqual(this.skuId, trackPaymentBlocked.skuId) && C12238m.areEqual(this.skuType, trackPaymentBlocked.skuType) && C12238m.areEqual(this.skuSubscriptionPlanId, trackPaymentBlocked.skuSubscriptionPlanId) && C12238m.areEqual(this.subscriptionId, trackPaymentBlocked.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackPaymentBlocked.subscriptionType) && C12238m.areEqual(this.subscriptionPaymentGatewayPlanId, trackPaymentBlocked.subscriptionPaymentGatewayPlanId) && C12238m.areEqual(this.subscriptionPlanId, trackPaymentBlocked.subscriptionPlanId) && C12238m.areEqual(this.subscriptionCreatedAt, trackPaymentBlocked.subscriptionCreatedAt) && C12238m.areEqual(this.subscriptionCurrentPeriodStart, trackPaymentBlocked.subscriptionCurrentPeriodStart) && C12238m.areEqual(this.subscriptionCurrentPeriodEnd, trackPaymentBlocked.subscriptionCurrentPeriodEnd) && C12238m.areEqual(this.paymentSourceId, trackPaymentBlocked.paymentSourceId) && C12238m.areEqual(this.paymentSourceCountry, trackPaymentBlocked.paymentSourceCountry) && C12238m.areEqual(this.failureMessage, trackPaymentBlocked.failureMessage) && C12238m.areEqual(this.loadId, trackPaymentBlocked.loadId) && C12238m.areEqual(this.isGift, trackPaymentBlocked.isGift) && C12238m.areEqual(this.reason, trackPaymentBlocked.reason) && C12238m.areEqual(this.captured, trackPaymentBlocked.captured);
+        return m.areEqual(this.paymentId, trackPaymentBlocked.paymentId) && m.areEqual(this.createdAt, trackPaymentBlocked.createdAt) && m.areEqual(this.paymentType, trackPaymentBlocked.paymentType) && m.areEqual(this.paymentGateway, trackPaymentBlocked.paymentGateway) && m.areEqual(this.price, trackPaymentBlocked.price) && m.areEqual(this.currency, trackPaymentBlocked.currency) && m.areEqual(this.amount, trackPaymentBlocked.amount) && m.areEqual(this.amountRefunded, trackPaymentBlocked.amountRefunded) && m.areEqual(this.tax, trackPaymentBlocked.tax) && m.areEqual(this.taxInclusive, trackPaymentBlocked.taxInclusive) && m.areEqual(this.skuId, trackPaymentBlocked.skuId) && m.areEqual(this.skuType, trackPaymentBlocked.skuType) && m.areEqual(this.skuSubscriptionPlanId, trackPaymentBlocked.skuSubscriptionPlanId) && m.areEqual(this.subscriptionId, trackPaymentBlocked.subscriptionId) && m.areEqual(this.subscriptionType, trackPaymentBlocked.subscriptionType) && m.areEqual(this.subscriptionPaymentGatewayPlanId, trackPaymentBlocked.subscriptionPaymentGatewayPlanId) && m.areEqual(this.subscriptionPlanId, trackPaymentBlocked.subscriptionPlanId) && m.areEqual(this.subscriptionCreatedAt, trackPaymentBlocked.subscriptionCreatedAt) && m.areEqual(this.subscriptionCurrentPeriodStart, trackPaymentBlocked.subscriptionCurrentPeriodStart) && m.areEqual(this.subscriptionCurrentPeriodEnd, trackPaymentBlocked.subscriptionCurrentPeriodEnd) && m.areEqual(this.paymentSourceId, trackPaymentBlocked.paymentSourceId) && m.areEqual(this.paymentSourceCountry, trackPaymentBlocked.paymentSourceCountry) && m.areEqual(this.failureMessage, trackPaymentBlocked.failureMessage) && m.areEqual(this.loadId, trackPaymentBlocked.loadId) && m.areEqual(this.isGift, trackPaymentBlocked.isGift) && m.areEqual(this.reason, trackPaymentBlocked.reason) && m.areEqual(this.captured, trackPaymentBlocked.captured);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -115,59 +115,59 @@ public final /* data */ class TrackPaymentBlocked implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPaymentBlocked(paymentId=");
-        sbM833U.append(this.paymentId);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", paymentType=");
-        sbM833U.append(this.paymentType);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", price=");
-        sbM833U.append(this.price);
-        sbM833U.append(", currency=");
-        sbM833U.append(this.currency);
-        sbM833U.append(", amount=");
-        sbM833U.append(this.amount);
-        sbM833U.append(", amountRefunded=");
-        sbM833U.append(this.amountRefunded);
-        sbM833U.append(", tax=");
-        sbM833U.append(this.tax);
-        sbM833U.append(", taxInclusive=");
-        sbM833U.append(this.taxInclusive);
-        sbM833U.append(", skuId=");
-        sbM833U.append(this.skuId);
-        sbM833U.append(", skuType=");
-        sbM833U.append(this.skuType);
-        sbM833U.append(", skuSubscriptionPlanId=");
-        sbM833U.append(this.skuSubscriptionPlanId);
-        sbM833U.append(", subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", subscriptionType=");
-        sbM833U.append(this.subscriptionType);
-        sbM833U.append(", subscriptionPaymentGatewayPlanId=");
-        sbM833U.append(this.subscriptionPaymentGatewayPlanId);
-        sbM833U.append(", subscriptionPlanId=");
-        sbM833U.append(this.subscriptionPlanId);
-        sbM833U.append(", subscriptionCreatedAt=");
-        sbM833U.append(this.subscriptionCreatedAt);
-        sbM833U.append(", subscriptionCurrentPeriodStart=");
-        sbM833U.append(this.subscriptionCurrentPeriodStart);
-        sbM833U.append(", subscriptionCurrentPeriodEnd=");
-        sbM833U.append(this.subscriptionCurrentPeriodEnd);
-        sbM833U.append(", paymentSourceId=");
-        sbM833U.append(this.paymentSourceId);
-        sbM833U.append(", paymentSourceCountry=");
-        sbM833U.append(this.paymentSourceCountry);
-        sbM833U.append(", failureMessage=");
-        sbM833U.append(this.failureMessage);
-        sbM833U.append(", loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", isGift=");
-        sbM833U.append(this.isGift);
-        sbM833U.append(", reason=");
-        sbM833U.append(this.reason);
-        sbM833U.append(", captured=");
-        return C1643a.m816D(sbM833U, this.captured, ")");
+        StringBuilder sbU = a.U("TrackPaymentBlocked(paymentId=");
+        sbU.append(this.paymentId);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", paymentType=");
+        sbU.append(this.paymentType);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", price=");
+        sbU.append(this.price);
+        sbU.append(", currency=");
+        sbU.append(this.currency);
+        sbU.append(", amount=");
+        sbU.append(this.amount);
+        sbU.append(", amountRefunded=");
+        sbU.append(this.amountRefunded);
+        sbU.append(", tax=");
+        sbU.append(this.tax);
+        sbU.append(", taxInclusive=");
+        sbU.append(this.taxInclusive);
+        sbU.append(", skuId=");
+        sbU.append(this.skuId);
+        sbU.append(", skuType=");
+        sbU.append(this.skuType);
+        sbU.append(", skuSubscriptionPlanId=");
+        sbU.append(this.skuSubscriptionPlanId);
+        sbU.append(", subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", subscriptionType=");
+        sbU.append(this.subscriptionType);
+        sbU.append(", subscriptionPaymentGatewayPlanId=");
+        sbU.append(this.subscriptionPaymentGatewayPlanId);
+        sbU.append(", subscriptionPlanId=");
+        sbU.append(this.subscriptionPlanId);
+        sbU.append(", subscriptionCreatedAt=");
+        sbU.append(this.subscriptionCreatedAt);
+        sbU.append(", subscriptionCurrentPeriodStart=");
+        sbU.append(this.subscriptionCurrentPeriodStart);
+        sbU.append(", subscriptionCurrentPeriodEnd=");
+        sbU.append(this.subscriptionCurrentPeriodEnd);
+        sbU.append(", paymentSourceId=");
+        sbU.append(this.paymentSourceId);
+        sbU.append(", paymentSourceCountry=");
+        sbU.append(this.paymentSourceCountry);
+        sbU.append(", failureMessage=");
+        sbU.append(this.failureMessage);
+        sbU.append(", loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", isGift=");
+        sbU.append(this.isGift);
+        sbU.append(", reason=");
+        sbU.append(this.reason);
+        sbU.append(", captured=");
+        return a.D(sbU, this.captured, ")");
     }
 }

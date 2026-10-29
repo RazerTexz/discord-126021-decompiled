@@ -1,26 +1,27 @@
 package androidx.appcompat.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup$MarginLayoutParams;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$styleable;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.InputDeviceCompat;
 import androidx.core.view.ViewCompat;
+import b.d.b.a.a;
 import com.google.android.material.badge.BadgeDrawable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class LinearLayoutCompat extends ViewGroup {
@@ -52,23 +53,13 @@ public class LinearLayoutCompat extends ViewGroup {
     private boolean mUseLargestChild;
     private float mWeightSum;
 
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface DividerMode {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface OrientationMode {
-    }
-
     public LinearLayoutCompat(@NonNull Context context) {
         this(context, null);
     }
 
     @Override // android.view.ViewGroup
-    public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        return layoutParams instanceof LayoutParams;
+    public boolean checkLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams) {
+        return viewGroup$LayoutParams instanceof LinearLayoutCompat$LayoutParams;
     }
 
     public void drawDividersHorizontal(Canvas canvas) {
@@ -80,20 +71,20 @@ public class LinearLayoutCompat extends ViewGroup {
         for (int i2 = 0; i2 < virtualChildCount; i2++) {
             View virtualChildAt = getVirtualChildAt(i2);
             if (virtualChildAt != null && virtualChildAt.getVisibility() != 8 && hasDividerBeforeChildAt(i2)) {
-                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
-                drawVerticalDivider(canvas, zIsLayoutRtl ? virtualChildAt.getRight() + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin : (virtualChildAt.getLeft() - ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) - this.mDividerWidth);
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams();
+                drawVerticalDivider(canvas, zIsLayoutRtl ? virtualChildAt.getRight() + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin : (virtualChildAt.getLeft() - ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin) - this.mDividerWidth);
             }
         }
         if (hasDividerBeforeChildAt(virtualChildCount)) {
             View virtualChildAt2 = getVirtualChildAt(virtualChildCount - 1);
             if (virtualChildAt2 != null) {
-                LayoutParams layoutParams2 = (LayoutParams) virtualChildAt2.getLayoutParams();
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams2 = (LinearLayoutCompat$LayoutParams) virtualChildAt2.getLayoutParams();
                 if (zIsLayoutRtl) {
-                    left = virtualChildAt2.getLeft() - ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin;
+                    left = virtualChildAt2.getLeft() - ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).leftMargin;
                     i = this.mDividerWidth;
                     right = left - i;
                 } else {
-                    right = virtualChildAt2.getRight() + ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin;
+                    right = virtualChildAt2.getRight() + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).rightMargin;
                 }
             } else if (zIsLayoutRtl) {
                 right = getPaddingLeft();
@@ -111,12 +102,12 @@ public class LinearLayoutCompat extends ViewGroup {
         for (int i = 0; i < virtualChildCount; i++) {
             View virtualChildAt = getVirtualChildAt(i);
             if (virtualChildAt != null && virtualChildAt.getVisibility() != 8 && hasDividerBeforeChildAt(i)) {
-                drawHorizontalDivider(canvas, (virtualChildAt.getTop() - ((ViewGroup.MarginLayoutParams) ((LayoutParams) virtualChildAt.getLayoutParams())).topMargin) - this.mDividerHeight);
+                drawHorizontalDivider(canvas, (virtualChildAt.getTop() - ((ViewGroup$MarginLayoutParams) ((LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams())).topMargin) - this.mDividerHeight);
             }
         }
         if (hasDividerBeforeChildAt(virtualChildCount)) {
             View virtualChildAt2 = getVirtualChildAt(virtualChildCount - 1);
-            drawHorizontalDivider(canvas, virtualChildAt2 == null ? (getHeight() - getPaddingBottom()) - this.mDividerHeight : virtualChildAt2.getBottom() + ((ViewGroup.MarginLayoutParams) ((LayoutParams) virtualChildAt2.getLayoutParams())).bottomMargin);
+            drawHorizontalDivider(canvas, virtualChildAt2 == null ? (getHeight() - getPaddingBottom()) - this.mDividerHeight : virtualChildAt2.getBottom() + ((ViewGroup$MarginLayoutParams) ((LinearLayoutCompat$LayoutParams) virtualChildAt2.getLayoutParams())).bottomMargin);
         }
     }
 
@@ -131,35 +122,45 @@ public class LinearLayoutCompat extends ViewGroup {
     }
 
     private void forceUniformHeight(int i, int i2) {
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), BasicMeasure.EXACTLY);
+        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(getMeasuredHeight(), BasicMeasure.EXACTLY);
         for (int i3 = 0; i3 < i; i3++) {
             View virtualChildAt = getVirtualChildAt(i3);
             if (virtualChildAt.getVisibility() != 8) {
-                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
-                if (((ViewGroup.MarginLayoutParams) layoutParams).height == -1) {
-                    int i4 = ((ViewGroup.MarginLayoutParams) layoutParams).width;
-                    ((ViewGroup.MarginLayoutParams) layoutParams).width = virtualChildAt.getMeasuredWidth();
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams();
+                if (((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height == -1) {
+                    int i4 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width;
+                    ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width = virtualChildAt.getMeasuredWidth();
                     measureChildWithMargins(virtualChildAt, i2, 0, iMakeMeasureSpec, 0);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).width = i4;
+                    ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width = i4;
                 }
             }
         }
     }
 
     private void forceUniformWidth(int i, int i2) {
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), BasicMeasure.EXACTLY);
+        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(getMeasuredWidth(), BasicMeasure.EXACTLY);
         for (int i3 = 0; i3 < i; i3++) {
             View virtualChildAt = getVirtualChildAt(i3);
             if (virtualChildAt.getVisibility() != 8) {
-                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
-                if (((ViewGroup.MarginLayoutParams) layoutParams).width == -1) {
-                    int i4 = ((ViewGroup.MarginLayoutParams) layoutParams).height;
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = virtualChildAt.getMeasuredHeight();
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams();
+                if (((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width == -1) {
+                    int i4 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height;
+                    ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height = virtualChildAt.getMeasuredHeight();
                     measureChildWithMargins(virtualChildAt, iMakeMeasureSpec, 0, i2, 0);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = i4;
+                    ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height = i4;
                 }
             }
         }
+    }
+
+    @Override // android.view.ViewGroup
+    public /* bridge */ /* synthetic */ ViewGroup$LayoutParams generateDefaultLayoutParams() {
+        return generateDefaultLayoutParams();
+    }
+
+    @Override // android.view.ViewGroup
+    public /* bridge */ /* synthetic */ ViewGroup$LayoutParams generateLayoutParams(AttributeSet attributeSet) {
+        return generateLayoutParams(attributeSet);
     }
 
     @Override // android.view.View
@@ -189,7 +190,7 @@ public class LinearLayoutCompat extends ViewGroup {
                 bottom = ((getBottom() - getTop()) - getPaddingBottom()) - this.mTotalLength;
             }
         }
-        return bottom + ((ViewGroup.MarginLayoutParams) ((LayoutParams) childAt.getLayoutParams())).topMargin + baseline;
+        return bottom + ((ViewGroup$MarginLayoutParams) ((LinearLayoutCompat$LayoutParams) childAt.getLayoutParams())).topMargin + baseline;
     }
 
     public int getBaselineAlignedChildIndex() {
@@ -208,7 +209,7 @@ public class LinearLayoutCompat extends ViewGroup {
         return this.mDividerPadding;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public int getDividerWidth() {
         return this.mDividerWidth;
     }
@@ -245,7 +246,7 @@ public class LinearLayoutCompat extends ViewGroup {
         return this.mWeightSum;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public boolean hasDividerBeforeChildAt(int i) {
         if (i == 0) {
             return (this.mShowDividers & 1) != 0;
@@ -325,27 +326,27 @@ public class LinearLayoutCompat extends ViewGroup {
                 if (virtualChildAt.getVisibility() != 8) {
                     int measuredWidth = virtualChildAt.getMeasuredWidth();
                     int measuredHeight2 = virtualChildAt.getMeasuredHeight();
-                    LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
+                    LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams();
                     int i14 = childrenSkipCount;
                     if (z2) {
                         i7 = virtualChildCount;
-                        baseline = ((ViewGroup.MarginLayoutParams) layoutParams).height != -1 ? virtualChildAt.getBaseline() : -1;
-                        i8 = layoutParams.gravity;
+                        baseline = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height != -1 ? virtualChildAt.getBaseline() : -1;
+                        i8 = linearLayoutCompat$LayoutParams.gravity;
                         if (i8 < 0) {
                             i8 = i12;
                         }
                         i9 = i8 & 112;
                         if (i9 != 16) {
-                            measuredHeight = ((((paddingBottom2 - measuredHeight2) / 2) + paddingTop) + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin) - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin;
+                            measuredHeight = ((((paddingBottom2 - measuredHeight2) / 2) + paddingTop) + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin) - ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin;
                         } else if (i9 != 48) {
-                            measuredHeight = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + paddingTop;
+                            measuredHeight = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin + paddingTop;
                             if (baseline != -1) {
                                 measuredHeight = (iArr[1] - baseline) + measuredHeight;
                             }
                         } else if (i9 != 80) {
                             measuredHeight = paddingTop;
                         } else {
-                            measuredHeight = (paddingBottom - measuredHeight2) - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin;
+                            measuredHeight = (paddingBottom - measuredHeight2) - ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin;
                             if (baseline != -1) {
                                 measuredHeight -= iArr2[2] - (virtualChildAt.getMeasuredHeight() - baseline);
                             }
@@ -353,29 +354,29 @@ public class LinearLayoutCompat extends ViewGroup {
                         if (hasDividerBeforeChildAt(i13)) {
                             paddingLeft += this.mDividerWidth;
                         }
-                        int i15 = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + paddingLeft;
+                        int i15 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + paddingLeft;
                         setChildFrame(virtualChildAt, getLocationOffset(virtualChildAt) + i15, measuredHeight, measuredWidth, measuredHeight2);
-                        paddingLeft = getNextLocationOffset(virtualChildAt) + measuredWidth + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin + i15;
+                        paddingLeft = getNextLocationOffset(virtualChildAt) + measuredWidth + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin + i15;
                         childrenSkipCount = getChildrenSkipCount(virtualChildAt, i13) + i14;
                     } else {
                         i7 = virtualChildCount;
                     }
-                    i8 = layoutParams.gravity;
+                    i8 = linearLayoutCompat$LayoutParams.gravity;
                     if (i8 < 0) {
                         i8 = i12;
                     }
                     i9 = i8 & 112;
                     if (i9 != 16) {
-                        measuredHeight = ((((paddingBottom2 - measuredHeight2) / 2) + paddingTop) + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin) - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin;
+                        measuredHeight = ((((paddingBottom2 - measuredHeight2) / 2) + paddingTop) + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin) - ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin;
                     } else if (i9 != 48) {
-                        measuredHeight = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + paddingTop;
+                        measuredHeight = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin + paddingTop;
                         if (baseline != -1) {
                             measuredHeight = (iArr[1] - baseline) + measuredHeight;
                         }
                     } else if (i9 != 80) {
                         measuredHeight = paddingTop;
                     } else {
-                        measuredHeight = (paddingBottom - measuredHeight2) - ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin;
+                        measuredHeight = (paddingBottom - measuredHeight2) - ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin;
                         if (baseline != -1) {
                             measuredHeight -= iArr2[2] - (virtualChildAt.getMeasuredHeight() - baseline);
                         }
@@ -383,9 +384,9 @@ public class LinearLayoutCompat extends ViewGroup {
                     if (hasDividerBeforeChildAt(i13)) {
                         paddingLeft += this.mDividerWidth;
                     }
-                    int i16 = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + paddingLeft;
+                    int i16 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + paddingLeft;
                     setChildFrame(virtualChildAt, getLocationOffset(virtualChildAt) + i16, measuredHeight, measuredWidth, measuredHeight2);
-                    paddingLeft = getNextLocationOffset(virtualChildAt) + measuredWidth + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin + i16;
+                    paddingLeft = getNextLocationOffset(virtualChildAt) + measuredWidth + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin + i16;
                     childrenSkipCount = getChildrenSkipCount(virtualChildAt, i13) + i14;
                 }
                 childrenSkipCount++;
@@ -428,39 +429,39 @@ public class LinearLayoutCompat extends ViewGroup {
             } else if (virtualChildAt.getVisibility() != 8) {
                 int measuredWidth = virtualChildAt.getMeasuredWidth();
                 int measuredHeight = virtualChildAt.getMeasuredHeight();
-                LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
-                int i12 = layoutParams.gravity;
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams();
+                int i12 = linearLayoutCompat$LayoutParams.gravity;
                 if (i12 < 0) {
                     i12 = i11;
                 }
                 int absoluteGravity = GravityCompat.getAbsoluteGravity(i12, ViewCompat.getLayoutDirection(this)) & 7;
                 if (absoluteGravity != 1) {
                     if (absoluteGravity != 5) {
-                        i7 = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + paddingLeft;
+                        i7 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + paddingLeft;
                     } else {
                         i5 = paddingRight - measuredWidth;
-                        i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                        i6 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin;
                     }
                     int i13 = i7;
                     if (hasDividerBeforeChildAt(childrenSkipCount)) {
                         paddingTop += this.mDividerHeight;
                     }
-                    int i14 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
+                    int i14 = paddingTop + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin;
                     setChildFrame(virtualChildAt, i13, getLocationOffset(virtualChildAt) + i14, measuredWidth, measuredHeight);
-                    paddingTop = getNextLocationOffset(virtualChildAt) + measuredHeight + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i14;
+                    paddingTop = getNextLocationOffset(virtualChildAt) + measuredHeight + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin + i14;
                     childrenSkipCount += getChildrenSkipCount(virtualChildAt, childrenSkipCount);
                 } else {
-                    i5 = ((paddingRight2 - measuredWidth) / 2) + paddingLeft + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin;
-                    i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                    i5 = ((paddingRight2 - measuredWidth) / 2) + paddingLeft + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin;
+                    i6 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin;
                 }
                 i7 = i5 - i6;
                 int i15 = i7;
                 if (hasDividerBeforeChildAt(childrenSkipCount)) {
                     paddingTop += this.mDividerHeight;
                 }
-                int i16 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
+                int i16 = paddingTop + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin;
                 setChildFrame(virtualChildAt, i15, getLocationOffset(virtualChildAt) + i16, measuredWidth, measuredHeight);
-                paddingTop = getNextLocationOffset(virtualChildAt) + measuredHeight + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i16;
+                paddingTop = getNextLocationOffset(virtualChildAt) + measuredHeight + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin + i16;
                 childrenSkipCount += getChildrenSkipCount(virtualChildAt, childrenSkipCount);
             }
             childrenSkipCount++;
@@ -503,8 +504,8 @@ public class LinearLayoutCompat extends ViewGroup {
         int i12;
         this.mTotalLength = 0;
         int virtualChildCount = getVirtualChildCount();
-        int mode = View.MeasureSpec.getMode(i);
-        int mode2 = View.MeasureSpec.getMode(i2);
+        int mode = View$MeasureSpec.getMode(i);
+        int mode2 = View$MeasureSpec.getMode(i2);
         if (this.mMaxAscent == null || this.mMaxDescent == null) {
             this.mMaxAscent = new int[4];
             this.mMaxDescent = new int[4];
@@ -548,18 +549,18 @@ public class LinearLayoutCompat extends ViewGroup {
                     if (hasDividerBeforeChildAt(childrenSkipCount2)) {
                         this.mTotalLength += this.mDividerWidth;
                     }
-                    LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
-                    float f2 = layoutParams.weight;
+                    LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams();
+                    float f2 = linearLayoutCompat$LayoutParams.weight;
                     float f3 = f + f2;
-                    if (mode == i13 && ((ViewGroup.MarginLayoutParams) layoutParams).width == 0 && f2 > 0.0f) {
+                    if (mode == i13 && ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width == 0 && f2 > 0.0f) {
                         if (z7) {
-                            this.mTotalLength = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin + this.mTotalLength;
+                            this.mTotalLength = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin + this.mTotalLength;
                         } else {
                             int i14 = this.mTotalLength;
-                            this.mTotalLength = Math.max(i14, ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + i14 + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin);
+                            this.mTotalLength = Math.max(i14, ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + i14 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin);
                         }
                         if (z5) {
-                            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+                            int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(0, 0);
                             virtualChildAt.measure(iMakeMeasureSpec, iMakeMeasureSpec);
                             i9 = childrenSkipCount2;
                             z2 = z6;
@@ -573,17 +574,17 @@ public class LinearLayoutCompat extends ViewGroup {
                             i10 = BasicMeasure.EXACTLY;
                             z8 = true;
                         }
-                        if (mode2 == i10 && ((ViewGroup.MarginLayoutParams) layoutParams).height == -1) {
+                        if (mode2 == i10 && ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height == -1) {
                             z4 = true;
                             z10 = true;
                         } else {
                             z4 = false;
                         }
-                        i11 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin;
+                        i11 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin;
                         measuredHeight = view.getMeasuredHeight() + i11;
                         iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, view.getMeasuredState());
                         if (z3 && (baseline2 = view.getBaseline()) != -1) {
-                            i12 = layoutParams.gravity;
+                            i12 = linearLayoutCompat$LayoutParams.gravity;
                             if (i12 < 0) {
                                 i12 = this.mGravity;
                             }
@@ -592,12 +593,12 @@ public class LinearLayoutCompat extends ViewGroup {
                             iArr[i15] = Math.max(iArr[i15], measuredHeight - baseline2);
                         }
                         iMax4 = Math.max(iMax4, measuredHeight);
-                        if (z9 || ((ViewGroup.MarginLayoutParams) layoutParams).height != -1) {
+                        if (z9 || ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height != -1) {
                             z9 = false;
                         } else {
                             z9 = true;
                         }
-                        if (layoutParams.weight > 0.0f) {
+                        if (linearLayoutCompat$LayoutParams.weight > 0.0f) {
                             if (!z4) {
                                 i11 = measuredHeight;
                             }
@@ -614,10 +615,10 @@ public class LinearLayoutCompat extends ViewGroup {
                         childrenSkipCount = getChildrenSkipCount(view, i17) + i17;
                         f = f3;
                     } else {
-                        if (((ViewGroup.MarginLayoutParams) layoutParams).width != 0 || f2 <= 0.0f) {
+                        if (((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width != 0 || f2 <= 0.0f) {
                             i8 = Integer.MIN_VALUE;
                         } else {
-                            ((ViewGroup.MarginLayoutParams) layoutParams).width = -2;
+                            ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width = -2;
                             i8 = 0;
                         }
                         i9 = childrenSkipCount2;
@@ -626,16 +627,16 @@ public class LinearLayoutCompat extends ViewGroup {
                         z3 = z5;
                         measureChildBeforeLayout(virtualChildAt, i9, i, f3 == 0.0f ? this.mTotalLength : 0, i2, 0);
                         if (i18 != Integer.MIN_VALUE) {
-                            ((ViewGroup.MarginLayoutParams) layoutParams).width = i18;
+                            ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width = i18;
                         }
                         int measuredWidth = virtualChildAt.getMeasuredWidth();
                         if (z7) {
                             view = virtualChildAt;
-                            this.mTotalLength = getNextLocationOffset(view) + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + measuredWidth + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin + this.mTotalLength;
+                            this.mTotalLength = getNextLocationOffset(view) + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + measuredWidth + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin + this.mTotalLength;
                         } else {
                             view = virtualChildAt;
                             int i19 = this.mTotalLength;
-                            this.mTotalLength = Math.max(i19, getNextLocationOffset(view) + i19 + measuredWidth + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin);
+                            this.mTotalLength = Math.max(i19, getNextLocationOffset(view) + i19 + measuredWidth + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin);
                         }
                         if (z2) {
                             iMax3 = Math.max(measuredWidth, iMax3);
@@ -647,11 +648,11 @@ public class LinearLayoutCompat extends ViewGroup {
                     } else {
                         z4 = false;
                     }
-                    i11 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin;
+                    i11 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin;
                     measuredHeight = view.getMeasuredHeight() + i11;
                     iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, view.getMeasuredState());
                     if (z3) {
-                        i12 = layoutParams.gravity;
+                        i12 = linearLayoutCompat$LayoutParams.gravity;
                         if (i12 < 0) {
                             i12 = this.mGravity;
                         }
@@ -665,7 +666,7 @@ public class LinearLayoutCompat extends ViewGroup {
                     } else {
                         z9 = false;
                     }
-                    if (layoutParams.weight > 0.0f) {
+                    if (linearLayoutCompat$LayoutParams.weight > 0.0f) {
                         if (!z4) {
                             i11 = measuredHeight;
                         }
@@ -717,12 +718,12 @@ public class LinearLayoutCompat extends ViewGroup {
                 } else if (virtualChildAt2.getVisibility() == 8) {
                     childrenSkipCount3 += getChildrenSkipCount(virtualChildAt2, childrenSkipCount3);
                 } else {
-                    LayoutParams layoutParams2 = (LayoutParams) virtualChildAt2.getLayoutParams();
+                    LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams2 = (LinearLayoutCompat$LayoutParams) virtualChildAt2.getLayoutParams();
                     if (z7) {
-                        this.mTotalLength = getNextLocationOffset(virtualChildAt2) + ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin + iMax3 + ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin + this.mTotalLength;
+                        this.mTotalLength = getNextLocationOffset(virtualChildAt2) + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).leftMargin + iMax3 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).rightMargin + this.mTotalLength;
                     } else {
                         int i24 = this.mTotalLength;
-                        this.mTotalLength = Math.max(i24, getNextLocationOffset(virtualChildAt2) + i24 + iMax3 + ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin);
+                        this.mTotalLength = Math.max(i24, getNextLocationOffset(virtualChildAt2) + i24 + iMax3 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).rightMargin);
                     }
                     childrenSkipCount3++;
                     iMax7 = iMax7;
@@ -760,20 +761,20 @@ public class LinearLayoutCompat extends ViewGroup {
                     i4 = i26;
                     virtualChildCount = virtualChildCount;
                 } else {
-                    LayoutParams layoutParams3 = (LayoutParams) virtualChildAt3.getLayoutParams();
-                    float f5 = layoutParams3.weight;
+                    LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams3 = (LinearLayoutCompat$LayoutParams) virtualChildAt3.getLayoutParams();
+                    float f5 = linearLayoutCompat$LayoutParams3.weight;
                     if (f5 > 0.0f) {
                         int i29 = (int) ((i26 * f5) / f);
                         float f6 = f - f5;
                         int i30 = i26 - i29;
-                        int childMeasureSpec = ViewGroup.getChildMeasureSpec(i2, getPaddingBottom() + getPaddingTop() + ((ViewGroup.MarginLayoutParams) layoutParams3).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams3).bottomMargin, ((ViewGroup.MarginLayoutParams) layoutParams3).height);
-                        if (((ViewGroup.MarginLayoutParams) layoutParams3).width == 0) {
+                        int childMeasureSpec = ViewGroup.getChildMeasureSpec(i2, getPaddingBottom() + getPaddingTop() + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).bottomMargin, ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).height);
+                        if (((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).width == 0) {
                             i7 = BasicMeasure.EXACTLY;
                             if (mode == 1073741824) {
                                 if (i29 <= 0) {
                                     i29 = 0;
                                 }
-                                virtualChildAt3.measure(View.MeasureSpec.makeMeasureSpec(i29, BasicMeasure.EXACTLY), childMeasureSpec);
+                                virtualChildAt3.measure(View$MeasureSpec.makeMeasureSpec(i29, BasicMeasure.EXACTLY), childMeasureSpec);
                             }
                             iCombineMeasuredStates2 = View.combineMeasuredStates(iCombineMeasuredStates2, virtualChildAt3.getMeasuredState() & ViewCompat.MEASURED_STATE_MASK);
                             f = f6;
@@ -785,7 +786,7 @@ public class LinearLayoutCompat extends ViewGroup {
                         if (measuredWidth2 < 0) {
                             measuredWidth2 = 0;
                         }
-                        virtualChildAt3.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth2, i7), childMeasureSpec);
+                        virtualChildAt3.measure(View$MeasureSpec.makeMeasureSpec(measuredWidth2, i7), childMeasureSpec);
                         iCombineMeasuredStates2 = View.combineMeasuredStates(iCombineMeasuredStates2, virtualChildAt3.getMeasuredState() & ViewCompat.MEASURED_STATE_MASK);
                         f = f6;
                         i4 = i30;
@@ -793,13 +794,13 @@ public class LinearLayoutCompat extends ViewGroup {
                         i4 = i26;
                     }
                     if (z7) {
-                        this.mTotalLength = getNextLocationOffset(virtualChildAt3) + virtualChildAt3.getMeasuredWidth() + ((ViewGroup.MarginLayoutParams) layoutParams3).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams3).rightMargin + this.mTotalLength;
+                        this.mTotalLength = getNextLocationOffset(virtualChildAt3) + virtualChildAt3.getMeasuredWidth() + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).rightMargin + this.mTotalLength;
                     } else {
                         int i31 = this.mTotalLength;
-                        this.mTotalLength = Math.max(i31, getNextLocationOffset(virtualChildAt3) + virtualChildAt3.getMeasuredWidth() + i31 + ((ViewGroup.MarginLayoutParams) layoutParams3).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams3).rightMargin);
+                        this.mTotalLength = Math.max(i31, getNextLocationOffset(virtualChildAt3) + virtualChildAt3.getMeasuredWidth() + i31 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).rightMargin);
                     }
-                    boolean z13 = mode2 != 1073741824 && ((ViewGroup.MarginLayoutParams) layoutParams3).height == -1;
-                    int i32 = ((ViewGroup.MarginLayoutParams) layoutParams3).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams3).bottomMargin;
+                    boolean z13 = mode2 != 1073741824 && ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).height == -1;
+                    int i32 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).bottomMargin;
                     int measuredHeight2 = virtualChildAt3.getMeasuredHeight() + i32;
                     iMax8 = Math.max(iMax8, measuredHeight2);
                     if (!z13) {
@@ -808,9 +809,9 @@ public class LinearLayoutCompat extends ViewGroup {
                     int iMax9 = Math.max(i27, i32);
                     if (z9) {
                         i5 = -1;
-                        boolean z14 = ((ViewGroup.MarginLayoutParams) layoutParams3).height == -1;
+                        boolean z14 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).height == -1;
                         if (z12 && (baseline = virtualChildAt3.getBaseline()) != i5) {
-                            i6 = layoutParams3.gravity;
+                            i6 = linearLayoutCompat$LayoutParams3.gravity;
                             if (i6 < 0) {
                                 i6 = this.mGravity;
                             }
@@ -825,7 +826,7 @@ public class LinearLayoutCompat extends ViewGroup {
                         i5 = -1;
                     }
                     if (z12) {
-                        i6 = layoutParams3.gravity;
+                        i6 = linearLayoutCompat$LayoutParams3.gravity;
                         if (i6 < 0) {
                             i6 = this.mGravity;
                         }
@@ -851,8 +852,8 @@ public class LinearLayoutCompat extends ViewGroup {
             if (z11 && mode != 1073741824) {
                 for (int i35 = 0; i35 < virtualChildCount; i35++) {
                     View virtualChildAt4 = getVirtualChildAt(i35);
-                    if (virtualChildAt4 != null && virtualChildAt4.getVisibility() != 8 && ((LayoutParams) virtualChildAt4.getLayoutParams()).weight > 0.0f) {
-                        virtualChildAt4.measure(View.MeasureSpec.makeMeasureSpec(iMax3, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(virtualChildAt4.getMeasuredHeight(), BasicMeasure.EXACTLY));
+                    if (virtualChildAt4 != null && virtualChildAt4.getVisibility() != 8 && ((LinearLayoutCompat$LayoutParams) virtualChildAt4.getLayoutParams()).weight > 0.0f) {
+                        virtualChildAt4.measure(View$MeasureSpec.makeMeasureSpec(iMax3, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(virtualChildAt4.getMeasuredHeight(), BasicMeasure.EXACTLY));
                     }
                 }
             }
@@ -898,8 +899,8 @@ public class LinearLayoutCompat extends ViewGroup {
         int iMax3;
         this.mTotalLength = 0;
         int virtualChildCount = getVirtualChildCount();
-        int mode = View.MeasureSpec.getMode(i);
-        int mode2 = View.MeasureSpec.getMode(i2);
+        int mode = View$MeasureSpec.getMode(i);
+        int mode2 = View$MeasureSpec.getMode(i2);
         int i16 = this.mBaselineAlignedChildIndex;
         boolean z5 = this.mUseLargestChild;
         float f = 0.0f;
@@ -940,9 +941,9 @@ public class LinearLayoutCompat extends ViewGroup {
                         } else if (virtualChildAt.getVisibility() == i21) {
                             childrenSkipCount2 += getChildrenSkipCount(virtualChildAt, childrenSkipCount2);
                         } else {
-                            LayoutParams layoutParams = (LayoutParams) virtualChildAt.getLayoutParams();
+                            LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) virtualChildAt.getLayoutParams();
                             int i28 = this.mTotalLength;
-                            this.mTotalLength = Math.max(i28, getNextLocationOffset(virtualChildAt) + i28 + i24 + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin);
+                            this.mTotalLength = Math.max(i28, getNextLocationOffset(virtualChildAt) + i28 + i24 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin);
                         }
                         childrenSkipCount2++;
                         i21 = 8;
@@ -967,20 +968,20 @@ public class LinearLayoutCompat extends ViewGroup {
                         if (virtualChildAt2.getVisibility() == 8) {
                             i4 = i30;
                         } else {
-                            LayoutParams layoutParams2 = (LayoutParams) virtualChildAt2.getLayoutParams();
-                            float f3 = layoutParams2.weight;
+                            LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams2 = (LinearLayoutCompat$LayoutParams) virtualChildAt2.getLayoutParams();
+                            float f3 = linearLayoutCompat$LayoutParams2.weight;
                             if (f3 > 0.0f) {
                                 int i33 = (int) ((i30 * f3) / f);
                                 float f4 = f - f3;
                                 i4 = i30 - i33;
-                                int childMeasureSpec = ViewGroup.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin, ((ViewGroup.MarginLayoutParams) layoutParams2).width);
-                                if (((ViewGroup.MarginLayoutParams) layoutParams2).height == 0) {
+                                int childMeasureSpec = ViewGroup.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).rightMargin, ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).width);
+                                if (((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).height == 0) {
                                     i7 = BasicMeasure.EXACTLY;
                                     if (i27 == 1073741824) {
                                         if (i33 <= 0) {
                                             i33 = 0;
                                         }
-                                        virtualChildAt2.measure(childMeasureSpec, View.MeasureSpec.makeMeasureSpec(i33, BasicMeasure.EXACTLY));
+                                        virtualChildAt2.measure(childMeasureSpec, View$MeasureSpec.makeMeasureSpec(i33, BasicMeasure.EXACTLY));
                                     }
                                     iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, virtualChildAt2.getMeasuredState() & InputDeviceCompat.SOURCE_ANY);
                                     f = f4;
@@ -991,31 +992,31 @@ public class LinearLayoutCompat extends ViewGroup {
                                 if (measuredHeight < 0) {
                                     measuredHeight = 0;
                                 }
-                                virtualChildAt2.measure(childMeasureSpec, View.MeasureSpec.makeMeasureSpec(measuredHeight, i7));
+                                virtualChildAt2.measure(childMeasureSpec, View$MeasureSpec.makeMeasureSpec(measuredHeight, i7));
                                 iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, virtualChildAt2.getMeasuredState() & InputDeviceCompat.SOURCE_ANY);
                                 f = f4;
                             } else {
                                 i4 = i30;
                             }
-                            int i34 = ((ViewGroup.MarginLayoutParams) layoutParams2).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams2).rightMargin;
+                            int i34 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).rightMargin;
                             int measuredWidth = virtualChildAt2.getMeasuredWidth() + i34;
                             iMax5 = Math.max(iMax5, measuredWidth);
                             float f5 = f;
                             if (mode != 1073741824) {
                                 i5 = iCombineMeasuredStates;
                                 i6 = -1;
-                                z2 = ((ViewGroup.MarginLayoutParams) layoutParams2).width == -1;
+                                z2 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).width == -1;
                                 if (!z2) {
                                     i34 = measuredWidth;
                                 }
                                 int iMax6 = Math.max(i31, i34);
-                                if (z7 || ((ViewGroup.MarginLayoutParams) layoutParams2).width != i6) {
+                                if (z7 || ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).width != i6) {
                                     z3 = false;
                                 } else {
                                     z3 = true;
                                 }
                                 int i35 = this.mTotalLength;
-                                this.mTotalLength = Math.max(i35, getNextLocationOffset(virtualChildAt2) + virtualChildAt2.getMeasuredHeight() + i35 + ((ViewGroup.MarginLayoutParams) layoutParams2).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams2).bottomMargin);
+                                this.mTotalLength = Math.max(i35, getNextLocationOffset(virtualChildAt2) + virtualChildAt2.getMeasuredHeight() + i35 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).bottomMargin);
                                 z7 = z3;
                                 iCombineMeasuredStates = i5;
                                 i31 = iMax6;
@@ -1034,7 +1035,7 @@ public class LinearLayoutCompat extends ViewGroup {
                                 z3 = false;
                             }
                             int i36 = this.mTotalLength;
-                            this.mTotalLength = Math.max(i36, getNextLocationOffset(virtualChildAt2) + virtualChildAt2.getMeasuredHeight() + i36 + ((ViewGroup.MarginLayoutParams) layoutParams2).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams2).bottomMargin);
+                            this.mTotalLength = Math.max(i36, getNextLocationOffset(virtualChildAt2) + virtualChildAt2.getMeasuredHeight() + i36 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams2).bottomMargin);
                             z7 = z3;
                             iCombineMeasuredStates = i5;
                             i31 = iMax7;
@@ -1050,8 +1051,8 @@ public class LinearLayoutCompat extends ViewGroup {
                     if (z5 && i27 != 1073741824) {
                         for (int i37 = 0; i37 < i3; i37++) {
                             View virtualChildAt3 = getVirtualChildAt(i37);
-                            if (virtualChildAt3 != null && virtualChildAt3.getVisibility() != 8 && ((LayoutParams) virtualChildAt3.getLayoutParams()).weight > 0.0f) {
-                                virtualChildAt3.measure(View.MeasureSpec.makeMeasureSpec(virtualChildAt3.getMeasuredWidth(), BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(i24, BasicMeasure.EXACTLY));
+                            if (virtualChildAt3 != null && virtualChildAt3.getVisibility() != 8 && ((LinearLayoutCompat$LayoutParams) virtualChildAt3.getLayoutParams()).weight > 0.0f) {
+                                virtualChildAt3.measure(View$MeasureSpec.makeMeasureSpec(virtualChildAt3.getMeasuredWidth(), BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(i24, BasicMeasure.EXACTLY));
                             }
                         }
                     }
@@ -1085,12 +1086,12 @@ public class LinearLayoutCompat extends ViewGroup {
                     if (hasDividerBeforeChildAt(childrenSkipCount)) {
                         this.mTotalLength += this.mDividerHeight;
                     }
-                    LayoutParams layoutParams3 = (LayoutParams) virtualChildAt4.getLayoutParams();
-                    float f6 = layoutParams3.weight;
+                    LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams3 = (LinearLayoutCompat$LayoutParams) virtualChildAt4.getLayoutParams();
+                    float f6 = linearLayoutCompat$LayoutParams3.weight;
                     float f7 = f + f6;
-                    if (mode2 == 1073741824 && ((ViewGroup.MarginLayoutParams) layoutParams3).height == 0 && f6 > 0.0f) {
+                    if (mode2 == 1073741824 && ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).height == 0 && f6 > 0.0f) {
                         int i39 = this.mTotalLength;
-                        this.mTotalLength = Math.max(i39, ((ViewGroup.MarginLayoutParams) layoutParams3).topMargin + i39 + ((ViewGroup.MarginLayoutParams) layoutParams3).bottomMargin);
+                        this.mTotalLength = Math.max(i39, ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).topMargin + i39 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).bottomMargin);
                         iMax2 = i19;
                         view = virtualChildAt4;
                         i14 = i20;
@@ -1103,10 +1104,10 @@ public class LinearLayoutCompat extends ViewGroup {
                         i15 = childrenSkipCount;
                     } else {
                         int i40 = i18;
-                        if (((ViewGroup.MarginLayoutParams) layoutParams3).height != 0 || f6 <= 0.0f) {
+                        if (((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).height != 0 || f6 <= 0.0f) {
                             i8 = Integer.MIN_VALUE;
                         } else {
-                            ((ViewGroup.MarginLayoutParams) layoutParams3).height = -2;
+                            ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).height = -2;
                             i8 = 0;
                         }
                         i9 = i38;
@@ -1120,32 +1121,32 @@ public class LinearLayoutCompat extends ViewGroup {
                         i15 = childrenSkipCount;
                         measureChildBeforeLayout(virtualChildAt4, childrenSkipCount, i, 0, i2, f7 == 0.0f ? this.mTotalLength : 0);
                         if (i41 != Integer.MIN_VALUE) {
-                            ((ViewGroup.MarginLayoutParams) layoutParams3).height = i41;
+                            ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).height = i41;
                         }
                         int measuredHeight2 = virtualChildAt4.getMeasuredHeight();
                         int i43 = this.mTotalLength;
                         view = virtualChildAt4;
-                        this.mTotalLength = Math.max(i43, getNextLocationOffset(view) + i43 + measuredHeight2 + ((ViewGroup.MarginLayoutParams) layoutParams3).topMargin + ((ViewGroup.MarginLayoutParams) layoutParams3).bottomMargin);
+                        this.mTotalLength = Math.max(i43, getNextLocationOffset(view) + i43 + measuredHeight2 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).topMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).bottomMargin);
                         iMax2 = z5 ? Math.max(measuredHeight2, i42) : i42;
                     }
                     if (i16 >= 0 && i16 == i15 + 1) {
                         this.mBaselineChildTop = this.mTotalLength;
                     }
-                    if (i15 < i16 && layoutParams3.weight > 0.0f) {
+                    if (i15 < i16 && linearLayoutCompat$LayoutParams3.weight > 0.0f) {
                         throw new RuntimeException("A child of LinearLayout with index less than mBaselineAlignedChildIndex has weight > 0, which won't work.  Either remove the weight, or don't set mBaselineAlignedChildIndex.");
                     }
-                    if (mode == 1073741824 || ((ViewGroup.MarginLayoutParams) layoutParams3).width != -1) {
+                    if (mode == 1073741824 || ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).width != -1) {
                         z4 = false;
                     } else {
                         z4 = true;
                         z8 = true;
                     }
-                    int i44 = ((ViewGroup.MarginLayoutParams) layoutParams3).leftMargin + ((ViewGroup.MarginLayoutParams) layoutParams3).rightMargin;
+                    int i44 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).leftMargin + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).rightMargin;
                     int measuredWidth2 = view.getMeasuredWidth() + i44;
                     int iMax8 = Math.max(i10, measuredWidth2);
                     int iCombineMeasuredStates2 = View.combineMeasuredStates(i9, view.getMeasuredState());
-                    z7 = z7 && ((ViewGroup.MarginLayoutParams) layoutParams3).width == -1;
-                    if (layoutParams3.weight > 0.0f) {
+                    z7 = z7 && ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams3).width == -1;
+                    if (linearLayoutCompat$LayoutParams3.weight > 0.0f) {
                         if (!z4) {
                             i44 = measuredWidth2;
                         }
@@ -1224,10 +1225,10 @@ public class LinearLayoutCompat extends ViewGroup {
             this.mBaselineAlignedChildIndex = i;
             return;
         }
-        StringBuilder sbM833U = C1643a.m833U("base aligned child index out of range (0, ");
-        sbM833U.append(getChildCount());
-        sbM833U.append(")");
-        throw new IllegalArgumentException(sbM833U.toString());
+        StringBuilder sbU = a.U("base aligned child index out of range (0, ");
+        sbU.append(getChildCount());
+        sbU.append(")");
+        throw new IllegalArgumentException(sbU.toString());
     }
 
     private void setChildFrame(View view, int i, int i2, int i3, int i4) {
@@ -1317,15 +1318,20 @@ public class LinearLayoutCompat extends ViewGroup {
     }
 
     @Override // android.view.ViewGroup
-    public LayoutParams generateDefaultLayoutParams() {
+    public LinearLayoutCompat$LayoutParams generateDefaultLayoutParams() {
         int i = this.mOrientation;
         if (i == 0) {
-            return new LayoutParams(-2, -2);
+            return new LinearLayoutCompat$LayoutParams(-2, -2);
         }
         if (i == 1) {
-            return new LayoutParams(-1, -2);
+            return new LinearLayoutCompat$LayoutParams(-1, -2);
         }
         return null;
+    }
+
+    @Override // android.view.ViewGroup
+    public /* bridge */ /* synthetic */ ViewGroup$LayoutParams generateLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams) {
+        return generateLayoutParams(viewGroup$LayoutParams);
     }
 
     public LinearLayoutCompat(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
@@ -1334,80 +1340,37 @@ public class LinearLayoutCompat extends ViewGroup {
         this.mBaselineAlignedChildIndex = -1;
         this.mBaselineChildTop = 0;
         this.mGravity = BadgeDrawable.TOP_START;
-        int[] iArr = C0051R.styleable.LinearLayoutCompat;
+        int[] iArr = R$styleable.LinearLayoutCompat;
         TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, iArr, i, 0);
         ViewCompat.saveAttributeDataForStyleable(this, context, iArr, attributeSet, tintTypedArrayObtainStyledAttributes.getWrappedTypeArray(), i, 0);
-        int i2 = tintTypedArrayObtainStyledAttributes.getInt(C0051R.styleable.LinearLayoutCompat_android_orientation, -1);
+        int i2 = tintTypedArrayObtainStyledAttributes.getInt(R$styleable.LinearLayoutCompat_android_orientation, -1);
         if (i2 >= 0) {
             setOrientation(i2);
         }
-        int i3 = tintTypedArrayObtainStyledAttributes.getInt(C0051R.styleable.LinearLayoutCompat_android_gravity, -1);
+        int i3 = tintTypedArrayObtainStyledAttributes.getInt(R$styleable.LinearLayoutCompat_android_gravity, -1);
         if (i3 >= 0) {
             setGravity(i3);
         }
-        boolean z2 = tintTypedArrayObtainStyledAttributes.getBoolean(C0051R.styleable.LinearLayoutCompat_android_baselineAligned, true);
+        boolean z2 = tintTypedArrayObtainStyledAttributes.getBoolean(R$styleable.LinearLayoutCompat_android_baselineAligned, true);
         if (!z2) {
             setBaselineAligned(z2);
         }
-        this.mWeightSum = tintTypedArrayObtainStyledAttributes.getFloat(C0051R.styleable.LinearLayoutCompat_android_weightSum, -1.0f);
-        this.mBaselineAlignedChildIndex = tintTypedArrayObtainStyledAttributes.getInt(C0051R.styleable.LinearLayoutCompat_android_baselineAlignedChildIndex, -1);
-        this.mUseLargestChild = tintTypedArrayObtainStyledAttributes.getBoolean(C0051R.styleable.LinearLayoutCompat_measureWithLargestChild, false);
-        setDividerDrawable(tintTypedArrayObtainStyledAttributes.getDrawable(C0051R.styleable.LinearLayoutCompat_divider));
-        this.mShowDividers = tintTypedArrayObtainStyledAttributes.getInt(C0051R.styleable.LinearLayoutCompat_showDividers, 0);
-        this.mDividerPadding = tintTypedArrayObtainStyledAttributes.getDimensionPixelSize(C0051R.styleable.LinearLayoutCompat_dividerPadding, 0);
+        this.mWeightSum = tintTypedArrayObtainStyledAttributes.getFloat(R$styleable.LinearLayoutCompat_android_weightSum, -1.0f);
+        this.mBaselineAlignedChildIndex = tintTypedArrayObtainStyledAttributes.getInt(R$styleable.LinearLayoutCompat_android_baselineAlignedChildIndex, -1);
+        this.mUseLargestChild = tintTypedArrayObtainStyledAttributes.getBoolean(R$styleable.LinearLayoutCompat_measureWithLargestChild, false);
+        setDividerDrawable(tintTypedArrayObtainStyledAttributes.getDrawable(R$styleable.LinearLayoutCompat_divider));
+        this.mShowDividers = tintTypedArrayObtainStyledAttributes.getInt(R$styleable.LinearLayoutCompat_showDividers, 0);
+        this.mDividerPadding = tintTypedArrayObtainStyledAttributes.getDimensionPixelSize(R$styleable.LinearLayoutCompat_dividerPadding, 0);
         tintTypedArrayObtainStyledAttributes.recycle();
     }
 
     @Override // android.view.ViewGroup
-    public LayoutParams generateLayoutParams(AttributeSet attributeSet) {
-        return new LayoutParams(getContext(), attributeSet);
+    public LinearLayoutCompat$LayoutParams generateLayoutParams(AttributeSet attributeSet) {
+        return new LinearLayoutCompat$LayoutParams(getContext(), attributeSet);
     }
 
     @Override // android.view.ViewGroup
-    public LayoutParams generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        return new LayoutParams(layoutParams);
-    }
-
-    public class LayoutParams extends ViewGroup.MarginLayoutParams {
-        public int gravity;
-        public float weight;
-
-        public LayoutParams(Context context, AttributeSet attributeSet) {
-            super(context, attributeSet);
-            this.gravity = -1;
-            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0051R.styleable.LinearLayoutCompat_Layout);
-            this.weight = typedArrayObtainStyledAttributes.getFloat(C0051R.styleable.LinearLayoutCompat_Layout_android_layout_weight, 0.0f);
-            this.gravity = typedArrayObtainStyledAttributes.getInt(C0051R.styleable.LinearLayoutCompat_Layout_android_layout_gravity, -1);
-            typedArrayObtainStyledAttributes.recycle();
-        }
-
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
-            this.gravity = -1;
-            this.weight = 0.0f;
-        }
-
-        public LayoutParams(int i, int i2, float f) {
-            super(i, i2);
-            this.gravity = -1;
-            this.weight = f;
-        }
-
-        public LayoutParams(ViewGroup.LayoutParams layoutParams) {
-            super(layoutParams);
-            this.gravity = -1;
-        }
-
-        public LayoutParams(ViewGroup.MarginLayoutParams marginLayoutParams) {
-            super(marginLayoutParams);
-            this.gravity = -1;
-        }
-
-        public LayoutParams(LayoutParams layoutParams) {
-            super((ViewGroup.MarginLayoutParams) layoutParams);
-            this.gravity = -1;
-            this.weight = layoutParams.weight;
-            this.gravity = layoutParams.gravity;
-        }
+    public LinearLayoutCompat$LayoutParams generateLayoutParams(ViewGroup$LayoutParams viewGroup$LayoutParams) {
+        return new LinearLayoutCompat$LayoutParams(viewGroup$LayoutParams);
     }
 }

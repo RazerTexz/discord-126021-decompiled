@@ -1,54 +1,36 @@
 package com.google.android.exoplayer2.metadata.scte35;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-import p007b.p225i.p226a.p242c.p259f3.C2757x;
+import android.os.Parcelable$Creator;
+import b.i.a.c.f3.x;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class TimeSignalCommand extends SpliceCommand {
-
-    /* JADX INFO: renamed from: j */
-    public final long f20052j;
-
-    /* JADX INFO: renamed from: k */
-    public final long f20053k;
-    public static final Parcelable.Creator<TimeSignalCommand> CREATOR = new C10749a();
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.scte35.TimeSignalCommand$a */
-    public class C10749a implements Parcelable.Creator<TimeSignalCommand> {
-        @Override // android.os.Parcelable.Creator
-        public TimeSignalCommand createFromParcel(Parcel parcel) {
-            return new TimeSignalCommand(parcel.readLong(), parcel.readLong(), null);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        public TimeSignalCommand[] newArray(int i) {
-            return new TimeSignalCommand[i];
-        }
-    }
+    public final long j;
+    public final long k;
+    public static final Parcelable$Creator<TimeSignalCommand> CREATOR = new TimeSignalCommand$a();
 
     public TimeSignalCommand(long j, long j2) {
-        this.f20052j = j;
-        this.f20053k = j2;
+        this.j = j;
+        this.k = j2;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static long m8883a(C2757x c2757x, long j) {
-        long jM3100t = c2757x.m3100t();
-        if ((128 & jM3100t) != 0) {
-            return 8589934591L & ((((jM3100t & 1) << 32) | c2757x.m3101u()) + j);
+    public static long a(x xVar, long j) {
+        long jT = xVar.t();
+        if ((128 & jT) != 0) {
+            return 8589934591L & ((((jT & 1) << 32) | xVar.u()) + j);
         }
         return -9223372036854775807L;
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(this.f20052j);
-        parcel.writeLong(this.f20053k);
+        parcel.writeLong(this.j);
+        parcel.writeLong(this.k);
     }
 
-    public TimeSignalCommand(long j, long j2, C10749a c10749a) {
-        this.f20052j = j;
-        this.f20053k = j2;
+    public TimeSignalCommand(long j, long j2, TimeSignalCommand$a timeSignalCommand$a) {
+        this.j = j;
+        this.k = j2;
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.commands;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ApplicationCommandPermission.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ApplicationCommandPermission {
             return false;
         }
         ApplicationCommandPermission applicationCommandPermission = (ApplicationCommandPermission) other;
-        return this.id == applicationCommandPermission.id && C12238m.areEqual(this.type, applicationCommandPermission.type) && this.permission == applicationCommandPermission.permission;
+        return this.id == applicationCommandPermission.id && m.areEqual(this.type, applicationCommandPermission.type) && this.permission == applicationCommandPermission.permission;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -51,11 +51,11 @@ public final /* data */ class ApplicationCommandPermission {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ApplicationCommandPermission(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", permission=");
-        return C1643a.m827O(sbM833U, this.permission, ")");
+        StringBuilder sbU = a.U("ApplicationCommandPermission(id=");
+        sbU.append(this.id);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", permission=");
+        return a.O(sbU, this.permission, ")");
     }
 }

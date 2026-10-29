@@ -10,6 +10,7 @@ import com.discord.models.commands.ApplicationCommand;
 import com.discord.models.commands.ApplicationCommandOption;
 import com.discord.models.commands.ApplicationSubCommand;
 import com.discord.stores.CommandAutocompleteState;
+import com.discord.stores.CommandAutocompleteState$Choices;
 import com.discord.utilities.stickers.StickerUtils;
 import com.discord.utilities.string.StringUtilsKt;
 import com.discord.widgets.chat.input.MentionUtilsKt;
@@ -20,12 +21,21 @@ import com.discord.widgets.chat.input.models.AutocompleteInputSelectionModel;
 import com.discord.widgets.chat.input.models.ChatInputMentionsMap;
 import com.discord.widgets.chat.input.models.CommandOptionValue;
 import com.discord.widgets.chat.input.models.InputSelectionModel;
+import com.discord.widgets.chat.input.models.InputSelectionModel$CommandInputSelectionModel;
+import com.discord.widgets.chat.input.models.InputSelectionModel$MessageInputSelectionModel;
 import com.discord.widgets.chat.input.models.InputSelectionModelKt;
-import com.discord.widgets.chat.input.models.MentionInputModel;
+import com.discord.widgets.chat.input.models.MentionInputModel$VerifiedCommandInputModel;
 import com.discord.widgets.chat.input.models.MentionToken;
 import com.discord.widgets.chat.input.models.OptionRange;
 import com.discord.widgets.chat.input.models.StringOptionValue;
 import com.lytefast.flexinput.model.Attachment;
+import d0.g0.t;
+import d0.g0.w;
+import d0.t.g0;
+import d0.t.n;
+import d0.t.o;
+import d0.t.u;
+import d0.z.d.m;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +44,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -41,34 +52,11 @@ import java.util.regex.Pattern;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.Pair;
 import kotlin.ranges.IntRange;
-import p507d0.p579g0.C12103t;
-import p507d0.p579g0.C12106w;
-import p507d0.p580t.C12134g0;
-import p507d0.p580t.C12145m;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AutocompleteModelUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class AutocompleteModelUtils {
     public static final AutocompleteModelUtils INSTANCE = new AutocompleteModelUtils();
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            ApplicationCommandType.values();
-            int[] iArr = new int[12];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[ApplicationCommandType.CHANNEL.ordinal()] = 1;
-            iArr[ApplicationCommandType.USER.ordinal()] = 2;
-            iArr[ApplicationCommandType.ROLE.ordinal()] = 3;
-            iArr[ApplicationCommandType.MENTIONABLE.ordinal()] = 4;
-            iArr[ApplicationCommandType.BOOLEAN.ordinal()] = 5;
-        }
-    }
 
     private AutocompleteModelUtils() {
     }
@@ -82,9 +70,9 @@ public final class AutocompleteModelUtils {
 
     private final MentionToken asMentionToken(String str, int i, boolean z2) {
         if (str != null) {
-            Character chValueOf = ((C12103t.isBlank(str) ^ true) && MentionUtilsKt.getDEFAULT_LEADING_IDENTIFIERS().contains(Character.valueOf(str.charAt(0)))) ? Character.valueOf(str.charAt(0)) : null;
+            Character chValueOf = ((t.isBlank(str) ^ true) && MentionUtilsKt.getDEFAULT_LEADING_IDENTIFIERS().contains(Character.valueOf(str.charAt(0)))) ? Character.valueOf(str.charAt(0)) : null;
             if (chValueOf != null || z2) {
-                return new MentionToken(LeadingIdentifier.INSTANCE.fromChar(chValueOf), str, i == 0, i);
+                return new MentionToken(LeadingIdentifier.Companion.fromChar(chValueOf), str, i == 0, i);
             }
         }
         return null;
@@ -94,9 +82,9 @@ public final class AutocompleteModelUtils {
         List arrayList;
         List arrayList2;
         boolean canUserReadChannel;
-        C12238m.checkNotNullParameter(model, "model");
-        List<? extends Autocompletable> listFlatten = C12149o.flatten(model.getInputModel().getAutocompletables().values());
-        if (model instanceof InputSelectionModel.MessageInputSelectionModel) {
+        m.checkNotNullParameter(model, "model");
+        List<? extends Autocompletable> listFlatten = o.flatten(model.getInputModel().getAutocompletables().values());
+        if (model instanceof InputSelectionModel$MessageInputSelectionModel) {
             List<Autocompletable> listFilterAutocompletablesForMessageContext = filterAutocompletablesForMessageContext(listFlatten);
             LinkedHashMap linkedHashMap = new LinkedHashMap();
             for (Object obj : listFilterAutocompletablesForMessageContext) {
@@ -110,11 +98,11 @@ public final class AutocompleteModelUtils {
             }
             return linkedHashMap;
         }
-        if (!(model instanceof InputSelectionModel.CommandInputSelectionModel)) {
+        if (!(model instanceof InputSelectionModel$CommandInputSelectionModel)) {
             throw new NoWhenBranchMatchedException();
         }
-        InputSelectionModel.CommandInputSelectionModel commandInputSelectionModel = (InputSelectionModel.CommandInputSelectionModel) model;
-        ApplicationCommandOption selectedCommandOption = commandInputSelectionModel.getSelectedCommandOption();
+        InputSelectionModel$CommandInputSelectionModel inputSelectionModel$CommandInputSelectionModel = (InputSelectionModel$CommandInputSelectionModel) model;
+        ApplicationCommandOption selectedCommandOption = inputSelectionModel$CommandInputSelectionModel.getSelectedCommandOption();
         if (selectedCommandOption == null) {
             ArrayList arrayList4 = new ArrayList();
             for (Object obj2 : listFlatten) {
@@ -137,7 +125,7 @@ public final class AutocompleteModelUtils {
         List<CommandChoice> choices = selectedCommandOption.getChoices();
         boolean z2 = true;
         if (choices != null && (!choices.isEmpty())) {
-            List<Autocompletable> listCreateFromCommandOption = ApplicationCommandsAutocompletableSource.INSTANCE.createFromCommandOption(selectedCommandOption);
+            List<Autocompletable> listCreateFromCommandOption = ApplicationCommandsAutocompletableSource.Companion.createFromCommandOption(selectedCommandOption);
             LinkedHashMap linkedHashMap3 = new LinkedHashMap();
             for (Object obj4 : listCreateFromCommandOption) {
                 LeadingIdentifier leadingIdentifier3 = ((Autocompletable) obj4).leadingIdentifier();
@@ -152,7 +140,7 @@ public final class AutocompleteModelUtils {
         }
         switch (selectedCommandOption.getType().ordinal()) {
             case 4:
-                arrayList = ApplicationCommandsAutocompletableSource.INSTANCE.createFromCommandOption(selectedCommandOption);
+                arrayList = ApplicationCommandsAutocompletableSource.Companion.createFromCommandOption(selectedCommandOption);
                 break;
             case 5:
                 arrayList = new ArrayList();
@@ -202,29 +190,29 @@ public final class AutocompleteModelUtils {
                 break;
             default:
                 if (selectedCommandOption.getAutocomplete()) {
-                    Map<String, CommandAutocompleteState> map = commandInputSelectionModel.getInputModel().getCommandOptionAutocompleteItems().get(selectedCommandOption.getName());
+                    Map<String, CommandAutocompleteState> map = inputSelectionModel$CommandInputSelectionModel.getInputModel().getCommandOptionAutocompleteItems().get(selectedCommandOption.getName());
                     CommandAutocompleteState commandAutocompleteState = null;
                     if (map != null) {
-                        CommandOptionValue commandOptionValue = commandInputSelectionModel.getInputModel().getInputCommandOptionValues().get(selectedCommandOption);
+                        CommandOptionValue commandOptionValue = inputSelectionModel$CommandInputSelectionModel.getInputModel().getInputCommandOptionValues().get(selectedCommandOption);
                         commandAutocompleteState = map.get(String.valueOf(commandOptionValue != null ? commandOptionValue.getValue() : null));
                     }
-                    if (!(commandAutocompleteState instanceof CommandAutocompleteState.Choices)) {
-                        arrayList = C12147n.emptyList();
+                    if (!(commandAutocompleteState instanceof CommandAutocompleteState$Choices)) {
+                        arrayList = n.emptyList();
                     } else {
-                        List<ApplicationCommandAutocompleteChoice> choices2 = ((CommandAutocompleteState.Choices) commandAutocompleteState).getChoices();
-                        arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(choices2, 10));
+                        List<ApplicationCommandAutocompleteChoice> choices2 = ((CommandAutocompleteState$Choices) commandAutocompleteState).getChoices();
+                        arrayList2 = new ArrayList(o.collectionSizeOrDefault(choices2, 10));
                         for (ApplicationCommandAutocompleteChoice applicationCommandAutocompleteChoice : choices2) {
                             arrayList2.add(new ApplicationCommandChoiceAutocompletable(new CommandChoice(applicationCommandAutocompleteChoice.getName(), applicationCommandAutocompleteChoice.getValue()), selectedCommandOption.getName()));
                         }
                     }
                     break;
                 } else {
-                    List listPlus = C12163u.plus((Collection) ApplicationCommandsAutocompletableSource.INSTANCE.createFromCommandOption(selectedCommandOption), (Iterable) listFlatten);
+                    List listPlus = u.plus((Collection) ApplicationCommandsAutocompletableSource.Companion.createFromCommandOption(selectedCommandOption), (Iterable) listFlatten);
                     arrayList2 = new ArrayList();
                     for (Object obj10 : listPlus) {
                         Autocompletable autocompletable2 = (Autocompletable) obj10;
                         if (autocompletable2 instanceof ChannelAutocompletable) {
-                            canUserReadChannel = ChannelUtils.m7698v(((ChannelAutocompletable) autocompletable2).getChannel());
+                            canUserReadChannel = ChannelUtils.v(((ChannelAutocompletable) autocompletable2).getChannel());
                         } else if (autocompletable2 instanceof UserAutocompletable) {
                             canUserReadChannel = ((UserAutocompletable) autocompletable2).getCanUserReadChannel();
                         } else {
@@ -253,12 +241,12 @@ public final class AutocompleteModelUtils {
 
     public final List<Autocompletable> filterAutocompletablesForMessageContext(List<? extends Autocompletable> autocompletables) {
         boolean canMention;
-        C12238m.checkNotNullParameter(autocompletables, "autocompletables");
+        m.checkNotNullParameter(autocompletables, "autocompletables");
         ArrayList arrayList = new ArrayList();
         for (Object obj : autocompletables) {
             Autocompletable autocompletable = (Autocompletable) obj;
             if (autocompletable instanceof ChannelAutocompletable) {
-                canMention = ChannelUtils.m7698v(((ChannelAutocompletable) autocompletable).getChannel());
+                canMention = ChannelUtils.v(((ChannelAutocompletable) autocompletable).getChannel());
             } else if (autocompletable instanceof UserAutocompletable) {
                 canMention = ((UserAutocompletable) autocompletable).getCanUserReadChannel();
             } else {
@@ -274,20 +262,20 @@ public final class AutocompleteModelUtils {
     public final List<Autocompletable> filterMentionsFromToken(MentionToken token, InputSelectionModel inputSelectionModel, Map<LeadingIdentifier, ? extends List<? extends Autocompletable>> mentions) {
         ArrayList arrayList;
         ApplicationCommandOption selectedCommandOption;
-        C12238m.checkNotNullParameter(token, "token");
-        C12238m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
-        C12238m.checkNotNullParameter(mentions, "mentions");
-        if ((inputSelectionModel instanceof InputSelectionModel.CommandInputSelectionModel) && (selectedCommandOption = ((InputSelectionModel.CommandInputSelectionModel) inputSelectionModel).getSelectedCommandOption()) != null && selectedCommandOption.getAutocomplete()) {
+        m.checkNotNullParameter(token, "token");
+        m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
+        m.checkNotNullParameter(mentions, "mentions");
+        if ((inputSelectionModel instanceof InputSelectionModel$CommandInputSelectionModel) && (selectedCommandOption = ((InputSelectionModel$CommandInputSelectionModel) inputSelectionModel).getSelectedCommandOption()) != null && selectedCommandOption.getAutocomplete()) {
             return InputAutocompletablesKt.flatten(mentions);
         }
-        boolean z2 = C12103t.isBlank(token.getFormattedToken()) && token.getLeadingIdentifier() == LeadingIdentifier.NONE;
+        boolean z2 = t.isBlank(token.getFormattedToken()) && token.getLeadingIdentifier() == LeadingIdentifier.NONE;
         String formattedToken = token.getFormattedToken();
         Locale locale = Locale.getDefault();
-        C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
+        m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
         Objects.requireNonNull(formattedToken, "null cannot be cast to non-null type java.lang.String");
         String lowerCase = formattedToken.toLowerCase(locale);
-        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-        String strReplace$default = C12103t.replace$default(StringUtilsKt.stripAccents(lowerCase), " ", "", false, 4, (Object) null);
+        m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        String strReplace$default = t.replace$default(StringUtilsKt.stripAccents(lowerCase), " ", "", false, 4, (Object) null);
         if (z2 && InputSelectionModelKt.hasSelectedCommandOptionWithChoices(inputSelectionModel)) {
             List<? extends Autocompletable> list = mentions.get(LeadingIdentifier.NONE);
             if (list != null) {
@@ -300,10 +288,10 @@ public final class AutocompleteModelUtils {
             } else {
                 arrayList = null;
             }
-            return arrayList != null ? arrayList : C12147n.emptyList();
+            return arrayList != null ? arrayList : n.emptyList();
         }
         if (z2) {
-            return C12147n.emptyList();
+            return n.emptyList();
         }
         ArrayList arrayList2 = new ArrayList();
         List<? extends Autocompletable> list2 = mentions.get(token.getLeadingIdentifier());
@@ -313,11 +301,11 @@ public final class AutocompleteModelUtils {
                 while (itIterateAutocompleteMatchers.hasNext()) {
                     String next = itIterateAutocompleteMatchers.next();
                     Locale locale2 = Locale.getDefault();
-                    C12238m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
+                    m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
                     Objects.requireNonNull(next, "null cannot be cast to non-null type java.lang.String");
                     String lowerCase2 = next.toLowerCase(locale2);
-                    C12238m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
-                    if (INSTANCE.lowerCaseContains(C12103t.replace$default(StringUtilsKt.stripAccents(lowerCase2), " ", "", false, 4, (Object) null), strReplace$default)) {
+                    m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
+                    if (INSTANCE.lowerCaseContains(t.replace$default(StringUtilsKt.stripAccents(lowerCase2), " ", "", false, 4, (Object) null), strReplace$default)) {
                         arrayList2.add(autocompletable);
                         break;
                     }
@@ -342,22 +330,22 @@ public final class AutocompleteModelUtils {
         OptionRange optionRange;
         IntRange value;
         boolean z4;
-        C12238m.checkNotNullParameter(applications, "applications");
-        C12238m.checkNotNullParameter(queryCommands, "queryCommands");
-        C12238m.checkNotNullParameter(attachments, "attachments");
+        m.checkNotNullParameter(applications, "applications");
+        m.checkNotNullParameter(queryCommands, "queryCommands");
+        m.checkNotNullParameter(attachments, "attachments");
         InputSelectionModel inputSelectionModel2 = inputSelectionModel != null ? inputSelectionModel.getInputSelectionModel() : null;
-        if (!(inputSelectionModel2 instanceof InputSelectionModel.CommandInputSelectionModel)) {
+        if (!(inputSelectionModel2 instanceof InputSelectionModel$CommandInputSelectionModel)) {
             return null;
         }
-        InputSelectionModel.CommandInputSelectionModel commandInputSelectionModel = (InputSelectionModel.CommandInputSelectionModel) inputSelectionModel2;
-        ApplicationCommand selectedCommand = commandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedCommand();
-        Application selectedApplication = commandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedApplication();
-        MentionInputModel.VerifiedCommandInputModel inputModel = commandInputSelectionModel.getInputModel();
-        if (!(inputModel instanceof MentionInputModel.VerifiedCommandInputModel)) {
+        InputSelectionModel$CommandInputSelectionModel inputSelectionModel$CommandInputSelectionModel = (InputSelectionModel$CommandInputSelectionModel) inputSelectionModel2;
+        ApplicationCommand selectedCommand = inputSelectionModel$CommandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedCommand();
+        Application selectedApplication = inputSelectionModel$CommandInputSelectionModel.getInputModel().getInputCommandContext().getSelectedApplication();
+        MentionInputModel$VerifiedCommandInputModel inputModel = inputSelectionModel$CommandInputSelectionModel.getInputModel();
+        if (!(inputModel instanceof MentionInputModel$VerifiedCommandInputModel)) {
             inputModel = null;
         }
         if (inputModel == null && selectedCommand != null && selectedApplication != null) {
-            List listEmptyList = C12147n.emptyList();
+            List listEmptyList = n.emptyList();
             List<ApplicationCommandOption> options = selectedCommand.getOptions();
             if ((options instanceof Collection) && options.isEmpty()) {
                 z4 = true;
@@ -376,28 +364,28 @@ public final class AutocompleteModelUtils {
             return null;
         }
         Map<ApplicationCommandOption, CommandOptionValue> inputCommandOptionValues = inputModel.getInputCommandOptionValues();
-        LinkedHashMap linkedHashMap = new LinkedHashMap(C12134g0.mapCapacity(inputCommandOptionValues.size()));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(g0.mapCapacity(inputCommandOptionValues.size()));
         Iterator<T> it2 = inputCommandOptionValues.entrySet().iterator();
         while (it2.hasNext()) {
-            Map.Entry entry = (Map.Entry) it2.next();
-            Object key = entry.getKey();
-            Object value2 = ((CommandOptionValue) entry.getValue()).getValue();
-            if (entry.getValue() instanceof StringOptionValue) {
-                List<CommandChoice> choices = ((ApplicationCommandOption) entry.getKey()).getChoices();
-                if ((choices == null || choices.isEmpty()) && !((ApplicationCommandOption) entry.getKey()).getAutocomplete() && (optionRange = inputModel.getInputCommandOptionsRanges().get(entry.getKey())) != null && (value = optionRange.getValue()) != null) {
+            Map$Entry map$Entry = (Map$Entry) it2.next();
+            Object key = map$Entry.getKey();
+            Object value2 = ((CommandOptionValue) map$Entry.getValue()).getValue();
+            if (map$Entry.getValue() instanceof StringOptionValue) {
+                List<CommandChoice> choices = ((ApplicationCommandOption) map$Entry.getKey()).getChoices();
+                if ((choices == null || choices.isEmpty()) && !((ApplicationCommandOption) map$Entry.getKey()).getAutocomplete() && (optionRange = inputModel.getInputCommandOptionsRanges().get(map$Entry.getKey())) != null && (value = optionRange.getValue()) != null) {
                     int first = value.getFirst();
-                    String string = ((CommandOptionValue) entry.getValue()).getValue().toString();
+                    String string = ((CommandOptionValue) map$Entry.getValue()).getValue().toString();
                     Map<IntRange, Autocompletable> inputMentionsMap = inputModel.getInputMentionsMap();
-                    LinkedHashMap linkedHashMap2 = new LinkedHashMap(C12134g0.mapCapacity(inputMentionsMap.size()));
+                    LinkedHashMap linkedHashMap2 = new LinkedHashMap(g0.mapCapacity(inputMentionsMap.size()));
                     Iterator<T> it3 = inputMentionsMap.entrySet().iterator();
                     while (it3.hasNext()) {
-                        Map.Entry entry2 = (Map.Entry) it3.next();
-                        linkedHashMap2.put(new IntRange(((IntRange) entry2.getKey()).getFirst() - first, ((IntRange) entry2.getKey()).getLast() - first), entry2.getValue());
+                        Map$Entry map$Entry2 = (Map$Entry) it3.next();
+                        linkedHashMap2.put(new IntRange(((IntRange) map$Entry2.getKey()).getFirst() - first, ((IntRange) map$Entry2.getKey()).getLast() - first), map$Entry2.getValue());
                     }
                     LinkedHashMap linkedHashMap3 = new LinkedHashMap();
-                    for (Map.Entry entry3 : linkedHashMap2.entrySet()) {
-                        if (((IntRange) entry3.getKey()).getFirst() >= 0 && ((IntRange) entry3.getKey()).getLast() <= string.length()) {
-                            linkedHashMap3.put(entry3.getKey(), entry3.getValue());
+                    for (Map$Entry map$Entry3 : linkedHashMap2.entrySet()) {
+                        if (((IntRange) map$Entry3.getKey()).getFirst() >= 0 && ((IntRange) map$Entry3.getKey()).getLast() <= string.length()) {
+                            linkedHashMap3.put(map$Entry3.getKey(), map$Entry3.getValue());
                         }
                     }
                     value2 = AutocompleteExtensionsKt.replaceAutocompleteDataWithServerValues(string, linkedHashMap3);
@@ -425,10 +413,10 @@ public final class AutocompleteModelUtils {
                 break;
             }
             Set<ApplicationCommandOption> setKeySet = linkedHashMap.keySet();
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(setKeySet, 10));
+            ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(setKeySet, 10));
             for (ApplicationCommandOption applicationCommandOption : setKeySet) {
-                boolean zAreEqual = C12238m.areEqual(focusedOption != null ? focusedOption.getName() : null, applicationCommandOption.getName());
-                boolean z5 = (applicationCommandOption.getRequired() && linkedHashMap.get(applicationCommandOption) == null && !applicationCommandOption.getAutocomplete()) || C12238m.areEqual(inputCommandOptionValidity.get(applicationCommandOption), Boolean.FALSE);
+                boolean zAreEqual = m.areEqual(focusedOption != null ? focusedOption.getName() : null, applicationCommandOption.getName());
+                boolean z5 = (applicationCommandOption.getRequired() && linkedHashMap.get(applicationCommandOption) == null && !applicationCommandOption.getAutocomplete()) || m.areEqual(inputCommandOptionValidity.get(applicationCommandOption), Boolean.FALSE);
                 z2 = z2 && !z5;
                 Object obj = (!z5 || (zAreEqual && applicationCommandOption.getAutocomplete())) ? linkedHashMap.get(applicationCommandOption) : null;
                 if (obj != null || applicationCommandOption.getAutocomplete()) {
@@ -438,7 +426,7 @@ public final class AutocompleteModelUtils {
                 }
                 arrayList.add(applicationCommandValue);
             }
-            return new ApplicationCommandData(selectedApplication, selectedCommand, C12163u.filterNotNull(arrayList), z2);
+            return new ApplicationCommandData(selectedApplication, selectedCommand, u.filterNotNull(arrayList), z2);
         }
         Collection<Boolean> collectionValues2 = inputCommandOptionValidity.values();
         if (!(collectionValues2 instanceof Collection) || !collectionValues2.isEmpty()) {
@@ -458,10 +446,10 @@ public final class AutocompleteModelUtils {
             break;
         }
         Set<ApplicationCommandOption> setKeySet2 = linkedHashMap.keySet();
-        ArrayList arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(setKeySet2, 10));
+        ArrayList arrayList2 = new ArrayList(o.collectionSizeOrDefault(setKeySet2, 10));
         for (ApplicationCommandOption applicationCommandOption2 : setKeySet2) {
-            boolean zAreEqual2 = C12238m.areEqual(focusedOption != null ? focusedOption.getName() : null, applicationCommandOption2.getName());
-            boolean z6 = (applicationCommandOption2.getRequired() && linkedHashMap.get(applicationCommandOption2) == null && !applicationCommandOption2.getAutocomplete()) || C12238m.areEqual(inputCommandOptionValidity.get(applicationCommandOption2), Boolean.FALSE);
+            boolean zAreEqual2 = m.areEqual(focusedOption != null ? focusedOption.getName() : null, applicationCommandOption2.getName());
+            boolean z6 = (applicationCommandOption2.getRequired() && linkedHashMap.get(applicationCommandOption2) == null && !applicationCommandOption2.getAutocomplete()) || m.areEqual(inputCommandOptionValidity.get(applicationCommandOption2), Boolean.FALSE);
             z3 = z3 && !z6;
             Object obj2 = (!z6 || (zAreEqual2 && applicationCommandOption2.getAutocomplete())) ? linkedHashMap.get(applicationCommandOption2) : null;
             if (obj2 != null || applicationCommandOption2.getAutocomplete()) {
@@ -472,23 +460,23 @@ public final class AutocompleteModelUtils {
             arrayList2.add(applicationCommandValue2);
         }
         ApplicationSubCommand applicationSubCommand = (ApplicationSubCommand) selectedCommand;
-        ApplicationCommandValue applicationCommandValue3 = new ApplicationCommandValue(applicationSubCommand.getSubCommandName(), null, ApplicationCommandType.SUBCOMMAND.getType(), C12163u.filterNotNull(arrayList2), null, 18, null);
+        ApplicationCommandValue applicationCommandValue3 = new ApplicationCommandValue(applicationSubCommand.getSubCommandName(), null, ApplicationCommandType.SUBCOMMAND.getType(), u.filterNotNull(arrayList2), null, 18, null);
         String parentGroupName = applicationSubCommand.getParentGroupName();
-        return parentGroupName != null ? new ApplicationCommandData(selectedApplication, applicationSubCommand.getRootCommand(), C12145m.listOf(new ApplicationCommandValue(parentGroupName, null, ApplicationCommandType.SUBCOMMAND_GROUP.getType(), C12145m.listOf(applicationCommandValue3), null, 18, null)), z3) : new ApplicationCommandData(selectedApplication, applicationSubCommand.getRootCommand(), C12145m.listOf(applicationCommandValue3), z3);
+        return parentGroupName != null ? new ApplicationCommandData(selectedApplication, applicationSubCommand.getRootCommand(), d0.t.m.listOf(new ApplicationCommandValue(parentGroupName, null, ApplicationCommandType.SUBCOMMAND_GROUP.getType(), d0.t.m.listOf(applicationCommandValue3), null, 18, null)), z3) : new ApplicationCommandData(selectedApplication, applicationSubCommand.getRootCommand(), d0.t.m.listOf(applicationCommandValue3), z3);
     }
 
     public final MentionToken getCommandAutocompleteToken(CharSequence input, IntRange selection, ApplicationCommandOption selectedCommandOption, boolean hasSelectedFreeformInputOption, Map<ApplicationCommandOption, OptionRange> inputCommandOptionsRanges, Map<ApplicationCommandOption, ? extends CommandOptionValue> inputCommandOptionValues) {
         String strSubstring;
-        C12238m.checkNotNullParameter(input, "input");
-        C12238m.checkNotNullParameter(selection, "selection");
-        C12238m.checkNotNullParameter(selectedCommandOption, "selectedCommandOption");
-        C12238m.checkNotNullParameter(inputCommandOptionsRanges, "inputCommandOptionsRanges");
-        C12238m.checkNotNullParameter(inputCommandOptionValues, "inputCommandOptionValues");
+        m.checkNotNullParameter(input, "input");
+        m.checkNotNullParameter(selection, "selection");
+        m.checkNotNullParameter(selectedCommandOption, "selectedCommandOption");
+        m.checkNotNullParameter(inputCommandOptionsRanges, "inputCommandOptionsRanges");
+        m.checkNotNullParameter(inputCommandOptionValues, "inputCommandOptionValues");
         Pair<String, Integer> selectedToken = MentionUtilsKt.getSelectedToken(input.toString(), selection.getFirst());
         String strComponent1 = selectedToken.component1();
         int iIntValue = selectedToken.component2().intValue();
         if (strComponent1 != null) {
-            strSubstring = C12106w.removePrefix(strComponent1, selectedCommandOption.getName() + ":");
+            strSubstring = w.removePrefix(strComponent1, selectedCommandOption.getName() + ":");
         } else {
             strSubstring = null;
         }
@@ -503,7 +491,7 @@ public final class AutocompleteModelUtils {
             int iMin = Math.min(selection.getFirst() - value.getFirst(), commandOptionValue.getValue().toString().length());
             Objects.requireNonNull(string, "null cannot be cast to non-null type java.lang.String");
             strSubstring = string.substring(0, iMin);
-            C12238m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
+            m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.Strin…ing(startIndex, endIndex)");
         }
         if (strSubstring == null) {
             strSubstring = "";
@@ -514,13 +502,13 @@ public final class AutocompleteModelUtils {
     public final MentionToken getMessageAutocompleteToken(CharSequence input, IntRange selection) {
         int i;
         String strGroup;
-        C12238m.checkNotNullParameter(input, "input");
-        C12238m.checkNotNullParameter(selection, "selection");
+        m.checkNotNullParameter(input, "input");
+        m.checkNotNullParameter(selection, "selection");
         Pair<String, Integer> selectedToken = MentionUtilsKt.getSelectedToken(input.toString(), selection.getFirst());
         String strComponent1 = selectedToken.component1();
         int iIntValue = selectedToken.component2().intValue();
         Pattern patternCompile = Pattern.compile("^(/([a-zA-Z0-9_-]+\\s*){1,3})(.|\\n)*");
-        C12238m.checkNotNullExpressionValue(patternCompile, "Pattern.compile(\"^(/([a-…_-]+\\\\s*){1,3})(.|\\\\n)*\")");
+        m.checkNotNullExpressionValue(patternCompile, "Pattern.compile(\"^(/([a-…_-]+\\\\s*){1,3})(.|\\\\n)*\")");
         Matcher matcher = patternCompile.matcher(input);
         if (matcher.matches()) {
             strGroup = matcher.group(0);
@@ -544,26 +532,26 @@ public final class AutocompleteModelUtils {
                 }
             }
             String string = sb.toString();
-            C12238m.checkNotNullExpressionValue(string, "filterTo(StringBuilder(), predicate).toString()");
+            m.checkNotNullExpressionValue(string, "filterTo(StringBuilder(), predicate).toString()");
             if (string.length() - 1 >= 3) {
                 StickerUtils stickerUtils = StickerUtils.INSTANCE;
-                return C12163u.toList(stickerUtils.findStickerMatches(C12103t.replace(token.getToken(), token.getLeadingIdentifier().toString(), "", true), StickerUtils.getStickersForAutocomplete$default(stickerUtils, null, null, null, null, null, 31, null), true));
+                return u.toList(stickerUtils.findStickerMatches(t.replace(token.getToken(), token.getLeadingIdentifier().toString(), "", true), StickerUtils.getStickersForAutocomplete$default(stickerUtils, null, null, null, null, null, 31, null), true));
             }
         }
-        return C12147n.emptyList();
+        return n.emptyList();
     }
 
     public final boolean isBoolean(String str) {
         String lowerCase;
         if (str != null) {
             Locale locale = Locale.getDefault();
-            C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
+            m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
             lowerCase = str.toLowerCase(locale);
-            C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+            m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
         } else {
             lowerCase = null;
         }
-        return C12238m.areEqual(lowerCase, "true") || C12238m.areEqual(lowerCase, "false");
+        return m.areEqual(lowerCase, "true") || m.areEqual(lowerCase, "false");
     }
 
     private final boolean isSubRangeOf(IntRange intRange, IntRange intRange2) {
@@ -572,37 +560,37 @@ public final class AutocompleteModelUtils {
 
     private final boolean lowerCaseContains(String str, String str2) {
         Locale locale = Locale.getDefault();
-        C12238m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
+        m.checkNotNullExpressionValue(locale, "Locale.getDefault()");
         Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
         String lowerCase = str.toLowerCase(locale);
-        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
         Locale locale2 = Locale.getDefault();
-        C12238m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
+        m.checkNotNullExpressionValue(locale2, "Locale.getDefault()");
         Objects.requireNonNull(str2, "null cannot be cast to non-null type java.lang.String");
         String lowerCase2 = str2.toLowerCase(locale2);
-        C12238m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
-        return C12106w.contains$default((CharSequence) lowerCase, (CharSequence) lowerCase2, false, 2, (Object) null);
+        m.checkNotNullExpressionValue(lowerCase2, "(this as java.lang.String).toLowerCase(locale)");
+        return w.contains$default((CharSequence) lowerCase, (CharSequence) lowerCase2, false, 2, (Object) null);
     }
 
     public final ChatInputMentionsMap mapInputToMentions(String input, Map<LeadingIdentifier, ? extends Set<? extends Autocompletable>> autocompletables, Map<IntRange, ? extends Autocompletable> currentInputMentionMap, boolean isCommand) {
         boolean z2;
-        C12238m.checkNotNullParameter(input, "input");
-        C12238m.checkNotNullParameter(autocompletables, "autocompletables");
-        C12238m.checkNotNullParameter(currentInputMentionMap, "currentInputMentionMap");
+        m.checkNotNullParameter(input, "input");
+        m.checkNotNullParameter(autocompletables, "autocompletables");
+        m.checkNotNullParameter(currentInputMentionMap, "currentInputMentionMap");
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         LinkedHashMap linkedHashMap2 = new LinkedHashMap();
-        Iterator<Map.Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>>> it = autocompletables.entrySet().iterator();
+        Iterator<Map$Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>>> it = autocompletables.entrySet().iterator();
         while (true) {
             if (!it.hasNext()) {
                 break;
             }
-            Map.Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>> next = it.next();
+            Map$Entry<LeadingIdentifier, ? extends Set<? extends Autocompletable>> next = it.next();
             Character identifier = next.getKey().getIdentifier();
-            if (identifier == null || C12106w.contains$default((CharSequence) input, identifier.charValue(), false, 2, (Object) null)) {
+            if (identifier == null || w.contains$default((CharSequence) input, identifier.charValue(), false, 2, (Object) null)) {
                 linkedHashMap2.put(next.getKey(), next.getValue());
             }
         }
-        List<Autocompletable> listPlus = C12163u.plus((Collection) C12149o.flatten(linkedHashMap2.values()), (Iterable) currentInputMentionMap.values());
+        List<Autocompletable> listPlus = u.plus((Collection) o.flatten(linkedHashMap2.values()), (Iterable) currentInputMentionMap.values());
         if (!isCommand) {
             listPlus = filterAutocompletablesForMessageContext(listPlus);
         }
@@ -610,20 +598,20 @@ public final class AutocompleteModelUtils {
             Iterator<String> itIterateTextMatchers = autocompletable.iterateTextMatchers();
             while (itIterateTextMatchers.hasNext()) {
                 String next2 = itIterateTextMatchers.next();
-                int iIndexOf$default = C12106w.indexOf$default((CharSequence) input, next2, 0, false, 4, (Object) null);
+                int iIndexOf$default = w.indexOf$default((CharSequence) input, next2, 0, false, 4, (Object) null);
                 while (iIndexOf$default != -1) {
                     IntRange intRange = new IntRange(iIndexOf$default, next2.length() + iIndexOf$default);
                     if (!linkedHashMap.isEmpty()) {
                         Iterator it2 = linkedHashMap.entrySet().iterator();
                         while (true) {
                             if (it2.hasNext()) {
-                                Map.Entry entry = (Map.Entry) it2.next();
-                                IntRange intRange2 = (IntRange) entry.getKey();
-                                Autocompletable autocompletable2 = (Autocompletable) entry.getValue();
-                                if (!C12238m.areEqual(intRange, intRange2) || !(autocompletable instanceof RoleAutocompletable) || (autocompletable2 instanceof RoleAutocompletable)) {
+                                Map$Entry map$Entry = (Map$Entry) it2.next();
+                                IntRange intRange2 = (IntRange) map$Entry.getKey();
+                                Autocompletable autocompletable2 = (Autocompletable) map$Entry.getValue();
+                                if (!m.areEqual(intRange, intRange2) || !(autocompletable instanceof RoleAutocompletable) || (autocompletable2 instanceof RoleAutocompletable)) {
                                     AutocompleteModelUtils autocompleteModelUtils = INSTANCE;
                                     if (!autocompleteModelUtils.isSubRangeOf(intRange2, intRange)) {
-                                        if (C12238m.areEqual(intRange, intRange2) || autocompleteModelUtils.isSubRangeOf(intRange, intRange2)) {
+                                        if (m.areEqual(intRange, intRange2) || autocompleteModelUtils.isSubRangeOf(intRange, intRange2)) {
                                             z2 = false;
                                         }
                                     }
@@ -644,7 +632,7 @@ public final class AutocompleteModelUtils {
                             linkedHashMap.put(intRange, autocompletable);
                         }
                     }
-                    iIndexOf$default = C12106w.indexOf$default((CharSequence) input, next2, iIndexOf$default + 1, false, 4, (Object) null);
+                    iIndexOf$default = w.indexOf$default((CharSequence) input, next2, iIndexOf$default + 1, false, 4, (Object) null);
                 }
             }
         }
@@ -652,7 +640,7 @@ public final class AutocompleteModelUtils {
     }
 
     public final IntRange shiftOrRemove(IntRange intRange, int i, int i2, int i3) {
-        C12238m.checkNotNullParameter(intRange, "$this$shiftOrRemove");
+        m.checkNotNullParameter(intRange, "$this$shiftOrRemove");
         if (i >= intRange.getLast()) {
             return intRange;
         }

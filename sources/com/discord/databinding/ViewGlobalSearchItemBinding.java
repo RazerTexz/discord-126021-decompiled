@@ -11,47 +11,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewGlobalSearchItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final View f15445a;
+    public final View a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15446b;
+    public final TextView f2189b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15447c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f15448d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f15449e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f15450f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final ImageView f15451g;
+    public final ImageView g;
 
     public ViewGlobalSearchItemBinding(@NonNull View view, @NonNull Guideline guideline, @NonNull TextView textView, @NonNull TextView textView2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull ImageView imageView) {
-        this.f15445a = view;
-        this.f15446b = textView;
-        this.f15447c = textView2;
-        this.f15448d = simpleDraweeView;
-        this.f15449e = textView3;
-        this.f15450f = textView4;
-        this.f15451g = imageView;
+        this.a = view;
+        this.f2189b = textView;
+        this.c = textView2;
+        this.d = simpleDraweeView;
+        this.e = textView3;
+        this.f = textView4;
+        this.g = imageView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15445a;
+        return this.a;
     }
 }

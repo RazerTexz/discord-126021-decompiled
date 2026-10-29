@@ -19,12 +19,12 @@ public class CircularRevealGridLayout extends GridLayout implements CircularReve
         this(context, null);
     }
 
-    @Override // com.google.android.material.circularreveal.CircularRevealHelper.Delegate
+    @Override // com.google.android.material.circularreveal.CircularRevealHelper$Delegate
     public void actualDraw(Canvas canvas) {
         super.draw(canvas);
     }
 
-    @Override // com.google.android.material.circularreveal.CircularRevealHelper.Delegate
+    @Override // com.google.android.material.circularreveal.CircularRevealHelper$Delegate
     public boolean actualIsOpaque() {
         return super.isOpaque();
     }
@@ -62,7 +62,7 @@ public class CircularRevealGridLayout extends GridLayout implements CircularReve
 
     @Override // com.google.android.material.circularreveal.CircularRevealWidget
     @Nullable
-    public CircularRevealWidget.RevealInfo getRevealInfo() {
+    public CircularRevealWidget$RevealInfo getRevealInfo() {
         return this.helper.getRevealInfo();
     }
 
@@ -83,8 +83,8 @@ public class CircularRevealGridLayout extends GridLayout implements CircularReve
     }
 
     @Override // com.google.android.material.circularreveal.CircularRevealWidget
-    public void setRevealInfo(@Nullable CircularRevealWidget.RevealInfo revealInfo) {
-        this.helper.setRevealInfo(revealInfo);
+    public void setRevealInfo(@Nullable CircularRevealWidget$RevealInfo circularRevealWidget$RevealInfo) {
+        this.helper.setRevealInfo(circularRevealWidget$RevealInfo);
     }
 
     public CircularRevealGridLayout(Context context, AttributeSet attributeSet) {

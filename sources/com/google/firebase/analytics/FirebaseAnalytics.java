@@ -9,36 +9,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 import androidx.annotation.Size;
+import b.i.a.f.e.o.f;
+import b.i.a.f.h.l.g;
+import b.i.a.f.h.l.m;
+import b.i.a.f.i.b.b7;
+import b.i.c.j.b;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
-import p007b.p225i.p226a.p288f.p313h.p325l.C3661g;
-import p007b.p225i.p226a.p288f.p313h.p325l.C3742m;
-import p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC3988b7;
-import p007b.p225i.p361c.p362j.C4559b;
-import p007b.p225i.p361c.p401u.C4842f;
 
 /* JADX INFO: compiled from: com.google.android.gms:play-services-measurement-api@@18.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class FirebaseAnalytics {
+    public static volatile FirebaseAnalytics a;
 
-    /* JADX INFO: renamed from: a */
-    public static volatile FirebaseAnalytics f21403a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public final g f3109b;
 
-    /* JADX INFO: renamed from: b */
-    public final C3661g f21404b;
-
-    public FirebaseAnalytics(C3661g c3661g) {
-        Objects.requireNonNull(c3661g, "null reference");
-        this.f21404b = c3661g;
+    public FirebaseAnalytics(g gVar) {
+        Objects.requireNonNull(gVar, "null reference");
+        this.f3109b = gVar;
     }
 
     @Keep
     public final String getFirebaseInstanceId() {
         try {
-            return (String) C3404f.m4307k(C4842f.m6755f().getId(), 30000L, TimeUnit.MILLISECONDS);
+            return (String) f.k(b.i.c.u.f.f().getId(), 30000L, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             throw new IllegalStateException(e);
         } catch (ExecutionException e2) {
@@ -52,31 +49,31 @@ public final class FirebaseAnalytics {
     @RequiresPermission(allOf = {"android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE", "android.permission.WAKE_LOCK"})
     @Keep
     public static FirebaseAnalytics getInstance(@NonNull Context context) {
-        if (f21403a == null) {
+        if (a == null) {
             synchronized (FirebaseAnalytics.class) {
-                if (f21403a == null) {
-                    f21403a = new FirebaseAnalytics(C3661g.m4882a(context, null, null, null, null));
+                if (a == null) {
+                    a = new FirebaseAnalytics(g.a(context, null, null, null, null));
                 }
             }
         }
-        return f21403a;
+        return a;
     }
 
     @Keep
-    public static InterfaceC3988b7 getScionFrontendApiImplementation(Context context, Bundle bundle) {
-        C3661g c3661gM4882a = C3661g.m4882a(context, null, null, null, bundle);
-        if (c3661gM4882a == null) {
+    public static b7 getScionFrontendApiImplementation(Context context, Bundle bundle) {
+        g gVarA = g.a(context, null, null, null, bundle);
+        if (gVarA == null) {
             return null;
         }
-        return new C4559b(c3661gM4882a);
+        return new b(gVarA);
     }
 
     @Keep
     @MainThread
     @Deprecated
     public final void setCurrentScreen(@NonNull Activity activity, @Nullable @Size(max = 36, min = 1) String str, @Nullable @Size(max = 36, min = 1) String str2) {
-        C3661g c3661g = this.f21404b;
-        Objects.requireNonNull(c3661g);
-        c3661g.f9950e.execute(new C3742m(c3661g, activity, str, str2));
+        g gVar = this.f3109b;
+        Objects.requireNonNull(gVar);
+        gVar.e.execute(new m(gVar, activity, str, str2));
     }
 }

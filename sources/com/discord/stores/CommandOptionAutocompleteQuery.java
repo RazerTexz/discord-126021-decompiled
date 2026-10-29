@@ -1,7 +1,7 @@
 package com.discord.stores;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StoreApplicationCommands.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -10,8 +10,8 @@ public final /* data */ class CommandOptionAutocompleteQuery {
     private final String queryString;
 
     public CommandOptionAutocompleteQuery(String str, String str2) {
-        C12238m.checkNotNullParameter(str, "queryString");
-        C12238m.checkNotNullParameter(str2, "commandOptionName");
+        m.checkNotNullParameter(str, "queryString");
+        m.checkNotNullParameter(str2, "commandOptionName");
         this.queryString = str;
         this.commandOptionName = str2;
     }
@@ -27,8 +27,8 @@ public final /* data */ class CommandOptionAutocompleteQuery {
     }
 
     public final CommandOptionAutocompleteQuery copy(String queryString, String commandOptionName) {
-        C12238m.checkNotNullParameter(queryString, "queryString");
-        C12238m.checkNotNullParameter(commandOptionName, "commandOptionName");
+        m.checkNotNullParameter(queryString, "queryString");
+        m.checkNotNullParameter(commandOptionName, "commandOptionName");
         return new CommandOptionAutocompleteQuery(queryString, commandOptionName);
     }
 
@@ -40,7 +40,7 @@ public final /* data */ class CommandOptionAutocompleteQuery {
             return false;
         }
         CommandOptionAutocompleteQuery commandOptionAutocompleteQuery = (CommandOptionAutocompleteQuery) other;
-        return C12238m.areEqual(this.queryString, commandOptionAutocompleteQuery.queryString) && C12238m.areEqual(this.commandOptionName, commandOptionAutocompleteQuery.commandOptionName);
+        return m.areEqual(this.queryString, commandOptionAutocompleteQuery.queryString) && m.areEqual(this.commandOptionName, commandOptionAutocompleteQuery.commandOptionName);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -69,9 +69,9 @@ public final /* data */ class CommandOptionAutocompleteQuery {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("CommandOptionAutocompleteQuery(queryString=");
-        sbM833U.append(this.queryString);
-        sbM833U.append(", commandOptionName=");
-        return C1643a.m822J(sbM833U, this.commandOptionName, ")");
+        StringBuilder sbU = a.U("CommandOptionAutocompleteQuery(queryString=");
+        sbU.append(this.queryString);
+        sbU.append(", commandOptionName=");
+        return a.J(sbU, this.commandOptionName, ")");
     }
 }

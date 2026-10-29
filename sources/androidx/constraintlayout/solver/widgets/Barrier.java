@@ -2,8 +2,8 @@ package androidx.constraintlayout.solver.widgets;
 
 import androidx.constraintlayout.solver.LinearSystem;
 import androidx.constraintlayout.solver.SolverVariable;
+import b.d.b.a.a;
 import java.util.HashMap;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Barrier extends HelperWidget {
@@ -54,13 +54,13 @@ public class Barrier extends HelperWidget {
             this.resolved = false;
             int i6 = this.mBarrierType;
             if (i6 == 0 || i6 == 1) {
-                linearSystem.addEquality(this.mLeft.mSolverVariable, this.f114mX);
-                linearSystem.addEquality(this.mRight.mSolverVariable, this.f114mX);
+                linearSystem.addEquality(this.mLeft.mSolverVariable, this.mX);
+                linearSystem.addEquality(this.mRight.mSolverVariable, this.mX);
                 return;
             } else {
                 if (i6 == 2 || i6 == 3) {
-                    linearSystem.addEquality(this.mTop.mSolverVariable, this.f115mY);
-                    linearSystem.addEquality(this.mBottom.mSolverVariable, this.f115mY);
+                    linearSystem.addEquality(this.mTop.mSolverVariable, this.mY);
+                    linearSystem.addEquality(this.mBottom.mSolverVariable, this.mY);
                     return;
                 }
                 return;
@@ -73,7 +73,7 @@ public class Barrier extends HelperWidget {
                 break;
             }
             ConstraintWidget constraintWidget = this.mWidgets[i7];
-            if ((this.mAllowsGoneWidget || constraintWidget.allowedInBarrier()) && ((((i2 = this.mBarrierType) == 0 || i2 == 1) && constraintWidget.getHorizontalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mLeft.mTarget != null && constraintWidget.mRight.mTarget != null) || (((i3 = this.mBarrierType) == 2 || i3 == 3) && constraintWidget.getVerticalDimensionBehaviour() == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mTop.mTarget != null && constraintWidget.mBottom.mTarget != null))) {
+            if ((this.mAllowsGoneWidget || constraintWidget.allowedInBarrier()) && ((((i2 = this.mBarrierType) == 0 || i2 == 1) && constraintWidget.getHorizontalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mLeft.mTarget != null && constraintWidget.mRight.mTarget != null) || (((i3 = this.mBarrierType) == 2 || i3 == 3) && constraintWidget.getVerticalDimensionBehaviour() == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget.mTop.mTarget != null && constraintWidget.mBottom.mTarget != null))) {
                 z3 = true;
                 break;
             }
@@ -148,25 +148,25 @@ public class Barrier extends HelperWidget {
                 if (!z3) {
                     int i6 = this.mBarrierType;
                     if (i6 == 0) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.LEFT).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.LEFT).getFinalValue();
                     } else if (i6 == 1) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.RIGHT).getFinalValue();
                     } else if (i6 == 2) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.TOP).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.TOP).getFinalValue();
                     } else if (i6 == 3) {
-                        iMax = constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM).getFinalValue();
+                        iMax = constraintWidget2.getAnchor(ConstraintAnchor$Type.BOTTOM).getFinalValue();
                     }
                     z3 = true;
                 }
                 int i7 = this.mBarrierType;
                 if (i7 == 0) {
-                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.LEFT).getFinalValue());
+                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.LEFT).getFinalValue());
                 } else if (i7 == 1) {
-                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.RIGHT).getFinalValue());
+                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.RIGHT).getFinalValue());
                 } else if (i7 == 2) {
-                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.TOP).getFinalValue());
+                    iMax = Math.min(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.TOP).getFinalValue());
                 } else if (i7 == 3) {
-                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor.Type.BOTTOM).getFinalValue());
+                    iMax = Math.max(iMax, constraintWidget2.getAnchor(ConstraintAnchor$Type.BOTTOM).getFinalValue());
                 }
             }
         }
@@ -251,20 +251,20 @@ public class Barrier extends HelperWidget {
 
     @Override // androidx.constraintlayout.solver.widgets.ConstraintWidget
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("[Barrier] ");
-        sbM833U.append(getDebugName());
-        sbM833U.append(" {");
-        String string = sbM833U.toString();
+        StringBuilder sbU = a.U("[Barrier] ");
+        sbU.append(getDebugName());
+        sbU.append(" {");
+        String string = sbU.toString();
         for (int i = 0; i < this.mWidgetsCount; i++) {
             ConstraintWidget constraintWidget = this.mWidgets[i];
             if (i > 0) {
-                string = C1643a.m883w(string, ", ");
+                string = a.w(string, ", ");
             }
-            StringBuilder sbM833U2 = C1643a.m833U(string);
-            sbM833U2.append(constraintWidget.getDebugName());
-            string = sbM833U2.toString();
+            StringBuilder sbU2 = a.U(string);
+            sbU2.append(constraintWidget.getDebugName());
+            string = sbU2.toString();
         }
-        return C1643a.m883w(string, "}");
+        return a.w(string, "}");
     }
 
     public Barrier(String str) {

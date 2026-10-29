@@ -5,15 +5,17 @@ import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreNotificationUpsells;
 import com.discord.stores.StoreOutboundPromotions;
 import com.discord.stores.StoreSubscriptions;
+import com.discord.stores.StoreSubscriptions$SubscriptionsState;
+import com.discord.stores.StoreSubscriptions$SubscriptionsState$Loaded;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserPresence;
 import com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: SettingsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SettingsViewModel$Companion$observeStoreState$1 extends AbstractC12240o implements Function0<SettingsViewModel.StoreState> {
+public final class SettingsViewModel$Companion$observeStoreState$1 extends o implements Function0<SettingsViewModel$StoreState> {
     public final /* synthetic */ StoreExperiments $experimentsStore;
     public final /* synthetic */ StoreGuilds $guildsStore;
     public final /* synthetic */ StoreNotificationUpsells $notificationUpsellsStore;
@@ -34,14 +36,19 @@ public final class SettingsViewModel$Companion$observeStoreState$1 extends Abstr
         this.$experimentsStore = storeExperiments;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ SettingsViewModel$StoreState invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final SettingsViewModel.StoreState invoke() {
-        StoreSubscriptions.SubscriptionsState subscriptionsStateSnapshot = this.$subscriptionsStore.getSubscriptionsStateSnapshot();
-        if (!(subscriptionsStateSnapshot instanceof StoreSubscriptions.SubscriptionsState.Loaded)) {
+    public final SettingsViewModel$StoreState invoke() {
+        StoreSubscriptions$SubscriptionsState subscriptionsStateSnapshot = this.$subscriptionsStore.getSubscriptionsStateSnapshot();
+        if (!(subscriptionsStateSnapshot instanceof StoreSubscriptions$SubscriptionsState$Loaded)) {
             subscriptionsStateSnapshot = null;
         }
-        StoreSubscriptions.SubscriptionsState.Loaded loaded = (StoreSubscriptions.SubscriptionsState.Loaded) subscriptionsStateSnapshot;
-        return new SettingsViewModel.StoreState(this.$userStore.getMeSnapshot(), StoreExperiments.INSTANCE.isExperimentalAlpha(this.$guildsStore, this.$userStore), this.$userPresenceStore.getLocalPresenceSnapshot(), this.$outboundPromotionsStore.getUnseenCount(), this.$notificationUpsellsStore.getPushNotificationsUpsellDismissed(), GuildRoleSubscriptionsFeatureFlag.INSTANCE.getINSTANCE().canUserAccessRoleSubscriptionManagement(this.$experimentsStore), loaded != null ? loaded.getSubscriptions() : null);
+        StoreSubscriptions$SubscriptionsState$Loaded storeSubscriptions$SubscriptionsState$Loaded = (StoreSubscriptions$SubscriptionsState$Loaded) subscriptionsStateSnapshot;
+        return new SettingsViewModel$StoreState(this.$userStore.getMeSnapshot(), StoreExperiments.Companion.isExperimentalAlpha(this.$guildsStore, this.$userStore), this.$userPresenceStore.getLocalPresenceSnapshot(), this.$outboundPromotionsStore.getUnseenCount(), this.$notificationUpsellsStore.getPushNotificationsUpsellDismissed(), GuildRoleSubscriptionsFeatureFlag.Companion.getINSTANCE().canUserAccessRoleSubscriptionManagement(this.$experimentsStore), storeSubscriptions$SubscriptionsState$Loaded != null ? storeSubscriptions$SubscriptionsState$Loaded.getSubscriptions() : null);
     }
 }

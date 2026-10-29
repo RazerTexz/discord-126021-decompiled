@@ -11,32 +11,29 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 /* JADX INFO: loaded from: classes.dex */
 public final class GroupInviteFriendsSheetItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15113a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f15114b;
+    public final SimpleDraweeView f2115b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15115c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialCheckBox f15116d;
+    public final MaterialCheckBox d;
 
     public GroupInviteFriendsSheetItemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView, @NonNull MaterialCheckBox materialCheckBox) {
-        this.f15113a = constraintLayout;
-        this.f15114b = simpleDraweeView;
-        this.f15115c = textView;
-        this.f15116d = materialCheckBox;
+        this.a = constraintLayout;
+        this.f2115b = simpleDraweeView;
+        this.c = textView;
+        this.d = materialCheckBox;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15113a;
+        return this.a;
     }
 }

@@ -93,7 +93,7 @@ final class RecordComponentWriter extends RecordComponentVisitor {
         }
     }
 
-    final void collectAttributePrototypes(Attribute.Set attributePrototypes) {
+    final void collectAttributePrototypes(Attribute$Set attributePrototypes) {
         attributePrototypes.addAttributes(this.firstAttribute);
     }
 }

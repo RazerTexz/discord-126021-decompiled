@@ -12,6 +12,7 @@ import java.nio.charset.CharsetDecoder;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.NestingKind;
 import javax.tools.JavaFileObject;
+import javax.tools.JavaFileObject$Kind;
 import lombok.Lombok;
 import lombok.core.DiagnosticsReceiver;
 import lombok.core.PostCompiler;
@@ -79,7 +80,7 @@ final class InterceptingJavaFileObject implements LombokFileObject {
         return this.delegate.getCharContent(ignoreEncodingErrors);
     }
 
-    public JavaFileObject.Kind getKind() {
+    public JavaFileObject$Kind getKind() {
         return this.delegate.getKind();
     }
 
@@ -95,7 +96,7 @@ final class InterceptingJavaFileObject implements LombokFileObject {
         return this.delegate.getNestingKind();
     }
 
-    public boolean isNameCompatible(String simpleName, JavaFileObject.Kind kind) {
+    public boolean isNameCompatible(String simpleName, JavaFileObject$Kind kind) {
         return this.delegate.isNameCompatible(simpleName, kind);
     }
 

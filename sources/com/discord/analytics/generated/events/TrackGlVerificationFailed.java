@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackDispatchBase;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackDispatchBaseReceiver;
 import com.discord.analytics.generated.traits.TrackDispatchPatch;
 import com.discord.analytics.generated.traits.TrackDispatchPatchReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGlVerificationFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackGlVerificationFailed implements AnalyticsSche
             return false;
         }
         TrackGlVerificationFailed trackGlVerificationFailed = (TrackGlVerificationFailed) other;
-        return C12238m.areEqual(this.corruptChunks, trackGlVerificationFailed.corruptChunks) && C12238m.areEqual(this.attemptNumber, trackGlVerificationFailed.attemptNumber);
+        return m.areEqual(this.corruptChunks, trackGlVerificationFailed.corruptChunks) && m.areEqual(this.attemptNumber, trackGlVerificationFailed.attemptNumber);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,9 +45,9 @@ public final /* data */ class TrackGlVerificationFailed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGlVerificationFailed(corruptChunks=");
-        sbM833U.append(this.corruptChunks);
-        sbM833U.append(", attemptNumber=");
-        return C1643a.m819G(sbM833U, this.attemptNumber, ")");
+        StringBuilder sbU = a.U("TrackGlVerificationFailed(corruptChunks=");
+        sbU.append(this.corruptChunks);
+        sbU.append(", attemptNumber=");
+        return a.G(sbU, this.attemptNumber, ")");
     }
 }

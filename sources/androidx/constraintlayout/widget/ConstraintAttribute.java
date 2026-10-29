@@ -11,11 +11,11 @@ import android.util.Xml;
 import android.view.View;
 import androidx.constraintlayout.motion.widget.Debug;
 import androidx.core.view.ViewCompat;
+import b.d.b.a.a;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import org.xmlpull.v1.XmlPullParser;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ConstraintAttribute {
@@ -26,62 +26,11 @@ public class ConstraintAttribute {
     private int mIntegerValue;
     public String mName;
     private String mStringValue;
-    private AttributeType mType;
+    private ConstraintAttribute$AttributeType mType;
 
-    public enum AttributeType {
-        INT_TYPE,
-        FLOAT_TYPE,
-        COLOR_TYPE,
-        COLOR_DRAWABLE_TYPE,
-        STRING_TYPE,
-        BOOLEAN_TYPE,
-        DIMENSION_TYPE
-    }
-
-    /* JADX INFO: renamed from: androidx.constraintlayout.widget.ConstraintAttribute$1 */
-    public /* synthetic */ class C01991 {
-
-        /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$widget$ConstraintAttribute$AttributeType */
-        public static final /* synthetic */ int[] f126x66adad53;
-
-        static {
-            AttributeType.values();
-            int[] iArr = new int[7];
-            f126x66adad53 = iArr;
-            try {
-                iArr[AttributeType.COLOR_TYPE.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                f126x66adad53[AttributeType.COLOR_DRAWABLE_TYPE.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                f126x66adad53[AttributeType.INT_TYPE.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                f126x66adad53[AttributeType.FLOAT_TYPE.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                f126x66adad53[AttributeType.STRING_TYPE.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                f126x66adad53[AttributeType.BOOLEAN_TYPE.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                f126x66adad53[AttributeType.DIMENSION_TYPE.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-        }
-    }
-
-    public ConstraintAttribute(String str, AttributeType attributeType) {
+    public ConstraintAttribute(String str, ConstraintAttribute$AttributeType constraintAttribute$AttributeType) {
         this.mName = str;
-        this.mType = attributeType;
+        this.mType = constraintAttribute$AttributeType;
     }
 
     private static int clamp(int i) {
@@ -90,11 +39,11 @@ public class ConstraintAttribute {
     }
 
     public boolean diff(ConstraintAttribute constraintAttribute) {
-        AttributeType attributeType;
-        if (constraintAttribute == null || (attributeType = this.mType) != constraintAttribute.mType) {
+        ConstraintAttribute$AttributeType constraintAttribute$AttributeType;
+        if (constraintAttribute == null || (constraintAttribute$AttributeType = this.mType) != constraintAttribute.mType) {
             return false;
         }
-        switch (attributeType) {
+        switch (constraintAttribute$AttributeType) {
             case INT_TYPE:
                 return this.mIntegerValue == constraintAttribute.mIntegerValue;
             case FLOAT_TYPE:
@@ -135,7 +84,7 @@ public class ConstraintAttribute {
         return map2;
     }
 
-    public AttributeType getType() {
+    public ConstraintAttribute$AttributeType getType() {
         return this.mType;
     }
 
@@ -198,53 +147,53 @@ public class ConstraintAttribute {
     }
 
     public static void parse(Context context, XmlPullParser xmlPullParser, HashMap<String, ConstraintAttribute> map) {
-        AttributeType attributeType;
+        ConstraintAttribute$AttributeType constraintAttribute$AttributeType;
         Object string;
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0201R.styleable.CustomAttribute);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R$styleable.CustomAttribute);
         int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
         String string2 = null;
         Object objValueOf = null;
-        AttributeType attributeType2 = null;
+        ConstraintAttribute$AttributeType constraintAttribute$AttributeType2 = null;
         for (int i = 0; i < indexCount; i++) {
             int index = typedArrayObtainStyledAttributes.getIndex(i);
-            if (index == C0201R.styleable.CustomAttribute_attributeName) {
+            if (index == R$styleable.CustomAttribute_attributeName) {
                 string2 = typedArrayObtainStyledAttributes.getString(index);
                 if (string2 != null && string2.length() > 0) {
                     string2 = Character.toUpperCase(string2.charAt(0)) + string2.substring(1);
                 }
-            } else if (index == C0201R.styleable.CustomAttribute_customBoolean) {
+            } else if (index == R$styleable.CustomAttribute_customBoolean) {
                 objValueOf = Boolean.valueOf(typedArrayObtainStyledAttributes.getBoolean(index, false));
-                attributeType2 = AttributeType.BOOLEAN_TYPE;
+                constraintAttribute$AttributeType2 = ConstraintAttribute$AttributeType.BOOLEAN_TYPE;
             } else {
-                if (index == C0201R.styleable.CustomAttribute_customColorValue) {
-                    attributeType = AttributeType.COLOR_TYPE;
+                if (index == R$styleable.CustomAttribute_customColorValue) {
+                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.COLOR_TYPE;
                     string = Integer.valueOf(typedArrayObtainStyledAttributes.getColor(index, 0));
-                } else if (index == C0201R.styleable.CustomAttribute_customColorDrawableValue) {
-                    attributeType = AttributeType.COLOR_DRAWABLE_TYPE;
+                } else if (index == R$styleable.CustomAttribute_customColorDrawableValue) {
+                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.COLOR_DRAWABLE_TYPE;
                     string = Integer.valueOf(typedArrayObtainStyledAttributes.getColor(index, 0));
-                } else if (index == C0201R.styleable.CustomAttribute_customPixelDimension) {
-                    attributeType = AttributeType.DIMENSION_TYPE;
+                } else if (index == R$styleable.CustomAttribute_customPixelDimension) {
+                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.DIMENSION_TYPE;
                     string = Float.valueOf(TypedValue.applyDimension(1, typedArrayObtainStyledAttributes.getDimension(index, 0.0f), context.getResources().getDisplayMetrics()));
-                } else if (index == C0201R.styleable.CustomAttribute_customDimension) {
-                    attributeType = AttributeType.DIMENSION_TYPE;
+                } else if (index == R$styleable.CustomAttribute_customDimension) {
+                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.DIMENSION_TYPE;
                     string = Float.valueOf(typedArrayObtainStyledAttributes.getDimension(index, 0.0f));
-                } else if (index == C0201R.styleable.CustomAttribute_customFloatValue) {
-                    attributeType = AttributeType.FLOAT_TYPE;
+                } else if (index == R$styleable.CustomAttribute_customFloatValue) {
+                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.FLOAT_TYPE;
                     string = Float.valueOf(typedArrayObtainStyledAttributes.getFloat(index, Float.NaN));
-                } else if (index == C0201R.styleable.CustomAttribute_customIntegerValue) {
-                    attributeType = AttributeType.INT_TYPE;
+                } else if (index == R$styleable.CustomAttribute_customIntegerValue) {
+                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.INT_TYPE;
                     string = Integer.valueOf(typedArrayObtainStyledAttributes.getInteger(index, -1));
-                } else if (index == C0201R.styleable.CustomAttribute_customStringValue) {
-                    attributeType = AttributeType.STRING_TYPE;
+                } else if (index == R$styleable.CustomAttribute_customStringValue) {
+                    constraintAttribute$AttributeType = ConstraintAttribute$AttributeType.STRING_TYPE;
                     string = typedArrayObtainStyledAttributes.getString(index);
                 }
                 Object obj = string;
-                attributeType2 = attributeType;
+                constraintAttribute$AttributeType2 = constraintAttribute$AttributeType;
                 objValueOf = obj;
             }
         }
         if (string2 != null && objValueOf != null) {
-            map.put(string2, new ConstraintAttribute(string2, attributeType2, objValueOf));
+            map.put(string2, new ConstraintAttribute(string2, constraintAttribute$AttributeType2, objValueOf));
         }
         typedArrayObtainStyledAttributes.recycle();
     }
@@ -253,38 +202,38 @@ public class ConstraintAttribute {
         Class<?> cls = view.getClass();
         for (String str : map.keySet()) {
             ConstraintAttribute constraintAttribute = map.get(str);
-            String strM883w = C1643a.m883w("set", str);
+            String strW = a.w("set", str);
             try {
                 switch (constraintAttribute.mType) {
                     case INT_TYPE:
-                        cls.getMethod(strM883w, Integer.TYPE).invoke(view, Integer.valueOf(constraintAttribute.mIntegerValue));
+                        cls.getMethod(strW, Integer.TYPE).invoke(view, Integer.valueOf(constraintAttribute.mIntegerValue));
                         break;
                     case FLOAT_TYPE:
-                        cls.getMethod(strM883w, Float.TYPE).invoke(view, Float.valueOf(constraintAttribute.mFloatValue));
+                        cls.getMethod(strW, Float.TYPE).invoke(view, Float.valueOf(constraintAttribute.mFloatValue));
                         break;
                     case COLOR_TYPE:
-                        cls.getMethod(strM883w, Integer.TYPE).invoke(view, Integer.valueOf(constraintAttribute.mColorValue));
+                        cls.getMethod(strW, Integer.TYPE).invoke(view, Integer.valueOf(constraintAttribute.mColorValue));
                         break;
                     case COLOR_DRAWABLE_TYPE:
-                        Method method = cls.getMethod(strM883w, Drawable.class);
+                        Method method = cls.getMethod(strW, Drawable.class);
                         ColorDrawable colorDrawable = new ColorDrawable();
                         colorDrawable.setColor(constraintAttribute.mColorValue);
                         method.invoke(view, colorDrawable);
                         break;
                     case STRING_TYPE:
-                        cls.getMethod(strM883w, CharSequence.class).invoke(view, constraintAttribute.mStringValue);
+                        cls.getMethod(strW, CharSequence.class).invoke(view, constraintAttribute.mStringValue);
                         break;
                     case BOOLEAN_TYPE:
-                        cls.getMethod(strM883w, Boolean.TYPE).invoke(view, Boolean.valueOf(constraintAttribute.mBooleanValue));
+                        cls.getMethod(strW, Boolean.TYPE).invoke(view, Boolean.valueOf(constraintAttribute.mBooleanValue));
                         break;
                     case DIMENSION_TYPE:
-                        cls.getMethod(strM883w, Float.TYPE).invoke(view, Float.valueOf(constraintAttribute.mFloatValue));
+                        cls.getMethod(strW, Float.TYPE).invoke(view, Float.valueOf(constraintAttribute.mFloatValue));
                         break;
                 }
             } catch (IllegalAccessException e) {
-                StringBuilder sbM837Y = C1643a.m837Y(" Custom Attribute \"", str, "\" not found on ");
-                sbM837Y.append(cls.getName());
-                Log.e(TAG, sbM837Y.toString());
+                StringBuilder sbY = a.Y(" Custom Attribute \"", str, "\" not found on ");
+                sbY.append(cls.getName());
+                Log.e(TAG, sbY.toString());
                 e.printStackTrace();
             } catch (NoSuchMethodException e2) {
                 Log.e(TAG, e2.getMessage());
@@ -292,12 +241,12 @@ public class ConstraintAttribute {
                 StringBuilder sb = new StringBuilder();
                 sb.append(cls.getName());
                 sb.append(" must have a method ");
-                sb.append(strM883w);
+                sb.append(strW);
                 Log.e(TAG, sb.toString());
             } catch (InvocationTargetException e3) {
-                StringBuilder sbM837Y2 = C1643a.m837Y(" Custom Attribute \"", str, "\" not found on ");
-                sbM837Y2.append(cls.getName());
-                Log.e(TAG, sbM837Y2.toString());
+                StringBuilder sbY2 = a.Y(" Custom Attribute \"", str, "\" not found on ");
+                sbY2.append(cls.getName());
+                Log.e(TAG, sbY2.toString());
                 e3.printStackTrace();
             }
         }
@@ -317,9 +266,9 @@ public class ConstraintAttribute {
 
     public void setInterpolatedValue(View view, float[] fArr) {
         Class<?> cls = view.getClass();
-        StringBuilder sbM833U = C1643a.m833U("set");
-        sbM833U.append(this.mName);
-        String string = sbM833U.toString();
+        StringBuilder sbU = a.U("set");
+        sbU.append(this.mName);
+        String string = sbU.toString();
         try {
             boolean z2 = true;
             switch (this.mType) {
@@ -357,16 +306,16 @@ public class ConstraintAttribute {
                     return;
             }
         } catch (IllegalAccessException e) {
-            StringBuilder sbM837Y = C1643a.m837Y("cannot access method ", string, "on View \"");
-            sbM837Y.append(Debug.getName(view));
-            sbM837Y.append("\"");
-            Log.e(TAG, sbM837Y.toString());
+            StringBuilder sbY = a.Y("cannot access method ", string, "on View \"");
+            sbY.append(Debug.getName(view));
+            sbY.append("\"");
+            Log.e(TAG, sbY.toString());
             e.printStackTrace();
         } catch (NoSuchMethodException e2) {
-            StringBuilder sbM837Y2 = C1643a.m837Y("no method ", string, "on View \"");
-            sbM837Y2.append(Debug.getName(view));
-            sbM837Y2.append("\"");
-            Log.e(TAG, sbM837Y2.toString());
+            StringBuilder sbY2 = a.Y("no method ", string, "on View \"");
+            sbY2.append(Debug.getName(view));
+            sbY2.append("\"");
+            Log.e(TAG, sbY2.toString());
             e2.printStackTrace();
         } catch (InvocationTargetException e3) {
             e3.printStackTrace();
@@ -404,9 +353,9 @@ public class ConstraintAttribute {
         }
     }
 
-    public ConstraintAttribute(String str, AttributeType attributeType, Object obj) {
+    public ConstraintAttribute(String str, ConstraintAttribute$AttributeType constraintAttribute$AttributeType, Object obj) {
         this.mName = str;
-        this.mType = attributeType;
+        this.mType = constraintAttribute$AttributeType;
         setValue(obj);
     }
 

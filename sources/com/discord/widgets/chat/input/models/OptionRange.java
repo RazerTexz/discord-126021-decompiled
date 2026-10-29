@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.input.models;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.ranges.IntRange;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: OptionRange.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -11,8 +11,8 @@ public final /* data */ class OptionRange {
     private final IntRange value;
 
     public OptionRange(IntRange intRange, IntRange intRange2) {
-        C12238m.checkNotNullParameter(intRange, "param");
-        C12238m.checkNotNullParameter(intRange2, "value");
+        m.checkNotNullParameter(intRange, "param");
+        m.checkNotNullParameter(intRange2, "value");
         this.param = intRange;
         this.value = intRange2;
     }
@@ -28,8 +28,8 @@ public final /* data */ class OptionRange {
     }
 
     public final OptionRange copy(IntRange param, IntRange value) {
-        C12238m.checkNotNullParameter(param, "param");
-        C12238m.checkNotNullParameter(value, "value");
+        m.checkNotNullParameter(param, "param");
+        m.checkNotNullParameter(value, "value");
         return new OptionRange(param, value);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class OptionRange {
             return false;
         }
         OptionRange optionRange = (OptionRange) other;
-        return C12238m.areEqual(this.param, optionRange.param) && C12238m.areEqual(this.value, optionRange.value);
+        return m.areEqual(this.param, optionRange.param) && m.areEqual(this.value, optionRange.value);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -70,11 +70,11 @@ public final /* data */ class OptionRange {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("OptionRange(param=");
-        sbM833U.append(this.param);
-        sbM833U.append(", value=");
-        sbM833U.append(this.value);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("OptionRange(param=");
+        sbU.append(this.param);
+        sbU.append(", value=");
+        sbU.append(this.value);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

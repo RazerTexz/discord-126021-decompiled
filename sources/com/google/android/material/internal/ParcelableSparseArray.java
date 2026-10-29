@@ -2,36 +2,17 @@ package com.google.android.material.internal;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import android.util.SparseArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class ParcelableSparseArray extends SparseArray<Parcelable> implements Parcelable {
-    public static final Parcelable.Creator<ParcelableSparseArray> CREATOR = new C10940a();
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.ParcelableSparseArray$a */
-    public final class C10940a implements Parcelable.ClassLoaderCreator<ParcelableSparseArray> {
-        @Override // android.os.Parcelable.ClassLoaderCreator
-        @NonNull
-        public ParcelableSparseArray createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
-            return new ParcelableSparseArray(parcel, classLoader);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        @NonNull
-        public Object[] newArray(int i) {
-            return new ParcelableSparseArray[i];
-        }
-
-        @Override // android.os.Parcelable.Creator
-        @Nullable
-        public Object createFromParcel(@NonNull Parcel parcel) {
-            return new ParcelableSparseArray(parcel, null);
-        }
-    }
+    public static final Parcelable$Creator<ParcelableSparseArray> CREATOR = new ParcelableSparseArray$a();
 
     public ParcelableSparseArray() {
     }

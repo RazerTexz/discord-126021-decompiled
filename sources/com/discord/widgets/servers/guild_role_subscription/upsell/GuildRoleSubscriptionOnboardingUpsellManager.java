@@ -1,6 +1,7 @@
 package com.discord.widgets.servers.guild_role_subscription.upsell;
 
 import android.content.SharedPreferences;
+import android.content.SharedPreferences$Editor;
 import com.discord.api.guild.GuildFeature;
 import com.discord.models.guild.Guild;
 import com.discord.stores.StoreExperiments;
@@ -9,11 +10,12 @@ import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreUser;
 import com.discord.widgets.guild_role_subscriptions.GuildRoleSubscriptionsFeatureFlag;
 import com.discord.widgets.servers.creator_monetization_eligibility.CreatorMonetizationCountryAllowlist;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionOnboardingUpsellManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildRoleSubscriptionOnboardingUpsellManager {
+    public static final GuildRoleSubscriptionOnboardingUpsellManager$Companion Companion = new GuildRoleSubscriptionOnboardingUpsellManager$Companion(null);
     public static final String SHOWN_CACHE_KEY = "HAS_GUILD_ROLE_SUBSCRIPTION_UPSELL_BEEN_SHOWN";
     private final CreatorMonetizationCountryAllowlist countryAllowlist;
     private final GuildRoleSubscriptionsFeatureFlag featureFlag;
@@ -22,11 +24,11 @@ public final class GuildRoleSubscriptionOnboardingUpsellManager {
     private final StoreUser storeUser;
 
     public GuildRoleSubscriptionOnboardingUpsellManager(SharedPreferences sharedPreferences, StorePermissions storePermissions, StoreUser storeUser, StoreExperiments storeExperiments, StoreGuilds storeGuilds) {
-        C12238m.checkNotNullParameter(sharedPreferences, "sharedPreferences");
-        C12238m.checkNotNullParameter(storePermissions, "storePermissions");
-        C12238m.checkNotNullParameter(storeUser, "storeUser");
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        m.checkNotNullParameter(sharedPreferences, "sharedPreferences");
+        m.checkNotNullParameter(storePermissions, "storePermissions");
+        m.checkNotNullParameter(storeUser, "storeUser");
+        m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        m.checkNotNullParameter(storeGuilds, "storeGuilds");
         this.sharedPreferences = sharedPreferences;
         this.storePermissions = storePermissions;
         this.storeUser = storeUser;
@@ -35,7 +37,7 @@ public final class GuildRoleSubscriptionOnboardingUpsellManager {
     }
 
     public final boolean canShow(Guild guild) {
-        C12238m.checkNotNullParameter(guild, "guild");
+        m.checkNotNullParameter(guild, "guild");
         return (hasBeenShown() || guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE) || guild.hasFeature(GuildFeature.CREATOR_MONETIZABLE_DISABLED) || !this.featureFlag.canGuildSeeGuildRoleSubscriptionSettings(guild.getId(), this.countryAllowlist)) ? false : true;
     }
 
@@ -44,9 +46,9 @@ public final class GuildRoleSubscriptionOnboardingUpsellManager {
     }
 
     public final void setHasBeenShown() {
-        SharedPreferences.Editor editorEdit = this.sharedPreferences.edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-        editorEdit.putBoolean(SHOWN_CACHE_KEY, true);
-        editorEdit.apply();
+        SharedPreferences$Editor sharedPreferences$EditorEdit = this.sharedPreferences.edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        sharedPreferences$EditorEdit.putBoolean(SHOWN_CACHE_KEY, true);
+        sharedPreferences$EditorEdit.apply();
     }
 }

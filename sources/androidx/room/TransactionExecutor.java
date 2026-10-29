@@ -15,17 +15,8 @@ public class TransactionExecutor implements Executor {
     }
 
     @Override // java.util.concurrent.Executor
-    public synchronized void execute(final Runnable runnable) {
-        this.mTasks.offer(new Runnable() { // from class: androidx.room.TransactionExecutor.1
-            @Override // java.lang.Runnable
-            public void run() {
-                try {
-                    runnable.run();
-                } finally {
-                    TransactionExecutor.this.scheduleNext();
-                }
-            }
-        });
+    public synchronized void execute(Runnable runnable) {
+        this.mTasks.offer(new TransactionExecutor$1(this, runnable));
         if (this.mActive == null) {
             scheduleNext();
         }

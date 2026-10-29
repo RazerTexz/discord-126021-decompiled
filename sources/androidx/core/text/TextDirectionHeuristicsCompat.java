@@ -1,8 +1,5 @@
 package androidx.core.text;
 
-import java.nio.CharBuffer;
-import java.util.Locale;
-
 /* JADX INFO: loaded from: classes.dex */
 public final class TextDirectionHeuristicsCompat {
     public static final TextDirectionHeuristicCompat ANYRTL_LTR;
@@ -12,132 +9,15 @@ public final class TextDirectionHeuristicsCompat {
     private static final int STATE_FALSE = 1;
     private static final int STATE_TRUE = 0;
     private static final int STATE_UNKNOWN = 2;
-    public static final TextDirectionHeuristicCompat LTR = new TextDirectionHeuristicInternal(null, false);
-    public static final TextDirectionHeuristicCompat RTL = new TextDirectionHeuristicInternal(null, true);
-
-    public class AnyStrong implements TextDirectionAlgorithm {
-        private final boolean mLookForRtl;
-        public static final AnyStrong INSTANCE_RTL = new AnyStrong(true);
-
-        private AnyStrong(boolean z2) {
-            this.mLookForRtl = z2;
-        }
-
-        @Override // androidx.core.text.TextDirectionHeuristicsCompat.TextDirectionAlgorithm
-        public int checkRtl(CharSequence charSequence, int i, int i2) {
-            int i3 = i2 + i;
-            boolean z2 = false;
-            while (i < i3) {
-                int iIsRtlText = TextDirectionHeuristicsCompat.isRtlText(Character.getDirectionality(charSequence.charAt(i)));
-                if (iIsRtlText != 0) {
-                    if (iIsRtlText != 1) {
-                        continue;
-                    } else if (!this.mLookForRtl) {
-                        return 1;
-                    }
-                    i++;
-                } else if (this.mLookForRtl) {
-                    return 0;
-                }
-                z2 = true;
-                i++;
-            }
-            if (z2) {
-                return this.mLookForRtl ? 1 : 0;
-            }
-            return 2;
-        }
-    }
-
-    public class FirstStrong implements TextDirectionAlgorithm {
-        public static final FirstStrong INSTANCE = new FirstStrong();
-
-        private FirstStrong() {
-        }
-
-        @Override // androidx.core.text.TextDirectionHeuristicsCompat.TextDirectionAlgorithm
-        public int checkRtl(CharSequence charSequence, int i, int i2) {
-            int i3 = i2 + i;
-            int iIsRtlTextOrFormat = 2;
-            while (i < i3 && iIsRtlTextOrFormat == 2) {
-                iIsRtlTextOrFormat = TextDirectionHeuristicsCompat.isRtlTextOrFormat(Character.getDirectionality(charSequence.charAt(i)));
-                i++;
-            }
-            return iIsRtlTextOrFormat;
-        }
-    }
-
-    public interface TextDirectionAlgorithm {
-        int checkRtl(CharSequence charSequence, int i, int i2);
-    }
-
-    public abstract class TextDirectionHeuristicImpl implements TextDirectionHeuristicCompat {
-        private final TextDirectionAlgorithm mAlgorithm;
-
-        public TextDirectionHeuristicImpl(TextDirectionAlgorithm textDirectionAlgorithm) {
-            this.mAlgorithm = textDirectionAlgorithm;
-        }
-
-        public abstract boolean defaultIsRtl();
-
-        private boolean doCheck(CharSequence charSequence, int i, int i2) {
-            int iCheckRtl = this.mAlgorithm.checkRtl(charSequence, i, i2);
-            if (iCheckRtl == 0) {
-                return true;
-            }
-            if (iCheckRtl != 1) {
-                return defaultIsRtl();
-            }
-            return false;
-        }
-
-        @Override // androidx.core.text.TextDirectionHeuristicCompat
-        public boolean isRtl(char[] cArr, int i, int i2) {
-            return isRtl(CharBuffer.wrap(cArr), i, i2);
-        }
-
-        @Override // androidx.core.text.TextDirectionHeuristicCompat
-        public boolean isRtl(CharSequence charSequence, int i, int i2) {
-            if (charSequence == null || i < 0 || i2 < 0 || charSequence.length() - i2 < i) {
-                throw new IllegalArgumentException();
-            }
-            return this.mAlgorithm == null ? defaultIsRtl() : doCheck(charSequence, i, i2);
-        }
-    }
-
-    public class TextDirectionHeuristicInternal extends TextDirectionHeuristicImpl {
-        private final boolean mDefaultIsRtl;
-
-        public TextDirectionHeuristicInternal(TextDirectionAlgorithm textDirectionAlgorithm, boolean z2) {
-            super(textDirectionAlgorithm);
-            this.mDefaultIsRtl = z2;
-        }
-
-        @Override // androidx.core.text.TextDirectionHeuristicsCompat.TextDirectionHeuristicImpl
-        public boolean defaultIsRtl() {
-            return this.mDefaultIsRtl;
-        }
-    }
-
-    public class TextDirectionHeuristicLocale extends TextDirectionHeuristicImpl {
-        public static final TextDirectionHeuristicLocale INSTANCE = new TextDirectionHeuristicLocale();
-
-        public TextDirectionHeuristicLocale() {
-            super(null);
-        }
-
-        @Override // androidx.core.text.TextDirectionHeuristicsCompat.TextDirectionHeuristicImpl
-        public boolean defaultIsRtl() {
-            return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == 1;
-        }
-    }
+    public static final TextDirectionHeuristicCompat LTR = new TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal(null, false);
+    public static final TextDirectionHeuristicCompat RTL = new TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal(null, true);
 
     static {
-        FirstStrong firstStrong = FirstStrong.INSTANCE;
-        FIRSTSTRONG_LTR = new TextDirectionHeuristicInternal(firstStrong, false);
-        FIRSTSTRONG_RTL = new TextDirectionHeuristicInternal(firstStrong, true);
-        ANYRTL_LTR = new TextDirectionHeuristicInternal(AnyStrong.INSTANCE_RTL, false);
-        LOCALE = TextDirectionHeuristicLocale.INSTANCE;
+        TextDirectionHeuristicsCompat$FirstStrong textDirectionHeuristicsCompat$FirstStrong = TextDirectionHeuristicsCompat$FirstStrong.INSTANCE;
+        FIRSTSTRONG_LTR = new TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal(textDirectionHeuristicsCompat$FirstStrong, false);
+        FIRSTSTRONG_RTL = new TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal(textDirectionHeuristicsCompat$FirstStrong, true);
+        ANYRTL_LTR = new TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal(TextDirectionHeuristicsCompat$AnyStrong.INSTANCE_RTL, false);
+        LOCALE = TextDirectionHeuristicsCompat$TextDirectionHeuristicLocale.INSTANCE;
     }
 
     private TextDirectionHeuristicsCompat() {

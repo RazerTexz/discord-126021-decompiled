@@ -3,7 +3,7 @@ package androidx.core.text;
 import android.text.Spanned;
 import android.text.SpannedString;
 import androidx.exifinterface.media.ExifInterface;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: SpannedString.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,25 +15,25 @@ public final class SpannedStringKt {
         if ((i3 & 2) != 0) {
             i2 = spanned.length();
         }
-        C12238m.checkNotNullParameter(spanned, "<this>");
-        C12238m.reifiedOperationMarker(4, ExifInterface.GPS_DIRECTION_TRUE);
+        m.checkNotNullParameter(spanned, "<this>");
+        m.reifiedOperationMarker(4, ExifInterface.GPS_DIRECTION_TRUE);
         Object[] spans = spanned.getSpans(i, i2, Object.class);
-        C12238m.checkNotNullExpressionValue(spans, "getSpans(start, end, T::class.java)");
+        m.checkNotNullExpressionValue(spans, "getSpans(start, end, T::class.java)");
         return spans;
     }
 
     public static final /* synthetic */ <T> T[] getSpans(Spanned spanned, int i, int i2) {
-        C12238m.checkNotNullParameter(spanned, "<this>");
-        C12238m.reifiedOperationMarker(4, ExifInterface.GPS_DIRECTION_TRUE);
+        m.checkNotNullParameter(spanned, "<this>");
+        m.reifiedOperationMarker(4, ExifInterface.GPS_DIRECTION_TRUE);
         T[] tArr = (T[]) spanned.getSpans(i, i2, Object.class);
-        C12238m.checkNotNullExpressionValue(tArr, "getSpans(start, end, T::class.java)");
+        m.checkNotNullExpressionValue(tArr, "getSpans(start, end, T::class.java)");
         return tArr;
     }
 
     public static final Spanned toSpanned(CharSequence charSequence) {
-        C12238m.checkNotNullParameter(charSequence, "<this>");
+        m.checkNotNullParameter(charSequence, "<this>");
         SpannedString spannedStringValueOf = SpannedString.valueOf(charSequence);
-        C12238m.checkNotNullExpressionValue(spannedStringValueOf, "valueOf(this)");
+        m.checkNotNullExpressionValue(spannedStringValueOf, "valueOf(this)");
         return spannedStringValueOf;
     }
 }

@@ -3,15 +3,14 @@ package com.discord.utilities.search.query.node.filter;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.SpannableStringBuilder;
-import androidx.core.app.NotificationCompat;
-import com.discord.C5419R;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import b.d.b.a.a;
 import com.discord.utilities.font.FontUtils;
 import com.discord.utilities.search.query.FilterType;
 import com.discord.utilities.search.query.node.QueryNode;
 import com.discord.utilities.spans.TypefaceSpanCompat;
 import com.discord.widgets.chat.input.MentionUtilsKt;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: FilterNode.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,8 +19,8 @@ public final /* data */ class FilterNode extends QueryNode {
     private final CharSequence text;
 
     public FilterNode(FilterType filterType, CharSequence charSequence) {
-        C12238m.checkNotNullParameter(filterType, "filterType");
-        C12238m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(filterType, "filterType");
+        m.checkNotNullParameter(charSequence, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         this.filterType = filterType;
         this.text = charSequence;
     }
@@ -41,8 +40,8 @@ public final /* data */ class FilterNode extends QueryNode {
     }
 
     public final FilterNode copy(FilterType filterType, CharSequence text) {
-        C12238m.checkNotNullParameter(filterType, "filterType");
-        C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(filterType, "filterType");
+        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         return new FilterNode(filterType, text);
     }
 
@@ -54,7 +53,7 @@ public final /* data */ class FilterNode extends QueryNode {
             return false;
         }
         FilterNode filterNode = (FilterNode) other;
-        return C12238m.areEqual(this.filterType, filterNode.filterType) && C12238m.areEqual(getText(), filterNode.getText());
+        return m.areEqual(this.filterType, filterNode.filterType) && m.areEqual(getText(), filterNode.getText());
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -78,20 +77,25 @@ public final /* data */ class FilterNode extends QueryNode {
         return iHashCode + (text != null ? text.hashCode() : 0);
     }
 
-    public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("FilterNode(filterType=");
-        sbM833U.append(this.filterType);
-        sbM833U.append(", text=");
-        sbM833U.append(getText());
-        sbM833U.append(")");
-        return sbM833U.toString();
+    @Override // com.discord.simpleast.core.node.Node
+    public /* bridge */ /* synthetic */ void render(SpannableStringBuilder spannableStringBuilder, Context context) {
+        render2(spannableStringBuilder, context);
     }
 
-    @Override // com.discord.simpleast.core.node.Node
-    public void render(SpannableStringBuilder builder, Context renderContext) {
-        C12238m.checkNotNullParameter(builder, "builder");
-        C12238m.checkNotNullParameter(renderContext, "renderContext");
-        Typeface themedFont = FontUtils.INSTANCE.getThemedFont(renderContext, C5419R.attr.font_primary_bold);
+    public String toString() {
+        StringBuilder sbU = a.U("FilterNode(filterType=");
+        sbU.append(this.filterType);
+        sbU.append(", text=");
+        sbU.append(getText());
+        sbU.append(")");
+        return sbU.toString();
+    }
+
+    /* JADX INFO: renamed from: render, reason: avoid collision after fix types in other method */
+    public void render2(SpannableStringBuilder builder, Context renderContext) {
+        m.checkNotNullParameter(builder, "builder");
+        m.checkNotNullParameter(renderContext, "renderContext");
+        Typeface themedFont = FontUtils.INSTANCE.getThemedFont(renderContext, 2130969394);
         TypefaceSpanCompat typefaceSpanCompat = themedFont != null ? new TypefaceSpanCompat(themedFont) : null;
         int length = builder.length();
         builder.append((CharSequence) ("" + getText() + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR));

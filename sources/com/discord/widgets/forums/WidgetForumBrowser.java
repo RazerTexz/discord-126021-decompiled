@@ -2,68 +2,55 @@ package com.discord.widgets.forums;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.graphics.Insets;
-import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import b.a.d.g0;
+import b.a.d.i0;
+import b.a.i.o;
+import b.a.i.p;
+import b.a.k.b;
+import b.d.b.a.a;
+import com.discord.R$layout;
 import com.discord.api.channel.Channel;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetForumBrowserBinding;
 import com.discord.stores.SelectedChannelAnalyticsLocation;
 import com.discord.utilities.channel.ChannelSelector;
-import com.discord.utilities.error.Error;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapter;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.mg_recycler.MGRecyclerAdapter$Companion;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions;
+import com.discord.widgets.channels.list.WidgetChannelsListItemThreadActions$Companion;
 import com.discord.widgets.home.WidgetHomePanelNsfw;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import d0.d0.f;
+import d0.t.n;
+import d0.z.d.a0;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import kotlin.Lazy;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.functions.Function2;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0865g0;
-import p007b.p008a.p018d.C0869i0;
-import p007b.p008a.p018d.C0870j;
-import p007b.p008a.p025i.C1016o;
-import p007b.p008a.p025i.C1023p;
-import p007b.p008a.p027k.C1107b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p512d0.C11226f;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Subscription;
 
 /* JADX INFO: compiled from: WidgetForumBrowser.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetForumBrowser extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetForumBrowser.class, "binding", "getBinding()Lcom/discord/databinding/WidgetForumBrowserBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetForumBrowser.class, "binding", "getBinding()Lcom/discord/databinding/WidgetForumBrowserBinding;", 0)};
     private static final String CLOSE_FORUM_GUIDELINES_NOOP_REQUEST_KEY = "CLOSE_FORUM_GUIDELINES_NOOP_REQUEST_KEY";
     private static final String CLOSE_FORUM_GUIDELINES_REQUEST_KEY = "CLOSE_FORUM_GUIDELINES_REQUEST_KEY";
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final WidgetForumBrowser$Companion Companion = new WidgetForumBrowser$Companion(null);
     private final List<ForumBrowserItem> adapterDataReference;
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
@@ -77,229 +64,126 @@ public final class WidgetForumBrowser extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$configureCreatePostButton$2 */
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public final class C83392 extends AbstractC12240o implements Function2<Long, Long, Unit> {
-        public C83392() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, Long l2) {
-            invoke(l.longValue(), l2.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, long j2) {
-            WidgetForumBrowser.this.openCreatePostScreen(j, j2);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$handleViewState$1 */
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public final class C83411 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public final /* synthetic */ WidgetForumBrowserViewModel.ViewState $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C83411(WidgetForumBrowserViewModel.ViewState viewState) {
-            super(1);
-            this.$viewState = viewState;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke(bool.booleanValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(boolean z2) {
-            WidgetForumBrowser.this.panelNsfwHidden = !z2;
-            WidgetForumBrowserViewModel.ViewState viewState = this.$viewState;
-            if (viewState instanceof WidgetForumBrowserViewModel.ViewState.Loaded) {
-                WidgetForumBrowser.this.configureCreatePostButton((WidgetForumBrowserViewModel.ViewState.Loaded) viewState);
-                WidgetForumBrowser.this.configureGuidelinesButton((WidgetForumBrowserViewModel.ViewState.Loaded) this.$viewState);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onResume$1 */
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public final class C83421 extends AbstractC12240o implements Function1<WidgetForumBrowserViewModel.Event, Unit> {
-        public C83421() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetForumBrowserViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetForumBrowserViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "event");
-            WidgetForumBrowser.this.handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onResume$2 */
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public final class C83432 extends AbstractC12240o implements Function1<WidgetForumBrowserViewModel.ViewState, Unit> {
-        public C83432() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetForumBrowserViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetForumBrowserViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetForumBrowser.this.handleViewState(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public final /* synthetic */ class C83441 extends C12236k implements Function1<Channel, Unit> {
-        public C83441(WidgetForumBrowser widgetForumBrowser) {
-            super(1, widgetForumBrowser, WidgetForumBrowser.class, "openForumPost", "openForumPost(Lcom/discord/api/channel/Channel;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "p1");
-            ((WidgetForumBrowser) this.receiver).openForumPost(channel);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.forums.WidgetForumBrowser$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public final /* synthetic */ class C83452 extends C12236k implements Function1<Channel, Unit> {
-        public C83452(WidgetForumBrowser widgetForumBrowser) {
-            super(1, widgetForumBrowser, WidgetForumBrowser.class, "openForumPostOptions", "openForumPostOptions(Lcom/discord/api/channel/Channel;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "p1");
-            ((WidgetForumBrowser) this.receiver).openForumPostOptions(channel);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetForumBrowser.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void show(Context context) {
-            if (context != null) {
-                C0870j.m157e(context, WidgetForumBrowser.class, null, 4);
-            }
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public WidgetForumBrowser() {
-        super(C5419R.layout.widget_forum_browser);
+        super(R$layout.widget_forum_browser);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetForumBrowser$binding$2.INSTANCE, null, 2, null);
         WidgetForumBrowser$viewModel$2 widgetForumBrowser$viewModel$2 = WidgetForumBrowser$viewModel$2.INSTANCE;
-        C0865g0 c0865g0 = new C0865g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetForumBrowserViewModel.class), new WidgetForumBrowser$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetForumBrowser$viewModel$2));
+        g0 g0Var = new g0(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetForumBrowserViewModel.class), new WidgetForumBrowser$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetForumBrowser$viewModel$2));
         this.adapterDataReference = new ArrayList();
         this.panelNsfwHidden = true;
     }
 
-    private final void configureCreatePostButton(final WidgetForumBrowserViewModel.ViewState.Loaded viewState) {
-        ExtendedFloatingActionButton extendedFloatingActionButton = getBinding().f16634b;
+    public static final /* synthetic */ void access$configureCreatePostButton(WidgetForumBrowser widgetForumBrowser, WidgetForumBrowserViewModel$ViewState$Loaded widgetForumBrowserViewModel$ViewState$Loaded) {
+        widgetForumBrowser.configureCreatePostButton(widgetForumBrowserViewModel$ViewState$Loaded);
+    }
+
+    public static final /* synthetic */ void access$configureGuidelinesButton(WidgetForumBrowser widgetForumBrowser, WidgetForumBrowserViewModel$ViewState$Loaded widgetForumBrowserViewModel$ViewState$Loaded) {
+        widgetForumBrowser.configureGuidelinesButton(widgetForumBrowserViewModel$ViewState$Loaded);
+    }
+
+    public static final /* synthetic */ void access$enqueueForumPostFirstMessageFetches(WidgetForumBrowser widgetForumBrowser, long j, long j2) {
+        widgetForumBrowser.enqueueForumPostFirstMessageFetches(j, j2);
+    }
+
+    public static final /* synthetic */ boolean access$getPanelNsfwHidden$p(WidgetForumBrowser widgetForumBrowser) {
+        return widgetForumBrowser.panelNsfwHidden;
+    }
+
+    public static final /* synthetic */ WidgetForumBrowserViewModel access$getViewModel$p(WidgetForumBrowser widgetForumBrowser) {
+        return widgetForumBrowser.getViewModel();
+    }
+
+    public static final /* synthetic */ void access$handleEvent(WidgetForumBrowser widgetForumBrowser, WidgetForumBrowserViewModel$Event widgetForumBrowserViewModel$Event) {
+        widgetForumBrowser.handleEvent(widgetForumBrowserViewModel$Event);
+    }
+
+    public static final /* synthetic */ void access$handleViewState(WidgetForumBrowser widgetForumBrowser, WidgetForumBrowserViewModel$ViewState widgetForumBrowserViewModel$ViewState) {
+        widgetForumBrowser.handleViewState(widgetForumBrowserViewModel$ViewState);
+    }
+
+    public static final /* synthetic */ void access$onCreatePostClick(WidgetForumBrowser widgetForumBrowser, long j, long j2, boolean z2) {
+        widgetForumBrowser.onCreatePostClick(j, j2, z2);
+    }
+
+    public static final /* synthetic */ void access$onLayoutCompleted(WidgetForumBrowser widgetForumBrowser, long j, long j2) {
+        widgetForumBrowser.onLayoutCompleted(j, j2);
+    }
+
+    public static final /* synthetic */ void access$openCreatePostScreen(WidgetForumBrowser widgetForumBrowser, long j, long j2) {
+        widgetForumBrowser.openCreatePostScreen(j, j2);
+    }
+
+    public static final /* synthetic */ void access$openForumPost(WidgetForumBrowser widgetForumBrowser, Channel channel) {
+        widgetForumBrowser.openForumPost(channel);
+    }
+
+    public static final /* synthetic */ void access$openForumPostOptions(WidgetForumBrowser widgetForumBrowser, Channel channel) {
+        widgetForumBrowser.openForumPostOptions(channel);
+    }
+
+    public static final /* synthetic */ void access$setPanelNsfwHidden$p(WidgetForumBrowser widgetForumBrowser, boolean z2) {
+        widgetForumBrowser.panelNsfwHidden = z2;
+    }
+
+    private final void configureCreatePostButton(WidgetForumBrowserViewModel$ViewState$Loaded viewState) {
+        ExtendedFloatingActionButton extendedFloatingActionButton = getBinding().f2387b;
         extendedFloatingActionButton.setVisibility(viewState.getCanCreateForumChannelPosts() && this.panelNsfwHidden ? 0 : 8);
         if (extendedFloatingActionButton.getVisibility() == 0) {
             String channelTopic = viewState.getChannelTopic();
-            final boolean z2 = !(channelTopic == null || channelTopic.length() == 0);
-            extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.forums.WidgetForumBrowser$configureCreatePostButton$$inlined$apply$lambda$1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    this.onCreatePostClick(viewState.getGuildId(), viewState.getChannelId(), z2);
-                }
-            });
+            extendedFloatingActionButton.setOnClickListener(new WidgetForumBrowser$configureCreatePostButton$$inlined$apply$lambda$1(!(channelTopic == null || channelTopic.length() == 0), this, viewState));
         }
-        WidgetForumGuidelinesBottomSheet.INSTANCE.registerForResult(this, CLOSE_FORUM_GUIDELINES_REQUEST_KEY, new C83392());
+        WidgetForumGuidelinesBottomSheet.Companion.registerForResult(this, CLOSE_FORUM_GUIDELINES_REQUEST_KEY, new WidgetForumBrowser$configureCreatePostButton$2(this));
     }
 
-    private final void configureEmptyState(WidgetForumBrowserViewModel.ViewState.Loaded viewState) {
-        C1016o c1016o = getBinding().f16635c;
-        C12238m.checkNotNullExpressionValue(c1016o, "binding.emptyView");
-        ConstraintLayout constraintLayout = c1016o.f1092a;
-        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.emptyView.root");
+    private final void configureEmptyState(WidgetForumBrowserViewModel$ViewState$Loaded viewState) {
+        o oVar = getBinding().c;
+        m.checkNotNullExpressionValue(oVar, "binding.emptyView");
+        ConstraintLayout constraintLayout = oVar.a;
+        m.checkNotNullExpressionValue(constraintLayout, "binding.emptyView.root");
         constraintLayout.setVisibility(0);
-        RecyclerView recyclerView = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        RecyclerView recyclerView = getBinding().f;
+        m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
         recyclerView.setVisibility(8);
         this.adapterDataReference.clear();
-        TextView textView = getBinding().f16635c.f1093b;
-        C12238m.checkNotNullExpressionValue(textView, "binding.emptyView.forumBrowserEmptySubheading");
-        C1107b.m221m(textView, C5419R.string.forum_empty_state_description, new Object[]{viewState.getChannelName()}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
+        TextView textView = getBinding().c.f170b;
+        m.checkNotNullExpressionValue(textView, "binding.emptyView.forumBrowserEmptySubheading");
+        b.n(textView, 2131889362, new Object[]{viewState.getChannelName()}, null, 4);
     }
 
-    private final void configureGuidelinesButton(final WidgetForumBrowserViewModel.ViewState.Loaded viewState) {
-        FloatingActionButton floatingActionButton = getBinding().f16639g;
+    private final void configureGuidelinesButton(WidgetForumBrowserViewModel$ViewState$Loaded viewState) {
+        FloatingActionButton floatingActionButton = getBinding().g;
         String channelTopic = viewState.getChannelTopic();
         floatingActionButton.setVisibility(!(channelTopic == null || channelTopic.length() == 0) && this.panelNsfwHidden ? 0 : 8);
         if (floatingActionButton.getVisibility() == 0) {
-            floatingActionButton.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.forums.WidgetForumBrowser$configureGuidelinesButton$$inlined$apply$lambda$1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    WidgetForumGuidelinesBottomSheet.Companion companion = WidgetForumGuidelinesBottomSheet.INSTANCE;
-                    FragmentManager parentFragmentManager = this.this$0.getParentFragmentManager();
-                    C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-                    companion.show(parentFragmentManager, viewState.getGuildId(), viewState.getChannelId(), "CLOSE_FORUM_GUIDELINES_NOOP_REQUEST_KEY");
-                }
-            });
+            floatingActionButton.setOnClickListener(new WidgetForumBrowser$configureGuidelinesButton$$inlined$apply$lambda$1(this, viewState));
         }
     }
 
-    private final void configureListState(WidgetForumBrowserViewModel.ViewState.Loaded viewState) {
-        C1016o c1016o = getBinding().f16635c;
-        C12238m.checkNotNullExpressionValue(c1016o, "binding.emptyView");
-        ConstraintLayout constraintLayout = c1016o.f1092a;
-        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.emptyView.root");
+    private final void configureListState(WidgetForumBrowserViewModel$ViewState$Loaded viewState) {
+        o oVar = getBinding().c;
+        m.checkNotNullExpressionValue(oVar, "binding.emptyView");
+        ConstraintLayout constraintLayout = oVar.a;
+        m.checkNotNullExpressionValue(constraintLayout, "binding.emptyView.root");
         constraintLayout.setVisibility(8);
-        RecyclerView recyclerView = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        RecyclerView recyclerView = getBinding().f;
+        m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
         recyclerView.setVisibility(0);
         this.adapterDataReference.clear();
         this.adapterDataReference.addAll(viewState.getListItems());
         WidgetForumBrowserAdapter widgetForumBrowserAdapter = this.forumBrowserAdapter;
         if (widgetForumBrowserAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
+            m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
         }
         widgetForumBrowserAdapter.setData(viewState.getListItems());
         ForumBrowserLayoutManager forumBrowserLayoutManager = this.forumBrowserLayoutManager;
         if (forumBrowserLayoutManager == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
+            m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
         }
         forumBrowserLayoutManager.setOnLayoutCompletedCallback(new WidgetForumBrowser$configureListState$$inlined$apply$lambda$1(this, viewState));
         ForumBrowserScrollListener forumBrowserScrollListener = this.forumBrowserScrollListener;
         if (forumBrowserScrollListener == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserScrollListener");
+            m.throwUninitializedPropertyAccessException("forumBrowserScrollListener");
         }
         forumBrowserScrollListener.setOnScrollCallback(new WidgetForumBrowser$configureListState$$inlined$apply$lambda$2(this, viewState));
         forumBrowserScrollListener.setOnScrollEndCallback(new WidgetForumBrowser$configureListState$$inlined$apply$lambda$3(this, viewState));
@@ -309,7 +193,7 @@ public final class WidgetForumBrowser extends AppFragment {
     private final void enqueueForumPostFirstMessageFetches(long parentChannelId, long guildId) {
         ForumBrowserLayoutManager forumBrowserLayoutManager = this.forumBrowserLayoutManager;
         if (forumBrowserLayoutManager == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
+            m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
         }
         int iFindFirstVisibleItemPosition = forumBrowserLayoutManager.findFirstVisibleItemPosition();
         if (iFindFirstVisibleItemPosition == -1) {
@@ -317,7 +201,7 @@ public final class WidgetForumBrowser extends AppFragment {
         }
         ForumBrowserLayoutManager forumBrowserLayoutManager2 = this.forumBrowserLayoutManager;
         if (forumBrowserLayoutManager2 == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
+            m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
         }
         int iFindLastVisibleItemPosition = forumBrowserLayoutManager2.findLastVisibleItemPosition();
         if (iFindLastVisibleItemPosition == -1) {
@@ -326,19 +210,19 @@ public final class WidgetForumBrowser extends AppFragment {
         int size = this.adapterDataReference.size();
         ForumBrowserLayoutManager forumBrowserLayoutManager3 = this.forumBrowserLayoutManager;
         if (forumBrowserLayoutManager3 == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
+            m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
         }
         int i = (iFindFirstVisibleItemPosition / 10) * 10;
-        int iCoerceAtMost = C11226f.coerceAtMost(C11226f.coerceAtMost(size, forumBrowserLayoutManager3.getItemCount()) - 1, (((iFindLastVisibleItemPosition / 10) + 1) * 10) - 1);
+        int iCoerceAtMost = f.coerceAtMost(f.coerceAtMost(size, forumBrowserLayoutManager3.getItemCount()) - 1, (((iFindLastVisibleItemPosition / 10) + 1) * 10) - 1);
         if (i > iCoerceAtMost) {
             return;
         }
         while (true) {
             ForumBrowserItem forumBrowserItem = this.adapterDataReference.get(i);
-            if (forumBrowserItem instanceof ForumBrowserItem.PostItem) {
-                ForumBrowserItem.PostItem postItem = (ForumBrowserItem.PostItem) forumBrowserItem;
-                if (postItem.getPost().getIsActivePost()) {
-                    getViewModel().enqueueForumPostFirstMessageFetch(parentChannelId, guildId, postItem.getPost().getChannel().getId());
+            if (forumBrowserItem instanceof ForumBrowserItem$PostItem) {
+                ForumBrowserItem$PostItem forumBrowserItem$PostItem = (ForumBrowserItem$PostItem) forumBrowserItem;
+                if (forumBrowserItem$PostItem.getPost().getIsActivePost()) {
+                    getViewModel().enqueueForumPostFirstMessageFetch(parentChannelId, guildId, forumBrowserItem$PostItem.getPost().getChannel().getId());
                 }
             }
             if (i == iCoerceAtMost) {
@@ -357,68 +241,68 @@ public final class WidgetForumBrowser extends AppFragment {
         return (WidgetForumBrowserViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(WidgetForumBrowserViewModel.Event event) {
-        if (event instanceof WidgetForumBrowserViewModel.Event.ScrollToTop) {
-            getBinding().f16638f.scrollToPosition(0);
+    private final void handleEvent(WidgetForumBrowserViewModel$Event event) {
+        if (event instanceof WidgetForumBrowserViewModel$Event$ScrollToTop) {
+            getBinding().f.scrollToPosition(0);
         }
     }
 
-    private final void handleViewState(WidgetForumBrowserViewModel.ViewState viewState) {
-        WidgetForumBrowserViewModel.NsfwPanelState nsfwPanelState = viewState.getNsfwPanelState();
+    private final void handleViewState(WidgetForumBrowserViewModel$ViewState viewState) {
+        WidgetForumBrowserViewModel$NsfwPanelState nsfwPanelState = viewState.getNsfwPanelState();
         WidgetHomePanelNsfw widgetHomePanelNsfw = this.panelNsfw;
         if (widgetHomePanelNsfw != null) {
-            widgetHomePanelNsfw.configureUI(nsfwPanelState.getGuildId(), nsfwPanelState.isChannelNsfw(), nsfwPanelState.isNsfwUnconsented(), nsfwPanelState.getNsfwAllowed(), getBinding().f16637e, new C83411(viewState), (64 & 64) != 0 ? null : null);
+            WidgetHomePanelNsfw.configureUI$default(widgetHomePanelNsfw, nsfwPanelState.getGuildId(), nsfwPanelState.isChannelNsfw(), nsfwPanelState.isNsfwUnconsented(), nsfwPanelState.getNsfwAllowed(), getBinding().e, new WidgetForumBrowser$handleViewState$1(this, viewState), null, 64, null);
         }
-        if (!(viewState instanceof WidgetForumBrowserViewModel.ViewState.Loading)) {
-            if (viewState instanceof WidgetForumBrowserViewModel.ViewState.Loaded) {
-                C1023p c1023p = getBinding().f16636d;
-                C12238m.checkNotNullExpressionValue(c1023p, "binding.loadingView");
-                ConstraintLayout constraintLayout = c1023p.f1121a;
-                C12238m.checkNotNullExpressionValue(constraintLayout, "binding.loadingView.root");
+        if (!(viewState instanceof WidgetForumBrowserViewModel$ViewState$Loading)) {
+            if (viewState instanceof WidgetForumBrowserViewModel$ViewState$Loaded) {
+                p pVar = getBinding().d;
+                m.checkNotNullExpressionValue(pVar, "binding.loadingView");
+                ConstraintLayout constraintLayout = pVar.a;
+                m.checkNotNullExpressionValue(constraintLayout, "binding.loadingView.root");
                 constraintLayout.setVisibility(8);
-                WidgetForumBrowserViewModel.ViewState.Loaded loaded = (WidgetForumBrowserViewModel.ViewState.Loaded) viewState;
-                configureCreatePostButton(loaded);
-                configureGuidelinesButton(loaded);
-                if (loaded.getListItems().isEmpty()) {
-                    configureEmptyState(loaded);
+                WidgetForumBrowserViewModel$ViewState$Loaded widgetForumBrowserViewModel$ViewState$Loaded = (WidgetForumBrowserViewModel$ViewState$Loaded) viewState;
+                configureCreatePostButton(widgetForumBrowserViewModel$ViewState$Loaded);
+                configureGuidelinesButton(widgetForumBrowserViewModel$ViewState$Loaded);
+                if (widgetForumBrowserViewModel$ViewState$Loaded.getListItems().isEmpty()) {
+                    configureEmptyState(widgetForumBrowserViewModel$ViewState$Loaded);
                     return;
                 } else {
-                    configureListState(loaded);
+                    configureListState(widgetForumBrowserViewModel$ViewState$Loaded);
                     return;
                 }
             }
             return;
         }
-        C1023p c1023p2 = getBinding().f16636d;
-        C12238m.checkNotNullExpressionValue(c1023p2, "binding.loadingView");
-        ConstraintLayout constraintLayout2 = c1023p2.f1121a;
-        C12238m.checkNotNullExpressionValue(constraintLayout2, "binding.loadingView.root");
+        p pVar2 = getBinding().d;
+        m.checkNotNullExpressionValue(pVar2, "binding.loadingView");
+        ConstraintLayout constraintLayout2 = pVar2.a;
+        m.checkNotNullExpressionValue(constraintLayout2, "binding.loadingView.root");
         constraintLayout2.setVisibility(0);
-        C1016o c1016o = getBinding().f16635c;
-        C12238m.checkNotNullExpressionValue(c1016o, "binding.emptyView");
-        ConstraintLayout constraintLayout3 = c1016o.f1092a;
-        C12238m.checkNotNullExpressionValue(constraintLayout3, "binding.emptyView.root");
+        o oVar = getBinding().c;
+        m.checkNotNullExpressionValue(oVar, "binding.emptyView");
+        ConstraintLayout constraintLayout3 = oVar.a;
+        m.checkNotNullExpressionValue(constraintLayout3, "binding.emptyView.root");
         constraintLayout3.setVisibility(8);
-        RecyclerView recyclerView = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        RecyclerView recyclerView = getBinding().f;
+        m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
         recyclerView.setVisibility(8);
-        ExtendedFloatingActionButton extendedFloatingActionButton = getBinding().f16634b;
-        C12238m.checkNotNullExpressionValue(extendedFloatingActionButton, "binding.createPost");
+        ExtendedFloatingActionButton extendedFloatingActionButton = getBinding().f2387b;
+        m.checkNotNullExpressionValue(extendedFloatingActionButton, "binding.createPost");
         extendedFloatingActionButton.setVisibility(8);
-        FloatingActionButton floatingActionButton = getBinding().f16639g;
-        C12238m.checkNotNullExpressionValue(floatingActionButton, "binding.viewGuidelines");
+        FloatingActionButton floatingActionButton = getBinding().g;
+        m.checkNotNullExpressionValue(floatingActionButton, "binding.viewGuidelines");
         floatingActionButton.setVisibility(8);
-        C1016o c1016o2 = getBinding().f16635c;
-        C12238m.checkNotNullExpressionValue(c1016o2, "binding.emptyView");
-        ConstraintLayout constraintLayout4 = c1016o2.f1092a;
-        C12238m.checkNotNullExpressionValue(constraintLayout4, "binding.emptyView.root");
+        o oVar2 = getBinding().c;
+        m.checkNotNullExpressionValue(oVar2, "binding.emptyView");
+        ConstraintLayout constraintLayout4 = oVar2.a;
+        m.checkNotNullExpressionValue(constraintLayout4, "binding.emptyView.root");
         constraintLayout4.setVisibility(8);
         this.adapterDataReference.clear();
         WidgetForumBrowserAdapter widgetForumBrowserAdapter = this.forumBrowserAdapter;
         if (widgetForumBrowserAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
+            m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
         }
-        widgetForumBrowserAdapter.setData(C12147n.emptyList());
+        widgetForumBrowserAdapter.setData(n.emptyList());
     }
 
     private final void onCreatePostClick(long guildId, long parentChannelId, boolean hasForumGuidelines) {
@@ -426,17 +310,17 @@ public final class WidgetForumBrowser extends AppFragment {
             openCreatePostScreen(guildId, parentChannelId);
             return;
         }
-        WidgetForumGuidelinesBottomSheet.Companion companion = WidgetForumGuidelinesBottomSheet.INSTANCE;
+        WidgetForumGuidelinesBottomSheet$Companion widgetForumGuidelinesBottomSheet$Companion = WidgetForumGuidelinesBottomSheet.Companion;
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager, guildId, parentChannelId, CLOSE_FORUM_GUIDELINES_REQUEST_KEY);
+        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        widgetForumGuidelinesBottomSheet$Companion.show(parentFragmentManager, guildId, parentChannelId, CLOSE_FORUM_GUIDELINES_REQUEST_KEY);
     }
 
     private final void onLayoutCompleted(long parentChannelId, long guildId) {
         List<ForumBrowserItem> list = this.adapterDataReference;
         ArrayList arrayList = new ArrayList();
         for (Object obj : list) {
-            if (obj instanceof ForumBrowserItem.PostItem) {
+            if (obj instanceof ForumBrowserItem$PostItem) {
                 arrayList.add(obj);
             }
         }
@@ -444,7 +328,7 @@ public final class WidgetForumBrowser extends AppFragment {
         if (!arrayList.isEmpty()) {
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
-                if (((ForumBrowserItem.PostItem) it.next()).getPost().getIsActivePost()) {
+                if (((ForumBrowserItem$PostItem) it.next()).getPost().getIsActivePost()) {
                     z2 = true;
                     break;
                 }
@@ -460,36 +344,36 @@ public final class WidgetForumBrowser extends AppFragment {
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetForumBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83421());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetForumBrowser.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C83432());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetForumBrowser.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetForumBrowser$onResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null), WidgetForumBrowser.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetForumBrowser$onResume$2(this), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
-        MGRecyclerAdapter.Companion companion = MGRecyclerAdapter.INSTANCE;
-        RecyclerView recyclerView = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
-        this.forumBrowserAdapter = (WidgetForumBrowserAdapter) companion.configure(new WidgetForumBrowserAdapter(recyclerView, new C83441(this), new C83452(this)));
-        RecyclerView recyclerView2 = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView2, "binding.recyclerView");
+        MGRecyclerAdapter$Companion mGRecyclerAdapter$Companion = MGRecyclerAdapter.Companion;
+        RecyclerView recyclerView = getBinding().f;
+        m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        this.forumBrowserAdapter = (WidgetForumBrowserAdapter) mGRecyclerAdapter$Companion.configure(new WidgetForumBrowserAdapter(recyclerView, new WidgetForumBrowser$onViewBound$1(this), new WidgetForumBrowser$onViewBound$2(this)));
+        RecyclerView recyclerView2 = getBinding().f;
+        m.checkNotNullExpressionValue(recyclerView2, "binding.recyclerView");
         this.forumBrowserLayoutManager = new ForumBrowserLayoutManager(recyclerView2);
         this.forumBrowserScrollListener = new ForumBrowserScrollListener();
-        RecyclerView recyclerView3 = getBinding().f16638f;
+        RecyclerView recyclerView3 = getBinding().f;
         ForumBrowserLayoutManager forumBrowserLayoutManager = this.forumBrowserLayoutManager;
         if (forumBrowserLayoutManager == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
+            m.throwUninitializedPropertyAccessException("forumBrowserLayoutManager");
         }
         recyclerView3.setLayoutManager(forumBrowserLayoutManager);
         ForumBrowserScrollListener forumBrowserScrollListener = this.forumBrowserScrollListener;
         if (forumBrowserScrollListener == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserScrollListener");
+            m.throwUninitializedPropertyAccessException("forumBrowserScrollListener");
         }
         recyclerView3.addOnScrollListener(forumBrowserScrollListener);
         WidgetForumBrowserAdapter widgetForumBrowserAdapter = this.forumBrowserAdapter;
         if (widgetForumBrowserAdapter == null) {
-            C12238m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
+            m.throwUninitializedPropertyAccessException("forumBrowserAdapter");
         }
         recyclerView3.addItemDecoration(widgetForumBrowserAdapter.getItemDecoration());
         setWindowInsetsListeners();
@@ -497,56 +381,43 @@ public final class WidgetForumBrowser extends AppFragment {
     }
 
     private final void openCreatePostScreen(long guildId, long channelId) {
-        ChannelSelector.openCreateThread$default(ChannelSelector.INSTANCE.getInstance(), guildId, channelId, null, "Thread Browser Toolbar", 4, null);
+        ChannelSelector.openCreateThread$default(ChannelSelector.Companion.getInstance(), guildId, channelId, null, "Thread Browser Toolbar", 4, null);
     }
 
     private final void openForumPost(Channel channel) {
-        ChannelSelector.INSTANCE.getInstance().selectChannel(channel, Long.valueOf(channel.getParentId()), SelectedChannelAnalyticsLocation.THREAD_BROWSER);
+        ChannelSelector.Companion.getInstance().selectChannel(channel, Long.valueOf(channel.getParentId()), SelectedChannelAnalyticsLocation.THREAD_BROWSER);
         requireActivity().onBackPressed();
     }
 
     private final void openForumPostOptions(Channel channel) {
-        WidgetChannelsListItemThreadActions.Companion companion = WidgetChannelsListItemThreadActions.INSTANCE;
+        WidgetChannelsListItemThreadActions$Companion widgetChannelsListItemThreadActions$Companion = WidgetChannelsListItemThreadActions.Companion;
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
-        companion.show(parentFragmentManager, channel.getId());
+        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        widgetChannelsListItemThreadActions$Companion.show(parentFragmentManager, channel.getId());
     }
 
     private final void setWindowInsetListener(View viewBinding) {
-        ViewCompat.setOnApplyWindowInsetsListener(viewBinding, new OnApplyWindowInsetsListener() { // from class: com.discord.widgets.forums.WidgetForumBrowser.setWindowInsetListener.1
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars());
-                C12238m.checkNotNullExpressionValue(insets, "windowInsets.getInsets(W…Compat.Type.systemBars())");
-                C12238m.checkNotNullExpressionValue(view, "view");
-                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
-                ConstraintLayout.LayoutParams layoutParams2 = (ConstraintLayout.LayoutParams) layoutParams;
-                ((ViewGroup.MarginLayoutParams) layoutParams2).bottomMargin = insets.bottom;
-                view.setLayoutParams(layoutParams2);
-                return windowInsetsCompat;
-            }
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(viewBinding, WidgetForumBrowser$setWindowInsetListener$1.INSTANCE);
     }
 
     private final void setWindowInsetsListeners() {
         WidgetForumBrowserBinding binding = getBinding();
-        C12238m.checkNotNullExpressionValue(binding, "binding");
-        ConstraintLayout constraintLayout = binding.f16633a;
-        C12238m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+        m.checkNotNullExpressionValue(binding, "binding");
+        ConstraintLayout constraintLayout = binding.a;
+        m.checkNotNullExpressionValue(constraintLayout, "binding.root");
         ViewExtensions.setForwardingWindowInsetsListener(constraintLayout);
-        RecyclerView recyclerView = getBinding().f16638f;
-        C12238m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
+        RecyclerView recyclerView = getBinding().f;
+        m.checkNotNullExpressionValue(recyclerView, "binding.recyclerView");
         setWindowInsetListener(recyclerView);
-        FloatingActionButton floatingActionButton = getBinding().f16639g;
-        C12238m.checkNotNullExpressionValue(floatingActionButton, "binding.viewGuidelines");
+        FloatingActionButton floatingActionButton = getBinding().g;
+        m.checkNotNullExpressionValue(floatingActionButton, "binding.viewGuidelines");
         setWindowInsetListener(floatingActionButton);
-        ExtendedFloatingActionButton extendedFloatingActionButton = getBinding().f16634b;
-        C12238m.checkNotNullExpressionValue(extendedFloatingActionButton, "binding.createPost");
+        ExtendedFloatingActionButton extendedFloatingActionButton = getBinding().f2387b;
+        m.checkNotNullExpressionValue(extendedFloatingActionButton, "binding.createPost");
         setWindowInsetListener(extendedFloatingActionButton);
     }
 
     public static final void show(Context context) {
-        INSTANCE.show(context);
+        Companion.show(context);
     }
 }

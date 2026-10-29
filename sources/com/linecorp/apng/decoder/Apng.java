@@ -1,23 +1,20 @@
 package com.linecorp.apng.decoder;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Trace;
 import androidx.annotation.IntRange;
 import com.discord.models.domain.ModelAuditLogEntry;
-import java.io.InputStream;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p580t.C12141k;
-import p507d0.p592z.p594d.C12238m;
+import d0.t.k;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Apng.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class Apng {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final Apng$Companion Companion = new Apng$Companion(null);
 
     /* JADX INFO: renamed from: i, reason: from kotlin metadata */
     public final long allFrameByteCount;
@@ -25,8 +22,8 @@ public final class Apng {
     /* JADX INFO: renamed from: a, reason: from kotlin metadata */
     public final Bitmap bitmap;
 
-    /* JADX INFO: renamed from: b, reason: from kotlin metadata */
-    @IntRange(from = 0, m76to = 2147483647L)
+    /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
+    @IntRange(from = 0, to = 2147483647L)
     public final int duration;
 
     /* JADX INFO: renamed from: f, reason: from kotlin metadata */
@@ -47,78 +44,8 @@ public final class Apng {
     /* JADX INFO: renamed from: d, reason: from kotlin metadata */
     public final int width;
 
-    /* JADX INFO: compiled from: Apng.kt */
-    public final class Companion {
-        public Companion() {
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public final Apng copy(Apng apng) throws ApngException {
-            C12238m.checkNotNullParameter(apng, "apng");
-            DecodeResult decodeResult = new DecodeResult();
-            Trace.beginSection("Apng#copy");
-            try {
-                int iCopy = ApngDecoderJni.copy(apng.id, decodeResult);
-                Trace.endSection();
-                if (iCopy < 0) {
-                    throw new ApngException(ApngException.ErrorCode.INSTANCE.fromErrorCode$apng_drawable_release(iCopy), null, 2, 0 == true ? 1 : 0);
-                }
-                try {
-                    return new Apng(iCopy, decodeResult.getWidth(), decodeResult.getHeight(), decodeResult.getFrameCount(), decodeResult.getFrameDurations(), decodeResult.getLoopCount(), decodeResult.getAllFrameByteCount());
-                } catch (Throwable th) {
-                    throw new ApngException(th);
-                }
-            } catch (Throwable th2) {
-                try {
-                    throw new ApngException(th2);
-                } catch (Throwable th3) {
-                    Trace.endSection();
-                    throw th3;
-                }
-            }
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public final Apng decode(InputStream stream) throws ApngException {
-            C12238m.checkNotNullParameter(stream, "stream");
-            DecodeResult decodeResult = new DecodeResult();
-            Trace.beginSection("Apng#decode");
-            try {
-                int iDecode = ApngDecoderJni.decode(stream, decodeResult);
-                Trace.endSection();
-                if (iDecode < 0) {
-                    throw new ApngException(ApngException.ErrorCode.INSTANCE.fromErrorCode$apng_drawable_release(iDecode), null, 2, 0 == true ? 1 : 0);
-                }
-                try {
-                    return new Apng(iDecode, decodeResult.getWidth(), decodeResult.getHeight(), decodeResult.getFrameCount(), decodeResult.getFrameDurations(), decodeResult.getLoopCount(), decodeResult.getAllFrameByteCount());
-                } catch (Throwable th) {
-                    throw new ApngException(th);
-                }
-            } catch (Throwable th2) {
-                try {
-                    throw new ApngException(th2);
-                } catch (Throwable th3) {
-                    Trace.endSection();
-                    throw th3;
-                }
-            }
-        }
-
-        public final boolean isApng(InputStream stream) throws ApngException {
-            C12238m.checkNotNullParameter(stream, "stream");
-            try {
-                return ApngDecoderJni.isApng(stream);
-            } catch (Throwable th) {
-                throw new ApngException(th);
-            }
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
-
-    public Apng(int i, int i2, int i3, @IntRange(from = 1, m76to = 2147483647L) int i4, int[] iArr, @IntRange(from = 0, m76to = 2147483647L) int i5, @IntRange(from = 0, m76to = 2147483647L) long j) {
-        C12238m.checkNotNullParameter(iArr, "frameDurations");
+    public Apng(int i, int i2, int i3, @IntRange(from = 1, to = 2147483647L) int i4, int[] iArr, @IntRange(from = 0, to = 2147483647L) int i5, @IntRange(from = 0, to = 2147483647L) long j) {
+        m.checkNotNullParameter(iArr, "frameDurations");
         this.id = i;
         this.width = i2;
         this.height = i3;
@@ -126,23 +53,27 @@ public final class Apng {
         this.frameDurations = iArr;
         this.loopCount = i5;
         this.allFrameByteCount = j;
-        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
-        C12238m.checkNotNullExpressionValue(bitmapCreateBitmap, "Bitmap.createBitmap(widt… Bitmap.Config.ARGB_8888)");
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap$Config.ARGB_8888);
+        m.checkNotNullExpressionValue(bitmapCreateBitmap, "Bitmap.createBitmap(widt… Bitmap.Config.ARGB_8888)");
         this.bitmap = bitmapCreateBitmap;
         Trace.beginSection("Apng#draw");
         ApngDecoderJni.draw(i, 0, bitmapCreateBitmap);
         Trace.endSection();
-        this.duration = C12141k.sum(iArr);
+        this.duration = k.sum(iArr);
+    }
+
+    public static final /* synthetic */ int access$getId$p(Apng apng) {
+        return apng.id;
     }
 
     public final Apng copy() {
-        return INSTANCE.copy(this);
+        return Companion.copy(this);
     }
 
     public final void drawWithIndex(int frameIndex, Canvas canvas, Rect src, Rect dst, Paint paint) {
-        C12238m.checkNotNullParameter(canvas, "canvas");
-        C12238m.checkNotNullParameter(dst, "dst");
-        C12238m.checkNotNullParameter(paint, "paint");
+        m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(dst, "dst");
+        m.checkNotNullParameter(paint, "paint");
         Trace.beginSection("Apng#draw");
         ApngDecoderJni.draw(this.id, frameIndex, this.bitmap);
         Trace.endSection();
@@ -161,9 +92,9 @@ public final class Apng {
         return this.bitmap.getAllocationByteCount();
     }
 
-    public final Bitmap.Config getConfig() {
-        Bitmap.Config config = this.bitmap.getConfig();
-        C12238m.checkNotNullExpressionValue(config, "bitmap.config");
+    public final Bitmap$Config getConfig() {
+        Bitmap$Config config = this.bitmap.getConfig();
+        m.checkNotNullExpressionValue(config, "bitmap.config");
         return config;
     }
 
@@ -197,64 +128,5 @@ public final class Apng {
 
     public final void recycle() {
         ApngDecoderJni.recycle(this.id);
-    }
-
-    /* JADX INFO: compiled from: Apng.kt */
-    public final class DecodeResult {
-        private long allFrameByteCount;
-        private int frameCount;
-        private int height;
-        private int loopCount;
-        private int width;
-        private int[] frameDurations = new int[0];
-
-        public final long getAllFrameByteCount() {
-            return this.allFrameByteCount;
-        }
-
-        public final int getFrameCount() {
-            return this.frameCount;
-        }
-
-        public final int[] getFrameDurations() {
-            return this.frameDurations;
-        }
-
-        public final int getHeight() {
-            return this.height;
-        }
-
-        public final int getLoopCount() {
-            return this.loopCount;
-        }
-
-        public final int getWidth() {
-            return this.width;
-        }
-
-        public final void setAllFrameByteCount(long j) {
-            this.allFrameByteCount = j;
-        }
-
-        public final void setFrameCount(int i) {
-            this.frameCount = i;
-        }
-
-        public final void setFrameDurations(int[] iArr) {
-            C12238m.checkNotNullParameter(iArr, "<set-?>");
-            this.frameDurations = iArr;
-        }
-
-        public final void setHeight(int i) {
-            this.height = i;
-        }
-
-        public final void setLoopCount(int i) {
-            this.loopCount = i;
-        }
-
-        public final void setWidth(int i) {
-            this.width = i;
-        }
     }
 }

@@ -1,12 +1,13 @@
 package com.discord.stores;
 
 import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import d0.z.d.m;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreV2DispatchHandler.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,8 +17,8 @@ public final class StoreV2DispatchHandler implements DispatchHandler {
 
     /* JADX WARN: Multi-variable type inference failed */
     public StoreV2DispatchHandler(List<? extends StoreV2> list, ObservationDeck observationDeck) {
-        C12238m.checkNotNullParameter(list, "storesV2");
-        C12238m.checkNotNullParameter(observationDeck, "observationDeck");
+        m.checkNotNullParameter(list, "storesV2");
+        m.checkNotNullParameter(observationDeck, "observationDeck");
         this.storesV2 = list;
         this.observationDeck = observationDeck;
     }
@@ -27,7 +28,7 @@ public final class StoreV2DispatchHandler implements DispatchHandler {
     public void onDispatchEnded() {
         HashSet hashSet = new HashSet();
         for (StoreV2 storeV2 : this.storesV2) {
-            Set<ObservationDeck.UpdateSource> updateSources = storeV2.getUpdateSources();
+            Set<ObservationDeck$UpdateSource> updateSources = storeV2.getUpdateSources();
             if (!updateSources.isEmpty()) {
                 hashSet.addAll(updateSources);
                 storeV2.snapshotData();

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackTransactionCompleted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -41,7 +41,7 @@ public final /* data */ class TrackTransactionCompleted implements AnalyticsSche
             return false;
         }
         TrackTransactionCompleted trackTransactionCompleted = (TrackTransactionCompleted) other;
-        return C12238m.areEqual(this.paymentId, trackTransactionCompleted.paymentId) && C12238m.areEqual(this.paymentGateway, trackTransactionCompleted.paymentGateway) && C12238m.areEqual(this.createdAt, trackTransactionCompleted.createdAt) && C12238m.areEqual(this.transactionId, trackTransactionCompleted.transactionId) && C12238m.areEqual(this.transactionType, trackTransactionCompleted.transactionType) && C12238m.areEqual(this.skuId, trackTransactionCompleted.skuId) && C12238m.areEqual(this.exchangeRate, trackTransactionCompleted.exchangeRate) && C12238m.areEqual(this.presentmentCurrency, trackTransactionCompleted.presentmentCurrency) && C12238m.areEqual(this.settlementCurrency, trackTransactionCompleted.settlementCurrency) && C12238m.areEqual(this.presentmentAmount, trackTransactionCompleted.presentmentAmount) && C12238m.areEqual(this.presentmentFees, trackTransactionCompleted.presentmentFees) && C12238m.areEqual(this.presentmentTax, trackTransactionCompleted.presentmentTax) && C12238m.areEqual(this.settlementAmount, trackTransactionCompleted.settlementAmount) && C12238m.areEqual(this.settlementFees, trackTransactionCompleted.settlementFees) && C12238m.areEqual(this.settlementTax, trackTransactionCompleted.settlementTax) && C12238m.areEqual(this.netPresentmentAmount, trackTransactionCompleted.netPresentmentAmount) && C12238m.areEqual(this.netPresentmentFees, trackTransactionCompleted.netPresentmentFees) && C12238m.areEqual(this.netPresentmentTax, trackTransactionCompleted.netPresentmentTax) && C12238m.areEqual(this.netSettlementAmount, trackTransactionCompleted.netSettlementAmount) && C12238m.areEqual(this.netSettlementFees, trackTransactionCompleted.netSettlementFees) && C12238m.areEqual(this.netSettlementTax, trackTransactionCompleted.netSettlementTax);
+        return m.areEqual(this.paymentId, trackTransactionCompleted.paymentId) && m.areEqual(this.paymentGateway, trackTransactionCompleted.paymentGateway) && m.areEqual(this.createdAt, trackTransactionCompleted.createdAt) && m.areEqual(this.transactionId, trackTransactionCompleted.transactionId) && m.areEqual(this.transactionType, trackTransactionCompleted.transactionType) && m.areEqual(this.skuId, trackTransactionCompleted.skuId) && m.areEqual(this.exchangeRate, trackTransactionCompleted.exchangeRate) && m.areEqual(this.presentmentCurrency, trackTransactionCompleted.presentmentCurrency) && m.areEqual(this.settlementCurrency, trackTransactionCompleted.settlementCurrency) && m.areEqual(this.presentmentAmount, trackTransactionCompleted.presentmentAmount) && m.areEqual(this.presentmentFees, trackTransactionCompleted.presentmentFees) && m.areEqual(this.presentmentTax, trackTransactionCompleted.presentmentTax) && m.areEqual(this.settlementAmount, trackTransactionCompleted.settlementAmount) && m.areEqual(this.settlementFees, trackTransactionCompleted.settlementFees) && m.areEqual(this.settlementTax, trackTransactionCompleted.settlementTax) && m.areEqual(this.netPresentmentAmount, trackTransactionCompleted.netPresentmentAmount) && m.areEqual(this.netPresentmentFees, trackTransactionCompleted.netPresentmentFees) && m.areEqual(this.netPresentmentTax, trackTransactionCompleted.netPresentmentTax) && m.areEqual(this.netSettlementAmount, trackTransactionCompleted.netSettlementAmount) && m.areEqual(this.netSettlementFees, trackTransactionCompleted.netSettlementFees) && m.areEqual(this.netSettlementTax, trackTransactionCompleted.netSettlementTax);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -96,47 +96,47 @@ public final /* data */ class TrackTransactionCompleted implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackTransactionCompleted(paymentId=");
-        sbM833U.append(this.paymentId);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", transactionId=");
-        sbM833U.append(this.transactionId);
-        sbM833U.append(", transactionType=");
-        sbM833U.append(this.transactionType);
-        sbM833U.append(", skuId=");
-        sbM833U.append(this.skuId);
-        sbM833U.append(", exchangeRate=");
-        sbM833U.append(this.exchangeRate);
-        sbM833U.append(", presentmentCurrency=");
-        sbM833U.append(this.presentmentCurrency);
-        sbM833U.append(", settlementCurrency=");
-        sbM833U.append(this.settlementCurrency);
-        sbM833U.append(", presentmentAmount=");
-        sbM833U.append(this.presentmentAmount);
-        sbM833U.append(", presentmentFees=");
-        sbM833U.append(this.presentmentFees);
-        sbM833U.append(", presentmentTax=");
-        sbM833U.append(this.presentmentTax);
-        sbM833U.append(", settlementAmount=");
-        sbM833U.append(this.settlementAmount);
-        sbM833U.append(", settlementFees=");
-        sbM833U.append(this.settlementFees);
-        sbM833U.append(", settlementTax=");
-        sbM833U.append(this.settlementTax);
-        sbM833U.append(", netPresentmentAmount=");
-        sbM833U.append(this.netPresentmentAmount);
-        sbM833U.append(", netPresentmentFees=");
-        sbM833U.append(this.netPresentmentFees);
-        sbM833U.append(", netPresentmentTax=");
-        sbM833U.append(this.netPresentmentTax);
-        sbM833U.append(", netSettlementAmount=");
-        sbM833U.append(this.netSettlementAmount);
-        sbM833U.append(", netSettlementFees=");
-        sbM833U.append(this.netSettlementFees);
-        sbM833U.append(", netSettlementTax=");
-        return C1643a.m819G(sbM833U, this.netSettlementTax, ")");
+        StringBuilder sbU = a.U("TrackTransactionCompleted(paymentId=");
+        sbU.append(this.paymentId);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", transactionId=");
+        sbU.append(this.transactionId);
+        sbU.append(", transactionType=");
+        sbU.append(this.transactionType);
+        sbU.append(", skuId=");
+        sbU.append(this.skuId);
+        sbU.append(", exchangeRate=");
+        sbU.append(this.exchangeRate);
+        sbU.append(", presentmentCurrency=");
+        sbU.append(this.presentmentCurrency);
+        sbU.append(", settlementCurrency=");
+        sbU.append(this.settlementCurrency);
+        sbU.append(", presentmentAmount=");
+        sbU.append(this.presentmentAmount);
+        sbU.append(", presentmentFees=");
+        sbU.append(this.presentmentFees);
+        sbU.append(", presentmentTax=");
+        sbU.append(this.presentmentTax);
+        sbU.append(", settlementAmount=");
+        sbU.append(this.settlementAmount);
+        sbU.append(", settlementFees=");
+        sbU.append(this.settlementFees);
+        sbU.append(", settlementTax=");
+        sbU.append(this.settlementTax);
+        sbU.append(", netPresentmentAmount=");
+        sbU.append(this.netPresentmentAmount);
+        sbU.append(", netPresentmentFees=");
+        sbU.append(this.netPresentmentFees);
+        sbU.append(", netPresentmentTax=");
+        sbU.append(this.netPresentmentTax);
+        sbU.append(", netSettlementAmount=");
+        sbU.append(this.netSettlementAmount);
+        sbU.append(", netSettlementFees=");
+        sbU.append(this.netSettlementFees);
+        sbU.append(", netSettlementTax=");
+        return a.G(sbU, this.netSettlementTax, ")");
     }
 }

@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuildLfgGroup;
 import com.discord.analytics.generated.traits.TrackGuildLfgGroupReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackAddChannelRecipient.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackAddChannelRecipient implements AnalyticsSchem
             return false;
         }
         TrackAddChannelRecipient trackAddChannelRecipient = (TrackAddChannelRecipient) other;
-        return C12238m.areEqual(this.channelType, trackAddChannelRecipient.channelType) && C12238m.areEqual(this.channelId, trackAddChannelRecipient.channelId) && C12238m.areEqual(this.recipientId, trackAddChannelRecipient.recipientId) && C12238m.areEqual(this.recipientIds, trackAddChannelRecipient.recipientIds);
+        return m.areEqual(this.channelType, trackAddChannelRecipient.channelType) && m.areEqual(this.channelId, trackAddChannelRecipient.channelId) && m.areEqual(this.recipientId, trackAddChannelRecipient.recipientId) && m.areEqual(this.recipientIds, trackAddChannelRecipient.recipientIds);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -49,13 +49,13 @@ public final /* data */ class TrackAddChannelRecipient implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAddChannelRecipient(channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", recipientId=");
-        sbM833U.append(this.recipientId);
-        sbM833U.append(", recipientIds=");
-        return C1643a.m824L(sbM833U, this.recipientIds, ")");
+        StringBuilder sbU = a.U("TrackAddChannelRecipient(channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", recipientId=");
+        sbU.append(this.recipientId);
+        sbU.append(", recipientIds=");
+        return a.L(sbU, this.recipientIds, ")");
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.api.guildscheduledevent;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildScheduledEventBroadcast.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,7 +17,7 @@ public final /* data */ class GuildScheduledEventBroadcastBody {
             return false;
         }
         GuildScheduledEventBroadcastBody guildScheduledEventBroadcastBody = (GuildScheduledEventBroadcastBody) other;
-        return this.type == guildScheduledEventBroadcastBody.type && C12238m.areEqual(this.entityId, guildScheduledEventBroadcastBody.entityId);
+        return this.type == guildScheduledEventBroadcastBody.type && m.areEqual(this.entityId, guildScheduledEventBroadcastBody.entityId);
     }
 
     public int hashCode() {
@@ -27,9 +27,9 @@ public final /* data */ class GuildScheduledEventBroadcastBody {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventBroadcastBody(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", entityId=");
-        return C1643a.m819G(sbM833U, this.entityId, ")");
+        StringBuilder sbU = a.U("GuildScheduledEventBroadcastBody(type=");
+        sbU.append(this.type);
+        sbU.append(", entityId=");
+        return a.G(sbU, this.entityId, ")");
     }
 }

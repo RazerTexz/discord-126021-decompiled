@@ -1,119 +1,102 @@
 package com.facebook.animated.webp;
 
-import android.graphics.Bitmap;
+import android.graphics.Bitmap$Config;
+import b.f.d.d.c;
+import b.f.j.a.a.d;
+import b.f.j.d.b;
 import java.nio.ByteBuffer;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p007b.p109f.p115d.p119d.InterfaceC1680c;
-import p007b.p109f.p161j.p162a.p163a.C1835b;
-import p007b.p109f.p161j.p162a.p163a.InterfaceC1836c;
-import p007b.p109f.p161j.p162a.p163a.InterfaceC1837d;
-import p007b.p109f.p161j.p162a.p164b.InterfaceC1842c;
-import p007b.p109f.p161j.p169d.C1881b;
-import p007b.p109f.p161j.p178m.C1956b;
 
 /* JADX INFO: loaded from: classes.dex */
-@InterfaceC1680c
-public class WebPImage implements InterfaceC1836c, InterfaceC1842c {
+@c
+public class WebPImage implements b.f.j.a.a.c, b.f.j.a.b.c {
 
-    @InterfaceC1680c
+    @c
     private long mNativeContext;
+    public Bitmap$Config a = null;
 
-    /* JADX INFO: renamed from: a */
-    public Bitmap.Config f19420a = null;
-
-    @InterfaceC1680c
+    @c
     public WebPImage() {
+    }
+
+    @Override // b.f.j.a.a.c
+    public int a() {
+        return nativeGetFrameCount();
+    }
+
+    @Override // b.f.j.a.a.c
+    public int b() {
+        return nativeGetLoopCount();
+    }
+
+    @Override // b.f.j.a.b.c
+    public b.f.j.a.a.c c(ByteBuffer byteBuffer, b bVar) {
+        b.f.j.m.b.a();
+        byteBuffer.rewind();
+        WebPImage webPImageNativeCreateFromDirectByteBuffer = nativeCreateFromDirectByteBuffer(byteBuffer);
+        if (bVar != null) {
+            webPImageNativeCreateFromDirectByteBuffer.a = bVar.e;
+        }
+        return webPImageNativeCreateFromDirectByteBuffer;
+    }
+
+    @Override // b.f.j.a.a.c
+    public Bitmap$Config d() {
+        return this.a;
+    }
+
+    @Override // b.f.j.a.a.c
+    public d e(int i) {
+        return nativeGetFrame(i);
+    }
+
+    @Override // b.f.j.a.a.c
+    public boolean f() {
+        return true;
     }
 
     public void finalize() {
         nativeFinalize();
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    public int getHeight() {
-        return nativeGetHeight();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    public int getWidth() {
-        return nativeGetWidth();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: a */
-    public int mo1177a() {
-        return nativeGetFrameCount();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: b */
-    public int mo1178b() {
-        return nativeGetLoopCount();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: d */
-    public Bitmap.Config mo1179d() {
-        return this.f19420a;
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: e */
-    public InterfaceC1837d mo1180e(int i) {
-        return nativeGetFrame(i);
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: f */
-    public boolean mo1181f() {
-        return true;
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: g */
-    public C1835b mo1182g(int i) {
+    @Override // b.f.j.a.a.c
+    public b.f.j.a.a.b g(int i) {
         WebPFrame webPFrameNativeGetFrame = nativeGetFrame(i);
         try {
-            return new C1835b(i, webPFrameNativeGetFrame.mo1186b(), webPFrameNativeGetFrame.mo1187c(), webPFrameNativeGetFrame.getWidth(), webPFrameNativeGetFrame.getHeight(), webPFrameNativeGetFrame.m8630d() ? 1 : 2, webPFrameNativeGetFrame.m8631e() ? 2 : 1);
+            return new b.f.j.a.a.b(i, webPFrameNativeGetFrame.b(), webPFrameNativeGetFrame.c(), webPFrameNativeGetFrame.getWidth(), webPFrameNativeGetFrame.getHeight(), webPFrameNativeGetFrame.d() ? 1 : 2, webPFrameNativeGetFrame.e() ? 2 : 1);
         } finally {
             webPFrameNativeGetFrame.dispose();
         }
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: i */
-    public int[] mo1183i() {
+    @Override // b.f.j.a.a.c
+    public int getHeight() {
+        return nativeGetHeight();
+    }
+
+    @Override // b.f.j.a.a.c
+    public int getWidth() {
+        return nativeGetWidth();
+    }
+
+    @Override // b.f.j.a.b.c
+    public b.f.j.a.a.c h(long j, int i, b bVar) {
+        b.f.j.m.b.a();
+        b.c.a.a0.d.i(Boolean.valueOf(j != 0));
+        WebPImage webPImageNativeCreateFromNativeMemory = nativeCreateFromNativeMemory(j, i);
+        if (bVar != null) {
+            webPImageNativeCreateFromNativeMemory.a = bVar.e;
+        }
+        return webPImageNativeCreateFromNativeMemory;
+    }
+
+    @Override // b.f.j.a.a.c
+    public int[] i() {
         return nativeGetFrameDurations();
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1836c
-    /* JADX INFO: renamed from: j */
-    public int mo1184j() {
+    @Override // b.f.j.a.a.c
+    public int j() {
         return nativeGetSizeInBytes();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p164b.InterfaceC1842c
-    /* JADX INFO: renamed from: c */
-    public InterfaceC1836c mo1192c(ByteBuffer byteBuffer, C1881b c1881b) {
-        C1956b.m1411a();
-        byteBuffer.rewind();
-        WebPImage webPImageNativeCreateFromDirectByteBuffer = nativeCreateFromDirectByteBuffer(byteBuffer);
-        if (c1881b != null) {
-            webPImageNativeCreateFromDirectByteBuffer.f19420a = c1881b.f3710e;
-        }
-        return webPImageNativeCreateFromDirectByteBuffer;
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p164b.InterfaceC1842c
-    /* JADX INFO: renamed from: h */
-    public InterfaceC1836c mo1193h(long j, int i, C1881b c1881b) {
-        C1956b.m1411a();
-        C1460d.m527i(Boolean.valueOf(j != 0));
-        WebPImage webPImageNativeCreateFromNativeMemory = nativeCreateFromNativeMemory(j, i);
-        if (c1881b != null) {
-            webPImageNativeCreateFromNativeMemory.f19420a = c1881b.f3710e;
-        }
-        return webPImageNativeCreateFromNativeMemory;
     }
 
     private static native WebPImage nativeCreateFromDirectByteBuffer(ByteBuffer byteBuffer);
@@ -140,7 +123,7 @@ public class WebPImage implements InterfaceC1836c, InterfaceC1842c {
 
     private native int nativeGetWidth();
 
-    @InterfaceC1680c
+    @c
     public WebPImage(long j) {
         this.mNativeContext = j;
     }

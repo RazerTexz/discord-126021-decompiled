@@ -1,10 +1,10 @@
 package com.discord.widgets.chat.input.models;
 
+import b.d.b.a.a;
 import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommand;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: InputCommandContext.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,9 +13,8 @@ public final /* data */ class InputCommandContext {
     private final Application selectedApplication;
     private final ApplicationCommand selectedCommand;
 
-    /* JADX WARN: Multi-variable type inference failed */
     public InputCommandContext() {
-        this(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
+        this(null, null, 3, null);
     }
 
     public InputCommandContext(Application application, ApplicationCommand applicationCommand) {
@@ -46,7 +45,7 @@ public final /* data */ class InputCommandContext {
             return false;
         }
         InputCommandContext inputCommandContext = (InputCommandContext) other;
-        return C12238m.areEqual(this.selectedApplication, inputCommandContext.selectedApplication) && C12238m.areEqual(this.selectedCommand, inputCommandContext.selectedCommand);
+        return m.areEqual(this.selectedApplication, inputCommandContext.selectedApplication) && m.areEqual(this.selectedCommand, inputCommandContext.selectedCommand);
     }
 
     /* JADX INFO: renamed from: isCommand, reason: from getter */
@@ -80,12 +79,12 @@ public final /* data */ class InputCommandContext {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InputCommandContext(selectedApplication=");
-        sbM833U.append(this.selectedApplication);
-        sbM833U.append(", selectedCommand=");
-        sbM833U.append(this.selectedCommand);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("InputCommandContext(selectedApplication=");
+        sbU.append(this.selectedApplication);
+        sbU.append(", selectedCommand=");
+        sbU.append(this.selectedCommand);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ InputCommandContext(Application application, ApplicationCommand applicationCommand, int i, DefaultConstructorMarker defaultConstructorMarker) {

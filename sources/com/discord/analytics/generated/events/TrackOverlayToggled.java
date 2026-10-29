@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackOverlayToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackOverlayToggled implements AnalyticsSchema, Tr
             return false;
         }
         TrackOverlayToggled trackOverlayToggled = (TrackOverlayToggled) other;
-        return C12238m.areEqual(this.enabled, trackOverlayToggled.enabled) && C12238m.areEqual(this.settingType, trackOverlayToggled.settingType) && C12238m.areEqual(this.applicationId, trackOverlayToggled.applicationId) && C12238m.areEqual(this.applicationName, trackOverlayToggled.applicationName);
+        return m.areEqual(this.enabled, trackOverlayToggled.enabled) && m.areEqual(this.settingType, trackOverlayToggled.settingType) && m.areEqual(this.applicationId, trackOverlayToggled.applicationId) && m.areEqual(this.applicationName, trackOverlayToggled.applicationName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackOverlayToggled implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackOverlayToggled(enabled=");
-        sbM833U.append(this.enabled);
-        sbM833U.append(", settingType=");
-        sbM833U.append(this.settingType);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", applicationName=");
-        return C1643a.m817E(sbM833U, this.applicationName, ")");
+        StringBuilder sbU = a.U("TrackOverlayToggled(enabled=");
+        sbU.append(this.enabled);
+        sbU.append(", settingType=");
+        sbU.append(this.settingType);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", applicationName=");
+        return a.E(sbU, this.applicationName, ")");
     }
 }

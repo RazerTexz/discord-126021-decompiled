@@ -11,17 +11,6 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.CLASS)
 public @interface RequiresPermission {
-
-    @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
-    public @interface Read {
-        RequiresPermission value() default @RequiresPermission;
-    }
-
-    @Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER})
-    public @interface Write {
-        RequiresPermission value() default @RequiresPermission;
-    }
-
     String[] allOf() default {};
 
     String[] anyOf() default {};

@@ -1,45 +1,33 @@
 package com.facebook.common.references;
 
 import android.graphics.Bitmap;
+import b.c.a.a0.d;
+import b.f.d.e.a;
+import b.f.d.h.c;
+import b.f.d.h.f;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Objects;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p007b.p109f.p115d.p120e.C1691a;
-import p007b.p109f.p115d.p123h.InterfaceC1706c;
-import p007b.p109f.p115d.p123h.InterfaceC1709f;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SharedReference<T> {
+    public int c;
+    public final f<T> d;
 
-    /* JADX INFO: renamed from: b */
-    public T f19447b;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public T f2884b;
+    public static final Map<Object, Integer> a = new IdentityHashMap();
 
-    /* JADX INFO: renamed from: c */
-    public int f19448c;
-
-    /* JADX INFO: renamed from: d */
-    public final InterfaceC1709f<T> f19449d;
-
-    /* JADX INFO: renamed from: a */
-    public static final Map<Object, Integer> f19446a = new IdentityHashMap();
-
-    public class NullReferenceException extends RuntimeException {
-        public NullReferenceException() {
-            super("Null shared reference");
-        }
-    }
-
-    public SharedReference(T t, InterfaceC1709f<T> interfaceC1709f) {
+    public SharedReference(T t, f<T> fVar) {
         Objects.requireNonNull(t);
-        this.f19447b = t;
-        Objects.requireNonNull(interfaceC1709f);
-        this.f19449d = interfaceC1709f;
-        this.f19448c = 1;
-        if ((CloseableReference.f19439k == 3) && ((t instanceof Bitmap) || (t instanceof InterfaceC1706c))) {
+        this.f2884b = t;
+        Objects.requireNonNull(fVar);
+        this.d = fVar;
+        this.c = 1;
+        if ((CloseableReference.k == 3) && ((t instanceof Bitmap) || (t instanceof c))) {
             return;
         }
-        Map<Object, Integer> map = f19446a;
+        Map<Object, Integer> map = a;
         synchronized (map) {
             Integer num = map.get(t);
             if (num == null) {
@@ -50,28 +38,27 @@ public class SharedReference<T> {
         }
     }
 
-    /* JADX INFO: renamed from: a */
-    public void m8644a() {
+    public void a() {
         int i;
         T t;
         synchronized (this) {
-            m8645b();
-            C1460d.m527i(Boolean.valueOf(this.f19448c > 0));
-            i = this.f19448c - 1;
-            this.f19448c = i;
+            b();
+            d.i(Boolean.valueOf(this.c > 0));
+            i = this.c - 1;
+            this.c = i;
         }
         if (i == 0) {
             synchronized (this) {
-                t = this.f19447b;
-                this.f19447b = null;
+                t = this.f2884b;
+                this.f2884b = null;
             }
             if (t != null) {
-                this.f19449d.release(t);
-                Map<Object, Integer> map = f19446a;
+                this.d.release(t);
+                Map<Object, Integer> map = a;
                 synchronized (map) {
                     Integer num = map.get(t);
                     if (num == null) {
-                        C1691a.m988p("SharedReference", "No entry in sLiveObjects for value of type %s", t.getClass());
+                        a.p("SharedReference", "No entry in sLiveObjects for value of type %s", t.getClass());
                     } else if (num.intValue() == 1) {
                         map.remove(t);
                     } else {
@@ -82,19 +69,17 @@ public class SharedReference<T> {
         }
     }
 
-    /* JADX INFO: renamed from: b */
-    public final void m8645b() {
+    public final void b() {
         boolean z2;
         synchronized (this) {
-            z2 = this.f19448c > 0;
+            z2 = this.c > 0;
         }
         if (!(z2)) {
-            throw new NullReferenceException();
+            throw new SharedReference$NullReferenceException();
         }
     }
 
-    /* JADX INFO: renamed from: c */
-    public synchronized T m8646c() {
-        return this.f19447b;
+    public synchronized T c() {
+        return this.f2884b;
     }
 }

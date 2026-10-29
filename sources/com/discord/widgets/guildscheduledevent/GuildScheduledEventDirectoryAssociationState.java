@@ -1,24 +1,23 @@
 package com.discord.widgets.guildscheduledevent;
 
+import b.d.b.a.a;
 import com.discord.api.guildscheduledevent.GuildScheduledEventBroadcast;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildScheduledEventDirectoryAssociationViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildScheduledEventDirectoryAssociationState {
     private final RestCallState<GuildScheduledEventBroadcast> enabledAsync;
 
-    /* JADX WARN: Multi-variable type inference failed */
     public GuildScheduledEventDirectoryAssociationState() {
-        this(null, 1, 0 == true ? 1 : 0);
+        this(null, 1, null);
     }
 
     public GuildScheduledEventDirectoryAssociationState(RestCallState<GuildScheduledEventBroadcast> restCallState) {
-        C12238m.checkNotNullParameter(restCallState, "enabledAsync");
+        m.checkNotNullParameter(restCallState, "enabledAsync");
         this.enabledAsync = restCallState;
     }
 
@@ -35,13 +34,13 @@ public final /* data */ class GuildScheduledEventDirectoryAssociationState {
     }
 
     public final GuildScheduledEventDirectoryAssociationState copy(RestCallState<GuildScheduledEventBroadcast> enabledAsync) {
-        C12238m.checkNotNullParameter(enabledAsync, "enabledAsync");
+        m.checkNotNullParameter(enabledAsync, "enabledAsync");
         return new GuildScheduledEventDirectoryAssociationState(enabledAsync);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof GuildScheduledEventDirectoryAssociationState) && C12238m.areEqual(this.enabledAsync, ((GuildScheduledEventDirectoryAssociationState) other).enabledAsync);
+            return (other instanceof GuildScheduledEventDirectoryAssociationState) && m.areEqual(this.enabledAsync, ((GuildScheduledEventDirectoryAssociationState) other).enabledAsync);
         }
         return true;
     }
@@ -59,10 +58,10 @@ public final /* data */ class GuildScheduledEventDirectoryAssociationState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventDirectoryAssociationState(enabledAsync=");
-        sbM833U.append(this.enabledAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("GuildScheduledEventDirectoryAssociationState(enabledAsync=");
+        sbU.append(this.enabledAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ GuildScheduledEventDirectoryAssociationState(RestCallState restCallState, int i, DefaultConstructorMarker defaultConstructorMarker) {

@@ -1,6 +1,20 @@
 package com.discord.models.domain;
 
 import androidx.annotation.Nullable;
+import b.a.m.a.a0;
+import b.a.m.a.b0;
+import b.a.m.a.f0;
+import b.a.m.a.g0;
+import b.a.m.a.l;
+import b.a.m.a.m;
+import b.a.m.a.n;
+import b.a.m.a.s;
+import b.a.m.a.v;
+import b.a.m.a.w;
+import b.a.m.a.x;
+import b.a.m.a.y;
+import b.a.m.a.z;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.connectedaccounts.ConnectedAccount;
 import com.discord.api.guild.Guild;
@@ -10,16 +24,12 @@ import com.discord.api.presence.Presence;
 import com.discord.api.user.User;
 import com.discord.api.user.UserSurvey;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
-import com.discord.models.domain.Model;
-import com.discord.models.domain.ModelSession;
-import com.discord.models.domain.ModelUserRelationship;
 import com.discord.models.experiments.dto.GuildExperimentDto;
 import com.discord.models.experiments.dto.UserExperimentDto;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelPayload implements Model {
@@ -37,427 +47,109 @@ public class ModelPayload implements Model {
     private List<List<Presence>> guildPresences;
     private List<Guild> guilds;
 
-    /* JADX INFO: renamed from: me */
-    private User f18573me;
+    /* JADX INFO: renamed from: me, reason: collision with root package name */
+    private User f2726me;
     private List<Presence> presences;
     private List<Channel> privateChannels;
-    private VersionedReadStates readState;
+    private ModelPayload$VersionedReadStates readState;
     private List<ModelUserRelationship> relationships;
     private String requiredAction;
     private String sessionId;
     private List<ModelSession> sessions;
     private Object trace;
-    private VersionedUserGuildSettings userGuildSettings;
+    private ModelPayload$VersionedUserGuildSettings userGuildSettings;
     private ModelUserSettings userSettings;
     private UserSurvey userSurvey;
     private List<User> users;
-
-    /* JADX INFO: renamed from: v */
-    private int f18574v;
-
-    public class Hello implements Model {
-        private int heartbeatInterval;
-        private List<String> trace;
-
-        @Override // com.discord.models.domain.Model
-        public void assignField(final Model.JsonReader jsonReader) throws IOException {
-            String strNextName = jsonReader.nextName();
-            strNextName.hashCode();
-            if (strNextName.equals("_trace")) {
-                this.trace = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.o
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return jsonReader.nextString(null);
-                    }
-                });
-            } else if (strNextName.equals("heartbeat_interval")) {
-                this.heartbeatInterval = jsonReader.nextInt(this.heartbeatInterval);
-            } else {
-                jsonReader.skipValue();
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof Hello;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Hello)) {
-                return false;
-            }
-            Hello hello = (Hello) obj;
-            if (!hello.canEqual(this) || getHeartbeatInterval() != hello.getHeartbeatInterval()) {
-                return false;
-            }
-            List<String> trace = getTrace();
-            List<String> trace2 = hello.getTrace();
-            return trace != null ? trace.equals(trace2) : trace2 == null;
-        }
-
-        public int getHeartbeatInterval() {
-            return this.heartbeatInterval;
-        }
-
-        public List<String> getTrace() {
-            return this.trace;
-        }
-
-        public int hashCode() {
-            int heartbeatInterval = getHeartbeatInterval() + 59;
-            List<String> trace = getTrace();
-            return (heartbeatInterval * 59) + (trace == null ? 43 : trace.hashCode());
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelPayload.Hello(heartbeatInterval=");
-            sbM833U.append(getHeartbeatInterval());
-            sbM833U.append(", trace=");
-            sbM833U.append(getTrace());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    public class MergedPresences implements Model {
-        private List<Presence> friends;
-        private List<List<Presence>> guilds;
-
-        @Override // com.discord.models.domain.Model
-        public void assignField(final Model.JsonReader jsonReader) throws IOException {
-            String strNextName = jsonReader.nextName();
-            strNextName.hashCode();
-            if (strNextName.equals("guilds")) {
-                this.guilds = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.r
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        final Model.JsonReader jsonReader2 = jsonReader;
-                        return jsonReader2.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.q
-                            @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                            public final Object get() {
-                                return (Presence) InboundGatewayGsonParser.fromJson(jsonReader2, Presence.class);
-                            }
-                        });
-                    }
-                });
-            } else if (strNextName.equals("friends")) {
-                this.friends = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.p
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (Presence) InboundGatewayGsonParser.fromJson(jsonReader, Presence.class);
-                    }
-                });
-            } else {
-                jsonReader.skipValue();
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof MergedPresences;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof MergedPresences)) {
-                return false;
-            }
-            MergedPresences mergedPresences = (MergedPresences) obj;
-            if (!mergedPresences.canEqual(this)) {
-                return false;
-            }
-            List<Presence> friends = getFriends();
-            List<Presence> friends2 = mergedPresences.getFriends();
-            if (friends != null ? !friends.equals(friends2) : friends2 != null) {
-                return false;
-            }
-            List<List<Presence>> guilds = getGuilds();
-            List<List<Presence>> guilds2 = mergedPresences.getGuilds();
-            return guilds != null ? guilds.equals(guilds2) : guilds2 == null;
-        }
-
-        public List<Presence> getFriends() {
-            return this.friends;
-        }
-
-        public List<List<Presence>> getGuilds() {
-            return this.guilds;
-        }
-
-        public int hashCode() {
-            List<Presence> friends = getFriends();
-            int iHashCode = friends == null ? 43 : friends.hashCode();
-            List<List<Presence>> guilds = getGuilds();
-            return ((iHashCode + 59) * 59) + (guilds != null ? guilds.hashCode() : 43);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelPayload.MergedPresences(friends=");
-            sbM833U.append(getFriends());
-            sbM833U.append(", guilds=");
-            sbM833U.append(getGuilds());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    public abstract class VersionedModel<T> implements Model {
-        public static final int DEFAULT_VERSION = -1;
-        private List<T> entries;
-        private boolean partial;
-        private int version;
-
-        /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
-        /* JADX WARN: Code duplicated, block: B:4:0x000f  */
-        @Override // com.discord.models.domain.Model
-        public void assignField(final Model.JsonReader jsonReader) throws IOException {
-            String strNextName = jsonReader.nextName();
-            strNextName.hashCode();
-            switch (strNextName) {
-                case "entries":
-                    this.entries = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.t
-                        @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                        public final Object get() {
-                            return this.f1539a.parseEntry(jsonReader);
-                        }
-                    });
-                    break;
-                case "partial":
-                    this.partial = jsonReader.nextBoolean(this.partial);
-                    break;
-                case "version":
-                    this.version = jsonReader.nextInt(-1);
-                    break;
-                default:
-                    jsonReader.skipValue();
-                    break;
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof VersionedModel;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof VersionedModel)) {
-                return false;
-            }
-            VersionedModel versionedModel = (VersionedModel) obj;
-            if (!versionedModel.canEqual(this) || getVersion() != versionedModel.getVersion() || isPartial() != versionedModel.isPartial()) {
-                return false;
-            }
-            List<T> entries = getEntries();
-            List<T> entries2 = versionedModel.getEntries();
-            return entries != null ? entries.equals(entries2) : entries2 == null;
-        }
-
-        public List<T> getEntries() {
-            return this.entries;
-        }
-
-        public int getVersion() {
-            return this.version;
-        }
-
-        public int hashCode() {
-            int version = ((getVersion() + 59) * 59) + (isPartial() ? 79 : 97);
-            List<T> entries = getEntries();
-            return (version * 59) + (entries == null ? 43 : entries.hashCode());
-        }
-
-        public boolean isPartial() {
-            return this.partial;
-        }
-
-        public abstract T parseEntry(Model.JsonReader jsonReader) throws IOException;
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelPayload.VersionedModel(version=");
-            sbM833U.append(getVersion());
-            sbM833U.append(", entries=");
-            sbM833U.append(getEntries());
-            sbM833U.append(", partial=");
-            sbM833U.append(isPartial());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    public class VersionedReadStates extends VersionedModel<ModelReadState> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // com.discord.models.domain.ModelPayload.VersionedModel
-        public ModelReadState parseEntry(Model.JsonReader jsonReader) {
-            return ModelReadState.Parser.INSTANCE.parse(jsonReader);
-        }
-    }
-
-    public class VersionedUserGuildSettings extends VersionedModel<ModelNotificationSettings> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // com.discord.models.domain.ModelPayload.VersionedModel
-        public ModelNotificationSettings parseEntry(Model.JsonReader jsonReader) throws IOException {
-            return (ModelNotificationSettings) jsonReader.parse(new ModelNotificationSettings());
-        }
-    }
+    private int v;
 
     public ModelPayload() {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(final Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "auth_token":
-                this.authToken = jsonReader.nextString(this.authToken);
+                this.authToken = model$JsonReader.nextString(this.authToken);
                 break;
             case "user_guild_settings":
-                this.userGuildSettings = (VersionedUserGuildSettings) jsonReader.parse(new VersionedUserGuildSettings());
+                this.userGuildSettings = (ModelPayload$VersionedUserGuildSettings) model$JsonReader.parse(new ModelPayload$VersionedUserGuildSettings());
                 break;
             case "_trace":
-                this.trace = getTraces(jsonReader);
+                this.trace = getTraces(model$JsonReader);
                 break;
             case "merged_members":
-                this.guildMembers = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.s
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        final Model.JsonReader jsonReader2 = jsonReader;
-                        return jsonReader2.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.u
-                            @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                            public final Object get() {
-                                return (GuildMember) InboundGatewayGsonParser.fromJson(jsonReader2, GuildMember.class);
-                            }
-                        });
-                    }
-                });
+                this.guildMembers = model$JsonReader.nextList(new s(model$JsonReader));
                 break;
             case "merged_presences":
-                MergedPresences mergedPresences = (MergedPresences) jsonReader.parse(new MergedPresences());
-                this.presences = mergedPresences.friends;
-                this.guildPresences = mergedPresences.guilds;
+                ModelPayload$MergedPresences modelPayload$MergedPresences = (ModelPayload$MergedPresences) model$JsonReader.parse(new ModelPayload$MergedPresences());
+                this.presences = ModelPayload$MergedPresences.access$000(modelPayload$MergedPresences);
+                this.guildPresences = ModelPayload$MergedPresences.access$100(modelPayload$MergedPresences);
                 break;
             case "guilds":
-                this.guilds = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.l
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (Guild) InboundGatewayGsonParser.fromJson(jsonReader, Guild.class);
-                    }
-                });
+                this.guilds = model$JsonReader.nextList(new l(model$JsonReader));
                 break;
             case "presences":
-                this.presences = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.v
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (Presence) InboundGatewayGsonParser.fromJson(jsonReader, Presence.class);
-                    }
-                });
+                this.presences = model$JsonReader.nextList(new v(model$JsonReader));
                 break;
             case "guild_join_requests":
-                this.guildJoinRequests = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.y
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (GuildJoinRequest) InboundGatewayGsonParser.fromJson(jsonReader, GuildJoinRequest.class);
-                    }
-                });
+                this.guildJoinRequests = model$JsonReader.nextList(new y(model$JsonReader));
                 break;
             case "read_state":
-                this.readState = (VersionedReadStates) jsonReader.parse(new VersionedReadStates());
+                this.readState = (ModelPayload$VersionedReadStates) model$JsonReader.parse(new ModelPayload$VersionedReadStates());
                 break;
             case "user_survey":
-                this.userSurvey = (UserSurvey) InboundGatewayGsonParser.fromJson(jsonReader, UserSurvey.class);
+                this.userSurvey = (UserSurvey) InboundGatewayGsonParser.fromJson(model$JsonReader, UserSurvey.class);
                 break;
             case "v":
-                this.f18574v = jsonReader.nextInt(this.f18574v);
+                this.v = model$JsonReader.nextInt(this.v);
                 break;
             case "user":
-                this.f18573me = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
+                this.f2726me = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
                 break;
             case "users":
-                this.users = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.w
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
-                    }
-                });
+                this.users = model$JsonReader.nextList(new w(model$JsonReader));
                 break;
             case "connected_accounts":
-                this.connectedAccounts = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.n
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ConnectedAccount) InboundGatewayGsonParser.fromJson(jsonReader, ConnectedAccount.class);
-                    }
-                });
+                this.connectedAccounts = model$JsonReader.nextList(new n(model$JsonReader));
                 break;
             case "guild_experiments":
-                this.guildExperiments = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.z
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return GuildExperimentDto.Parser.parse(jsonReader);
-                    }
-                });
+                this.guildExperiments = model$JsonReader.nextList(new z(model$JsonReader));
                 break;
             case "relationships":
-                this.relationships = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.x
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelUserRelationship) jsonReader.parse(new ModelUserRelationship());
-                    }
-                });
+                this.relationships = model$JsonReader.nextList(new x(model$JsonReader));
                 break;
             case "required_action":
-                this.requiredAction = jsonReader.nextString(this.requiredAction);
+                this.requiredAction = model$JsonReader.nextString(this.requiredAction);
                 break;
             case "analytics_token":
-                this.analyticsToken = jsonReader.nextString(this.analyticsToken);
+                this.analyticsToken = model$JsonReader.nextString(this.analyticsToken);
                 break;
             case "friend_suggestion_count":
-                this.friendSuggestionCount = jsonReader.nextInt(0);
+                this.friendSuggestionCount = model$JsonReader.nextInt(0);
                 break;
             case "sessions":
-                this.sessions = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.m
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelSession) jsonReader.parse(new ModelSession());
-                    }
-                });
+                this.sessions = model$JsonReader.nextList(new m(model$JsonReader));
                 break;
             case "country_code":
-                this.countryCode = jsonReader.nextString(this.countryCode);
+                this.countryCode = model$JsonReader.nextString(this.countryCode);
                 break;
             case "user_settings":
-                this.userSettings = (ModelUserSettings) jsonReader.parse(new ModelUserSettings());
+                this.userSettings = (ModelUserSettings) model$JsonReader.parse(new ModelUserSettings());
                 break;
             case "experiments":
-                this.experiments = jsonReader.nextListAsMap(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.a0
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return UserExperimentDto.Parser.parse(jsonReader);
-                    }
-                }, new Model.JsonReader.KeySelector() { // from class: b.a.m.a.f0
-                    @Override // com.discord.models.domain.Model.JsonReader.KeySelector
-                    public final Object get(Object obj) {
-                        return Long.valueOf(((UserExperimentDto) obj).getNameHash());
-                    }
-                });
+                this.experiments = model$JsonReader.nextListAsMap(new a0(model$JsonReader), f0.a);
                 break;
             case "session_id":
-                this.sessionId = jsonReader.nextString(this.sessionId);
+                this.sessionId = model$JsonReader.nextString(this.sessionId);
                 break;
             case "private_channels":
-                this.privateChannels = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.b0
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (Channel) InboundGatewayGsonParser.fromJson(jsonReader, Channel.class);
-                    }
-                });
+                this.privateChannels = model$JsonReader.nextList(new b0(model$JsonReader));
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -487,8 +179,8 @@ public class ModelPayload implements Model {
         if (userSettings != null ? !userSettings.equals(userSettings2) : userSettings2 != null) {
             return false;
         }
-        VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
-        VersionedUserGuildSettings userGuildSettings2 = modelPayload.getUserGuildSettings();
+        ModelPayload$VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
+        ModelPayload$VersionedUserGuildSettings userGuildSettings2 = modelPayload.getUserGuildSettings();
         if (userGuildSettings != null ? !userGuildSettings.equals(userGuildSettings2) : userGuildSettings2 != null) {
             return false;
         }
@@ -502,8 +194,8 @@ public class ModelPayload implements Model {
         if (relationships != null ? !relationships.equals(relationships2) : relationships2 != null) {
             return false;
         }
-        VersionedReadStates readState = getReadState();
-        VersionedReadStates readState2 = modelPayload.getReadState();
+        ModelPayload$VersionedReadStates readState = getReadState();
+        ModelPayload$VersionedReadStates readState2 = modelPayload.getReadState();
         if (readState != null ? !readState.equals(readState2) : readState2 != null) {
             return false;
         }
@@ -638,7 +330,7 @@ public class ModelPayload implements Model {
     }
 
     public User getMe() {
-        return this.f18573me;
+        return this.f2726me;
     }
 
     public List<Presence> getPresences() {
@@ -649,7 +341,7 @@ public class ModelPayload implements Model {
         return this.privateChannels;
     }
 
-    public VersionedReadStates getReadState() {
+    public ModelPayload$VersionedReadStates getReadState() {
         return this.readState;
     }
 
@@ -673,21 +365,16 @@ public class ModelPayload implements Model {
         return this.trace;
     }
 
-    private Object getTraces(final Model.JsonReader jsonReader) throws IOException {
-        jsonReader.getClass();
-        List listNextList = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.g0
-            @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-            public final Object get() {
-                return jsonReader.nextStringOrNull();
-            }
-        });
+    private Object getTraces(Model$JsonReader model$JsonReader) throws IOException {
+        model$JsonReader.getClass();
+        List listNextList = model$JsonReader.nextList(new g0(model$JsonReader));
         if (listNextList.size() <= 0 || listNextList.get(0) == null) {
             return null;
         }
-        return new Gson().m9202f((String) listNextList.get(0), Object.class);
+        return new Gson().f((String) listNextList.get(0), Object.class);
     }
 
-    public VersionedUserGuildSettings getUserGuildSettings() {
+    public ModelPayload$VersionedUserGuildSettings getUserGuildSettings() {
         return this.userGuildSettings;
     }
 
@@ -704,7 +391,7 @@ public class ModelPayload implements Model {
     }
 
     public int getV() {
-        return this.f18574v;
+        return this.v;
     }
 
     public int hashCode() {
@@ -713,13 +400,13 @@ public class ModelPayload implements Model {
         int iHashCode = (friendSuggestionCount * 59) + (me2 == null ? 43 : me2.hashCode());
         ModelUserSettings userSettings = getUserSettings();
         int iHashCode2 = (iHashCode * 59) + (userSettings == null ? 43 : userSettings.hashCode());
-        VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
+        ModelPayload$VersionedUserGuildSettings userGuildSettings = getUserGuildSettings();
         int iHashCode3 = (iHashCode2 * 59) + (userGuildSettings == null ? 43 : userGuildSettings.hashCode());
         String sessionId = getSessionId();
         int iHashCode4 = (iHashCode3 * 59) + (sessionId == null ? 43 : sessionId.hashCode());
         List<ModelUserRelationship> relationships = getRelationships();
         int iHashCode5 = (iHashCode4 * 59) + (relationships == null ? 43 : relationships.hashCode());
-        VersionedReadStates readState = getReadState();
+        ModelPayload$VersionedReadStates readState = getReadState();
         int iHashCode6 = (iHashCode5 * 59) + (readState == null ? 43 : readState.hashCode());
         List<Channel> privateChannels = getPrivateChannels();
         int iHashCode7 = (iHashCode6 * 59) + (privateChannels == null ? 43 : privateChannels.hashCode());
@@ -758,58 +445,58 @@ public class ModelPayload implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelPayload(v=");
-        sbM833U.append(getV());
-        sbM833U.append(", me=");
-        sbM833U.append(getMe());
-        sbM833U.append(", userSettings=");
-        sbM833U.append(getUserSettings());
-        sbM833U.append(", userGuildSettings=");
-        sbM833U.append(getUserGuildSettings());
-        sbM833U.append(", sessionId=");
-        sbM833U.append(getSessionId());
-        sbM833U.append(", relationships=");
-        sbM833U.append(getRelationships());
-        sbM833U.append(", readState=");
-        sbM833U.append(getReadState());
-        sbM833U.append(", privateChannels=");
-        sbM833U.append(getPrivateChannels());
-        sbM833U.append(", guilds=");
-        sbM833U.append(getGuilds());
-        sbM833U.append(", guildJoinRequests=");
-        sbM833U.append(getGuildJoinRequests());
-        sbM833U.append(", presences=");
-        sbM833U.append(getPresences());
-        sbM833U.append(", analyticsToken=");
-        sbM833U.append(getAnalyticsToken());
-        sbM833U.append(", authToken=");
-        sbM833U.append(getAuthToken());
-        sbM833U.append(", requiredAction=");
-        sbM833U.append(getRequiredAction());
-        sbM833U.append(", experiments=");
-        sbM833U.append(getExperiments());
-        sbM833U.append(", guildExperiments=");
-        sbM833U.append(getGuildExperiments());
-        sbM833U.append(", connectedAccounts=");
-        sbM833U.append(getConnectedAccounts());
-        sbM833U.append(", sessions=");
-        sbM833U.append(getSessions());
-        sbM833U.append(", users=");
-        sbM833U.append(getUsers());
-        sbM833U.append(", guildPresences=");
-        sbM833U.append(getGuildPresences());
-        sbM833U.append(", guildMembers=");
-        sbM833U.append(getGuildMembers());
-        sbM833U.append(", countryCode=");
-        sbM833U.append(getCountryCode());
-        sbM833U.append(", trace=");
-        sbM833U.append(getTrace());
-        sbM833U.append(", userSurvey=");
-        sbM833U.append(getUserSurvey());
-        sbM833U.append(", friendSuggestionCount=");
-        sbM833U.append(getFriendSuggestionCount());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelPayload(v=");
+        sbU.append(getV());
+        sbU.append(", me=");
+        sbU.append(getMe());
+        sbU.append(", userSettings=");
+        sbU.append(getUserSettings());
+        sbU.append(", userGuildSettings=");
+        sbU.append(getUserGuildSettings());
+        sbU.append(", sessionId=");
+        sbU.append(getSessionId());
+        sbU.append(", relationships=");
+        sbU.append(getRelationships());
+        sbU.append(", readState=");
+        sbU.append(getReadState());
+        sbU.append(", privateChannels=");
+        sbU.append(getPrivateChannels());
+        sbU.append(", guilds=");
+        sbU.append(getGuilds());
+        sbU.append(", guildJoinRequests=");
+        sbU.append(getGuildJoinRequests());
+        sbU.append(", presences=");
+        sbU.append(getPresences());
+        sbU.append(", analyticsToken=");
+        sbU.append(getAnalyticsToken());
+        sbU.append(", authToken=");
+        sbU.append(getAuthToken());
+        sbU.append(", requiredAction=");
+        sbU.append(getRequiredAction());
+        sbU.append(", experiments=");
+        sbU.append(getExperiments());
+        sbU.append(", guildExperiments=");
+        sbU.append(getGuildExperiments());
+        sbU.append(", connectedAccounts=");
+        sbU.append(getConnectedAccounts());
+        sbU.append(", sessions=");
+        sbU.append(getSessions());
+        sbU.append(", users=");
+        sbU.append(getUsers());
+        sbU.append(", guildPresences=");
+        sbU.append(getGuildPresences());
+        sbU.append(", guildMembers=");
+        sbU.append(getGuildMembers());
+        sbU.append(", countryCode=");
+        sbU.append(getCountryCode());
+        sbU.append(", trace=");
+        sbU.append(getTrace());
+        sbU.append(", userSurvey=");
+        sbU.append(getUserSurvey());
+        sbU.append(", friendSuggestionCount=");
+        sbU.append(getFriendSuggestionCount());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public ModelPayload withGuilds(List<Guild> list) {
@@ -829,8 +516,8 @@ public class ModelPayload implements Model {
     }
 
     public ModelPayload(ModelPayload modelPayload) {
-        this.f18574v = modelPayload.f18574v;
-        this.f18573me = modelPayload.f18573me;
+        this.v = modelPayload.v;
+        this.f2726me = modelPayload.f2726me;
         this.userSettings = modelPayload.userSettings;
         this.userGuildSettings = modelPayload.userGuildSettings;
         this.sessionId = modelPayload.sessionId;

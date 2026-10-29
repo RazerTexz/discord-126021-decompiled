@@ -1,18 +1,16 @@
 package com.discord.models.commands;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Application.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Application {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final Application$Companion Companion = new Application$Companion(null);
     private final User bot;
     private final boolean builtIn;
     private final int commandCount;
@@ -21,23 +19,8 @@ public final /* data */ class Application {
     private final long id;
     private final String name;
 
-    /* JADX INFO: compiled from: Application.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final Application fromApiApplication(com.discord.api.application.Application apiApplication) {
-            C12238m.checkNotNullParameter(apiApplication, "apiApplication");
-            return new Application(apiApplication.getId(), apiApplication.getName(), apiApplication.getIcon(), null, 0, null, false, 104, null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public Application(long j, String str, String str2, Integer num, int i, User user, boolean z2) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.id = j;
         this.name = str;
         this.icon = str2;
@@ -47,8 +30,12 @@ public final /* data */ class Application {
         this.builtIn = z2;
     }
 
+    public static /* synthetic */ Application copy$default(Application application, long j, String str, String str2, Integer num, int i, User user, boolean z2, int i2, Object obj) {
+        return application.copy((i2 & 1) != 0 ? application.id : j, (i2 & 2) != 0 ? application.name : str, (i2 & 4) != 0 ? application.icon : str2, (i2 & 8) != 0 ? application.iconRes : num, (i2 & 16) != 0 ? application.commandCount : i, (i2 & 32) != 0 ? application.bot : user, (i2 & 64) != 0 ? application.builtIn : z2);
+    }
+
     public final Application copy(long id2, String name, String icon, Integer iconRes, int commandCount, User bot, boolean builtIn) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new Application(id2, name, icon, iconRes, commandCount, bot, builtIn);
     }
 
@@ -60,7 +47,7 @@ public final /* data */ class Application {
             return false;
         }
         Application application = (Application) other;
-        return this.id == application.id && C12238m.areEqual(this.name, application.name) && C12238m.areEqual(this.icon, application.icon) && C12238m.areEqual(this.iconRes, application.iconRes) && this.commandCount == application.commandCount && C12238m.areEqual(this.bot, application.bot) && this.builtIn == application.builtIn;
+        return this.id == application.id && m.areEqual(this.name, application.name) && m.areEqual(this.icon, application.icon) && m.areEqual(this.iconRes, application.iconRes) && this.commandCount == application.commandCount && m.areEqual(this.bot, application.bot) && this.builtIn == application.builtIn;
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -132,9 +119,9 @@ public final /* data */ class Application {
     /* JADX WARN: Type inference failed for: r1v13 */
     /* JADX WARN: Type inference failed for: r1v17 */
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.id) * 31;
+        int iA = b.a(this.id) * 31;
         String str = this.name;
-        int iHashCode = (iM3a + (str != null ? str.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (str != null ? str.hashCode() : 0)) * 31;
         String str2 = this.icon;
         int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
         Integer num = this.iconRes;
@@ -150,20 +137,20 @@ public final /* data */ class Application {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Application(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", icon=");
-        sbM833U.append(this.icon);
-        sbM833U.append(", iconRes=");
-        sbM833U.append(this.iconRes);
-        sbM833U.append(", commandCount=");
-        sbM833U.append(this.commandCount);
-        sbM833U.append(", bot=");
-        sbM833U.append(this.bot);
-        sbM833U.append(", builtIn=");
-        return C1643a.m827O(sbM833U, this.builtIn, ")");
+        StringBuilder sbU = a.U("Application(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", icon=");
+        sbU.append(this.icon);
+        sbU.append(", iconRes=");
+        sbU.append(this.iconRes);
+        sbU.append(", commandCount=");
+        sbU.append(this.commandCount);
+        sbU.append(", bot=");
+        sbU.append(this.bot);
+        sbU.append(", builtIn=");
+        return a.O(sbU, this.builtIn, ")");
     }
 
     public /* synthetic */ Application(long j, String str, String str2, Integer num, int i, User user, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {

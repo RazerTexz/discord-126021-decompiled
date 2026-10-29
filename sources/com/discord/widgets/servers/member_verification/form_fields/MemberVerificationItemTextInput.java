@@ -1,7 +1,7 @@
 package com.discord.widgets.servers.member_verification.form_fields;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: MemberVerificationItemTextInput.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -39,7 +39,7 @@ public final /* data */ class MemberVerificationItemTextInput implements MemberV
             return false;
         }
         MemberVerificationItemTextInput memberVerificationItemTextInput = (MemberVerificationItemTextInput) other;
-        return this.fieldIndex == memberVerificationItemTextInput.fieldIndex && C12238m.areEqual(this.response, memberVerificationItemTextInput.response);
+        return this.fieldIndex == memberVerificationItemTextInput.fieldIndex && m.areEqual(this.response, memberVerificationItemTextInput.response);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -77,9 +77,9 @@ public final /* data */ class MemberVerificationItemTextInput implements MemberV
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MemberVerificationItemTextInput(fieldIndex=");
-        sbM833U.append(this.fieldIndex);
-        sbM833U.append(", response=");
-        return C1643a.m822J(sbM833U, this.response, ")");
+        StringBuilder sbU = a.U("MemberVerificationItemTextInput(fieldIndex=");
+        sbU.append(this.fieldIndex);
+        sbU.append(", response=");
+        return a.J(sbU, this.response, ")");
     }
 }

@@ -4,58 +4,54 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.views.ScreenTitleView;
 import com.google.android.material.button.MaterialButton;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetEndStageBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f16598a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f16599b;
+    public final MaterialButton f2382b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f16600c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ScreenTitleView f16601d;
+    public final ScreenTitleView d;
 
     public WidgetEndStageBottomSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull ScreenTitleView screenTitleView) {
-        this.f16598a = nestedScrollView;
-        this.f16599b = materialButton;
-        this.f16600c = materialButton2;
-        this.f16601d = screenTitleView;
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f16598a;
+        this.a = nestedScrollView;
+        this.f2382b = materialButton;
+        this.c = materialButton2;
+        this.d = screenTitleView;
     }
 
     @NonNull
-    /* JADX INFO: renamed from: a */
-    public static WidgetEndStageBottomSheetBinding m8413a(@NonNull View view) {
-        int i = C5419R.id.cancel;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.cancel);
+    public static WidgetEndStageBottomSheetBinding a(@NonNull View view) {
+        int i = R$id.cancel;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.cancel);
         if (materialButton != null) {
-            i = C5419R.id.confirm;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(C5419R.id.confirm);
+            i = R$id.confirm;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.confirm);
             if (materialButton2 != null) {
-                i = C5419R.id.title;
-                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(C5419R.id.title);
+                i = 2131365869;
+                ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(2131365869);
                 if (screenTitleView != null) {
                     return new WidgetEndStageBottomSheetBinding((NestedScrollView) view, materialButton, materialButton2, screenTitleView);
                 }
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i)));
+    }
+
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.a;
     }
 }

@@ -3,7 +3,7 @@ package lombok.javac.java7;
 import com.sun.tools.javac.parser.EndPosParser;
 import com.sun.tools.javac.parser.Lexer;
 import com.sun.tools.javac.parser.ParserFactory;
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCCompilationUnit;
 import java.util.List;
 import lombok.javac.CommentCatcher;
 import lombok.javac.CommentInfo;
@@ -17,8 +17,8 @@ class CommentCollectingParser extends EndPosParser {
         this.lexer = S;
     }
 
-    public JCTree.JCCompilationUnit parseCompilationUnit() {
-        JCTree.JCCompilationUnit result = super.parseCompilationUnit();
+    public JCTree$JCCompilationUnit parseCompilationUnit() {
+        JCTree$JCCompilationUnit result = super.parseCompilationUnit();
         if (this.lexer instanceof CommentCollectingScanner) {
             List<CommentInfo> comments = this.lexer.getComments();
             CommentCatcher.JCCompilationUnit_comments.set(result, comments);

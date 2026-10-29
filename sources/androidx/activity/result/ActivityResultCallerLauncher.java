@@ -2,10 +2,10 @@ package androidx.activity.result;
 
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.core.app.ActivityOptionsCompat;
+import d0.g;
+import d0.z.d.m;
 import kotlin.Lazy;
 import kotlin.Unit;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ActivityResultCaller.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,12 +18,12 @@ public final class ActivityResultCallerLauncher<I, O> extends ActivityResultLaun
     private final Lazy resultContract;
 
     public ActivityResultCallerLauncher(ActivityResultLauncher<I> activityResultLauncher, ActivityResultContract<I, O> activityResultContract, I i) {
-        C12238m.checkNotNullParameter(activityResultLauncher, "launcher");
-        C12238m.checkNotNullParameter(activityResultContract, "callerContract");
+        m.checkNotNullParameter(activityResultLauncher, "launcher");
+        m.checkNotNullParameter(activityResultContract, "callerContract");
         this.launcher = activityResultLauncher;
         this.callerContract = activityResultContract;
         this.input = i;
-        this.resultContract = C12083g.lazy(new ActivityResultCallerLauncher$resultContract$2(this));
+        this.resultContract = g.lazy(new ActivityResultCallerLauncher$resultContract$2(this));
     }
 
     public final ActivityResultContract<I, O> getCallerContract() {
@@ -48,12 +48,17 @@ public final class ActivityResultCallerLauncher<I, O> extends ActivityResultLaun
     }
 
     @Override // androidx.activity.result.ActivityResultLauncher
+    public /* bridge */ /* synthetic */ void launch(Unit unit, ActivityOptionsCompat activityOptionsCompat) {
+        launch2(unit, activityOptionsCompat);
+    }
+
+    @Override // androidx.activity.result.ActivityResultLauncher
     public void unregister() {
         this.launcher.unregister();
     }
 
-    @Override // androidx.activity.result.ActivityResultLauncher
-    public void launch(Unit unit, ActivityOptionsCompat options) {
+    /* JADX INFO: renamed from: launch, reason: avoid collision after fix types in other method */
+    public void launch2(Unit unit, ActivityOptionsCompat options) {
         this.launcher.launch(this.input, options);
     }
 }

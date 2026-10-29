@@ -10,27 +10,25 @@ import com.discord.views.SearchInputView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelSettingsAddMemberBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f15895a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f15896b;
+    public final RecyclerView f2269b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SearchInputView f15897c;
+    public final SearchInputView c;
 
     public WidgetChannelSettingsAddMemberBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RecyclerView recyclerView, @NonNull SearchInputView searchInputView) {
-        this.f15895a = coordinatorLayout;
-        this.f15896b = recyclerView;
-        this.f15897c = searchInputView;
+        this.a = coordinatorLayout;
+        this.f2269b = recyclerView;
+        this.c = searchInputView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15895a;
+        return this.a;
     }
 }

@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RestrictTo;
-import com.google.android.material.C10817R;
+import androidx.annotation.RestrictTo$Scope;
+import com.google.android.material.R$attr;
+import com.google.android.material.R$dimen;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class MaterialAttributes {
     @Nullable
     public static TypedValue resolve(@NonNull Context context, @AttrRes int i) {
@@ -43,7 +45,7 @@ public class MaterialAttributes {
 
     @Px
     public static int resolveMinimumAccessibleTouchTarget(@NonNull Context context) {
-        return resolveDimension(context, C10817R.attr.minTouchTargetSize, C10817R.dimen.mtrl_min_touch_target_size);
+        return resolveDimension(context, R$attr.minTouchTargetSize, R$dimen.mtrl_min_touch_target_size);
     }
 
     public static int resolveOrThrow(@NonNull Context context, @AttrRes int i, @NonNull String str) {

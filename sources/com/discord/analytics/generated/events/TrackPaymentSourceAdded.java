@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPaymentSourceAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema
             return false;
         }
         TrackPaymentSourceAdded trackPaymentSourceAdded = (TrackPaymentSourceAdded) other;
-        return C12238m.areEqual(this.paymentSourceId, trackPaymentSourceAdded.paymentSourceId) && C12238m.areEqual(this.paymentSourceType, trackPaymentSourceAdded.paymentSourceType) && C12238m.areEqual(this.paymentGateway, trackPaymentSourceAdded.paymentGateway) && C12238m.areEqual(this.cardBrand, trackPaymentSourceAdded.cardBrand) && C12238m.areEqual(this.cardExpirationDate, trackPaymentSourceAdded.cardExpirationDate) && C12238m.areEqual(this.paymentSourceCountry, trackPaymentSourceAdded.paymentSourceCountry) && C12238m.areEqual(this.isDefault, trackPaymentSourceAdded.isDefault);
+        return m.areEqual(this.paymentSourceId, trackPaymentSourceAdded.paymentSourceId) && m.areEqual(this.paymentSourceType, trackPaymentSourceAdded.paymentSourceType) && m.areEqual(this.paymentGateway, trackPaymentSourceAdded.paymentGateway) && m.areEqual(this.cardBrand, trackPaymentSourceAdded.cardBrand) && m.areEqual(this.cardExpirationDate, trackPaymentSourceAdded.cardExpirationDate) && m.areEqual(this.paymentSourceCountry, trackPaymentSourceAdded.paymentSourceCountry) && m.areEqual(this.isDefault, trackPaymentSourceAdded.isDefault);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackPaymentSourceAdded implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPaymentSourceAdded(paymentSourceId=");
-        sbM833U.append(this.paymentSourceId);
-        sbM833U.append(", paymentSourceType=");
-        sbM833U.append(this.paymentSourceType);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", cardBrand=");
-        sbM833U.append(this.cardBrand);
-        sbM833U.append(", cardExpirationDate=");
-        sbM833U.append(this.cardExpirationDate);
-        sbM833U.append(", paymentSourceCountry=");
-        sbM833U.append(this.paymentSourceCountry);
-        sbM833U.append(", isDefault=");
-        return C1643a.m816D(sbM833U, this.isDefault, ")");
+        StringBuilder sbU = a.U("TrackPaymentSourceAdded(paymentSourceId=");
+        sbU.append(this.paymentSourceId);
+        sbU.append(", paymentSourceType=");
+        sbU.append(this.paymentSourceType);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", cardBrand=");
+        sbU.append(this.cardBrand);
+        sbU.append(", cardExpirationDate=");
+        sbU.append(this.cardExpirationDate);
+        sbU.append(", paymentSourceCountry=");
+        sbU.append(this.paymentSourceCountry);
+        sbU.append(", isDefault=");
+        return a.D(sbU, this.isDefault, ")");
     }
 }

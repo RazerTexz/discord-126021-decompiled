@@ -3,13 +3,14 @@ package androidx.room.util;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.room.Room;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class StringUtil {
     public static final String[] EMPTY_STRING_ARRAY = new String[0];
 

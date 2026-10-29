@@ -1,11 +1,11 @@
 package com.discord.stores;
 
+import d0.z.d.o;
 import kotlin.jvm.functions.Function2;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: StoreGuildSubscriptions.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreGuildSubscriptions$RangeComputer$computeRanges$1 extends AbstractC12240o implements Function2<Integer, Integer, Integer> {
+public final class StoreGuildSubscriptions$RangeComputer$computeRanges$1 extends o implements Function2<Integer, Integer, Integer> {
     public static final StoreGuildSubscriptions$RangeComputer$computeRanges$1 INSTANCE = new StoreGuildSubscriptions$RangeComputer$computeRanges$1();
 
     public StoreGuildSubscriptions$RangeComputer$computeRanges$1() {

@@ -1,11 +1,11 @@
 package com.discord.widgets.hubs;
 
+import b.d.b.a.a;
 import com.discord.models.guild.Guild;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubAddNameViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,8 +19,8 @@ public final /* data */ class AddNameState {
     }
 
     public AddNameState(String str, Guild guild, RestCallState<Void> restCallState) {
-        C12238m.checkNotNullParameter(str, "nickname");
-        C12238m.checkNotNullParameter(restCallState, "changeNicknameAsync");
+        m.checkNotNullParameter(str, "nickname");
+        m.checkNotNullParameter(restCallState, "changeNicknameAsync");
         this.nickname = str;
         this.guild = guild;
         this.changeNicknameAsync = restCallState;
@@ -45,8 +45,8 @@ public final /* data */ class AddNameState {
     }
 
     public final AddNameState copy(String nickname, Guild guild, RestCallState<Void> changeNicknameAsync) {
-        C12238m.checkNotNullParameter(nickname, "nickname");
-        C12238m.checkNotNullParameter(changeNicknameAsync, "changeNicknameAsync");
+        m.checkNotNullParameter(nickname, "nickname");
+        m.checkNotNullParameter(changeNicknameAsync, "changeNicknameAsync");
         return new AddNameState(nickname, guild, changeNicknameAsync);
     }
 
@@ -58,7 +58,7 @@ public final /* data */ class AddNameState {
             return false;
         }
         AddNameState addNameState = (AddNameState) other;
-        return C12238m.areEqual(this.nickname, addNameState.nickname) && C12238m.areEqual(this.guild, addNameState.guild) && C12238m.areEqual(this.changeNicknameAsync, addNameState.changeNicknameAsync);
+        return m.areEqual(this.nickname, addNameState.nickname) && m.areEqual(this.guild, addNameState.guild) && m.areEqual(this.changeNicknameAsync, addNameState.changeNicknameAsync);
     }
 
     public final RestCallState<Void> getChangeNicknameAsync() {
@@ -93,14 +93,14 @@ public final /* data */ class AddNameState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AddNameState(nickname=");
-        sbM833U.append(this.nickname);
-        sbM833U.append(", guild=");
-        sbM833U.append(this.guild);
-        sbM833U.append(", changeNicknameAsync=");
-        sbM833U.append(this.changeNicknameAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("AddNameState(nickname=");
+        sbU.append(this.nickname);
+        sbU.append(", guild=");
+        sbU.append(this.guild);
+        sbU.append(", changeNicknameAsync=");
+        sbU.append(this.changeNicknameAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ AddNameState(String str, Guild guild, RestCallState restCallState, int i, DefaultConstructorMarker defaultConstructorMarker) {

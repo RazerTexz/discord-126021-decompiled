@@ -1,6 +1,7 @@
 package com.discord.analytics.generated.events;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGiftCodeMetadata;
@@ -8,8 +9,7 @@ import com.discord.analytics.generated.traits.TrackGiftCodeMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackGuildTemplate;
 import com.discord.analytics.generated.traits.TrackGuildTemplateReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackRegisterAttempted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -47,7 +47,7 @@ public final /* data */ class TrackRegisterAttempted implements AnalyticsSchema,
             return false;
         }
         TrackRegisterAttempted trackRegisterAttempted = (TrackRegisterAttempted) other;
-        return C12238m.areEqual(this.registrationSource, trackRegisterAttempted.registrationSource) && C12238m.areEqual(this.full, trackRegisterAttempted.full) && C12238m.areEqual(this.instantInvite, trackRegisterAttempted.instantInvite) && C12238m.areEqual(this.inviteCode, trackRegisterAttempted.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackRegisterAttempted.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackRegisterAttempted.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackRegisterAttempted.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackRegisterAttempted.inviteInviterId) && C12238m.areEqual(this.ipBlacklisted, trackRegisterAttempted.ipBlacklisted) && C12238m.areEqual(this.hasInvalidFingerprint, trackRegisterAttempted.hasInvalidFingerprint) && C12238m.areEqual(this.discriminatorAttempts, trackRegisterAttempted.discriminatorAttempts) && C12238m.areEqual(this.cfClientTrustScore, trackRegisterAttempted.cfClientTrustScore) && C12238m.areEqual(this.username, trackRegisterAttempted.username) && C12238m.areEqual(this.email, trackRegisterAttempted.email) && C12238m.areEqual(this.phone, trackRegisterAttempted.phone) && C12238m.areEqual(this.identityType, trackRegisterAttempted.identityType) && C12238m.areEqual(this.discordAiSpamLikelihood, trackRegisterAttempted.discordAiSpamLikelihood) && C12238m.areEqual(this.discordAiModelVersion, trackRegisterAttempted.discordAiModelVersion) && C12238m.areEqual(this.phoneCarrierName, trackRegisterAttempted.phoneCarrierName) && C12238m.areEqual(this.phoneCountry, trackRegisterAttempted.phoneCountry);
+        return m.areEqual(this.registrationSource, trackRegisterAttempted.registrationSource) && m.areEqual(this.full, trackRegisterAttempted.full) && m.areEqual(this.instantInvite, trackRegisterAttempted.instantInvite) && m.areEqual(this.inviteCode, trackRegisterAttempted.inviteCode) && m.areEqual(this.inviteGuildId, trackRegisterAttempted.inviteGuildId) && m.areEqual(this.inviteChannelId, trackRegisterAttempted.inviteChannelId) && m.areEqual(this.inviteChannelType, trackRegisterAttempted.inviteChannelType) && m.areEqual(this.inviteInviterId, trackRegisterAttempted.inviteInviterId) && m.areEqual(this.ipBlacklisted, trackRegisterAttempted.ipBlacklisted) && m.areEqual(this.hasInvalidFingerprint, trackRegisterAttempted.hasInvalidFingerprint) && m.areEqual(this.discriminatorAttempts, trackRegisterAttempted.discriminatorAttempts) && m.areEqual(this.cfClientTrustScore, trackRegisterAttempted.cfClientTrustScore) && m.areEqual(this.username, trackRegisterAttempted.username) && m.areEqual(this.email, trackRegisterAttempted.email) && m.areEqual(this.phone, trackRegisterAttempted.phone) && m.areEqual(this.identityType, trackRegisterAttempted.identityType) && m.areEqual(this.discordAiSpamLikelihood, trackRegisterAttempted.discordAiSpamLikelihood) && m.areEqual(this.discordAiModelVersion, trackRegisterAttempted.discordAiModelVersion) && m.areEqual(this.phoneCarrierName, trackRegisterAttempted.phoneCarrierName) && m.areEqual(this.phoneCountry, trackRegisterAttempted.phoneCountry);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -100,45 +100,45 @@ public final /* data */ class TrackRegisterAttempted implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRegisterAttempted(registrationSource=");
-        sbM833U.append(this.registrationSource);
-        sbM833U.append(", full=");
-        sbM833U.append(this.full);
-        sbM833U.append(", instantInvite=");
-        sbM833U.append(this.instantInvite);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", inviteGuildId=");
-        sbM833U.append(this.inviteGuildId);
-        sbM833U.append(", inviteChannelId=");
-        sbM833U.append(this.inviteChannelId);
-        sbM833U.append(", inviteChannelType=");
-        sbM833U.append(this.inviteChannelType);
-        sbM833U.append(", inviteInviterId=");
-        sbM833U.append(this.inviteInviterId);
-        sbM833U.append(", ipBlacklisted=");
-        sbM833U.append(this.ipBlacklisted);
-        sbM833U.append(", hasInvalidFingerprint=");
-        sbM833U.append(this.hasInvalidFingerprint);
-        sbM833U.append(", discriminatorAttempts=");
-        sbM833U.append(this.discriminatorAttempts);
-        sbM833U.append(", cfClientTrustScore=");
-        sbM833U.append(this.cfClientTrustScore);
-        sbM833U.append(", username=");
-        sbM833U.append(this.username);
-        sbM833U.append(", email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", phone=");
-        sbM833U.append(this.phone);
-        sbM833U.append(", identityType=");
-        sbM833U.append(this.identityType);
-        sbM833U.append(", discordAiSpamLikelihood=");
-        sbM833U.append(this.discordAiSpamLikelihood);
-        sbM833U.append(", discordAiModelVersion=");
-        sbM833U.append(this.discordAiModelVersion);
-        sbM833U.append(", phoneCarrierName=");
-        sbM833U.append(this.phoneCarrierName);
-        sbM833U.append(", phoneCountry=");
-        return C1643a.m817E(sbM833U, this.phoneCountry, ")");
+        StringBuilder sbU = a.U("TrackRegisterAttempted(registrationSource=");
+        sbU.append(this.registrationSource);
+        sbU.append(", full=");
+        sbU.append(this.full);
+        sbU.append(", instantInvite=");
+        sbU.append(this.instantInvite);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", inviteGuildId=");
+        sbU.append(this.inviteGuildId);
+        sbU.append(", inviteChannelId=");
+        sbU.append(this.inviteChannelId);
+        sbU.append(", inviteChannelType=");
+        sbU.append(this.inviteChannelType);
+        sbU.append(", inviteInviterId=");
+        sbU.append(this.inviteInviterId);
+        sbU.append(", ipBlacklisted=");
+        sbU.append(this.ipBlacklisted);
+        sbU.append(", hasInvalidFingerprint=");
+        sbU.append(this.hasInvalidFingerprint);
+        sbU.append(", discriminatorAttempts=");
+        sbU.append(this.discriminatorAttempts);
+        sbU.append(", cfClientTrustScore=");
+        sbU.append(this.cfClientTrustScore);
+        sbU.append(", username=");
+        sbU.append(this.username);
+        sbU.append(", email=");
+        sbU.append(this.email);
+        sbU.append(", phone=");
+        sbU.append(this.phone);
+        sbU.append(", identityType=");
+        sbU.append(this.identityType);
+        sbU.append(", discordAiSpamLikelihood=");
+        sbU.append(this.discordAiSpamLikelihood);
+        sbU.append(", discordAiModelVersion=");
+        sbU.append(this.discordAiModelVersion);
+        sbU.append(", phoneCarrierName=");
+        sbU.append(this.phoneCarrierName);
+        sbU.append(", phoneCountry=");
+        return a.E(sbU, this.phoneCountry, ")");
     }
 }

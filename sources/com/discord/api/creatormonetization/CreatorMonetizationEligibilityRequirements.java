@@ -1,10 +1,9 @@
 package com.discord.api.creatormonetization;
 
-import java.util.Date;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.Map;
 import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: CreatorMonetizationEligibilityRequirements.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -13,125 +12,20 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
     private final boolean canApply;
     private final boolean engagementHealthy;
     private final long guildId;
-    private final HealthScore healthScore;
+    private final CreatorMonetizationEligibilityRequirements$HealthScore healthScore;
     private final boolean healthScorePending;
     private final CreatorMonetizationEnableRequest latestRequest;
     private final int minimumAgeInDays;
     private final int minimumSize;
     private final Map<String, Object> nsfwProperties;
-    private final Rejection rejection;
+    private final CreatorMonetizationEligibilityRequirements$Rejection rejection;
     private final boolean retentionHealthy;
     private final boolean safeEnvironment;
     private final boolean size;
     private final boolean sufficient;
 
-    /* JADX INFO: compiled from: CreatorMonetizationEligibilityRequirements.kt */
-    public final /* data */ class HealthScore {
-        private final Integer avgNonnewCommunicators;
-        private final Integer avgNonnewParticipators;
-        private final Integer communicators;
-        private final Integer guildSize;
-        private final Integer numIntentfulJoiners;
-        private final Double percRetW1;
-        private final Double percRetW1Intentful;
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof HealthScore)) {
-                return false;
-            }
-            HealthScore healthScore = (HealthScore) other;
-            return C12238m.areEqual(this.avgNonnewParticipators, healthScore.avgNonnewParticipators) && C12238m.areEqual(this.avgNonnewCommunicators, healthScore.avgNonnewCommunicators) && C12238m.areEqual(this.numIntentfulJoiners, healthScore.numIntentfulJoiners) && C12238m.areEqual(this.percRetW1Intentful, healthScore.percRetW1Intentful) && C12238m.areEqual(this.guildSize, healthScore.guildSize) && C12238m.areEqual(this.communicators, healthScore.communicators) && C12238m.areEqual(this.percRetW1, healthScore.percRetW1);
-        }
-
-        /* JADX INFO: renamed from: a, reason: from getter */
-        public final Integer getCommunicators() {
-            return this.communicators;
-        }
-
-        /* JADX INFO: renamed from: b, reason: from getter */
-        public final Integer getGuildSize() {
-            return this.guildSize;
-        }
-
-        /* JADX INFO: renamed from: c, reason: from getter */
-        public final Double getPercRetW1() {
-            return this.percRetW1;
-        }
-
-        public int hashCode() {
-            Integer num = this.avgNonnewParticipators;
-            int iHashCode = (num != null ? num.hashCode() : 0) * 31;
-            Integer num2 = this.avgNonnewCommunicators;
-            int iHashCode2 = (iHashCode + (num2 != null ? num2.hashCode() : 0)) * 31;
-            Integer num3 = this.numIntentfulJoiners;
-            int iHashCode3 = (iHashCode2 + (num3 != null ? num3.hashCode() : 0)) * 31;
-            Double d = this.percRetW1Intentful;
-            int iHashCode4 = (iHashCode3 + (d != null ? d.hashCode() : 0)) * 31;
-            Integer num4 = this.guildSize;
-            int iHashCode5 = (iHashCode4 + (num4 != null ? num4.hashCode() : 0)) * 31;
-            Integer num5 = this.communicators;
-            int iHashCode6 = (iHashCode5 + (num5 != null ? num5.hashCode() : 0)) * 31;
-            Double d2 = this.percRetW1;
-            return iHashCode6 + (d2 != null ? d2.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("HealthScore(avgNonnewParticipators=");
-            sbM833U.append(this.avgNonnewParticipators);
-            sbM833U.append(", avgNonnewCommunicators=");
-            sbM833U.append(this.avgNonnewCommunicators);
-            sbM833U.append(", numIntentfulJoiners=");
-            sbM833U.append(this.numIntentfulJoiners);
-            sbM833U.append(", percRetW1Intentful=");
-            sbM833U.append(this.percRetW1Intentful);
-            sbM833U.append(", guildSize=");
-            sbM833U.append(this.guildSize);
-            sbM833U.append(", communicators=");
-            sbM833U.append(this.communicators);
-            sbM833U.append(", percRetW1=");
-            sbM833U.append(this.percRetW1);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: compiled from: CreatorMonetizationEligibilityRequirements.kt */
-    public final /* data */ class Rejection {
-        private final Date canReapplyAt;
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof Rejection) && C12238m.areEqual(this.canReapplyAt, ((Rejection) other).canReapplyAt);
-            }
-            return true;
-        }
-
-        /* JADX INFO: renamed from: a, reason: from getter */
-        public final Date getCanReapplyAt() {
-            return this.canReapplyAt;
-        }
-
-        public int hashCode() {
-            Date date = this.canReapplyAt;
-            if (date != null) {
-                return date.hashCode();
-            }
-            return 0;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Rejection(canReapplyAt=");
-            sbM833U.append(this.canReapplyAt);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    public CreatorMonetizationEligibilityRequirements(long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map<String, ? extends Object> map, boolean z6, boolean z7, boolean z8, HealthScore healthScore, boolean z9, Rejection rejection, int i, int i2) {
-        C12238m.checkNotNullParameter(map, "nsfwProperties");
+    public CreatorMonetizationEligibilityRequirements(long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map<String, ? extends Object> map, boolean z6, boolean z7, boolean z8, CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore, boolean z9, CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection, int i, int i2) {
+        m.checkNotNullParameter(map, "nsfwProperties");
         this.guildId = j;
         this.latestRequest = creatorMonetizationEnableRequest;
         this.canApply = z2;
@@ -142,11 +36,32 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
         this.retentionHealthy = z6;
         this.safeEnvironment = z7;
         this.size = z8;
-        this.healthScore = healthScore;
+        this.healthScore = creatorMonetizationEligibilityRequirements$HealthScore;
         this.healthScorePending = z9;
-        this.rejection = rejection;
+        this.rejection = creatorMonetizationEligibilityRequirements$Rejection;
         this.minimumAgeInDays = i;
         this.minimumSize = i2;
+    }
+
+    public static CreatorMonetizationEligibilityRequirements a(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements, long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map map, boolean z6, boolean z7, boolean z8, CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore, boolean z9, CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection, int i, int i2, int i3) {
+        long j2 = (i3 & 1) != 0 ? creatorMonetizationEligibilityRequirements.guildId : j;
+        CreatorMonetizationEnableRequest creatorMonetizationEnableRequest2 = (i3 & 2) != 0 ? creatorMonetizationEligibilityRequirements.latestRequest : creatorMonetizationEnableRequest;
+        boolean z10 = (i3 & 4) != 0 ? creatorMonetizationEligibilityRequirements.canApply : z2;
+        boolean z11 = (i3 & 8) != 0 ? creatorMonetizationEligibilityRequirements.sufficient : z3;
+        boolean z12 = (i3 & 16) != 0 ? creatorMonetizationEligibilityRequirements.age : z4;
+        boolean z13 = (i3 & 32) != 0 ? creatorMonetizationEligibilityRequirements.engagementHealthy : z5;
+        Map<String, Object> map2 = (i3 & 64) != 0 ? creatorMonetizationEligibilityRequirements.nsfwProperties : null;
+        boolean z14 = (i3 & 128) != 0 ? creatorMonetizationEligibilityRequirements.retentionHealthy : z6;
+        boolean z15 = (i3 & 256) != 0 ? creatorMonetizationEligibilityRequirements.safeEnvironment : z7;
+        boolean z16 = (i3 & 512) != 0 ? creatorMonetizationEligibilityRequirements.size : z8;
+        CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore2 = (i3 & 1024) != 0 ? creatorMonetizationEligibilityRequirements.healthScore : null;
+        boolean z17 = (i3 & 2048) != 0 ? creatorMonetizationEligibilityRequirements.healthScorePending : z9;
+        CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection2 = (i3 & 4096) != 0 ? creatorMonetizationEligibilityRequirements.rejection : null;
+        int i4 = (i3 & 8192) != 0 ? creatorMonetizationEligibilityRequirements.minimumAgeInDays : i;
+        int i5 = (i3 & 16384) != 0 ? creatorMonetizationEligibilityRequirements.minimumSize : i2;
+        Objects.requireNonNull(creatorMonetizationEligibilityRequirements);
+        m.checkNotNullParameter(map2, "nsfwProperties");
+        return new CreatorMonetizationEligibilityRequirements(j2, creatorMonetizationEnableRequest2, z10, z11, z12, z13, map2, z14, z15, z16, creatorMonetizationEligibilityRequirements$HealthScore2, z17, creatorMonetizationEligibilityRequirements$Rejection2, i4, i5);
     }
 
     public boolean equals(Object other) {
@@ -157,7 +72,7 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
             return false;
         }
         CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements = (CreatorMonetizationEligibilityRequirements) other;
-        return this.guildId == creatorMonetizationEligibilityRequirements.guildId && C12238m.areEqual(this.latestRequest, creatorMonetizationEligibilityRequirements.latestRequest) && this.canApply == creatorMonetizationEligibilityRequirements.canApply && this.sufficient == creatorMonetizationEligibilityRequirements.sufficient && this.age == creatorMonetizationEligibilityRequirements.age && this.engagementHealthy == creatorMonetizationEligibilityRequirements.engagementHealthy && C12238m.areEqual(this.nsfwProperties, creatorMonetizationEligibilityRequirements.nsfwProperties) && this.retentionHealthy == creatorMonetizationEligibilityRequirements.retentionHealthy && this.safeEnvironment == creatorMonetizationEligibilityRequirements.safeEnvironment && this.size == creatorMonetizationEligibilityRequirements.size && C12238m.areEqual(this.healthScore, creatorMonetizationEligibilityRequirements.healthScore) && this.healthScorePending == creatorMonetizationEligibilityRequirements.healthScorePending && C12238m.areEqual(this.rejection, creatorMonetizationEligibilityRequirements.rejection) && this.minimumAgeInDays == creatorMonetizationEligibilityRequirements.minimumAgeInDays && this.minimumSize == creatorMonetizationEligibilityRequirements.minimumSize;
+        return this.guildId == creatorMonetizationEligibilityRequirements.guildId && m.areEqual(this.latestRequest, creatorMonetizationEligibilityRequirements.latestRequest) && this.canApply == creatorMonetizationEligibilityRequirements.canApply && this.sufficient == creatorMonetizationEligibilityRequirements.sufficient && this.age == creatorMonetizationEligibilityRequirements.age && this.engagementHealthy == creatorMonetizationEligibilityRequirements.engagementHealthy && m.areEqual(this.nsfwProperties, creatorMonetizationEligibilityRequirements.nsfwProperties) && this.retentionHealthy == creatorMonetizationEligibilityRequirements.retentionHealthy && this.safeEnvironment == creatorMonetizationEligibilityRequirements.safeEnvironment && this.size == creatorMonetizationEligibilityRequirements.size && m.areEqual(this.healthScore, creatorMonetizationEligibilityRequirements.healthScore) && this.healthScorePending == creatorMonetizationEligibilityRequirements.healthScorePending && m.areEqual(this.rejection, creatorMonetizationEligibilityRequirements.rejection) && this.minimumAgeInDays == creatorMonetizationEligibilityRequirements.minimumAgeInDays && this.minimumSize == creatorMonetizationEligibilityRequirements.minimumSize;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -176,7 +91,7 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
     }
 
     /* JADX INFO: renamed from: e, reason: from getter */
-    public final HealthScore getHealthScore() {
+    public final CreatorMonetizationEligibilityRequirements$HealthScore getHealthScore() {
         return this.healthScore;
     }
 
@@ -196,7 +111,7 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
     }
 
     /* JADX INFO: renamed from: j, reason: from getter */
-    public final Rejection getRejection() {
+    public final CreatorMonetizationEligibilityRequirements$Rejection getRejection() {
         return this.rejection;
     }
 
@@ -295,71 +210,48 @@ public final /* data */ class CreatorMonetizationEligibilityRequirements {
             r6 = 1;
         }
         int i8 = (i7 + r6) * 31;
-        HealthScore healthScore = this.healthScore;
-        int iHashCode3 = (i8 + (healthScore != null ? healthScore.hashCode() : 0)) * 31;
+        CreatorMonetizationEligibilityRequirements$HealthScore creatorMonetizationEligibilityRequirements$HealthScore = this.healthScore;
+        int iHashCode3 = (i8 + (creatorMonetizationEligibilityRequirements$HealthScore != null ? creatorMonetizationEligibilityRequirements$HealthScore.hashCode() : 0)) * 31;
         boolean z9 = this.healthScorePending;
         int i9 = (iHashCode3 + (z9 ? 1 : z9)) * 31;
-        Rejection rejection = this.rejection;
-        return ((((i9 + (rejection != null ? rejection.hashCode() : 0)) * 31) + this.minimumAgeInDays) * 31) + this.minimumSize;
+        CreatorMonetizationEligibilityRequirements$Rejection creatorMonetizationEligibilityRequirements$Rejection = this.rejection;
+        return ((((i9 + (creatorMonetizationEligibilityRequirements$Rejection != null ? creatorMonetizationEligibilityRequirements$Rejection.hashCode() : 0)) * 31) + this.minimumAgeInDays) * 31) + this.minimumSize;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static CreatorMonetizationEligibilityRequirements m7766a(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements, long j, CreatorMonetizationEnableRequest creatorMonetizationEnableRequest, boolean z2, boolean z3, boolean z4, boolean z5, Map map, boolean z6, boolean z7, boolean z8, HealthScore healthScore, boolean z9, Rejection rejection, int i, int i2, int i3) {
-        long j2 = (i3 & 1) != 0 ? creatorMonetizationEligibilityRequirements.guildId : j;
-        CreatorMonetizationEnableRequest creatorMonetizationEnableRequest2 = (i3 & 2) != 0 ? creatorMonetizationEligibilityRequirements.latestRequest : creatorMonetizationEnableRequest;
-        boolean z10 = (i3 & 4) != 0 ? creatorMonetizationEligibilityRequirements.canApply : z2;
-        boolean z11 = (i3 & 8) != 0 ? creatorMonetizationEligibilityRequirements.sufficient : z3;
-        boolean z12 = (i3 & 16) != 0 ? creatorMonetizationEligibilityRequirements.age : z4;
-        boolean z13 = (i3 & 32) != 0 ? creatorMonetizationEligibilityRequirements.engagementHealthy : z5;
-        Map<String, Object> map2 = (i3 & 64) != 0 ? creatorMonetizationEligibilityRequirements.nsfwProperties : null;
-        boolean z14 = (i3 & 128) != 0 ? creatorMonetizationEligibilityRequirements.retentionHealthy : z6;
-        boolean z15 = (i3 & 256) != 0 ? creatorMonetizationEligibilityRequirements.safeEnvironment : z7;
-        boolean z16 = (i3 & 512) != 0 ? creatorMonetizationEligibilityRequirements.size : z8;
-        HealthScore healthScore2 = (i3 & 1024) != 0 ? creatorMonetizationEligibilityRequirements.healthScore : null;
-        boolean z17 = (i3 & 2048) != 0 ? creatorMonetizationEligibilityRequirements.healthScorePending : z9;
-        Rejection rejection2 = (i3 & 4096) != 0 ? creatorMonetizationEligibilityRequirements.rejection : null;
-        int i4 = (i3 & 8192) != 0 ? creatorMonetizationEligibilityRequirements.minimumAgeInDays : i;
-        int i5 = (i3 & 16384) != 0 ? creatorMonetizationEligibilityRequirements.minimumSize : i2;
-        Objects.requireNonNull(creatorMonetizationEligibilityRequirements);
-        C12238m.checkNotNullParameter(map2, "nsfwProperties");
-        return new CreatorMonetizationEligibilityRequirements(j2, creatorMonetizationEnableRequest2, z10, z11, z12, z13, map2, z14, z15, z16, healthScore2, z17, rejection2, i4, i5);
-    }
-
-    /* JADX INFO: renamed from: i */
-    public final Map<String, Object> m7774i() {
+    public final Map<String, Object> i() {
         return this.nsfwProperties;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("CreatorMonetizationEligibilityRequirements(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", latestRequest=");
-        sbM833U.append(this.latestRequest);
-        sbM833U.append(", canApply=");
-        sbM833U.append(this.canApply);
-        sbM833U.append(", sufficient=");
-        sbM833U.append(this.sufficient);
-        sbM833U.append(", age=");
-        sbM833U.append(this.age);
-        sbM833U.append(", engagementHealthy=");
-        sbM833U.append(this.engagementHealthy);
-        sbM833U.append(", nsfwProperties=");
-        sbM833U.append(this.nsfwProperties);
-        sbM833U.append(", retentionHealthy=");
-        sbM833U.append(this.retentionHealthy);
-        sbM833U.append(", safeEnvironment=");
-        sbM833U.append(this.safeEnvironment);
-        sbM833U.append(", size=");
-        sbM833U.append(this.size);
-        sbM833U.append(", healthScore=");
-        sbM833U.append(this.healthScore);
-        sbM833U.append(", healthScorePending=");
-        sbM833U.append(this.healthScorePending);
-        sbM833U.append(", rejection=");
-        sbM833U.append(this.rejection);
-        sbM833U.append(", minimumAgeInDays=");
-        sbM833U.append(this.minimumAgeInDays);
-        sbM833U.append(", minimumSize=");
-        return C1643a.m814B(sbM833U, this.minimumSize, ")");
+        StringBuilder sbU = a.U("CreatorMonetizationEligibilityRequirements(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", latestRequest=");
+        sbU.append(this.latestRequest);
+        sbU.append(", canApply=");
+        sbU.append(this.canApply);
+        sbU.append(", sufficient=");
+        sbU.append(this.sufficient);
+        sbU.append(", age=");
+        sbU.append(this.age);
+        sbU.append(", engagementHealthy=");
+        sbU.append(this.engagementHealthy);
+        sbU.append(", nsfwProperties=");
+        sbU.append(this.nsfwProperties);
+        sbU.append(", retentionHealthy=");
+        sbU.append(this.retentionHealthy);
+        sbU.append(", safeEnvironment=");
+        sbU.append(this.safeEnvironment);
+        sbU.append(", size=");
+        sbU.append(this.size);
+        sbU.append(", healthScore=");
+        sbU.append(this.healthScore);
+        sbU.append(", healthScorePending=");
+        sbU.append(this.healthScorePending);
+        sbU.append(", rejection=");
+        sbU.append(this.rejection);
+        sbU.append(", minimumAgeInDays=");
+        sbU.append(this.minimumAgeInDays);
+        sbU.append(", minimumSize=");
+        return a.B(sbU, this.minimumSize, ")");
     }
 }

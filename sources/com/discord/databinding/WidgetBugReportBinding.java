@@ -20,112 +20,94 @@ import com.google.android.material.textview.MaterialTextView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetBugReportBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayoutCompat f15732a;
+    public final LinearLayoutCompat a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final AppCompatImageView f15733b;
+    public final AppCompatImageView f2241b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f15734c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextInputLayout f15735d;
+    public final TextInputLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ProgressBar f15736e;
+    public final ProgressBar e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final RecyclerView f15737f;
+    public final RecyclerView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final SearchInputView f15738g;
+    public final SearchInputView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextInputLayout f15739h;
+    public final TextInputLayout h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final MaterialTextView f15740i;
+    public final MaterialTextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextInputLayout f15741j;
+    public final TextInputLayout j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final SimpleDraweeView f15742k;
+    public final SimpleDraweeView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final AppCompatImageView f15743l;
+    public final AppCompatImageView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final StickerView f15744m;
+    public final StickerView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final MaterialTextView f15745n;
+    public final MaterialTextView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final MaterialButton f15746o;
+    public final MaterialButton o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final AppViewFlipper f15747p;
+    public final AppViewFlipper p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final MaterialButton f15748q;
+    public final MaterialButton q;
 
-    /* JADX INFO: renamed from: r */
     @NonNull
-    public final MaterialTextView f15749r;
+    public final MaterialTextView r;
 
-    /* JADX INFO: renamed from: s */
+    /* JADX INFO: renamed from: s, reason: collision with root package name */
     @NonNull
-    public final View f15750s;
+    public final View f2242s;
 
-    /* JADX INFO: renamed from: t */
     @NonNull
-    public final View f15751t;
+    public final View t;
 
     public WidgetBugReportBinding(@NonNull LinearLayoutCompat linearLayoutCompat, @NonNull AppCompatImageView appCompatImageView, @NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2, @NonNull MaterialCardView materialCardView, @NonNull ImageView imageView, @NonNull ProgressBar progressBar, @NonNull RecyclerView recyclerView, @NonNull SearchInputView searchInputView, @NonNull TextInputLayout textInputLayout3, @NonNull MaterialTextView materialTextView, @NonNull TextInputLayout textInputLayout4, @NonNull MaterialCardView materialCardView2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull AppCompatImageView appCompatImageView2, @NonNull ImageView imageView2, @NonNull StickerView stickerView, @NonNull MaterialTextView materialTextView2, @NonNull MaterialButton materialButton, @NonNull AppViewFlipper appViewFlipper, @NonNull MaterialButton materialButton2, @NonNull MaterialTextView materialTextView3, @NonNull View view, @NonNull View view2) {
-        this.f15732a = linearLayoutCompat;
-        this.f15733b = appCompatImageView;
-        this.f15734c = textInputLayout;
-        this.f15735d = textInputLayout2;
-        this.f15736e = progressBar;
-        this.f15737f = recyclerView;
-        this.f15738g = searchInputView;
-        this.f15739h = textInputLayout3;
-        this.f15740i = materialTextView;
-        this.f15741j = textInputLayout4;
-        this.f15742k = simpleDraweeView;
-        this.f15743l = appCompatImageView2;
-        this.f15744m = stickerView;
-        this.f15745n = materialTextView2;
-        this.f15746o = materialButton;
-        this.f15747p = appViewFlipper;
-        this.f15748q = materialButton2;
-        this.f15749r = materialTextView3;
-        this.f15750s = view;
-        this.f15751t = view2;
+        this.a = linearLayoutCompat;
+        this.f2241b = appCompatImageView;
+        this.c = textInputLayout;
+        this.d = textInputLayout2;
+        this.e = progressBar;
+        this.f = recyclerView;
+        this.g = searchInputView;
+        this.h = textInputLayout3;
+        this.i = materialTextView;
+        this.j = textInputLayout4;
+        this.k = simpleDraweeView;
+        this.l = appCompatImageView2;
+        this.m = stickerView;
+        this.n = materialTextView2;
+        this.o = materialButton;
+        this.p = appViewFlipper;
+        this.q = materialButton2;
+        this.r = materialTextView3;
+        this.f2242s = view;
+        this.t = view2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15732a;
+        return this.a;
     }
 }

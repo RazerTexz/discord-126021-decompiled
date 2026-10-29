@@ -1,8 +1,8 @@
 package com.discord.api.application;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ThirdPartySku.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class ThirdPartySku {
             return false;
         }
         ThirdPartySku thirdPartySku = (ThirdPartySku) other;
-        return C12238m.areEqual(this.id, thirdPartySku.id) && C12238m.areEqual(this.sku, thirdPartySku.sku) && C12238m.areEqual(this.distributor, thirdPartySku.distributor);
+        return m.areEqual(this.id, thirdPartySku.id) && m.areEqual(this.sku, thirdPartySku.sku) && m.areEqual(this.distributor, thirdPartySku.distributor);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -42,11 +42,11 @@ public final /* data */ class ThirdPartySku {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ThirdPartySku(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", sku=");
-        sbM833U.append(this.sku);
-        sbM833U.append(", distributor=");
-        return C1643a.m822J(sbM833U, this.distributor, ")");
+        StringBuilder sbU = a.U("ThirdPartySku(id=");
+        sbU.append(this.id);
+        sbU.append(", sku=");
+        sbU.append(this.sku);
+        sbU.append(", distributor=");
+        return a.J(sbU, this.distributor, ")");
     }
 }

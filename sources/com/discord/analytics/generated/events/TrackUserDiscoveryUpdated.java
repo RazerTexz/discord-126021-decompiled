@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUserDiscoveryUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackUserDiscoveryUpdated implements AnalyticsSche
             return false;
         }
         TrackUserDiscoveryUpdated trackUserDiscoveryUpdated = (TrackUserDiscoveryUpdated) other;
-        return C12238m.areEqual(this.hasName, trackUserDiscoveryUpdated.hasName) && C12238m.areEqual(this.discoverableEmail, trackUserDiscoveryUpdated.discoverableEmail) && C12238m.areEqual(this.discoverablePhone, trackUserDiscoveryUpdated.discoverablePhone) && C12238m.areEqual(this.contactSyncEnabled, trackUserDiscoveryUpdated.contactSyncEnabled);
+        return m.areEqual(this.hasName, trackUserDiscoveryUpdated.hasName) && m.areEqual(this.discoverableEmail, trackUserDiscoveryUpdated.discoverableEmail) && m.areEqual(this.discoverablePhone, trackUserDiscoveryUpdated.discoverablePhone) && m.areEqual(this.contactSyncEnabled, trackUserDiscoveryUpdated.contactSyncEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackUserDiscoveryUpdated implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUserDiscoveryUpdated(hasName=");
-        sbM833U.append(this.hasName);
-        sbM833U.append(", discoverableEmail=");
-        sbM833U.append(this.discoverableEmail);
-        sbM833U.append(", discoverablePhone=");
-        sbM833U.append(this.discoverablePhone);
-        sbM833U.append(", contactSyncEnabled=");
-        return C1643a.m816D(sbM833U, this.contactSyncEnabled, ")");
+        StringBuilder sbU = a.U("TrackUserDiscoveryUpdated(hasName=");
+        sbU.append(this.hasName);
+        sbU.append(", discoverableEmail=");
+        sbU.append(this.discoverableEmail);
+        sbU.append(", discoverablePhone=");
+        sbU.append(this.discoverablePhone);
+        sbU.append(", contactSyncEnabled=");
+        return a.D(sbU, this.contactSyncEnabled, ")");
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.widgets.botuikit.views.select;
 
+import b.d.b.a.a;
 import com.discord.api.botuikit.SelectItem;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: SelectComponentBottomSheetAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -11,7 +11,7 @@ public final /* data */ class SelectComponentBottomSheetItem {
     private final boolean selected;
 
     public SelectComponentBottomSheetItem(SelectItem selectItem, boolean z2) {
-        C12238m.checkNotNullParameter(selectItem, "selectItem");
+        m.checkNotNullParameter(selectItem, "selectItem");
         this.selectItem = selectItem;
         this.selected = z2;
     }
@@ -27,7 +27,7 @@ public final /* data */ class SelectComponentBottomSheetItem {
     }
 
     public final SelectComponentBottomSheetItem copy(SelectItem selectItem, boolean selected) {
-        C12238m.checkNotNullParameter(selectItem, "selectItem");
+        m.checkNotNullParameter(selectItem, "selectItem");
         return new SelectComponentBottomSheetItem(selectItem, selected);
     }
 
@@ -39,7 +39,7 @@ public final /* data */ class SelectComponentBottomSheetItem {
             return false;
         }
         SelectComponentBottomSheetItem selectComponentBottomSheetItem = (SelectComponentBottomSheetItem) other;
-        return C12238m.areEqual(this.selectItem, selectComponentBottomSheetItem.selectItem) && this.selected == selectComponentBottomSheetItem.selected;
+        return m.areEqual(this.selectItem, selectComponentBottomSheetItem.selectItem) && this.selected == selectComponentBottomSheetItem.selected;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -77,9 +77,9 @@ public final /* data */ class SelectComponentBottomSheetItem {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("SelectComponentBottomSheetItem(selectItem=");
-        sbM833U.append(this.selectItem);
-        sbM833U.append(", selected=");
-        return C1643a.m827O(sbM833U, this.selected, ")");
+        StringBuilder sbU = a.U("SelectComponentBottomSheetItem(selectItem=");
+        sbU.append(this.selectItem);
+        sbU.append(", selected=");
+        return a.O(sbU, this.selected, ")");
     }
 }

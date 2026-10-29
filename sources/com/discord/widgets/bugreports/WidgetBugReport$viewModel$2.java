@@ -1,19 +1,24 @@
 package com.discord.widgets.bugreports;
 
 import android.net.Uri;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetBugReport.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetBugReport$viewModel$2 extends AbstractC12240o implements Function0<BugReportViewModel> {
+public final class WidgetBugReport$viewModel$2 extends o implements Function0<BugReportViewModel> {
     public final /* synthetic */ WidgetBugReport this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetBugReport$viewModel$2(WidgetBugReport widgetBugReport) {
         super(0);
         this.this$0 = widgetBugReport;
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ BugReportViewModel invoke() {
+        return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */
@@ -24,7 +29,7 @@ public final class WidgetBugReport$viewModel$2 extends AbstractC12240o implement
         if (stringExtra == null) {
             stringExtra = "";
         }
-        C12238m.checkNotNullExpressionValue(uri, "screenshotUri");
+        m.checkNotNullExpressionValue(uri, "screenshotUri");
         return new BugReportViewModel(uri, stringExtra, null, 4, null);
     }
 }

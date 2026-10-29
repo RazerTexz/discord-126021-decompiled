@@ -12,27 +12,25 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsGuildRoleSubscriptionsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f17671a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FloatingActionButton f17672b;
+    public final FloatingActionButton f2571b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final AppViewFlipper f17673c;
+    public final AppViewFlipper c;
 
     public WidgetServerSettingsGuildRoleSubscriptionsBinding(@NonNull ConstraintLayout constraintLayout, @NonNull FragmentContainerView fragmentContainerView, @NonNull FragmentContainerView fragmentContainerView2, @NonNull AppBarLayout appBarLayout, @NonNull FloatingActionButton floatingActionButton, @NonNull AppViewFlipper appViewFlipper) {
-        this.f17671a = constraintLayout;
-        this.f17672b = floatingActionButton;
-        this.f17673c = appViewFlipper;
+        this.a = constraintLayout;
+        this.f2571b = floatingActionButton;
+        this.c = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17671a;
+        return this.a;
     }
 }

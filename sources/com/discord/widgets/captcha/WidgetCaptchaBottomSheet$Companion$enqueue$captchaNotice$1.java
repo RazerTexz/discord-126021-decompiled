@@ -7,19 +7,19 @@ import com.discord.app.AppFragment;
 import com.discord.stores.StoreNotices;
 import com.discord.stores.StoreStream;
 import com.discord.utilities.captcha.CaptchaErrorBody;
+import d0.t.u;
+import d0.z.d.a0;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetCaptchaBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1 extends AbstractC12240o implements Function1<FragmentActivity, Boolean> {
+public final class WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1 extends o implements Function1<FragmentActivity, Boolean> {
     public final /* synthetic */ CaptchaErrorBody $error;
     public final /* synthetic */ Function0 $onCaptchaAttemptFailed;
     public final /* synthetic */ Function2 $onCaptchaPayloadReceived;
@@ -42,16 +42,16 @@ public final class WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1 ex
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(FragmentActivity fragmentActivity) {
         Object next;
-        C12238m.checkNotNullParameter(fragmentActivity, "appActivity");
-        WidgetCaptchaBottomSheet.Companion companion = WidgetCaptchaBottomSheet.INSTANCE;
+        m.checkNotNullParameter(fragmentActivity, "appActivity");
+        WidgetCaptchaBottomSheet$Companion widgetCaptchaBottomSheet$Companion = WidgetCaptchaBottomSheet.Companion;
         FragmentManager supportFragmentManager = fragmentActivity.getSupportFragmentManager();
-        C12238m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
-        companion.show(supportFragmentManager, this.$requestKey, this.$error, this.$onCaptchaAttemptFailed);
-        StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), "captcha notice", 0L, 2, null);
+        m.checkNotNullExpressionValue(supportFragmentManager, "appActivity.supportFragmentManager");
+        widgetCaptchaBottomSheet$Companion.show(supportFragmentManager, this.$requestKey, this.$error, this.$onCaptchaAttemptFailed);
+        StoreNotices.markSeen$default(StoreStream.Companion.getNotices(), "captcha notice", 0L, 2, null);
         FragmentManager supportFragmentManager2 = fragmentActivity.getSupportFragmentManager();
-        C12238m.checkNotNullExpressionValue(supportFragmentManager2, "appActivity.supportFragmentManager");
+        m.checkNotNullExpressionValue(supportFragmentManager2, "appActivity.supportFragmentManager");
         List<Fragment> fragments = supportFragmentManager2.getFragments();
-        C12238m.checkNotNullExpressionValue(fragments, "appActivity.supportFragmentManager.fragments");
+        m.checkNotNullExpressionValue(fragments, "appActivity.supportFragmentManager.fragments");
         Iterator<T> it = fragments.iterator();
         do {
             if (!it.hasNext()) {
@@ -59,12 +59,12 @@ public final class WidgetCaptchaBottomSheet$Companion$enqueue$captchaNotice$1 ex
                 break;
             }
             next = it.next();
-        } while (!C12163u.contains(WidgetCaptchaBottomSheet.resolvableFragments, C12216a0.getOrCreateKotlinClass(((Fragment) next).getClass())));
+        } while (!u.contains(WidgetCaptchaBottomSheet.access$getResolvableFragments$cp(), a0.getOrCreateKotlinClass(((Fragment) next).getClass())));
         Fragment fragment = (Fragment) next;
         if (fragment == null) {
             return true;
         }
-        WidgetCaptchaBottomSheet.INSTANCE.registerForResult((AppFragment) fragment, this.$requestKey, this.$onCaptchaPayloadReceived);
+        WidgetCaptchaBottomSheet.Companion.registerForResult((AppFragment) fragment, this.$requestKey, this.$onCaptchaPayloadReceived);
         return true;
     }
 }

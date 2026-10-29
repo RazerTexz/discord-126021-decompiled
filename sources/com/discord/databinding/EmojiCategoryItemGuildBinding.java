@@ -4,33 +4,31 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.n;
 import com.discord.widgets.chat.input.emoji.GuildIcon;
-import p007b.p008a.p025i.C1009n;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class EmojiCategoryItemGuildBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15050a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final GuildIcon f15051b;
+    public final GuildIcon f2099b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final C1009n f15052c;
+    public final n c;
 
-    public EmojiCategoryItemGuildBinding(@NonNull FrameLayout frameLayout, @NonNull GuildIcon guildIcon, @NonNull C1009n c1009n) {
-        this.f15050a = frameLayout;
-        this.f15051b = guildIcon;
-        this.f15052c = c1009n;
+    public EmojiCategoryItemGuildBinding(@NonNull FrameLayout frameLayout, @NonNull GuildIcon guildIcon, @NonNull n nVar) {
+        this.a = frameLayout;
+        this.f2099b = guildIcon;
+        this.c = nVar;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15050a;
+        return this.a;
     }
 }

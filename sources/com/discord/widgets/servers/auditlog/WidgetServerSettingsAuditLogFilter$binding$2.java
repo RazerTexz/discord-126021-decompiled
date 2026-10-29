@@ -3,16 +3,16 @@ package com.discord.widgets.servers.auditlog;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetAuditLogFilterBinding;
 import com.google.android.material.textfield.TextInputLayout;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetServerSettingsAuditLogFilter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetServerSettingsAuditLogFilter$binding$2 extends C12236k implements Function1<View, WidgetAuditLogFilterBinding> {
+public final /* synthetic */ class WidgetServerSettingsAuditLogFilter$binding$2 extends k implements Function1<View, WidgetAuditLogFilterBinding> {
     public static final WidgetServerSettingsAuditLogFilter$binding$2 INSTANCE = new WidgetServerSettingsAuditLogFilter$binding$2();
 
     public WidgetServerSettingsAuditLogFilter$binding$2() {
@@ -20,13 +20,18 @@ public final /* synthetic */ class WidgetServerSettingsAuditLogFilter$binding$2 
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetAuditLogFilterBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.audit_log_filter_input;
-        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(C5419R.id.audit_log_filter_input);
+    public /* bridge */ /* synthetic */ WidgetAuditLogFilterBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetAuditLogFilterBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.audit_log_filter_input;
+        TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.audit_log_filter_input);
         if (textInputLayout != null) {
-            i = C5419R.id.audit_log_filter_recycler;
-            RecyclerView recyclerView = (RecyclerView) view.findViewById(C5419R.id.audit_log_filter_recycler);
+            i = R$id.audit_log_filter_recycler;
+            RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.audit_log_filter_recycler);
             if (recyclerView != null) {
                 return new WidgetAuditLogFilterBinding((LinearLayout) view, textInputLayout, recyclerView);
             }

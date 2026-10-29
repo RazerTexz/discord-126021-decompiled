@@ -5,10 +5,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class MenuAdapter extends BaseAdapter {
     public MenuBuilder mAdapterMenu;
     private boolean mForceShowIcon;
@@ -55,6 +56,11 @@ public class MenuAdapter extends BaseAdapter {
     }
 
     @Override // android.widget.Adapter
+    public /* bridge */ /* synthetic */ Object getItem(int i) {
+        return getItem(i);
+    }
+
+    @Override // android.widget.Adapter
     public long getItemId(int i) {
         return i;
     }
@@ -68,11 +74,11 @@ public class MenuAdapter extends BaseAdapter {
         int i2 = i - 1;
         ListMenuItemView listMenuItemView = (ListMenuItemView) view;
         listMenuItemView.setGroupDividerEnabled(this.mAdapterMenu.isGroupDividerEnabled() && groupId != (i2 >= 0 ? getItem(i2).getGroupId() : groupId));
-        MenuView.ItemView itemView = (MenuView.ItemView) view;
+        MenuView$ItemView menuView$ItemView = (MenuView$ItemView) view;
         if (this.mForceShowIcon) {
             listMenuItemView.setForceShowIcon(true);
         }
-        itemView.initialize(getItem(i), 0);
+        menuView$ItemView.initialize(getItem(i), 0);
         return view;
     }
 

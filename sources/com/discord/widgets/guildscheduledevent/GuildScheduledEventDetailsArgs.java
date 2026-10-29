@@ -1,38 +1,24 @@
 package com.discord.widgets.guildscheduledevent;
 
+import a0.a.a.b;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGuildScheduledEventDetailsBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelable {
-    public static final Parcelable.Creator<GuildScheduledEventDetailsArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<GuildScheduledEventDetailsArgs> CREATOR = new GuildScheduledEventDetailsArgs$Creator();
     private final Long channelId;
     private final long eventId;
     private final Long guildId;
     private final GuildScheduledEventDetailsSource source;
 
-    public final class Creator implements Parcelable.Creator<GuildScheduledEventDetailsArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final GuildScheduledEventDetailsArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            return new GuildScheduledEventDetailsArgs(parcel.readLong(), parcel.readInt() != 0 ? Long.valueOf(parcel.readLong()) : null, parcel.readInt() != 0 ? Long.valueOf(parcel.readLong()) : null, (GuildScheduledEventDetailsSource) Enum.valueOf(GuildScheduledEventDetailsSource.class, parcel.readString()));
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final GuildScheduledEventDetailsArgs[] newArray(int i) {
-            return new GuildScheduledEventDetailsArgs[i];
-        }
-    }
-
     public GuildScheduledEventDetailsArgs(long j, Long l, Long l2, GuildScheduledEventDetailsSource guildScheduledEventDetailsSource) {
-        C12238m.checkNotNullParameter(guildScheduledEventDetailsSource, "source");
+        m.checkNotNullParameter(guildScheduledEventDetailsSource, "source");
         this.eventId = j;
         this.guildId = l;
         this.channelId = l2;
@@ -59,7 +45,7 @@ public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelab
     }
 
     public final GuildScheduledEventDetailsArgs copy(long eventId, Long guildId, Long channelId, GuildScheduledEventDetailsSource source) {
-        C12238m.checkNotNullParameter(source, "source");
+        m.checkNotNullParameter(source, "source");
         return new GuildScheduledEventDetailsArgs(eventId, guildId, channelId, source);
     }
 
@@ -76,7 +62,7 @@ public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelab
             return false;
         }
         GuildScheduledEventDetailsArgs guildScheduledEventDetailsArgs = (GuildScheduledEventDetailsArgs) other;
-        return this.eventId == guildScheduledEventDetailsArgs.eventId && C12238m.areEqual(this.guildId, guildScheduledEventDetailsArgs.guildId) && C12238m.areEqual(this.channelId, guildScheduledEventDetailsArgs.channelId) && C12238m.areEqual(this.source, guildScheduledEventDetailsArgs.source);
+        return this.eventId == guildScheduledEventDetailsArgs.eventId && m.areEqual(this.guildId, guildScheduledEventDetailsArgs.guildId) && m.areEqual(this.channelId, guildScheduledEventDetailsArgs.channelId) && m.areEqual(this.source, guildScheduledEventDetailsArgs.source);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -116,9 +102,9 @@ public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelab
     }
 
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.eventId) * 31;
+        int iA = b.a(this.eventId) * 31;
         Long l = this.guildId;
-        int iHashCode = (iM3a + (l != null ? l.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (l != null ? l.hashCode() : 0)) * 31;
         Long l2 = this.channelId;
         int iHashCode2 = (iHashCode + (l2 != null ? l2.hashCode() : 0)) * 31;
         GuildScheduledEventDetailsSource guildScheduledEventDetailsSource = this.source;
@@ -126,21 +112,21 @@ public final /* data */ class GuildScheduledEventDetailsArgs implements Parcelab
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventDetailsArgs(eventId=");
-        sbM833U.append(this.eventId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", source=");
-        sbM833U.append(this.source);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("GuildScheduledEventDetailsArgs(eventId=");
+        sbU.append(this.eventId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", source=");
+        sbU.append(this.source);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeLong(this.eventId);
         Long l = this.guildId;
         if (l != null) {

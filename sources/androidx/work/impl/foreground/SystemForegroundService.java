@@ -3,19 +3,20 @@ package androidx.work.impl.foreground;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LifecycleService;
 import androidx.work.Logger;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-public class SystemForegroundService extends LifecycleService implements SystemForegroundDispatcher.Callback {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+public class SystemForegroundService extends LifecycleService implements SystemForegroundDispatcher$Callback {
     public SystemForegroundDispatcher mDispatcher;
     private Handler mHandler;
     private boolean mIsShutdown;
@@ -25,14 +26,9 @@ public class SystemForegroundService extends LifecycleService implements SystemF
     @Nullable
     private static SystemForegroundService sForegroundService = null;
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
-    public void cancelNotification(final int i) {
-        this.mHandler.post(new Runnable() { // from class: androidx.work.impl.foreground.SystemForegroundService.4
-            @Override // java.lang.Runnable
-            public void run() {
-                SystemForegroundService.this.mNotificationManager.cancel(i);
-            }
-        });
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
+    public void cancelNotification(int i) {
+        this.mHandler.post(new SystemForegroundService$4(this, i));
     }
 
     @Nullable
@@ -49,14 +45,9 @@ public class SystemForegroundService extends LifecycleService implements SystemF
         systemForegroundDispatcher.setCallback(this);
     }
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
-    public void notify(final int i, @NonNull final Notification notification) {
-        this.mHandler.post(new Runnable() { // from class: androidx.work.impl.foreground.SystemForegroundService.3
-            @Override // java.lang.Runnable
-            public void run() {
-                SystemForegroundService.this.mNotificationManager.notify(i, notification);
-            }
-        });
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
+    public void notify(int i, @NonNull Notification notification) {
+        this.mHandler.post(new SystemForegroundService$3(this, i, notification));
     }
 
     @Override // androidx.view.LifecycleService, android.app.Service
@@ -88,26 +79,17 @@ public class SystemForegroundService extends LifecycleService implements SystemF
         return 3;
     }
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
-    public void startForeground(final int i, final int i2, @NonNull final Notification notification) {
-        this.mHandler.post(new Runnable() { // from class: androidx.work.impl.foreground.SystemForegroundService.2
-            @Override // java.lang.Runnable
-            public void run() {
-                if (Build.VERSION.SDK_INT >= 29) {
-                    SystemForegroundService.this.startForeground(i, notification, i2);
-                } else {
-                    SystemForegroundService.this.startForeground(i, notification);
-                }
-            }
-        });
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
+    public void startForeground(int i, int i2, @NonNull Notification notification) {
+        this.mHandler.post(new SystemForegroundService$2(this, i, notification, i2));
     }
 
-    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher.Callback
+    @Override // androidx.work.impl.foreground.SystemForegroundDispatcher$Callback
     @MainThread
     public void stop() {
         this.mIsShutdown = true;
         Logger.get().debug(TAG, "All commands completed.", new Throwable[0]);
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             stopForeground(true);
         }
         sForegroundService = null;
@@ -115,11 +97,6 @@ public class SystemForegroundService extends LifecycleService implements SystemF
     }
 
     public void stopForegroundService() {
-        this.mHandler.post(new Runnable() { // from class: androidx.work.impl.foreground.SystemForegroundService.1
-            @Override // java.lang.Runnable
-            public void run() {
-                SystemForegroundService.this.mDispatcher.handleStop();
-            }
-        });
+        this.mHandler.post(new SystemForegroundService$1(this));
     }
 }

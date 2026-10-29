@@ -1,7 +1,7 @@
 package lombok.javac;
 
 import com.sun.tools.javac.main.JavaCompiler;
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCCompilationUnit;
 import com.sun.tools.javac.util.Context;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -12,8 +12,8 @@ import lombok.permit.Permit;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CommentCatcher.SCL.lombok */
 public class CommentCatcher {
     private final JavaCompiler compiler;
-    public static final FieldAugment<JCTree.JCCompilationUnit, List<CommentInfo>> JCCompilationUnit_comments = FieldAugment.augment(JCTree.JCCompilationUnit.class, List.class, "lombok$comments");
-    public static final FieldAugment<JCTree.JCCompilationUnit, List<Integer>> JCCompilationUnit_textBlockStarts = FieldAugment.augment(JCTree.JCCompilationUnit.class, List.class, "lombok$textBlockStarts");
+    public static final FieldAugment<JCTree$JCCompilationUnit, List<CommentInfo>> JCCompilationUnit_comments = FieldAugment.augment(JCTree$JCCompilationUnit.class, List.class, "lombok$comments");
+    public static final FieldAugment<JCTree$JCCompilationUnit, List<Integer>> JCCompilationUnit_textBlockStarts = FieldAugment.augment(JCTree$JCCompilationUnit.class, List.class, "lombok$textBlockStarts");
 
     public static CommentCatcher create(Context context, boolean findTextBlocks) {
         registerCommentsCollectingScannerFactory(context, findTextBlocks);
@@ -32,7 +32,7 @@ public class CommentCatcher {
         return this.compiler;
     }
 
-    public void setComments(JCTree.JCCompilationUnit ast, List<CommentInfo> comments) {
+    public void setComments(JCTree$JCCompilationUnit ast, List<CommentInfo> comments) {
         if (comments != null) {
             JCCompilationUnit_comments.set(ast, comments);
         } else {
@@ -40,12 +40,12 @@ public class CommentCatcher {
         }
     }
 
-    public List<CommentInfo> getComments(JCTree.JCCompilationUnit ast) {
+    public List<CommentInfo> getComments(JCTree$JCCompilationUnit ast) {
         List<CommentInfo> list = JCCompilationUnit_comments.get(ast);
         return list == null ? Collections.emptyList() : list;
     }
 
-    public List<Integer> getTextBlockStarts(JCTree.JCCompilationUnit ast) {
+    public List<Integer> getTextBlockStarts(JCTree$JCCompilationUnit ast) {
         List<Integer> list = JCCompilationUnit_textBlockStarts.get(ast);
         return list == null ? Collections.emptyList() : list;
     }

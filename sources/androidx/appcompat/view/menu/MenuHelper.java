@@ -4,5 +4,5 @@ package androidx.appcompat.view.menu;
 public interface MenuHelper {
     void dismiss();
 
-    void setPresenterCallback(MenuPresenter.Callback callback);
+    void setPresenterCallback(MenuPresenter$Callback menuPresenter$Callback);
 }

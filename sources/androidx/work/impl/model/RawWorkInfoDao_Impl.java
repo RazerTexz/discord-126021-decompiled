@@ -7,14 +7,13 @@ import androidx.room.RoomSQLiteQuery;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.room.util.StringUtil;
-import androidx.sqlite.p006db.SupportSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
 import androidx.view.LiveData;
 import androidx.work.Data;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class RawWorkInfoDao_Impl implements RawWorkInfoDao {
@@ -152,8 +151,20 @@ public final class RawWorkInfoDao_Impl implements RawWorkInfoDao {
         }
     }
 
+    public static /* synthetic */ RoomDatabase access$000(RawWorkInfoDao_Impl rawWorkInfoDao_Impl) {
+        return rawWorkInfoDao_Impl.__db;
+    }
+
+    public static /* synthetic */ void access$100(RawWorkInfoDao_Impl rawWorkInfoDao_Impl, ArrayMap arrayMap) {
+        rawWorkInfoDao_Impl.__fetchRelationshipWorkTagAsjavaLangString(arrayMap);
+    }
+
+    public static /* synthetic */ void access$200(RawWorkInfoDao_Impl rawWorkInfoDao_Impl, ArrayMap arrayMap) {
+        rawWorkInfoDao_Impl.__fetchRelationshipWorkProgressAsandroidxWorkData(arrayMap);
+    }
+
     @Override // androidx.work.impl.model.RawWorkInfoDao
-    public List<WorkSpec.WorkInfoPojo> getWorkInfoPojos(SupportSQLiteQuery supportSQLiteQuery) {
+    public List<WorkSpec$WorkInfoPojo> getWorkInfoPojos(SupportSQLiteQuery supportSQLiteQuery) {
         this.__db.assertNotSuspendingTransaction();
         Cursor cursorQuery = DBUtil.query(this.__db, supportSQLiteQuery, true, null);
         try {
@@ -190,22 +201,22 @@ public final class RawWorkInfoDao_Impl implements RawWorkInfoDao {
                 if (arrayList3 == null) {
                     arrayList3 = new ArrayList<>();
                 }
-                WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
+                WorkSpec$WorkInfoPojo workSpec$WorkInfoPojo = new WorkSpec$WorkInfoPojo();
                 if (columnIndex != -1) {
-                    workInfoPojo.f165id = cursorQuery.getString(columnIndex);
+                    workSpec$WorkInfoPojo.f40id = cursorQuery.getString(columnIndex);
                 }
                 if (columnIndex2 != -1) {
-                    workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndex2));
+                    workSpec$WorkInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndex2));
                 }
                 if (columnIndex3 != -1) {
-                    workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndex3));
+                    workSpec$WorkInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndex3));
                 }
                 if (columnIndex4 != -1) {
-                    workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndex4);
+                    workSpec$WorkInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndex4);
                 }
-                workInfoPojo.tags = arrayList2;
-                workInfoPojo.progress = arrayList3;
-                arrayList.add(workInfoPojo);
+                workSpec$WorkInfoPojo.tags = arrayList2;
+                workSpec$WorkInfoPojo.progress = arrayList3;
+                arrayList.add(workSpec$WorkInfoPojo);
             }
             return arrayList;
         } finally {
@@ -214,68 +225,7 @@ public final class RawWorkInfoDao_Impl implements RawWorkInfoDao {
     }
 
     @Override // androidx.work.impl.model.RawWorkInfoDao
-    public LiveData<List<WorkSpec.WorkInfoPojo>> getWorkInfoPojosLiveData(final SupportSQLiteQuery supportSQLiteQuery) {
-        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress"}, false, new Callable<List<WorkSpec.WorkInfoPojo>>() { // from class: androidx.work.impl.model.RawWorkInfoDao_Impl.1
-            /* JADX WARN: Multi-variable type inference failed */
-            @Override // java.util.concurrent.Callable
-            public List<WorkSpec.WorkInfoPojo> call() throws Exception {
-                Cursor cursorQuery = DBUtil.query(RawWorkInfoDao_Impl.this.__db, supportSQLiteQuery, true, null);
-                try {
-                    int columnIndex = CursorUtil.getColumnIndex(cursorQuery, ModelAuditLogEntry.CHANGE_KEY_ID);
-                    int columnIndex2 = CursorUtil.getColumnIndex(cursorQuery, "state");
-                    int columnIndex3 = CursorUtil.getColumnIndex(cursorQuery, "output");
-                    int columnIndex4 = CursorUtil.getColumnIndex(cursorQuery, "run_attempt_count");
-                    ArrayMap arrayMap = new ArrayMap();
-                    ArrayMap arrayMap2 = new ArrayMap();
-                    while (cursorQuery.moveToNext()) {
-                        if (!cursorQuery.isNull(columnIndex)) {
-                            String string = cursorQuery.getString(columnIndex);
-                            if (((ArrayList) arrayMap.get(string)) == null) {
-                                arrayMap.put(string, new ArrayList());
-                            }
-                        }
-                        if (!cursorQuery.isNull(columnIndex)) {
-                            String string2 = cursorQuery.getString(columnIndex);
-                            if (((ArrayList) arrayMap2.get(string2)) == null) {
-                                arrayMap2.put(string2, new ArrayList());
-                            }
-                        }
-                    }
-                    cursorQuery.moveToPosition(-1);
-                    RawWorkInfoDao_Impl.this.__fetchRelationshipWorkTagAsjavaLangString(arrayMap);
-                    RawWorkInfoDao_Impl.this.__fetchRelationshipWorkProgressAsandroidxWorkData(arrayMap2);
-                    ArrayList arrayList = new ArrayList(cursorQuery.getCount());
-                    while (cursorQuery.moveToNext()) {
-                        ArrayList arrayList2 = !cursorQuery.isNull(columnIndex) ? (ArrayList) arrayMap.get(cursorQuery.getString(columnIndex)) : null;
-                        if (arrayList2 == null) {
-                            arrayList2 = new ArrayList();
-                        }
-                        ArrayList arrayList3 = !cursorQuery.isNull(columnIndex) ? (ArrayList) arrayMap2.get(cursorQuery.getString(columnIndex)) : null;
-                        if (arrayList3 == null) {
-                            arrayList3 = new ArrayList();
-                        }
-                        WorkSpec.WorkInfoPojo workInfoPojo = new WorkSpec.WorkInfoPojo();
-                        if (columnIndex != -1) {
-                            workInfoPojo.f165id = cursorQuery.getString(columnIndex);
-                        }
-                        if (columnIndex2 != -1) {
-                            workInfoPojo.state = WorkTypeConverters.intToState(cursorQuery.getInt(columnIndex2));
-                        }
-                        if (columnIndex3 != -1) {
-                            workInfoPojo.output = Data.fromByteArray(cursorQuery.getBlob(columnIndex3));
-                        }
-                        if (columnIndex4 != -1) {
-                            workInfoPojo.runAttemptCount = cursorQuery.getInt(columnIndex4);
-                        }
-                        workInfoPojo.tags = arrayList2;
-                        workInfoPojo.progress = arrayList3;
-                        arrayList.add(workInfoPojo);
-                    }
-                    return arrayList;
-                } finally {
-                    cursorQuery.close();
-                }
-            }
-        });
+    public LiveData<List<WorkSpec$WorkInfoPojo>> getWorkInfoPojosLiveData(SupportSQLiteQuery supportSQLiteQuery) {
+        return this.__db.getInvalidationTracker().createLiveData(new String[]{"WorkTag", "WorkProgress"}, false, new RawWorkInfoDao_Impl$1(this, supportSQLiteQuery));
     }
 }

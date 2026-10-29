@@ -1,64 +1,28 @@
 package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
+import d0.t.u;
+import d0.z.d.g;
+import d0.z.d.g0.b;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.ranges.IntRange;
-import p507d0.p512d0.C11226f;
-import p507d0.p580t.AbstractC12126c0;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12227g;
-import p507d0.p592z.p594d.C12238m;
-import p507d0.p592z.p594d.p595g0.InterfaceC12229b;
 
 /* JADX INFO: compiled from: ShallowPartitionCollection.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public class ShallowPartitionCollection<E, T extends Collection<E>> implements Collection<E>, InterfaceC12229b {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+public class ShallowPartitionCollection<E, T extends Collection<E>> implements Collection<E>, b {
+    public static final ShallowPartitionCollection$Companion Companion = new ShallowPartitionCollection$Companion(null);
     private final Function1<E, Integer> partitionStrategy;
     private final List<T> partitions;
     private int size;
 
-    /* JADX INFO: compiled from: ShallowPartitionCollection.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public static /* synthetic */ ShallowPartitionCollection withArrayListPartions$default(Companion companion, int i, Function1 function1, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                i = 40;
-            }
-            return companion.withArrayListPartions(i, function1);
-        }
-
-        public final <E> ShallowPartitionCollection<E, ArrayList<E>> withArrayListPartions(int numPartitions, Function1<? super E, Integer> partitionStrategy) {
-            C12238m.checkNotNullParameter(partitionStrategy, "partitionStrategy");
-            IntRange intRangeUntil = C11226f.until(0, numPartitions);
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(intRangeUntil, 10));
-            Iterator<Integer> it = intRangeUntil.iterator();
-            while (it.hasNext()) {
-                ((AbstractC12126c0) it).nextInt();
-                arrayList.add(new ArrayList());
-            }
-            return new ShallowPartitionCollection<>(arrayList, partitionStrategy);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public ShallowPartitionCollection(List<? extends T> list, Function1<? super E, Integer> function1) {
-        C12238m.checkNotNullParameter(list, "partitions");
-        C12238m.checkNotNullParameter(function1, "partitionStrategy");
+        m.checkNotNullParameter(list, "partitions");
+        m.checkNotNullParameter(function1, "partitionStrategy");
         this.partitions = list;
         this.partitionStrategy = function1;
         Iterator it = list.iterator();
@@ -81,7 +45,7 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
     /* JADX WARN: Multi-variable type inference failed */
     @Override // java.util.Collection
     public boolean addAll(Collection<? extends E> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         Iterator<T> it = elements.iterator();
         while (true) {
             boolean z2 = false;
@@ -111,10 +75,10 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
 
     @Override // java.util.Collection
     public boolean containsAll(Collection<? extends Object> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         Iterator<T> it = this.partitions.iterator();
         while (it.hasNext()) {
-            elements = C12163u.minus((Iterable) elements, (Iterable) it.next());
+            elements = u.minus((Iterable) elements, (Iterable) it.next());
         }
         return elements.isEmpty();
     }
@@ -140,6 +104,11 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
         return size() == 0;
     }
 
+    @Override // java.util.Collection, java.lang.Iterable
+    public /* bridge */ /* synthetic */ Iterator iterator() {
+        return iterator();
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     @Override // java.util.Collection
     public boolean remove(Object element) {
@@ -152,7 +121,7 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
 
     @Override // java.util.Collection
     public boolean removeAll(Collection<? extends Object> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         Iterator<T> it = elements.iterator();
         while (true) {
             boolean z2 = false;
@@ -167,7 +136,7 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
 
     @Override // java.util.Collection
     public boolean retainAll(Collection<? extends Object> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         Iterator<T> it = this.partitions.iterator();
         while (true) {
             boolean z2 = false;
@@ -191,16 +160,16 @@ public class ShallowPartitionCollection<E, T extends Collection<E>> implements C
 
     @Override // java.util.Collection
     public Object[] toArray() {
-        return C12227g.toArray(this);
+        return g.toArray(this);
     }
 
     @Override // java.util.Collection
     public <T> T[] toArray(T[] tArr) {
-        return (T[]) C12227g.toArray(this, tArr);
+        return (T[]) g.toArray(this, tArr);
     }
 
     public static final <E> ShallowPartitionCollection<E, ArrayList<E>> withArrayListPartions(int i, Function1<? super E, Integer> function1) {
-        return INSTANCE.withArrayListPartions(i, function1);
+        return Companion.withArrayListPartions(i, function1);
     }
 
     @Override // java.util.Collection, java.lang.Iterable

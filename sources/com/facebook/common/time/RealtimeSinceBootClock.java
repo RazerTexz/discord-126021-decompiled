@@ -1,25 +1,23 @@
 package com.facebook.common.time;
 
 import android.os.SystemClock;
-import p007b.p109f.p115d.p119d.InterfaceC1680c;
-import p007b.p109f.p115d.p126k.InterfaceC1714b;
+import b.f.d.d.c;
+import b.f.d.k.b;
 
 /* JADX INFO: loaded from: classes.dex */
-@InterfaceC1680c
-public class RealtimeSinceBootClock implements InterfaceC1714b {
-
-    /* JADX INFO: renamed from: a */
-    public static final RealtimeSinceBootClock f19450a = new RealtimeSinceBootClock();
+@c
+public class RealtimeSinceBootClock implements b {
+    public static final RealtimeSinceBootClock a = new RealtimeSinceBootClock();
 
     private RealtimeSinceBootClock() {
     }
 
-    @InterfaceC1680c
+    @c
     public static RealtimeSinceBootClock get() {
-        return f19450a;
+        return a;
     }
 
-    @Override // p007b.p109f.p115d.p126k.InterfaceC1714b
+    @Override // b.f.d.k.b
     public long now() {
         return SystemClock.elapsedRealtime();
     }

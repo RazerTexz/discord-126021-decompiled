@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLfgBrowserExited.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, 
             return false;
         }
         TrackLfgBrowserExited trackLfgBrowserExited = (TrackLfgBrowserExited) other;
-        return C12238m.areEqual(this.duration, trackLfgBrowserExited.duration) && C12238m.areEqual(this.numGroups, trackLfgBrowserExited.numGroups);
+        return m.areEqual(this.duration, trackLfgBrowserExited.duration) && m.areEqual(this.numGroups, trackLfgBrowserExited.numGroups);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackLfgBrowserExited(duration=");
-        sbM833U.append(this.duration);
-        sbM833U.append(", numGroups=");
-        return C1643a.m819G(sbM833U, this.numGroups, ")");
+        StringBuilder sbU = a.U("TrackLfgBrowserExited(duration=");
+        sbU.append(this.duration);
+        sbU.append(", numGroups=");
+        return a.G(sbU, this.numGroups, ")");
     }
 }

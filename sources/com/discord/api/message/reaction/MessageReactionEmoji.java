@@ -1,8 +1,8 @@
 package com.discord.api.message.reaction;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: MessageReactionEmoji.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,6 +17,20 @@ public final /* data */ class MessageReactionEmoji {
         this.animated = z2;
     }
 
+    public final String c() {
+        String str = this.id;
+        if (str != null) {
+            return str;
+        }
+        String str2 = this.name;
+        m.checkNotNull(str2);
+        return str2;
+    }
+
+    public final boolean e() {
+        return this.id != null;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -25,7 +39,7 @@ public final /* data */ class MessageReactionEmoji {
             return false;
         }
         MessageReactionEmoji messageReactionEmoji = (MessageReactionEmoji) other;
-        return C12238m.areEqual(this.id, messageReactionEmoji.id) && C12238m.areEqual(this.name, messageReactionEmoji.name) && this.animated == messageReactionEmoji.animated;
+        return m.areEqual(this.id, messageReactionEmoji.id) && m.areEqual(this.name, messageReactionEmoji.name) && this.animated == messageReactionEmoji.animated;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -61,28 +75,12 @@ public final /* data */ class MessageReactionEmoji {
         return iHashCode2 + r1;
     }
 
-    /* JADX INFO: renamed from: c */
-    public final String m8116c() {
-        String str = this.id;
-        if (str != null) {
-            return str;
-        }
-        String str2 = this.name;
-        C12238m.checkNotNull(str2);
-        return str2;
-    }
-
-    /* JADX INFO: renamed from: e */
-    public final boolean m8118e() {
-        return this.id != null;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MessageReactionEmoji(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", animated=");
-        return C1643a.m827O(sbM833U, this.animated, ")");
+        StringBuilder sbU = a.U("MessageReactionEmoji(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", animated=");
+        return a.O(sbU, this.animated, ")");
     }
 }

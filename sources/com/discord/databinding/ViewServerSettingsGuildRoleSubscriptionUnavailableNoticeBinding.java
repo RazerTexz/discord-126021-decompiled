@@ -12,27 +12,25 @@ import com.google.android.material.appbar.AppBarLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewServerSettingsGuildRoleSubscriptionUnavailableNoticeBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15565a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15566b;
+    public final TextView f2211b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15567c;
+    public final TextView c;
 
     public ViewServerSettingsGuildRoleSubscriptionUnavailableNoticeBinding(@NonNull ConstraintLayout constraintLayout, @NonNull Toolbar toolbar, @NonNull AppBarLayout appBarLayout, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull TextView textView2) {
-        this.f15565a = constraintLayout;
-        this.f15566b = textView;
-        this.f15567c = textView2;
+        this.a = constraintLayout;
+        this.f2211b = textView;
+        this.c = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15565a;
+        return this.a;
     }
 }

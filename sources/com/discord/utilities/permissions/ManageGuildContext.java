@@ -1,21 +1,14 @@
 package com.discord.utilities.permissions;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import com.discord.api.permission.Permission;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: PermissionsContexts.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class ManageGuildContext {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final ManageGuildContext$Companion Companion = new ManageGuildContext$Companion(null);
     private final boolean canManageBans;
     private final boolean canManageChannels;
     private final boolean canManageEmojisAndStickers;
@@ -25,39 +18,6 @@ public final /* data */ class ManageGuildContext {
     private final boolean canManageServer;
     private final boolean canViewAuditLogs;
     private final boolean isOwnerWithRequiredMFALevel;
-
-    /* JADX INFO: compiled from: PermissionsContexts.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final ManageGuildContext from(List<Channel> categories, boolean isOwner, Long guildPermissions, Map<Long, Long> channelPermissions, int guildMfaLevel, boolean isMeMfaEnabled) {
-            boolean z2;
-            C12238m.checkNotNullParameter(categories, "categories");
-            C12238m.checkNotNullParameter(channelPermissions, "channelPermissions");
-            if (!(categories instanceof Collection) || !categories.isEmpty()) {
-                Iterator<T> it = categories.iterator();
-                while (true) {
-                    if (!it.hasNext()) {
-                        z2 = false;
-                        break;
-                    }
-                    if (PermissionUtils.can(16L, (Long) C1643a.m845d((Channel) it.next(), channelPermissions))) {
-                        z2 = true;
-                        break;
-                    }
-                }
-            } else {
-                z2 = false;
-                break;
-            }
-            return new ManageGuildContext(isOwner || PermissionUtils.can(32L, guildPermissions), isOwner || PermissionUtils.can(16L, guildPermissions) || z2, isOwner || PermissionUtils.can(Permission.MANAGE_ROLES, guildPermissions), isOwner || PermissionUtils.can(4L, guildPermissions), isOwner || PermissionUtils.can(Permission.MANAGE_NICKNAMES, guildPermissions), isOwner || PermissionUtils.can(Permission.MANAGE_EMOJIS_AND_STICKERS, guildPermissions), isOwner || PermissionUtils.can(128L, guildPermissions), isOwner || PermissionUtils.can(Permission.MANAGE_EVENTS, guildPermissions), isOwner && PermissionUtils.isElevated(isMeMfaEnabled, guildMfaLevel));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     public ManageGuildContext(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10) {
         this.canManageServer = z2;
@@ -73,6 +33,10 @@ public final /* data */ class ManageGuildContext {
 
     public final boolean canManage() {
         return this.canManageServer || this.canManageChannels || this.canManageRoles || this.canManageBans || this.canViewAuditLogs || this.canManageEmojisAndStickers || this.isOwnerWithRequiredMFALevel;
+    }
+
+    public static /* synthetic */ ManageGuildContext copy$default(ManageGuildContext manageGuildContext, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, int i, Object obj) {
+        return manageGuildContext.copy((i & 1) != 0 ? manageGuildContext.canManageServer : z2, (i & 2) != 0 ? manageGuildContext.canManageChannels : z3, (i & 4) != 0 ? manageGuildContext.canManageRoles : z4, (i & 8) != 0 ? manageGuildContext.canManageBans : z5, (i & 16) != 0 ? manageGuildContext.canManageNicknames : z6, (i & 32) != 0 ? manageGuildContext.canManageEmojisAndStickers : z7, (i & 64) != 0 ? manageGuildContext.canViewAuditLogs : z8, (i & 128) != 0 ? manageGuildContext.canManageEvents : z9, (i & 256) != 0 ? manageGuildContext.isOwnerWithRequiredMFALevel : z10);
     }
 
     public final ManageGuildContext copy(boolean canManageServer, boolean canManageChannels, boolean canManageRoles, boolean canManageBans, boolean canManageNicknames, boolean canManageEmojisAndStickers, boolean canViewAuditLogs, boolean canManageEvents, boolean isOwnerWithRequiredMFALevel) {
@@ -91,7 +55,7 @@ public final /* data */ class ManageGuildContext {
     }
 
     public static final ManageGuildContext from(List<Channel> list, boolean z2, Long l, Map<Long, Long> map, int i, boolean z3) {
-        return INSTANCE.from(list, z2, l, map, i, z3);
+        return Companion.from(list, z2, l, map, i, z3);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -265,23 +229,23 @@ public final /* data */ class ManageGuildContext {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ManageGuildContext(canManageServer=");
-        sbM833U.append(this.canManageServer);
-        sbM833U.append(", canManageChannels=");
-        sbM833U.append(this.canManageChannels);
-        sbM833U.append(", canManageRoles=");
-        sbM833U.append(this.canManageRoles);
-        sbM833U.append(", canManageBans=");
-        sbM833U.append(this.canManageBans);
-        sbM833U.append(", canManageNicknames=");
-        sbM833U.append(this.canManageNicknames);
-        sbM833U.append(", canManageEmojisAndStickers=");
-        sbM833U.append(this.canManageEmojisAndStickers);
-        sbM833U.append(", canViewAuditLogs=");
-        sbM833U.append(this.canViewAuditLogs);
-        sbM833U.append(", canManageEvents=");
-        sbM833U.append(this.canManageEvents);
-        sbM833U.append(", isOwnerWithRequiredMFALevel=");
-        return C1643a.m827O(sbM833U, this.isOwnerWithRequiredMFALevel, ")");
+        StringBuilder sbU = a.U("ManageGuildContext(canManageServer=");
+        sbU.append(this.canManageServer);
+        sbU.append(", canManageChannels=");
+        sbU.append(this.canManageChannels);
+        sbU.append(", canManageRoles=");
+        sbU.append(this.canManageRoles);
+        sbU.append(", canManageBans=");
+        sbU.append(this.canManageBans);
+        sbU.append(", canManageNicknames=");
+        sbU.append(this.canManageNicknames);
+        sbU.append(", canManageEmojisAndStickers=");
+        sbU.append(this.canManageEmojisAndStickers);
+        sbU.append(", canViewAuditLogs=");
+        sbU.append(this.canViewAuditLogs);
+        sbU.append(", canManageEvents=");
+        sbU.append(this.canManageEvents);
+        sbU.append(", isOwnerWithRequiredMFALevel=");
+        return a.O(sbU, this.isOwnerWithRequiredMFALevel, ")");
     }
 }

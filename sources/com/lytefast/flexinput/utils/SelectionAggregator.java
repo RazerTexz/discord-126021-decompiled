@@ -3,60 +3,30 @@ package com.lytefast.flexinput.utils;
 import android.os.Parcelable;
 import android.util.Log;
 import androidx.exifinterface.media.ExifInterface;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView$Adapter;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.lytefast.flexinput.adapters.AttachmentPreviewAdapter;
 import com.lytefast.flexinput.model.Attachment;
+import d0.z.d.e0;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12224e0;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SelectionAggregator.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public class SelectionAggregator<T extends Attachment<? extends Object>> {
+    public static final SelectionAggregator$Companion Companion = new SelectionAggregator$Companion(null);
     private static final String TAG;
     private final AttachmentPreviewAdapter<T> adapter;
     private final ArrayList<T> attachments;
     private final ArrayList<SelectionCoordinator<T, ?>> childSelectionCoordinators;
-    private ArrayList<SelectionCoordinator.ItemSelectionListener<T>> itemSelectionListeners;
-
-    /* JADX INFO: renamed from: com.lytefast.flexinput.utils.SelectionAggregator$a */
-    /* JADX INFO: compiled from: SelectionAggregator.kt */
-    public final class C11191a implements SelectionCoordinator.ItemSelectionListener<T> {
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ SelectionCoordinator f22085b;
-
-        public C11191a(SelectionCoordinator selectionCoordinator) {
-            this.f22085b = selectionCoordinator;
-        }
-
-        @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
-        public void onItemSelected(Object obj) {
-            Attachment attachment = (Attachment) obj;
-            C12238m.checkNotNullParameter(attachment, "item");
-            SelectionAggregator.this.addItem(attachment);
-        }
-
-        @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
-        public void onItemUnselected(Object obj) {
-            Attachment attachment = (Attachment) obj;
-            C12238m.checkNotNullParameter(attachment, "item");
-            SelectionAggregator.this.removeItem(attachment);
-        }
-
-        @Override // com.lytefast.flexinput.utils.SelectionCoordinator.ItemSelectionListener
-        public void unregister() {
-            SelectionAggregator.this.getChildSelectionCoordinators().remove(this.f22085b);
-        }
-    }
+    private ArrayList<SelectionCoordinator$ItemSelectionListener<T>> itemSelectionListeners;
 
     static {
         String canonicalName = SelectionAggregator.class.getCanonicalName();
-        C12238m.checkNotNull(canonicalName);
+        m.checkNotNull(canonicalName);
         TAG = canonicalName;
     }
 
@@ -72,15 +42,27 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
         this(attachmentPreviewAdapter, arrayList, arrayList2, null, 8, null);
     }
 
-    public SelectionAggregator(AttachmentPreviewAdapter<T> attachmentPreviewAdapter, ArrayList<T> arrayList, ArrayList<SelectionCoordinator<T, ?>> arrayList2, ArrayList<SelectionCoordinator.ItemSelectionListener<T>> arrayList3) {
-        C12238m.checkNotNullParameter(attachmentPreviewAdapter, "adapter");
-        C12238m.checkNotNullParameter(arrayList, "attachments");
-        C12238m.checkNotNullParameter(arrayList2, "childSelectionCoordinators");
-        C12238m.checkNotNullParameter(arrayList3, "itemSelectionListeners");
+    public SelectionAggregator(AttachmentPreviewAdapter<T> attachmentPreviewAdapter, ArrayList<T> arrayList, ArrayList<SelectionCoordinator<T, ?>> arrayList2, ArrayList<SelectionCoordinator$ItemSelectionListener<T>> arrayList3) {
+        m.checkNotNullParameter(attachmentPreviewAdapter, "adapter");
+        m.checkNotNullParameter(arrayList, "attachments");
+        m.checkNotNullParameter(arrayList2, "childSelectionCoordinators");
+        m.checkNotNullParameter(arrayList3, "itemSelectionListeners");
         this.adapter = attachmentPreviewAdapter;
         this.attachments = arrayList;
         this.childSelectionCoordinators = arrayList2;
         this.itemSelectionListeners = arrayList3;
+    }
+
+    public static final /* synthetic */ void access$addItem(SelectionAggregator selectionAggregator, Attachment attachment) {
+        selectionAggregator.addItem(attachment);
+    }
+
+    public static final /* synthetic */ String access$getTAG$cp() {
+        return TAG;
+    }
+
+    public static final /* synthetic */ boolean access$removeItem(SelectionAggregator selectionAggregator, Attachment attachment) {
+        return selectionAggregator.removeItem(attachment);
     }
 
     private final void addItem(T item) {
@@ -91,12 +73,12 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
         this.adapter.notifyItemInserted(this.attachments.size() - 1);
         Iterator<T> it = this.itemSelectionListeners.iterator();
         while (it.hasNext()) {
-            ((SelectionCoordinator.ItemSelectionListener) it.next()).onItemSelected(item);
+            ((SelectionCoordinator$ItemSelectionListener) it.next()).onItemSelected(item);
         }
     }
 
-    public final SelectionAggregator<T> addItemSelectionListener(SelectionCoordinator.ItemSelectionListener<? super T> itemSelectionListener) {
-        C12238m.checkNotNullParameter(itemSelectionListener, "itemSelectionListener");
+    public final SelectionAggregator<T> addItemSelectionListener(SelectionCoordinator$ItemSelectionListener<? super T> itemSelectionListener) {
+        m.checkNotNullParameter(itemSelectionListener, "itemSelectionListener");
         if (!this.itemSelectionListeners.contains(itemSelectionListener)) {
             this.itemSelectionListeners.add(itemSelectionListener);
         }
@@ -111,11 +93,11 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
             Objects.requireNonNull(selectionCoordinator);
             ArrayList<Integer> arrayList = new ArrayList(selectionCoordinator.selectedItemPositionMap.values());
             selectionCoordinator.selectedItemPositionMap.clear();
-            RecyclerView.Adapter<?> adapter = selectionCoordinator.adapter;
-            if (adapter != null) {
+            RecyclerView$Adapter<?> recyclerView$Adapter = selectionCoordinator.adapter;
+            if (recyclerView$Adapter != null) {
                 for (Integer num : arrayList) {
-                    C12238m.checkNotNullExpressionValue(num, ModelAuditLogEntry.CHANGE_KEY_POSITION);
-                    adapter.notifyItemChanged(num.intValue());
+                    m.checkNotNullExpressionValue(num, ModelAuditLogEntry.CHANGE_KEY_POSITION);
+                    recyclerView$Adapter.notifyItemChanged(num.intValue());
                 }
             }
         }
@@ -123,7 +105,7 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
 
     public final T get(int position) {
         T t = this.attachments.get(position);
-        C12238m.checkNotNullExpressionValue(t, "attachments[position]");
+        m.checkNotNullExpressionValue(t, "attachments[position]");
         return t;
     }
 
@@ -139,7 +121,7 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
         return this.childSelectionCoordinators;
     }
 
-    public final ArrayList<SelectionCoordinator.ItemSelectionListener<T>> getItemSelectionListeners() {
+    public final ArrayList<SelectionCoordinator$ItemSelectionListener<T>> getItemSelectionListeners() {
         return this.itemSelectionListeners;
     }
 
@@ -151,7 +133,7 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
         if (old != null) {
             this.attachments.addAll(old.attachments);
             for (SelectionCoordinator<T, ?> selectionCoordinator : old.childSelectionCoordinators) {
-                C12238m.checkNotNullExpressionValue(selectionCoordinator, "coordinator");
+                m.checkNotNullExpressionValue(selectionCoordinator, "coordinator");
                 registerSelectionCoordinatorInternal(selectionCoordinator);
             }
             this.itemSelectionListeners.addAll(old.itemSelectionListeners);
@@ -160,21 +142,21 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
     }
 
     public final void registerSelectionCoordinator(SelectionCoordinator<T, ?> selectionCoordinator) {
-        C12238m.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
+        m.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
         registerSelectionCoordinatorInternal(selectionCoordinator);
         try {
-            selectionCoordinator.m9299b(this.attachments);
-        } catch (SelectionCoordinator.RestorationException e) {
+            selectionCoordinator.b(this.attachments);
+        } catch (SelectionCoordinator$RestorationException e) {
             Log.d(TAG, "selections could not be synced", e);
         }
     }
 
     public void registerSelectionCoordinatorInternal(SelectionCoordinator<T, ?> selectionCoordinator) {
-        C12238m.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
-        C11191a c11191a = new C11191a(selectionCoordinator);
+        m.checkNotNullParameter(selectionCoordinator, "selectionCoordinator");
+        SelectionAggregator$a selectionAggregator$a = new SelectionAggregator$a(this, selectionCoordinator);
         Objects.requireNonNull(selectionCoordinator);
-        C12238m.checkNotNullParameter(c11191a, "<set-?>");
-        selectionCoordinator.itemSelectionListener = c11191a;
+        m.checkNotNullParameter(selectionAggregator$a, "<set-?>");
+        selectionCoordinator.itemSelectionListener = selectionAggregator$a;
         this.childSelectionCoordinators.add(selectionCoordinator);
     }
 
@@ -186,25 +168,25 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
         }
         Iterator<T> it = this.itemSelectionListeners.iterator();
         while (it.hasNext()) {
-            ((SelectionCoordinator.ItemSelectionListener) it.next()).onItemUnselected(item);
+            ((SelectionCoordinator$ItemSelectionListener) it.next()).onItemUnselected(item);
         }
         return zRemove;
     }
 
-    public final void removeItemSelectionListener(SelectionCoordinator.ItemSelectionListener<?> itemSelectionListener) {
-        C12238m.checkNotNullParameter(itemSelectionListener, "itemSelectionListener");
-        ArrayList<SelectionCoordinator.ItemSelectionListener<T>> arrayList = this.itemSelectionListeners;
+    public final void removeItemSelectionListener(SelectionCoordinator$ItemSelectionListener<?> itemSelectionListener) {
+        m.checkNotNullParameter(itemSelectionListener, "itemSelectionListener");
+        ArrayList<SelectionCoordinator$ItemSelectionListener<T>> arrayList = this.itemSelectionListeners;
         Objects.requireNonNull(arrayList, "null cannot be cast to non-null type kotlin.collections.MutableCollection<T>");
-        C12224e0.asMutableCollection(arrayList).remove(itemSelectionListener);
+        e0.asMutableCollection(arrayList).remove(itemSelectionListener);
     }
 
-    public final void setItemSelectionListeners(ArrayList<SelectionCoordinator.ItemSelectionListener<T>> arrayList) {
-        C12238m.checkNotNullParameter(arrayList, "<set-?>");
+    public final void setItemSelectionListeners(ArrayList<SelectionCoordinator$ItemSelectionListener<T>> arrayList) {
+        m.checkNotNullParameter(arrayList, "<set-?>");
         this.itemSelectionListeners = arrayList;
     }
 
     public final boolean toggleItemInternal(T item) {
-        C12238m.checkNotNullParameter(item, "item");
+        m.checkNotNullParameter(item, "item");
         boolean zRemoveItem = removeItem(item);
         if (!zRemoveItem) {
             addItem(item);
@@ -213,10 +195,10 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
     }
 
     public final void unselectItem(T item) {
-        C12238m.checkNotNullParameter(item, "item");
+        m.checkNotNullParameter(item, "item");
         Iterator<T> it = this.childSelectionCoordinators.iterator();
         while (it.hasNext()) {
-            ((SelectionCoordinator) it.next()).m9301d(item);
+            ((SelectionCoordinator) it.next()).d(item);
         }
         removeItem(item);
     }
@@ -226,7 +208,7 @@ public class SelectionAggregator<T extends Attachment<? extends Object>> {
     }
 
     public final SelectionAggregator<T> initFrom(ArrayList<? super Parcelable> savedAttachments) {
-        C12238m.checkNotNullParameter(savedAttachments, "savedAttachments");
+        m.checkNotNullParameter(savedAttachments, "savedAttachments");
         ArrayList arrayList = new ArrayList();
         for (Object obj : savedAttachments) {
             if (!(obj instanceof Attachment)) {

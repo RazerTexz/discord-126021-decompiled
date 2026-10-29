@@ -3,20 +3,22 @@ package com.discord.widgets.chat.input;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
+import androidx.recyclerview.widget.RecyclerView$State;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ExpressionPickerItemDecoration.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ExpressionPickerItemDecoration extends RecyclerView.ItemDecoration {
+public final class ExpressionPickerItemDecoration extends RecyclerView$ItemDecoration {
     private final int bottomPaddingForLastRow;
     private final List<Integer> headerIndices;
     private final int numOfColumns;
 
     public ExpressionPickerItemDecoration(int i, List<Integer> list, int i2) {
-        C12238m.checkNotNullParameter(list, "headerIndices");
+        m.checkNotNullParameter(list, "headerIndices");
         this.numOfColumns = i;
         this.headerIndices = list;
         this.bottomPaddingForLastRow = i2;
@@ -40,12 +42,12 @@ public final class ExpressionPickerItemDecoration extends RecyclerView.ItemDecor
         return 0;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        C12238m.checkNotNullParameter(outRect, "outRect");
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(parent, "parent");
-        C12238m.checkNotNullParameter(state, "state");
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView$State state) {
+        m.checkNotNullParameter(outRect, "outRect");
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(parent, "parent");
+        m.checkNotNullParameter(state, "state");
         super.getItemOffsets(outRect, view, parent, state);
         if (this.headerIndices.isEmpty()) {
             return;

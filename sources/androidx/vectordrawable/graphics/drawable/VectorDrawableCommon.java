@@ -1,7 +1,7 @@
 package androidx.vectordrawable.graphics.drawable;
 
-import android.content.res.Resources;
-import android.graphics.PorterDuff;
+import android.content.res.Resources$Theme;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
@@ -13,10 +13,10 @@ public abstract class VectorDrawableCommon extends Drawable implements TintAware
     public Drawable mDelegateDrawable;
 
     @Override // android.graphics.drawable.Drawable
-    public void applyTheme(Resources.Theme theme) {
+    public void applyTheme(Resources$Theme resources$Theme) {
         Drawable drawable = this.mDelegateDrawable;
         if (drawable != null) {
-            DrawableCompat.applyTheme(drawable, theme);
+            DrawableCompat.applyTheme(drawable, resources$Theme);
         }
     }
 
@@ -101,12 +101,12 @@ public abstract class VectorDrawableCommon extends Drawable implements TintAware
     }
 
     @Override // android.graphics.drawable.Drawable
-    public void setColorFilter(int i, PorterDuff.Mode mode) {
+    public void setColorFilter(int i, PorterDuff$Mode porterDuff$Mode) {
         Drawable drawable = this.mDelegateDrawable;
         if (drawable != null) {
-            drawable.setColorFilter(i, mode);
+            drawable.setColorFilter(i, porterDuff$Mode);
         } else {
-            super.setColorFilter(i, mode);
+            super.setColorFilter(i, porterDuff$Mode);
         }
     }
 

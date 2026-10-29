@@ -1,8 +1,8 @@
 package com.discord.api.message.embed;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: EmbedAuthor.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class EmbedAuthor {
             return false;
         }
         EmbedAuthor embedAuthor = (EmbedAuthor) other;
-        return C12238m.areEqual(this.name, embedAuthor.name) && C12238m.areEqual(this.url, embedAuthor.url) && C12238m.areEqual(this.iconUrl, embedAuthor.iconUrl) && C12238m.areEqual(this.proxyIconUrl, embedAuthor.proxyIconUrl);
+        return m.areEqual(this.name, embedAuthor.name) && m.areEqual(this.url, embedAuthor.url) && m.areEqual(this.iconUrl, embedAuthor.iconUrl) && m.areEqual(this.proxyIconUrl, embedAuthor.proxyIconUrl);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -50,13 +50,13 @@ public final /* data */ class EmbedAuthor {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EmbedAuthor(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", url=");
-        sbM833U.append(this.url);
-        sbM833U.append(", iconUrl=");
-        sbM833U.append(this.iconUrl);
-        sbM833U.append(", proxyIconUrl=");
-        return C1643a.m822J(sbM833U, this.proxyIconUrl, ")");
+        StringBuilder sbU = a.U("EmbedAuthor(name=");
+        sbU.append(this.name);
+        sbU.append(", url=");
+        sbU.append(this.url);
+        sbU.append(", iconUrl=");
+        sbU.append(this.iconUrl);
+        sbU.append(", proxyIconUrl=");
+        return a.J(sbU, this.proxyIconUrl, ")");
     }
 }

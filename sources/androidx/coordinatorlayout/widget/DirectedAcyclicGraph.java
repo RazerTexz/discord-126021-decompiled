@@ -3,16 +3,18 @@ package androidx.coordinatorlayout.widget;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.SimpleArrayMap;
-import androidx.core.util.Pools;
+import androidx.core.util.Pools$Pool;
+import androidx.core.util.Pools$SimplePool;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public final class DirectedAcyclicGraph<T> {
-    private final Pools.Pool<ArrayList<T>> mListPool = new Pools.SimplePool(10);
+    private final Pools$Pool<ArrayList<T>> mListPool = new Pools$SimplePool(10);
     private final SimpleArrayMap<T, ArrayList<T>> mGraph = new SimpleArrayMap<>();
     private final ArrayList<T> mSortResult = new ArrayList<>();
     private final HashSet<T> mSortTmpMarked = new HashSet<>();

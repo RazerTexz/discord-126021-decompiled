@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDeepLinkClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackDeepLinkClicked implements AnalyticsSchema, T
             return false;
         }
         TrackDeepLinkClicked trackDeepLinkClicked = (TrackDeepLinkClicked) other;
-        return C12238m.areEqual(this.fingerprint, trackDeepLinkClicked.fingerprint) && C12238m.areEqual(this.attemptId, trackDeepLinkClicked.attemptId) && C12238m.areEqual(this.source, trackDeepLinkClicked.source) && C12238m.areEqual(this.inviteCode, trackDeepLinkClicked.inviteCode) && C12238m.areEqual(this.guildTemplateCode, trackDeepLinkClicked.guildTemplateCode) && C12238m.areEqual(this.destination, trackDeepLinkClicked.destination);
+        return m.areEqual(this.fingerprint, trackDeepLinkClicked.fingerprint) && m.areEqual(this.attemptId, trackDeepLinkClicked.attemptId) && m.areEqual(this.source, trackDeepLinkClicked.source) && m.areEqual(this.inviteCode, trackDeepLinkClicked.inviteCode) && m.areEqual(this.guildTemplateCode, trackDeepLinkClicked.guildTemplateCode) && m.areEqual(this.destination, trackDeepLinkClicked.destination);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackDeepLinkClicked implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDeepLinkClicked(fingerprint=");
-        sbM833U.append(this.fingerprint);
-        sbM833U.append(", attemptId=");
-        sbM833U.append(this.attemptId);
-        sbM833U.append(", source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", guildTemplateCode=");
-        sbM833U.append(this.guildTemplateCode);
-        sbM833U.append(", destination=");
-        return C1643a.m817E(sbM833U, this.destination, ")");
+        StringBuilder sbU = a.U("TrackDeepLinkClicked(fingerprint=");
+        sbU.append(this.fingerprint);
+        sbU.append(", attemptId=");
+        sbU.append(this.attemptId);
+        sbU.append(", source=");
+        sbU.append(this.source);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", guildTemplateCode=");
+        sbU.append(this.guildTemplateCode);
+        sbU.append(", destination=");
+        return a.E(sbU, this.destination, ")");
     }
 }

@@ -1,10 +1,10 @@
 package androidx.core.graphics;
 
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
@@ -19,7 +19,7 @@ public final class PaintCompat {
     }
 
     public static boolean hasGlyph(@NonNull Paint paint, @NonNull String str) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return paint.hasGlyph(str);
         }
         int length = str.length();
@@ -70,7 +70,7 @@ public final class PaintCompat {
     }
 
     public static boolean setBlendMode(@NonNull Paint paint, @Nullable BlendModeCompat blendModeCompat) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             paint.setBlendMode(blendModeCompat != null ? BlendModeUtils.obtainBlendModeFromCompat(blendModeCompat) : null);
             return true;
         }
@@ -78,8 +78,8 @@ public final class PaintCompat {
             paint.setXfermode(null);
             return true;
         }
-        PorterDuff.Mode modeObtainPorterDuffFromCompat = BlendModeUtils.obtainPorterDuffFromCompat(blendModeCompat);
-        paint.setXfermode(modeObtainPorterDuffFromCompat != null ? new PorterDuffXfermode(modeObtainPorterDuffFromCompat) : null);
-        return modeObtainPorterDuffFromCompat != null;
+        PorterDuff$Mode porterDuff$ModeObtainPorterDuffFromCompat = BlendModeUtils.obtainPorterDuffFromCompat(blendModeCompat);
+        paint.setXfermode(porterDuff$ModeObtainPorterDuffFromCompat != null ? new PorterDuffXfermode(porterDuff$ModeObtainPorterDuffFromCompat) : null);
+        return porterDuff$ModeObtainPorterDuffFromCompat != null;
     }
 }

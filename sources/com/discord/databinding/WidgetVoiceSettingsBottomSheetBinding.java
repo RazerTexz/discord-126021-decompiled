@@ -10,57 +10,49 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetVoiceSettingsBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f18482a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f18483b;
+    public final TextView f2705b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f18484c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SwitchMaterial f18485d;
+    public final SwitchMaterial d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f18486e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f18487f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f18488g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final SwitchMaterial f18489h;
+    public final SwitchMaterial h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f18490i;
+    public final TextView i;
 
     public WidgetVoiceSettingsBottomSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull TextView textView2, @NonNull SwitchMaterial switchMaterial, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull NestedScrollView nestedScrollView2, @NonNull TextView textView5, @NonNull SwitchMaterial switchMaterial2, @NonNull TextView textView6) {
-        this.f18482a = nestedScrollView;
-        this.f18483b = textView;
-        this.f18484c = textView2;
-        this.f18485d = switchMaterial;
-        this.f18486e = textView3;
-        this.f18487f = textView4;
-        this.f18488g = textView5;
-        this.f18489h = switchMaterial2;
-        this.f18490i = textView6;
+        this.a = nestedScrollView;
+        this.f2705b = textView;
+        this.c = textView2;
+        this.d = switchMaterial;
+        this.e = textView3;
+        this.f = textView4;
+        this.g = textView5;
+        this.h = switchMaterial2;
+        this.i = textView6;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18482a;
+        return this.a;
     }
 }

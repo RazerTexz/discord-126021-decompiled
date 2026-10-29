@@ -13,32 +13,29 @@ import com.google.android.material.appbar.AppBarLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetModeratorStartStageBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f17270a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final Button f17271b;
+    public final Button f2497b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f17272c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final CallEventsButtonView f17273d;
+    public final CallEventsButtonView d;
 
     public WidgetModeratorStartStageBinding(@NonNull ConstraintLayout constraintLayout, @NonNull Toolbar toolbar, @NonNull AppBarLayout appBarLayout, @NonNull Button button, @NonNull RecyclerView recyclerView, @NonNull CallEventsButtonView callEventsButtonView) {
-        this.f17270a = constraintLayout;
-        this.f17271b = button;
-        this.f17272c = recyclerView;
-        this.f17273d = callEventsButtonView;
+        this.a = constraintLayout;
+        this.f2497b = button;
+        this.c = recyclerView;
+        this.d = callEventsButtonView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17270a;
+        return this.a;
     }
 }

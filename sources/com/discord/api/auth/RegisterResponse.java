@@ -1,7 +1,7 @@
 package com.discord.api.auth;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: RegisterResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class RegisterResponse {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof RegisterResponse) && C12238m.areEqual(this.token, ((RegisterResponse) other).token);
+            return (other instanceof RegisterResponse) && m.areEqual(this.token, ((RegisterResponse) other).token);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class RegisterResponse {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("RegisterResponse(token="), this.token, ")");
+        return a.J(a.U("RegisterResponse(token="), this.token, ")");
     }
 }

@@ -3,9 +3,10 @@ package androidx.core.view;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.PointerIcon;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class PointerIconCompat {
@@ -39,19 +40,19 @@ public final class PointerIconCompat {
     }
 
     public static PointerIconCompat create(Bitmap bitmap, float f, float f2) {
-        return Build.VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.create(bitmap, f, f2)) : new PointerIconCompat(null);
+        return Build$VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.create(bitmap, f, f2)) : new PointerIconCompat(null);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public Object getPointerIcon() {
         return this.mPointerIcon;
     }
 
     public static PointerIconCompat getSystemIcon(Context context, int i) {
-        return Build.VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.getSystemIcon(context, i)) : new PointerIconCompat(null);
+        return Build$VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.getSystemIcon(context, i)) : new PointerIconCompat(null);
     }
 
     public static PointerIconCompat load(Resources resources, int i) {
-        return Build.VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.load(resources, i)) : new PointerIconCompat(null);
+        return Build$VERSION.SDK_INT >= 24 ? new PointerIconCompat(PointerIcon.load(resources, i)) : new PointerIconCompat(null);
     }
 }

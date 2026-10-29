@@ -2,89 +2,10 @@ package com.discord.models.botuikit;
 
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.webrtc.PeerConnectionFactory;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
 /* JADX INFO: loaded from: classes.dex */
 public abstract class ActionInteractionComponentState {
-
-    /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public final class Disabled extends ActionInteractionComponentState {
-        public static final Disabled INSTANCE = new Disabled();
-
-        private Disabled() {
-            super(null);
-        }
-    }
-
-    /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public final class Enabled extends ActionInteractionComponentState {
-        public static final Enabled INSTANCE = new Enabled();
-
-        private Enabled() {
-            super(null);
-        }
-    }
-
-    /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public final /* data */ class Failed extends ActionInteractionComponentState {
-        private final String errorMessage;
-
-        public Failed(String str) {
-            super(null);
-            this.errorMessage = str;
-        }
-
-        public static /* synthetic */ Failed copy$default(Failed failed, String str, int i, Object obj) {
-            if ((i & 1) != 0) {
-                str = failed.errorMessage;
-            }
-            return failed.copy(str);
-        }
-
-        public final Failed copy(String errorMessage) {
-            return new Failed(errorMessage);
-        }
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof Failed) && C12238m.areEqual(this.errorMessage, ((Failed) other).errorMessage);
-            }
-            return true;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getErrorMessage() {
-            return this.errorMessage;
-        }
-
-        public final String getErrorMessage() {
-            return this.errorMessage;
-        }
-
-        public int hashCode() {
-            String str = this.errorMessage;
-            if (str != null) {
-                return str.hashCode();
-            }
-            return 0;
-        }
-
-        public String toString() {
-            return C1643a.m822J(C1643a.m833U("Failed(errorMessage="), this.errorMessage, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: ActionInteractionComponentState.kt */
-    public final class Loading extends ActionInteractionComponentState {
-        public static final Loading INSTANCE = new Loading();
-
-        private Loading() {
-            super(null);
-        }
-    }
-
     private ActionInteractionComponentState() {
     }
 

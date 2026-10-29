@@ -2,16 +2,18 @@ package androidx.transition;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.animation.TypeEvaluator;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Picture;
 import android.graphics.RectF;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageView$ScaleType;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -21,28 +23,8 @@ public class TransitionUtils {
     private static final boolean HAS_PICTURE_BITMAP;
     private static final int MAX_IMAGE_SIZE = 1048576;
 
-    public class MatrixEvaluator implements TypeEvaluator<Matrix> {
-        public final float[] mTempStartValues = new float[9];
-        public final float[] mTempEndValues = new float[9];
-        public final Matrix mTempMatrix = new Matrix();
-
-        @Override // android.animation.TypeEvaluator
-        public Matrix evaluate(float f, Matrix matrix, Matrix matrix2) {
-            matrix.getValues(this.mTempStartValues);
-            matrix2.getValues(this.mTempEndValues);
-            for (int i = 0; i < 9; i++) {
-                float[] fArr = this.mTempEndValues;
-                float f2 = fArr[i];
-                float[] fArr2 = this.mTempStartValues;
-                fArr[i] = ((f2 - fArr2[i]) * f) + fArr2[i];
-            }
-            this.mTempMatrix.setValues(this.mTempEndValues);
-            return this.mTempMatrix;
-        }
-    }
-
     static {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         HAS_IS_ATTACHED_TO_WINDOW = true;
         HAS_OVERLAY = true;
         HAS_PICTURE_BITMAP = i >= 28;
@@ -63,12 +45,12 @@ public class TransitionUtils {
         int iRound3 = Math.round(rectF.right);
         int iRound4 = Math.round(rectF.bottom);
         ImageView imageView = new ImageView(view.getContext());
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setScaleType(ImageView$ScaleType.CENTER_CROP);
         Bitmap bitmapCreateViewBitmap = createViewBitmap(view, matrix, rectF, viewGroup);
         if (bitmapCreateViewBitmap != null) {
             imageView.setImageBitmap(bitmapCreateViewBitmap);
         }
-        imageView.measure(View.MeasureSpec.makeMeasureSpec(iRound3 - iRound, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(iRound4 - iRound2, BasicMeasure.EXACTLY));
+        imageView.measure(View$MeasureSpec.makeMeasureSpec(iRound3 - iRound, BasicMeasure.EXACTLY), View$MeasureSpec.makeMeasureSpec(iRound4 - iRound2, BasicMeasure.EXACTLY));
         imageView.layout(iRound, iRound2, iRound3, iRound4);
         return imageView;
     }
@@ -121,7 +103,7 @@ public class TransitionUtils {
                     picture.endRecording();
                     bitmapCreateBitmap = Bitmap.createBitmap(picture);
                 } else {
-                    bitmapCreateBitmap = Bitmap.createBitmap(iRound3, iRound4, Bitmap.Config.ARGB_8888);
+                    bitmapCreateBitmap = Bitmap.createBitmap(iRound3, iRound4, Bitmap$Config.ARGB_8888);
                     Canvas canvas = new Canvas(bitmapCreateBitmap);
                     canvas.concat(matrix);
                     view.draw(canvas);
@@ -160,7 +142,7 @@ public class TransitionUtils {
                 picture2.endRecording();
                 bitmapCreateBitmap = Bitmap.createBitmap(picture2);
             } else {
-                bitmapCreateBitmap = Bitmap.createBitmap(iRound3, iRound4, Bitmap.Config.ARGB_8888);
+                bitmapCreateBitmap = Bitmap.createBitmap(iRound3, iRound4, Bitmap$Config.ARGB_8888);
                 Canvas canvas2 = new Canvas(bitmapCreateBitmap);
                 canvas2.concat(matrix);
                 view.draw(canvas2);

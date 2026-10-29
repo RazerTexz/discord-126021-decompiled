@@ -2,12 +2,13 @@ package com.discord.utilities.spans;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint$Style;
 import android.graphics.RectF;
 import android.text.Spanned;
 import android.text.style.LineBackgroundSpan;
 import androidx.annotation.ColorInt;
-import androidx.core.app.NotificationCompat;
-import p507d0.p592z.p594d.C12238m;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: BlockBackgroundSpan.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -21,11 +22,11 @@ public final class BlockBackgroundSpan implements LineBackgroundSpan {
     public BlockBackgroundSpan(@ColorInt int i, @ColorInt int i2, int i3, int i4, int i5) {
         this.leftMargin = i5;
         Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint$Style.FILL);
         paint.setColor(i);
         this.fillPaint = paint;
         Paint paint2 = new Paint();
-        paint2.setStyle(Paint.Style.STROKE);
+        paint2.setStyle(Paint$Style.STROKE);
         paint2.setColor(i2);
         paint2.setStrokeWidth(i3);
         paint2.setAntiAlias(true);
@@ -35,7 +36,7 @@ public final class BlockBackgroundSpan implements LineBackgroundSpan {
     }
 
     public final void draw(Canvas canvas) {
-        C12238m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(canvas, "canvas");
         RectF rectF = this.rect;
         float f = this.radius;
         canvas.drawRoundRect(rectF, f, f, this.fillPaint);
@@ -46,9 +47,9 @@ public final class BlockBackgroundSpan implements LineBackgroundSpan {
 
     @Override // android.text.style.LineBackgroundSpan
     public void drawBackground(Canvas canvas, Paint paint, int left, int right, int top, int baseline, int bottom, CharSequence text, int start, int end, int lnum) {
-        C12238m.checkNotNullParameter(canvas, "canvas");
-        C12238m.checkNotNullParameter(paint, "paint");
-        C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(paint, "paint");
+        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         if (((Spanned) (!(text instanceof Spanned) ? null : text)) != null) {
             Spanned spanned = (Spanned) text;
             if (spanned.getSpanStart(this) == start) {

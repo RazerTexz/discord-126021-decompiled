@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,6 +28,11 @@ public final /* data */ class TrackGuildViewed implements AnalyticsSchema, Track
     private final Boolean viewingStarred = null;
     private final transient String analyticsSchemaTypeName = "guild_viewed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,7 +41,7 @@ public final /* data */ class TrackGuildViewed implements AnalyticsSchema, Track
             return false;
         }
         TrackGuildViewed trackGuildViewed = (TrackGuildViewed) other;
-        return C12238m.areEqual(this.guildAffinityScore, trackGuildViewed.guildAffinityScore) && C12238m.areEqual(this.guildAffinityIndex, trackGuildViewed.guildAffinityIndex) && C12238m.areEqual(this.isPending, trackGuildViewed.isPending) && C12238m.areEqual(this.previewEnabled, trackGuildViewed.previewEnabled) && C12238m.areEqual(this.postableChannels, trackGuildViewed.postableChannels) && C12238m.areEqual(this.premiumProgressBarEnabled, trackGuildViewed.premiumProgressBarEnabled) && C12238m.areEqual(this.viewingStarred, trackGuildViewed.viewingStarred);
+        return m.areEqual(this.guildAffinityScore, trackGuildViewed.guildAffinityScore) && m.areEqual(this.guildAffinityIndex, trackGuildViewed.guildAffinityIndex) && m.areEqual(this.isPending, trackGuildViewed.isPending) && m.areEqual(this.previewEnabled, trackGuildViewed.previewEnabled) && m.areEqual(this.postableChannels, trackGuildViewed.postableChannels) && m.areEqual(this.premiumProgressBarEnabled, trackGuildViewed.premiumProgressBarEnabled) && m.areEqual(this.viewingStarred, trackGuildViewed.viewingStarred);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -68,26 +73,20 @@ public final /* data */ class TrackGuildViewed implements AnalyticsSchema, Track
         return iHashCode6 + (bool4 != null ? bool4.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildViewed(guildAffinityScore=");
-        sbM833U.append(this.guildAffinityScore);
-        sbM833U.append(", guildAffinityIndex=");
-        sbM833U.append(this.guildAffinityIndex);
-        sbM833U.append(", isPending=");
-        sbM833U.append(this.isPending);
-        sbM833U.append(", previewEnabled=");
-        sbM833U.append(this.previewEnabled);
-        sbM833U.append(", postableChannels=");
-        sbM833U.append(this.postableChannels);
-        sbM833U.append(", premiumProgressBarEnabled=");
-        sbM833U.append(this.premiumProgressBarEnabled);
-        sbM833U.append(", viewingStarred=");
-        return C1643a.m816D(sbM833U, this.viewingStarred, ")");
+        StringBuilder sbU = a.U("TrackGuildViewed(guildAffinityScore=");
+        sbU.append(this.guildAffinityScore);
+        sbU.append(", guildAffinityIndex=");
+        sbU.append(this.guildAffinityIndex);
+        sbU.append(", isPending=");
+        sbU.append(this.isPending);
+        sbU.append(", previewEnabled=");
+        sbU.append(this.previewEnabled);
+        sbU.append(", postableChannels=");
+        sbU.append(this.postableChannels);
+        sbU.append(", premiumProgressBarEnabled=");
+        sbU.append(this.premiumProgressBarEnabled);
+        sbU.append(", viewingStarred=");
+        return a.D(sbU, this.viewingStarred, ")");
     }
 }

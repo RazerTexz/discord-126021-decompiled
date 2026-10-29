@@ -1,52 +1,16 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.api.thread.MuteConfig;
 import com.discord.utilities.time.TimeUtils;
-import java.io.IOException;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.jvm.internal.Ref$ObjectRef;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelMuteConfig.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ModelMuteConfig {
-
-    /* JADX INFO: renamed from: Parser, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final ModelMuteConfig$Parser Parser = new ModelMuteConfig$Parser(null);
     private final String endTime;
     private final Long endTimeMs;
-
-    /* JADX INFO: renamed from: com.discord.models.domain.ModelMuteConfig$Parser, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: ModelMuteConfig.kt */
-    public final class Companion implements Model.Parser<ModelMuteConfig> {
-        private Companion() {
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // com.discord.models.domain.Model.Parser
-        public ModelMuteConfig parse(final Model.JsonReader reader) throws IOException {
-            final Ref$ObjectRef ref$ObjectRefM844c0 = C1643a.m844c0(reader, "reader");
-            ref$ObjectRefM844c0.element = null;
-            reader.nextObject(new Action1<String>() { // from class: com.discord.models.domain.ModelMuteConfig$Parser$parse$1
-                @Override // p658rx.functions.Action1
-                public final void call(String str) throws IOException {
-                    if (str == null || str.hashCode() != 1725551537 || !str.equals("end_time")) {
-                        reader.skipValue();
-                    } else {
-                        ref$ObjectRefM844c0.element = (T) reader.nextStringOrNull();
-                    }
-                }
-            });
-            return new ModelMuteConfig((String) ref$ObjectRefM844c0.element);
-        }
-    }
 
     public ModelMuteConfig(Long l, String str) {
         this.endTimeMs = l;
@@ -75,7 +39,7 @@ public final /* data */ class ModelMuteConfig {
             return false;
         }
         ModelMuteConfig modelMuteConfig = (ModelMuteConfig) other;
-        return C12238m.areEqual(this.endTimeMs, modelMuteConfig.endTimeMs) && C12238m.areEqual(this.endTime, modelMuteConfig.endTime);
+        return m.areEqual(this.endTimeMs, modelMuteConfig.endTimeMs) && m.areEqual(this.endTime, modelMuteConfig.endTime);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -103,15 +67,15 @@ public final /* data */ class ModelMuteConfig {
         return iHashCode + (str != null ? str.hashCode() : 0);
     }
 
-    public static ModelMuteConfig parse(Model.JsonReader jsonReader) {
-        return INSTANCE.parse(jsonReader);
+    public static ModelMuteConfig parse(Model$JsonReader model$JsonReader) {
+        return Parser.parse(model$JsonReader);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelMuteConfig(endTimeMs=");
-        sbM833U.append(this.endTimeMs);
-        sbM833U.append(", endTime=");
-        return C1643a.m822J(sbM833U, this.endTime, ")");
+        StringBuilder sbU = a.U("ModelMuteConfig(endTimeMs=");
+        sbU.append(this.endTimeMs);
+        sbU.append(", endTime=");
+        return a.J(sbU, this.endTime, ")");
     }
 
     public ModelMuteConfig(Long l) {

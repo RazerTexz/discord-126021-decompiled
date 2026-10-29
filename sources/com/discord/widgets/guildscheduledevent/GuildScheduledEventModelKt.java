@@ -2,14 +2,14 @@ package com.discord.widgets.guildscheduledevent;
 
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.utcdatetime.UtcDateTime;
+import d0.z.d.m;
 import kotlin.Pair;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildScheduledEventModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class GuildScheduledEventModelKt {
     public static final GuildScheduledEventModel toModel(GuildScheduledEvent guildScheduledEvent) {
-        C12238m.checkNotNullParameter(guildScheduledEvent, "$this$toModel");
+        m.checkNotNullParameter(guildScheduledEvent, "$this$toModel");
         GuildScheduledEventPickerDateTime guildScheduledEventPickerDateTime = GuildScheduledEventPickerDateTime.INSTANCE;
         Pair<GuildScheduledEventPickerDate, GuildScheduledEventPickerTime> pairFromUtcDateTime = guildScheduledEventPickerDateTime.fromUtcDateTime(guildScheduledEvent.getScheduledStartTime());
         UtcDateTime scheduledEndTime = guildScheduledEvent.getScheduledEndTime();

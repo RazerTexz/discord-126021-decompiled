@@ -3,27 +3,28 @@ package com.google.android.material.drawable;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
+import android.content.res.Resources$NotFoundException;
 import android.content.res.XmlResourceParser;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Xml;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.XmlRes;
+import b.d.b.a.a;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import org.xmlpull.v1.XmlPullParserException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public final class DrawableUtils {
     private DrawableUtils() {
     }
@@ -47,17 +48,17 @@ public final class DrawableUtils {
             }
             throw new XmlPullParserException("Must have a <" + ((Object) charSequence) + "> start tag");
         } catch (IOException | XmlPullParserException e) {
-            StringBuilder sbM833U = C1643a.m833U("Can't load badge resource ID #0x");
-            sbM833U.append(Integer.toHexString(i));
-            Resources.NotFoundException notFoundException = new Resources.NotFoundException(sbM833U.toString());
-            notFoundException.initCause(e);
-            throw notFoundException;
+            StringBuilder sbU = a.U("Can't load badge resource ID #0x");
+            sbU.append(Integer.toHexString(i));
+            Resources$NotFoundException resources$NotFoundException = new Resources$NotFoundException(sbU.toString());
+            resources$NotFoundException.initCause(e);
+            throw resources$NotFoundException;
         }
     }
 
     @TargetApi(21)
     public static void setRippleDrawableRadius(@Nullable RippleDrawable rippleDrawable, int i) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             rippleDrawable.setRadius(i);
             return;
         }
@@ -69,10 +70,10 @@ public final class DrawableUtils {
     }
 
     @Nullable
-    public static PorterDuffColorFilter updateTintFilter(@NonNull Drawable drawable, @Nullable ColorStateList colorStateList, @Nullable PorterDuff.Mode mode) {
-        if (colorStateList == null || mode == null) {
+    public static PorterDuffColorFilter updateTintFilter(@NonNull Drawable drawable, @Nullable ColorStateList colorStateList, @Nullable PorterDuff$Mode porterDuff$Mode) {
+        if (colorStateList == null || porterDuff$Mode == null) {
             return null;
         }
-        return new PorterDuffColorFilter(colorStateList.getColorForState(drawable.getState(), 0), mode);
+        return new PorterDuffColorFilter(colorStateList.getColorForState(drawable.getState(), 0), porterDuff$Mode);
     }
 }

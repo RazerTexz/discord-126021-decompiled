@@ -7,38 +7,37 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.ArrayList;
 import java.util.List;
-import p668x.p669a.p670a.InterfaceC13176a;
-import p668x.p669a.p670a.InterfaceC13177b;
+import x.a.a.a$a;
+import x.a.a.b;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CustomTabsClient {
     private static final String TAG = "CustomTabsClient";
     private final Context mApplicationContext;
-    private final InterfaceC13177b mService;
+    private final b mService;
     private final ComponentName mServiceComponentName;
 
-    public CustomTabsClient(InterfaceC13177b interfaceC13177b, ComponentName componentName, Context context) {
-        this.mService = interfaceC13177b;
+    public CustomTabsClient(b bVar, ComponentName componentName, Context context) {
+        this.mService = bVar;
         this.mServiceComponentName = componentName;
         this.mApplicationContext = context;
     }
 
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public CustomTabsSession attachSession(@NonNull CustomTabsSession.PendingSession pendingSession) {
-        return newSessionInternal(pendingSession.getCallback(), pendingSession.getId());
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    public CustomTabsSession attachSession(@NonNull CustomTabsSession$PendingSession customTabsSession$PendingSession) {
+        return newSessionInternal(customTabsSession$PendingSession.getCallback(), customTabsSession$PendingSession.getId());
     }
 
     public static boolean bindCustomTabsService(@NonNull Context context, @Nullable String str, @NonNull CustomTabsServiceConnection customTabsServiceConnection) {
@@ -63,102 +62,16 @@ public class CustomTabsClient {
         if (str == null) {
             return false;
         }
-        final Context applicationContext = context.getApplicationContext();
+        Context applicationContext = context.getApplicationContext();
         try {
-            return bindCustomTabsService(applicationContext, str, new CustomTabsServiceConnection() { // from class: androidx.browser.customtabs.CustomTabsClient.1
-                @Override // androidx.browser.customtabs.CustomTabsServiceConnection
-                public final void onCustomTabsServiceConnected(@NonNull ComponentName componentName, @NonNull CustomTabsClient customTabsClient) {
-                    customTabsClient.warmup(0L);
-                    applicationContext.unbindService(this);
-                }
-
-                @Override // android.content.ServiceConnection
-                public void onServiceDisconnected(ComponentName componentName) {
-                }
-            });
+            return bindCustomTabsService(applicationContext, str, new CustomTabsClient$1(applicationContext));
         } catch (SecurityException unused) {
             return false;
         }
     }
 
-    private InterfaceC13176a.a createCallbackWrapper(@Nullable final CustomTabsCallback customTabsCallback) {
-        return new InterfaceC13176a.a() { // from class: androidx.browser.customtabs.CustomTabsClient.2
-            private Handler mHandler = new Handler(Looper.getMainLooper());
-
-            @Override // p668x.p669a.p670a.InterfaceC13176a
-            public void extraCallback(final String str, final Bundle bundle) throws RemoteException {
-                if (customTabsCallback == null) {
-                    return;
-                }
-                this.mHandler.post(new Runnable() { // from class: androidx.browser.customtabs.CustomTabsClient.2.2
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        customTabsCallback.extraCallback(str, bundle);
-                    }
-                });
-            }
-
-            @Override // p668x.p669a.p670a.InterfaceC13176a
-            public Bundle extraCallbackWithResult(@NonNull String str, @Nullable Bundle bundle) throws RemoteException {
-                CustomTabsCallback customTabsCallback2 = customTabsCallback;
-                if (customTabsCallback2 == null) {
-                    return null;
-                }
-                return customTabsCallback2.extraCallbackWithResult(str, bundle);
-            }
-
-            @Override // p668x.p669a.p670a.InterfaceC13176a
-            public void onMessageChannelReady(final Bundle bundle) throws RemoteException {
-                if (customTabsCallback == null) {
-                    return;
-                }
-                this.mHandler.post(new Runnable() { // from class: androidx.browser.customtabs.CustomTabsClient.2.3
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        customTabsCallback.onMessageChannelReady(bundle);
-                    }
-                });
-            }
-
-            @Override // p668x.p669a.p670a.InterfaceC13176a
-            public void onNavigationEvent(final int i, final Bundle bundle) {
-                if (customTabsCallback == null) {
-                    return;
-                }
-                this.mHandler.post(new Runnable() { // from class: androidx.browser.customtabs.CustomTabsClient.2.1
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        customTabsCallback.onNavigationEvent(i, bundle);
-                    }
-                });
-            }
-
-            @Override // p668x.p669a.p670a.InterfaceC13176a
-            public void onPostMessage(final String str, final Bundle bundle) throws RemoteException {
-                if (customTabsCallback == null) {
-                    return;
-                }
-                this.mHandler.post(new Runnable() { // from class: androidx.browser.customtabs.CustomTabsClient.2.4
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        customTabsCallback.onPostMessage(str, bundle);
-                    }
-                });
-            }
-
-            @Override // p668x.p669a.p670a.InterfaceC13176a
-            public void onRelationshipValidationResult(final int i, final Uri uri, final boolean z2, @Nullable final Bundle bundle) throws RemoteException {
-                if (customTabsCallback == null) {
-                    return;
-                }
-                this.mHandler.post(new Runnable() { // from class: androidx.browser.customtabs.CustomTabsClient.2.5
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        customTabsCallback.onRelationshipValidationResult(i, uri, z2, bundle);
-                    }
-                });
-            }
-        };
+    private a$a createCallbackWrapper(@Nullable CustomTabsCallback customTabsCallback) {
+        return new CustomTabsClient$2(this, customTabsCallback);
     }
 
     private static PendingIntent createSessionId(Context context, int i) {
@@ -180,9 +93,9 @@ public class CustomTabsClient {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public static CustomTabsSession.PendingSession newPendingSession(@NonNull Context context, @Nullable CustomTabsCallback customTabsCallback, int i) {
-        return new CustomTabsSession.PendingSession(customTabsCallback, createSessionId(context, i));
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
+    public static CustomTabsSession$PendingSession newPendingSession(@NonNull Context context, @Nullable CustomTabsCallback customTabsCallback, int i) {
+        return new CustomTabsSession$PendingSession(customTabsCallback, createSessionId(context, i));
     }
 
     @Nullable
@@ -193,17 +106,17 @@ public class CustomTabsClient {
     @Nullable
     private CustomTabsSession newSessionInternal(@Nullable CustomTabsCallback customTabsCallback, @Nullable PendingIntent pendingIntent) {
         boolean zNewSession;
-        InterfaceC13176a.a aVarCreateCallbackWrapper = createCallbackWrapper(customTabsCallback);
+        a$a a_aCreateCallbackWrapper = createCallbackWrapper(customTabsCallback);
         try {
             if (pendingIntent != null) {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(CustomTabsIntent.EXTRA_SESSION_ID, pendingIntent);
-                zNewSession = this.mService.newSessionWithExtras(aVarCreateCallbackWrapper, bundle);
+                zNewSession = this.mService.newSessionWithExtras(a_aCreateCallbackWrapper, bundle);
             } else {
-                zNewSession = this.mService.newSession(aVarCreateCallbackWrapper);
+                zNewSession = this.mService.newSession(a_aCreateCallbackWrapper);
             }
             if (zNewSession) {
-                return new CustomTabsSession(this.mService, aVarCreateCallbackWrapper, this.mServiceComponentName, pendingIntent);
+                return new CustomTabsSession(this.mService, a_aCreateCallbackWrapper, this.mServiceComponentName, pendingIntent);
             }
             return null;
         } catch (RemoteException unused) {
@@ -241,7 +154,7 @@ public class CustomTabsClient {
                 return str2;
             }
         }
-        if (Build.VERSION.SDK_INT < 30) {
+        if (Build$VERSION.SDK_INT < 30) {
             return null;
         }
         Log.w(TAG, "Unable to find any Custom Tabs packages, you may need to add a <queries> element to your manifest. See the docs for CustomTabsClient#getPackageName.");

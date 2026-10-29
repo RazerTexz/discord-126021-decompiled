@@ -2,13 +2,13 @@ package com.discord.widgets.servers;
 
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUserGuildSettings;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetServerNotifications.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerNotifications$configureUI$onUnmute$1 extends AbstractC12240o implements Function0<Unit> {
+public final class WidgetServerNotifications$configureUI$onUnmute$1 extends o implements Function0<Unit> {
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ WidgetServerNotifications this$0;
 
@@ -22,11 +22,11 @@ public final class WidgetServerNotifications$configureUI$onUnmute$1 extends Abst
     @Override // kotlin.jvm.functions.Function0
     public /* bridge */ /* synthetic */ Unit invoke() {
         invoke2();
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2() {
-        StoreUserGuildSettings.setGuildMuted$default(StoreStream.INSTANCE.getUserGuildSettings(), this.this$0.requireContext(), this.$guildId, false, null, 8, null);
+        StoreUserGuildSettings.setGuildMuted$default(StoreStream.Companion.getUserGuildSettings(), this.this$0.requireContext(), this.$guildId, false, null, 8, null);
     }
 }

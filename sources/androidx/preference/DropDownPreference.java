@@ -2,8 +2,7 @@ package androidx.preference;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.AdapterView;
+import android.widget.AdapterView$OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -13,7 +12,7 @@ import androidx.annotation.NonNull;
 public class DropDownPreference extends ListPreference {
     private final ArrayAdapter mAdapter;
     private final Context mContext;
-    private final AdapterView.OnItemSelectedListener mItemSelectedListener;
+    private final AdapterView$OnItemSelectedListener mItemSelectedListener;
     private Spinner mSpinner;
 
     public DropDownPreference(Context context) {
@@ -21,7 +20,7 @@ public class DropDownPreference extends ListPreference {
     }
 
     public ArrayAdapter createAdapter() {
-        return new ArrayAdapter(this.mContext, android.R.layout.simple_spinner_dropdown_item);
+        return new ArrayAdapter(this.mContext, android.R$layout.simple_spinner_dropdown_item);
     }
 
     private int findSpinnerIndexOfValue(String str) {
@@ -48,7 +47,7 @@ public class DropDownPreference extends ListPreference {
 
     @Override // androidx.preference.Preference
     public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
-        Spinner spinner = (Spinner) preferenceViewHolder.itemView.findViewById(C0525R.id.spinner);
+        Spinner spinner = (Spinner) preferenceViewHolder.itemView.findViewById(R$id.spinner);
         this.mSpinner = spinner;
         spinner.setAdapter((SpinnerAdapter) this.mAdapter);
         this.mSpinner.setOnItemSelectedListener(this.mItemSelectedListener);
@@ -82,7 +81,7 @@ public class DropDownPreference extends ListPreference {
     }
 
     public DropDownPreference(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, C0525R.attr.dropdownPreferenceStyle);
+        this(context, attributeSet, R$attr.dropdownPreferenceStyle);
     }
 
     public DropDownPreference(Context context, AttributeSet attributeSet, int i) {
@@ -91,22 +90,7 @@ public class DropDownPreference extends ListPreference {
 
     public DropDownPreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
-        this.mItemSelectedListener = new AdapterView.OnItemSelectedListener() { // from class: androidx.preference.DropDownPreference.1
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i3, long j) {
-                if (i3 >= 0) {
-                    String string = DropDownPreference.this.getEntryValues()[i3].toString();
-                    if (string.equals(DropDownPreference.this.getValue()) || !DropDownPreference.this.callChangeListener(string)) {
-                        return;
-                    }
-                    DropDownPreference.this.setValue(string);
-                }
-            }
-
-            @Override // android.widget.AdapterView.OnItemSelectedListener
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        };
+        this.mItemSelectedListener = new DropDownPreference$1(this);
         this.mContext = context;
         this.mAdapter = createAdapter();
         updateEntries();

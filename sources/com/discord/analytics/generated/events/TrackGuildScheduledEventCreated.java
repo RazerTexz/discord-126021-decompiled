@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -10,9 +11,8 @@ import com.discord.analytics.generated.traits.TrackGuildScheduledEvent;
 import com.discord.analytics.generated.traits.TrackGuildScheduledEventReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackGuildScheduledEventCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -35,6 +35,11 @@ public final /* data */ class TrackGuildScheduledEventCreated implements Analyti
     private final Long updaterId = null;
     private final transient String analyticsSchemaTypeName = "guild_scheduled_event_created";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -43,7 +48,7 @@ public final /* data */ class TrackGuildScheduledEventCreated implements Analyti
             return false;
         }
         TrackGuildScheduledEventCreated trackGuildScheduledEventCreated = (TrackGuildScheduledEventCreated) other;
-        return C12238m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventCreated.guildScheduledEventId) && C12238m.areEqual(this.name, trackGuildScheduledEventCreated.name) && C12238m.areEqual(this.startTime, trackGuildScheduledEventCreated.startTime) && C12238m.areEqual(this.endTime, trackGuildScheduledEventCreated.endTime) && C12238m.areEqual(this.skuIds, trackGuildScheduledEventCreated.skuIds) && C12238m.areEqual(this.guildScheduledEventStatus, trackGuildScheduledEventCreated.guildScheduledEventStatus) && C12238m.areEqual(this.privacyLevel, trackGuildScheduledEventCreated.privacyLevel) && C12238m.areEqual(this.guildScheduledEventEntityType, trackGuildScheduledEventCreated.guildScheduledEventEntityType) && C12238m.areEqual(this.guildScheduledEventExternalLocation, trackGuildScheduledEventCreated.guildScheduledEventExternalLocation) && C12238m.areEqual(this.guildScheduledEventInterestedCount, trackGuildScheduledEventCreated.guildScheduledEventInterestedCount) && C12238m.areEqual(this.description, trackGuildScheduledEventCreated.description) && C12238m.areEqual(this.updaterId, trackGuildScheduledEventCreated.updaterId);
+        return m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventCreated.guildScheduledEventId) && m.areEqual(this.name, trackGuildScheduledEventCreated.name) && m.areEqual(this.startTime, trackGuildScheduledEventCreated.startTime) && m.areEqual(this.endTime, trackGuildScheduledEventCreated.endTime) && m.areEqual(this.skuIds, trackGuildScheduledEventCreated.skuIds) && m.areEqual(this.guildScheduledEventStatus, trackGuildScheduledEventCreated.guildScheduledEventStatus) && m.areEqual(this.privacyLevel, trackGuildScheduledEventCreated.privacyLevel) && m.areEqual(this.guildScheduledEventEntityType, trackGuildScheduledEventCreated.guildScheduledEventEntityType) && m.areEqual(this.guildScheduledEventExternalLocation, trackGuildScheduledEventCreated.guildScheduledEventExternalLocation) && m.areEqual(this.guildScheduledEventInterestedCount, trackGuildScheduledEventCreated.guildScheduledEventInterestedCount) && m.areEqual(this.description, trackGuildScheduledEventCreated.description) && m.areEqual(this.updaterId, trackGuildScheduledEventCreated.updaterId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -85,36 +90,30 @@ public final /* data */ class TrackGuildScheduledEventCreated implements Analyti
         return iHashCode11 + (l8 != null ? l8.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildScheduledEventCreated(guildScheduledEventId=");
-        sbM833U.append(this.guildScheduledEventId);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", startTime=");
-        sbM833U.append(this.startTime);
-        sbM833U.append(", endTime=");
-        sbM833U.append(this.endTime);
-        sbM833U.append(", skuIds=");
-        sbM833U.append(this.skuIds);
-        sbM833U.append(", guildScheduledEventStatus=");
-        sbM833U.append(this.guildScheduledEventStatus);
-        sbM833U.append(", privacyLevel=");
-        sbM833U.append(this.privacyLevel);
-        sbM833U.append(", guildScheduledEventEntityType=");
-        sbM833U.append(this.guildScheduledEventEntityType);
-        sbM833U.append(", guildScheduledEventExternalLocation=");
-        sbM833U.append(this.guildScheduledEventExternalLocation);
-        sbM833U.append(", guildScheduledEventInterestedCount=");
-        sbM833U.append(this.guildScheduledEventInterestedCount);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", updaterId=");
-        return C1643a.m819G(sbM833U, this.updaterId, ")");
+        StringBuilder sbU = a.U("TrackGuildScheduledEventCreated(guildScheduledEventId=");
+        sbU.append(this.guildScheduledEventId);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", startTime=");
+        sbU.append(this.startTime);
+        sbU.append(", endTime=");
+        sbU.append(this.endTime);
+        sbU.append(", skuIds=");
+        sbU.append(this.skuIds);
+        sbU.append(", guildScheduledEventStatus=");
+        sbU.append(this.guildScheduledEventStatus);
+        sbU.append(", privacyLevel=");
+        sbU.append(this.privacyLevel);
+        sbU.append(", guildScheduledEventEntityType=");
+        sbU.append(this.guildScheduledEventEntityType);
+        sbU.append(", guildScheduledEventExternalLocation=");
+        sbU.append(this.guildScheduledEventExternalLocation);
+        sbU.append(", guildScheduledEventInterestedCount=");
+        sbU.append(this.guildScheduledEventInterestedCount);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", updaterId=");
+        return a.G(sbU, this.updaterId, ")");
     }
 }

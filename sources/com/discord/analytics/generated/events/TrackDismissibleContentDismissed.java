@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDismissibleContentDismissed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -42,7 +42,7 @@ public final /* data */ class TrackDismissibleContentDismissed implements Analyt
             return false;
         }
         TrackDismissibleContentDismissed trackDismissibleContentDismissed = (TrackDismissibleContentDismissed) other;
-        return C12238m.areEqual(this.type, trackDismissibleContentDismissed.type) && C12238m.areEqual(this.action, trackDismissibleContentDismissed.action) && C12238m.areEqual(this.contentCount, trackDismissibleContentDismissed.contentCount) && C12238m.areEqual(this.groupName, trackDismissibleContentDismissed.groupName) && C12238m.areEqual(this.bypassFatigue, trackDismissibleContentDismissed.bypassFatigue);
+        return m.areEqual(this.type, trackDismissibleContentDismissed.type) && m.areEqual(this.action, trackDismissibleContentDismissed.action) && m.areEqual(this.contentCount, trackDismissibleContentDismissed.contentCount) && m.areEqual(this.groupName, trackDismissibleContentDismissed.groupName) && m.areEqual(this.bypassFatigue, trackDismissibleContentDismissed.bypassFatigue);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -65,15 +65,15 @@ public final /* data */ class TrackDismissibleContentDismissed implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDismissibleContentDismissed(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", action=");
-        sbM833U.append(this.action);
-        sbM833U.append(", contentCount=");
-        sbM833U.append(this.contentCount);
-        sbM833U.append(", groupName=");
-        sbM833U.append(this.groupName);
-        sbM833U.append(", bypassFatigue=");
-        return C1643a.m816D(sbM833U, this.bypassFatigue, ")");
+        StringBuilder sbU = a.U("TrackDismissibleContentDismissed(type=");
+        sbU.append(this.type);
+        sbU.append(", action=");
+        sbU.append(this.action);
+        sbU.append(", contentCount=");
+        sbU.append(this.contentCount);
+        sbU.append(", groupName=");
+        sbU.append(this.groupName);
+        sbU.append(", bypassFatigue=");
+        return a.D(sbU, this.bypassFatigue, ")");
     }
 }

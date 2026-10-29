@@ -15,6 +15,11 @@ public class SoftReferenceQueue implements Queue<Kryo> {
         this.delegate = queue;
     }
 
+    @Override // java.util.Queue, java.util.Collection
+    public /* bridge */ /* synthetic */ boolean add(Object obj) {
+        return add((Kryo) obj);
+    }
+
     @Override // java.util.Collection
     public boolean addAll(Collection<? extends Kryo> collection) {
         throw new UnsupportedOperationException();
@@ -35,6 +40,11 @@ public class SoftReferenceQueue implements Queue<Kryo> {
         throw new UnsupportedOperationException();
     }
 
+    @Override // java.util.Queue
+    public /* bridge */ /* synthetic */ Kryo element() {
+        return element();
+    }
+
     @Override // java.util.Collection
     public boolean equals(Object obj) {
         return this.delegate.equals(obj);
@@ -53,6 +63,26 @@ public class SoftReferenceQueue implements Queue<Kryo> {
     @Override // java.util.Collection, java.lang.Iterable
     public Iterator<Kryo> iterator() {
         throw new UnsupportedOperationException();
+    }
+
+    @Override // java.util.Queue
+    public /* bridge */ /* synthetic */ boolean offer(Kryo kryo) {
+        return offer2(kryo);
+    }
+
+    @Override // java.util.Queue
+    public /* bridge */ /* synthetic */ Kryo peek() {
+        return peek();
+    }
+
+    @Override // java.util.Queue
+    public /* bridge */ /* synthetic */ Kryo poll() {
+        return poll();
+    }
+
+    @Override // java.util.Queue
+    public /* bridge */ /* synthetic */ Kryo remove() {
+        return remove();
     }
 
     @Override // java.util.Collection
@@ -79,7 +109,6 @@ public class SoftReferenceQueue implements Queue<Kryo> {
         return getClass().getSimpleName() + super.toString();
     }
 
-    @Override // java.util.Queue, java.util.Collection
     public boolean add(Kryo kryo) {
         return this.delegate.add(new SoftReference<>(kryo));
     }
@@ -90,8 +119,8 @@ public class SoftReferenceQueue implements Queue<Kryo> {
         throw new UnsupportedOperationException();
     }
 
-    @Override // java.util.Queue
-    public boolean offer(Kryo kryo) {
+    /* JADX INFO: renamed from: offer, reason: avoid collision after fix types in other method */
+    public boolean offer2(Kryo kryo) {
         return this.delegate.offer(new SoftReference<>(kryo));
     }
 

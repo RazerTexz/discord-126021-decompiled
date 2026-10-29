@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import p617h0.p628c.C12485r0;
+import h0.c.r0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
@@ -8,7 +8,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     public abstract long createNativeVideoEncoder();
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder.EncodeInfo encodeInfo) {
+    public final VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder$EncodeInfo videoEncoder$EncodeInfo) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
@@ -18,17 +18,17 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override // org.webrtc.VideoEncoder
-    public /* synthetic */ VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
-        return C12485r0.m10675b(this);
+    public /* synthetic */ VideoEncoder$ResolutionBitrateLimits[] getResolutionBitrateLimits() {
+        return r0.b(this);
     }
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoEncoder.ScalingSettings getScalingSettings() {
+    public final VideoEncoder$ScalingSettings getScalingSettings() {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoCodecStatus initEncode(VideoEncoder.Settings settings, VideoEncoder.Callback callback) {
+    public final VideoCodecStatus initEncode(VideoEncoder$Settings videoEncoder$Settings, VideoEncoder$Callback videoEncoder$Callback) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
@@ -41,7 +41,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override // org.webrtc.VideoEncoder
-    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i) {
+    public final VideoCodecStatus setRateAllocation(VideoEncoder$BitrateAllocation videoEncoder$BitrateAllocation, int i) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 }

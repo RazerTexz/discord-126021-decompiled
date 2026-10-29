@@ -3,15 +3,12 @@ package lombok.patcher.scripts;
 import java.util.List;
 import java.util.Set;
 import lombok.patcher.Hook;
-import lombok.patcher.MethodLogistics;
-import lombok.patcher.PatchScript;
+import lombok.patcher.PatchScript$MethodPatcher;
 import lombok.patcher.StackRequest;
 import lombok.patcher.TargetMatcher;
 import lombok.patcher.TransplantMapper;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ExitFromMethodEarlyScript.SCL.lombok */
 public class ExitFromMethodEarlyScript extends MethodLevelPatchScript {
@@ -23,8 +20,36 @@ public class ExitFromMethodEarlyScript extends MethodLevelPatchScript {
     private final boolean insertCallOnly;
     static final /* synthetic */ boolean $assertionsDisabled;
 
+    static /* synthetic */ void access$3(Hook hook, MethodVisitor methodVisitor) {
+        insertMethod(hook, methodVisitor);
+    }
+
     static {
         $assertionsDisabled = !ExitFromMethodEarlyScript.class.desiredAssertionStatus();
+    }
+
+    static /* synthetic */ Hook access$0(ExitFromMethodEarlyScript exitFromMethodEarlyScript) {
+        return exitFromMethodEarlyScript.decisionWrapper;
+    }
+
+    static /* synthetic */ Hook access$6(ExitFromMethodEarlyScript exitFromMethodEarlyScript) {
+        return exitFromMethodEarlyScript.valueWrapper;
+    }
+
+    static /* synthetic */ Set access$1(ExitFromMethodEarlyScript exitFromMethodEarlyScript) {
+        return exitFromMethodEarlyScript.requests;
+    }
+
+    static /* synthetic */ boolean access$2(ExitFromMethodEarlyScript exitFromMethodEarlyScript) {
+        return exitFromMethodEarlyScript.insert;
+    }
+
+    static /* synthetic */ boolean access$4(ExitFromMethodEarlyScript exitFromMethodEarlyScript) {
+        return exitFromMethodEarlyScript.transplant;
+    }
+
+    static /* synthetic */ boolean access$5(ExitFromMethodEarlyScript exitFromMethodEarlyScript) {
+        return exitFromMethodEarlyScript.insertCallOnly;
     }
 
     @Override // lombok.patcher.PatchScript
@@ -49,16 +74,8 @@ public class ExitFromMethodEarlyScript extends MethodLevelPatchScript {
     }
 
     @Override // lombok.patcher.scripts.MethodLevelPatchScript
-    protected PatchScript.MethodPatcher createPatcher(ClassWriter writer, final String classSpec, TransplantMapper transplantMapper) {
-        PatchScript.MethodPatcher patcher = new PatchScript.MethodPatcher(writer, transplantMapper, new PatchScript.MethodPatcherFactory() { // from class: lombok.patcher.scripts.ExitFromMethodEarlyScript.1
-            @Override // lombok.patcher.PatchScript.MethodPatcherFactory
-            public MethodVisitor createMethodVisitor(String name, String desc, MethodVisitor parent, MethodLogistics logistics) {
-                if (ExitFromMethodEarlyScript.this.valueWrapper == null && !ExitFromMethodEarlyScript.this.insertCallOnly && logistics.getReturnOpcode() != 177) {
-                    throw new IllegalStateException("method " + name + desc + " must return something, but you did not provide a value hook method.");
-                }
-                return ExitFromMethodEarlyScript.this.new ExitEarly(parent, logistics, classSpec);
-            }
-        });
+    protected PatchScript$MethodPatcher createPatcher(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
+        PatchScript$MethodPatcher patcher = new PatchScript$MethodPatcher(writer, transplantMapper, new ExitFromMethodEarlyScript$1(this, classSpec));
         if (this.transplant) {
             patcher.addTransplant(this.decisionWrapper);
             if (this.valueWrapper != null) {
@@ -66,86 +83,5 @@ public class ExitFromMethodEarlyScript extends MethodLevelPatchScript {
             }
         }
         return patcher;
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/ExitFromMethodEarlyScript$ExitEarly.SCL.lombok */
-    class ExitEarly extends MethodVisitor {
-        private final MethodLogistics logistics;
-        private final String ownClassSpec;
-
-        public ExitEarly(MethodVisitor mv, MethodLogistics logistics, String ownClassSpec) {
-            super(Opcodes.ASM7, mv);
-            this.logistics = logistics;
-            this.ownClassSpec = ownClassSpec;
-        }
-
-        @Override // org.objectweb.asm.MethodVisitor
-        public void visitCode() {
-            if (ExitFromMethodEarlyScript.this.decisionWrapper != null) {
-                if (ExitFromMethodEarlyScript.this.requests.contains(StackRequest.THIS)) {
-                    this.logistics.generateLoadOpcodeForThis(this.f27600mv);
-                }
-                for (StackRequest param : StackRequest.PARAMS_IN_ORDER) {
-                    if (ExitFromMethodEarlyScript.this.requests.contains(param)) {
-                        this.logistics.generateLoadOpcodeForParam(param.getParamPos(), this.f27600mv);
-                    }
-                }
-                if (ExitFromMethodEarlyScript.this.insert) {
-                    ExitFromMethodEarlyScript.insertMethod(ExitFromMethodEarlyScript.this.decisionWrapper, this.f27600mv);
-                } else {
-                    super.visitMethodInsn(Opcodes.INVOKESTATIC, ExitFromMethodEarlyScript.this.transplant ? this.ownClassSpec : ExitFromMethodEarlyScript.this.decisionWrapper.getClassSpec(), ExitFromMethodEarlyScript.this.decisionWrapper.getMethodName(), ExitFromMethodEarlyScript.this.decisionWrapper.getMethodDescriptor(), false);
-                }
-                if (ExitFromMethodEarlyScript.this.insertCallOnly) {
-                    super.visitCode();
-                    return;
-                }
-                Label label0 = new Label();
-                this.f27600mv.visitJumpInsn(153, label0);
-                if (this.logistics.getReturnOpcode() != 177) {
-                    if (ExitFromMethodEarlyScript.this.requests.contains(StackRequest.THIS)) {
-                        this.logistics.generateLoadOpcodeForThis(this.f27600mv);
-                    }
-                    for (StackRequest param2 : StackRequest.PARAMS_IN_ORDER) {
-                        if (ExitFromMethodEarlyScript.this.requests.contains(param2)) {
-                            this.logistics.generateLoadOpcodeForParam(param2.getParamPos(), this.f27600mv);
-                        }
-                    }
-                    if (ExitFromMethodEarlyScript.this.insert) {
-                        ExitFromMethodEarlyScript.insertMethod(ExitFromMethodEarlyScript.this.valueWrapper, this.f27600mv);
-                    } else {
-                        super.visitMethodInsn(Opcodes.INVOKESTATIC, ExitFromMethodEarlyScript.this.transplant ? this.ownClassSpec : ExitFromMethodEarlyScript.this.valueWrapper.getClassSpec(), ExitFromMethodEarlyScript.this.valueWrapper.getMethodName(), ExitFromMethodEarlyScript.this.valueWrapper.getMethodDescriptor(), false);
-                    }
-                    this.logistics.generateReturnOpcode(this.f27600mv);
-                } else {
-                    this.f27600mv.visitInsn(Opcodes.RETURN);
-                }
-                this.f27600mv.visitLabel(label0);
-                this.f27600mv.visitFrame(3, 0, null, 0, null);
-                super.visitCode();
-                return;
-            }
-            if (this.logistics.getReturnOpcode() == 177) {
-                this.f27600mv.visitInsn(Opcodes.RETURN);
-            } else {
-                insertValueWrapperCall();
-            }
-        }
-
-        private void insertValueWrapperCall() {
-            if (ExitFromMethodEarlyScript.this.requests.contains(StackRequest.THIS)) {
-                this.logistics.generateLoadOpcodeForThis(this.f27600mv);
-            }
-            for (StackRequest param : StackRequest.PARAMS_IN_ORDER) {
-                if (ExitFromMethodEarlyScript.this.requests.contains(param)) {
-                    this.logistics.generateLoadOpcodeForParam(param.getParamPos(), this.f27600mv);
-                }
-            }
-            if (ExitFromMethodEarlyScript.this.insert) {
-                ExitFromMethodEarlyScript.insertMethod(ExitFromMethodEarlyScript.this.valueWrapper, this.f27600mv);
-            } else {
-                super.visitMethodInsn(Opcodes.INVOKESTATIC, ExitFromMethodEarlyScript.this.transplant ? this.ownClassSpec : ExitFromMethodEarlyScript.this.valueWrapper.getClassSpec(), ExitFromMethodEarlyScript.this.valueWrapper.getMethodName(), ExitFromMethodEarlyScript.this.valueWrapper.getMethodDescriptor(), false);
-            }
-            this.logistics.generateReturnOpcode(this.f27600mv);
-        }
     }
 }

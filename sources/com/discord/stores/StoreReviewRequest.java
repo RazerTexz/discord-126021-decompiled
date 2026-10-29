@@ -1,18 +1,19 @@
 package com.discord.stores;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.SharedPreferences$Editor;
 import com.discord.api.guild.Guild;
 import com.discord.models.domain.ModelPayload;
 import com.discord.utilities.analytics.AnalyticsTracker;
 import com.discord.utilities.time.Clock;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreReviewRequest.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreReviewRequest extends Store {
+    public static final StoreReviewRequest$Companion Companion = new StoreReviewRequest$Companion(null);
     private static final int MINIMUM_GUILD_MEMBER_COUNT = 5;
     private static final long MINIMUM_INSTALL_AGE = 864000000;
     private static final int REVIEW_REQUEST_REVISION = 693;
@@ -22,8 +23,8 @@ public final class StoreReviewRequest extends Store {
     private final StoreStream stream;
 
     public StoreReviewRequest(Clock clock, StoreStream storeStream) {
-        C12238m.checkNotNullParameter(clock, "clock");
-        C12238m.checkNotNullParameter(storeStream, "stream");
+        m.checkNotNullParameter(clock, "clock");
+        m.checkNotNullParameter(storeStream, "stream");
         this.clock = clock;
         this.stream = storeStream;
         this.requestedReviewRevision = -1;
@@ -34,7 +35,7 @@ public final class StoreReviewRequest extends Store {
     public final void handleConnectionOpen(ModelPayload payload) {
         boolean z2;
         boolean z3;
-        C12238m.checkNotNullParameter(payload, "payload");
+        m.checkNotNullParameter(payload, "payload");
         List<Guild> guilds = payload.getGuilds();
         if (guilds != null) {
             if (!guilds.isEmpty()) {
@@ -64,12 +65,12 @@ public final class StoreReviewRequest extends Store {
         if (this.clock.currentTimeMillis() <= this.stream.getNotices().getFirstUseTimestamp() + MINIMUM_INSTALL_AGE) {
             return;
         }
-        this.stream.getNotices().requestToShow(StoreNotices.Dialog.Type.buildPassiveNotice$default(StoreNotices.Dialog.Type.REQUEST_RATING_MODAL, 0, 31536000000L, 0L, true, 5, null));
+        this.stream.getNotices().requestToShow(StoreNotices$Dialog$Type.buildPassiveNotice$default(StoreNotices$Dialog$Type.REQUEST_RATING_MODAL, 0, 31536000000L, 0L, true, 5, null));
     }
 
     @Override // com.discord.stores.Store
     public void init(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         super.init(context);
         this.requestedReviewRevision = getPrefsSessionDurable().getInt("CACHE_KEY_VIEWED_REVIEW_REQUEST_REVISION", this.requestedReviewRevision);
         this.hasUserAcceptedReviewRequest = getPrefsSessionDurable().getBoolean("CACHE_KEY_HAS_ACCEPTED_REVIEW_REQUEST", this.hasUserAcceptedReviewRequest);
@@ -77,20 +78,20 @@ public final class StoreReviewRequest extends Store {
 
     public final void onReviewRequestShown() {
         this.requestedReviewRevision = REVIEW_REQUEST_REVISION;
-        SharedPreferences.Editor editorEdit = getPrefsSessionDurable().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-        editorEdit.putInt("CACHE_KEY_VIEWED_REVIEW_REQUEST_REVISION", REVIEW_REQUEST_REVISION);
-        editorEdit.apply();
-        this.stream.getNotices().markSeen(StoreNotices.Dialog.Type.REQUEST_RATING_MODAL);
+        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefsSessionDurable().edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        sharedPreferences$EditorEdit.putInt("CACHE_KEY_VIEWED_REVIEW_REQUEST_REVISION", REVIEW_REQUEST_REVISION);
+        sharedPreferences$EditorEdit.apply();
+        this.stream.getNotices().markSeen(StoreNotices$Dialog$Type.REQUEST_RATING_MODAL);
         AnalyticsTracker.INSTANCE.reviewRequestTriggered();
     }
 
     public final void onUserAcceptedRequest() {
         this.hasUserAcceptedReviewRequest = true;
-        SharedPreferences.Editor editorEdit = getPrefsSessionDurable().edit();
-        C12238m.checkNotNullExpressionValue(editorEdit, "editor");
-        editorEdit.putBoolean("CACHE_KEY_HAS_ACCEPTED_REVIEW_REQUEST", true);
-        editorEdit.apply();
+        SharedPreferences$Editor sharedPreferences$EditorEdit = getPrefsSessionDurable().edit();
+        m.checkNotNullExpressionValue(sharedPreferences$EditorEdit, "editor");
+        sharedPreferences$EditorEdit.putBoolean("CACHE_KEY_HAS_ACCEPTED_REVIEW_REQUEST", true);
+        sharedPreferences$EditorEdit.apply();
         AnalyticsTracker.INSTANCE.reviewRequestAccepted();
     }
 

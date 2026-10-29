@@ -1,7 +1,7 @@
 package com.discord.api.user;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: UserSurvey.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class UserSurveyFetchResponse {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof UserSurveyFetchResponse) && C12238m.areEqual(this.survey, ((UserSurveyFetchResponse) other).survey);
+            return (other instanceof UserSurveyFetchResponse) && m.areEqual(this.survey, ((UserSurveyFetchResponse) other).survey);
         }
         return true;
     }
@@ -29,9 +29,9 @@ public final /* data */ class UserSurveyFetchResponse {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("UserSurveyFetchResponse(survey=");
-        sbM833U.append(this.survey);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("UserSurveyFetchResponse(survey=");
+        sbU.append(this.survey);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

@@ -1,7 +1,7 @@
 package androidx.recyclerview.widget;
 
 import android.view.View;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class LayoutState {
@@ -20,29 +20,29 @@ public class LayoutState {
     public int mStartLine = 0;
     public int mEndLine = 0;
 
-    public boolean hasMore(RecyclerView.State state) {
+    public boolean hasMore(RecyclerView$State recyclerView$State) {
         int i = this.mCurrentPosition;
-        return i >= 0 && i < state.getItemCount();
+        return i >= 0 && i < recyclerView$State.getItemCount();
     }
 
-    public View next(RecyclerView.Recycler recycler) {
-        View viewForPosition = recycler.getViewForPosition(this.mCurrentPosition);
+    public View next(RecyclerView$Recycler recyclerView$Recycler) {
+        View viewForPosition = recyclerView$Recycler.getViewForPosition(this.mCurrentPosition);
         this.mCurrentPosition += this.mItemDirection;
         return viewForPosition;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("LayoutState{mAvailable=");
-        sbM833U.append(this.mAvailable);
-        sbM833U.append(", mCurrentPosition=");
-        sbM833U.append(this.mCurrentPosition);
-        sbM833U.append(", mItemDirection=");
-        sbM833U.append(this.mItemDirection);
-        sbM833U.append(", mLayoutDirection=");
-        sbM833U.append(this.mLayoutDirection);
-        sbM833U.append(", mStartLine=");
-        sbM833U.append(this.mStartLine);
-        sbM833U.append(", mEndLine=");
-        return C1643a.m813A(sbM833U, this.mEndLine, '}');
+        StringBuilder sbU = a.U("LayoutState{mAvailable=");
+        sbU.append(this.mAvailable);
+        sbU.append(", mCurrentPosition=");
+        sbU.append(this.mCurrentPosition);
+        sbU.append(", mItemDirection=");
+        sbU.append(this.mItemDirection);
+        sbU.append(", mLayoutDirection=");
+        sbU.append(this.mLayoutDirection);
+        sbU.append(", mStartLine=");
+        sbU.append(this.mStartLine);
+        sbU.append(", mEndLine=");
+        return a.A(sbU, this.mEndLine, '}');
     }
 }

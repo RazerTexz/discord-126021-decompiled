@@ -19,12 +19,15 @@ public class CmdReader<T> {
     private final Map<Character, ParseItem> shorthands = ParseItem.makeShortHandMap(this.items);
     private final List<ParseItem> seqList = makeSeqList(this.items);
 
+    static /* synthetic */ List access$000(CmdReader x0) {
+        return x0.items;
+    }
+
     private CmdReader(Class<T> settingsDescriptor) {
         this.settingsDescriptor = settingsDescriptor;
     }
 
-    /* JADX INFO: renamed from: of */
-    public static <T> CmdReader<T> m9327of(Class<T> settingsDescriptor) {
+    public static <T> CmdReader<T> of(Class<T> settingsDescriptor) {
         return new CmdReader<>(settingsDescriptor);
     }
 
@@ -307,107 +310,13 @@ public class CmdReader<T> {
         return make((String[]) out.toArray(new String[out.size()]));
     }
 
-    /* JADX WARN: Type inference failed for: r0v4, types: [com.zwitserloot.cmdreader.CmdReader$1State] */
     public T make(String[] in) throws InvalidCommandLineException {
-        final T obj = construct();
+        T obj = construct();
         if (in == null) {
             in = new String[0];
         }
         int seq = 0;
-        ?? r0 = new Object() { // from class: com.zwitserloot.cmdreader.CmdReader.1State
-            List<ParseItem> used = new ArrayList();
-
-            void handle(ParseItem item, String value) {
-                item.set(obj, value);
-                this.used.add(item);
-            }
-
-            void finish() throws InvalidCommandLineException {
-                checkForGlobalMandatories();
-                checkForExcludes();
-                checkForRequires();
-                checkForMandatoriesIf();
-                checkForMandatoriesIfNot();
-            }
-
-            private void checkForGlobalMandatories() throws InvalidCommandLineException {
-                for (ParseItem item : CmdReader.this.items) {
-                    if (item.isMandatory() && !this.used.contains(item)) {
-                        throw new InvalidCommandLineException("You did not specify mandatory parameter " + item.getFullName());
-                    }
-                }
-            }
-
-            private void checkForExcludes() throws InvalidCommandLineException {
-                for (ParseItem item : CmdReader.this.items) {
-                    if (this.used.contains(item)) {
-                        for (String n : item.getExcludes()) {
-                            for (ParseItem i : CmdReader.this.items) {
-                                if (i.getFullName().equals(n) && this.used.contains(i)) {
-                                    throw new InvalidCommandLineException("You specified parameter " + i.getFullName() + " which cannot be used together with " + item.getFullName());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            private void checkForRequires() throws InvalidCommandLineException {
-                for (ParseItem item : CmdReader.this.items) {
-                    if (this.used.contains(item)) {
-                        for (String n : item.getRequires()) {
-                            for (ParseItem i : CmdReader.this.items) {
-                                if (i.getFullName().equals(n) && !this.used.contains(i)) {
-                                    throw new InvalidCommandLineException("You specified parameter " + item.getFullName() + " which requires that you also supply " + i.getFullName());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            private void checkForMandatoriesIf() throws InvalidCommandLineException {
-                for (ParseItem item : CmdReader.this.items) {
-                    if (!this.used.contains(item) && item.getMandatoryIf().size() != 0) {
-                        for (String n : item.getMandatoryIf()) {
-                            for (ParseItem i : CmdReader.this.items) {
-                                if (i.getFullName().equals(n) && this.used.contains(i)) {
-                                    throw new InvalidCommandLineException("You did not specify parameter " + item.getFullName() + " which is mandatory if you use " + i.getFullName());
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            private void checkForMandatoriesIfNot() throws InvalidCommandLineException {
-                for (ParseItem item : CmdReader.this.items) {
-                    if (!this.used.contains(item) && item.getMandatoryIfNot().size() != 0) {
-                        Iterator<String> it = item.getMandatoryIfNot().iterator();
-                        while (true) {
-                            if (it.hasNext()) {
-                                String n = it.next();
-                                for (ParseItem i : CmdReader.this.items) {
-                                    if (i.getFullName().equals(n) && this.used.contains(i)) {
-                                        break;
-                                    }
-                                }
-                            } else {
-                                StringBuilder alternatives = new StringBuilder();
-                                if (item.getMandatoryIfNot().size() > 1) {
-                                    alternatives.append("one of ");
-                                }
-                                for (String n2 : item.getMandatoryIfNot()) {
-                                    alternatives.append(n2).append(", ");
-                                }
-                                alternatives.setLength(alternatives.length() - 2);
-                                throw new InvalidCommandLineException("You did not specify parameter " + item.getFullName() + " which is mandatory unless you use " + ((Object) alternatives));
-                            }
-                        }
-                    }
-                }
-            }
-        };
+        CmdReader$1State state = new CmdReader$1State(this, obj);
         int i = 0;
         while (i < in.length) {
             if (in[i].startsWith("--")) {
@@ -427,7 +336,7 @@ public class CmdReader<T> {
                             i++;
                             value = in[i];
                         }
-                        r0.handle(item, (item.isParameterized() || value.length() != 0) ? value : null);
+                        state.handle(item, (item.isParameterized() || value.length() != 0) ? value : null);
                         handled = true;
                         break;
                     }
@@ -443,30 +352,30 @@ public class CmdReader<T> {
                         throw new InvalidCommandLineException(String.format("invalid command line argument - %s is not a known option: %s", Character.valueOf(c), in[i]));
                     }
                     if (!item2.isParameterized()) {
-                        r0.handle(item2, null);
+                        state.handle(item2, null);
                     } else {
                         if (i >= in.length - 1 || in[i + 1].startsWith("-")) {
                             throw new InvalidCommandLineException(String.format("invalid command line argument - %s requires a parameter but there is none.", Character.valueOf(c)));
                         }
                         i++;
-                        r0.handle(item2, in[i]);
+                        state.handle(item2, in[i]);
                     }
                 }
             } else {
                 seq++;
                 if (this.seqList.size() < seq) {
                     if (this.seqList.size() > 0 && this.seqList.get(this.seqList.size() - 1).isCollection()) {
-                        r0.handle(this.seqList.get(this.seqList.size() - 1), in[i]);
+                        state.handle(this.seqList.get(this.seqList.size() - 1), in[i]);
                     } else {
                         throw new InvalidCommandLineException(String.format("invalid command line argument - you've provided too many free-standing arguments: %s", in[i]));
                     }
                 } else {
-                    r0.handle(this.seqList.get(seq - 1), in[i]);
+                    state.handle(this.seqList.get(seq - 1), in[i]);
                 }
             }
             i++;
         }
-        r0.finish();
+        state.finish();
         return obj;
     }
 

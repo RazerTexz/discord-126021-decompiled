@@ -6,12 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
+import android.content.pm.PackageManager$NameNotFoundException;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class NavUtils {
@@ -34,7 +35,7 @@ public final class NavUtils {
         ComponentName componentName = new ComponentName(activity, parentActivityName);
         try {
             return getParentActivityName(activity, componentName) == null ? Intent.makeMainActivity(componentName) : new Intent().setComponent(componentName);
-        } catch (PackageManager.NameNotFoundException unused) {
+        } catch (PackageManager$NameNotFoundException unused) {
             Log.e(TAG, "getParentActivityIntent: bad parentActivityName '" + parentActivityName + "' in manifest");
             return null;
         }
@@ -44,7 +45,7 @@ public final class NavUtils {
     public static String getParentActivityName(@NonNull Activity activity) {
         try {
             return getParentActivityName(activity, activity.getComponentName());
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (PackageManager$NameNotFoundException e) {
             throw new IllegalArgumentException(e);
         }
     }
@@ -55,10 +56,10 @@ public final class NavUtils {
             navigateUpTo(activity, parentActivityIntent);
             return;
         }
-        StringBuilder sbM833U = C1643a.m833U("Activity ");
-        sbM833U.append(activity.getClass().getSimpleName());
-        sbM833U.append(" does not have a parent activity name specified. (Did you forget to add the android.support.PARENT_ACTIVITY <meta-data>  element in your manifest?)");
-        throw new IllegalArgumentException(sbM833U.toString());
+        StringBuilder sbU = a.U("Activity ");
+        sbU.append(activity.getClass().getSimpleName());
+        sbU.append(" does not have a parent activity name specified. (Did you forget to add the android.support.PARENT_ACTIVITY <meta-data>  element in your manifest?)");
+        throw new IllegalArgumentException(sbU.toString());
     }
 
     public static void navigateUpTo(@NonNull Activity activity, @NonNull Intent intent) {
@@ -70,10 +71,10 @@ public final class NavUtils {
     }
 
     @Nullable
-    public static String getParentActivityName(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager.NameNotFoundException {
+    public static String getParentActivityName(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager$NameNotFoundException {
         String string;
         PackageManager packageManager = context.getPackageManager();
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         int i2 = 640;
         if (i >= 29) {
             i2 = 269222528;
@@ -96,7 +97,7 @@ public final class NavUtils {
     }
 
     @Nullable
-    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull Class<?> cls) throws PackageManager.NameNotFoundException {
+    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull Class<?> cls) throws PackageManager$NameNotFoundException {
         String parentActivityName = getParentActivityName(context, new ComponentName(context, cls));
         if (parentActivityName == null) {
             return null;
@@ -109,7 +110,7 @@ public final class NavUtils {
     }
 
     @Nullable
-    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager.NameNotFoundException {
+    public static Intent getParentActivityIntent(@NonNull Context context, @NonNull ComponentName componentName) throws PackageManager$NameNotFoundException {
         String parentActivityName = getParentActivityName(context, componentName);
         if (parentActivityName == null) {
             return null;

@@ -10,29 +10,12 @@ public final class LogDeclaration implements ConfigurationValueType {
     private final IdentifierName loggerFactoryMethod;
     private final TypeName loggerFactoryType;
     private final TypeName loggerType;
-    private final List<LogFactoryParameter> parametersWithTopic;
-    private final List<LogFactoryParameter> parametersWithoutTopic;
+    private final List<LogDeclaration$LogFactoryParameter> parametersWithTopic;
+    private final List<LogDeclaration$LogFactoryParameter> parametersWithoutTopic;
     private static final Pattern PARAMETERS_PATTERN = Pattern.compile("(?:\\(([A-Z,]*)\\))");
     private static final Pattern DECLARATION_PATTERN = Pattern.compile("^(?:([^ ]+) )?([^(]+)\\.([^(]+)(" + PARAMETERS_PATTERN.pattern() + "+)$");
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/LogDeclaration$LogFactoryParameter.SCL.lombok */
-    public enum LogFactoryParameter {
-        TYPE,
-        NAME,
-        TOPIC,
-        NULL;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static LogFactoryParameter[] valuesCustom() {
-            LogFactoryParameter[] logFactoryParameterArrValuesCustom = values();
-            int length = logFactoryParameterArrValuesCustom.length;
-            LogFactoryParameter[] logFactoryParameterArr = new LogFactoryParameter[length];
-            System.arraycopy(logFactoryParameterArrValuesCustom, 0, logFactoryParameterArr, 0, length);
-            return logFactoryParameterArr;
-        }
-    }
-
-    private LogDeclaration(TypeName loggerType, TypeName loggerFactoryType, IdentifierName loggerFactoryMethod, List<LogFactoryParameter> parametersWithoutTopic, List<LogFactoryParameter> parametersWithTopic) {
+    private LogDeclaration(TypeName loggerType, TypeName loggerFactoryType, IdentifierName loggerFactoryMethod, List<LogDeclaration$LogFactoryParameter> parametersWithoutTopic, List<LogDeclaration$LogFactoryParameter> parametersWithTopic) {
         this.loggerType = loggerType;
         this.loggerFactoryType = loggerFactoryType;
         this.loggerFactoryMethod = loggerFactoryMethod;
@@ -54,11 +37,11 @@ public final class LogDeclaration implements ConfigurationValueType {
             loggerType = loggerFactoryType;
         }
         IdentifierName loggerFactoryMethod = IdentifierName.valueOf(matcher.group(3));
-        List<List<LogFactoryParameter>> allParameters = parseParameters(matcher.group(4));
-        List<LogFactoryParameter> parametersWithoutTopic = null;
-        List<LogFactoryParameter> parametersWithTopic = null;
-        for (List<LogFactoryParameter> parameters : allParameters) {
-            if (parameters.contains(LogFactoryParameter.TOPIC)) {
+        List<List<LogDeclaration$LogFactoryParameter>> allParameters = parseParameters(matcher.group(4));
+        List<LogDeclaration$LogFactoryParameter> parametersWithoutTopic = null;
+        List<LogDeclaration$LogFactoryParameter> parametersWithTopic = null;
+        for (List<LogDeclaration$LogFactoryParameter> parameters : allParameters) {
+            if (parameters.contains(LogDeclaration$LogFactoryParameter.TOPIC)) {
                 if (parametersWithTopic != null) {
                     throw new IllegalArgumentException("There is more than one parameter definition that includes TOPIC: " + parametersWithTopic + " and " + parameters);
                 }
@@ -76,15 +59,15 @@ public final class LogDeclaration implements ConfigurationValueType {
         return new LogDeclaration(loggerType, loggerFactoryType, loggerFactoryMethod, parametersWithoutTopic, parametersWithTopic);
     }
 
-    private static List<List<LogFactoryParameter>> parseParameters(String parametersDefinitions) {
-        List<List<LogFactoryParameter>> allParameters = new ArrayList<>();
+    private static List<List<LogDeclaration$LogFactoryParameter>> parseParameters(String parametersDefinitions) {
+        List<List<LogDeclaration$LogFactoryParameter>> allParameters = new ArrayList<>();
         Matcher matcher = PARAMETERS_PATTERN.matcher(parametersDefinitions);
         while (matcher.find()) {
             String parametersDefinition = matcher.group(1);
-            List<LogFactoryParameter> parameters = new ArrayList<>();
+            List<LogDeclaration$LogFactoryParameter> parameters = new ArrayList<>();
             if (!parametersDefinition.isEmpty()) {
                 for (String parameter : parametersDefinition.split(",")) {
-                    parameters.add(LogFactoryParameter.valueOf(parameter));
+                    parameters.add(LogDeclaration$LogFactoryParameter.valueOf(parameter));
                 }
             }
             allParameters.add(parameters);
@@ -127,11 +110,11 @@ public final class LogDeclaration implements ConfigurationValueType {
         return sb.toString();
     }
 
-    private static void appendParams(StringBuilder sb, List<LogFactoryParameter> params) {
+    private static void appendParams(StringBuilder sb, List<LogDeclaration$LogFactoryParameter> params) {
         if (params != null) {
             sb.append("(");
             boolean first = true;
-            for (LogFactoryParameter param : params) {
+            for (LogDeclaration$LogFactoryParameter param : params) {
                 if (!first) {
                     sb.append(",");
                 }
@@ -154,11 +137,11 @@ public final class LogDeclaration implements ConfigurationValueType {
         return this.loggerFactoryMethod;
     }
 
-    public List<LogFactoryParameter> getParametersWithoutTopic() {
+    public List<LogDeclaration$LogFactoryParameter> getParametersWithoutTopic() {
         return this.parametersWithoutTopic;
     }
 
-    public List<LogFactoryParameter> getParametersWithTopic() {
+    public List<LogDeclaration$LogFactoryParameter> getParametersWithTopic() {
         return this.parametersWithTopic;
     }
 }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -8,8 +9,7 @@ import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionUserConnectionsUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -39,6 +39,11 @@ public final /* data */ class TrackNetworkActionUserConnectionsUpdate implements
         this.analyticsSchemaTypeName = "network_action_user_connections_update";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -47,7 +52,7 @@ public final /* data */ class TrackNetworkActionUserConnectionsUpdate implements
             return false;
         }
         TrackNetworkActionUserConnectionsUpdate trackNetworkActionUserConnectionsUpdate = (TrackNetworkActionUserConnectionsUpdate) other;
-        return C12238m.areEqual(this.name, trackNetworkActionUserConnectionsUpdate.name) && C12238m.areEqual(this.friendSync, trackNetworkActionUserConnectionsUpdate.friendSync) && C12238m.areEqual(this.visibility, trackNetworkActionUserConnectionsUpdate.visibility) && C12238m.areEqual(this.showActivity, trackNetworkActionUserConnectionsUpdate.showActivity);
+        return m.areEqual(this.name, trackNetworkActionUserConnectionsUpdate.name) && m.areEqual(this.friendSync, trackNetworkActionUserConnectionsUpdate.friendSync) && m.areEqual(this.visibility, trackNetworkActionUserConnectionsUpdate.visibility) && m.areEqual(this.showActivity, trackNetworkActionUserConnectionsUpdate.showActivity);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -67,20 +72,14 @@ public final /* data */ class TrackNetworkActionUserConnectionsUpdate implements
         return iHashCode3 + (bool3 != null ? bool3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionUserConnectionsUpdate(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", friendSync=");
-        sbM833U.append(this.friendSync);
-        sbM833U.append(", visibility=");
-        sbM833U.append(this.visibility);
-        sbM833U.append(", showActivity=");
-        return C1643a.m816D(sbM833U, this.showActivity, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionUserConnectionsUpdate(name=");
+        sbU.append(this.name);
+        sbU.append(", friendSync=");
+        sbU.append(this.friendSync);
+        sbU.append(", visibility=");
+        sbU.append(this.visibility);
+        sbU.append(", showActivity=");
+        return a.D(sbU, this.showActivity, ")");
     }
 }

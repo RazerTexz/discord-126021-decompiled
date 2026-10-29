@@ -12,16 +12,16 @@ import android.text.style.SuperscriptSpan;
 import android.text.style.UnderlineSpan;
 import androidx.annotation.ColorInt;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SpannableStringBuilder.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class SpannableStringBuilderKt {
     public static final SpannableStringBuilder backgroundColor(SpannableStringBuilder spannableStringBuilder, @ColorInt int i, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         BackgroundColorSpan backgroundColorSpan = new BackgroundColorSpan(i);
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -30,8 +30,8 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder bold(SpannableStringBuilder spannableStringBuilder, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         StyleSpan styleSpan = new StyleSpan(1);
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -40,15 +40,15 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannedString buildSpannedString(Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(function1, "builderAction");
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         function1.invoke(spannableStringBuilder);
         return new SpannedString(spannableStringBuilder);
     }
 
     public static final SpannableStringBuilder color(SpannableStringBuilder spannableStringBuilder, @ColorInt int i, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(i);
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -57,9 +57,9 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder inSpans(SpannableStringBuilder spannableStringBuilder, Object[] objArr, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(objArr, "spans");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(objArr, "spans");
+        m.checkNotNullParameter(function1, "builderAction");
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
         int length2 = objArr.length;
@@ -73,8 +73,8 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder italic(SpannableStringBuilder spannableStringBuilder, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         StyleSpan styleSpan = new StyleSpan(2);
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -83,8 +83,8 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder scale(SpannableStringBuilder spannableStringBuilder, float f, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         RelativeSizeSpan relativeSizeSpan = new RelativeSizeSpan(f);
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -93,8 +93,8 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder strikeThrough(SpannableStringBuilder spannableStringBuilder, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -103,8 +103,8 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder subscript(SpannableStringBuilder spannableStringBuilder, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         SubscriptSpan subscriptSpan = new SubscriptSpan();
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -113,8 +113,8 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder superscript(SpannableStringBuilder spannableStringBuilder, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         SuperscriptSpan superscriptSpan = new SuperscriptSpan();
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -123,8 +123,8 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder underline(SpannableStringBuilder spannableStringBuilder, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(function1, "builderAction");
         UnderlineSpan underlineSpan = new UnderlineSpan();
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
@@ -133,9 +133,9 @@ public final class SpannableStringBuilderKt {
     }
 
     public static final SpannableStringBuilder inSpans(SpannableStringBuilder spannableStringBuilder, Object obj, Function1<? super SpannableStringBuilder, Unit> function1) {
-        C12238m.checkNotNullParameter(spannableStringBuilder, "<this>");
-        C12238m.checkNotNullParameter(obj, "span");
-        C12238m.checkNotNullParameter(function1, "builderAction");
+        m.checkNotNullParameter(spannableStringBuilder, "<this>");
+        m.checkNotNullParameter(obj, "span");
+        m.checkNotNullParameter(function1, "builderAction");
         int length = spannableStringBuilder.length();
         function1.invoke(spannableStringBuilder);
         spannableStringBuilder.setSpan(obj, length, spannableStringBuilder.length(), 17);

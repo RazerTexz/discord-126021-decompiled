@@ -14,32 +14,29 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildInvitePageBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16794a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f16795b;
+    public final MaterialButton f2416b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final GuildScheduledEventItemView f16796c;
+    public final GuildScheduledEventItemView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final WidgetInviteInfo f16797d;
+    public final WidgetInviteInfo d;
 
     public WidgetGuildInvitePageBinding(@NonNull ConstraintLayout constraintLayout, @NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull GuildScheduledEventItemView guildScheduledEventItemView, @NonNull WidgetInviteInfo widgetInviteInfo, @NonNull NestedScrollView nestedScrollView, @NonNull AppBarLayout appBarLayout) {
-        this.f16794a = constraintLayout;
-        this.f16795b = materialButton;
-        this.f16796c = guildScheduledEventItemView;
-        this.f16797d = widgetInviteInfo;
+        this.a = constraintLayout;
+        this.f2416b = materialButton;
+        this.c = guildScheduledEventItemView;
+        this.d = widgetInviteInfo;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16794a;
+        return this.a;
     }
 }

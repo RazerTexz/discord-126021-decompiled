@@ -6,8 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.drawable.IconCompat;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Person {
@@ -32,100 +33,33 @@ public class Person {
     @Nullable
     public String mUri;
 
-    public class Builder {
-
-        @Nullable
-        public IconCompat mIcon;
-        public boolean mIsBot;
-        public boolean mIsImportant;
-
-        @Nullable
-        public String mKey;
-
-        @Nullable
-        public CharSequence mName;
-
-        @Nullable
-        public String mUri;
-
-        @NonNull
-        public Person build() {
-            return new Person(this);
-        }
-
-        @NonNull
-        public Builder setBot(boolean z2) {
-            this.mIsBot = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setIcon(@Nullable IconCompat iconCompat) {
-            this.mIcon = iconCompat;
-            return this;
-        }
-
-        @NonNull
-        public Builder setImportant(boolean z2) {
-            this.mIsImportant = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setKey(@Nullable String str) {
-            this.mKey = str;
-            return this;
-        }
-
-        @NonNull
-        public Builder setName(@Nullable CharSequence charSequence) {
-            this.mName = charSequence;
-            return this;
-        }
-
-        @NonNull
-        public Builder setUri(@Nullable String str) {
-            this.mUri = str;
-            return this;
-        }
-
-        public Builder(Person person) {
-            this.mName = person.mName;
-            this.mIcon = person.mIcon;
-            this.mUri = person.mUri;
-            this.mKey = person.mKey;
-            this.mIsBot = person.mIsBot;
-            this.mIsImportant = person.mIsImportant;
-        }
-    }
-
-    public Person(Builder builder) {
-        this.mName = builder.mName;
-        this.mIcon = builder.mIcon;
-        this.mUri = builder.mUri;
-        this.mKey = builder.mKey;
-        this.mIsBot = builder.mIsBot;
-        this.mIsImportant = builder.mIsImportant;
+    public Person(Person$Builder person$Builder) {
+        this.mName = person$Builder.mName;
+        this.mIcon = person$Builder.mIcon;
+        this.mUri = person$Builder.mUri;
+        this.mKey = person$Builder.mKey;
+        this.mIsBot = person$Builder.mIsBot;
+        this.mIsImportant = person$Builder.mIsImportant;
     }
 
     @NonNull
     @RequiresApi(28)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static Person fromAndroidPerson(@NonNull android.app.Person person) {
-        return new Builder().setName(person.getName()).setIcon(person.getIcon() != null ? IconCompat.createFromIcon(person.getIcon()) : null).setUri(person.getUri()).setKey(person.getKey()).setBot(person.isBot()).setImportant(person.isImportant()).build();
+        return new Person$Builder().setName(person.getName()).setIcon(person.getIcon() != null ? IconCompat.createFromIcon(person.getIcon()) : null).setUri(person.getUri()).setKey(person.getKey()).setBot(person.isBot()).setImportant(person.isImportant()).build();
     }
 
     @NonNull
     public static Person fromBundle(@NonNull Bundle bundle) {
         Bundle bundle2 = bundle.getBundle(ICON_KEY);
-        return new Builder().setName(bundle.getCharSequence("name")).setIcon(bundle2 != null ? IconCompat.createFromBundle(bundle2) : null).setUri(bundle.getString("uri")).setKey(bundle.getString("key")).setBot(bundle.getBoolean(IS_BOT_KEY)).setImportant(bundle.getBoolean(IS_IMPORTANT_KEY)).build();
+        return new Person$Builder().setName(bundle.getCharSequence("name")).setIcon(bundle2 != null ? IconCompat.createFromBundle(bundle2) : null).setUri(bundle.getString("uri")).setKey(bundle.getString("key")).setBot(bundle.getBoolean(IS_BOT_KEY)).setImportant(bundle.getBoolean(IS_IMPORTANT_KEY)).build();
     }
 
     @NonNull
     @RequiresApi(22)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static Person fromPersistableBundle(@NonNull PersistableBundle persistableBundle) {
-        return new Builder().setName(persistableBundle.getString("name")).setUri(persistableBundle.getString("uri")).setKey(persistableBundle.getString("key")).setBot(persistableBundle.getBoolean(IS_BOT_KEY)).setImportant(persistableBundle.getBoolean(IS_IMPORTANT_KEY)).build();
+        return new Person$Builder().setName(persistableBundle.getString("name")).setUri(persistableBundle.getString("uri")).setKey(persistableBundle.getString("key")).setBot(persistableBundle.getBoolean(IS_BOT_KEY)).setImportant(persistableBundle.getBoolean(IS_IMPORTANT_KEY)).build();
     }
 
     @Nullable
@@ -157,7 +91,7 @@ public class Person {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public String resolveToLegacyUri() {
         String str = this.mUri;
         if (str != null) {
@@ -166,21 +100,21 @@ public class Person {
         if (this.mName == null) {
             return "";
         }
-        StringBuilder sbM833U = C1643a.m833U("name:");
-        sbM833U.append((Object) this.mName);
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("name:");
+        sbU.append((Object) this.mName);
+        return sbU.toString();
     }
 
     @NonNull
     @RequiresApi(28)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public android.app.Person toAndroidPerson() {
-        return new android.app.Person.Builder().setName(getName()).setIcon(getIcon() != null ? getIcon().toIcon() : null).setUri(getUri()).setKey(getKey()).setBot(isBot()).setImportant(isImportant()).build();
+        return new android.app.Person$Builder().setName(getName()).setIcon(getIcon() != null ? getIcon().toIcon() : null).setUri(getUri()).setKey(getKey()).setBot(isBot()).setImportant(isImportant()).build();
     }
 
     @NonNull
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Person$Builder toBuilder() {
+        return new Person$Builder(this);
     }
 
     @NonNull
@@ -198,7 +132,7 @@ public class Person {
 
     @NonNull
     @RequiresApi(22)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public PersistableBundle toPersistableBundle() {
         PersistableBundle persistableBundle = new PersistableBundle();
         CharSequence charSequence = this.mName;

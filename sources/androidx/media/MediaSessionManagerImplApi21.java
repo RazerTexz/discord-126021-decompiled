@@ -12,12 +12,12 @@ public class MediaSessionManagerImplApi21 extends MediaSessionManagerImplBase {
         this.mContext = context;
     }
 
-    private boolean hasMediaControlPermission(@NonNull MediaSessionManager.RemoteUserInfoImpl remoteUserInfoImpl) {
-        return getContext().checkPermission("android.permission.MEDIA_CONTENT_CONTROL", remoteUserInfoImpl.getPid(), remoteUserInfoImpl.getUid()) == 0;
+    private boolean hasMediaControlPermission(@NonNull MediaSessionManager$RemoteUserInfoImpl mediaSessionManager$RemoteUserInfoImpl) {
+        return getContext().checkPermission("android.permission.MEDIA_CONTENT_CONTROL", mediaSessionManager$RemoteUserInfoImpl.getPid(), mediaSessionManager$RemoteUserInfoImpl.getUid()) == 0;
     }
 
-    @Override // androidx.media.MediaSessionManagerImplBase, androidx.media.MediaSessionManager.MediaSessionManagerImpl
-    public boolean isTrustedForMediaControl(@NonNull MediaSessionManager.RemoteUserInfoImpl remoteUserInfoImpl) {
-        return hasMediaControlPermission(remoteUserInfoImpl) || super.isTrustedForMediaControl(remoteUserInfoImpl);
+    @Override // androidx.media.MediaSessionManagerImplBase, androidx.media.MediaSessionManager$MediaSessionManagerImpl
+    public boolean isTrustedForMediaControl(@NonNull MediaSessionManager$RemoteUserInfoImpl mediaSessionManager$RemoteUserInfoImpl) {
+        return hasMediaControlPermission(mediaSessionManager$RemoteUserInfoImpl) || super.isTrustedForMediaControl(mediaSessionManager$RemoteUserInfoImpl);
     }
 }

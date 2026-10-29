@@ -1,7 +1,7 @@
 package com.discord.api.activity;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ActivityTimestamps.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -14,26 +14,7 @@ public final /* data */ class ActivityTimestamps {
         this.end = str2;
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof ActivityTimestamps)) {
-            return false;
-        }
-        ActivityTimestamps activityTimestamps = (ActivityTimestamps) other;
-        return C12238m.areEqual(this.start, activityTimestamps.start) && C12238m.areEqual(this.end, activityTimestamps.end);
-    }
-
-    public int hashCode() {
-        String str = this.start;
-        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-        String str2 = this.end;
-        return iHashCode + (str2 != null ? str2.hashCode() : 0);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final long m7560a(String number) {
+    public final long a(String number) {
         if (number == null || number.length() == 0) {
             return 0L;
         }
@@ -48,20 +29,36 @@ public final /* data */ class ActivityTimestamps {
         }
     }
 
-    /* JADX INFO: renamed from: b */
-    public final long m7561b() {
-        return m7560a(this.end);
+    public final long b() {
+        return a(this.end);
     }
 
-    /* JADX INFO: renamed from: c */
-    public final long m7562c() {
-        return m7560a(this.start);
+    public final long c() {
+        return a(this.start);
+    }
+
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ActivityTimestamps)) {
+            return false;
+        }
+        ActivityTimestamps activityTimestamps = (ActivityTimestamps) other;
+        return m.areEqual(this.start, activityTimestamps.start) && m.areEqual(this.end, activityTimestamps.end);
+    }
+
+    public int hashCode() {
+        String str = this.start;
+        int iHashCode = (str != null ? str.hashCode() : 0) * 31;
+        String str2 = this.end;
+        return iHashCode + (str2 != null ? str2.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ActivityTimestamps(start=");
-        sbM833U.append(this.start);
-        sbM833U.append(", end=");
-        return C1643a.m822J(sbM833U, this.end, ")");
+        StringBuilder sbU = a.U("ActivityTimestamps(start=");
+        sbU.append(this.start);
+        sbU.append(", end=");
+        return a.J(sbU, this.end, ")");
     }
 }

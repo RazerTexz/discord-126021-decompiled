@@ -1,15 +1,14 @@
 package com.discord.widgets.voice.controls;
 
-import com.discord.C5419R;
 
 /* JADX INFO: compiled from: VoiceControlsOutputSelectorState.kt */
 /* JADX INFO: loaded from: classes.dex */
 public enum VoiceControlsOutputSelectorState {
-    SPEAKER_ON(C5419R.drawable.ic_sound_24dp, true, false),
-    SPEAKER_OFF(C5419R.drawable.ic_sound_quiet_24dp, false, false),
-    BLUETOOTH_ON_AND_MORE(C5419R.drawable.ic_sound_bluetooth_24dp, true, true),
-    SPEAKER_ON_AND_MORE(C5419R.drawable.ic_sound_24dp, true, true),
-    SPEAKER_OFF_AND_MORE(C5419R.drawable.ic_sound_quiet_24dp, false, true);
+    SPEAKER_ON(2131232135, true, false),
+    SPEAKER_OFF(2131232137, false, false),
+    BLUETOOTH_ON_AND_MORE(2131232136, true, true),
+    SPEAKER_ON_AND_MORE(2131232135, true, true),
+    SPEAKER_OFF_AND_MORE(2131232137, false, true);
 
     private final int audioOutputIconRes;
     private final boolean isButtonActive;

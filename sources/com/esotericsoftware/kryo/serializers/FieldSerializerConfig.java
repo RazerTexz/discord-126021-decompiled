@@ -1,6 +1,7 @@
 package com.esotericsoftware.kryo.serializers;
 
-import p007b.p106e.p107a.C1644a;
+import b.e.a.a;
+import b.e.a.a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class FieldSerializerConfig implements Cloneable {
@@ -11,14 +12,14 @@ public class FieldSerializerConfig implements Cloneable {
     private boolean copyTransient = true;
     private boolean serializeTransient = false;
     private boolean optimizedGenerics = false;
-    private FieldSerializer.CachedFieldNameStrategy cachedFieldNameStrategy = FieldSerializer.CachedFieldNameStrategy.DEFAULT;
+    private FieldSerializer$CachedFieldNameStrategy cachedFieldNameStrategy = FieldSerializer$CachedFieldNameStrategy.DEFAULT;
     private boolean useAsm = true ^ FieldSerializer.unsafeAvailable;
 
     public FieldSerializerConfig() {
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
-    public FieldSerializer.CachedFieldNameStrategy getCachedFieldNameStrategy() {
+    public FieldSerializer$CachedFieldNameStrategy getCachedFieldNameStrategy() {
         return this.cachedFieldNameStrategy;
     }
 
@@ -54,9 +55,14 @@ public class FieldSerializerConfig implements Cloneable {
         return this.useAsm;
     }
 
-    public void setCachedFieldNameStrategy(FieldSerializer.CachedFieldNameStrategy cachedFieldNameStrategy) {
-        this.cachedFieldNameStrategy = cachedFieldNameStrategy;
-        C1644a.a aVar = C1644a.f3007a;
+    /* JADX INFO: renamed from: clone, reason: collision with other method in class */
+    public /* bridge */ /* synthetic */ Object mo77clone() throws CloneNotSupportedException {
+        return clone();
+    }
+
+    public void setCachedFieldNameStrategy(FieldSerializer$CachedFieldNameStrategy fieldSerializer$CachedFieldNameStrategy) {
+        this.cachedFieldNameStrategy = fieldSerializer$CachedFieldNameStrategy;
+        a$a a_a = a.a;
     }
 
     public void setCopyTransient(boolean z2) {
@@ -65,27 +71,27 @@ public class FieldSerializerConfig implements Cloneable {
 
     public void setFieldsAsAccessible(boolean z2) {
         this.setFieldsAsAccessible = z2;
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
     public void setFieldsCanBeNull(boolean z2) {
         this.fieldsCanBeNull = z2;
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
     public void setFixedFieldTypes(boolean z2) {
         this.fixedFieldTypes = z2;
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
     public void setIgnoreSyntheticFields(boolean z2) {
         this.ignoreSyntheticFields = z2;
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
     public void setOptimizedGenerics(boolean z2) {
         this.optimizedGenerics = z2;
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
     public void setSerializeTransient(boolean z2) {
@@ -96,14 +102,12 @@ public class FieldSerializerConfig implements Cloneable {
         this.useAsm = z2;
         if (!z2 && !FieldSerializer.unsafeAvailable) {
             this.useAsm = true;
-            C1644a.a aVar = C1644a.f3007a;
+            a$a a_a = a.a;
         }
-        C1644a.a aVar2 = C1644a.f3007a;
+        a$a a_a2 = a.a;
     }
 
-    @Override // 
-    /* JADX INFO: renamed from: clone, reason: merged with bridge method [inline-methods] */
-    public FieldSerializerConfig mo11454clone() {
+    public FieldSerializerConfig clone() {
         try {
             return (FieldSerializerConfig) super.clone();
         } catch (CloneNotSupportedException e) {

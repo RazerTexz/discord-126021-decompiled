@@ -15,52 +15,45 @@ import com.google.android.material.textview.MaterialTextView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetAttachmentBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f15657a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialTextView f15658b;
+    public final MaterialTextView f2227b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final AppCompatTextView f15659c;
+    public final AppCompatTextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final AppCompatCheckedTextView f15660d;
+    public final AppCompatCheckedTextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialCheckBox f15661e;
+    public final MaterialCheckBox e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final SimpleDraweeView f15662f;
+    public final SimpleDraweeView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final AppCompatTextView f15663g;
+    public final AppCompatTextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final FrameLayout f15664h;
+    public final FrameLayout h;
 
     public WidgetAttachmentBottomSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull MaterialTextView materialTextView, @NonNull AppCompatTextView appCompatTextView, @NonNull AppCompatCheckedTextView appCompatCheckedTextView, @NonNull MaterialCheckBox materialCheckBox, @NonNull SimpleDraweeView simpleDraweeView, @NonNull AppCompatTextView appCompatTextView2, @NonNull FrameLayout frameLayout, @NonNull View view, @NonNull ConstraintLayout constraintLayout) {
-        this.f15657a = nestedScrollView;
-        this.f15658b = materialTextView;
-        this.f15659c = appCompatTextView;
-        this.f15660d = appCompatCheckedTextView;
-        this.f15661e = materialCheckBox;
-        this.f15662f = simpleDraweeView;
-        this.f15663g = appCompatTextView2;
-        this.f15664h = frameLayout;
+        this.a = nestedScrollView;
+        this.f2227b = materialTextView;
+        this.c = appCompatTextView;
+        this.d = appCompatCheckedTextView;
+        this.e = materialCheckBox;
+        this.f = simpleDraweeView;
+        this.g = appCompatTextView2;
+        this.h = frameLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15657a;
+        return this.a;
     }
 }

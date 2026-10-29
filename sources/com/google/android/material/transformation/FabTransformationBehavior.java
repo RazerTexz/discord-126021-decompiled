@@ -1,10 +1,9 @@
 package com.google.android.material.transformation;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.Animator$AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -23,20 +22,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.motion.widget.Key;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout$LayoutParams;
 import androidx.core.view.ViewCompat;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$id;
 import com.google.android.material.animation.AnimationUtils;
 import com.google.android.material.animation.AnimatorSetCompat;
 import com.google.android.material.animation.ArgbEvaluatorCompat;
 import com.google.android.material.animation.ChildrenAlphaProperty;
 import com.google.android.material.animation.DrawableAlphaProperty;
-import com.google.android.material.animation.MotionSpec;
 import com.google.android.material.animation.MotionTiming;
 import com.google.android.material.animation.Positioning;
 import com.google.android.material.circularreveal.CircularRevealCompat;
 import com.google.android.material.circularreveal.CircularRevealHelper;
 import com.google.android.material.circularreveal.CircularRevealWidget;
+import com.google.android.material.circularreveal.CircularRevealWidget$CircularRevealScrimColorProperty;
+import com.google.android.material.circularreveal.CircularRevealWidget$RevealInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.math.MathUtils;
 import java.util.ArrayList;
@@ -52,110 +53,6 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
     private final RectF tmpRectF1;
     private final RectF tmpRectF2;
 
-    /* JADX INFO: renamed from: com.google.android.material.transformation.FabTransformationBehavior$a */
-    public class C11035a extends AnimatorListenerAdapter {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ boolean f21243a;
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ View f21244b;
-
-        /* JADX INFO: renamed from: c */
-        public final /* synthetic */ View f21245c;
-
-        public C11035a(FabTransformationBehavior fabTransformationBehavior, boolean z2, View view, View view2) {
-            this.f21243a = z2;
-            this.f21244b = view;
-            this.f21245c = view2;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            if (this.f21243a) {
-                return;
-            }
-            this.f21244b.setVisibility(4);
-            this.f21245c.setAlpha(1.0f);
-            this.f21245c.setVisibility(0);
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationStart(Animator animator) {
-            if (this.f21243a) {
-                this.f21244b.setVisibility(0);
-                this.f21245c.setAlpha(0.0f);
-                this.f21245c.setVisibility(4);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.transformation.FabTransformationBehavior$b */
-    public class C11036b implements ValueAnimator.AnimatorUpdateListener {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ View f21246a;
-
-        public C11036b(FabTransformationBehavior fabTransformationBehavior, View view) {
-            this.f21246a = view;
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            this.f21246a.invalidate();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.transformation.FabTransformationBehavior$c */
-    public class C11037c extends AnimatorListenerAdapter {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ CircularRevealWidget f21247a;
-
-        /* JADX INFO: renamed from: b */
-        public final /* synthetic */ Drawable f21248b;
-
-        public C11037c(FabTransformationBehavior fabTransformationBehavior, CircularRevealWidget circularRevealWidget, Drawable drawable) {
-            this.f21247a = circularRevealWidget;
-            this.f21248b = drawable;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            this.f21247a.setCircularRevealOverlayDrawable(null);
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationStart(Animator animator) {
-            this.f21247a.setCircularRevealOverlayDrawable(this.f21248b);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.transformation.FabTransformationBehavior$d */
-    public class C11038d extends AnimatorListenerAdapter {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ CircularRevealWidget f21249a;
-
-        public C11038d(FabTransformationBehavior fabTransformationBehavior, CircularRevealWidget circularRevealWidget) {
-            this.f21249a = circularRevealWidget;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            CircularRevealWidget.RevealInfo revealInfo = this.f21249a.getRevealInfo();
-            revealInfo.radius = Float.MAX_VALUE;
-            this.f21249a.setRevealInfo(revealInfo);
-        }
-    }
-
-    public class FabTransformationSpec {
-        public Positioning positioning;
-
-        @Nullable
-        public MotionSpec timings;
-    }
-
     public FabTransformationBehavior() {
         this.tmpRect = new Rect();
         this.tmpRectF1 = new RectF();
@@ -165,16 +62,16 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
 
     @Nullable
     private ViewGroup calculateChildContentContainer(@NonNull View view) {
-        View viewFindViewById = view.findViewById(C10817R.id.mtrl_child_content_container);
+        View viewFindViewById = view.findViewById(R$id.mtrl_child_content_container);
         if (viewFindViewById != null) {
             return toViewGroupOrNull(viewFindViewById);
         }
         return ((view instanceof TransformationChildLayout) || (view instanceof TransformationChildCard)) ? toViewGroupOrNull(((ViewGroup) view).getChildAt(0)) : toViewGroupOrNull(view);
     }
 
-    private void calculateChildVisibleBoundsAtEndOfExpansion(@NonNull View view, @NonNull FabTransformationSpec fabTransformationSpec, @NonNull MotionTiming motionTiming, @NonNull MotionTiming motionTiming2, float f, float f2, float f3, float f4, @NonNull RectF rectF) {
-        float fCalculateValueOfAnimationAtEndOfExpansion = calculateValueOfAnimationAtEndOfExpansion(fabTransformationSpec, motionTiming, f, f3);
-        float fCalculateValueOfAnimationAtEndOfExpansion2 = calculateValueOfAnimationAtEndOfExpansion(fabTransformationSpec, motionTiming2, f2, f4);
+    private void calculateChildVisibleBoundsAtEndOfExpansion(@NonNull View view, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull MotionTiming motionTiming, @NonNull MotionTiming motionTiming2, float f, float f2, float f3, float f4, @NonNull RectF rectF) {
+        float fCalculateValueOfAnimationAtEndOfExpansion = calculateValueOfAnimationAtEndOfExpansion(fabTransformationBehavior$FabTransformationSpec, motionTiming, f, f3);
+        float fCalculateValueOfAnimationAtEndOfExpansion2 = calculateValueOfAnimationAtEndOfExpansion(fabTransformationBehavior$FabTransformationSpec, motionTiming2, f2, f4);
         Rect rect = this.tmpRect;
         view.getWindowVisibleDisplayFrame(rect);
         RectF rectF2 = this.tmpRectF1;
@@ -192,18 +89,18 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
     }
 
     @NonNull
-    private Pair<MotionTiming, MotionTiming> calculateMotionTiming(float f, float f2, boolean z2, @NonNull FabTransformationSpec fabTransformationSpec) {
+    private Pair<MotionTiming, MotionTiming> calculateMotionTiming(float f, float f2, boolean z2, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec) {
         MotionTiming timing;
         MotionTiming timing2;
         if (f == 0.0f || f2 == 0.0f) {
-            timing = fabTransformationSpec.timings.getTiming("translationXLinear");
-            timing2 = fabTransformationSpec.timings.getTiming("translationYLinear");
+            timing = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("translationXLinear");
+            timing2 = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("translationYLinear");
         } else if ((!z2 || f2 >= 0.0f) && (z2 || f2 <= 0.0f)) {
-            timing = fabTransformationSpec.timings.getTiming("translationXCurveDownwards");
-            timing2 = fabTransformationSpec.timings.getTiming("translationYCurveDownwards");
+            timing = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("translationXCurveDownwards");
+            timing2 = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("translationYCurveDownwards");
         } else {
-            timing = fabTransformationSpec.timings.getTiming("translationXCurveUpwards");
-            timing2 = fabTransformationSpec.timings.getTiming("translationYCurveUpwards");
+            timing = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("translationXCurveUpwards");
+            timing2 = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("translationYCurveUpwards");
         }
         return new Pair<>(timing, timing2);
     }
@@ -284,10 +181,10 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         return f + positioning.yAdjustment;
     }
 
-    private float calculateValueOfAnimationAtEndOfExpansion(@NonNull FabTransformationSpec fabTransformationSpec, @NonNull MotionTiming motionTiming, float f, float f2) {
+    private float calculateValueOfAnimationAtEndOfExpansion(@NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull MotionTiming motionTiming, float f, float f2) {
         long delay = motionTiming.getDelay();
         long duration = motionTiming.getDuration();
-        MotionTiming timing = fabTransformationSpec.timings.getTiming("expansion");
+        MotionTiming timing = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("expansion");
         return AnimationUtils.lerp(f, f2, motionTiming.getInterpolator().getInterpolation((((timing.getDuration() + timing.getDelay()) + 17) - delay) / duration));
     }
 
@@ -299,7 +196,7 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         rectF.offset((int) (-view.getTranslationX()), (int) (-view.getTranslationY()));
     }
 
-    private void createChildrenFadeAnimation(View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationSpec fabTransformationSpec, @NonNull List<Animator> list, List<Animator.AnimatorListener> list2) {
+    private void createChildrenFadeAnimation(View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull List<Animator> list, List<Animator$AnimatorListener> list2) {
         ViewGroup viewGroupCalculateChildContentContainer;
         ObjectAnimator objectAnimatorOfFloat;
         if (view2 instanceof ViewGroup) {
@@ -314,13 +211,13 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
             } else {
                 objectAnimatorOfFloat = ObjectAnimator.ofFloat(viewGroupCalculateChildContentContainer, ChildrenAlphaProperty.CHILDREN_ALPHA, 0.0f);
             }
-            fabTransformationSpec.timings.getTiming("contentFade").apply(objectAnimatorOfFloat);
+            fabTransformationBehavior$FabTransformationSpec.timings.getTiming("contentFade").apply(objectAnimatorOfFloat);
             list.add(objectAnimatorOfFloat);
         }
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    private void createColorAnimation(@NonNull View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationSpec fabTransformationSpec, @NonNull List<Animator> list, List<Animator.AnimatorListener> list2) {
+    private void createColorAnimation(@NonNull View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull List<Animator> list, List<Animator$AnimatorListener> list2) {
         ObjectAnimator objectAnimatorOfInt;
         if (view2 instanceof CircularRevealWidget) {
             CircularRevealWidget circularRevealWidget = (CircularRevealWidget) view2;
@@ -330,20 +227,20 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
                 if (!z3) {
                     circularRevealWidget.setCircularRevealScrimColor(backgroundTint);
                 }
-                objectAnimatorOfInt = ObjectAnimator.ofInt(circularRevealWidget, CircularRevealWidget.CircularRevealScrimColorProperty.CIRCULAR_REVEAL_SCRIM_COLOR, i);
+                objectAnimatorOfInt = ObjectAnimator.ofInt(circularRevealWidget, CircularRevealWidget$CircularRevealScrimColorProperty.CIRCULAR_REVEAL_SCRIM_COLOR, i);
             } else {
-                objectAnimatorOfInt = ObjectAnimator.ofInt(circularRevealWidget, CircularRevealWidget.CircularRevealScrimColorProperty.CIRCULAR_REVEAL_SCRIM_COLOR, backgroundTint);
+                objectAnimatorOfInt = ObjectAnimator.ofInt(circularRevealWidget, CircularRevealWidget$CircularRevealScrimColorProperty.CIRCULAR_REVEAL_SCRIM_COLOR, backgroundTint);
             }
             objectAnimatorOfInt.setEvaluator(ArgbEvaluatorCompat.getInstance());
-            fabTransformationSpec.timings.getTiming(ModelAuditLogEntry.CHANGE_KEY_COLOR).apply(objectAnimatorOfInt);
+            fabTransformationBehavior$FabTransformationSpec.timings.getTiming(ModelAuditLogEntry.CHANGE_KEY_COLOR).apply(objectAnimatorOfInt);
             list.add(objectAnimatorOfInt);
         }
     }
 
-    private void createDependencyTranslationAnimation(@NonNull View view, @NonNull View view2, boolean z2, @NonNull FabTransformationSpec fabTransformationSpec, @NonNull List<Animator> list) {
-        float fCalculateTranslationX = calculateTranslationX(view, view2, fabTransformationSpec.positioning);
-        float fCalculateTranslationY = calculateTranslationY(view, view2, fabTransformationSpec.positioning);
-        Pair<MotionTiming, MotionTiming> pairCalculateMotionTiming = calculateMotionTiming(fCalculateTranslationX, fCalculateTranslationY, z2, fabTransformationSpec);
+    private void createDependencyTranslationAnimation(@NonNull View view, @NonNull View view2, boolean z2, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull List<Animator> list) {
+        float fCalculateTranslationX = calculateTranslationX(view, view2, fabTransformationBehavior$FabTransformationSpec.positioning);
+        float fCalculateTranslationY = calculateTranslationY(view, view2, fabTransformationBehavior$FabTransformationSpec.positioning);
+        Pair<MotionTiming, MotionTiming> pairCalculateMotionTiming = calculateMotionTiming(fCalculateTranslationX, fCalculateTranslationY, z2, fabTransformationBehavior$FabTransformationSpec);
         MotionTiming motionTiming = (MotionTiming) pairCalculateMotionTiming.first;
         MotionTiming motionTiming2 = (MotionTiming) pairCalculateMotionTiming.second;
         Property property = View.TRANSLATION_X;
@@ -367,7 +264,7 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
     }
 
     @TargetApi(21)
-    private void createElevationAnimation(View view, @NonNull View view2, boolean z2, boolean z3, @NonNull FabTransformationSpec fabTransformationSpec, @NonNull List<Animator> list, List<Animator.AnimatorListener> list2) {
+    private void createElevationAnimation(View view, @NonNull View view2, boolean z2, boolean z3, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull List<Animator> list, List<Animator$AnimatorListener> list2) {
         ObjectAnimator objectAnimatorOfFloat;
         float elevation = ViewCompat.getElevation(view2) - ViewCompat.getElevation(view);
         if (z2) {
@@ -378,29 +275,29 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         } else {
             objectAnimatorOfFloat = ObjectAnimator.ofFloat(view2, (Property<View, Float>) View.TRANSLATION_Z, -elevation);
         }
-        fabTransformationSpec.timings.getTiming(Key.ELEVATION).apply(objectAnimatorOfFloat);
+        fabTransformationBehavior$FabTransformationSpec.timings.getTiming(Key.ELEVATION).apply(objectAnimatorOfFloat);
         list.add(objectAnimatorOfFloat);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    private void createExpansionAnimation(@NonNull View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationSpec fabTransformationSpec, float f, float f2, @NonNull List<Animator> list, @NonNull List<Animator.AnimatorListener> list2) {
+    private void createExpansionAnimation(@NonNull View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, float f, float f2, @NonNull List<Animator> list, @NonNull List<Animator$AnimatorListener> list2) {
         Animator animatorCreateCircularReveal;
         if (view2 instanceof CircularRevealWidget) {
             CircularRevealWidget circularRevealWidget = (CircularRevealWidget) view2;
-            float fCalculateRevealCenterX = calculateRevealCenterX(view, view2, fabTransformationSpec.positioning);
-            float fCalculateRevealCenterY = calculateRevealCenterY(view, view2, fabTransformationSpec.positioning);
+            float fCalculateRevealCenterX = calculateRevealCenterX(view, view2, fabTransformationBehavior$FabTransformationSpec.positioning);
+            float fCalculateRevealCenterY = calculateRevealCenterY(view, view2, fabTransformationBehavior$FabTransformationSpec.positioning);
             ((FloatingActionButton) view).getContentRect(this.tmpRect);
             float fWidth = this.tmpRect.width() / 2.0f;
-            MotionTiming timing = fabTransformationSpec.timings.getTiming("expansion");
+            MotionTiming timing = fabTransformationBehavior$FabTransformationSpec.timings.getTiming("expansion");
             if (z2) {
                 if (!z3) {
-                    circularRevealWidget.setRevealInfo(new CircularRevealWidget.RevealInfo(fCalculateRevealCenterX, fCalculateRevealCenterY, fWidth));
+                    circularRevealWidget.setRevealInfo(new CircularRevealWidget$RevealInfo(fCalculateRevealCenterX, fCalculateRevealCenterY, fWidth));
                 }
                 if (z3) {
                     fWidth = circularRevealWidget.getRevealInfo().radius;
                 }
                 animatorCreateCircularReveal = CircularRevealCompat.createCircularReveal(circularRevealWidget, fCalculateRevealCenterX, fCalculateRevealCenterY, MathUtils.distanceToFurthestCorner(fCalculateRevealCenterX, fCalculateRevealCenterY, 0.0f, 0.0f, f, f2));
-                animatorCreateCircularReveal.addListener(new C11038d(this, circularRevealWidget));
+                animatorCreateCircularReveal.addListener(new FabTransformationBehavior$d(this, circularRevealWidget));
                 createPreFillRadialExpansion(view2, timing.getDelay(), (int) fCalculateRevealCenterX, (int) fCalculateRevealCenterY, fWidth, list);
             } else {
                 float f3 = circularRevealWidget.getRevealInfo().radius;
@@ -408,7 +305,7 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
                 int i = (int) fCalculateRevealCenterX;
                 int i2 = (int) fCalculateRevealCenterY;
                 createPreFillRadialExpansion(view2, timing.getDelay(), i, i2, f3, list);
-                createPostFillRadialExpansion(view2, timing.getDelay(), timing.getDuration(), fabTransformationSpec.timings.getTotalDuration(), i, i2, fWidth, list);
+                createPostFillRadialExpansion(view2, timing.getDelay(), timing.getDuration(), fabTransformationBehavior$FabTransformationSpec.timings.getTotalDuration(), i, i2, fWidth, list);
                 animatorCreateCircularReveal = animatorCreateCircularReveal2;
             }
             timing.apply(animatorCreateCircularReveal);
@@ -418,7 +315,7 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    private void createIconFadeAnimation(View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationSpec fabTransformationSpec, @NonNull List<Animator> list, @NonNull List<Animator.AnimatorListener> list2) {
+    private void createIconFadeAnimation(View view, View view2, boolean z2, boolean z3, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull List<Animator> list, @NonNull List<Animator$AnimatorListener> list2) {
         ObjectAnimator objectAnimatorOfInt;
         if ((view2 instanceof CircularRevealWidget) && (view instanceof ImageView)) {
             CircularRevealWidget circularRevealWidget = (CircularRevealWidget) view2;
@@ -435,10 +332,10 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
             } else {
                 objectAnimatorOfInt = ObjectAnimator.ofInt(drawable, DrawableAlphaProperty.DRAWABLE_ALPHA_COMPAT, 255);
             }
-            objectAnimatorOfInt.addUpdateListener(new C11036b(this, view2));
-            fabTransformationSpec.timings.getTiming("iconFade").apply(objectAnimatorOfInt);
+            objectAnimatorOfInt.addUpdateListener(new FabTransformationBehavior$b(this, view2));
+            fabTransformationBehavior$FabTransformationSpec.timings.getTiming("iconFade").apply(objectAnimatorOfInt);
             list.add(objectAnimatorOfInt);
-            list2.add(new C11037c(this, circularRevealWidget, drawable));
+            list2.add(new FabTransformationBehavior$c(this, circularRevealWidget, drawable));
         }
     }
 
@@ -461,12 +358,12 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         }
     }
 
-    private void createTranslationAnimation(@NonNull View view, @NonNull View view2, boolean z2, boolean z3, @NonNull FabTransformationSpec fabTransformationSpec, @NonNull List<Animator> list, List<Animator.AnimatorListener> list2, @NonNull RectF rectF) {
+    private void createTranslationAnimation(@NonNull View view, @NonNull View view2, boolean z2, boolean z3, @NonNull FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpec, @NonNull List<Animator> list, List<Animator$AnimatorListener> list2, @NonNull RectF rectF) {
         ObjectAnimator objectAnimatorOfFloat;
         ObjectAnimator objectAnimatorOfFloat2;
-        float fCalculateTranslationX = calculateTranslationX(view, view2, fabTransformationSpec.positioning);
-        float fCalculateTranslationY = calculateTranslationY(view, view2, fabTransformationSpec.positioning);
-        Pair<MotionTiming, MotionTiming> pairCalculateMotionTiming = calculateMotionTiming(fCalculateTranslationX, fCalculateTranslationY, z2, fabTransformationSpec);
+        float fCalculateTranslationX = calculateTranslationX(view, view2, fabTransformationBehavior$FabTransformationSpec.positioning);
+        float fCalculateTranslationY = calculateTranslationY(view, view2, fabTransformationBehavior$FabTransformationSpec.positioning);
+        Pair<MotionTiming, MotionTiming> pairCalculateMotionTiming = calculateMotionTiming(fCalculateTranslationX, fCalculateTranslationY, z2, fabTransformationBehavior$FabTransformationSpec);
         MotionTiming motionTiming = (MotionTiming) pairCalculateMotionTiming.first;
         MotionTiming motionTiming2 = (MotionTiming) pairCalculateMotionTiming.second;
         if (z2) {
@@ -476,7 +373,7 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
             }
             objectAnimatorOfFloat = ObjectAnimator.ofFloat(view2, (Property<View, Float>) View.TRANSLATION_X, 0.0f);
             objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(view2, (Property<View, Float>) View.TRANSLATION_Y, 0.0f);
-            calculateChildVisibleBoundsAtEndOfExpansion(view2, fabTransformationSpec, motionTiming, motionTiming2, -fCalculateTranslationX, -fCalculateTranslationY, 0.0f, 0.0f, rectF);
+            calculateChildVisibleBoundsAtEndOfExpansion(view2, fabTransformationBehavior$FabTransformationSpec, motionTiming, motionTiming2, -fCalculateTranslationX, -fCalculateTranslationY, 0.0f, 0.0f, rectF);
         } else {
             objectAnimatorOfFloat = ObjectAnimator.ofFloat(view2, (Property<View, Float>) View.TRANSLATION_X, -fCalculateTranslationX);
             objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(view2, (Property<View, Float>) View.TRANSLATION_Y, -fCalculateTranslationY);
@@ -495,7 +392,7 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         return 0;
     }
 
-    @Override // com.google.android.material.transformation.ExpandableBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+    @Override // com.google.android.material.transformation.ExpandableBehavior, androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
     @CallSuper
     public boolean layoutDependsOn(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View view, @NonNull View view2) {
         if (view.getVisibility() == 8) {
@@ -508,45 +405,45 @@ public abstract class FabTransformationBehavior extends ExpandableTransformation
         return expandedComponentIdHint == 0 || expandedComponentIdHint == view.getId();
     }
 
-    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
+    @Override // androidx.coordinatorlayout.widget.CoordinatorLayout$Behavior
     @CallSuper
-    public void onAttachedToLayoutParams(@NonNull CoordinatorLayout.LayoutParams layoutParams) {
-        if (layoutParams.dodgeInsetEdges == 0) {
-            layoutParams.dodgeInsetEdges = 80;
+    public void onAttachedToLayoutParams(@NonNull CoordinatorLayout$LayoutParams coordinatorLayout$LayoutParams) {
+        if (coordinatorLayout$LayoutParams.dodgeInsetEdges == 0) {
+            coordinatorLayout$LayoutParams.dodgeInsetEdges = 80;
         }
     }
 
     @Override // com.google.android.material.transformation.ExpandableTransformationBehavior
     @NonNull
     public AnimatorSet onCreateExpandedStateChangeAnimation(@NonNull View view, @NonNull View view2, boolean z2, boolean z3) {
-        FabTransformationSpec fabTransformationSpecOnCreateMotionSpec = onCreateMotionSpec(view2.getContext(), z2);
+        FabTransformationBehavior$FabTransformationSpec fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec = onCreateMotionSpec(view2.getContext(), z2);
         if (z2) {
             this.dependencyOriginalTranslationX = view.getTranslationX();
             this.dependencyOriginalTranslationY = view.getTranslationY();
         }
         List<Animator> arrayList = new ArrayList<>();
         ArrayList arrayList2 = new ArrayList();
-        createElevationAnimation(view, view2, z2, z3, fabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
+        createElevationAnimation(view, view2, z2, z3, fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
         RectF rectF = this.tmpRectF1;
-        createTranslationAnimation(view, view2, z2, z3, fabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2, rectF);
+        createTranslationAnimation(view, view2, z2, z3, fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2, rectF);
         float fWidth = rectF.width();
         float fHeight = rectF.height();
-        createDependencyTranslationAnimation(view, view2, z2, fabTransformationSpecOnCreateMotionSpec, arrayList);
-        createIconFadeAnimation(view, view2, z2, z3, fabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
-        createExpansionAnimation(view, view2, z2, z3, fabTransformationSpecOnCreateMotionSpec, fWidth, fHeight, arrayList, arrayList2);
-        createColorAnimation(view, view2, z2, z3, fabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
-        createChildrenFadeAnimation(view, view2, z2, z3, fabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
+        createDependencyTranslationAnimation(view, view2, z2, fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec, arrayList);
+        createIconFadeAnimation(view, view2, z2, z3, fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
+        createExpansionAnimation(view, view2, z2, z3, fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec, fWidth, fHeight, arrayList, arrayList2);
+        createColorAnimation(view, view2, z2, z3, fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
+        createChildrenFadeAnimation(view, view2, z2, z3, fabTransformationBehavior$FabTransformationSpecOnCreateMotionSpec, arrayList, arrayList2);
         AnimatorSet animatorSet = new AnimatorSet();
         AnimatorSetCompat.playTogether(animatorSet, arrayList);
-        animatorSet.addListener(new C11035a(this, z2, view2, view));
+        animatorSet.addListener(new FabTransformationBehavior$a(this, z2, view2, view));
         int size = arrayList2.size();
         for (int i = 0; i < size; i++) {
-            animatorSet.addListener((Animator.AnimatorListener) arrayList2.get(i));
+            animatorSet.addListener((Animator$AnimatorListener) arrayList2.get(i));
         }
         return animatorSet;
     }
 
-    public abstract FabTransformationSpec onCreateMotionSpec(Context context, boolean z2);
+    public abstract FabTransformationBehavior$FabTransformationSpec onCreateMotionSpec(Context context, boolean z2);
 
     @Nullable
     private ViewGroup toViewGroupOrNull(View view) {

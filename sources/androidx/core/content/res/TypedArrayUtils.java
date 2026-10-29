@@ -3,6 +3,7 @@ package androidx.core.content.res;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.content.res.Resources$Theme;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -12,11 +13,12 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleableRes;
 import org.xmlpull.v1.XmlPullParser;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class TypedArrayUtils {
     private static final String NAMESPACE = "http://schemas.android.com/apk/res/android";
 
@@ -53,7 +55,7 @@ public class TypedArrayUtils {
     }
 
     @Nullable
-    public static ColorStateList getNamedColorStateList(@NonNull TypedArray typedArray, @NonNull XmlPullParser xmlPullParser, @Nullable Resources.Theme theme, @NonNull String str, @StyleableRes int i) {
+    public static ColorStateList getNamedColorStateList(@NonNull TypedArray typedArray, @NonNull XmlPullParser xmlPullParser, @Nullable Resources$Theme resources$Theme, @NonNull String str, @StyleableRes int i) {
         if (!hasAttribute(xmlPullParser, str)) {
             return null;
         }
@@ -61,7 +63,7 @@ public class TypedArrayUtils {
         typedArray.getValue(i, typedValue);
         int i2 = typedValue.type;
         if (i2 != 2) {
-            return (i2 < 28 || i2 > 31) ? ColorStateListInflaterCompat.inflate(typedArray.getResources(), typedArray.getResourceId(i, 0), theme) : getNamedColorStateListFromInt(typedValue);
+            return (i2 < 28 || i2 > 31) ? ColorStateListInflaterCompat.inflate(typedArray.getResources(), typedArray.getResourceId(i, 0), resources$Theme) : getNamedColorStateListFromInt(typedValue);
         }
         throw new UnsupportedOperationException("Failed to resolve attribute at index " + i + ": " + typedValue);
     }
@@ -71,7 +73,7 @@ public class TypedArrayUtils {
         return ColorStateList.valueOf(typedValue.data);
     }
 
-    public static ComplexColorCompat getNamedComplexColor(@NonNull TypedArray typedArray, @NonNull XmlPullParser xmlPullParser, @Nullable Resources.Theme theme, @NonNull String str, @StyleableRes int i, @ColorInt int i2) {
+    public static ComplexColorCompat getNamedComplexColor(@NonNull TypedArray typedArray, @NonNull XmlPullParser xmlPullParser, @Nullable Resources$Theme resources$Theme, @NonNull String str, @StyleableRes int i, @ColorInt int i2) {
         if (hasAttribute(xmlPullParser, str)) {
             TypedValue typedValue = new TypedValue();
             typedArray.getValue(i, typedValue);
@@ -79,7 +81,7 @@ public class TypedArrayUtils {
             if (i3 >= 28 && i3 <= 31) {
                 return ComplexColorCompat.from(typedValue.data);
             }
-            ComplexColorCompat complexColorCompatInflate = ComplexColorCompat.inflate(typedArray.getResources(), typedArray.getResourceId(i, 0), theme);
+            ComplexColorCompat complexColorCompatInflate = ComplexColorCompat.inflate(typedArray.getResources(), typedArray.getResourceId(i, 0), resources$Theme);
             if (complexColorCompatInflate != null) {
                 return complexColorCompatInflate;
             }
@@ -136,8 +138,8 @@ public class TypedArrayUtils {
     }
 
     @NonNull
-    public static TypedArray obtainAttributes(@NonNull Resources resources, @Nullable Resources.Theme theme, @NonNull AttributeSet attributeSet, @NonNull int[] iArr) {
-        return theme == null ? resources.obtainAttributes(attributeSet, iArr) : theme.obtainStyledAttributes(attributeSet, iArr, 0, 0);
+    public static TypedArray obtainAttributes(@NonNull Resources resources, @Nullable Resources$Theme resources$Theme, @NonNull AttributeSet attributeSet, @NonNull int[] iArr) {
+        return resources$Theme == null ? resources.obtainAttributes(attributeSet, iArr) : resources$Theme.obtainStyledAttributes(attributeSet, iArr, 0, 0);
     }
 
     @Nullable

@@ -1,14 +1,18 @@
 package com.discord.api.friendsuggestions;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: BulkFriendSuggestions.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class BulkFriendSuggestions {
     private final String bulkAddToken;
     private final List<FriendSuggestion> friendSuggestions;
+
+    public final List<FriendSuggestion> b() {
+        return this.friendSuggestions;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -18,7 +22,7 @@ public final /* data */ class BulkFriendSuggestions {
             return false;
         }
         BulkFriendSuggestions bulkFriendSuggestions = (BulkFriendSuggestions) other;
-        return C12238m.areEqual(this.bulkAddToken, bulkFriendSuggestions.bulkAddToken) && C12238m.areEqual(this.friendSuggestions, bulkFriendSuggestions.friendSuggestions);
+        return m.areEqual(this.bulkAddToken, bulkFriendSuggestions.bulkAddToken) && m.areEqual(this.friendSuggestions, bulkFriendSuggestions.friendSuggestions);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -33,15 +37,10 @@ public final /* data */ class BulkFriendSuggestions {
         return iHashCode + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<FriendSuggestion> m7829b() {
-        return this.friendSuggestions;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("BulkFriendSuggestions(bulkAddToken=");
-        sbM833U.append(this.bulkAddToken);
-        sbM833U.append(", friendSuggestions=");
-        return C1643a.m824L(sbM833U, this.friendSuggestions, ")");
+        StringBuilder sbU = a.U("BulkFriendSuggestions(bulkAddToken=");
+        sbU.append(this.bulkAddToken);
+        sbU.append(", friendSuggestions=");
+        return a.L(sbU, this.friendSuggestions, ")");
     }
 }

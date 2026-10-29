@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.view.Lifecycle;
+import androidx.view.Lifecycle$State;
 import androidx.viewpager.widget.PagerAdapter;
+import b.d.b.a.a;
 import java.util.ArrayList;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
@@ -27,7 +27,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
     private boolean mExecutingFinishUpdate;
     private final FragmentManager mFragmentManager;
     private ArrayList<Fragment> mFragments;
-    private ArrayList<Fragment.SavedState> mSavedState;
+    private ArrayList<Fragment$SavedState> mSavedState;
 
     @Deprecated
     public FragmentStatePagerAdapter(@NonNull FragmentManager fragmentManager) {
@@ -75,7 +75,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
     @Override // androidx.viewpager.widget.PagerAdapter
     @NonNull
     public Object instantiateItem(@NonNull ViewGroup viewGroup, int i) {
-        Fragment.SavedState savedState;
+        Fragment$SavedState fragment$SavedState;
         Fragment fragment;
         if (this.mFragments.size() > i && (fragment = this.mFragments.get(i)) != null) {
             return fragment;
@@ -84,8 +84,8 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
             this.mCurTransaction = this.mFragmentManager.beginTransaction();
         }
         Fragment item = getItem(i);
-        if (this.mSavedState.size() > i && (savedState = this.mSavedState.get(i)) != null) {
-            item.setInitialSavedState(savedState);
+        if (this.mSavedState.size() > i && (fragment$SavedState = this.mSavedState.get(i)) != null) {
+            item.setInitialSavedState(fragment$SavedState);
         }
         while (this.mFragments.size() <= i) {
             this.mFragments.add(null);
@@ -97,7 +97,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
         this.mFragments.set(i, item);
         this.mCurTransaction.add(viewGroup.getId(), item);
         if (this.mBehavior == 1) {
-            this.mCurTransaction.setMaxLifecycle(item, Lifecycle.State.STARTED);
+            this.mCurTransaction.setMaxLifecycle(item, Lifecycle$State.STARTED);
         }
         return item;
     }
@@ -117,7 +117,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
             this.mFragments.clear();
             if (parcelableArray != null) {
                 for (Parcelable parcelable2 : parcelableArray) {
-                    this.mSavedState.add((Fragment.SavedState) parcelable2);
+                    this.mSavedState.add((Fragment$SavedState) parcelable2);
                 }
             }
             for (String str : bundle.keySet()) {
@@ -144,9 +144,9 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
         Bundle bundle;
         if (this.mSavedState.size() > 0) {
             bundle = new Bundle();
-            Fragment.SavedState[] savedStateArr = new Fragment.SavedState[this.mSavedState.size()];
-            this.mSavedState.toArray(savedStateArr);
-            bundle.putParcelableArray("states", savedStateArr);
+            Fragment$SavedState[] fragment$SavedStateArr = new Fragment$SavedState[this.mSavedState.size()];
+            this.mSavedState.toArray(fragment$SavedStateArr);
+            bundle.putParcelableArray("states", fragment$SavedStateArr);
         } else {
             bundle = null;
         }
@@ -156,7 +156,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
                 if (bundle == null) {
                     bundle = new Bundle();
                 }
-                this.mFragmentManager.putFragment(bundle, C1643a.m871q("f", i), fragment);
+                this.mFragmentManager.putFragment(bundle, a.q("f", i), fragment);
             }
         }
         return bundle;
@@ -173,7 +173,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
                     if (this.mCurTransaction == null) {
                         this.mCurTransaction = this.mFragmentManager.beginTransaction();
                     }
-                    this.mCurTransaction.setMaxLifecycle(this.mCurrentPrimaryItem, Lifecycle.State.STARTED);
+                    this.mCurTransaction.setMaxLifecycle(this.mCurrentPrimaryItem, Lifecycle$State.STARTED);
                 } else {
                     this.mCurrentPrimaryItem.setUserVisibleHint(false);
                 }
@@ -183,7 +183,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
                 if (this.mCurTransaction == null) {
                     this.mCurTransaction = this.mFragmentManager.beginTransaction();
                 }
-                this.mCurTransaction.setMaxLifecycle(fragment, Lifecycle.State.RESUMED);
+                this.mCurTransaction.setMaxLifecycle(fragment, Lifecycle$State.RESUMED);
             } else {
                 fragment.setUserVisibleHint(true);
             }

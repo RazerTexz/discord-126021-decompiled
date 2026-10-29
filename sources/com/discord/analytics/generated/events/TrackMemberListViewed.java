@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMemberListViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,6 +23,11 @@ public final /* data */ class TrackMemberListViewed implements AnalyticsSchema, 
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "member_list_viewed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +36,7 @@ public final /* data */ class TrackMemberListViewed implements AnalyticsSchema, 
             return false;
         }
         TrackMemberListViewed trackMemberListViewed = (TrackMemberListViewed) other;
-        return C12238m.areEqual(this.numUsersVisible, trackMemberListViewed.numUsersVisible) && C12238m.areEqual(this.numUsersVisibleWithMobileIndicator, trackMemberListViewed.numUsersVisibleWithMobileIndicator) && C12238m.areEqual(this.numUsersVisibleWithGameActivity, trackMemberListViewed.numUsersVisibleWithGameActivity) && C12238m.areEqual(this.numUsersVisibleWithActivity, trackMemberListViewed.numUsersVisibleWithActivity) && C12238m.areEqual(this.hasAddMembersCta, trackMemberListViewed.hasAddMembersCta);
+        return m.areEqual(this.numUsersVisible, trackMemberListViewed.numUsersVisible) && m.areEqual(this.numUsersVisibleWithMobileIndicator, trackMemberListViewed.numUsersVisibleWithMobileIndicator) && m.areEqual(this.numUsersVisibleWithGameActivity, trackMemberListViewed.numUsersVisibleWithGameActivity) && m.areEqual(this.numUsersVisibleWithActivity, trackMemberListViewed.numUsersVisibleWithActivity) && m.areEqual(this.hasAddMembersCta, trackMemberListViewed.hasAddMembersCta);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -59,22 +64,16 @@ public final /* data */ class TrackMemberListViewed implements AnalyticsSchema, 
         return iHashCode4 + (bool != null ? bool.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMemberListViewed(numUsersVisible=");
-        sbM833U.append(this.numUsersVisible);
-        sbM833U.append(", numUsersVisibleWithMobileIndicator=");
-        sbM833U.append(this.numUsersVisibleWithMobileIndicator);
-        sbM833U.append(", numUsersVisibleWithGameActivity=");
-        sbM833U.append(this.numUsersVisibleWithGameActivity);
-        sbM833U.append(", numUsersVisibleWithActivity=");
-        sbM833U.append(this.numUsersVisibleWithActivity);
-        sbM833U.append(", hasAddMembersCta=");
-        return C1643a.m816D(sbM833U, this.hasAddMembersCta, ")");
+        StringBuilder sbU = a.U("TrackMemberListViewed(numUsersVisible=");
+        sbU.append(this.numUsersVisible);
+        sbU.append(", numUsersVisibleWithMobileIndicator=");
+        sbU.append(this.numUsersVisibleWithMobileIndicator);
+        sbU.append(", numUsersVisibleWithGameActivity=");
+        sbU.append(this.numUsersVisibleWithGameActivity);
+        sbU.append(", numUsersVisibleWithActivity=");
+        sbU.append(this.numUsersVisibleWithActivity);
+        sbU.append(", hasAddMembersCta=");
+        return a.D(sbU, this.hasAddMembersCta, ")");
     }
 }

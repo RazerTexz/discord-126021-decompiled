@@ -6,17 +6,22 @@ import com.discord.models.experiments.domain.ExperimentHash;
 import com.discord.models.experiments.dto.GuildExperimentBucketDto;
 import com.discord.models.experiments.dto.GuildExperimentDto;
 import com.discord.models.experiments.dto.GuildExperimentFilter;
+import com.discord.models.experiments.dto.GuildExperimentFilter$GuildHasFeatureFilter;
+import com.discord.models.experiments.dto.GuildExperimentFilter$GuildHubTypesFeatureFilter;
+import com.discord.models.experiments.dto.GuildExperimentFilter$GuildIdRangeFilter;
+import com.discord.models.experiments.dto.GuildExperimentFilter$GuildIdsFilter;
+import com.discord.models.experiments.dto.GuildExperimentFilter$GuildMemberCountRangeFilter;
 import com.discord.models.experiments.dto.GuildExperimentOverridesDto;
 import com.discord.models.experiments.dto.GuildExperimentPopulationDto;
 import com.discord.models.guild.Guild;
 import com.discord.widgets.chat.input.MentionUtilsKt;
+import d0.d0.f;
+import d0.z.d.m;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import kotlin.ranges.IntRange;
-import p507d0.p512d0.C11226f;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ExperimentUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -33,8 +38,8 @@ public final class ExperimentUtils {
         boolean z3;
         boolean z4;
         String str = experimentName;
-        C12238m.checkNotNullParameter(str, "experimentName");
-        C12238m.checkNotNullParameter(experiment, "experiment");
+        m.checkNotNullParameter(str, "experimentName");
+        m.checkNotNullParameter(experiment, "experiment");
         for (GuildExperimentOverridesDto guildExperimentOverridesDto : experiment.getOverrides()) {
             if (guildExperimentOverridesDto.getGuilds().contains(Long.valueOf(guildId))) {
                 return guildExperimentOverridesDto.getBucket();
@@ -58,20 +63,20 @@ public final class ExperimentUtils {
                     break;
                 }
                 GuildExperimentFilter next = it.next();
-                if (next instanceof GuildExperimentFilter.GuildIdsFilter) {
-                    if (!((GuildExperimentFilter.GuildIdsFilter) next).getGuildIds().contains(Long.valueOf(guildId))) {
+                if (next instanceof GuildExperimentFilter$GuildIdsFilter) {
+                    if (!((GuildExperimentFilter$GuildIdsFilter) next).getGuildIds().contains(Long.valueOf(guildId))) {
                         z5 = false;
                     }
-                } else if (next instanceof GuildExperimentFilter.GuildIdRangeFilter) {
-                    if (!((GuildExperimentFilter.GuildIdRangeFilter) next).getRange().contains(guildId)) {
+                } else if (next instanceof GuildExperimentFilter$GuildIdRangeFilter) {
+                    if (!((GuildExperimentFilter$GuildIdRangeFilter) next).getRange().contains(guildId)) {
                         z5 = false;
                     }
-                } else if (next instanceof GuildExperimentFilter.GuildMemberCountRangeFilter) {
-                    if (!C11226f.longRangeContains(((GuildExperimentFilter.GuildMemberCountRangeFilter) next).getRange(), guildMemberCount)) {
+                } else if (next instanceof GuildExperimentFilter$GuildMemberCountRangeFilter) {
+                    if (!f.longRangeContains(((GuildExperimentFilter$GuildMemberCountRangeFilter) next).getRange(), guildMemberCount)) {
                         z5 = false;
                     }
-                } else if (next instanceof GuildExperimentFilter.GuildHasFeatureFilter) {
-                    Set<GuildFeature> features = ((GuildExperimentFilter.GuildHasFeatureFilter) next).getFeatures();
+                } else if (next instanceof GuildExperimentFilter$GuildHasFeatureFilter) {
+                    Set<GuildFeature> features = ((GuildExperimentFilter$GuildHasFeatureFilter) next).getFeatures();
                     if (!(features instanceof Collection) || !features.isEmpty()) {
                         Iterator<T> it2 = features.iterator();
                         while (true) {
@@ -91,8 +96,8 @@ public final class ExperimentUtils {
                     if (z3) {
                         z5 = false;
                     }
-                } else if (next instanceof GuildExperimentFilter.GuildHubTypesFeatureFilter) {
-                    Set<GuildHubType> hubTypes = ((GuildExperimentFilter.GuildHubTypesFeatureFilter) next).getHubTypes();
+                } else if (next instanceof GuildExperimentFilter$GuildHubTypesFeatureFilter) {
+                    Set<GuildHubType> hubTypes = ((GuildExperimentFilter$GuildHubTypesFeatureFilter) next).getHubTypes();
                     if (!(hubTypes instanceof Collection) || !hubTypes.isEmpty()) {
                         Iterator<T> it3 = hubTypes.iterator();
                         while (true) {

@@ -1,11 +1,11 @@
 package com.discord.stores;
 
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreRtcRegion.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,8 +19,8 @@ public final /* data */ class RtcLatencyTestResult {
     }
 
     public RtcLatencyTestResult(List<String> list, List<String> list2, long j) {
-        C12238m.checkNotNullParameter(list, "latencyRankedRegions");
-        C12238m.checkNotNullParameter(list2, "geoRankedRegions");
+        m.checkNotNullParameter(list, "latencyRankedRegions");
+        m.checkNotNullParameter(list2, "geoRankedRegions");
         this.latencyRankedRegions = list;
         this.geoRankedRegions = list2;
         this.lastTestTimestampMs = j;
@@ -49,8 +49,8 @@ public final /* data */ class RtcLatencyTestResult {
     }
 
     public final RtcLatencyTestResult copy(List<String> latencyRankedRegions, List<String> geoRankedRegions, long lastTestTimestampMs) {
-        C12238m.checkNotNullParameter(latencyRankedRegions, "latencyRankedRegions");
-        C12238m.checkNotNullParameter(geoRankedRegions, "geoRankedRegions");
+        m.checkNotNullParameter(latencyRankedRegions, "latencyRankedRegions");
+        m.checkNotNullParameter(geoRankedRegions, "geoRankedRegions");
         return new RtcLatencyTestResult(latencyRankedRegions, geoRankedRegions, lastTestTimestampMs);
     }
 
@@ -62,7 +62,7 @@ public final /* data */ class RtcLatencyTestResult {
             return false;
         }
         RtcLatencyTestResult rtcLatencyTestResult = (RtcLatencyTestResult) other;
-        return C12238m.areEqual(this.latencyRankedRegions, rtcLatencyTestResult.latencyRankedRegions) && C12238m.areEqual(this.geoRankedRegions, rtcLatencyTestResult.geoRankedRegions) && this.lastTestTimestampMs == rtcLatencyTestResult.lastTestTimestampMs;
+        return m.areEqual(this.latencyRankedRegions, rtcLatencyTestResult.latencyRankedRegions) && m.areEqual(this.geoRankedRegions, rtcLatencyTestResult.geoRankedRegions) && this.lastTestTimestampMs == rtcLatencyTestResult.lastTestTimestampMs;
     }
 
     public final List<String> getGeoRankedRegions() {
@@ -86,19 +86,19 @@ public final /* data */ class RtcLatencyTestResult {
         List<String> list = this.latencyRankedRegions;
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
         List<String> list2 = this.geoRankedRegions;
-        return C0002b.m3a(this.lastTestTimestampMs) + ((iHashCode + (list2 != null ? list2.hashCode() : 0)) * 31);
+        return b.a(this.lastTestTimestampMs) + ((iHashCode + (list2 != null ? list2.hashCode() : 0)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("RtcLatencyTestResult(latencyRankedRegions=");
-        sbM833U.append(this.latencyRankedRegions);
-        sbM833U.append(", geoRankedRegions=");
-        sbM833U.append(this.geoRankedRegions);
-        sbM833U.append(", lastTestTimestampMs=");
-        return C1643a.m815C(sbM833U, this.lastTestTimestampMs, ")");
+        StringBuilder sbU = a.U("RtcLatencyTestResult(latencyRankedRegions=");
+        sbU.append(this.latencyRankedRegions);
+        sbU.append(", geoRankedRegions=");
+        sbU.append(this.geoRankedRegions);
+        sbU.append(", lastTestTimestampMs=");
+        return a.C(sbU, this.lastTestTimestampMs, ")");
     }
 
     public /* synthetic */ RtcLatencyTestResult(List list, List list2, long j, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? C12147n.emptyList() : list, (i & 2) != 0 ? C12147n.emptyList() : list2, (i & 4) != 0 ? 0L : j);
+        this((i & 1) != 0 ? n.emptyList() : list, (i & 2) != 0 ? n.emptyList() : list2, (i & 4) != 0 ? 0L : j);
     }
 }

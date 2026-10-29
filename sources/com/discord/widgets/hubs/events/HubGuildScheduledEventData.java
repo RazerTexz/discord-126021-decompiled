@@ -1,10 +1,10 @@
 package com.discord.widgets.hubs.events;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetHubEventsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,7 +20,7 @@ public final /* data */ class HubGuildScheduledEventData {
     private final boolean isRsvped;
 
     public HubGuildScheduledEventData(long j, GuildScheduledEvent guildScheduledEvent, Channel channel, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7) {
-        C12238m.checkNotNullParameter(guildScheduledEvent, "event");
+        m.checkNotNullParameter(guildScheduledEvent, "event");
         this.directoryChannelId = j;
         this.event = guildScheduledEvent;
         this.channel = channel;
@@ -32,8 +32,12 @@ public final /* data */ class HubGuildScheduledEventData {
         this.isInGuild = z7;
     }
 
+    public static /* synthetic */ HubGuildScheduledEventData copy$default(HubGuildScheduledEventData hubGuildScheduledEventData, long j, GuildScheduledEvent guildScheduledEvent, Channel channel, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, int i, Object obj) {
+        return hubGuildScheduledEventData.copy((i & 1) != 0 ? hubGuildScheduledEventData.directoryChannelId : j, (i & 2) != 0 ? hubGuildScheduledEventData.event : guildScheduledEvent, (i & 4) != 0 ? hubGuildScheduledEventData.channel : channel, (i & 8) != 0 ? hubGuildScheduledEventData.isRsvped : z2, (i & 16) != 0 ? hubGuildScheduledEventData.canShare : z3, (i & 32) != 0 ? hubGuildScheduledEventData.canStartEvent : z4, (i & 64) != 0 ? hubGuildScheduledEventData.canConnect : z5, (i & 128) != 0 ? hubGuildScheduledEventData.isConnected : z6, (i & 256) != 0 ? hubGuildScheduledEventData.isInGuild : z7);
+    }
+
     public final HubGuildScheduledEventData copy(long directoryChannelId, GuildScheduledEvent event, Channel channel, boolean isRsvped, boolean canShare, boolean canStartEvent, boolean canConnect, boolean isConnected, boolean isInGuild) {
-        C12238m.checkNotNullParameter(event, "event");
+        m.checkNotNullParameter(event, "event");
         return new HubGuildScheduledEventData(directoryChannelId, event, channel, isRsvped, canShare, canStartEvent, canConnect, isConnected, isInGuild);
     }
 
@@ -45,7 +49,7 @@ public final /* data */ class HubGuildScheduledEventData {
             return false;
         }
         HubGuildScheduledEventData hubGuildScheduledEventData = (HubGuildScheduledEventData) other;
-        return this.directoryChannelId == hubGuildScheduledEventData.directoryChannelId && C12238m.areEqual(this.event, hubGuildScheduledEventData.event) && C12238m.areEqual(this.channel, hubGuildScheduledEventData.channel) && this.isRsvped == hubGuildScheduledEventData.isRsvped && this.canShare == hubGuildScheduledEventData.canShare && this.canStartEvent == hubGuildScheduledEventData.canStartEvent && this.canConnect == hubGuildScheduledEventData.canConnect && this.isConnected == hubGuildScheduledEventData.isConnected && this.isInGuild == hubGuildScheduledEventData.isInGuild;
+        return this.directoryChannelId == hubGuildScheduledEventData.directoryChannelId && m.areEqual(this.event, hubGuildScheduledEventData.event) && m.areEqual(this.channel, hubGuildScheduledEventData.channel) && this.isRsvped == hubGuildScheduledEventData.isRsvped && this.canShare == hubGuildScheduledEventData.canShare && this.canStartEvent == hubGuildScheduledEventData.canStartEvent && this.canConnect == hubGuildScheduledEventData.canConnect && this.isConnected == hubGuildScheduledEventData.isConnected && this.isInGuild == hubGuildScheduledEventData.isInGuild;
     }
 
     /* JADX INFO: renamed from: component7, reason: from getter */
@@ -143,9 +147,9 @@ public final /* data */ class HubGuildScheduledEventData {
     /* JADX WARN: Type inference failed for: r2v3, types: [int] */
     /* JADX WARN: Type inference failed for: r2v4 */
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.directoryChannelId) * 31;
+        int iA = b.a(this.directoryChannelId) * 31;
         GuildScheduledEvent guildScheduledEvent = this.event;
-        int iHashCode = (iM3a + (guildScheduledEvent != null ? guildScheduledEvent.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (guildScheduledEvent != null ? guildScheduledEvent.hashCode() : 0)) * 31;
         Channel channel = this.channel;
         int iHashCode2 = (iHashCode + (channel != null ? channel.hashCode() : 0)) * 31;
         boolean z2 = this.isRsvped;
@@ -195,23 +199,23 @@ public final /* data */ class HubGuildScheduledEventData {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubGuildScheduledEventData(directoryChannelId=");
-        sbM833U.append(this.directoryChannelId);
-        sbM833U.append(", event=");
-        sbM833U.append(this.event);
-        sbM833U.append(", channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", isRsvped=");
-        sbM833U.append(this.isRsvped);
-        sbM833U.append(", canShare=");
-        sbM833U.append(this.canShare);
-        sbM833U.append(", canStartEvent=");
-        sbM833U.append(this.canStartEvent);
-        sbM833U.append(", canConnect=");
-        sbM833U.append(this.canConnect);
-        sbM833U.append(", isConnected=");
-        sbM833U.append(this.isConnected);
-        sbM833U.append(", isInGuild=");
-        return C1643a.m827O(sbM833U, this.isInGuild, ")");
+        StringBuilder sbU = a.U("HubGuildScheduledEventData(directoryChannelId=");
+        sbU.append(this.directoryChannelId);
+        sbU.append(", event=");
+        sbU.append(this.event);
+        sbU.append(", channel=");
+        sbU.append(this.channel);
+        sbU.append(", isRsvped=");
+        sbU.append(this.isRsvped);
+        sbU.append(", canShare=");
+        sbU.append(this.canShare);
+        sbU.append(", canStartEvent=");
+        sbU.append(this.canStartEvent);
+        sbU.append(", canConnect=");
+        sbU.append(this.canConnect);
+        sbU.append(", isConnected=");
+        sbU.append(this.isConnected);
+        sbU.append(", isInGuild=");
+        return a.O(sbU, this.isInGuild, ")");
     }
 }

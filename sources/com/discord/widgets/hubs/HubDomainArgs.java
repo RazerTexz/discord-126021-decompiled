@@ -2,45 +2,23 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.core.app.NotificationCompat;
-import java.util.ArrayList;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubDomains.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubDomainArgs implements Parcelable {
-    public static final Parcelable.Creator<HubDomainArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<HubDomainArgs> CREATOR = new HubDomainArgs$Creator();
     private final String email;
     private final List<DomainGuildInfo> guildInfos;
 
-    public final class Creator implements Parcelable.Creator<HubDomainArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubDomainArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            String string = parcel.readString();
-            int i = parcel.readInt();
-            ArrayList arrayList = new ArrayList(i);
-            while (i != 0) {
-                arrayList.add(DomainGuildInfo.CREATOR.createFromParcel(parcel));
-                i--;
-            }
-            return new HubDomainArgs(string, arrayList);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubDomainArgs[] newArray(int i) {
-            return new HubDomainArgs[i];
-        }
-    }
-
     public HubDomainArgs(String str, List<DomainGuildInfo> list) {
-        C12238m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
-        C12238m.checkNotNullParameter(list, "guildInfos");
+        m.checkNotNullParameter(str, NotificationCompat.CATEGORY_EMAIL);
+        m.checkNotNullParameter(list, "guildInfos");
         this.email = str;
         this.guildInfos = list;
     }
@@ -61,8 +39,8 @@ public final /* data */ class HubDomainArgs implements Parcelable {
     }
 
     public final HubDomainArgs copy(String email, List<DomainGuildInfo> guildInfos) {
-        C12238m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
-        C12238m.checkNotNullParameter(guildInfos, "guildInfos");
+        m.checkNotNullParameter(email, NotificationCompat.CATEGORY_EMAIL);
+        m.checkNotNullParameter(guildInfos, "guildInfos");
         return new HubDomainArgs(email, guildInfos);
     }
 
@@ -79,7 +57,7 @@ public final /* data */ class HubDomainArgs implements Parcelable {
             return false;
         }
         HubDomainArgs hubDomainArgs = (HubDomainArgs) other;
-        return C12238m.areEqual(this.email, hubDomainArgs.email) && C12238m.areEqual(this.guildInfos, hubDomainArgs.guildInfos);
+        return m.areEqual(this.email, hubDomainArgs.email) && m.areEqual(this.guildInfos, hubDomainArgs.guildInfos);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -103,15 +81,15 @@ public final /* data */ class HubDomainArgs implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubDomainArgs(email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", guildInfos=");
-        return C1643a.m824L(sbM833U, this.guildInfos, ")");
+        StringBuilder sbU = a.U("HubDomainArgs(email=");
+        sbU.append(this.email);
+        sbU.append(", guildInfos=");
+        return a.L(sbU, this.guildInfos, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeString(this.email);
         List<DomainGuildInfo> list = this.guildInfos;
         parcel.writeInt(list.size());

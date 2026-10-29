@@ -6,54 +6,48 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
 import com.facebook.samples.zoomable.ZoomableDraweeView;
-import com.google.android.exoplayer2.p505ui.PlayerControlView;
-import com.google.android.exoplayer2.p505ui.PlayerView;
+import com.google.android.exoplayer2.ui.PlayerControlView;
+import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.material.appbar.AppBarLayout;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetMediaBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f17228a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final AppBarLayout f17229b;
+    public final AppBarLayout f2486b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final FrameLayout f17230c;
+    public final FrameLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ZoomableDraweeView f17231d;
+    public final ZoomableDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ProgressBar f17232e;
+    public final ProgressBar e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final PlayerControlView f17233f;
+    public final PlayerControlView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final PlayerView f17234g;
+    public final PlayerView g;
 
     public WidgetMediaBinding(@NonNull FrameLayout frameLayout, @NonNull AppBarLayout appBarLayout, @NonNull FrameLayout frameLayout2, @NonNull ZoomableDraweeView zoomableDraweeView, @NonNull ProgressBar progressBar, @NonNull PlayerControlView playerControlView, @NonNull PlayerView playerView) {
-        this.f17228a = frameLayout;
-        this.f17229b = appBarLayout;
-        this.f17230c = frameLayout2;
-        this.f17231d = zoomableDraweeView;
-        this.f17232e = progressBar;
-        this.f17233f = playerControlView;
-        this.f17234g = playerView;
+        this.a = frameLayout;
+        this.f2486b = appBarLayout;
+        this.c = frameLayout2;
+        this.d = zoomableDraweeView;
+        this.e = progressBar;
+        this.f = playerControlView;
+        this.g = playerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17228a;
+        return this.a;
     }
 }

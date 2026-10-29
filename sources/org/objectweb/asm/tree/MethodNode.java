@@ -83,13 +83,7 @@ public class MethodNode extends MethodVisitor {
 
     @Override // org.objectweb.asm.MethodVisitor
     public AnnotationVisitor visitAnnotationDefault() {
-        return new AnnotationNode(new ArrayList<Object>(0) { // from class: org.objectweb.asm.tree.MethodNode.1
-            @Override // java.util.ArrayList, java.util.AbstractList, java.util.AbstractCollection, java.util.Collection, java.util.List
-            public boolean add(Object o) {
-                MethodNode.this.annotationDefault = o;
-                return super.add(o);
-            }
-        });
+        return new AnnotationNode(new MethodNode$1(this, 0));
     }
 
     @Override // org.objectweb.asm.MethodVisitor

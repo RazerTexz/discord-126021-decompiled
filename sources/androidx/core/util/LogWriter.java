@@ -2,10 +2,11 @@ package androidx.core.util;
 
 import android.util.Log;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.io.Writer;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 @Deprecated
 public class LogWriter extends Writer {
     private final String mTag;

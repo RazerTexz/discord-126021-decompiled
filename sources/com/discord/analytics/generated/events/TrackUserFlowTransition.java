@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUserFlowTransition.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +20,11 @@ public final /* data */ class TrackUserFlowTransition implements AnalyticsSchema
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "user_flow_transition";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -28,7 +33,7 @@ public final /* data */ class TrackUserFlowTransition implements AnalyticsSchema
             return false;
         }
         TrackUserFlowTransition trackUserFlowTransition = (TrackUserFlowTransition) other;
-        return C12238m.areEqual(this.flowType, trackUserFlowTransition.flowType) && C12238m.areEqual(this.fromStep, trackUserFlowTransition.fromStep) && C12238m.areEqual(this.toStep, trackUserFlowTransition.toStep) && C12238m.areEqual(this.skip, trackUserFlowTransition.skip) && C12238m.areEqual(this.secondsOnFromStep, trackUserFlowTransition.secondsOnFromStep);
+        return m.areEqual(this.flowType, trackUserFlowTransition.flowType) && m.areEqual(this.fromStep, trackUserFlowTransition.fromStep) && m.areEqual(this.toStep, trackUserFlowTransition.toStep) && m.areEqual(this.skip, trackUserFlowTransition.skip) && m.areEqual(this.secondsOnFromStep, trackUserFlowTransition.secondsOnFromStep);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,24 +61,18 @@ public final /* data */ class TrackUserFlowTransition implements AnalyticsSchema
         return iHashCode4 + (f != null ? f.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUserFlowTransition(flowType=");
-        sbM833U.append(this.flowType);
-        sbM833U.append(", fromStep=");
-        sbM833U.append(this.fromStep);
-        sbM833U.append(", toStep=");
-        sbM833U.append(this.toStep);
-        sbM833U.append(", skip=");
-        sbM833U.append(this.skip);
-        sbM833U.append(", secondsOnFromStep=");
-        sbM833U.append(this.secondsOnFromStep);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TrackUserFlowTransition(flowType=");
+        sbU.append(this.flowType);
+        sbU.append(", fromStep=");
+        sbU.append(this.fromStep);
+        sbU.append(", toStep=");
+        sbU.append(this.toStep);
+        sbU.append(", skip=");
+        sbU.append(this.skip);
+        sbU.append(", secondsOnFromStep=");
+        sbU.append(this.secondsOnFromStep);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

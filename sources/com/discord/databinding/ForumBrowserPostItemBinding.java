@@ -8,22 +8,21 @@ import com.discord.widgets.forums.ForumBrowserPostView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ForumBrowserPostItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ForumBrowserPostView f15078a;
+    public final ForumBrowserPostView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ForumBrowserPostView f15079b;
+    public final ForumBrowserPostView f2108b;
 
     public ForumBrowserPostItemBinding(@NonNull ForumBrowserPostView forumBrowserPostView, @NonNull ForumBrowserPostView forumBrowserPostView2) {
-        this.f15078a = forumBrowserPostView;
-        this.f15079b = forumBrowserPostView2;
+        this.a = forumBrowserPostView;
+        this.f2108b = forumBrowserPostView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15078a;
+        return this.a;
     }
 }

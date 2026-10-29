@@ -8,14 +8,13 @@ import android.widget.TextView;
 import androidx.annotation.MainThread;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.FragmentManager;
-import com.discord.C5419R;
+import b.a.k.b;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityAssets;
 import com.discord.api.activity.ActivityTimestamps;
 import com.discord.models.guild.Guild;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.User;
-import com.discord.stores.StoreStream;
 import com.discord.utilities.extensions.SimpleDraweeViewExtensionsKt;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.presence.ActivityUtilsKt;
@@ -23,12 +22,8 @@ import com.discord.utilities.presence.PresenceUtils;
 import com.discord.utilities.presence.StageCallRichPresencePartyData;
 import com.discord.utilities.streams.StreamContext;
 import com.discord.utilities.view.extensions.ViewExtensions;
-import com.discord.utilities.views.ViewCoroutineScopeKt;
-import com.discord.widgets.stage.StageChannelJoinHelper;
 import com.facebook.drawee.view.SimpleDraweeView;
-import p007b.p008a.p027k.C1107b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ViewHolderStageChannelRichPresence.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -38,15 +33,15 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ViewHolderStageChannelRichPresence(View view, SimpleDraweeView simpleDraweeView, TextView textView, TextView textView2, TextView textView3, TextView textView4, View view2, Button button, TextView textView5) {
         super(view, simpleDraweeView, null, textView, textView2, textView3, textView4, null, view2, button, null, 5);
-        C12238m.checkNotNullParameter(view, "root");
-        C12238m.checkNotNullParameter(simpleDraweeView, "richPresenceImageLarge");
-        C12238m.checkNotNullParameter(textView, "richPresenceHeader");
-        C12238m.checkNotNullParameter(textView2, "richPresenceTitle");
-        C12238m.checkNotNullParameter(textView3, "richPresenceDetails");
-        C12238m.checkNotNullParameter(textView4, "richPresenceTime");
-        C12238m.checkNotNullParameter(view2, "richPresenceTextContainer");
-        C12238m.checkNotNullParameter(button, "richPresencePrimaryButton");
-        C12238m.checkNotNullParameter(textView5, "richPresenceImageLargeText");
+        m.checkNotNullParameter(view, "root");
+        m.checkNotNullParameter(simpleDraweeView, "richPresenceImageLarge");
+        m.checkNotNullParameter(textView, "richPresenceHeader");
+        m.checkNotNullParameter(textView2, "richPresenceTitle");
+        m.checkNotNullParameter(textView3, "richPresenceDetails");
+        m.checkNotNullParameter(textView4, "richPresenceTime");
+        m.checkNotNullParameter(view2, "richPresenceTextContainer");
+        m.checkNotNullParameter(button, "richPresencePrimaryButton");
+        m.checkNotNullParameter(textView5, "richPresenceImageLargeText");
         this.richPresenceImageLargeText = textView5;
     }
 
@@ -72,14 +67,14 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
         getRichPresenceImageLarge().setVisibility(zHasIcon ? 0 : 8);
         this.richPresenceImageLargeText.setVisibility(zHasIcon ^ true ? 0 : 8);
         if (zHasIcon) {
-            SimpleDraweeViewExtensionsKt.setGuildIcon(getRichPresenceImageLarge(), true, (496 & 2) != 0 ? null : guild, resources.getDimensionPixelSize(C5419R.dimen.guild_icon_radius), (496 & 8) != 0 ? null : Integer.valueOf(IconUtils.getMediaProxySize(resources.getDimensionPixelSize(C5419R.dimen.avatar_size_large))), (496 & 16) != 0 ? null : null, (496 & 32) != 0 ? null : null, (496 & 64) != 0 ? null : null, (496 & 128) != 0 ? false : false, (496 & 256) != 0 ? null : null);
+            SimpleDraweeViewExtensionsKt.setGuildIcon$default(getRichPresenceImageLarge(), true, guild, resources.getDimensionPixelSize(2131165449), Integer.valueOf(IconUtils.getMediaProxySize(resources.getDimensionPixelSize(2131165293))), null, null, null, false, null, 496, null);
         } else {
             this.richPresenceImageLargeText.setText(guild.getShortName());
         }
     }
 
-    private final void configureButtonUi(final FragmentManager fragmentManager, Activity model, final boolean isMe, final boolean userInSameVoiceChannel) {
-        final StageCallRichPresencePartyData stageChannelRichPresencePartyData = model != null ? ActivityUtilsKt.getStageChannelRichPresencePartyData(model) : null;
+    private final void configureButtonUi(FragmentManager fragmentManager, Activity model, boolean isMe, boolean userInSameVoiceChannel) {
+        StageCallRichPresencePartyData stageChannelRichPresencePartyData = model != null ? ActivityUtilsKt.getStageChannelRichPresencePartyData(model) : null;
         if (stageChannelRichPresencePartyData == null) {
             Button richPresencePrimaryButton = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton != null) {
@@ -88,15 +83,10 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
             }
             return;
         }
-        final Button richPresencePrimaryButton2 = getRichPresencePrimaryButton();
+        Button richPresencePrimaryButton2 = getRichPresencePrimaryButton();
         if (richPresencePrimaryButton2 != null) {
             richPresencePrimaryButton2.setVisibility(!isMe && !userInSameVoiceChannel ? 0 : 8);
-            richPresencePrimaryButton2.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.presence.ViewHolderStageChannelRichPresence$configureButtonUi$$inlined$apply$lambda$1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    StageChannelJoinHelper.INSTANCE.lurkAndJoinStage(C1643a.m885x(view, "it", "it.context"), fragmentManager, ViewCoroutineScopeKt.getCoroutineScope(richPresencePrimaryButton2), stageChannelRichPresencePartyData.getGuildId(), stageChannelRichPresencePartyData.getChannelId(), (448 & 32) != 0 ? false : true, (448 & 64) != 0 ? StoreStream.INSTANCE.getGuilds() : null, (448 & 128) != 0 ? StoreStream.INSTANCE.getLurking() : null, (448 & 256) != 0 ? StoreStream.INSTANCE.getVoiceChannelSelected() : null);
-                }
-            });
+            richPresencePrimaryButton2.setOnClickListener(new ViewHolderStageChannelRichPresence$configureButtonUi$$inlined$apply$lambda$1(richPresencePrimaryButton2, isMe, userInSameVoiceChannel, fragmentManager, stageChannelRichPresencePartyData));
         }
     }
 
@@ -119,7 +109,7 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
             if (assets2 == null || (smallText = assets2.getSmallText()) == null) {
                 return;
             }
-            C1107b.m221m(richPresenceDetails, C5419R.string.stage_discovery_origin_text, new Object[]{smallText}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
+            b.n(richPresenceDetails, 2131895819, new Object[]{smallText}, null, 4);
         }
     }
 
@@ -127,8 +117,8 @@ public final class ViewHolderStageChannelRichPresence extends ViewHolderUserRich
     @MainThread
     public void configureUi(FragmentManager fragmentManager, StreamContext streamContext, boolean isMe, User user, Context applicationContext, ModelRichPresence richPresence, boolean userInSameVoiceChannel) {
         Presence presence;
-        C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        C12238m.checkNotNullParameter(applicationContext, "applicationContext");
+        m.checkNotNullParameter(fragmentManager, "fragmentManager");
+        m.checkNotNullParameter(applicationContext, "applicationContext");
         disposeTimer();
         Activity stageChannelActivity = (richPresence == null || (presence = richPresence.getPresence()) == null) ? null : PresenceUtils.INSTANCE.getStageChannelActivity(presence);
         if (stageChannelActivity == null) {

@@ -1,25 +1,24 @@
 package com.discord.widgets.nux;
 
-import com.discord.C5419R;
 import com.discord.utilities.fcm.NotificationClient;
 import com.discord.widgets.guilds.create.StockGuildTemplate;
 
 /* JADX INFO: compiled from: GuildTemplates.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public enum GuildTemplate {
-    CreateMyOwn(C5419R.string.guild_template_header_create, C5419R.drawable.drawable_guild_template_create, StockGuildTemplate.CREATE),
-    Gaming(C5419R.string.guild_template_header_gaming, C5419R.drawable.drawable_guild_template_gaming, StockGuildTemplate.GAMING_GROUP),
-    SchoolClub(C5419R.string.guild_template_header_school_club, C5419R.drawable.drawable_guild_template_club, StockGuildTemplate.CLUB),
-    StudyGroup(C5419R.string.guild_template_header_study, C5419R.drawable.drawable_guild_template_study, StockGuildTemplate.STUDY_GROUP),
-    Friends(C5419R.string.guild_template_header_friend, C5419R.drawable.drawable_guild_template_friend, StockGuildTemplate.FRIEND_GROUP),
-    ArtistsAndCreators(C5419R.string.guild_template_header_creator, C5419R.drawable.drawable_guild_template_creator, StockGuildTemplate.CONTENT_CREATOR),
-    LocalCommunity(C5419R.string.guild_template_header_community, C5419R.drawable.drawable_guild_template_community, StockGuildTemplate.LOCAL_COMMUNITY),
-    HubStudyGroup(C5419R.string.guild_template_header_study, C5419R.drawable.drawable_guild_template_friend, StockGuildTemplate.HUB_STUDY_GROUP),
-    HubSchoolClub(C5419R.string.guild_template_header_school_club, C5419R.drawable.drawable_guild_template_community, StockGuildTemplate.HUB_SCHOOL_CLUB),
-    Class(C5419R.string.guild_template_header_class, C5419R.drawable.drawable_guild_template_study, StockGuildTemplate.CLASS),
-    Social(C5419R.string.guild_template_header_social, C5419R.drawable.drawable_guild_template_gaming, StockGuildTemplate.SOCIAL),
-    SubjectOrMajor(C5419R.string.guild_template_header_major, C5419R.drawable.drawable_guild_template_club, StockGuildTemplate.MAJOR),
-    Dorm(C5419R.string.guild_template_header_dorm, C5419R.drawable.drawable_guild_template_creator, StockGuildTemplate.DORM);
+    CreateMyOwn(2131891560, 2131231236, StockGuildTemplate.CREATE),
+    Gaming(2131891564, 2131231239, StockGuildTemplate.GAMING_GROUP),
+    SchoolClub(2131891566, 2131231234, StockGuildTemplate.CLUB),
+    StudyGroup(2131891568, 2131231240, StockGuildTemplate.STUDY_GROUP),
+    Friends(2131891563, 2131231238, StockGuildTemplate.FRIEND_GROUP),
+    ArtistsAndCreators(2131891561, 2131231237, StockGuildTemplate.CONTENT_CREATOR),
+    LocalCommunity(2131891559, 2131231235, StockGuildTemplate.LOCAL_COMMUNITY),
+    HubStudyGroup(2131891568, 2131231238, StockGuildTemplate.HUB_STUDY_GROUP),
+    HubSchoolClub(2131891566, 2131231235, StockGuildTemplate.HUB_SCHOOL_CLUB),
+    Class(2131891557, 2131231240, StockGuildTemplate.CLASS),
+    Social(2131891567, 2131231239, StockGuildTemplate.SOCIAL),
+    SubjectOrMajor(2131891565, 2131231234, StockGuildTemplate.MAJOR),
+    Dorm(2131891562, 2131231237, StockGuildTemplate.DORM);
 
     private final int drawableRes;
     private final StockGuildTemplate templateType;

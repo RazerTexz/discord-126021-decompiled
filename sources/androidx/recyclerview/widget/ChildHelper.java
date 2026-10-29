@@ -1,7 +1,7 @@
 package androidx.recyclerview.widget;
 
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,49 +9,25 @@ import java.util.List;
 public class ChildHelper {
     private static final boolean DEBUG = false;
     private static final String TAG = "ChildrenHelper";
-    public final Callback mCallback;
-    public final Bucket mBucket = new Bucket();
+    public final ChildHelper$Callback mCallback;
+    public final ChildHelper$Bucket mBucket = new ChildHelper$Bucket();
     public final List<View> mHiddenViews = new ArrayList();
 
-    public interface Callback {
-        void addView(View view, int i);
-
-        void attachViewToParent(View view, int i, ViewGroup.LayoutParams layoutParams);
-
-        void detachViewFromParent(int i);
-
-        View getChildAt(int i);
-
-        int getChildCount();
-
-        RecyclerView.ViewHolder getChildViewHolder(View view);
-
-        int indexOfChild(View view);
-
-        void onEnteredHiddenState(View view);
-
-        void onLeftHiddenState(View view);
-
-        void removeAllViews();
-
-        void removeViewAt(int i);
-    }
-
-    public ChildHelper(Callback callback) {
-        this.mCallback = callback;
+    public ChildHelper(ChildHelper$Callback childHelper$Callback) {
+        this.mCallback = childHelper$Callback;
     }
 
     public void addView(View view, boolean z2) {
         addView(view, -1, z2);
     }
 
-    public void attachViewToParent(View view, int i, ViewGroup.LayoutParams layoutParams, boolean z2) {
+    public void attachViewToParent(View view, int i, ViewGroup$LayoutParams viewGroup$LayoutParams, boolean z2) {
         int childCount = i < 0 ? this.mCallback.getChildCount() : getOffset(i);
         this.mBucket.insert(childCount, z2);
         if (z2) {
             hideViewInternal(view);
         }
-        this.mCallback.attachViewToParent(view, childCount, layoutParams);
+        this.mCallback.attachViewToParent(view, childCount, viewGroup$LayoutParams);
     }
 
     public void detachViewFromParent(int i) {
@@ -64,7 +40,7 @@ public class ChildHelper {
         int size = this.mHiddenViews.size();
         for (int i2 = 0; i2 < size; i2++) {
             View view = this.mHiddenViews.get(i2);
-            RecyclerView.ViewHolder childViewHolder = this.mCallback.getChildViewHolder(view);
+            RecyclerView$ViewHolder childViewHolder = this.mCallback.getChildViewHolder(view);
             if (childViewHolder.getLayoutPosition() == i && !childViewHolder.isInvalid() && !childViewHolder.isRemoved()) {
                 return view;
             }
@@ -204,116 +180,6 @@ public class ChildHelper {
         }
         this.mCallback.onLeftHiddenState(view);
         return true;
-    }
-
-    public class Bucket {
-        public static final int BITS_PER_WORD = 64;
-        public static final long LAST_BIT = Long.MIN_VALUE;
-        public Bucket mNext;
-        public long mData = 0;
-
-        public void clear(int i) {
-            if (i < 64) {
-                this.mData &= ~(1 << i);
-                return;
-            }
-            Bucket bucket = this.mNext;
-            if (bucket != null) {
-                bucket.clear(i - 64);
-            }
-        }
-
-        public int countOnesBefore(int i) {
-            Bucket bucket = this.mNext;
-            if (bucket == null) {
-                return i >= 64 ? Long.bitCount(this.mData) : Long.bitCount(this.mData & ((1 << i) - 1));
-            }
-            if (i < 64) {
-                return Long.bitCount(this.mData & ((1 << i) - 1));
-            }
-            return Long.bitCount(this.mData) + bucket.countOnesBefore(i - 64);
-        }
-
-        private void ensureNext() {
-            if (this.mNext == null) {
-                this.mNext = new Bucket();
-            }
-        }
-
-        public boolean get(int i) {
-            if (i < 64) {
-                return (this.mData & (1 << i)) != 0;
-            }
-            ensureNext();
-            return this.mNext.get(i - 64);
-        }
-
-        public void insert(int i, boolean z2) {
-            if (i >= 64) {
-                ensureNext();
-                this.mNext.insert(i - 64, z2);
-                return;
-            }
-            long j = this.mData;
-            boolean z3 = (Long.MIN_VALUE & j) != 0;
-            long j2 = (1 << i) - 1;
-            this.mData = ((j & (~j2)) << 1) | (j & j2);
-            if (z2) {
-                set(i);
-            } else {
-                clear(i);
-            }
-            if (z3 || this.mNext != null) {
-                ensureNext();
-                this.mNext.insert(0, z3);
-            }
-        }
-
-        public boolean remove(int i) {
-            if (i >= 64) {
-                ensureNext();
-                return this.mNext.remove(i - 64);
-            }
-            long j = 1 << i;
-            long j2 = this.mData;
-            boolean z2 = (j2 & j) != 0;
-            long j3 = j2 & (~j);
-            this.mData = j3;
-            long j4 = j - 1;
-            this.mData = (j3 & j4) | Long.rotateRight((~j4) & j3, 1);
-            Bucket bucket = this.mNext;
-            if (bucket != null) {
-                if (bucket.get(0)) {
-                    set(63);
-                }
-                this.mNext.remove(0);
-            }
-            return z2;
-        }
-
-        public void reset() {
-            this.mData = 0L;
-            Bucket bucket = this.mNext;
-            if (bucket != null) {
-                bucket.reset();
-            }
-        }
-
-        public void set(int i) {
-            if (i < 64) {
-                this.mData |= 1 << i;
-            } else {
-                ensureNext();
-                this.mNext.set(i - 64);
-            }
-        }
-
-        public String toString() {
-            if (this.mNext == null) {
-                return Long.toBinaryString(this.mData);
-            }
-            return this.mNext.toString() + "xx" + Long.toBinaryString(this.mData);
-        }
     }
 
     public void addView(View view, int i, boolean z2) {

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSeoServerLandingPageViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackSeoServerLandingPageViewed implements Analyti
             return false;
         }
         TrackSeoServerLandingPageViewed trackSeoServerLandingPageViewed = (TrackSeoServerLandingPageViewed) other;
-        return C12238m.areEqual(this.guildId, trackSeoServerLandingPageViewed.guildId) && C12238m.areEqual(this.guildName, trackSeoServerLandingPageViewed.guildName) && C12238m.areEqual(this.slug, trackSeoServerLandingPageViewed.slug);
+        return m.areEqual(this.guildId, trackSeoServerLandingPageViewed.guildId) && m.areEqual(this.guildName, trackSeoServerLandingPageViewed.guildName) && m.areEqual(this.slug, trackSeoServerLandingPageViewed.slug);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackSeoServerLandingPageViewed implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSeoServerLandingPageViewed(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", slug=");
-        return C1643a.m817E(sbM833U, this.slug, ")");
+        StringBuilder sbU = a.U("TrackSeoServerLandingPageViewed(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", slug=");
+        return a.E(sbU, this.slug, ")");
     }
 }

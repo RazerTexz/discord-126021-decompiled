@@ -1,9 +1,9 @@
 package com.discord.models.domain;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.models.domain.billing.ModelBillingAddress;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelPaymentSource.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,8 +20,8 @@ public final /* data */ class PaymentSourceRaw {
     private final int type;
 
     public PaymentSourceRaw(int i, String str, boolean z2, ModelBillingAddress modelBillingAddress, boolean z3, String str2, String str3, String str4, int i2, int i3) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(modelBillingAddress, "billingAddress");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(modelBillingAddress, "billingAddress");
         this.type = i;
         this.id = str;
         this.invalid = z2;
@@ -34,9 +34,13 @@ public final /* data */ class PaymentSourceRaw {
         this.expiresYear = i3;
     }
 
+    public static /* synthetic */ PaymentSourceRaw copy$default(PaymentSourceRaw paymentSourceRaw, int i, String str, boolean z2, ModelBillingAddress modelBillingAddress, boolean z3, String str2, String str3, String str4, int i2, int i3, int i4, Object obj) {
+        return paymentSourceRaw.copy((i4 & 1) != 0 ? paymentSourceRaw.type : i, (i4 & 2) != 0 ? paymentSourceRaw.id : str, (i4 & 4) != 0 ? paymentSourceRaw.invalid : z2, (i4 & 8) != 0 ? paymentSourceRaw.billingAddress : modelBillingAddress, (i4 & 16) != 0 ? paymentSourceRaw.default : z3, (i4 & 32) != 0 ? paymentSourceRaw.email : str2, (i4 & 64) != 0 ? paymentSourceRaw.brand : str3, (i4 & 128) != 0 ? paymentSourceRaw.last_4 : str4, (i4 & 256) != 0 ? paymentSourceRaw.expiresMonth : i2, (i4 & 512) != 0 ? paymentSourceRaw.expiresYear : i3);
+    }
+
     public final PaymentSourceRaw copy(int type, String id2, boolean invalid, ModelBillingAddress billingAddress, boolean z2, String email, String brand, String last_4, int expiresMonth, int expiresYear) {
-        C12238m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(billingAddress, "billingAddress");
+        m.checkNotNullParameter(id2, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(billingAddress, "billingAddress");
         return new PaymentSourceRaw(type, id2, invalid, billingAddress, z2, email, brand, last_4, expiresMonth, expiresYear);
     }
 
@@ -48,7 +52,7 @@ public final /* data */ class PaymentSourceRaw {
             return false;
         }
         PaymentSourceRaw paymentSourceRaw = (PaymentSourceRaw) other;
-        return this.type == paymentSourceRaw.type && C12238m.areEqual(this.id, paymentSourceRaw.id) && this.invalid == paymentSourceRaw.invalid && C12238m.areEqual(this.billingAddress, paymentSourceRaw.billingAddress) && this.default == paymentSourceRaw.default && C12238m.areEqual(this.email, paymentSourceRaw.email) && C12238m.areEqual(this.brand, paymentSourceRaw.brand) && C12238m.areEqual(this.last_4, paymentSourceRaw.last_4) && this.expiresMonth == paymentSourceRaw.expiresMonth && this.expiresYear == paymentSourceRaw.expiresYear;
+        return this.type == paymentSourceRaw.type && m.areEqual(this.id, paymentSourceRaw.id) && this.invalid == paymentSourceRaw.invalid && m.areEqual(this.billingAddress, paymentSourceRaw.billingAddress) && this.default == paymentSourceRaw.default && m.areEqual(this.email, paymentSourceRaw.email) && m.areEqual(this.brand, paymentSourceRaw.brand) && m.areEqual(this.last_4, paymentSourceRaw.last_4) && this.expiresMonth == paymentSourceRaw.expiresMonth && this.expiresYear == paymentSourceRaw.expiresYear;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -172,25 +176,25 @@ public final /* data */ class PaymentSourceRaw {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PaymentSourceRaw(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", invalid=");
-        sbM833U.append(this.invalid);
-        sbM833U.append(", billingAddress=");
-        sbM833U.append(this.billingAddress);
-        sbM833U.append(", default=");
-        sbM833U.append(this.default);
-        sbM833U.append(", email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", brand=");
-        sbM833U.append(this.brand);
-        sbM833U.append(", last_4=");
-        sbM833U.append(this.last_4);
-        sbM833U.append(", expiresMonth=");
-        sbM833U.append(this.expiresMonth);
-        sbM833U.append(", expiresYear=");
-        return C1643a.m814B(sbM833U, this.expiresYear, ")");
+        StringBuilder sbU = a.U("PaymentSourceRaw(type=");
+        sbU.append(this.type);
+        sbU.append(", id=");
+        sbU.append(this.id);
+        sbU.append(", invalid=");
+        sbU.append(this.invalid);
+        sbU.append(", billingAddress=");
+        sbU.append(this.billingAddress);
+        sbU.append(", default=");
+        sbU.append(this.default);
+        sbU.append(", email=");
+        sbU.append(this.email);
+        sbU.append(", brand=");
+        sbU.append(this.brand);
+        sbU.append(", last_4=");
+        sbU.append(this.last_4);
+        sbU.append(", expiresMonth=");
+        sbU.append(this.expiresMonth);
+        sbU.append(", expiresYear=");
+        return a.B(sbU, this.expiresYear, ")");
     }
 }

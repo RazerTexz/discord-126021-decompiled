@@ -6,29 +6,21 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.arch.core.internal.SafeIterableMap;
-import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
+import androidx.arch.core.internal.SafeIterableMap$IteratorWithAdditions;
+import b.d.b.a.a;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedApi"})
 public final class SavedStateRegistry {
     private static final String SAVED_COMPONENTS_KEY = "androidx.lifecycle.BundlableSavedStateRegistry.key";
-    private Recreator.SavedStateProvider mRecreatorProvider;
+    private Recreator$SavedStateProvider mRecreatorProvider;
     private boolean mRestored;
 
     @Nullable
     private Bundle mRestoredState;
-    private SafeIterableMap<String, SavedStateProvider> mComponents = new SafeIterableMap<>();
+    private SafeIterableMap<String, SavedStateRegistry$SavedStateProvider> mComponents = new SafeIterableMap<>();
     public boolean mAllowingSavingState = true;
-
-    public interface AutoRecreated {
-        void onRecreated(@NonNull SavedStateRegistryOwner savedStateRegistryOwner);
-    }
-
-    public interface SavedStateProvider {
-        @NonNull
-        Bundle saveState();
-    }
 
     @Nullable
     @MainThread
@@ -61,16 +53,7 @@ public final class SavedStateRegistry {
         if (bundle != null) {
             this.mRestoredState = bundle.getBundle(SAVED_COMPONENTS_KEY);
         }
-        lifecycle.addObserver(new GenericLifecycleObserver() { // from class: androidx.savedstate.SavedStateRegistry.1
-            @Override // androidx.view.LifecycleEventObserver
-            public void onStateChanged(LifecycleOwner lifecycleOwner, Lifecycle.Event event) {
-                if (event == Lifecycle.Event.ON_START) {
-                    SavedStateRegistry.this.mAllowingSavingState = true;
-                } else if (event == Lifecycle.Event.ON_STOP) {
-                    SavedStateRegistry.this.mAllowingSavingState = false;
-                }
-            }
-        });
+        lifecycle.addObserver(new SavedStateRegistry$1(this));
         this.mRestored = true;
     }
 
@@ -81,37 +64,37 @@ public final class SavedStateRegistry {
         if (bundle3 != null) {
             bundle2.putAll(bundle3);
         }
-        SafeIterableMap<String, SavedStateProvider>.IteratorWithAdditions iteratorWithAdditions = this.mComponents.iteratorWithAdditions();
-        while (iteratorWithAdditions.hasNext()) {
-            Map.Entry next = iteratorWithAdditions.next();
-            bundle2.putBundle((String) next.getKey(), ((SavedStateProvider) next.getValue()).saveState());
+        SafeIterableMap$IteratorWithAdditions safeIterableMap$IteratorWithAdditionsIteratorWithAdditions = this.mComponents.iteratorWithAdditions();
+        while (safeIterableMap$IteratorWithAdditionsIteratorWithAdditions.hasNext()) {
+            Map$Entry next = safeIterableMap$IteratorWithAdditionsIteratorWithAdditions.next();
+            bundle2.putBundle((String) next.getKey(), ((SavedStateRegistry$SavedStateProvider) next.getValue()).saveState());
         }
         bundle.putBundle(SAVED_COMPONENTS_KEY, bundle2);
     }
 
     @MainThread
-    public void registerSavedStateProvider(@NonNull String str, @NonNull SavedStateProvider savedStateProvider) {
-        if (this.mComponents.putIfAbsent(str, savedStateProvider) != null) {
+    public void registerSavedStateProvider(@NonNull String str, @NonNull SavedStateRegistry$SavedStateProvider savedStateRegistry$SavedStateProvider) {
+        if (this.mComponents.putIfAbsent(str, savedStateRegistry$SavedStateProvider) != null) {
             throw new IllegalArgumentException("SavedStateProvider with the given key is already registered");
         }
     }
 
     @MainThread
-    public void runOnNextRecreation(@NonNull Class<? extends AutoRecreated> cls) {
+    public void runOnNextRecreation(@NonNull Class<? extends SavedStateRegistry$AutoRecreated> cls) {
         if (!this.mAllowingSavingState) {
             throw new IllegalStateException("Can not perform this action after onSaveInstanceState");
         }
         if (this.mRecreatorProvider == null) {
-            this.mRecreatorProvider = new Recreator.SavedStateProvider(this);
+            this.mRecreatorProvider = new Recreator$SavedStateProvider(this);
         }
         try {
             cls.getDeclaredConstructor(new Class[0]);
             this.mRecreatorProvider.add(cls.getName());
         } catch (NoSuchMethodException e) {
-            StringBuilder sbM833U = C1643a.m833U("Class");
-            sbM833U.append(cls.getSimpleName());
-            sbM833U.append(" must have default constructor in order to be automatically recreated");
-            throw new IllegalArgumentException(sbM833U.toString(), e);
+            StringBuilder sbU = a.U("Class");
+            sbU.append(cls.getSimpleName());
+            sbU.append(" must have default constructor in order to be automatically recreated");
+            throw new IllegalArgumentException(sbU.toString(), e);
         }
     }
 

@@ -2,12 +2,11 @@ package androidx.transition;
 
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Property;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ViewUtils {
@@ -17,7 +16,7 @@ public class ViewUtils {
     public static final Property<View, Float> TRANSITION_ALPHA;
 
     static {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i >= 29) {
             IMPL = new ViewUtilsApi29();
         } else if (i >= 23) {
@@ -27,28 +26,8 @@ public class ViewUtils {
         } else {
             IMPL = new ViewUtilsApi21();
         }
-        TRANSITION_ALPHA = new Property<View, Float>(Float.class, "translationAlpha") { // from class: androidx.transition.ViewUtils.1
-            @Override // android.util.Property
-            public Float get(View view) {
-                return Float.valueOf(ViewUtils.getTransitionAlpha(view));
-            }
-
-            @Override // android.util.Property
-            public void set(View view, Float f) {
-                ViewUtils.setTransitionAlpha(view, f.floatValue());
-            }
-        };
-        CLIP_BOUNDS = new Property<View, Rect>(Rect.class, "clipBounds") { // from class: androidx.transition.ViewUtils.2
-            @Override // android.util.Property
-            public Rect get(View view) {
-                return ViewCompat.getClipBounds(view);
-            }
-
-            @Override // android.util.Property
-            public void set(View view, Rect rect) {
-                ViewCompat.setClipBounds(view, rect);
-            }
-        };
+        TRANSITION_ALPHA = new ViewUtils$1(Float.class, "translationAlpha");
+        CLIP_BOUNDS = new ViewUtils$2(Rect.class, "clipBounds");
     }
 
     private ViewUtils() {

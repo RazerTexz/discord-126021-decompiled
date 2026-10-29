@@ -1,9 +1,9 @@
 package com.discord.api.emoji;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildEmoji.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,7 +17,7 @@ public final /* data */ class GuildEmoji {
     private final List<Long> roles;
 
     public GuildEmoji(long j, String str, List<Long> list, boolean z2, boolean z3, boolean z4, Boolean bool) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.id = j;
         this.name = str;
         this.roles = list;
@@ -35,7 +35,11 @@ public final /* data */ class GuildEmoji {
             return false;
         }
         GuildEmoji guildEmoji = (GuildEmoji) other;
-        return this.id == guildEmoji.id && C12238m.areEqual(this.name, guildEmoji.name) && C12238m.areEqual(this.roles, guildEmoji.roles) && this.requireColons == guildEmoji.requireColons && this.managed == guildEmoji.managed && this.animated == guildEmoji.animated && C12238m.areEqual(this.available, guildEmoji.available);
+        return this.id == guildEmoji.id && m.areEqual(this.name, guildEmoji.name) && m.areEqual(this.roles, guildEmoji.roles) && this.requireColons == guildEmoji.requireColons && this.managed == guildEmoji.managed && this.animated == guildEmoji.animated && m.areEqual(this.available, guildEmoji.available);
+    }
+
+    public final List<Long> g() {
+        return this.roles;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -104,25 +108,20 @@ public final /* data */ class GuildEmoji {
         return i4 + (bool != null ? bool.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: g */
-    public final List<Long> m7815g() {
-        return this.roles;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildEmoji(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", roles=");
-        sbM833U.append(this.roles);
-        sbM833U.append(", requireColons=");
-        sbM833U.append(this.requireColons);
-        sbM833U.append(", managed=");
-        sbM833U.append(this.managed);
-        sbM833U.append(", animated=");
-        sbM833U.append(this.animated);
-        sbM833U.append(", available=");
-        return C1643a.m816D(sbM833U, this.available, ")");
+        StringBuilder sbU = a.U("GuildEmoji(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", roles=");
+        sbU.append(this.roles);
+        sbU.append(", requireColons=");
+        sbU.append(this.requireColons);
+        sbU.append(", managed=");
+        sbU.append(this.managed);
+        sbU.append(", animated=");
+        sbU.append(this.animated);
+        sbU.append(", available=");
+        return a.D(sbU, this.available, ")");
     }
 }

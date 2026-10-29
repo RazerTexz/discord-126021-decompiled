@@ -1,11 +1,11 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.voice.state.VoiceState;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemVoiceUser.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,10 +20,10 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
     private final VoiceState voiceState;
 
     public ChannelListItemVoiceUser(Channel channel, VoiceState voiceState, User user, GuildMember guildMember, boolean z2, boolean z3) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(voiceState, "voiceState");
-        C12238m.checkNotNullParameter(user, "user");
-        C12238m.checkNotNullParameter(guildMember, "computed");
+        m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(voiceState, "voiceState");
+        m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(guildMember, "computed");
         this.channel = channel;
         this.voiceState = voiceState;
         this.user = user;
@@ -61,10 +61,10 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
     }
 
     public final ChannelListItemVoiceUser copy(Channel channel, VoiceState voiceState, User user, GuildMember computed, boolean isApplicationStreaming, boolean hasChannelConnectPermission) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(voiceState, "voiceState");
-        C12238m.checkNotNullParameter(user, "user");
-        C12238m.checkNotNullParameter(computed, "computed");
+        m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(voiceState, "voiceState");
+        m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(computed, "computed");
         return new ChannelListItemVoiceUser(channel, voiceState, user, computed, isApplicationStreaming, hasChannelConnectPermission);
     }
 
@@ -76,7 +76,7 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
             return false;
         }
         ChannelListItemVoiceUser channelListItemVoiceUser = (ChannelListItemVoiceUser) other;
-        return C12238m.areEqual(this.channel, channelListItemVoiceUser.channel) && C12238m.areEqual(this.voiceState, channelListItemVoiceUser.voiceState) && C12238m.areEqual(this.user, channelListItemVoiceUser.user) && C12238m.areEqual(this.computed, channelListItemVoiceUser.computed) && this.isApplicationStreaming == channelListItemVoiceUser.isApplicationStreaming && this.hasChannelConnectPermission == channelListItemVoiceUser.hasChannelConnectPermission;
+        return m.areEqual(this.channel, channelListItemVoiceUser.channel) && m.areEqual(this.voiceState, channelListItemVoiceUser.voiceState) && m.areEqual(this.user, channelListItemVoiceUser.user) && m.areEqual(this.computed, channelListItemVoiceUser.computed) && this.isApplicationStreaming == channelListItemVoiceUser.isApplicationStreaming && this.hasChannelConnectPermission == channelListItemVoiceUser.hasChannelConnectPermission;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -172,17 +172,17 @@ public final /* data */ class ChannelListItemVoiceUser implements ChannelListIte
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemVoiceUser(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", voiceState=");
-        sbM833U.append(this.voiceState);
-        sbM833U.append(", user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", computed=");
-        sbM833U.append(this.computed);
-        sbM833U.append(", isApplicationStreaming=");
-        sbM833U.append(this.isApplicationStreaming);
-        sbM833U.append(", hasChannelConnectPermission=");
-        return C1643a.m827O(sbM833U, this.hasChannelConnectPermission, ")");
+        StringBuilder sbU = a.U("ChannelListItemVoiceUser(channel=");
+        sbU.append(this.channel);
+        sbU.append(", voiceState=");
+        sbU.append(this.voiceState);
+        sbU.append(", user=");
+        sbU.append(this.user);
+        sbU.append(", computed=");
+        sbU.append(this.computed);
+        sbU.append(", isApplicationStreaming=");
+        sbU.append(this.isApplicationStreaming);
+        sbU.append(", hasChannelConnectPermission=");
+        return a.O(sbU, this.hasChannelConnectPermission, ")");
     }
 }

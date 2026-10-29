@@ -2,10 +2,11 @@ package androidx.media;
 
 import android.media.AudioAttributes;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.versionedparcelable.VersionedParcel;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class AudioAttributesImplApi26Parcelizer {
     public static AudioAttributesImplApi26 read(VersionedParcel versionedParcel) {
         AudioAttributesImplApi26 audioAttributesImplApi26 = new AudioAttributesImplApi26();

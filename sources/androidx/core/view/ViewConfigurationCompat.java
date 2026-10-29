@@ -1,9 +1,9 @@
 package androidx.core.view;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ViewConfiguration;
@@ -16,7 +16,7 @@ public final class ViewConfigurationCompat {
     private static Method sGetScaledScrollFactorMethod;
 
     static {
-        if (Build.VERSION.SDK_INT == 25) {
+        if (Build$VERSION.SDK_INT == 25) {
             try {
                 sGetScaledScrollFactorMethod = ViewConfiguration.class.getDeclaredMethod("getScaledScrollFactor", new Class[0]);
             } catch (Exception unused) {
@@ -30,7 +30,7 @@ public final class ViewConfigurationCompat {
 
     private static float getLegacyScrollFactor(ViewConfiguration viewConfiguration, Context context) {
         Method method;
-        if (Build.VERSION.SDK_INT >= 25 && (method = sGetScaledScrollFactorMethod) != null) {
+        if (Build$VERSION.SDK_INT >= 25 && (method = sGetScaledScrollFactorMethod) != null) {
             try {
                 return ((Integer) method.invoke(viewConfiguration, new Object[0])).intValue();
             } catch (Exception unused) {
@@ -38,18 +38,18 @@ public final class ViewConfigurationCompat {
             }
         }
         TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(R.attr.listPreferredItemHeight, typedValue, true)) {
+        if (context.getTheme().resolveAttribute(R$attr.listPreferredItemHeight, typedValue, true)) {
             return typedValue.getDimension(context.getResources().getDisplayMetrics());
         }
         return 0.0f;
     }
 
     public static float getScaledHorizontalScrollFactor(@NonNull ViewConfiguration viewConfiguration, @NonNull Context context) {
-        return Build.VERSION.SDK_INT >= 26 ? viewConfiguration.getScaledHorizontalScrollFactor() : getLegacyScrollFactor(viewConfiguration, context);
+        return Build$VERSION.SDK_INT >= 26 ? viewConfiguration.getScaledHorizontalScrollFactor() : getLegacyScrollFactor(viewConfiguration, context);
     }
 
     public static int getScaledHoverSlop(ViewConfiguration viewConfiguration) {
-        return Build.VERSION.SDK_INT >= 28 ? viewConfiguration.getScaledHoverSlop() : viewConfiguration.getScaledTouchSlop() / 2;
+        return Build$VERSION.SDK_INT >= 28 ? viewConfiguration.getScaledHoverSlop() : viewConfiguration.getScaledTouchSlop() / 2;
     }
 
     @Deprecated
@@ -58,7 +58,7 @@ public final class ViewConfigurationCompat {
     }
 
     public static float getScaledVerticalScrollFactor(@NonNull ViewConfiguration viewConfiguration, @NonNull Context context) {
-        return Build.VERSION.SDK_INT >= 26 ? viewConfiguration.getScaledVerticalScrollFactor() : getLegacyScrollFactor(viewConfiguration, context);
+        return Build$VERSION.SDK_INT >= 26 ? viewConfiguration.getScaledVerticalScrollFactor() : getLegacyScrollFactor(viewConfiguration, context);
     }
 
     @Deprecated
@@ -67,7 +67,7 @@ public final class ViewConfigurationCompat {
     }
 
     public static boolean shouldShowMenuShortcutsWhenKeyboardPresent(ViewConfiguration viewConfiguration, @NonNull Context context) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             return viewConfiguration.shouldShowMenuShortcutsWhenKeyboardPresent();
         }
         Resources resources = context.getResources();

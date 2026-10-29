@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.View$MeasureSpec;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.utils.C7063R;
+import com.discord.utils.R$b;
+import d0.a0.a;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p508a0.C11210a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MaxHeightRecyclerView.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -32,17 +32,17 @@ public final class MaxHeightRecyclerView extends RecyclerView {
         if (attributeSet == null) {
             return 0;
         }
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C7063R.b.MaxHeightRecyclerView, i, 0);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(a…lerView, defStyleAttr, 0)");
-        int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(C7063R.b.MaxHeightRecyclerView_max_height, 0);
-        float f = typedArrayObtainStyledAttributes.getFloat(C7063R.b.MaxHeightRecyclerView_max_height_screen_ratio, 0.0f);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$b.MaxHeightRecyclerView, i, 0);
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(a…lerView, defStyleAttr, 0)");
+        int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(R$b.MaxHeightRecyclerView_max_height, 0);
+        float f = typedArrayObtainStyledAttributes.getFloat(R$b.MaxHeightRecyclerView_max_height_screen_ratio, 0.0f);
         typedArrayObtainStyledAttributes.recycle();
         if (f <= 0.0f || f >= 1.0f) {
             return dimensionPixelSize;
         }
         Resources resources = context.getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
-        return C11210a.roundToInt(resources.getDisplayMetrics().heightPixels * f);
+        m.checkNotNullExpressionValue(resources, "resources");
+        return a.roundToInt(resources.getDisplayMetrics().heightPixels * f);
     }
 
     public final int getMaxHeight() {
@@ -53,7 +53,7 @@ public final class MaxHeightRecyclerView extends RecyclerView {
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int i = this.maxHeight;
         if (i > 0) {
-            heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(i, Integer.MIN_VALUE);
+            heightMeasureSpec = View$MeasureSpec.makeMeasureSpec(i, Integer.MIN_VALUE);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
@@ -65,7 +65,7 @@ public final class MaxHeightRecyclerView extends RecyclerView {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public MaxHeightRecyclerView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         this.maxHeight = getHeightMaximum(context, attributeSet, 0);
     }
 }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver
 import com.discord.analytics.generated.traits.TrackThread;
 import com.discord.analytics.generated.traits.TrackThreadReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChannelOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,6 +28,11 @@ public final /* data */ class TrackChannelOpened implements AnalyticsSchema, Tra
     private TrackThread trackThread;
     private final transient String analyticsSchemaTypeName = "channel_opened";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,7 +41,7 @@ public final /* data */ class TrackChannelOpened implements AnalyticsSchema, Tra
             return false;
         }
         TrackChannelOpened trackChannelOpened = (TrackChannelOpened) other;
-        return C12238m.areEqual(this.channelIsNsfw, trackChannelOpened.channelIsNsfw) && C12238m.areEqual(this.channelView, trackChannelOpened.channelView) && C12238m.areEqual(this.parentId, trackChannelOpened.parentId) && C12238m.areEqual(this.staticRoute, trackChannelOpened.staticRoute);
+        return m.areEqual(this.channelIsNsfw, trackChannelOpened.channelIsNsfw) && m.areEqual(this.channelView, trackChannelOpened.channelView) && m.areEqual(this.parentId, trackChannelOpened.parentId) && m.areEqual(this.staticRoute, trackChannelOpened.staticRoute);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -62,20 +67,14 @@ public final /* data */ class TrackChannelOpened implements AnalyticsSchema, Tra
         return iHashCode3 + (charSequence2 != null ? charSequence2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChannelOpened(channelIsNsfw=");
-        sbM833U.append(this.channelIsNsfw);
-        sbM833U.append(", channelView=");
-        sbM833U.append(this.channelView);
-        sbM833U.append(", parentId=");
-        sbM833U.append(this.parentId);
-        sbM833U.append(", staticRoute=");
-        return C1643a.m817E(sbM833U, this.staticRoute, ")");
+        StringBuilder sbU = a.U("TrackChannelOpened(channelIsNsfw=");
+        sbU.append(this.channelIsNsfw);
+        sbU.append(", channelView=");
+        sbU.append(this.channelView);
+        sbU.append(", parentId=");
+        sbU.append(this.parentId);
+        sbU.append(", staticRoute=");
+        return a.E(sbU, this.staticRoute, ")");
     }
 }

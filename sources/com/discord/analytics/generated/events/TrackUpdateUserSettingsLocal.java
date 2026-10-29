@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUpdateUserSettingsLocal.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackUpdateUserSettingsLocal implements AnalyticsS
             return false;
         }
         TrackUpdateUserSettingsLocal trackUpdateUserSettingsLocal = (TrackUpdateUserSettingsLocal) other;
-        return C12238m.areEqual(this.alwaysPreviewVideo, trackUpdateUserSettingsLocal.alwaysPreviewVideo) && C12238m.areEqual(this.showSnowsgiving2021, trackUpdateUserSettingsLocal.showSnowsgiving2021);
+        return m.areEqual(this.alwaysPreviewVideo, trackUpdateUserSettingsLocal.alwaysPreviewVideo) && m.areEqual(this.showSnowsgiving2021, trackUpdateUserSettingsLocal.showSnowsgiving2021);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackUpdateUserSettingsLocal implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpdateUserSettingsLocal(alwaysPreviewVideo=");
-        sbM833U.append(this.alwaysPreviewVideo);
-        sbM833U.append(", showSnowsgiving2021=");
-        return C1643a.m816D(sbM833U, this.showSnowsgiving2021, ")");
+        StringBuilder sbU = a.U("TrackUpdateUserSettingsLocal(alwaysPreviewVideo=");
+        sbU.append(this.alwaysPreviewVideo);
+        sbU.append(", showSnowsgiving2021=");
+        return a.D(sbU, this.showSnowsgiving2021, ")");
     }
 }

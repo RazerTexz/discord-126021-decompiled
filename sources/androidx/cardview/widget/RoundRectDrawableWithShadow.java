@@ -6,14 +6,17 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Paint$Style;
 import android.graphics.Path;
+import android.graphics.Path$FillType;
 import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.Shader$TileMode;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.Nullable;
-import androidx.cardview.C0159R;
+import androidx.cardview.R$color;
+import androidx.cardview.R$dimen;
 
 /* JADX INFO: loaded from: classes.dex */
 public class RoundRectDrawableWithShadow extends Drawable {
@@ -30,25 +33,21 @@ public class RoundRectDrawableWithShadow extends Drawable {
     private final int mShadowEndColor;
     private float mShadowSize;
     private final int mShadowStartColor;
-    public static RoundRectHelper sRoundRectHelper;
+    public static RoundRectDrawableWithShadow$RoundRectHelper sRoundRectHelper;
     private static final double COS_45 = Math.cos(Math.toRadians(45.0d));
     private boolean mDirty = true;
     private boolean mAddPaddingForCorners = true;
     private boolean mPrintedShadowClipWarning = false;
     private Paint mPaint = new Paint(5);
 
-    public interface RoundRectHelper {
-        void drawRoundRect(Canvas canvas, RectF rectF, float f, Paint paint);
-    }
-
     public RoundRectDrawableWithShadow(Resources resources, ColorStateList colorStateList, float f, float f2, float f3) {
-        this.mShadowStartColor = resources.getColor(C0159R.color.cardview_shadow_start_color);
-        this.mShadowEndColor = resources.getColor(C0159R.color.cardview_shadow_end_color);
-        this.mInsetShadow = resources.getDimensionPixelSize(C0159R.dimen.cardview_compat_inset_shadow);
+        this.mShadowStartColor = resources.getColor(R$color.cardview_shadow_start_color);
+        this.mShadowEndColor = resources.getColor(R$color.cardview_shadow_end_color);
+        this.mInsetShadow = resources.getDimensionPixelSize(R$dimen.cardview_compat_inset_shadow);
         setBackground(colorStateList);
         Paint paint = new Paint(5);
         this.mCornerShadowPaint = paint;
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint$Style.FILL);
         this.mCornerRadius = (int) (f + 0.5f);
         this.mCardBounds = new RectF();
         Paint paint2 = new Paint(this.mCornerShadowPaint);
@@ -76,7 +75,7 @@ public class RoundRectDrawableWithShadow extends Drawable {
         } else {
             path.reset();
         }
-        this.mCornerShadowPath.setFillType(Path.FillType.EVEN_ODD);
+        this.mCornerShadowPath.setFillType(Path$FillType.EVEN_ODD);
         this.mCornerShadowPath.moveTo(-this.mCornerRadius, 0.0f);
         this.mCornerShadowPath.rLineTo(-this.mShadowSize, 0.0f);
         this.mCornerShadowPath.arcTo(rectF2, 180.0f, 90.0f, false);
@@ -87,12 +86,12 @@ public class RoundRectDrawableWithShadow extends Drawable {
         Paint paint = this.mCornerShadowPaint;
         float f5 = this.mCornerRadius + this.mShadowSize;
         int i = this.mShadowStartColor;
-        paint.setShader(new RadialGradient(0.0f, 0.0f, f5, new int[]{i, i, this.mShadowEndColor}, new float[]{0.0f, f4, 1.0f}, Shader.TileMode.CLAMP));
+        paint.setShader(new RadialGradient(0.0f, 0.0f, f5, new int[]{i, i, this.mShadowEndColor}, new float[]{0.0f, f4, 1.0f}, Shader$TileMode.CLAMP));
         Paint paint2 = this.mEdgeShadowPaint;
         float f6 = this.mCornerRadius;
         float f7 = this.mShadowSize;
         int i2 = this.mShadowStartColor;
-        paint2.setShader(new LinearGradient(0.0f, (-f6) + f7, 0.0f, (-f6) - f7, new int[]{i2, i2, this.mShadowEndColor}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
+        paint2.setShader(new LinearGradient(0.0f, (-f6) + f7, 0.0f, (-f6) - f7, new int[]{i2, i2, this.mShadowEndColor}, new float[]{0.0f, 0.5f, 1.0f}, Shader$TileMode.CLAMP));
         this.mEdgeShadowPaint.setAntiAlias(false);
     }
 

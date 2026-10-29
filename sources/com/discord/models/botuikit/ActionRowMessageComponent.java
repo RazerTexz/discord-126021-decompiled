@@ -1,10 +1,10 @@
 package com.discord.models.botuikit;
 
+import b.d.b.a.a;
 import com.discord.api.botuikit.ComponentType;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ActionRowMessageComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -44,8 +44,8 @@ public final /* data */ class ActionRowMessageComponent extends LayoutMessageCom
     }
 
     public final ActionRowMessageComponent copy(ComponentType type, int index, List<? extends MessageComponent> components) {
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(components, "components");
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(components, "components");
         return new ActionRowMessageComponent(type, index, components);
     }
 
@@ -57,7 +57,7 @@ public final /* data */ class ActionRowMessageComponent extends LayoutMessageCom
             return false;
         }
         ActionRowMessageComponent actionRowMessageComponent = (ActionRowMessageComponent) other;
-        return C12238m.areEqual(getType(), actionRowMessageComponent.getType()) && getIndex() == actionRowMessageComponent.getIndex() && C12238m.areEqual(this.components, actionRowMessageComponent.components);
+        return m.areEqual(getType(), actionRowMessageComponent.getType()) && getIndex() == actionRowMessageComponent.getIndex() && m.areEqual(this.components, actionRowMessageComponent.components);
     }
 
     @Override // com.discord.models.botuikit.LayoutMessageComponent
@@ -87,18 +87,18 @@ public final /* data */ class ActionRowMessageComponent extends LayoutMessageCom
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ActionRowMessageComponent(type=");
-        sbM833U.append(getType());
-        sbM833U.append(", index=");
-        sbM833U.append(getIndex());
-        sbM833U.append(", components=");
-        return C1643a.m824L(sbM833U, this.components, ")");
+        StringBuilder sbU = a.U("ActionRowMessageComponent(type=");
+        sbU.append(getType());
+        sbU.append(", index=");
+        sbU.append(getIndex());
+        sbU.append(", components=");
+        return a.L(sbU, this.components, ")");
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     public ActionRowMessageComponent(ComponentType componentType, int i, List<? extends MessageComponent> list) {
-        C12238m.checkNotNullParameter(componentType, "type");
-        C12238m.checkNotNullParameter(list, "components");
+        m.checkNotNullParameter(componentType, "type");
+        m.checkNotNullParameter(list, "components");
         this.type = componentType;
         this.index = i;
         this.components = list;

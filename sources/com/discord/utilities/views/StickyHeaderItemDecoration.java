@@ -1,92 +1,56 @@
 package com.discord.utilities.views;
 
 import android.graphics.Canvas;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
-import com.discord.models.domain.ModelAuditLogEntry;
-import p507d0.p592z.p594d.C12238m;
+import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
+import androidx.recyclerview.widget.RecyclerView$State;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StickyHeaderItemDecoration.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoration {
+public final class StickyHeaderItemDecoration extends RecyclerView$ItemDecoration {
     private Float actionDownRawX;
     private Float actionDownRawY;
-    private final StickyHeaderAdapter adapter;
+    private final StickyHeaderItemDecoration$StickyHeaderAdapter adapter;
     private float stickyHeaderBottom;
 
-    /* JADX INFO: compiled from: StickyHeaderItemDecoration.kt */
-    public final class LayoutManager {
-        public static final LayoutManager INSTANCE = new LayoutManager();
-
-        private LayoutManager() {
-        }
-
-        public static final void layoutHeaderView(ViewGroup parent, View view) {
-            C12238m.checkNotNullParameter(parent, "parent");
-            C12238m.checkNotNullParameter(view, "view");
-            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(parent.getWidth(), BasicMeasure.EXACTLY);
-            int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(parent.getHeight(), 0);
-            view.measure(ViewGroup.getChildMeasureSpec(iMakeMeasureSpec, parent.getPaddingRight() + parent.getPaddingLeft(), view.getLayoutParams().width), ViewGroup.getChildMeasureSpec(iMakeMeasureSpec2, parent.getPaddingBottom() + parent.getPaddingTop(), view.getLayoutParams().height));
-            view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        }
+    public StickyHeaderItemDecoration(StickyHeaderItemDecoration$StickyHeaderAdapter stickyHeaderItemDecoration$StickyHeaderAdapter) {
+        m.checkNotNullParameter(stickyHeaderItemDecoration$StickyHeaderAdapter, "adapter");
+        this.adapter = stickyHeaderItemDecoration$StickyHeaderAdapter;
     }
 
-    /* JADX INFO: compiled from: StickyHeaderItemDecoration.kt */
-    public interface StickyHeaderAdapter {
-        View getAndBindHeaderView(int position);
-
-        Integer getHeaderPositionForItem(int itemPosition);
-
-        boolean isHeader(int position);
+    public static final /* synthetic */ Float access$getActionDownRawX$p(StickyHeaderItemDecoration stickyHeaderItemDecoration) {
+        return stickyHeaderItemDecoration.actionDownRawX;
     }
 
-    public StickyHeaderItemDecoration(StickyHeaderAdapter stickyHeaderAdapter) {
-        C12238m.checkNotNullParameter(stickyHeaderAdapter, "adapter");
-        this.adapter = stickyHeaderAdapter;
+    public static final /* synthetic */ Float access$getActionDownRawY$p(StickyHeaderItemDecoration stickyHeaderItemDecoration) {
+        return stickyHeaderItemDecoration.actionDownRawY;
+    }
+
+    public static final /* synthetic */ float access$getStickyHeaderBottom$p(StickyHeaderItemDecoration stickyHeaderItemDecoration) {
+        return stickyHeaderItemDecoration.stickyHeaderBottom;
+    }
+
+    public static final /* synthetic */ void access$resetActionDownCoordinates(StickyHeaderItemDecoration stickyHeaderItemDecoration) {
+        stickyHeaderItemDecoration.resetActionDownCoordinates();
+    }
+
+    public static final /* synthetic */ void access$setActionDownRawX$p(StickyHeaderItemDecoration stickyHeaderItemDecoration, Float f) {
+        stickyHeaderItemDecoration.actionDownRawX = f;
+    }
+
+    public static final /* synthetic */ void access$setActionDownRawY$p(StickyHeaderItemDecoration stickyHeaderItemDecoration, Float f) {
+        stickyHeaderItemDecoration.actionDownRawY = f;
+    }
+
+    public static final /* synthetic */ void access$setStickyHeaderBottom$p(StickyHeaderItemDecoration stickyHeaderItemDecoration, float f) {
+        stickyHeaderItemDecoration.stickyHeaderBottom = f;
     }
 
     public final void blockClicks(RecyclerView parent) {
-        C12238m.checkNotNullParameter(parent, "parent");
-        parent.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() { // from class: com.discord.utilities.views.StickyHeaderItemDecoration.blockClicks.1
-            /* JADX WARN: Code duplicated, block: B:17:0x005f  */
-            @Override // androidx.recyclerview.widget.RecyclerView.SimpleOnItemTouchListener, androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
-            public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent event) {
-                boolean z2;
-                C12238m.checkNotNullParameter(recyclerView, "recyclerView");
-                C12238m.checkNotNullParameter(event, "event");
-                int action = event.getAction();
-                if (action == 0) {
-                    StickyHeaderItemDecoration.this.actionDownRawX = Float.valueOf(event.getRawX());
-                    StickyHeaderItemDecoration.this.actionDownRawY = Float.valueOf(event.getRawY());
-                } else if (action == 1) {
-                    Float f = StickyHeaderItemDecoration.this.actionDownRawX;
-                    Float f2 = StickyHeaderItemDecoration.this.actionDownRawY;
-                    if (f == null || f2 == null) {
-                        z2 = false;
-                    } else {
-                        float fAbs = Math.abs(event.getRawX() - f.floatValue());
-                        float fAbs2 = Math.abs(event.getRawY() - f2.floatValue());
-                        float dimensionPixelSize = recyclerView.getResources().getDimensionPixelSize(C5419R.dimen.default_scroll_slop);
-                        if (fAbs >= dimensionPixelSize || fAbs2 >= dimensionPixelSize) {
-                            z2 = false;
-                        } else {
-                            z2 = true;
-                        }
-                    }
-                    StickyHeaderItemDecoration.this.resetActionDownCoordinates();
-                    if (z2 && event.getY() <= StickyHeaderItemDecoration.this.stickyHeaderBottom) {
-                        return true;
-                    }
-                } else if (action == 3) {
-                    StickyHeaderItemDecoration.this.resetActionDownCoordinates();
-                }
-                return false;
-            }
-        });
+        m.checkNotNullParameter(parent, "parent");
+        parent.addOnItemTouchListener(new StickyHeaderItemDecoration$blockClicks$1(this));
     }
 
     public static /* synthetic */ void drawHeader$default(StickyHeaderItemDecoration stickyHeaderItemDecoration, Canvas canvas, View view, float f, int i, Object obj) {
@@ -118,7 +82,7 @@ public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoratio
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = parent.getChildAt(i);
-            C12238m.checkNotNullExpressionValue(childAt, "child");
+            m.checkNotNullExpressionValue(childAt, "child");
             int top = childAt.getTop();
             int bottom = childAt.getBottom();
             if (top <= contactPoint && bottom > contactPoint) {
@@ -128,13 +92,13 @@ public final class StickyHeaderItemDecoration extends RecyclerView.ItemDecoratio
         return null;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void onDrawOver(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void onDrawOver(Canvas canvas, RecyclerView parent, RecyclerView$State state) {
         int childAdapterPosition;
         int childAdapterPosition2;
-        C12238m.checkNotNullParameter(canvas, "canvas");
-        C12238m.checkNotNullParameter(parent, "parent");
-        C12238m.checkNotNullParameter(state, "state");
+        m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(parent, "parent");
+        m.checkNotNullParameter(state, "state");
         super.onDrawOver(canvas, parent, state);
         View childAt = parent.getChildAt(0);
         if (childAt == null || (childAdapterPosition = parent.getChildAdapterPosition(childAt)) == -1) {

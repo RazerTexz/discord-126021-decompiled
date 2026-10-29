@@ -7,25 +7,26 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import androidx.recyclerview.widget.RecyclerView$ItemDecoration;
+import androidx.recyclerview.widget.RecyclerView$State;
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapter;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ThreadSpineItemDecoration.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ThreadSpineItemDecoration extends RecyclerView.ItemDecoration {
+public final class ThreadSpineItemDecoration extends RecyclerView$ItemDecoration {
     private final WidgetChatListAdapter adapter;
     private final Context context;
     private final Drawable drawable;
     private final int startPositionPx;
 
     public ThreadSpineItemDecoration(Context context, WidgetChatListAdapter widgetChatListAdapter) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(widgetChatListAdapter, "adapter");
+        m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(widgetChatListAdapter, "adapter");
         this.context = context;
         this.adapter = widgetChatListAdapter;
-        this.drawable = ContextCompat.getDrawable(context, C5419R.drawable.thread_embed_spine_drawable);
-        this.startPositionPx = context.getResources().getDimensionPixelSize(C5419R.dimen.chat_list_spine_margin);
+        this.drawable = ContextCompat.getDrawable(context, 2131232542);
+        this.startPositionPx = context.getResources().getDimensionPixelSize(2131165321);
     }
 
     private final void drawSpinePiece(Canvas canvas, RecyclerView parent, View child) {
@@ -54,18 +55,18 @@ public final class ThreadSpineItemDecoration extends RecyclerView.ItemDecoration
             View childAt = parent.getChildAt(i);
             int childAdapterPosition = parent.getChildAdapterPosition(childAt);
             if (childAdapterPosition >= 0 && childAdapterPosition < this.adapter.getPageSize() && this.adapter.getItem(childAdapterPosition).getShouldShowThreadSpine()) {
-                C12238m.checkNotNullExpressionValue(childAt, "child");
+                m.checkNotNullExpressionValue(childAt, "child");
                 drawSpinePiece(canvas, parent, childAt);
             }
         }
         canvas.restore();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void onDrawOver(Canvas canvas, RecyclerView parent, RecyclerView.State state) {
-        C12238m.checkNotNullParameter(canvas, "canvas");
-        C12238m.checkNotNullParameter(parent, "parent");
-        C12238m.checkNotNullParameter(state, "state");
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void onDrawOver(Canvas canvas, RecyclerView parent, RecyclerView$State state) {
+        m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(parent, "parent");
+        m.checkNotNullParameter(state, "state");
         if (parent.getLayoutManager() == null) {
             return;
         }

@@ -1,22 +1,19 @@
 package com.discord.models.embeddedactivities;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.activity.ActivityAssets;
 import com.discord.api.activity.ActivitySecrets;
 import com.discord.api.activity.ActivityTimestamps;
 import com.discord.api.activity.ActivityType;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EmbeddedActivity.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class EmbeddedActivity {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final EmbeddedActivity$Companion Companion = new EmbeddedActivity$Companion(null);
     private final long applicationId;
     private final ActivityAssets assets;
     private final Long createdAt;
@@ -30,39 +27,10 @@ public final /* data */ class EmbeddedActivity {
     private final String url;
     private final List<Long> userIds;
 
-    /* JADX INFO: compiled from: EmbeddedActivity.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final EmbeddedActivity fromApiEmbeddedActivity(com.discord.api.embeddedactivities.EmbeddedActivity apiEmbeddedActivity, List<Long> userIds, String url, long guildId) {
-            C12238m.checkNotNullParameter(apiEmbeddedActivity, "apiEmbeddedActivity");
-            C12238m.checkNotNullParameter(userIds, "userIds");
-            C12238m.checkNotNullParameter(url, "url");
-            long jM7793a = apiEmbeddedActivity.getApplicationId();
-            ActivityAssets activityAssetsM7794b = apiEmbeddedActivity.getAssets();
-            Long lM7795c = apiEmbeddedActivity.getCreatedAt();
-            String strM7796d = apiEmbeddedActivity.getDetails();
-            String strM7797e = apiEmbeddedActivity.getName();
-            ActivitySecrets activitySecretsM7798f = apiEmbeddedActivity.getSecrets();
-            String strM7799g = apiEmbeddedActivity.getState();
-            ActivityTimestamps activityTimestampsM7800h = apiEmbeddedActivity.getTimestamps();
-            ActivityType activityTypeM7801i = apiEmbeddedActivity.getType();
-            if (activityTypeM7801i == null) {
-                activityTypeM7801i = ActivityType.UNKNOWN;
-            }
-            return new EmbeddedActivity(jM7793a, activityAssetsM7794b, lM7795c, strM7796d, strM7797e, activitySecretsM7798f, strM7799g, activityTimestampsM7800h, activityTypeM7801i, userIds, url, guildId);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public EmbeddedActivity(long j, ActivityAssets activityAssets, Long l, String str, String str2, ActivitySecrets activitySecrets, String str3, ActivityTimestamps activityTimestamps, ActivityType activityType, List<Long> list, String str4, long j2) {
-        C12238m.checkNotNullParameter(activityType, "type");
-        C12238m.checkNotNullParameter(list, "userIds");
-        C12238m.checkNotNullParameter(str4, "url");
+        m.checkNotNullParameter(activityType, "type");
+        m.checkNotNullParameter(list, "userIds");
+        m.checkNotNullParameter(str4, "url");
         this.applicationId = j;
         this.assets = activityAssets;
         this.createdAt = l;
@@ -81,10 +49,15 @@ public final /* data */ class EmbeddedActivity {
         return this.userIds;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ EmbeddedActivity copy$default(EmbeddedActivity embeddedActivity, long j, ActivityAssets activityAssets, Long l, String str, String str2, ActivitySecrets activitySecrets, String str3, ActivityTimestamps activityTimestamps, ActivityType activityType, List list, String str4, long j2, int i, Object obj) {
+        return embeddedActivity.copy((i & 1) != 0 ? embeddedActivity.applicationId : j, (i & 2) != 0 ? embeddedActivity.assets : activityAssets, (i & 4) != 0 ? embeddedActivity.createdAt : l, (i & 8) != 0 ? embeddedActivity.details : str, (i & 16) != 0 ? embeddedActivity.name : str2, (i & 32) != 0 ? embeddedActivity.secrets : activitySecrets, (i & 64) != 0 ? embeddedActivity.state : str3, (i & 128) != 0 ? embeddedActivity.timestamps : activityTimestamps, (i & 256) != 0 ? embeddedActivity.type : activityType, (i & 512) != 0 ? embeddedActivity.userIds : list, (i & 1024) != 0 ? embeddedActivity.url : str4, (i & 2048) != 0 ? embeddedActivity.guildId : j2);
+    }
+
     public final EmbeddedActivity copy(long applicationId, ActivityAssets assets, Long createdAt, String details, String name, ActivitySecrets secrets, String state, ActivityTimestamps timestamps, ActivityType type, List<Long> userIds, String url, long guildId) {
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(userIds, "userIds");
-        C12238m.checkNotNullParameter(url, "url");
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(userIds, "userIds");
+        m.checkNotNullParameter(url, "url");
         return new EmbeddedActivity(applicationId, assets, createdAt, details, name, secrets, state, timestamps, type, userIds, url, guildId);
     }
 
@@ -96,7 +69,7 @@ public final /* data */ class EmbeddedActivity {
             return false;
         }
         EmbeddedActivity embeddedActivity = (EmbeddedActivity) other;
-        return this.applicationId == embeddedActivity.applicationId && C12238m.areEqual(this.assets, embeddedActivity.assets) && C12238m.areEqual(this.createdAt, embeddedActivity.createdAt) && C12238m.areEqual(this.details, embeddedActivity.details) && C12238m.areEqual(this.name, embeddedActivity.name) && C12238m.areEqual(this.secrets, embeddedActivity.secrets) && C12238m.areEqual(this.state, embeddedActivity.state) && C12238m.areEqual(this.timestamps, embeddedActivity.timestamps) && C12238m.areEqual(this.type, embeddedActivity.type) && C12238m.areEqual(this.userIds, embeddedActivity.userIds) && C12238m.areEqual(this.url, embeddedActivity.url) && this.guildId == embeddedActivity.guildId;
+        return this.applicationId == embeddedActivity.applicationId && m.areEqual(this.assets, embeddedActivity.assets) && m.areEqual(this.createdAt, embeddedActivity.createdAt) && m.areEqual(this.details, embeddedActivity.details) && m.areEqual(this.name, embeddedActivity.name) && m.areEqual(this.secrets, embeddedActivity.secrets) && m.areEqual(this.state, embeddedActivity.state) && m.areEqual(this.timestamps, embeddedActivity.timestamps) && m.areEqual(this.type, embeddedActivity.type) && m.areEqual(this.userIds, embeddedActivity.userIds) && m.areEqual(this.url, embeddedActivity.url) && this.guildId == embeddedActivity.guildId;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -203,9 +176,9 @@ public final /* data */ class EmbeddedActivity {
     }
 
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.applicationId) * 31;
+        int iA = b.a(this.applicationId) * 31;
         ActivityAssets activityAssets = this.assets;
-        int iHashCode = (iM3a + (activityAssets != null ? activityAssets.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (activityAssets != null ? activityAssets.hashCode() : 0)) * 31;
         Long l = this.createdAt;
         int iHashCode2 = (iHashCode + (l != null ? l.hashCode() : 0)) * 31;
         String str = this.details;
@@ -223,33 +196,33 @@ public final /* data */ class EmbeddedActivity {
         List<Long> list = this.userIds;
         int iHashCode9 = (iHashCode8 + (list != null ? list.hashCode() : 0)) * 31;
         String str4 = this.url;
-        return C0002b.m3a(this.guildId) + ((iHashCode9 + (str4 != null ? str4.hashCode() : 0)) * 31);
+        return b.a(this.guildId) + ((iHashCode9 + (str4 != null ? str4.hashCode() : 0)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EmbeddedActivity(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", assets=");
-        sbM833U.append(this.assets);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", details=");
-        sbM833U.append(this.details);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", secrets=");
-        sbM833U.append(this.secrets);
-        sbM833U.append(", state=");
-        sbM833U.append(this.state);
-        sbM833U.append(", timestamps=");
-        sbM833U.append(this.timestamps);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", userIds=");
-        sbM833U.append(this.userIds);
-        sbM833U.append(", url=");
-        sbM833U.append(this.url);
-        sbM833U.append(", guildId=");
-        return C1643a.m815C(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("EmbeddedActivity(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", assets=");
+        sbU.append(this.assets);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", details=");
+        sbU.append(this.details);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", secrets=");
+        sbU.append(this.secrets);
+        sbU.append(", state=");
+        sbU.append(this.state);
+        sbU.append(", timestamps=");
+        sbU.append(this.timestamps);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", userIds=");
+        sbU.append(this.userIds);
+        sbU.append(", url=");
+        sbU.append(this.url);
+        sbU.append(", guildId=");
+        return a.C(sbU, this.guildId, ")");
     }
 }

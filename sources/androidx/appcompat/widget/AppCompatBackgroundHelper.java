@@ -2,14 +2,14 @@ package androidx.appcompat.widget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$styleable;
 import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -38,7 +38,7 @@ public class AppCompatBackgroundHelper {
             tintInfo.mHasTintList = true;
             tintInfo.mTintList = backgroundTintList;
         }
-        PorterDuff.Mode backgroundTintMode = ViewCompat.getBackgroundTintMode(this.mView);
+        PorterDuff$Mode backgroundTintMode = ViewCompat.getBackgroundTintMode(this.mView);
         if (backgroundTintMode != null) {
             tintInfo.mHasTintMode = true;
             tintInfo.mTintMode = backgroundTintMode;
@@ -76,7 +76,7 @@ public class AppCompatBackgroundHelper {
         return null;
     }
 
-    public PorterDuff.Mode getSupportBackgroundTintMode() {
+    public PorterDuff$Mode getSupportBackgroundTintMode() {
         TintInfo tintInfo = this.mBackgroundTint;
         if (tintInfo != null) {
             return tintInfo.mTintMode;
@@ -86,12 +86,12 @@ public class AppCompatBackgroundHelper {
 
     public void loadFromAttributes(@Nullable AttributeSet attributeSet, int i) {
         Context context = this.mView.getContext();
-        int[] iArr = C0051R.styleable.ViewBackgroundHelper;
+        int[] iArr = R$styleable.ViewBackgroundHelper;
         TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, iArr, i, 0);
         View view = this.mView;
         ViewCompat.saveAttributeDataForStyleable(view, view.getContext(), iArr, attributeSet, tintTypedArrayObtainStyledAttributes.getWrappedTypeArray(), i, 0);
         try {
-            int i2 = C0051R.styleable.ViewBackgroundHelper_android_background;
+            int i2 = R$styleable.ViewBackgroundHelper_android_background;
             if (tintTypedArrayObtainStyledAttributes.hasValue(i2)) {
                 this.mBackgroundResId = tintTypedArrayObtainStyledAttributes.getResourceId(i2, -1);
                 ColorStateList tintList = this.mDrawableManager.getTintList(this.mView.getContext(), this.mBackgroundResId);
@@ -99,11 +99,11 @@ public class AppCompatBackgroundHelper {
                     setInternalBackgroundTint(tintList);
                 }
             }
-            int i3 = C0051R.styleable.ViewBackgroundHelper_backgroundTint;
+            int i3 = R$styleable.ViewBackgroundHelper_backgroundTint;
             if (tintTypedArrayObtainStyledAttributes.hasValue(i3)) {
                 ViewCompat.setBackgroundTintList(this.mView, tintTypedArrayObtainStyledAttributes.getColorStateList(i3));
             }
-            int i4 = C0051R.styleable.ViewBackgroundHelper_backgroundTintMode;
+            int i4 = R$styleable.ViewBackgroundHelper_backgroundTintMode;
             if (tintTypedArrayObtainStyledAttributes.hasValue(i4)) {
                 ViewCompat.setBackgroundTintMode(this.mView, DrawableUtils.parseTintMode(tintTypedArrayObtainStyledAttributes.getInt(i4, -1), null));
             }
@@ -149,18 +149,18 @@ public class AppCompatBackgroundHelper {
         applySupportBackgroundTint();
     }
 
-    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+    public void setSupportBackgroundTintMode(PorterDuff$Mode porterDuff$Mode) {
         if (this.mBackgroundTint == null) {
             this.mBackgroundTint = new TintInfo();
         }
         TintInfo tintInfo = this.mBackgroundTint;
-        tintInfo.mTintMode = mode;
+        tintInfo.mTintMode = porterDuff$Mode;
         tintInfo.mHasTintMode = true;
         applySupportBackgroundTint();
     }
 
     private boolean shouldApplyFrameworkTintUsingColorFilter() {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i > 21) {
             return this.mInternalBackgroundTint != null;
         }

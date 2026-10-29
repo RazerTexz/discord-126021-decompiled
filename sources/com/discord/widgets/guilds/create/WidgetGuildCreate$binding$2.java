@@ -2,20 +2,20 @@ package com.discord.widgets.guilds.create;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.C5419R;
+import b.a.i.r0;
+import com.discord.R$id;
 import com.discord.databinding.WidgetGuildCreateBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.LoadingButton;
 import com.discord.views.ScreenTitleView;
 import com.google.android.material.textfield.TextInputLayout;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p007b.p008a.p025i.C1038r0;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGuildCreate.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetGuildCreate$binding$2 extends C12236k implements Function1<View, WidgetGuildCreateBinding> {
+public final /* synthetic */ class WidgetGuildCreate$binding$2 extends k implements Function1<View, WidgetGuildCreateBinding> {
     public static final WidgetGuildCreate$binding$2 INSTANCE = new WidgetGuildCreate$binding$2();
 
     public WidgetGuildCreate$binding$2() {
@@ -23,25 +23,30 @@ public final /* synthetic */ class WidgetGuildCreate$binding$2 extends C12236k i
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetGuildCreateBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.guild_create_button;
-        LoadingButton loadingButton = (LoadingButton) view.findViewById(C5419R.id.guild_create_button);
+    public /* bridge */ /* synthetic */ WidgetGuildCreateBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetGuildCreateBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.guild_create_button;
+        LoadingButton loadingButton = (LoadingButton) view.findViewById(R$id.guild_create_button);
         if (loadingButton != null) {
-            i = C5419R.id.guild_create_guidelines;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(C5419R.id.guild_create_guidelines);
+            i = R$id.guild_create_guidelines;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.guild_create_guidelines);
             if (linkifiedTextView != null) {
-                i = C5419R.id.guild_create_icon_uploader;
-                View viewFindViewById = view.findViewById(C5419R.id.guild_create_icon_uploader);
+                i = R$id.guild_create_icon_uploader;
+                View viewFindViewById = view.findViewById(R$id.guild_create_icon_uploader);
                 if (viewFindViewById != null) {
-                    C1038r0 c1038r0M204a = C1038r0.m204a(viewFindViewById);
-                    i = C5419R.id.guild_create_name;
-                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(C5419R.id.guild_create_name);
+                    r0 r0VarA = r0.a(viewFindViewById);
+                    i = R$id.guild_create_name;
+                    TextInputLayout textInputLayout = (TextInputLayout) view.findViewById(R$id.guild_create_name);
                     if (textInputLayout != null) {
-                        i = C5419R.id.guild_create_screen_title;
-                        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(C5419R.id.guild_create_screen_title);
+                        i = R$id.guild_create_screen_title;
+                        ScreenTitleView screenTitleView = (ScreenTitleView) view.findViewById(R$id.guild_create_screen_title);
                         if (screenTitleView != null) {
-                            return new WidgetGuildCreateBinding((CoordinatorLayout) view, loadingButton, linkifiedTextView, c1038r0M204a, textInputLayout, screenTitleView);
+                            return new WidgetGuildCreateBinding((CoordinatorLayout) view, loadingButton, linkifiedTextView, r0VarA, textInputLayout, screenTitleView);
                         }
                     }
                 }

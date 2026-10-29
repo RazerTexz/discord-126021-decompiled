@@ -4,16 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Paint$Style;
 import android.graphics.Path;
+import android.graphics.Path$FillType;
 import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.Shader$TileMode;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.core.content.ContextCompat;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$color;
 
 /* JADX INFO: loaded from: classes3.dex */
 @Deprecated
@@ -51,12 +53,12 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         this.dirty = true;
         this.addPaddingForCorners = true;
         this.printedShadowClipWarning = false;
-        this.shadowStartColor = ContextCompat.getColor(context, C10817R.color.design_fab_shadow_start_color);
-        this.shadowMiddleColor = ContextCompat.getColor(context, C10817R.color.design_fab_shadow_mid_color);
-        this.shadowEndColor = ContextCompat.getColor(context, C10817R.color.design_fab_shadow_end_color);
+        this.shadowStartColor = ContextCompat.getColor(context, R$color.design_fab_shadow_start_color);
+        this.shadowMiddleColor = ContextCompat.getColor(context, R$color.design_fab_shadow_mid_color);
+        this.shadowEndColor = ContextCompat.getColor(context, R$color.design_fab_shadow_end_color);
         Paint paint = new Paint(5);
         this.cornerShadowPaint = paint;
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint$Style.FILL);
         this.cornerRadius = Math.round(f);
         this.contentBounds = new RectF();
         Paint paint2 = new Paint(paint);
@@ -87,7 +89,7 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         } else {
             path.reset();
         }
-        this.cornerShadowPath.setFillType(Path.FillType.EVEN_ODD);
+        this.cornerShadowPath.setFillType(Path$FillType.EVEN_ODD);
         this.cornerShadowPath.moveTo(-this.cornerRadius, 0.0f);
         this.cornerShadowPath.rLineTo(-this.shadowSize, 0.0f);
         this.cornerShadowPath.arcTo(rectF2, 180.0f, 90.0f, false);
@@ -96,9 +98,9 @@ public class ShadowDrawableWrapper extends DrawableWrapper {
         float f3 = -rectF2.top;
         if (f3 > 0.0f) {
             float f4 = this.cornerRadius / f3;
-            this.cornerShadowPaint.setShader(new RadialGradient(0.0f, 0.0f, f3, new int[]{0, this.shadowStartColor, this.shadowMiddleColor, this.shadowEndColor}, new float[]{0.0f, f4, ((1.0f - f4) / 2.0f) + f4, 1.0f}, Shader.TileMode.CLAMP));
+            this.cornerShadowPaint.setShader(new RadialGradient(0.0f, 0.0f, f3, new int[]{0, this.shadowStartColor, this.shadowMiddleColor, this.shadowEndColor}, new float[]{0.0f, f4, ((1.0f - f4) / 2.0f) + f4, 1.0f}, Shader$TileMode.CLAMP));
         }
-        this.edgeShadowPaint.setShader(new LinearGradient(0.0f, rectF.top, 0.0f, rectF2.top, new int[]{this.shadowStartColor, this.shadowMiddleColor, this.shadowEndColor}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
+        this.edgeShadowPaint.setShader(new LinearGradient(0.0f, rectF.top, 0.0f, rectF2.top, new int[]{this.shadowStartColor, this.shadowMiddleColor, this.shadowEndColor}, new float[]{0.0f, 0.5f, 1.0f}, Shader$TileMode.CLAMP));
         this.edgeShadowPaint.setAntiAlias(false);
     }
 

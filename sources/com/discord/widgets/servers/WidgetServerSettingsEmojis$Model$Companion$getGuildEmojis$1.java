@@ -5,15 +5,15 @@ import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
 import com.discord.stores.StoreEmojiGuild;
 import com.discord.stores.StoreGuilds;
+import d0.t.h0;
+import d0.z.d.o;
 import java.util.List;
 import java.util.Map;
 import kotlin.jvm.functions.Function0;
-import p507d0.p580t.C12136h0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetServerSettingsEmojis.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetServerSettingsEmojis$Model$Companion$getGuildEmojis$1 extends AbstractC12240o implements Function0<WidgetServerSettingsEmojis.Model> {
+public final class WidgetServerSettingsEmojis$Model$Companion$getGuildEmojis$1 extends o implements Function0<WidgetServerSettingsEmojis$Model> {
     public final /* synthetic */ Guild $guild;
     public final /* synthetic */ StoreGuilds $storeGuild;
     public final /* synthetic */ StoreEmojiGuild $storeGuildEmoji;
@@ -26,15 +26,20 @@ public final class WidgetServerSettingsEmojis$Model$Companion$getGuildEmojis$1 e
         this.$storeGuild = storeGuilds;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ WidgetServerSettingsEmojis$Model invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
-    public final WidgetServerSettingsEmojis.Model invoke() {
+    public final WidgetServerSettingsEmojis$Model invoke() {
         long id2 = this.$guild.getId();
         List<ModelEmojiGuild> guildEmoji = this.$storeGuildEmoji.getGuildEmoji(id2);
         Map<Long, GuildMember> mapEmptyMap = this.$storeGuild.getMembers().get(Long.valueOf(id2));
         if (mapEmptyMap == null) {
-            mapEmptyMap = C12136h0.emptyMap();
+            mapEmptyMap = h0.emptyMap();
         }
-        return WidgetServerSettingsEmojis.Model.INSTANCE.create(this.$guild, guildEmoji, mapEmptyMap);
+        return WidgetServerSettingsEmojis$Model$Companion.access$create(WidgetServerSettingsEmojis$Model.Companion, this.$guild, guildEmoji, mapEmptyMap);
     }
 }

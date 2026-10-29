@@ -3,7 +3,7 @@ package lombok.eclipse.handlers;
 import java.util.Arrays;
 import lombok.ConfigurationKeys;
 import lombok.Synchronized;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.handlers.HandlerUtil;
@@ -34,8 +34,8 @@ public class HandleSynchronized extends EclipseAnnotationHandler<Synchronized> {
 
     @Override // lombok.eclipse.EclipseAnnotationHandler
     public void preHandle(AnnotationValues<Synchronized> annotation, Annotation source, EclipseNode annotationNode) {
-        EclipseNode methodNode = annotationNode.m10925up();
-        if (methodNode != null && methodNode.getKind() == AST.Kind.METHOD && (methodNode.get() instanceof MethodDeclaration)) {
+        EclipseNode methodNode = annotationNode.up();
+        if (methodNode != null && methodNode.getKind() == AST$Kind.METHOD && (methodNode.get() instanceof MethodDeclaration)) {
             MethodDeclaration method = methodNode.get();
             if (method.isAbstract()) {
                 return;
@@ -53,14 +53,14 @@ public class HandleSynchronized extends EclipseAnnotationHandler<Synchronized> {
             lockName = isStatic[0] ? STATIC_LOCK_NAME : INSTANCE_LOCK_NAME;
         }
         EclipseNode typeNode = EclipseHandlerUtil.upToTypeNode(annotationNode);
-        EclipseHandlerUtil.MemberExistsResult exists = EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS;
+        EclipseHandlerUtil$MemberExistsResult exists = EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS;
         if (typeNode != null && (typeNode.get() instanceof TypeDeclaration)) {
             TypeDeclaration typeDecl = typeNode.get();
             if (typeDecl.fields != null) {
                 for (FieldDeclaration def : typeDecl.fields) {
                     char[] fName = def.name;
                     if (fName != null && Arrays.equals(fName, lockName)) {
-                        exists = EclipseHandlerUtil.getGeneratedBy(def) == null ? EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_USER : EclipseHandlerUtil.MemberExistsResult.EXISTS_BY_LOMBOK;
+                        exists = EclipseHandlerUtil.getGeneratedBy(def) == null ? EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_USER : EclipseHandlerUtil$MemberExistsResult.EXISTS_BY_LOMBOK;
                         boolean st = def.isStatic();
                         if (!st && isStatic[0]) {
                             if (reportErrors) {
@@ -75,7 +75,7 @@ public class HandleSynchronized extends EclipseAnnotationHandler<Synchronized> {
                 }
             }
         }
-        if (exists == EclipseHandlerUtil.MemberExistsResult.NOT_EXISTS) {
+        if (exists == EclipseHandlerUtil$MemberExistsResult.NOT_EXISTS) {
             if (!autoMake) {
                 if (reportErrors) {
                     annotationNode.addError(String.format("The field %s does not exist", new String(lockName)));
@@ -95,7 +95,7 @@ public class HandleSynchronized extends EclipseAnnotationHandler<Synchronized> {
             fieldDecl.type = new QualifiedTypeReference(TypeConstants.JAVA_LANG_OBJECT, new long[3]);
             EclipseHandlerUtil.setGeneratedBy(fieldDecl.type, source);
             fieldDecl.initialization = arrayAlloc;
-            EclipseHandlerUtil.injectField(annotationNode.m10925up().m10925up(), fieldDecl);
+            EclipseHandlerUtil.injectField(annotationNode.up().up(), fieldDecl);
         }
         return lockName;
     }
@@ -107,8 +107,8 @@ public class HandleSynchronized extends EclipseAnnotationHandler<Synchronized> {
         int p1 = source.sourceStart - 1;
         int p2 = source.sourceStart - 2;
         long pos = (((long) p1) << 32) | ((long) p2);
-        EclipseNode methodNode = annotationNode.m10925up();
-        if (methodNode == null || methodNode.getKind() != AST.Kind.METHOD || !(methodNode.get() instanceof MethodDeclaration)) {
+        EclipseNode methodNode = annotationNode.up();
+        if (methodNode == null || methodNode.getKind() != AST$Kind.METHOD || !(methodNode.get() instanceof MethodDeclaration)) {
             annotationNode.addError("@Synchronized is legal only on methods.");
             return;
         }

@@ -8,13 +8,6 @@ import java.nio.FloatBuffer;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class GlUtil {
-
-    public class GlOutOfMemoryException extends RuntimeException {
-        public GlOutOfMemoryException(String str) {
-            super(str);
-        }
-    }
-
     private GlUtil() {
     }
 
@@ -22,7 +15,7 @@ public class GlUtil {
         int iGlGetError = GLES20.glGetError();
         if (iGlGetError != 0) {
             if (iGlGetError == 1285) {
-                throw new GlOutOfMemoryException(str);
+                throw new GlUtil$GlOutOfMemoryException(str);
             }
             throw new RuntimeException(str + ": GLES20 error: " + iGlGetError);
         }

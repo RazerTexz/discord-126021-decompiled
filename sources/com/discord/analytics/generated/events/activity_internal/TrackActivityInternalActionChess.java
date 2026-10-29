@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalActionChess.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -35,7 +35,7 @@ public final /* data */ class TrackActivityInternalActionChess implements Analyt
             return false;
         }
         TrackActivityInternalActionChess trackActivityInternalActionChess = (TrackActivityInternalActionChess) other;
-        return C12238m.areEqual(this.actionName, trackActivityInternalActionChess.actionName) && C12238m.areEqual(this.phase, trackActivityInternalActionChess.phase) && C12238m.areEqual(this.moveType, trackActivityInternalActionChess.moveType) && C12238m.areEqual(this.lockedGame, trackActivityInternalActionChess.lockedGame) && C12238m.areEqual(this.timedGame, trackActivityInternalActionChess.timedGame) && C12238m.areEqual(this.againstBot, trackActivityInternalActionChess.againstBot) && C12238m.areEqual(this.background, trackActivityInternalActionChess.background) && C12238m.areEqual(this.pieceSet, trackActivityInternalActionChess.pieceSet) && C12238m.areEqual(this.numSpectators, trackActivityInternalActionChess.numSpectators) && C12238m.areEqual(this.playerColor, trackActivityInternalActionChess.playerColor) && C12238m.areEqual(this.lastScreen, trackActivityInternalActionChess.lastScreen) && C12238m.areEqual(this.reconnectTime, trackActivityInternalActionChess.reconnectTime);
+        return m.areEqual(this.actionName, trackActivityInternalActionChess.actionName) && m.areEqual(this.phase, trackActivityInternalActionChess.phase) && m.areEqual(this.moveType, trackActivityInternalActionChess.moveType) && m.areEqual(this.lockedGame, trackActivityInternalActionChess.lockedGame) && m.areEqual(this.timedGame, trackActivityInternalActionChess.timedGame) && m.areEqual(this.againstBot, trackActivityInternalActionChess.againstBot) && m.areEqual(this.background, trackActivityInternalActionChess.background) && m.areEqual(this.pieceSet, trackActivityInternalActionChess.pieceSet) && m.areEqual(this.numSpectators, trackActivityInternalActionChess.numSpectators) && m.areEqual(this.playerColor, trackActivityInternalActionChess.playerColor) && m.areEqual(this.lastScreen, trackActivityInternalActionChess.lastScreen) && m.areEqual(this.reconnectTime, trackActivityInternalActionChess.reconnectTime);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -72,29 +72,29 @@ public final /* data */ class TrackActivityInternalActionChess implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalActionChess(actionName=");
-        sbM833U.append(this.actionName);
-        sbM833U.append(", phase=");
-        sbM833U.append(this.phase);
-        sbM833U.append(", moveType=");
-        sbM833U.append(this.moveType);
-        sbM833U.append(", lockedGame=");
-        sbM833U.append(this.lockedGame);
-        sbM833U.append(", timedGame=");
-        sbM833U.append(this.timedGame);
-        sbM833U.append(", againstBot=");
-        sbM833U.append(this.againstBot);
-        sbM833U.append(", background=");
-        sbM833U.append(this.background);
-        sbM833U.append(", pieceSet=");
-        sbM833U.append(this.pieceSet);
-        sbM833U.append(", numSpectators=");
-        sbM833U.append(this.numSpectators);
-        sbM833U.append(", playerColor=");
-        sbM833U.append(this.playerColor);
-        sbM833U.append(", lastScreen=");
-        sbM833U.append(this.lastScreen);
-        sbM833U.append(", reconnectTime=");
-        return C1643a.m819G(sbM833U, this.reconnectTime, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalActionChess(actionName=");
+        sbU.append(this.actionName);
+        sbU.append(", phase=");
+        sbU.append(this.phase);
+        sbU.append(", moveType=");
+        sbU.append(this.moveType);
+        sbU.append(", lockedGame=");
+        sbU.append(this.lockedGame);
+        sbU.append(", timedGame=");
+        sbU.append(this.timedGame);
+        sbU.append(", againstBot=");
+        sbU.append(this.againstBot);
+        sbU.append(", background=");
+        sbU.append(this.background);
+        sbU.append(", pieceSet=");
+        sbU.append(this.pieceSet);
+        sbU.append(", numSpectators=");
+        sbU.append(this.numSpectators);
+        sbU.append(", playerColor=");
+        sbU.append(this.playerColor);
+        sbU.append(", lastScreen=");
+        sbU.append(this.lastScreen);
+        sbU.append(", reconnectTime=");
+        return a.G(sbU, this.reconnectTime, ")");
     }
 }

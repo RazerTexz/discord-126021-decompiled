@@ -1,52 +1,40 @@
 package com.discord.widgets.guildscheduledevent;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentViewModelLazyKt;
+import b.a.d.g0;
+import b.a.d.i0;
+import b.d.b.a.a;
 import com.discord.BuildConfig;
-import com.discord.C5419R;
-import com.discord.api.channel.Channel;
+import com.discord.R$layout;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildScheduledEventCreateSuccessBinding;
 import com.discord.models.domain.ModelInvite;
+import com.discord.models.domain.ModelInvite$Settings;
 import com.discord.models.experiments.domain.Experiment;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.CheckedSetting;
 import com.discord.widgets.guilds.invite.GuildInviteUiHelperKt;
 import com.discord.widgets.guilds.invite.WidgetInviteModel;
-import java.util.Objects;
+import d0.g;
+import d0.z.d.a0;
+import d0.z.d.m;
 import kotlin.Lazy;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0865g0;
-import p007b.p008a.p018d.C0869i0;
-import p007b.p008a.p018d.C0870j;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p641k.InterfaceC12589b;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccess.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildScheduledEventCreateSuccess extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildScheduledEventCreateSuccess.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildScheduledEventCreateSuccessBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildScheduledEventCreateSuccess.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildScheduledEventCreateSuccessBinding;", 0)};
+    public static final WidgetGuildScheduledEventCreateSuccess$Companion Companion = new WidgetGuildScheduledEventCreateSuccess$Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -63,119 +51,58 @@ public final class WidgetGuildScheduledEventCreateSuccess extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess$onResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccess.kt */
-    public final class C88511 extends AbstractC12240o implements Function1<WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded, Unit> {
-        public C88511() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded loaded) {
-            invoke2(loaded);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded loaded) {
-            C12238m.checkNotNullParameter(loaded, "viewState");
-            WidgetGuildScheduledEventCreateSuccess.this.configureUI(loaded);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventCreateSuccess.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, Long channelId, long guildId, long guildScheduledEventId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_SCHEDULED_EVENT_ID", guildScheduledEventId);
-            C0870j.m156d(context, WidgetGuildScheduledEventCreateSuccess.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public WidgetGuildScheduledEventCreateSuccess() {
-        super(C5419R.layout.widget_guild_scheduled_event_create_success);
+        super(R$layout.widget_guild_scheduled_event_create_success);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildScheduledEventCreateSuccess$binding$2.INSTANCE, null, 2, null);
-        this.channelId = C12083g.lazy(new WidgetGuildScheduledEventCreateSuccess$channelId$2(this));
-        this.guildId = C12083g.lazy(new WidgetGuildScheduledEventCreateSuccess$guildId$2(this));
-        this.guildScheduledEventId = C12083g.lazy(new WidgetGuildScheduledEventCreateSuccess$guildScheduledEventId$2(this));
+        this.channelId = g.lazy(new WidgetGuildScheduledEventCreateSuccess$channelId$2(this));
+        this.guildId = g.lazy(new WidgetGuildScheduledEventCreateSuccess$guildId$2(this));
+        this.guildScheduledEventId = g.lazy(new WidgetGuildScheduledEventCreateSuccess$guildScheduledEventId$2(this));
         WidgetGuildScheduledEventCreateSuccess$viewModel$2 widgetGuildScheduledEventCreateSuccess$viewModel$2 = new WidgetGuildScheduledEventCreateSuccess$viewModel$2(this);
-        C0865g0 c0865g0 = new C0865g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetGuildScheduledEventCreateSuccessViewModel.class), new C8844x6415a92c(c0865g0), new C0869i0(widgetGuildScheduledEventCreateSuccess$viewModel$2));
+        g0 g0Var = new g0(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGuildScheduledEventCreateSuccessViewModel.class), new WidgetGuildScheduledEventCreateSuccess$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildScheduledEventCreateSuccess$viewModel$2));
     }
 
-    private final void configureUI(WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded viewState) {
-        final WidgetInviteModel widgetInviteModel = viewState.getWidgetInviteModel();
-        final ModelInvite invite = widgetInviteModel.getInvite();
-        TextView textView = getBinding().f16976c;
-        C12238m.checkNotNullExpressionValue(textView, "binding.guildInviteLink");
+    public static final /* synthetic */ void access$configureUI(WidgetGuildScheduledEventCreateSuccess widgetGuildScheduledEventCreateSuccess, WidgetGuildScheduledEventCreateSuccessViewModel$ViewState$Loaded widgetGuildScheduledEventCreateSuccessViewModel$ViewState$Loaded) {
+        widgetGuildScheduledEventCreateSuccess.configureUI(widgetGuildScheduledEventCreateSuccessViewModel$ViewState$Loaded);
+    }
+
+    public static final /* synthetic */ WidgetGuildScheduledEventCreateSuccessBinding access$getBinding$p(WidgetGuildScheduledEventCreateSuccess widgetGuildScheduledEventCreateSuccess) {
+        return widgetGuildScheduledEventCreateSuccess.getBinding();
+    }
+
+    public static final /* synthetic */ Long access$getChannelId$p(WidgetGuildScheduledEventCreateSuccess widgetGuildScheduledEventCreateSuccess) {
+        return widgetGuildScheduledEventCreateSuccess.getChannelId();
+    }
+
+    public static final /* synthetic */ long access$getGuildId$p(WidgetGuildScheduledEventCreateSuccess widgetGuildScheduledEventCreateSuccess) {
+        return widgetGuildScheduledEventCreateSuccess.getGuildId();
+    }
+
+    public static final /* synthetic */ long access$getGuildScheduledEventId$p(WidgetGuildScheduledEventCreateSuccess widgetGuildScheduledEventCreateSuccess) {
+        return widgetGuildScheduledEventCreateSuccess.getGuildScheduledEventId();
+    }
+
+    public static final /* synthetic */ WidgetGuildScheduledEventCreateSuccessViewModel access$getViewModel$p(WidgetGuildScheduledEventCreateSuccess widgetGuildScheduledEventCreateSuccess) {
+        return widgetGuildScheduledEventCreateSuccess.getViewModel();
+    }
+
+    private final void configureUI(WidgetGuildScheduledEventCreateSuccessViewModel$ViewState$Loaded viewState) {
+        WidgetInviteModel widgetInviteModel = viewState.getWidgetInviteModel();
+        ModelInvite invite = widgetInviteModel.getInvite();
+        TextView textView = getBinding().c;
+        m.checkNotNullExpressionValue(textView, "binding.guildInviteLink");
         textView.setText(getInviteLink(invite));
-        getBinding().f16976c.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess.configureUI.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                GuildInviteUiHelperKt.copyLinkClick(C1643a.m885x(view, "it", "it.context"), invite, WidgetGuildScheduledEventCreateSuccess.this.getMostRecentIntent());
-            }
-        });
-        ModelInvite.Settings settings = widgetInviteModel.getSettings();
+        getBinding().c.setOnClickListener(new WidgetGuildScheduledEventCreateSuccess$configureUI$1(this, invite));
+        ModelInvite$Settings settings = widgetInviteModel.getSettings();
         boolean z2 = settings != null && settings.getMaxAge() == 0;
-        CheckedSetting checkedSetting = getBinding().f16977d;
-        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.guildInviteNeverExpire");
+        CheckedSetting checkedSetting = getBinding().d;
+        m.checkNotNullExpressionValue(checkedSetting, "binding.guildInviteNeverExpire");
         checkedSetting.setChecked(z2);
-        final Experiment defaultInviteExperiment = getViewModel().getDefaultInviteExperiment();
-        CheckedSetting.m8524i(getBinding().f16977d, GuildInviteUiHelperKt.getInviteLinkText(requireContext(), defaultInviteExperiment), false, 2);
-        getBinding().f16977d.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess.configureUI.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                int i;
-                WidgetGuildScheduledEventCreateSuccess.this.getBinding().f16977d.toggle();
-                ModelInvite.Settings settings2 = widgetInviteModel.getSettings();
-                if (settings2 != null) {
-                    WidgetGuildScheduledEventCreateSuccessViewModel viewModel = WidgetGuildScheduledEventCreateSuccess.this.getViewModel();
-                    CheckedSetting checkedSetting2 = WidgetGuildScheduledEventCreateSuccess.this.getBinding().f16977d;
-                    C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.guildInviteNeverExpire");
-                    if (checkedSetting2.isChecked()) {
-                        i = 0;
-                    } else {
-                        Experiment experiment = defaultInviteExperiment;
-                        i = (experiment == null || experiment.getBucket() != 1) ? 86400 : ModelInvite.Settings.SEVEN_DAYS;
-                    }
-                    ModelInvite.Settings settingsMergeMaxAge = settings2.mergeMaxAge(i);
-                    C12238m.checkNotNullExpressionValue(settingsMergeMaxAge, "settings.mergeMaxAge(\n  …          }\n            )");
-                    viewModel.updateInviteSettings(settingsMergeMaxAge);
-                }
-                Channel targetChannel = widgetInviteModel.getTargetChannel();
-                if (targetChannel != null) {
-                    WidgetGuildScheduledEventCreateSuccess.this.getViewModel().generateInviteLink(Long.valueOf(Long.valueOf(targetChannel.getId()).longValue()));
-                }
-            }
-        });
-        getBinding().f16975b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess.configureUI.3
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                FragmentActivity fragmentActivityM95e = WidgetGuildScheduledEventCreateSuccess.this.m95e();
-                if (fragmentActivityM95e != null) {
-                    fragmentActivityM95e.finish();
-                }
-            }
-        });
-        getBinding().f16978e.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess.configureUI.4
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                ModelInvite modelInvite = invite;
-                if (modelInvite != null) {
-                    GuildInviteUiHelperKt.shareLinkClick(WidgetGuildScheduledEventCreateSuccess.this.getContext(), modelInvite);
-                }
-            }
-        });
+        Experiment defaultInviteExperiment = getViewModel().getDefaultInviteExperiment();
+        CheckedSetting.i(getBinding().d, GuildInviteUiHelperKt.getInviteLinkText(requireContext(), defaultInviteExperiment), false, 2);
+        getBinding().d.e(new WidgetGuildScheduledEventCreateSuccess$configureUI$2(this, widgetInviteModel, defaultInviteExperiment));
+        getBinding().f2442b.setOnClickListener(new WidgetGuildScheduledEventCreateSuccess$configureUI$3(this));
+        getBinding().e.setOnClickListener(new WidgetGuildScheduledEventCreateSuccess$configureUI$4(this, invite));
     }
 
     private final WidgetGuildScheduledEventCreateSuccessBinding getBinding() {
@@ -205,26 +132,14 @@ public final class WidgetGuildScheduledEventCreateSuccess extends AppFragment {
     @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        Observable<R> observableM11083G = getViewModel().observeViewState().m11118y(new InterfaceC12589b<Object, Boolean>() { // from class: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess$onResume$$inlined$filterIs$1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Boolean call(Object obj) {
-                return Boolean.valueOf(obj instanceof WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded);
-            }
-        }).m11083G(new InterfaceC12589b<Object, T>() { // from class: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccess$onResume$$inlined$filterIs$2
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final T call(Object obj) {
-                Objects.requireNonNull(obj, "null cannot be cast to non-null type com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded");
-                return (T) ((WidgetGuildScheduledEventCreateSuccessViewModel.ViewState.Loaded) obj);
-            }
-        });
-        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it is T }.map { it as T }");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11083G, this, null, 2, null), (Class<?>) WidgetGuildScheduledEventCreateSuccess.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88511());
+        Observable<R> observableG = getViewModel().observeViewState().y(WidgetGuildScheduledEventCreateSuccess$onResume$$inlined$filterIs$1.INSTANCE).G(WidgetGuildScheduledEventCreateSuccess$onResume$$inlined$filterIs$2.INSTANCE);
+        m.checkNotNullExpressionValue(observableG, "filter { it is T }.map { it as T }");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableG, this, null, 2, null), WidgetGuildScheduledEventCreateSuccess.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildScheduledEventCreateSuccess$onResume$1(this), 62, (Object) null);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         getViewModel().generateInviteLink(getChannelId());
     }

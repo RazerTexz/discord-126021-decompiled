@@ -1,13 +1,14 @@
 package org.webrtc;
 
+import b.d.b.a.a;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class RTCStats {
 
-    /* JADX INFO: renamed from: id */
-    private final String f27614id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private final String f3820id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -15,7 +16,7 @@ public class RTCStats {
     public RTCStats(long j, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j;
         this.type = str;
-        this.f27614id = str2;
+        this.f3820id = str2;
         this.members = map;
     }
 
@@ -47,7 +48,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f27614id;
+        return this.f3820id;
     }
 
     public Map<String, Object> getMembers() {
@@ -63,19 +64,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("{ timestampUs: ");
-        sbM833U.append(this.timestampUs);
-        sbM833U.append(", type: ");
-        sbM833U.append(this.type);
-        sbM833U.append(", id: ");
-        sbM833U.append(this.f27614id);
-        for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            sbM833U.append(", ");
-            sbM833U.append(entry.getKey());
-            sbM833U.append(": ");
-            appendValue(sbM833U, entry.getValue());
+        StringBuilder sbU = a.U("{ timestampUs: ");
+        sbU.append(this.timestampUs);
+        sbU.append(", type: ");
+        sbU.append(this.type);
+        sbU.append(", id: ");
+        sbU.append(this.f3820id);
+        for (Map$Entry<String, Object> map$Entry : this.members.entrySet()) {
+            sbU.append(", ");
+            sbU.append(map$Entry.getKey());
+            sbU.append(": ");
+            appendValue(sbU, map$Entry.getValue());
         }
-        sbM833U.append(" }");
-        return sbM833U.toString();
+        sbU.append(" }");
+        return sbU.toString();
     }
 }

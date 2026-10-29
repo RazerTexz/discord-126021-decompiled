@@ -1,39 +1,39 @@
 package com.discord.widgets.servers.role_members;
 
+import b.d.b.a.a;
 import com.discord.models.member.GuildMember;
 import com.discord.utilities.recycler.DiffKeyProvider;
-import com.discord.widgets.channels.permissions.PermissionOwner;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import com.discord.widgets.channels.permissions.PermissionOwner$Member;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ServerSettingsRoleMemberAdapterItem.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class ServerSettingsRoleMemberAdapterItem implements DiffKeyProvider {
     private final GuildMember guildMember;
     private final String key;
-    private final PermissionOwner.Member permissionOwner;
+    private final PermissionOwner$Member permissionOwner;
 
-    public ServerSettingsRoleMemberAdapterItem(GuildMember guildMember, PermissionOwner.Member member) {
-        C12238m.checkNotNullParameter(guildMember, "guildMember");
-        C12238m.checkNotNullParameter(member, "permissionOwner");
+    public ServerSettingsRoleMemberAdapterItem(GuildMember guildMember, PermissionOwner$Member permissionOwner$Member) {
+        m.checkNotNullParameter(guildMember, "guildMember");
+        m.checkNotNullParameter(permissionOwner$Member, "permissionOwner");
         this.guildMember = guildMember;
-        this.permissionOwner = member;
-        this.key = String.valueOf(member.getUser().getId());
+        this.permissionOwner = permissionOwner$Member;
+        this.key = String.valueOf(permissionOwner$Member.getUser().getId());
     }
 
-    public static /* synthetic */ ServerSettingsRoleMemberAdapterItem copy$default(ServerSettingsRoleMemberAdapterItem serverSettingsRoleMemberAdapterItem, GuildMember guildMember, PermissionOwner.Member member, int i, Object obj) {
+    public static /* synthetic */ ServerSettingsRoleMemberAdapterItem copy$default(ServerSettingsRoleMemberAdapterItem serverSettingsRoleMemberAdapterItem, GuildMember guildMember, PermissionOwner$Member permissionOwner$Member, int i, Object obj) {
         if ((i & 1) != 0) {
             guildMember = serverSettingsRoleMemberAdapterItem.guildMember;
         }
         if ((i & 2) != 0) {
-            member = serverSettingsRoleMemberAdapterItem.permissionOwner;
+            permissionOwner$Member = serverSettingsRoleMemberAdapterItem.permissionOwner;
         }
-        return serverSettingsRoleMemberAdapterItem.copy(guildMember, member);
+        return serverSettingsRoleMemberAdapterItem.copy(guildMember, permissionOwner$Member);
     }
 
-    public final ServerSettingsRoleMemberAdapterItem copy(GuildMember guildMember, PermissionOwner.Member permissionOwner) {
-        C12238m.checkNotNullParameter(guildMember, "guildMember");
-        C12238m.checkNotNullParameter(permissionOwner, "permissionOwner");
+    public final ServerSettingsRoleMemberAdapterItem copy(GuildMember guildMember, PermissionOwner$Member permissionOwner) {
+        m.checkNotNullParameter(guildMember, "guildMember");
+        m.checkNotNullParameter(permissionOwner, "permissionOwner");
         return new ServerSettingsRoleMemberAdapterItem(guildMember, permissionOwner);
     }
 
@@ -45,7 +45,7 @@ public final /* data */ class ServerSettingsRoleMemberAdapterItem implements Dif
             return false;
         }
         ServerSettingsRoleMemberAdapterItem serverSettingsRoleMemberAdapterItem = (ServerSettingsRoleMemberAdapterItem) other;
-        return C12238m.areEqual(this.guildMember, serverSettingsRoleMemberAdapterItem.guildMember) && C12238m.areEqual(this.permissionOwner, serverSettingsRoleMemberAdapterItem.permissionOwner);
+        return m.areEqual(this.guildMember, serverSettingsRoleMemberAdapterItem.guildMember) && m.areEqual(this.permissionOwner, serverSettingsRoleMemberAdapterItem.permissionOwner);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -63,27 +63,27 @@ public final /* data */ class ServerSettingsRoleMemberAdapterItem implements Dif
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
-    public final PermissionOwner.Member getPermissionOwner() {
+    public final PermissionOwner$Member getPermissionOwner() {
         return this.permissionOwner;
     }
 
-    public final PermissionOwner.Member getPermissionOwner() {
+    public final PermissionOwner$Member getPermissionOwner() {
         return this.permissionOwner;
     }
 
     public int hashCode() {
         GuildMember guildMember = this.guildMember;
         int iHashCode = (guildMember != null ? guildMember.hashCode() : 0) * 31;
-        PermissionOwner.Member member = this.permissionOwner;
-        return iHashCode + (member != null ? member.hashCode() : 0);
+        PermissionOwner$Member permissionOwner$Member = this.permissionOwner;
+        return iHashCode + (permissionOwner$Member != null ? permissionOwner$Member.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ServerSettingsRoleMemberAdapterItem(guildMember=");
-        sbM833U.append(this.guildMember);
-        sbM833U.append(", permissionOwner=");
-        sbM833U.append(this.permissionOwner);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ServerSettingsRoleMemberAdapterItem(guildMember=");
+        sbU.append(this.guildMember);
+        sbU.append(", permissionOwner=");
+        sbU.append(this.permissionOwner);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

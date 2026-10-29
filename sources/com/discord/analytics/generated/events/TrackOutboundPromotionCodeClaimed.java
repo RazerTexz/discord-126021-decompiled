@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackOutboundPromotionCodeClaimed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public final /* data */ class TrackOutboundPromotionCodeClaimed implements Analy
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackOutboundPromotionCodeClaimed) && C12238m.areEqual(this.promotionId, ((TrackOutboundPromotionCodeClaimed) other).promotionId);
+            return (other instanceof TrackOutboundPromotionCodeClaimed) && m.areEqual(this.promotionId, ((TrackOutboundPromotionCodeClaimed) other).promotionId);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackOutboundPromotionCodeClaimed implements Analy
     }
 
     public String toString() {
-        return C1643a.m819G(C1643a.m833U("TrackOutboundPromotionCodeClaimed(promotionId="), this.promotionId, ")");
+        return a.G(a.U("TrackOutboundPromotionCodeClaimed(promotionId="), this.promotionId, ")");
     }
 }

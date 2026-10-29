@@ -44,22 +44,6 @@ public class HandlerUtil {
     private static final Pattern LINE_BREAK_FINDER = Pattern.compile("(\\r?\\n)?");
     private static final Pattern FIND_RETURN = Pattern.compile("^\\s*\\**\\s*@returns?\\s+.*$", 10);
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/handlers/HandlerUtil$FieldAccess.SCL.lombok */
-    public enum FieldAccess {
-        GETTER,
-        PREFER_FIELD,
-        ALWAYS_FIELD;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static FieldAccess[] valuesCustom() {
-            FieldAccess[] fieldAccessArrValuesCustom = values();
-            int length = fieldAccessArrValuesCustom.length;
-            FieldAccess[] fieldAccessArr = new FieldAccess[length];
-            System.arraycopy(fieldAccessArrValuesCustom, 0, fieldAccessArr, 0, length);
-            return fieldAccessArr;
-        }
-    }
-
     private HandlerUtil() {
     }
 

@@ -1,18 +1,18 @@
 package com.discord.widgets.user.search;
 
 import com.discord.models.user.User;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$getDefaultUserSearch$1 extends AbstractC12240o implements Function1<Long, User> {
-    public final /* synthetic */ WidgetGlobalSearchModel.UsersContext $usersContext;
+public final class WidgetGlobalSearchModel$Companion$getDefaultUserSearch$1 extends o implements Function1<Long, User> {
+    public final /* synthetic */ WidgetGlobalSearchModel$UsersContext $usersContext;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetGlobalSearchModel$Companion$getDefaultUserSearch$1(WidgetGlobalSearchModel.UsersContext usersContext) {
+    public WidgetGlobalSearchModel$Companion$getDefaultUserSearch$1(WidgetGlobalSearchModel$UsersContext widgetGlobalSearchModel$UsersContext) {
         super(1);
-        this.$usersContext = usersContext;
+        this.$usersContext = widgetGlobalSearchModel$UsersContext;
     }
 
     @Override // kotlin.jvm.functions.Function1

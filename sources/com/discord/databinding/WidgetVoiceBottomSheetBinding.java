@@ -7,65 +7,57 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.t0;
+import b.a.i.u0;
 import com.discord.widgets.voice.controls.AnchoredVoiceControlsView;
 import com.google.android.material.button.MaterialButton;
-import p007b.p008a.p025i.C1052t0;
-import p007b.p008a.p025i.C1059u0;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetVoiceBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f18437a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final C1052t0 f18438b;
+    public final t0 f2699b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final C1059u0 f18439c;
+    public final u0 c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f18440d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final RelativeLayout f18441e;
+    public final RelativeLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final AnchoredVoiceControlsView f18442f;
+    public final AnchoredVoiceControlsView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final MaterialButton f18443g;
+    public final MaterialButton g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final RecyclerView f18444h;
+    public final RecyclerView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final CoordinatorLayout f18445i;
+    public final CoordinatorLayout i;
 
-    public WidgetVoiceBottomSheetBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull C1052t0 c1052t0, @NonNull C1059u0 c1059u0, @NonNull ConstraintLayout constraintLayout, @NonNull MaterialButton materialButton, @NonNull RelativeLayout relativeLayout, @NonNull AnchoredVoiceControlsView anchoredVoiceControlsView, @NonNull MaterialButton materialButton2, @NonNull RecyclerView recyclerView, @NonNull CoordinatorLayout coordinatorLayout2) {
-        this.f18437a = coordinatorLayout;
-        this.f18438b = c1052t0;
-        this.f18439c = c1059u0;
-        this.f18440d = materialButton;
-        this.f18441e = relativeLayout;
-        this.f18442f = anchoredVoiceControlsView;
-        this.f18443g = materialButton2;
-        this.f18444h = recyclerView;
-        this.f18445i = coordinatorLayout2;
+    public WidgetVoiceBottomSheetBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull t0 t0Var, @NonNull u0 u0Var, @NonNull ConstraintLayout constraintLayout, @NonNull MaterialButton materialButton, @NonNull RelativeLayout relativeLayout, @NonNull AnchoredVoiceControlsView anchoredVoiceControlsView, @NonNull MaterialButton materialButton2, @NonNull RecyclerView recyclerView, @NonNull CoordinatorLayout coordinatorLayout2) {
+        this.a = coordinatorLayout;
+        this.f2699b = t0Var;
+        this.c = u0Var;
+        this.d = materialButton;
+        this.e = relativeLayout;
+        this.f = anchoredVoiceControlsView;
+        this.g = materialButton2;
+        this.h = recyclerView;
+        this.i = coordinatorLayout2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18437a;
+        return this.a;
     }
 }

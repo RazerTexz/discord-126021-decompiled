@@ -2,9 +2,10 @@ package androidx.media;
 
 import android.os.Bundle;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class MediaBrowserCompatUtils {
     private MediaBrowserCompatUtils() {
     }

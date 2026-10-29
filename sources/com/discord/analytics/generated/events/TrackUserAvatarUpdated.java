@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUserAvatarUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackUserAvatarUpdated implements AnalyticsSchema,
             return false;
         }
         TrackUserAvatarUpdated trackUserAvatarUpdated = (TrackUserAvatarUpdated) other;
-        return C12238m.areEqual(this.animated, trackUserAvatarUpdated.animated) && C12238m.areEqual(this.defaultAvatarSelected, trackUserAvatarUpdated.defaultAvatarSelected);
+        return m.areEqual(this.animated, trackUserAvatarUpdated.animated) && m.areEqual(this.defaultAvatarSelected, trackUserAvatarUpdated.defaultAvatarSelected);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackUserAvatarUpdated implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUserAvatarUpdated(animated=");
-        sbM833U.append(this.animated);
-        sbM833U.append(", defaultAvatarSelected=");
-        return C1643a.m819G(sbM833U, this.defaultAvatarSelected, ")");
+        StringBuilder sbU = a.U("TrackUserAvatarUpdated(animated=");
+        sbU.append(this.animated);
+        sbU.append(", defaultAvatarSelected=");
+        return a.G(sbU, this.defaultAvatarSelected, ")");
     }
 }

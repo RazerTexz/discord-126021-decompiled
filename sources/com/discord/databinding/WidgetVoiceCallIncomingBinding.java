@@ -14,57 +14,49 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetVoiceCallIncomingBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f18446a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinearLayout f18447b;
+    public final LinearLayout f2700b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final FloatingActionButton f18448c;
+    public final FloatingActionButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final FloatingActionButton f18449d;
+    public final FloatingActionButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final PrivateCallBlurredGridView f18450e;
+    public final PrivateCallBlurredGridView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final FloatingActionButton f18451f;
+    public final FloatingActionButton f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f18452g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f18453h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final PrivateCallGridView f18454i;
+    public final PrivateCallGridView i;
 
     public WidgetVoiceCallIncomingBinding(@NonNull ConstraintLayout constraintLayout, @NonNull LinearLayout linearLayout, @NonNull FloatingActionButton floatingActionButton, @NonNull FloatingActionButton floatingActionButton2, @NonNull PrivateCallBlurredGridView privateCallBlurredGridView, @NonNull FloatingActionButton floatingActionButton3, @NonNull LinearLayout linearLayout2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull Guideline guideline, @NonNull PrivateCallGridView privateCallGridView) {
-        this.f18446a = constraintLayout;
-        this.f18447b = linearLayout;
-        this.f18448c = floatingActionButton;
-        this.f18449d = floatingActionButton2;
-        this.f18450e = privateCallBlurredGridView;
-        this.f18451f = floatingActionButton3;
-        this.f18452g = textView;
-        this.f18453h = textView2;
-        this.f18454i = privateCallGridView;
+        this.a = constraintLayout;
+        this.f2700b = linearLayout;
+        this.c = floatingActionButton;
+        this.d = floatingActionButton2;
+        this.e = privateCallBlurredGridView;
+        this.f = floatingActionButton3;
+        this.g = textView;
+        this.h = textView2;
+        this.i = privateCallGridView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18446a;
+        return this.a;
     }
 }

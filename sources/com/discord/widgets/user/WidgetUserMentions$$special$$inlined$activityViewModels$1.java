@@ -2,13 +2,13 @@ package com.discord.widgets.user;
 
 import androidx.fragment.app.Fragment;
 import androidx.view.ViewModelStore;
+import b.d.b.a.a;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: FragmentViewModelLazy.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetUserMentions$$special$$inlined$activityViewModels$1 extends AbstractC12240o implements Function0<ViewModelStore> {
+public final class WidgetUserMentions$$special$$inlined$activityViewModels$1 extends o implements Function0<ViewModelStore> {
     public final /* synthetic */ Fragment $this_activityViewModels;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -20,6 +20,11 @@ public final class WidgetUserMentions$$special$$inlined$activityViewModels$1 ext
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ViewModelStore invoke() {
-        return C1643a.m870p0(this.$this_activityViewModels, "requireActivity()", "requireActivity().viewModelStore");
+        return a.p0(this.$this_activityViewModels, "requireActivity()", "requireActivity().viewModelStore");
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ ViewModelStore invoke() {
+        return invoke();
     }
 }

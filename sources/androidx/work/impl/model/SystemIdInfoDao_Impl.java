@@ -7,7 +7,7 @@ import androidx.room.RoomSQLiteQuery;
 import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
-import androidx.sqlite.p006db.SupportSQLiteStatement;
+import androidx.sqlite.db.SupportSQLiteStatement;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class SystemIdInfoDao_Impl implements SystemIdInfoDao {
@@ -17,29 +17,8 @@ public final class SystemIdInfoDao_Impl implements SystemIdInfoDao {
 
     public SystemIdInfoDao_Impl(RoomDatabase roomDatabase) {
         this.__db = roomDatabase;
-        this.__insertionAdapterOfSystemIdInfo = new EntityInsertionAdapter<SystemIdInfo>(roomDatabase) { // from class: androidx.work.impl.model.SystemIdInfoDao_Impl.1
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "INSERT OR REPLACE INTO `SystemIdInfo` (`work_spec_id`,`system_id`) VALUES (?,?)";
-            }
-
-            @Override // androidx.room.EntityInsertionAdapter
-            public void bind(SupportSQLiteStatement supportSQLiteStatement, SystemIdInfo systemIdInfo) {
-                String str = systemIdInfo.workSpecId;
-                if (str == null) {
-                    supportSQLiteStatement.bindNull(1);
-                } else {
-                    supportSQLiteStatement.bindString(1, str);
-                }
-                supportSQLiteStatement.bindLong(2, systemIdInfo.systemId);
-            }
-        };
-        this.__preparedStmtOfRemoveSystemIdInfo = new SharedSQLiteStatement(roomDatabase) { // from class: androidx.work.impl.model.SystemIdInfoDao_Impl.2
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "DELETE FROM SystemIdInfo where work_spec_id=?";
-            }
-        };
+        this.__insertionAdapterOfSystemIdInfo = new SystemIdInfoDao_Impl$1(this, roomDatabase);
+        this.__preparedStmtOfRemoveSystemIdInfo = new SystemIdInfoDao_Impl$2(this, roomDatabase);
     }
 
     @Override // androidx.work.impl.model.SystemIdInfoDao

@@ -12,6 +12,11 @@ public final class GuildScheduledEventsComparator implements Comparator<GuildSch
     private GuildScheduledEventsComparator() {
     }
 
+    @Override // java.util.Comparator
+    public /* bridge */ /* synthetic */ int compare(GuildScheduledEvent guildScheduledEvent, GuildScheduledEvent guildScheduledEvent2) {
+        return compare2(guildScheduledEvent, guildScheduledEvent2);
+    }
+
     /* JADX WARN: Code duplicated, block: B:13:0x001b A[DONT_INVERT] */
     /* JADX WARN: Code duplicated, block: B:14:0x001d  */
     /* JADX WARN: Code duplicated, block: B:15:0x0022  */
@@ -21,8 +26,8 @@ public final class GuildScheduledEventsComparator implements Comparator<GuildSch
     /* JADX WARN: Code duplicated, block: B:28:0x0045 A[ORIG_RETURN, RETURN] */
     /* JADX WARN: Code duplicated, block: B:32:? A[RETURN, SYNTHETIC] */
     /* JADX WARN: Code duplicated, block: B:33:? A[RETURN, SYNTHETIC] */
-    @Override // java.util.Comparator
-    public int compare(GuildScheduledEvent o1, GuildScheduledEvent o2) {
+    /* JADX INFO: renamed from: compare, reason: avoid collision after fix types in other method */
+    public int compare2(GuildScheduledEvent o1, GuildScheduledEvent o2) {
         GuildScheduledEventStatus status;
         GuildScheduledEventStatus status2 = o1 != null ? o1.getStatus() : null;
         GuildScheduledEventStatus guildScheduledEventStatus = GuildScheduledEventStatus.ACTIVE;
@@ -38,7 +43,7 @@ public final class GuildScheduledEventsComparator implements Comparator<GuildSch
                 }
             }
             if (o1 == null && o2 != null) {
-                return o1.getScheduledStartTime().compareTo(o2.getScheduledStartTime());
+                return o1.getScheduledStartTime().f(o2.getScheduledStartTime());
             }
             if (o1 == null) {
                 return 1;

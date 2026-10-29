@@ -18,7 +18,12 @@ public class StorageNotLowController extends ConstraintController<Boolean> {
     }
 
     @Override // androidx.work.impl.constraints.controllers.ConstraintController
-    public boolean isConstrained(@NonNull Boolean bool) {
+    public /* bridge */ /* synthetic */ boolean isConstrained(@NonNull Boolean bool) {
+        return isConstrained2(bool);
+    }
+
+    /* JADX INFO: renamed from: isConstrained, reason: avoid collision after fix types in other method */
+    public boolean isConstrained2(@NonNull Boolean bool) {
         return !bool.booleanValue();
     }
 }

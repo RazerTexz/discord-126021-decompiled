@@ -3,8 +3,8 @@ package com.esotericsoftware.kryo.serializers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.Serializer;
-import com.esotericsoftware.kryo.p502io.Input;
-import com.esotericsoftware.kryo.p502io.Output;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 import java.io.IOException;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -44,13 +44,9 @@ public class BlowfishSerializer extends Serializer {
     @Override // com.esotericsoftware.kryo.Serializer
     public void write(Kryo kryo, Output output, Object obj) {
         CipherOutputStream cipherOutputStream = new CipherOutputStream(output, getCipher(1));
-        Output output2 = new Output(cipherOutputStream, 256) { // from class: com.esotericsoftware.kryo.serializers.BlowfishSerializer.1
-            @Override // com.esotericsoftware.kryo.p502io.Output, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
-            public void close() throws KryoException {
-            }
-        };
-        this.serializer.write(kryo, output2, obj);
-        output2.flush();
+        BlowfishSerializer$1 blowfishSerializer$1 = new BlowfishSerializer$1(this, cipherOutputStream, 256);
+        this.serializer.write(kryo, blowfishSerializer$1, obj);
+        blowfishSerializer$1.flush();
         try {
             cipherOutputStream.close();
         } catch (IOException e) {

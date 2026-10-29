@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackRolePageViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,6 +22,11 @@ public final /* data */ class TrackRolePageViewed implements AnalyticsSchema, Tr
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_page_viewed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,7 +35,7 @@ public final /* data */ class TrackRolePageViewed implements AnalyticsSchema, Tr
             return false;
         }
         TrackRolePageViewed trackRolePageViewed = (TrackRolePageViewed) other;
-        return C12238m.areEqual(this.tabOpened, trackRolePageViewed.tabOpened) && C12238m.areEqual(this.isEveryone, trackRolePageViewed.isEveryone) && C12238m.areEqual(this.roleId, trackRolePageViewed.roleId) && C12238m.areEqual(this.roleMentionable, trackRolePageViewed.roleMentionable) && C12238m.areEqual(this.roleHoist, trackRolePageViewed.roleHoist) && C12238m.areEqual(this.rolePermissions, trackRolePageViewed.rolePermissions) && C12238m.areEqual(this.roleNumMembers, trackRolePageViewed.roleNumMembers);
+        return m.areEqual(this.tabOpened, trackRolePageViewed.tabOpened) && m.areEqual(this.isEveryone, trackRolePageViewed.isEveryone) && m.areEqual(this.roleId, trackRolePageViewed.roleId) && m.areEqual(this.roleMentionable, trackRolePageViewed.roleMentionable) && m.areEqual(this.roleHoist, trackRolePageViewed.roleHoist) && m.areEqual(this.rolePermissions, trackRolePageViewed.rolePermissions) && m.areEqual(this.roleNumMembers, trackRolePageViewed.roleNumMembers);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -62,26 +67,20 @@ public final /* data */ class TrackRolePageViewed implements AnalyticsSchema, Tr
         return iHashCode6 + (l3 != null ? l3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRolePageViewed(tabOpened=");
-        sbM833U.append(this.tabOpened);
-        sbM833U.append(", isEveryone=");
-        sbM833U.append(this.isEveryone);
-        sbM833U.append(", roleId=");
-        sbM833U.append(this.roleId);
-        sbM833U.append(", roleMentionable=");
-        sbM833U.append(this.roleMentionable);
-        sbM833U.append(", roleHoist=");
-        sbM833U.append(this.roleHoist);
-        sbM833U.append(", rolePermissions=");
-        sbM833U.append(this.rolePermissions);
-        sbM833U.append(", roleNumMembers=");
-        return C1643a.m819G(sbM833U, this.roleNumMembers, ")");
+        StringBuilder sbU = a.U("TrackRolePageViewed(tabOpened=");
+        sbU.append(this.tabOpened);
+        sbU.append(", isEveryone=");
+        sbU.append(this.isEveryone);
+        sbU.append(", roleId=");
+        sbU.append(this.roleId);
+        sbU.append(", roleMentionable=");
+        sbU.append(this.roleMentionable);
+        sbU.append(", roleHoist=");
+        sbU.append(this.roleHoist);
+        sbU.append(", rolePermissions=");
+        sbU.append(this.rolePermissions);
+        sbU.append(", roleNumMembers=");
+        return a.G(sbU, this.roleNumMembers, ")");
     }
 }

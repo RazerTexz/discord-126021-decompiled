@@ -2,78 +2,48 @@ package androidx.work.impl.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.WorkerThread;
 import androidx.work.WorkInfo;
 import androidx.work.WorkQuery;
 import androidx.work.impl.WorkManagerImpl;
-import androidx.work.impl.model.WorkSpec;
 import androidx.work.impl.utils.futures.SettableFuture;
+import b.i.b.d.a.a;
 import java.util.List;
 import java.util.UUID;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public abstract class StatusRunnable<T> implements Runnable {
     private final SettableFuture<T> mFuture = SettableFuture.create();
 
     @NonNull
-    public static StatusRunnable<List<WorkInfo>> forStringIds(@NonNull final WorkManagerImpl workManagerImpl, @NonNull final List<String> list) {
-        return new StatusRunnable<List<WorkInfo>>() { // from class: androidx.work.impl.utils.StatusRunnable.1
-            @Override // androidx.work.impl.utils.StatusRunnable
-            public List<WorkInfo> runInternal() {
-                return WorkSpec.WORK_INFO_MAPPER.apply(workManagerImpl.getWorkDatabase().workSpecDao().getWorkStatusPojoForIds(list));
-            }
-        };
+    public static StatusRunnable<List<WorkInfo>> forStringIds(@NonNull WorkManagerImpl workManagerImpl, @NonNull List<String> list) {
+        return new StatusRunnable$1(workManagerImpl, list);
     }
 
     @NonNull
-    public static StatusRunnable<List<WorkInfo>> forTag(@NonNull final WorkManagerImpl workManagerImpl, @NonNull final String str) {
-        return new StatusRunnable<List<WorkInfo>>() { // from class: androidx.work.impl.utils.StatusRunnable.3
-            @Override // androidx.work.impl.utils.StatusRunnable
-            public List<WorkInfo> runInternal() {
-                return WorkSpec.WORK_INFO_MAPPER.apply(workManagerImpl.getWorkDatabase().workSpecDao().getWorkStatusPojoForTag(str));
-            }
-        };
+    public static StatusRunnable<List<WorkInfo>> forTag(@NonNull WorkManagerImpl workManagerImpl, @NonNull String str) {
+        return new StatusRunnable$3(workManagerImpl, str);
     }
 
     @NonNull
-    public static StatusRunnable<WorkInfo> forUUID(@NonNull final WorkManagerImpl workManagerImpl, @NonNull final UUID uuid) {
-        return new StatusRunnable<WorkInfo>() { // from class: androidx.work.impl.utils.StatusRunnable.2
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // androidx.work.impl.utils.StatusRunnable
-            public WorkInfo runInternal() {
-                WorkSpec.WorkInfoPojo workStatusPojoForId = workManagerImpl.getWorkDatabase().workSpecDao().getWorkStatusPojoForId(uuid.toString());
-                if (workStatusPojoForId != null) {
-                    return workStatusPojoForId.toWorkInfo();
-                }
-                return null;
-            }
-        };
+    public static StatusRunnable<WorkInfo> forUUID(@NonNull WorkManagerImpl workManagerImpl, @NonNull UUID uuid) {
+        return new StatusRunnable$2(workManagerImpl, uuid);
     }
 
     @NonNull
-    public static StatusRunnable<List<WorkInfo>> forUniqueWork(@NonNull final WorkManagerImpl workManagerImpl, @NonNull final String str) {
-        return new StatusRunnable<List<WorkInfo>>() { // from class: androidx.work.impl.utils.StatusRunnable.4
-            @Override // androidx.work.impl.utils.StatusRunnable
-            public List<WorkInfo> runInternal() {
-                return WorkSpec.WORK_INFO_MAPPER.apply(workManagerImpl.getWorkDatabase().workSpecDao().getWorkStatusPojoForName(str));
-            }
-        };
+    public static StatusRunnable<List<WorkInfo>> forUniqueWork(@NonNull WorkManagerImpl workManagerImpl, @NonNull String str) {
+        return new StatusRunnable$4(workManagerImpl, str);
     }
 
     @NonNull
-    public static StatusRunnable<List<WorkInfo>> forWorkQuerySpec(@NonNull final WorkManagerImpl workManagerImpl, @NonNull final WorkQuery workQuery) {
-        return new StatusRunnable<List<WorkInfo>>() { // from class: androidx.work.impl.utils.StatusRunnable.5
-            @Override // androidx.work.impl.utils.StatusRunnable
-            public List<WorkInfo> runInternal() {
-                return WorkSpec.WORK_INFO_MAPPER.apply(workManagerImpl.getWorkDatabase().rawWorkInfoDao().getWorkInfoPojos(RawQueries.workQueryToRawQuery(workQuery)));
-            }
-        };
+    public static StatusRunnable<List<WorkInfo>> forWorkQuerySpec(@NonNull WorkManagerImpl workManagerImpl, @NonNull WorkQuery workQuery) {
+        return new StatusRunnable$5(workManagerImpl, workQuery);
     }
 
     @NonNull
-    public InterfaceFutureC4539a<T> getFuture() {
+    public a<T> getFuture() {
         return this.mFuture;
     }
 

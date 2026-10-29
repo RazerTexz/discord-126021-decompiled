@@ -9,6 +9,7 @@ import java.net.URI;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.NestingKind;
 import javax.tools.JavaFileObject;
+import javax.tools.JavaFileObject$Kind;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/apt/Javac9JavaFileObjectWrapper.SCL.lombok */
 class Javac9JavaFileObjectWrapper implements JavaFileObject {
@@ -18,7 +19,7 @@ class Javac9JavaFileObjectWrapper implements JavaFileObject {
         this.delegate = delegate;
     }
 
-    public boolean isNameCompatible(String simpleName, JavaFileObject.Kind kind) {
+    public boolean isNameCompatible(String simpleName, JavaFileObject$Kind kind) {
         return this.delegate.isNameCompatible(simpleName, kind);
     }
 
@@ -58,7 +59,7 @@ class Javac9JavaFileObjectWrapper implements JavaFileObject {
         return this.delegate.delete();
     }
 
-    public JavaFileObject.Kind getKind() {
+    public JavaFileObject$Kind getKind() {
         return this.delegate.getKind();
     }
 

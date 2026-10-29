@@ -3,11 +3,7 @@ package com.discord.utilities.view.validators;
 import android.view.View;
 import androidx.exifinterface.media.ExifInterface;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.google.android.material.textfield.TextInputLayout;
-import java.util.Arrays;
-import kotlin.jvm.functions.Function2;
-import p507d0.p579g0.C12103t;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Input.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,81 +12,11 @@ public class Input<T extends View> {
     private final InputValidator<T>[] validators;
     private final T view;
 
-    /* JADX INFO: compiled from: Input.kt */
-    public final class EditTextInput extends Input<TextInputLayout> {
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public EditTextInput(String str, TextInputLayout textInputLayout, InputValidator<? super TextInputLayout>... inputValidatorArr) {
-            super(str, textInputLayout, (InputValidator[]) Arrays.copyOf(inputValidatorArr, inputValidatorArr.length));
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            C12238m.checkNotNullParameter(textInputLayout, "view");
-            C12238m.checkNotNullParameter(inputValidatorArr, "validators");
-        }
-
-        @Override // com.discord.utilities.view.validators.Input
-        public boolean setErrorMessage(CharSequence errorMessage) {
-            getView().setError(errorMessage);
-            boolean z2 = !(errorMessage == null || C12103t.isBlank(errorMessage));
-            if (z2) {
-                getView().requestFocus();
-            }
-            return z2;
-        }
-    }
-
-    /* JADX INFO: compiled from: Input.kt */
-    public final class GenericInput<T extends View> extends Input<T> {
-        private final Function2<T, CharSequence, Boolean> onError;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        /* JADX WARN: Multi-variable type inference failed */
-        public GenericInput(String str, T t, InputValidator<? super T> inputValidator, Function2<? super T, ? super CharSequence, Boolean> function2) {
-            super(str, t, inputValidator);
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            C12238m.checkNotNullParameter(t, "view");
-            C12238m.checkNotNullParameter(inputValidator, "validator");
-            C12238m.checkNotNullParameter(function2, "onError");
-            this.onError = function2;
-        }
-
-        @Override // com.discord.utilities.view.validators.Input
-        public boolean setErrorMessage(CharSequence errorMessage) {
-            if (errorMessage == null || C12103t.isBlank(errorMessage)) {
-                return false;
-            }
-            return this.onError.invoke(getView(), errorMessage).booleanValue();
-        }
-    }
-
-    /* JADX INFO: compiled from: Input.kt */
-    public final class TextInputLayoutInput extends Input<TextInputLayout> {
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public TextInputLayoutInput(String str, TextInputLayout textInputLayout, InputValidator<? super TextInputLayout>... inputValidatorArr) {
-            super(str, textInputLayout, (InputValidator[]) Arrays.copyOf(inputValidatorArr, inputValidatorArr.length));
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            C12238m.checkNotNullParameter(textInputLayout, "view");
-            C12238m.checkNotNullParameter(inputValidatorArr, "validators");
-        }
-
-        @Override // com.discord.utilities.view.validators.Input
-        public boolean setErrorMessage(CharSequence errorMessage) {
-            getView().setError(errorMessage);
-            if (getView().getEndIconMode() == 1) {
-                getView().setErrorIconDrawable(0);
-            }
-            boolean z2 = !(errorMessage == null || C12103t.isBlank(errorMessage));
-            getView().setErrorEnabled(z2);
-            if (z2) {
-                getView().requestFocus();
-            }
-            return z2;
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public Input(String str, T t, InputValidator<? super T>... inputValidatorArr) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(t, "view");
-        C12238m.checkNotNullParameter(inputValidatorArr, "validators");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(t, "view");
+        m.checkNotNullParameter(inputValidatorArr, "validators");
         this.name = str;
         this.view = t;
         this.validators = inputValidatorArr;

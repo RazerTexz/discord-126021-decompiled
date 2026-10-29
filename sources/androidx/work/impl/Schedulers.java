@@ -1,10 +1,11 @@
 package androidx.work.impl;
 
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Configuration;
 import androidx.work.Logger;
 import androidx.work.impl.background.systemalarm.SystemAlarmScheduler;
@@ -18,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class Schedulers {
     public static final String GCM_SCHEDULER = "androidx.work.impl.background.gcm.GcmScheduler";
     private static final String TAG = Logger.tagWithPrefix("Schedulers");
@@ -28,7 +29,7 @@ public class Schedulers {
 
     @NonNull
     public static Scheduler createBestAvailableBackgroundScheduler(@NonNull Context context, @NonNull WorkManagerImpl workManagerImpl) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             SystemJobScheduler systemJobScheduler = new SystemJobScheduler(context, workManagerImpl);
             PackageManagerHelper.setComponentEnabled(context, SystemJobService.class, true);
             Logger.get().debug(TAG, "Created SystemJobScheduler and enabled SystemJobService", new Throwable[0]);
@@ -57,7 +58,7 @@ public class Schedulers {
                 long jCurrentTimeMillis = System.currentTimeMillis();
                 Iterator<WorkSpec> it = eligibleWorkForScheduling.iterator();
                 while (it.hasNext()) {
-                    workSpecDao.markWorkSpecScheduled(it.next().f163id, jCurrentTimeMillis);
+                    workSpecDao.markWorkSpecScheduled(it.next().f38id, jCurrentTimeMillis);
                 }
             }
             workDatabase.setTransactionSuccessful();

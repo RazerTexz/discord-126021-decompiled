@@ -1,9 +1,9 @@
 package org.webrtc;
 
 import androidx.annotation.Nullable;
+import h0.c.q0;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import p617h0.p628c.C12483q0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
@@ -13,15 +13,15 @@ public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
     private final VideoDecoderFactory platformSoftwareVideoDecoderFactory;
     private final VideoDecoderFactory softwareVideoDecoderFactory;
 
-    public DefaultVideoDecoderFactory(@Nullable EglBase.Context context) {
+    public DefaultVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context) {
         this.softwareVideoDecoderFactory = new SoftwareVideoDecoderFactory();
-        this.hardwareVideoDecoderFactory = new HardwareVideoDecoderFactory(context);
-        this.platformSoftwareVideoDecoderFactory = new PlatformSoftwareVideoDecoderFactory(context);
+        this.hardwareVideoDecoderFactory = new HardwareVideoDecoderFactory(eglBase$Context);
+        this.platformSoftwareVideoDecoderFactory = new PlatformSoftwareVideoDecoderFactory(eglBase$Context);
     }
 
     @Override // org.webrtc.VideoDecoderFactory
     public /* synthetic */ VideoDecoder createDecoder(String str) {
-        return C12483q0.m10671a(this, str);
+        return q0.a(this, str);
     }
 
     @Override // org.webrtc.VideoDecoderFactory

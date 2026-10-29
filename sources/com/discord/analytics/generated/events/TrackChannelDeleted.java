@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackThread;
 import com.discord.analytics.generated.traits.TrackThreadReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChannelDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackChannelDeleted implements AnalyticsSchema, Tr
             return false;
         }
         TrackChannelDeleted trackChannelDeleted = (TrackChannelDeleted) other;
-        return C12238m.areEqual(this.guildId, trackChannelDeleted.guildId) && C12238m.areEqual(this.guildName, trackChannelDeleted.guildName) && C12238m.areEqual(this.channelName, trackChannelDeleted.channelName);
+        return m.areEqual(this.guildId, trackChannelDeleted.guildId) && m.areEqual(this.guildName, trackChannelDeleted.guildName) && m.areEqual(this.channelName, trackChannelDeleted.channelName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,11 +48,11 @@ public final /* data */ class TrackChannelDeleted implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChannelDeleted(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", channelName=");
-        return C1643a.m817E(sbM833U, this.channelName, ")");
+        StringBuilder sbU = a.U("TrackChannelDeleted(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", channelName=");
+        return a.E(sbU, this.channelName, ")");
     }
 }

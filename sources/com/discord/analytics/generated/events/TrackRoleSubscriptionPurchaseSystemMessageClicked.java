@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackRoleSubscriptionPurchaseSystemMessageClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,6 +26,15 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageClicked 
         this.analyticsSchemaTypeName = "role_subscription_purchase_system_message_clicked";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
+    public void e(TrackBase trackBase) {
+        this.trackBase = trackBase;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -34,7 +43,11 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageClicked 
             return false;
         }
         TrackRoleSubscriptionPurchaseSystemMessageClicked trackRoleSubscriptionPurchaseSystemMessageClicked = (TrackRoleSubscriptionPurchaseSystemMessageClicked) other;
-        return C12238m.areEqual(this.messageId, trackRoleSubscriptionPurchaseSystemMessageClicked.messageId) && C12238m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionPurchaseSystemMessageClicked.roleSubscriptionListingId);
+        return m.areEqual(this.messageId, trackRoleSubscriptionPurchaseSystemMessageClicked.messageId) && m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionPurchaseSystemMessageClicked.roleSubscriptionListingId);
+    }
+
+    public void f(TrackChannel trackChannel) {
+        this.trackChannel = trackChannel;
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,27 +69,11 @@ public final /* data */ class TrackRoleSubscriptionPurchaseSystemMessageClicked 
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: e */
-    public void m7512e(TrackBase trackBase) {
-        this.trackBase = trackBase;
-    }
-
-    /* JADX INFO: renamed from: f */
-    public void m7513f(TrackChannel trackChannel) {
-        this.trackChannel = trackChannel;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRoleSubscriptionPurchaseSystemMessageClicked(messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", roleSubscriptionListingId=");
-        return C1643a.m819G(sbM833U, this.roleSubscriptionListingId, ")");
+        StringBuilder sbU = a.U("TrackRoleSubscriptionPurchaseSystemMessageClicked(messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", roleSubscriptionListingId=");
+        return a.G(sbU, this.roleSubscriptionListingId, ")");
     }
 
     public TrackRoleSubscriptionPurchaseSystemMessageClicked(Long l, Long l2) {

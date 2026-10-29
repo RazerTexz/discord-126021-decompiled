@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStartStageOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,6 +17,11 @@ public final /* data */ class TrackStartStageOpened implements AnalyticsSchema, 
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "start_stage_opened";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -25,7 +30,7 @@ public final /* data */ class TrackStartStageOpened implements AnalyticsSchema, 
             return false;
         }
         TrackStartStageOpened trackStartStageOpened = (TrackStartStageOpened) other;
-        return C12238m.areEqual(this.canStartPublicStage, trackStartStageOpened.canStartPublicStage) && C12238m.areEqual(this.stageInstanceId, trackStartStageOpened.stageInstanceId);
+        return m.areEqual(this.canStartPublicStage, trackStartStageOpened.canStartPublicStage) && m.areEqual(this.stageInstanceId, trackStartStageOpened.stageInstanceId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,16 +52,10 @@ public final /* data */ class TrackStartStageOpened implements AnalyticsSchema, 
         return iHashCode + (l != null ? l.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStartStageOpened(canStartPublicStage=");
-        sbM833U.append(this.canStartPublicStage);
-        sbM833U.append(", stageInstanceId=");
-        return C1643a.m819G(sbM833U, this.stageInstanceId, ")");
+        StringBuilder sbU = a.U("TrackStartStageOpened(canStartPublicStage=");
+        sbU.append(this.canStartPublicStage);
+        sbU.append(", stageInstanceId=");
+        return a.G(sbU, this.stageInstanceId, ")");
     }
 }

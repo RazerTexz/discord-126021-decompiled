@@ -10,8 +10,13 @@ public class MatrixEvaluator implements TypeEvaluator<Matrix> {
     private final float[] tempEndValues = new float[9];
     private final Matrix tempMatrix = new Matrix();
 
-    /* JADX WARN: Can't rename method to resolve collision */
     @Override // android.animation.TypeEvaluator
+    @NonNull
+    public /* bridge */ /* synthetic */ Matrix evaluate(float f, @NonNull Matrix matrix, @NonNull Matrix matrix2) {
+        return evaluate(f, matrix, matrix2);
+    }
+
+    /* JADX WARN: Can't rename method to resolve collision */
     @NonNull
     public Matrix evaluate(float f, @NonNull Matrix matrix, @NonNull Matrix matrix2) {
         matrix.getValues(this.tempStartValues);

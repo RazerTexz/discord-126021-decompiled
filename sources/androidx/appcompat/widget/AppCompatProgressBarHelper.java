@@ -1,9 +1,9 @@
 package androidx.appcompat.widget;
 
-import android.R;
+import android.R$attr;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
-import android.graphics.Shader;
+import android.graphics.Shader$TileMode;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ClipDrawable;
@@ -18,7 +18,7 @@ import androidx.core.graphics.drawable.WrappedDrawable;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatProgressBarHelper {
-    private static final int[] TINT_ATTRS = {R.attr.indeterminateDrawable, R.attr.progressDrawable};
+    private static final int[] TINT_ATTRS = {R$attr.indeterminateDrawable, R$attr.progressDrawable};
     private Bitmap mSampleTile;
     private final ProgressBar mView;
 
@@ -77,7 +77,7 @@ public class AppCompatProgressBarHelper {
                     this.mSampleTile = bitmap;
                 }
                 ShapeDrawable shapeDrawable = new ShapeDrawable(getDrawableShape());
-                shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
+                shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader$TileMode.REPEAT, Shader$TileMode.CLAMP));
                 shapeDrawable.getPaint().setColorFilter(bitmapDrawable.getPaint().getColorFilter());
                 return z2 ? new ClipDrawable(shapeDrawable, 3, 1) : shapeDrawable;
             }

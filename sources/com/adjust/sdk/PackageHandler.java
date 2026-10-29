@@ -29,12 +29,35 @@ public class PackageHandler implements IPackageHandler {
 
     public PackageHandler(IActivityHandler iActivityHandler, Context context, boolean z2) {
         init(iActivityHandler, context, z2);
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.1
-            @Override // java.lang.Runnable
-            public void run() {
-                PackageHandler.this.initI();
-            }
-        });
+        this.scheduler.submit(new PackageHandler$1(this));
+    }
+
+    public static /* synthetic */ void access$000(PackageHandler packageHandler) {
+        packageHandler.initI();
+    }
+
+    public static /* synthetic */ void access$100(PackageHandler packageHandler, ActivityPackage activityPackage) {
+        packageHandler.addI(activityPackage);
+    }
+
+    public static /* synthetic */ void access$200(PackageHandler packageHandler) {
+        packageHandler.sendFirstI();
+    }
+
+    public static /* synthetic */ void access$300(PackageHandler packageHandler) {
+        packageHandler.sendNextI();
+    }
+
+    public static /* synthetic */ ILogger access$400(PackageHandler packageHandler) {
+        return packageHandler.logger;
+    }
+
+    public static /* synthetic */ AtomicBoolean access$500(PackageHandler packageHandler) {
+        return packageHandler.isSending;
+    }
+
+    public static /* synthetic */ void access$600(PackageHandler packageHandler) {
+        packageHandler.flushI();
     }
 
     private void addI(ActivityPackage activityPackage) {
@@ -45,13 +68,8 @@ public class PackageHandler implements IPackageHandler {
     }
 
     @Override // com.adjust.sdk.IPackageHandler
-    public void addPackage(final ActivityPackage activityPackage) {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.2
-            @Override // java.lang.Runnable
-            public void run() {
-                PackageHandler.this.addI(activityPackage);
-            }
-        });
+    public void addPackage(ActivityPackage activityPackage) {
+        this.scheduler.submit(new PackageHandler$2(this, activityPackage));
     }
 
     @Override // com.adjust.sdk.IPackageHandler
@@ -61,22 +79,15 @@ public class PackageHandler implements IPackageHandler {
         if (iActivityHandler != null) {
             iActivityHandler.finishedTrackingActivity(responseData);
         }
-        Runnable runnable = new Runnable() { // from class: com.adjust.sdk.PackageHandler.5
-            @Override // java.lang.Runnable
-            public void run() {
-                PackageHandler.this.logger.verbose("Package handler can send", new Object[0]);
-                PackageHandler.this.isSending.set(false);
-                PackageHandler.this.sendFirstPackage();
-            }
-        };
+        PackageHandler$5 packageHandler$5 = new PackageHandler$5(this);
         if (activityPackage == null) {
-            runnable.run();
+            packageHandler$5.run();
             return;
         }
         int iIncreaseRetries = activityPackage.increaseRetries();
         long waitingTime = (activityPackage.getActivityKind() != ActivityKind.SESSION || new SharedPreferencesManager(this.context).getInstallTracked()) ? Util.getWaitingTime(iIncreaseRetries, this.backoffStrategy) : Util.getWaitingTime(iIncreaseRetries, this.backoffStrategyForInstallSession);
         this.logger.verbose("Waiting for %s seconds before retrying the %d time", Util.SecondsDisplayFormat.format(waitingTime / 1000.0d), Integer.valueOf(iIncreaseRetries));
-        this.scheduler.schedule(runnable, waitingTime);
+        this.scheduler.schedule(packageHandler$5, waitingTime);
     }
 
     public static Boolean deletePackageQueue(Context context) {
@@ -89,12 +100,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void flush() {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.7
-            @Override // java.lang.Runnable
-            public void run() {
-                PackageHandler.this.flushI();
-            }
-        });
+        this.scheduler.submit(new PackageHandler$7(this));
     }
 
     private void flushI() {
@@ -173,12 +179,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void sendFirstPackage() {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.3
-            @Override // java.lang.Runnable
-            public void run() {
-                PackageHandler.this.sendFirstI();
-            }
-        });
+        this.scheduler.submit(new PackageHandler$3(this));
     }
 
     private void sendNextI() {
@@ -194,12 +195,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void sendNextPackage(ResponseData responseData) {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.4
-            @Override // java.lang.Runnable
-            public void run() {
-                PackageHandler.this.sendNextI();
-            }
-        });
+        this.scheduler.submit(new PackageHandler$4(this));
         IActivityHandler iActivityHandler = this.activityHandlerWeakRef.get();
         if (iActivityHandler != null) {
             iActivityHandler.finishedTrackingActivity(responseData);
@@ -237,13 +233,7 @@ public class PackageHandler implements IPackageHandler {
 
     @Override // com.adjust.sdk.IPackageHandler
     public void updatePackages(SessionParameters sessionParameters) {
-        final SessionParameters sessionParametersDeepCopy = sessionParameters != null ? sessionParameters.deepCopy() : null;
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.PackageHandler.6
-            @Override // java.lang.Runnable
-            public void run() {
-                PackageHandler.this.updatePackagesI(sessionParametersDeepCopy);
-            }
-        });
+        this.scheduler.submit(new PackageHandler$6(this, sessionParameters != null ? sessionParameters.deepCopy() : null));
     }
 
     public void updatePackagesI(SessionParameters sessionParameters) {

@@ -1,7 +1,7 @@
 package com.discord.api.handoff;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: CreateHandoffTokenRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -9,13 +9,13 @@ public final /* data */ class CreateHandoffTokenRequest {
     private final String key;
 
     public CreateHandoffTokenRequest(String str) {
-        C12238m.checkNotNullParameter(str, "key");
+        m.checkNotNullParameter(str, "key");
         this.key = str;
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof CreateHandoffTokenRequest) && C12238m.areEqual(this.key, ((CreateHandoffTokenRequest) other).key);
+            return (other instanceof CreateHandoffTokenRequest) && m.areEqual(this.key, ((CreateHandoffTokenRequest) other).key);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class CreateHandoffTokenRequest {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("CreateHandoffTokenRequest(key="), this.key, ")");
+        return a.J(a.U("CreateHandoffTokenRequest(key="), this.key, ")");
     }
 }

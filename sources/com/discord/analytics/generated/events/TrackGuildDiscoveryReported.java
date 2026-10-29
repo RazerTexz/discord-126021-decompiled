@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildDiscoveryReported.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,6 +22,11 @@ public final /* data */ class TrackGuildDiscoveryReported implements AnalyticsSc
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "guild_discovery_reported";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,7 +35,7 @@ public final /* data */ class TrackGuildDiscoveryReported implements AnalyticsSc
             return false;
         }
         TrackGuildDiscoveryReported trackGuildDiscoveryReported = (TrackGuildDiscoveryReported) other;
-        return C12238m.areEqual(this.reportType, trackGuildDiscoveryReported.reportType) && C12238m.areEqual(this.reportSubType, trackGuildDiscoveryReported.reportSubType) && C12238m.areEqual(this.reasonEnum, trackGuildDiscoveryReported.reasonEnum) && C12238m.areEqual(this.reportId, trackGuildDiscoveryReported.reportId);
+        return m.areEqual(this.reportType, trackGuildDiscoveryReported.reportType) && m.areEqual(this.reportSubType, trackGuildDiscoveryReported.reportSubType) && m.areEqual(this.reasonEnum, trackGuildDiscoveryReported.reasonEnum) && m.areEqual(this.reportId, trackGuildDiscoveryReported.reportId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,20 +61,14 @@ public final /* data */ class TrackGuildDiscoveryReported implements AnalyticsSc
         return iHashCode3 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildDiscoveryReported(reportType=");
-        sbM833U.append(this.reportType);
-        sbM833U.append(", reportSubType=");
-        sbM833U.append(this.reportSubType);
-        sbM833U.append(", reasonEnum=");
-        sbM833U.append(this.reasonEnum);
-        sbM833U.append(", reportId=");
-        return C1643a.m819G(sbM833U, this.reportId, ")");
+        StringBuilder sbU = a.U("TrackGuildDiscoveryReported(reportType=");
+        sbU.append(this.reportType);
+        sbU.append(", reportSubType=");
+        sbU.append(this.reportSubType);
+        sbU.append(", reasonEnum=");
+        sbU.append(this.reasonEnum);
+        sbU.append(", reportId=");
+        return a.G(sbU, this.reportId, ")");
     }
 }

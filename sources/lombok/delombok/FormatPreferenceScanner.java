@@ -6,13 +6,13 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/delombok/FormatPreferenceScanner.SCL.lombok */
 public class FormatPreferenceScanner {
     private FormatPreferences tryEasy(FormatPreferences preferences, boolean force) {
         int count = 0;
-        for (Map.Entry<String, String> e : preferences.rawMap.entrySet()) {
+        for (Map$Entry<String, String> e : preferences.rawMap.entrySet()) {
             if (!"scan".equalsIgnoreCase(e.getValue())) {
                 count++;
             }
@@ -29,39 +29,7 @@ public class FormatPreferenceScanner {
             return fps;
         }
         try {
-            return scan_(preferences, new Reader(source) { // from class: lombok.delombok.FormatPreferenceScanner.1
-                int max;
-                private final /* synthetic */ CharSequence val$source;
-                int pos = 0;
-
-                {
-                    this.val$source = source;
-                    this.max = source.length();
-                }
-
-                @Override // java.io.Reader, java.io.Closeable, java.lang.AutoCloseable
-                public void close() throws IOException {
-                }
-
-                @Override // java.io.Reader
-                public int read(char[] b2, int p, int len) throws IOException {
-                    int read = 0;
-                    if (this.pos >= this.max) {
-                        return -1;
-                    }
-                    for (int i = p; i < p + len; i++) {
-                        CharSequence charSequence = this.val$source;
-                        int i2 = this.pos;
-                        this.pos = i2 + 1;
-                        b2[i] = charSequence.charAt(i2);
-                        read++;
-                        if (this.pos == this.max) {
-                            return read;
-                        }
-                    }
-                    return len;
-                }
-            });
+            return scan_(preferences, new FormatPreferenceScanner$1(this, source));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

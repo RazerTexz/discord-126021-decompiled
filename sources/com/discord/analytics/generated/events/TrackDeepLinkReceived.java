@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDeepLinkReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,6 +22,11 @@ public final /* data */ class TrackDeepLinkReceived implements AnalyticsSchema, 
     private final Boolean voiceAction = null;
     private final transient String analyticsSchemaTypeName = "deep_link_received";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -30,7 +35,7 @@ public final /* data */ class TrackDeepLinkReceived implements AnalyticsSchema, 
             return false;
         }
         TrackDeepLinkReceived trackDeepLinkReceived = (TrackDeepLinkReceived) other;
-        return C12238m.areEqual(this.source, trackDeepLinkReceived.source) && C12238m.areEqual(this.type, trackDeepLinkReceived.type) && C12238m.areEqual(this.voiceAction, trackDeepLinkReceived.voiceAction) && C12238m.areEqual(this.previewEnabled, trackDeepLinkReceived.previewEnabled);
+        return m.areEqual(this.source, trackDeepLinkReceived.source) && m.areEqual(this.type, trackDeepLinkReceived.type) && m.areEqual(this.voiceAction, trackDeepLinkReceived.voiceAction) && m.areEqual(this.previewEnabled, trackDeepLinkReceived.previewEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -56,20 +61,14 @@ public final /* data */ class TrackDeepLinkReceived implements AnalyticsSchema, 
         return iHashCode3 + (bool2 != null ? bool2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDeepLinkReceived(source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", voiceAction=");
-        sbM833U.append(this.voiceAction);
-        sbM833U.append(", previewEnabled=");
-        return C1643a.m816D(sbM833U, this.previewEnabled, ")");
+        StringBuilder sbU = a.U("TrackDeepLinkReceived(source=");
+        sbU.append(this.source);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", voiceAction=");
+        sbU.append(this.voiceAction);
+        sbU.append(", previewEnabled=");
+        return a.D(sbU, this.previewEnabled, ")");
     }
 }

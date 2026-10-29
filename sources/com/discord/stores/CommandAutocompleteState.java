@@ -1,85 +1,10 @@
 package com.discord.stores;
 
-import com.discord.api.commands.ApplicationCommandAutocompleteChoice;
-import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreApplicationCommands.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public abstract class CommandAutocompleteState {
-
-    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public final /* data */ class Choices extends CommandAutocompleteState {
-        private final List<ApplicationCommandAutocompleteChoice> choices;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public Choices(List<ApplicationCommandAutocompleteChoice> list) {
-            super(null);
-            C12238m.checkNotNullParameter(list, "choices");
-            this.choices = list;
-        }
-
-        public final List<ApplicationCommandAutocompleteChoice> component1() {
-            return this.choices;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ Choices copy$default(Choices choices, List list, int i, Object obj) {
-            if ((i & 1) != 0) {
-                list = choices.choices;
-            }
-            return choices.copy(list);
-        }
-
-        public final Choices copy(List<ApplicationCommandAutocompleteChoice> choices) {
-            C12238m.checkNotNullParameter(choices, "choices");
-            return new Choices(choices);
-        }
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof Choices) && C12238m.areEqual(this.choices, ((Choices) other).choices);
-            }
-            return true;
-        }
-
-        public final List<ApplicationCommandAutocompleteChoice> getChoices() {
-            return this.choices;
-        }
-
-        public int hashCode() {
-            List<ApplicationCommandAutocompleteChoice> list = this.choices;
-            if (list != null) {
-                return list.hashCode();
-            }
-            return 0;
-        }
-
-        public String toString() {
-            return C1643a.m824L(C1643a.m833U("Choices(choices="), this.choices, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public final class Failed extends CommandAutocompleteState {
-        public static final Failed INSTANCE = new Failed();
-
-        private Failed() {
-            super(null);
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public final class Loading extends CommandAutocompleteState {
-        public static final Loading INSTANCE = new Loading();
-
-        private Loading() {
-            super(null);
-        }
-    }
-
     private CommandAutocompleteState() {
     }
 

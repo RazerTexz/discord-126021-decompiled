@@ -6,23 +6,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.Locale;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class PageTransformerAdapter extends ViewPager2.OnPageChangeCallback {
+public final class PageTransformerAdapter extends ViewPager2$OnPageChangeCallback {
     private final LinearLayoutManager mLayoutManager;
-    private ViewPager2.PageTransformer mPageTransformer;
+    private ViewPager2$PageTransformer mPageTransformer;
 
     public PageTransformerAdapter(LinearLayoutManager linearLayoutManager) {
         this.mLayoutManager = linearLayoutManager;
     }
 
-    public ViewPager2.PageTransformer getPageTransformer() {
+    public ViewPager2$PageTransformer getPageTransformer() {
         return this.mPageTransformer;
     }
 
-    @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+    @Override // androidx.viewpager2.widget.ViewPager2$OnPageChangeCallback
     public void onPageScrollStateChanged(int i) {
     }
 
-    @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+    @Override // androidx.viewpager2.widget.ViewPager2$OnPageChangeCallback
     public void onPageScrolled(int i, float f, int i2) {
         if (this.mPageTransformer == null) {
             return;
@@ -37,11 +37,11 @@ public final class PageTransformerAdapter extends ViewPager2.OnPageChangeCallbac
         }
     }
 
-    @Override // androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+    @Override // androidx.viewpager2.widget.ViewPager2$OnPageChangeCallback
     public void onPageSelected(int i) {
     }
 
-    public void setPageTransformer(@Nullable ViewPager2.PageTransformer pageTransformer) {
-        this.mPageTransformer = pageTransformer;
+    public void setPageTransformer(@Nullable ViewPager2$PageTransformer viewPager2$PageTransformer) {
+        this.mPageTransformer = viewPager2$PageTransformer;
     }
 }

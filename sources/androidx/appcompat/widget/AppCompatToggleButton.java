@@ -1,6 +1,6 @@
 package androidx.appcompat.widget;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ToggleButton;
@@ -16,7 +16,7 @@ public class AppCompatToggleButton extends ToggleButton {
     }
 
     public AppCompatToggleButton(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.buttonStyleToggle);
+        this(context, attributeSet, R$attr.buttonStyleToggle);
     }
 
     public AppCompatToggleButton(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {

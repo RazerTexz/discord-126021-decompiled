@@ -4,24 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
-import androidx.annotation.RestrictTo;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ConnectivityManagerCompat {
     public static final int RESTRICT_BACKGROUND_STATUS_DISABLED = 1;
     public static final int RESTRICT_BACKGROUND_STATUS_ENABLED = 3;
     public static final int RESTRICT_BACKGROUND_STATUS_WHITELISTED = 2;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface RestrictBackgroundStatus {
-    }
 
     private ConnectivityManagerCompat() {
     }
@@ -38,7 +30,7 @@ public final class ConnectivityManagerCompat {
     }
 
     public static int getRestrictBackgroundStatus(@NonNull ConnectivityManager connectivityManager) {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             return connectivityManager.getRestrictBackgroundStatus();
         }
         return 3;

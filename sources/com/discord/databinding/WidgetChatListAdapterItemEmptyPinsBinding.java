@@ -10,22 +10,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemEmptyPinsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f16200a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16201b;
+    public final TextView f2317b;
 
     public WidgetChatListAdapterItemEmptyPinsBinding(@NonNull RelativeLayout relativeLayout, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f16200a = relativeLayout;
-        this.f16201b = textView;
+        this.a = relativeLayout;
+        this.f2317b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16200a;
+        return this.a;
     }
 }

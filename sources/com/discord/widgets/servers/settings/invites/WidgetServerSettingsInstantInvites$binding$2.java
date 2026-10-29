@@ -4,16 +4,16 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetServerSettingsInstantInvitesBinding;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetServerSettingsInstantInvites.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetServerSettingsInstantInvites$binding$2 extends C12236k implements Function1<View, WidgetServerSettingsInstantInvitesBinding> {
+public final /* synthetic */ class WidgetServerSettingsInstantInvites$binding$2 extends k implements Function1<View, WidgetServerSettingsInstantInvitesBinding> {
     public static final WidgetServerSettingsInstantInvites$binding$2 INSTANCE = new WidgetServerSettingsInstantInvites$binding$2();
 
     public WidgetServerSettingsInstantInvites$binding$2() {
@@ -21,19 +21,24 @@ public final /* synthetic */ class WidgetServerSettingsInstantInvites$binding$2 
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetServerSettingsInstantInvitesBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.no_invites_body;
-        TextView textView = (TextView) view.findViewById(C5419R.id.no_invites_body);
+    public /* bridge */ /* synthetic */ WidgetServerSettingsInstantInvitesBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetServerSettingsInstantInvitesBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.no_invites_body;
+        TextView textView = (TextView) view.findViewById(R$id.no_invites_body);
         if (textView != null) {
-            i = C5419R.id.no_invites_header;
-            TextView textView2 = (TextView) view.findViewById(C5419R.id.no_invites_header);
+            i = R$id.no_invites_header;
+            TextView textView2 = (TextView) view.findViewById(R$id.no_invites_header);
             if (textView2 != null) {
-                i = C5419R.id.server_settings_instant_invites_recycler;
-                RecyclerView recyclerView = (RecyclerView) view.findViewById(C5419R.id.server_settings_instant_invites_recycler);
+                i = R$id.server_settings_instant_invites_recycler;
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.server_settings_instant_invites_recycler);
                 if (recyclerView != null) {
-                    i = C5419R.id.server_settings_instant_invites_view_flipper;
-                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(C5419R.id.server_settings_instant_invites_view_flipper);
+                    i = R$id.server_settings_instant_invites_view_flipper;
+                    AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.server_settings_instant_invites_view_flipper);
                     if (appViewFlipper != null) {
                         return new WidgetServerSettingsInstantInvitesBinding((CoordinatorLayout) view, textView, textView2, recyclerView, appViewFlipper);
                     }

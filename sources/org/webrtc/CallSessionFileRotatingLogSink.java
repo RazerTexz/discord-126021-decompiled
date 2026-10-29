@@ -4,11 +4,11 @@ package org.webrtc;
 public class CallSessionFileRotatingLogSink {
     private long nativeSink;
 
-    public CallSessionFileRotatingLogSink(String str, int i, Logging.Severity severity) {
+    public CallSessionFileRotatingLogSink(String str, int i, Logging$Severity logging$Severity) {
         if (str == null) {
             throw new IllegalArgumentException("dirPath may not be null.");
         }
-        this.nativeSink = nativeAddSink(str, i, severity.ordinal());
+        this.nativeSink = nativeAddSink(str, i, logging$Severity.ordinal());
     }
 
     public void dispose() {

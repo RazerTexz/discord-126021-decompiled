@@ -1,41 +1,32 @@
 package com.discord.widgets.channels.threads.browser;
 
-import android.os.Bundle;
-import android.view.View;
+import android.content.Context;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import com.discord.C5419R;
+import b.a.d.f0;
+import b.d.b.a.a;
+import com.discord.R$layout;
 import com.discord.app.AppBottomSheet;
 import com.discord.databinding.WidgetThreadBrowserFilterSheetBinding;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
 import com.discord.views.CheckedSetting;
+import d0.g;
+import d0.z.d.a0;
+import d0.z.d.m;
 import kotlin.Lazy;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0863f0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Subscription;
-import p658rx.subscriptions.CompositeSubscription;
+import rx.subscriptions.CompositeSubscription;
 
 /* JADX INFO: compiled from: WidgetThreadBrowserFilterSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetThreadBrowserFilterSheet extends AppBottomSheet {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetThreadBrowserFilterSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetThreadBrowserFilterSheetBinding;", 0)};
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetThreadBrowserFilterSheet.class, "binding", "getBinding()Lcom/discord/databinding/WidgetThreadBrowserFilterSheetBinding;", 0)};
+    public static final WidgetThreadBrowserFilterSheet$Companion Companion = new WidgetThreadBrowserFilterSheet$Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -49,88 +40,60 @@ public final class WidgetThreadBrowserFilterSheet extends AppBottomSheet {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserFilterSheet$bindSubscriptions$1 */
-    /* JADX INFO: compiled from: WidgetThreadBrowserFilterSheet.kt */
-    public final class C76651 extends AbstractC12240o implements Function1<WidgetThreadBrowserArchivedViewModel.ViewState, Unit> {
-        public C76651() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetThreadBrowserArchivedViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetThreadBrowserArchivedViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "viewState");
-            WidgetThreadBrowserFilterSheet.this.configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetThreadBrowserFilterSheet.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void show(FragmentManager fragmentManager, long guildId, long channelId) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet = new WidgetThreadBrowserFilterSheet();
-            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            bundleM832T.putLong("com.discord.intent.extra.EXTRA_CHANNEL_ID", channelId);
-            widgetThreadBrowserFilterSheet.setArguments(bundleM832T);
-            widgetThreadBrowserFilterSheet.show(fragmentManager, WidgetThreadBrowserFilterSheet.class.getName());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public WidgetThreadBrowserFilterSheet() {
         super(false, 1, null);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetThreadBrowserFilterSheet$binding$2.INSTANCE, null, 2, null);
-        this.guildId = C12083g.lazy(new WidgetThreadBrowserFilterSheet$guildId$2(this));
-        this.channelId = C12083g.lazy(new WidgetThreadBrowserFilterSheet$channelId$2(this));
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetThreadBrowserArchivedViewModel.class), new C7663x6248c6ac(this), new C0863f0(new WidgetThreadBrowserFilterSheet$viewModel$2(this)));
+        this.guildId = g.lazy(new WidgetThreadBrowserFilterSheet$guildId$2(this));
+        this.channelId = g.lazy(new WidgetThreadBrowserFilterSheet$channelId$2(this));
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetThreadBrowserArchivedViewModel.class), new WidgetThreadBrowserFilterSheet$appActivityViewModels$$inlined$activityViewModels$1(this), new f0(new WidgetThreadBrowserFilterSheet$viewModel$2(this)));
+    }
+
+    public static final /* synthetic */ void access$configureUI(WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet, WidgetThreadBrowserArchivedViewModel$ViewState widgetThreadBrowserArchivedViewModel$ViewState) {
+        widgetThreadBrowserFilterSheet.configureUI(widgetThreadBrowserArchivedViewModel$ViewState);
+    }
+
+    public static final /* synthetic */ WidgetThreadBrowserFilterSheetBinding access$getBinding$p(WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet) {
+        return widgetThreadBrowserFilterSheet.getBinding();
+    }
+
+    public static final /* synthetic */ long access$getChannelId$p(WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet) {
+        return widgetThreadBrowserFilterSheet.getChannelId();
+    }
+
+    public static final /* synthetic */ long access$getGuildId$p(WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet) {
+        return widgetThreadBrowserFilterSheet.getGuildId();
+    }
+
+    public static final /* synthetic */ WidgetThreadBrowserArchivedViewModel access$getViewModel$p(WidgetThreadBrowserFilterSheet widgetThreadBrowserFilterSheet) {
+        return widgetThreadBrowserFilterSheet.getViewModel();
     }
 
     @Override // com.discord.app.AppBottomSheet
     public void bindSubscriptions(CompositeSubscription compositeSubscription) {
-        C12238m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
+        m.checkNotNullParameter(compositeSubscription, "compositeSubscription");
         super.bindSubscriptions(compositeSubscription);
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(getViewModel().observeViewState(), this, null, 2, null), (Class<?>) WidgetThreadBrowserFilterSheet.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C76651());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(getViewModel().observeViewState(), this, null, 2, null), WidgetThreadBrowserFilterSheet.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetThreadBrowserFilterSheet$bindSubscriptions$1(this), 62, (Object) null);
     }
 
-    private final void configureUI(WidgetThreadBrowserArchivedViewModel.ViewState viewState) {
-        WidgetThreadBrowserArchivedViewModel.ViewMode viewMode = viewState.getViewMode();
-        CheckedSetting checkedSetting = getBinding().f18279e;
-        C12238m.checkNotNullExpressionValue(checkedSetting, "binding.threadBrowserVisibilityPublic");
-        WidgetThreadBrowserArchivedViewModel.VisibilityMode visibility = viewMode.getVisibility();
-        WidgetThreadBrowserArchivedViewModel.VisibilityMode visibilityMode = WidgetThreadBrowserArchivedViewModel.VisibilityMode.PublicThreads;
-        checkedSetting.setChecked(visibility == visibilityMode);
-        CheckedSetting checkedSetting2 = getBinding().f18278d;
-        C12238m.checkNotNullExpressionValue(checkedSetting2, "binding.threadBrowserVisibilityPrivate");
-        checkedSetting2.setChecked(viewMode.getVisibility() == WidgetThreadBrowserArchivedViewModel.VisibilityMode.PrivateThreads);
-        CardView cardView = getBinding().f18277c;
-        C12238m.checkNotNullExpressionValue(cardView, "binding.threadBrowserModeratorViewCard");
+    private final void configureUI(WidgetThreadBrowserArchivedViewModel$ViewState viewState) {
+        WidgetThreadBrowserArchivedViewModel$ViewMode viewMode = viewState.getViewMode();
+        CheckedSetting checkedSetting = getBinding().e;
+        m.checkNotNullExpressionValue(checkedSetting, "binding.threadBrowserVisibilityPublic");
+        WidgetThreadBrowserArchivedViewModel$VisibilityMode visibility = viewMode.getVisibility();
+        WidgetThreadBrowserArchivedViewModel$VisibilityMode widgetThreadBrowserArchivedViewModel$VisibilityMode = WidgetThreadBrowserArchivedViewModel$VisibilityMode.PublicThreads;
+        checkedSetting.setChecked(visibility == widgetThreadBrowserArchivedViewModel$VisibilityMode);
+        CheckedSetting checkedSetting2 = getBinding().d;
+        m.checkNotNullExpressionValue(checkedSetting2, "binding.threadBrowserVisibilityPrivate");
+        checkedSetting2.setChecked(viewMode.getVisibility() == WidgetThreadBrowserArchivedViewModel$VisibilityMode.PrivateThreads);
+        CardView cardView = getBinding().c;
+        m.checkNotNullExpressionValue(cardView, "binding.threadBrowserModeratorViewCard");
         cardView.setVisibility(viewState.isModerator() ? 0 : 8);
-        if (viewMode.getVisibility() == visibilityMode) {
-            CheckedSetting.m8523d(getBinding().f18276b, null, 1);
+        if (viewMode.getVisibility() == widgetThreadBrowserArchivedViewModel$VisibilityMode) {
+            CheckedSetting.d(getBinding().f2671b, null, 1);
         } else {
-            getBinding().f18276b.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserFilterSheet.configureUI.1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    WidgetThreadBrowserFilterSheet.this.getBinding().f18276b.toggle();
-                    WidgetThreadBrowserArchivedViewModel viewModel = WidgetThreadBrowserFilterSheet.this.getViewModel();
-                    CheckedSetting checkedSetting3 = WidgetThreadBrowserFilterSheet.this.getBinding().f18276b;
-                    C12238m.checkNotNullExpressionValue(checkedSetting3, "binding.threadBrowserModeratorView");
-                    viewModel.onModeratorModeChanged(checkedSetting3.isChecked());
-                }
-            });
+            getBinding().f2671b.e(new WidgetThreadBrowserFilterSheet$configureUI$1(this));
         }
-        getBinding().f18276b.m8529g(viewMode.isModeratorMode(), false);
+        getBinding().f2671b.g(viewMode.isModeratorMode(), false);
     }
 
     private final WidgetThreadBrowserFilterSheetBinding getBinding() {
@@ -143,7 +106,7 @@ public final class WidgetThreadBrowserFilterSheet extends AppBottomSheet {
 
     @Override // com.discord.app.AppBottomSheet
     public int getContentViewResId() {
-        return C5419R.layout.widget_thread_browser_filter_sheet;
+        return R$layout.widget_thread_browser_filter_sheet;
     }
 
     private final long getGuildId() {
@@ -163,17 +126,7 @@ public final class WidgetThreadBrowserFilterSheet extends AppBottomSheet {
     @Override // com.discord.app.AppBottomSheet, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        getBinding().f18279e.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserFilterSheet.onResume.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetThreadBrowserFilterSheet.this.getViewModel().onVisibilityChanged(WidgetThreadBrowserArchivedViewModel.VisibilityMode.PublicThreads);
-            }
-        });
-        getBinding().f18278d.m8527e(new View.OnClickListener() { // from class: com.discord.widgets.channels.threads.browser.WidgetThreadBrowserFilterSheet.onResume.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                WidgetThreadBrowserFilterSheet.this.getViewModel().onVisibilityChanged(WidgetThreadBrowserArchivedViewModel.VisibilityMode.PrivateThreads);
-            }
-        });
+        getBinding().e.e(new WidgetThreadBrowserFilterSheet$onResume$1(this));
+        getBinding().d.e(new WidgetThreadBrowserFilterSheet$onResume$2(this));
     }
 }

@@ -1,11 +1,11 @@
 package com.discord.widgets.chat.input.autocomplete;
 
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
 import com.discord.utilities.collections.MultiListIterator;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Autocompletable.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -31,7 +31,7 @@ public abstract class Autocompletable {
             return getInputTextMatchers().iterator();
         }
         List<String> autocompleteTextMatchers2 = getAutocompleteTextMatchers();
-        C12238m.checkNotNull(autocompleteTextMatchers2);
+        m.checkNotNull(autocompleteTextMatchers2);
         return new MultiListIterator(getInputTextMatchers(), autocompleteTextMatchers2);
     }
 
@@ -41,7 +41,7 @@ public abstract class Autocompletable {
             return getInputTextMatchers().iterator();
         }
         List<String> hiddenInputTextMatchers2 = getHiddenInputTextMatchers();
-        C12238m.checkNotNull(hiddenInputTextMatchers2);
+        m.checkNotNull(hiddenInputTextMatchers2);
         return new MultiListIterator(getInputTextMatchers(), hiddenInputTextMatchers2);
     }
 
@@ -50,7 +50,7 @@ public abstract class Autocompletable {
     }
 
     public final boolean matchesText(String text) {
-        C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         if (getInputTextMatchers().contains(text)) {
             return true;
         }

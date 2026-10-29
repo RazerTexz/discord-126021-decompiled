@@ -1,8 +1,8 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelRtcLatencyRegion.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class ModelRtcLatencyRegion {
     private final String region;
 
     public ModelRtcLatencyRegion(String str, List<String> list) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REGION);
-        C12238m.checkNotNullParameter(list, "ips");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REGION);
+        m.checkNotNullParameter(list, "ips");
         this.region = str;
         this.ips = list;
     }
@@ -33,8 +33,8 @@ public final /* data */ class ModelRtcLatencyRegion {
     }
 
     public final ModelRtcLatencyRegion copy(String region, List<String> ips) {
-        C12238m.checkNotNullParameter(region, ModelAuditLogEntry.CHANGE_KEY_REGION);
-        C12238m.checkNotNullParameter(ips, "ips");
+        m.checkNotNullParameter(region, ModelAuditLogEntry.CHANGE_KEY_REGION);
+        m.checkNotNullParameter(ips, "ips");
         return new ModelRtcLatencyRegion(region, ips);
     }
 
@@ -46,7 +46,7 @@ public final /* data */ class ModelRtcLatencyRegion {
             return false;
         }
         ModelRtcLatencyRegion modelRtcLatencyRegion = (ModelRtcLatencyRegion) other;
-        return C12238m.areEqual(this.region, modelRtcLatencyRegion.region) && C12238m.areEqual(this.ips, modelRtcLatencyRegion.ips);
+        return m.areEqual(this.region, modelRtcLatencyRegion.region) && m.areEqual(this.ips, modelRtcLatencyRegion.ips);
     }
 
     public final List<String> getIps() {
@@ -70,9 +70,9 @@ public final /* data */ class ModelRtcLatencyRegion {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelRtcLatencyRegion(region=");
-        sbM833U.append(this.region);
-        sbM833U.append(", ips=");
-        return C1643a.m824L(sbM833U, this.ips, ")");
+        StringBuilder sbU = a.U("ModelRtcLatencyRegion(region=");
+        sbU.append(this.region);
+        sbU.append(", ips=");
+        return a.L(sbU, this.ips, ")");
     }
 }

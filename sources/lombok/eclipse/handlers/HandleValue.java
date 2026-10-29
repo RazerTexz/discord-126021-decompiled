@@ -26,7 +26,7 @@ public class HandleValue extends EclipseAnnotationHandler<Value> {
     public void handle(AnnotationValues<Value> annotation, Annotation ast, EclipseNode annotationNode) {
         HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.VALUE_FLAG_USAGE, "@Value");
         Value ann = annotation.getInstance();
-        EclipseNode typeNode = annotationNode.m10925up();
+        EclipseNode typeNode = annotationNode.up();
         TypeDeclaration typeDecl = null;
         if (typeNode.get() instanceof TypeDeclaration) {
             typeDecl = (TypeDeclaration) typeNode.get();
@@ -45,7 +45,7 @@ public class HandleValue extends EclipseAnnotationHandler<Value> {
         this.handleGetter.generateGetterForType(typeNode, annotationNode, AccessLevel.PUBLIC, true, Collections.emptyList());
         this.handleEqualsAndHashCode.generateEqualsAndHashCodeForType(typeNode, annotationNode);
         this.handleToString.generateToStringForType(typeNode, annotationNode);
-        this.handleConstructor.generateAllArgsConstructor(typeNode, AccessLevel.PUBLIC, ann.staticConstructor(), HandleConstructor.SkipIfConstructorExists.YES, Collections.emptyList(), annotationNode);
+        this.handleConstructor.generateAllArgsConstructor(typeNode, AccessLevel.PUBLIC, ann.staticConstructor(), HandleConstructor$SkipIfConstructorExists.YES, Collections.emptyList(), annotationNode);
         this.handleConstructor.generateExtraNoArgsConstructor(typeNode, annotationNode);
     }
 }

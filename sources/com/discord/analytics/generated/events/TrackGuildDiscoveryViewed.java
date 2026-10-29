@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackGuildDiscoveryViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackGuildDiscoveryViewed implements AnalyticsSche
             return false;
         }
         TrackGuildDiscoveryViewed trackGuildDiscoveryViewed = (TrackGuildDiscoveryViewed) other;
-        return C12238m.areEqual(this.loadId, trackGuildDiscoveryViewed.loadId) && C12238m.areEqual(this.numGuilds, trackGuildDiscoveryViewed.numGuilds) && C12238m.areEqual(this.numGuildsRecommended, trackGuildDiscoveryViewed.numGuildsRecommended) && C12238m.areEqual(this.numGuildsPopular, trackGuildDiscoveryViewed.numGuildsPopular) && C12238m.areEqual(this.recommendedGuildIds, trackGuildDiscoveryViewed.recommendedGuildIds) && C12238m.areEqual(this.categoryId, trackGuildDiscoveryViewed.categoryId) && C12238m.areEqual(this.recommendationsSource, trackGuildDiscoveryViewed.recommendationsSource);
+        return m.areEqual(this.loadId, trackGuildDiscoveryViewed.loadId) && m.areEqual(this.numGuilds, trackGuildDiscoveryViewed.numGuilds) && m.areEqual(this.numGuildsRecommended, trackGuildDiscoveryViewed.numGuildsRecommended) && m.areEqual(this.numGuildsPopular, trackGuildDiscoveryViewed.numGuildsPopular) && m.areEqual(this.recommendedGuildIds, trackGuildDiscoveryViewed.recommendedGuildIds) && m.areEqual(this.categoryId, trackGuildDiscoveryViewed.categoryId) && m.areEqual(this.recommendationsSource, trackGuildDiscoveryViewed.recommendationsSource);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -58,19 +58,19 @@ public final /* data */ class TrackGuildDiscoveryViewed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildDiscoveryViewed(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", numGuilds=");
-        sbM833U.append(this.numGuilds);
-        sbM833U.append(", numGuildsRecommended=");
-        sbM833U.append(this.numGuildsRecommended);
-        sbM833U.append(", numGuildsPopular=");
-        sbM833U.append(this.numGuildsPopular);
-        sbM833U.append(", recommendedGuildIds=");
-        sbM833U.append(this.recommendedGuildIds);
-        sbM833U.append(", categoryId=");
-        sbM833U.append(this.categoryId);
-        sbM833U.append(", recommendationsSource=");
-        return C1643a.m817E(sbM833U, this.recommendationsSource, ")");
+        StringBuilder sbU = a.U("TrackGuildDiscoveryViewed(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", numGuilds=");
+        sbU.append(this.numGuilds);
+        sbU.append(", numGuildsRecommended=");
+        sbU.append(this.numGuildsRecommended);
+        sbU.append(", numGuildsPopular=");
+        sbU.append(this.numGuildsPopular);
+        sbU.append(", recommendedGuildIds=");
+        sbU.append(this.recommendedGuildIds);
+        sbU.append(", categoryId=");
+        sbU.append(this.categoryId);
+        sbU.append(", recommendationsSource=");
+        return a.E(sbU, this.recommendationsSource, ")");
     }
 }

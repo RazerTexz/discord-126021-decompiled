@@ -95,7 +95,7 @@ public class PublicApiCreatorApp extends LombokApp {
                 for (String resourceName : toCopy) {
                     InputStream in = Lombok.class.getResourceAsStream(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN + resourceName);
                     if (in == null) {
-                        throw new Fail(String.format("api class %s cannot be found", resourceName));
+                        throw new PublicApiCreatorApp$Fail(String.format("api class %s cannot be found", resourceName));
                     }
                     try {
                         writeIntoJar(jar, resourceName, in);
@@ -121,7 +121,7 @@ public class PublicApiCreatorApp extends LombokApp {
                 if (0 == 0) {
                     outFile.delete();
                 }
-                if (t instanceof Fail) {
+                if (t instanceof PublicApiCreatorApp$Fail) {
                     System.err.println(t.getMessage());
                     return 1;
                 }
@@ -151,13 +151,6 @@ public class PublicApiCreatorApp extends LombokApp {
                 in.close();
                 return;
             }
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/PublicApiCreatorApp$Fail.SCL.lombok */
-    class Fail extends Exception {
-        Fail(String message) {
-            super(message);
         }
     }
 

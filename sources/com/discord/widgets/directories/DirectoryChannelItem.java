@@ -1,158 +1,21 @@
 package com.discord.widgets.directories;
 
-import androidx.annotation.StringRes;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public abstract class DirectoryChannelItem {
-    private final ViewType viewType;
+    private final DirectoryChannelItem$ViewType viewType;
 
-    /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public final class AddServer extends DirectoryChannelItem {
-        public static final AddServer INSTANCE = new AddServer();
-
-        private AddServer() {
-            super(ViewType.AddServer, null);
-        }
+    private DirectoryChannelItem(DirectoryChannelItem$ViewType directoryChannelItem$ViewType) {
+        this.viewType = directoryChannelItem$ViewType;
     }
 
-    /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public final /* data */ class DirectoryItem extends DirectoryChannelItem {
-        private final DirectoryEntryData directoryEntryData;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public DirectoryItem(DirectoryEntryData directoryEntryData) {
-            super(ViewType.Item, null);
-            C12238m.checkNotNullParameter(directoryEntryData, "directoryEntryData");
-            this.directoryEntryData = directoryEntryData;
-        }
-
-        public static /* synthetic */ DirectoryItem copy$default(DirectoryItem directoryItem, DirectoryEntryData directoryEntryData, int i, Object obj) {
-            if ((i & 1) != 0) {
-                directoryEntryData = directoryItem.directoryEntryData;
-            }
-            return directoryItem.copy(directoryEntryData);
-        }
-
-        public final DirectoryItem copy(DirectoryEntryData directoryEntryData) {
-            C12238m.checkNotNullParameter(directoryEntryData, "directoryEntryData");
-            return new DirectoryItem(directoryEntryData);
-        }
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof DirectoryItem) && C12238m.areEqual(this.directoryEntryData, ((DirectoryItem) other).directoryEntryData);
-            }
-            return true;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final DirectoryEntryData getDirectoryEntryData() {
-            return this.directoryEntryData;
-        }
-
-        public final DirectoryEntryData getDirectoryEntryData() {
-            return this.directoryEntryData;
-        }
-
-        public int hashCode() {
-            DirectoryEntryData directoryEntryData = this.directoryEntryData;
-            if (directoryEntryData != null) {
-                return directoryEntryData.hashCode();
-            }
-            return 0;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("DirectoryItem(directoryEntryData=");
-            sbM833U.append(this.directoryEntryData);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public final /* data */ class SectionHeader extends DirectoryChannelItem {
-        private final int textRes;
-
-        public SectionHeader(@StringRes int i) {
-            super(ViewType.SectionHeader, null);
-            this.textRes = i;
-        }
-
-        public static /* synthetic */ SectionHeader copy$default(SectionHeader sectionHeader, int i, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                i = sectionHeader.textRes;
-            }
-            return sectionHeader.copy(i);
-        }
-
-        public final SectionHeader copy(@StringRes int textRes) {
-            return new SectionHeader(textRes);
-        }
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof SectionHeader) && this.textRes == ((SectionHeader) other).textRes;
-            }
-            return true;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getTextRes() {
-            return this.textRes;
-        }
-
-        public final int getTextRes() {
-            return this.textRes;
-        }
-
-        public int hashCode() {
-            return this.textRes;
-        }
-
-        public String toString() {
-            return C1643a.m814B(C1643a.m833U("SectionHeader(textRes="), this.textRes, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-    public enum ViewType {
-        Item,
-        AddServer,
-        SectionHeader;
-
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
-
-        /* JADX INFO: compiled from: WidgetDirectoryEntryViewHolder.kt */
-        public final class Companion {
-            private Companion() {
-            }
-
-            public final ViewType findType(int type) {
-                return ViewType.values()[type];
-            }
-
-            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-                this();
-            }
-        }
-    }
-
-    private DirectoryChannelItem(ViewType viewType) {
-        this.viewType = viewType;
-    }
-
-    public final ViewType getViewType() {
+    public final DirectoryChannelItem$ViewType getViewType() {
         return this.viewType;
     }
 
-    public /* synthetic */ DirectoryChannelItem(ViewType viewType, DefaultConstructorMarker defaultConstructorMarker) {
-        this(viewType);
+    public /* synthetic */ DirectoryChannelItem(DirectoryChannelItem$ViewType directoryChannelItem$ViewType, DefaultConstructorMarker defaultConstructorMarker) {
+        this(directoryChannelItem$ViewType);
     }
 }

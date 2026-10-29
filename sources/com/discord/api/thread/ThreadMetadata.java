@@ -1,8 +1,8 @@
 package com.discord.api.thread;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ThreadMetadata.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class ThreadMetadata {
             return false;
         }
         ThreadMetadata threadMetadata = (ThreadMetadata) other;
-        return this.archived == threadMetadata.archived && C12238m.areEqual(this.archiveTimestamp, threadMetadata.archiveTimestamp) && this.autoArchiveDuration == threadMetadata.autoArchiveDuration && this.locked == threadMetadata.locked;
+        return this.archived == threadMetadata.archived && m.areEqual(this.archiveTimestamp, threadMetadata.archiveTimestamp) && this.autoArchiveDuration == threadMetadata.autoArchiveDuration && this.locked == threadMetadata.locked;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -65,13 +65,13 @@ public final /* data */ class ThreadMetadata {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ThreadMetadata(archived=");
-        sbM833U.append(this.archived);
-        sbM833U.append(", archiveTimestamp=");
-        sbM833U.append(this.archiveTimestamp);
-        sbM833U.append(", autoArchiveDuration=");
-        sbM833U.append(this.autoArchiveDuration);
-        sbM833U.append(", locked=");
-        return C1643a.m827O(sbM833U, this.locked, ")");
+        StringBuilder sbU = a.U("ThreadMetadata(archived=");
+        sbU.append(this.archived);
+        sbU.append(", archiveTimestamp=");
+        sbU.append(this.archiveTimestamp);
+        sbU.append(", autoArchiveDuration=");
+        sbU.append(this.autoArchiveDuration);
+        sbU.append(", locked=");
+        return a.O(sbU, this.locked, ")");
     }
 }

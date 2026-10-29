@@ -11,97 +11,81 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetMuteSettingsSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f17274a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17275b;
+    public final TextView f2498b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final LinearLayout f17276c;
+    public final LinearLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final LinearLayout f17277d;
+    public final LinearLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final FrameLayout f17278e;
+    public final FrameLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f17279f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f17280g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f17281h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f17282i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f17283j;
+    public final TextView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final TextView f17284k;
+    public final TextView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final TextView f17285l;
+    public final TextView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final TextView f17286m;
+    public final TextView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f17287n;
+    public final TextView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final LinearLayout f17288o;
+    public final LinearLayout o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final TextView f17289p;
+    public final TextView p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final TextView f17290q;
+    public final TextView q;
 
     public WidgetMuteSettingsSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout2, @NonNull FrameLayout frameLayout, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull TextView textView5, @NonNull TextView textView6, @NonNull TextView textView7, @NonNull TextView textView8, @NonNull TextView textView9, @NonNull TextView textView10, @NonNull LinearLayout linearLayout3, @NonNull TextView textView11, @NonNull TextView textView12) {
-        this.f17274a = nestedScrollView;
-        this.f17275b = textView;
-        this.f17276c = linearLayout;
-        this.f17277d = linearLayout2;
-        this.f17278e = frameLayout;
-        this.f17279f = textView2;
-        this.f17280g = textView3;
-        this.f17281h = textView4;
-        this.f17282i = textView5;
-        this.f17283j = textView6;
-        this.f17284k = textView7;
-        this.f17285l = textView8;
-        this.f17286m = textView9;
-        this.f17287n = textView10;
-        this.f17288o = linearLayout3;
-        this.f17289p = textView11;
-        this.f17290q = textView12;
+        this.a = nestedScrollView;
+        this.f2498b = textView;
+        this.c = linearLayout;
+        this.d = linearLayout2;
+        this.e = frameLayout;
+        this.f = textView2;
+        this.g = textView3;
+        this.h = textView4;
+        this.i = textView5;
+        this.j = textView6;
+        this.k = textView7;
+        this.l = textView8;
+        this.m = textView9;
+        this.n = textView10;
+        this.o = linearLayout3;
+        this.p = textView11;
+        this.q = textView12;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17274a;
+        return this.a;
     }
 }

@@ -1,16 +1,18 @@
 package androidx.work.impl.utils;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.Constraints;
-import androidx.work.Data;
+import androidx.work.Data$Builder;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.Logger;
 import androidx.work.Operation;
-import androidx.work.WorkInfo;
+import androidx.work.Operation$State$FAILURE;
+import androidx.work.WorkInfo$State;
 import androidx.work.WorkRequest;
 import androidx.work.impl.OperationImpl;
 import androidx.work.impl.Scheduler;
@@ -23,6 +25,7 @@ import androidx.work.impl.model.Dependency;
 import androidx.work.impl.model.DependencyDao;
 import androidx.work.impl.model.WorkName;
 import androidx.work.impl.model.WorkSpec;
+import androidx.work.impl.model.WorkSpec$IdAndState;
 import androidx.work.impl.model.WorkSpecDao;
 import androidx.work.impl.model.WorkTag;
 import androidx.work.impl.workers.ConstraintTrackingWorker;
@@ -32,7 +35,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class EnqueueRunnable implements Runnable {
     private final WorkContinuationImpl mWorkContinuation;
     private static final String TAG = Logger.tagWithPrefix("EnqueueRunnable");
@@ -101,11 +104,11 @@ public class EnqueueRunnable implements Runnable {
                     Logger.get().error(TAG, String.format("Prerequisite %s doesn't exist; not enqueuing", str2), new Throwable[0]);
                     return false;
                 }
-                WorkInfo.State state = workSpec.state;
-                z2 &= state == WorkInfo.State.SUCCEEDED;
-                if (state == WorkInfo.State.FAILED) {
+                WorkInfo$State workInfo$State = workSpec.state;
+                z2 &= workInfo$State == WorkInfo$State.SUCCEEDED;
+                if (workInfo$State == WorkInfo$State.FAILED) {
                     z4 = true;
-                } else if (state == WorkInfo.State.CANCELLED) {
+                } else if (workInfo$State == WorkInfo$State.CANCELLED) {
                     z3 = true;
                 }
             }
@@ -116,31 +119,31 @@ public class EnqueueRunnable implements Runnable {
         }
         boolean z8 = !TextUtils.isEmpty(str);
         if (z8 && !z7) {
-            List<WorkSpec.IdAndState> workSpecIdAndStatesForName = workDatabase.workSpecDao().getWorkSpecIdAndStatesForName(str);
+            List<WorkSpec$IdAndState> workSpecIdAndStatesForName = workDatabase.workSpecDao().getWorkSpecIdAndStatesForName(str);
             if (workSpecIdAndStatesForName.isEmpty()) {
                 z5 = false;
             } else if (existingWorkPolicy == ExistingWorkPolicy.APPEND || existingWorkPolicy == ExistingWorkPolicy.APPEND_OR_REPLACE) {
                 DependencyDao dependencyDao = workDatabase.dependencyDao();
                 ArrayList arrayList = new ArrayList();
-                for (WorkSpec.IdAndState idAndState : workSpecIdAndStatesForName) {
-                    if (!dependencyDao.hasDependents(idAndState.f164id)) {
-                        WorkInfo.State state2 = idAndState.state;
-                        boolean z9 = (state2 == WorkInfo.State.SUCCEEDED) & z2;
-                        if (state2 == WorkInfo.State.FAILED) {
+                for (WorkSpec$IdAndState workSpec$IdAndState : workSpecIdAndStatesForName) {
+                    if (!dependencyDao.hasDependents(workSpec$IdAndState.f39id)) {
+                        WorkInfo$State workInfo$State2 = workSpec$IdAndState.state;
+                        boolean z9 = (workInfo$State2 == WorkInfo$State.SUCCEEDED) & z2;
+                        if (workInfo$State2 == WorkInfo$State.FAILED) {
                             z4 = true;
-                        } else if (state2 == WorkInfo.State.CANCELLED) {
+                        } else if (workInfo$State2 == WorkInfo$State.CANCELLED) {
                             z3 = true;
                         }
-                        arrayList.add(idAndState.f164id);
+                        arrayList.add(workSpec$IdAndState.f39id);
                         z2 = z9;
                     }
                     dependencyDao = dependencyDao;
                 }
                 if (existingWorkPolicy == ExistingWorkPolicy.APPEND_OR_REPLACE && (z3 || z4)) {
                     WorkSpecDao workSpecDao = workDatabase.workSpecDao();
-                    Iterator<WorkSpec.IdAndState> it2 = workSpecDao.getWorkSpecIdAndStatesForName(str).iterator();
+                    Iterator<WorkSpec$IdAndState> it2 = workSpecDao.getWorkSpecIdAndStatesForName(str).iterator();
                     while (it2.hasNext()) {
-                        workSpecDao.delete(it2.next().f164id);
+                        workSpecDao.delete(it2.next().f39id);
                     }
                     z6 = false;
                     z3 = false;
@@ -155,19 +158,19 @@ public class EnqueueRunnable implements Runnable {
                 z5 = false;
             } else {
                 if (existingWorkPolicy == ExistingWorkPolicy.KEEP) {
-                    Iterator<WorkSpec.IdAndState> it3 = workSpecIdAndStatesForName.iterator();
+                    Iterator<WorkSpec$IdAndState> it3 = workSpecIdAndStatesForName.iterator();
                     while (it3.hasNext()) {
-                        WorkInfo.State state3 = it3.next().state;
-                        if (state3 == WorkInfo.State.ENQUEUED || state3 == WorkInfo.State.RUNNING) {
+                        WorkInfo$State workInfo$State3 = it3.next().state;
+                        if (workInfo$State3 == WorkInfo$State.ENQUEUED || workInfo$State3 == WorkInfo$State.RUNNING) {
                             return false;
                         }
                     }
                 }
                 CancelWorkRunnable.forName(str, workManagerImpl2, false).run();
                 WorkSpecDao workSpecDao2 = workDatabase.workSpecDao();
-                Iterator<WorkSpec.IdAndState> it4 = workSpecIdAndStatesForName.iterator();
+                Iterator<WorkSpec$IdAndState> it4 = workSpecIdAndStatesForName.iterator();
                 while (it4.hasNext()) {
-                    workSpecDao2.delete(it4.next().f164id);
+                    workSpecDao2.delete(it4.next().f39id);
                 }
                 z5 = true;
             }
@@ -182,13 +185,13 @@ public class EnqueueRunnable implements Runnable {
                 } else {
                     workSpec2.periodStartTime = jCurrentTimeMillis;
                 }
-                i = Build.VERSION.SDK_INT;
+                i = Build$VERSION.SDK_INT;
                 if (i < 23 && i <= 25) {
                     tryDelegateConstrainedWorkSpec(workSpec2);
                 } else if (i <= 22 && usesScheduler(workManagerImpl2, Schedulers.GCM_SCHEDULER)) {
                     tryDelegateConstrainedWorkSpec(workSpec2);
                 }
-                if (workSpec2.state == WorkInfo.State.ENQUEUED) {
+                if (workSpec2.state == WorkInfo$State.ENQUEUED) {
                     z5 = true;
                 }
                 workDatabase.workSpecDao().insertWorkSpec(workSpec2);
@@ -207,13 +210,13 @@ public class EnqueueRunnable implements Runnable {
                 workManagerImpl2 = workManagerImpl;
                 jCurrentTimeMillis = jCurrentTimeMillis;
             } else if (z4) {
-                workSpec2.state = WorkInfo.State.FAILED;
+                workSpec2.state = WorkInfo$State.FAILED;
             } else if (z3) {
-                workSpec2.state = WorkInfo.State.CANCELLED;
+                workSpec2.state = WorkInfo$State.CANCELLED;
             } else {
-                workSpec2.state = WorkInfo.State.BLOCKED;
+                workSpec2.state = WorkInfo$State.BLOCKED;
             }
-            i = Build.VERSION.SDK_INT;
+            i = Build$VERSION.SDK_INT;
             if (i < 23) {
                 if (i <= 22) {
                     tryDelegateConstrainedWorkSpec(workSpec2);
@@ -221,7 +224,7 @@ public class EnqueueRunnable implements Runnable {
             } else if (i <= 22) {
                 tryDelegateConstrainedWorkSpec(workSpec2);
             }
-            if (workSpec2.state == WorkInfo.State.ENQUEUED) {
+            if (workSpec2.state == WorkInfo$State.ENQUEUED) {
                 z5 = true;
             }
             workDatabase.workSpecDao().insertWorkSpec(workSpec2);
@@ -276,7 +279,7 @@ public class EnqueueRunnable implements Runnable {
             }
             this.mOperation.setState(Operation.SUCCESS);
         } catch (Throwable th) {
-            this.mOperation.setState(new Operation.State.FAILURE(th));
+            this.mOperation.setState(new Operation$State$FAILURE(th));
         }
     }
 
@@ -290,10 +293,10 @@ public class EnqueueRunnable implements Runnable {
         Constraints constraints = workSpec.constraints;
         if (constraints.requiresBatteryNotLow() || constraints.requiresStorageNotLow()) {
             String str = workSpec.workerClassName;
-            Data.Builder builder = new Data.Builder();
-            builder.putAll(workSpec.input).putString(ConstraintTrackingWorker.ARGUMENT_CLASS_NAME, str);
+            Data$Builder data$Builder = new Data$Builder();
+            data$Builder.putAll(workSpec.input).putString(ConstraintTrackingWorker.ARGUMENT_CLASS_NAME, str);
             workSpec.workerClassName = ConstraintTrackingWorker.class.getName();
-            workSpec.input = builder.build();
+            workSpec.input = data$Builder.build();
         }
     }
 

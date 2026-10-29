@@ -1,21 +1,40 @@
 package com.facebook.animated.gif;
 
 import android.graphics.Bitmap;
-import p007b.p109f.p115d.p119d.InterfaceC1680c;
-import p007b.p109f.p161j.p162a.p163a.InterfaceC1837d;
+import b.f.d.d.c;
+import b.f.j.a.a.d;
 
 /* JADX INFO: loaded from: classes.dex */
-public class GifFrame implements InterfaceC1837d {
+public class GifFrame implements d {
 
-    @InterfaceC1680c
+    @c
     private long mNativeContext;
 
-    @InterfaceC1680c
+    @c
     public GifFrame(long j) {
         this.mNativeContext = j;
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    @Override // b.f.j.a.a.d
+    public void a(int i, int i2, Bitmap bitmap) {
+        nativeRenderFrame(i, i2, bitmap);
+    }
+
+    @Override // b.f.j.a.a.d
+    public int b() {
+        return nativeGetXOffset();
+    }
+
+    @Override // b.f.j.a.a.d
+    public int c() {
+        return nativeGetYOffset();
+    }
+
+    public int d() {
+        return nativeGetDisposalMode();
+    }
+
+    @Override // b.f.j.a.a.d
     public void dispose() {
         nativeDispose();
     }
@@ -24,69 +43,46 @@ public class GifFrame implements InterfaceC1837d {
         nativeFinalize();
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    @Override // b.f.j.a.a.d
     public int getHeight() {
         return nativeGetHeight();
     }
 
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
+    @Override // b.f.j.a.a.d
     public int getWidth() {
         return nativeGetWidth();
     }
 
-    /* JADX INFO: renamed from: d */
-    public int m8628d() {
-        return nativeGetDisposalMode();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    /* JADX INFO: renamed from: a */
-    public void mo1185a(int i, int i2, Bitmap bitmap) {
-        nativeRenderFrame(i, i2, bitmap);
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    /* JADX INFO: renamed from: b */
-    public int mo1186b() {
-        return nativeGetXOffset();
-    }
-
-    @Override // p007b.p109f.p161j.p162a.p163a.InterfaceC1837d
-    /* JADX INFO: renamed from: c */
-    public int mo1187c() {
-        return nativeGetYOffset();
-    }
-
-    @InterfaceC1680c
+    @c
     private native void nativeDispose();
 
-    @InterfaceC1680c
+    @c
     private native void nativeFinalize();
 
-    @InterfaceC1680c
+    @c
     private native int nativeGetDisposalMode();
 
-    @InterfaceC1680c
+    @c
     private native int nativeGetDurationMs();
 
-    @InterfaceC1680c
+    @c
     private native int nativeGetHeight();
 
-    @InterfaceC1680c
+    @c
     private native int nativeGetTransparentPixelColor();
 
-    @InterfaceC1680c
+    @c
     private native int nativeGetWidth();
 
-    @InterfaceC1680c
+    @c
     private native int nativeGetXOffset();
 
-    @InterfaceC1680c
+    @c
     private native int nativeGetYOffset();
 
-    @InterfaceC1680c
+    @c
     private native boolean nativeHasTransparency();
 
-    @InterfaceC1680c
+    @c
     private native void nativeRenderFrame(int i, int i2, Bitmap bitmap);
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStrictSslRequestAttempt.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackStrictSslRequestAttempt implements AnalyticsS
             return false;
         }
         TrackStrictSslRequestAttempt trackStrictSslRequestAttempt = (TrackStrictSslRequestAttempt) other;
-        return C12238m.areEqual(this.success, trackStrictSslRequestAttempt.success) && C12238m.areEqual(this.method, trackStrictSslRequestAttempt.method);
+        return m.areEqual(this.success, trackStrictSslRequestAttempt.success) && m.areEqual(this.method, trackStrictSslRequestAttempt.method);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackStrictSslRequestAttempt implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStrictSslRequestAttempt(success=");
-        sbM833U.append(this.success);
-        sbM833U.append(", method=");
-        return C1643a.m817E(sbM833U, this.method, ")");
+        StringBuilder sbU = a.U("TrackStrictSslRequestAttempt(success=");
+        sbU.append(this.success);
+        sbU.append(", method=");
+        return a.E(sbU, this.method, ")");
     }
 }

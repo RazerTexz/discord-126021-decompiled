@@ -1,10 +1,8 @@
 package androidx.core.location;
 
 import android.location.Location;
-import androidx.annotation.DoNotInline;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
@@ -16,37 +14,15 @@ public final class LocationCompat {
     @Nullable
     private static Method sSetIsFromMockProviderMethod;
 
-    @RequiresApi(17)
-    public class Api17Impl {
-        private Api17Impl() {
-        }
-
-        @DoNotInline
-        public static long getElapsedRealtimeNanos(Location location) {
-            return location.getElapsedRealtimeNanos();
-        }
-    }
-
-    @RequiresApi(18)
-    public class Api18Impl {
-        private Api18Impl() {
-        }
-
-        @DoNotInline
-        public static boolean isMock(Location location) {
-            return location.isFromMockProvider();
-        }
-    }
-
     private LocationCompat() {
     }
 
     public static long getElapsedRealtimeMillis(@NonNull Location location) {
-        return TimeUnit.NANOSECONDS.toMillis(Api17Impl.getElapsedRealtimeNanos(location));
+        return TimeUnit.NANOSECONDS.toMillis(LocationCompat$Api17Impl.getElapsedRealtimeNanos(location));
     }
 
     public static long getElapsedRealtimeNanos(@NonNull Location location) {
-        return Api17Impl.getElapsedRealtimeNanos(location);
+        return LocationCompat$Api17Impl.getElapsedRealtimeNanos(location);
     }
 
     private static Method getSetIsFromMockProviderMethod() throws NoSuchMethodException {
@@ -59,7 +35,7 @@ public final class LocationCompat {
     }
 
     public static boolean isMock(@NonNull Location location) {
-        return Api18Impl.isMock(location);
+        return LocationCompat$Api18Impl.isMock(location);
     }
 
     public static void setMock(@NonNull Location location, boolean z2) {

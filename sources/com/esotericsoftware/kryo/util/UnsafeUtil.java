@@ -1,13 +1,12 @@
 package com.esotericsoftware.kryo.util;
 
+import b.e.a.a;
+import b.e.a.a$a;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p106e.p107a.C1644a;
 import sun.misc.Cleaner;
 import sun.misc.Unsafe;
 import sun.nio.ch.DirectBuffer;
@@ -40,7 +39,7 @@ public class UnsafeUtil {
         long j4;
         try {
             if (Util.IS_ANDROID) {
-                C1644a.a aVar = C1644a.f3007a;
+                a$a a_a = a.a;
                 jArrayBaseOffset7 = 0;
                 j3 = 0;
                 j2 = 0;
@@ -72,7 +71,7 @@ public class UnsafeUtil {
                                             j2 = jArrayBaseOffset;
                                             j3 = jArrayBaseOffset2;
                                         } catch (Exception unused) {
-                                            C1644a.a aVar2 = C1644a.f3007a;
+                                            a$a a_a2 = a.a;
                                             j = 0;
                                             unsafe2 = unsafe;
                                             j2 = jArrayBaseOffset;
@@ -84,7 +83,7 @@ public class UnsafeUtil {
                                 } catch (Exception unused3) {
                                     jArrayBaseOffset = 0;
                                     jArrayBaseOffset6 = 0;
-                                    C1644a.a aVar3 = C1644a.f3007a;
+                                    a$a a_a3 = a.a;
                                     j = 0;
                                     unsafe2 = unsafe;
                                     j2 = jArrayBaseOffset;
@@ -105,7 +104,7 @@ public class UnsafeUtil {
                                 jArrayBaseOffset = 0;
                                 jArrayBaseOffset5 = 0;
                                 jArrayBaseOffset6 = 0;
-                                C1644a.a aVar4 = C1644a.f3007a;
+                                a$a a_a4 = a.a;
                                 j = 0;
                                 unsafe2 = unsafe;
                                 j2 = jArrayBaseOffset;
@@ -127,7 +126,7 @@ public class UnsafeUtil {
                             jArrayBaseOffset4 = 0;
                             jArrayBaseOffset5 = 0;
                             jArrayBaseOffset6 = 0;
-                            C1644a.a aVar5 = C1644a.f3007a;
+                            a$a a_a5 = a.a;
                             j = 0;
                             unsafe2 = unsafe;
                             j2 = jArrayBaseOffset;
@@ -150,7 +149,7 @@ public class UnsafeUtil {
                         jArrayBaseOffset4 = 0;
                         jArrayBaseOffset5 = 0;
                         jArrayBaseOffset6 = 0;
-                        C1644a.a aVar6 = C1644a.f3007a;
+                        a$a a_a6 = a.a;
                         j = 0;
                         unsafe2 = unsafe;
                         j2 = jArrayBaseOffset;
@@ -174,7 +173,7 @@ public class UnsafeUtil {
                     jArrayBaseOffset4 = 0;
                     jArrayBaseOffset5 = 0;
                     jArrayBaseOffset6 = 0;
-                    C1644a.a aVar7 = C1644a.f3007a;
+                    a$a a_a7 = a.a;
                     j = 0;
                     unsafe2 = unsafe;
                     j2 = jArrayBaseOffset;
@@ -223,7 +222,7 @@ public class UnsafeUtil {
         try {
             return constructor.newInstance(Long.valueOf(j), Integer.valueOf(i), null);
         } catch (Exception e) {
-            throw new RuntimeException(C1643a.m877t("Cannot allocate ByteBuffer at a given address: ", j), e);
+            throw new RuntimeException(b.d.b.a.a.t("Cannot allocate ByteBuffer at a given address: ", j), e);
         }
     }
 
@@ -237,19 +236,9 @@ public class UnsafeUtil {
 
     public static Field[] sortFieldsByOffset(List<Field> list) {
         Field[] fieldArr = (Field[]) list.toArray(new Field[0]);
-        Arrays.sort(fieldArr, new Comparator<Field>() { // from class: com.esotericsoftware.kryo.util.UnsafeUtil.1
-            @Override // java.util.Comparator
-            public int compare(Field field, Field field2) {
-                long jObjectFieldOffset = UnsafeUtil.unsafe().objectFieldOffset(field);
-                long jObjectFieldOffset2 = UnsafeUtil.unsafe().objectFieldOffset(field2);
-                if (jObjectFieldOffset < jObjectFieldOffset2) {
-                    return -1;
-                }
-                return jObjectFieldOffset == jObjectFieldOffset2 ? 0 : 1;
-            }
-        });
+        Arrays.sort(fieldArr, new UnsafeUtil$1());
         for (Field field : list) {
-            C1644a.a aVar = C1644a.f3007a;
+            a$a a_a = a.a;
         }
         return fieldArr;
     }

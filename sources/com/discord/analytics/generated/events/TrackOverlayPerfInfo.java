@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackOverlayPerfInfo.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -42,7 +42,7 @@ public final /* data */ class TrackOverlayPerfInfo implements AnalyticsSchema, T
             return false;
         }
         TrackOverlayPerfInfo trackOverlayPerfInfo = (TrackOverlayPerfInfo) other;
-        return C12238m.areEqual(this.width, trackOverlayPerfInfo.width) && C12238m.areEqual(this.height, trackOverlayPerfInfo.height) && C12238m.areEqual(this.apiName, trackOverlayPerfInfo.apiName) && C12238m.areEqual(this.fullscreen, trackOverlayPerfInfo.fullscreen) && C12238m.areEqual(this.frameBufferSource, trackOverlayPerfInfo.frameBufferSource) && C12238m.areEqual(this.durationUs, trackOverlayPerfInfo.durationUs) && C12238m.areEqual(this.frameCount, trackOverlayPerfInfo.frameCount) && C12238m.areEqual(this.framesReceived, trackOverlayPerfInfo.framesReceived) && C12238m.areEqual(this.framesCaptured, trackOverlayPerfInfo.framesCaptured) && C12238m.areEqual(this.lockFailures, trackOverlayPerfInfo.lockFailures) && C12238m.areEqual(this.frameTimeMinUs, trackOverlayPerfInfo.frameTimeMinUs) && C12238m.areEqual(this.frameTimeMaxUs, trackOverlayPerfInfo.frameTimeMaxUs) && C12238m.areEqual(this.frameTimeAvgUs, trackOverlayPerfInfo.frameTimeAvgUs) && C12238m.areEqual(this.drawTimeMinUs, trackOverlayPerfInfo.drawTimeMinUs) && C12238m.areEqual(this.drawTimeMaxUs, trackOverlayPerfInfo.drawTimeMaxUs) && C12238m.areEqual(this.drawTimeAvgUs, trackOverlayPerfInfo.drawTimeAvgUs) && C12238m.areEqual(this.captureTimeMinUs, trackOverlayPerfInfo.captureTimeMinUs) && C12238m.areEqual(this.captureTimeMaxUs, trackOverlayPerfInfo.captureTimeMaxUs) && C12238m.areEqual(this.captureTimeAvgUs, trackOverlayPerfInfo.captureTimeAvgUs);
+        return m.areEqual(this.width, trackOverlayPerfInfo.width) && m.areEqual(this.height, trackOverlayPerfInfo.height) && m.areEqual(this.apiName, trackOverlayPerfInfo.apiName) && m.areEqual(this.fullscreen, trackOverlayPerfInfo.fullscreen) && m.areEqual(this.frameBufferSource, trackOverlayPerfInfo.frameBufferSource) && m.areEqual(this.durationUs, trackOverlayPerfInfo.durationUs) && m.areEqual(this.frameCount, trackOverlayPerfInfo.frameCount) && m.areEqual(this.framesReceived, trackOverlayPerfInfo.framesReceived) && m.areEqual(this.framesCaptured, trackOverlayPerfInfo.framesCaptured) && m.areEqual(this.lockFailures, trackOverlayPerfInfo.lockFailures) && m.areEqual(this.frameTimeMinUs, trackOverlayPerfInfo.frameTimeMinUs) && m.areEqual(this.frameTimeMaxUs, trackOverlayPerfInfo.frameTimeMaxUs) && m.areEqual(this.frameTimeAvgUs, trackOverlayPerfInfo.frameTimeAvgUs) && m.areEqual(this.drawTimeMinUs, trackOverlayPerfInfo.drawTimeMinUs) && m.areEqual(this.drawTimeMaxUs, trackOverlayPerfInfo.drawTimeMaxUs) && m.areEqual(this.drawTimeAvgUs, trackOverlayPerfInfo.drawTimeAvgUs) && m.areEqual(this.captureTimeMinUs, trackOverlayPerfInfo.captureTimeMinUs) && m.areEqual(this.captureTimeMaxUs, trackOverlayPerfInfo.captureTimeMaxUs) && m.areEqual(this.captureTimeAvgUs, trackOverlayPerfInfo.captureTimeAvgUs);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -93,43 +93,43 @@ public final /* data */ class TrackOverlayPerfInfo implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackOverlayPerfInfo(width=");
-        sbM833U.append(this.width);
-        sbM833U.append(", height=");
-        sbM833U.append(this.height);
-        sbM833U.append(", apiName=");
-        sbM833U.append(this.apiName);
-        sbM833U.append(", fullscreen=");
-        sbM833U.append(this.fullscreen);
-        sbM833U.append(", frameBufferSource=");
-        sbM833U.append(this.frameBufferSource);
-        sbM833U.append(", durationUs=");
-        sbM833U.append(this.durationUs);
-        sbM833U.append(", frameCount=");
-        sbM833U.append(this.frameCount);
-        sbM833U.append(", framesReceived=");
-        sbM833U.append(this.framesReceived);
-        sbM833U.append(", framesCaptured=");
-        sbM833U.append(this.framesCaptured);
-        sbM833U.append(", lockFailures=");
-        sbM833U.append(this.lockFailures);
-        sbM833U.append(", frameTimeMinUs=");
-        sbM833U.append(this.frameTimeMinUs);
-        sbM833U.append(", frameTimeMaxUs=");
-        sbM833U.append(this.frameTimeMaxUs);
-        sbM833U.append(", frameTimeAvgUs=");
-        sbM833U.append(this.frameTimeAvgUs);
-        sbM833U.append(", drawTimeMinUs=");
-        sbM833U.append(this.drawTimeMinUs);
-        sbM833U.append(", drawTimeMaxUs=");
-        sbM833U.append(this.drawTimeMaxUs);
-        sbM833U.append(", drawTimeAvgUs=");
-        sbM833U.append(this.drawTimeAvgUs);
-        sbM833U.append(", captureTimeMinUs=");
-        sbM833U.append(this.captureTimeMinUs);
-        sbM833U.append(", captureTimeMaxUs=");
-        sbM833U.append(this.captureTimeMaxUs);
-        sbM833U.append(", captureTimeAvgUs=");
-        return C1643a.m819G(sbM833U, this.captureTimeAvgUs, ")");
+        StringBuilder sbU = a.U("TrackOverlayPerfInfo(width=");
+        sbU.append(this.width);
+        sbU.append(", height=");
+        sbU.append(this.height);
+        sbU.append(", apiName=");
+        sbU.append(this.apiName);
+        sbU.append(", fullscreen=");
+        sbU.append(this.fullscreen);
+        sbU.append(", frameBufferSource=");
+        sbU.append(this.frameBufferSource);
+        sbU.append(", durationUs=");
+        sbU.append(this.durationUs);
+        sbU.append(", frameCount=");
+        sbU.append(this.frameCount);
+        sbU.append(", framesReceived=");
+        sbU.append(this.framesReceived);
+        sbU.append(", framesCaptured=");
+        sbU.append(this.framesCaptured);
+        sbU.append(", lockFailures=");
+        sbU.append(this.lockFailures);
+        sbU.append(", frameTimeMinUs=");
+        sbU.append(this.frameTimeMinUs);
+        sbU.append(", frameTimeMaxUs=");
+        sbU.append(this.frameTimeMaxUs);
+        sbU.append(", frameTimeAvgUs=");
+        sbU.append(this.frameTimeAvgUs);
+        sbU.append(", drawTimeMinUs=");
+        sbU.append(this.drawTimeMinUs);
+        sbU.append(", drawTimeMaxUs=");
+        sbU.append(this.drawTimeMaxUs);
+        sbU.append(", drawTimeAvgUs=");
+        sbU.append(this.drawTimeAvgUs);
+        sbU.append(", captureTimeMinUs=");
+        sbU.append(this.captureTimeMinUs);
+        sbU.append(", captureTimeMaxUs=");
+        sbU.append(this.captureTimeMaxUs);
+        sbU.append(", captureTimeAvgUs=");
+        return a.G(sbU, this.captureTimeAvgUs, ")");
     }
 }

@@ -14,67 +14,57 @@ import com.google.android.material.chip.Chip;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStickerSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f18207a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LoadingButton f18208b;
+    public final LoadingButton f2663b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f18209c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f18210d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialButton f18211e;
+    public final MaterialButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final Chip f18212f;
+    public final Chip f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final RelativeLayout f18213g;
+    public final RelativeLayout g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final StickerView f18214h;
+    public final StickerView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final StickerView f18215i;
+    public final StickerView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final StickerView f18216j;
+    public final StickerView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final StickerView f18217k;
+    public final StickerView k;
 
     public WidgetStickerSheetBinding(@NonNull LinearLayout linearLayout, @NonNull LoadingButton loadingButton, @NonNull TextView textView, @NonNull TextView textView2, @NonNull LinearLayout linearLayout2, @NonNull MaterialButton materialButton, @NonNull Chip chip, @NonNull RelativeLayout relativeLayout, @NonNull StickerView stickerView, @NonNull StickerView stickerView2, @NonNull StickerView stickerView3, @NonNull StickerView stickerView4) {
-        this.f18207a = linearLayout;
-        this.f18208b = loadingButton;
-        this.f18209c = textView;
-        this.f18210d = textView2;
-        this.f18211e = materialButton;
-        this.f18212f = chip;
-        this.f18213g = relativeLayout;
-        this.f18214h = stickerView;
-        this.f18215i = stickerView2;
-        this.f18216j = stickerView3;
-        this.f18217k = stickerView4;
+        this.a = linearLayout;
+        this.f2663b = loadingButton;
+        this.c = textView;
+        this.d = textView2;
+        this.e = materialButton;
+        this.f = chip;
+        this.g = relativeLayout;
+        this.h = stickerView;
+        this.i = stickerView2;
+        this.j = stickerView3;
+        this.k = stickerView4;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18207a;
+        return this.a;
     }
 }

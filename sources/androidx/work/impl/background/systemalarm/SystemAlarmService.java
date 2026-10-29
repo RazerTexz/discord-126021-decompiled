@@ -3,13 +3,14 @@ package androidx.work.impl.background.systemalarm;
 import android.content.Intent;
 import androidx.annotation.MainThread;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LifecycleService;
 import androidx.work.Logger;
 import androidx.work.impl.utils.WakeLocks;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-public class SystemAlarmService extends LifecycleService implements SystemAlarmDispatcher.CommandsCompletedListener {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+public class SystemAlarmService extends LifecycleService implements SystemAlarmDispatcher$CommandsCompletedListener {
     private SystemAlarmDispatcher mDispatcher;
     private boolean mIsShutdown;
     private static final String TAG = Logger.tagWithPrefix("SystemAlarmService");
@@ -21,7 +22,7 @@ public class SystemAlarmService extends LifecycleService implements SystemAlarmD
         systemAlarmDispatcher.setCompletedListener(this);
     }
 
-    @Override // androidx.work.impl.background.systemalarm.SystemAlarmDispatcher.CommandsCompletedListener
+    @Override // androidx.work.impl.background.systemalarm.SystemAlarmDispatcher$CommandsCompletedListener
     @MainThread
     public void onAllCommandsCompleted() {
         this.mIsShutdown = true;

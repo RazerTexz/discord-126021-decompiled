@@ -78,7 +78,7 @@ public class Chain {
         ConstraintWidget constraintWidget4 = chainHead.mLastVisibleWidget;
         ConstraintWidget constraintWidget5 = chainHead.mHead;
         float f2 = chainHead.mTotalWeight;
-        boolean z5 = constraintWidgetContainer.mListDimensionBehaviors[i] == ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
+        boolean z5 = constraintWidgetContainer.mListDimensionBehaviors[i] == ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
         if (i == 0) {
             int i6 = constraintWidget5.mHorizontalChainStyle;
             z2 = i6 == 0;
@@ -109,10 +109,10 @@ public class Chain {
             int i8 = z4 ? 1 : 4;
             int margin = constraintAnchor4.getMargin();
             float f3 = f2;
-            ConstraintWidget.DimensionBehaviour dimensionBehaviour = r7.mListDimensionBehaviors[i];
+            ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = r7.mListDimensionBehaviors[i];
             boolean z7 = z6;
-            ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT;
-            boolean z8 = dimensionBehaviour == dimensionBehaviour2 && r7.mResolvedMatchConstraintDefault[i] == 0;
+            ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT;
+            boolean z8 = constraintWidget$DimensionBehaviour == constraintWidget$DimensionBehaviour2 && r7.mResolvedMatchConstraintDefault[i] == 0;
             ConstraintAnchor constraintAnchor5 = constraintAnchor4.mTarget;
             if (constraintAnchor5 != null && r7 != constraintWidget) {
                 margin = constraintAnchor5.getMargin() + margin;
@@ -134,7 +134,7 @@ public class Chain {
                 constraintWidget = constraintWidget;
             }
             if (z5) {
-                if (r7.getVisibility() == 8 || r7.mListDimensionBehaviors[i] != dimensionBehaviour2) {
+                if (r7.getVisibility() == 8 || r7.mListDimensionBehaviors[i] != constraintWidget$DimensionBehaviour2) {
                     i5 = 0;
                 } else {
                     ConstraintAnchor[] constraintAnchorArr = r7.mListAnchors;
@@ -173,7 +173,7 @@ public class Chain {
             int i10 = i2 + 1;
             if (constraintWidget2.mListAnchors[i10].mTarget != null) {
                 ConstraintAnchor constraintAnchor8 = constraintWidget4.mListAnchors[i10];
-                if ((constraintWidget4.mListDimensionBehaviors[i] == ConstraintWidget.DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget4.mResolvedMatchConstraintDefault[i] == 0) && !z4) {
+                if ((constraintWidget4.mListDimensionBehaviors[i] == ConstraintWidget$DimensionBehaviour.MATCH_CONSTRAINT && constraintWidget4.mResolvedMatchConstraintDefault[i] == 0) && !z4) {
                     ConstraintAnchor constraintAnchor9 = constraintAnchor8.mTarget;
                     if (constraintAnchor9.mOwner == constraintWidgetContainer) {
                         linearSystem.addEquality(constraintAnchor8.mSolverVariable, constraintAnchor9.mSolverVariable, -constraintAnchor8.getMargin(), 5);

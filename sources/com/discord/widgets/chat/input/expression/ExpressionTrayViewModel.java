@@ -1,9 +1,7 @@
 package com.discord.widgets.chat.input.expression;
 
-import com.discord.api.channel.Channel;
-import com.discord.api.sticker.Sticker;
-import com.discord.models.guild.Guild;
-import com.discord.models.user.MeUser;
+import android.content.Context;
+import b.a.d.d0;
 import com.discord.stores.StoreAnalytics;
 import com.discord.stores.StoreChannelsSelected;
 import com.discord.stores.StoreExpressionPickerNavigation;
@@ -11,33 +9,21 @@ import com.discord.stores.StoreGuildStickers;
 import com.discord.stores.StoreGuilds;
 import com.discord.stores.StoreStream;
 import com.discord.stores.StoreUser;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.widgets.chat.input.gifpicker.GifCategoryItem;
-import java.util.Map;
-import java.util.Set;
+import d0.z.d.m;
 import kotlin.NoWhenBranchMatchedException;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p008a.p018d.AbstractC0859d0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
-import p658rx.functions.Func5;
-import p658rx.subjects.PublishSubject;
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-    private final PublishSubject<Event> eventSubject;
+public final class ExpressionTrayViewModel extends d0<ExpressionTrayViewModel$ViewState> {
+    public static final ExpressionTrayViewModel$Companion Companion = new ExpressionTrayViewModel$Companion(null);
+    private final PublishSubject<ExpressionTrayViewModel$Event> eventSubject;
     private final StoreAnalytics storeAnalytics;
     private final StoreChannelsSelected storeChannelsSelected;
     private final StoreExpressionPickerNavigation storeExpressionPickerNavigation;
@@ -46,419 +32,33 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     private final StoreUser storeUser;
     private boolean wasActive;
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.ExpressionTrayViewModel$1 */
-    /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public final /* synthetic */ class C78411 extends C12236k implements Function1<StoreState, Unit> {
-        public C78411(ExpressionTrayViewModel expressionTrayViewModel) {
-            super(1, expressionTrayViewModel, ExpressionTrayViewModel.class, "handleStoreState", "handleStoreState(Lcom/discord/widgets/chat/input/expression/ExpressionTrayViewModel$StoreState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            C12238m.checkNotNullParameter(storeState, "p1");
-            ((ExpressionTrayViewModel) this.receiver).handleStoreState(storeState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.expression.ExpressionTrayViewModel$2 */
-    /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public final /* synthetic */ class C78422 extends C12236k implements Function1<ExpressionPickerEvent, Unit> {
-        public C78422(ExpressionTrayViewModel expressionTrayViewModel) {
-            super(1, expressionTrayViewModel, ExpressionTrayViewModel.class, "handleExpressionPickerEvents", "handleExpressionPickerEvents(Lcom/discord/widgets/chat/input/expression/ExpressionPickerEvent;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(ExpressionPickerEvent expressionPickerEvent) {
-            invoke2(expressionPickerEvent);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(ExpressionPickerEvent expressionPickerEvent) {
-            C12238m.checkNotNullParameter(expressionPickerEvent, "p1");
-            ((ExpressionTrayViewModel) this.receiver).handleExpressionPickerEvents(expressionPickerEvent);
-        }
-    }
-
-    /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        private final Observable<StoreState> observeStoreState(StoreExpressionPickerNavigation storeExpressionPickerNavigation, StoreChannelsSelected storeChannelsSelected, StoreUser storeUser, StoreGuildStickers storeGuildStickers, StoreGuilds storeGuilds) {
-            Observable<StoreState> observableM11072g = Observable.m11072g(storeExpressionPickerNavigation.observeSelectedTab(), storeChannelsSelected.observeResolvedSelectedChannel(), StoreUser.observeMe$default(storeUser, false, 1, null), storeGuildStickers.observeGuildStickers(), storeGuilds.observeGuilds(), new Func5<ExpressionTrayTab, StoreChannelsSelected.ResolvedSelectedChannel, MeUser, Map<Long, ? extends Map<Long, ? extends Sticker>>, Map<Long, ? extends Guild>, StoreState>() { // from class: com.discord.widgets.chat.input.expression.ExpressionTrayViewModel$Companion$observeStoreState$1
-                @Override // p658rx.functions.Func5
-                public /* bridge */ /* synthetic */ ExpressionTrayViewModel.StoreState call(ExpressionTrayTab expressionTrayTab, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, MeUser meUser, Map<Long, ? extends Map<Long, ? extends Sticker>> map, Map<Long, ? extends Guild> map2) {
-                    return call2(expressionTrayTab, resolvedSelectedChannel, meUser, (Map<Long, ? extends Map<Long, Sticker>>) map, (Map<Long, Guild>) map2);
-                }
-
-                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                public final ExpressionTrayViewModel.StoreState call2(ExpressionTrayTab expressionTrayTab, StoreChannelsSelected.ResolvedSelectedChannel resolvedSelectedChannel, MeUser meUser, Map<Long, ? extends Map<Long, Sticker>> map, Map<Long, Guild> map2) {
-                    C12238m.checkNotNullExpressionValue(expressionTrayTab, "lastSelectedTab");
-                    Channel channelOrParent = resolvedSelectedChannel.getChannelOrParent();
-                    Long lValueOf = channelOrParent != null ? Long.valueOf(channelOrParent.getGuildId()) : null;
-                    C12238m.checkNotNullExpressionValue(map, "guildStickers");
-                    return new ExpressionTrayViewModel.StoreState(expressionTrayTab, lValueOf, meUser, map, C12163u.toSet(map2.keySet()), resolvedSelectedChannel instanceof StoreChannelsSelected.ResolvedSelectedChannel.ThreadDraft);
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11072g, "Observable.combineLatest…aft\n          )\n        }");
-            return observableM11072g;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public abstract class Event {
-
-        /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public final class HideExpressionTray extends Event {
-            public static final HideExpressionTray INSTANCE = new HideExpressionTray();
-
-            private HideExpressionTray() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public final class ShowEmojiPickerSheet extends Event {
-            public static final ShowEmojiPickerSheet INSTANCE = new ShowEmojiPickerSheet();
-
-            private ShowEmojiPickerSheet() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public final class ShowGifPickerSheet extends Event {
-            public static final ShowGifPickerSheet INSTANCE = new ShowGifPickerSheet();
-
-            private ShowGifPickerSheet() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-        public final /* data */ class ShowStickerPicker extends Event {
-            private final boolean inline;
-            private final String searchText;
-            private final Long stickerPackId;
-
-            public /* synthetic */ ShowStickerPicker(Long l, String str, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
-                this(l, str, (i & 4) != 0 ? false : z2);
-            }
-
-            public static /* synthetic */ ShowStickerPicker copy$default(ShowStickerPicker showStickerPicker, Long l, String str, boolean z2, int i, Object obj) {
-                if ((i & 1) != 0) {
-                    l = showStickerPicker.stickerPackId;
-                }
-                if ((i & 2) != 0) {
-                    str = showStickerPicker.searchText;
-                }
-                if ((i & 4) != 0) {
-                    z2 = showStickerPicker.inline;
-                }
-                return showStickerPicker.copy(l, str, z2);
-            }
-
-            public final ShowStickerPicker copy(Long stickerPackId, String searchText, boolean inline) {
-                return new ShowStickerPicker(stickerPackId, searchText, inline);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof ShowStickerPicker)) {
-                    return false;
-                }
-                ShowStickerPicker showStickerPicker = (ShowStickerPicker) other;
-                return C12238m.areEqual(this.stickerPackId, showStickerPicker.stickerPackId) && C12238m.areEqual(this.searchText, showStickerPicker.searchText) && this.inline == showStickerPicker.inline;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final boolean getInline() {
-                return this.inline;
-            }
-
-            public final boolean getInline() {
-                return this.inline;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getSearchText() {
-                return this.searchText;
-            }
-
-            public final String getSearchText() {
-                return this.searchText;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Long getStickerPackId() {
-                return this.stickerPackId;
-            }
-
-            public final Long getStickerPackId() {
-                return this.stickerPackId;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v3, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v4 */
-            /* JADX WARN: Type inference failed for: r1v6 */
-            public int hashCode() {
-                Long l = this.stickerPackId;
-                int iHashCode = (l != null ? l.hashCode() : 0) * 31;
-                String str = this.searchText;
-                int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
-                boolean z2 = this.inline;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                return iHashCode2 + r1;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("ShowStickerPicker(stickerPackId=");
-                sbM833U.append(this.stickerPackId);
-                sbM833U.append(", searchText=");
-                sbM833U.append(this.searchText);
-                sbM833U.append(", inline=");
-                return C1643a.m827O(sbM833U, this.inline, ")");
-            }
-
-            public ShowStickerPicker(Long l, String str, boolean z2) {
-                super(null);
-                this.stickerPackId = l;
-                this.searchText = str;
-                this.inline = z2;
-            }
-        }
-
-        private Event() {
-        }
-
-        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public final /* data */ class StoreState {
-        private final Long guildId;
-        private final Map<Long, Map<Long, Sticker>> guildStickers;
-        private final boolean isThreadDraft;
-        private final MeUser meUser;
-        private final ExpressionTrayTab selectedExpressionTab;
-        private final Set<Long> userGuildIds;
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public StoreState(ExpressionTrayTab expressionTrayTab, Long l, MeUser meUser, Map<Long, ? extends Map<Long, Sticker>> map, Set<Long> set, boolean z2) {
-            C12238m.checkNotNullParameter(expressionTrayTab, "selectedExpressionTab");
-            C12238m.checkNotNullParameter(map, "guildStickers");
-            C12238m.checkNotNullParameter(set, "userGuildIds");
-            this.selectedExpressionTab = expressionTrayTab;
-            this.guildId = l;
-            this.meUser = meUser;
-            this.guildStickers = map;
-            this.userGuildIds = set;
-            this.isThreadDraft = z2;
-        }
-
-        public final Map<Long, Map<Long, Sticker>> component4() {
-            return this.guildStickers;
-        }
-
-        public final Set<Long> component5() {
-            return this.userGuildIds;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ StoreState copy$default(StoreState storeState, ExpressionTrayTab expressionTrayTab, Long l, MeUser meUser, Map map, Set set, boolean z2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                expressionTrayTab = storeState.selectedExpressionTab;
-            }
-            if ((i & 2) != 0) {
-                l = storeState.guildId;
-            }
-            Long l2 = l;
-            if ((i & 4) != 0) {
-                meUser = storeState.meUser;
-            }
-            MeUser meUser2 = meUser;
-            if ((i & 8) != 0) {
-                map = storeState.guildStickers;
-            }
-            Map map2 = map;
-            if ((i & 16) != 0) {
-                set = storeState.userGuildIds;
-            }
-            Set set2 = set;
-            if ((i & 32) != 0) {
-                z2 = storeState.isThreadDraft;
-            }
-            return storeState.copy(expressionTrayTab, l2, meUser2, map2, set2, z2);
-        }
-
-        public final StoreState copy(ExpressionTrayTab selectedExpressionTab, Long guildId, MeUser meUser, Map<Long, ? extends Map<Long, Sticker>> guildStickers, Set<Long> userGuildIds, boolean isThreadDraft) {
-            C12238m.checkNotNullParameter(selectedExpressionTab, "selectedExpressionTab");
-            C12238m.checkNotNullParameter(guildStickers, "guildStickers");
-            C12238m.checkNotNullParameter(userGuildIds, "userGuildIds");
-            return new StoreState(selectedExpressionTab, guildId, meUser, guildStickers, userGuildIds, isThreadDraft);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof StoreState)) {
-                return false;
-            }
-            StoreState storeState = (StoreState) other;
-            return C12238m.areEqual(this.selectedExpressionTab, storeState.selectedExpressionTab) && C12238m.areEqual(this.guildId, storeState.guildId) && C12238m.areEqual(this.meUser, storeState.meUser) && C12238m.areEqual(this.guildStickers, storeState.guildStickers) && C12238m.areEqual(this.userGuildIds, storeState.userGuildIds) && this.isThreadDraft == storeState.isThreadDraft;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        public final Map<Long, Map<Long, Sticker>> getGuildStickers() {
-            return this.guildStickers;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final boolean getIsThreadDraft() {
-            return this.isThreadDraft;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
-        public final MeUser getMeUser() {
-            return this.meUser;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ExpressionTrayTab getSelectedExpressionTab() {
-            return this.selectedExpressionTab;
-        }
-
-        public final ExpressionTrayTab getSelectedExpressionTab() {
-            return this.selectedExpressionTab;
-        }
-
-        public final Set<Long> getUserGuildIds() {
-            return this.userGuildIds;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v12, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v4 */
-        /* JADX WARN: Type inference failed for: r1v6 */
-        public int hashCode() {
-            ExpressionTrayTab expressionTrayTab = this.selectedExpressionTab;
-            int iHashCode = (expressionTrayTab != null ? expressionTrayTab.hashCode() : 0) * 31;
-            Long l = this.guildId;
-            int iHashCode2 = (iHashCode + (l != null ? l.hashCode() : 0)) * 31;
-            MeUser meUser = this.meUser;
-            int iHashCode3 = (iHashCode2 + (meUser != null ? meUser.hashCode() : 0)) * 31;
-            Map<Long, Map<Long, Sticker>> map = this.guildStickers;
-            int iHashCode4 = (iHashCode3 + (map != null ? map.hashCode() : 0)) * 31;
-            Set<Long> set = this.userGuildIds;
-            int iHashCode5 = (iHashCode4 + (set != null ? set.hashCode() : 0)) * 31;
-            boolean z2 = this.isThreadDraft;
-            ?? r1 = z2;
-            if (z2) {
-                r1 = 1;
-            }
-            return iHashCode5 + r1;
-        }
-
-        public final boolean isThreadDraft() {
-            return this.isThreadDraft;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("StoreState(selectedExpressionTab=");
-            sbM833U.append(this.selectedExpressionTab);
-            sbM833U.append(", guildId=");
-            sbM833U.append(this.guildId);
-            sbM833U.append(", meUser=");
-            sbM833U.append(this.meUser);
-            sbM833U.append(", guildStickers=");
-            sbM833U.append(this.guildStickers);
-            sbM833U.append(", userGuildIds=");
-            sbM833U.append(this.userGuildIds);
-            sbM833U.append(", isThreadDraft=");
-            return C1643a.m827O(sbM833U, this.isThreadDraft, ")");
-        }
-
-        public /* synthetic */ StoreState(ExpressionTrayTab expressionTrayTab, Long l, MeUser meUser, Map map, Set set, boolean z2, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this(expressionTrayTab, (i & 2) != 0 ? null : l, (i & 4) != 0 ? null : meUser, map, set, z2);
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
-
-        static {
-            ExpressionTrayTab.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            ExpressionTrayTab expressionTrayTab = ExpressionTrayTab.EMOJI;
-            iArr[expressionTrayTab.ordinal()] = 1;
-            ExpressionTrayTab expressionTrayTab2 = ExpressionTrayTab.GIF;
-            iArr[expressionTrayTab2.ordinal()] = 2;
-            ExpressionTrayTab expressionTrayTab3 = ExpressionTrayTab.STICKER;
-            iArr[expressionTrayTab3.ordinal()] = 3;
-            ExpressionTrayTab.values();
-            int[] iArr2 = new int[3];
-            $EnumSwitchMapping$1 = iArr2;
-            iArr2[expressionTrayTab.ordinal()] = 1;
-            iArr2[expressionTrayTab2.ordinal()] = 2;
-            iArr2[expressionTrayTab3.ordinal()] = 3;
-        }
-    }
-
     public ExpressionTrayViewModel() {
         this(null, null, null, null, null, null, null, null, 255, null);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
     public /* synthetic */ ExpressionTrayViewModel(StoreAnalytics storeAnalytics, StoreExpressionPickerNavigation storeExpressionPickerNavigation, StoreChannelsSelected storeChannelsSelected, StoreUser storeUser, StoreGuildStickers storeGuildStickers, StoreGuilds storeGuilds, Observable observable, Observable observable2, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        StoreAnalytics analytics = (i & 1) != 0 ? StoreStream.INSTANCE.getAnalytics() : storeAnalytics;
-        StoreExpressionPickerNavigation expressionPickerNavigation = (i & 2) != 0 ? StoreStream.INSTANCE.getExpressionPickerNavigation() : storeExpressionPickerNavigation;
-        StoreChannelsSelected channelsSelected = (i & 4) != 0 ? StoreStream.INSTANCE.getChannelsSelected() : storeChannelsSelected;
-        StoreUser users = (i & 8) != 0 ? StoreStream.INSTANCE.getUsers() : storeUser;
-        StoreGuildStickers guildStickers = (i & 16) != 0 ? StoreStream.INSTANCE.getGuildStickers() : storeGuildStickers;
-        StoreGuilds guilds = (i & 32) != 0 ? StoreStream.INSTANCE.getGuilds() : storeGuilds;
-        this(analytics, expressionPickerNavigation, channelsSelected, users, guildStickers, guilds, (i & 64) != 0 ? INSTANCE.observeStoreState(expressionPickerNavigation, channelsSelected, users, guildStickers, guilds) : observable, (i & 128) != 0 ? ExpressionPickerEventBus.INSTANCE.getINSTANCE().observeExpressionPickerEvents() : observable2);
+        StoreAnalytics analytics = (i & 1) != 0 ? StoreStream.Companion.getAnalytics() : storeAnalytics;
+        StoreExpressionPickerNavigation expressionPickerNavigation = (i & 2) != 0 ? StoreStream.Companion.getExpressionPickerNavigation() : storeExpressionPickerNavigation;
+        StoreChannelsSelected channelsSelected = (i & 4) != 0 ? StoreStream.Companion.getChannelsSelected() : storeChannelsSelected;
+        StoreUser users = (i & 8) != 0 ? StoreStream.Companion.getUsers() : storeUser;
+        StoreGuildStickers guildStickers = (i & 16) != 0 ? StoreStream.Companion.getGuildStickers() : storeGuildStickers;
+        StoreGuilds guilds = (i & 32) != 0 ? StoreStream.Companion.getGuilds() : storeGuilds;
+        this(analytics, expressionPickerNavigation, channelsSelected, users, guildStickers, guilds, (i & 64) != 0 ? ExpressionTrayViewModel$Companion.access$observeStoreState(Companion, expressionPickerNavigation, channelsSelected, users, guildStickers, guilds) : observable, (i & 128) != 0 ? ExpressionPickerEventBus.Companion.getINSTANCE().observeExpressionPickerEvents() : observable2);
+    }
+
+    public static final /* synthetic */ void access$handleExpressionPickerEvents(ExpressionTrayViewModel expressionTrayViewModel, ExpressionPickerEvent expressionPickerEvent) {
+        expressionTrayViewModel.handleExpressionPickerEvents(expressionPickerEvent);
+    }
+
+    public static final /* synthetic */ void access$handleStoreState(ExpressionTrayViewModel expressionTrayViewModel, ExpressionTrayViewModel$StoreState expressionTrayViewModel$StoreState) {
+        expressionTrayViewModel.handleStoreState(expressionTrayViewModel$StoreState);
     }
 
     public final void clickBack() {
-        ViewState viewStateRequireViewState = requireViewState();
-        if (viewStateRequireViewState.getExpressionDetailPage() != null) {
-            updateViewState(ViewState.copy$default(viewStateRequireViewState, null, null, false, false, 13, null));
+        ExpressionTrayViewModel$ViewState expressionTrayViewModel$ViewStateRequireViewState = requireViewState();
+        if (expressionTrayViewModel$ViewStateRequireViewState.getExpressionDetailPage() != null) {
+            updateViewState2(ExpressionTrayViewModel$ViewState.copy$default(expressionTrayViewModel$ViewStateRequireViewState, null, null, false, false, 13, null));
         }
     }
 
@@ -498,24 +98,24 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     }
 
     private final void handleExpressionPickerEvents(ExpressionPickerEvent expressionPickerEvent) {
-        if (C12238m.areEqual(expressionPickerEvent, ExpressionPickerEvent.CloseExpressionPicker.INSTANCE)) {
+        if (m.areEqual(expressionPickerEvent, ExpressionPickerEvent$CloseExpressionPicker.INSTANCE)) {
             hideExpressionPicker();
             return;
         }
-        if (expressionPickerEvent instanceof ExpressionPickerEvent.OpenStickerPicker) {
-            ExpressionPickerEvent.OpenStickerPicker openStickerPicker = (ExpressionPickerEvent.OpenStickerPicker) expressionPickerEvent;
-            if (!openStickerPicker.getInline()) {
-                showStickerPickerSheet(openStickerPicker.getStickerPackId(), openStickerPicker.getSearchText());
+        if (expressionPickerEvent instanceof ExpressionPickerEvent$OpenStickerPicker) {
+            ExpressionPickerEvent$OpenStickerPicker expressionPickerEvent$OpenStickerPicker = (ExpressionPickerEvent$OpenStickerPicker) expressionPickerEvent;
+            if (!expressionPickerEvent$OpenStickerPicker.getInline()) {
+                showStickerPickerSheet(expressionPickerEvent$OpenStickerPicker.getStickerPackId(), expressionPickerEvent$OpenStickerPicker.getSearchText());
             }
-            Long stickerPackId = openStickerPicker.getStickerPackId();
+            Long stickerPackId = expressionPickerEvent$OpenStickerPicker.getStickerPackId();
             long jLongValue = stickerPackId != null ? stickerPackId.longValue() : -1L;
             selectTab(ExpressionTrayTab.STICKER);
-            showStickerPickerInline(Long.valueOf(jLongValue), openStickerPicker.getSearchText());
+            showStickerPickerInline(Long.valueOf(jLongValue), expressionPickerEvent$OpenStickerPicker.getSearchText());
         }
     }
 
     public final void handleIsActive(boolean isActive) {
-        ViewState viewState;
+        ExpressionTrayViewModel$ViewState viewState;
         ExpressionTrayTab selectedExpressionTab;
         if (isActive && !this.wasActive && (viewState = getViewState()) != null && (selectedExpressionTab = viewState.getSelectedExpressionTab()) != null) {
             this.storeAnalytics.trackChatInputComponentViewed(getChatInputComponentType(selectedExpressionTab));
@@ -523,39 +123,39 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
         this.wasActive = isActive;
     }
 
-    private final void handleStoreState(StoreState storeState) {
-        updateViewState(ViewState.copy$default(requireViewState(), storeState.getSelectedExpressionTab(), null, false, !storeState.isThreadDraft(), 6, null));
+    private final void handleStoreState(ExpressionTrayViewModel$StoreState storeState) {
+        updateViewState2(ExpressionTrayViewModel$ViewState.copy$default(requireViewState(), storeState.getSelectedExpressionTab(), null, false, !storeState.isThreadDraft(), 6, null));
     }
 
     private final void hideExpressionPicker() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.HideExpressionTray.INSTANCE);
+        PublishSubject<ExpressionTrayViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(ExpressionTrayViewModel$Event$HideExpressionTray.INSTANCE);
     }
 
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+    public final Observable<ExpressionTrayViewModel$Event> observeEvents() {
+        PublishSubject<ExpressionTrayViewModel$Event> publishSubject = this.eventSubject;
+        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     public final void selectGifCategory(GifCategoryItem gifCategoryItem) {
-        C12238m.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
-        updateViewState(ViewState.copy$default(requireViewState(), null, new ExpressionDetailPage.GifCategoryPage(gifCategoryItem), false, false, 13, null));
+        m.checkNotNullParameter(gifCategoryItem, "gifCategoryItem");
+        updateViewState2(ExpressionTrayViewModel$ViewState.copy$default(requireViewState(), null, new ExpressionDetailPage$GifCategoryPage(gifCategoryItem), false, false, 13, null));
     }
 
     public final void selectTab(ExpressionTrayTab expressionTrayTab) {
-        C12238m.checkNotNullParameter(expressionTrayTab, "expressionTrayTab");
+        m.checkNotNullParameter(expressionTrayTab, "expressionTrayTab");
         this.storeExpressionPickerNavigation.onSelectTab(expressionTrayTab);
     }
 
     private final void showEmojiPickerSheet() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowEmojiPickerSheet.INSTANCE);
+        PublishSubject<ExpressionTrayViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(ExpressionTrayViewModel$Event$ShowEmojiPickerSheet.INSTANCE);
     }
 
     private final void showGifPickerSheet() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(Event.ShowGifPickerSheet.INSTANCE);
+        PublishSubject<ExpressionTrayViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(ExpressionTrayViewModel$Event$ShowGifPickerSheet.INSTANCE);
     }
 
     public static /* synthetic */ void showStickerPickerInline$default(ExpressionTrayViewModel expressionTrayViewModel, Long l, String str, int i, Object obj) {
@@ -569,8 +169,8 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     }
 
     private final void showStickerPickerInline(Long stickerPackId, String searchText) {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.ShowStickerPicker(stickerPackId, searchText, true));
+        PublishSubject<ExpressionTrayViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(new ExpressionTrayViewModel$Event$ShowStickerPicker(stickerPackId, searchText, true));
     }
 
     public static /* synthetic */ void showStickerPickerSheet$default(ExpressionTrayViewModel expressionTrayViewModel, Long l, String str, int i, Object obj) {
@@ -584,18 +184,23 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
     }
 
     private final void showStickerPickerSheet(Long stickerPackId, String searchText) {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        publishSubject.f27650k.onNext(new Event.ShowStickerPicker(stickerPackId, searchText, false, 4, null));
+        PublishSubject<ExpressionTrayViewModel$Event> publishSubject = this.eventSubject;
+        publishSubject.k.onNext(new ExpressionTrayViewModel$Event$ShowStickerPicker(stickerPackId, searchText, false, 4, null));
     }
 
     public final void showStickersSearchBar(boolean show) {
-        updateViewState(ViewState.copy$default(requireViewState(), null, null, show, false, 11, null));
+        updateViewState2(ExpressionTrayViewModel$ViewState.copy$default(requireViewState(), null, null, show, false, 11, null));
     }
 
-    @Override // p007b.p008a.p018d.AbstractC0859d0
-    public void updateViewState(ViewState viewState) {
-        C12238m.checkNotNullParameter(viewState, "viewState");
-        ViewState viewState2 = getViewState();
+    @Override // b.a.d.d0
+    public /* bridge */ /* synthetic */ void updateViewState(ExpressionTrayViewModel$ViewState expressionTrayViewModel$ViewState) {
+        updateViewState2(expressionTrayViewModel$ViewState);
+    }
+
+    /* JADX INFO: renamed from: updateViewState, reason: avoid collision after fix types in other method */
+    public void updateViewState2(ExpressionTrayViewModel$ViewState viewState) {
+        m.checkNotNullParameter(viewState, "viewState");
+        ExpressionTrayViewModel$ViewState viewState2 = getViewState();
         ExpressionTrayTab selectedExpressionTab = viewState2 != null ? viewState2.getSelectedExpressionTab() : null;
         ExpressionTrayTab selectedExpressionTab2 = viewState.getSelectedExpressionTab();
         if (viewState.getShowLandingPage() && selectedExpressionTab != selectedExpressionTab2 && this.wasActive) {
@@ -604,179 +209,25 @@ public final class ExpressionTrayViewModel extends AbstractC0859d0<ViewState> {
         super.updateViewState(viewState);
     }
 
-    /* JADX INFO: compiled from: ExpressionTrayViewModel.kt */
-    public final /* data */ class ViewState {
-        private final ExpressionDetailPage expressionDetailPage;
-        private final ExpressionTrayTab selectedExpressionTab;
-        private final boolean showGifsAndStickers;
-        private final boolean showLandingPage;
-        private final boolean showSearchBar;
-        private final boolean showStickersSearchBar;
-
-        public final /* synthetic */ class WhenMappings {
-            public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-            static {
-                ExpressionTrayTab.values();
-                int[] iArr = new int[3];
-                $EnumSwitchMapping$0 = iArr;
-                iArr[ExpressionTrayTab.EMOJI.ordinal()] = 1;
-                iArr[ExpressionTrayTab.GIF.ordinal()] = 2;
-                iArr[ExpressionTrayTab.STICKER.ordinal()] = 3;
-            }
-        }
-
-        public ViewState(ExpressionTrayTab expressionTrayTab, ExpressionDetailPage expressionDetailPage, boolean z2, boolean z3) {
-            C12238m.checkNotNullParameter(expressionTrayTab, "selectedExpressionTab");
-            this.selectedExpressionTab = expressionTrayTab;
-            this.expressionDetailPage = expressionDetailPage;
-            this.showStickersSearchBar = z2;
-            this.showGifsAndStickers = z3;
-            this.showLandingPage = expressionDetailPage == null;
-            int iOrdinal = expressionTrayTab.ordinal();
-            if (iOrdinal == 0 || iOrdinal == 1) {
-                z2 = true;
-            } else if (iOrdinal != 2) {
-                throw new NoWhenBranchMatchedException();
-            }
-            this.showSearchBar = z2;
-        }
-
-        public static /* synthetic */ ViewState copy$default(ViewState viewState, ExpressionTrayTab expressionTrayTab, ExpressionDetailPage expressionDetailPage, boolean z2, boolean z3, int i, Object obj) {
-            if ((i & 1) != 0) {
-                expressionTrayTab = viewState.selectedExpressionTab;
-            }
-            if ((i & 2) != 0) {
-                expressionDetailPage = viewState.expressionDetailPage;
-            }
-            if ((i & 4) != 0) {
-                z2 = viewState.showStickersSearchBar;
-            }
-            if ((i & 8) != 0) {
-                z3 = viewState.showGifsAndStickers;
-            }
-            return viewState.copy(expressionTrayTab, expressionDetailPage, z2, z3);
-        }
-
-        public final ViewState copy(ExpressionTrayTab selectedExpressionTab, ExpressionDetailPage expressionDetailPage, boolean showStickersSearchBar, boolean showGifsAndStickers) {
-            C12238m.checkNotNullParameter(selectedExpressionTab, "selectedExpressionTab");
-            return new ViewState(selectedExpressionTab, expressionDetailPage, showStickersSearchBar, showGifsAndStickers);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof ViewState)) {
-                return false;
-            }
-            ViewState viewState = (ViewState) other;
-            return C12238m.areEqual(this.selectedExpressionTab, viewState.selectedExpressionTab) && C12238m.areEqual(this.expressionDetailPage, viewState.expressionDetailPage) && this.showStickersSearchBar == viewState.showStickersSearchBar && this.showGifsAndStickers == viewState.showGifsAndStickers;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ExpressionDetailPage getExpressionDetailPage() {
-            return this.expressionDetailPage;
-        }
-
-        public final ExpressionDetailPage getExpressionDetailPage() {
-            return this.expressionDetailPage;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final ExpressionTrayTab getSelectedExpressionTab() {
-            return this.selectedExpressionTab;
-        }
-
-        public final ExpressionTrayTab getSelectedExpressionTab() {
-            return this.selectedExpressionTab;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getShowGifsAndStickers() {
-            return this.showGifsAndStickers;
-        }
-
-        public final boolean getShowGifsAndStickers() {
-            return this.showGifsAndStickers;
-        }
-
-        public final boolean getShowLandingPage() {
-            return this.showLandingPage;
-        }
-
-        public final boolean getShowSearchBar() {
-            return this.showSearchBar;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getShowStickersSearchBar() {
-            return this.showStickersSearchBar;
-        }
-
-        public final boolean getShowStickersSearchBar() {
-            return this.showStickersSearchBar;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v8, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v5 */
-        /* JADX WARN: Type inference failed for: r1v7 */
-        /* JADX WARN: Type inference failed for: r2v1 */
-        /* JADX WARN: Type inference failed for: r2v2, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v3 */
-        public int hashCode() {
-            ExpressionTrayTab expressionTrayTab = this.selectedExpressionTab;
-            int iHashCode = (expressionTrayTab != null ? expressionTrayTab.hashCode() : 0) * 31;
-            ExpressionDetailPage expressionDetailPage = this.expressionDetailPage;
-            int iHashCode2 = (iHashCode + (expressionDetailPage != null ? expressionDetailPage.hashCode() : 0)) * 31;
-            boolean z2 = this.showStickersSearchBar;
-            ?? r1 = z2;
-            if (z2) {
-                r1 = 1;
-            }
-            int i = (iHashCode2 + r1) * 31;
-            boolean z3 = this.showGifsAndStickers;
-            return i + (z3 ? 1 : z3);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ViewState(selectedExpressionTab=");
-            sbM833U.append(this.selectedExpressionTab);
-            sbM833U.append(", expressionDetailPage=");
-            sbM833U.append(this.expressionDetailPage);
-            sbM833U.append(", showStickersSearchBar=");
-            sbM833U.append(this.showStickersSearchBar);
-            sbM833U.append(", showGifsAndStickers=");
-            return C1643a.m827O(sbM833U, this.showGifsAndStickers, ")");
-        }
-
-        public /* synthetic */ ViewState(ExpressionTrayTab expressionTrayTab, ExpressionDetailPage expressionDetailPage, boolean z2, boolean z3, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this(expressionTrayTab, (i & 2) != 0 ? null : expressionDetailPage, z2, z3);
-        }
-    }
-
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public ExpressionTrayViewModel(StoreAnalytics storeAnalytics, StoreExpressionPickerNavigation storeExpressionPickerNavigation, StoreChannelsSelected storeChannelsSelected, StoreUser storeUser, StoreGuildStickers storeGuildStickers, StoreGuilds storeGuilds, Observable<StoreState> observable, Observable<ExpressionPickerEvent> observable2) {
-        super(new ViewState(ExpressionTrayTab.EMOJI, null, true, true, 2, null));
-        C12238m.checkNotNullParameter(storeAnalytics, "storeAnalytics");
-        C12238m.checkNotNullParameter(storeExpressionPickerNavigation, "storeExpressionPickerNavigation");
-        C12238m.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
-        C12238m.checkNotNullParameter(storeUser, "storeUser");
-        C12238m.checkNotNullParameter(storeGuildStickers, "storeGuildStickers");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        C12238m.checkNotNullParameter(observable, "storeStateObservable");
-        C12238m.checkNotNullParameter(observable2, "expressionPickerNavigationObservable");
+    public ExpressionTrayViewModel(StoreAnalytics storeAnalytics, StoreExpressionPickerNavigation storeExpressionPickerNavigation, StoreChannelsSelected storeChannelsSelected, StoreUser storeUser, StoreGuildStickers storeGuildStickers, StoreGuilds storeGuilds, Observable<ExpressionTrayViewModel$StoreState> observable, Observable<ExpressionPickerEvent> observable2) {
+        super(new ExpressionTrayViewModel$ViewState(ExpressionTrayTab.EMOJI, null, true, true, 2, null));
+        m.checkNotNullParameter(storeAnalytics, "storeAnalytics");
+        m.checkNotNullParameter(storeExpressionPickerNavigation, "storeExpressionPickerNavigation");
+        m.checkNotNullParameter(storeChannelsSelected, "storeChannelsSelected");
+        m.checkNotNullParameter(storeUser, "storeUser");
+        m.checkNotNullParameter(storeGuildStickers, "storeGuildStickers");
+        m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        m.checkNotNullParameter(observable, "storeStateObservable");
+        m.checkNotNullParameter(observable2, "expressionPickerNavigationObservable");
         this.storeAnalytics = storeAnalytics;
         this.storeExpressionPickerNavigation = storeExpressionPickerNavigation;
         this.storeChannelsSelected = storeChannelsSelected;
         this.storeUser = storeUser;
         this.storeGuildStickers = storeGuildStickers;
         this.storeGuilds = storeGuilds;
-        this.eventSubject = PublishSubject.m11133k0();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observable, this, null, 2, null), (Class<?>) ExpressionTrayViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78411(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observable2, this, null, 2, null), (Class<?>) ExpressionTrayViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C78422(this));
+        this.eventSubject = PublishSubject.k0();
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observable, this, null, 2, null), ExpressionTrayViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ExpressionTrayViewModel$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(observable2, this, null, 2, null), ExpressionTrayViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new ExpressionTrayViewModel$2(this), 62, (Object) null);
     }
 }

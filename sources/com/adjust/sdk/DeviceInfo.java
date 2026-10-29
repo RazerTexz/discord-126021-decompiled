@@ -7,12 +7,13 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.DisplayMetrics;
 import androidx.core.app.NotificationCompat;
 import androidx.vectordrawable.graphics.drawable.PathInterpolatorCompat;
+import b.d.b.a.a;
 import java.util.Date;
 import java.util.Locale;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class DeviceInfo {
@@ -85,9 +86,9 @@ public class DeviceInfo {
     }
 
     private String getApiLevel() {
-        StringBuilder sbM833U = C1643a.m833U("");
-        sbM833U.append(Build.VERSION.SDK_INT);
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("");
+        sbU.append(Build$VERSION.SDK_INT);
+        return sbU.toString();
     }
 
     private String getAppInstallTime(Context context) {
@@ -209,7 +210,7 @@ public class DeviceInfo {
     }
 
     private String getOsVersion() {
-        return Build.VERSION.RELEASE;
+        return Build$VERSION.RELEASE;
     }
 
     private String getPackageName(Context context) {
@@ -278,7 +279,7 @@ public class DeviceInfo {
         this.playAdIdAttempt = -1;
         for (int i = 1; i <= 3; i++) {
             try {
-                GooglePlayServicesClient.GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, i * PathInterpolatorCompat.MAX_NUM_POINTS);
+                GooglePlayServicesClient$GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, i * PathInterpolatorCompat.MAX_NUM_POINTS);
                 if (this.playAdId == null) {
                     this.playAdId = googlePlayServicesInfo.getGpsAdid();
                 }

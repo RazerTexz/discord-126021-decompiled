@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackAfCard;
 import com.discord.analytics.generated.traits.TrackAfCardReceiver;
 import com.discord.analytics.generated.traits.TrackAfGame;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackAfGameReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGameOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,7 +33,7 @@ public final /* data */ class TrackGameOpened implements AnalyticsSchema, TrackB
             return false;
         }
         TrackGameOpened trackGameOpened = (TrackGameOpened) other;
-        return C12238m.areEqual(this.type, trackGameOpened.type) && C12238m.areEqual(this.source, trackGameOpened.source) && C12238m.areEqual(this.applicationId, trackGameOpened.applicationId) && C12238m.areEqual(this.partyId, trackGameOpened.partyId) && C12238m.areEqual(this.otherUserId, trackGameOpened.otherUserId) && C12238m.areEqual(this.messageId, trackGameOpened.messageId) && C12238m.areEqual(this.numLauncherApplications, trackGameOpened.numLauncherApplications);
+        return m.areEqual(this.type, trackGameOpened.type) && m.areEqual(this.source, trackGameOpened.source) && m.areEqual(this.applicationId, trackGameOpened.applicationId) && m.areEqual(this.partyId, trackGameOpened.partyId) && m.areEqual(this.otherUserId, trackGameOpened.otherUserId) && m.areEqual(this.messageId, trackGameOpened.messageId) && m.areEqual(this.numLauncherApplications, trackGameOpened.numLauncherApplications);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,19 +60,19 @@ public final /* data */ class TrackGameOpened implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGameOpened(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", partyId=");
-        sbM833U.append(this.partyId);
-        sbM833U.append(", otherUserId=");
-        sbM833U.append(this.otherUserId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", numLauncherApplications=");
-        return C1643a.m819G(sbM833U, this.numLauncherApplications, ")");
+        StringBuilder sbU = a.U("TrackGameOpened(type=");
+        sbU.append(this.type);
+        sbU.append(", source=");
+        sbU.append(this.source);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", partyId=");
+        sbU.append(this.partyId);
+        sbU.append(", otherUserId=");
+        sbU.append(this.otherUserId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", numLauncherApplications=");
+        return a.G(sbU, this.numLauncherApplications, ")");
     }
 }

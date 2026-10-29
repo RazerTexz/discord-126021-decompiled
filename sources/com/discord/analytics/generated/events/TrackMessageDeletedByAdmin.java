@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -8,9 +9,8 @@ import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackMessageDeletedByAdmin.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,6 +29,11 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
     private final Long wordCount = null;
     private final transient String analyticsSchemaTypeName = "message_deleted_by_admin";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -37,7 +42,7 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
             return false;
         }
         TrackMessageDeletedByAdmin trackMessageDeletedByAdmin = (TrackMessageDeletedByAdmin) other;
-        return C12238m.areEqual(this.messageId, trackMessageDeletedByAdmin.messageId) && C12238m.areEqual(this.reason, trackMessageDeletedByAdmin.reason) && C12238m.areEqual(this.numUrls, trackMessageDeletedByAdmin.numUrls) && C12238m.areEqual(this.numAttachments, trackMessageDeletedByAdmin.numAttachments) && C12238m.areEqual(this.numEmbeds, trackMessageDeletedByAdmin.numEmbeds) && C12238m.areEqual(this.numMentions, trackMessageDeletedByAdmin.numMentions) && C12238m.areEqual(this.length, trackMessageDeletedByAdmin.length) && C12238m.areEqual(this.wordCount, trackMessageDeletedByAdmin.wordCount) && C12238m.areEqual(this.urls, trackMessageDeletedByAdmin.urls);
+        return m.areEqual(this.messageId, trackMessageDeletedByAdmin.messageId) && m.areEqual(this.reason, trackMessageDeletedByAdmin.reason) && m.areEqual(this.numUrls, trackMessageDeletedByAdmin.numUrls) && m.areEqual(this.numAttachments, trackMessageDeletedByAdmin.numAttachments) && m.areEqual(this.numEmbeds, trackMessageDeletedByAdmin.numEmbeds) && m.areEqual(this.numMentions, trackMessageDeletedByAdmin.numMentions) && m.areEqual(this.length, trackMessageDeletedByAdmin.length) && m.areEqual(this.wordCount, trackMessageDeletedByAdmin.wordCount) && m.areEqual(this.urls, trackMessageDeletedByAdmin.urls);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -73,30 +78,24 @@ public final /* data */ class TrackMessageDeletedByAdmin implements AnalyticsSch
         return iHashCode8 + (list != null ? list.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMessageDeletedByAdmin(messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", reason=");
-        sbM833U.append(this.reason);
-        sbM833U.append(", numUrls=");
-        sbM833U.append(this.numUrls);
-        sbM833U.append(", numAttachments=");
-        sbM833U.append(this.numAttachments);
-        sbM833U.append(", numEmbeds=");
-        sbM833U.append(this.numEmbeds);
-        sbM833U.append(", numMentions=");
-        sbM833U.append(this.numMentions);
-        sbM833U.append(", length=");
-        sbM833U.append(this.length);
-        sbM833U.append(", wordCount=");
-        sbM833U.append(this.wordCount);
-        sbM833U.append(", urls=");
-        return C1643a.m824L(sbM833U, this.urls, ")");
+        StringBuilder sbU = a.U("TrackMessageDeletedByAdmin(messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", reason=");
+        sbU.append(this.reason);
+        sbU.append(", numUrls=");
+        sbU.append(this.numUrls);
+        sbU.append(", numAttachments=");
+        sbU.append(this.numAttachments);
+        sbU.append(", numEmbeds=");
+        sbU.append(this.numEmbeds);
+        sbU.append(", numMentions=");
+        sbU.append(this.numMentions);
+        sbU.append(", length=");
+        sbU.append(this.length);
+        sbU.append(", wordCount=");
+        sbU.append(this.wordCount);
+        sbU.append(", urls=");
+        return a.L(sbU, this.urls, ")");
     }
 }

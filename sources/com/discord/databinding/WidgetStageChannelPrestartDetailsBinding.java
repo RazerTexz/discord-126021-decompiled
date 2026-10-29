@@ -9,27 +9,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStageChannelPrestartDetailsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f18155a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f18156b;
+    public final TextView f2653b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f18157c;
+    public final TextView c;
 
     public WidgetStageChannelPrestartDetailsBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextView textView, @NonNull TextView textView2) {
-        this.f18155a = constraintLayout;
-        this.f18156b = textView;
-        this.f18157c = textView2;
+        this.a = constraintLayout;
+        this.f2653b = textView;
+        this.c = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18155a;
+        return this.a;
     }
 }

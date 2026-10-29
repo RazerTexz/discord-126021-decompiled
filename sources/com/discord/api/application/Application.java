@@ -1,14 +1,14 @@
 package com.discord.api.application;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
+import d0.g0.w;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12106w;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Application.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,6 +25,35 @@ public final /* data */ class Application {
     private final List<ThirdPartySku> thirdPartySkus;
     private final ApplicationType type;
 
+    public final String a() {
+        String strRemoveSuffix;
+        String strW;
+        String str = this.deeplinkUri;
+        return (str == null || (strRemoveSuffix = w.removeSuffix(str, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)) == null || (strW = a.w(strRemoveSuffix, "/_discord")) == null) ? a.C(a.U("dscd"), this.id, "://connect/_discord") : strW;
+    }
+
+    public final List<String> d() {
+        List<ThirdPartySku> list = this.thirdPartySkus;
+        if (list == null) {
+            return n.emptyList();
+        }
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : list) {
+            if (m.areEqual(((ThirdPartySku) obj).getDistributor(), "google_play")) {
+                arrayList.add(obj);
+            }
+        }
+        ArrayList arrayList2 = new ArrayList();
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            String strB = ((ThirdPartySku) it.next()).getSku();
+            if (strB != null) {
+                arrayList2.add(strB);
+            }
+        }
+        return arrayList2;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -33,7 +62,7 @@ public final /* data */ class Application {
             return false;
         }
         Application application = (Application) other;
-        return this.id == application.id && C12238m.areEqual(this.name, application.name) && C12238m.areEqual(this.description, application.description) && C12238m.areEqual(this.splash, application.splash) && C12238m.areEqual(this.coverImage, application.coverImage) && C12238m.areEqual(this.icon, application.icon) && C12238m.areEqual(this.thirdPartySkus, application.thirdPartySkus) && C12238m.areEqual(this.deeplinkUri, application.deeplinkUri) && C12238m.areEqual(this.type, application.type) && C12238m.areEqual(this.guildId, application.guildId) && C12238m.areEqual(this.team, application.team);
+        return this.id == application.id && m.areEqual(this.name, application.name) && m.areEqual(this.description, application.description) && m.areEqual(this.splash, application.splash) && m.areEqual(this.coverImage, application.coverImage) && m.areEqual(this.icon, application.icon) && m.areEqual(this.thirdPartySkus, application.thirdPartySkus) && m.areEqual(this.deeplinkUri, application.deeplinkUri) && m.areEqual(this.type, application.type) && m.areEqual(this.guildId, application.guildId) && m.areEqual(this.team, application.team);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -101,61 +130,30 @@ public final /* data */ class Application {
         return iHashCode9 + (team != null ? team.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final String m7563a() {
-        String strRemoveSuffix;
-        String strM883w;
-        String str = this.deeplinkUri;
-        return (str == null || (strRemoveSuffix = C12106w.removeSuffix(str, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)) == null || (strM883w = C1643a.m883w(strRemoveSuffix, "/_discord")) == null) ? C1643a.m815C(C1643a.m833U("dscd"), this.id, "://connect/_discord") : strM883w;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<String> m7566d() {
-        List<ThirdPartySku> list = this.thirdPartySkus;
-        if (list == null) {
-            return C12147n.emptyList();
-        }
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : list) {
-            if (C12238m.areEqual(((ThirdPartySku) obj).getDistributor(), "google_play")) {
-                arrayList.add(obj);
-            }
-        }
-        ArrayList arrayList2 = new ArrayList();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            String strM7581b = ((ThirdPartySku) it.next()).getSku();
-            if (strM7581b != null) {
-                arrayList2.add(strM7581b);
-            }
-        }
-        return arrayList2;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Application(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", splash=");
-        sbM833U.append(this.splash);
-        sbM833U.append(", coverImage=");
-        sbM833U.append(this.coverImage);
-        sbM833U.append(", icon=");
-        sbM833U.append(this.icon);
-        sbM833U.append(", thirdPartySkus=");
-        sbM833U.append(this.thirdPartySkus);
-        sbM833U.append(", deeplinkUri=");
-        sbM833U.append(this.deeplinkUri);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", team=");
-        sbM833U.append(this.team);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("Application(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", splash=");
+        sbU.append(this.splash);
+        sbU.append(", coverImage=");
+        sbU.append(this.coverImage);
+        sbU.append(", icon=");
+        sbU.append(this.icon);
+        sbU.append(", thirdPartySkus=");
+        sbU.append(this.thirdPartySkus);
+        sbU.append(", deeplinkUri=");
+        sbU.append(this.deeplinkUri);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", team=");
+        sbU.append(this.team);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

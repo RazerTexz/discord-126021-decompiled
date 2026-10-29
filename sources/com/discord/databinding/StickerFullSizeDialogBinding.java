@@ -9,22 +9,21 @@ import com.discord.views.sticker.StickerView;
 /* JADX INFO: loaded from: classes.dex */
 public final class StickerFullSizeDialogBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15267a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final StickerView f15268b;
+    public final StickerView f2151b;
 
     public StickerFullSizeDialogBinding(@NonNull FrameLayout frameLayout, @NonNull StickerView stickerView) {
-        this.f15267a = frameLayout;
-        this.f15268b = stickerView;
+        this.a = frameLayout;
+        this.f2151b = stickerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15267a;
+        return this.a;
     }
 }

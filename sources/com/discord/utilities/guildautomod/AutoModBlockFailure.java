@@ -1,7 +1,7 @@
 package com.discord.utilities.guildautomod;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: AutoModUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -10,7 +10,7 @@ public final /* data */ class AutoModBlockFailure extends Throwable {
     private final String reasonCode;
 
     public AutoModBlockFailure(int i, String str) {
-        C12238m.checkNotNullParameter(str, "reasonCode");
+        m.checkNotNullParameter(str, "reasonCode");
         this.errorStringId = i;
         this.reasonCode = str;
     }
@@ -26,7 +26,7 @@ public final /* data */ class AutoModBlockFailure extends Throwable {
     }
 
     public final AutoModBlockFailure copy(int errorStringId, String reasonCode) {
-        C12238m.checkNotNullParameter(reasonCode, "reasonCode");
+        m.checkNotNullParameter(reasonCode, "reasonCode");
         return new AutoModBlockFailure(errorStringId, reasonCode);
     }
 
@@ -38,7 +38,7 @@ public final /* data */ class AutoModBlockFailure extends Throwable {
             return false;
         }
         AutoModBlockFailure autoModBlockFailure = (AutoModBlockFailure) other;
-        return this.errorStringId == autoModBlockFailure.errorStringId && C12238m.areEqual(this.reasonCode, autoModBlockFailure.reasonCode);
+        return this.errorStringId == autoModBlockFailure.errorStringId && m.areEqual(this.reasonCode, autoModBlockFailure.reasonCode);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -67,9 +67,9 @@ public final /* data */ class AutoModBlockFailure extends Throwable {
 
     @Override // java.lang.Throwable
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AutoModBlockFailure(errorStringId=");
-        sbM833U.append(this.errorStringId);
-        sbM833U.append(", reasonCode=");
-        return C1643a.m822J(sbM833U, this.reasonCode, ")");
+        StringBuilder sbU = a.U("AutoModBlockFailure(errorStringId=");
+        sbU.append(this.errorStringId);
+        sbU.append(", reasonCode=");
+        return a.J(sbU, this.reasonCode, ")");
     }
 }

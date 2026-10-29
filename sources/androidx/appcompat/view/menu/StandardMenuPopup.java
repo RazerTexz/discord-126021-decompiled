@@ -1,6 +1,6 @@
 package androidx.appcompat.view.menu;
 
-import android.R;
+import android.R$id;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Parcelable;
@@ -8,69 +8,43 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View$OnAttachStateChangeListener;
+import android.view.View$OnKeyListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.AdapterView;
+import android.view.ViewTreeObserver$OnGlobalLayoutListener;
+import android.widget.AdapterView$OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
+import android.widget.PopupWindow$OnDismissListener;
 import android.widget.TextView;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$dimen;
+import androidx.appcompat.R$layout;
 import androidx.appcompat.widget.MenuPopupWindow;
 import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class StandardMenuPopup extends MenuPopup implements PopupWindow.OnDismissListener, AdapterView.OnItemClickListener, MenuPresenter, View.OnKeyListener {
+public final class StandardMenuPopup extends MenuPopup implements PopupWindow$OnDismissListener, AdapterView$OnItemClickListener, MenuPresenter, View$OnKeyListener {
     private final MenuAdapter mAdapter;
     private View mAnchorView;
     private int mContentWidth;
     private final Context mContext;
     private boolean mHasContentWidth;
     private final MenuBuilder mMenu;
-    private PopupWindow.OnDismissListener mOnDismissListener;
+    private PopupWindow$OnDismissListener mOnDismissListener;
     private final boolean mOverflowOnly;
     public final MenuPopupWindow mPopup;
     private final int mPopupMaxWidth;
     private final int mPopupStyleAttr;
     private final int mPopupStyleRes;
-    private MenuPresenter.Callback mPresenterCallback;
+    private MenuPresenter$Callback mPresenterCallback;
     private boolean mShowTitle;
     public View mShownAnchorView;
     public ViewTreeObserver mTreeObserver;
     private boolean mWasDismissed;
-    private static final int ITEM_LAYOUT = C0051R.layout.abc_popup_menu_item_layout;
-    public final ViewTreeObserver.OnGlobalLayoutListener mGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() { // from class: androidx.appcompat.view.menu.StandardMenuPopup.1
-        @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
-        public void onGlobalLayout() {
-            if (!StandardMenuPopup.this.isShowing() || StandardMenuPopup.this.mPopup.isModal()) {
-                return;
-            }
-            View view = StandardMenuPopup.this.mShownAnchorView;
-            if (view == null || !view.isShown()) {
-                StandardMenuPopup.this.dismiss();
-            } else {
-                StandardMenuPopup.this.mPopup.show();
-            }
-        }
-    };
-    private final View.OnAttachStateChangeListener mAttachStateChangeListener = new View.OnAttachStateChangeListener() { // from class: androidx.appcompat.view.menu.StandardMenuPopup.2
-        @Override // android.view.View.OnAttachStateChangeListener
-        public void onViewAttachedToWindow(View view) {
-        }
-
-        @Override // android.view.View.OnAttachStateChangeListener
-        public void onViewDetachedFromWindow(View view) {
-            ViewTreeObserver viewTreeObserver = StandardMenuPopup.this.mTreeObserver;
-            if (viewTreeObserver != null) {
-                if (!viewTreeObserver.isAlive()) {
-                    StandardMenuPopup.this.mTreeObserver = view.getViewTreeObserver();
-                }
-                StandardMenuPopup standardMenuPopup = StandardMenuPopup.this;
-                standardMenuPopup.mTreeObserver.removeGlobalOnLayoutListener(standardMenuPopup.mGlobalLayoutListener);
-            }
-            view.removeOnAttachStateChangeListener(this);
-        }
-    };
+    private static final int ITEM_LAYOUT = R$layout.abc_popup_menu_item_layout;
+    public final ViewTreeObserver$OnGlobalLayoutListener mGlobalLayoutListener = new StandardMenuPopup$1(this);
+    private final View$OnAttachStateChangeListener mAttachStateChangeListener = new StandardMenuPopup$2(this);
     private int mDropDownGravity = 0;
 
     public StandardMenuPopup(Context context, MenuBuilder menuBuilder, View view, int i, int i2, boolean z2) {
@@ -81,7 +55,7 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
         this.mPopupStyleAttr = i;
         this.mPopupStyleRes = i2;
         Resources resources = context.getResources();
-        this.mPopupMaxWidth = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(C0051R.dimen.abc_config_prefDialogWidth));
+        this.mPopupMaxWidth = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(R$dimen.abc_config_prefDialogWidth));
         this.mAnchorView = view;
         this.mPopup = new MenuPopupWindow(context, null, i, i2);
         menuBuilder.addMenuPresenter(this, context);
@@ -119,13 +93,13 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
             return;
         }
         dismiss();
-        MenuPresenter.Callback callback = this.mPresenterCallback;
-        if (callback != null) {
-            callback.onCloseMenu(menuBuilder, z2);
+        MenuPresenter$Callback menuPresenter$Callback = this.mPresenterCallback;
+        if (menuPresenter$Callback != null) {
+            menuPresenter$Callback.onCloseMenu(menuBuilder, z2);
         }
     }
 
-    @Override // android.widget.PopupWindow.OnDismissListener
+    @Override // android.widget.PopupWindow$OnDismissListener
     public void onDismiss() {
         this.mWasDismissed = true;
         this.mMenu.close();
@@ -138,13 +112,13 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
             this.mTreeObserver = null;
         }
         this.mShownAnchorView.removeOnAttachStateChangeListener(this.mAttachStateChangeListener);
-        PopupWindow.OnDismissListener onDismissListener = this.mOnDismissListener;
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss();
+        PopupWindow$OnDismissListener popupWindow$OnDismissListener = this.mOnDismissListener;
+        if (popupWindow$OnDismissListener != null) {
+            popupWindow$OnDismissListener.onDismiss();
         }
     }
 
-    @Override // android.view.View.OnKeyListener
+    @Override // android.view.View$OnKeyListener
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
         if (keyEvent.getAction() != 1 || i != 82) {
             return false;
@@ -177,11 +151,11 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
                 horizontalOffset += this.mAnchorView.getWidth();
             }
             if (menuPopupHelper.tryShow(horizontalOffset, verticalOffset)) {
-                MenuPresenter.Callback callback = this.mPresenterCallback;
-                if (callback == null) {
+                MenuPresenter$Callback menuPresenter$Callback = this.mPresenterCallback;
+                if (menuPresenter$Callback == null) {
                     return true;
                 }
-                callback.onOpenSubMenu(subMenuBuilder);
+                menuPresenter$Callback.onOpenSubMenu(subMenuBuilder);
                 return true;
             }
         }
@@ -194,8 +168,8 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
     }
 
     @Override // androidx.appcompat.view.menu.MenuPresenter
-    public void setCallback(MenuPresenter.Callback callback) {
-        this.mPresenterCallback = callback;
+    public void setCallback(MenuPresenter$Callback menuPresenter$Callback) {
+        this.mPresenterCallback = menuPresenter$Callback;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPopup
@@ -214,8 +188,8 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
     }
 
     @Override // androidx.appcompat.view.menu.MenuPopup
-    public void setOnDismissListener(PopupWindow.OnDismissListener onDismissListener) {
-        this.mOnDismissListener = onDismissListener;
+    public void setOnDismissListener(PopupWindow$OnDismissListener popupWindow$OnDismissListener) {
+        this.mOnDismissListener = popupWindow$OnDismissListener;
     }
 
     @Override // androidx.appcompat.view.menu.MenuPopup
@@ -268,8 +242,8 @@ public final class StandardMenuPopup extends MenuPopup implements PopupWindow.On
         ListView listView = this.mPopup.getListView();
         listView.setOnKeyListener(this);
         if (this.mShowTitle && this.mMenu.getHeaderTitle() != null) {
-            FrameLayout frameLayout = (FrameLayout) LayoutInflater.from(this.mContext).inflate(C0051R.layout.abc_popup_menu_header_item_layout, (ViewGroup) listView, false);
-            TextView textView = (TextView) frameLayout.findViewById(R.id.title);
+            FrameLayout frameLayout = (FrameLayout) LayoutInflater.from(this.mContext).inflate(R$layout.abc_popup_menu_header_item_layout, (ViewGroup) listView, false);
+            TextView textView = (TextView) frameLayout.findViewById(R$id.title);
             if (textView != null) {
                 textView.setText(this.mMenu.getHeaderTitle());
             }

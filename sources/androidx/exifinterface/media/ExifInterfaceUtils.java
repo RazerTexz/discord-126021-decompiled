@@ -1,12 +1,6 @@
 package androidx.exifinterface.media;
 
-import android.media.MediaDataSource;
-import android.media.MediaMetadataRetriever;
-import android.system.ErrnoException;
-import android.system.Os;
 import android.util.Log;
-import androidx.annotation.DoNotInline;
-import androidx.annotation.RequiresApi;
 import java.io.Closeable;
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -16,38 +10,6 @@ import java.io.OutputStream;
 /* JADX INFO: loaded from: classes.dex */
 public class ExifInterfaceUtils {
     private static final String TAG = "ExifInterfaceUtils";
-
-    @RequiresApi(21)
-    public class Api21Impl {
-        private Api21Impl() {
-        }
-
-        @DoNotInline
-        public static void close(FileDescriptor fileDescriptor) throws ErrnoException {
-            Os.close(fileDescriptor);
-        }
-
-        @DoNotInline
-        public static FileDescriptor dup(FileDescriptor fileDescriptor) throws ErrnoException {
-            return Os.dup(fileDescriptor);
-        }
-
-        @DoNotInline
-        public static long lseek(FileDescriptor fileDescriptor, long j, int i) throws ErrnoException {
-            return Os.lseek(fileDescriptor, j, i);
-        }
-    }
-
-    @RequiresApi(23)
-    public class Api23Impl {
-        private Api23Impl() {
-        }
-
-        @DoNotInline
-        public static void setDataSource(MediaMetadataRetriever mediaMetadataRetriever, MediaDataSource mediaDataSource) {
-            mediaMetadataRetriever.setDataSource(mediaDataSource);
-        }
-    }
 
     private ExifInterfaceUtils() {
     }
@@ -62,7 +24,7 @@ public class ExifInterfaceUtils {
 
     public static void closeFileDescriptor(FileDescriptor fileDescriptor) {
         try {
-            Api21Impl.close(fileDescriptor);
+            ExifInterfaceUtils$Api21Impl.close(fileDescriptor);
         } catch (Exception unused) {
             Log.e(TAG, "Error closing fd.");
         }

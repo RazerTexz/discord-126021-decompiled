@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPreviousAppSessionDetected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackPreviousAppSessionDetected implements Analyti
             return false;
         }
         TrackPreviousAppSessionDetected trackPreviousAppSessionDetected = (TrackPreviousAppSessionDetected) other;
-        return C12238m.areEqual(this.deviceMemoryState, trackPreviousAppSessionDetected.deviceMemoryState) && C12238m.areEqual(this.wasConnectedToVoice, trackPreviousAppSessionDetected.wasConnectedToVoice) && C12238m.areEqual(this.wasAppBackgrounded, trackPreviousAppSessionDetected.wasAppBackgrounded);
+        return m.areEqual(this.deviceMemoryState, trackPreviousAppSessionDetected.deviceMemoryState) && m.areEqual(this.wasConnectedToVoice, trackPreviousAppSessionDetected.wasConnectedToVoice) && m.areEqual(this.wasAppBackgrounded, trackPreviousAppSessionDetected.wasAppBackgrounded);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackPreviousAppSessionDetected implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPreviousAppSessionDetected(deviceMemoryState=");
-        sbM833U.append(this.deviceMemoryState);
-        sbM833U.append(", wasConnectedToVoice=");
-        sbM833U.append(this.wasConnectedToVoice);
-        sbM833U.append(", wasAppBackgrounded=");
-        return C1643a.m816D(sbM833U, this.wasAppBackgrounded, ")");
+        StringBuilder sbU = a.U("TrackPreviousAppSessionDetected(deviceMemoryState=");
+        sbU.append(this.deviceMemoryState);
+        sbU.append(", wasConnectedToVoice=");
+        sbU.append(this.wasConnectedToVoice);
+        sbU.append(", wasAppBackgrounded=");
+        return a.D(sbU, this.wasAppBackgrounded, ")");
     }
 }

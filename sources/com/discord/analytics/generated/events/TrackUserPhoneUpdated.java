@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUserPhoneUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackUserPhoneUpdated implements AnalyticsSchema, 
             return false;
         }
         TrackUserPhoneUpdated trackUserPhoneUpdated = (TrackUserPhoneUpdated) other;
-        return C12238m.areEqual(this.phoneNumberChanged, trackUserPhoneUpdated.phoneNumberChanged) && C12238m.areEqual(this.smsBackupEnabled, trackUserPhoneUpdated.smsBackupEnabled) && C12238m.areEqual(this.didRequireVerifiedPhone, trackUserPhoneUpdated.didRequireVerifiedPhone);
+        return m.areEqual(this.phoneNumberChanged, trackUserPhoneUpdated.phoneNumberChanged) && m.areEqual(this.smsBackupEnabled, trackUserPhoneUpdated.smsBackupEnabled) && m.areEqual(this.didRequireVerifiedPhone, trackUserPhoneUpdated.didRequireVerifiedPhone);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackUserPhoneUpdated implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUserPhoneUpdated(phoneNumberChanged=");
-        sbM833U.append(this.phoneNumberChanged);
-        sbM833U.append(", smsBackupEnabled=");
-        sbM833U.append(this.smsBackupEnabled);
-        sbM833U.append(", didRequireVerifiedPhone=");
-        return C1643a.m816D(sbM833U, this.didRequireVerifiedPhone, ")");
+        StringBuilder sbU = a.U("TrackUserPhoneUpdated(phoneNumberChanged=");
+        sbU.append(this.phoneNumberChanged);
+        sbU.append(", smsBackupEnabled=");
+        sbU.append(this.smsBackupEnabled);
+        sbU.append(", didRequireVerifiedPhone=");
+        return a.D(sbU, this.didRequireVerifiedPhone, ")");
     }
 }

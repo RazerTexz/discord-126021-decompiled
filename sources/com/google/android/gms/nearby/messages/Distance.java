@@ -8,6 +8,5 @@ public interface Distance extends Comparable<Distance> {
         new zze();
     }
 
-    /* JADX INFO: renamed from: r0 */
-    double mo9120r0();
+    double r0();
 }

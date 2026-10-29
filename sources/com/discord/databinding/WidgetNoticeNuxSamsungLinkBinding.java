@@ -9,27 +9,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetNoticeNuxSamsungLinkBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17305a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f17306b;
+    public final MaterialButton f2502b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17307c;
+    public final MaterialButton c;
 
     public WidgetNoticeNuxSamsungLinkBinding(@NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2) {
-        this.f17305a = linearLayout;
-        this.f17306b = materialButton;
-        this.f17307c = materialButton2;
+        this.a = linearLayout;
+        this.f2502b = materialButton;
+        this.c = materialButton2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17305a;
+        return this.a;
     }
 }

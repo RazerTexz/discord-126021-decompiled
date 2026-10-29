@@ -1,13 +1,14 @@
 package com.discord.api.interaction;
 
+import b.d.b.a.a;
 import com.discord.api.user.User;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Interaction.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Interaction {
+    public static final Interaction$Companion Companion = new Interaction$Companion(null);
     public static final int TYPE_INTERACTION_APPLICATION_COMMAND = 2;
     public static final int TYPE_INTERACTION_PING = 1;
     private final Long id;
@@ -32,7 +33,7 @@ public final /* data */ class Interaction {
             return false;
         }
         Interaction interaction = (Interaction) other;
-        return C12238m.areEqual(this.id, interaction.id) && C12238m.areEqual(this.type, interaction.type) && C12238m.areEqual(this.name, interaction.name) && C12238m.areEqual(this.user, interaction.user) && C12238m.areEqual(this.member, interaction.member);
+        return m.areEqual(this.id, interaction.id) && m.areEqual(this.type, interaction.type) && m.areEqual(this.name, interaction.name) && m.areEqual(this.user, interaction.user) && m.areEqual(this.member, interaction.member);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -64,18 +65,18 @@ public final /* data */ class Interaction {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Interaction(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", member=");
-        sbM833U.append(this.member);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("Interaction(id=");
+        sbU.append(this.id);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", user=");
+        sbU.append(this.user);
+        sbU.append(", member=");
+        sbU.append(this.member);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public Interaction(Long l, Integer num, String str, User user, Member member) {

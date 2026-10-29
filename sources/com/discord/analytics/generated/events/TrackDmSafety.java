@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
 import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDmSafety.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBas
             return false;
         }
         TrackDmSafety trackDmSafety = (TrackDmSafety) other;
-        return C12238m.areEqual(this.safetyPrompt, trackDmSafety.safetyPrompt) && C12238m.areEqual(this.response, trackDmSafety.response) && C12238m.areEqual(this.messageId, trackDmSafety.messageId);
+        return m.areEqual(this.safetyPrompt, trackDmSafety.safetyPrompt) && m.areEqual(this.response, trackDmSafety.response) && m.areEqual(this.messageId, trackDmSafety.messageId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,11 +45,11 @@ public final /* data */ class TrackDmSafety implements AnalyticsSchema, TrackBas
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDmSafety(safetyPrompt=");
-        sbM833U.append(this.safetyPrompt);
-        sbM833U.append(", response=");
-        sbM833U.append(this.response);
-        sbM833U.append(", messageId=");
-        return C1643a.m819G(sbM833U, this.messageId, ")");
+        StringBuilder sbU = a.U("TrackDmSafety(safetyPrompt=");
+        sbU.append(this.safetyPrompt);
+        sbU.append(", response=");
+        sbU.append(this.response);
+        sbU.append(", messageId=");
+        return a.G(sbU, this.messageId, ")");
     }
 }

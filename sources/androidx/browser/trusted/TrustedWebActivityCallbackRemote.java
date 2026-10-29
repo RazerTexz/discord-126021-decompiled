@@ -5,23 +5,24 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import p668x.p669a.p670a.p671d.InterfaceC13179a;
+import x.a.a.d.a;
+import x.a.a.d.a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class TrustedWebActivityCallbackRemote {
-    private final InterfaceC13179a mCallbackBinder;
+    private final a mCallbackBinder;
 
-    private TrustedWebActivityCallbackRemote(@NonNull InterfaceC13179a interfaceC13179a) {
-        this.mCallbackBinder = interfaceC13179a;
+    private TrustedWebActivityCallbackRemote(@NonNull a aVar) {
+        this.mCallbackBinder = aVar;
     }
 
     @Nullable
     public static TrustedWebActivityCallbackRemote fromBinder(@Nullable IBinder iBinder) {
-        InterfaceC13179a interfaceC13179aAsInterface = iBinder == null ? null : InterfaceC13179a.a.asInterface(iBinder);
-        if (interfaceC13179aAsInterface == null) {
+        a aVarAsInterface = iBinder == null ? null : a$a.asInterface(iBinder);
+        if (aVarAsInterface == null) {
             return null;
         }
-        return new TrustedWebActivityCallbackRemote(interfaceC13179aAsInterface);
+        return new TrustedWebActivityCallbackRemote(aVarAsInterface);
     }
 
     public void runExtraCallback(@NonNull String str, @NonNull Bundle bundle) throws RemoteException {

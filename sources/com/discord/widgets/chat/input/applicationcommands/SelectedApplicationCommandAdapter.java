@@ -1,16 +1,16 @@
 package com.discord.widgets.chat.input.applicationcommands;
 
-import android.content.Context;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import androidx.recyclerview.widget.RecyclerView$SmoothScroller;
+import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommand;
 import com.discord.models.commands.ApplicationCommandOption;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
 import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -21,8 +21,6 @@ import java.util.Set;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import org.objectweb.asm.Opcodes;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SelectedApplicationCommandAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -31,27 +29,29 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
     private ApplicationCommandOption highlightedCommandOption;
     private final Function1<ApplicationCommandOption, Unit> onClickApplicationCommandOption;
     private final Map<String, Integer> paramPositions;
-    private RecyclerView.SmoothScroller scroller;
+    private RecyclerView$SmoothScroller scroller;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     /* JADX WARN: Multi-variable type inference failed */
     public SelectedApplicationCommandAdapter(RecyclerView recyclerView, Function1<? super ApplicationCommandOption, Unit> function1) {
         super(recyclerView, false);
-        C12238m.checkNotNullParameter(recyclerView, "recyclerView");
-        C12238m.checkNotNullParameter(function1, "onClickApplicationCommandOption");
+        m.checkNotNullParameter(recyclerView, "recyclerView");
+        m.checkNotNullParameter(function1, "onClickApplicationCommandOption");
         this.onClickApplicationCommandOption = function1;
         this.paramPositions = new LinkedHashMap();
-        final Context context = getContext();
-        this.scroller = new LinearSmoothScroller(context) { // from class: com.discord.widgets.chat.input.applicationcommands.SelectedApplicationCommandAdapter$scroller$1
-            @Override // androidx.recyclerview.widget.LinearSmoothScroller
-            public int getHorizontalSnapPreference() {
-                return -1;
-            }
-        };
+        this.scroller = new SelectedApplicationCommandAdapter$scroller$1(this, getContext());
+    }
+
+    public static final /* synthetic */ RecyclerView$SmoothScroller access$getScroller$p(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter) {
+        return selectedApplicationCommandAdapter.scroller;
+    }
+
+    public static final /* synthetic */ void access$setScroller$p(SelectedApplicationCommandAdapter selectedApplicationCommandAdapter, RecyclerView$SmoothScroller recyclerView$SmoothScroller) {
+        selectedApplicationCommandAdapter.scroller = recyclerView$SmoothScroller;
     }
 
     public final void clear() {
-        setData(C12147n.emptyList());
+        setData(n.emptyList());
         this.paramPositions.clear();
         this.currentCommand = null;
         this.highlightedCommandOption = null;
@@ -78,10 +78,10 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
         return this.onClickApplicationCommandOption;
     }
 
-    public final void highlightOption(final ApplicationCommandOption commandOption) {
+    public final void highlightOption(ApplicationCommandOption commandOption) {
         Integer num;
-        C12238m.checkNotNullParameter(commandOption, "commandOption");
-        if (C12238m.areEqual(this.highlightedCommandOption, commandOption)) {
+        m.checkNotNullParameter(commandOption, "commandOption");
+        if (m.areEqual(this.highlightedCommandOption, commandOption)) {
             return;
         }
         clearParamOptionHighlight();
@@ -89,36 +89,28 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
         if (getItemCount() == 0 || (num = this.paramPositions.get(commandOption.getName())) == null) {
             return;
         }
-        final int iIntValue = num.intValue();
+        int iIntValue = num.intValue();
         this.highlightedCommandOption = commandOption;
         getItem(iIntValue).setHighlighted(true);
         notifyItemChanged(iIntValue);
-        getRecycler().post(new Runnable() { // from class: com.discord.widgets.chat.input.applicationcommands.SelectedApplicationCommandAdapter$highlightOption$$inlined$let$lambda$1
-            @Override // java.lang.Runnable
-            public final void run() {
-                int i = iIntValue;
-                if (i == 1) {
-                    i = 0;
-                }
-                this.scroller.setTargetPosition(i);
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) this.getRecycler().getLayoutManager();
-                if (linearLayoutManager != null) {
-                    linearLayoutManager.startSmoothScroll(this.scroller);
-                }
-            }
-        });
+        getRecycler().post(new SelectedApplicationCommandAdapter$highlightOption$$inlined$let$lambda$1(iIntValue, this, commandOption));
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return onCreateViewHolder(viewGroup, i);
     }
 
     public final void onParamClicked(ApplicationCommandOption option) {
-        C12238m.checkNotNullParameter(option, "option");
+        m.checkNotNullParameter(option, "option");
         this.onClickApplicationCommandOption.invoke(option);
     }
 
     public final void setApplicationCommand(ApplicationCommand command, Application application) {
-        C12238m.checkNotNullParameter(command, "command");
-        C12238m.checkNotNullParameter(application, "application");
+        m.checkNotNullParameter(command, "command");
+        m.checkNotNullParameter(application, "application");
         ApplicationCommand applicationCommand = this.currentCommand;
-        if (C12238m.areEqual(applicationCommand != null ? applicationCommand.getId() : null, command.getId())) {
+        if (m.areEqual(applicationCommand != null ? applicationCommand.getId() : null, command.getId())) {
             return;
         }
         this.currentCommand = command;
@@ -136,7 +128,7 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
         for (Object obj2 : arrayList2) {
             int i3 = i2 + 1;
             if (i2 < 0) {
-                C12147n.throwIndexOverflow();
+                n.throwIndexOverflow();
             }
             ApplicationCommandOption applicationCommandOption = (ApplicationCommandOption) obj2;
             this.paramPositions.put(applicationCommandOption.getName(), Integer.valueOf(arrayList.size()));
@@ -148,12 +140,12 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
             Iterator<T> it = options2.iterator();
             while (it.hasNext()) {
                 if ((!((ApplicationCommandOption) it.next()).getRequired()) && (i = i + 1) < 0) {
-                    C12147n.throwCountOverflow();
+                    n.throwCountOverflow();
                 }
             }
         }
         if (i != 0) {
-            arrayList.add(new SelectedApplicationCommandItem(null, null, false, false, false, null, getRecycler().getResources().getString(C5419R.string.commands_optional_header), 63, null));
+            arrayList.add(new SelectedApplicationCommandItem(null, null, false, false, false, null, getRecycler().getResources().getString(2131887790), 63, null));
         }
         List<ApplicationCommandOption> options3 = command.getOptions();
         ArrayList<ApplicationCommandOption> arrayList3 = new ArrayList();
@@ -170,8 +162,8 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
     }
 
     public final void setVerified(Map<ApplicationCommandOption, Boolean> verifiedInputs, Set<ApplicationCommandOption> showOptionErrorSet) {
-        C12238m.checkNotNullParameter(verifiedInputs, "verifiedInputs");
-        C12238m.checkNotNullParameter(showOptionErrorSet, "showOptionErrorSet");
+        m.checkNotNullParameter(verifiedInputs, "verifiedInputs");
+        m.checkNotNullParameter(showOptionErrorSet, "showOptionErrorSet");
         if (getItemCount() == 0) {
             return;
         }
@@ -179,16 +171,16 @@ public final class SelectedApplicationCommandAdapter extends MGRecyclerAdapterSi
             Integer num = this.paramPositions.get(applicationCommandOption.getName());
             if (num != null) {
                 int iIntValue = num.intValue();
-                getItem(iIntValue).setCompleted(C12238m.areEqual(verifiedInputs.get(applicationCommandOption), Boolean.TRUE));
+                getItem(iIntValue).setCompleted(m.areEqual(verifiedInputs.get(applicationCommandOption), Boolean.TRUE));
                 getItem(iIntValue).setError(showOptionErrorSet.contains(applicationCommandOption));
             }
         }
         configureVerified();
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
     public MGRecyclerViewHolder<SelectedApplicationCommandAdapter, SelectedApplicationCommandItem> onCreateViewHolder(ViewGroup parent, int viewType) {
-        C12238m.checkNotNullParameter(parent, "parent");
+        m.checkNotNullParameter(parent, "parent");
         if (viewType == 0) {
             return new SelectedAppCommandTitleAdapterItem(this);
         }

@@ -1,12 +1,12 @@
 package com.discord.widgets.servers.member_verification.form_fields;
 
+import b.d.b.a.a;
 import com.discord.api.role.GuildRole;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.textprocessing.MessageRenderContext;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MemberVerificationItemTerm.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -23,10 +23,10 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
     private final int type;
 
     public MemberVerificationItemTerm(int i, String str, List<Node<MessageRenderContext>> list, Map<Long, String> map, Map<Long, GuildRole> map2, boolean z2, boolean z3, boolean z4) {
-        C12238m.checkNotNullParameter(str, "rule");
-        C12238m.checkNotNullParameter(list, "ast");
-        C12238m.checkNotNullParameter(map, "channelNames");
-        C12238m.checkNotNullParameter(map2, "roles");
+        m.checkNotNullParameter(str, "rule");
+        m.checkNotNullParameter(list, "ast");
+        m.checkNotNullParameter(map, "channelNames");
+        m.checkNotNullParameter(map2, "roles");
         this.index = i;
         this.rule = str;
         this.ast = list;
@@ -51,11 +51,16 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
         return this.roles;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ MemberVerificationItemTerm copy$default(MemberVerificationItemTerm memberVerificationItemTerm, int i, String str, List list, Map map, Map map2, boolean z2, boolean z3, boolean z4, int i2, Object obj) {
+        return memberVerificationItemTerm.copy((i2 & 1) != 0 ? memberVerificationItemTerm.index : i, (i2 & 2) != 0 ? memberVerificationItemTerm.rule : str, (i2 & 4) != 0 ? memberVerificationItemTerm.ast : list, (i2 & 8) != 0 ? memberVerificationItemTerm.channelNames : map, (i2 & 16) != 0 ? memberVerificationItemTerm.roles : map2, (i2 & 32) != 0 ? memberVerificationItemTerm.allowAnimatedEmojis : z2, (i2 & 64) != 0 ? memberVerificationItemTerm.isFirstItem : z3, (i2 & 128) != 0 ? memberVerificationItemTerm.isLastItem : z4);
+    }
+
     public final MemberVerificationItemTerm copy(int index, String rule, List<Node<MessageRenderContext>> ast, Map<Long, String> channelNames, Map<Long, GuildRole> roles, boolean allowAnimatedEmojis, boolean isFirstItem, boolean isLastItem) {
-        C12238m.checkNotNullParameter(rule, "rule");
-        C12238m.checkNotNullParameter(ast, "ast");
-        C12238m.checkNotNullParameter(channelNames, "channelNames");
-        C12238m.checkNotNullParameter(roles, "roles");
+        m.checkNotNullParameter(rule, "rule");
+        m.checkNotNullParameter(ast, "ast");
+        m.checkNotNullParameter(channelNames, "channelNames");
+        m.checkNotNullParameter(roles, "roles");
         return new MemberVerificationItemTerm(index, rule, ast, channelNames, roles, allowAnimatedEmojis, isFirstItem, isLastItem);
     }
 
@@ -67,7 +72,7 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
             return false;
         }
         MemberVerificationItemTerm memberVerificationItemTerm = (MemberVerificationItemTerm) other;
-        return this.index == memberVerificationItemTerm.index && C12238m.areEqual(this.rule, memberVerificationItemTerm.rule) && C12238m.areEqual(this.ast, memberVerificationItemTerm.ast) && C12238m.areEqual(this.channelNames, memberVerificationItemTerm.channelNames) && C12238m.areEqual(this.roles, memberVerificationItemTerm.roles) && this.allowAnimatedEmojis == memberVerificationItemTerm.allowAnimatedEmojis && this.isFirstItem == memberVerificationItemTerm.isFirstItem && this.isLastItem == memberVerificationItemTerm.isLastItem;
+        return this.index == memberVerificationItemTerm.index && m.areEqual(this.rule, memberVerificationItemTerm.rule) && m.areEqual(this.ast, memberVerificationItemTerm.ast) && m.areEqual(this.channelNames, memberVerificationItemTerm.channelNames) && m.areEqual(this.roles, memberVerificationItemTerm.roles) && this.allowAnimatedEmojis == memberVerificationItemTerm.allowAnimatedEmojis && this.isFirstItem == memberVerificationItemTerm.isFirstItem && this.isLastItem == memberVerificationItemTerm.isLastItem;
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -177,21 +182,21 @@ public final /* data */ class MemberVerificationItemTerm implements MemberVerifi
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MemberVerificationItemTerm(index=");
-        sbM833U.append(this.index);
-        sbM833U.append(", rule=");
-        sbM833U.append(this.rule);
-        sbM833U.append(", ast=");
-        sbM833U.append(this.ast);
-        sbM833U.append(", channelNames=");
-        sbM833U.append(this.channelNames);
-        sbM833U.append(", roles=");
-        sbM833U.append(this.roles);
-        sbM833U.append(", allowAnimatedEmojis=");
-        sbM833U.append(this.allowAnimatedEmojis);
-        sbM833U.append(", isFirstItem=");
-        sbM833U.append(this.isFirstItem);
-        sbM833U.append(", isLastItem=");
-        return C1643a.m827O(sbM833U, this.isLastItem, ")");
+        StringBuilder sbU = a.U("MemberVerificationItemTerm(index=");
+        sbU.append(this.index);
+        sbU.append(", rule=");
+        sbU.append(this.rule);
+        sbU.append(", ast=");
+        sbU.append(this.ast);
+        sbU.append(", channelNames=");
+        sbU.append(this.channelNames);
+        sbU.append(", roles=");
+        sbU.append(this.roles);
+        sbU.append(", allowAnimatedEmojis=");
+        sbU.append(this.allowAnimatedEmojis);
+        sbU.append(", isFirstItem=");
+        sbU.append(this.isFirstItem);
+        sbU.append(", isLastItem=");
+        return a.O(sbU, this.isLastItem, ")");
     }
 }

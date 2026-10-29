@@ -3,21 +3,21 @@ package com.discord.models.domain.emoji;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import android.text.TextUtils;
+import b.a.m.a.h0.b;
+import b.a.m.a.h0.c;
+import b.d.b.a.a;
 import com.discord.models.domain.Model;
-import com.discord.models.domain.emoji.ModelEmojiUnicode;
+import com.discord.models.domain.Model$JsonReader;
 import com.discord.widgets.chat.input.MentionUtilsKt;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelEmojiUnicode implements Model, Emoji {
@@ -32,73 +32,40 @@ public class ModelEmojiUnicode implements Model, Emoji {
     private List<String> names;
     private String surrogates;
     private static final String[] DIVERSITY_MODIFIERS = {"🏻", "🏼", "🏽", "🏾", "🏿"};
-    public static final Parcelable.Creator<ModelEmojiUnicode> CREATOR = new Parcelable.Creator<ModelEmojiUnicode>() { // from class: com.discord.models.domain.emoji.ModelEmojiUnicode.1
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ModelEmojiUnicode createFromParcel(Parcel parcel) {
-            ArrayList arrayList = new ArrayList();
-            parcel.readStringList(arrayList);
-            String string = parcel.readString();
-            boolean z2 = parcel.readInt() > 0;
-            boolean z3 = parcel.readInt() > 0;
-            boolean z4 = parcel.readInt() > 0;
-            boolean z5 = parcel.readInt() > 0;
-            ArrayList arrayList2 = new ArrayList();
-            parcel.readTypedList(arrayList2, this);
-            return new ModelEmojiUnicode(arrayList, string, z2, z3, z4, z5, arrayList2);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ModelEmojiUnicode[] newArray(int i) {
-            return new ModelEmojiUnicode[i];
-        }
-    };
+    public static final Parcelable$Creator<ModelEmojiUnicode> CREATOR = new ModelEmojiUnicode$1();
     private final AtomicReference<Object> codePoints = new AtomicReference<>();
 
     public ModelEmojiUnicode() {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(final Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "hasMultiDiversity":
-                this.hasMultiDiversity = jsonReader.nextBoolean(this.hasMultiDiversity);
+                this.hasMultiDiversity = model$JsonReader.nextBoolean(this.hasMultiDiversity);
                 break;
             case "hasDiversityParent":
-                this.hasDiversityParent = jsonReader.nextBoolean(this.hasDiversityParent);
+                this.hasDiversityParent = model$JsonReader.nextBoolean(this.hasDiversityParent);
                 break;
             case "names":
-                this.names = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.h0.c
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        Model.JsonReader jsonReader2 = jsonReader;
-                        Parcelable.Creator<ModelEmojiUnicode> creator = ModelEmojiUnicode.CREATOR;
-                        return jsonReader2.nextString(null);
-                    }
-                });
+                this.names = model$JsonReader.nextList(new c(model$JsonReader));
                 break;
             case "surrogates":
-                this.surrogates = jsonReader.nextString(this.surrogates);
+                this.surrogates = model$JsonReader.nextString(this.surrogates);
                 break;
             case "hasDiversity":
-                this.hasDiversity = jsonReader.nextBoolean(this.hasDiversity);
+                this.hasDiversity = model$JsonReader.nextBoolean(this.hasDiversity);
                 break;
             case "hasMultiDiversityParent":
-                this.hasMultiDiversityParent = jsonReader.nextBoolean(this.hasMultiDiversityParent);
+                this.hasMultiDiversityParent = model$JsonReader.nextBoolean(this.hasMultiDiversityParent);
                 break;
             case "diversityChildren":
-                this.diversityChildren = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.h0.b
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelEmojiUnicode) jsonReader.parse(new ModelEmojiUnicode());
-                    }
-                });
+                this.diversityChildren = model$JsonReader.nextList(new b(model$JsonReader));
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -299,24 +266,24 @@ public class ModelEmojiUnicode implements Model, Emoji {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelEmojiUnicode(names=");
-        sbM833U.append(getNames());
-        sbM833U.append(", surrogates=");
-        sbM833U.append(getSurrogates());
-        sbM833U.append(", hasDiversity=");
-        sbM833U.append(isHasDiversity());
-        sbM833U.append(", hasMultiDiversity=");
-        sbM833U.append(isHasMultiDiversity());
-        sbM833U.append(", hasDiversityParent=");
-        sbM833U.append(isHasDiversityParent());
-        sbM833U.append(", hasMultiDiversityParent=");
-        sbM833U.append(isHasMultiDiversityParent());
-        sbM833U.append(", diversityChildren=");
-        sbM833U.append(getDiversityChildren());
-        sbM833U.append(", codePoints=");
-        sbM833U.append(getCodePoints());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelEmojiUnicode(names=");
+        sbU.append(getNames());
+        sbU.append(", surrogates=");
+        sbU.append(getSurrogates());
+        sbU.append(", hasDiversity=");
+        sbU.append(isHasDiversity());
+        sbU.append(", hasMultiDiversity=");
+        sbU.append(isHasMultiDiversity());
+        sbU.append(", hasDiversityParent=");
+        sbU.append(isHasDiversityParent());
+        sbU.append(", hasMultiDiversityParent=");
+        sbU.append(isHasMultiDiversityParent());
+        sbU.append(", diversityChildren=");
+        sbU.append(getDiversityChildren());
+        sbU.append(", codePoints=");
+        sbU.append(getCodePoints());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     @Override // android.os.Parcelable
@@ -328,61 +295,6 @@ public class ModelEmojiUnicode implements Model, Emoji {
         parcel.writeInt(this.hasDiversityParent ? 1 : 0);
         parcel.writeInt(this.hasMultiDiversityParent ? 1 : 0);
         parcel.writeTypedList(this.diversityChildren);
-    }
-
-    public class Bundle implements Model {
-        private Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = new HashMap();
-
-        @Override // com.discord.models.domain.Model
-        public void assignField(final Model.JsonReader jsonReader) throws IOException {
-            EmojiCategory byString = EmojiCategory.getByString(jsonReader.nextName());
-            if (byString != null) {
-                this.emojis.put(byString, jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.h0.a
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        return (ModelEmojiUnicode) jsonReader.parse(new ModelEmojiUnicode());
-                    }
-                }));
-            } else {
-                jsonReader.skipValue();
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof Bundle;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Bundle)) {
-                return false;
-            }
-            Bundle bundle = (Bundle) obj;
-            if (!bundle.canEqual(this)) {
-                return false;
-            }
-            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = getEmojis();
-            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis2 = bundle.getEmojis();
-            return emojis != null ? emojis.equals(emojis2) : emojis2 == null;
-        }
-
-        public Map<EmojiCategory, List<ModelEmojiUnicode>> getEmojis() {
-            return this.emojis;
-        }
-
-        public int hashCode() {
-            Map<EmojiCategory, List<ModelEmojiUnicode>> emojis = getEmojis();
-            return 59 + (emojis == null ? 43 : emojis.hashCode());
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelEmojiUnicode.Bundle(emojis=");
-            sbM833U.append(getEmojis());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
     }
 
     @SuppressLint({"DefaultLocale"})

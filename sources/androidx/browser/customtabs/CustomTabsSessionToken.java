@@ -2,16 +2,15 @@ package androidx.browser.customtabs;
 
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
-import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.app.BundleCompat;
-import p668x.p669a.p670a.InterfaceC13176a;
+import x.a.a.a;
+import x.a.a.a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CustomTabsSessionToken {
@@ -21,111 +20,23 @@ public class CustomTabsSessionToken {
     private final CustomTabsCallback mCallback;
 
     @Nullable
-    public final InterfaceC13176a mCallbackBinder;
+    public final a mCallbackBinder;
 
     @Nullable
     private final PendingIntent mSessionId;
 
-    public class MockCallback extends InterfaceC13176a.a {
-        @Override // p668x.p669a.p670a.InterfaceC13176a.a, android.os.IInterface
-        public IBinder asBinder() {
-            return this;
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13176a
-        public void extraCallback(String str, Bundle bundle) {
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13176a
-        public Bundle extraCallbackWithResult(String str, Bundle bundle) {
-            return null;
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13176a
-        public void onMessageChannelReady(Bundle bundle) {
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13176a
-        public void onNavigationEvent(int i, Bundle bundle) {
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13176a
-        public void onPostMessage(String str, Bundle bundle) {
-        }
-
-        @Override // p668x.p669a.p670a.InterfaceC13176a
-        public void onRelationshipValidationResult(int i, Uri uri, boolean z2, Bundle bundle) {
-        }
-    }
-
-    public CustomTabsSessionToken(@Nullable InterfaceC13176a interfaceC13176a, @Nullable PendingIntent pendingIntent) {
-        if (interfaceC13176a == null && pendingIntent == null) {
+    public CustomTabsSessionToken(@Nullable a aVar, @Nullable PendingIntent pendingIntent) {
+        if (aVar == null && pendingIntent == null) {
             throw new IllegalStateException("CustomTabsSessionToken must have either a session id or a callback (or both).");
         }
-        this.mCallbackBinder = interfaceC13176a;
+        this.mCallbackBinder = aVar;
         this.mSessionId = pendingIntent;
-        this.mCallback = interfaceC13176a == null ? null : new CustomTabsCallback() { // from class: androidx.browser.customtabs.CustomTabsSessionToken.1
-            @Override // androidx.browser.customtabs.CustomTabsCallback
-            public void extraCallback(@NonNull String str, @Nullable Bundle bundle) {
-                try {
-                    CustomTabsSessionToken.this.mCallbackBinder.extraCallback(str, bundle);
-                } catch (RemoteException unused) {
-                    Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
-                }
-            }
-
-            @Override // androidx.browser.customtabs.CustomTabsCallback
-            @NonNull
-            public Bundle extraCallbackWithResult(@NonNull String str, @Nullable Bundle bundle) {
-                try {
-                    return CustomTabsSessionToken.this.mCallbackBinder.extraCallbackWithResult(str, bundle);
-                } catch (RemoteException unused) {
-                    Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
-                    return null;
-                }
-            }
-
-            @Override // androidx.browser.customtabs.CustomTabsCallback
-            public void onMessageChannelReady(@Nullable Bundle bundle) {
-                try {
-                    CustomTabsSessionToken.this.mCallbackBinder.onMessageChannelReady(bundle);
-                } catch (RemoteException unused) {
-                    Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
-                }
-            }
-
-            @Override // androidx.browser.customtabs.CustomTabsCallback
-            public void onNavigationEvent(int i, @Nullable Bundle bundle) {
-                try {
-                    CustomTabsSessionToken.this.mCallbackBinder.onNavigationEvent(i, bundle);
-                } catch (RemoteException unused) {
-                    Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
-                }
-            }
-
-            @Override // androidx.browser.customtabs.CustomTabsCallback
-            public void onPostMessage(@NonNull String str, @Nullable Bundle bundle) {
-                try {
-                    CustomTabsSessionToken.this.mCallbackBinder.onPostMessage(str, bundle);
-                } catch (RemoteException unused) {
-                    Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
-                }
-            }
-
-            @Override // androidx.browser.customtabs.CustomTabsCallback
-            public void onRelationshipValidationResult(int i, @NonNull Uri uri, boolean z2, @Nullable Bundle bundle) {
-                try {
-                    CustomTabsSessionToken.this.mCallbackBinder.onRelationshipValidationResult(i, uri, z2, bundle);
-                } catch (RemoteException unused) {
-                    Log.e(CustomTabsSessionToken.TAG, "RemoteException during ICustomTabsCallback transaction");
-                }
-            }
-        };
+        this.mCallback = aVar == null ? null : new CustomTabsSessionToken$1(this);
     }
 
     @NonNull
     public static CustomTabsSessionToken createMockSessionTokenForTesting() {
-        return new CustomTabsSessionToken(new MockCallback(), null);
+        return new CustomTabsSessionToken(new CustomTabsSessionToken$MockCallback(), null);
     }
 
     public boolean equals(Object obj) {
@@ -148,17 +59,17 @@ public class CustomTabsSessionToken {
 
     @Nullable
     public IBinder getCallbackBinder() {
-        InterfaceC13176a interfaceC13176a = this.mCallbackBinder;
-        if (interfaceC13176a == null) {
+        a aVar = this.mCallbackBinder;
+        if (aVar == null) {
             return null;
         }
-        return interfaceC13176a.asBinder();
+        return aVar.asBinder();
     }
 
     private IBinder getCallbackBinderAssertNotNull() {
-        InterfaceC13176a interfaceC13176a = this.mCallbackBinder;
-        if (interfaceC13176a != null) {
-            return interfaceC13176a.asBinder();
+        a aVar = this.mCallbackBinder;
+        if (aVar != null) {
+            return aVar.asBinder();
         }
         throw new IllegalStateException("CustomTabSessionToken must have valid binder or pending session");
     }
@@ -179,15 +90,15 @@ public class CustomTabsSessionToken {
         if (binder == null && pendingIntent == null) {
             return null;
         }
-        return new CustomTabsSessionToken(binder != null ? InterfaceC13176a.a.asInterface(binder) : null, pendingIntent);
+        return new CustomTabsSessionToken(binder != null ? a$a.asInterface(binder) : null, pendingIntent);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public boolean hasCallback() {
         return this.mCallbackBinder != null;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public boolean hasId() {
         return this.mSessionId != null;
     }

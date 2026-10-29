@@ -3,9 +3,10 @@ package androidx.fragment.app;
 import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import android.text.TextUtils;
 import android.util.Log;
-import androidx.view.Lifecycle;
+import androidx.view.Lifecycle$State;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -26,19 +27,7 @@ public final class BackStackState implements Parcelable {
     public final ArrayList<String> mSharedElementSourceNames;
     public final ArrayList<String> mSharedElementTargetNames;
     public final int mTransition;
-    public static final Parcelable.Creator<BackStackState> CREATOR = new Parcelable.Creator<BackStackState>() { // from class: androidx.fragment.app.BackStackState.1
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public BackStackState createFromParcel(Parcel parcel) {
-            return new BackStackState(parcel);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public BackStackState[] newArray(int i) {
-            return new BackStackState[i];
-        }
-    };
+    public static final Parcelable$Creator<BackStackState> CREATOR = new BackStackState$1();
 
     public BackStackState(BackStackRecord backStackRecord) {
         int size = backStackRecord.mOps.size();
@@ -52,22 +41,22 @@ public final class BackStackState implements Parcelable {
         int i = 0;
         int i2 = 0;
         while (i < size) {
-            FragmentTransaction.C0394Op c0394Op = backStackRecord.mOps.get(i);
+            FragmentTransaction$Op fragmentTransaction$Op = backStackRecord.mOps.get(i);
             int i3 = i2 + 1;
-            this.mOps[i2] = c0394Op.mCmd;
+            this.mOps[i2] = fragmentTransaction$Op.mCmd;
             ArrayList<String> arrayList = this.mFragmentWhos;
-            Fragment fragment = c0394Op.mFragment;
+            Fragment fragment = fragmentTransaction$Op.mFragment;
             arrayList.add(fragment != null ? fragment.mWho : null);
             int[] iArr = this.mOps;
             int i4 = i3 + 1;
-            iArr[i3] = c0394Op.mEnterAnim;
+            iArr[i3] = fragmentTransaction$Op.mEnterAnim;
             int i5 = i4 + 1;
-            iArr[i4] = c0394Op.mExitAnim;
+            iArr[i4] = fragmentTransaction$Op.mExitAnim;
             int i6 = i5 + 1;
-            iArr[i5] = c0394Op.mPopEnterAnim;
-            iArr[i6] = c0394Op.mPopExitAnim;
-            this.mOldMaxLifecycleStates[i] = c0394Op.mOldMaxState.ordinal();
-            this.mCurrentMaxLifecycleStates[i] = c0394Op.mCurrentMaxState.ordinal();
+            iArr[i5] = fragmentTransaction$Op.mPopEnterAnim;
+            iArr[i6] = fragmentTransaction$Op.mPopExitAnim;
+            this.mOldMaxLifecycleStates[i] = fragmentTransaction$Op.mOldMaxState.ordinal();
+            this.mCurrentMaxLifecycleStates[i] = fragmentTransaction$Op.mCurrentMaxState.ordinal();
             i++;
             i2 = i6 + 1;
         }
@@ -93,37 +82,37 @@ public final class BackStackState implements Parcelable {
         int i = 0;
         int i2 = 0;
         while (i < this.mOps.length) {
-            FragmentTransaction.C0394Op c0394Op = new FragmentTransaction.C0394Op();
+            FragmentTransaction$Op fragmentTransaction$Op = new FragmentTransaction$Op();
             int i3 = i + 1;
-            c0394Op.mCmd = this.mOps[i];
+            fragmentTransaction$Op.mCmd = this.mOps[i];
             if (FragmentManager.isLoggingEnabled(2)) {
                 Log.v("FragmentManager", "Instantiate " + backStackRecord + " op #" + i2 + " base fragment #" + this.mOps[i3]);
             }
             String str = this.mFragmentWhos.get(i2);
             if (str != null) {
-                c0394Op.mFragment = fragmentManager.findActiveFragment(str);
+                fragmentTransaction$Op.mFragment = fragmentManager.findActiveFragment(str);
             } else {
-                c0394Op.mFragment = null;
+                fragmentTransaction$Op.mFragment = null;
             }
-            c0394Op.mOldMaxState = Lifecycle.State.values()[this.mOldMaxLifecycleStates[i2]];
-            c0394Op.mCurrentMaxState = Lifecycle.State.values()[this.mCurrentMaxLifecycleStates[i2]];
+            fragmentTransaction$Op.mOldMaxState = Lifecycle$State.values()[this.mOldMaxLifecycleStates[i2]];
+            fragmentTransaction$Op.mCurrentMaxState = Lifecycle$State.values()[this.mCurrentMaxLifecycleStates[i2]];
             int[] iArr = this.mOps;
             int i4 = i3 + 1;
             int i5 = iArr[i3];
-            c0394Op.mEnterAnim = i5;
+            fragmentTransaction$Op.mEnterAnim = i5;
             int i6 = i4 + 1;
             int i7 = iArr[i4];
-            c0394Op.mExitAnim = i7;
+            fragmentTransaction$Op.mExitAnim = i7;
             int i8 = i6 + 1;
             int i9 = iArr[i6];
-            c0394Op.mPopEnterAnim = i9;
+            fragmentTransaction$Op.mPopEnterAnim = i9;
             int i10 = iArr[i8];
-            c0394Op.mPopExitAnim = i10;
+            fragmentTransaction$Op.mPopExitAnim = i10;
             backStackRecord.mEnterAnim = i5;
             backStackRecord.mExitAnim = i7;
             backStackRecord.mPopEnterAnim = i9;
             backStackRecord.mPopExitAnim = i10;
-            backStackRecord.addOp(c0394Op);
+            backStackRecord.addOp(fragmentTransaction$Op);
             i2++;
             i = i8 + 1;
         }

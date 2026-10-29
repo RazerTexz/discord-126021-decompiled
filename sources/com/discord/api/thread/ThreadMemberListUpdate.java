@@ -1,8 +1,8 @@
 package com.discord.api.thread;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ThreadMemberListUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,6 +10,10 @@ public final /* data */ class ThreadMemberListUpdate {
     private final long guildId;
     private final List<ThreadListMember> members;
     private final long threadId;
+
+    public final List<ThreadListMember> b() {
+        return this.members;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -19,7 +23,7 @@ public final /* data */ class ThreadMemberListUpdate {
             return false;
         }
         ThreadMemberListUpdate threadMemberListUpdate = (ThreadMemberListUpdate) other;
-        return this.guildId == threadMemberListUpdate.guildId && this.threadId == threadMemberListUpdate.threadId && C12238m.areEqual(this.members, threadMemberListUpdate.members);
+        return this.guildId == threadMemberListUpdate.guildId && this.threadId == threadMemberListUpdate.threadId && m.areEqual(this.members, threadMemberListUpdate.members);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -40,17 +44,12 @@ public final /* data */ class ThreadMemberListUpdate {
         return i + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<ThreadListMember> m8266b() {
-        return this.members;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ThreadMemberListUpdate(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", threadId=");
-        sbM833U.append(this.threadId);
-        sbM833U.append(", members=");
-        return C1643a.m824L(sbM833U, this.members, ")");
+        StringBuilder sbU = a.U("ThreadMemberListUpdate(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", threadId=");
+        sbU.append(this.threadId);
+        sbU.append(", members=");
+        return a.L(sbU, this.members, ")");
     }
 }

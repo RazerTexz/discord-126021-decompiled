@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSendEmail.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackSendEmail implements AnalyticsSchema, TrackBa
             return false;
         }
         TrackSendEmail trackSendEmail = (TrackSendEmail) other;
-        return C12238m.areEqual(this.emailType, trackSendEmail.emailType) && C12238m.areEqual(this.trackingPixelUuid, trackSendEmail.trackingPixelUuid);
+        return m.areEqual(this.emailType, trackSendEmail.emailType) && m.areEqual(this.trackingPixelUuid, trackSendEmail.trackingPixelUuid);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackSendEmail implements AnalyticsSchema, TrackBa
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSendEmail(emailType=");
-        sbM833U.append(this.emailType);
-        sbM833U.append(", trackingPixelUuid=");
-        return C1643a.m817E(sbM833U, this.trackingPixelUuid, ")");
+        StringBuilder sbU = a.U("TrackSendEmail(emailType=");
+        sbU.append(this.emailType);
+        sbU.append(", trackingPixelUuid=");
+        return a.E(sbU, this.trackingPixelUuid, ")");
     }
 }

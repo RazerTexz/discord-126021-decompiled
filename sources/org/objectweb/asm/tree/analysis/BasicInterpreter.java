@@ -19,8 +19,48 @@ public class BasicInterpreter extends Interpreter<BasicValue> implements Opcodes
     public static final Type NULL_TYPE = Type.getObjectType("null");
 
     @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value binaryOperation(AbstractInsnNode abstractInsnNode, Value value, Value value2) throws AnalyzerException {
+        return binaryOperation(abstractInsnNode, (BasicValue) value, (BasicValue) value2);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value copyOperation(AbstractInsnNode abstractInsnNode, Value value) throws AnalyzerException {
+        return copyOperation(abstractInsnNode, (BasicValue) value);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value merge(Value value, Value value2) {
+        return merge((BasicValue) value, (BasicValue) value2);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public /* bridge */ /* synthetic */ Value naryOperation(AbstractInsnNode abstractInsnNode, List list) throws AnalyzerException {
         return naryOperation(abstractInsnNode, (List<? extends BasicValue>) list);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value newOperation(AbstractInsnNode abstractInsnNode) throws AnalyzerException {
+        return newOperation(abstractInsnNode);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value newValue(Type type) {
+        return newValue(type);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ void returnOperation(AbstractInsnNode abstractInsnNode, Value value, Value value2) throws AnalyzerException {
+        returnOperation(abstractInsnNode, (BasicValue) value, (BasicValue) value2);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value ternaryOperation(AbstractInsnNode abstractInsnNode, Value value, Value value2, Value value3) throws AnalyzerException {
+        return ternaryOperation(abstractInsnNode, (BasicValue) value, (BasicValue) value2, (BasicValue) value3);
+    }
+
+    @Override // org.objectweb.asm.tree.analysis.Interpreter
+    public /* bridge */ /* synthetic */ Value unaryOperation(AbstractInsnNode abstractInsnNode, Value value) throws AnalyzerException {
+        return unaryOperation(abstractInsnNode, (BasicValue) value);
     }
 
     public BasicInterpreter() {
@@ -133,12 +173,10 @@ public class BasicInterpreter extends Interpreter<BasicValue> implements Opcodes
         }
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public BasicValue copyOperation(AbstractInsnNode insn, BasicValue value) throws AnalyzerException {
         return value;
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public BasicValue unaryOperation(AbstractInsnNode insn, BasicValue value) throws AnalyzerException {
         switch (insn.getOpcode()) {
             case 116:
@@ -262,7 +300,6 @@ public class BasicInterpreter extends Interpreter<BasicValue> implements Opcodes
         }
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public BasicValue binaryOperation(AbstractInsnNode insn, BasicValue value1, BasicValue value2) throws AnalyzerException {
         switch (insn.getOpcode()) {
             case 46:
@@ -413,7 +450,6 @@ public class BasicInterpreter extends Interpreter<BasicValue> implements Opcodes
         }
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public BasicValue ternaryOperation(AbstractInsnNode insn, BasicValue value1, BasicValue value2, BasicValue value3) throws AnalyzerException {
         return null;
     }
@@ -430,11 +466,9 @@ public class BasicInterpreter extends Interpreter<BasicValue> implements Opcodes
         return newValue(Type.getReturnType(((MethodInsnNode) insn).desc));
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public void returnOperation(AbstractInsnNode insn, BasicValue value, BasicValue expected) throws AnalyzerException {
     }
 
-    @Override // org.objectweb.asm.tree.analysis.Interpreter
     public BasicValue merge(BasicValue value1, BasicValue value2) {
         if (!value1.equals(value2)) {
             return BasicValue.UNINITIALIZED_VALUE;

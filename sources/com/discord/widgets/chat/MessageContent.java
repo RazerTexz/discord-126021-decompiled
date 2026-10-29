@@ -1,9 +1,9 @@
 package com.discord.widgets.chat;
 
+import b.d.b.a.a;
 import com.discord.models.user.User;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MessageContent.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -13,8 +13,8 @@ public final /* data */ class MessageContent {
 
     /* JADX WARN: Multi-variable type inference failed */
     public MessageContent(String str, List<? extends User> list) {
-        C12238m.checkNotNullParameter(str, "textContent");
-        C12238m.checkNotNullParameter(list, "mentionedUsers");
+        m.checkNotNullParameter(str, "textContent");
+        m.checkNotNullParameter(list, "mentionedUsers");
         this.textContent = str;
         this.mentionedUsers = list;
     }
@@ -35,8 +35,8 @@ public final /* data */ class MessageContent {
     }
 
     public final MessageContent copy(String textContent, List<? extends User> mentionedUsers) {
-        C12238m.checkNotNullParameter(textContent, "textContent");
-        C12238m.checkNotNullParameter(mentionedUsers, "mentionedUsers");
+        m.checkNotNullParameter(textContent, "textContent");
+        m.checkNotNullParameter(mentionedUsers, "mentionedUsers");
         return new MessageContent(textContent, mentionedUsers);
     }
 
@@ -48,7 +48,7 @@ public final /* data */ class MessageContent {
             return false;
         }
         MessageContent messageContent = (MessageContent) other;
-        return C12238m.areEqual(this.textContent, messageContent.textContent) && C12238m.areEqual(this.mentionedUsers, messageContent.mentionedUsers);
+        return m.areEqual(this.textContent, messageContent.textContent) && m.areEqual(this.mentionedUsers, messageContent.mentionedUsers);
     }
 
     public final List<User> getMentionedUsers() {
@@ -72,9 +72,9 @@ public final /* data */ class MessageContent {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MessageContent(textContent=");
-        sbM833U.append(this.textContent);
-        sbM833U.append(", mentionedUsers=");
-        return C1643a.m824L(sbM833U, this.mentionedUsers, ")");
+        StringBuilder sbU = a.U("MessageContent(textContent=");
+        sbU.append(this.textContent);
+        sbU.append(", mentionedUsers=");
+        return a.L(sbU, this.mentionedUsers, ")");
     }
 }

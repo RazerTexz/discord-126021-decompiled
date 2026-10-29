@@ -1,7 +1,7 @@
 package com.discord.api.activity;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ActivityActionConfirmation.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class ActivityActionConfirmation {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ActivityActionConfirmation) && C12238m.areEqual(this.secret, ((ActivityActionConfirmation) other).secret);
+            return (other instanceof ActivityActionConfirmation) && m.areEqual(this.secret, ((ActivityActionConfirmation) other).secret);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class ActivityActionConfirmation {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("ActivityActionConfirmation(secret="), this.secret, ")");
+        return a.J(a.U("ActivityActionConfirmation(secret="), this.secret, ")");
     }
 }

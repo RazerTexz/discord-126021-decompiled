@@ -10,22 +10,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetManageReactionsResultErrorBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17222a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f17223b;
+    public final ImageView f2484b;
 
     public WidgetManageReactionsResultErrorBinding(@NonNull RelativeLayout relativeLayout, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f17222a = relativeLayout;
-        this.f17223b = imageView;
+        this.a = relativeLayout;
+        this.f2484b = imageView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17222a;
+        return this.a;
     }
 }

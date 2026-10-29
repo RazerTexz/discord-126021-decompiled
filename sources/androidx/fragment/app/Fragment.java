@@ -9,29 +9,30 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.IntentSender$SendIntentException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.ContextMenu;
+import android.view.ContextMenu$ContextMenuInfo;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View$OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultCaller;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.ActivityResultRegistry;
-import androidx.activity.result.ActivityResultRegistryOwner;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.CallSuper;
 import androidx.annotation.ContentView;
@@ -40,16 +41,17 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StringRes;
 import androidx.annotation.UiThread;
 import androidx.arch.core.util.Function;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.app.SharedElementCallback;
 import androidx.core.view.LayoutInflaterCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.view.HasDefaultViewModelProviderFactory;
 import androidx.view.Lifecycle;
-import androidx.view.LifecycleEventObserver;
+import androidx.view.Lifecycle$Event;
+import androidx.view.Lifecycle$State;
 import androidx.view.LifecycleOwner;
 import androidx.view.LifecycleRegistry;
 import androidx.view.LiveData;
@@ -58,12 +60,13 @@ import androidx.view.SavedStateRegistry;
 import androidx.view.SavedStateRegistryController;
 import androidx.view.SavedStateRegistryOwner;
 import androidx.view.SavedStateViewModelFactory;
-import androidx.view.ViewModelProvider;
+import androidx.view.ViewModelProvider$Factory;
 import androidx.view.ViewModelStore;
 import androidx.view.ViewModelStoreOwner;
 import androidx.view.ViewTreeLifecycleOwner;
 import androidx.view.ViewTreeSavedStateRegistryOwner;
 import androidx.view.ViewTreeViewModelStoreOwner;
+import b.d.b.a.a;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
@@ -73,10 +76,9 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
-public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuListener, LifecycleOwner, ViewModelStoreOwner, HasDefaultViewModelProviderFactory, SavedStateRegistryOwner, ActivityResultCaller {
+public class Fragment implements ComponentCallbacks, View$OnCreateContextMenuListener, LifecycleOwner, ViewModelStoreOwner, HasDefaultViewModelProviderFactory, SavedStateRegistryOwner, ActivityResultCaller {
     public static final int ACTIVITY_CREATED = 4;
     public static final int ATTACHED = 0;
     public static final int AWAITING_ENTER_EFFECTS = 6;
@@ -87,7 +89,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public static final int STARTED = 5;
     public static final int VIEW_CREATED = 2;
     public boolean mAdded;
-    public AnimationInfo mAnimationInfo;
+    public Fragment$AnimationInfo mAnimationInfo;
     public Bundle mArguments;
     public int mBackStackNesting;
     private boolean mCalled;
@@ -99,7 +101,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @LayoutRes
     private int mContentLayoutId;
-    private ViewModelProvider.Factory mDefaultFactory;
+    private ViewModelProvider$Factory mDefaultFactory;
     public boolean mDeferStart;
     public boolean mDetached;
     public int mFragmentId;
@@ -115,10 +117,10 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     private Boolean mIsPrimaryNavigationFragment;
     public LayoutInflater mLayoutInflater;
     public LifecycleRegistry mLifecycleRegistry;
-    public Lifecycle.State mMaxState;
+    public Lifecycle$State mMaxState;
     public boolean mMenuVisible;
     private final AtomicInteger mNextLocalRequestCode;
-    private final ArrayList<OnPreAttachedListener> mOnPreAttachedListeners;
+    private final ArrayList<Fragment$OnPreAttachedListener> mOnPreAttachedListeners;
     public Fragment mParentFragment;
     public boolean mPerformedCreateView;
     public float mPostponedAlpha;
@@ -150,72 +152,6 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public String mWho;
     public static final Object USE_DEFAULT_TRANSITION = new Object();
 
-    public class InstantiationException extends RuntimeException {
-        public InstantiationException(@NonNull String str, @Nullable Exception exc) {
-            super(str, exc);
-        }
-    }
-
-    public abstract class OnPreAttachedListener {
-        private OnPreAttachedListener() {
-        }
-
-        public abstract void onPreAttached();
-    }
-
-    public interface OnStartEnterTransitionListener {
-        void onStartEnterTransition();
-
-        void startListening();
-    }
-
-    @SuppressLint({"BanParcelableUsage, ParcelClassLoader"})
-    public class SavedState implements Parcelable {
-        public final Bundle mState;
-
-        @NonNull
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: androidx.fragment.app.Fragment.SavedState.1
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-        };
-
-        public SavedState(Bundle bundle) {
-            this.mState = bundle;
-        }
-
-        @Override // android.os.Parcelable
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override // android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            parcel.writeBundle(this.mState);
-        }
-
-        public SavedState(@NonNull Parcel parcel, @Nullable ClassLoader classLoader) {
-            Bundle bundle = parcel.readBundle();
-            this.mState = bundle;
-            if (classLoader == null || bundle == null) {
-                return;
-            }
-            bundle.setClassLoader(classLoader);
-        }
-    }
-
     public Fragment() {
         this.mState = -1;
         this.mWho = UUID.randomUUID().toString();
@@ -224,13 +160,8 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mChildFragmentManager = new FragmentManagerImpl();
         this.mMenuVisible = true;
         this.mUserVisibleHint = true;
-        this.mPostponedDurationRunnable = new Runnable() { // from class: androidx.fragment.app.Fragment.1
-            @Override // java.lang.Runnable
-            public void run() {
-                Fragment.this.startPostponedEnterTransition();
-            }
-        };
-        this.mMaxState = Lifecycle.State.RESUMED;
+        this.mPostponedDurationRunnable = new Fragment$1(this);
+        this.mMaxState = Lifecycle$State.RESUMED;
         this.mViewLifecycleOwnerLiveData = new MutableLiveData<>();
         this.mNextLocalRequestCode = new AtomicInteger();
         this.mOnPreAttachedListeners = new ArrayList<>();
@@ -240,30 +171,25 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public void callStartTransitionListener(boolean z2) {
         ViewGroup viewGroup;
         FragmentManager fragmentManager;
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        OnStartEnterTransitionListener onStartEnterTransitionListener = null;
-        if (animationInfo != null) {
-            animationInfo.mEnterTransitionPostponed = false;
-            OnStartEnterTransitionListener onStartEnterTransitionListener2 = animationInfo.mStartEnterTransitionListener;
-            animationInfo.mStartEnterTransitionListener = null;
-            onStartEnterTransitionListener = onStartEnterTransitionListener2;
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        Fragment$OnStartEnterTransitionListener fragment$OnStartEnterTransitionListener = null;
+        if (fragment$AnimationInfo != null) {
+            fragment$AnimationInfo.mEnterTransitionPostponed = false;
+            Fragment$OnStartEnterTransitionListener fragment$OnStartEnterTransitionListener2 = fragment$AnimationInfo.mStartEnterTransitionListener;
+            fragment$AnimationInfo.mStartEnterTransitionListener = null;
+            fragment$OnStartEnterTransitionListener = fragment$OnStartEnterTransitionListener2;
         }
-        if (onStartEnterTransitionListener != null) {
-            onStartEnterTransitionListener.onStartEnterTransition();
+        if (fragment$OnStartEnterTransitionListener != null) {
+            fragment$OnStartEnterTransitionListener.onStartEnterTransition();
             return;
         }
         if (!FragmentManager.USE_STATE_MANAGER || this.mView == null || (viewGroup = this.mContainer) == null || (fragmentManager = this.mFragmentManager) == null) {
             return;
         }
-        final SpecialEffectsController orCreateController = SpecialEffectsController.getOrCreateController(viewGroup, fragmentManager);
+        SpecialEffectsController orCreateController = SpecialEffectsController.getOrCreateController(viewGroup, fragmentManager);
         orCreateController.markPostponedState();
         if (z2) {
-            this.mHost.getHandler().post(new Runnable() { // from class: androidx.fragment.app.Fragment.3
-                @Override // java.lang.Runnable
-                public void run() {
-                    orCreateController.executePendingOperations();
-                }
-            });
+            this.mHost.getHandler().post(new Fragment$3(this, orCreateController));
         } else {
             orCreateController.executePendingOperations();
         }
@@ -271,25 +197,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @NonNull
     public FragmentContainer createFragmentContainer() {
-        return new FragmentContainer() { // from class: androidx.fragment.app.Fragment.4
-            @Override // androidx.fragment.app.FragmentContainer
-            @Nullable
-            public View onFindViewById(int i) {
-                View view = Fragment.this.mView;
-                if (view != null) {
-                    return view.findViewById(i);
-                }
-                StringBuilder sbM833U = C1643a.m833U("Fragment ");
-                sbM833U.append(Fragment.this);
-                sbM833U.append(" does not have a view");
-                throw new IllegalStateException(sbM833U.toString());
-            }
-
-            @Override // androidx.fragment.app.FragmentContainer
-            public boolean onHasView() {
-                return Fragment.this.mView != null;
-            }
-        };
+        return new Fragment$4(this);
     }
 
     public void dump(@NonNull String str, @Nullable FileDescriptor fileDescriptor, @NonNull PrintWriter printWriter, @Nullable String[] strArr) {
@@ -398,12 +306,16 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         }
         printWriter.print(str);
         printWriter.println("Child " + this.mChildFragmentManager + ":");
-        this.mChildFragmentManager.dump(C1643a.m883w(str, "  "), fileDescriptor, printWriter, strArr);
+        this.mChildFragmentManager.dump(a.w(str, "  "), fileDescriptor, printWriter, strArr);
     }
 
-    private AnimationInfo ensureAnimationInfo() {
+    public /* bridge */ /* synthetic */ Activity e() {
+        return getActivity();
+    }
+
+    private Fragment$AnimationInfo ensureAnimationInfo() {
         if (this.mAnimationInfo == null) {
-            this.mAnimationInfo = new AnimationInfo();
+            this.mAnimationInfo = new Fragment$AnimationInfo();
         }
         return this.mAnimationInfo;
     }
@@ -419,17 +331,26 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @NonNull
     public String generateActivityResultKey() {
-        StringBuilder sbM833U = C1643a.m833U("fragment_");
-        sbM833U.append(this.mWho);
-        sbM833U.append("_rq#");
-        sbM833U.append(this.mNextLocalRequestCode.getAndIncrement());
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("fragment_");
+        sbU.append(this.mWho);
+        sbU.append("_rq#");
+        sbU.append(this.mNextLocalRequestCode.getAndIncrement());
+        return sbU.toString();
+    }
+
+    @Nullable
+    public final FragmentActivity getActivity() {
+        FragmentHostCallback<?> fragmentHostCallback = this.mHost;
+        if (fragmentHostCallback == null) {
+            return null;
+        }
+        return (FragmentActivity) fragmentHostCallback.getActivity();
     }
 
     public boolean getAllowEnterTransitionOverlap() {
         Boolean bool;
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null || (bool = animationInfo.mAllowEnterTransitionOverlap) == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null || (bool = fragment$AnimationInfo.mAllowEnterTransitionOverlap) == null) {
             return true;
         }
         return bool.booleanValue();
@@ -437,27 +358,27 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     public boolean getAllowReturnTransitionOverlap() {
         Boolean bool;
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null || (bool = animationInfo.mAllowReturnTransitionOverlap) == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null || (bool = fragment$AnimationInfo.mAllowReturnTransitionOverlap) == null) {
             return true;
         }
         return bool.booleanValue();
     }
 
     public View getAnimatingAway() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mAnimatingAway;
+        return fragment$AnimationInfo.mAnimatingAway;
     }
 
     public Animator getAnimator() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mAnimator;
+        return fragment$AnimationInfo.mAnimator;
     }
 
     @Nullable
@@ -470,7 +391,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (this.mHost != null) {
             return this.mChildFragmentManager;
         }
-        throw new IllegalStateException(C1643a.m879u("Fragment ", this, " has not been attached yet."));
+        throw new IllegalStateException(a.u("Fragment ", this, " has not been attached yet."));
     }
 
     @Nullable
@@ -484,7 +405,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @Override // androidx.view.HasDefaultViewModelProviderFactory
     @NonNull
-    public ViewModelProvider.Factory getDefaultViewModelProviderFactory() {
+    public ViewModelProvider$Factory getDefaultViewModelProviderFactory() {
         if (this.mFragmentManager == null) {
             throw new IllegalStateException("Can't access ViewModels from detached fragment");
         }
@@ -497,10 +418,10 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
                 }
             }
             if (application == null && FragmentManager.isLoggingEnabled(3)) {
-                StringBuilder sbM833U = C1643a.m833U("Could not find Application instance from Context ");
-                sbM833U.append(requireContext().getApplicationContext());
-                sbM833U.append(", you will not be able to use AndroidViewModel with the default ViewModelProvider.Factory");
-                Log.d(FragmentManager.TAG, sbM833U.toString());
+                StringBuilder sbU = a.U("Could not find Application instance from Context ");
+                sbU.append(requireContext().getApplicationContext());
+                sbU.append(", you will not be able to use AndroidViewModel with the default ViewModelProvider.Factory");
+                Log.d(FragmentManager.TAG, sbU.toString());
             }
             this.mDefaultFactory = new SavedStateViewModelFactory(application, this, getArguments());
         }
@@ -509,44 +430,44 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @Nullable
     public Object getEnterTransition() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mEnterTransition;
+        return fragment$AnimationInfo.mEnterTransition;
     }
 
     public SharedElementCallback getEnterTransitionCallback() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mEnterTransitionCallback;
+        return fragment$AnimationInfo.mEnterTransitionCallback;
     }
 
     @Nullable
     public Object getExitTransition() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mExitTransition;
+        return fragment$AnimationInfo.mExitTransition;
     }
 
     public SharedElementCallback getExitTransitionCallback() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mExitTransitionCallback;
+        return fragment$AnimationInfo.mExitTransitionCallback;
     }
 
     public View getFocusedView() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mFocusedView;
+        return fragment$AnimationInfo.mFocusedView;
     }
 
     @Nullable
@@ -587,24 +508,24 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     }
 
     private int getMinimumMaxLifecycleState() {
-        Lifecycle.State state = this.mMaxState;
-        return (state == Lifecycle.State.INITIALIZED || this.mParentFragment == null) ? state.ordinal() : Math.min(state.ordinal(), this.mParentFragment.getMinimumMaxLifecycleState());
+        Lifecycle$State lifecycle$State = this.mMaxState;
+        return (lifecycle$State == Lifecycle$State.INITIALIZED || this.mParentFragment == null) ? lifecycle$State.ordinal() : Math.min(lifecycle$State.ordinal(), this.mParentFragment.getMinimumMaxLifecycleState());
     }
 
     public int getNextAnim() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return 0;
         }
-        return animationInfo.mNextAnim;
+        return fragment$AnimationInfo.mNextAnim;
     }
 
     public int getNextTransition() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return 0;
         }
-        return animationInfo.mNextTransition;
+        return fragment$AnimationInfo.mNextTransition;
     }
 
     @Nullable
@@ -618,24 +539,24 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (fragmentManager != null) {
             return fragmentManager;
         }
-        throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not associated with a fragment manager."));
+        throw new IllegalStateException(a.u("Fragment ", this, " not associated with a fragment manager."));
     }
 
     public float getPostOnViewCreatedAlpha() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return 1.0f;
         }
-        return animationInfo.mPostOnViewCreatedAlpha;
+        return fragment$AnimationInfo.mPostOnViewCreatedAlpha;
     }
 
     @Nullable
     public Object getReenterTransition() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        Object obj = animationInfo.mReenterTransition;
+        Object obj = fragment$AnimationInfo.mReenterTransition;
         return obj == USE_DEFAULT_TRANSITION ? getExitTransition() : obj;
     }
 
@@ -651,11 +572,11 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @Nullable
     public Object getReturnTransition() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        Object obj = animationInfo.mReturnTransition;
+        Object obj = fragment$AnimationInfo.mReturnTransition;
         return obj == USE_DEFAULT_TRANSITION ? getEnterTransition() : obj;
     }
 
@@ -667,35 +588,35 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     @Nullable
     public Object getSharedElementEnterTransition() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        return animationInfo.mSharedElementEnterTransition;
+        return fragment$AnimationInfo.mSharedElementEnterTransition;
     }
 
     @Nullable
     public Object getSharedElementReturnTransition() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return null;
         }
-        Object obj = animationInfo.mSharedElementReturnTransition;
+        Object obj = fragment$AnimationInfo.mSharedElementReturnTransition;
         return obj == USE_DEFAULT_TRANSITION ? getSharedElementEnterTransition() : obj;
     }
 
     @NonNull
     public ArrayList<String> getSharedElementSourceNames() {
         ArrayList<String> arrayList;
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        return (animationInfo == null || (arrayList = animationInfo.mSharedElementSourceNames) == null) ? new ArrayList<>() : arrayList;
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        return (fragment$AnimationInfo == null || (arrayList = fragment$AnimationInfo.mSharedElementSourceNames) == null) ? new ArrayList<>() : arrayList;
     }
 
     @NonNull
     public ArrayList<String> getSharedElementTargetNames() {
         ArrayList<String> arrayList;
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        return (animationInfo == null || (arrayList = animationInfo.mSharedElementTargetNames) == null) ? new ArrayList<>() : arrayList;
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        return (fragment$AnimationInfo == null || (arrayList = fragment$AnimationInfo.mSharedElementTargetNames) == null) ? new ArrayList<>() : arrayList;
     }
 
     @NonNull
@@ -764,14 +685,14 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (this.mFragmentManager == null) {
             throw new IllegalStateException("Can't access ViewModels from detached fragment");
         }
-        if (getMinimumMaxLifecycleState() != Lifecycle.State.INITIALIZED.ordinal()) {
+        if (getMinimumMaxLifecycleState() != Lifecycle$State.INITIALIZED.ordinal()) {
             return this.mFragmentManager.getViewModelStore(this);
         }
         throw new IllegalStateException("Calling getViewModelStore() before a Fragment reaches onCreate() when using setMaxLifecycle(INITIALIZED) is not supported");
     }
 
     @SuppressLint({"KotlinPropertyAccess"})
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public final boolean hasOptionsMenu() {
         return this.mHasMenu;
     }
@@ -823,11 +744,11 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     }
 
     public boolean isHideReplaced() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return false;
         }
-        return animationInfo.mIsHideReplaced;
+        return fragment$AnimationInfo.mIsHideReplaced;
     }
 
     public final boolean isInBackStack() {
@@ -838,18 +759,18 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         return this.mInLayout;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public final boolean isMenuVisible() {
         FragmentManager fragmentManager;
         return this.mMenuVisible && ((fragmentManager = this.mFragmentManager) == null || fragmentManager.isParentMenuVisible(this.mParentFragment));
     }
 
     public boolean isPostponed() {
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        if (animationInfo == null) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        if (fragment$AnimationInfo == null) {
             return false;
         }
-        return animationInfo.mEnterTransitionPostponed;
+        return fragment$AnimationInfo.mEnterTransitionPostponed;
     }
 
     public final boolean isRemoving() {
@@ -876,16 +797,6 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public final boolean isVisible() {
         View view;
         return (!isAdded() || isHidden() || (view = this.mView) == null || view.getWindowToken() == null || this.mView.getVisibility() != 0) ? false : true;
-    }
-
-    @Nullable
-    /* JADX INFO: renamed from: getActivity, reason: merged with bridge method [inline-methods] */
-    public final FragmentActivity m95e() {
-        FragmentHostCallback<?> fragmentHostCallback = this.mHost;
-        if (fragmentHostCallback == null) {
-            return null;
-        }
-        return (FragmentActivity) fragmentHostCallback.getActivity();
     }
 
     public void noteStateNotSaved() {
@@ -957,10 +868,10 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         return null;
     }
 
-    @Override // android.view.View.OnCreateContextMenuListener
+    @Override // android.view.View$OnCreateContextMenuListener
     @MainThread
-    public void onCreateContextMenu(@NonNull ContextMenu contextMenu, @NonNull View view, @Nullable ContextMenu.ContextMenuInfo contextMenuInfo) {
-        requireActivity().onCreateContextMenu(contextMenu, view, contextMenuInfo);
+    public void onCreateContextMenu(@NonNull ContextMenu contextMenu, @NonNull View view, @Nullable ContextMenu$ContextMenuInfo contextMenu$ContextMenuInfo) {
+        requireActivity().onCreateContextMenu(contextMenu, view, contextMenu$ContextMenuInfo);
     }
 
     @MainThread
@@ -1098,14 +1009,14 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mCalled = false;
         onActivityCreated(bundle);
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onActivityCreated()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onActivityCreated()"));
         }
         restoreViewState();
         this.mChildFragmentManager.dispatchActivityCreated();
     }
 
     public void performAttach() {
-        Iterator<OnPreAttachedListener> it = this.mOnPreAttachedListeners.iterator();
+        Iterator<Fragment$OnPreAttachedListener> it = this.mOnPreAttachedListeners.iterator();
         while (it.hasNext()) {
             it.next().onPreAttached();
         }
@@ -1115,7 +1026,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mCalled = false;
         onAttach(this.mHost.getContext());
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onAttach()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onAttach()"));
         }
         this.mFragmentManager.dispatchOnAttachFragment(this);
         this.mChildFragmentManager.dispatchAttach();
@@ -1140,23 +1051,14 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mChildFragmentManager.noteStateNotSaved();
         this.mState = 1;
         this.mCalled = false;
-        this.mLifecycleRegistry.addObserver(new LifecycleEventObserver() { // from class: androidx.fragment.app.Fragment.5
-            @Override // androidx.view.LifecycleEventObserver
-            public void onStateChanged(@NonNull LifecycleOwner lifecycleOwner, @NonNull Lifecycle.Event event) {
-                View view;
-                if (event != Lifecycle.Event.ON_STOP || (view = Fragment.this.mView) == null) {
-                    return;
-                }
-                view.cancelPendingInputEvents();
-            }
-        });
+        this.mLifecycleRegistry.addObserver(new Fragment$5(this));
         this.mSavedStateRegistryController.performRestore(bundle);
         onCreate(bundle);
         this.mIsCreated = true;
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onCreate()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onCreate()"));
         }
-        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
+        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle$Event.ON_CREATE);
     }
 
     public boolean performCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
@@ -1193,26 +1095,26 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     public void performDestroy() {
         this.mChildFragmentManager.dispatchDestroy();
-        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY);
+        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle$Event.ON_DESTROY);
         this.mState = 0;
         this.mCalled = false;
         this.mIsCreated = false;
         onDestroy();
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onDestroy()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onDestroy()"));
         }
     }
 
     public void performDestroyView() {
         this.mChildFragmentManager.dispatchDestroyView();
-        if (this.mView != null && this.mViewLifecycleOwner.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.CREATED)) {
-            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY);
+        if (this.mView != null && this.mViewLifecycleOwner.getLifecycle().getCurrentState().isAtLeast(Lifecycle$State.CREATED)) {
+            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle$Event.ON_DESTROY);
         }
         this.mState = 1;
         this.mCalled = false;
         onDestroyView();
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onDestroyView()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onDestroyView()"));
         }
         LoaderManager.getInstance(this).markForRedelivery();
         this.mPerformedCreateView = false;
@@ -1224,7 +1126,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         onDetach();
         this.mLayoutInflater = null;
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onDetach()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onDetach()"));
         }
         if (this.mChildFragmentManager.isDestroyed()) {
             return;
@@ -1273,14 +1175,14 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public void performPause() {
         this.mChildFragmentManager.dispatchPause();
         if (this.mView != null) {
-            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE);
+            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle$Event.ON_PAUSE);
         }
-        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE);
+        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle$Event.ON_PAUSE);
         this.mState = 6;
         this.mCalled = false;
         onPause();
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onPause()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onPause()"));
         }
     }
 
@@ -1318,13 +1220,13 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mCalled = false;
         onResume();
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onResume()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onResume()"));
         }
         LifecycleRegistry lifecycleRegistry = this.mLifecycleRegistry;
-        Lifecycle.Event event = Lifecycle.Event.ON_RESUME;
-        lifecycleRegistry.handleLifecycleEvent(event);
+        Lifecycle$Event lifecycle$Event = Lifecycle$Event.ON_RESUME;
+        lifecycleRegistry.handleLifecycleEvent(lifecycle$Event);
         if (this.mView != null) {
-            this.mViewLifecycleOwner.handleLifecycleEvent(event);
+            this.mViewLifecycleOwner.handleLifecycleEvent(lifecycle$Event);
         }
         this.mChildFragmentManager.dispatchResume();
     }
@@ -1345,13 +1247,13 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mCalled = false;
         onStart();
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onStart()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onStart()"));
         }
         LifecycleRegistry lifecycleRegistry = this.mLifecycleRegistry;
-        Lifecycle.Event event = Lifecycle.Event.ON_START;
-        lifecycleRegistry.handleLifecycleEvent(event);
+        Lifecycle$Event lifecycle$Event = Lifecycle$Event.ON_START;
+        lifecycleRegistry.handleLifecycleEvent(lifecycle$Event);
         if (this.mView != null) {
-            this.mViewLifecycleOwner.handleLifecycleEvent(event);
+            this.mViewLifecycleOwner.handleLifecycleEvent(lifecycle$Event);
         }
         this.mChildFragmentManager.dispatchStart();
     }
@@ -1359,14 +1261,14 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     public void performStop() {
         this.mChildFragmentManager.dispatchStop();
         if (this.mView != null) {
-            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
+            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle$Event.ON_STOP);
         }
-        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
+        this.mLifecycleRegistry.handleLifecycleEvent(Lifecycle$Event.ON_STOP);
         this.mState = 4;
         this.mCalled = false;
         onStop();
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onStop()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onStop()"));
         }
     }
 
@@ -1380,90 +1282,49 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     }
 
     @NonNull
-    private <I, O> ActivityResultLauncher<I> prepareCallInternal(@NonNull final ActivityResultContract<I, O> activityResultContract, @NonNull final Function<Void, ActivityResultRegistry> function, @NonNull final ActivityResultCallback<O> activityResultCallback) {
+    private <I, O> ActivityResultLauncher<I> prepareCallInternal(@NonNull ActivityResultContract<I, O> activityResultContract, @NonNull Function<Void, ActivityResultRegistry> function, @NonNull ActivityResultCallback<O> activityResultCallback) {
         if (this.mState > 1) {
-            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " is attempting to registerForActivityResult after being created. Fragments must call registerForActivityResult() before they are created (i.e. initialization, onAttach(), or onCreate())."));
+            throw new IllegalStateException(a.u("Fragment ", this, " is attempting to registerForActivityResult after being created. Fragments must call registerForActivityResult() before they are created (i.e. initialization, onAttach(), or onCreate())."));
         }
-        final AtomicReference atomicReference = new AtomicReference();
-        registerOnPreAttachListener(new OnPreAttachedListener() { // from class: androidx.fragment.app.Fragment.8
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            {
-                super();
-            }
-
-            @Override // androidx.fragment.app.Fragment.OnPreAttachedListener
-            public void onPreAttached() {
-                String strGenerateActivityResultKey = Fragment.this.generateActivityResultKey();
-                atomicReference.set(((ActivityResultRegistry) function.apply(null)).register(strGenerateActivityResultKey, Fragment.this, activityResultContract, activityResultCallback));
-            }
-        });
-        return new ActivityResultLauncher<I>() { // from class: androidx.fragment.app.Fragment.9
-            @Override // androidx.activity.result.ActivityResultLauncher
-            @NonNull
-            public ActivityResultContract<I, ?> getContract() {
-                return activityResultContract;
-            }
-
-            @Override // androidx.activity.result.ActivityResultLauncher
-            public void launch(I i, @Nullable ActivityOptionsCompat activityOptionsCompat) {
-                ActivityResultLauncher activityResultLauncher = (ActivityResultLauncher) atomicReference.get();
-                if (activityResultLauncher == null) {
-                    throw new IllegalStateException("Operation cannot be started before fragment is in created state");
-                }
-                activityResultLauncher.launch(i, activityOptionsCompat);
-            }
-
-            @Override // androidx.activity.result.ActivityResultLauncher
-            public void unregister() {
-                ActivityResultLauncher activityResultLauncher = (ActivityResultLauncher) atomicReference.getAndSet(null);
-                if (activityResultLauncher != null) {
-                    activityResultLauncher.unregister();
-                }
-            }
-        };
+        AtomicReference atomicReference = new AtomicReference();
+        registerOnPreAttachListener(new Fragment$8(this, function, atomicReference, activityResultContract, activityResultCallback));
+        return new Fragment$9(this, atomicReference, activityResultContract);
     }
 
     @Override // androidx.activity.result.ActivityResultCaller
     @NonNull
     @MainThread
     public final <I, O> ActivityResultLauncher<I> registerForActivityResult(@NonNull ActivityResultContract<I, O> activityResultContract, @NonNull ActivityResultCallback<O> activityResultCallback) {
-        return prepareCallInternal(activityResultContract, new Function<Void, ActivityResultRegistry>() { // from class: androidx.fragment.app.Fragment.6
-            @Override // androidx.arch.core.util.Function
-            public ActivityResultRegistry apply(Void r3) {
-                Fragment fragment = Fragment.this;
-                Object obj = fragment.mHost;
-                return obj instanceof ActivityResultRegistryOwner ? ((ActivityResultRegistryOwner) obj).getActivityResultRegistry() : fragment.requireActivity().getActivityResultRegistry();
-            }
-        }, activityResultCallback);
+        return prepareCallInternal(activityResultContract, new Fragment$6(this), activityResultCallback);
     }
 
     public void registerForContextMenu(@NonNull View view) {
         view.setOnCreateContextMenuListener(this);
     }
 
-    private void registerOnPreAttachListener(@NonNull OnPreAttachedListener onPreAttachedListener) {
+    private void registerOnPreAttachListener(@NonNull Fragment$OnPreAttachedListener fragment$OnPreAttachedListener) {
         if (this.mState >= 0) {
-            onPreAttachedListener.onPreAttached();
+            fragment$OnPreAttachedListener.onPreAttached();
         } else {
-            this.mOnPreAttachedListeners.add(onPreAttachedListener);
+            this.mOnPreAttachedListeners.add(fragment$OnPreAttachedListener);
         }
     }
 
     @Deprecated
     public final void requestPermissions(@NonNull String[] strArr, int i) {
         if (this.mHost == null) {
-            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not attached to Activity"));
+            throw new IllegalStateException(a.u("Fragment ", this, " not attached to Activity"));
         }
         getParentFragmentManager().launchRequestPermissions(this, strArr, i);
     }
 
     @NonNull
     public final FragmentActivity requireActivity() {
-        FragmentActivity fragmentActivityM95e = m95e();
-        if (fragmentActivityM95e != null) {
-            return fragmentActivityM95e;
+        FragmentActivity activity = getActivity();
+        if (activity != null) {
+            return activity;
         }
-        throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not attached to an activity."));
+        throw new IllegalStateException(a.u("Fragment ", this, " not attached to an activity."));
     }
 
     @NonNull
@@ -1472,7 +1333,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (arguments != null) {
             return arguments;
         }
-        throw new IllegalStateException(C1643a.m879u("Fragment ", this, " does not have any arguments."));
+        throw new IllegalStateException(a.u("Fragment ", this, " does not have any arguments."));
     }
 
     @NonNull
@@ -1481,7 +1342,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (context != null) {
             return context;
         }
-        throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not attached to a context."));
+        throw new IllegalStateException(a.u("Fragment ", this, " not attached to a context."));
     }
 
     @NonNull
@@ -1496,7 +1357,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (host != null) {
             return host;
         }
-        throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not attached to a host."));
+        throw new IllegalStateException(a.u("Fragment ", this, " not attached to a host."));
     }
 
     @NonNull
@@ -1506,7 +1367,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
             return parentFragment;
         }
         if (getContext() == null) {
-            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " is not attached to any Fragment or host"));
+            throw new IllegalStateException(a.u("Fragment ", this, " is not attached to any Fragment or host"));
         }
         throw new IllegalStateException("Fragment " + this + " is not a child Fragment, it is directly attached to " + getContext());
     }
@@ -1517,7 +1378,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (view != null) {
             return view;
         }
-        throw new IllegalStateException(C1643a.m879u("Fragment ", this, " did not return a View from onCreateView() or this was called before onCreateView()."));
+        throw new IllegalStateException(a.u("Fragment ", this, " did not return a View from onCreateView() or this was called before onCreateView()."));
     }
 
     public void restoreChildFragmentState(@Nullable Bundle bundle) {
@@ -1542,10 +1403,10 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mCalled = false;
         onViewStateRestored(bundle);
         if (!this.mCalled) {
-            throw new SuperNotCalledException(C1643a.m879u("Fragment ", this, " did not call through to super.onViewStateRestored()"));
+            throw new SuperNotCalledException(a.u("Fragment ", this, " did not call through to super.onViewStateRestored()"));
         }
         if (this.mView != null) {
-            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
+            this.mViewLifecycleOwner.handleLifecycleEvent(Lifecycle$Event.ON_CREATE);
         }
     }
 
@@ -1606,12 +1467,12 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         ensureAnimationInfo().mIsHideReplaced = z2;
     }
 
-    public void setInitialSavedState(@Nullable SavedState savedState) {
+    public void setInitialSavedState(@Nullable Fragment$SavedState fragment$SavedState) {
         Bundle bundle;
         if (this.mFragmentManager != null) {
             throw new IllegalStateException("Fragment already added");
         }
-        if (savedState == null || (bundle = savedState.mState) == null) {
+        if (fragment$SavedState == null || (bundle = fragment$SavedState.mState) == null) {
             bundle = null;
         }
         this.mSavedFragmentState = bundle;
@@ -1641,21 +1502,21 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         this.mAnimationInfo.mNextTransition = i;
     }
 
-    public void setOnStartEnterTransitionListener(OnStartEnterTransitionListener onStartEnterTransitionListener) {
+    public void setOnStartEnterTransitionListener(Fragment$OnStartEnterTransitionListener fragment$OnStartEnterTransitionListener) {
         ensureAnimationInfo();
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        OnStartEnterTransitionListener onStartEnterTransitionListener2 = animationInfo.mStartEnterTransitionListener;
-        if (onStartEnterTransitionListener == onStartEnterTransitionListener2) {
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        Fragment$OnStartEnterTransitionListener fragment$OnStartEnterTransitionListener2 = fragment$AnimationInfo.mStartEnterTransitionListener;
+        if (fragment$OnStartEnterTransitionListener == fragment$OnStartEnterTransitionListener2) {
             return;
         }
-        if (onStartEnterTransitionListener != null && onStartEnterTransitionListener2 != null) {
+        if (fragment$OnStartEnterTransitionListener != null && fragment$OnStartEnterTransitionListener2 != null) {
             throw new IllegalStateException("Trying to set a replacement startPostponedEnterTransition on " + this);
         }
-        if (animationInfo.mEnterTransitionPostponed) {
-            animationInfo.mStartEnterTransitionListener = onStartEnterTransitionListener;
+        if (fragment$AnimationInfo.mEnterTransitionPostponed) {
+            fragment$AnimationInfo.mStartEnterTransitionListener = fragment$OnStartEnterTransitionListener;
         }
-        if (onStartEnterTransitionListener != null) {
-            onStartEnterTransitionListener.startListening();
+        if (fragment$OnStartEnterTransitionListener != null) {
+            fragment$OnStartEnterTransitionListener.startListening();
         }
     }
 
@@ -1690,9 +1551,9 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
 
     public void setSharedElementNames(@Nullable ArrayList<String> arrayList, @Nullable ArrayList<String> arrayList2) {
         ensureAnimationInfo();
-        AnimationInfo animationInfo = this.mAnimationInfo;
-        animationInfo.mSharedElementSourceNames = arrayList;
-        animationInfo.mSharedElementTargetNames = arrayList2;
+        Fragment$AnimationInfo fragment$AnimationInfo = this.mAnimationInfo;
+        fragment$AnimationInfo.mSharedElementSourceNames = arrayList;
+        fragment$AnimationInfo.mSharedElementTargetNames = arrayList2;
     }
 
     public void setSharedElementReturnTransition(@Nullable Object obj) {
@@ -1704,7 +1565,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         FragmentManager fragmentManager = this.mFragmentManager;
         FragmentManager fragmentManager2 = fragment != null ? fragment.mFragmentManager : null;
         if (fragmentManager != null && fragmentManager2 != null && fragmentManager != fragmentManager2) {
-            throw new IllegalArgumentException(C1643a.m879u("Fragment ", fragment, " must share the same FragmentManager to be set as a target fragment"));
+            throw new IllegalArgumentException(a.u("Fragment ", fragment, " must share the same FragmentManager to be set as a target fragment"));
         }
         for (Fragment targetFragment = fragment; targetFragment != null; targetFragment = targetFragment.getTargetFragment()) {
             if (targetFragment.equals(this)) {
@@ -1755,9 +1616,9 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     }
 
     @Deprecated
-    public void startIntentSenderForResult(@SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender.SendIntentException {
+    public void startIntentSenderForResult(@SuppressLint({"UnknownNullness"}) IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender$SendIntentException {
         if (this.mHost == null) {
-            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not attached to Activity"));
+            throw new IllegalStateException(a.u("Fragment ", this, " not attached to Activity"));
         }
         if (FragmentManager.isLoggingEnabled(2)) {
             Log.v(FragmentManager.TAG, "Fragment " + this + " received the following in startIntentSenderForResult() requestCode: " + i + " IntentSender: " + intentSender + " fillInIntent: " + intent + " options: " + bundle);
@@ -1772,12 +1633,7 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         if (this.mHost == null) {
             ensureAnimationInfo().mEnterTransitionPostponed = false;
         } else if (Looper.myLooper() != this.mHost.getHandler().getLooper()) {
-            this.mHost.getHandler().postAtFrontOfQueue(new Runnable() { // from class: androidx.fragment.app.Fragment.2
-                @Override // java.lang.Runnable
-                public void run() {
-                    Fragment.this.callStartTransitionListener(false);
-                }
-            });
+            this.mHost.getHandler().postAtFrontOfQueue(new Fragment$2(this));
         } else {
             callStartTransitionListener(true);
         }
@@ -1809,43 +1665,6 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
         view.setOnCreateContextMenuListener(null);
     }
 
-    public class AnimationInfo {
-        public Boolean mAllowEnterTransitionOverlap;
-        public Boolean mAllowReturnTransitionOverlap;
-        public View mAnimatingAway;
-        public Animator mAnimator;
-        public SharedElementCallback mEnterTransitionCallback;
-        public boolean mEnterTransitionPostponed;
-        public Object mExitTransition;
-        public SharedElementCallback mExitTransitionCallback;
-        public View mFocusedView;
-        public boolean mIsHideReplaced;
-        public int mNextAnim;
-        public int mNextTransition;
-        public float mPostOnViewCreatedAlpha;
-        public Object mReenterTransition;
-        public Object mReturnTransition;
-        public Object mSharedElementEnterTransition;
-        public Object mSharedElementReturnTransition;
-        public ArrayList<String> mSharedElementSourceNames;
-        public ArrayList<String> mSharedElementTargetNames;
-        public OnStartEnterTransitionListener mStartEnterTransitionListener;
-        public Object mEnterTransition = null;
-
-        public AnimationInfo() {
-            Object obj = Fragment.USE_DEFAULT_TRANSITION;
-            this.mReturnTransition = obj;
-            this.mExitTransition = null;
-            this.mReenterTransition = obj;
-            this.mSharedElementEnterTransition = null;
-            this.mSharedElementReturnTransition = obj;
-            this.mEnterTransitionCallback = null;
-            this.mExitTransitionCallback = null;
-            this.mPostOnViewCreatedAlpha = 1.0f;
-            this.mFocusedView = null;
-        }
-    }
-
     @NonNull
     public final String getString(@StringRes int i, @Nullable Object... objArr) {
         return getResources().getString(i, objArr);
@@ -1862,13 +1681,13 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
             }
             return fragmentNewInstance;
         } catch (IllegalAccessException e) {
-            throw new InstantiationException(C1643a.m886y("Unable to instantiate fragment ", str, ": make sure class name exists, is public, and has an empty constructor that is public"), e);
-        } catch (java.lang.InstantiationException e2) {
-            throw new InstantiationException(C1643a.m886y("Unable to instantiate fragment ", str, ": make sure class name exists, is public, and has an empty constructor that is public"), e2);
+            throw new Fragment$InstantiationException(a.y("Unable to instantiate fragment ", str, ": make sure class name exists, is public, and has an empty constructor that is public"), e);
+        } catch (InstantiationException e2) {
+            throw new Fragment$InstantiationException(a.y("Unable to instantiate fragment ", str, ": make sure class name exists, is public, and has an empty constructor that is public"), e2);
         } catch (NoSuchMethodException e3) {
-            throw new InstantiationException(C1643a.m886y("Unable to instantiate fragment ", str, ": could not find Fragment constructor"), e3);
+            throw new Fragment$InstantiationException(a.y("Unable to instantiate fragment ", str, ": could not find Fragment constructor"), e3);
         } catch (InvocationTargetException e4) {
-            throw new InstantiationException(C1643a.m886y("Unable to instantiate fragment ", str, ": calling Fragment constructor caused an exception"), e4);
+            throw new Fragment$InstantiationException(a.y("Unable to instantiate fragment ", str, ": calling Fragment constructor caused an exception"), e4);
         }
     }
 
@@ -1883,19 +1702,14 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     @Override // androidx.activity.result.ActivityResultCaller
     @NonNull
     @MainThread
-    public final <I, O> ActivityResultLauncher<I> registerForActivityResult(@NonNull ActivityResultContract<I, O> activityResultContract, @NonNull final ActivityResultRegistry activityResultRegistry, @NonNull ActivityResultCallback<O> activityResultCallback) {
-        return prepareCallInternal(activityResultContract, new Function<Void, ActivityResultRegistry>() { // from class: androidx.fragment.app.Fragment.7
-            @Override // androidx.arch.core.util.Function
-            public ActivityResultRegistry apply(Void r1) {
-                return activityResultRegistry;
-            }
-        }, activityResultCallback);
+    public final <I, O> ActivityResultLauncher<I> registerForActivityResult(@NonNull ActivityResultContract<I, O> activityResultContract, @NonNull ActivityResultRegistry activityResultRegistry, @NonNull ActivityResultCallback<O> activityResultCallback) {
+        return prepareCallInternal(activityResultContract, new Fragment$7(this, activityResultRegistry), activityResultCallback);
     }
 
     public void startActivity(@SuppressLint({"UnknownNullness"}) Intent intent, @Nullable Bundle bundle) {
         FragmentHostCallback<?> fragmentHostCallback = this.mHost;
         if (fragmentHostCallback == null) {
-            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not attached to Activity"));
+            throw new IllegalStateException(a.u("Fragment ", this, " not attached to Activity"));
         }
         fragmentHostCallback.onStartActivityFromFragment(this, intent, -1, bundle);
     }
@@ -1903,13 +1717,13 @@ public class Fragment implements ComponentCallbacks, View.OnCreateContextMenuLis
     @Deprecated
     public void startActivityForResult(@SuppressLint({"UnknownNullness"}) Intent intent, int i, @Nullable Bundle bundle) {
         if (this.mHost == null) {
-            throw new IllegalStateException(C1643a.m879u("Fragment ", this, " not attached to Activity"));
+            throw new IllegalStateException(a.u("Fragment ", this, " not attached to Activity"));
         }
         getParentFragmentManager().launchStartActivityForResult(this, intent, i, bundle);
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     @Deprecated
     public LayoutInflater getLayoutInflater(@Nullable Bundle bundle) {
         FragmentHostCallback<?> fragmentHostCallback = this.mHost;

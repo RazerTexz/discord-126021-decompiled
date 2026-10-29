@@ -8,14 +8,11 @@ public abstract class PropertyBindingException extends MismatchedInputException 
     public final Collection<Object> _propertyIds;
     public final String _propertyName;
     public final Class<?> _referringClass;
-
-    /* JADX INFO: renamed from: l */
-    public transient String f19664l;
+    public transient String l;
 
     @Override // com.fasterxml.jackson.core.JsonProcessingException
-    /* JADX INFO: renamed from: a */
-    public String mo8739a() {
-        String str = this.f19664l;
+    public String a() {
+        String str = this.l;
         if (str != null || this._propertyIds == null) {
             return str;
         }
@@ -45,7 +42,7 @@ public abstract class PropertyBindingException extends MismatchedInputException 
         }
         sb.append("])");
         String string = sb.toString();
-        this.f19664l = string;
+        this.l = string;
         return string;
     }
 }

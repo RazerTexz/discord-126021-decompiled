@@ -8,22 +8,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class DirectoryAddServerListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final TextView f15040a;
+    public final TextView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15041b;
+    public final TextView f2095b;
 
     public DirectoryAddServerListItemBinding(@NonNull TextView textView, @NonNull TextView textView2) {
-        this.f15040a = textView;
-        this.f15041b = textView2;
+        this.a = textView;
+        this.f2095b = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15040a;
+        return this.a;
     }
 }

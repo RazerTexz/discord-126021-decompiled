@@ -12,21 +12,17 @@ import com.discord.api.thread.ThreadMembersUpdate;
 import com.discord.models.domain.ModelPayload;
 import com.discord.models.user.User;
 import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.SortedMap;
-import kotlin.jvm.functions.Function0;
-import p507d0.p580t.C12134g0;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
+import java.util.Map$Entry;
+import rx.Observable;
 
 /* JADX INFO: compiled from: StoreGameParty.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -38,41 +34,24 @@ public final class StoreGameParty extends StoreV2 {
     private final StoreUserPresence storeUserPresence;
     private final HashMap<Long, HashMap<Long, String>> userParties;
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreGameParty$observeUsersForPartyId$1 */
-    /* JADX INFO: compiled from: StoreGameParty.kt */
-    public final class C59421 extends AbstractC12240o implements Function0<Map<Long, ? extends User>> {
-        public final /* synthetic */ String $partyId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C59421(String str) {
-            super(0);
-            this.$partyId = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends User> invoke() {
-            List listEmptyList;
-            HashSet hashSet = (HashSet) StoreGameParty.this.partiesSnapshot.get(this.$partyId);
-            StoreUser storeUser = StoreGameParty.this.getStoreUser();
-            if (hashSet == null || (listEmptyList = C12163u.toList(hashSet)) == null) {
-                listEmptyList = C12147n.emptyList();
-            }
-            SortedMap sortedMap = C12134g0.toSortedMap(storeUser.getUsers(listEmptyList, false));
-            Objects.requireNonNull(sortedMap, "null cannot be cast to non-null type kotlin.collections.Map<com.discord.primitives.UserId /* = kotlin.Long */, com.discord.models.user.User>");
-            return sortedMap;
-        }
-    }
-
     public StoreGameParty(ObservationDeck observationDeck, StoreUserPresence storeUserPresence, StoreUser storeUser) {
-        C12238m.checkNotNullParameter(observationDeck, "observationDeck");
-        C12238m.checkNotNullParameter(storeUserPresence, "storeUserPresence");
-        C12238m.checkNotNullParameter(storeUser, "storeUser");
+        m.checkNotNullParameter(observationDeck, "observationDeck");
+        m.checkNotNullParameter(storeUserPresence, "storeUserPresence");
+        m.checkNotNullParameter(storeUser, "storeUser");
         this.observationDeck = observationDeck;
         this.storeUserPresence = storeUserPresence;
         this.storeUser = storeUser;
         this.userParties = new HashMap<>();
         this.parties = new HashMap<>();
         this.partiesSnapshot = new HashMap<>();
+    }
+
+    public static final /* synthetic */ HashMap access$getPartiesSnapshot$p(StoreGameParty storeGameParty) {
+        return storeGameParty.partiesSnapshot;
+    }
+
+    public static final /* synthetic */ void access$setPartiesSnapshot$p(StoreGameParty storeGameParty, HashMap map) {
+        storeGameParty.partiesSnapshot = map;
     }
 
     @StoreThread
@@ -110,13 +89,13 @@ public final class StoreGameParty extends StoreV2 {
 
     @StoreThread
     public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
+        m.checkNotNullParameter(payload, "payload");
         List<Presence> presences = payload.getPresences();
         if (presences != null) {
             handlePresences(presences);
         }
         List<Guild> guilds = payload.getGuilds();
-        C12238m.checkNotNullExpressionValue(guilds, "payload.guilds");
+        m.checkNotNullExpressionValue(guilds, "payload.guilds");
         Iterator<T> it = guilds.iterator();
         while (it.hasNext()) {
             handleGuildCreateOrSync((Guild) it.next());
@@ -125,16 +104,16 @@ public final class StoreGameParty extends StoreV2 {
 
     @StoreThread
     public final void handleGuildCreateOrSync(Guild guild) {
-        C12238m.checkNotNullParameter(guild, "guild");
-        List<Presence> listM7839D = guild.m7839D();
-        if (listM7839D != null) {
-            handlePresences(listM7839D);
+        m.checkNotNullParameter(guild, "guild");
+        List<Presence> listD = guild.D();
+        if (listD != null) {
+            handlePresences(listD);
         }
     }
 
     @StoreThread
     public final void handlePresenceReplace(List<Presence> presences) {
-        C12238m.checkNotNullParameter(presences, "presences");
+        m.checkNotNullParameter(presences, "presences");
         handlePresences(presences);
     }
 
@@ -153,7 +132,7 @@ public final class StoreGameParty extends StoreV2 {
 
     @StoreThread
     public final void handlePresenceUpdate(Presence presence, long guildId) {
-        C12238m.checkNotNullParameter(presence, "presence");
+        m.checkNotNullParameter(presence, "presence");
         updateParty(presence, guildId);
     }
 
@@ -167,11 +146,11 @@ public final class StoreGameParty extends StoreV2 {
 
     @StoreThread
     public final void handleThreadMemberListUpdate(ThreadMemberListUpdate threadMemberListUpdate) {
-        C12238m.checkNotNullParameter(threadMemberListUpdate, "threadMemberListUpdate");
-        List<ThreadListMember> listM8266b = threadMemberListUpdate.m8266b();
-        if (listM8266b != null) {
+        m.checkNotNullParameter(threadMemberListUpdate, "threadMemberListUpdate");
+        List<ThreadListMember> listB = threadMemberListUpdate.b();
+        if (listB != null) {
             ArrayList arrayList = new ArrayList();
-            Iterator<T> it = listM8266b.iterator();
+            Iterator<T> it = listB.iterator();
             while (it.hasNext()) {
                 Presence presence = ((ThreadListMember) it.next()).getPresence();
                 if (presence != null) {
@@ -187,11 +166,11 @@ public final class StoreGameParty extends StoreV2 {
 
     @StoreThread
     public final void handleThreadMembersUpdate(ThreadMembersUpdate threadMembersUpdate) {
-        C12238m.checkNotNullParameter(threadMembersUpdate, "threadMembersUpdate");
-        List<AugmentedThreadMember> listM8275a = threadMembersUpdate.m8275a();
-        if (listM8275a != null) {
+        m.checkNotNullParameter(threadMembersUpdate, "threadMembersUpdate");
+        List<AugmentedThreadMember> listA = threadMembersUpdate.a();
+        if (listA != null) {
             ArrayList arrayList = new ArrayList();
-            Iterator<T> it = listM8275a.iterator();
+            Iterator<T> it = listA.iterator();
             while (it.hasNext()) {
                 Presence presence = ((AugmentedThreadMember) it.next()).getPresence();
                 if (presence != null) {
@@ -206,9 +185,9 @@ public final class StoreGameParty extends StoreV2 {
     }
 
     public final Observable<Map<Long, User>> observeUsersForPartyId(String partyId) {
-        Observable<Map<Long, User>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this, StoreUser.INSTANCE.getUsersUpdate()}, false, null, null, new C59421(partyId), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR…  .distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Map<Long, User>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this, StoreUser.Companion.getUsersUpdate()}, false, null, null, new StoreGameParty$observeUsersForPartyId$1(this, partyId), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR…  .distinctUntilChanged()");
+        return observableR;
     }
 
     @StoreThread
@@ -218,7 +197,7 @@ public final class StoreGameParty extends StoreV2 {
         if (map == null || (strRemove = map.remove(Long.valueOf(guildId))) == null) {
             return;
         }
-        C12238m.checkNotNullExpressionValue(strRemove, "userParties[userId]?.remove(guildId) ?: return");
+        m.checkNotNullExpressionValue(strRemove, "userParties[userId]?.remove(guildId) ?: return");
         HashSet<Long> hashSet = this.parties.get(strRemove);
         if (hashSet != null) {
             if (hashSet.size() != 1) {
@@ -238,8 +217,8 @@ public final class StoreGameParty extends StoreV2 {
     public void snapshotData() {
         super.snapshotData();
         this.partiesSnapshot = new HashMap<>();
-        for (Map.Entry<String, HashSet<Long>> entry : this.parties.entrySet()) {
-            this.partiesSnapshot.put(entry.getKey(), new HashSet<>(entry.getValue()));
+        for (Map$Entry<String, HashSet<Long>> map$Entry : this.parties.entrySet()) {
+            this.partiesSnapshot.put(map$Entry.getKey(), new HashSet<>(map$Entry.getValue()));
         }
     }
 
@@ -255,11 +234,11 @@ public final class StoreGameParty extends StoreV2 {
             HashMap<Long, String> map = this.userParties.get(Long.valueOf(user.getId()));
             String id2 = null;
             String str = map != null ? map.get(Long.valueOf(guildId)) : null;
-            Map<Long, com.discord.models.presence.Presence> mapM11396getPresences = this.storeUserPresence.m11396getPresences();
+            Map<Long, com.discord.models.presence.Presence> mapM19getPresences = this.storeUserPresence.m19getPresences();
             com.discord.api.user.User user2 = presence.getUser();
-            com.discord.models.presence.Presence presence2 = mapM11396getPresences.get(user2 != null ? Long.valueOf(user2.getId()) : null);
+            com.discord.models.presence.Presence presence2 = mapM19getPresences.get(user2 != null ? Long.valueOf(user2.getId()) : null);
             if (presence2 == null || (listEmptyList = presence2.getActivities()) == null) {
-                listEmptyList = C12147n.emptyList();
+                listEmptyList = n.emptyList();
             }
             Iterator<T> it = listEmptyList.iterator();
             do {
@@ -284,7 +263,7 @@ public final class StoreGameParty extends StoreV2 {
                 removeUserFromParty(user.getId(), guildId);
                 return;
             }
-            if (!C12238m.areEqual(str, str2)) {
+            if (!m.areEqual(str, str2)) {
                 removeUserFromParty(user.getId(), guildId);
             }
             addUserToParty(user.getId(), guildId, str2);

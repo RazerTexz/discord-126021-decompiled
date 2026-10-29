@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStoreDirectoryFilterUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackStoreDirectoryFilterUpdated implements Analyt
             return false;
         }
         TrackStoreDirectoryFilterUpdated trackStoreDirectoryFilterUpdated = (TrackStoreDirectoryFilterUpdated) other;
-        return C12238m.areEqual(this.loadId, trackStoreDirectoryFilterUpdated.loadId) && C12238m.areEqual(this.sort, trackStoreDirectoryFilterUpdated.sort);
+        return m.areEqual(this.loadId, trackStoreDirectoryFilterUpdated.loadId) && m.areEqual(this.sort, trackStoreDirectoryFilterUpdated.sort);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackStoreDirectoryFilterUpdated implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStoreDirectoryFilterUpdated(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", sort=");
-        return C1643a.m817E(sbM833U, this.sort, ")");
+        StringBuilder sbU = a.U("TrackStoreDirectoryFilterUpdated(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", sort=");
+        return a.E(sbU, this.sort, ")");
     }
 }

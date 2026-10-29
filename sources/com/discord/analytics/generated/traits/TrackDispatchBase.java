@@ -1,8 +1,8 @@
 package com.discord.analytics.generated.traits;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackDispatchBase.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,7 +21,7 @@ public final /* data */ class TrackDispatchBase {
             return false;
         }
         TrackDispatchBase trackDispatchBase = (TrackDispatchBase) other;
-        return C12238m.areEqual(this.applicationId, trackDispatchBase.applicationId) && C12238m.areEqual(this.branchId, trackDispatchBase.branchId) && C12238m.areEqual(this.buildId, trackDispatchBase.buildId) && C12238m.areEqual(this.manifestIds, trackDispatchBase.manifestIds) && C12238m.areEqual(this.nonce, trackDispatchBase.nonce);
+        return m.areEqual(this.applicationId, trackDispatchBase.applicationId) && m.areEqual(this.branchId, trackDispatchBase.branchId) && m.areEqual(this.buildId, trackDispatchBase.buildId) && m.areEqual(this.manifestIds, trackDispatchBase.manifestIds) && m.areEqual(this.nonce, trackDispatchBase.nonce);
     }
 
     public int hashCode() {
@@ -38,15 +38,15 @@ public final /* data */ class TrackDispatchBase {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDispatchBase(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", branchId=");
-        sbM833U.append(this.branchId);
-        sbM833U.append(", buildId=");
-        sbM833U.append(this.buildId);
-        sbM833U.append(", manifestIds=");
-        sbM833U.append(this.manifestIds);
-        sbM833U.append(", nonce=");
-        return C1643a.m817E(sbM833U, this.nonce, ")");
+        StringBuilder sbU = a.U("TrackDispatchBase(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", branchId=");
+        sbU.append(this.branchId);
+        sbU.append(", buildId=");
+        sbU.append(this.buildId);
+        sbU.append(", manifestIds=");
+        sbU.append(this.manifestIds);
+        sbU.append(", nonce=");
+        return a.E(sbU, this.nonce, ")");
     }
 }

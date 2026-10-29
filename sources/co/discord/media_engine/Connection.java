@@ -1,68 +1,14 @@
 package co.discord.media_engine;
 
-import co.discord.media_engine.internal.TransformStats;
+import d0.z.d.m;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.VideoCapturer;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Connection.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class Connection {
     private final long nativeInstance;
-    private UserSpeakingStatusChangedCallback userSpeakingStatusChangedCallback;
-
-    /* JADX INFO: compiled from: Connection.kt */
-    public interface EncryptionModesCallback {
-        void onEncryptionModes(String[] modes);
-    }
-
-    /* JADX INFO: compiled from: Connection.kt */
-    public interface GetStatsCallback {
-        void onStats(Stats stats);
-
-        void onStatsError(Throwable t);
-    }
-
-    /* JADX INFO: compiled from: Connection.kt */
-    public final class GetStatsCallbackNative {
-        private final GetStatsCallback callback;
-
-        public GetStatsCallbackNative(GetStatsCallback getStatsCallback) {
-            C12238m.checkNotNullParameter(getStatsCallback, "callback");
-            this.callback = getStatsCallback;
-        }
-
-        public final GetStatsCallback getCallback() {
-            return this.callback;
-        }
-
-        public final void onStats(String stats) {
-            C12238m.checkNotNullParameter(stats, "stats");
-            try {
-                this.callback.onStats(TransformStats.transform(stats));
-            } catch (Exception e) {
-                this.callback.onStatsError(e);
-            }
-        }
-    }
-
-    /* JADX INFO: compiled from: Connection.kt */
-    public interface OnVideoCallback {
-        void onVideo(long userId, int ssrc, String streamIdentifier, StreamParameters[] streams);
-    }
-
-    /* JADX INFO: compiled from: Connection.kt */
-    public final class StatsFilter {
-        public static final int ALL = -1;
-        public static final int INBOUND = 4;
-        public static final int OUTBOUND = 2;
-        public static final int TRANSPORT = 1;
-    }
-
-    /* JADX INFO: compiled from: Connection.kt */
-    public interface UserSpeakingStatusChangedCallback {
-        void onUserSpeakingStatusChanged(long userId, boolean isUserSpeakingNow, boolean wantsPriority);
-    }
+    private Connection$UserSpeakingStatusChangedCallback userSpeakingStatusChangedCallback;
 
     private Connection(long j) {
         this.nativeInstance = j;
@@ -82,18 +28,18 @@ public final class Connection {
 
     public final native void enableForwardErrorCorrection(boolean enabled);
 
-    public final native void getEncryptionModes(EncryptionModesCallback callback);
+    public final native void getEncryptionModes(Connection$EncryptionModesCallback callback);
 
     public final long getNativeInstance() {
         return this.nativeInstance;
     }
 
-    public final void getStats(GetStatsCallback callback) {
-        C12238m.checkNotNullParameter(callback, "callback");
-        getStatsNative(new GetStatsCallbackNative(callback), -1);
+    public final void getStats(Connection$GetStatsCallback callback) {
+        m.checkNotNullParameter(callback, "callback");
+        getStatsNative(new Connection$GetStatsCallbackNative(callback), -1);
     }
 
-    private final native void getStatsNative(GetStatsCallbackNative callback, int filter);
+    private final native void getStatsNative(Connection$GetStatsCallbackNative callback, int filter);
 
     public final native void muteLocalUser(boolean willBeMuted);
 
@@ -111,7 +57,7 @@ public final class Connection {
 
     public final native void setMinimumPlayoutDelay(int delayMs);
 
-    public final native void setOnVideoCallback(OnVideoCallback callback);
+    public final native void setOnVideoCallback(Connection$OnVideoCallback callback);
 
     public final native void setPTTActive(boolean active);
 
@@ -119,8 +65,8 @@ public final class Connection {
 
     public final native void setUserPlayoutVolume(long userId, float volume);
 
-    public final void setUserSpeakingStatusChangedCallback(UserSpeakingStatusChangedCallback callback) {
-        C12238m.checkNotNullParameter(callback, "callback");
+    public final void setUserSpeakingStatusChangedCallback(Connection$UserSpeakingStatusChangedCallback callback) {
+        m.checkNotNullParameter(callback, "callback");
         this.userSpeakingStatusChangedCallback = callback;
     }
 
@@ -142,8 +88,8 @@ public final class Connection {
 
     public final native void stopScreenshareBroadcast();
 
-    public final void getStats(GetStatsCallback callback, int filter) {
-        C12238m.checkNotNullParameter(callback, "callback");
-        getStatsNative(new GetStatsCallbackNative(callback), filter);
+    public final void getStats(Connection$GetStatsCallback callback, int filter) {
+        m.checkNotNullParameter(callback, "callback");
+        getStatsNative(new Connection$GetStatsCallbackNative(callback), filter);
     }
 }

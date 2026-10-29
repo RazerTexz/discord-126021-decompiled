@@ -2,24 +2,20 @@ package com.discord.utilities.press;
 
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$OnTouchListener;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: OnPressListener.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class OnPressListener implements View.OnTouchListener {
-    private final OnPress onPress;
+public final class OnPressListener implements View$OnTouchListener {
+    private final OnPressListener$OnPress onPress;
     private boolean pressed;
 
-    /* JADX INFO: compiled from: OnPressListener.kt */
-    public interface OnPress {
-        void onPress(boolean pressed);
-    }
-
-    public OnPressListener(OnPress onPress) {
-        C12238m.checkNotNullParameter(onPress, "onPress");
-        this.onPress = onPress;
+    public OnPressListener(OnPressListener$OnPress onPressListener$OnPress) {
+        m.checkNotNullParameter(onPressListener$OnPress, "onPress");
+        this.onPress = onPressListener$OnPress;
     }
 
     private final Boolean isPressed(MotionEvent motionEvent) {
@@ -37,11 +33,11 @@ public final class OnPressListener implements View.OnTouchListener {
         return Boolean.TRUE;
     }
 
-    @Override // android.view.View.OnTouchListener
+    @Override // android.view.View$OnTouchListener
     public boolean onTouch(View view, MotionEvent event) {
         boolean zBooleanValue;
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(event, "event");
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(event, "event");
         Boolean boolIsPressed = isPressed(event);
         if (boolIsPressed == null || this.pressed == (zBooleanValue = boolIsPressed.booleanValue())) {
             return false;
@@ -52,13 +48,8 @@ public final class OnPressListener implements View.OnTouchListener {
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
-    public OnPressListener(final Function1<? super Boolean, Unit> function1) {
-        this(new OnPress() { // from class: com.discord.utilities.press.OnPressListener.1
-            @Override // com.discord.utilities.press.OnPressListener.OnPress
-            public void onPress(boolean pressed) {
-                function1.invoke(Boolean.valueOf(pressed));
-            }
-        });
-        C12238m.checkNotNullParameter(function1, "onPress");
+    public OnPressListener(Function1<? super Boolean, Unit> function1) {
+        this(new OnPressListener$1(function1));
+        m.checkNotNullParameter(function1, "onPress");
     }
 }

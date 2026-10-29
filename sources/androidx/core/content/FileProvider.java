@@ -11,20 +11,17 @@ import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
-import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.discord.widgets.chat.input.MentionUtilsKt;
+import b.d.b.a.a;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import org.xmlpull.v1.XmlPullParserException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class FileProvider extends ContentProvider {
@@ -39,18 +36,12 @@ public class FileProvider extends ContentProvider {
     private static final String TAG_EXTERNAL_MEDIA = "external-media-path";
     private static final String TAG_FILES_PATH = "files-path";
     private static final String TAG_ROOT_PATH = "root-path";
-    private PathStrategy mStrategy;
+    private FileProvider$PathStrategy mStrategy;
     private static final String[] COLUMNS = {"_display_name", "_size"};
     private static final File DEVICE_ROOT = new File(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
 
     @GuardedBy("sCache")
-    private static HashMap<String, PathStrategy> sCache = new HashMap<>();
-
-    public interface PathStrategy {
-        File getFileForUri(Uri uri);
-
-        Uri getUriForFile(File file);
-    }
+    private static HashMap<String, FileProvider$PathStrategy> sCache = new HashMap<>();
 
     @Override // android.content.ContentProvider
     public void attachInfo(@NonNull Context context, @NonNull ProviderInfo providerInfo) {
@@ -84,8 +75,8 @@ public class FileProvider extends ContentProvider {
         return this.mStrategy.getFileForUri(uri).delete() ? 1 : 0;
     }
 
-    private static PathStrategy getPathStrategy(Context context, String str) {
-        PathStrategy pathStrategy;
+    private static FileProvider$PathStrategy getPathStrategy(Context context, String str) {
+        FileProvider$PathStrategy pathStrategy;
         synchronized (sCache) {
             pathStrategy = sCache.get(str);
             if (pathStrategy == null) {
@@ -138,7 +129,7 @@ public class FileProvider extends ContentProvider {
         if ("rwt".equals(str)) {
             return 1006632960;
         }
-        throw new IllegalArgumentException(C1643a.m883w("Invalid mode: ", str));
+        throw new IllegalArgumentException(a.w("Invalid mode: ", str));
     }
 
     @Override // android.content.ContentProvider
@@ -152,11 +143,11 @@ public class FileProvider extends ContentProvider {
         return ParcelFileDescriptor.open(this.mStrategy.getFileForUri(uri), modeToMode(str));
     }
 
-    private static PathStrategy parsePathStrategy(Context context, String str) throws XmlPullParserException, IOException {
-        SimplePathStrategy simplePathStrategy = new SimplePathStrategy(str);
+    private static FileProvider$PathStrategy parsePathStrategy(Context context, String str) throws XmlPullParserException, IOException {
+        FileProvider$SimplePathStrategy fileProvider$SimplePathStrategy = new FileProvider$SimplePathStrategy(str);
         ProviderInfo providerInfoResolveContentProvider = context.getPackageManager().resolveContentProvider(str, 128);
         if (providerInfoResolveContentProvider == null) {
-            throw new IllegalArgumentException(C1643a.m883w("Couldn't find meta-data for provider with authority ", str));
+            throw new IllegalArgumentException(a.w("Couldn't find meta-data for provider with authority ", str));
         }
         XmlResourceParser xmlResourceParserLoadXmlMetaData = providerInfoResolveContentProvider.loadXmlMetaData(context.getPackageManager(), META_DATA_FILE_PROVIDER_PATHS);
         if (xmlResourceParserLoadXmlMetaData == null) {
@@ -165,7 +156,7 @@ public class FileProvider extends ContentProvider {
         while (true) {
             int next = xmlResourceParserLoadXmlMetaData.next();
             if (next == 1) {
-                return simplePathStrategy;
+                return fileProvider$SimplePathStrategy;
             }
             if (next == 2) {
                 String name = xmlResourceParserLoadXmlMetaData.getName();
@@ -197,7 +188,7 @@ public class FileProvider extends ContentProvider {
                     }
                 }
                 if (externalStorageDirectory != null) {
-                    simplePathStrategy.addRoot(attributeValue, buildPath(externalStorageDirectory, attributeValue2));
+                    fileProvider$SimplePathStrategy.addRoot(attributeValue, buildPath(externalStorageDirectory, attributeValue2));
                 }
             }
         }
@@ -238,69 +229,6 @@ public class FileProvider extends ContentProvider {
     @Override // android.content.ContentProvider
     public int update(@NonNull Uri uri, ContentValues contentValues, @Nullable String str, @Nullable String[] strArr) {
         throw new UnsupportedOperationException("No external updates");
-    }
-
-    public class SimplePathStrategy implements PathStrategy {
-        private final String mAuthority;
-        private final HashMap<String, File> mRoots = new HashMap<>();
-
-        public SimplePathStrategy(String str) {
-            this.mAuthority = str;
-        }
-
-        public void addRoot(String str, File file) {
-            if (TextUtils.isEmpty(str)) {
-                throw new IllegalArgumentException("Name must not be empty");
-            }
-            try {
-                this.mRoots.put(str, file.getCanonicalFile());
-            } catch (IOException e) {
-                throw new IllegalArgumentException("Failed to resolve canonical path for " + file, e);
-            }
-        }
-
-        @Override // androidx.core.content.FileProvider.PathStrategy
-        public File getFileForUri(Uri uri) {
-            String encodedPath = uri.getEncodedPath();
-            int iIndexOf = encodedPath.indexOf(47, 1);
-            String strDecode = Uri.decode(encodedPath.substring(1, iIndexOf));
-            String strDecode2 = Uri.decode(encodedPath.substring(iIndexOf + 1));
-            File file = this.mRoots.get(strDecode);
-            if (file == null) {
-                throw new IllegalArgumentException("Unable to find configured root for " + uri);
-            }
-            File file2 = new File(file, strDecode2);
-            try {
-                File canonicalFile = file2.getCanonicalFile();
-                if (canonicalFile.getPath().startsWith(file.getPath())) {
-                    return canonicalFile;
-                }
-                throw new SecurityException("Resolved path jumped beyond configured root");
-            } catch (IOException unused) {
-                throw new IllegalArgumentException("Failed to resolve canonical path for " + file2);
-            }
-        }
-
-        @Override // androidx.core.content.FileProvider.PathStrategy
-        public Uri getUriForFile(File file) {
-            try {
-                String canonicalPath = file.getCanonicalPath();
-                Map.Entry<String, File> entry = null;
-                for (Map.Entry<String, File> entry2 : this.mRoots.entrySet()) {
-                    String path = entry2.getValue().getPath();
-                    if (canonicalPath.startsWith(path) && (entry == null || path.length() > entry.getValue().getPath().length())) {
-                        entry = entry2;
-                    }
-                }
-                if (entry == null) {
-                    throw new IllegalArgumentException(C1643a.m883w("Failed to find configured root that contains ", canonicalPath));
-                }
-                String path2 = entry.getValue().getPath();
-                return new Uri.Builder().scheme("content").authority(this.mAuthority).encodedPath(Uri.encode(entry.getKey()) + MentionUtilsKt.SLASH_CHAR + Uri.encode(path2.endsWith(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN) ? canonicalPath.substring(path2.length()) : canonicalPath.substring(path2.length() + 1), AutocompleteViewModel.COMMAND_DISCOVER_TOKEN)).build();
-            } catch (IOException unused) {
-                throw new IllegalArgumentException("Failed to resolve canonical path for " + file);
-            }
-        }
     }
 
     private static Object[] copyOf(Object[] objArr, int i) {

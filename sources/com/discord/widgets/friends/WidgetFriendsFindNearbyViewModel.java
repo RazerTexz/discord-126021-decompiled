@@ -1,19 +1,16 @@
 package com.discord.widgets.friends;
 
+import b.a.d.d0;
 import kotlin.Unit;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p008a.p018d.AbstractC0859d0;
 
 /* JADX INFO: compiled from: WidgetFriendsFindNearbyViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetFriendsFindNearbyViewModel extends AbstractC0859d0<Unit> {
+public final class WidgetFriendsFindNearbyViewModel extends d0<Unit> {
     private Integer discriminator;
     private String username;
 
-    /* JADX WARN: Illegal instructions before constructor call */
     public WidgetFriendsFindNearbyViewModel() {
-        DefaultConstructorMarker defaultConstructorMarker = null;
-        super(defaultConstructorMarker, 1, defaultConstructorMarker);
+        super(null, 1, null);
     }
 
     public final Integer getDiscriminator() {

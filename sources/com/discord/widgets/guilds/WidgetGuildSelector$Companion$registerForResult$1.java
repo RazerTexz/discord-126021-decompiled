@@ -2,14 +2,14 @@ package com.discord.widgets.guilds;
 
 import android.os.Bundle;
 import com.discord.widgets.servers.WidgetServerSettingsChannels;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGuildSelector.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildSelector$Companion$registerForResult$1 extends AbstractC12240o implements Function2<String, Bundle, Unit> {
+public final class WidgetGuildSelector$Companion$registerForResult$1 extends o implements Function2<String, Bundle, Unit> {
     public final /* synthetic */ boolean $allowNullGuild;
     public final /* synthetic */ Function2 $onGuildSelected;
     public final /* synthetic */ String $requestKey;
@@ -25,20 +25,20 @@ public final class WidgetGuildSelector$Companion$registerForResult$1 extends Abs
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(String str, Bundle bundle) {
         invoke2(str, bundle);
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(String str, Bundle bundle) {
-        C12238m.checkNotNullParameter(str, "resultRequestKey");
-        C12238m.checkNotNullParameter(bundle, "bundle");
-        if (C12238m.areEqual(this.$requestKey, str)) {
+        m.checkNotNullParameter(str, "resultRequestKey");
+        m.checkNotNullParameter(bundle, "bundle");
+        if (m.areEqual(this.$requestKey, str)) {
             String string = bundle.getString("INTENT_EXTRA_GUILD_NAME", "");
             long j = bundle.getLong(WidgetServerSettingsChannels.INTENT_EXTRA_GUILD_ID, -1L);
             if (j > 0 || this.$allowNullGuild) {
                 Function2 function2 = this.$onGuildSelected;
                 Long lValueOf = Long.valueOf(j);
-                C12238m.checkNotNullExpressionValue(string, "guildName");
+                m.checkNotNullExpressionValue(string, "guildName");
                 function2.invoke(lValueOf, string);
             }
         }

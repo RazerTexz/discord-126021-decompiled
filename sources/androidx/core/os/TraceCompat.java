@@ -1,6 +1,6 @@
 package androidx.core.os;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Trace;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -17,7 +17,7 @@ public final class TraceCompat {
     private static long sTraceTagApp;
 
     static {
-        if (Build.VERSION.SDK_INT < 29) {
+        if (Build$VERSION.SDK_INT < 29) {
             try {
                 sTraceTagApp = Trace.class.getField("TRACE_TAG_APP").getLong(null);
                 Class cls = Long.TYPE;
@@ -36,7 +36,7 @@ public final class TraceCompat {
     }
 
     public static void beginAsyncSection(@NonNull String str, int i) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             Trace.beginAsyncSection(str, i);
             return;
         }
@@ -52,7 +52,7 @@ public final class TraceCompat {
     }
 
     public static void endAsyncSection(@NonNull String str, int i) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             Trace.endAsyncSection(str, i);
             return;
         }
@@ -68,7 +68,7 @@ public final class TraceCompat {
     }
 
     public static boolean isEnabled() {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             return Trace.isEnabled();
         }
         try {
@@ -80,7 +80,7 @@ public final class TraceCompat {
     }
 
     public static void setCounter(@NonNull String str, int i) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             Trace.setCounter(str, i);
             return;
         }

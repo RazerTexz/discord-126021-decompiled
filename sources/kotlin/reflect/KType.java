@@ -1,14 +1,14 @@
 package kotlin.reflect;
 
+import d0.e0.b;
+import d0.e0.d;
+import d0.e0.i;
 import java.util.List;
-import p507d0.p513e0.C11236i;
-import p507d0.p513e0.InterfaceC11229b;
-import p507d0.p513e0.InterfaceC11231d;
 
 /* JADX INFO: compiled from: KType.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public interface KType extends InterfaceC11229b {
-    List<C11236i> getArguments();
+public interface KType extends b {
+    List<i> getArguments();
 
-    InterfaceC11231d getClassifier();
+    d getClassifier();
 }

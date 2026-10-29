@@ -1,22 +1,23 @@
 package com.discord.widgets.chat.input;
 
+import b.d.b.a.a;
 import com.discord.api.sticker.Sticker;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetChatInputAutocompleteStickerAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataPayload {
+    public static final AutocompleteStickerItem$Companion Companion = new AutocompleteStickerItem$Companion(null);
     public static final int TYPE = 0;
     private final String key;
     private final Sticker sticker;
     private final int type;
 
     public AutocompleteStickerItem(Sticker sticker, String str, int i) {
-        C12238m.checkNotNullParameter(sticker, "sticker");
-        C12238m.checkNotNullParameter(str, "key");
+        m.checkNotNullParameter(sticker, "sticker");
+        m.checkNotNullParameter(str, "key");
         this.sticker = sticker;
         this.key = str;
         this.type = i;
@@ -44,8 +45,8 @@ public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataP
     }
 
     public final AutocompleteStickerItem copy(Sticker sticker, String key, int type) {
-        C12238m.checkNotNullParameter(sticker, "sticker");
-        C12238m.checkNotNullParameter(key, "key");
+        m.checkNotNullParameter(sticker, "sticker");
+        m.checkNotNullParameter(key, "key");
         return new AutocompleteStickerItem(sticker, key, type);
     }
 
@@ -57,7 +58,7 @@ public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataP
             return false;
         }
         AutocompleteStickerItem autocompleteStickerItem = (AutocompleteStickerItem) other;
-        return C12238m.areEqual(this.sticker, autocompleteStickerItem.sticker) && C12238m.areEqual(getKey(), autocompleteStickerItem.getKey()) && getType() == autocompleteStickerItem.getType();
+        return m.areEqual(this.sticker, autocompleteStickerItem.sticker) && m.areEqual(getKey(), autocompleteStickerItem.getKey()) && getType() == autocompleteStickerItem.getType();
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
@@ -87,14 +88,14 @@ public final /* data */ class AutocompleteStickerItem implements MGRecyclerDataP
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AutocompleteStickerItem(sticker=");
-        sbM833U.append(this.sticker);
-        sbM833U.append(", key=");
-        sbM833U.append(getKey());
-        sbM833U.append(", type=");
-        sbM833U.append(getType());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("AutocompleteStickerItem(sticker=");
+        sbU.append(this.sticker);
+        sbU.append(", key=");
+        sbU.append(getKey());
+        sbU.append(", type=");
+        sbU.append(getType());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ AutocompleteStickerItem(Sticker sticker, String str, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {

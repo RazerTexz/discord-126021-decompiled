@@ -2,31 +2,30 @@ package com.discord.utilities.permissions;
 
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: VideoPermissionsManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class VideoPermissionsManager {
     private final PermissionsManager permissionsManager;
 
-    /* JADX WARN: Multi-variable type inference failed */
     public VideoPermissionsManager() {
-        this(null, 1, 0 == true ? 1 : 0);
+        this(null, 1, null);
     }
 
     public VideoPermissionsManager(PermissionsManager permissionsManager) {
-        C12238m.checkNotNullParameter(permissionsManager, "permissionsManager");
+        m.checkNotNullParameter(permissionsManager, "permissionsManager");
         this.permissionsManager = permissionsManager;
     }
 
     public final boolean hasVideoPermission(Channel channel, Long channelIdAFK, Long computedPermissions) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         long id2 = channel.getId();
         if (channelIdAFK != null && id2 == channelIdAFK.longValue()) {
             return false;
         }
-        if (ChannelUtils.m7667B(channel)) {
+        if (ChannelUtils.B(channel)) {
             return true;
         }
         return this.permissionsManager.can(512L, computedPermissions);

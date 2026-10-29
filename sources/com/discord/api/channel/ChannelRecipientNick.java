@@ -1,8 +1,8 @@
 package com.discord.api.channel;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelRecipientNick.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,9 +11,13 @@ public final /* data */ class ChannelRecipientNick {
     private final String nick;
 
     public ChannelRecipientNick(long j, String str) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NICK);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NICK);
         this.id = j;
         this.nick = str;
+    }
+
+    public final long b() {
+        return this.id;
     }
 
     public boolean equals(Object other) {
@@ -24,7 +28,7 @@ public final /* data */ class ChannelRecipientNick {
             return false;
         }
         ChannelRecipientNick channelRecipientNick = (ChannelRecipientNick) other;
-        return this.id == channelRecipientNick.id && C12238m.areEqual(this.nick, channelRecipientNick.nick);
+        return this.id == channelRecipientNick.id && m.areEqual(this.nick, channelRecipientNick.nick);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -44,15 +48,10 @@ public final /* data */ class ChannelRecipientNick {
         return i + (str != null ? str.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final long m7664b() {
-        return this.id;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelRecipientNick(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", nick=");
-        return C1643a.m822J(sbM833U, this.nick, ")");
+        StringBuilder sbU = a.U("ChannelRecipientNick(id=");
+        sbU.append(this.id);
+        sbU.append(", nick=");
+        return a.J(sbU, this.nick, ")");
     }
 }

@@ -4,16 +4,16 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetStageModeratorJoinBottomSheetBinding;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetStageModeratorJoinBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetStageModeratorJoinBottomSheet$binding$2 extends C12236k implements Function1<View, WidgetStageModeratorJoinBottomSheetBinding> {
+public final /* synthetic */ class WidgetStageModeratorJoinBottomSheet$binding$2 extends k implements Function1<View, WidgetStageModeratorJoinBottomSheetBinding> {
     public static final WidgetStageModeratorJoinBottomSheet$binding$2 INSTANCE = new WidgetStageModeratorJoinBottomSheet$binding$2();
 
     public WidgetStageModeratorJoinBottomSheet$binding$2() {
@@ -21,22 +21,27 @@ public final /* synthetic */ class WidgetStageModeratorJoinBottomSheet$binding$2
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetStageModeratorJoinBottomSheetBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.join_audience;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.join_audience);
+    public /* bridge */ /* synthetic */ WidgetStageModeratorJoinBottomSheetBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetStageModeratorJoinBottomSheetBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.join_audience;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.join_audience);
         if (materialButton != null) {
-            i = C5419R.id.join_speaker;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(C5419R.id.join_speaker);
+            i = R$id.join_speaker;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.join_speaker);
             if (materialButton2 != null) {
-                i = C5419R.id.sparkle;
-                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(C5419R.id.sparkle);
+                i = R$id.sparkle;
+                AppCompatImageView appCompatImageView = (AppCompatImageView) view.findViewById(R$id.sparkle);
                 if (appCompatImageView != null) {
-                    i = C5419R.id.subtitle;
-                    TextView textView = (TextView) view.findViewById(C5419R.id.subtitle);
+                    i = R$id.subtitle;
+                    TextView textView = (TextView) view.findViewById(R$id.subtitle);
                     if (textView != null) {
-                        i = C5419R.id.title;
-                        TextView textView2 = (TextView) view.findViewById(C5419R.id.title);
+                        i = 2131365869;
+                        TextView textView2 = (TextView) view.findViewById(2131365869);
                         if (textView2 != null) {
                             return new WidgetStageModeratorJoinBottomSheetBinding((CoordinatorLayout) view, materialButton, materialButton2, appCompatImageView, textView, textView2);
                         }

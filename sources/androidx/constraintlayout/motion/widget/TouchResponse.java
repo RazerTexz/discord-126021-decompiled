@@ -9,10 +9,10 @@ import android.util.Xml;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.constraintlayout.widget.C0201R;
+import androidx.constraintlayout.widget.R$styleable;
 import androidx.core.widget.NestedScrollView;
+import b.d.b.a.a;
 import org.xmlpull.v1.XmlPullParser;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class TouchResponse {
@@ -70,44 +70,44 @@ public class TouchResponse {
         int indexCount = typedArray.getIndexCount();
         for (int i = 0; i < indexCount; i++) {
             int index = typedArray.getIndex(i);
-            if (index == C0201R.styleable.OnSwipe_touchAnchorId) {
+            if (index == R$styleable.OnSwipe_touchAnchorId) {
                 this.mTouchAnchorId = typedArray.getResourceId(index, this.mTouchAnchorId);
-            } else if (index == C0201R.styleable.OnSwipe_touchAnchorSide) {
+            } else if (index == R$styleable.OnSwipe_touchAnchorSide) {
                 int i2 = typedArray.getInt(index, this.mTouchAnchorSide);
                 this.mTouchAnchorSide = i2;
                 float[][] fArr = TOUCH_SIDES;
                 this.mTouchAnchorX = fArr[i2][0];
                 this.mTouchAnchorY = fArr[i2][1];
-            } else if (index == C0201R.styleable.OnSwipe_dragDirection) {
+            } else if (index == R$styleable.OnSwipe_dragDirection) {
                 int i3 = typedArray.getInt(index, this.mTouchSide);
                 this.mTouchSide = i3;
                 float[][] fArr2 = TOUCH_DIRECTION;
                 this.mTouchDirectionX = fArr2[i3][0];
                 this.mTouchDirectionY = fArr2[i3][1];
-            } else if (index == C0201R.styleable.OnSwipe_maxVelocity) {
+            } else if (index == R$styleable.OnSwipe_maxVelocity) {
                 this.mMaxVelocity = typedArray.getFloat(index, this.mMaxVelocity);
-            } else if (index == C0201R.styleable.OnSwipe_maxAcceleration) {
+            } else if (index == R$styleable.OnSwipe_maxAcceleration) {
                 this.mMaxAcceleration = typedArray.getFloat(index, this.mMaxAcceleration);
-            } else if (index == C0201R.styleable.OnSwipe_moveWhenScrollAtTop) {
+            } else if (index == R$styleable.OnSwipe_moveWhenScrollAtTop) {
                 this.mMoveWhenScrollAtTop = typedArray.getBoolean(index, this.mMoveWhenScrollAtTop);
-            } else if (index == C0201R.styleable.OnSwipe_dragScale) {
+            } else if (index == R$styleable.OnSwipe_dragScale) {
                 this.mDragScale = typedArray.getFloat(index, this.mDragScale);
-            } else if (index == C0201R.styleable.OnSwipe_dragThreshold) {
+            } else if (index == R$styleable.OnSwipe_dragThreshold) {
                 this.mDragThreshold = typedArray.getFloat(index, this.mDragThreshold);
-            } else if (index == C0201R.styleable.OnSwipe_touchRegionId) {
+            } else if (index == R$styleable.OnSwipe_touchRegionId) {
                 this.mTouchRegionId = typedArray.getResourceId(index, this.mTouchRegionId);
-            } else if (index == C0201R.styleable.OnSwipe_onTouchUp) {
+            } else if (index == R$styleable.OnSwipe_onTouchUp) {
                 this.mOnTouchUp = typedArray.getInt(index, this.mOnTouchUp);
-            } else if (index == C0201R.styleable.OnSwipe_nestedScrollFlags) {
+            } else if (index == R$styleable.OnSwipe_nestedScrollFlags) {
                 this.mFlags = typedArray.getInteger(index, 0);
-            } else if (index == C0201R.styleable.OnSwipe_limitBoundsTo) {
+            } else if (index == R$styleable.OnSwipe_limitBoundsTo) {
                 this.mLimitBoundsTo = typedArray.getResourceId(index, 0);
             }
         }
     }
 
     private void fillFromAttributeList(Context context, AttributeSet attributeSet) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0201R.styleable.OnSwipe);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.OnSwipe);
         fill(typedArrayObtainStyledAttributes);
         typedArrayObtainStyledAttributes.recycle();
     }
@@ -177,9 +177,9 @@ public class TouchResponse {
         return this.mTouchRegionId;
     }
 
-    public void processTouchEvent(MotionEvent motionEvent, MotionLayout.MotionTracker motionTracker, int i, MotionScene motionScene) {
+    public void processTouchEvent(MotionEvent motionEvent, MotionLayout$MotionTracker motionLayout$MotionTracker, int i, MotionScene motionScene) {
         int i2;
-        motionTracker.addMovement(motionEvent);
+        motionLayout$MotionTracker.addMovement(motionEvent);
         int action = motionEvent.getAction();
         if (action == 0) {
             this.mLastTouchX = motionEvent.getRawX();
@@ -189,9 +189,9 @@ public class TouchResponse {
         }
         if (action == 1) {
             this.mDragStarted = false;
-            motionTracker.computeCurrentVelocity(1000);
-            float xVelocity = motionTracker.getXVelocity();
-            float yVelocity = motionTracker.getYVelocity();
+            motionLayout$MotionTracker.computeCurrentVelocity(1000);
+            float xVelocity = motionLayout$MotionTracker.getXVelocity();
+            float yVelocity = motionLayout$MotionTracker.getYVelocity();
             float progress = this.mMotionLayout.getProgress();
             int i3 = this.mTouchAnchorId;
             if (i3 != -1) {
@@ -210,14 +210,14 @@ public class TouchResponse {
             float f5 = !Float.isNaN(f4) ? (f4 / 3.0f) + progress : progress;
             if (f5 == 0.0f || f5 == 1.0f || (i2 = this.mOnTouchUp) == 3) {
                 if (0.0f >= f5 || 1.0f <= f5) {
-                    this.mMotionLayout.setState(MotionLayout.TransitionState.FINISHED);
+                    this.mMotionLayout.setState(MotionLayout$TransitionState.FINISHED);
                     return;
                 }
                 return;
             }
             this.mMotionLayout.touchAnimateTo(i2, ((double) f5) < 0.5d ? 0.0f : 1.0f, f4);
             if (0.0f >= progress || 1.0f <= progress) {
-                this.mMotionLayout.setState(MotionLayout.TransitionState.FINISHED);
+                this.mMotionLayout.setState(MotionLayout$TransitionState.FINISHED);
                 return;
             }
             return;
@@ -252,8 +252,8 @@ public class TouchResponse {
             float fMax = Math.max(Math.min(progress2 + (this.mTouchDirectionX != 0.0f ? rawX / this.mAnchorDpDt[0] : rawY / this.mAnchorDpDt[1]), 1.0f), 0.0f);
             if (fMax != this.mMotionLayout.getProgress()) {
                 this.mMotionLayout.setProgress(fMax);
-                motionTracker.computeCurrentVelocity(1000);
-                this.mMotionLayout.mLastVelocity = this.mTouchDirectionX != 0.0f ? motionTracker.getXVelocity() / this.mAnchorDpDt[0] : motionTracker.getYVelocity() / this.mAnchorDpDt[1];
+                motionLayout$MotionTracker.computeCurrentVelocity(1000);
+                this.mMotionLayout.mLastVelocity = this.mTouchDirectionX != 0.0f ? motionLayout$MotionTracker.getXVelocity() / this.mAnchorDpDt[0] : motionLayout$MotionTracker.getYVelocity() / this.mAnchorDpDt[1];
             } else {
                 this.mMotionLayout.mLastVelocity = 0.0f;
             }
@@ -365,26 +365,17 @@ public class TouchResponse {
         if (i != -1) {
             viewFindViewById = this.mMotionLayout.findViewById(i);
             if (viewFindViewById == null) {
-                StringBuilder sbM833U = C1643a.m833U("cannot find TouchAnchorId @id/");
-                sbM833U.append(Debug.getName(this.mMotionLayout.getContext(), this.mTouchAnchorId));
-                Log.e(TAG, sbM833U.toString());
+                StringBuilder sbU = a.U("cannot find TouchAnchorId @id/");
+                sbU.append(Debug.getName(this.mMotionLayout.getContext(), this.mTouchAnchorId));
+                Log.e(TAG, sbU.toString());
             }
         } else {
             viewFindViewById = null;
         }
         if (viewFindViewById instanceof NestedScrollView) {
             NestedScrollView nestedScrollView = (NestedScrollView) viewFindViewById;
-            nestedScrollView.setOnTouchListener(new View.OnTouchListener() { // from class: androidx.constraintlayout.motion.widget.TouchResponse.1
-                @Override // android.view.View.OnTouchListener
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    return false;
-                }
-            });
-            nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() { // from class: androidx.constraintlayout.motion.widget.TouchResponse.2
-                @Override // androidx.core.widget.NestedScrollView.OnScrollChangeListener
-                public void onScrollChange(NestedScrollView nestedScrollView2, int i2, int i3, int i4, int i5) {
-                }
-            });
+            nestedScrollView.setOnTouchListener(new TouchResponse$1(this));
+            nestedScrollView.setOnScrollChangeListener(new TouchResponse$2(this));
         }
     }
 

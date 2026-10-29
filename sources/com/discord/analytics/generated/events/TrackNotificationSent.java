@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotificationSent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackNotificationSent implements AnalyticsSchema, 
             return false;
         }
         TrackNotificationSent trackNotificationSent = (TrackNotificationSent) other;
-        return C12238m.areEqual(this.notifType, trackNotificationSent.notifType) && C12238m.areEqual(this.notifUserId, trackNotificationSent.notifUserId) && C12238m.areEqual(this.relType, trackNotificationSent.relType) && C12238m.areEqual(this.hasApnsToken, trackNotificationSent.hasApnsToken) && C12238m.areEqual(this.hasGcmToken, trackNotificationSent.hasGcmToken);
+        return m.areEqual(this.notifType, trackNotificationSent.notifType) && m.areEqual(this.notifUserId, trackNotificationSent.notifUserId) && m.areEqual(this.relType, trackNotificationSent.relType) && m.areEqual(this.hasApnsToken, trackNotificationSent.hasApnsToken) && m.areEqual(this.hasGcmToken, trackNotificationSent.hasGcmToken);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackNotificationSent implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotificationSent(notifType=");
-        sbM833U.append(this.notifType);
-        sbM833U.append(", notifUserId=");
-        sbM833U.append(this.notifUserId);
-        sbM833U.append(", relType=");
-        sbM833U.append(this.relType);
-        sbM833U.append(", hasApnsToken=");
-        sbM833U.append(this.hasApnsToken);
-        sbM833U.append(", hasGcmToken=");
-        return C1643a.m816D(sbM833U, this.hasGcmToken, ")");
+        StringBuilder sbU = a.U("TrackNotificationSent(notifType=");
+        sbU.append(this.notifType);
+        sbU.append(", notifUserId=");
+        sbU.append(this.notifUserId);
+        sbU.append(", relType=");
+        sbU.append(this.relType);
+        sbU.append(", hasApnsToken=");
+        sbU.append(this.hasApnsToken);
+        sbU.append(", hasGcmToken=");
+        return a.D(sbU, this.hasGcmToken, ")");
     }
 }

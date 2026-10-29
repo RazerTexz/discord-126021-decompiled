@@ -3,17 +3,17 @@ package com.discord.widgets.hubs;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetHubAuthenticationBinding;
 import com.discord.utilities.view.text.LinkifiedTextView;
 import com.discord.views.CodeVerificationView;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubAuthentication.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetHubAuthentication$binding$2 extends C12236k implements Function1<View, WidgetHubAuthenticationBinding> {
+public final /* synthetic */ class WidgetHubAuthentication$binding$2 extends k implements Function1<View, WidgetHubAuthenticationBinding> {
     public static final WidgetHubAuthentication$binding$2 INSTANCE = new WidgetHubAuthentication$binding$2();
 
     public WidgetHubAuthentication$binding$2() {
@@ -21,19 +21,24 @@ public final /* synthetic */ class WidgetHubAuthentication$binding$2 extends C12
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetHubAuthenticationBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.contact_sync_permissions_subtitle;
-        TextView textView = (TextView) view.findViewById(C5419R.id.contact_sync_permissions_subtitle);
+    public /* bridge */ /* synthetic */ WidgetHubAuthenticationBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetHubAuthenticationBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.contact_sync_permissions_subtitle;
+        TextView textView = (TextView) view.findViewById(R$id.contact_sync_permissions_subtitle);
         if (textView != null) {
-            i = C5419R.id.description;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(C5419R.id.description);
+            i = R$id.description;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) view.findViewById(R$id.description);
             if (linkifiedTextView != null) {
-                i = C5419R.id.title;
-                TextView textView2 = (TextView) view.findViewById(C5419R.id.title);
+                i = 2131365869;
+                TextView textView2 = (TextView) view.findViewById(2131365869);
                 if (textView2 != null) {
-                    i = C5419R.id.verification;
-                    CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(C5419R.id.verification);
+                    i = R$id.verification;
+                    CodeVerificationView codeVerificationView = (CodeVerificationView) view.findViewById(R$id.verification);
                     if (codeVerificationView != null) {
                         return new WidgetHubAuthenticationBinding((LinearLayout) view, textView, linkifiedTextView, textView2, codeVerificationView);
                     }

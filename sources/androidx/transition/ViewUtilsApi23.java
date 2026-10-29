@@ -1,7 +1,7 @@
 package androidx.transition;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -14,7 +14,7 @@ public class ViewUtilsApi23 extends ViewUtilsApi22 {
     @Override // androidx.transition.ViewUtilsBase
     @SuppressLint({"NewApi"})
     public void setTransitionVisibility(@NonNull View view, int i) {
-        if (Build.VERSION.SDK_INT == 28) {
+        if (Build$VERSION.SDK_INT == 28) {
             super.setTransitionVisibility(view, i);
         } else if (sTryHiddenSetTransitionVisibility) {
             try {

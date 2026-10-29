@@ -1,12 +1,12 @@
 package com.discord.utilities.system;
 
 import android.os.Process;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: ProcfsReader.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ProcfsReader$pid$2 extends AbstractC12240o implements Function0<Integer> {
+public final class ProcfsReader$pid$2 extends o implements Function0<Integer> {
     public static final ProcfsReader$pid$2 INSTANCE = new ProcfsReader$pid$2();
 
     public ProcfsReader$pid$2() {

@@ -3,7 +3,6 @@ package org.objectweb.asm.tree.analysis;
 import java.util.AbstractSet;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Set;
 
 /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/analysis/SmallSet.SCL.lombok */
@@ -28,7 +27,7 @@ final class SmallSet<T> extends AbstractSet<T> {
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.lang.Iterable, java.util.Set
     public Iterator<T> iterator() {
-        return new IteratorImpl(this.element1, this.element2);
+        return new SmallSet$IteratorImpl(this.element1, this.element2);
     }
 
     @Override // java.util.AbstractCollection, java.util.Collection, java.util.Set
@@ -73,37 +72,5 @@ final class SmallSet<T> extends AbstractSet<T> {
             result.add(otherSet.element2);
         }
         return result;
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/tree/analysis/SmallSet$IteratorImpl.SCL.lombok */
-    class IteratorImpl<T> implements Iterator<T> {
-        private T firstElement;
-        private T secondElement;
-
-        IteratorImpl(T firstElement, T secondElement) {
-            this.firstElement = firstElement;
-            this.secondElement = secondElement;
-        }
-
-        @Override // java.util.Iterator
-        public boolean hasNext() {
-            return this.firstElement != null;
-        }
-
-        @Override // java.util.Iterator
-        public T next() {
-            if (this.firstElement == null) {
-                throw new NoSuchElementException();
-            }
-            T element = this.firstElement;
-            this.firstElement = this.secondElement;
-            this.secondElement = null;
-            return element;
-        }
-
-        @Override // java.util.Iterator
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
     }
 }

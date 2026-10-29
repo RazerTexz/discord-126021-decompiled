@@ -1,9 +1,9 @@
 package com.discord.api.interaction;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Interaction.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,7 +21,7 @@ public final /* data */ class Member {
             return false;
         }
         Member member = (Member) other;
-        return C12238m.areEqual(this.roles, member.roles) && C12238m.areEqual(this.joinedAt, member.joinedAt) && this.mute == member.mute && this.deaf == member.deaf;
+        return m.areEqual(this.roles, member.roles) && m.areEqual(this.joinedAt, member.joinedAt) && this.mute == member.mute && this.deaf == member.deaf;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -49,13 +49,13 @@ public final /* data */ class Member {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Member(roles=");
-        sbM833U.append(this.roles);
-        sbM833U.append(", joinedAt=");
-        sbM833U.append(this.joinedAt);
-        sbM833U.append(", mute=");
-        sbM833U.append(this.mute);
-        sbM833U.append(", deaf=");
-        return C1643a.m827O(sbM833U, this.deaf, ")");
+        StringBuilder sbU = a.U("Member(roles=");
+        sbU.append(this.roles);
+        sbU.append(", joinedAt=");
+        sbU.append(this.joinedAt);
+        sbU.append(", mute=");
+        sbU.append(this.mute);
+        sbU.append(", deaf=");
+        return a.O(sbU, this.deaf, ")");
     }
 }

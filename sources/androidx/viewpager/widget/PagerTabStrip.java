@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewConfiguration;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
@@ -202,21 +201,9 @@ public class PagerTabStrip extends PagerTitleStrip {
         setTextSpacing(getTextSpacing());
         setWillNotDraw(false);
         this.mPrevText.setFocusable(true);
-        this.mPrevText.setOnClickListener(new View.OnClickListener() { // from class: androidx.viewpager.widget.PagerTabStrip.1
-            @Override // android.view.View.OnClickListener
-            public void onClick(View view) {
-                ViewPager viewPager = PagerTabStrip.this.mPager;
-                viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
-            }
-        });
+        this.mPrevText.setOnClickListener(new PagerTabStrip$1(this));
         this.mNextText.setFocusable(true);
-        this.mNextText.setOnClickListener(new View.OnClickListener() { // from class: androidx.viewpager.widget.PagerTabStrip.2
-            @Override // android.view.View.OnClickListener
-            public void onClick(View view) {
-                ViewPager viewPager = PagerTabStrip.this.mPager;
-                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-            }
-        });
+        this.mNextText.setOnClickListener(new PagerTabStrip$2(this));
         if (getBackground() == null) {
             this.mDrawFullUnderline = true;
         }

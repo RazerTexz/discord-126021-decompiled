@@ -1,29 +1,26 @@
 package com.facebook.imagepipeline.memory;
 
-import p007b.p109f.p115d.p119d.InterfaceC1680c;
-import p007b.p109f.p115d.p122g.InterfaceC1696c;
-import p007b.p109f.p161j.p177l.AbstractC1947s;
-import p007b.p109f.p161j.p177l.C1953y;
-import p007b.p109f.p161j.p177l.InterfaceC1946r;
-import p007b.p109f.p161j.p177l.InterfaceC1954z;
+import b.f.d.d.c;
+import b.f.j.l.r;
+import b.f.j.l.s;
+import b.f.j.l.y;
+import b.f.j.l.z;
 
 /* JADX INFO: loaded from: classes3.dex */
-@InterfaceC1680c
-public class NativeMemoryChunkPool extends AbstractC1947s {
-    @InterfaceC1680c
-    public NativeMemoryChunkPool(InterfaceC1696c interfaceC1696c, C1953y c1953y, InterfaceC1954z interfaceC1954z) {
-        super(interfaceC1696c, c1953y, interfaceC1954z);
+@c
+public class NativeMemoryChunkPool extends s {
+    @c
+    public NativeMemoryChunkPool(b.f.d.g.c cVar, y yVar, z zVar) {
+        super(cVar, yVar, zVar);
     }
 
-    @Override // p007b.p109f.p161j.p177l.AbstractC1947s, com.facebook.imagepipeline.memory.BasePool
-    /* JADX INFO: renamed from: e */
-    public InterfaceC1946r mo1382e(int i) {
+    @Override // b.f.j.l.s, com.facebook.imagepipeline.memory.BasePool
+    public r e(int i) {
         return new NativeMemoryChunk(i);
     }
 
-    @Override // p007b.p109f.p161j.p177l.AbstractC1947s
-    /* JADX INFO: renamed from: s */
-    public InterfaceC1946r mo1382e(int i) {
+    @Override // b.f.j.l.s
+    public r s(int i) {
         return new NativeMemoryChunk(i);
     }
 }

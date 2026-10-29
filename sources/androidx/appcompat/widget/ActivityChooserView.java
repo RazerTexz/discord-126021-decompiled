@@ -1,8 +1,6 @@
 package androidx.appcompat.widget;
 
-import android.R;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
@@ -13,33 +11,33 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
+import android.view.ViewTreeObserver$OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
+import android.widget.PopupWindow$OnDismissListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
-import androidx.appcompat.view.menu.ShowableListMenu;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$dimen;
+import androidx.appcompat.R$id;
+import androidx.appcompat.R$layout;
+import androidx.appcompat.R$string;
+import androidx.appcompat.R$styleable;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.view.ActionProvider;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-public class ActivityChooserView extends ViewGroup implements ActivityChooserModel.ActivityChooserModelClient {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+public class ActivityChooserView extends ViewGroup implements ActivityChooserModel$ActivityChooserModelClient {
     private final View mActivityChooserContent;
     private final Drawable mActivityChooserContentBackground;
-    public final ActivityChooserViewAdapter mAdapter;
-    private final Callbacks mCallbacks;
+    public final ActivityChooserView$ActivityChooserViewAdapter mAdapter;
+    private final ActivityChooserView$Callbacks mCallbacks;
     private int mDefaultActionButtonContentDescription;
     public final FrameLayout mDefaultActivityButton;
     private final ImageView mDefaultActivityButtonImage;
@@ -51,104 +49,9 @@ public class ActivityChooserView extends ViewGroup implements ActivityChooserMod
     private final int mListPopupMaxWidth;
     private ListPopupWindow mListPopupWindow;
     public final DataSetObserver mModelDataSetObserver;
-    public PopupWindow.OnDismissListener mOnDismissListener;
-    private final ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener;
+    public PopupWindow$OnDismissListener mOnDismissListener;
+    private final ViewTreeObserver$OnGlobalLayoutListener mOnGlobalLayoutListener;
     public ActionProvider mProvider;
-
-    public class Callbacks implements AdapterView.OnItemClickListener, View.OnClickListener, View.OnLongClickListener, PopupWindow.OnDismissListener {
-        public Callbacks() {
-        }
-
-        private void notifyOnDismissListener() {
-            PopupWindow.OnDismissListener onDismissListener = ActivityChooserView.this.mOnDismissListener;
-            if (onDismissListener != null) {
-                onDismissListener.onDismiss();
-            }
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            ActivityChooserView activityChooserView = ActivityChooserView.this;
-            if (view != activityChooserView.mDefaultActivityButton) {
-                if (view != activityChooserView.mExpandActivityOverflowButton) {
-                    throw new IllegalArgumentException();
-                }
-                activityChooserView.mIsSelectingDefaultActivity = false;
-                activityChooserView.showPopupUnchecked(activityChooserView.mInitialActivityCount);
-                return;
-            }
-            activityChooserView.dismissPopup();
-            Intent intentChooseActivity = ActivityChooserView.this.mAdapter.getDataModel().chooseActivity(ActivityChooserView.this.mAdapter.getDataModel().getActivityIndex(ActivityChooserView.this.mAdapter.getDefaultActivity()));
-            if (intentChooseActivity != null) {
-                intentChooseActivity.addFlags(524288);
-                ActivityChooserView.this.getContext().startActivity(intentChooseActivity);
-            }
-        }
-
-        @Override // android.widget.PopupWindow.OnDismissListener
-        public void onDismiss() {
-            notifyOnDismissListener();
-            ActionProvider actionProvider = ActivityChooserView.this.mProvider;
-            if (actionProvider != null) {
-                actionProvider.subUiVisibilityChanged(false);
-            }
-        }
-
-        @Override // android.widget.AdapterView.OnItemClickListener
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-            int itemViewType = ((ActivityChooserViewAdapter) adapterView.getAdapter()).getItemViewType(i);
-            if (itemViewType != 0) {
-                if (itemViewType != 1) {
-                    throw new IllegalArgumentException();
-                }
-                ActivityChooserView.this.showPopupUnchecked(Integer.MAX_VALUE);
-                return;
-            }
-            ActivityChooserView.this.dismissPopup();
-            ActivityChooserView activityChooserView = ActivityChooserView.this;
-            if (activityChooserView.mIsSelectingDefaultActivity) {
-                if (i > 0) {
-                    activityChooserView.mAdapter.getDataModel().setDefaultActivity(i);
-                    return;
-                }
-                return;
-            }
-            if (!activityChooserView.mAdapter.getShowDefaultActivity()) {
-                i++;
-            }
-            Intent intentChooseActivity = ActivityChooserView.this.mAdapter.getDataModel().chooseActivity(i);
-            if (intentChooseActivity != null) {
-                intentChooseActivity.addFlags(524288);
-                ActivityChooserView.this.getContext().startActivity(intentChooseActivity);
-            }
-        }
-
-        @Override // android.view.View.OnLongClickListener
-        public boolean onLongClick(View view) {
-            ActivityChooserView activityChooserView = ActivityChooserView.this;
-            if (view != activityChooserView.mDefaultActivityButton) {
-                throw new IllegalArgumentException();
-            }
-            if (activityChooserView.mAdapter.getCount() > 0) {
-                ActivityChooserView activityChooserView2 = ActivityChooserView.this;
-                activityChooserView2.mIsSelectingDefaultActivity = true;
-                activityChooserView2.showPopupUnchecked(activityChooserView2.mInitialActivityCount);
-            }
-            return true;
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public class InnerLayout extends LinearLayout {
-        private static final int[] TINT_ATTRS = {R.attr.background};
-
-        public InnerLayout(Context context, AttributeSet attributeSet) {
-            super(context, attributeSet);
-            TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, TINT_ATTRS);
-            setBackgroundDrawable(tintTypedArrayObtainStyledAttributes.getDrawable(0));
-            tintTypedArrayObtainStyledAttributes.recycle();
-        }
-    }
 
     public ActivityChooserView(@NonNull Context context) {
         this(context, null);
@@ -228,13 +131,13 @@ public class ActivityChooserView extends ViewGroup implements ActivityChooserMod
     public void onMeasure(int i, int i2) {
         View view = this.mActivityChooserContent;
         if (this.mDefaultActivityButton.getVisibility() != 0) {
-            i2 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), BasicMeasure.EXACTLY);
+            i2 = View$MeasureSpec.makeMeasureSpec(View$MeasureSpec.getSize(i2), BasicMeasure.EXACTLY);
         }
         measureChild(view, i, i2);
         setMeasuredDimension(view.getMeasuredWidth(), view.getMeasuredHeight());
     }
 
-    @Override // androidx.appcompat.widget.ActivityChooserModel.ActivityChooserModelClient
+    @Override // androidx.appcompat.widget.ActivityChooserModel$ActivityChooserModelClient
     public void setActivityChooserModel(ActivityChooserModel activityChooserModel) {
         this.mAdapter.setDataModel(activityChooserModel);
         if (isShowingPopup()) {
@@ -259,11 +162,11 @@ public class ActivityChooserView extends ViewGroup implements ActivityChooserMod
         this.mInitialActivityCount = i;
     }
 
-    public void setOnDismissListener(PopupWindow.OnDismissListener onDismissListener) {
-        this.mOnDismissListener = onDismissListener;
+    public void setOnDismissListener(PopupWindow$OnDismissListener popupWindow$OnDismissListener) {
+        this.mOnDismissListener = popupWindow$OnDismissListener;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void setProvider(ActionProvider actionProvider) {
         this.mProvider = actionProvider;
     }
@@ -320,7 +223,7 @@ public class ActivityChooserView extends ViewGroup implements ActivityChooserMod
         if (actionProvider != null) {
             actionProvider.subUiVisibilityChanged(true);
         }
-        listPopupWindow.getListView().setContentDescription(getContext().getString(C0051R.string.abc_activitychooserview_choose_application));
+        listPopupWindow.getListView().setContentDescription(getContext().getString(R$string.abc_activitychooserview_choose_application));
         listPopupWindow.getListView().setSelector(new ColorDrawable(0));
     }
 
@@ -350,260 +253,45 @@ public class ActivityChooserView extends ViewGroup implements ActivityChooserMod
         }
     }
 
-    public class ActivityChooserViewAdapter extends BaseAdapter {
-        private static final int ITEM_VIEW_TYPE_ACTIVITY = 0;
-        private static final int ITEM_VIEW_TYPE_COUNT = 3;
-        private static final int ITEM_VIEW_TYPE_FOOTER = 1;
-        public static final int MAX_ACTIVITY_COUNT_DEFAULT = 4;
-        public static final int MAX_ACTIVITY_COUNT_UNLIMITED = Integer.MAX_VALUE;
-        private ActivityChooserModel mDataModel;
-        private boolean mHighlightDefaultActivity;
-        private boolean mShowDefaultActivity;
-        private boolean mShowFooterView;
-        private int mMaxActivityCount = 4;
-
-        public ActivityChooserViewAdapter() {
-        }
-
-        public int getActivityCount() {
-            return this.mDataModel.getActivityCount();
-        }
-
-        @Override // android.widget.Adapter
-        public int getCount() {
-            int activityCount = this.mDataModel.getActivityCount();
-            if (!this.mShowDefaultActivity && this.mDataModel.getDefaultActivity() != null) {
-                activityCount--;
-            }
-            int iMin = Math.min(activityCount, this.mMaxActivityCount);
-            return this.mShowFooterView ? iMin + 1 : iMin;
-        }
-
-        public ActivityChooserModel getDataModel() {
-            return this.mDataModel;
-        }
-
-        public ResolveInfo getDefaultActivity() {
-            return this.mDataModel.getDefaultActivity();
-        }
-
-        public int getHistorySize() {
-            return this.mDataModel.getHistorySize();
-        }
-
-        @Override // android.widget.Adapter
-        public Object getItem(int i) {
-            int itemViewType = getItemViewType(i);
-            if (itemViewType != 0) {
-                if (itemViewType == 1) {
-                    return null;
-                }
-                throw new IllegalArgumentException();
-            }
-            if (!this.mShowDefaultActivity && this.mDataModel.getDefaultActivity() != null) {
-                i++;
-            }
-            return this.mDataModel.getActivity(i);
-        }
-
-        @Override // android.widget.Adapter
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override // android.widget.BaseAdapter, android.widget.Adapter
-        public int getItemViewType(int i) {
-            return (this.mShowFooterView && i == getCount() - 1) ? 1 : 0;
-        }
-
-        public boolean getShowDefaultActivity() {
-            return this.mShowDefaultActivity;
-        }
-
-        @Override // android.widget.Adapter
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            int itemViewType = getItemViewType(i);
-            if (itemViewType != 0) {
-                if (itemViewType != 1) {
-                    throw new IllegalArgumentException();
-                }
-                if (view != null && view.getId() == 1) {
-                    return view;
-                }
-                View viewInflate = LayoutInflater.from(ActivityChooserView.this.getContext()).inflate(C0051R.layout.abc_activity_chooser_view_list_item, viewGroup, false);
-                viewInflate.setId(1);
-                ((TextView) viewInflate.findViewById(C0051R.id.title)).setText(ActivityChooserView.this.getContext().getString(C0051R.string.abc_activity_chooser_view_see_all));
-                return viewInflate;
-            }
-            if (view == null || view.getId() != C0051R.id.list_item) {
-                view = LayoutInflater.from(ActivityChooserView.this.getContext()).inflate(C0051R.layout.abc_activity_chooser_view_list_item, viewGroup, false);
-            }
-            PackageManager packageManager = ActivityChooserView.this.getContext().getPackageManager();
-            ImageView imageView = (ImageView) view.findViewById(C0051R.id.icon);
-            ResolveInfo resolveInfo = (ResolveInfo) getItem(i);
-            imageView.setImageDrawable(resolveInfo.loadIcon(packageManager));
-            ((TextView) view.findViewById(C0051R.id.title)).setText(resolveInfo.loadLabel(packageManager));
-            if (this.mShowDefaultActivity && i == 0 && this.mHighlightDefaultActivity) {
-                view.setActivated(true);
-            } else {
-                view.setActivated(false);
-            }
-            return view;
-        }
-
-        @Override // android.widget.BaseAdapter, android.widget.Adapter
-        public int getViewTypeCount() {
-            return 3;
-        }
-
-        public int measureContentWidth() {
-            int i = this.mMaxActivityCount;
-            this.mMaxActivityCount = Integer.MAX_VALUE;
-            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-            int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
-            int count = getCount();
-            View view = null;
-            int iMax = 0;
-            for (int i2 = 0; i2 < count; i2++) {
-                view = getView(i2, view, null);
-                view.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
-                iMax = Math.max(iMax, view.getMeasuredWidth());
-            }
-            this.mMaxActivityCount = i;
-            return iMax;
-        }
-
-        public void setDataModel(ActivityChooserModel activityChooserModel) {
-            ActivityChooserModel dataModel = ActivityChooserView.this.mAdapter.getDataModel();
-            if (dataModel != null && ActivityChooserView.this.isShown()) {
-                dataModel.unregisterObserver(ActivityChooserView.this.mModelDataSetObserver);
-            }
-            this.mDataModel = activityChooserModel;
-            if (activityChooserModel != null && ActivityChooserView.this.isShown()) {
-                activityChooserModel.registerObserver(ActivityChooserView.this.mModelDataSetObserver);
-            }
-            notifyDataSetChanged();
-        }
-
-        public void setMaxActivityCount(int i) {
-            if (this.mMaxActivityCount != i) {
-                this.mMaxActivityCount = i;
-                notifyDataSetChanged();
-            }
-        }
-
-        public void setShowDefaultActivity(boolean z2, boolean z3) {
-            if (this.mShowDefaultActivity == z2 && this.mHighlightDefaultActivity == z3) {
-                return;
-            }
-            this.mShowDefaultActivity = z2;
-            this.mHighlightDefaultActivity = z3;
-            notifyDataSetChanged();
-        }
-
-        public void setShowFooterView(boolean z2) {
-            if (this.mShowFooterView != z2) {
-                this.mShowFooterView = z2;
-                notifyDataSetChanged();
-            }
-        }
-    }
-
     public ActivityChooserView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
     public ActivityChooserView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        this.mModelDataSetObserver = new DataSetObserver() { // from class: androidx.appcompat.widget.ActivityChooserView.1
-            @Override // android.database.DataSetObserver
-            public void onChanged() {
-                super.onChanged();
-                ActivityChooserView.this.mAdapter.notifyDataSetChanged();
-            }
-
-            @Override // android.database.DataSetObserver
-            public void onInvalidated() {
-                super.onInvalidated();
-                ActivityChooserView.this.mAdapter.notifyDataSetInvalidated();
-            }
-        };
-        this.mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() { // from class: androidx.appcompat.widget.ActivityChooserView.2
-            @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
-            public void onGlobalLayout() {
-                if (ActivityChooserView.this.isShowingPopup()) {
-                    if (!ActivityChooserView.this.isShown()) {
-                        ActivityChooserView.this.getListPopupWindow().dismiss();
-                        return;
-                    }
-                    ActivityChooserView.this.getListPopupWindow().show();
-                    ActionProvider actionProvider = ActivityChooserView.this.mProvider;
-                    if (actionProvider != null) {
-                        actionProvider.subUiVisibilityChanged(true);
-                    }
-                }
-            }
-        };
+        this.mModelDataSetObserver = new ActivityChooserView$1(this);
+        this.mOnGlobalLayoutListener = new ActivityChooserView$2(this);
         this.mInitialActivityCount = 4;
-        int[] iArr = C0051R.styleable.ActivityChooserView;
+        int[] iArr = R$styleable.ActivityChooserView;
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr, i, 0);
         ViewCompat.saveAttributeDataForStyleable(this, context, iArr, attributeSet, typedArrayObtainStyledAttributes, i, 0);
-        this.mInitialActivityCount = typedArrayObtainStyledAttributes.getInt(C0051R.styleable.ActivityChooserView_initialActivityCount, 4);
-        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(C0051R.styleable.ActivityChooserView_expandActivityOverflowButtonDrawable);
+        this.mInitialActivityCount = typedArrayObtainStyledAttributes.getInt(R$styleable.ActivityChooserView_initialActivityCount, 4);
+        Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(R$styleable.ActivityChooserView_expandActivityOverflowButtonDrawable);
         typedArrayObtainStyledAttributes.recycle();
-        LayoutInflater.from(getContext()).inflate(C0051R.layout.abc_activity_chooser_view, (ViewGroup) this, true);
-        Callbacks callbacks = new Callbacks();
-        this.mCallbacks = callbacks;
-        View viewFindViewById = findViewById(C0051R.id.activity_chooser_view_content);
+        LayoutInflater.from(getContext()).inflate(R$layout.abc_activity_chooser_view, (ViewGroup) this, true);
+        ActivityChooserView$Callbacks activityChooserView$Callbacks = new ActivityChooserView$Callbacks(this);
+        this.mCallbacks = activityChooserView$Callbacks;
+        View viewFindViewById = findViewById(R$id.activity_chooser_view_content);
         this.mActivityChooserContent = viewFindViewById;
         this.mActivityChooserContentBackground = viewFindViewById.getBackground();
-        FrameLayout frameLayout = (FrameLayout) findViewById(C0051R.id.default_activity_button);
+        FrameLayout frameLayout = (FrameLayout) findViewById(R$id.default_activity_button);
         this.mDefaultActivityButton = frameLayout;
-        frameLayout.setOnClickListener(callbacks);
-        frameLayout.setOnLongClickListener(callbacks);
-        int i2 = C0051R.id.image;
+        frameLayout.setOnClickListener(activityChooserView$Callbacks);
+        frameLayout.setOnLongClickListener(activityChooserView$Callbacks);
+        int i2 = R$id.image;
         this.mDefaultActivityButtonImage = (ImageView) frameLayout.findViewById(i2);
-        FrameLayout frameLayout2 = (FrameLayout) findViewById(C0051R.id.expand_activities_button);
-        frameLayout2.setOnClickListener(callbacks);
-        frameLayout2.setAccessibilityDelegate(new View.AccessibilityDelegate() { // from class: androidx.appcompat.widget.ActivityChooserView.3
-            @Override // android.view.View.AccessibilityDelegate
-            public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-                super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-                AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCanOpenPopup(true);
-            }
-        });
-        frameLayout2.setOnTouchListener(new ForwardingListener(frameLayout2) { // from class: androidx.appcompat.widget.ActivityChooserView.4
-            @Override // androidx.appcompat.widget.ForwardingListener
-            public ShowableListMenu getPopup() {
-                return ActivityChooserView.this.getListPopupWindow();
-            }
-
-            @Override // androidx.appcompat.widget.ForwardingListener
-            public boolean onForwardingStarted() {
-                ActivityChooserView.this.showPopup();
-                return true;
-            }
-
-            @Override // androidx.appcompat.widget.ForwardingListener
-            public boolean onForwardingStopped() {
-                ActivityChooserView.this.dismissPopup();
-                return true;
-            }
-        });
+        FrameLayout frameLayout2 = (FrameLayout) findViewById(R$id.expand_activities_button);
+        frameLayout2.setOnClickListener(activityChooserView$Callbacks);
+        frameLayout2.setAccessibilityDelegate(new ActivityChooserView$3(this));
+        frameLayout2.setOnTouchListener(new ActivityChooserView$4(this, frameLayout2));
         this.mExpandActivityOverflowButton = frameLayout2;
         ImageView imageView = (ImageView) frameLayout2.findViewById(i2);
         this.mExpandActivityOverflowButtonImage = imageView;
         imageView.setImageDrawable(drawable);
-        ActivityChooserViewAdapter activityChooserViewAdapter = new ActivityChooserViewAdapter();
-        this.mAdapter = activityChooserViewAdapter;
-        activityChooserViewAdapter.registerDataSetObserver(new DataSetObserver() { // from class: androidx.appcompat.widget.ActivityChooserView.5
-            @Override // android.database.DataSetObserver
-            public void onChanged() {
-                super.onChanged();
-                ActivityChooserView.this.updateAppearance();
-            }
-        });
+        ActivityChooserView$ActivityChooserViewAdapter activityChooserView$ActivityChooserViewAdapter = new ActivityChooserView$ActivityChooserViewAdapter(this);
+        this.mAdapter = activityChooserView$ActivityChooserViewAdapter;
+        activityChooserView$ActivityChooserViewAdapter.registerDataSetObserver(new ActivityChooserView$5(this));
         Resources resources = context.getResources();
-        this.mListPopupMaxWidth = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(C0051R.dimen.abc_config_prefDialogWidth));
+        this.mListPopupMaxWidth = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(R$dimen.abc_config_prefDialogWidth));
     }
 }

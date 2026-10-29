@@ -1,8 +1,8 @@
 package com.discord.utilities.logging;
 
 import android.util.Log;
+import d0.z.d.m;
 import java.util.Map;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Logger.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -10,7 +10,7 @@ public class Logger {
     private final String defaultTag;
 
     public Logger(String str) {
-        C12238m.checkNotNullParameter(str, "defaultTag");
+        m.checkNotNullParameter(str, "defaultTag");
         this.defaultTag = str;
     }
 
@@ -21,7 +21,12 @@ public class Logger {
         if ((i & 2) != 0) {
             th = null;
         }
-        logger.mo8362d(str, th);
+        logger.d(str, th);
+    }
+
+    public void d(String message, Throwable throwable) {
+        m.checkNotNullParameter(message, "message");
+        d(this.defaultTag, message, throwable);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -35,7 +40,12 @@ public class Logger {
         if ((i & 4) != 0) {
             map = null;
         }
-        logger.mo8364e(str, th, map);
+        logger.e(str, th, map);
+    }
+
+    public void e(String message, Throwable throwable, Map<String, String> metadata) {
+        m.checkNotNullParameter(message, "message");
+        e(this.defaultTag, message, throwable, metadata);
     }
 
     public final String getDefaultTag() {
@@ -49,47 +59,21 @@ public class Logger {
         if ((i & 2) != 0) {
             th = null;
         }
-        logger.mo8367i(str, th);
+        logger.i(str, th);
     }
 
-    /* JADX INFO: renamed from: i */
-    public final void m8516i(String str) {
+    public final void i(String str) {
         i$default(this, str, null, 2, null);
     }
 
-    /* JADX INFO: renamed from: d */
-    public void mo8362d(String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(message, "message");
-        mo8361d(this.defaultTag, message, throwable);
-    }
-
-    /* JADX INFO: renamed from: e */
-    public void mo8364e(String message, Throwable throwable, Map<String, String> metadata) {
-        C12238m.checkNotNullParameter(message, "message");
-        mo8363e(this.defaultTag, message, throwable, metadata);
-    }
-
-    /* JADX INFO: renamed from: i */
-    public void mo8367i(String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(message, "message");
-        mo8366i(this.defaultTag, message, throwable);
-    }
-
-    /* JADX INFO: renamed from: v */
-    public void mo8368v(String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(message, "message");
-        m8517v(this.defaultTag, message, throwable);
-    }
-
-    /* JADX INFO: renamed from: w */
-    public void mo8370w(String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(message, "message");
-        mo8369w(this.defaultTag, message, throwable);
+    public void i(String message, Throwable throwable) {
+        m.checkNotNullParameter(message, "message");
+        i(this.defaultTag, message, throwable);
     }
 
     public void recordBreadcrumb(String message, String category) {
-        C12238m.checkNotNullParameter(message, "message");
-        C12238m.checkNotNullParameter(category, "category");
+        m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(category, "category");
     }
 
     public static /* synthetic */ void v$default(Logger logger, String str, Throwable th, int i, Object obj) {
@@ -99,7 +83,12 @@ public class Logger {
         if ((i & 2) != 0) {
             th = null;
         }
-        logger.mo8368v(str, th);
+        logger.v(str, th);
+    }
+
+    public void v(String message, Throwable throwable) {
+        m.checkNotNullParameter(message, "message");
+        v(this.defaultTag, message, throwable);
     }
 
     public static /* synthetic */ void w$default(Logger logger, String str, Throwable th, int i, Object obj) {
@@ -109,24 +98,17 @@ public class Logger {
         if ((i & 2) != 0) {
             th = null;
         }
-        logger.mo8370w(str, th);
+        logger.w(str, th);
     }
 
-    /* JADX INFO: renamed from: v */
-    public void m8517v(String tag, String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(tag, "tag");
-        C12238m.checkNotNullParameter(message, "message");
-        if (throwable != null) {
-            Log.v(tag, message, throwable);
-        } else {
-            Log.v(tag, message);
-        }
+    public void w(String message, Throwable throwable) {
+        m.checkNotNullParameter(message, "message");
+        w(this.defaultTag, message, throwable);
     }
 
-    /* JADX INFO: renamed from: d */
-    public void mo8361d(String tag, String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(tag, "tag");
-        C12238m.checkNotNullParameter(message, "message");
+    public void d(String tag, String message, Throwable throwable) {
+        m.checkNotNullParameter(tag, "tag");
+        m.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.d(tag, message, throwable);
         } else {
@@ -134,10 +116,9 @@ public class Logger {
         }
     }
 
-    /* JADX INFO: renamed from: e */
-    public void mo8363e(String tag, String message, Throwable throwable, Map<String, String> metadata) {
-        C12238m.checkNotNullParameter(tag, "tag");
-        C12238m.checkNotNullParameter(message, "message");
+    public void e(String tag, String message, Throwable throwable, Map<String, String> metadata) {
+        m.checkNotNullParameter(tag, "tag");
+        m.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.e(tag, message, throwable);
         } else {
@@ -145,10 +126,9 @@ public class Logger {
         }
     }
 
-    /* JADX INFO: renamed from: i */
-    public void mo8366i(String tag, String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(tag, "tag");
-        C12238m.checkNotNullParameter(message, "message");
+    public void i(String tag, String message, Throwable throwable) {
+        m.checkNotNullParameter(tag, "tag");
+        m.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.i(tag, message, throwable);
         } else {
@@ -156,10 +136,19 @@ public class Logger {
         }
     }
 
-    /* JADX INFO: renamed from: w */
-    public void mo8369w(String tag, String message, Throwable throwable) {
-        C12238m.checkNotNullParameter(tag, "tag");
-        C12238m.checkNotNullParameter(message, "message");
+    public void v(String tag, String message, Throwable throwable) {
+        m.checkNotNullParameter(tag, "tag");
+        m.checkNotNullParameter(message, "message");
+        if (throwable != null) {
+            Log.v(tag, message, throwable);
+        } else {
+            Log.v(tag, message);
+        }
+    }
+
+    public void w(String tag, String message, Throwable throwable) {
+        m.checkNotNullParameter(tag, "tag");
+        m.checkNotNullParameter(message, "message");
         if (throwable != null) {
             Log.w(tag, message, throwable);
         } else {
@@ -172,7 +161,7 @@ public class Logger {
             if ((i & 4) != 0) {
                 th = null;
             }
-            logger.mo8361d(str, str2, th);
+            logger.d(str, str2, th);
             return;
         }
         throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: d");
@@ -187,7 +176,7 @@ public class Logger {
             if ((i & 8) != 0) {
                 map = null;
             }
-            logger.mo8363e(str, str2, th, map);
+            logger.e(str, str2, th, map);
             return;
         }
         throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: e");
@@ -198,7 +187,7 @@ public class Logger {
             if ((i & 4) != 0) {
                 th = null;
             }
-            logger.mo8366i(str, str2, th);
+            logger.i(str, str2, th);
             return;
         }
         throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: i");
@@ -209,7 +198,7 @@ public class Logger {
             if ((i & 4) != 0) {
                 th = null;
             }
-            logger.m8517v(str, str2, th);
+            logger.v(str, str2, th);
             return;
         }
         throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: v");
@@ -220,7 +209,7 @@ public class Logger {
             if ((i & 4) != 0) {
                 th = null;
             }
-            logger.mo8369w(str, str2, th);
+            logger.w(str, str2, th);
             return;
         }
         throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: w");

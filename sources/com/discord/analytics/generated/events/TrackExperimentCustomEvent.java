@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackExperimentCustomEvent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackExperimentCustomEvent implements AnalyticsSch
             return false;
         }
         TrackExperimentCustomEvent trackExperimentCustomEvent = (TrackExperimentCustomEvent) other;
-        return C12238m.areEqual(this.experimentName, trackExperimentCustomEvent.experimentName) && C12238m.areEqual(this.experimentBucket, trackExperimentCustomEvent.experimentBucket) && C12238m.areEqual(this.eventName, trackExperimentCustomEvent.eventName);
+        return m.areEqual(this.experimentName, trackExperimentCustomEvent.experimentName) && m.areEqual(this.experimentBucket, trackExperimentCustomEvent.experimentBucket) && m.areEqual(this.eventName, trackExperimentCustomEvent.eventName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackExperimentCustomEvent implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackExperimentCustomEvent(experimentName=");
-        sbM833U.append(this.experimentName);
-        sbM833U.append(", experimentBucket=");
-        sbM833U.append(this.experimentBucket);
-        sbM833U.append(", eventName=");
-        return C1643a.m817E(sbM833U, this.eventName, ")");
+        StringBuilder sbU = a.U("TrackExperimentCustomEvent(experimentName=");
+        sbU.append(this.experimentName);
+        sbU.append(", experimentBucket=");
+        sbU.append(this.experimentBucket);
+        sbU.append(", eventName=");
+        return a.E(sbU, this.eventName, ")");
     }
 }

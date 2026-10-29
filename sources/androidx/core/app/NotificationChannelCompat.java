@@ -4,8 +4,8 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.media.AudioAttributes;
 import android.net.Uri;
-import android.os.Build;
-import android.provider.Settings;
+import android.os.Build$VERSION;
+import android.provider.Settings$System;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -37,96 +37,9 @@ public class NotificationChannelCompat {
     public boolean mVibrationEnabled;
     public long[] mVibrationPattern;
 
-    public class Builder {
-        private final NotificationChannelCompat mChannel;
-
-        public Builder(@NonNull String str, int i) {
-            this.mChannel = new NotificationChannelCompat(str, i);
-        }
-
-        @NonNull
-        public NotificationChannelCompat build() {
-            return this.mChannel;
-        }
-
-        @NonNull
-        public Builder setConversationId(@NonNull String str, @NonNull String str2) {
-            if (Build.VERSION.SDK_INT >= 30) {
-                NotificationChannelCompat notificationChannelCompat = this.mChannel;
-                notificationChannelCompat.mParentId = str;
-                notificationChannelCompat.mConversationId = str2;
-            }
-            return this;
-        }
-
-        @NonNull
-        public Builder setDescription(@Nullable String str) {
-            this.mChannel.mDescription = str;
-            return this;
-        }
-
-        @NonNull
-        public Builder setGroup(@Nullable String str) {
-            this.mChannel.mGroupId = str;
-            return this;
-        }
-
-        @NonNull
-        public Builder setImportance(int i) {
-            this.mChannel.mImportance = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setLightColor(int i) {
-            this.mChannel.mLightColor = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setLightsEnabled(boolean z2) {
-            this.mChannel.mLights = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setName(@Nullable CharSequence charSequence) {
-            this.mChannel.mName = charSequence;
-            return this;
-        }
-
-        @NonNull
-        public Builder setShowBadge(boolean z2) {
-            this.mChannel.mShowBadge = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setSound(@Nullable Uri uri, @Nullable AudioAttributes audioAttributes) {
-            NotificationChannelCompat notificationChannelCompat = this.mChannel;
-            notificationChannelCompat.mSound = uri;
-            notificationChannelCompat.mAudioAttributes = audioAttributes;
-            return this;
-        }
-
-        @NonNull
-        public Builder setVibrationEnabled(boolean z2) {
-            this.mChannel.mVibrationEnabled = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setVibrationPattern(@Nullable long[] jArr) {
-            NotificationChannelCompat notificationChannelCompat = this.mChannel;
-            notificationChannelCompat.mVibrationEnabled = jArr != null && jArr.length > 0;
-            notificationChannelCompat.mVibrationPattern = jArr;
-            return this;
-        }
-    }
-
     public NotificationChannelCompat(@NonNull String str, int i) {
         this.mShowBadge = true;
-        this.mSound = Settings.System.DEFAULT_NOTIFICATION_URI;
+        this.mSound = Settings$System.DEFAULT_NOTIFICATION_URI;
         this.mLightColor = 0;
         this.mId = (String) Preconditions.checkNotNull(str);
         this.mImportance = i;
@@ -190,7 +103,7 @@ public class NotificationChannelCompat {
     public NotificationChannel getNotificationChannel() {
         String str;
         String str2;
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i < 26) {
             return null;
         }
@@ -237,8 +150,8 @@ public class NotificationChannelCompat {
     }
 
     @NonNull
-    public Builder toBuilder() {
-        return new Builder(this.mId, this.mImportance).setName(this.mName).setDescription(this.mDescription).setGroup(this.mGroupId).setShowBadge(this.mShowBadge).setSound(this.mSound, this.mAudioAttributes).setLightsEnabled(this.mLights).setLightColor(this.mLightColor).setVibrationEnabled(this.mVibrationEnabled).setVibrationPattern(this.mVibrationPattern).setConversationId(this.mParentId, this.mConversationId);
+    public NotificationChannelCompat$Builder toBuilder() {
+        return new NotificationChannelCompat$Builder(this.mId, this.mImportance).setName(this.mName).setDescription(this.mDescription).setGroup(this.mGroupId).setShowBadge(this.mShowBadge).setSound(this.mSound, this.mAudioAttributes).setLightsEnabled(this.mLights).setLightColor(this.mLightColor).setVibrationEnabled(this.mVibrationEnabled).setVibrationPattern(this.mVibrationPattern).setConversationId(this.mParentId, this.mConversationId);
     }
 
     @RequiresApi(26)
@@ -254,7 +167,7 @@ public class NotificationChannelCompat {
         this.mLightColor = notificationChannel.getLightColor();
         this.mVibrationEnabled = notificationChannel.shouldVibrate();
         this.mVibrationPattern = notificationChannel.getVibrationPattern();
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i >= 30) {
             this.mParentId = notificationChannel.getParentChannelId();
             this.mConversationId = notificationChannel.getConversationId();

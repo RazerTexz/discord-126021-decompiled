@@ -1,7 +1,7 @@
 package co.discord.media_engine;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: VoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -54,7 +54,7 @@ public final /* data */ class InboundBufferStats {
             return false;
         }
         InboundBufferStats inboundBufferStats = (InboundBufferStats) other;
-        return C12238m.areEqual(this.audioJitterBuffer, inboundBufferStats.audioJitterBuffer) && C12238m.areEqual(this.audioJitterTarget, inboundBufferStats.audioJitterTarget) && C12238m.areEqual(this.audioJitterDelay, inboundBufferStats.audioJitterDelay) && C12238m.areEqual(this.relativeReceptionDelay, inboundBufferStats.relativeReceptionDelay) && C12238m.areEqual(this.relativePlayoutDelay, inboundBufferStats.relativePlayoutDelay);
+        return m.areEqual(this.audioJitterBuffer, inboundBufferStats.audioJitterBuffer) && m.areEqual(this.audioJitterTarget, inboundBufferStats.audioJitterTarget) && m.areEqual(this.audioJitterDelay, inboundBufferStats.audioJitterDelay) && m.areEqual(this.relativeReceptionDelay, inboundBufferStats.relativeReceptionDelay) && m.areEqual(this.relativePlayoutDelay, inboundBufferStats.relativePlayoutDelay);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -116,17 +116,17 @@ public final /* data */ class InboundBufferStats {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InboundBufferStats(audioJitterBuffer=");
-        sbM833U.append(this.audioJitterBuffer);
-        sbM833U.append(", audioJitterTarget=");
-        sbM833U.append(this.audioJitterTarget);
-        sbM833U.append(", audioJitterDelay=");
-        sbM833U.append(this.audioJitterDelay);
-        sbM833U.append(", relativeReceptionDelay=");
-        sbM833U.append(this.relativeReceptionDelay);
-        sbM833U.append(", relativePlayoutDelay=");
-        sbM833U.append(this.relativePlayoutDelay);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("InboundBufferStats(audioJitterBuffer=");
+        sbU.append(this.audioJitterBuffer);
+        sbU.append(", audioJitterTarget=");
+        sbU.append(this.audioJitterTarget);
+        sbU.append(", audioJitterDelay=");
+        sbU.append(this.audioJitterDelay);
+        sbU.append(", relativeReceptionDelay=");
+        sbU.append(this.relativeReceptionDelay);
+        sbU.append(", relativePlayoutDelay=");
+        sbU.append(this.relativePlayoutDelay);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

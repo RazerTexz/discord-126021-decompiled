@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotificationSettingsClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackNotificationSettingsClicked implements Analyt
             return false;
         }
         TrackNotificationSettingsClicked trackNotificationSettingsClicked = (TrackNotificationSettingsClicked) other;
-        return C12238m.areEqual(this.settingType, trackNotificationSettingsClicked.settingType) && C12238m.areEqual(this.currentStatus, trackNotificationSettingsClicked.currentStatus);
+        return m.areEqual(this.settingType, trackNotificationSettingsClicked.settingType) && m.areEqual(this.currentStatus, trackNotificationSettingsClicked.currentStatus);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackNotificationSettingsClicked implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotificationSettingsClicked(settingType=");
-        sbM833U.append(this.settingType);
-        sbM833U.append(", currentStatus=");
-        return C1643a.m819G(sbM833U, this.currentStatus, ")");
+        StringBuilder sbU = a.U("TrackNotificationSettingsClicked(settingType=");
+        sbU.append(this.settingType);
+        sbU.append(", currentStatus=");
+        return a.G(sbU, this.currentStatus, ")");
     }
 }

@@ -3,73 +3,24 @@ package androidx.work;
 import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
+import b.i.b.d.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface Operation {
 
     @SuppressLint({"SyntheticAccessor"})
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static final State.IN_PROGRESS IN_PROGRESS;
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    public static final Operation$State$SUCCESS SUCCESS = new Operation$State$SUCCESS(null);
 
     @SuppressLint({"SyntheticAccessor"})
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public static final State.SUCCESS SUCCESS;
-
-    public abstract class State {
-
-        public final class FAILURE extends State {
-            private final Throwable mThrowable;
-
-            public FAILURE(@NonNull Throwable th) {
-                this.mThrowable = th;
-            }
-
-            @NonNull
-            public Throwable getThrowable() {
-                return this.mThrowable;
-            }
-
-            @NonNull
-            public String toString() {
-                return String.format("FAILURE (%s)", this.mThrowable.getMessage());
-            }
-        }
-
-        public final class IN_PROGRESS extends State {
-            @NonNull
-            public String toString() {
-                return "IN_PROGRESS";
-            }
-
-            private IN_PROGRESS() {
-            }
-        }
-
-        public final class SUCCESS extends State {
-            @NonNull
-            public String toString() {
-                return "SUCCESS";
-            }
-
-            private SUCCESS() {
-            }
-        }
-
-        @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-        public State() {
-        }
-    }
-
-    static {
-        SUCCESS = new State.SUCCESS();
-        IN_PROGRESS = new State.IN_PROGRESS();
-    }
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    public static final Operation$State$IN_PROGRESS IN_PROGRESS = new Operation$State$IN_PROGRESS(null);
 
     @NonNull
-    InterfaceFutureC4539a<State.SUCCESS> getResult();
+    a<Operation$State$SUCCESS> getResult();
 
     @NonNull
-    LiveData<State> getState();
+    LiveData<Operation$State> getState();
 }

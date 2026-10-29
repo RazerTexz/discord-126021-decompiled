@@ -24,7 +24,7 @@ import lombok.permit.Permit;
 /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AST.SCL.lombok */
 public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>, N> {
     private static final HistogramTracker configTracker;
-    private static final ConcurrentMap<Class<?>, FieldAccess[]> fieldsOfASTClasses;
+    private static final ConcurrentMap<Class<?>, AST$FieldAccess[]> fieldsOfASTClasses;
     private final String fileName;
     private final ImportList imports;
     private TypeResolver importsAsResolver;
@@ -35,30 +35,7 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
     private Map<N, L> nodeMap = new IdentityHashMap();
     private boolean changed = false;
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AST$Kind.SCL.lombok */
-    public enum Kind {
-        COMPILATION_UNIT,
-        TYPE,
-        FIELD,
-        INITIALIZER,
-        METHOD,
-        ANNOTATION,
-        ARGUMENT,
-        LOCAL,
-        STATEMENT,
-        TYPE_USE;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static Kind[] valuesCustom() {
-            Kind[] kindArrValuesCustom = values();
-            int length = kindArrValuesCustom.length;
-            Kind[] kindArr = new Kind[length];
-            System.arraycopy(kindArrValuesCustom, 0, kindArr, 0, length);
-            return kindArr;
-        }
-    }
-
-    protected abstract L buildTree(N n, Kind kind);
+    protected abstract L buildTree(N n, AST$Kind aST$Kind);
 
     public abstract URI getAbsoluteFileLocation();
 
@@ -159,29 +136,18 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
         return targetNode;
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/AST$FieldAccess.SCL.lombok */
-    public class FieldAccess {
-        public final Field field;
-        public final int dim;
-
-        FieldAccess(Field field, int dim) {
-            this.field = field;
-            this.dim = dim;
-        }
-    }
-
-    protected FieldAccess[] fieldsOf(Class<?> c) {
-        FieldAccess[] fields = fieldsOfASTClasses.get(c);
+    protected AST$FieldAccess[] fieldsOf(Class<?> c) {
+        AST$FieldAccess[] fields = fieldsOfASTClasses.get(c);
         if (fields != null) {
             return fields;
         }
-        List<FieldAccess> fieldList = new ArrayList<>();
+        List<AST$FieldAccess> fieldList = new ArrayList<>();
         getFields(c, fieldList);
-        fieldsOfASTClasses.putIfAbsent(c, (FieldAccess[]) fieldList.toArray(new FieldAccess[0]));
+        fieldsOfASTClasses.putIfAbsent(c, (AST$FieldAccess[]) fieldList.toArray(new AST$FieldAccess[0]));
         return fieldsOfASTClasses.get(c);
     }
 
-    private void getFields(Class<?> c, Collection<FieldAccess> fields) {
+    private void getFields(Class<?> c, Collection<AST$FieldAccess> fields) {
         if (c == Object.class || c == null) {
             return;
         }
@@ -202,7 +168,7 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
                 }
                 if (shouldDrill(c, t, f.getName())) {
                     Permit.setAccessible(f);
-                    fields.add(new FieldAccess(f, dim));
+                    fields.add(new AST$FieldAccess(f, dim));
                 }
             }
         }
@@ -226,14 +192,14 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
         return false;
     }
 
-    protected Collection<L> buildWithField(Class<L> nodeType, N statement, FieldAccess fa) {
+    protected Collection<L> buildWithField(Class<L> nodeType, N statement, AST$FieldAccess fa) {
         List<L> list = new ArrayList<>();
         buildWithField0(nodeType, statement, fa, list);
         return list;
     }
 
     protected boolean replaceStatementInNode(N statement, N oldN, N newN) {
-        for (FieldAccess fa : fieldsOf(statement.getClass())) {
+        for (AST$FieldAccess fa : fieldsOf(statement.getClass())) {
             if (replaceStatementInField(fa, statement, oldN, newN)) {
                 return true;
             }
@@ -241,7 +207,7 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
         return false;
     }
 
-    private boolean replaceStatementInField(FieldAccess fa, N statement, N oldN, N newN) {
+    private boolean replaceStatementInField(AST$FieldAccess fa, N statement, N oldN, N newN) {
         try {
             Object o = fa.field.get(statement);
             if (o == null) {
@@ -319,14 +285,14 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    private void buildWithField0(Class<L> nodeType, N child, FieldAccess fa, Collection<L> list) {
+    private void buildWithField0(Class<L> nodeType, N child, AST$FieldAccess fa, Collection<L> list) {
         try {
             Object o = fa.field.get(child);
             if (o == null) {
                 return;
             }
             if (fa.dim == 0) {
-                LombokNode lombokNodeBuildTree = buildTree(o, Kind.STATEMENT);
+                LombokNode lombokNodeBuildTree = buildTree(o, AST$Kind.STATEMENT);
                 if (lombokNodeBuildTree != null) {
                     list.add(nodeType.cast(lombokNodeBuildTree));
                     return;
@@ -349,7 +315,7 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
         LombokNode lombokNodeBuildTree;
         if (dim == 1) {
             for (Object v2 : (Object[]) array) {
-                if (v2 != null && (lombokNodeBuildTree = buildTree(v2, Kind.STATEMENT)) != null) {
+                if (v2 != null && (lombokNodeBuildTree = buildTree(v2, AST$Kind.STATEMENT)) != null) {
                     list.add(nodeType.cast(lombokNodeBuildTree));
                 }
             }
@@ -367,7 +333,7 @@ public abstract class AST<A extends AST<A, L, N>, L extends LombokNode<A, L, N>,
         LombokNode lombokNodeBuildTree;
         if (dim == 1) {
             for (Object v : (Collection) collection) {
-                if (v != null && (lombokNodeBuildTree = buildTree(v, Kind.STATEMENT)) != null) {
+                if (v != null && (lombokNodeBuildTree = buildTree(v, AST$Kind.STATEMENT)) != null) {
                     list.add(nodeType.cast(lombokNodeBuildTree));
                 }
             }

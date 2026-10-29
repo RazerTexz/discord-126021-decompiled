@@ -1,12 +1,7 @@
 package com.discord.models.domain;
 
-import java.io.IOException;
+import b.d.b.a.a;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.jvm.internal.Ref$IntRef;
-import kotlin.jvm.internal.Ref$LongRef;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
 
 /* JADX INFO: compiled from: ModelReadState.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,85 +10,6 @@ public final /* data */ class ModelReadState {
     private final long lastMessageId;
     private final int mentionCount;
     private final int version;
-
-    /* JADX INFO: compiled from: ModelReadState.kt */
-    public final class Parser implements Model.Parser<ModelReadState> {
-        public static final Parser INSTANCE = new Parser();
-
-        private Parser() {
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // com.discord.models.domain.Model.Parser
-        public ModelReadState parse(final Model.JsonReader reader) throws IOException {
-            C12238m.checkNotNullParameter(reader, "reader");
-            final Ref$IntRef ref$IntRef = new Ref$IntRef();
-            ref$IntRef.element = 0;
-            final Ref$LongRef ref$LongRef = new Ref$LongRef();
-            ref$LongRef.element = 0L;
-            final Ref$LongRef ref$LongRef2 = new Ref$LongRef();
-            ref$LongRef2.element = 0L;
-            final Ref$LongRef ref$LongRef3 = new Ref$LongRef();
-            ref$LongRef3.element = 0L;
-            final Ref$LongRef ref$LongRef4 = new Ref$LongRef();
-            ref$LongRef4.element = 0L;
-            final Ref$IntRef ref$IntRef2 = new Ref$IntRef();
-            ref$IntRef2.element = 0;
-            reader.nextObject(new Action1<String>() { // from class: com.discord.models.domain.ModelReadState$Parser$parse$1
-                /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-                @Override // p658rx.functions.Action1
-                public final void call(String str) throws IOException {
-                    if (str != null) {
-                        switch (str.hashCode()) {
-                            case -1930808873:
-                                if (str.equals(ModelAuditLogEntry.CHANGE_KEY_CHANNEL_ID)) {
-                                    Ref$LongRef ref$LongRef5 = ref$LongRef4;
-                                    ref$LongRef5.element = reader.nextLong(ref$LongRef5.element);
-                                    return;
-                                }
-                                break;
-                            case -1690722221:
-                                if (str.equals("message_id")) {
-                                    Ref$LongRef ref$LongRef6 = ref$LongRef2;
-                                    ref$LongRef6.element = reader.nextLong(ref$LongRef6.element);
-                                    return;
-                                }
-                                break;
-                            case -83031652:
-                                if (str.equals("last_message_id")) {
-                                    Ref$LongRef ref$LongRef7 = ref$LongRef;
-                                    ref$LongRef7.element = reader.nextLong(ref$LongRef7.element);
-                                    return;
-                                }
-                                break;
-                            case 3355:
-                                if (str.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
-                                    ref$LongRef3.element = reader.nextLong(0L);
-                                    return;
-                                }
-                                break;
-                            case 351608024:
-                                if (str.equals("version")) {
-                                    Ref$IntRef ref$IntRef3 = ref$IntRef2;
-                                    ref$IntRef3.element = reader.nextInt(ref$IntRef3.element);
-                                    return;
-                                }
-                                break;
-                            case 2144418426:
-                                if (str.equals("mention_count")) {
-                                    Ref$IntRef ref$IntRef4 = ref$IntRef;
-                                    ref$IntRef4.element = reader.nextInt(ref$IntRef4.element);
-                                    return;
-                                }
-                                break;
-                        }
-                    }
-                    reader.skipValue();
-                }
-            });
-            return new ModelReadState(ref$LongRef3.element, ref$LongRef4.element, ref$LongRef.element, ref$LongRef2.element, ref$IntRef.element, ref$IntRef2.element, null);
-        }
-    }
 
     public ModelReadState(long j, long j2, int i, int i2) {
         this.channelId = j;
@@ -184,14 +100,14 @@ public final /* data */ class ModelReadState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelReadState(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", lastMessageId=");
-        sbM833U.append(this.lastMessageId);
-        sbM833U.append(", mentionCount=");
-        sbM833U.append(this.mentionCount);
-        sbM833U.append(", version=");
-        return C1643a.m814B(sbM833U, this.version, ")");
+        StringBuilder sbU = a.U("ModelReadState(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", lastMessageId=");
+        sbU.append(this.lastMessageId);
+        sbU.append(", mentionCount=");
+        sbU.append(this.mentionCount);
+        sbU.append(", version=");
+        return a.B(sbU, this.version, ")");
     }
 
     public /* synthetic */ ModelReadState(long j, long j2, long j3, long j4, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {

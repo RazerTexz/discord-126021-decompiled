@@ -1,15 +1,19 @@
 package com.discord.api.guild.welcome;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildWelcomeScreen.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class GuildWelcomeScreen {
     private final String description;
     private final List<GuildWelcomeChannel> welcomeChannels;
+
+    public final List<GuildWelcomeChannel> b() {
+        return this.welcomeChannels;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -19,7 +23,7 @@ public final /* data */ class GuildWelcomeScreen {
             return false;
         }
         GuildWelcomeScreen guildWelcomeScreen = (GuildWelcomeScreen) other;
-        return C12238m.areEqual(this.description, guildWelcomeScreen.description) && C12238m.areEqual(this.welcomeChannels, guildWelcomeScreen.welcomeChannels);
+        return m.areEqual(this.description, guildWelcomeScreen.description) && m.areEqual(this.welcomeChannels, guildWelcomeScreen.welcomeChannels);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -34,15 +38,10 @@ public final /* data */ class GuildWelcomeScreen {
         return iHashCode + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<GuildWelcomeChannel> m7899b() {
-        return this.welcomeChannels;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildWelcomeScreen(description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", welcomeChannels=");
-        return C1643a.m824L(sbM833U, this.welcomeChannels, ")");
+        StringBuilder sbU = a.U("GuildWelcomeScreen(description=");
+        sbU.append(this.description);
+        sbU.append(", welcomeChannels=");
+        return a.L(sbU, this.welcomeChannels, ")");
     }
 }

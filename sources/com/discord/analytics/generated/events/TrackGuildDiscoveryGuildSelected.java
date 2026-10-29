@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildDiscoveryGuildSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackGuildDiscoveryGuildSelected implements Analyt
             return false;
         }
         TrackGuildDiscoveryGuildSelected trackGuildDiscoveryGuildSelected = (TrackGuildDiscoveryGuildSelected) other;
-        return C12238m.areEqual(this.guildId, trackGuildDiscoveryGuildSelected.guildId) && C12238m.areEqual(this.loadId, trackGuildDiscoveryGuildSelected.loadId) && C12238m.areEqual(this.cardIndex, trackGuildDiscoveryGuildSelected.cardIndex) && C12238m.areEqual(this.categoryId, trackGuildDiscoveryGuildSelected.categoryId);
+        return m.areEqual(this.guildId, trackGuildDiscoveryGuildSelected.guildId) && m.areEqual(this.loadId, trackGuildDiscoveryGuildSelected.loadId) && m.areEqual(this.cardIndex, trackGuildDiscoveryGuildSelected.cardIndex) && m.areEqual(this.categoryId, trackGuildDiscoveryGuildSelected.categoryId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackGuildDiscoveryGuildSelected implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildDiscoveryGuildSelected(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", cardIndex=");
-        sbM833U.append(this.cardIndex);
-        sbM833U.append(", categoryId=");
-        return C1643a.m819G(sbM833U, this.categoryId, ")");
+        StringBuilder sbU = a.U("TrackGuildDiscoveryGuildSelected(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", cardIndex=");
+        sbU.append(this.cardIndex);
+        sbU.append(", categoryId=");
+        return a.G(sbU, this.categoryId, ")");
     }
 }

@@ -1,13 +1,13 @@
 package com.discord.widgets.user.search;
 
 import com.discord.models.guild.Guild;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$filteredResults$2 extends AbstractC12240o implements Function1<Guild, WidgetGlobalSearchModel.ItemGuild> {
+public final class WidgetGlobalSearchModel$Companion$create$filteredResults$2 extends o implements Function1<Guild, WidgetGlobalSearchModel$ItemGuild> {
     public final /* synthetic */ String $sanitizedFilter;
     public final /* synthetic */ WidgetGlobalSearchModel$Companion$create$3 $toItemGuild$3;
 
@@ -19,8 +19,13 @@ public final class WidgetGlobalSearchModel$Companion$create$filteredResults$2 ex
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetGlobalSearchModel.ItemGuild invoke(Guild guild) {
-        C12238m.checkNotNullParameter(guild, "it");
-        return this.$toItemGuild$3.invoke(guild, this.$sanitizedFilter);
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchModel$ItemGuild invoke(Guild guild) {
+        return invoke2(guild);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetGlobalSearchModel$ItemGuild invoke2(Guild guild) {
+        m.checkNotNullParameter(guild, "it");
+        return this.$toItemGuild$3.invoke2(guild, this.$sanitizedFilter);
     }
 }

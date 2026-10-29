@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackWebhookDeleted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackWebhookDeleted implements AnalyticsSchema, Tr
             return false;
         }
         TrackWebhookDeleted trackWebhookDeleted = (TrackWebhookDeleted) other;
-        return C12238m.areEqual(this.webhookId, trackWebhookDeleted.webhookId) && C12238m.areEqual(this.webhookName, trackWebhookDeleted.webhookName) && C12238m.areEqual(this.type, trackWebhookDeleted.type) && C12238m.areEqual(this.channelId, trackWebhookDeleted.channelId) && C12238m.areEqual(this.channelType, trackWebhookDeleted.channelType) && C12238m.areEqual(this.guildId, trackWebhookDeleted.guildId) && C12238m.areEqual(this.webhookSourceChannelId, trackWebhookDeleted.webhookSourceChannelId) && C12238m.areEqual(this.webhookSourceGuildId, trackWebhookDeleted.webhookSourceGuildId) && C12238m.areEqual(this.webhookSourceChannelType, trackWebhookDeleted.webhookSourceChannelType);
+        return m.areEqual(this.webhookId, trackWebhookDeleted.webhookId) && m.areEqual(this.webhookName, trackWebhookDeleted.webhookName) && m.areEqual(this.type, trackWebhookDeleted.type) && m.areEqual(this.channelId, trackWebhookDeleted.channelId) && m.areEqual(this.channelType, trackWebhookDeleted.channelType) && m.areEqual(this.guildId, trackWebhookDeleted.guildId) && m.areEqual(this.webhookSourceChannelId, trackWebhookDeleted.webhookSourceChannelId) && m.areEqual(this.webhookSourceGuildId, trackWebhookDeleted.webhookSourceGuildId) && m.areEqual(this.webhookSourceChannelType, trackWebhookDeleted.webhookSourceChannelType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,23 +60,23 @@ public final /* data */ class TrackWebhookDeleted implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackWebhookDeleted(webhookId=");
-        sbM833U.append(this.webhookId);
-        sbM833U.append(", webhookName=");
-        sbM833U.append(this.webhookName);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", webhookSourceChannelId=");
-        sbM833U.append(this.webhookSourceChannelId);
-        sbM833U.append(", webhookSourceGuildId=");
-        sbM833U.append(this.webhookSourceGuildId);
-        sbM833U.append(", webhookSourceChannelType=");
-        return C1643a.m819G(sbM833U, this.webhookSourceChannelType, ")");
+        StringBuilder sbU = a.U("TrackWebhookDeleted(webhookId=");
+        sbU.append(this.webhookId);
+        sbU.append(", webhookName=");
+        sbU.append(this.webhookName);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", webhookSourceChannelId=");
+        sbU.append(this.webhookSourceChannelId);
+        sbU.append(", webhookSourceGuildId=");
+        sbU.append(this.webhookSourceGuildId);
+        sbU.append(", webhookSourceChannelType=");
+        return a.G(sbU, this.webhookSourceChannelType, ")");
     }
 }

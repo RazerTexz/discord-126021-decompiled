@@ -11,32 +11,29 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class HubAddServerConfirmationDialogBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15161a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15162b;
+    public final TextView f2125b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final GuildView f15163c;
+    public final GuildView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f15164d;
+    public final MaterialButton d;
 
     public HubAddServerConfirmationDialogBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull GuildView guildView, @NonNull MaterialButton materialButton) {
-        this.f15161a = linearLayout;
-        this.f15162b = textView;
-        this.f15163c = guildView;
-        this.f15164d = materialButton;
+        this.a = linearLayout;
+        this.f2125b = textView;
+        this.c = guildView;
+        this.d = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15161a;
+        return this.a;
     }
 }

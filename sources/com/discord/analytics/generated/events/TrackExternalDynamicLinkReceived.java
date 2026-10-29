@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackExternalDynamicLinkReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackExternalDynamicLinkReceived implements Analyt
             return false;
         }
         TrackExternalDynamicLinkReceived trackExternalDynamicLinkReceived = (TrackExternalDynamicLinkReceived) other;
-        return C12238m.areEqual(this.fingerprint, trackExternalDynamicLinkReceived.fingerprint) && C12238m.areEqual(this.attemptId, trackExternalDynamicLinkReceived.attemptId) && C12238m.areEqual(this.hasAuthToken, trackExternalDynamicLinkReceived.hasAuthToken) && C12238m.areEqual(this.inviteCode, trackExternalDynamicLinkReceived.inviteCode) && C12238m.areEqual(this.guildTemplateCode, trackExternalDynamicLinkReceived.guildTemplateCode) && C12238m.areEqual(this.isBackgrounded, trackExternalDynamicLinkReceived.isBackgrounded) && C12238m.areEqual(this.linkType, trackExternalDynamicLinkReceived.linkType) && C12238m.areEqual(this.deeplinkSource, trackExternalDynamicLinkReceived.deeplinkSource);
+        return m.areEqual(this.fingerprint, trackExternalDynamicLinkReceived.fingerprint) && m.areEqual(this.attemptId, trackExternalDynamicLinkReceived.attemptId) && m.areEqual(this.hasAuthToken, trackExternalDynamicLinkReceived.hasAuthToken) && m.areEqual(this.inviteCode, trackExternalDynamicLinkReceived.inviteCode) && m.areEqual(this.guildTemplateCode, trackExternalDynamicLinkReceived.guildTemplateCode) && m.areEqual(this.isBackgrounded, trackExternalDynamicLinkReceived.isBackgrounded) && m.areEqual(this.linkType, trackExternalDynamicLinkReceived.linkType) && m.areEqual(this.deeplinkSource, trackExternalDynamicLinkReceived.deeplinkSource);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,21 +57,21 @@ public final /* data */ class TrackExternalDynamicLinkReceived implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackExternalDynamicLinkReceived(fingerprint=");
-        sbM833U.append(this.fingerprint);
-        sbM833U.append(", attemptId=");
-        sbM833U.append(this.attemptId);
-        sbM833U.append(", hasAuthToken=");
-        sbM833U.append(this.hasAuthToken);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", guildTemplateCode=");
-        sbM833U.append(this.guildTemplateCode);
-        sbM833U.append(", isBackgrounded=");
-        sbM833U.append(this.isBackgrounded);
-        sbM833U.append(", linkType=");
-        sbM833U.append(this.linkType);
-        sbM833U.append(", deeplinkSource=");
-        return C1643a.m817E(sbM833U, this.deeplinkSource, ")");
+        StringBuilder sbU = a.U("TrackExternalDynamicLinkReceived(fingerprint=");
+        sbU.append(this.fingerprint);
+        sbU.append(", attemptId=");
+        sbU.append(this.attemptId);
+        sbU.append(", hasAuthToken=");
+        sbU.append(this.hasAuthToken);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", guildTemplateCode=");
+        sbU.append(this.guildTemplateCode);
+        sbU.append(", isBackgrounded=");
+        sbU.append(this.isBackgrounded);
+        sbU.append(", linkType=");
+        sbU.append(this.linkType);
+        sbU.append(", deeplinkSource=");
+        return a.E(sbU, this.deeplinkSource, ")");
     }
 }

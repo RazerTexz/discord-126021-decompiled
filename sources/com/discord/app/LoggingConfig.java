@@ -1,12 +1,12 @@
 package com.discord.app;
 
+import b.d.b.a.a;
 import com.discord.api.science.AnalyticsSchema;
+import d0.e0.g;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.functions.Function0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p513e0.InterfaceC11234g;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AppLogger.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,8 +15,8 @@ public final /* data */ class LoggingConfig {
     /* JADX INFO: renamed from: a, reason: from kotlin metadata */
     public final boolean autoLogImpressionOnChanged;
 
-    /* JADX INFO: renamed from: b, reason: from kotlin metadata */
-    public final List<InterfaceC11234g<?, ?>> autoLogImpressionProperties;
+    /* JADX INFO: renamed from: b, reason: collision with root package name and from kotlin metadata */
+    public final List<g<?, ?>> autoLogImpressionProperties;
 
     /* JADX INFO: renamed from: c, reason: from kotlin metadata */
     public final Function0<AnalyticsSchema> impressionSchemaProvider;
@@ -27,9 +27,9 @@ public final /* data */ class LoggingConfig {
 
     public LoggingConfig(boolean z2, List list, Function0 function0, int i) {
         z2 = (i & 1) != 0 ? true : z2;
-        List<InterfaceC11234g<?, ?>> listEmptyList = (i & 2) != 0 ? C12147n.emptyList() : null;
+        List<g<?, ?>> listEmptyList = (i & 2) != 0 ? n.emptyList() : null;
         function0 = (i & 4) != 0 ? null : function0;
-        C12238m.checkNotNullParameter(listEmptyList, "autoLogImpressionProperties");
+        m.checkNotNullParameter(listEmptyList, "autoLogImpressionProperties");
         this.autoLogImpressionOnChanged = z2;
         this.autoLogImpressionProperties = listEmptyList;
         this.impressionSchemaProvider = function0;
@@ -43,7 +43,7 @@ public final /* data */ class LoggingConfig {
             return false;
         }
         LoggingConfig loggingConfig = (LoggingConfig) other;
-        return this.autoLogImpressionOnChanged == loggingConfig.autoLogImpressionOnChanged && C12238m.areEqual(this.autoLogImpressionProperties, loggingConfig.autoLogImpressionProperties) && C12238m.areEqual(this.impressionSchemaProvider, loggingConfig.impressionSchemaProvider);
+        return this.autoLogImpressionOnChanged == loggingConfig.autoLogImpressionOnChanged && m.areEqual(this.autoLogImpressionProperties, loggingConfig.autoLogImpressionProperties) && m.areEqual(this.impressionSchemaProvider, loggingConfig.impressionSchemaProvider);
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -57,20 +57,20 @@ public final /* data */ class LoggingConfig {
             r0 = 1;
         }
         int i = r0 * 31;
-        List<InterfaceC11234g<?, ?>> list = this.autoLogImpressionProperties;
+        List<g<?, ?>> list = this.autoLogImpressionProperties;
         int iHashCode = (i + (list != null ? list.hashCode() : 0)) * 31;
         Function0<AnalyticsSchema> function0 = this.impressionSchemaProvider;
         return iHashCode + (function0 != null ? function0.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("LoggingConfig(autoLogImpressionOnChanged=");
-        sbM833U.append(this.autoLogImpressionOnChanged);
-        sbM833U.append(", autoLogImpressionProperties=");
-        sbM833U.append(this.autoLogImpressionProperties);
-        sbM833U.append(", impressionSchemaProvider=");
-        sbM833U.append(this.impressionSchemaProvider);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("LoggingConfig(autoLogImpressionOnChanged=");
+        sbU.append(this.autoLogImpressionOnChanged);
+        sbU.append(", autoLogImpressionProperties=");
+        sbU.append(this.autoLogImpressionProperties);
+        sbU.append(", impressionSchemaProvider=");
+        sbU.append(this.impressionSchemaProvider);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

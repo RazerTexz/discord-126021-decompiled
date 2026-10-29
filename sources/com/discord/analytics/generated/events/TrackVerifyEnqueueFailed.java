@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVerifyEnqueueFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackVerifyEnqueueFailed implements AnalyticsSchem
             return false;
         }
         TrackVerifyEnqueueFailed trackVerifyEnqueueFailed = (TrackVerifyEnqueueFailed) other;
-        return C12238m.areEqual(this.phoneNumber, trackVerifyEnqueueFailed.phoneNumber) && C12238m.areEqual(this.channel, trackVerifyEnqueueFailed.channel) && C12238m.areEqual(this.reason, trackVerifyEnqueueFailed.reason);
+        return m.areEqual(this.phoneNumber, trackVerifyEnqueueFailed.phoneNumber) && m.areEqual(this.channel, trackVerifyEnqueueFailed.channel) && m.areEqual(this.reason, trackVerifyEnqueueFailed.reason);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -43,11 +43,11 @@ public final /* data */ class TrackVerifyEnqueueFailed implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVerifyEnqueueFailed(phoneNumber=");
-        sbM833U.append(this.phoneNumber);
-        sbM833U.append(", channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", reason=");
-        return C1643a.m817E(sbM833U, this.reason, ")");
+        StringBuilder sbU = a.U("TrackVerifyEnqueueFailed(phoneNumber=");
+        sbU.append(this.phoneNumber);
+        sbU.append(", channel=");
+        sbU.append(this.channel);
+        sbU.append(", reason=");
+        return a.E(sbU, this.reason, ")");
     }
 }

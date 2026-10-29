@@ -1,7 +1,7 @@
 package androidx.work.impl.constraints.controllers;
 
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.work.Logger;
 import androidx.work.NetworkType;
@@ -24,8 +24,13 @@ public class NetworkNotRoamingController extends ConstraintController<NetworkSta
     }
 
     @Override // androidx.work.impl.constraints.controllers.ConstraintController
-    public boolean isConstrained(@NonNull NetworkState networkState) {
-        if (Build.VERSION.SDK_INT >= 24) {
+    public /* bridge */ /* synthetic */ boolean isConstrained(@NonNull NetworkState networkState) {
+        return isConstrained2(networkState);
+    }
+
+    /* JADX INFO: renamed from: isConstrained, reason: avoid collision after fix types in other method */
+    public boolean isConstrained2(@NonNull NetworkState networkState) {
+        if (Build$VERSION.SDK_INT >= 24) {
             return (networkState.isConnected() && networkState.isNotRoaming()) ? false : true;
         }
         Logger.get().debug(TAG, "Not-roaming network constraint is not supported before API 24, only checking for connected state.", new Throwable[0]);

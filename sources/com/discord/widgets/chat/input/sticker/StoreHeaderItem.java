@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.input.sticker;
 
+import b.d.b.a.a;
 import com.discord.models.sticker.dto.ModelStickerPack;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StickerAdapterItems.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,13 +14,13 @@ public final /* data */ class StoreHeaderItem implements MGRecyclerDataPayload {
     private final int type;
 
     public StoreHeaderItem(ModelStickerPack modelStickerPack, boolean z2) {
-        C12238m.checkNotNullParameter(modelStickerPack, "pack");
+        m.checkNotNullParameter(modelStickerPack, "pack");
         this.pack = modelStickerPack;
         this.isNewPack = z2;
         this.type = 2;
-        StringBuilder sbM833U = C1643a.m833U("store-header:");
-        sbM833U.append(modelStickerPack.getId());
-        this.key = sbM833U.toString();
+        StringBuilder sbU = a.U("store-header:");
+        sbU.append(modelStickerPack.getId());
+        this.key = sbU.toString();
     }
 
     public static /* synthetic */ StoreHeaderItem copy$default(StoreHeaderItem storeHeaderItem, ModelStickerPack modelStickerPack, boolean z2, int i, Object obj) {
@@ -34,7 +34,7 @@ public final /* data */ class StoreHeaderItem implements MGRecyclerDataPayload {
     }
 
     public final StoreHeaderItem copy(ModelStickerPack pack, boolean isNewPack) {
-        C12238m.checkNotNullParameter(pack, "pack");
+        m.checkNotNullParameter(pack, "pack");
         return new StoreHeaderItem(pack, isNewPack);
     }
 
@@ -46,7 +46,7 @@ public final /* data */ class StoreHeaderItem implements MGRecyclerDataPayload {
             return false;
         }
         StoreHeaderItem storeHeaderItem = (StoreHeaderItem) other;
-        return C12238m.areEqual(this.pack, storeHeaderItem.pack) && this.isNewPack == storeHeaderItem.isNewPack;
+        return m.areEqual(this.pack, storeHeaderItem.pack) && this.isNewPack == storeHeaderItem.isNewPack;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -94,9 +94,9 @@ public final /* data */ class StoreHeaderItem implements MGRecyclerDataPayload {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StoreHeaderItem(pack=");
-        sbM833U.append(this.pack);
-        sbM833U.append(", isNewPack=");
-        return C1643a.m827O(sbM833U, this.isNewPack, ")");
+        StringBuilder sbU = a.U("StoreHeaderItem(pack=");
+        sbU.append(this.pack);
+        sbU.append(", isNewPack=");
+        return a.O(sbU, this.isNewPack, ")");
     }
 }

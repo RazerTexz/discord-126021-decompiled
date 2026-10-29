@@ -4,15 +4,16 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.PersistableBundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.Logger;
-import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import androidx.work.impl.Scheduler;
 import androidx.work.impl.WorkDatabase;
 import androidx.work.impl.WorkManagerImpl;
@@ -26,7 +27,7 @@ import java.util.Locale;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class SystemJobScheduler implements Scheduler {
     private final Context mContext;
     private final JobScheduler mJobScheduler;
@@ -150,21 +151,21 @@ public class SystemJobScheduler implements Scheduler {
         for (WorkSpec workSpec : workSpecArr) {
             workDatabase.beginTransaction();
             try {
-                WorkSpec workSpec2 = workDatabase.workSpecDao().getWorkSpec(workSpec.f163id);
+                WorkSpec workSpec2 = workDatabase.workSpecDao().getWorkSpec(workSpec.f38id);
                 if (workSpec2 == null) {
-                    Logger.get().warning(TAG, "Skipping scheduling " + workSpec.f163id + " because it's no longer in the DB", new Throwable[0]);
+                    Logger.get().warning(TAG, "Skipping scheduling " + workSpec.f38id + " because it's no longer in the DB", new Throwable[0]);
                     workDatabase.setTransactionSuccessful();
-                } else if (workSpec2.state != WorkInfo.State.ENQUEUED) {
-                    Logger.get().warning(TAG, "Skipping scheduling " + workSpec.f163id + " because it is no longer enqueued", new Throwable[0]);
+                } else if (workSpec2.state != WorkInfo$State.ENQUEUED) {
+                    Logger.get().warning(TAG, "Skipping scheduling " + workSpec.f38id + " because it is no longer enqueued", new Throwable[0]);
                     workDatabase.setTransactionSuccessful();
                 } else {
-                    SystemIdInfo systemIdInfo = workDatabase.systemIdInfoDao().getSystemIdInfo(workSpec.f163id);
+                    SystemIdInfo systemIdInfo = workDatabase.systemIdInfoDao().getSystemIdInfo(workSpec.f38id);
                     int iNextJobSchedulerIdWithRange = systemIdInfo != null ? systemIdInfo.systemId : idGenerator.nextJobSchedulerIdWithRange(this.mWorkManager.getConfiguration().getMinJobSchedulerId(), this.mWorkManager.getConfiguration().getMaxJobSchedulerId());
                     if (systemIdInfo == null) {
-                        this.mWorkManager.getWorkDatabase().systemIdInfoDao().insertSystemIdInfo(new SystemIdInfo(workSpec.f163id, iNextJobSchedulerIdWithRange));
+                        this.mWorkManager.getWorkDatabase().systemIdInfoDao().insertSystemIdInfo(new SystemIdInfo(workSpec.f38id, iNextJobSchedulerIdWithRange));
                     }
                     scheduleInternal(workSpec, iNextJobSchedulerIdWithRange);
-                    if (Build.VERSION.SDK_INT == 23 && (pendingJobIds = getPendingJobIds(this.mContext, this.mJobScheduler, workSpec.f163id)) != null) {
+                    if (Build$VERSION.SDK_INT == 23 && (pendingJobIds = getPendingJobIds(this.mContext, this.mJobScheduler, workSpec.f38id)) != null) {
                         int iIndexOf = pendingJobIds.indexOf(Integer.valueOf(iNextJobSchedulerIdWithRange));
                         if (iIndexOf >= 0) {
                             pendingJobIds.remove(iIndexOf);
@@ -184,7 +185,7 @@ public class SystemJobScheduler implements Scheduler {
     @VisibleForTesting
     public void scheduleInternal(WorkSpec workSpec, int i) {
         JobInfo jobInfoConvert = this.mSystemJobInfoConverter.convert(workSpec, i);
-        Logger.get().debug(TAG, String.format("Scheduling work ID %s Job ID %s", workSpec.f163id, Integer.valueOf(i)), new Throwable[0]);
+        Logger.get().debug(TAG, String.format("Scheduling work ID %s Job ID %s", workSpec.f38id, Integer.valueOf(i)), new Throwable[0]);
         try {
             this.mJobScheduler.schedule(jobInfoConvert);
         } catch (IllegalStateException e) {

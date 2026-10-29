@@ -1,211 +1,216 @@
 package com.jaredrummler.android.colorpicker;
 
+import android.R$attr;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ComposeShader;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Paint$Align;
+import android.graphics.Paint$Style;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.Shader$TileMode;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import androidx.constraintlayout.motion.widget.Key;
 import androidx.core.view.ViewCompat;
-import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
-import p007b.p440k.p441a.p442a.C5074a;
+import b.i.a.f.e.o.f;
+import b.k.a.a.a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class ColorPickerView extends View {
+    public int A;
+    public float B;
+    public float C;
+    public float D;
+    public boolean E;
+    public String F;
+    public int G;
+    public int H;
+    public Rect I;
+    public Rect J;
+    public Rect K;
+    public Rect L;
+    public Point M;
+    public a N;
+    public ColorPickerView$c O;
+    public int j;
+    public int k;
+    public int l;
+    public int m;
+    public int n;
+    public int o;
+    public Paint p;
+    public Paint q;
+    public Paint r;
 
-    /* JADX INFO: renamed from: A */
-    public int f21773A;
+    /* JADX INFO: renamed from: s, reason: collision with root package name */
+    public Paint f3152s;
+    public Paint t;
+    public Paint u;
+    public Shader v;
+    public Shader w;
 
-    /* JADX INFO: renamed from: B */
-    public float f21774B;
+    /* JADX INFO: renamed from: x, reason: collision with root package name */
+    public Shader f3153x;
 
-    /* JADX INFO: renamed from: C */
-    public float f21775C;
+    /* JADX INFO: renamed from: y, reason: collision with root package name */
+    public ColorPickerView$b f3154y;
 
-    /* JADX INFO: renamed from: D */
-    public float f21776D;
-
-    /* JADX INFO: renamed from: E */
-    public boolean f21777E;
-
-    /* JADX INFO: renamed from: F */
-    public String f21778F;
-
-    /* JADX INFO: renamed from: G */
-    public int f21779G;
-
-    /* JADX INFO: renamed from: H */
-    public int f21780H;
-
-    /* JADX INFO: renamed from: I */
-    public Rect f21781I;
-
-    /* JADX INFO: renamed from: J */
-    public Rect f21782J;
-
-    /* JADX INFO: renamed from: K */
-    public Rect f21783K;
-
-    /* JADX INFO: renamed from: L */
-    public Rect f21784L;
-
-    /* JADX INFO: renamed from: M */
-    public Point f21785M;
-
-    /* JADX INFO: renamed from: N */
-    public C5074a f21786N;
-
-    /* JADX INFO: renamed from: O */
-    public InterfaceC11166c f21787O;
-
-    /* JADX INFO: renamed from: j */
-    public int f21788j;
-
-    /* JADX INFO: renamed from: k */
-    public int f21789k;
-
-    /* JADX INFO: renamed from: l */
-    public int f21790l;
-
-    /* JADX INFO: renamed from: m */
-    public int f21791m;
-
-    /* JADX INFO: renamed from: n */
-    public int f21792n;
-
-    /* JADX INFO: renamed from: o */
-    public int f21793o;
-
-    /* JADX INFO: renamed from: p */
-    public Paint f21794p;
-
-    /* JADX INFO: renamed from: q */
-    public Paint f21795q;
-
-    /* JADX INFO: renamed from: r */
-    public Paint f21796r;
-
-    /* JADX INFO: renamed from: s */
-    public Paint f21797s;
-
-    /* JADX INFO: renamed from: t */
-    public Paint f21798t;
-
-    /* JADX INFO: renamed from: u */
-    public Paint f21799u;
-
-    /* JADX INFO: renamed from: v */
-    public Shader f21800v;
-
-    /* JADX INFO: renamed from: w */
-    public Shader f21801w;
-
-    /* JADX INFO: renamed from: x */
-    public Shader f21802x;
-
-    /* JADX INFO: renamed from: y */
-    public C11165b f21803y;
-
-    /* JADX INFO: renamed from: z */
-    public C11165b f21804z;
-
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerView$b */
-    public class C11165b {
-
-        /* JADX INFO: renamed from: a */
-        public Canvas f21805a;
-
-        /* JADX INFO: renamed from: b */
-        public Bitmap f21806b;
-
-        /* JADX INFO: renamed from: c */
-        public float f21807c;
-
-        public C11165b(ColorPickerView colorPickerView, C11164a c11164a) {
-        }
-    }
-
-    /* JADX INFO: renamed from: com.jaredrummler.android.colorpicker.ColorPickerView$c */
-    public interface InterfaceC11166c {
-    }
+    /* JADX INFO: renamed from: z, reason: collision with root package name */
+    public ColorPickerView$b f3155z;
 
     public ColorPickerView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 0);
-        this.f21773A = 255;
-        this.f21774B = 360.0f;
-        this.f21775C = 0.0f;
-        this.f21776D = 0.0f;
-        this.f21777E = false;
-        this.f21778F = null;
-        this.f21779G = -4342339;
-        this.f21780H = -9539986;
-        this.f21785M = null;
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C11167R.f.ColorPickerView);
-        this.f21777E = typedArrayObtainStyledAttributes.getBoolean(C11167R.f.ColorPickerView_cpv_alphaChannelVisible, false);
-        this.f21778F = typedArrayObtainStyledAttributes.getString(C11167R.f.ColorPickerView_cpv_alphaChannelText);
-        this.f21779G = typedArrayObtainStyledAttributes.getColor(C11167R.f.ColorPickerView_cpv_sliderColor, -4342339);
-        this.f21780H = typedArrayObtainStyledAttributes.getColor(C11167R.f.ColorPickerView_cpv_borderColor, -9539986);
+        this.A = 255;
+        this.B = 360.0f;
+        this.C = 0.0f;
+        this.D = 0.0f;
+        this.E = false;
+        this.F = null;
+        this.G = -4342339;
+        this.H = -9539986;
+        this.M = null;
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$f.ColorPickerView);
+        this.E = typedArrayObtainStyledAttributes.getBoolean(R$f.ColorPickerView_cpv_alphaChannelVisible, false);
+        this.F = typedArrayObtainStyledAttributes.getString(R$f.ColorPickerView_cpv_alphaChannelText);
+        this.G = typedArrayObtainStyledAttributes.getColor(R$f.ColorPickerView_cpv_sliderColor, -4342339);
+        this.H = typedArrayObtainStyledAttributes.getColor(R$f.ColorPickerView_cpv_borderColor, -9539986);
         typedArrayObtainStyledAttributes.recycle();
-        TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(new TypedValue().data, new int[]{android.R.attr.textColorSecondary});
-        if (this.f21780H == -9539986) {
-            this.f21780H = typedArrayObtainStyledAttributes2.getColor(0, -9539986);
+        TypedArray typedArrayObtainStyledAttributes2 = context.obtainStyledAttributes(new TypedValue().data, new int[]{R$attr.textColorSecondary});
+        if (this.H == -9539986) {
+            this.H = typedArrayObtainStyledAttributes2.getColor(0, -9539986);
         }
-        if (this.f21779G == -4342339) {
-            this.f21779G = typedArrayObtainStyledAttributes2.getColor(0, -4342339);
+        if (this.G == -4342339) {
+            this.G = typedArrayObtainStyledAttributes2.getColor(0, -4342339);
         }
         typedArrayObtainStyledAttributes2.recycle();
-        this.f21788j = C3404f.m4243S(getContext(), 30.0f);
-        this.f21789k = C3404f.m4243S(getContext(), 20.0f);
-        this.f21790l = C3404f.m4243S(getContext(), 10.0f);
-        this.f21791m = C3404f.m4243S(getContext(), 5.0f);
-        this.f21793o = C3404f.m4243S(getContext(), 4.0f);
-        this.f21792n = C3404f.m4243S(getContext(), 2.0f);
-        this.f21794p = new Paint();
-        this.f21795q = new Paint();
-        this.f21798t = new Paint();
-        this.f21796r = new Paint();
-        this.f21797s = new Paint();
-        this.f21799u = new Paint();
-        this.f21795q.setStyle(Paint.Style.STROKE);
-        this.f21795q.setStrokeWidth(C3404f.m4243S(getContext(), 2.0f));
-        this.f21795q.setAntiAlias(true);
-        this.f21798t.setColor(this.f21779G);
-        this.f21798t.setStyle(Paint.Style.STROKE);
-        this.f21798t.setStrokeWidth(C3404f.m4243S(getContext(), 2.0f));
-        this.f21798t.setAntiAlias(true);
-        this.f21797s.setColor(-14935012);
-        this.f21797s.setTextSize(C3404f.m4243S(getContext(), 14.0f));
-        this.f21797s.setAntiAlias(true);
-        this.f21797s.setTextAlign(Paint.Align.CENTER);
-        this.f21797s.setFakeBoldText(true);
+        this.j = f.S(getContext(), 30.0f);
+        this.k = f.S(getContext(), 20.0f);
+        this.l = f.S(getContext(), 10.0f);
+        this.m = f.S(getContext(), 5.0f);
+        this.o = f.S(getContext(), 4.0f);
+        this.n = f.S(getContext(), 2.0f);
+        this.p = new Paint();
+        this.q = new Paint();
+        this.t = new Paint();
+        this.r = new Paint();
+        this.f3152s = new Paint();
+        this.u = new Paint();
+        this.q.setStyle(Paint$Style.STROKE);
+        this.q.setStrokeWidth(f.S(getContext(), 2.0f));
+        this.q.setAntiAlias(true);
+        this.t.setColor(this.G);
+        this.t.setStyle(Paint$Style.STROKE);
+        this.t.setStrokeWidth(f.S(getContext(), 2.0f));
+        this.t.setAntiAlias(true);
+        this.f3152s.setColor(-14935012);
+        this.f3152s.setTextSize(f.S(getContext(), 14.0f));
+        this.f3152s.setAntiAlias(true);
+        this.f3152s.setTextAlign(Paint$Align.CENTER);
+        this.f3152s.setFakeBoldText(true);
         setFocusable(true);
         setFocusableInTouchMode(true);
     }
 
+    public final boolean a(MotionEvent motionEvent) {
+        float f;
+        Point point = this.M;
+        int i = 0;
+        if (point == null) {
+            return false;
+        }
+        int i2 = point.x;
+        int i3 = point.y;
+        float f2 = 0.0f;
+        if (this.K.contains(i2, i3)) {
+            float y2 = motionEvent.getY();
+            Rect rect = this.K;
+            float fHeight = rect.height();
+            float f3 = rect.top;
+            if (y2 >= f3) {
+                f2 = y2 > ((float) rect.bottom) ? fHeight : y2 - f3;
+            }
+            this.B = 360.0f - ((f2 * 360.0f) / fHeight);
+        } else if (this.J.contains(i2, i3)) {
+            float x2 = motionEvent.getX();
+            float y3 = motionEvent.getY();
+            Rect rect2 = this.J;
+            float[] fArr = new float[2];
+            float fWidth = rect2.width();
+            float fHeight2 = rect2.height();
+            float f4 = rect2.left;
+            if (x2 < f4) {
+                f = 0.0f;
+            } else {
+                f = x2 > ((float) rect2.right) ? fWidth : x2 - f4;
+            }
+            float f5 = rect2.top;
+            if (y3 >= f5) {
+                f2 = y3 > ((float) rect2.bottom) ? fHeight2 : y3 - f5;
+            }
+            fArr[0] = (1.0f / fWidth) * f;
+            fArr[1] = 1.0f - ((1.0f / fHeight2) * f2);
+            this.C = fArr[0];
+            this.D = fArr[1];
+        } else {
+            Rect rect3 = this.L;
+            if (rect3 == null || !rect3.contains(i2, i3)) {
+                return false;
+            }
+            int x3 = (int) motionEvent.getX();
+            Rect rect4 = this.L;
+            int iWidth = rect4.width();
+            int i4 = rect4.left;
+            if (x3 >= i4) {
+                i = x3 > rect4.right ? iWidth : x3 - i4;
+            }
+            this.A = 255 - ((i * 255) / iWidth);
+        }
+        return true;
+    }
+
+    public void b(int i, boolean z2) {
+        ColorPickerView$c colorPickerView$c;
+        int iAlpha = Color.alpha(i);
+        float[] fArr = new float[3];
+        Color.RGBToHSV(Color.red(i), Color.green(i), Color.blue(i), fArr);
+        this.A = iAlpha;
+        float f = fArr[0];
+        this.B = f;
+        float f2 = fArr[1];
+        this.C = f2;
+        float f3 = fArr[2];
+        this.D = f3;
+        if (z2 && (colorPickerView$c = this.O) != null) {
+            ((ColorPickerDialog) colorPickerView$c).k(Color.HSVToColor(iAlpha, new float[]{f, f2, f3}));
+        }
+        invalidate();
+    }
+
     public String getAlphaSliderText() {
-        return this.f21778F;
+        return this.F;
     }
 
     public int getBorderColor() {
-        return this.f21780H;
+        return this.H;
     }
 
     public int getColor() {
-        return Color.HSVToColor(this.f21773A, new float[]{this.f21774B, this.f21775C, this.f21776D});
+        return Color.HSVToColor(this.A, new float[]{this.B, this.C, this.D});
     }
 
     @Override // android.view.View
@@ -229,152 +234,75 @@ public class ColorPickerView extends View {
     }
 
     private int getPreferredHeight() {
-        int iM4243S = C3404f.m4243S(getContext(), 200.0f);
-        return this.f21777E ? iM4243S + this.f21790l + this.f21789k : iM4243S;
+        int iS = f.S(getContext(), 200.0f);
+        return this.E ? iS + this.l + this.k : iS;
     }
 
     private int getPreferredWidth() {
-        return C3404f.m4243S(getContext(), 200.0f) + this.f21788j + this.f21790l;
+        return f.S(getContext(), 200.0f) + this.j + this.l;
     }
 
     public int getSliderTrackerColor() {
-        return this.f21779G;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final boolean m9276a(MotionEvent motionEvent) {
-        float f;
-        Point point = this.f21785M;
-        int i = 0;
-        if (point == null) {
-            return false;
-        }
-        int i2 = point.x;
-        int i3 = point.y;
-        float f2 = 0.0f;
-        if (this.f21783K.contains(i2, i3)) {
-            float y2 = motionEvent.getY();
-            Rect rect = this.f21783K;
-            float fHeight = rect.height();
-            float f3 = rect.top;
-            if (y2 >= f3) {
-                f2 = y2 > ((float) rect.bottom) ? fHeight : y2 - f3;
-            }
-            this.f21774B = 360.0f - ((f2 * 360.0f) / fHeight);
-        } else if (this.f21782J.contains(i2, i3)) {
-            float x2 = motionEvent.getX();
-            float y3 = motionEvent.getY();
-            Rect rect2 = this.f21782J;
-            float[] fArr = new float[2];
-            float fWidth = rect2.width();
-            float fHeight2 = rect2.height();
-            float f4 = rect2.left;
-            if (x2 < f4) {
-                f = 0.0f;
-            } else {
-                f = x2 > ((float) rect2.right) ? fWidth : x2 - f4;
-            }
-            float f5 = rect2.top;
-            if (y3 >= f5) {
-                f2 = y3 > ((float) rect2.bottom) ? fHeight2 : y3 - f5;
-            }
-            fArr[0] = (1.0f / fWidth) * f;
-            fArr[1] = 1.0f - ((1.0f / fHeight2) * f2);
-            this.f21775C = fArr[0];
-            this.f21776D = fArr[1];
-        } else {
-            Rect rect3 = this.f21784L;
-            if (rect3 == null || !rect3.contains(i2, i3)) {
-                return false;
-            }
-            int x3 = (int) motionEvent.getX();
-            Rect rect4 = this.f21784L;
-            int iWidth = rect4.width();
-            int i4 = rect4.left;
-            if (x3 >= i4) {
-                i = x3 > rect4.right ? iWidth : x3 - i4;
-            }
-            this.f21773A = 255 - ((i * 255) / iWidth);
-        }
-        return true;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public void m9277b(int i, boolean z2) {
-        InterfaceC11166c interfaceC11166c;
-        int iAlpha = Color.alpha(i);
-        float[] fArr = new float[3];
-        Color.RGBToHSV(Color.red(i), Color.green(i), Color.blue(i), fArr);
-        this.f21773A = iAlpha;
-        float f = fArr[0];
-        this.f21774B = f;
-        float f2 = fArr[1];
-        this.f21775C = f2;
-        float f3 = fArr[2];
-        this.f21776D = f3;
-        if (z2 && (interfaceC11166c = this.f21787O) != null) {
-            ((ColorPickerDialog) interfaceC11166c).m9271k(Color.HSVToColor(iAlpha, new float[]{f, f2, f3}));
-        }
-        invalidate();
+        return this.G;
     }
 
     @Override // android.view.View
     public void onDraw(Canvas canvas) {
         Rect rect;
-        if (this.f21781I.width() <= 0 || this.f21781I.height() <= 0) {
+        if (this.I.width() <= 0 || this.I.height() <= 0) {
             return;
         }
-        Rect rect2 = this.f21782J;
-        this.f21799u.setColor(this.f21780H);
-        Rect rect3 = this.f21781I;
-        canvas.drawRect(rect3.left, rect3.top, rect2.right + 1, rect2.bottom + 1, this.f21799u);
-        if (this.f21800v == null) {
+        Rect rect2 = this.J;
+        this.u.setColor(this.H);
+        Rect rect3 = this.I;
+        canvas.drawRect(rect3.left, rect3.top, rect2.right + 1, rect2.bottom + 1, this.u);
+        if (this.v == null) {
             float f = rect2.left;
-            this.f21800v = new LinearGradient(f, rect2.top, f, rect2.bottom, -1, ViewCompat.MEASURED_STATE_MASK, Shader.TileMode.CLAMP);
+            this.v = new LinearGradient(f, rect2.top, f, rect2.bottom, -1, ViewCompat.MEASURED_STATE_MASK, Shader$TileMode.CLAMP);
         }
-        C11165b c11165b = this.f21803y;
-        if (c11165b == null || c11165b.f21807c != this.f21774B) {
-            if (c11165b == null) {
-                this.f21803y = new C11165b(this, null);
+        ColorPickerView$b colorPickerView$b = this.f3154y;
+        if (colorPickerView$b == null || colorPickerView$b.c != this.B) {
+            if (colorPickerView$b == null) {
+                this.f3154y = new ColorPickerView$b(this, null);
             }
-            C11165b c11165b2 = this.f21803y;
-            if (c11165b2.f21806b == null) {
-                c11165b2.f21806b = Bitmap.createBitmap(rect2.width(), rect2.height(), Bitmap.Config.ARGB_8888);
+            ColorPickerView$b colorPickerView$b2 = this.f3154y;
+            if (colorPickerView$b2.f3156b == null) {
+                colorPickerView$b2.f3156b = Bitmap.createBitmap(rect2.width(), rect2.height(), Bitmap$Config.ARGB_8888);
             }
-            C11165b c11165b3 = this.f21803y;
-            if (c11165b3.f21805a == null) {
-                c11165b3.f21805a = new Canvas(this.f21803y.f21806b);
+            ColorPickerView$b colorPickerView$b3 = this.f3154y;
+            if (colorPickerView$b3.a == null) {
+                colorPickerView$b3.a = new Canvas(this.f3154y.f3156b);
             }
-            int iHSVToColor = Color.HSVToColor(new float[]{this.f21774B, 1.0f, 1.0f});
+            int iHSVToColor = Color.HSVToColor(new float[]{this.B, 1.0f, 1.0f});
             float f2 = rect2.left;
             float f3 = rect2.top;
-            this.f21801w = new LinearGradient(f2, f3, rect2.right, f3, -1, iHSVToColor, Shader.TileMode.CLAMP);
-            this.f21794p.setShader(new ComposeShader(this.f21800v, this.f21801w, PorterDuff.Mode.MULTIPLY));
-            C11165b c11165b4 = this.f21803y;
-            c11165b4.f21805a.drawRect(0.0f, 0.0f, c11165b4.f21806b.getWidth(), this.f21803y.f21806b.getHeight(), this.f21794p);
-            this.f21803y.f21807c = this.f21774B;
+            this.w = new LinearGradient(f2, f3, rect2.right, f3, -1, iHSVToColor, Shader$TileMode.CLAMP);
+            this.p.setShader(new ComposeShader(this.v, this.w, PorterDuff$Mode.MULTIPLY));
+            ColorPickerView$b colorPickerView$b4 = this.f3154y;
+            colorPickerView$b4.a.drawRect(0.0f, 0.0f, colorPickerView$b4.f3156b.getWidth(), this.f3154y.f3156b.getHeight(), this.p);
+            this.f3154y.c = this.B;
         }
-        canvas.drawBitmap(this.f21803y.f21806b, (Rect) null, rect2, (Paint) null);
-        float f4 = this.f21775C;
-        float f5 = this.f21776D;
-        Rect rect4 = this.f21782J;
+        canvas.drawBitmap(this.f3154y.f3156b, (Rect) null, rect2, (Paint) null);
+        float f4 = this.C;
+        float f5 = this.D;
+        Rect rect4 = this.J;
         float fHeight = rect4.height();
         float fWidth = rect4.width();
         Point point = new Point();
         point.x = (int) ((f4 * fWidth) + rect4.left);
         point.y = (int) (((1.0f - f5) * fHeight) + rect4.top);
-        this.f21795q.setColor(ViewCompat.MEASURED_STATE_MASK);
-        canvas.drawCircle(point.x, point.y, this.f21791m - C3404f.m4243S(getContext(), 1.0f), this.f21795q);
-        this.f21795q.setColor(-2236963);
-        canvas.drawCircle(point.x, point.y, this.f21791m, this.f21795q);
-        Rect rect5 = this.f21783K;
-        this.f21799u.setColor(this.f21780H);
-        canvas.drawRect(rect5.left - 1, rect5.top - 1, rect5.right + 1, rect5.bottom + 1, this.f21799u);
-        if (this.f21804z == null) {
-            C11165b c11165b5 = new C11165b(this, null);
-            this.f21804z = c11165b5;
-            c11165b5.f21806b = Bitmap.createBitmap(rect5.width(), rect5.height(), Bitmap.Config.ARGB_8888);
-            this.f21804z.f21805a = new Canvas(this.f21804z.f21806b);
+        this.q.setColor(ViewCompat.MEASURED_STATE_MASK);
+        canvas.drawCircle(point.x, point.y, this.m - f.S(getContext(), 1.0f), this.q);
+        this.q.setColor(-2236963);
+        canvas.drawCircle(point.x, point.y, this.m, this.q);
+        Rect rect5 = this.K;
+        this.u.setColor(this.H);
+        canvas.drawRect(rect5.left - 1, rect5.top - 1, rect5.right + 1, rect5.bottom + 1, this.u);
+        if (this.f3155z == null) {
+            ColorPickerView$b colorPickerView$b5 = new ColorPickerView$b(this, null);
+            this.f3155z = colorPickerView$b5;
+            colorPickerView$b5.f3156b = Bitmap.createBitmap(rect5.width(), rect5.height(), Bitmap$Config.ARGB_8888);
+            this.f3155z.a = new Canvas(this.f3155z.f3156b);
             int iHeight = (int) (rect5.height() + 0.5f);
             int[] iArr = new int[iHeight];
             float f6 = 360.0f;
@@ -386,63 +314,63 @@ public class ColorPickerView extends View {
             paint.setStrokeWidth(0.0f);
             for (int i2 = 0; i2 < iHeight; i2++) {
                 paint.setColor(iArr[i2]);
-                C11165b c11165b6 = this.f21804z;
+                ColorPickerView$b colorPickerView$b6 = this.f3155z;
                 float f7 = i2;
-                c11165b6.f21805a.drawLine(0.0f, f7, c11165b6.f21806b.getWidth(), f7, paint);
+                colorPickerView$b6.a.drawLine(0.0f, f7, colorPickerView$b6.f3156b.getWidth(), f7, paint);
             }
         }
-        canvas.drawBitmap(this.f21804z.f21806b, (Rect) null, rect5, (Paint) null);
-        float f8 = this.f21774B;
-        Rect rect6 = this.f21783K;
+        canvas.drawBitmap(this.f3155z.f3156b, (Rect) null, rect5, (Paint) null);
+        float f8 = this.B;
+        Rect rect6 = this.K;
         float fHeight2 = rect6.height();
         Point point2 = new Point();
         point2.y = (int) ((fHeight2 - ((f8 * fHeight2) / 360.0f)) + rect6.top);
         point2.x = rect6.left;
         RectF rectF = new RectF();
         int i3 = rect5.left;
-        int i4 = this.f21792n;
+        int i4 = this.n;
         rectF.left = i3 - i4;
         rectF.right = rect5.right + i4;
         int i5 = point2.y;
-        int i6 = this.f21793o / 2;
+        int i6 = this.o / 2;
         rectF.top = i5 - i6;
         rectF.bottom = i6 + i5;
-        canvas.drawRoundRect(rectF, 2.0f, 2.0f, this.f21798t);
-        if (!this.f21777E || (rect = this.f21784L) == null || this.f21786N == null) {
+        canvas.drawRoundRect(rectF, 2.0f, 2.0f, this.t);
+        if (!this.E || (rect = this.L) == null || this.N == null) {
             return;
         }
-        this.f21799u.setColor(this.f21780H);
-        canvas.drawRect(rect.left - 1, rect.top - 1, rect.right + 1, rect.bottom + 1, this.f21799u);
-        this.f21786N.draw(canvas);
-        float[] fArr = {this.f21774B, this.f21775C, this.f21776D};
+        this.u.setColor(this.H);
+        canvas.drawRect(rect.left - 1, rect.top - 1, rect.right + 1, rect.bottom + 1, this.u);
+        this.N.draw(canvas);
+        float[] fArr = {this.B, this.C, this.D};
         int iHSVToColor2 = Color.HSVToColor(fArr);
         int iHSVToColor3 = Color.HSVToColor(0, fArr);
         float f9 = rect.left;
         float f10 = rect.top;
-        LinearGradient linearGradient = new LinearGradient(f9, f10, rect.right, f10, iHSVToColor2, iHSVToColor3, Shader.TileMode.CLAMP);
-        this.f21802x = linearGradient;
-        this.f21796r.setShader(linearGradient);
-        canvas.drawRect(rect, this.f21796r);
-        String str = this.f21778F;
+        LinearGradient linearGradient = new LinearGradient(f9, f10, rect.right, f10, iHSVToColor2, iHSVToColor3, Shader$TileMode.CLAMP);
+        this.f3153x = linearGradient;
+        this.r.setShader(linearGradient);
+        canvas.drawRect(rect, this.r);
+        String str = this.F;
         if (str != null && !str.equals("")) {
-            canvas.drawText(this.f21778F, rect.centerX(), C3404f.m4243S(getContext(), 4.0f) + rect.centerY(), this.f21797s);
+            canvas.drawText(this.F, rect.centerX(), f.S(getContext(), 4.0f) + rect.centerY(), this.f3152s);
         }
-        int i7 = this.f21773A;
-        Rect rect7 = this.f21784L;
+        int i7 = this.A;
+        Rect rect7 = this.L;
         float fWidth2 = rect7.width();
         Point point3 = new Point();
         point3.x = (int) ((fWidth2 - ((i7 * fWidth2) / 255.0f)) + rect7.left);
         point3.y = rect7.top;
         RectF rectF2 = new RectF();
         int i8 = point3.x;
-        int i9 = this.f21793o / 2;
+        int i9 = this.o / 2;
         rectF2.left = i8 - i9;
         rectF2.right = i9 + i8;
         int i10 = rect.top;
-        int i11 = this.f21792n;
+        int i11 = this.n;
         rectF2.top = i10 - i11;
         rectF2.bottom = rect.bottom + i11;
-        canvas.drawRoundRect(rectF2, 2.0f, 2.0f, this.f21798t);
+        canvas.drawRoundRect(rectF2, 2.0f, 2.0f, this.t);
     }
 
     /* JADX WARN: Code duplicated, block: B:21:0x0054 A[PHI: r1
@@ -451,17 +379,17 @@ public class ColorPickerView extends View {
     @Override // android.view.View
     public void onMeasure(int i, int i2) {
         int i3;
-        int mode = View.MeasureSpec.getMode(i);
-        int mode2 = View.MeasureSpec.getMode(i2);
-        int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
-        int size2 = (View.MeasureSpec.getSize(i2) - getPaddingBottom()) - getPaddingTop();
+        int mode = View$MeasureSpec.getMode(i);
+        int mode2 = View$MeasureSpec.getMode(i2);
+        int size = (View$MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
+        int size2 = (View$MeasureSpec.getSize(i2) - getPaddingBottom()) - getPaddingTop();
         if (mode != 1073741824 && mode2 != 1073741824) {
-            int i4 = this.f21790l;
-            int i5 = this.f21788j;
+            int i4 = this.l;
+            int i5 = this.j;
             i3 = size2 + i4 + i5;
             int i6 = (size - i4) - i5;
-            if (this.f21777E) {
-                int i7 = this.f21789k;
+            if (this.E) {
+                int i7 = this.k;
                 i3 -= i4 + i7;
                 i6 += i4 + i7;
             }
@@ -475,19 +403,19 @@ public class ColorPickerView extends View {
                 size2 = i6;
             }
         } else if (mode == 1073741824 && mode2 != 1073741824) {
-            int i8 = this.f21790l;
-            int i9 = (size - i8) - this.f21788j;
-            if (this.f21777E) {
-                i9 += i8 + this.f21789k;
+            int i8 = this.l;
+            int i9 = (size - i8) - this.j;
+            if (this.E) {
+                i9 += i8 + this.k;
             }
             if (i9 <= size2) {
                 size2 = i9;
             }
         } else if (mode2 == 1073741824 && mode != 1073741824) {
-            int i10 = this.f21790l;
-            i3 = size2 + i10 + this.f21788j;
-            if (this.f21777E) {
-                i3 -= i10 + this.f21789k;
+            int i10 = this.l;
+            i3 = size2 + i10 + this.j;
+            if (this.E) {
+                i3 -= i10 + this.k;
             }
             if (i3 <= size) {
                 size = i3;
@@ -500,12 +428,12 @@ public class ColorPickerView extends View {
     public void onRestoreInstanceState(Parcelable parcelable) {
         if (parcelable instanceof Bundle) {
             Bundle bundle = (Bundle) parcelable;
-            this.f21773A = bundle.getInt(Key.ALPHA);
-            this.f21774B = bundle.getFloat("hue");
-            this.f21775C = bundle.getFloat("sat");
-            this.f21776D = bundle.getFloat("val");
-            this.f21777E = bundle.getBoolean("show_alpha");
-            this.f21778F = bundle.getString("alpha_text");
+            this.A = bundle.getInt(Key.ALPHA);
+            this.B = bundle.getFloat("hue");
+            this.C = bundle.getFloat("sat");
+            this.D = bundle.getFloat("val");
+            this.E = bundle.getBoolean("show_alpha");
+            this.F = bundle.getString("alpha_text");
             parcelable = bundle.getParcelable("instanceState");
         }
         super.onRestoreInstanceState(parcelable);
@@ -515,12 +443,12 @@ public class ColorPickerView extends View {
     public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("instanceState", super.onSaveInstanceState());
-        bundle.putInt(Key.ALPHA, this.f21773A);
-        bundle.putFloat("hue", this.f21774B);
-        bundle.putFloat("sat", this.f21775C);
-        bundle.putFloat("val", this.f21776D);
-        bundle.putBoolean("show_alpha", this.f21777E);
-        bundle.putString("alpha_text", this.f21778F);
+        bundle.putInt(Key.ALPHA, this.A);
+        bundle.putFloat("hue", this.B);
+        bundle.putFloat("sat", this.C);
+        bundle.putFloat("val", this.D);
+        bundle.putBoolean("show_alpha", this.E);
+        bundle.putString("alpha_text", this.F);
         return bundle;
     }
 
@@ -528,60 +456,60 @@ public class ColorPickerView extends View {
     public void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         Rect rect = new Rect();
-        this.f21781I = rect;
+        this.I = rect;
         rect.left = getPaddingLeft();
-        this.f21781I.right = i - getPaddingRight();
-        this.f21781I.top = getPaddingTop();
-        this.f21781I.bottom = i2 - getPaddingBottom();
-        this.f21800v = null;
-        this.f21801w = null;
-        this.f21802x = null;
-        this.f21803y = null;
-        this.f21804z = null;
-        Rect rect2 = this.f21781I;
+        this.I.right = i - getPaddingRight();
+        this.I.top = getPaddingTop();
+        this.I.bottom = i2 - getPaddingBottom();
+        this.v = null;
+        this.w = null;
+        this.f3153x = null;
+        this.f3154y = null;
+        this.f3155z = null;
+        Rect rect2 = this.I;
         int i5 = rect2.left + 1;
         int i6 = rect2.top + 1;
         int i7 = rect2.bottom - 1;
         int i8 = rect2.right - 1;
-        int i9 = this.f21790l;
-        int i10 = (i8 - i9) - this.f21788j;
-        if (this.f21777E) {
-            i7 -= this.f21789k + i9;
+        int i9 = this.l;
+        int i10 = (i8 - i9) - this.j;
+        if (this.E) {
+            i7 -= this.k + i9;
         }
-        this.f21782J = new Rect(i5, i6, i10, i7);
-        Rect rect3 = this.f21781I;
+        this.J = new Rect(i5, i6, i10, i7);
+        Rect rect3 = this.I;
         int i11 = rect3.right;
-        this.f21783K = new Rect((i11 - this.f21788j) + 1, rect3.top + 1, i11 - 1, (rect3.bottom - 1) - (this.f21777E ? this.f21790l + this.f21789k : 0));
-        if (this.f21777E) {
-            Rect rect4 = this.f21781I;
+        this.K = new Rect((i11 - this.j) + 1, rect3.top + 1, i11 - 1, (rect3.bottom - 1) - (this.E ? this.l + this.k : 0));
+        if (this.E) {
+            Rect rect4 = this.I;
             int i12 = rect4.left + 1;
             int i13 = rect4.bottom;
-            this.f21784L = new Rect(i12, (i13 - this.f21789k) + 1, rect4.right - 1, i13 - 1);
-            C5074a c5074a = new C5074a(C3404f.m4243S(getContext(), 4.0f));
-            this.f21786N = c5074a;
-            c5074a.setBounds(Math.round(this.f21784L.left), Math.round(this.f21784L.top), Math.round(this.f21784L.right), Math.round(this.f21784L.bottom));
+            this.L = new Rect(i12, (i13 - this.k) + 1, rect4.right - 1, i13 - 1);
+            a aVar = new a(f.S(getContext(), 4.0f));
+            this.N = aVar;
+            aVar.setBounds(Math.round(this.L.left), Math.round(this.L.top), Math.round(this.L.right), Math.round(this.L.bottom));
         }
     }
 
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean zM9276a;
+        boolean zA;
         int action = motionEvent.getAction();
         if (action == 0) {
-            this.f21785M = new Point((int) motionEvent.getX(), (int) motionEvent.getY());
-            zM9276a = m9276a(motionEvent);
+            this.M = new Point((int) motionEvent.getX(), (int) motionEvent.getY());
+            zA = a(motionEvent);
         } else if (action != 1) {
-            zM9276a = action != 2 ? false : m9276a(motionEvent);
+            zA = action != 2 ? false : a(motionEvent);
         } else {
-            this.f21785M = null;
-            zM9276a = m9276a(motionEvent);
+            this.M = null;
+            zA = a(motionEvent);
         }
-        if (!zM9276a) {
+        if (!zA) {
             return super.onTouchEvent(motionEvent);
         }
-        InterfaceC11166c interfaceC11166c = this.f21787O;
-        if (interfaceC11166c != null) {
-            ((ColorPickerDialog) interfaceC11166c).m9271k(Color.HSVToColor(this.f21773A, new float[]{this.f21774B, this.f21775C, this.f21776D}));
+        ColorPickerView$c colorPickerView$c = this.O;
+        if (colorPickerView$c != null) {
+            ((ColorPickerDialog) colorPickerView$c).k(Color.HSVToColor(this.A, new float[]{this.B, this.C, this.D}));
         }
         invalidate();
         return true;
@@ -592,38 +520,38 @@ public class ColorPickerView extends View {
     }
 
     public void setAlphaSliderVisible(boolean z2) {
-        if (this.f21777E != z2) {
-            this.f21777E = z2;
-            this.f21800v = null;
-            this.f21801w = null;
-            this.f21802x = null;
-            this.f21804z = null;
-            this.f21803y = null;
+        if (this.E != z2) {
+            this.E = z2;
+            this.v = null;
+            this.w = null;
+            this.f3153x = null;
+            this.f3155z = null;
+            this.f3154y = null;
             requestLayout();
         }
     }
 
     public void setBorderColor(int i) {
-        this.f21780H = i;
+        this.H = i;
         invalidate();
     }
 
     public void setColor(int i) {
-        m9277b(i, false);
+        b(i, false);
     }
 
-    public void setOnColorChangedListener(InterfaceC11166c interfaceC11166c) {
-        this.f21787O = interfaceC11166c;
+    public void setOnColorChangedListener(ColorPickerView$c colorPickerView$c) {
+        this.O = colorPickerView$c;
     }
 
     public void setSliderTrackerColor(int i) {
-        this.f21779G = i;
-        this.f21798t.setColor(i);
+        this.G = i;
+        this.t.setColor(i);
         invalidate();
     }
 
     public void setAlphaSliderText(String str) {
-        this.f21778F = str;
+        this.F = str;
         invalidate();
     }
 }

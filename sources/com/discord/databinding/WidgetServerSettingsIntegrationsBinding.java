@@ -11,27 +11,25 @@ import com.discord.app.AppViewFlipper;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsIntegrationsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17699a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f17700b;
+    public final RecyclerView f2577b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final AppViewFlipper f17701c;
+    public final AppViewFlipper c;
 
     public WidgetServerSettingsIntegrationsBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull RecyclerView recyclerView, @NonNull AppViewFlipper appViewFlipper) {
-        this.f17699a = coordinatorLayout;
-        this.f17700b = recyclerView;
-        this.f17701c = appViewFlipper;
+        this.a = coordinatorLayout;
+        this.f2577b = recyclerView;
+        this.c = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17699a;
+        return this.a;
     }
 }

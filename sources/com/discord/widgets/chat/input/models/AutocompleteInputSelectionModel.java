@@ -1,17 +1,17 @@
 package com.discord.widgets.chat.input.models;
 
+import b.d.b.a.a;
 import com.discord.api.sticker.Sticker;
 import com.discord.models.commands.ApplicationCommandOption;
 import com.discord.widgets.chat.AutocompleteTypes;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
 import com.discord.widgets.chat.input.autocomplete.EmojiAutocompletable;
 import com.discord.widgets.chat.input.autocomplete.LeadingIdentifier;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AutocompleteInputSelectionModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -22,26 +22,12 @@ public final /* data */ class AutocompleteInputSelectionModel {
     private final Set<ApplicationCommandOption> showErrorsForOptions;
     private final List<Sticker> stickerMatches;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            LeadingIdentifier.values();
-            int[] iArr = new int[5];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[LeadingIdentifier.APP_COMMAND.ordinal()] = 1;
-            iArr[LeadingIdentifier.EMOJI_AND_STICKERS.ordinal()] = 2;
-            iArr[LeadingIdentifier.CHANNELS.ordinal()] = 3;
-            iArr[LeadingIdentifier.MENTION.ordinal()] = 4;
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public AutocompleteInputSelectionModel(MentionToken mentionToken, Map<LeadingIdentifier, ? extends List<? extends Autocompletable>> map, InputSelectionModel inputSelectionModel, Set<ApplicationCommandOption> set, List<Sticker> list) {
-        C12238m.checkNotNullParameter(map, "filteredAutocompletables");
-        C12238m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
-        C12238m.checkNotNullParameter(set, "showErrorsForOptions");
-        C12238m.checkNotNullParameter(list, "stickerMatches");
+        m.checkNotNullParameter(map, "filteredAutocompletables");
+        m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
+        m.checkNotNullParameter(set, "showErrorsForOptions");
+        m.checkNotNullParameter(list, "stickerMatches");
         this.autocompleteToken = mentionToken;
         this.filteredAutocompletables = map;
         this.inputSelectionModel = inputSelectionModel;
@@ -85,10 +71,10 @@ public final /* data */ class AutocompleteInputSelectionModel {
     }
 
     public final AutocompleteInputSelectionModel copy(MentionToken autocompleteToken, Map<LeadingIdentifier, ? extends List<? extends Autocompletable>> filteredAutocompletables, InputSelectionModel inputSelectionModel, Set<ApplicationCommandOption> showErrorsForOptions, List<Sticker> stickerMatches) {
-        C12238m.checkNotNullParameter(filteredAutocompletables, "filteredAutocompletables");
-        C12238m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
-        C12238m.checkNotNullParameter(showErrorsForOptions, "showErrorsForOptions");
-        C12238m.checkNotNullParameter(stickerMatches, "stickerMatches");
+        m.checkNotNullParameter(filteredAutocompletables, "filteredAutocompletables");
+        m.checkNotNullParameter(inputSelectionModel, "inputSelectionModel");
+        m.checkNotNullParameter(showErrorsForOptions, "showErrorsForOptions");
+        m.checkNotNullParameter(stickerMatches, "stickerMatches");
         return new AutocompleteInputSelectionModel(autocompleteToken, filteredAutocompletables, inputSelectionModel, showErrorsForOptions, stickerMatches);
     }
 
@@ -100,7 +86,7 @@ public final /* data */ class AutocompleteInputSelectionModel {
             return false;
         }
         AutocompleteInputSelectionModel autocompleteInputSelectionModel = (AutocompleteInputSelectionModel) other;
-        return C12238m.areEqual(this.autocompleteToken, autocompleteInputSelectionModel.autocompleteToken) && C12238m.areEqual(this.filteredAutocompletables, autocompleteInputSelectionModel.filteredAutocompletables) && C12238m.areEqual(this.inputSelectionModel, autocompleteInputSelectionModel.inputSelectionModel) && C12238m.areEqual(this.showErrorsForOptions, autocompleteInputSelectionModel.showErrorsForOptions) && C12238m.areEqual(this.stickerMatches, autocompleteInputSelectionModel.stickerMatches);
+        return m.areEqual(this.autocompleteToken, autocompleteInputSelectionModel.autocompleteToken) && m.areEqual(this.filteredAutocompletables, autocompleteInputSelectionModel.filteredAutocompletables) && m.areEqual(this.inputSelectionModel, autocompleteInputSelectionModel.inputSelectionModel) && m.areEqual(this.showErrorsForOptions, autocompleteInputSelectionModel.showErrorsForOptions) && m.areEqual(this.stickerMatches, autocompleteInputSelectionModel.stickerMatches);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -186,15 +172,15 @@ public final /* data */ class AutocompleteInputSelectionModel {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AutocompleteInputSelectionModel(autocompleteToken=");
-        sbM833U.append(this.autocompleteToken);
-        sbM833U.append(", filteredAutocompletables=");
-        sbM833U.append(this.filteredAutocompletables);
-        sbM833U.append(", inputSelectionModel=");
-        sbM833U.append(this.inputSelectionModel);
-        sbM833U.append(", showErrorsForOptions=");
-        sbM833U.append(this.showErrorsForOptions);
-        sbM833U.append(", stickerMatches=");
-        return C1643a.m824L(sbM833U, this.stickerMatches, ")");
+        StringBuilder sbU = a.U("AutocompleteInputSelectionModel(autocompleteToken=");
+        sbU.append(this.autocompleteToken);
+        sbU.append(", filteredAutocompletables=");
+        sbU.append(this.filteredAutocompletables);
+        sbU.append(", inputSelectionModel=");
+        sbU.append(this.inputSelectionModel);
+        sbU.append(", showErrorsForOptions=");
+        sbU.append(this.showErrorsForOptions);
+        sbU.append(", stickerMatches=");
+        return a.L(sbU, this.stickerMatches, ")");
     }
 }

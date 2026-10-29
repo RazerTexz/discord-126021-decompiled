@@ -1,13 +1,13 @@
 package com.discord.widgets.hubs.events;
 
+import b.d.b.a.a;
 import com.discord.api.directory.DirectoryEntryEvent;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubEventsViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -22,8 +22,8 @@ public final /* data */ class WidgetHubEventsState {
 
     /* JADX WARN: Multi-variable type inference failed */
     public WidgetHubEventsState(boolean z2, List<HubGuildScheduledEventData> list, RestCallState<? extends List<DirectoryEntryEvent>> restCallState) {
-        C12238m.checkNotNullParameter(list, "eventsData");
-        C12238m.checkNotNullParameter(restCallState, "eventsAsync");
+        m.checkNotNullParameter(list, "eventsData");
+        m.checkNotNullParameter(restCallState, "eventsAsync");
         this.showHeader = z2;
         this.eventsData = list;
         this.eventsAsync = restCallState;
@@ -52,8 +52,8 @@ public final /* data */ class WidgetHubEventsState {
     }
 
     public final WidgetHubEventsState copy(boolean showHeader, List<HubGuildScheduledEventData> eventsData, RestCallState<? extends List<DirectoryEntryEvent>> eventsAsync) {
-        C12238m.checkNotNullParameter(eventsData, "eventsData");
-        C12238m.checkNotNullParameter(eventsAsync, "eventsAsync");
+        m.checkNotNullParameter(eventsData, "eventsData");
+        m.checkNotNullParameter(eventsAsync, "eventsAsync");
         return new WidgetHubEventsState(showHeader, eventsData, eventsAsync);
     }
 
@@ -65,7 +65,7 @@ public final /* data */ class WidgetHubEventsState {
             return false;
         }
         WidgetHubEventsState widgetHubEventsState = (WidgetHubEventsState) other;
-        return this.showHeader == widgetHubEventsState.showHeader && C12238m.areEqual(this.eventsData, widgetHubEventsState.eventsData) && C12238m.areEqual(this.eventsAsync, widgetHubEventsState.eventsAsync);
+        return this.showHeader == widgetHubEventsState.showHeader && m.areEqual(this.eventsData, widgetHubEventsState.eventsData) && m.areEqual(this.eventsAsync, widgetHubEventsState.eventsAsync);
     }
 
     public final RestCallState<List<DirectoryEntryEvent>> getEventsAsync() {
@@ -103,17 +103,17 @@ public final /* data */ class WidgetHubEventsState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("WidgetHubEventsState(showHeader=");
-        sbM833U.append(this.showHeader);
-        sbM833U.append(", eventsData=");
-        sbM833U.append(this.eventsData);
-        sbM833U.append(", eventsAsync=");
-        sbM833U.append(this.eventsAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("WidgetHubEventsState(showHeader=");
+        sbU.append(this.showHeader);
+        sbU.append(", eventsData=");
+        sbU.append(this.eventsData);
+        sbU.append(", eventsAsync=");
+        sbU.append(this.eventsAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ WidgetHubEventsState(boolean z2, List list, RestCallState restCallState, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? true : z2, (i & 2) != 0 ? C12147n.emptyList() : list, (i & 4) != 0 ? Default.INSTANCE : restCallState);
+        this((i & 1) != 0 ? true : z2, (i & 2) != 0 ? n.emptyList() : list, (i & 4) != 0 ? Default.INSTANCE : restCallState);
     }
 }

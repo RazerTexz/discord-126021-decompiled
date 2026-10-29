@@ -10,27 +10,25 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetPhoneCountryCodeBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17363a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f17364b;
+    public final RecyclerView f2509b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f17365c;
+    public final TextInputLayout c;
 
     public WidgetPhoneCountryCodeBottomSheetBinding(@NonNull LinearLayout linearLayout, @NonNull RecyclerView recyclerView, @NonNull TextInputLayout textInputLayout) {
-        this.f17363a = linearLayout;
-        this.f17364b = recyclerView;
-        this.f17365c = textInputLayout;
+        this.a = linearLayout;
+        this.f2509b = recyclerView;
+        this.c = textInputLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17363a;
+        return this.a;
     }
 }

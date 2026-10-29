@@ -20,6 +20,23 @@ public class TimerOnce {
         this.command = runnable;
     }
 
+    public static /* synthetic */ String access$000(TimerOnce timerOnce) {
+        return timerOnce.name;
+    }
+
+    public static /* synthetic */ ILogger access$100(TimerOnce timerOnce) {
+        return timerOnce.logger;
+    }
+
+    public static /* synthetic */ Runnable access$200(TimerOnce timerOnce) {
+        return timerOnce.command;
+    }
+
+    public static /* synthetic */ ScheduledFuture access$302(TimerOnce timerOnce, ScheduledFuture scheduledFuture) {
+        timerOnce.waitingTask = scheduledFuture;
+        return scheduledFuture;
+    }
+
     private void cancel(boolean z2) {
         ScheduledFuture scheduledFuture = this.waitingTask;
         if (scheduledFuture != null) {
@@ -40,14 +57,7 @@ public class TimerOnce {
     public void startIn(long j) {
         cancel(false);
         this.logger.verbose("%s starting. Launching in %s seconds", this.name, Util.SecondsDisplayFormat.format(j / 1000.0d));
-        this.waitingTask = this.scheduler.scheduleFuture(new Runnable() { // from class: com.adjust.sdk.scheduler.TimerOnce.1
-            @Override // java.lang.Runnable
-            public void run() {
-                TimerOnce.this.logger.verbose("%s fired", TimerOnce.this.name);
-                TimerOnce.this.command.run();
-                TimerOnce.this.waitingTask = null;
-            }
-        }, j);
+        this.waitingTask = this.scheduler.scheduleFuture(new TimerOnce$1(this), j);
     }
 
     public void teardown() {

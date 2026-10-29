@@ -3,13 +3,14 @@ package com.google.android.material.internal;
 import android.content.Context;
 import android.util.AttributeSet;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class NavigationMenuView extends RecyclerView implements MenuView {
     public NavigationMenuView(Context context) {
         this(context, null);

@@ -1,8 +1,8 @@
 package com.discord.api.auth.mfa;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: BackupCode.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class BackupCode {
             return false;
         }
         BackupCode backupCode = (BackupCode) other;
-        return C12238m.areEqual(this.code, backupCode.code) && this.consumed == backupCode.consumed;
+        return m.areEqual(this.code, backupCode.code) && this.consumed == backupCode.consumed;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -48,9 +48,9 @@ public final /* data */ class BackupCode {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("BackupCode(code=");
-        sbM833U.append(this.code);
-        sbM833U.append(", consumed=");
-        return C1643a.m827O(sbM833U, this.consumed, ")");
+        StringBuilder sbU = a.U("BackupCode(code=");
+        sbU.append(this.code);
+        sbU.append(", consumed=");
+        return a.O(sbU, this.consumed, ")");
     }
 }

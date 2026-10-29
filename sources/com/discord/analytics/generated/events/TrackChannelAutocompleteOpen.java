@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChannelAutocompleteOpen.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,6 +23,11 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "channel_autocomplete_open";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +36,7 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
             return false;
         }
         TrackChannelAutocompleteOpen trackChannelAutocompleteOpen = (TrackChannelAutocompleteOpen) other;
-        return C12238m.areEqual(this.autocompleteType, trackChannelAutocompleteOpen.autocompleteType) && C12238m.areEqual(this.hasSticker, trackChannelAutocompleteOpen.hasSticker) && C12238m.areEqual(this.hasEmoji, trackChannelAutocompleteOpen.hasEmoji) && C12238m.areEqual(this.numStickerResults, trackChannelAutocompleteOpen.numStickerResults) && C12238m.areEqual(this.numEmojiResults, trackChannelAutocompleteOpen.numEmojiResults);
+        return m.areEqual(this.autocompleteType, trackChannelAutocompleteOpen.autocompleteType) && m.areEqual(this.hasSticker, trackChannelAutocompleteOpen.hasSticker) && m.areEqual(this.hasEmoji, trackChannelAutocompleteOpen.hasEmoji) && m.areEqual(this.numStickerResults, trackChannelAutocompleteOpen.numStickerResults) && m.areEqual(this.numEmojiResults, trackChannelAutocompleteOpen.numEmojiResults);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -59,22 +64,16 @@ public final /* data */ class TrackChannelAutocompleteOpen implements AnalyticsS
         return iHashCode4 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChannelAutocompleteOpen(autocompleteType=");
-        sbM833U.append(this.autocompleteType);
-        sbM833U.append(", hasSticker=");
-        sbM833U.append(this.hasSticker);
-        sbM833U.append(", hasEmoji=");
-        sbM833U.append(this.hasEmoji);
-        sbM833U.append(", numStickerResults=");
-        sbM833U.append(this.numStickerResults);
-        sbM833U.append(", numEmojiResults=");
-        return C1643a.m819G(sbM833U, this.numEmojiResults, ")");
+        StringBuilder sbU = a.U("TrackChannelAutocompleteOpen(autocompleteType=");
+        sbU.append(this.autocompleteType);
+        sbU.append(", hasSticker=");
+        sbU.append(this.hasSticker);
+        sbU.append(", hasEmoji=");
+        sbU.append(this.hasEmoji);
+        sbU.append(", numStickerResults=");
+        sbU.append(this.numStickerResults);
+        sbU.append(", numEmojiResults=");
+        return a.G(sbU, this.numEmojiResults, ")");
     }
 }

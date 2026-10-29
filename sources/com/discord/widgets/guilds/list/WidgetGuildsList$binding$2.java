@@ -4,15 +4,15 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.RelativeLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetGuildsListBinding;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGuildsList.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetGuildsList$binding$2 extends C12236k implements Function1<View, WidgetGuildsListBinding> {
+public final /* synthetic */ class WidgetGuildsList$binding$2 extends k implements Function1<View, WidgetGuildsListBinding> {
     public static final WidgetGuildsList$binding$2 INSTANCE = new WidgetGuildsList$binding$2();
 
     public WidgetGuildsList$binding$2() {
@@ -20,13 +20,18 @@ public final /* synthetic */ class WidgetGuildsList$binding$2 extends C12236k im
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetGuildsListBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.guild_list;
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(C5419R.id.guild_list);
+    public /* bridge */ /* synthetic */ WidgetGuildsListBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetGuildsListBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.guild_list;
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R$id.guild_list);
         if (recyclerView != null) {
-            i = C5419R.id.guild_list_unreads_stub;
-            ViewStub viewStub = (ViewStub) view.findViewById(C5419R.id.guild_list_unreads_stub);
+            i = R$id.guild_list_unreads_stub;
+            ViewStub viewStub = (ViewStub) view.findViewById(R$id.guild_list_unreads_stub);
             if (viewStub != null) {
                 return new WidgetGuildsListBinding((RelativeLayout) view, recyclerView, viewStub);
             }

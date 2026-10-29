@@ -11,18 +11,16 @@ public final class GuildApplicationCommands {
     private final String nonce;
     private final long updatedAt;
 
-    /* JADX INFO: renamed from: c, reason: from getter */
-    public final String getNonce() {
-        return this.nonce;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public final List<ApplicationCommand> m7746a() {
+    public final List<ApplicationCommand> a() {
         return this.applicationCommands;
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<Application> m7747b() {
+    public final List<Application> b() {
         return this.applications;
+    }
+
+    /* JADX INFO: renamed from: c, reason: from getter */
+    public final String getNonce() {
+        return this.nonce;
     }
 }

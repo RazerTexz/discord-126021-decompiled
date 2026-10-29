@@ -9,25 +9,24 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.PointerIcon;
 import android.view.View;
+import android.view.View$AccessibilityDelegate;
+import android.view.View$DragShadowBuilder;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowInsets;
-import android.view.WindowInsetsController;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeProvider;
@@ -37,17 +36,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
-import androidx.annotation.RestrictTo;
 import androidx.annotation.UiThread;
-import androidx.collection.SimpleArrayMap;
-import androidx.core.C0205R;
+import androidx.core.R$id;
 import androidx.core.util.Preconditions;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityActionCompat;
 import androidx.core.view.accessibility.AccessibilityNodeProviderCompat;
 import androidx.core.view.accessibility.AccessibilityViewCommand;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.ref.WeakReference;
+import b.d.b.a.a;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -55,17 +51,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"PrivateConstructorForUtilityClass"})
 public class ViewCompat {
-    private static final int[] ACCESSIBILITY_ACTIONS_RESOURCE_IDS = {C0205R.id.accessibility_custom_action_0, C0205R.id.accessibility_custom_action_1, C0205R.id.accessibility_custom_action_2, C0205R.id.accessibility_custom_action_3, C0205R.id.accessibility_custom_action_4, C0205R.id.accessibility_custom_action_5, C0205R.id.accessibility_custom_action_6, C0205R.id.accessibility_custom_action_7, C0205R.id.accessibility_custom_action_8, C0205R.id.accessibility_custom_action_9, C0205R.id.accessibility_custom_action_10, C0205R.id.accessibility_custom_action_11, C0205R.id.accessibility_custom_action_12, C0205R.id.accessibility_custom_action_13, C0205R.id.accessibility_custom_action_14, C0205R.id.accessibility_custom_action_15, C0205R.id.accessibility_custom_action_16, C0205R.id.accessibility_custom_action_17, C0205R.id.accessibility_custom_action_18, C0205R.id.accessibility_custom_action_19, C0205R.id.accessibility_custom_action_20, C0205R.id.accessibility_custom_action_21, C0205R.id.accessibility_custom_action_22, C0205R.id.accessibility_custom_action_23, C0205R.id.accessibility_custom_action_24, C0205R.id.accessibility_custom_action_25, C0205R.id.accessibility_custom_action_26, C0205R.id.accessibility_custom_action_27, C0205R.id.accessibility_custom_action_28, C0205R.id.accessibility_custom_action_29, C0205R.id.accessibility_custom_action_30, C0205R.id.accessibility_custom_action_31};
+    private static final int[] ACCESSIBILITY_ACTIONS_RESOURCE_IDS = {R$id.accessibility_custom_action_0, R$id.accessibility_custom_action_1, R$id.accessibility_custom_action_2, R$id.accessibility_custom_action_3, R$id.accessibility_custom_action_4, R$id.accessibility_custom_action_5, R$id.accessibility_custom_action_6, R$id.accessibility_custom_action_7, R$id.accessibility_custom_action_8, R$id.accessibility_custom_action_9, R$id.accessibility_custom_action_10, R$id.accessibility_custom_action_11, R$id.accessibility_custom_action_12, R$id.accessibility_custom_action_13, R$id.accessibility_custom_action_14, R$id.accessibility_custom_action_15, R$id.accessibility_custom_action_16, R$id.accessibility_custom_action_17, R$id.accessibility_custom_action_18, R$id.accessibility_custom_action_19, R$id.accessibility_custom_action_20, R$id.accessibility_custom_action_21, R$id.accessibility_custom_action_22, R$id.accessibility_custom_action_23, R$id.accessibility_custom_action_24, R$id.accessibility_custom_action_25, R$id.accessibility_custom_action_26, R$id.accessibility_custom_action_27, R$id.accessibility_custom_action_28, R$id.accessibility_custom_action_29, R$id.accessibility_custom_action_30, R$id.accessibility_custom_action_31};
     public static final int ACCESSIBILITY_LIVE_REGION_ASSERTIVE = 2;
     public static final int ACCESSIBILITY_LIVE_REGION_NONE = 0;
     public static final int ACCESSIBILITY_LIVE_REGION_POLITE = 1;
@@ -133,457 +126,45 @@ public class ViewCompat {
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
     private static WeakHashMap<View, ViewPropertyAnimatorCompat> sViewPropertyAnimatorMap = null;
     private static boolean sAccessibilityDelegateCheckFailed = false;
-    private static final OnReceiveContentViewBehavior NO_OP_ON_RECEIVE_CONTENT_VIEW_BEHAVIOR = new OnReceiveContentViewBehavior() { // from class: androidx.core.view.ViewCompat.1
-        @Override // androidx.core.view.OnReceiveContentViewBehavior
-        public ContentInfoCompat onReceiveContent(@NonNull ContentInfoCompat contentInfoCompat) {
-            return contentInfoCompat;
-        }
-    };
-    private static AccessibilityPaneVisibilityManager sAccessibilityPaneVisibilityManager = new AccessibilityPaneVisibilityManager();
-
-    public abstract class AccessibilityViewProperty<T> {
-        private final int mContentChangeType;
-        private final int mFrameworkMinimumSdk;
-        private final int mTagKey;
-        private final Class<T> mType;
-
-        public AccessibilityViewProperty(int i, Class<T> cls, int i2) {
-            this(i, cls, 0, i2);
-        }
-
-        public boolean booleanNullToFalseEquals(Boolean bool, Boolean bool2) {
-            return (bool == null ? false : bool.booleanValue()) == (bool2 == null ? false : bool2.booleanValue());
-        }
-
-        private boolean extrasAvailable() {
-            return true;
-        }
-
-        private boolean frameworkAvailable() {
-            return Build.VERSION.SDK_INT >= this.mFrameworkMinimumSdk;
-        }
-
-        public abstract T frameworkGet(View view);
-
-        public abstract void frameworkSet(View view, T t);
-
-        public T get(View view) {
-            if (frameworkAvailable()) {
-                return frameworkGet(view);
-            }
-            if (!extrasAvailable()) {
-                return null;
-            }
-            T t = (T) view.getTag(this.mTagKey);
-            if (this.mType.isInstance(t)) {
-                return t;
-            }
-            return null;
-        }
-
-        public void set(View view, T t) {
-            if (frameworkAvailable()) {
-                frameworkSet(view, t);
-            } else if (extrasAvailable() && shouldUpdate(get(view), t)) {
-                ViewCompat.getOrCreateAccessibilityDelegateCompat(view);
-                view.setTag(this.mTagKey, t);
-                ViewCompat.notifyViewAccessibilityStateChangedIfNeeded(view, this.mContentChangeType);
-            }
-        }
-
-        public boolean shouldUpdate(T t, T t2) {
-            return !t2.equals(t);
-        }
-
-        public AccessibilityViewProperty(int i, Class<T> cls, int i2, int i3) {
-            this.mTagKey = i;
-            this.mType = cls;
-            this.mContentChangeType = i2;
-            this.mFrameworkMinimumSdk = i3;
-        }
-    }
-
-    @RequiresApi(21)
-    public class Api21Impl {
-        private Api21Impl() {
-        }
-
-        public static void callCompatInsetAnimationCallback(@NonNull WindowInsets windowInsets, @NonNull View view) {
-            View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(C0205R.id.tag_window_insets_animation_callback);
-            if (onApplyWindowInsetsListener != null) {
-                onApplyWindowInsetsListener.onApplyWindowInsets(view, windowInsets);
-            }
-        }
-
-        public static WindowInsetsCompat computeSystemWindowInsets(@NonNull View view, @NonNull WindowInsetsCompat windowInsetsCompat, @NonNull Rect rect) {
-            WindowInsets windowInsets = windowInsetsCompat.toWindowInsets();
-            if (windowInsets != null) {
-                return WindowInsetsCompat.toWindowInsetsCompat(view.computeSystemWindowInsets(windowInsets, rect), view);
-            }
-            rect.setEmpty();
-            return windowInsetsCompat;
-        }
-
-        @Nullable
-        public static WindowInsetsCompat getRootWindowInsets(@NonNull View view) {
-            return WindowInsetsCompat.Api21ReflectionHolder.getRootWindowInsets(view);
-        }
-
-        public static void setOnApplyWindowInsetsListener(@NonNull final View view, @Nullable final OnApplyWindowInsetsListener onApplyWindowInsetsListener) {
-            if (Build.VERSION.SDK_INT < 30) {
-                view.setTag(C0205R.id.tag_on_apply_window_listener, onApplyWindowInsetsListener);
-            }
-            if (onApplyWindowInsetsListener == null) {
-                view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(C0205R.id.tag_window_insets_animation_callback));
-            } else {
-                view.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() { // from class: androidx.core.view.ViewCompat.Api21Impl.1
-                    public WindowInsetsCompat mLastInsets = null;
-
-                    @Override // android.view.View.OnApplyWindowInsetsListener
-                    public WindowInsets onApplyWindowInsets(View view2, WindowInsets windowInsets) {
-                        WindowInsetsCompat windowInsetsCompat = WindowInsetsCompat.toWindowInsetsCompat(windowInsets, view2);
-                        int i = Build.VERSION.SDK_INT;
-                        if (i < 30) {
-                            Api21Impl.callCompatInsetAnimationCallback(windowInsets, view);
-                            if (windowInsetsCompat.equals(this.mLastInsets)) {
-                                return onApplyWindowInsetsListener.onApplyWindowInsets(view2, windowInsetsCompat).toWindowInsets();
-                            }
-                        }
-                        this.mLastInsets = windowInsetsCompat;
-                        WindowInsetsCompat windowInsetsCompatOnApplyWindowInsets = onApplyWindowInsetsListener.onApplyWindowInsets(view2, windowInsetsCompat);
-                        if (i >= 30) {
-                            return windowInsetsCompatOnApplyWindowInsets.toWindowInsets();
-                        }
-                        ViewCompat.requestApplyInsets(view2);
-                        return windowInsetsCompatOnApplyWindowInsets.toWindowInsets();
-                    }
-                });
-            }
-        }
-    }
-
-    @RequiresApi(23)
-    public class Api23Impl {
-        private Api23Impl() {
-        }
-
-        @Nullable
-        public static WindowInsetsCompat getRootWindowInsets(@NonNull View view) {
-            WindowInsets rootWindowInsets = view.getRootWindowInsets();
-            if (rootWindowInsets == null) {
-                return null;
-            }
-            WindowInsetsCompat windowInsetsCompat = WindowInsetsCompat.toWindowInsetsCompat(rootWindowInsets);
-            windowInsetsCompat.setRootWindowInsets(windowInsetsCompat);
-            windowInsetsCompat.copyRootViewBounds(view.getRootView());
-            return windowInsetsCompat;
-        }
-    }
-
-    @RequiresApi(29)
-    public class Api29Impl {
-        private Api29Impl() {
-        }
-
-        public static void saveAttributeDataForStyleable(@NonNull View view, @NonNull Context context, @NonNull int[] iArr, @Nullable AttributeSet attributeSet, @NonNull TypedArray typedArray, int i, int i2) {
-            view.saveAttributeDataForStyleable(context, iArr, attributeSet, typedArray, i, i2);
-        }
-    }
-
-    @RequiresApi(30)
-    public class Api30Impl {
-        private Api30Impl() {
-        }
-
-        @Nullable
-        public static WindowInsetsControllerCompat getWindowInsetsController(@NonNull View view) {
-            WindowInsetsController windowInsetsController = view.getWindowInsetsController();
-            if (windowInsetsController != null) {
-                return WindowInsetsControllerCompat.toWindowInsetsControllerCompat(windowInsetsController);
-            }
-            return null;
-        }
-    }
-
-    @RequiresApi(28)
-    public class CompatImplApi28 {
-        private CompatImplApi28() {
-        }
-
-        public static void addOnUnhandledKeyEventListener(@NonNull View view, @NonNull final OnUnhandledKeyEventListenerCompat onUnhandledKeyEventListenerCompat) {
-            int i = C0205R.id.tag_unhandled_key_listeners;
-            SimpleArrayMap simpleArrayMap = (SimpleArrayMap) view.getTag(i);
-            if (simpleArrayMap == null) {
-                simpleArrayMap = new SimpleArrayMap();
-                view.setTag(i, simpleArrayMap);
-            }
-            View.OnUnhandledKeyEventListener onUnhandledKeyEventListener = new View.OnUnhandledKeyEventListener() { // from class: androidx.core.view.ViewCompat.CompatImplApi28.1
-                @Override // android.view.View.OnUnhandledKeyEventListener
-                public boolean onUnhandledKeyEvent(View view2, KeyEvent keyEvent) {
-                    return onUnhandledKeyEventListenerCompat.onUnhandledKeyEvent(view2, keyEvent);
-                }
-            };
-            simpleArrayMap.put(onUnhandledKeyEventListenerCompat, onUnhandledKeyEventListener);
-            view.addOnUnhandledKeyEventListener(onUnhandledKeyEventListener);
-        }
-
-        public static void removeOnUnhandledKeyEventListener(@NonNull View view, @NonNull OnUnhandledKeyEventListenerCompat onUnhandledKeyEventListenerCompat) {
-            View.OnUnhandledKeyEventListener onUnhandledKeyEventListener;
-            SimpleArrayMap simpleArrayMap = (SimpleArrayMap) view.getTag(C0205R.id.tag_unhandled_key_listeners);
-            if (simpleArrayMap == null || (onUnhandledKeyEventListener = (View.OnUnhandledKeyEventListener) simpleArrayMap.get(onUnhandledKeyEventListenerCompat)) == null) {
-                return;
-            }
-            view.removeOnUnhandledKeyEventListener(onUnhandledKeyEventListener);
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface FocusDirection {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface FocusRealDirection {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface FocusRelativeDirection {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface NestedScrollType {
-    }
-
-    public interface OnUnhandledKeyEventListenerCompat {
-        boolean onUnhandledKeyEvent(View view, KeyEvent keyEvent);
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface ScrollAxis {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface ScrollIndicators {
-    }
-
-    public class UnhandledKeyEventManager {
-        private static final ArrayList<WeakReference<View>> sViewsWithListeners = new ArrayList<>();
-
-        @Nullable
-        private WeakHashMap<View, Boolean> mViewsContainingListeners = null;
-        private SparseArray<WeakReference<View>> mCapturedKeys = null;
-        private WeakReference<KeyEvent> mLastDispatchedPreViewKeyEvent = null;
-
-        public boolean dispatch(View view, KeyEvent keyEvent) {
-            if (keyEvent.getAction() == 0) {
-                recalcViewsWithUnhandled();
-            }
-            View viewDispatchInOrder = dispatchInOrder(view, keyEvent);
-            if (keyEvent.getAction() == 0) {
-                int keyCode = keyEvent.getKeyCode();
-                if (viewDispatchInOrder != null && !KeyEvent.isModifierKey(keyCode)) {
-                    getCapturedKeys().put(keyCode, new WeakReference<>(viewDispatchInOrder));
-                }
-            }
-            return viewDispatchInOrder != null;
-        }
-
-        @Nullable
-        private View dispatchInOrder(View view, KeyEvent keyEvent) {
-            WeakHashMap<View, Boolean> weakHashMap = this.mViewsContainingListeners;
-            if (weakHashMap != null && weakHashMap.containsKey(view)) {
-                if (view instanceof ViewGroup) {
-                    ViewGroup viewGroup = (ViewGroup) view;
-                    for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
-                        View viewDispatchInOrder = dispatchInOrder(viewGroup.getChildAt(childCount), keyEvent);
-                        if (viewDispatchInOrder != null) {
-                            return viewDispatchInOrder;
-                        }
-                    }
-                }
-                if (onUnhandledKeyEvent(view, keyEvent)) {
-                    return view;
-                }
-            }
-            return null;
-        }
-
-        private SparseArray<WeakReference<View>> getCapturedKeys() {
-            if (this.mCapturedKeys == null) {
-                this.mCapturedKeys = new SparseArray<>();
-            }
-            return this.mCapturedKeys;
-        }
-
-        /* JADX INFO: renamed from: at */
-        public static UnhandledKeyEventManager m89at(View view) {
-            int i = C0205R.id.tag_unhandled_key_event_manager;
-            UnhandledKeyEventManager unhandledKeyEventManager = (UnhandledKeyEventManager) view.getTag(i);
-            if (unhandledKeyEventManager != null) {
-                return unhandledKeyEventManager;
-            }
-            UnhandledKeyEventManager unhandledKeyEventManager2 = new UnhandledKeyEventManager();
-            view.setTag(i, unhandledKeyEventManager2);
-            return unhandledKeyEventManager2;
-        }
-
-        private boolean onUnhandledKeyEvent(@NonNull View view, @NonNull KeyEvent keyEvent) {
-            ArrayList arrayList = (ArrayList) view.getTag(C0205R.id.tag_unhandled_key_listeners);
-            if (arrayList == null) {
-                return false;
-            }
-            for (int size = arrayList.size() - 1; size >= 0; size--) {
-                if (((OnUnhandledKeyEventListenerCompat) arrayList.get(size)).onUnhandledKeyEvent(view, keyEvent)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public boolean preDispatch(KeyEvent keyEvent) {
-            int iIndexOfKey;
-            WeakReference<KeyEvent> weakReference = this.mLastDispatchedPreViewKeyEvent;
-            if (weakReference != null && weakReference.get() == keyEvent) {
-                return false;
-            }
-            this.mLastDispatchedPreViewKeyEvent = new WeakReference<>(keyEvent);
-            WeakReference<View> weakReferenceValueAt = null;
-            SparseArray<WeakReference<View>> capturedKeys = getCapturedKeys();
-            if (keyEvent.getAction() == 1 && (iIndexOfKey = capturedKeys.indexOfKey(keyEvent.getKeyCode())) >= 0) {
-                weakReferenceValueAt = capturedKeys.valueAt(iIndexOfKey);
-                capturedKeys.removeAt(iIndexOfKey);
-            }
-            if (weakReferenceValueAt == null) {
-                weakReferenceValueAt = capturedKeys.get(keyEvent.getKeyCode());
-            }
-            if (weakReferenceValueAt == null) {
-                return false;
-            }
-            View view = weakReferenceValueAt.get();
-            if (view != null && ViewCompat.isAttachedToWindow(view)) {
-                onUnhandledKeyEvent(view, keyEvent);
-            }
-            return true;
-        }
-
-        private void recalcViewsWithUnhandled() {
-            WeakHashMap<View, Boolean> weakHashMap = this.mViewsContainingListeners;
-            if (weakHashMap != null) {
-                weakHashMap.clear();
-            }
-            ArrayList<WeakReference<View>> arrayList = sViewsWithListeners;
-            if (arrayList.isEmpty()) {
-                return;
-            }
-            synchronized (arrayList) {
-                if (this.mViewsContainingListeners == null) {
-                    this.mViewsContainingListeners = new WeakHashMap<>();
-                }
-                for (int size = arrayList.size() - 1; size >= 0; size--) {
-                    ArrayList<WeakReference<View>> arrayList2 = sViewsWithListeners;
-                    View view = arrayList2.get(size).get();
-                    if (view == null) {
-                        arrayList2.remove(size);
-                    } else {
-                        this.mViewsContainingListeners.put(view, Boolean.TRUE);
-                        for (ViewParent parent = view.getParent(); parent instanceof View; parent = parent.getParent()) {
-                            this.mViewsContainingListeners.put((View) parent, Boolean.TRUE);
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void registerListeningView(View view) {
-            ArrayList<WeakReference<View>> arrayList = sViewsWithListeners;
-            synchronized (arrayList) {
-                Iterator<WeakReference<View>> it = arrayList.iterator();
-                while (it.hasNext()) {
-                    if (it.next().get() == view) {
-                        return;
-                    }
-                }
-                sViewsWithListeners.add(new WeakReference<>(view));
-            }
-        }
-
-        public static void unregisterListeningView(View view) {
-            synchronized (sViewsWithListeners) {
-                int i = 0;
-                while (true) {
-                    ArrayList<WeakReference<View>> arrayList = sViewsWithListeners;
-                    if (i >= arrayList.size()) {
-                        return;
-                    }
-                    if (arrayList.get(i).get() == view) {
-                        arrayList.remove(i);
-                        return;
-                    }
-                    i++;
-                }
-            }
-        }
-    }
+    private static final OnReceiveContentViewBehavior NO_OP_ON_RECEIVE_CONTENT_VIEW_BEHAVIOR = new ViewCompat$1();
+    private static ViewCompat$AccessibilityPaneVisibilityManager sAccessibilityPaneVisibilityManager = new ViewCompat$AccessibilityPaneVisibilityManager();
 
     @Deprecated
     public ViewCompat() {
     }
 
-    private static AccessibilityViewProperty<Boolean> accessibilityHeadingProperty() {
-        return new AccessibilityViewProperty<Boolean>(C0205R.id.tag_accessibility_heading, Boolean.class, 28) { // from class: androidx.core.view.ViewCompat.5
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(28)
-            public Boolean frameworkGet(View view) {
-                return Boolean.valueOf(view.isAccessibilityHeading());
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(28)
-            public void frameworkSet(View view, Boolean bool) {
-                view.setAccessibilityHeading(bool.booleanValue());
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            public boolean shouldUpdate(Boolean bool, Boolean bool2) {
-                return !booleanNullToFalseEquals(bool, bool2);
-            }
-        };
+    private static ViewCompat$AccessibilityViewProperty<Boolean> accessibilityHeadingProperty() {
+        return new ViewCompat$5(R$id.tag_accessibility_heading, Boolean.class, 28);
     }
 
     public static int addAccessibilityAction(@NonNull View view, @NonNull CharSequence charSequence, @NonNull AccessibilityViewCommand accessibilityViewCommand) {
         int availableActionIdFromResources = getAvailableActionIdFromResources(view, charSequence);
         if (availableActionIdFromResources != -1) {
-            addAccessibilityAction(view, new AccessibilityNodeInfoCompat.AccessibilityActionCompat(availableActionIdFromResources, charSequence, accessibilityViewCommand));
+            addAccessibilityAction(view, new AccessibilityNodeInfoCompat$AccessibilityActionCompat(availableActionIdFromResources, charSequence, accessibilityViewCommand));
         }
         return availableActionIdFromResources;
     }
 
     public static void addKeyboardNavigationClusters(@NonNull View view, @NonNull Collection<View> collection, int i) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             view.addKeyboardNavigationClusters(collection, i);
         }
     }
 
-    public static void addOnUnhandledKeyEventListener(@NonNull View view, @NonNull OnUnhandledKeyEventListenerCompat onUnhandledKeyEventListenerCompat) {
-        if (Build.VERSION.SDK_INT >= 28) {
-            CompatImplApi28.addOnUnhandledKeyEventListener(view, onUnhandledKeyEventListenerCompat);
+    public static void addOnUnhandledKeyEventListener(@NonNull View view, @NonNull ViewCompat$OnUnhandledKeyEventListenerCompat viewCompat$OnUnhandledKeyEventListenerCompat) {
+        if (Build$VERSION.SDK_INT >= 28) {
+            ViewCompat$CompatImplApi28.addOnUnhandledKeyEventListener(view, viewCompat$OnUnhandledKeyEventListenerCompat);
             return;
         }
-        int i = C0205R.id.tag_unhandled_key_listeners;
+        int i = R$id.tag_unhandled_key_listeners;
         ArrayList arrayList = (ArrayList) view.getTag(i);
         if (arrayList == null) {
             arrayList = new ArrayList();
             view.setTag(i, arrayList);
         }
-        arrayList.add(onUnhandledKeyEventListenerCompat);
+        arrayList.add(viewCompat$OnUnhandledKeyEventListenerCompat);
         if (arrayList.size() == 1) {
-            UnhandledKeyEventManager.registerListeningView(view);
+            ViewCompat$UnhandledKeyEventManager.registerListeningView(view);
         }
     }
 
@@ -622,7 +203,7 @@ public class ViewCompat {
     }
 
     public static void cancelDragAndDrop(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             view.cancelDragAndDrop();
         }
     }
@@ -656,7 +237,7 @@ public class ViewCompat {
 
     @NonNull
     public static WindowInsetsCompat computeSystemWindowInsets(@NonNull View view, @NonNull WindowInsetsCompat windowInsetsCompat, @NonNull Rect rect) {
-        return Api21Impl.computeSystemWindowInsets(view, windowInsetsCompat, rect);
+        return ViewCompat$Api21Impl.computeSystemWindowInsets(view, windowInsetsCompat, rect);
     }
 
     @NonNull
@@ -672,7 +253,7 @@ public class ViewCompat {
     }
 
     public static void dispatchFinishTemporaryDetach(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             view.dispatchFinishTemporaryDetach();
             return;
         }
@@ -708,7 +289,7 @@ public class ViewCompat {
     }
 
     public static void dispatchStartTemporaryDetach(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             view.dispatchStartTemporaryDetach();
             return;
         }
@@ -729,18 +310,18 @@ public class ViewCompat {
 
     @UiThread
     public static boolean dispatchUnhandledKeyEventBeforeCallback(View view, KeyEvent keyEvent) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             return false;
         }
-        return UnhandledKeyEventManager.m89at(view).dispatch(view, keyEvent);
+        return ViewCompat$UnhandledKeyEventManager.at(view).dispatch(view, keyEvent);
     }
 
     @UiThread
     public static boolean dispatchUnhandledKeyEventBeforeHierarchy(View view, KeyEvent keyEvent) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             return false;
         }
-        return UnhandledKeyEventManager.m89at(view).preDispatch(keyEvent);
+        return ViewCompat$UnhandledKeyEventManager.at(view).preDispatch(keyEvent);
     }
 
     public static void enableAccessibleClickableSpanSupport(View view) {
@@ -753,20 +334,20 @@ public class ViewCompat {
 
     @Nullable
     public static AccessibilityDelegateCompat getAccessibilityDelegate(@NonNull View view) {
-        View.AccessibilityDelegate accessibilityDelegateInternal = getAccessibilityDelegateInternal(view);
+        View$AccessibilityDelegate accessibilityDelegateInternal = getAccessibilityDelegateInternal(view);
         if (accessibilityDelegateInternal == null) {
             return null;
         }
-        return accessibilityDelegateInternal instanceof AccessibilityDelegateCompat.AccessibilityDelegateAdapter ? ((AccessibilityDelegateCompat.AccessibilityDelegateAdapter) accessibilityDelegateInternal).mCompat : new AccessibilityDelegateCompat(accessibilityDelegateInternal);
+        return accessibilityDelegateInternal instanceof AccessibilityDelegateCompat$AccessibilityDelegateAdapter ? ((AccessibilityDelegateCompat$AccessibilityDelegateAdapter) accessibilityDelegateInternal).mCompat : new AccessibilityDelegateCompat(accessibilityDelegateInternal);
     }
 
     @Nullable
-    private static View.AccessibilityDelegate getAccessibilityDelegateInternal(@NonNull View view) {
-        return Build.VERSION.SDK_INT >= 29 ? view.getAccessibilityDelegate() : getAccessibilityDelegateThroughReflection(view);
+    private static View$AccessibilityDelegate getAccessibilityDelegateInternal(@NonNull View view) {
+        return Build$VERSION.SDK_INT >= 29 ? view.getAccessibilityDelegate() : getAccessibilityDelegateThroughReflection(view);
     }
 
     @Nullable
-    private static View.AccessibilityDelegate getAccessibilityDelegateThroughReflection(@NonNull View view) {
+    private static View$AccessibilityDelegate getAccessibilityDelegateThroughReflection(@NonNull View view) {
         if (sAccessibilityDelegateCheckFailed) {
             return null;
         }
@@ -782,8 +363,8 @@ public class ViewCompat {
         }
         try {
             Object obj = sAccessibilityDelegateField.get(view);
-            if (obj instanceof View.AccessibilityDelegate) {
-                return (View.AccessibilityDelegate) obj;
+            if (obj instanceof View$AccessibilityDelegate) {
+                return (View$AccessibilityDelegate) obj;
             }
             return null;
         } catch (Throwable unused2) {
@@ -809,8 +390,8 @@ public class ViewCompat {
         return paneTitleProperty().get(view);
     }
 
-    private static List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> getActionList(View view) {
-        int i = C0205R.id.tag_accessibility_actions;
+    private static List<AccessibilityNodeInfoCompat$AccessibilityActionCompat> getActionList(View view) {
+        int i = R$id.tag_accessibility_actions;
         ArrayList arrayList = (ArrayList) view.getTag(i);
         if (arrayList != null) {
             return arrayList;
@@ -826,7 +407,7 @@ public class ViewCompat {
     }
 
     private static int getAvailableActionIdFromResources(View view, @NonNull CharSequence charSequence) {
-        List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> actionList = getActionList(view);
+        List<AccessibilityNodeInfoCompat$AccessibilityActionCompat> actionList = getActionList(view);
         for (int i = 0; i < actionList.size(); i++) {
             if (TextUtils.equals(charSequence, actionList.get(i).getLabel())) {
                 return actionList.get(i).getId();
@@ -856,7 +437,7 @@ public class ViewCompat {
         return view.getBackgroundTintList();
     }
 
-    public static PorterDuff.Mode getBackgroundTintMode(@NonNull View view) {
+    public static PorterDuff$Mode getBackgroundTintMode(@NonNull View view) {
         return view.getBackgroundTintMode();
     }
 
@@ -902,7 +483,7 @@ public class ViewCompat {
 
     @SuppressLint({"InlinedApi"})
     public static int getImportantForAutofill(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return view.getImportantForAutofill();
         }
         return 0;
@@ -951,7 +532,7 @@ public class ViewCompat {
     }
 
     public static int getNextClusterForwardId(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return view.getNextClusterForwardId();
         }
         return -1;
@@ -959,7 +540,7 @@ public class ViewCompat {
 
     @Nullable
     public static String[] getOnReceiveContentMimeTypes(@NonNull View view) {
-        return (String[]) view.getTag(C0205R.id.tag_on_receive_content_mime_types);
+        return (String[]) view.getTag(R$id.tag_on_receive_content_mime_types);
     }
 
     public static AccessibilityDelegateCompat getOrCreateAccessibilityDelegateCompat(@NonNull View view) {
@@ -1002,7 +583,7 @@ public class ViewCompat {
 
     @Nullable
     public static WindowInsetsCompat getRootWindowInsets(@NonNull View view) {
-        return Build.VERSION.SDK_INT >= 23 ? Api23Impl.getRootWindowInsets(view) : Api21Impl.getRootWindowInsets(view);
+        return Build$VERSION.SDK_INT >= 23 ? ViewCompat$Api23Impl.getRootWindowInsets(view) : ViewCompat$Api21Impl.getRootWindowInsets(view);
     }
 
     @Deprecated
@@ -1031,7 +612,7 @@ public class ViewCompat {
     }
 
     public static int getScrollIndicators(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return view.getScrollIndicators();
         }
         return 0;
@@ -1045,7 +626,7 @@ public class ViewCompat {
 
     @NonNull
     public static List<Rect> getSystemGestureExclusionRects(@NonNull View view) {
-        return Build.VERSION.SDK_INT >= 29 ? view.getSystemGestureExclusionRects() : Collections.emptyList();
+        return Build$VERSION.SDK_INT >= 29 ? view.getSystemGestureExclusionRects() : Collections.emptyList();
     }
 
     @Nullable
@@ -1069,8 +650,8 @@ public class ViewCompat {
 
     @Nullable
     public static WindowInsetsControllerCompat getWindowInsetsController(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            return Api30Impl.getWindowInsetsController(view);
+        if (Build$VERSION.SDK_INT >= 30) {
+            return ViewCompat$Api30Impl.getWindowInsetsController(view);
         }
         for (Context context = view.getContext(); context instanceof ContextWrapper; context = ((ContextWrapper) context).getBaseContext()) {
             if (context instanceof Activity) {
@@ -1107,7 +688,7 @@ public class ViewCompat {
     }
 
     public static boolean hasExplicitFocusable(@NonNull View view) {
-        return Build.VERSION.SDK_INT >= 26 ? view.hasExplicitFocusable() : view.hasFocusable();
+        return Build$VERSION.SDK_INT >= 26 ? view.hasExplicitFocusable() : view.hasFocusable();
     }
 
     public static boolean hasNestedScrollingParent(@NonNull View view) {
@@ -1140,7 +721,7 @@ public class ViewCompat {
     }
 
     public static boolean isFocusedByDefault(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return view.isFocusedByDefault();
         }
         return false;
@@ -1151,7 +732,7 @@ public class ViewCompat {
     }
 
     public static boolean isImportantForAutofill(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return view.isImportantForAutofill();
         }
         return true;
@@ -1162,7 +743,7 @@ public class ViewCompat {
     }
 
     public static boolean isKeyboardNavigationCluster(@NonNull View view) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return view.isKeyboardNavigationCluster();
         }
         return false;
@@ -1204,7 +785,7 @@ public class ViewCompat {
     }
 
     public static View keyboardNavigationClusterSearch(@NonNull View view, View view2, int i) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             return view.keyboardNavigationClusterSearch(view2, i);
         }
         return null;
@@ -1248,7 +829,7 @@ public class ViewCompat {
     }
 
     public static void offsetLeftAndRight(@NonNull View view, int i) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             view.offsetLeftAndRight(i);
             return;
         }
@@ -1267,7 +848,7 @@ public class ViewCompat {
     }
 
     public static void offsetTopAndBottom(@NonNull View view, int i) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             view.offsetTopAndBottom(i);
             return;
         }
@@ -1311,26 +892,8 @@ public class ViewCompat {
         view.onPopulateAccessibilityEvent(accessibilityEvent);
     }
 
-    private static AccessibilityViewProperty<CharSequence> paneTitleProperty() {
-        return new AccessibilityViewProperty<CharSequence>(C0205R.id.tag_accessibility_pane_title, CharSequence.class, 8, 28) { // from class: androidx.core.view.ViewCompat.3
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(28)
-            public CharSequence frameworkGet(View view) {
-                return view.getAccessibilityPaneTitle();
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(28)
-            public void frameworkSet(View view, CharSequence charSequence) {
-                view.setAccessibilityPaneTitle(charSequence);
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            public boolean shouldUpdate(CharSequence charSequence, CharSequence charSequence2) {
-                return !TextUtils.equals(charSequence, charSequence2);
-            }
-        };
+    private static ViewCompat$AccessibilityViewProperty<CharSequence> paneTitleProperty() {
+        return new ViewCompat$3(R$id.tag_accessibility_pane_title, CharSequence.class, 8, 28);
     }
 
     public static boolean performAccessibilityAction(@NonNull View view, int i, Bundle bundle) {
@@ -1342,7 +905,7 @@ public class ViewCompat {
         if (Log.isLoggable(TAG, 3)) {
             Log.d(TAG, "performReceiveContent: " + contentInfoCompat + ", view=" + view.getClass().getSimpleName() + "[" + view.getId() + "]");
         }
-        OnReceiveContentListener onReceiveContentListener = (OnReceiveContentListener) view.getTag(C0205R.id.tag_on_receive_content_listener);
+        OnReceiveContentListener onReceiveContentListener = (OnReceiveContentListener) view.getTag(R$id.tag_on_receive_content_listener);
         if (onReceiveContentListener == null) {
             return getFallback(view).onReceiveContent(contentInfoCompat);
         }
@@ -1371,7 +934,7 @@ public class ViewCompat {
     }
 
     private static void removeActionWithId(int i, View view) {
-        List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> actionList = getActionList(view);
+        List<AccessibilityNodeInfoCompat$AccessibilityActionCompat> actionList = getActionList(view);
         for (int i2 = 0; i2 < actionList.size(); i2++) {
             if (actionList.get(i2).getId() == i) {
                 actionList.remove(i2);
@@ -1380,25 +943,25 @@ public class ViewCompat {
         }
     }
 
-    public static void removeOnUnhandledKeyEventListener(@NonNull View view, @NonNull OnUnhandledKeyEventListenerCompat onUnhandledKeyEventListenerCompat) {
-        if (Build.VERSION.SDK_INT >= 28) {
-            CompatImplApi28.removeOnUnhandledKeyEventListener(view, onUnhandledKeyEventListenerCompat);
+    public static void removeOnUnhandledKeyEventListener(@NonNull View view, @NonNull ViewCompat$OnUnhandledKeyEventListenerCompat viewCompat$OnUnhandledKeyEventListenerCompat) {
+        if (Build$VERSION.SDK_INT >= 28) {
+            ViewCompat$CompatImplApi28.removeOnUnhandledKeyEventListener(view, viewCompat$OnUnhandledKeyEventListenerCompat);
             return;
         }
-        ArrayList arrayList = (ArrayList) view.getTag(C0205R.id.tag_unhandled_key_listeners);
+        ArrayList arrayList = (ArrayList) view.getTag(R$id.tag_unhandled_key_listeners);
         if (arrayList != null) {
-            arrayList.remove(onUnhandledKeyEventListenerCompat);
+            arrayList.remove(viewCompat$OnUnhandledKeyEventListenerCompat);
             if (arrayList.size() == 0) {
-                UnhandledKeyEventManager.unregisterListeningView(view);
+                ViewCompat$UnhandledKeyEventManager.unregisterListeningView(view);
             }
         }
     }
 
-    public static void replaceAccessibilityAction(@NonNull View view, @NonNull AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat, @Nullable CharSequence charSequence, @Nullable AccessibilityViewCommand accessibilityViewCommand) {
+    public static void replaceAccessibilityAction(@NonNull View view, @NonNull AccessibilityNodeInfoCompat$AccessibilityActionCompat accessibilityNodeInfoCompat$AccessibilityActionCompat, @Nullable CharSequence charSequence, @Nullable AccessibilityViewCommand accessibilityViewCommand) {
         if (accessibilityViewCommand == null && charSequence == null) {
-            removeAccessibilityAction(view, accessibilityActionCompat.getId());
+            removeAccessibilityAction(view, accessibilityNodeInfoCompat$AccessibilityActionCompat.getId());
         } else {
-            addAccessibilityAction(view, accessibilityActionCompat.createReplacementAction(charSequence, accessibilityViewCommand));
+            addAccessibilityAction(view, accessibilityNodeInfoCompat$AccessibilityActionCompat.createReplacementAction(charSequence, accessibilityViewCommand));
         }
     }
 
@@ -1408,7 +971,7 @@ public class ViewCompat {
 
     @NonNull
     public static <T extends View> T requireViewById(@NonNull View view, @IdRes int i) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             return (T) view.requireViewById(i);
         }
         T t = (T) view.findViewById(i);
@@ -1424,39 +987,21 @@ public class ViewCompat {
     }
 
     public static boolean restoreDefaultFocus(@NonNull View view) {
-        return Build.VERSION.SDK_INT >= 26 ? view.restoreDefaultFocus() : view.requestFocus();
+        return Build$VERSION.SDK_INT >= 26 ? view.restoreDefaultFocus() : view.requestFocus();
     }
 
     public static void saveAttributeDataForStyleable(@NonNull View view, @NonNull @SuppressLint({"ContextFirst"}) Context context, @NonNull int[] iArr, @Nullable AttributeSet attributeSet, @NonNull TypedArray typedArray, int i, int i2) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            Api29Impl.saveAttributeDataForStyleable(view, context, iArr, attributeSet, typedArray, i, i2);
+        if (Build$VERSION.SDK_INT >= 29) {
+            ViewCompat$Api29Impl.saveAttributeDataForStyleable(view, context, iArr, attributeSet, typedArray, i, i2);
         }
     }
 
-    private static AccessibilityViewProperty<Boolean> screenReaderFocusableProperty() {
-        return new AccessibilityViewProperty<Boolean>(C0205R.id.tag_screen_reader_focusable, Boolean.class, 28) { // from class: androidx.core.view.ViewCompat.2
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(28)
-            public Boolean frameworkGet(View view) {
-                return Boolean.valueOf(view.isScreenReaderFocusable());
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(28)
-            public void frameworkSet(View view, Boolean bool) {
-                view.setScreenReaderFocusable(bool.booleanValue());
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            public boolean shouldUpdate(Boolean bool, Boolean bool2) {
-                return !booleanNullToFalseEquals(bool, bool2);
-            }
-        };
+    private static ViewCompat$AccessibilityViewProperty<Boolean> screenReaderFocusableProperty() {
+        return new ViewCompat$2(R$id.tag_screen_reader_focusable, Boolean.class, 28);
     }
 
     public static void setAccessibilityDelegate(@NonNull View view, AccessibilityDelegateCompat accessibilityDelegateCompat) {
-        if (accessibilityDelegateCompat == null && (getAccessibilityDelegateInternal(view) instanceof AccessibilityDelegateCompat.AccessibilityDelegateAdapter)) {
+        if (accessibilityDelegateCompat == null && (getAccessibilityDelegateInternal(view) instanceof AccessibilityDelegateCompat$AccessibilityDelegateAdapter)) {
             accessibilityDelegateCompat = new AccessibilityDelegateCompat();
         }
         view.setAccessibilityDelegate(accessibilityDelegateCompat == null ? null : accessibilityDelegateCompat.getBridge());
@@ -1487,12 +1032,12 @@ public class ViewCompat {
     }
 
     @Deprecated
-    public static void setAlpha(View view, @FloatRange(from = 0.0d, m75to = 1.0d) float f) {
+    public static void setAlpha(View view, @FloatRange(from = 0.0d, to = 1.0d) float f) {
         view.setAlpha(f);
     }
 
     public static void setAutofillHints(@NonNull View view, @Nullable String... strArr) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             view.setAutofillHints(strArr);
         }
     }
@@ -1502,7 +1047,7 @@ public class ViewCompat {
     }
 
     public static void setBackgroundTintList(@NonNull View view, ColorStateList colorStateList) {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         view.setBackgroundTintList(colorStateList);
         if (i == 21) {
             Drawable background = view.getBackground();
@@ -1517,9 +1062,9 @@ public class ViewCompat {
         }
     }
 
-    public static void setBackgroundTintMode(@NonNull View view, PorterDuff.Mode mode) {
-        int i = Build.VERSION.SDK_INT;
-        view.setBackgroundTintMode(mode);
+    public static void setBackgroundTintMode(@NonNull View view, PorterDuff$Mode porterDuff$Mode) {
+        int i = Build$VERSION.SDK_INT;
+        view.setBackgroundTintMode(porterDuff$Mode);
         if (i == 21) {
             Drawable background = view.getBackground();
             boolean z2 = (view.getBackgroundTintList() == null && view.getBackgroundTintMode() == null) ? false : true;
@@ -1568,7 +1113,7 @@ public class ViewCompat {
     }
 
     public static void setFocusedByDefault(@NonNull View view, boolean z2) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             view.setFocusedByDefault(z2);
         }
     }
@@ -1582,13 +1127,13 @@ public class ViewCompat {
     }
 
     public static void setImportantForAutofill(@NonNull View view, int i) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             view.setImportantForAutofill(i);
         }
     }
 
     public static void setKeyboardNavigationCluster(@NonNull View view, boolean z2) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             view.setKeyboardNavigationCluster(z2);
         }
     }
@@ -1615,13 +1160,13 @@ public class ViewCompat {
     }
 
     public static void setNextClusterForwardId(@NonNull View view, int i) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             view.setNextClusterForwardId(i);
         }
     }
 
     public static void setOnApplyWindowInsetsListener(@NonNull View view, @Nullable OnApplyWindowInsetsListener onApplyWindowInsetsListener) {
-        Api21Impl.setOnApplyWindowInsetsListener(view, onApplyWindowInsetsListener);
+        ViewCompat$Api21Impl.setOnApplyWindowInsetsListener(view, onApplyWindowInsetsListener);
     }
 
     public static void setOnReceiveContentListener(@NonNull View view, @Nullable String[] strArr, @Nullable OnReceiveContentListener onReceiveContentListener) {
@@ -1639,12 +1184,12 @@ public class ViewCompat {
                     break;
                 }
             }
-            StringBuilder sbM833U = C1643a.m833U("A MIME type set here must not start with *: ");
-            sbM833U.append(Arrays.toString(strArr));
-            Preconditions.checkArgument(!z2, sbM833U.toString());
+            StringBuilder sbU = a.U("A MIME type set here must not start with *: ");
+            sbU.append(Arrays.toString(strArr));
+            Preconditions.checkArgument(!z2, sbU.toString());
         }
-        view.setTag(C0205R.id.tag_on_receive_content_mime_types, strArr);
-        view.setTag(C0205R.id.tag_on_receive_content_listener, onReceiveContentListener);
+        view.setTag(R$id.tag_on_receive_content_mime_types, strArr);
+        view.setTag(R$id.tag_on_receive_content_listener, onReceiveContentListener);
     }
 
     @Deprecated
@@ -1667,7 +1212,7 @@ public class ViewCompat {
     }
 
     public static void setPointerIcon(@NonNull View view, PointerIconCompat pointerIconCompat) {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             view.setPointerIcon((PointerIcon) (pointerIconCompat != null ? pointerIconCompat.getPointerIcon() : null));
         }
     }
@@ -1708,7 +1253,7 @@ public class ViewCompat {
     }
 
     public static void setScrollIndicators(@NonNull View view, int i) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             view.setScrollIndicators(i);
         }
     }
@@ -1719,13 +1264,13 @@ public class ViewCompat {
     }
 
     public static void setSystemGestureExclusionRects(@NonNull View view, @NonNull List<Rect> list) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             view.setSystemGestureExclusionRects(list);
         }
     }
 
     public static void setTooltipText(@NonNull View view, @Nullable CharSequence charSequence) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build$VERSION.SDK_INT >= 26) {
             view.setTooltipText(charSequence);
         }
     }
@@ -1760,8 +1305,8 @@ public class ViewCompat {
         }
     }
 
-    public static void setWindowInsetsAnimationCallback(@NonNull View view, @Nullable WindowInsetsAnimationCompat.Callback callback) {
-        WindowInsetsAnimationCompat.setCallback(view, callback);
+    public static void setWindowInsetsAnimationCallback(@NonNull View view, @Nullable WindowInsetsAnimationCompat$Callback windowInsetsAnimationCompat$Callback) {
+        WindowInsetsAnimationCompat.setCallback(view, windowInsetsAnimationCompat$Callback);
     }
 
     @Deprecated
@@ -1778,34 +1323,16 @@ public class ViewCompat {
         view.setZ(f);
     }
 
-    public static boolean startDragAndDrop(@NonNull View view, ClipData clipData, View.DragShadowBuilder dragShadowBuilder, Object obj, int i) {
-        return Build.VERSION.SDK_INT >= 24 ? view.startDragAndDrop(clipData, dragShadowBuilder, obj, i) : view.startDrag(clipData, dragShadowBuilder, obj, i);
+    public static boolean startDragAndDrop(@NonNull View view, ClipData clipData, View$DragShadowBuilder view$DragShadowBuilder, Object obj, int i) {
+        return Build$VERSION.SDK_INT >= 24 ? view.startDragAndDrop(clipData, view$DragShadowBuilder, obj, i) : view.startDrag(clipData, view$DragShadowBuilder, obj, i);
     }
 
     public static boolean startNestedScroll(@NonNull View view, int i) {
         return view.startNestedScroll(i);
     }
 
-    private static AccessibilityViewProperty<CharSequence> stateDescriptionProperty() {
-        return new AccessibilityViewProperty<CharSequence>(C0205R.id.tag_state_description, CharSequence.class, 64, 30) { // from class: androidx.core.view.ViewCompat.4
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(30)
-            public CharSequence frameworkGet(View view) {
-                return view.getStateDescription();
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            @RequiresApi(30)
-            public void frameworkSet(View view, CharSequence charSequence) {
-                view.setStateDescription(charSequence);
-            }
-
-            @Override // androidx.core.view.ViewCompat.AccessibilityViewProperty
-            public boolean shouldUpdate(CharSequence charSequence, CharSequence charSequence2) {
-                return !TextUtils.equals(charSequence, charSequence2);
-            }
-        };
+    private static ViewCompat$AccessibilityViewProperty<CharSequence> stateDescriptionProperty() {
+        return new ViewCompat$4(R$id.tag_state_description, CharSequence.class, 64, 30);
     }
 
     public static void stopNestedScroll(@NonNull View view) {
@@ -1818,68 +1345,9 @@ public class ViewCompat {
         view.setTranslationY(translationY);
     }
 
-    public static void updateDragShadow(@NonNull View view, View.DragShadowBuilder dragShadowBuilder) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            view.updateDragShadow(dragShadowBuilder);
-        }
-    }
-
-    public class AccessibilityPaneVisibilityManager implements ViewTreeObserver.OnGlobalLayoutListener, View.OnAttachStateChangeListener {
-        private WeakHashMap<View, Boolean> mPanesToVisible = new WeakHashMap<>();
-
-        @RequiresApi(19)
-        public void addAccessibilityPane(View view) {
-            this.mPanesToVisible.put(view, Boolean.valueOf(view.getVisibility() == 0));
-            view.addOnAttachStateChangeListener(this);
-            if (view.isAttachedToWindow()) {
-                registerForLayoutCallback(view);
-            }
-        }
-
-        @RequiresApi(19)
-        private void checkPaneVisibility(View view, boolean z2) {
-            boolean z3 = view.getVisibility() == 0;
-            if (z2 != z3) {
-                ViewCompat.notifyViewAccessibilityStateChangedIfNeeded(view, z3 ? 16 : 32);
-                this.mPanesToVisible.put(view, Boolean.valueOf(z3));
-            }
-        }
-
-        @Override // android.view.ViewTreeObserver.OnGlobalLayoutListener
-        @RequiresApi(19)
-        public void onGlobalLayout() {
-            if (Build.VERSION.SDK_INT < 28) {
-                for (Map.Entry<View, Boolean> entry : this.mPanesToVisible.entrySet()) {
-                    checkPaneVisibility(entry.getKey(), entry.getValue().booleanValue());
-                }
-            }
-        }
-
-        @Override // android.view.View.OnAttachStateChangeListener
-        @RequiresApi(19)
-        public void onViewAttachedToWindow(View view) {
-            registerForLayoutCallback(view);
-        }
-
-        @Override // android.view.View.OnAttachStateChangeListener
-        public void onViewDetachedFromWindow(View view) {
-        }
-
-        @RequiresApi(19)
-        private void registerForLayoutCallback(View view) {
-            view.getViewTreeObserver().addOnGlobalLayoutListener(this);
-        }
-
-        @RequiresApi(19)
-        public void removeAccessibilityPane(View view) {
-            this.mPanesToVisible.remove(view);
-            view.removeOnAttachStateChangeListener(this);
-            unregisterForLayoutCallback(view);
-        }
-
-        @RequiresApi(19)
-        private void unregisterForLayoutCallback(View view) {
-            view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+    public static void updateDragShadow(@NonNull View view, View$DragShadowBuilder view$DragShadowBuilder) {
+        if (Build$VERSION.SDK_INT >= 24) {
+            view.updateDragShadow(view$DragShadowBuilder);
         }
     }
 
@@ -1940,15 +1408,15 @@ public class ViewCompat {
     }
 
     public static void setScrollIndicators(@NonNull View view, int i, int i2) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             view.setScrollIndicators(i, i2);
         }
     }
 
-    private static void addAccessibilityAction(@NonNull View view, @NonNull AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat) {
+    private static void addAccessibilityAction(@NonNull View view, @NonNull AccessibilityNodeInfoCompat$AccessibilityActionCompat accessibilityNodeInfoCompat$AccessibilityActionCompat) {
         getOrCreateAccessibilityDelegateCompat(view);
-        removeActionWithId(accessibilityActionCompat.getId(), view);
-        getActionList(view).add(accessibilityActionCompat);
+        removeActionWithId(accessibilityNodeInfoCompat$AccessibilityActionCompat.getId(), view);
+        getActionList(view).add(accessibilityNodeInfoCompat$AccessibilityActionCompat);
         notifyViewAccessibilityStateChangedIfNeeded(view, 0);
     }
 

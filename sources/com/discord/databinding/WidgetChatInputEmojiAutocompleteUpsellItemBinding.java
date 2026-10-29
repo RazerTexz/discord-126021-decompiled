@@ -10,27 +10,25 @@ import com.discord.views.PileView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatInputEmojiAutocompleteUpsellItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16117a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final PileView f16118b;
+    public final PileView f2306b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16119c;
+    public final TextView c;
 
     public WidgetChatInputEmojiAutocompleteUpsellItemBinding(@NonNull LinearLayout linearLayout, @NonNull PileView pileView, @NonNull TextView textView) {
-        this.f16117a = linearLayout;
-        this.f16118b = pileView;
-        this.f16119c = textView;
+        this.a = linearLayout;
+        this.f2306b = pileView;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16117a;
+        return this.a;
     }
 }

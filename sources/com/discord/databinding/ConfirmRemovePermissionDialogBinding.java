@@ -11,32 +11,29 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class ConfirmRemovePermissionDialogBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15021a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15022b;
+    public final TextView f2091b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f15023c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final LoadingButton f15024d;
+    public final LoadingButton d;
 
     public ConfirmRemovePermissionDialogBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull MaterialButton materialButton, @NonNull LoadingButton loadingButton, @NonNull LinearLayout linearLayout2) {
-        this.f15021a = linearLayout;
-        this.f15022b = textView;
-        this.f15023c = materialButton;
-        this.f15024d = loadingButton;
+        this.a = linearLayout;
+        this.f2091b = textView;
+        this.c = materialButton;
+        this.d = loadingButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15021a;
+        return this.a;
     }
 }

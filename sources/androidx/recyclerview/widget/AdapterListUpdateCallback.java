@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 public final class AdapterListUpdateCallback implements ListUpdateCallback {
 
     @NonNull
-    private final RecyclerView.Adapter mAdapter;
+    private final RecyclerView$Adapter mAdapter;
 
-    public AdapterListUpdateCallback(@NonNull RecyclerView.Adapter adapter) {
-        this.mAdapter = adapter;
+    public AdapterListUpdateCallback(@NonNull RecyclerView$Adapter recyclerView$Adapter) {
+        this.mAdapter = recyclerView$Adapter;
     }
 
     @Override // androidx.recyclerview.widget.ListUpdateCallback

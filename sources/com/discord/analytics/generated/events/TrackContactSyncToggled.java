@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackContactSyncToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackContactSyncToggled implements AnalyticsSchema
             return false;
         }
         TrackContactSyncToggled trackContactSyncToggled = (TrackContactSyncToggled) other;
-        return C12238m.areEqual(this.isEnabled, trackContactSyncToggled.isEnabled) && C12238m.areEqual(this.amDiscoverableEmail, trackContactSyncToggled.amDiscoverableEmail) && C12238m.areEqual(this.amDiscoverablePhone, trackContactSyncToggled.amDiscoverablePhone);
+        return m.areEqual(this.isEnabled, trackContactSyncToggled.isEnabled) && m.areEqual(this.amDiscoverableEmail, trackContactSyncToggled.amDiscoverableEmail) && m.areEqual(this.amDiscoverablePhone, trackContactSyncToggled.amDiscoverablePhone);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackContactSyncToggled implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackContactSyncToggled(isEnabled=");
-        sbM833U.append(this.isEnabled);
-        sbM833U.append(", amDiscoverableEmail=");
-        sbM833U.append(this.amDiscoverableEmail);
-        sbM833U.append(", amDiscoverablePhone=");
-        return C1643a.m816D(sbM833U, this.amDiscoverablePhone, ")");
+        StringBuilder sbU = a.U("TrackContactSyncToggled(isEnabled=");
+        sbU.append(this.isEnabled);
+        sbU.append(", amDiscoverableEmail=");
+        sbU.append(this.amDiscoverableEmail);
+        sbU.append(", amDiscoverablePhone=");
+        return a.D(sbU, this.amDiscoverablePhone, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivitySessionJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackActivitySessionJoined implements AnalyticsSch
             return false;
         }
         TrackActivitySessionJoined trackActivitySessionJoined = (TrackActivitySessionJoined) other;
-        return C12238m.areEqual(this.channelId, trackActivitySessionJoined.channelId) && C12238m.areEqual(this.guildId, trackActivitySessionJoined.guildId) && C12238m.areEqual(this.mediaSessionId, trackActivitySessionJoined.mediaSessionId) && C12238m.areEqual(this.activitySessionId, trackActivitySessionJoined.activitySessionId) && C12238m.areEqual(this.applicationId, trackActivitySessionJoined.applicationId);
+        return m.areEqual(this.channelId, trackActivitySessionJoined.channelId) && m.areEqual(this.guildId, trackActivitySessionJoined.guildId) && m.areEqual(this.mediaSessionId, trackActivitySessionJoined.mediaSessionId) && m.areEqual(this.activitySessionId, trackActivitySessionJoined.activitySessionId) && m.areEqual(this.applicationId, trackActivitySessionJoined.applicationId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackActivitySessionJoined implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivitySessionJoined(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", activitySessionId=");
-        sbM833U.append(this.activitySessionId);
-        sbM833U.append(", applicationId=");
-        return C1643a.m819G(sbM833U, this.applicationId, ")");
+        StringBuilder sbU = a.U("TrackActivitySessionJoined(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", activitySessionId=");
+        sbU.append(this.activitySessionId);
+        sbU.append(", applicationId=");
+        return a.G(sbU, this.applicationId, ")");
     }
 }

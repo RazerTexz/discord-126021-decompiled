@@ -10,27 +10,25 @@ import com.discord.app.AppViewFlipper;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsEmptyGuildRoleSubscriptionBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17655a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final Button f17656b;
+    public final Button f2567b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final AppViewFlipper f17657c;
+    public final AppViewFlipper c;
 
     public WidgetServerSettingsEmptyGuildRoleSubscriptionBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull Button button, @NonNull AppViewFlipper appViewFlipper) {
-        this.f17655a = coordinatorLayout;
-        this.f17656b = button;
-        this.f17657c = appViewFlipper;
+        this.a = coordinatorLayout;
+        this.f2567b = button;
+        this.c = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17655a;
+        return this.a;
     }
 }

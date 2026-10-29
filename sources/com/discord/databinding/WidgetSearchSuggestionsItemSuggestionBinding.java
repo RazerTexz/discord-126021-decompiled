@@ -10,37 +10,33 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSearchSuggestionsItemSuggestionBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17442a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17443b;
+    public final TextView f2530b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RelativeLayout f17444c;
+    public final RelativeLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17445d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ImageView f17446e;
+    public final ImageView e;
 
     public WidgetSearchSuggestionsItemSuggestionBinding(@NonNull RelativeLayout relativeLayout, @NonNull TextView textView, @NonNull RelativeLayout relativeLayout2, @NonNull TextView textView2, @NonNull ImageView imageView) {
-        this.f17442a = relativeLayout;
-        this.f17443b = textView;
-        this.f17444c = relativeLayout2;
-        this.f17445d = textView2;
-        this.f17446e = imageView;
+        this.a = relativeLayout;
+        this.f2530b = textView;
+        this.c = relativeLayout2;
+        this.d = textView2;
+        this.e = imageView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17442a;
+        return this.a;
     }
 }

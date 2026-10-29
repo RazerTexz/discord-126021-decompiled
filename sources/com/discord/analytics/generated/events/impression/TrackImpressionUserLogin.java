@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.impression;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackImpressionMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackImpressionUserLogin.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,9 +28,18 @@ public final /* data */ class TrackImpressionUserLogin implements AnalyticsSchem
     public TrackImpressionUserLogin() {
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
+    public void e(TrackImpressionMetadata trackImpressionMetadata) {
+        this.trackImpressionMetadata = trackImpressionMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackImpressionUserLogin) && C12238m.areEqual(this.passwordOnly, ((TrackImpressionUserLogin) other).passwordOnly);
+            return (other instanceof TrackImpressionUserLogin) && m.areEqual(this.passwordOnly, ((TrackImpressionUserLogin) other).passwordOnly);
         }
         return true;
     }
@@ -55,19 +64,8 @@ public final /* data */ class TrackImpressionUserLogin implements AnalyticsSchem
         return 0;
     }
 
-    /* JADX INFO: renamed from: e */
-    public void m7527e(TrackImpressionMetadata trackImpressionMetadata) {
-        this.trackImpressionMetadata = trackImpressionMetadata;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        return C1643a.m816D(C1643a.m833U("TrackImpressionUserLogin(passwordOnly="), this.passwordOnly, ")");
+        return a.D(a.U("TrackImpressionUserLogin(passwordOnly="), this.passwordOnly, ")");
     }
 
     public TrackImpressionUserLogin(Boolean bool, int i) {

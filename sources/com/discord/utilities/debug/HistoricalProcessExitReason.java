@@ -2,19 +2,18 @@ package com.discord.utilities.debug;
 
 import android.app.ActivityManager;
 import android.app.ApplicationExitInfo;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.appcompat.widget.ActivityChooserModel;
-import com.discord.models.domain.ModelAuditLogEntry;
+import b.d.b.a.a;
 import com.discord.utilities.lifecycle.ApplicationProvider;
+import d0.g;
+import d0.o;
+import d0.t.h0;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Map;
 import kotlin.Lazy;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.C12116o;
-import p507d0.p580t.C12136h0;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: HistoricalProcessExitReason.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -22,87 +21,21 @@ public final class HistoricalProcessExitReason {
     public static final HistoricalProcessExitReason INSTANCE = new HistoricalProcessExitReason();
 
     /* JADX INFO: renamed from: lastReason$delegate, reason: from kotlin metadata */
-    private static final Lazy lastReason = C12083g.lazy(HistoricalProcessExitReason$lastReason$2.INSTANCE);
-
-    /* JADX INFO: compiled from: HistoricalProcessExitReason.kt */
-    public final /* data */ class Reason {
-        private final String description;
-        private final String reason;
-
-        public Reason(String str, String str2) {
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_REASON);
-            this.reason = str;
-            this.description = str2;
-        }
-
-        public static /* synthetic */ Reason copy$default(Reason reason, String str, String str2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                str = reason.reason;
-            }
-            if ((i & 2) != 0) {
-                str2 = reason.description;
-            }
-            return reason.copy(str, str2);
-        }
-
-        public final Reason copy(String reason, String description) {
-            C12238m.checkNotNullParameter(reason, ModelAuditLogEntry.CHANGE_KEY_REASON);
-            return new Reason(reason, description);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof Reason)) {
-                return false;
-            }
-            Reason reason = (Reason) other;
-            return C12238m.areEqual(this.reason, reason.reason) && C12238m.areEqual(this.description, reason.description);
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getReason() {
-            return this.reason;
-        }
-
-        public final String getReason() {
-            return this.reason;
-        }
-
-        public int hashCode() {
-            String str = this.reason;
-            int iHashCode = (str != null ? str.hashCode() : 0) * 31;
-            String str2 = this.description;
-            return iHashCode + (str2 != null ? str2.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Reason(reason=");
-            sbM833U.append(this.reason);
-            sbM833U.append(", description=");
-            return C1643a.m822J(sbM833U, this.description, ")");
-        }
-    }
+    private static final Lazy lastReason = g.lazy(HistoricalProcessExitReason$lastReason$2.INSTANCE);
 
     private HistoricalProcessExitReason() {
     }
 
-    private final Reason createLastReason() {
-        Reason reason = null;
-        if (Build.VERSION.SDK_INT < 30) {
+    public static final /* synthetic */ HistoricalProcessExitReason$Reason access$createLastReason(HistoricalProcessExitReason historicalProcessExitReason) {
+        return historicalProcessExitReason.createLastReason();
+    }
+
+    private final HistoricalProcessExitReason$Reason createLastReason() {
+        HistoricalProcessExitReason$Reason historicalProcessExitReason$Reason = null;
+        if (Build$VERSION.SDK_INT < 30) {
             return null;
         }
-        Map mapMapOf = C12136h0.mapOf(C12116o.m10073to(6, "ANR"), C12116o.m10073to(4, "CRASH"), C12116o.m10073to(5, "CRASH_NATIVE"), C12116o.m10073to(12, "DEPENDENCY_DIED"), C12116o.m10073to(9, "EXCESSIVE_RESOURCE_USAGE"), C12116o.m10073to(1, "EXIT_SELF"), C12116o.m10073to(7, "INITIALIZATION_FAILURE"), C12116o.m10073to(3, "LOW_MEMORY"), C12116o.m10073to(13, "OTHER"), C12116o.m10073to(8, "PERMISSION_CHANGE"), C12116o.m10073to(2, "SIGNALED"), C12116o.m10073to(0, "UNKNOWN"), C12116o.m10073to(10, "USER_REQUESTED"), C12116o.m10073to(11, "USER_STOPPED"));
+        Map mapMapOf = h0.mapOf(o.to(6, "ANR"), o.to(4, "CRASH"), o.to(5, "CRASH_NATIVE"), o.to(12, "DEPENDENCY_DIED"), o.to(9, "EXCESSIVE_RESOURCE_USAGE"), o.to(1, "EXIT_SELF"), o.to(7, "INITIALIZATION_FAILURE"), o.to(3, "LOW_MEMORY"), o.to(13, "OTHER"), o.to(8, "PERMISSION_CHANGE"), o.to(2, "SIGNALED"), o.to(0, "UNKNOWN"), o.to(10, "USER_REQUESTED"), o.to(11, "USER_STOPPED"));
         Object systemService = ApplicationProvider.INSTANCE.get().getSystemService(ActivityChooserModel.ATTRIBUTE_ACTIVITY);
         if (!(systemService instanceof ActivityManager)) {
             systemService = null;
@@ -110,22 +43,22 @@ public final class HistoricalProcessExitReason {
         ActivityManager activityManager = (ActivityManager) systemService;
         if (activityManager != null) {
             List<ApplicationExitInfo> historicalProcessExitReasons = activityManager.getHistoricalProcessExitReasons(null, 0, 1);
-            C12238m.checkNotNullExpressionValue(historicalProcessExitReasons, "activityManager.getHisto…ssExitReasons(null, 0, 1)");
-            ApplicationExitInfo applicationExitInfo = (ApplicationExitInfo) C12163u.firstOrNull((List) historicalProcessExitReasons);
+            m.checkNotNullExpressionValue(historicalProcessExitReasons, "activityManager.getHisto…ssExitReasons(null, 0, 1)");
+            ApplicationExitInfo applicationExitInfo = (ApplicationExitInfo) u.firstOrNull((List) historicalProcessExitReasons);
             if (applicationExitInfo != null) {
                 String string = (String) mapMapOf.get(Integer.valueOf(applicationExitInfo.getReason()));
                 if (string == null) {
-                    StringBuilder sbM833U = C1643a.m833U("Unknown ");
-                    sbM833U.append(applicationExitInfo.getReason());
-                    string = sbM833U.toString();
+                    StringBuilder sbU = a.U("Unknown ");
+                    sbU.append(applicationExitInfo.getReason());
+                    string = sbU.toString();
                 }
-                reason = new Reason(string, applicationExitInfo.getDescription());
+                historicalProcessExitReason$Reason = new HistoricalProcessExitReason$Reason(string, applicationExitInfo.getDescription());
             }
         }
-        return reason;
+        return historicalProcessExitReason$Reason;
     }
 
-    public final Reason getLastReason() {
-        return (Reason) lastReason.getValue();
+    public final HistoricalProcessExitReason$Reason getLastReason() {
+        return (HistoricalProcessExitReason$Reason) lastReason.getValue();
     }
 }

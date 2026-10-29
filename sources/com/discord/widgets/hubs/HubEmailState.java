@@ -1,14 +1,14 @@
 package com.discord.widgets.hubs;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.api.hubs.EmailVerification;
 import com.discord.stores.utilities.Default;
 import com.discord.stores.utilities.RestCallState;
+import d0.g;
+import d0.z.d.m;
 import kotlin.Lazy;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubEmailViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -26,12 +26,12 @@ public final /* data */ class HubEmailState {
     }
 
     public HubEmailState(String str, Long l, HubWaitlistResult hubWaitlistResult, RestCallState<EmailVerification> restCallState) {
-        C12238m.checkNotNullParameter(restCallState, "verifyEmailAsync");
+        m.checkNotNullParameter(restCallState, "verifyEmailAsync");
         this.email = str;
         this.selectedGuildId = l;
         this.waitlistResult = hubWaitlistResult;
         this.verifyEmailAsync = restCallState;
-        this.hasMultipleDomains = C12083g.lazy(new HubEmailState$hasMultipleDomains$2(this));
+        this.hasMultipleDomains = g.lazy(new HubEmailState$hasMultipleDomains$2(this));
     }
 
     public final RestCallState<EmailVerification> component4() {
@@ -56,7 +56,7 @@ public final /* data */ class HubEmailState {
     }
 
     public final HubEmailState copy(String email, Long selectedGuildId, HubWaitlistResult waitlistResult, RestCallState<EmailVerification> verifyEmailAsync) {
-        C12238m.checkNotNullParameter(verifyEmailAsync, "verifyEmailAsync");
+        m.checkNotNullParameter(verifyEmailAsync, "verifyEmailAsync");
         return new HubEmailState(email, selectedGuildId, waitlistResult, verifyEmailAsync);
     }
 
@@ -68,7 +68,7 @@ public final /* data */ class HubEmailState {
             return false;
         }
         HubEmailState hubEmailState = (HubEmailState) other;
-        return C12238m.areEqual(this.email, hubEmailState.email) && C12238m.areEqual(this.selectedGuildId, hubEmailState.selectedGuildId) && C12238m.areEqual(this.waitlistResult, hubEmailState.waitlistResult) && C12238m.areEqual(this.verifyEmailAsync, hubEmailState.verifyEmailAsync);
+        return m.areEqual(this.email, hubEmailState.email) && m.areEqual(this.selectedGuildId, hubEmailState.selectedGuildId) && m.areEqual(this.waitlistResult, hubEmailState.waitlistResult) && m.areEqual(this.verifyEmailAsync, hubEmailState.verifyEmailAsync);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -118,16 +118,16 @@ public final /* data */ class HubEmailState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubEmailState(email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", selectedGuildId=");
-        sbM833U.append(this.selectedGuildId);
-        sbM833U.append(", waitlistResult=");
-        sbM833U.append(this.waitlistResult);
-        sbM833U.append(", verifyEmailAsync=");
-        sbM833U.append(this.verifyEmailAsync);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HubEmailState(email=");
+        sbU.append(this.email);
+        sbU.append(", selectedGuildId=");
+        sbU.append(this.selectedGuildId);
+        sbU.append(", waitlistResult=");
+        sbU.append(this.waitlistResult);
+        sbU.append(", verifyEmailAsync=");
+        sbU.append(this.verifyEmailAsync);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ HubEmailState(String str, Long l, HubWaitlistResult hubWaitlistResult, RestCallState restCallState, int i, DefaultConstructorMarker defaultConstructorMarker) {

@@ -9,27 +9,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStartCallSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f18180a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f18181b;
+    public final TextView f2659b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f18182c;
+    public final TextView c;
 
     public WidgetStartCallSheetBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2) {
-        this.f18180a = linearLayout;
-        this.f18181b = textView;
-        this.f18182c = textView2;
+        this.a = linearLayout;
+        this.f2659b = textView;
+        this.c = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18180a;
+        return this.a;
     }
 }

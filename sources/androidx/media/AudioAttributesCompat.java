@@ -1,15 +1,14 @@
 package androidx.media;
 
 import android.media.AudioAttributes;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.SparseIntArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.versionedparcelable.VersionedParcelable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AudioAttributesCompat implements VersionedParcelable {
@@ -55,28 +54,8 @@ public class AudioAttributesCompat implements VersionedParcelable {
     public static final int USAGE_VOICE_COMMUNICATION_SIGNALLING = 3;
     public static boolean sForceLegacyBehavior;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public AudioAttributesImpl mImpl;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public @interface AttributeContentType {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public @interface AttributeUsage {
-    }
-
-    public abstract class AudioManagerHidden {
-        public static final int STREAM_ACCESSIBILITY = 10;
-        public static final int STREAM_BLUETOOTH_SCO = 6;
-        public static final int STREAM_SYSTEM_ENFORCED = 7;
-        public static final int STREAM_TTS = 9;
-
-        private AudioManagerHidden() {
-        }
-    }
 
     static {
         SparseIntArray sparseIntArray = new SparseIntArray();
@@ -90,7 +69,7 @@ public class AudioAttributesCompat implements VersionedParcelable {
         SDK_USAGES = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16};
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public AudioAttributesCompat() {
     }
 
@@ -134,7 +113,7 @@ public class AudioAttributesCompat implements VersionedParcelable {
         return this.mImpl.hashCode();
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    @RestrictTo({RestrictTo$Scope.LIBRARY})
     public static void setForceLegacyBehavior(boolean z2) {
         sForceLegacyBehavior = z2;
     }
@@ -178,7 +157,7 @@ public class AudioAttributesCompat implements VersionedParcelable {
             case 15:
             default:
                 if (z2) {
-                    throw new IllegalArgumentException(C1643a.m873r("Unknown usage value ", i2, " in audio attributes"));
+                    throw new IllegalArgumentException(a.r("Unknown usage value ", i2, " in audio attributes"));
                 }
                 return 3;
         }
@@ -223,7 +202,7 @@ public class AudioAttributesCompat implements VersionedParcelable {
                 return "USAGE_GAME";
             case 15:
             default:
-                return C1643a.m871q("unknown usage ", i);
+                return a.q("unknown usage ", i);
             case 16:
                 return "USAGE_ASSISTANT";
         }
@@ -234,58 +213,10 @@ public class AudioAttributesCompat implements VersionedParcelable {
         if (sForceLegacyBehavior) {
             return null;
         }
-        return Build.VERSION.SDK_INT >= 26 ? new AudioAttributesCompat(new AudioAttributesImplApi26((AudioAttributes) obj)) : new AudioAttributesCompat(new AudioAttributesImplApi21((AudioAttributes) obj));
+        return Build$VERSION.SDK_INT >= 26 ? new AudioAttributesCompat(new AudioAttributesImplApi26((AudioAttributes) obj)) : new AudioAttributesCompat(new AudioAttributesImplApi21((AudioAttributes) obj));
     }
 
     public AudioAttributesCompat(AudioAttributesImpl audioAttributesImpl) {
         this.mImpl = audioAttributesImpl;
-    }
-
-    public class Builder {
-        public final AudioAttributesImpl.Builder mBuilderImpl;
-
-        public Builder() {
-            if (AudioAttributesCompat.sForceLegacyBehavior) {
-                this.mBuilderImpl = new AudioAttributesImplBase.Builder();
-            } else if (Build.VERSION.SDK_INT >= 26) {
-                this.mBuilderImpl = new AudioAttributesImplApi26.Builder();
-            } else {
-                this.mBuilderImpl = new AudioAttributesImplApi21.Builder();
-            }
-        }
-
-        public AudioAttributesCompat build() {
-            return new AudioAttributesCompat(this.mBuilderImpl.build());
-        }
-
-        public Builder setContentType(int i) {
-            this.mBuilderImpl.setContentType(i);
-            return this;
-        }
-
-        public Builder setFlags(int i) {
-            this.mBuilderImpl.setFlags(i);
-            return this;
-        }
-
-        public Builder setLegacyStreamType(int i) {
-            this.mBuilderImpl.setLegacyStreamType(i);
-            return this;
-        }
-
-        public Builder setUsage(int i) {
-            this.mBuilderImpl.setUsage(i);
-            return this;
-        }
-
-        public Builder(AudioAttributesCompat audioAttributesCompat) {
-            if (AudioAttributesCompat.sForceLegacyBehavior) {
-                this.mBuilderImpl = new AudioAttributesImplBase.Builder(audioAttributesCompat);
-            } else if (Build.VERSION.SDK_INT >= 26) {
-                this.mBuilderImpl = new AudioAttributesImplApi26.Builder(audioAttributesCompat.unwrap());
-            } else {
-                this.mBuilderImpl = new AudioAttributesImplApi21.Builder(audioAttributesCompat.unwrap());
-            }
-        }
     }
 }

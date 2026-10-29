@@ -1,11 +1,11 @@
 package com.esotericsoftware.kryo.serializers;
 
+import b.d.b.a.a;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoException;
 import com.esotericsoftware.kryo.Serializer;
-import com.esotericsoftware.kryo.p502io.Input;
-import com.esotericsoftware.kryo.p502io.Output;
-import p007b.p100d.p104b.p105a.C1643a;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 /* JADX INFO: loaded from: classes.dex */
 public class EnumNameSerializer extends Serializer<Enum> {
@@ -18,6 +18,16 @@ public class EnumNameSerializer extends Serializer<Enum> {
         setImmutable(true);
     }
 
+    @Override // com.esotericsoftware.kryo.Serializer
+    public /* bridge */ /* synthetic */ Enum read(Kryo kryo, Input input, Class<Enum> cls) {
+        return read(kryo, input, cls);
+    }
+
+    @Override // com.esotericsoftware.kryo.Serializer
+    public /* bridge */ /* synthetic */ void write(Kryo kryo, Output output, Enum r3) {
+        write2(kryo, output, r3);
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // com.esotericsoftware.kryo.Serializer
     public Enum read(Kryo kryo, Input input, Class<Enum> cls) {
@@ -25,16 +35,16 @@ public class EnumNameSerializer extends Serializer<Enum> {
         try {
             return Enum.valueOf(this.enumType, str);
         } catch (IllegalArgumentException e) {
-            StringBuilder sbM833U = C1643a.m833U("Invalid name for enum \"");
-            sbM833U.append(this.enumType.getName());
-            sbM833U.append("\": ");
-            sbM833U.append(str);
-            throw new KryoException(sbM833U.toString(), e);
+            StringBuilder sbU = a.U("Invalid name for enum \"");
+            sbU.append(this.enumType.getName());
+            sbU.append("\": ");
+            sbU.append(str);
+            throw new KryoException(sbU.toString(), e);
         }
     }
 
-    @Override // com.esotericsoftware.kryo.Serializer
-    public void write(Kryo kryo, Output output, Enum r4) {
+    /* JADX INFO: renamed from: write, reason: avoid collision after fix types in other method */
+    public void write2(Kryo kryo, Output output, Enum r4) {
         kryo.writeObject(output, r4.name(), this.stringSerializer);
     }
 }

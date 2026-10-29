@@ -1,7 +1,7 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: compiled from: VoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,6 +24,18 @@ public final class VoiceQualityKt {
         return (93.4d - d3) - (((((double) 122) * d2) / (d2 + d4)) + d4);
     }
 
+    public static final /* synthetic */ double access$_calculateMos(double d, double d2) {
+        return _calculateMos(d, d2);
+    }
+
+    public static final /* synthetic */ double access$clamp(double d, double d2, double d3) {
+        return clamp(d, d2, d3);
+    }
+
+    public static final /* synthetic */ void access$explodePlayoutMetric(String str, PlayoutMetric playoutMetric, Map map) {
+        explodePlayoutMetric(str, playoutMetric, map);
+    }
+
     private static final double clamp(double d, double d2, double d3) {
         if (d < d2) {
             return d2;
@@ -33,7 +45,7 @@ public final class VoiceQualityKt {
 
     private static final void explodePlayoutMetric(String str, PlayoutMetric playoutMetric, Map<String, Object> map) {
         Object obj = 0;
-        map.put(C1643a.m883w(str, "_mean"), playoutMetric != null ? Double.valueOf(playoutMetric.getMean()) : obj);
+        map.put(a.w(str, "_mean"), playoutMetric != null ? Double.valueOf(playoutMetric.getMean()) : obj);
         map.put(str + "_p75", playoutMetric != null ? Double.valueOf(playoutMetric.getP75()) : obj);
         map.put(str + "_p95", playoutMetric != null ? Double.valueOf(playoutMetric.getP95()) : obj);
         map.put(str + "_p99", playoutMetric != null ? Double.valueOf(playoutMetric.getP99()) : obj);

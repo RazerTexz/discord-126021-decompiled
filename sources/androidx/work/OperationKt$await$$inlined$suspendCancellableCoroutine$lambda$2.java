@@ -1,20 +1,21 @@
 package androidx.work;
 
+import b.i.b.d.a.a;
+import d0.k;
+import d0.k$a;
+import d0.l;
 import java.util.concurrent.CancellationException;
 import kotlinx.coroutines.CancellableContinuation;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
-import p507d0.C12112k;
-import p507d0.C12113l;
 
 /* JADX INFO: compiled from: ListenableFuture.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class OperationKt$await$$inlined$suspendCancellableCoroutine$lambda$2 implements Runnable {
     public final /* synthetic */ CancellableContinuation $cancellableContinuation;
-    public final /* synthetic */ InterfaceFutureC4539a $this_await$inlined;
+    public final /* synthetic */ a $this_await$inlined;
 
-    public OperationKt$await$$inlined$suspendCancellableCoroutine$lambda$2(CancellableContinuation cancellableContinuation, InterfaceFutureC4539a interfaceFutureC4539a) {
+    public OperationKt$await$$inlined$suspendCancellableCoroutine$lambda$2(CancellableContinuation cancellableContinuation, a aVar) {
         this.$cancellableContinuation = cancellableContinuation;
-        this.$this_await$inlined = interfaceFutureC4539a;
+        this.$this_await$inlined = aVar;
     }
 
     @Override // java.lang.Runnable
@@ -22,20 +23,20 @@ public final class OperationKt$await$$inlined$suspendCancellableCoroutine$lambda
         try {
             CancellableContinuation cancellableContinuation = this.$cancellableContinuation;
             V v = this.$this_await$inlined.get();
-            C12112k.a aVar = C12112k.f25169j;
-            cancellableContinuation.resumeWith(C12112k.m11474constructorimpl(v));
+            k$a k_a = k.j;
+            cancellableContinuation.resumeWith(k.m97constructorimpl(v));
         } catch (Throwable th) {
             Throwable cause = th.getCause();
             if (cause == null) {
                 cause = th;
             }
             if (th instanceof CancellationException) {
-                this.$cancellableContinuation.mo10906k(cause);
+                this.$cancellableContinuation.k(cause);
                 return;
             }
             CancellableContinuation cancellableContinuation2 = this.$cancellableContinuation;
-            C12112k.a aVar2 = C12112k.f25169j;
-            cancellableContinuation2.resumeWith(C12112k.m11474constructorimpl(C12113l.createFailure(cause)));
+            k$a k_a2 = k.j;
+            cancellableContinuation2.resumeWith(k.m97constructorimpl(l.createFailure(cause)));
         }
     }
 }

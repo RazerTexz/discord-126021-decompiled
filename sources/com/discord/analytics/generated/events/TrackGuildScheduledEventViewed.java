@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildScheduledEventViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,6 +17,11 @@ public final /* data */ class TrackGuildScheduledEventViewed implements Analytic
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_scheduled_event_viewed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -25,7 +30,7 @@ public final /* data */ class TrackGuildScheduledEventViewed implements Analytic
             return false;
         }
         TrackGuildScheduledEventViewed trackGuildScheduledEventViewed = (TrackGuildScheduledEventViewed) other;
-        return C12238m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventViewed.guildScheduledEventId) && C12238m.areEqual(this.privacyLevel, trackGuildScheduledEventViewed.privacyLevel);
+        return m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventViewed.guildScheduledEventId) && m.areEqual(this.privacyLevel, trackGuildScheduledEventViewed.privacyLevel);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,16 +52,10 @@ public final /* data */ class TrackGuildScheduledEventViewed implements Analytic
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildScheduledEventViewed(guildScheduledEventId=");
-        sbM833U.append(this.guildScheduledEventId);
-        sbM833U.append(", privacyLevel=");
-        return C1643a.m819G(sbM833U, this.privacyLevel, ")");
+        StringBuilder sbU = a.U("TrackGuildScheduledEventViewed(guildScheduledEventId=");
+        sbU.append(this.guildScheduledEventId);
+        sbU.append(", privacyLevel=");
+        return a.G(sbU, this.privacyLevel, ")");
     }
 }

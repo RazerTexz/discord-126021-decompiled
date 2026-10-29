@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackStickerSuggestionsEnabledToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class TrackStickerSuggestionsEnabledToggled implements A
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackStickerSuggestionsEnabledToggled) && C12238m.areEqual(this.enabled, ((TrackStickerSuggestionsEnabledToggled) other).enabled);
+            return (other instanceof TrackStickerSuggestionsEnabledToggled) && m.areEqual(this.enabled, ((TrackStickerSuggestionsEnabledToggled) other).enabled);
         }
         return true;
     }
@@ -38,6 +38,6 @@ public final /* data */ class TrackStickerSuggestionsEnabledToggled implements A
     }
 
     public String toString() {
-        return C1643a.m816D(C1643a.m833U("TrackStickerSuggestionsEnabledToggled(enabled="), this.enabled, ")");
+        return a.D(a.U("TrackStickerSuggestionsEnabledToggled(enabled="), this.enabled, ")");
     }
 }

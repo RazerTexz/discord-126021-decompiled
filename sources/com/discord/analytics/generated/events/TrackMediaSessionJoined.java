@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMediaSessionJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema
             return false;
         }
         TrackMediaSessionJoined trackMediaSessionJoined = (TrackMediaSessionJoined) other;
-        return C12238m.areEqual(this.channelId, trackMediaSessionJoined.channelId) && C12238m.areEqual(this.guildId, trackMediaSessionJoined.guildId) && C12238m.areEqual(this.rtcConnectionId, trackMediaSessionJoined.rtcConnectionId) && C12238m.areEqual(this.context, trackMediaSessionJoined.context) && C12238m.areEqual(this.mediaSessionId, trackMediaSessionJoined.mediaSessionId) && C12238m.areEqual(this.parentMediaSessionId, trackMediaSessionJoined.parentMediaSessionId) && C12238m.areEqual(this.channelType, trackMediaSessionJoined.channelType) && C12238m.areEqual(this.voiceBackendVersion, trackMediaSessionJoined.voiceBackendVersion) && C12238m.areEqual(this.rtcWorkerBackendVersion, trackMediaSessionJoined.rtcWorkerBackendVersion);
+        return m.areEqual(this.channelId, trackMediaSessionJoined.channelId) && m.areEqual(this.guildId, trackMediaSessionJoined.guildId) && m.areEqual(this.rtcConnectionId, trackMediaSessionJoined.rtcConnectionId) && m.areEqual(this.context, trackMediaSessionJoined.context) && m.areEqual(this.mediaSessionId, trackMediaSessionJoined.mediaSessionId) && m.areEqual(this.parentMediaSessionId, trackMediaSessionJoined.parentMediaSessionId) && m.areEqual(this.channelType, trackMediaSessionJoined.channelType) && m.areEqual(this.voiceBackendVersion, trackMediaSessionJoined.voiceBackendVersion) && m.areEqual(this.rtcWorkerBackendVersion, trackMediaSessionJoined.rtcWorkerBackendVersion);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,23 +60,23 @@ public final /* data */ class TrackMediaSessionJoined implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMediaSessionJoined(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", context=");
-        sbM833U.append(this.context);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", parentMediaSessionId=");
-        sbM833U.append(this.parentMediaSessionId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", voiceBackendVersion=");
-        sbM833U.append(this.voiceBackendVersion);
-        sbM833U.append(", rtcWorkerBackendVersion=");
-        return C1643a.m817E(sbM833U, this.rtcWorkerBackendVersion, ")");
+        StringBuilder sbU = a.U("TrackMediaSessionJoined(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", context=");
+        sbU.append(this.context);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", parentMediaSessionId=");
+        sbU.append(this.parentMediaSessionId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", voiceBackendVersion=");
+        sbU.append(this.voiceBackendVersion);
+        sbU.append(", rtcWorkerBackendVersion=");
+        return a.E(sbU, this.rtcWorkerBackendVersion, ")");
     }
 }

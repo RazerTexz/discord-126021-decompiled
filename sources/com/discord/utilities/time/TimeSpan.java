@@ -1,9 +1,9 @@
 package com.discord.utilities.time;
 
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.concurrent.TimeUnit;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TimeSpan.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,7 +12,7 @@ public final /* data */ class TimeSpan {
     private final TimeUnit unit;
 
     public TimeSpan(long j, TimeUnit timeUnit) {
-        C12238m.checkNotNullParameter(timeUnit, "unit");
+        m.checkNotNullParameter(timeUnit, "unit");
         this.amount = j;
         this.unit = timeUnit;
     }
@@ -28,7 +28,7 @@ public final /* data */ class TimeSpan {
     }
 
     public final TimeSpan copy(long amount, TimeUnit unit) {
-        C12238m.checkNotNullParameter(unit, "unit");
+        m.checkNotNullParameter(unit, "unit");
         return new TimeSpan(amount, unit);
     }
 
@@ -40,7 +40,7 @@ public final /* data */ class TimeSpan {
             return false;
         }
         TimeSpan timeSpan = (TimeSpan) other;
-        return this.amount == timeSpan.amount && C12238m.areEqual(this.unit, timeSpan.unit);
+        return this.amount == timeSpan.amount && m.areEqual(this.unit, timeSpan.unit);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -62,18 +62,18 @@ public final /* data */ class TimeSpan {
     }
 
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.amount) * 31;
+        int iA = b.a(this.amount) * 31;
         TimeUnit timeUnit = this.unit;
-        return iM3a + (timeUnit != null ? timeUnit.hashCode() : 0);
+        return iA + (timeUnit != null ? timeUnit.hashCode() : 0);
     }
 
     public final TimeSpan minus(TimeSpan b2) {
-        C12238m.checkNotNullParameter(b2, "b");
+        m.checkNotNullParameter(b2, "b");
         return new TimeSpan(toNanos() - b2.toNanos(), TimeUnit.NANOSECONDS);
     }
 
     public final TimeSpan plus(TimeSpan b2) {
-        C12238m.checkNotNullParameter(b2, "b");
+        m.checkNotNullParameter(b2, "b");
         return new TimeSpan(b2.toNanos() + toNanos(), TimeUnit.NANOSECONDS);
     }
 
@@ -106,11 +106,11 @@ public final /* data */ class TimeSpan {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TimeSpan(amount=");
-        sbM833U.append(this.amount);
-        sbM833U.append(", unit=");
-        sbM833U.append(this.unit);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TimeSpan(amount=");
+        sbU.append(this.amount);
+        sbU.append(", unit=");
+        sbU.append(this.unit);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

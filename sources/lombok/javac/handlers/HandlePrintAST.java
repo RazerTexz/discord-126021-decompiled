@@ -1,6 +1,6 @@
 package lombok.javac.handlers;
 
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCAnnotation;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -8,7 +8,7 @@ import lombok.Lombok;
 import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.PrintAST;
-import lombok.javac.JavacASTVisitor;
+import lombok.javac.JavacASTVisitor$Printer;
 import lombok.javac.JavacAnnotationHandler;
 import lombok.javac.JavacNode;
 
@@ -16,7 +16,7 @@ import lombok.javac.JavacNode;
 @HandlerPriority(536870912)
 public class HandlePrintAST extends JavacAnnotationHandler<PrintAST> {
     @Override // lombok.javac.JavacAnnotationHandler
-    public void handle(AnnotationValues<PrintAST> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
+    public void handle(AnnotationValues<PrintAST> annotation, JCTree$JCAnnotation ast, JavacNode annotationNode) {
         PrintStream stream = System.out;
         String fileName = ((PrintAST) annotation.getInstance()).outfile();
         if (fileName.length() > 0) {
@@ -27,7 +27,7 @@ public class HandlePrintAST extends JavacAnnotationHandler<PrintAST> {
             }
         }
         try {
-            annotationNode.m10925up().traverse(new JavacASTVisitor.Printer(((PrintAST) annotation.getInstance()).printContent(), stream));
+            annotationNode.up().traverse(new JavacASTVisitor$Printer(((PrintAST) annotation.getInstance()).printContent(), stream));
             if (stream != System.out) {
                 try {
                     stream.close();

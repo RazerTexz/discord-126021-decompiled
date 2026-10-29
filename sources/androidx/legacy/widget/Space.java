@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -26,8 +27,8 @@ public class Space extends View {
     }
 
     private static int getDefaultSize2(int i, int i2) {
-        int mode = View.MeasureSpec.getMode(i2);
-        int size = View.MeasureSpec.getSize(i2);
+        int mode = View$MeasureSpec.getMode(i2);
+        int size = View$MeasureSpec.getSize(i2);
         if (mode != Integer.MIN_VALUE) {
             return mode != 1073741824 ? i : size;
         }

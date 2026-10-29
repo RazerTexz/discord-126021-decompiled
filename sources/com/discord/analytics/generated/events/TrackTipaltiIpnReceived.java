@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackTipaltiIpnReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,7 +32,7 @@ public final /* data */ class TrackTipaltiIpnReceived implements AnalyticsSchema
             return false;
         }
         TrackTipaltiIpnReceived trackTipaltiIpnReceived = (TrackTipaltiIpnReceived) other;
-        return C12238m.areEqual(this.key, trackTipaltiIpnReceived.key) && C12238m.areEqual(this.cDate, trackTipaltiIpnReceived.cDate) && C12238m.areEqual(this.type, trackTipaltiIpnReceived.type) && C12238m.areEqual(this.payeeId, trackTipaltiIpnReceived.payeeId) && C12238m.areEqual(this.refCode, trackTipaltiIpnReceived.refCode) && C12238m.areEqual(this.isPayable, trackTipaltiIpnReceived.isPayable) && C12238m.areEqual(this.complianceReviewStatus, trackTipaltiIpnReceived.complianceReviewStatus) && C12238m.areEqual(this.payeeStatus, trackTipaltiIpnReceived.payeeStatus) && C12238m.areEqual(this.groupPayments, trackTipaltiIpnReceived.groupPayments) && C12238m.areEqual(this.submittedDate, trackTipaltiIpnReceived.submittedDate) && C12238m.areEqual(this.approvalDate, trackTipaltiIpnReceived.approvalDate) && C12238m.areEqual(this.declinedDate, trackTipaltiIpnReceived.declinedDate);
+        return m.areEqual(this.key, trackTipaltiIpnReceived.key) && m.areEqual(this.cDate, trackTipaltiIpnReceived.cDate) && m.areEqual(this.type, trackTipaltiIpnReceived.type) && m.areEqual(this.payeeId, trackTipaltiIpnReceived.payeeId) && m.areEqual(this.refCode, trackTipaltiIpnReceived.refCode) && m.areEqual(this.isPayable, trackTipaltiIpnReceived.isPayable) && m.areEqual(this.complianceReviewStatus, trackTipaltiIpnReceived.complianceReviewStatus) && m.areEqual(this.payeeStatus, trackTipaltiIpnReceived.payeeStatus) && m.areEqual(this.groupPayments, trackTipaltiIpnReceived.groupPayments) && m.areEqual(this.submittedDate, trackTipaltiIpnReceived.submittedDate) && m.areEqual(this.approvalDate, trackTipaltiIpnReceived.approvalDate) && m.areEqual(this.declinedDate, trackTipaltiIpnReceived.declinedDate);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -69,29 +69,29 @@ public final /* data */ class TrackTipaltiIpnReceived implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackTipaltiIpnReceived(key=");
-        sbM833U.append(this.key);
-        sbM833U.append(", cDate=");
-        sbM833U.append(this.cDate);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", payeeId=");
-        sbM833U.append(this.payeeId);
-        sbM833U.append(", refCode=");
-        sbM833U.append(this.refCode);
-        sbM833U.append(", isPayable=");
-        sbM833U.append(this.isPayable);
-        sbM833U.append(", complianceReviewStatus=");
-        sbM833U.append(this.complianceReviewStatus);
-        sbM833U.append(", payeeStatus=");
-        sbM833U.append(this.payeeStatus);
-        sbM833U.append(", groupPayments=");
-        sbM833U.append(this.groupPayments);
-        sbM833U.append(", submittedDate=");
-        sbM833U.append(this.submittedDate);
-        sbM833U.append(", approvalDate=");
-        sbM833U.append(this.approvalDate);
-        sbM833U.append(", declinedDate=");
-        return C1643a.m817E(sbM833U, this.declinedDate, ")");
+        StringBuilder sbU = a.U("TrackTipaltiIpnReceived(key=");
+        sbU.append(this.key);
+        sbU.append(", cDate=");
+        sbU.append(this.cDate);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", payeeId=");
+        sbU.append(this.payeeId);
+        sbU.append(", refCode=");
+        sbU.append(this.refCode);
+        sbU.append(", isPayable=");
+        sbU.append(this.isPayable);
+        sbU.append(", complianceReviewStatus=");
+        sbU.append(this.complianceReviewStatus);
+        sbU.append(", payeeStatus=");
+        sbU.append(this.payeeStatus);
+        sbU.append(", groupPayments=");
+        sbU.append(this.groupPayments);
+        sbU.append(", submittedDate=");
+        sbU.append(this.submittedDate);
+        sbU.append(", approvalDate=");
+        sbU.append(this.approvalDate);
+        sbU.append(", declinedDate=");
+        return a.E(sbU, this.declinedDate, ")");
     }
 }

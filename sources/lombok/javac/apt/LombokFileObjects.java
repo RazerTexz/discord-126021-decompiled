@@ -5,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 import lombok.core.DiagnosticsReceiver;
@@ -15,68 +14,6 @@ import lombok.permit.Permit;
 final class LombokFileObjects {
     private static final List<String> KNOWN_JAVA9_FILE_MANAGERS = Arrays.asList("com.google.errorprone.MaskedClassLoader$MaskedFileManager", "com.google.devtools.build.buildjar.javac.BlazeJavacMain$ClassloaderMaskingFileManager", "com.google.devtools.build.java.turbine.javac.JavacTurbineCompiler$ClassloaderMaskingFileManager", "org.netbeans.modules.java.source.parsing.ProxyFileManager", "com.sun.tools.javac.api.ClientCodeWrapper$WrappedStandardJavaFileManager", "com.sun.tools.javac.main.DelegatingJavaFileManager$DelegatingSJFM");
     private static Constructor<?> j9CompilerConstructor = null;
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/apt/LombokFileObjects$Compiler.SCL.lombok */
-    interface Compiler {
-        public static final Compiler JAVAC6 = new Compiler() { // from class: lombok.javac.apt.LombokFileObjects.Compiler.1
-            private Method decoderMethod = null;
-            private final AtomicBoolean decoderIsSet = new AtomicBoolean();
-
-            @Override // lombok.javac.apt.LombokFileObjects.Compiler
-            public JavaFileObject wrap(LombokFileObject fileObject) {
-                return new Javac6BaseFileObjectWrapper(fileObject);
-            }
-
-            /* JADX WARN: Type inference failed for: r0v1, types: [java.lang.Throwable, java.util.concurrent.atomic.AtomicBoolean] */
-            @Override // lombok.javac.apt.LombokFileObjects.Compiler
-            public Method getDecoderMethod() {
-                ?? r0 = this.decoderIsSet;
-                synchronized (r0) {
-                    try {
-                        if (this.decoderIsSet.get()) {
-                            return this.decoderMethod;
-                        }
-                        this.decoderMethod = LombokFileObjects.getDecoderMethod("com.sun.tools.javac.util.BaseFileObject");
-                        this.decoderIsSet.set(true);
-                        return this.decoderMethod;
-                    } catch (Throwable th) {
-                        throw r0;
-                    }
-                }
-            }
-        };
-        public static final Compiler JAVAC7 = new Compiler() { // from class: lombok.javac.apt.LombokFileObjects.Compiler.2
-            private Method decoderMethod = null;
-            private final AtomicBoolean decoderIsSet = new AtomicBoolean();
-
-            @Override // lombok.javac.apt.LombokFileObjects.Compiler
-            public JavaFileObject wrap(LombokFileObject fileObject) {
-                return new Javac7BaseFileObjectWrapper(fileObject);
-            }
-
-            /* JADX WARN: Type inference failed for: r0v1, types: [java.lang.Throwable, java.util.concurrent.atomic.AtomicBoolean] */
-            @Override // lombok.javac.apt.LombokFileObjects.Compiler
-            public Method getDecoderMethod() {
-                ?? r0 = this.decoderIsSet;
-                synchronized (r0) {
-                    try {
-                        if (this.decoderIsSet.get()) {
-                            return this.decoderMethod;
-                        }
-                        this.decoderMethod = LombokFileObjects.getDecoderMethod("com.sun.tools.javac.file.BaseFileObject");
-                        this.decoderIsSet.set(true);
-                        return this.decoderMethod;
-                    } catch (Throwable th) {
-                        throw r0;
-                    }
-                }
-            }
-        };
-
-        Method getDecoderMethod();
-
-        JavaFileObject wrap(LombokFileObject lombokFileObject);
-    }
 
     static Method getDecoderMethod(String className) {
         try {
@@ -91,7 +28,7 @@ final class LombokFileObjects {
     private LombokFileObjects() {
     }
 
-    static Compiler getCompiler(JavaFileManager jfm) {
+    static LombokFileObjects$Compiler getCompiler(JavaFileManager jfm) {
         String jfmClassName = jfm != null ? jfm.getClass().getName() : "null";
         if (!jfmClassName.equals("com.sun.tools.javac.util.DefaultFileManager") && !jfmClassName.equals("com.sun.tools.javac.util.JavacFileManager")) {
             if (jfmClassName.equals("com.sun.tools.javac.file.JavacFileManager")) {
@@ -102,7 +39,7 @@ final class LombokFileObjects {
                     }
                 } catch (Throwable unused) {
                 }
-                return Compiler.JAVAC7;
+                return LombokFileObjects$Compiler.JAVAC7;
             }
             if (KNOWN_JAVA9_FILE_MANAGERS.contains(jfmClassName)) {
                 try {
@@ -120,13 +57,13 @@ final class LombokFileObjects {
                     if (Class.forName("com.sun.tools.javac.file.BaseFileObject") == null) {
                         throw new NullPointerException();
                     }
-                    return Compiler.JAVAC7;
+                    return LombokFileObjects$Compiler.JAVAC7;
                 } catch (Throwable unused4) {
                     try {
                         if (Class.forName("com.sun.tools.javac.util.BaseFileObject") == null) {
                             throw new NullPointerException();
                         }
-                        return Compiler.JAVAC6;
+                        return LombokFileObjects$Compiler.JAVAC6;
                     } catch (Throwable unused5) {
                         StringBuilder sb = new StringBuilder(jfmClassName);
                         if (jfm != null) {
@@ -140,19 +77,19 @@ final class LombokFileObjects {
                 }
             }
         }
-        return Compiler.JAVAC6;
+        return LombokFileObjects$Compiler.JAVAC6;
     }
 
-    static JavaFileObject createIntercepting(Compiler compiler, JavaFileObject delegate, String fileName, DiagnosticsReceiver diagnostics) {
+    static JavaFileObject createIntercepting(LombokFileObjects$Compiler compiler, JavaFileObject delegate, String fileName, DiagnosticsReceiver diagnostics) {
         return compiler.wrap(new InterceptingJavaFileObject(delegate, fileName, diagnostics, compiler.getDecoderMethod()));
     }
 
-    private static Compiler java9Compiler(JavaFileManager jfm) {
+    private static LombokFileObjects$Compiler java9Compiler(JavaFileManager jfm) {
         try {
             if (j9CompilerConstructor == null) {
                 j9CompilerConstructor = Class.forName("lombok.javac.apt.Java9Compiler").getConstructor(JavaFileManager.class);
             }
-            return (Compiler) j9CompilerConstructor.newInstance(jfm);
+            return (LombokFileObjects$Compiler) j9CompilerConstructor.newInstance(jfm);
         } catch (ClassNotFoundException unused) {
             return null;
         } catch (IllegalAccessException e) {

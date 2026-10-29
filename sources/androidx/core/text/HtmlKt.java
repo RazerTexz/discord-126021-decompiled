@@ -1,32 +1,33 @@
 package androidx.core.text;
 
-import android.text.Html;
+import android.text.Html$ImageGetter;
+import android.text.Html$TagHandler;
 import android.text.Spanned;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Html.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class HtmlKt {
-    public static /* synthetic */ Spanned parseAsHtml$default(String str, int i, Html.ImageGetter imageGetter, Html.TagHandler tagHandler, int i2, Object obj) {
+    public static /* synthetic */ Spanned parseAsHtml$default(String str, int i, Html$ImageGetter html$ImageGetter, Html$TagHandler html$TagHandler, int i2, Object obj) {
         if ((i2 & 1) != 0) {
             i = 0;
         }
         if ((i2 & 2) != 0) {
-            imageGetter = null;
+            html$ImageGetter = null;
         }
         if ((i2 & 4) != 0) {
-            tagHandler = null;
+            html$TagHandler = null;
         }
-        C12238m.checkNotNullParameter(str, "<this>");
-        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, imageGetter, tagHandler);
-        C12238m.checkNotNullExpressionValue(spannedFromHtml, "fromHtml(this, flags, imageGetter, tagHandler)");
+        m.checkNotNullParameter(str, "<this>");
+        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, html$ImageGetter, html$TagHandler);
+        m.checkNotNullExpressionValue(spannedFromHtml, "fromHtml(this, flags, imageGetter, tagHandler)");
         return spannedFromHtml;
     }
 
-    public static final Spanned parseAsHtml(String str, int i, Html.ImageGetter imageGetter, Html.TagHandler tagHandler) {
-        C12238m.checkNotNullParameter(str, "<this>");
-        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, imageGetter, tagHandler);
-        C12238m.checkNotNullExpressionValue(spannedFromHtml, "fromHtml(this, flags, imageGetter, tagHandler)");
+    public static final Spanned parseAsHtml(String str, int i, Html$ImageGetter html$ImageGetter, Html$TagHandler html$TagHandler) {
+        m.checkNotNullParameter(str, "<this>");
+        Spanned spannedFromHtml = HtmlCompat.fromHtml(str, i, html$ImageGetter, html$TagHandler);
+        m.checkNotNullExpressionValue(spannedFromHtml, "fromHtml(this, flags, imageGetter, tagHandler)");
         return spannedFromHtml;
     }
 
@@ -34,16 +35,16 @@ public final class HtmlKt {
         if ((i2 & 1) != 0) {
             i = 0;
         }
-        C12238m.checkNotNullParameter(spanned, "<this>");
+        m.checkNotNullParameter(spanned, "<this>");
         String html = HtmlCompat.toHtml(spanned, i);
-        C12238m.checkNotNullExpressionValue(html, "toHtml(this, option)");
+        m.checkNotNullExpressionValue(html, "toHtml(this, option)");
         return html;
     }
 
     public static final String toHtml(Spanned spanned, int i) {
-        C12238m.checkNotNullParameter(spanned, "<this>");
+        m.checkNotNullParameter(spanned, "<this>");
         String html = HtmlCompat.toHtml(spanned, i);
-        C12238m.checkNotNullExpressionValue(html, "toHtml(this, option)");
+        m.checkNotNullExpressionValue(html, "toHtml(this, option)");
         return html;
     }
 }

@@ -10,27 +10,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelsListUnreadsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f16081a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16082b;
+    public final TextView f2300b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RelativeLayout f16083c;
+    public final RelativeLayout c;
 
     public WidgetChannelsListUnreadsBinding(@NonNull FrameLayout frameLayout, @NonNull TextView textView, @NonNull RelativeLayout relativeLayout) {
-        this.f16081a = frameLayout;
-        this.f16082b = textView;
-        this.f16083c = relativeLayout;
+        this.a = frameLayout;
+        this.f2300b = textView;
+        this.c = relativeLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16081a;
+        return this.a;
     }
 }

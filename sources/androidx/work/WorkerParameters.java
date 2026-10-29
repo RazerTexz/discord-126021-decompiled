@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +36,7 @@ public final class WorkerParameters {
     private int mRunAttemptCount;
 
     @NonNull
-    private RuntimeExtras mRuntimeExtras;
+    private WorkerParameters$RuntimeExtras mRuntimeExtras;
 
     @NonNull
     private Set<String> mTags;
@@ -47,12 +47,12 @@ public final class WorkerParameters {
     @NonNull
     private WorkerFactory mWorkerFactory;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public WorkerParameters(@NonNull UUID uuid, @NonNull Data data, @NonNull Collection<String> collection, @NonNull RuntimeExtras runtimeExtras, @IntRange(from = 0) int i, @NonNull Executor executor, @NonNull TaskExecutor taskExecutor, @NonNull WorkerFactory workerFactory, @NonNull ProgressUpdater progressUpdater, @NonNull ForegroundUpdater foregroundUpdater) {
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+    public WorkerParameters(@NonNull UUID uuid, @NonNull Data data, @NonNull Collection<String> collection, @NonNull WorkerParameters$RuntimeExtras workerParameters$RuntimeExtras, @IntRange(from = 0) int i, @NonNull Executor executor, @NonNull TaskExecutor taskExecutor, @NonNull WorkerFactory workerFactory, @NonNull ProgressUpdater progressUpdater, @NonNull ForegroundUpdater foregroundUpdater) {
         this.mId = uuid;
         this.mInputData = data;
         this.mTags = new HashSet(collection);
-        this.mRuntimeExtras = runtimeExtras;
+        this.mRuntimeExtras = workerParameters$RuntimeExtras;
         this.mRunAttemptCount = i;
         this.mBackgroundExecutor = executor;
         this.mWorkTaskExecutor = taskExecutor;
@@ -62,13 +62,13 @@ public final class WorkerParameters {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public Executor getBackgroundExecutor() {
         return this.mBackgroundExecutor;
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public ForegroundUpdater getForegroundUpdater() {
         return this.mForegroundUpdater;
     }
@@ -90,7 +90,7 @@ public final class WorkerParameters {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public ProgressUpdater getProgressUpdater() {
         return this.mProgressUpdater;
     }
@@ -106,7 +106,7 @@ public final class WorkerParameters {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public TaskExecutor getTaskExecutor() {
         return this.mWorkTaskExecutor;
     }
@@ -124,21 +124,8 @@ public final class WorkerParameters {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public WorkerFactory getWorkerFactory() {
         return this.mWorkerFactory;
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public class RuntimeExtras {
-
-        @RequiresApi(28)
-        public Network network;
-
-        @NonNull
-        public List<String> triggeredContentAuthorities = Collections.emptyList();
-
-        @NonNull
-        public List<Uri> triggeredContentUris = Collections.emptyList();
     }
 }

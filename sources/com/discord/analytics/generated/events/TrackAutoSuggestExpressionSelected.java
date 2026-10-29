@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAutoSuggestExpressionSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackAutoSuggestExpressionSelected implements Anal
             return false;
         }
         TrackAutoSuggestExpressionSelected trackAutoSuggestExpressionSelected = (TrackAutoSuggestExpressionSelected) other;
-        return C12238m.areEqual(this.stickerId, trackAutoSuggestExpressionSelected.stickerId) && C12238m.areEqual(this.emojiId, trackAutoSuggestExpressionSelected.emojiId) && C12238m.areEqual(this.suggestionTrigger, trackAutoSuggestExpressionSelected.suggestionTrigger);
+        return m.areEqual(this.stickerId, trackAutoSuggestExpressionSelected.stickerId) && m.areEqual(this.emojiId, trackAutoSuggestExpressionSelected.emojiId) && m.areEqual(this.suggestionTrigger, trackAutoSuggestExpressionSelected.suggestionTrigger);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,11 +45,11 @@ public final /* data */ class TrackAutoSuggestExpressionSelected implements Anal
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAutoSuggestExpressionSelected(stickerId=");
-        sbM833U.append(this.stickerId);
-        sbM833U.append(", emojiId=");
-        sbM833U.append(this.emojiId);
-        sbM833U.append(", suggestionTrigger=");
-        return C1643a.m817E(sbM833U, this.suggestionTrigger, ")");
+        StringBuilder sbU = a.U("TrackAutoSuggestExpressionSelected(stickerId=");
+        sbU.append(this.stickerId);
+        sbU.append(", emojiId=");
+        sbU.append(this.emojiId);
+        sbU.append(", suggestionTrigger=");
+        return a.E(sbU, this.suggestionTrigger, ")");
     }
 }

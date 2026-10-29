@@ -1,11 +1,12 @@
 package com.discord.stores;
 
+import b.c.a.a0.d;
 import com.discord.api.voice.state.VoiceState;
+import d0.z.d.m;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreRtcConnection.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -29,9 +30,9 @@ public final class VoicePropsTracker {
         this.channelId = j2;
         this.localUserId = j3;
         if (map != null) {
-            for (Map.Entry<Long, VoiceState> entry : map.entrySet()) {
-                long jLongValue = entry.getKey().longValue();
-                VoiceState value = entry.getValue();
+            for (Map$Entry<Long, VoiceState> map$Entry : map.entrySet()) {
+                long jLongValue = map$Entry.getKey().longValue();
+                VoiceState value = map$Entry.getValue();
                 Long channelId = value.getChannelId();
                 long j4 = this.channelId;
                 if (channelId != null && channelId.longValue() == j4) {
@@ -45,7 +46,7 @@ public final class VoicePropsTracker {
     }
 
     public final void getProps(Map<String, Object> properties) {
-        C12238m.checkNotNullParameter(properties, "properties");
+        m.checkNotNullParameter(properties, "properties");
         properties.put("max_voice_state_count", Integer.valueOf(this.maxVoiceStateCount));
         properties.put("total_voice_state_count", Integer.valueOf(this.allVoiceStateUsers.size()));
         properties.put("max_listener_count", Integer.valueOf(this.maxListenerCount));
@@ -73,9 +74,9 @@ public final class VoicePropsTracker {
     }
 
     public final void handleVoiceStateUpdate(VoiceState voiceState) {
-        C12238m.checkNotNullParameter(voiceState, "voiceState");
+        m.checkNotNullParameter(voiceState, "voiceState");
         if (voiceState.getGuildId() == this.guildId) {
-            if (C1460d.m487X0(voiceState)) {
+            if (d.X0(voiceState)) {
                 this.currentVoiceStateUsers.remove(Long.valueOf(voiceState.getUserId()));
                 this.currentPotentialListeners.remove(Long.valueOf(voiceState.getUserId()));
                 this.currentSpeakerUsers.remove(Long.valueOf(voiceState.getUserId()));

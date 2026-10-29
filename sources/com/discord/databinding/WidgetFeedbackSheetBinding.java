@@ -11,37 +11,33 @@ import com.discord.widgets.voice.feedback.FeedbackView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetFeedbackSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f16623a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f16624b;
+    public final ImageView f2385b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final NestedScrollView f16625c;
+    public final NestedScrollView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final FeedbackView f16626d;
+    public final FeedbackView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16627e;
+    public final TextView e;
 
     public WidgetFeedbackSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull ImageView imageView, @NonNull NestedScrollView nestedScrollView2, @NonNull FeedbackView feedbackView, @NonNull TextView textView) {
-        this.f16623a = nestedScrollView;
-        this.f16624b = imageView;
-        this.f16625c = nestedScrollView2;
-        this.f16626d = feedbackView;
-        this.f16627e = textView;
+        this.a = nestedScrollView;
+        this.f2385b = imageView;
+        this.c = nestedScrollView2;
+        this.d = feedbackView;
+        this.e = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16623a;
+        return this.a;
     }
 }

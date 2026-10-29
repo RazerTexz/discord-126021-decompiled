@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: DeviceDescription.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,8 +11,8 @@ public final /* data */ class AudioInputDeviceDescription {
     private final String name;
 
     public AudioInputDeviceDescription(String str, String str2) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(str2, "guid");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str2, "guid");
         this.name = str;
         this.guid = str2;
     }
@@ -28,8 +28,8 @@ public final /* data */ class AudioInputDeviceDescription {
     }
 
     public final AudioInputDeviceDescription copy(String name, String guid) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(guid, "guid");
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(guid, "guid");
         return new AudioInputDeviceDescription(name, guid);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class AudioInputDeviceDescription {
             return false;
         }
         AudioInputDeviceDescription audioInputDeviceDescription = (AudioInputDeviceDescription) other;
-        return C12238m.areEqual(this.name, audioInputDeviceDescription.name) && C12238m.areEqual(this.guid, audioInputDeviceDescription.guid);
+        return m.areEqual(this.name, audioInputDeviceDescription.name) && m.areEqual(this.guid, audioInputDeviceDescription.guid);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -70,9 +70,9 @@ public final /* data */ class AudioInputDeviceDescription {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AudioInputDeviceDescription(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", guid=");
-        return C1643a.m822J(sbM833U, this.guid, ")");
+        StringBuilder sbU = a.U("AudioInputDeviceDescription(name=");
+        sbU.append(this.name);
+        sbU.append(", guid=");
+        return a.J(sbU, this.guid, ")");
     }
 }

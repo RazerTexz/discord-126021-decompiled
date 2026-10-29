@@ -11,43 +11,39 @@ import java.lang.reflect.TypeVariable;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class TypeAdapterRuntimeTypeWrapper<T> extends TypeAdapter<T> {
+    public final Gson a;
 
-    /* JADX INFO: renamed from: a */
-    public final Gson f21553a;
-
-    /* JADX INFO: renamed from: b */
-    public final TypeAdapter<T> f21554b;
-
-    /* JADX INFO: renamed from: c */
-    public final Type f21555c;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public final TypeAdapter<T> f3127b;
+    public final Type c;
 
     public TypeAdapterRuntimeTypeWrapper(Gson gson, TypeAdapter<T> typeAdapter, Type type) {
-        this.f21553a = gson;
-        this.f21554b = typeAdapter;
-        this.f21555c = type;
+        this.a = gson;
+        this.f3127b = typeAdapter;
+        this.c = type;
     }
 
     @Override // com.google.gson.TypeAdapter
     public T read(JsonReader jsonReader) throws IOException {
-        return this.f21554b.read(jsonReader);
+        return this.f3127b.read(jsonReader);
     }
 
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, T t) throws IOException {
-        TypeAdapter<T> typeAdapterM9204h = this.f21554b;
-        Type type = this.f21555c;
+        TypeAdapter<T> typeAdapterH = this.f3127b;
+        Type type = this.c;
         if (t != null && (type == Object.class || (type instanceof TypeVariable) || (type instanceof Class))) {
             type = t.getClass();
         }
-        if (type != this.f21555c) {
-            typeAdapterM9204h = this.f21553a.m9204h(TypeToken.get(type));
-            if (typeAdapterM9204h instanceof ReflectiveTypeAdapterFactory.Adapter) {
-                TypeAdapter<T> typeAdapter = this.f21554b;
-                if (!(typeAdapter instanceof ReflectiveTypeAdapterFactory.Adapter)) {
-                    typeAdapterM9204h = typeAdapter;
+        if (type != this.c) {
+            typeAdapterH = this.a.h(TypeToken.get(type));
+            if (typeAdapterH instanceof ReflectiveTypeAdapterFactory$Adapter) {
+                TypeAdapter<T> typeAdapter = this.f3127b;
+                if (!(typeAdapter instanceof ReflectiveTypeAdapterFactory$Adapter)) {
+                    typeAdapterH = typeAdapter;
                 }
             }
         }
-        typeAdapterM9204h.write(jsonWriter, t);
+        typeAdapterH.write(jsonWriter, t);
     }
 }

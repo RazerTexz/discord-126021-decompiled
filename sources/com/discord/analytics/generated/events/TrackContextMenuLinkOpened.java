@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackContextMenuLinkOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackContextMenuLinkOpened implements AnalyticsSch
             return false;
         }
         TrackContextMenuLinkOpened trackContextMenuLinkOpened = (TrackContextMenuLinkOpened) other;
-        return C12238m.areEqual(this.channelId, trackContextMenuLinkOpened.channelId) && C12238m.areEqual(this.href, trackContextMenuLinkOpened.href);
+        return m.areEqual(this.channelId, trackContextMenuLinkOpened.channelId) && m.areEqual(this.href, trackContextMenuLinkOpened.href);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackContextMenuLinkOpened implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackContextMenuLinkOpened(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", href=");
-        return C1643a.m817E(sbM833U, this.href, ")");
+        StringBuilder sbU = a.U("TrackContextMenuLinkOpened(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", href=");
+        return a.E(sbU, this.href, ")");
     }
 }

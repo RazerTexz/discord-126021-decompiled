@@ -1,10 +1,16 @@
 package com.esotericsoftware.kryo.serializers;
 
-import p007b.p106e.p107a.C1644a;
+import b.e.a.a;
+import b.e.a.a$a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class TaggedFieldSerializerConfig extends FieldSerializerConfig {
     private boolean skipUnknownTags = false;
+
+    @Override // com.esotericsoftware.kryo.serializers.FieldSerializerConfig
+    public /* bridge */ /* synthetic */ FieldSerializerConfig clone() {
+        return clone();
+    }
 
     @Deprecated
     public boolean isIgnoreUnknownTags() {
@@ -21,12 +27,17 @@ public class TaggedFieldSerializerConfig extends FieldSerializerConfig {
 
     public void setSkipUnknownTags(boolean z2) {
         this.skipUnknownTags = z2;
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
     }
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializerConfig
     /* JADX INFO: renamed from: clone */
-    public TaggedFieldSerializerConfig mo11454clone() {
-        return (TaggedFieldSerializerConfig) super.mo11454clone();
+    public /* bridge */ /* synthetic */ Object mo77clone() throws CloneNotSupportedException {
+        return clone();
+    }
+
+    @Override // com.esotericsoftware.kryo.serializers.FieldSerializerConfig
+    public TaggedFieldSerializerConfig clone() {
+        return (TaggedFieldSerializerConfig) super.clone();
     }
 }

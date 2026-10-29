@@ -1,9 +1,9 @@
 package com.discord.api.premium;
 
+import b.d.b.a.a;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: OutboundPromotion.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class OutboundPromotion {
             return false;
         }
         OutboundPromotion outboundPromotion = (OutboundPromotion) other;
-        return this.id == outboundPromotion.id && C12238m.areEqual(this.startDate, outboundPromotion.startDate) && C12238m.areEqual(this.endDate, outboundPromotion.endDate) && C12238m.areEqual(this.outboundTitle, outboundPromotion.outboundTitle) && C12238m.areEqual(this.outboundRedemptionModalBody, outboundPromotion.outboundRedemptionModalBody) && C12238m.areEqual(this.outboundRedemptionPageLink, outboundPromotion.outboundRedemptionPageLink) && C12238m.areEqual(this.outboundRedemptionUrlFormat, outboundPromotion.outboundRedemptionUrlFormat) && C12238m.areEqual(this.outboundTermsAndConditions, outboundPromotion.outboundTermsAndConditions);
+        return this.id == outboundPromotion.id && m.areEqual(this.startDate, outboundPromotion.startDate) && m.areEqual(this.endDate, outboundPromotion.endDate) && m.areEqual(this.outboundTitle, outboundPromotion.outboundTitle) && m.areEqual(this.outboundRedemptionModalBody, outboundPromotion.outboundRedemptionModalBody) && m.areEqual(this.outboundRedemptionPageLink, outboundPromotion.outboundRedemptionPageLink) && m.areEqual(this.outboundRedemptionUrlFormat, outboundPromotion.outboundRedemptionUrlFormat) && m.areEqual(this.outboundTermsAndConditions, outboundPromotion.outboundTermsAndConditions);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -88,21 +88,21 @@ public final /* data */ class OutboundPromotion {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("OutboundPromotion(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", startDate=");
-        sbM833U.append(this.startDate);
-        sbM833U.append(", endDate=");
-        sbM833U.append(this.endDate);
-        sbM833U.append(", outboundTitle=");
-        sbM833U.append(this.outboundTitle);
-        sbM833U.append(", outboundRedemptionModalBody=");
-        sbM833U.append(this.outboundRedemptionModalBody);
-        sbM833U.append(", outboundRedemptionPageLink=");
-        sbM833U.append(this.outboundRedemptionPageLink);
-        sbM833U.append(", outboundRedemptionUrlFormat=");
-        sbM833U.append(this.outboundRedemptionUrlFormat);
-        sbM833U.append(", outboundTermsAndConditions=");
-        return C1643a.m822J(sbM833U, this.outboundTermsAndConditions, ")");
+        StringBuilder sbU = a.U("OutboundPromotion(id=");
+        sbU.append(this.id);
+        sbU.append(", startDate=");
+        sbU.append(this.startDate);
+        sbU.append(", endDate=");
+        sbU.append(this.endDate);
+        sbU.append(", outboundTitle=");
+        sbU.append(this.outboundTitle);
+        sbU.append(", outboundRedemptionModalBody=");
+        sbU.append(this.outboundRedemptionModalBody);
+        sbU.append(", outboundRedemptionPageLink=");
+        sbU.append(this.outboundRedemptionPageLink);
+        sbU.append(", outboundRedemptionUrlFormat=");
+        sbU.append(this.outboundRedemptionUrlFormat);
+        sbU.append(", outboundTermsAndConditions=");
+        return a.J(sbU, this.outboundTermsAndConditions, ")");
     }
 }

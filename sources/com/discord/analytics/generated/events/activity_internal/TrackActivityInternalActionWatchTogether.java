@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalActionWatchTogether.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,7 +32,7 @@ public final /* data */ class TrackActivityInternalActionWatchTogether implement
             return false;
         }
         TrackActivityInternalActionWatchTogether trackActivityInternalActionWatchTogether = (TrackActivityInternalActionWatchTogether) other;
-        return C12238m.areEqual(this.actionName, trackActivityInternalActionWatchTogether.actionName) && C12238m.areEqual(this.isHost, trackActivityInternalActionWatchTogether.isHost) && C12238m.areEqual(this.remoteType, trackActivityInternalActionWatchTogether.remoteType) && C12238m.areEqual(this.hostType, trackActivityInternalActionWatchTogether.hostType) && C12238m.areEqual(this.searchType, trackActivityInternalActionWatchTogether.searchType) && C12238m.areEqual(this.via, trackActivityInternalActionWatchTogether.via) && C12238m.areEqual(this.orderCurrent, trackActivityInternalActionWatchTogether.orderCurrent) && C12238m.areEqual(this.orderSelected, trackActivityInternalActionWatchTogether.orderSelected) && C12238m.areEqual(this.trackingId, trackActivityInternalActionWatchTogether.trackingId);
+        return m.areEqual(this.actionName, trackActivityInternalActionWatchTogether.actionName) && m.areEqual(this.isHost, trackActivityInternalActionWatchTogether.isHost) && m.areEqual(this.remoteType, trackActivityInternalActionWatchTogether.remoteType) && m.areEqual(this.hostType, trackActivityInternalActionWatchTogether.hostType) && m.areEqual(this.searchType, trackActivityInternalActionWatchTogether.searchType) && m.areEqual(this.via, trackActivityInternalActionWatchTogether.via) && m.areEqual(this.orderCurrent, trackActivityInternalActionWatchTogether.orderCurrent) && m.areEqual(this.orderSelected, trackActivityInternalActionWatchTogether.orderSelected) && m.areEqual(this.trackingId, trackActivityInternalActionWatchTogether.trackingId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,23 +63,23 @@ public final /* data */ class TrackActivityInternalActionWatchTogether implement
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalActionWatchTogether(actionName=");
-        sbM833U.append(this.actionName);
-        sbM833U.append(", isHost=");
-        sbM833U.append(this.isHost);
-        sbM833U.append(", remoteType=");
-        sbM833U.append(this.remoteType);
-        sbM833U.append(", hostType=");
-        sbM833U.append(this.hostType);
-        sbM833U.append(", searchType=");
-        sbM833U.append(this.searchType);
-        sbM833U.append(", via=");
-        sbM833U.append(this.via);
-        sbM833U.append(", orderCurrent=");
-        sbM833U.append(this.orderCurrent);
-        sbM833U.append(", orderSelected=");
-        sbM833U.append(this.orderSelected);
-        sbM833U.append(", trackingId=");
-        return C1643a.m817E(sbM833U, this.trackingId, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalActionWatchTogether(actionName=");
+        sbU.append(this.actionName);
+        sbU.append(", isHost=");
+        sbU.append(this.isHost);
+        sbU.append(", remoteType=");
+        sbU.append(this.remoteType);
+        sbU.append(", hostType=");
+        sbU.append(this.hostType);
+        sbU.append(", searchType=");
+        sbU.append(this.searchType);
+        sbU.append(", via=");
+        sbU.append(this.via);
+        sbU.append(", orderCurrent=");
+        sbU.append(this.orderCurrent);
+        sbU.append(", orderSelected=");
+        sbU.append(this.orderSelected);
+        sbU.append(", trackingId=");
+        return a.E(sbU, this.trackingId, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackInviteLogin.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackInviteLogin implements AnalyticsSchema, Track
             return false;
         }
         TrackInviteLogin trackInviteLogin = (TrackInviteLogin) other;
-        return C12238m.areEqual(this.inviteCode, trackInviteLogin.inviteCode) && C12238m.areEqual(this.guildId, trackInviteLogin.guildId) && C12238m.areEqual(this.channelId, trackInviteLogin.channelId) && C12238m.areEqual(this.inviterId, trackInviteLogin.inviterId);
+        return m.areEqual(this.inviteCode, trackInviteLogin.inviteCode) && m.areEqual(this.guildId, trackInviteLogin.guildId) && m.areEqual(this.channelId, trackInviteLogin.channelId) && m.areEqual(this.inviterId, trackInviteLogin.inviterId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackInviteLogin implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackInviteLogin(inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", inviterId=");
-        return C1643a.m819G(sbM833U, this.inviterId, ")");
+        StringBuilder sbU = a.U("TrackInviteLogin(inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", inviterId=");
+        return a.G(sbU, this.inviterId, ")");
     }
 }

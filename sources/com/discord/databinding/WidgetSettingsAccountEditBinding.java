@@ -12,32 +12,29 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsAccountEditBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17830a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextInputLayout f17831b;
+    public final TextInputLayout f2598b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f17832c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final FloatingActionButton f17833d;
+    public final FloatingActionButton d;
 
     public WidgetSettingsAccountEditBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull TextView textView, @NonNull TextInputLayout textInputLayout, @NonNull RelativeLayout relativeLayout, @NonNull TextInputLayout textInputLayout2, @NonNull FloatingActionButton floatingActionButton) {
-        this.f17830a = coordinatorLayout;
-        this.f17831b = textInputLayout;
-        this.f17832c = textInputLayout2;
-        this.f17833d = floatingActionButton;
+        this.a = coordinatorLayout;
+        this.f2598b = textInputLayout;
+        this.c = textInputLayout2;
+        this.d = floatingActionButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17830a;
+        return this.a;
     }
 }

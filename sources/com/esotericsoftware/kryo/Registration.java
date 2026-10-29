@@ -1,16 +1,15 @@
 package com.esotericsoftware.kryo;
 
+import b.e.a.a$a;
 import com.esotericsoftware.kryo.util.Util;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p106e.p107a.C1644a;
-import p617h0.p620b.p621a.InterfaceC12436a;
+import h0.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Registration {
 
-    /* JADX INFO: renamed from: id */
-    private final int f19417id;
-    private InterfaceC12436a instantiator;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private final int f2880id;
+    private a instantiator;
     private Serializer serializer;
     private final Class type;
 
@@ -23,14 +22,14 @@ public class Registration {
         }
         this.type = cls;
         this.serializer = serializer;
-        this.f19417id = i;
+        this.f2880id = i;
     }
 
     public int getId() {
-        return this.f19417id;
+        return this.f2880id;
     }
 
-    public InterfaceC12436a getInstantiator() {
+    public a getInstantiator() {
         return this.instantiator;
     }
 
@@ -42,11 +41,11 @@ public class Registration {
         return this.type;
     }
 
-    public void setInstantiator(InterfaceC12436a interfaceC12436a) {
-        if (interfaceC12436a == null) {
+    public void setInstantiator(a aVar) {
+        if (aVar == null) {
             throw new IllegalArgumentException("instantiator cannot be null.");
         }
-        this.instantiator = interfaceC12436a;
+        this.instantiator = aVar;
     }
 
     public void setSerializer(Serializer serializer) {
@@ -54,15 +53,15 @@ public class Registration {
             throw new IllegalArgumentException("serializer cannot be null.");
         }
         this.serializer = serializer;
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = b.e.a.a.a;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("[");
-        sbM833U.append(this.f19417id);
-        sbM833U.append(", ");
-        sbM833U.append(Util.className(this.type));
-        sbM833U.append("]");
-        return sbM833U.toString();
+        StringBuilder sbU = b.d.b.a.a.U("[");
+        sbU.append(this.f2880id);
+        sbU.append(", ");
+        sbU.append(Util.className(this.type));
+        sbU.append("]");
+        return sbU.toString();
     }
 }

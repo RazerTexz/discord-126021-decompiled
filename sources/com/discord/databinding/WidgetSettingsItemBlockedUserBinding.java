@@ -11,32 +11,29 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsItemBlockedUserBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17979a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f17980b;
+    public final SimpleDraweeView f2625b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17981c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f17982d;
+    public final MaterialButton d;
 
     public WidgetSettingsItemBlockedUserBinding(@NonNull RelativeLayout relativeLayout, @NonNull RelativeLayout relativeLayout2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView, @NonNull MaterialButton materialButton) {
-        this.f17979a = relativeLayout;
-        this.f17980b = simpleDraweeView;
-        this.f17981c = textView;
-        this.f17982d = materialButton;
+        this.a = relativeLayout;
+        this.f2625b = simpleDraweeView;
+        this.c = textView;
+        this.d = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17979a;
+        return this.a;
     }
 }

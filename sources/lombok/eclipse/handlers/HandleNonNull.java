@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import lombok.ConfigurationKeys;
 import lombok.NonNull;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.handlers.HandlerUtil;
@@ -45,45 +45,45 @@ public class HandleNonNull extends EclipseAnnotationHandler<NonNull> {
         if (iArr != null) {
             return iArr;
         }
-        int[] iArr2 = new int[AST.Kind.valuesCustom().length];
+        int[] iArr2 = new int[AST$Kind.valuesCustom().length];
         try {
-            iArr2[AST.Kind.ANNOTATION.ordinal()] = 6;
+            iArr2[AST$Kind.ANNOTATION.ordinal()] = 6;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            iArr2[AST.Kind.ARGUMENT.ordinal()] = 7;
+            iArr2[AST$Kind.ARGUMENT.ordinal()] = 7;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            iArr2[AST.Kind.COMPILATION_UNIT.ordinal()] = 1;
+            iArr2[AST$Kind.COMPILATION_UNIT.ordinal()] = 1;
         } catch (NoSuchFieldError unused3) {
         }
         try {
-            iArr2[AST.Kind.FIELD.ordinal()] = 3;
+            iArr2[AST$Kind.FIELD.ordinal()] = 3;
         } catch (NoSuchFieldError unused4) {
         }
         try {
-            iArr2[AST.Kind.INITIALIZER.ordinal()] = 4;
+            iArr2[AST$Kind.INITIALIZER.ordinal()] = 4;
         } catch (NoSuchFieldError unused5) {
         }
         try {
-            iArr2[AST.Kind.LOCAL.ordinal()] = 8;
+            iArr2[AST$Kind.LOCAL.ordinal()] = 8;
         } catch (NoSuchFieldError unused6) {
         }
         try {
-            iArr2[AST.Kind.METHOD.ordinal()] = 5;
+            iArr2[AST$Kind.METHOD.ordinal()] = 5;
         } catch (NoSuchFieldError unused7) {
         }
         try {
-            iArr2[AST.Kind.STATEMENT.ordinal()] = 9;
+            iArr2[AST$Kind.STATEMENT.ordinal()] = 9;
         } catch (NoSuchFieldError unused8) {
         }
         try {
-            iArr2[AST.Kind.TYPE.ordinal()] = 2;
+            iArr2[AST$Kind.TYPE.ordinal()] = 2;
         } catch (NoSuchFieldError unused9) {
         }
         try {
-            iArr2[AST.Kind.TYPE_USE.ordinal()] = 10;
+            iArr2[AST$Kind.TYPE_USE.ordinal()] = 10;
         } catch (NoSuchFieldError unused10) {
         }
         $SWITCH_TABLE$lombok$core$AST$Kind = iArr2;
@@ -92,9 +92,9 @@ public class HandleNonNull extends EclipseAnnotationHandler<NonNull> {
 
     public void fix(EclipseNode method) {
         for (EclipseNode m : method.down()) {
-            if (m.getKind() == AST.Kind.ARGUMENT) {
+            if (m.getKind() == AST$Kind.ARGUMENT) {
                 for (EclipseNode c : m.down()) {
-                    if (c.getKind() == AST.Kind.ANNOTATION && EclipseHandlerUtil.annotationTypeMatches((Class<? extends Annotation>) NonNull.class, c)) {
+                    if (c.getKind() == AST$Kind.ANNOTATION && EclipseHandlerUtil.annotationTypeMatches((Class<? extends Annotation>) NonNull.class, c)) {
                         handle0((org.eclipse.jdt.internal.compiler.ast.Annotation) c.get(), c, true);
                     }
                 }
@@ -112,9 +112,9 @@ public class HandleNonNull extends EclipseAnnotationHandler<NonNull> {
         EclipseNode paramNode;
         int i;
         HandlerUtil.handleFlagUsage(annotationNode, ConfigurationKeys.NON_NULL_FLAG_USAGE, "@NonNull");
-        if (annotationNode.m10925up().getKind() == AST.Kind.FIELD) {
+        if (annotationNode.up().getKind() == AST$Kind.FIELD) {
             try {
-                if (Eclipse.isPrimitive(annotationNode.m10925up().get().type)) {
+                if (Eclipse.isPrimitive(annotationNode.up().get().type)) {
                     annotationNode.addWarning("@NonNull is meaningless on a primitive.");
                     return;
                 }
@@ -123,9 +123,9 @@ public class HandleNonNull extends EclipseAnnotationHandler<NonNull> {
                 return;
             }
         }
-        switch ($SWITCH_TABLE$lombok$core$AST$Kind()[annotationNode.m10925up().getKind().ordinal()]) {
+        switch ($SWITCH_TABLE$lombok$core$AST$Kind()[annotationNode.up().getKind().ordinal()]) {
             case 7:
-                paramNode = annotationNode.m10925up();
+                paramNode = annotationNode.up();
                 break;
             case 8:
             case 9:
@@ -155,7 +155,7 @@ public class HandleNonNull extends EclipseAnnotationHandler<NonNull> {
         }
         try {
             Argument param = paramNode.get();
-            AbstractMethodDeclaration declaration = paramNode.m10925up().get();
+            AbstractMethodDeclaration declaration = paramNode.up().get();
             if ((!force && EclipseHandlerUtil.isGenerated(declaration)) || declaration.isAbstract()) {
                 return;
             }
@@ -221,7 +221,7 @@ public class HandleNonNull extends EclipseAnnotationHandler<NonNull> {
                 newStatements2[skipOver2] = nullCheck;
                 declaration.statements = newStatements2;
             }
-            paramNode.m10925up().rebuild();
+            paramNode.up().rebuild();
         } catch (Exception unused2) {
         }
     }

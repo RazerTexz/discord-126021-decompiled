@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import lombok.AccessLevel;
 import lombok.ConfigurationKeys;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.HandlerPriority;
 import lombok.core.handlers.HandlerUtil;
@@ -38,7 +38,7 @@ public class HandleFieldDefaults extends EclipseASTAdapter {
             return false;
         }
         for (EclipseNode field : typeNode.down()) {
-            if (field.getKind() == AST.Kind.FIELD) {
+            if (field.getKind() == AST$Kind.FIELD) {
                 FieldDeclaration fieldDecl = field.get();
                 if (EclipseHandlerUtil.filterField(fieldDecl, false)) {
                     Class<?> t = field.get().getClass();
@@ -72,7 +72,7 @@ public class HandleFieldDefaults extends EclipseASTAdapter {
         boolean makeFinalIsExplicit = false;
         FieldDefaults fd = null;
         for (EclipseNode jn : typeNode.down()) {
-            if (jn.getKind() == AST.Kind.ANNOTATION) {
+            if (jn.getKind() == AST$Kind.ANNOTATION) {
                 org.eclipse.jdt.internal.compiler.ast.Annotation ann = jn.get();
                 QualifiedTypeReference qualifiedTypeReference = ann.type;
                 if (qualifiedTypeReference == null) {

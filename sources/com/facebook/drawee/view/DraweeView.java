@@ -9,16 +9,17 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View$MeasureSpec;
+import android.view.ViewGroup$LayoutParams;
 import android.widget.ImageView;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
+import b.c.a.a0.d;
+import b.f.d.d.i;
+import b.f.g.b.c$a;
+import b.f.j.r.b;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.interfaces.DraweeHierarchy;
 import java.util.Objects;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p007b.p109f.p115d.p119d.C1686i;
-import p007b.p109f.p132g.p138b.C1751c;
-import p007b.p109f.p161j.p183r.C2030b;
 
 /* JADX INFO: loaded from: classes.dex */
 public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
@@ -40,16 +41,16 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
 
     public void doAttach() {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        draweeHolder.f19530f.m1084a(C1751c.a.ON_HOLDER_ATTACH);
-        draweeHolder.f19526b = true;
-        draweeHolder.m8688b();
+        draweeHolder.f.a(c$a.ON_HOLDER_ATTACH);
+        draweeHolder.f2893b = true;
+        draweeHolder.b();
     }
 
     public void doDetach() {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        draweeHolder.f19530f.m1084a(C1751c.a.ON_HOLDER_DETACH);
-        draweeHolder.f19526b = false;
-        draweeHolder.m8688b();
+        draweeHolder.f.a(c$a.ON_HOLDER_DETACH);
+        draweeHolder.f2893b = false;
+        draweeHolder.b();
     }
 
     public float getAspectRatio() {
@@ -57,30 +58,30 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     }
 
     public DraweeController getController() {
-        return this.mDraweeHolder.f19529e;
+        return this.mDraweeHolder.e;
     }
 
     public DH getHierarchy() {
-        DH dh = this.mDraweeHolder.f19528d;
+        DH dh = this.mDraweeHolder.d;
         Objects.requireNonNull(dh);
         return dh;
     }
 
     public Drawable getTopLevelDrawable() {
-        return this.mDraweeHolder.m8690d();
+        return this.mDraweeHolder.d();
     }
 
     public boolean hasController() {
-        return this.mDraweeHolder.f19529e != null;
+        return this.mDraweeHolder.e != null;
     }
 
     public boolean hasHierarchy() {
-        return this.mDraweeHolder.f19528d != null;
+        return this.mDraweeHolder.d != null;
     }
 
     private void init(Context context) {
         try {
-            C2030b.m1527b();
+            b.b();
             if (this.mInitialised) {
                 return;
             }
@@ -97,7 +98,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
             }
             this.mLegacyVisibilityHandlingEnabled = z2;
         } finally {
-            C2030b.m1527b();
+            b.b();
         }
     }
 
@@ -141,29 +142,29 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     @Override // android.widget.ImageView, android.view.View
     public void onMeasure(int i, int i2) {
         AspectRatioMeasure$Spec aspectRatioMeasure$Spec = this.mMeasureSpec;
-        aspectRatioMeasure$Spec.f19523a = i;
-        aspectRatioMeasure$Spec.f19524b = i2;
+        aspectRatioMeasure$Spec.a = i;
+        aspectRatioMeasure$Spec.f2892b = i2;
         float f = this.mAspectRatio;
-        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        ViewGroup$LayoutParams layoutParams = getLayoutParams();
         int paddingRight = getPaddingRight() + getPaddingLeft();
         int paddingBottom = getPaddingBottom() + getPaddingTop();
         if (f > 0.0f && layoutParams != null) {
             int i3 = layoutParams.height;
             boolean z2 = true;
             if (i3 == 0 || i3 == -2) {
-                aspectRatioMeasure$Spec.f19524b = View.MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View.MeasureSpec.getSize(aspectRatioMeasure$Spec.f19523a) - paddingRight) / f) + paddingBottom), aspectRatioMeasure$Spec.f19524b), BasicMeasure.EXACTLY);
+                aspectRatioMeasure$Spec.f2892b = View$MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View$MeasureSpec.getSize(aspectRatioMeasure$Spec.a) - paddingRight) / f) + paddingBottom), aspectRatioMeasure$Spec.f2892b), BasicMeasure.EXACTLY);
             } else {
                 int i4 = layoutParams.width;
                 if (i4 != 0 && i4 != -2) {
                     z2 = false;
                 }
                 if (z2) {
-                    aspectRatioMeasure$Spec.f19523a = View.MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View.MeasureSpec.getSize(aspectRatioMeasure$Spec.f19524b) - paddingBottom) * f) + paddingRight), aspectRatioMeasure$Spec.f19523a), BasicMeasure.EXACTLY);
+                    aspectRatioMeasure$Spec.a = View$MeasureSpec.makeMeasureSpec(View.resolveSize((int) (((View$MeasureSpec.getSize(aspectRatioMeasure$Spec.f2892b) - paddingBottom) * f) + paddingRight), aspectRatioMeasure$Spec.a), BasicMeasure.EXACTLY);
                 }
             }
         }
         AspectRatioMeasure$Spec aspectRatioMeasure$Spec2 = this.mMeasureSpec;
-        super.onMeasure(aspectRatioMeasure$Spec2.f19523a, aspectRatioMeasure$Spec2.f19524b);
+        super.onMeasure(aspectRatioMeasure$Spec2.a, aspectRatioMeasure$Spec2.f2892b);
     }
 
     @Override // android.view.View
@@ -176,7 +177,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        if (!draweeHolder.m8691e() ? false : draweeHolder.f19529e.onTouchEvent(motionEvent)) {
+        if (!draweeHolder.e() ? false : draweeHolder.e.onTouchEvent(motionEvent)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);
@@ -197,8 +198,8 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     }
 
     public void setController(DraweeController draweeController) {
-        this.mDraweeHolder.m8693g(draweeController);
-        super.setImageDrawable(this.mDraweeHolder.m8690d());
+        this.mDraweeHolder.g(draweeController);
+        super.setImageDrawable(this.mDraweeHolder.d());
     }
 
     public static void setGlobalLegacyVisibilityHandlingEnabled(boolean z2) {
@@ -206,15 +207,15 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     }
 
     public void setHierarchy(DH dh) {
-        this.mDraweeHolder.m8694h(dh);
-        super.setImageDrawable(this.mDraweeHolder.m8690d());
+        this.mDraweeHolder.h(dh);
+        super.setImageDrawable(this.mDraweeHolder.d());
     }
 
     @Override // android.widget.ImageView
     @Deprecated
     public void setImageBitmap(Bitmap bitmap) {
         init(getContext());
-        this.mDraweeHolder.m8693g(null);
+        this.mDraweeHolder.g(null);
         super.setImageBitmap(bitmap);
     }
 
@@ -222,7 +223,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     @Deprecated
     public void setImageDrawable(Drawable drawable) {
         init(getContext());
-        this.mDraweeHolder.m8693g(null);
+        this.mDraweeHolder.g(null);
         super.setImageDrawable(drawable);
     }
 
@@ -230,7 +231,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     @Deprecated
     public void setImageResource(int i) {
         init(getContext());
-        this.mDraweeHolder.m8693g(null);
+        this.mDraweeHolder.g(null);
         super.setImageResource(i);
     }
 
@@ -238,7 +239,7 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
     @Deprecated
     public void setImageURI(Uri uri) {
         init(getContext());
-        this.mDraweeHolder.m8693g(null);
+        this.mDraweeHolder.g(null);
         super.setImageURI(uri);
     }
 
@@ -248,10 +249,10 @@ public class DraweeView<DH extends DraweeHierarchy> extends ImageView {
 
     @Override // android.view.View
     public String toString() {
-        C1686i c1686iM526h2 = C1460d.m526h2(this);
+        i iVarH2 = d.h2(this);
         DraweeHolder<DH> draweeHolder = this.mDraweeHolder;
-        c1686iM526h2.m971c("holder", draweeHolder != null ? draweeHolder.toString() : "<no holder set>");
-        return c1686iM526h2.toString();
+        iVarH2.c("holder", draweeHolder != null ? draweeHolder.toString() : "<no holder set>");
+        return iVarH2.toString();
     }
 
     public DraweeView(Context context, AttributeSet attributeSet) {

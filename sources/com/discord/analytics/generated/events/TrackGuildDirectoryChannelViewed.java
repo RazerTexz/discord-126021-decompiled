@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildDirectoryChannelViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackGuildDirectoryChannelViewed implements Analyt
             return false;
         }
         TrackGuildDirectoryChannelViewed trackGuildDirectoryChannelViewed = (TrackGuildDirectoryChannelViewed) other;
-        return C12238m.areEqual(this.directoryChannelId, trackGuildDirectoryChannelViewed.directoryChannelId) && C12238m.areEqual(this.directoryGuildId, trackGuildDirectoryChannelViewed.directoryGuildId) && C12238m.areEqual(this.primaryCategoryId, trackGuildDirectoryChannelViewed.primaryCategoryId);
+        return m.areEqual(this.directoryChannelId, trackGuildDirectoryChannelViewed.directoryChannelId) && m.areEqual(this.directoryGuildId, trackGuildDirectoryChannelViewed.directoryGuildId) && m.areEqual(this.primaryCategoryId, trackGuildDirectoryChannelViewed.primaryCategoryId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackGuildDirectoryChannelViewed implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildDirectoryChannelViewed(directoryChannelId=");
-        sbM833U.append(this.directoryChannelId);
-        sbM833U.append(", directoryGuildId=");
-        sbM833U.append(this.directoryGuildId);
-        sbM833U.append(", primaryCategoryId=");
-        return C1643a.m819G(sbM833U, this.primaryCategoryId, ")");
+        StringBuilder sbU = a.U("TrackGuildDirectoryChannelViewed(directoryChannelId=");
+        sbU.append(this.directoryChannelId);
+        sbU.append(", directoryGuildId=");
+        sbU.append(this.directoryGuildId);
+        sbU.append(", primaryCategoryId=");
+        return a.G(sbU, this.primaryCategoryId, ")");
     }
 }

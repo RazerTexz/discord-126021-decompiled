@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPermissionsAcked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackPermissionsAcked implements AnalyticsSchema, 
             return false;
         }
         TrackPermissionsAcked trackPermissionsAcked = (TrackPermissionsAcked) other;
-        return C12238m.areEqual(this.type, trackPermissionsAcked.type) && C12238m.areEqual(this.action, trackPermissionsAcked.action) && C12238m.areEqual(this.previousAction, trackPermissionsAcked.previousAction);
+        return m.areEqual(this.type, trackPermissionsAcked.type) && m.areEqual(this.action, trackPermissionsAcked.action) && m.areEqual(this.previousAction, trackPermissionsAcked.previousAction);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackPermissionsAcked implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPermissionsAcked(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", action=");
-        sbM833U.append(this.action);
-        sbM833U.append(", previousAction=");
-        return C1643a.m817E(sbM833U, this.previousAction, ")");
+        StringBuilder sbU = a.U("TrackPermissionsAcked(type=");
+        sbU.append(this.type);
+        sbU.append(", action=");
+        sbU.append(this.action);
+        sbU.append(", previousAction=");
+        return a.E(sbU, this.previousAction, ")");
     }
 }

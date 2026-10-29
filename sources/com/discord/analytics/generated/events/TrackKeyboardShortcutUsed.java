@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackKeyboardShortcutUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSche
             return false;
         }
         TrackKeyboardShortcutUsed trackKeyboardShortcutUsed = (TrackKeyboardShortcutUsed) other;
-        return C12238m.areEqual(this.shortcutName, trackKeyboardShortcutUsed.shortcutName) && C12238m.areEqual(this.sourceClassList, trackKeyboardShortcutUsed.sourceClassList);
+        return m.areEqual(this.shortcutName, trackKeyboardShortcutUsed.shortcutName) && m.areEqual(this.sourceClassList, trackKeyboardShortcutUsed.sourceClassList);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -43,9 +43,9 @@ public final /* data */ class TrackKeyboardShortcutUsed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackKeyboardShortcutUsed(shortcutName=");
-        sbM833U.append(this.shortcutName);
-        sbM833U.append(", sourceClassList=");
-        return C1643a.m824L(sbM833U, this.sourceClassList, ")");
+        StringBuilder sbU = a.U("TrackKeyboardShortcutUsed(shortcutName=");
+        sbU.append(this.shortcutName);
+        sbU.append(", sourceClassList=");
+        return a.L(sbU, this.sourceClassList, ")");
     }
 }

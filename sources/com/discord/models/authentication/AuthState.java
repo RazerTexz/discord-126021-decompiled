@@ -1,50 +1,21 @@
 package com.discord.models.authentication;
 
+import b.d.b.a.a;
 import com.discord.api.auth.RequiredAction;
+import d0.z.d.m;
 import java.util.Set;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AuthState.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class AuthState {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final AuthState$Companion Companion = new AuthState$Companion(null);
     private final Set<RequiredAction> requiredActions;
     private final String token;
 
-    /* JADX INFO: compiled from: AuthState.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final AuthState from(String token, Set<? extends RequiredAction> requiredActions) {
-            C12238m.checkNotNullParameter(requiredActions, "requiredActions");
-            if (token != null) {
-                return new AuthState(token, requiredActions);
-            }
-            return null;
-        }
-
-        public final boolean isUpdatePasswordRequired(AuthState authState) {
-            Set<RequiredAction> requiredActions;
-            if (authState == null || (requiredActions = authState.getRequiredActions()) == null) {
-                return false;
-            }
-            return requiredActions.contains(RequiredAction.UPDATE_PASSWORD);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public AuthState(String str, Set<? extends RequiredAction> set) {
-        C12238m.checkNotNullParameter(str, "token");
-        C12238m.checkNotNullParameter(set, "requiredActions");
+        m.checkNotNullParameter(str, "token");
+        m.checkNotNullParameter(set, "requiredActions");
         this.token = str;
         this.requiredActions = set;
     }
@@ -65,8 +36,8 @@ public final /* data */ class AuthState {
     }
 
     public final AuthState copy(String token, Set<? extends RequiredAction> requiredActions) {
-        C12238m.checkNotNullParameter(token, "token");
-        C12238m.checkNotNullParameter(requiredActions, "requiredActions");
+        m.checkNotNullParameter(token, "token");
+        m.checkNotNullParameter(requiredActions, "requiredActions");
         return new AuthState(token, requiredActions);
     }
 
@@ -78,7 +49,7 @@ public final /* data */ class AuthState {
             return false;
         }
         AuthState authState = (AuthState) other;
-        return C12238m.areEqual(this.token, authState.token) && C12238m.areEqual(this.requiredActions, authState.requiredActions);
+        return m.areEqual(this.token, authState.token) && m.areEqual(this.requiredActions, authState.requiredActions);
     }
 
     public final Set<RequiredAction> getRequiredActions() {
@@ -102,9 +73,9 @@ public final /* data */ class AuthState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AuthState(token=");
-        sbM833U.append(this.token);
-        sbM833U.append(", requiredActions=");
-        return C1643a.m826N(sbM833U, this.requiredActions, ")");
+        StringBuilder sbU = a.U("AuthState(token=");
+        sbU.append(this.token);
+        sbU.append(", requiredActions=");
+        return a.N(sbU, this.requiredActions, ")");
     }
 }

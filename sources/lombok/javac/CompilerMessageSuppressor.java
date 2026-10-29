@@ -4,12 +4,8 @@ import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.JCDiagnostic;
 import com.sun.tools.javac.util.ListBuffer;
 import com.sun.tools.javac.util.Log;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -27,9 +23,9 @@ public final class CompilerMessageSuppressor {
     private Boolean promptOnError;
     private static final ConcurrentMap<Class<?>, Field> handlerDeferredFields = new ConcurrentHashMap();
     private static final ThreadLocal<Queue<?>> queueCache = new ThreadLocal<>();
-    private static final WriterField errWriterField = createWriterField(Writers.ERROR);
-    private static final WriterField warnWriterField = createWriterField(Writers.WARNING);
-    private static final WriterField noticeWriterField = createWriterField(Writers.NOTICE);
+    private static final CompilerMessageSuppressor$WriterField errWriterField = createWriterField(CompilerMessageSuppressor$Writers.ERROR);
+    private static final CompilerMessageSuppressor$WriterField warnWriterField = createWriterField(CompilerMessageSuppressor$Writers.WARNING);
+    private static final CompilerMessageSuppressor$WriterField noticeWriterField = createWriterField(CompilerMessageSuppressor$Writers.NOTICE);
     private static final Field dumpOnErrorField = getDeclaredField(Log.class, "dumpOnError");
     private static final Field promptOnErrorField = getDeclaredField(Log.class, "promptOnError");
     private static final Field diagnosticListenerField = getDeclaredField(Log.class, "diagListener");
@@ -37,30 +33,6 @@ public final class CompilerMessageSuppressor {
     private static final Field deferredDiagnosticsField = getDeclaredField(Log.class, "deferredDiagnostics");
     private static final Field diagnosticHandlerField = getDeclaredField(Log.class, "diagnosticHandler");
     private static final Field NULL_FIELD = getDeclaredField(JavacResolution.class, "NULL_FIELD");
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$Writers.SCL.lombok */
-    enum Writers {
-        ERROR("errWriter", "ERROR"),
-        WARNING("warnWriter", "WARNING"),
-        NOTICE("noticeWriter", "NOTICE");
-
-        final String fieldName;
-        final String keyName;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static Writers[] valuesCustom() {
-            Writers[] writersArrValuesCustom = values();
-            int length = writersArrValuesCustom.length;
-            Writers[] writersArr = new Writers[length];
-            System.arraycopy(writersArrValuesCustom, 0, writersArr, 0, length);
-            return writersArr;
-        }
-
-        Writers(String fieldName, String keyName) {
-            this.fieldName = fieldName;
-            this.keyName = keyName;
-        }
-    }
 
     static Field getDeclaredField(Class<?> c, String fieldName) {
         try {
@@ -235,107 +207,21 @@ public final class CompilerMessageSuppressor {
         }
     }
 
-    private static WriterField createWriterField(Writers w) {
+    private static CompilerMessageSuppressor$WriterField createWriterField(CompilerMessageSuppressor$Writers w) {
         try {
             Field writers = getDeclaredField(Log.class, "writer");
             if (writers != null) {
                 Class<?> kindsClass = Class.forName("com.sun.tools.javac.util.Log$WriterKind");
                 for (Object enumConstant : kindsClass.getEnumConstants()) {
                     if (enumConstant.toString().equals(w.keyName)) {
-                        return new Java9WriterField(writers, enumConstant);
+                        return new CompilerMessageSuppressor$Java9WriterField(writers, enumConstant);
                     }
                 }
-                return WriterField.NONE;
+                return CompilerMessageSuppressor$WriterField.NONE;
             }
         } catch (Exception unused) {
         }
         Field writerField = getDeclaredField(Log.class, w.fieldName);
-        return writerField != null ? new Java8WriterField(writerField) : WriterField.NONE;
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$WriterField.SCL.lombok */
-    interface WriterField {
-        public static final PrintWriter NO_WRITER = new PrintWriter(new OutputStream() { // from class: lombok.javac.CompilerMessageSuppressor.WriterField.1
-            @Override // java.io.OutputStream
-            public void write(int b2) throws IOException {
-            }
-        });
-        public static final WriterField NONE = new WriterField() { // from class: lombok.javac.CompilerMessageSuppressor.WriterField.2
-            @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-            public void pauze(Log log) {
-            }
-
-            @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-            public void resume(Log log) {
-            }
-        };
-
-        void pauze(Log log);
-
-        void resume(Log log);
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$Java8WriterField.SCL.lombok */
-    class Java8WriterField implements WriterField {
-        private final Field field;
-        private PrintWriter writer;
-
-        public Java8WriterField(Field field) {
-            this.field = field;
-        }
-
-        @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-        public void pauze(Log log) {
-            try {
-                this.writer = (PrintWriter) this.field.get(log);
-                this.field.set(log, NO_WRITER);
-            } catch (Exception unused) {
-            }
-        }
-
-        @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-        public void resume(Log log) {
-            if (this.writer != null) {
-                try {
-                    this.field.set(log, this.writer);
-                } catch (Exception unused) {
-                }
-            }
-            this.writer = null;
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CompilerMessageSuppressor$Java9WriterField.SCL.lombok */
-    class Java9WriterField implements WriterField {
-        private final Field field;
-        private final Object key;
-        private PrintWriter writer;
-
-        public Java9WriterField(Field field, Object key) {
-            this.field = field;
-            this.key = key;
-        }
-
-        @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-        public void pauze(Log log) {
-            try {
-                Map<Object, PrintWriter> map = (Map) this.field.get(log);
-                this.writer = map.get(this.key);
-                map.put(this.key, NO_WRITER);
-            } catch (Exception unused) {
-            }
-        }
-
-        @Override // lombok.javac.CompilerMessageSuppressor.WriterField
-        public void resume(Log log) {
-            if (this.writer != null) {
-                try {
-                    Map<Object, PrintWriter> map = (Map) this.field.get(log);
-                    map.put(this.key, this.writer);
-                } catch (Exception unused) {
-                }
-            }
-            this.writer = null;
-        }
+        return writerField != null ? new CompilerMessageSuppressor$Java8WriterField(writerField) : CompilerMessageSuppressor$WriterField.NONE;
     }
 }

@@ -13,42 +13,37 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetHubAddNameBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17138a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final GuildView f17139b;
+    public final GuildView f2467b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputEditText f17140c;
+    public final TextInputEditText c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextInputLayout f17141d;
+    public final TextInputLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17142e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final LoadingButton f17143f;
+    public final LoadingButton f;
 
     public WidgetHubAddNameBinding(@NonNull LinearLayout linearLayout, @NonNull GuildView guildView, @NonNull TextInputEditText textInputEditText, @NonNull TextInputLayout textInputLayout, @NonNull TextView textView, @NonNull LoadingButton loadingButton) {
-        this.f17138a = linearLayout;
-        this.f17139b = guildView;
-        this.f17140c = textInputEditText;
-        this.f17141d = textInputLayout;
-        this.f17142e = textView;
-        this.f17143f = loadingButton;
+        this.a = linearLayout;
+        this.f2467b = guildView;
+        this.c = textInputEditText;
+        this.d = textInputLayout;
+        this.e = textView;
+        this.f = loadingButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17138a;
+        return this.a;
     }
 }

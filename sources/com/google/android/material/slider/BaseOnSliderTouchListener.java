@@ -2,9 +2,10 @@ package com.google.android.material.slider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public interface BaseOnSliderTouchListener<S> {
     void onStartTrackingTouch(@NonNull S s2);
 

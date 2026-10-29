@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ForumBrowserHeaderItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15076a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15077b;
+    public final TextView f2107b;
 
     public ForumBrowserHeaderItemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextView textView) {
-        this.f15076a = constraintLayout;
-        this.f15077b = textView;
+        this.a = constraintLayout;
+        this.f2107b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15076a;
+        return this.a;
     }
 }

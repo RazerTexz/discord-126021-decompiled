@@ -1,110 +1,47 @@
 package com.discord.widgets.captcha;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import com.discord.C5419R;
-import com.discord.app.AppActivity;
+import b.d.b.a.a;
+import com.discord.R$layout;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetCaptchaBinding;
 import com.discord.utilities.captcha.CaptchaErrorBody;
 import com.discord.utilities.captcha.CaptchaHelper;
+import com.discord.utilities.captcha.CaptchaHelper$CaptchaRequest;
+import com.discord.utilities.captcha.CaptchaHelper$CaptchaRequest$HCaptcha;
+import com.discord.utilities.captcha.CaptchaHelper$CaptchaRequest$ReCaptcha;
 import com.discord.utilities.captcha.CaptchaService;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
+import d0.z.d.m;
 import java.io.Serializable;
 import java.util.List;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
-import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0870j;
-import p007b.p008a.p018d.C0876m;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12145m;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Subscription;
 
 /* JADX INFO: compiled from: WidgetCaptcha.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public class WidgetCaptcha extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetCaptcha.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCaptchaBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetCaptcha.class, "binding", "getBinding()Lcom/discord/databinding/WidgetCaptchaBinding;", 0)};
+    public static final WidgetCaptcha$Companion Companion = new WidgetCaptcha$Companion(null);
     private static final String EXTRA_CAPTCHA_ERROR_BODY = "EXTRA_CAPTCHA_ERROR_BODY";
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final String RESULT_EXTRA_RQTOKEN = "RESULT_EXTRA_RQTOKEN";
     private static final String RESULT_EXTRA_TOKEN = "RESULT_EXTRA_TOKEN";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
 
-    /* JADX INFO: compiled from: WidgetCaptcha.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(Context context, ActivityResultLauncher<Intent> launcher, CaptchaErrorBody captchaErrorBody) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(launcher, "launcher");
-            Intent intent = new Intent();
-            intent.putExtra(WidgetCaptcha.EXTRA_CAPTCHA_ERROR_BODY, captchaErrorBody);
-            C0870j.f524g.m160f(context, launcher, WidgetCaptcha.class, intent);
-        }
-
-        public final void processErrorsForCaptcha(Context context, ActivityResultLauncher<Intent> launcher, List<String> unhandledErrors, Error error) {
-            C12238m.checkNotNullParameter(context, "context");
-            C12238m.checkNotNullParameter(launcher, "launcher");
-            C12238m.checkNotNullParameter(unhandledErrors, "unhandledErrors");
-            C12238m.checkNotNullParameter(error, "error");
-            if (unhandledErrors.remove(CaptchaHelper.CAPTCHA_KEY)) {
-                launch(context, launcher, CaptchaErrorBody.INSTANCE.createFromError(error));
-                error.setShowErrorToasts(false);
-            }
-        }
-
-        public final ActivityResultLauncher<Intent> registerForResult(AppFragment fragment, final Function1<? super CaptchaHelper.CaptchaPayload, Unit> callback) {
-            C12238m.checkNotNullParameter(fragment, "fragment");
-            C12238m.checkNotNullParameter(callback, "callback");
-            ActivityResultLauncher<Intent> activityResultLauncherRegisterForActivityResult = fragment.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() { // from class: com.discord.widgets.captcha.WidgetCaptcha$Companion$registerForResult$1
-                @Override // androidx.activity.result.ActivityResultCallback
-                public final void onActivityResult(ActivityResult activityResult) {
-                    C12238m.checkNotNullExpressionValue(activityResult, "activityResult");
-                    if (activityResult.getResultCode() == -1) {
-                        Intent data = activityResult.getData();
-                        String stringExtra = data != null ? data.getStringExtra("RESULT_EXTRA_TOKEN") : null;
-                        Intent data2 = activityResult.getData();
-                        String stringExtra2 = data2 != null ? data2.getStringExtra("RESULT_EXTRA_RQTOKEN") : null;
-                        if (stringExtra != null) {
-                            callback.invoke(new CaptchaHelper.CaptchaPayload(stringExtra, stringExtra2));
-                        }
-                    }
-                }
-            });
-            C12238m.checkNotNullExpressionValue(activityResultLauncherRegisterForActivityResult, "fragment.registerForActi…  }\n          }\n        }");
-            return activityResultLauncherRegisterForActivityResult;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
+    public WidgetCaptcha() {
+        super(R$layout.widget_captcha);
+        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetCaptcha$binding$2.INSTANCE, null, 2, null);
     }
 
-    public WidgetCaptcha() {
-        super(C5419R.layout.widget_captcha);
-        this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetCaptcha$binding$2.INSTANCE, null, 2, null);
+    public static final /* synthetic */ void access$finishIfCaptchaTokenReceived(WidgetCaptcha widgetCaptcha, Activity activity) {
+        widgetCaptcha.finishIfCaptchaTokenReceived(activity);
     }
 
     private final void finishIfCaptchaTokenReceived(Activity activity) {
@@ -135,8 +72,8 @@ public class WidgetCaptcha extends AppFragment {
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        final CaptchaHelper.CaptchaRequest reCaptcha;
-        C12238m.checkNotNullParameter(view, "view");
+        CaptchaHelper$CaptchaRequest captchaHelper$CaptchaRequest$ReCaptcha;
+        m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         Serializable serializableExtra = getMostRecentIntent().getSerializableExtra(EXTRA_CAPTCHA_ERROR_BODY);
         if (!(serializableExtra instanceof CaptchaErrorBody)) {
@@ -149,105 +86,19 @@ public class WidgetCaptcha extends AppFragment {
         CaptchaHelper.INSTANCE.setCaptchaRqtoken(captchaErrorBody != null ? captchaErrorBody.getCaptchaRqtoken() : null);
         if (captchaSitekey == null || captchaService != CaptchaService.HCAPTCHA) {
             FragmentActivity fragmentActivityRequireActivity = requireActivity();
-            C12238m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
-            reCaptcha = new CaptchaHelper.CaptchaRequest.ReCaptcha(fragmentActivityRequireActivity);
+            m.checkNotNullExpressionValue(fragmentActivityRequireActivity, "requireActivity()");
+            captchaHelper$CaptchaRequest$ReCaptcha = new CaptchaHelper$CaptchaRequest$ReCaptcha(fragmentActivityRequireActivity);
         } else {
             FragmentActivity fragmentActivityRequireActivity2 = requireActivity();
-            C12238m.checkNotNullExpressionValue(fragmentActivityRequireActivity2, "requireActivity()");
-            reCaptcha = new CaptchaHelper.CaptchaRequest.HCaptcha(captchaSitekey, fragmentActivityRequireActivity2, captchaRqdata);
+            m.checkNotNullExpressionValue(fragmentActivityRequireActivity2, "requireActivity()");
+            captchaHelper$CaptchaRequest$ReCaptcha = new CaptchaHelper$CaptchaRequest$HCaptcha(captchaSitekey, fragmentActivityRequireActivity2, captchaRqdata);
         }
-        String string = reCaptcha instanceof CaptchaHelper.CaptchaRequest.HCaptcha ? getString(C5419R.string.verify_by_hcaptcha) : getString(C5419R.string.verify_by_recaptcha);
-        C12238m.checkNotNullExpressionValue(string, "when (captchaRequest) {\n…erify_by_recaptcha)\n    }");
-        getBinding().f15798d.setTitle(string);
+        String string = captchaHelper$CaptchaRequest$ReCaptcha instanceof CaptchaHelper$CaptchaRequest$HCaptcha ? getString(2131897064) : getString(2131897067);
+        m.checkNotNullExpressionValue(string, "when (captchaRequest) {\n…erify_by_recaptcha)\n    }");
+        getBinding().d.setTitle(string);
         trackTransition$default(this, "viewed", null, 2, null);
-        getBinding().f15797c.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.captcha.WidgetCaptcha.onViewBound.1
-
-            /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptcha$onViewBound$1$1, reason: invalid class name */
-            /* JADX INFO: compiled from: WidgetCaptcha.kt */
-            public final class AnonymousClass1 extends AbstractC12240o implements Function1<String, Unit> {
-                public AnonymousClass1() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Unit invoke(String str) {
-                    invoke2(str);
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2(String str) {
-                    CaptchaHelper.INSTANCE.setCaptchaToken(str);
-                    AppActivity appActivity = WidgetCaptcha.this.getAppActivity();
-                    if (appActivity != null) {
-                        WidgetCaptcha.this.finishIfCaptchaTokenReceived(appActivity);
-                    }
-                }
-            }
-
-            /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptcha$onViewBound$1$2, reason: invalid class name */
-            /* JADX INFO: compiled from: WidgetCaptcha.kt */
-            public final class AnonymousClass2 extends AbstractC12240o implements Function1<Error, Unit> {
-                public AnonymousClass2() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Unit invoke(Error error) {
-                    invoke2(error);
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2(Error error) {
-                    C12238m.checkNotNullParameter(error, "it");
-                    WidgetCaptcha.trackTransition$default(WidgetCaptcha.this, "submitted", null, 2, null);
-                    WidgetCaptcha.this.trackTransition("response_error", C12145m.listOf("captcha"));
-                    Throwable throwable = error.getThrowable();
-                    if (!(throwable instanceof CaptchaHelper.Failure)) {
-                        throwable = null;
-                    }
-                    CaptchaHelper.Failure failure = (CaptchaHelper.Failure) throwable;
-                    if (failure != null) {
-                        C0876m.m169g(WidgetCaptcha.this.getAppActivity(), failure.getErrorStringId(), 0, null, 12);
-                    }
-                }
-            }
-
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                ObservableExtensionsKt.appSubscribe(CaptchaHelper.INSTANCE.tryShowCaptcha(reCaptcha), (Class<?>) WidgetCaptcha.this.getClass(), (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new AnonymousClass2()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new AnonymousClass1());
-            }
-        });
-        getBinding().f15796b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.captcha.WidgetCaptcha.onViewBound.2
-
-            /* JADX INFO: renamed from: com.discord.widgets.captcha.WidgetCaptcha$onViewBound$2$1, reason: invalid class name */
-            /* JADX INFO: compiled from: WidgetCaptcha.kt */
-            public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
-                public AnonymousClass1() {
-                    super(0);
-                }
-
-                @Override // kotlin.jvm.functions.Function0
-                public /* bridge */ /* synthetic */ Unit invoke() {
-                    invoke2();
-                    return Unit.f27425a;
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final void invoke2() {
-                    FragmentActivity fragmentActivityM95e = WidgetCaptcha.this.m95e();
-                    if (fragmentActivityM95e != null) {
-                        fragmentActivityM95e.finish();
-                    }
-                }
-            }
-
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                CaptchaHelper.INSTANCE.showCaptchaHelpDialog(WidgetCaptcha.this.getAppActivity(), new AnonymousClass1());
-            }
-        });
+        getBinding().c.setOnClickListener(new WidgetCaptcha$onViewBound$1(this, captchaHelper$CaptchaRequest$ReCaptcha));
+        getBinding().f2250b.setOnClickListener(new WidgetCaptcha$onViewBound$2(this));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -262,6 +113,6 @@ public class WidgetCaptcha extends AppFragment {
     }
 
     public void trackTransition(String action, List<String> details) {
-        C12238m.checkNotNullParameter(action, "action");
+        m.checkNotNullParameter(action, "action");
     }
 }

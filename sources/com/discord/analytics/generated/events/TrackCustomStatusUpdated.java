@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackCustomStatusUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,6 +27,11 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
     private final Long voiceChannelVoiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "custom_status_updated";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,7 +40,7 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
             return false;
         }
         TrackCustomStatusUpdated trackCustomStatusUpdated = (TrackCustomStatusUpdated) other;
-        return C12238m.areEqual(this.hasEmoji, trackCustomStatusUpdated.hasEmoji) && C12238m.areEqual(this.emojiType, trackCustomStatusUpdated.emojiType) && C12238m.areEqual(this.textLen, trackCustomStatusUpdated.textLen) && C12238m.areEqual(this.clearAfter, trackCustomStatusUpdated.clearAfter) && C12238m.areEqual(this.voiceChannelId, trackCustomStatusUpdated.voiceChannelId) && C12238m.areEqual(this.voiceChannelVoiceStateCount, trackCustomStatusUpdated.voiceChannelVoiceStateCount);
+        return m.areEqual(this.hasEmoji, trackCustomStatusUpdated.hasEmoji) && m.areEqual(this.emojiType, trackCustomStatusUpdated.emojiType) && m.areEqual(this.textLen, trackCustomStatusUpdated.textLen) && m.areEqual(this.clearAfter, trackCustomStatusUpdated.clearAfter) && m.areEqual(this.voiceChannelId, trackCustomStatusUpdated.voiceChannelId) && m.areEqual(this.voiceChannelVoiceStateCount, trackCustomStatusUpdated.voiceChannelVoiceStateCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -65,24 +70,18 @@ public final /* data */ class TrackCustomStatusUpdated implements AnalyticsSchem
         return iHashCode5 + (l3 != null ? l3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackCustomStatusUpdated(hasEmoji=");
-        sbM833U.append(this.hasEmoji);
-        sbM833U.append(", emojiType=");
-        sbM833U.append(this.emojiType);
-        sbM833U.append(", textLen=");
-        sbM833U.append(this.textLen);
-        sbM833U.append(", clearAfter=");
-        sbM833U.append(this.clearAfter);
-        sbM833U.append(", voiceChannelId=");
-        sbM833U.append(this.voiceChannelId);
-        sbM833U.append(", voiceChannelVoiceStateCount=");
-        return C1643a.m819G(sbM833U, this.voiceChannelVoiceStateCount, ")");
+        StringBuilder sbU = a.U("TrackCustomStatusUpdated(hasEmoji=");
+        sbU.append(this.hasEmoji);
+        sbU.append(", emojiType=");
+        sbU.append(this.emojiType);
+        sbU.append(", textLen=");
+        sbU.append(this.textLen);
+        sbU.append(", clearAfter=");
+        sbU.append(this.clearAfter);
+        sbU.append(", voiceChannelId=");
+        sbU.append(this.voiceChannelId);
+        sbU.append(", voiceChannelVoiceStateCount=");
+        return a.G(sbU, this.voiceChannelVoiceStateCount, ")");
     }
 }

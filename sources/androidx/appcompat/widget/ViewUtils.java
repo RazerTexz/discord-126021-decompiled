@@ -4,12 +4,13 @@ import android.graphics.Rect;
 import android.util.Log;
 import android.view.View;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.view.ViewCompat;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ViewUtils {
     private static final String TAG = "ViewUtils";
     private static Method sComputeFitSystemWindowsMethod;

@@ -1,10 +1,11 @@
 package androidx.work.impl;
 
 import android.content.Context;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.Logger;
 import java.io.File;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class WorkDatabasePathHelper {
     private static final String WORK_DATABASE_NAME = "androidx.work.workdb";
     private static final String TAG = Logger.tagWithPrefix("WrkDbPathHelper");
@@ -24,7 +25,7 @@ public class WorkDatabasePathHelper {
     @NonNull
     @VisibleForTesting
     public static File getDatabasePath(@NonNull Context context) {
-        return Build.VERSION.SDK_INT < 23 ? getDefaultDatabasePath(context) : getNoBackupPath(context, WORK_DATABASE_NAME);
+        return Build$VERSION.SDK_INT < 23 ? getDefaultDatabasePath(context) : getNoBackupPath(context, WORK_DATABASE_NAME);
     }
 
     @NonNull
@@ -45,7 +46,7 @@ public class WorkDatabasePathHelper {
 
     public static void migrateDatabase(@NonNull Context context) {
         File defaultDatabasePath = getDefaultDatabasePath(context);
-        if (Build.VERSION.SDK_INT < 23 || !defaultDatabasePath.exists()) {
+        if (Build$VERSION.SDK_INT < 23 || !defaultDatabasePath.exists()) {
             return;
         }
         Logger.get().debug(TAG, "Migrating WorkDatabase to the no-backup directory", new Throwable[0]);
@@ -65,7 +66,7 @@ public class WorkDatabasePathHelper {
     @VisibleForTesting
     public static Map<File, File> migrationPaths(@NonNull Context context) {
         HashMap map = new HashMap();
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             File defaultDatabasePath = getDefaultDatabasePath(context);
             File databasePath = getDatabasePath(context);
             map.put(defaultDatabasePath, databasePath);

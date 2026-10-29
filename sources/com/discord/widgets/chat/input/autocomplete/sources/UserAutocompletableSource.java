@@ -1,12 +1,12 @@
 package com.discord.widgets.chat.input.autocomplete.sources;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelRecipientNick;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.api.permission.Permission;
 import com.discord.api.role.GuildRole;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
 import com.discord.models.presence.Presence;
 import com.discord.models.user.User;
@@ -16,34 +16,35 @@ import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserPresence;
 import com.discord.utilities.collections.ShallowPartitionCollection;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.permissions.PermissionUtils;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
+import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
 import com.discord.widgets.chat.input.autocomplete.AutocompletableComparator;
 import com.discord.widgets.chat.input.autocomplete.GlobalRoleAutocompletable;
+import com.discord.widgets.chat.input.autocomplete.GlobalRoleAutocompletable$Companion;
 import com.discord.widgets.chat.input.autocomplete.LeadingIdentifier;
 import com.discord.widgets.chat.input.autocomplete.RoleAutocompletable;
 import com.discord.widgets.chat.input.autocomplete.UserAutocompletable;
+import d0.o;
+import d0.t.g0;
+import d0.t.h0;
+import d0.z.d.m;
+import j0.l.e.k;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12116o;
-import p507d0.p580t.C12134g0;
-import p507d0.p580t.C12136h0;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p641k.InterfaceC12589b;
-import p637j0.p642l.p647e.C12721k;
-import p658rx.Observable;
-import p658rx.functions.Func2;
-import p658rx.functions.Func8;
+import rx.Observable;
 
 /* JADX INFO: compiled from: UserMentionableSource.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class UserAutocompletableSource {
+    public static final UserAutocompletableSource$Companion Companion = new UserAutocompletableSource$Companion(null);
     private static final int PARTITION_HUGE_GUILD_SIZE = 3000;
     private static final int PARTITION_IDEAL_PARTITION_SIZE = 100;
     private final StoreChannels storeChannels;
@@ -53,16 +54,24 @@ public final class UserAutocompletableSource {
     private final StoreUser storeUsers;
 
     public UserAutocompletableSource(StoreUser storeUser, StoreGuilds storeGuilds, StoreUserPresence storeUserPresence, StorePermissions storePermissions, StoreChannels storeChannels) {
-        C12238m.checkNotNullParameter(storeUser, "storeUsers");
-        C12238m.checkNotNullParameter(storeGuilds, "storeGuilds");
-        C12238m.checkNotNullParameter(storeUserPresence, "storePresences");
-        C12238m.checkNotNullParameter(storePermissions, "storePermissions");
-        C12238m.checkNotNullParameter(storeChannels, "storeChannels");
+        m.checkNotNullParameter(storeUser, "storeUsers");
+        m.checkNotNullParameter(storeGuilds, "storeGuilds");
+        m.checkNotNullParameter(storeUserPresence, "storePresences");
+        m.checkNotNullParameter(storePermissions, "storePermissions");
+        m.checkNotNullParameter(storeChannels, "storeChannels");
         this.storeUsers = storeUser;
         this.storeGuilds = storeGuilds;
         this.storePresences = storeUserPresence;
         this.storePermissions = storePermissions;
         this.storeChannels = storeChannels;
+    }
+
+    public static final /* synthetic */ Map access$createAutocompletablesForDmUsers(UserAutocompletableSource userAutocompletableSource, Map map, Map map2, List list) {
+        return userAutocompletableSource.createAutocompletablesForDmUsers(map, map2, list);
+    }
+
+    public static final /* synthetic */ Map access$createAutocompletablesForUsers(UserAutocompletableSource userAutocompletableSource, long j, Channel channel, Channel channel2, long j2, Map map, Map map2, Map map3, Map map4, Long l) {
+        return userAutocompletableSource.createAutocompletablesForUsers(j, channel, channel2, j2, map, map2, map3, map4, l);
     }
 
     private final Map<LeadingIdentifier, TreeSet<Autocompletable>> createAutocompletablesForDmUsers(Map<Long, ? extends User> users, Map<Long, Presence> presences, List<ChannelRecipientNick> nicks) {
@@ -84,9 +93,9 @@ public final class UserAutocompletableSource {
             if (channelRecipientNick != null) {
                 nick = channelRecipientNick.getNick();
             }
-            treeSet.add(new UserAutocompletable(user, null, nick, (Presence) C1643a.m849f(user, presences), false, 16, null));
+            treeSet.add(new UserAutocompletable(user, null, nick, (Presence) a.f(user, presences), false, 16, null));
         }
-        return C12134g0.mapOf(C12116o.m10073to(LeadingIdentifier.MENTION, treeSet));
+        return g0.mapOf(o.to(LeadingIdentifier.MENTION, treeSet));
     }
 
     private final Map<LeadingIdentifier, TreeSet<Autocompletable>> createAutocompletablesForUsers(long myId, Channel channel, Channel parentChannel, long guildOwnerId, Map<Long, GuildRole> roles, Map<Long, GuildMember> members, Map<Long, ? extends User> users, Map<Long, Presence> presences, Long permissions) {
@@ -95,14 +104,14 @@ public final class UserAutocompletableSource {
         boolean zCan2;
         if (members.size() > 3000) {
             int size = members.size() / 100;
-            arrayList = ShallowPartitionCollection.INSTANCE.withArrayListPartions(size, new C7805x8d4222e6(size));
+            arrayList = ShallowPartitionCollection.Companion.withArrayListPartions(size, new UserAutocompletableSource$createAutocompletablesForUsers$mentions$1(size));
         } else {
             arrayList = new ArrayList(members.size());
         }
         boolean zCanEveryone = PermissionUtils.canEveryone(Permission.VIEW_CHANNEL, channel, parentChannel, roles);
-        for (Map.Entry<Long, GuildMember> entry : members.entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            GuildMember value = entry.getValue();
+        for (Map$Entry<Long, GuildMember> map$Entry : members.entrySet()) {
+            long jLongValue = map$Entry.getKey().longValue();
+            GuildMember value = map$Entry.getValue();
             if (zCanEveryone || (zCan2 = PermissionUtils.can(Permission.VIEW_CHANNEL, Long.valueOf(PermissionUtils.computePermissions(jLongValue, channel, parentChannel, guildOwnerId, value, roles, null, true))))) {
                 User user = users.get(Long.valueOf(jLongValue));
                 if (user != null) {
@@ -118,9 +127,9 @@ public final class UserAutocompletableSource {
         if (members.get(Long.valueOf(myId)) != null) {
             zCan = PermissionUtils.can(Permission.MENTION_EVERYONE, permissions);
             if (zCan) {
-                GlobalRoleAutocompletable.Companion companion = GlobalRoleAutocompletable.INSTANCE;
-                arrayList.add(companion.getHere());
-                arrayList.add(companion.getEveryone());
+                GlobalRoleAutocompletable$Companion globalRoleAutocompletable$Companion = GlobalRoleAutocompletable.Companion;
+                arrayList.add(globalRoleAutocompletable$Companion.getHere());
+                arrayList.add(globalRoleAutocompletable$Companion.getEveryone());
             }
         } else {
             zCan = false;
@@ -132,7 +141,7 @@ public final class UserAutocompletableSource {
         }
         TreeSet treeSet = new TreeSet(new AutocompletableComparator());
         treeSet.addAll(arrayList);
-        return C12134g0.mapOf(C12116o.m10073to(LeadingIdentifier.MENTION, treeSet));
+        return g0.mapOf(o.to(LeadingIdentifier.MENTION, treeSet));
     }
 
     public final StoreChannels getStoreChannels() {
@@ -155,91 +164,35 @@ public final class UserAutocompletableSource {
         return this.storeUsers;
     }
 
-    public final Observable<Map<LeadingIdentifier, TreeSet<Autocompletable>>> observeUserAutocompletables(final Channel channel) {
-        Observable observableM11099Y;
-        C12238m.checkNotNullParameter(channel, "channel");
+    public final Observable<Map<LeadingIdentifier, TreeSet<Autocompletable>>> observeUserAutocompletables(Channel channel) {
+        Observable observableY;
+        m.checkNotNullParameter(channel, "channel");
         long guildId = channel.getGuildId();
-        if (UserMentionableSourceKt.isTextOrVoiceChannel(channel)) {
+        if (UserMentionableSourceKt.access$isTextOrVoiceChannel(channel)) {
             Observable observableComputationLatest = ObservableExtensionsKt.computationLatest(this.storeUsers.observeMeId());
-            Observable<R> observableM11083G = this.storeGuilds.observeGuild(guildId).m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
-            C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
-            Observable observableM11112r = observableM11083G.m11083G(new InterfaceC12589b<Guild, Long>() { // from class: com.discord.widgets.chat.input.autocomplete.sources.UserAutocompletableSource.observeUserAutocompletables.1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Long call(Guild guild) {
-                    return Long.valueOf(guild.getOwnerId());
-                }
-            }).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r, "storeGuilds.observeGuild… }.distinctUntilChanged()");
-            Observable observableComputationLatest2 = ObservableExtensionsKt.computationLatest(observableM11112r);
+            Observable<R> observableG = this.storeGuilds.observeGuild(guildId).y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+            m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
+            Observable observableR = observableG.G(UserAutocompletableSource$observeUserAutocompletables$1.INSTANCE).r();
+            m.checkNotNullExpressionValue(observableR, "storeGuilds.observeGuild… }.distinctUntilChanged()");
+            Observable observableComputationLatest2 = ObservableExtensionsKt.computationLatest(observableR);
             Observable observableComputationLatest3 = ObservableExtensionsKt.computationLatest(this.storeGuilds.observeRoles(guildId));
             Observable<Map<Long, GuildMember>> observableObserveComputed = this.storeGuilds.observeComputed(guildId);
             TimeUnit timeUnit = TimeUnit.SECONDS;
             Observable observableComputationLatest4 = ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.leadingEdgeThrottle(observableObserveComputed, 5L, timeUnit));
             Observable observableComputationLatest5 = ObservableExtensionsKt.computationLatest(this.storeUsers.observeAllUsers());
             Observable observableComputationLatest6 = ObservableExtensionsKt.computationLatest(ObservableExtensionsKt.leadingEdgeThrottle(this.storePresences.observeAllPresences(), 10L, timeUnit));
-            Observable<Long> observableM11112r2 = this.storePermissions.observePermissionsForChannel(channel.getId()).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r2, "storePermissions.observe…d).distinctUntilChanged()");
-            Observable observableComputationLatest7 = ObservableExtensionsKt.computationLatest(observableM11112r2);
-            Observable<Channel> observableM11112r3 = this.storeChannels.observeChannel(channel.getParentId()).m11112r();
-            C12238m.checkNotNullExpressionValue(observableM11112r3, "storeChannels.observeCha…d).distinctUntilChanged()");
-            observableM11099Y = Observable.m11067d(observableComputationLatest, observableComputationLatest2, observableComputationLatest3, observableComputationLatest4, observableComputationLatest5, observableComputationLatest6, observableComputationLatest7, ObservableExtensionsKt.computationLatest(observableM11112r3), new Func8<Long, Long, Map<Long, ? extends GuildRole>, Map<Long, ? extends GuildMember>, Map<Long, ? extends User>, Map<Long, ? extends Presence>, Long, Channel, Map<LeadingIdentifier, ? extends TreeSet<Autocompletable>>>() { // from class: com.discord.widgets.chat.input.autocomplete.sources.UserAutocompletableSource.observeUserAutocompletables.2
-                @Override // p658rx.functions.Func8
-                public /* bridge */ /* synthetic */ Map<LeadingIdentifier, ? extends TreeSet<Autocompletable>> call(Long l, Long l2, Map<Long, ? extends GuildRole> map, Map<Long, ? extends GuildMember> map2, Map<Long, ? extends User> map3, Map<Long, ? extends Presence> map4, Long l3, Channel channel2) {
-                    return call2(l, l2, (Map<Long, GuildRole>) map, (Map<Long, GuildMember>) map2, map3, (Map<Long, Presence>) map4, l3, channel2);
-                }
-
-                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                public final Map<LeadingIdentifier, TreeSet<Autocompletable>> call2(Long l, Long l2, Map<Long, GuildRole> map, Map<Long, GuildMember> map2, Map<Long, ? extends User> map3, Map<Long, Presence> map4, Long l3, Channel channel2) {
-                    UserAutocompletableSource userAutocompletableSource = UserAutocompletableSource.this;
-                    C12238m.checkNotNullExpressionValue(l, "myId");
-                    long jLongValue = l.longValue();
-                    Channel channel3 = channel;
-                    C12238m.checkNotNullExpressionValue(l2, "guildOwnerId");
-                    long jLongValue2 = l2.longValue();
-                    C12238m.checkNotNullExpressionValue(map, "roles");
-                    C12238m.checkNotNullExpressionValue(map2, "members");
-                    C12238m.checkNotNullExpressionValue(map3, "users");
-                    C12238m.checkNotNullExpressionValue(map4, "presences");
-                    return userAutocompletableSource.createAutocompletablesForUsers(jLongValue, channel3, channel2, jLongValue2, map, map2, map3, map4, l3);
-                }
-            });
+            Observable<Long> observableR2 = this.storePermissions.observePermissionsForChannel(channel.getId()).r();
+            m.checkNotNullExpressionValue(observableR2, "storePermissions.observe…d).distinctUntilChanged()");
+            Observable observableComputationLatest7 = ObservableExtensionsKt.computationLatest(observableR2);
+            Observable<Channel> observableR3 = this.storeChannels.observeChannel(channel.getParentId()).r();
+            m.checkNotNullExpressionValue(observableR3, "storeChannels.observeCha…d).distinctUntilChanged()");
+            observableY = Observable.d(observableComputationLatest, observableComputationLatest2, observableComputationLatest3, observableComputationLatest4, observableComputationLatest5, observableComputationLatest6, observableComputationLatest7, ObservableExtensionsKt.computationLatest(observableR3), new UserAutocompletableSource$observeUserAutocompletables$2(this, channel));
         } else {
-            observableM11099Y = UserMentionableSourceKt.isDmOrGroupDm(channel) ? Observable.m11076j(Observable.m11058B(ChannelUtils.m7683g(channel)).m11083G(new InterfaceC12589b<User, Long>() { // from class: com.discord.widgets.chat.input.autocomplete.sources.UserAutocompletableSource.observeUserAutocompletables.3
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Long call(User user) {
-                    return Long.valueOf(user.getId());
-                }
-            }).m11105f0(), this.storeUsers.observeMeId(), new Func2<List<Long>, Long, List<Long>>() { // from class: com.discord.widgets.chat.input.autocomplete.sources.UserAutocompletableSource.observeUserAutocompletables.4
-                @Override // p658rx.functions.Func2
-                public final List<Long> call(List<Long> list, Long l) {
-                    list.add(l);
-                    return list;
-                }
-            }).m11099Y(new InterfaceC12589b<List<Long>, Observable<? extends Map<LeadingIdentifier, ? extends TreeSet<Autocompletable>>>>() { // from class: com.discord.widgets.chat.input.autocomplete.sources.UserAutocompletableSource.observeUserAutocompletables.5
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends Map<LeadingIdentifier, TreeSet<Autocompletable>>> call(List<Long> list) {
-                    StoreUser storeUsers = UserAutocompletableSource.this.getStoreUsers();
-                    C12238m.checkNotNullExpressionValue(list, "recipientIds");
-                    return Observable.m11076j(storeUsers.observeUsers(list), UserAutocompletableSource.this.getStorePresences().observePresencesForUsers(list), new Func2<Map<Long, ? extends User>, Map<Long, ? extends Presence>, Map<LeadingIdentifier, ? extends TreeSet<Autocompletable>>>() { // from class: com.discord.widgets.chat.input.autocomplete.sources.UserAutocompletableSource.observeUserAutocompletables.5.1
-                        @Override // p658rx.functions.Func2
-                        public /* bridge */ /* synthetic */ Map<LeadingIdentifier, ? extends TreeSet<Autocompletable>> call(Map<Long, ? extends User> map, Map<Long, ? extends Presence> map2) {
-                            return call2(map, (Map<Long, Presence>) map2);
-                        }
-
-                        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                        public final Map<LeadingIdentifier, TreeSet<Autocompletable>> call2(Map<Long, ? extends User> map, Map<Long, Presence> map2) {
-                            UserAutocompletableSource userAutocompletableSource = UserAutocompletableSource.this;
-                            C12238m.checkNotNullExpressionValue(map, "users");
-                            C12238m.checkNotNullExpressionValue(map2, "presences");
-                            return userAutocompletableSource.createAutocompletablesForDmUsers(map, map2, channel.m7650q());
-                        }
-                    }).m11112r();
-                }
-            }) : new C12721k(C12136h0.emptyMap());
+            observableY = UserMentionableSourceKt.access$isDmOrGroupDm(channel) ? Observable.j(Observable.B(ChannelUtils.g(channel)).G(UserAutocompletableSource$observeUserAutocompletables$3.INSTANCE).f0(), this.storeUsers.observeMeId(), UserAutocompletableSource$observeUserAutocompletables$4.INSTANCE).Y(new UserAutocompletableSource$observeUserAutocompletables$5(this, channel)) : new k(h0.emptyMap());
         }
-        C12238m.checkNotNullExpressionValue(observableM11099Y, "when {\n      // Guild Ch…vable.just(mapOf())\n    }");
-        Observable<Map<LeadingIdentifier, TreeSet<Autocompletable>>> observableM11112r4 = ObservableExtensionsKt.computationLatest(observableM11099Y).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r4, "when {\n      // Guild Ch…  .distinctUntilChanged()");
-        return observableM11112r4;
+        m.checkNotNullExpressionValue(observableY, "when {\n      // Guild Ch…vable.just(mapOf())\n    }");
+        Observable<Map<LeadingIdentifier, TreeSet<Autocompletable>>> observableR4 = ObservableExtensionsKt.computationLatest(observableY).r();
+        m.checkNotNullExpressionValue(observableR4, "when {\n      // Guild Ch…  .distinctUntilChanged()");
+        return observableR4;
     }
 }

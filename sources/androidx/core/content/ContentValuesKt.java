@@ -1,14 +1,14 @@
 package androidx.core.content;
 
 import android.content.ContentValues;
+import d0.z.d.m;
 import kotlin.Pair;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ContentValues.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ContentValuesKt {
     public static final ContentValues contentValuesOf(Pair<String, ? extends Object>... pairArr) {
-        C12238m.checkNotNullParameter(pairArr, "pairs");
+        m.checkNotNullParameter(pairArr, "pairs");
         ContentValues contentValues = new ContentValues(pairArr.length);
         int length = pairArr.length;
         int i = 0;

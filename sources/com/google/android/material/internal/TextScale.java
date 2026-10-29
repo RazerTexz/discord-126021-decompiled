@@ -8,32 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.transition.Transition;
 import androidx.transition.TransitionValues;
 import java.util.Map;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class TextScale extends Transition {
     private static final String PROPNAME_SCALE = "android:textscale:scale";
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.TextScale$a */
-    public class C10947a implements ValueAnimator.AnimatorUpdateListener {
-
-        /* JADX INFO: renamed from: a */
-        public final /* synthetic */ TextView f21046a;
-
-        public C10947a(TextScale textScale, TextView textView) {
-            this.f21046a = textView;
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.f21046a.setScaleX(fFloatValue);
-            this.f21046a.setScaleY(fFloatValue);
-        }
-    }
 
     @Override // androidx.transition.Transition
     public void captureEndValues(@NonNull TransitionValues transitionValues) {
@@ -70,7 +53,7 @@ public class TextScale extends Transition {
             return null;
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(fFloatValue, fFloatValue2);
-        valueAnimatorOfFloat.addUpdateListener(new C10947a(this, textView));
+        valueAnimatorOfFloat.addUpdateListener(new TextScale$a(this, textView));
         return valueAnimatorOfFloat;
     }
 }

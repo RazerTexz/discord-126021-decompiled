@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View$MeasureSpec;
+import android.view.ViewGroup$LayoutParams;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
-import androidx.appcompat.C0051R;
-import androidx.appcompat.graphics.drawable.DrawableWrapper;
+import androidx.appcompat.R$attr;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.ViewPropertyAnimatorCompat;
@@ -30,89 +30,17 @@ public class DropDownListView extends ListView {
     private Field mIsChildViewEnabled;
     private boolean mListSelectionHidden;
     private int mMotionPosition;
-    public ResolveHoverRunnable mResolveHoverRunnable;
+    public DropDownListView$ResolveHoverRunnable mResolveHoverRunnable;
     private ListViewAutoScrollHelper mScrollHelper;
     private int mSelectionBottomPadding;
     private int mSelectionLeftPadding;
     private int mSelectionRightPadding;
     private int mSelectionTopPadding;
-    private GateKeeperDrawable mSelector;
+    private DropDownListView$GateKeeperDrawable mSelector;
     private final Rect mSelectorRect;
 
-    public class GateKeeperDrawable extends DrawableWrapper {
-        private boolean mEnabled;
-
-        public GateKeeperDrawable(Drawable drawable) {
-            super(drawable);
-            this.mEnabled = true;
-        }
-
-        @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-        public void draw(Canvas canvas) {
-            if (this.mEnabled) {
-                super.draw(canvas);
-            }
-        }
-
-        public void setEnabled(boolean z2) {
-            this.mEnabled = z2;
-        }
-
-        @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-        public void setHotspot(float f, float f2) {
-            if (this.mEnabled) {
-                super.setHotspot(f, f2);
-            }
-        }
-
-        @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-        public void setHotspotBounds(int i, int i2, int i3, int i4) {
-            if (this.mEnabled) {
-                super.setHotspotBounds(i, i2, i3, i4);
-            }
-        }
-
-        @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-        public boolean setState(int[] iArr) {
-            if (this.mEnabled) {
-                return super.setState(iArr);
-            }
-            return false;
-        }
-
-        @Override // androidx.appcompat.graphics.drawable.DrawableWrapper, android.graphics.drawable.Drawable
-        public boolean setVisible(boolean z2, boolean z3) {
-            if (this.mEnabled) {
-                return super.setVisible(z2, z3);
-            }
-            return false;
-        }
-    }
-
-    public class ResolveHoverRunnable implements Runnable {
-        public ResolveHoverRunnable() {
-        }
-
-        public void cancel() {
-            DropDownListView dropDownListView = DropDownListView.this;
-            dropDownListView.mResolveHoverRunnable = null;
-            dropDownListView.removeCallbacks(this);
-        }
-
-        public void post() {
-            DropDownListView.this.post(this);
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            DropDownListView dropDownListView = DropDownListView.this;
-            dropDownListView.mResolveHoverRunnable = null;
-            dropDownListView.drawableStateChanged();
-        }
-    }
-
     public DropDownListView(@NonNull Context context, boolean z2) {
-        super(context, null, C0051R.attr.dropDownListViewStyle);
+        super(context, null, R$attr.dropDownListViewStyle);
         this.mSelectorRect = new Rect();
         this.mSelectionLeftPadding = 0;
         this.mSelectionTopPadding = 0;
@@ -247,13 +175,13 @@ public class DropDownListView extends ListView {
                 i7 = itemViewType;
             }
             view = adapter.getView(i6, view, this);
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            ViewGroup$LayoutParams layoutParams = view.getLayoutParams();
             if (layoutParams == null) {
                 layoutParams = generateDefaultLayoutParams();
                 view.setLayoutParams(layoutParams);
             }
             int i9 = layoutParams.height;
-            view.measure(i, i9 > 0 ? View.MeasureSpec.makeMeasureSpec(i9, BasicMeasure.EXACTLY) : View.MeasureSpec.makeMeasureSpec(0, 0));
+            view.measure(i, i9 > 0 ? View$MeasureSpec.makeMeasureSpec(i9, BasicMeasure.EXACTLY) : View$MeasureSpec.makeMeasureSpec(0, 0));
             view.forceLayout();
             if (i6 > 0) {
                 measuredHeight += dividerHeight;
@@ -359,14 +287,14 @@ public class DropDownListView extends ListView {
 
     @Override // android.view.View
     public boolean onHoverEvent(@NonNull MotionEvent motionEvent) {
-        if (Build.VERSION.SDK_INT < 26) {
+        if (Build$VERSION.SDK_INT < 26) {
             return super.onHoverEvent(motionEvent);
         }
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 10 && this.mResolveHoverRunnable == null) {
-            ResolveHoverRunnable resolveHoverRunnable = new ResolveHoverRunnable();
-            this.mResolveHoverRunnable = resolveHoverRunnable;
-            resolveHoverRunnable.post();
+            DropDownListView$ResolveHoverRunnable dropDownListView$ResolveHoverRunnable = new DropDownListView$ResolveHoverRunnable(this);
+            this.mResolveHoverRunnable = dropDownListView$ResolveHoverRunnable;
+            dropDownListView$ResolveHoverRunnable.post();
         }
         boolean zOnHoverEvent = super.onHoverEvent(motionEvent);
         if (actionMasked == 9 || actionMasked == 7) {
@@ -389,9 +317,9 @@ public class DropDownListView extends ListView {
         if (motionEvent.getAction() == 0) {
             this.mMotionPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
         }
-        ResolveHoverRunnable resolveHoverRunnable = this.mResolveHoverRunnable;
-        if (resolveHoverRunnable != null) {
-            resolveHoverRunnable.cancel();
+        DropDownListView$ResolveHoverRunnable dropDownListView$ResolveHoverRunnable = this.mResolveHoverRunnable;
+        if (dropDownListView$ResolveHoverRunnable != null) {
+            dropDownListView$ResolveHoverRunnable.cancel();
         }
         return super.onTouchEvent(motionEvent);
     }
@@ -469,9 +397,9 @@ public class DropDownListView extends ListView {
 
     @Override // android.widget.AbsListView
     public void setSelector(Drawable drawable) {
-        GateKeeperDrawable gateKeeperDrawable = drawable != null ? new GateKeeperDrawable(drawable) : null;
-        this.mSelector = gateKeeperDrawable;
-        super.setSelector(gateKeeperDrawable);
+        DropDownListView$GateKeeperDrawable dropDownListView$GateKeeperDrawable = drawable != null ? new DropDownListView$GateKeeperDrawable(drawable) : null;
+        this.mSelector = dropDownListView$GateKeeperDrawable;
+        super.setSelector(dropDownListView$GateKeeperDrawable);
         Rect rect = new Rect();
         if (drawable != null) {
             drawable.getPadding(rect);
@@ -483,9 +411,9 @@ public class DropDownListView extends ListView {
     }
 
     private void setSelectorEnabled(boolean z2) {
-        GateKeeperDrawable gateKeeperDrawable = this.mSelector;
-        if (gateKeeperDrawable != null) {
-            gateKeeperDrawable.setEnabled(z2);
+        DropDownListView$GateKeeperDrawable dropDownListView$GateKeeperDrawable = this.mSelector;
+        if (dropDownListView$GateKeeperDrawable != null) {
+            dropDownListView$GateKeeperDrawable.setEnabled(z2);
         }
     }
 

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildBotAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackGuildBotAdded implements AnalyticsSchema, Tra
             return false;
         }
         TrackGuildBotAdded trackGuildBotAdded = (TrackGuildBotAdded) other;
-        return C12238m.areEqual(this.botId, trackGuildBotAdded.botId) && C12238m.areEqual(this.botName, trackGuildBotAdded.botName) && C12238m.areEqual(this.botPermissions, trackGuildBotAdded.botPermissions) && C12238m.areEqual(this.guildId, trackGuildBotAdded.guildId) && C12238m.areEqual(this.guildName, trackGuildBotAdded.guildName) && C12238m.areEqual(this.guildOwnerId, trackGuildBotAdded.guildOwnerId) && C12238m.areEqual(this.applicationId, trackGuildBotAdded.applicationId);
+        return m.areEqual(this.botId, trackGuildBotAdded.botId) && m.areEqual(this.botName, trackGuildBotAdded.botName) && m.areEqual(this.botPermissions, trackGuildBotAdded.botPermissions) && m.areEqual(this.guildId, trackGuildBotAdded.guildId) && m.areEqual(this.guildName, trackGuildBotAdded.guildName) && m.areEqual(this.guildOwnerId, trackGuildBotAdded.guildOwnerId) && m.areEqual(this.applicationId, trackGuildBotAdded.applicationId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackGuildBotAdded implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildBotAdded(botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", botName=");
-        sbM833U.append(this.botName);
-        sbM833U.append(", botPermissions=");
-        sbM833U.append(this.botPermissions);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", guildOwnerId=");
-        sbM833U.append(this.guildOwnerId);
-        sbM833U.append(", applicationId=");
-        return C1643a.m819G(sbM833U, this.applicationId, ")");
+        StringBuilder sbU = a.U("TrackGuildBotAdded(botId=");
+        sbU.append(this.botId);
+        sbU.append(", botName=");
+        sbU.append(this.botName);
+        sbU.append(", botPermissions=");
+        sbU.append(this.botPermissions);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", guildOwnerId=");
+        sbU.append(this.guildOwnerId);
+        sbU.append(", applicationId=");
+        return a.G(sbU, this.applicationId, ")");
     }
 }

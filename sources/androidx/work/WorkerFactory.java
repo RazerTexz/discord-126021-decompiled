@@ -4,7 +4,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import p007b.p100d.p104b.p105a.C1643a;
+import androidx.annotation.RestrictTo$Scope;
+import b.d.b.a.a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class WorkerFactory {
@@ -14,7 +15,7 @@ public abstract class WorkerFactory {
     public abstract ListenableWorker createWorker(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters);
 
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public final ListenableWorker createWorkerWithDefaultFallback(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters) {
         ListenableWorker listenableWorkerCreateWorker = createWorker(context, str, workerParameters);
         if (listenableWorkerCreateWorker == null) {
@@ -22,13 +23,13 @@ public abstract class WorkerFactory {
             try {
                 clsAsSubclass = Class.forName(str).asSubclass(ListenableWorker.class);
             } catch (Throwable th) {
-                Logger.get().error(TAG, C1643a.m883w("Invalid class: ", str), th);
+                Logger.get().error(TAG, a.w("Invalid class: ", str), th);
             }
             if (clsAsSubclass != null) {
                 try {
                     listenableWorkerCreateWorker = (ListenableWorker) clsAsSubclass.getDeclaredConstructor(Context.class, WorkerParameters.class).newInstance(context, workerParameters);
                 } catch (Throwable th2) {
-                    Logger.get().error(TAG, C1643a.m883w("Could not instantiate ", str), th2);
+                    Logger.get().error(TAG, a.w("Could not instantiate ", str), th2);
                 }
             }
         }
@@ -39,14 +40,8 @@ public abstract class WorkerFactory {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public static WorkerFactory getDefaultWorkerFactory() {
-        return new WorkerFactory() { // from class: androidx.work.WorkerFactory.1
-            @Override // androidx.work.WorkerFactory
-            @Nullable
-            public ListenableWorker createWorker(@NonNull Context context, @NonNull String str, @NonNull WorkerParameters workerParameters) {
-                return null;
-            }
-        };
+        return new WorkerFactory$1();
     }
 }

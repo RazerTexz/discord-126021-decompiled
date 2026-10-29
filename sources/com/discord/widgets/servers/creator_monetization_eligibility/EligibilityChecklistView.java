@@ -7,175 +7,76 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup$MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.C5419R;
+import b.a.i.h2;
+import b.a.k.b;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.utilities.view.text.LinkifiedTextView;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p008a.p025i.C0970h2;
-import p007b.p008a.p027k.C1107b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EligibilityChecklistView.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EligibilityChecklistView extends LinearLayout {
-    private List<Requirement> lastRequirements;
+    private List<EligibilityChecklistView$Requirement> lastRequirements;
 
-    /* JADX INFO: compiled from: EligibilityChecklistView.kt */
-    public final /* data */ class Requirement {
-        private final CharSequence description;
-        private final boolean isMet;
-        private final CharSequence title;
-
-        public Requirement(CharSequence charSequence, CharSequence charSequence2, boolean z2) {
-            C12238m.checkNotNullParameter(charSequence, "title");
-            C12238m.checkNotNullParameter(charSequence2, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
-            this.title = charSequence;
-            this.description = charSequence2;
-            this.isMet = z2;
-        }
-
-        public static /* synthetic */ Requirement copy$default(Requirement requirement, CharSequence charSequence, CharSequence charSequence2, boolean z2, int i, Object obj) {
-            if ((i & 1) != 0) {
-                charSequence = requirement.title;
-            }
-            if ((i & 2) != 0) {
-                charSequence2 = requirement.description;
-            }
-            if ((i & 4) != 0) {
-                z2 = requirement.isMet;
-            }
-            return requirement.copy(charSequence, charSequence2, z2);
-        }
-
-        public final Requirement copy(CharSequence title, CharSequence description, boolean isMet) {
-            C12238m.checkNotNullParameter(title, "title");
-            C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
-            return new Requirement(title, description, isMet);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof Requirement)) {
-                return false;
-            }
-            Requirement requirement = (Requirement) other;
-            return C12238m.areEqual(this.title, requirement.title) && C12238m.areEqual(this.description, requirement.description) && this.isMet == requirement.isMet;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getDescription() {
-            return this.description;
-        }
-
-        public final CharSequence getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsMet() {
-            return this.isMet;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final CharSequence getTitle() {
-            return this.title;
-        }
-
-        public final CharSequence getTitle() {
-            return this.title;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v6, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v4 */
-        /* JADX WARN: Type inference failed for: r1v6 */
-        public int hashCode() {
-            CharSequence charSequence = this.title;
-            int iHashCode = (charSequence != null ? charSequence.hashCode() : 0) * 31;
-            CharSequence charSequence2 = this.description;
-            int iHashCode2 = (iHashCode + (charSequence2 != null ? charSequence2.hashCode() : 0)) * 31;
-            boolean z2 = this.isMet;
-            ?? r1 = z2;
-            if (z2) {
-                r1 = 1;
-            }
-            return iHashCode2 + r1;
-        }
-
-        public final boolean isMet() {
-            return this.isMet;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Requirement(title=");
-            sbM833U.append(this.title);
-            sbM833U.append(", description=");
-            sbM833U.append(this.description);
-            sbM833U.append(", isMet=");
-            return C1643a.m827O(sbM833U, this.isMet, ")");
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
     public EligibilityChecklistView(Context context) {
-        this(context, null, 2, 0 == true ? 1 : 0);
+        this(context, null, 2, null);
     }
 
     public /* synthetic */ EligibilityChecklistView(Context context, AttributeSet attributeSet, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(context, (i & 2) != 0 ? null : attributeSet);
     }
 
-    public final void bind(List<Requirement> requirements) {
-        C12238m.checkNotNullParameter(requirements, "requirements");
-        if (C12238m.areEqual(requirements, this.lastRequirements)) {
+    public final void bind(List<EligibilityChecklistView$Requirement> requirements) {
+        m.checkNotNullParameter(requirements, "requirements");
+        if (m.areEqual(requirements, this.lastRequirements)) {
             return;
         }
         removeAllViews();
-        Drawable colorDrawable = new ColorDrawable(ColorCompat.getThemedColor(this, C5419R.attr.colorBackgroundAccent));
+        Drawable colorDrawable = new ColorDrawable(ColorCompat.getThemedColor(this, 2130968896));
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
         boolean z2 = true;
-        for (Requirement requirement : requirements) {
+        for (EligibilityChecklistView$Requirement eligibilityChecklistView$Requirement : requirements) {
             if (z2) {
                 z2 = false;
             } else {
                 View view = new View(getContext());
                 view.setBackground(colorDrawable);
-                ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(-1, DimenUtils.dpToPixels(1));
-                marginLayoutParams.leftMargin = DimenUtils.dpToPixels(16);
-                marginLayoutParams.rightMargin = DimenUtils.dpToPixels(16);
-                view.setLayoutParams(marginLayoutParams);
+                ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = new ViewGroup$MarginLayoutParams(-1, DimenUtils.dpToPixels(1));
+                viewGroup$MarginLayoutParams.leftMargin = DimenUtils.dpToPixels(16);
+                viewGroup$MarginLayoutParams.rightMargin = DimenUtils.dpToPixels(16);
+                view.setLayoutParams(viewGroup$MarginLayoutParams);
                 addView(view);
             }
-            View viewInflate = layoutInflaterFrom.inflate(C5419R.layout.view_eligibility_checklist_row, (ViewGroup) null, false);
-            int i = C5419R.id.description;
-            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewInflate.findViewById(C5419R.id.description);
+            View viewInflate = layoutInflaterFrom.inflate(R$layout.view_eligibility_checklist_row, (ViewGroup) null, false);
+            int i = R$id.description;
+            LinkifiedTextView linkifiedTextView = (LinkifiedTextView) viewInflate.findViewById(R$id.description);
             if (linkifiedTextView != null) {
-                i = C5419R.id.eligibility_indicator;
-                ImageView imageView = (ImageView) viewInflate.findViewById(C5419R.id.eligibility_indicator);
+                i = R$id.eligibility_indicator;
+                ImageView imageView = (ImageView) viewInflate.findViewById(R$id.eligibility_indicator);
                 if (imageView != null) {
-                    i = C5419R.id.title;
-                    TextView textView = (TextView) viewInflate.findViewById(C5419R.id.title);
+                    i = 2131365869;
+                    TextView textView = (TextView) viewInflate.findViewById(2131365869);
                     if (textView != null) {
                         ConstraintLayout constraintLayout = (ConstraintLayout) viewInflate;
-                        C12238m.checkNotNullExpressionValue(new C0970h2(constraintLayout, linkifiedTextView, imageView, textView), "ViewEligibilityChecklist…g.inflate(layoutInflater)");
-                        C12238m.checkNotNullExpressionValue(imageView, "eligibilityIndicator");
-                        imageView.setActivated(requirement.isMet());
-                        C12238m.checkNotNullExpressionValue(textView, "title");
-                        textView.setText(requirement.getTitle());
-                        C12238m.checkNotNullExpressionValue(linkifiedTextView, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
-                        linkifiedTextView.setText(requirement.getDescription());
+                        m.checkNotNullExpressionValue(new h2(constraintLayout, linkifiedTextView, imageView, textView), "ViewEligibilityChecklist…g.inflate(layoutInflater)");
+                        m.checkNotNullExpressionValue(imageView, "eligibilityIndicator");
+                        imageView.setActivated(eligibilityChecklistView$Requirement.isMet());
+                        m.checkNotNullExpressionValue(textView, "title");
+                        textView.setText(eligibilityChecklistView$Requirement.getTitle());
+                        m.checkNotNullExpressionValue(linkifiedTextView, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+                        linkifiedTextView.setText(eligibilityChecklistView$Requirement.getDescription());
                         addView(constraintLayout);
                     }
                 }
@@ -189,21 +90,21 @@ public final class EligibilityChecklistView extends LinearLayout {
         super.onFinishInflate();
         setOrientation(1);
         if (isInEditMode()) {
-            CharSequence charSequenceM212d = C1107b.m212d(this, C5419R.string.f14692x95c3e2c2, new Object[]{50}, (4 & 4) != 0 ? C1107b.c.f1492j : null);
-            String string = getResources().getString(C5419R.string.f14691x26fcaf31);
-            C12238m.checkNotNullExpressionValue(string, "resources.getString(\n   …cription,\n              )");
-            String string2 = getResources().getString(C5419R.string.f14701x95059463);
-            C12238m.checkNotNullExpressionValue(string2, "resources.getString(\n   …_eligible\n              )");
-            String string3 = getResources().getString(C5419R.string.f14700xa4da8df0);
-            C12238m.checkNotNullExpressionValue(string3, "resources.getString(\n   …cription,\n              )");
-            bind(C12147n.listOf((Object[]) new Requirement[]{new Requirement(charSequenceM212d, string, true), new Requirement(string2, string3, true)}));
+            CharSequence charSequenceJ = b.j(this, 2131890560, new Object[]{50}, null, 4);
+            String string = getResources().getString(2131890559);
+            m.checkNotNullExpressionValue(string, "resources.getString(\n   …cription,\n              )");
+            String string2 = getResources().getString(2131890569);
+            m.checkNotNullExpressionValue(string2, "resources.getString(\n   …_eligible\n              )");
+            String string3 = getResources().getString(2131890568);
+            m.checkNotNullExpressionValue(string3, "resources.getString(\n   …cription,\n              )");
+            bind(n.listOf((Object[]) new EligibilityChecklistView$Requirement[]{new EligibilityChecklistView$Requirement(charSequenceJ, string, true), new EligibilityChecklistView$Requirement(string2, string3, true)}));
         }
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public EligibilityChecklistView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
-        this.lastRequirements = C12147n.emptyList();
+        m.checkNotNullParameter(context, "context");
+        this.lastRequirements = n.emptyList();
     }
 }

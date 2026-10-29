@@ -1,51 +1,27 @@
 package androidx.core.widget;
 
 import android.content.ClipData;
+import android.content.ClipData$Item;
 import android.content.Context;
 import android.text.Editable;
 import android.text.Selection;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.view.ContentInfoCompat;
 import androidx.core.view.OnReceiveContentListener;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public final class TextViewOnReceiveContentListener implements OnReceiveContentListener {
     private static final String LOG_TAG = "ReceiveContent";
 
-    @RequiresApi(16)
-    public final class Api16Impl {
-        private Api16Impl() {
-        }
-
-        public static CharSequence coerce(@NonNull Context context, @NonNull ClipData.Item item, int i) {
-            if ((i & 1) == 0) {
-                return item.coerceToStyledText(context);
-            }
-            CharSequence charSequenceCoerceToText = item.coerceToText(context);
-            return charSequenceCoerceToText instanceof Spanned ? charSequenceCoerceToText.toString() : charSequenceCoerceToText;
-        }
-    }
-
-    public final class ApiImpl {
-        private ApiImpl() {
-        }
-
-        public static CharSequence coerce(@NonNull Context context, @NonNull ClipData.Item item, int i) {
-            CharSequence charSequenceCoerceToText = item.coerceToText(context);
-            return ((i & 1) == 0 || !(charSequenceCoerceToText instanceof Spanned)) ? charSequenceCoerceToText : charSequenceCoerceToText.toString();
-        }
-    }
-
-    private static CharSequence coerceToText(@NonNull Context context, @NonNull ClipData.Item item, int i) {
-        return Api16Impl.coerce(context, item, i);
+    private static CharSequence coerceToText(@NonNull Context context, @NonNull ClipData$Item clipData$Item, int i) {
+        return TextViewOnReceiveContentListener$Api16Impl.coerce(context, clipData$Item, i);
     }
 
     @Override // androidx.core.view.OnReceiveContentListener

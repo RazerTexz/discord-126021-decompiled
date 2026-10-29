@@ -12,52 +12,45 @@ import com.discord.views.ServerFolderView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildsListItemFolderBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17098a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ServerFolderView f17099b;
+    public final ServerFolderView f2460b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final FrameLayout f17100c;
+    public final FrameLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final View f17101d;
+    public final View d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17102e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final View f17103f;
+    public final View f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final ImageView f17104g;
+    public final ImageView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final ImageView f17105h;
+    public final ImageView h;
 
     public WidgetGuildsListItemFolderBinding(@NonNull RelativeLayout relativeLayout, @NonNull ServerFolderView serverFolderView, @NonNull FrameLayout frameLayout, @NonNull View view, @NonNull TextView textView, @NonNull View view2, @NonNull ImageView imageView, @NonNull ImageView imageView2) {
-        this.f17098a = relativeLayout;
-        this.f17099b = serverFolderView;
-        this.f17100c = frameLayout;
-        this.f17101d = view;
-        this.f17102e = textView;
-        this.f17103f = view2;
-        this.f17104g = imageView;
-        this.f17105h = imageView2;
+        this.a = relativeLayout;
+        this.f2460b = serverFolderView;
+        this.c = frameLayout;
+        this.d = view;
+        this.e = textView;
+        this.f = view2;
+        this.g = imageView;
+        this.h = imageView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17098a;
+        return this.a;
     }
 }

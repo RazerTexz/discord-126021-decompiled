@@ -1,10 +1,11 @@
 package androidx.core.provider;
 
 import android.os.Handler;
+import android.os.Handler$Callback;
 import android.os.HandlerThread;
-import android.os.Message;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -14,7 +15,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 @Deprecated
 public class SelfDestructiveThread {
     private static final int MSG_DESTRUCTION = 0;
@@ -29,28 +30,10 @@ public class SelfDestructiveThread {
     private HandlerThread mThread;
     private final String mThreadName;
     private final Object mLock = new Object();
-    private Handler.Callback mCallback = new Handler.Callback() { // from class: androidx.core.provider.SelfDestructiveThread.1
-        @Override // android.os.Handler.Callback
-        public boolean handleMessage(Message message) {
-            int i = message.what;
-            if (i == 0) {
-                SelfDestructiveThread.this.onDestruction();
-                return true;
-            }
-            if (i != 1) {
-                return true;
-            }
-            SelfDestructiveThread.this.onInvokeRunnable((Runnable) message.obj);
-            return true;
-        }
-    };
+    private Handler$Callback mCallback = new SelfDestructiveThread$1(this);
 
     @GuardedBy("mLock")
     private int mGeneration = 0;
-
-    public interface ReplyCallback<T> {
-        void onReply(T t);
-    }
 
     public SelfDestructiveThread(String str, int i, int i2) {
         this.mThreadName = str;
@@ -111,48 +94,16 @@ public class SelfDestructiveThread {
         }
     }
 
-    public <T> void postAndReply(final Callable<T> callable, final ReplyCallback<T> replyCallback) {
-        final Handler handlerCreate = CalleeHandler.create();
-        post(new Runnable() { // from class: androidx.core.provider.SelfDestructiveThread.2
-            @Override // java.lang.Runnable
-            public void run() {
-                final Object objCall;
-                try {
-                    objCall = callable.call();
-                } catch (Exception unused) {
-                    objCall = null;
-                }
-                handlerCreate.post(new Runnable() { // from class: androidx.core.provider.SelfDestructiveThread.2.1
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        replyCallback.onReply(objCall);
-                    }
-                });
-            }
-        });
+    public <T> void postAndReply(Callable<T> callable, SelfDestructiveThread$ReplyCallback<T> selfDestructiveThread$ReplyCallback) {
+        post(new SelfDestructiveThread$2(this, callable, CalleeHandler.create(), selfDestructiveThread$ReplyCallback));
     }
 
-    public <T> T postAndWait(final Callable<T> callable, int i) throws InterruptedException {
-        final ReentrantLock reentrantLock = new ReentrantLock();
-        final Condition conditionNewCondition = reentrantLock.newCondition();
-        final AtomicReference atomicReference = new AtomicReference();
-        final AtomicBoolean atomicBoolean = new AtomicBoolean(true);
-        post(new Runnable() { // from class: androidx.core.provider.SelfDestructiveThread.3
-            @Override // java.lang.Runnable
-            public void run() {
-                try {
-                    atomicReference.set(callable.call());
-                } catch (Exception unused) {
-                }
-                reentrantLock.lock();
-                try {
-                    atomicBoolean.set(false);
-                    conditionNewCondition.signal();
-                } finally {
-                    reentrantLock.unlock();
-                }
-            }
-        });
+    public <T> T postAndWait(Callable<T> callable, int i) throws InterruptedException {
+        ReentrantLock reentrantLock = new ReentrantLock();
+        Condition conditionNewCondition = reentrantLock.newCondition();
+        AtomicReference atomicReference = new AtomicReference();
+        AtomicBoolean atomicBoolean = new AtomicBoolean(true);
+        post(new SelfDestructiveThread$3(this, atomicReference, callable, reentrantLock, atomicBoolean, conditionNewCondition));
         reentrantLock.lock();
         try {
             if (!atomicBoolean.get()) {

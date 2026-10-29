@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackAfCard;
 import com.discord.analytics.generated.traits.TrackAfCardReceiver;
 import com.discord.analytics.generated.traits.TrackAfGame;
@@ -13,8 +14,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAfDmVisited.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackAfDmVisited implements AnalyticsSchema, Track
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackAfDmVisited) && C12238m.areEqual(this.recipientId, ((TrackAfDmVisited) other).recipientId);
+            return (other instanceof TrackAfDmVisited) && m.areEqual(this.recipientId, ((TrackAfDmVisited) other).recipientId);
         }
         return true;
     }
@@ -50,6 +50,6 @@ public final /* data */ class TrackAfDmVisited implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        return C1643a.m819G(C1643a.m833U("TrackAfDmVisited(recipientId="), this.recipientId, ")");
+        return a.G(a.U("TrackAfDmVisited(recipientId="), this.recipientId, ")");
     }
 }

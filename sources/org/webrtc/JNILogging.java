@@ -10,6 +10,6 @@ public class JNILogging {
 
     @CalledByNative
     public void logToInjectable(String str, Integer num, String str2) {
-        this.loggable.onLogMessage(str, Logging.Severity.values()[num.intValue()], str2);
+        this.loggable.onLogMessage(str, Logging$Severity.values()[num.intValue()], str2);
     }
 }

@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNewsLinkCopied.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, Tr
             return false;
         }
         TrackNewsLinkCopied trackNewsLinkCopied = (TrackNewsLinkCopied) other;
-        return C12238m.areEqual(this.newsUrl, trackNewsLinkCopied.newsUrl) && C12238m.areEqual(this.newsId, trackNewsLinkCopied.newsId) && C12238m.areEqual(this.applicationId, trackNewsLinkCopied.applicationId) && C12238m.areEqual(this.applicationName, trackNewsLinkCopied.applicationName);
+        return m.areEqual(this.newsUrl, trackNewsLinkCopied.newsUrl) && m.areEqual(this.newsId, trackNewsLinkCopied.newsId) && m.areEqual(this.applicationId, trackNewsLinkCopied.applicationId) && m.areEqual(this.applicationName, trackNewsLinkCopied.applicationName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackNewsLinkCopied implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNewsLinkCopied(newsUrl=");
-        sbM833U.append(this.newsUrl);
-        sbM833U.append(", newsId=");
-        sbM833U.append(this.newsId);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", applicationName=");
-        return C1643a.m817E(sbM833U, this.applicationName, ")");
+        StringBuilder sbU = a.U("TrackNewsLinkCopied(newsUrl=");
+        sbU.append(this.newsUrl);
+        sbU.append(", newsId=");
+        sbU.append(this.newsId);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", applicationName=");
+        return a.E(sbU, this.applicationName, ")");
     }
 }

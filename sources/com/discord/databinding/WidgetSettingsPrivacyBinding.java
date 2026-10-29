@@ -13,142 +13,121 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsPrivacyBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f18050a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f18051b;
+    public final CheckedSetting f2635b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final CheckedSetting f18052c;
+    public final CheckedSetting c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f18053d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final CheckedSetting f18054e;
+    public final CheckedSetting e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final CheckedSetting f18055f;
+    public final CheckedSetting f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final DimmerView f18056g;
+    public final DimmerView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f18057h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final CheckedSetting f18058i;
+    public final CheckedSetting i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final LinearLayout f18059j;
+    public final LinearLayout j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final LinearLayout f18060k;
+    public final LinearLayout k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final TextView f18061l;
+    public final TextView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final CheckedSetting f18062m;
+    public final CheckedSetting m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f18063n;
+    public final TextView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final CheckedSetting f18064o;
+    public final CheckedSetting o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final CheckedSetting f18065p;
+    public final CheckedSetting p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final CheckedSetting f18066q;
+    public final CheckedSetting q;
 
-    /* JADX INFO: renamed from: r */
     @NonNull
-    public final CheckedSetting f18067r;
+    public final CheckedSetting r;
 
-    /* JADX INFO: renamed from: s */
+    /* JADX INFO: renamed from: s, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f18068s;
+    public final CheckedSetting f2636s;
 
-    /* JADX INFO: renamed from: t */
     @NonNull
-    public final CheckedSetting f18069t;
+    public final CheckedSetting t;
 
-    /* JADX INFO: renamed from: u */
     @NonNull
-    public final TextView f18070u;
+    public final TextView u;
 
-    /* JADX INFO: renamed from: v */
     @NonNull
-    public final CheckedSetting f18071v;
+    public final CheckedSetting v;
 
-    /* JADX INFO: renamed from: w */
     @NonNull
-    public final MaterialButton f18072w;
+    public final MaterialButton w;
 
-    /* JADX INFO: renamed from: x */
+    /* JADX INFO: renamed from: x, reason: collision with root package name */
     @NonNull
-    public final TextView f18073x;
+    public final TextView f2637x;
 
-    /* JADX INFO: renamed from: y */
+    /* JADX INFO: renamed from: y, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f18074y;
+    public final CheckedSetting f2638y;
 
-    /* JADX INFO: renamed from: z */
+    /* JADX INFO: renamed from: z, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f18075z;
+    public final CheckedSetting f2639z;
 
     public WidgetSettingsPrivacyBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull CheckedSetting checkedSetting, @NonNull CheckedSetting checkedSetting2, @NonNull TextView textView, @NonNull CheckedSetting checkedSetting3, @NonNull CheckedSetting checkedSetting4, @NonNull DimmerView dimmerView, @NonNull TextView textView2, @NonNull CheckedSetting checkedSetting5, @NonNull LinearLayout linearLayout, @NonNull TextView textView3, @NonNull LinearLayout linearLayout2, @NonNull TextView textView4, @NonNull CheckedSetting checkedSetting6, @NonNull TextView textView5, @NonNull CheckedSetting checkedSetting7, @NonNull CheckedSetting checkedSetting8, @NonNull CheckedSetting checkedSetting9, @NonNull CheckedSetting checkedSetting10, @NonNull CheckedSetting checkedSetting11, @NonNull CheckedSetting checkedSetting12, @NonNull TextView textView6, @NonNull CheckedSetting checkedSetting13, @NonNull MaterialButton materialButton, @NonNull TextView textView7, @NonNull CheckedSetting checkedSetting14, @NonNull CheckedSetting checkedSetting15) {
-        this.f18050a = coordinatorLayout;
-        this.f18051b = checkedSetting;
-        this.f18052c = checkedSetting2;
-        this.f18053d = textView;
-        this.f18054e = checkedSetting3;
-        this.f18055f = checkedSetting4;
-        this.f18056g = dimmerView;
-        this.f18057h = textView2;
-        this.f18058i = checkedSetting5;
-        this.f18059j = linearLayout;
-        this.f18060k = linearLayout2;
-        this.f18061l = textView4;
-        this.f18062m = checkedSetting6;
-        this.f18063n = textView5;
-        this.f18064o = checkedSetting7;
-        this.f18065p = checkedSetting8;
-        this.f18066q = checkedSetting9;
-        this.f18067r = checkedSetting10;
-        this.f18068s = checkedSetting11;
-        this.f18069t = checkedSetting12;
-        this.f18070u = textView6;
-        this.f18071v = checkedSetting13;
-        this.f18072w = materialButton;
-        this.f18073x = textView7;
-        this.f18074y = checkedSetting14;
-        this.f18075z = checkedSetting15;
+        this.a = coordinatorLayout;
+        this.f2635b = checkedSetting;
+        this.c = checkedSetting2;
+        this.d = textView;
+        this.e = checkedSetting3;
+        this.f = checkedSetting4;
+        this.g = dimmerView;
+        this.h = textView2;
+        this.i = checkedSetting5;
+        this.j = linearLayout;
+        this.k = linearLayout2;
+        this.l = textView4;
+        this.m = checkedSetting6;
+        this.n = textView5;
+        this.o = checkedSetting7;
+        this.p = checkedSetting8;
+        this.q = checkedSetting9;
+        this.r = checkedSetting10;
+        this.f2636s = checkedSetting11;
+        this.t = checkedSetting12;
+        this.u = textView6;
+        this.v = checkedSetting13;
+        this.w = materialButton;
+        this.f2637x = textView7;
+        this.f2638y = checkedSetting14;
+        this.f2639z = checkedSetting15;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18050a;
+        return this.a;
     }
 }

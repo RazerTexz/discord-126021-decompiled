@@ -1,13 +1,13 @@
 package com.discord.widgets.directories;
 
 import com.discord.api.directory.DirectoryEntryGuild;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetDirectoryCategory.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetDirectoryCategory$adapter$1$onOverflowClicked$1 extends AbstractC12240o implements Function0<Unit> {
+public final class WidgetDirectoryCategory$adapter$1$onOverflowClicked$1 extends o implements Function0<Unit> {
     public final /* synthetic */ long $channelId;
     public final /* synthetic */ DirectoryEntryGuild $directoryEntry;
     public final /* synthetic */ WidgetDirectoryCategory$adapter$1 this$0;
@@ -23,7 +23,7 @@ public final class WidgetDirectoryCategory$adapter$1$onOverflowClicked$1 extends
     @Override // kotlin.jvm.functions.Function0
     public /* bridge */ /* synthetic */ Unit invoke() {
         invoke2();
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */

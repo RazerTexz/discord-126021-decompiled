@@ -10,27 +10,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserEmailVerifyBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f18330a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f18331b;
+    public final MaterialButton f2681b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f18332c;
+    public final MaterialButton c;
 
     public WidgetUserEmailVerifyBinding(@NonNull RelativeLayout relativeLayout, @NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2) {
-        this.f18330a = relativeLayout;
-        this.f18331b = materialButton;
-        this.f18332c = materialButton2;
+        this.a = relativeLayout;
+        this.f2681b = materialButton;
+        this.c = materialButton2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18330a;
+        return this.a;
     }
 }

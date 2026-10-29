@@ -5,16 +5,22 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Logger;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class StorageNotLowTracker extends BroadcastReceiverConstraintTracker<Boolean> {
     private static final String TAG = Logger.tagWithPrefix("StorageNotLowTracker");
 
     public StorageNotLowTracker(@NonNull Context context, @NonNull TaskExecutor taskExecutor) {
         super(context, taskExecutor);
+    }
+
+    @Override // androidx.work.impl.constraints.trackers.ConstraintTracker
+    public /* bridge */ /* synthetic */ Object getInitialState() {
+        return getInitialState();
     }
 
     @Override // androidx.work.impl.constraints.trackers.BroadcastReceiverConstraintTracker

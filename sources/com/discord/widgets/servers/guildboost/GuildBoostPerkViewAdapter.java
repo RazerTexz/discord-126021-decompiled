@@ -1,156 +1,36 @@
 package com.discord.widgets.servers.guildboost;
 
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.DrawableRes;
-import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import com.discord.C5419R;
-import com.discord.databinding.ViewNitroBoostPerksListItemBinding;
-import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.drawable.DrawableCompat;
+import androidx.recyclerview.widget.RecyclerView$ViewHolder;
 import com.discord.utilities.mg_recycler.MGRecyclerAdapterSimple;
-import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
-import com.discord.utilities.mg_recycler.MGRecyclerViewHolder;
+import d0.z.d.m;
 import java.util.List;
-import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildBoostPerkViewAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GuildBoostPerkViewAdapter extends MGRecyclerAdapterSimple<GuildBoostPerkViewListItem> {
-
-    /* JADX INFO: compiled from: GuildBoostPerkViewAdapter.kt */
-    public final /* data */ class GuildBoostPerkViewListItem implements MGRecyclerDataPayload {
-        public static final int TYPE_LIST_ITEM = 1;
-        private final int iconResId;
-        private final String key;
-        private final CharSequence text;
-        private final int type;
-
-        public GuildBoostPerkViewListItem(@DrawableRes int i, CharSequence charSequence) {
-            C12238m.checkNotNullParameter(charSequence, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-            this.iconResId = i;
-            this.text = charSequence;
-            this.type = 1;
-            this.key = charSequence.toString();
-        }
-
-        public static /* synthetic */ GuildBoostPerkViewListItem copy$default(GuildBoostPerkViewListItem guildBoostPerkViewListItem, int i, CharSequence charSequence, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                i = guildBoostPerkViewListItem.iconResId;
-            }
-            if ((i2 & 2) != 0) {
-                charSequence = guildBoostPerkViewListItem.text;
-            }
-            return guildBoostPerkViewListItem.copy(i, charSequence);
-        }
-
-        public final GuildBoostPerkViewListItem copy(@DrawableRes int iconResId, CharSequence text) {
-            C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
-            return new GuildBoostPerkViewListItem(iconResId, text);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof GuildBoostPerkViewListItem)) {
-                return false;
-            }
-            GuildBoostPerkViewListItem guildBoostPerkViewListItem = (GuildBoostPerkViewListItem) other;
-            return this.iconResId == guildBoostPerkViewListItem.iconResId && C12238m.areEqual(this.text, guildBoostPerkViewListItem.text);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getIconResId() {
-            return this.iconResId;
-        }
-
-        public final int getIconResId() {
-            return this.iconResId;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
-        public String getKey() {
-            return this.key;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final CharSequence getText() {
-            return this.text;
-        }
-
-        public final CharSequence getText() {
-            return this.text;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
-        public int getType() {
-            return this.type;
-        }
-
-        public int hashCode() {
-            int i = this.iconResId * 31;
-            CharSequence charSequence = this.text;
-            return i + (charSequence != null ? charSequence.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("GuildBoostPerkViewListItem(iconResId=");
-            sbM833U.append(this.iconResId);
-            sbM833U.append(", text=");
-            return C1643a.m817E(sbM833U, this.text, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: GuildBoostPerkViewAdapter.kt */
-    public final class PerkViewHolder extends MGRecyclerViewHolder<GuildBoostPerkViewAdapter, GuildBoostPerkViewListItem> {
-        private final ViewNitroBoostPerksListItemBinding binding;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public PerkViewHolder(GuildBoostPerkViewAdapter guildBoostPerkViewAdapter) {
-            super(C5419R.layout.view_nitro_boost_perks_list_item, guildBoostPerkViewAdapter);
-            C12238m.checkNotNullParameter(guildBoostPerkViewAdapter, "adapter");
-            View view = this.itemView;
-            Objects.requireNonNull(view, "rootView");
-            TextView textView = (TextView) view;
-            ViewNitroBoostPerksListItemBinding viewNitroBoostPerksListItemBinding = new ViewNitroBoostPerksListItemBinding(textView, textView);
-            C12238m.checkNotNullExpressionValue(viewNitroBoostPerksListItemBinding, "ViewNitroBoostPerksListItemBinding.bind(itemView)");
-            this.binding = viewNitroBoostPerksListItemBinding;
-        }
-
-        @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-        public void onConfigure(int position, GuildBoostPerkViewListItem data) {
-            C12238m.checkNotNullParameter(data, "data");
-            super.onConfigure(position, data);
-            TextView textView = this.binding.f15528b;
-            C12238m.checkNotNullExpressionValue(textView, "binding.perkViewContentListItem");
-            textView.setText(data.getText());
-            TextView textView2 = this.binding.f15528b;
-            C12238m.checkNotNullExpressionValue(textView2, "binding.perkViewContentListItem");
-            DrawableCompat.setCompoundDrawablesCompat$default(textView2, data.getIconResId(), 0, 0, 0, 14, (Object) null);
-        }
-    }
-
+public final class GuildBoostPerkViewAdapter extends MGRecyclerAdapterSimple<GuildBoostPerkViewAdapter$GuildBoostPerkViewListItem> {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GuildBoostPerkViewAdapter(RecyclerView recyclerView) {
         super(recyclerView, false, 2, null);
-        C12238m.checkNotNullParameter(recyclerView, "recycler");
+        m.checkNotNullParameter(recyclerView, "recycler");
     }
 
-    public final void configure(List<GuildBoostPerkViewListItem> perkItems) {
-        C12238m.checkNotNullParameter(perkItems, "perkItems");
+    public final void configure(List<GuildBoostPerkViewAdapter$GuildBoostPerkViewListItem> perkItems) {
+        m.checkNotNullParameter(perkItems, "perkItems");
         setData(perkItems);
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.Adapter
-    public PerkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        C12238m.checkNotNullParameter(parent, "parent");
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    public /* bridge */ /* synthetic */ RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return onCreateViewHolder(viewGroup, i);
+    }
+
+    @Override // androidx.recyclerview.widget.RecyclerView$Adapter
+    public GuildBoostPerkViewAdapter$PerkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        m.checkNotNullParameter(parent, "parent");
         if (viewType == 1) {
-            return new PerkViewHolder(this);
+            return new GuildBoostPerkViewAdapter$PerkViewHolder(this);
         }
         throw invalidViewTypeException(viewType);
     }

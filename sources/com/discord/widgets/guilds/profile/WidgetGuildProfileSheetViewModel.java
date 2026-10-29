@@ -1,65 +1,50 @@
 package com.discord.widgets.guilds.profile;
 
 import android.content.Context;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
-import com.discord.C5419R;
+import b.a.d.d0;
 import com.discord.api.emoji.GuildEmoji;
 import com.discord.api.guild.GuildFeature;
 import com.discord.api.guild.preview.GuildPreview;
 import com.discord.app.AppActivity;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.emoji.Emoji;
-import com.discord.models.domain.emoji.EmojiSet;
 import com.discord.models.domain.emoji.ModelEmojiCustom;
 import com.discord.models.guild.Guild;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.MeUser;
-import com.discord.restapi.RestAPIParams;
+import com.discord.restapi.RestAPIParams$Nick;
 import com.discord.stores.StoreAnalytics;
-import com.discord.stores.StoreEmoji;
-import com.discord.stores.StoreGuildProfiles;
+import com.discord.stores.StoreGuildProfiles$FetchStates;
+import com.discord.stores.StoreGuildProfiles$GuildProfileData;
 import com.discord.stores.StoreLurking;
 import com.discord.stores.StoreStream;
-import com.discord.stores.StoreUser;
 import com.discord.stores.StoreUserGuildSettings;
 import com.discord.stores.StoreUserSettings;
 import com.discord.utilities.channel.GuildChannelsInfo;
-import com.discord.utilities.error.Error;
 import com.discord.utilities.guilds.GuildUtilsKt;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.permissions.ManageGuildContext;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.user.UserUtils;
+import d0.t.n;
+import d0.t.o;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p008a.p018d.AbstractC0859d0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12145m;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12149o;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p637j0.p641k.InterfaceC12589b;
-import p658rx.Observable;
-import p658rx.Subscription;
-import p658rx.functions.Func9;
-import p658rx.subjects.PublishSubject;
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<ViewState> {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-    private final PublishSubject<Event> eventSubject;
+public final class WidgetGuildProfileSheetViewModel extends d0<WidgetGuildProfileSheetViewModel$ViewState> {
+    public static final WidgetGuildProfileSheetViewModel$Companion Companion = new WidgetGuildProfileSheetViewModel$Companion(null);
+    private final PublishSubject<WidgetGuildProfileSheetViewModel$Event> eventSubject;
     private final long guildId;
     private boolean isEmojiSectionExpanded;
     private final RestAPI restAPI;
@@ -68,1405 +53,16 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     private final StoreUserSettings storeUserSettings;
     private final boolean viewingGuild;
 
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final /* data */ class Actions {
-        private final boolean canChangeNickname;
-        private final boolean canLeaveGuild;
-        private final boolean canManageChannels;
-        private final boolean canManageEvents;
-        private final boolean displayGuildIdentityRow;
-        private final String guildAvatar;
-        private final boolean hideMutedChannels;
-        private final boolean isAllowDMChecked;
-        private final boolean isDeveloper;
-        private final boolean isUnread;
-        private final String nick;
-        private final String username;
-
-        /* JADX WARN: Code duplicated, block: B:17:0x003d  */
-        public Actions(boolean z2, boolean z3, boolean z4, boolean z5, String str, String str2, boolean z6, boolean z7, boolean z8, boolean z9, String str3) {
-            boolean z10;
-            C12238m.checkNotNullParameter(str3, "username");
-            this.isUnread = z2;
-            this.canManageChannels = z3;
-            this.canManageEvents = z4;
-            this.canChangeNickname = z5;
-            this.nick = str;
-            this.guildAvatar = str2;
-            this.isAllowDMChecked = z6;
-            this.hideMutedChannels = z7;
-            this.canLeaveGuild = z8;
-            this.isDeveloper = z9;
-            this.username = str3;
-            if (str == null || str.length() == 0) {
-                z10 = str2 == null || str2.length() == 0 ? false : true;
-            }
-            this.displayGuildIdentityRow = z10;
-        }
-
-        public final Actions copy(boolean isUnread, boolean canManageChannels, boolean canManageEvents, boolean canChangeNickname, String nick, String guildAvatar, boolean isAllowDMChecked, boolean hideMutedChannels, boolean canLeaveGuild, boolean isDeveloper, String username) {
-            C12238m.checkNotNullParameter(username, "username");
-            return new Actions(isUnread, canManageChannels, canManageEvents, canChangeNickname, nick, guildAvatar, isAllowDMChecked, hideMutedChannels, canLeaveGuild, isDeveloper, username);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof Actions)) {
-                return false;
-            }
-            Actions actions = (Actions) other;
-            return this.isUnread == actions.isUnread && this.canManageChannels == actions.canManageChannels && this.canManageEvents == actions.canManageEvents && this.canChangeNickname == actions.canChangeNickname && C12238m.areEqual(this.nick, actions.nick) && C12238m.areEqual(this.guildAvatar, actions.guildAvatar) && this.isAllowDMChecked == actions.isAllowDMChecked && this.hideMutedChannels == actions.hideMutedChannels && this.canLeaveGuild == actions.canLeaveGuild && this.isDeveloper == actions.isDeveloper && C12238m.areEqual(this.username, actions.username);
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getCanChangeNickname() {
-            return this.canChangeNickname;
-        }
-
-        public final boolean getCanChangeNickname() {
-            return this.canChangeNickname;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getCanLeaveGuild() {
-            return this.canLeaveGuild;
-        }
-
-        public final boolean getCanLeaveGuild() {
-            return this.canLeaveGuild;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getCanManageChannels() {
-            return this.canManageChannels;
-        }
-
-        public final boolean getCanManageChannels() {
-            return this.canManageChannels;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getCanManageEvents() {
-            return this.canManageEvents;
-        }
-
-        public final boolean getCanManageEvents() {
-            return this.canManageEvents;
-        }
-
-        public final boolean getDisplayGuildIdentityRow() {
-            return this.displayGuildIdentityRow;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getGuildAvatar() {
-            return this.guildAvatar;
-        }
-
-        public final String getGuildAvatar() {
-            return this.guildAvatar;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final boolean getHideMutedChannels() {
-            return this.hideMutedChannels;
-        }
-
-        public final boolean getHideMutedChannels() {
-            return this.hideMutedChannels;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsAllowDMChecked() {
-            return this.isAllowDMChecked;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getIsDeveloper() {
-            return this.isDeveloper;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsUnread() {
-            return this.isUnread;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getNick() {
-            return this.nick;
-        }
-
-        public final String getNick() {
-            return this.nick;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final String getUsername() {
-            return this.username;
-        }
-
-        public final String getUsername() {
-            return this.username;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v13, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v22 */
-        /* JADX WARN: Type inference failed for: r0v23 */
-        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v5, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v7, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v0 */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v3 */
-        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v13, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v15, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v17, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v19 */
-        /* JADX WARN: Type inference failed for: r2v20 */
-        /* JADX WARN: Type inference failed for: r2v21 */
-        /* JADX WARN: Type inference failed for: r2v24 */
-        /* JADX WARN: Type inference failed for: r2v25 */
-        /* JADX WARN: Type inference failed for: r2v26 */
-        /* JADX WARN: Type inference failed for: r2v27 */
-        /* JADX WARN: Type inference failed for: r2v28 */
-        /* JADX WARN: Type inference failed for: r2v29 */
-        /* JADX WARN: Type inference failed for: r2v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v30 */
-        /* JADX WARN: Type inference failed for: r2v31 */
-        /* JADX WARN: Type inference failed for: r2v32 */
-        /* JADX WARN: Type inference failed for: r2v5, types: [int] */
-        public int hashCode() {
-            boolean z2 = this.isUnread;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = r0 * 31;
-            boolean z3 = this.canManageChannels;
-            ?? r2 = z3;
-            if (z3) {
-                r2 = 1;
-            }
-            int i2 = (i + r2) * 31;
-            boolean z4 = this.canManageEvents;
-            ?? r3 = z4;
-            if (z4) {
-                r3 = 1;
-            }
-            int i3 = (i2 + r3) * 31;
-            boolean z5 = this.canChangeNickname;
-            ?? r4 = z5;
-            if (z5) {
-                r4 = 1;
-            }
-            int i4 = (i3 + r4) * 31;
-            String str = this.nick;
-            int iHashCode = (i4 + (str != null ? str.hashCode() : 0)) * 31;
-            String str2 = this.guildAvatar;
-            int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
-            boolean z6 = this.isAllowDMChecked;
-            ?? r5 = z6;
-            if (z6) {
-                r5 = 1;
-            }
-            int i5 = (iHashCode2 + r5) * 31;
-            boolean z7 = this.hideMutedChannels;
-            ?? r6 = z7;
-            if (z7) {
-                r6 = 1;
-            }
-            int i6 = (i5 + r6) * 31;
-            boolean z8 = this.canLeaveGuild;
-            ?? r7 = z8;
-            if (z8) {
-                r7 = 1;
-            }
-            int i7 = (i6 + r7) * 31;
-            boolean z9 = this.isDeveloper;
-            int i8 = (i7 + (z9 ? 1 : z9)) * 31;
-            String str3 = this.username;
-            return i8 + (str3 != null ? str3.hashCode() : 0);
-        }
-
-        public final boolean isAllowDMChecked() {
-            return this.isAllowDMChecked;
-        }
-
-        public final boolean isDeveloper() {
-            return this.isDeveloper;
-        }
-
-        public final boolean isUnread() {
-            return this.isUnread;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Actions(isUnread=");
-            sbM833U.append(this.isUnread);
-            sbM833U.append(", canManageChannels=");
-            sbM833U.append(this.canManageChannels);
-            sbM833U.append(", canManageEvents=");
-            sbM833U.append(this.canManageEvents);
-            sbM833U.append(", canChangeNickname=");
-            sbM833U.append(this.canChangeNickname);
-            sbM833U.append(", nick=");
-            sbM833U.append(this.nick);
-            sbM833U.append(", guildAvatar=");
-            sbM833U.append(this.guildAvatar);
-            sbM833U.append(", isAllowDMChecked=");
-            sbM833U.append(this.isAllowDMChecked);
-            sbM833U.append(", hideMutedChannels=");
-            sbM833U.append(this.hideMutedChannels);
-            sbM833U.append(", canLeaveGuild=");
-            sbM833U.append(this.canLeaveGuild);
-            sbM833U.append(", isDeveloper=");
-            sbM833U.append(this.isDeveloper);
-            sbM833U.append(", username=");
-            return C1643a.m822J(sbM833U, this.username, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final /* data */ class Banner {
-        private final long guildId;
-        private final String hash;
-        private final Type type;
-
-        /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public enum Type {
-            BANNER,
-            SPLASH
-        }
-
-        public Banner(long j, String str, Type type) {
-            C12238m.checkNotNullParameter(type, "type");
-            this.guildId = j;
-            this.hash = str;
-            this.type = type;
-        }
-
-        public static /* synthetic */ Banner copy$default(Banner banner, long j, String str, Type type, int i, Object obj) {
-            if ((i & 1) != 0) {
-                j = banner.guildId;
-            }
-            if ((i & 2) != 0) {
-                str = banner.hash;
-            }
-            if ((i & 4) != 0) {
-                type = banner.type;
-            }
-            return banner.copy(j, str, type);
-        }
-
-        public final Banner copy(long guildId, String hash, Type type) {
-            C12238m.checkNotNullParameter(type, "type");
-            return new Banner(guildId, hash, type);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof Banner)) {
-                return false;
-            }
-            Banner banner = (Banner) other;
-            return this.guildId == banner.guildId && C12238m.areEqual(this.hash, banner.hash) && C12238m.areEqual(this.type, banner.type);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getHash() {
-            return this.hash;
-        }
-
-        public final String getHash() {
-            return this.hash;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Type getType() {
-            return this.type;
-        }
-
-        public final Type getType() {
-            return this.type;
-        }
-
-        public int hashCode() {
-            int iM3a = C0002b.m3a(this.guildId) * 31;
-            String str = this.hash;
-            int iHashCode = (iM3a + (str != null ? str.hashCode() : 0)) * 31;
-            Type type = this.type;
-            return iHashCode + (type != null ? type.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Banner(guildId=");
-            sbM833U.append(this.guildId);
-            sbM833U.append(", hash=");
-            sbM833U.append(this.hash);
-            sbM833U.append(", type=");
-            sbM833U.append(this.type);
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final /* data */ class BottomActions {
-        private final boolean showJoinServer;
-        private final boolean showUploadEmoji;
-        private final boolean showViewServer;
-
-        public BottomActions(boolean z2, boolean z3, boolean z4) {
-            this.showUploadEmoji = z2;
-            this.showJoinServer = z3;
-            this.showViewServer = z4;
-        }
-
-        public static /* synthetic */ BottomActions copy$default(BottomActions bottomActions, boolean z2, boolean z3, boolean z4, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = bottomActions.showUploadEmoji;
-            }
-            if ((i & 2) != 0) {
-                z3 = bottomActions.showJoinServer;
-            }
-            if ((i & 4) != 0) {
-                z4 = bottomActions.showViewServer;
-            }
-            return bottomActions.copy(z2, z3, z4);
-        }
-
-        public final BottomActions copy(boolean showUploadEmoji, boolean showJoinServer, boolean showViewServer) {
-            return new BottomActions(showUploadEmoji, showJoinServer, showViewServer);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof BottomActions)) {
-                return false;
-            }
-            BottomActions bottomActions = (BottomActions) other;
-            return this.showUploadEmoji == bottomActions.showUploadEmoji && this.showJoinServer == bottomActions.showJoinServer && this.showViewServer == bottomActions.showViewServer;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getShowJoinServer() {
-            return this.showJoinServer;
-        }
-
-        public final boolean getShowJoinServer() {
-            return this.showJoinServer;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getShowUploadEmoji() {
-            return this.showUploadEmoji;
-        }
-
-        public final boolean getShowUploadEmoji() {
-            return this.showUploadEmoji;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getShowViewServer() {
-            return this.showViewServer;
-        }
-
-        public final boolean getShowViewServer() {
-            return this.showViewServer;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v5, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v6 */
-        /* JADX WARN: Type inference failed for: r0v7 */
-        /* JADX WARN: Type inference failed for: r1v0 */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v2 */
-        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v3 */
-        /* JADX WARN: Type inference failed for: r2v4 */
-        public int hashCode() {
-            boolean z2 = this.showUploadEmoji;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = r0 * 31;
-            boolean z3 = this.showJoinServer;
-            ?? r2 = z3;
-            if (z3) {
-                r2 = 1;
-            }
-            int i2 = (i + r2) * 31;
-            boolean z4 = this.showViewServer;
-            return i2 + (z4 ? 1 : z4);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("BottomActions(showUploadEmoji=");
-            sbM833U.append(this.showUploadEmoji);
-            sbM833U.append(", showJoinServer=");
-            sbM833U.append(this.showJoinServer);
-            sbM833U.append(", showViewServer=");
-            return C1643a.m827O(sbM833U, this.showViewServer, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final class C88031 extends AbstractC12240o implements Function1<StoreState, Unit> {
-        public C88031() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(StoreState storeState) {
-            invoke2(storeState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(StoreState storeState) {
-            C12238m.checkNotNullParameter(storeState, "storeState");
-            WidgetGuildProfileSheetViewModel.this.handleStoreState(storeState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickLeaveServer$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final class C88051 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Function0 $onSuccess;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88051(Function0 function0) {
-            super(1);
-            this.$onSuccess = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            this.$onSuccess.invoke();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickMarkAsRead$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final class C88061 extends AbstractC12240o implements Function1<Void, Unit> {
-        public C88061() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r3) {
-            WidgetGuildProfileSheetViewModel.this.eventSubject.f27650k.onNext((T) new Event.DismissAndShowToast(C5419R.string.marked_as_read));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickResetNickname$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final class C88071 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Function0 $onSuccess;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88071(Function0 function0) {
-            super(1);
-            this.$onSuccess = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            this.$onSuccess.invoke();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$onClickSaveNickname$1 */
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final class C88081 extends AbstractC12240o implements Function1<Void, Unit> {
-        public final /* synthetic */ Function0 $onSuccess;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C88081(Function0 function0) {
-            super(1);
-            this.$onSuccess = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
-            this.$onSuccess.invoke();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final Observable<StoreState> observeStores(final long guildId) {
-            StoreStream.Companion companion = StoreStream.INSTANCE;
-            Observable<StoreState> observableM11066c = Observable.m11066c(companion.getGuilds().observeGuild(guildId), companion.getGuildProfiles().observeGuildProfile(guildId), companion.getReadStates().getIsUnread(guildId), StoreUser.observeMe$default(companion.getUsers(), false, 1, null), StoreUser.observeMe$default(companion.getUsers(), false, 1, null).m11099Y(new InterfaceC12589b<MeUser, Observable<? extends GuildMember>>() { // from class: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$Companion$observeStores$1
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final Observable<? extends GuildMember> call(final MeUser meUser) {
-                    return StoreStream.INSTANCE.getGuilds().observeComputed(guildId, C12145m.listOf(Long.valueOf(meUser.getId()))).m11083G(new InterfaceC12589b<Map<Long, ? extends GuildMember>, GuildMember>() { // from class: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$Companion$observeStores$1.1
-                        @Override // p637j0.p641k.InterfaceC12589b
-                        public /* bridge */ /* synthetic */ GuildMember call(Map<Long, ? extends GuildMember> map) {
-                            return call2((Map<Long, GuildMember>) map);
-                        }
-
-                        /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                        public final GuildMember call2(Map<Long, GuildMember> map) {
-                            return map.get(Long.valueOf(meUser.getId()));
-                        }
-                    });
-                }
-            }), companion.getUserSettings().observeRestrictedGuildIds(), companion.getEmojis().getEmojiSet(new StoreEmoji.EmojiContext.GuildProfile(guildId), true, false).m11083G(new InterfaceC12589b<EmojiSet, List<Emoji>>() { // from class: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$Companion$observeStores$2
-                @Override // p637j0.p641k.InterfaceC12589b
-                public final List<Emoji> call(EmojiSet emojiSet) {
-                    return emojiSet.customEmojis.get(Long.valueOf(guildId));
-                }
-            }), companion.getLurking().isLurkingObs(guildId), GuildChannelsInfo.INSTANCE.get(guildId), new Func9<Guild, StoreGuildProfiles.GuildProfileData, Boolean, MeUser, GuildMember, List<? extends Long>, List<Emoji>, Boolean, GuildChannelsInfo, StoreState>() { // from class: com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel$Companion$observeStores$3
-                @Override // p658rx.functions.Func9
-                public /* bridge */ /* synthetic */ WidgetGuildProfileSheetViewModel.StoreState call(Guild guild, StoreGuildProfiles.GuildProfileData guildProfileData, Boolean bool, MeUser meUser, GuildMember guildMember, List<? extends Long> list, List<Emoji> list2, Boolean bool2, GuildChannelsInfo guildChannelsInfo) {
-                    return call2(guild, guildProfileData, bool, meUser, guildMember, (List<Long>) list, list2, bool2, guildChannelsInfo);
-                }
-
-                /* JADX INFO: renamed from: call, reason: avoid collision after fix types in other method */
-                public final WidgetGuildProfileSheetViewModel.StoreState call2(Guild guild, StoreGuildProfiles.GuildProfileData guildProfileData, Boolean bool, MeUser meUser, GuildMember guildMember, List<Long> list, List<Emoji> list2, Boolean bool2, GuildChannelsInfo guildChannelsInfo) {
-                    C12238m.checkNotNullExpressionValue(guildChannelsInfo, "guildChannelsInfo");
-                    C12238m.checkNotNullExpressionValue(meUser, "me");
-                    C12238m.checkNotNullExpressionValue(list, "restrictedGuildIds");
-                    boolean isDeveloperMode = StoreStream.INSTANCE.getUserSettings().getIsDeveloperMode();
-                    List<Emoji> listEmptyList = list2 != null ? list2 : C12147n.emptyList();
-                    C12238m.checkNotNullExpressionValue(bool2, "isLurking");
-                    boolean zBooleanValue = bool2.booleanValue();
-                    C12238m.checkNotNullExpressionValue(bool, "isUnread");
-                    return new WidgetGuildProfileSheetViewModel.StoreState(guild, guildProfileData, guildChannelsInfo, meUser, guildMember, list, isDeveloperMode, listEmptyList, zBooleanValue, bool.booleanValue());
-                }
-            });
-            C12238m.checkNotNullExpressionValue(observableM11066c, "Observable.combineLatest…ead\n          )\n        }");
-            return observableM11066c;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final /* data */ class EmojisData {
-        private final List<Emoji> emojis;
-        private final boolean isExpanded;
-        private final boolean isPremium;
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public EmojisData(boolean z2, boolean z3, List<? extends Emoji> list) {
-            C12238m.checkNotNullParameter(list, "emojis");
-            this.isPremium = z2;
-            this.isExpanded = z3;
-            this.emojis = list;
-        }
-
-        public final List<Emoji> component3() {
-            return this.emojis;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ EmojisData copy$default(EmojisData emojisData, boolean z2, boolean z3, List list, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = emojisData.isPremium;
-            }
-            if ((i & 2) != 0) {
-                z3 = emojisData.isExpanded;
-            }
-            if ((i & 4) != 0) {
-                list = emojisData.emojis;
-            }
-            return emojisData.copy(z2, z3, list);
-        }
-
-        public final EmojisData copy(boolean isPremium, boolean isExpanded, List<? extends Emoji> emojis) {
-            C12238m.checkNotNullParameter(emojis, "emojis");
-            return new EmojisData(isPremium, isExpanded, emojis);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof EmojisData)) {
-                return false;
-            }
-            EmojisData emojisData = (EmojisData) other;
-            return this.isPremium == emojisData.isPremium && this.isExpanded == emojisData.isExpanded && C12238m.areEqual(this.emojis, emojisData.emojis);
-        }
-
-        public final List<Emoji> getEmojis() {
-            return this.emojis;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsExpanded() {
-            return this.isExpanded;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsPremium() {
-            return this.isPremium;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v6 */
-        /* JADX WARN: Type inference failed for: r0v7 */
-        /* JADX WARN: Type inference failed for: r1v0 */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v6 */
-        public int hashCode() {
-            boolean z2 = this.isPremium;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = r0 * 31;
-            boolean z3 = this.isExpanded;
-            int i2 = (i + (z3 ? 1 : z3)) * 31;
-            List<Emoji> list = this.emojis;
-            return i2 + (list != null ? list.hashCode() : 0);
-        }
-
-        public final boolean isExpanded() {
-            return this.isExpanded;
-        }
-
-        public final boolean isPremium() {
-            return this.isPremium;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("EmojisData(isPremium=");
-            sbM833U.append(this.isPremium);
-            sbM833U.append(", isExpanded=");
-            sbM833U.append(this.isExpanded);
-            sbM833U.append(", emojis=");
-            return C1643a.m824L(sbM833U, this.emojis, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public abstract class Event {
-
-        /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public final /* data */ class DismissAndShowToast extends Event {
-            private final int stringRes;
-
-            public DismissAndShowToast(@StringRes int i) {
-                super(null);
-                this.stringRes = i;
-            }
-
-            public static /* synthetic */ DismissAndShowToast copy$default(DismissAndShowToast dismissAndShowToast, int i, int i2, Object obj) {
-                if ((i2 & 1) != 0) {
-                    i = dismissAndShowToast.stringRes;
-                }
-                return dismissAndShowToast.copy(i);
-            }
-
-            public final DismissAndShowToast copy(@StringRes int stringRes) {
-                return new DismissAndShowToast(stringRes);
-            }
-
-            public boolean equals(Object other) {
-                if (this != other) {
-                    return (other instanceof DismissAndShowToast) && this.stringRes == ((DismissAndShowToast) other).stringRes;
-                }
-                return true;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final int getStringRes() {
-                return this.stringRes;
-            }
-
-            public final int getStringRes() {
-                return this.stringRes;
-            }
-
-            public int hashCode() {
-                return this.stringRes;
-            }
-
-            public String toString() {
-                return C1643a.m814B(C1643a.m833U("DismissAndShowToast(stringRes="), this.stringRes, ")");
-            }
-        }
-
-        private Event() {
-        }
-
-        public /* synthetic */ Event(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final /* data */ class StoreState {
-        private final GuildMember computedMe;
-        private final List<Emoji> emojis;
-        private final Guild guild;
-        private final GuildChannelsInfo guildChannelsInfo;
-        private final StoreGuildProfiles.GuildProfileData guildProfile;
-        private final boolean isDeveloper;
-        private final boolean isLurking;
-        private final boolean isUnread;
-        private final MeUser me;
-        private final List<Long> restrictedGuildIds;
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public StoreState(Guild guild, StoreGuildProfiles.GuildProfileData guildProfileData, GuildChannelsInfo guildChannelsInfo, MeUser meUser, GuildMember guildMember, List<Long> list, boolean z2, List<? extends Emoji> list2, boolean z3, boolean z4) {
-            C12238m.checkNotNullParameter(guildChannelsInfo, "guildChannelsInfo");
-            C12238m.checkNotNullParameter(meUser, "me");
-            C12238m.checkNotNullParameter(list, "restrictedGuildIds");
-            C12238m.checkNotNullParameter(list2, "emojis");
-            this.guild = guild;
-            this.guildProfile = guildProfileData;
-            this.guildChannelsInfo = guildChannelsInfo;
-            this.me = meUser;
-            this.computedMe = guildMember;
-            this.restrictedGuildIds = list;
-            this.isDeveloper = z2;
-            this.emojis = list2;
-            this.isLurking = z3;
-            this.isUnread = z4;
-        }
-
-        public final List<Long> component6() {
-            return this.restrictedGuildIds;
-        }
-
-        public final List<Emoji> component8() {
-            return this.emojis;
-        }
-
-        public final StoreState copy(Guild guild, StoreGuildProfiles.GuildProfileData guildProfile, GuildChannelsInfo guildChannelsInfo, MeUser me2, GuildMember computedMe, List<Long> restrictedGuildIds, boolean isDeveloper, List<? extends Emoji> emojis, boolean isLurking, boolean isUnread) {
-            C12238m.checkNotNullParameter(guildChannelsInfo, "guildChannelsInfo");
-            C12238m.checkNotNullParameter(me2, "me");
-            C12238m.checkNotNullParameter(restrictedGuildIds, "restrictedGuildIds");
-            C12238m.checkNotNullParameter(emojis, "emojis");
-            return new StoreState(guild, guildProfile, guildChannelsInfo, me2, computedMe, restrictedGuildIds, isDeveloper, emojis, isLurking, isUnread);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof StoreState)) {
-                return false;
-            }
-            StoreState storeState = (StoreState) other;
-            return C12238m.areEqual(this.guild, storeState.guild) && C12238m.areEqual(this.guildProfile, storeState.guildProfile) && C12238m.areEqual(this.guildChannelsInfo, storeState.guildChannelsInfo) && C12238m.areEqual(this.me, storeState.me) && C12238m.areEqual(this.computedMe, storeState.computedMe) && C12238m.areEqual(this.restrictedGuildIds, storeState.restrictedGuildIds) && this.isDeveloper == storeState.isDeveloper && C12238m.areEqual(this.emojis, storeState.emojis) && this.isLurking == storeState.isLurking && this.isUnread == storeState.isUnread;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final GuildMember getComputedMe() {
-            return this.computedMe;
-        }
-
-        public final GuildMember getComputedMe() {
-            return this.computedMe;
-        }
-
-        public final List<Emoji> getEmojis() {
-            return this.emojis;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        public final Guild getGuild() {
-            return this.guild;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final GuildChannelsInfo getGuildChannelsInfo() {
-            return this.guildChannelsInfo;
-        }
-
-        public final GuildChannelsInfo getGuildChannelsInfo() {
-            return this.guildChannelsInfo;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
-            return this.guildProfile;
-        }
-
-        public final StoreGuildProfiles.GuildProfileData getGuildProfile() {
-            return this.guildProfile;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final boolean getIsDeveloper() {
-            return this.isDeveloper;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getIsLurking() {
-            return this.isLurking;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final boolean getIsUnread() {
-            return this.isUnread;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        public final MeUser getMe() {
-            return this.me;
-        }
-
-        public final List<Long> getRestrictedGuildIds() {
-            return this.restrictedGuildIds;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v14, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v18, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v20, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v5 */
-        /* JADX WARN: Type inference failed for: r1v7 */
-        /* JADX WARN: Type inference failed for: r2v16, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v18 */
-        /* JADX WARN: Type inference failed for: r2v24 */
-        /* JADX WARN: Type inference failed for: r3v0 */
-        /* JADX WARN: Type inference failed for: r3v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r3v2 */
-        public int hashCode() {
-            Guild guild = this.guild;
-            int iHashCode = (guild != null ? guild.hashCode() : 0) * 31;
-            StoreGuildProfiles.GuildProfileData guildProfileData = this.guildProfile;
-            int iHashCode2 = (iHashCode + (guildProfileData != null ? guildProfileData.hashCode() : 0)) * 31;
-            GuildChannelsInfo guildChannelsInfo = this.guildChannelsInfo;
-            int iHashCode3 = (iHashCode2 + (guildChannelsInfo != null ? guildChannelsInfo.hashCode() : 0)) * 31;
-            MeUser meUser = this.me;
-            int iHashCode4 = (iHashCode3 + (meUser != null ? meUser.hashCode() : 0)) * 31;
-            GuildMember guildMember = this.computedMe;
-            int iHashCode5 = (iHashCode4 + (guildMember != null ? guildMember.hashCode() : 0)) * 31;
-            List<Long> list = this.restrictedGuildIds;
-            int iHashCode6 = (iHashCode5 + (list != null ? list.hashCode() : 0)) * 31;
-            boolean z2 = this.isDeveloper;
-            ?? r2 = z2;
-            if (z2) {
-                r2 = 1;
-            }
-            int i = (iHashCode6 + r2) * 31;
-            List<Emoji> list2 = this.emojis;
-            int iHashCode7 = (i + (list2 != null ? list2.hashCode() : 0)) * 31;
-            boolean z3 = this.isLurking;
-            ?? r1 = z3;
-            if (z3) {
-                r1 = 1;
-            }
-            int i2 = (iHashCode7 + r1) * 31;
-            boolean z4 = this.isUnread;
-            return i2 + (z4 ? 1 : z4);
-        }
-
-        public final boolean isDeveloper() {
-            return this.isDeveloper;
-        }
-
-        public final boolean isLurking() {
-            return this.isLurking;
-        }
-
-        public final boolean isUnread() {
-            return this.isUnread;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("StoreState(guild=");
-            sbM833U.append(this.guild);
-            sbM833U.append(", guildProfile=");
-            sbM833U.append(this.guildProfile);
-            sbM833U.append(", guildChannelsInfo=");
-            sbM833U.append(this.guildChannelsInfo);
-            sbM833U.append(", me=");
-            sbM833U.append(this.me);
-            sbM833U.append(", computedMe=");
-            sbM833U.append(this.computedMe);
-            sbM833U.append(", restrictedGuildIds=");
-            sbM833U.append(this.restrictedGuildIds);
-            sbM833U.append(", isDeveloper=");
-            sbM833U.append(this.isDeveloper);
-            sbM833U.append(", emojis=");
-            sbM833U.append(this.emojis);
-            sbM833U.append(", isLurking=");
-            sbM833U.append(this.isLurking);
-            sbM833U.append(", isUnread=");
-            return C1643a.m827O(sbM833U, this.isUnread, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public final /* data */ class TabItems {
-        private final boolean ableToInstantInvite;
-        private final boolean canAccessSettings;
-        private final int premiumSubscriptionCount;
-
-        public TabItems(boolean z2, boolean z3, int i) {
-            this.canAccessSettings = z2;
-            this.ableToInstantInvite = z3;
-            this.premiumSubscriptionCount = i;
-        }
-
-        public static /* synthetic */ TabItems copy$default(TabItems tabItems, boolean z2, boolean z3, int i, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                z2 = tabItems.canAccessSettings;
-            }
-            if ((i2 & 2) != 0) {
-                z3 = tabItems.ableToInstantInvite;
-            }
-            if ((i2 & 4) != 0) {
-                i = tabItems.premiumSubscriptionCount;
-            }
-            return tabItems.copy(z2, z3, i);
-        }
-
-        public final TabItems copy(boolean canAccessSettings, boolean ableToInstantInvite, int premiumSubscriptionCount) {
-            return new TabItems(canAccessSettings, ableToInstantInvite, premiumSubscriptionCount);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof TabItems)) {
-                return false;
-            }
-            TabItems tabItems = (TabItems) other;
-            return this.canAccessSettings == tabItems.canAccessSettings && this.ableToInstantInvite == tabItems.ableToInstantInvite && this.premiumSubscriptionCount == tabItems.premiumSubscriptionCount;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getAbleToInstantInvite() {
-            return this.ableToInstantInvite;
-        }
-
-        public final boolean getAbleToInstantInvite() {
-            return this.ableToInstantInvite;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getCanAccessSettings() {
-            return this.canAccessSettings;
-        }
-
-        public final boolean getCanAccessSettings() {
-            return this.canAccessSettings;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getPremiumSubscriptionCount() {
-            return this.premiumSubscriptionCount;
-        }
-
-        public final int getPremiumSubscriptionCount() {
-            return this.premiumSubscriptionCount;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v6 */
-        /* JADX WARN: Type inference failed for: r0v7 */
-        /* JADX WARN: Type inference failed for: r1v0 */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v3 */
-        public int hashCode() {
-            boolean z2 = this.canAccessSettings;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = r0 * 31;
-            boolean z3 = this.ableToInstantInvite;
-            return ((i + (z3 ? 1 : z3)) * 31) + this.premiumSubscriptionCount;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("TabItems(canAccessSettings=");
-            sbM833U.append(this.canAccessSettings);
-            sbM833U.append(", ableToInstantInvite=");
-            sbM833U.append(this.ableToInstantInvite);
-            sbM833U.append(", premiumSubscriptionCount=");
-            return C1643a.m814B(sbM833U, this.premiumSubscriptionCount, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-    public abstract class ViewState {
-
-        /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public final class Invalid extends ViewState {
-            public static final Invalid INSTANCE = new Invalid();
-
-            private Invalid() {
-                super(null);
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public final /* data */ class Loaded extends ViewState {
-            private final Actions actions;
-            private final Banner banner;
-            private final BottomActions bottomActions;
-            private final EmojisData emojisData;
-            private final String guildDescription;
-            private final String guildIcon;
-            private final long guildId;
-            private final String guildName;
-            private final String guildShortName;
-            private final boolean isGuildHub;
-            private final MeUser meUser;
-            private final Integer memberCount;
-            private final Integer onlineCount;
-            private final TabItems tabItems;
-            private final Integer verifiedPartneredIconRes;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public Loaded(long j, String str, String str2, String str3, String str4, Integer num, Banner banner, Integer num2, Integer num3, TabItems tabItems, Actions actions, EmojisData emojisData, BottomActions bottomActions, boolean z2, MeUser meUser) {
-                super(null);
-                C12238m.checkNotNullParameter(str, "guildName");
-                C12238m.checkNotNullParameter(str2, "guildShortName");
-                C12238m.checkNotNullParameter(banner, "banner");
-                C12238m.checkNotNullParameter(emojisData, "emojisData");
-                C12238m.checkNotNullParameter(bottomActions, "bottomActions");
-                C12238m.checkNotNullParameter(meUser, "meUser");
-                this.guildId = j;
-                this.guildName = str;
-                this.guildShortName = str2;
-                this.guildIcon = str3;
-                this.guildDescription = str4;
-                this.verifiedPartneredIconRes = num;
-                this.banner = banner;
-                this.onlineCount = num2;
-                this.memberCount = num3;
-                this.tabItems = tabItems;
-                this.actions = actions;
-                this.emojisData = emojisData;
-                this.bottomActions = bottomActions;
-                this.isGuildHub = z2;
-                this.meUser = meUser;
-            }
-
-            public static /* synthetic */ Loaded copy$default(Loaded loaded, long j, String str, String str2, String str3, String str4, Integer num, Banner banner, Integer num2, Integer num3, TabItems tabItems, Actions actions, EmojisData emojisData, BottomActions bottomActions, boolean z2, MeUser meUser, int i, Object obj) {
-                return loaded.copy((i & 1) != 0 ? loaded.guildId : j, (i & 2) != 0 ? loaded.guildName : str, (i & 4) != 0 ? loaded.guildShortName : str2, (i & 8) != 0 ? loaded.guildIcon : str3, (i & 16) != 0 ? loaded.guildDescription : str4, (i & 32) != 0 ? loaded.verifiedPartneredIconRes : num, (i & 64) != 0 ? loaded.banner : banner, (i & 128) != 0 ? loaded.onlineCount : num2, (i & 256) != 0 ? loaded.memberCount : num3, (i & 512) != 0 ? loaded.tabItems : tabItems, (i & 1024) != 0 ? loaded.actions : actions, (i & 2048) != 0 ? loaded.emojisData : emojisData, (i & 4096) != 0 ? loaded.bottomActions : bottomActions, (i & 8192) != 0 ? loaded.isGuildHub : z2, (i & 16384) != 0 ? loaded.meUser : meUser);
-            }
-
-            public final Loaded copy(long guildId, String guildName, String guildShortName, String guildIcon, String guildDescription, Integer verifiedPartneredIconRes, Banner banner, Integer onlineCount, Integer memberCount, TabItems tabItems, Actions actions, EmojisData emojisData, BottomActions bottomActions, boolean isGuildHub, MeUser meUser) {
-                C12238m.checkNotNullParameter(guildName, "guildName");
-                C12238m.checkNotNullParameter(guildShortName, "guildShortName");
-                C12238m.checkNotNullParameter(banner, "banner");
-                C12238m.checkNotNullParameter(emojisData, "emojisData");
-                C12238m.checkNotNullParameter(bottomActions, "bottomActions");
-                C12238m.checkNotNullParameter(meUser, "meUser");
-                return new Loaded(guildId, guildName, guildShortName, guildIcon, guildDescription, verifiedPartneredIconRes, banner, onlineCount, memberCount, tabItems, actions, emojisData, bottomActions, isGuildHub, meUser);
-            }
-
-            public boolean equals(Object other) {
-                if (this == other) {
-                    return true;
-                }
-                if (!(other instanceof Loaded)) {
-                    return false;
-                }
-                Loaded loaded = (Loaded) other;
-                return this.guildId == loaded.guildId && C12238m.areEqual(this.guildName, loaded.guildName) && C12238m.areEqual(this.guildShortName, loaded.guildShortName) && C12238m.areEqual(this.guildIcon, loaded.guildIcon) && C12238m.areEqual(this.guildDescription, loaded.guildDescription) && C12238m.areEqual(this.verifiedPartneredIconRes, loaded.verifiedPartneredIconRes) && C12238m.areEqual(this.banner, loaded.banner) && C12238m.areEqual(this.onlineCount, loaded.onlineCount) && C12238m.areEqual(this.memberCount, loaded.memberCount) && C12238m.areEqual(this.tabItems, loaded.tabItems) && C12238m.areEqual(this.actions, loaded.actions) && C12238m.areEqual(this.emojisData, loaded.emojisData) && C12238m.areEqual(this.bottomActions, loaded.bottomActions) && this.isGuildHub == loaded.isGuildHub && C12238m.areEqual(this.meUser, loaded.meUser);
-            }
-
-            /* JADX INFO: renamed from: component11, reason: from getter */
-            public final Actions getActions() {
-                return this.actions;
-            }
-
-            public final Actions getActions() {
-                return this.actions;
-            }
-
-            /* JADX INFO: renamed from: component7, reason: from getter */
-            public final Banner getBanner() {
-                return this.banner;
-            }
-
-            public final Banner getBanner() {
-                return this.banner;
-            }
-
-            /* JADX INFO: renamed from: component13, reason: from getter */
-            public final BottomActions getBottomActions() {
-                return this.bottomActions;
-            }
-
-            public final BottomActions getBottomActions() {
-                return this.bottomActions;
-            }
-
-            /* JADX INFO: renamed from: component12, reason: from getter */
-            public final EmojisData getEmojisData() {
-                return this.emojisData;
-            }
-
-            public final EmojisData getEmojisData() {
-                return this.emojisData;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final String getGuildDescription() {
-                return this.guildDescription;
-            }
-
-            public final String getGuildDescription() {
-                return this.guildDescription;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final String getGuildIcon() {
-                return this.guildIcon;
-            }
-
-            public final String getGuildIcon() {
-                return this.guildIcon;
-            }
-
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            public final long getGuildId() {
-                return this.guildId;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
-            public final String getGuildName() {
-                return this.guildName;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getGuildShortName() {
-                return this.guildShortName;
-            }
-
-            public final String getGuildShortName() {
-                return this.guildShortName;
-            }
-
-            /* JADX INFO: renamed from: component14, reason: from getter */
-            public final boolean getIsGuildHub() {
-                return this.isGuildHub;
-            }
-
-            /* JADX INFO: renamed from: component15, reason: from getter */
-            public final MeUser getMeUser() {
-                return this.meUser;
-            }
-
-            public final MeUser getMeUser() {
-                return this.meUser;
-            }
-
-            /* JADX INFO: renamed from: component9, reason: from getter */
-            public final Integer getMemberCount() {
-                return this.memberCount;
-            }
-
-            public final Integer getMemberCount() {
-                return this.memberCount;
-            }
-
-            /* JADX INFO: renamed from: component8, reason: from getter */
-            public final Integer getOnlineCount() {
-                return this.onlineCount;
-            }
-
-            public final Integer getOnlineCount() {
-                return this.onlineCount;
-            }
-
-            /* JADX INFO: renamed from: component10, reason: from getter */
-            public final TabItems getTabItems() {
-                return this.tabItems;
-            }
-
-            public final TabItems getTabItems() {
-                return this.tabItems;
-            }
-
-            /* JADX INFO: renamed from: component6, reason: from getter */
-            public final Integer getVerifiedPartneredIconRes() {
-                return this.verifiedPartneredIconRes;
-            }
-
-            public final Integer getVerifiedPartneredIconRes() {
-                return this.verifiedPartneredIconRes;
-            }
-
-            /* JADX WARN: Multi-variable type inference failed */
-            /* JADX WARN: Type inference failed for: r0v27, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v37, types: [int] */
-            /* JADX WARN: Type inference failed for: r1v39 */
-            /* JADX WARN: Type inference failed for: r1v52 */
-            public int hashCode() {
-                int iM3a = C0002b.m3a(this.guildId) * 31;
-                String str = this.guildName;
-                int iHashCode = (iM3a + (str != null ? str.hashCode() : 0)) * 31;
-                String str2 = this.guildShortName;
-                int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
-                String str3 = this.guildIcon;
-                int iHashCode3 = (iHashCode2 + (str3 != null ? str3.hashCode() : 0)) * 31;
-                String str4 = this.guildDescription;
-                int iHashCode4 = (iHashCode3 + (str4 != null ? str4.hashCode() : 0)) * 31;
-                Integer num = this.verifiedPartneredIconRes;
-                int iHashCode5 = (iHashCode4 + (num != null ? num.hashCode() : 0)) * 31;
-                Banner banner = this.banner;
-                int iHashCode6 = (iHashCode5 + (banner != null ? banner.hashCode() : 0)) * 31;
-                Integer num2 = this.onlineCount;
-                int iHashCode7 = (iHashCode6 + (num2 != null ? num2.hashCode() : 0)) * 31;
-                Integer num3 = this.memberCount;
-                int iHashCode8 = (iHashCode7 + (num3 != null ? num3.hashCode() : 0)) * 31;
-                TabItems tabItems = this.tabItems;
-                int iHashCode9 = (iHashCode8 + (tabItems != null ? tabItems.hashCode() : 0)) * 31;
-                Actions actions = this.actions;
-                int iHashCode10 = (iHashCode9 + (actions != null ? actions.hashCode() : 0)) * 31;
-                EmojisData emojisData = this.emojisData;
-                int iHashCode11 = (iHashCode10 + (emojisData != null ? emojisData.hashCode() : 0)) * 31;
-                BottomActions bottomActions = this.bottomActions;
-                int iHashCode12 = (iHashCode11 + (bottomActions != null ? bottomActions.hashCode() : 0)) * 31;
-                boolean z2 = this.isGuildHub;
-                ?? r1 = z2;
-                if (z2) {
-                    r1 = 1;
-                }
-                int i = (iHashCode12 + r1) * 31;
-                MeUser meUser = this.meUser;
-                return i + (meUser != null ? meUser.hashCode() : 0);
-            }
-
-            public final boolean isGuildHub() {
-                return this.isGuildHub;
-            }
-
-            public String toString() {
-                StringBuilder sbM833U = C1643a.m833U("Loaded(guildId=");
-                sbM833U.append(this.guildId);
-                sbM833U.append(", guildName=");
-                sbM833U.append(this.guildName);
-                sbM833U.append(", guildShortName=");
-                sbM833U.append(this.guildShortName);
-                sbM833U.append(", guildIcon=");
-                sbM833U.append(this.guildIcon);
-                sbM833U.append(", guildDescription=");
-                sbM833U.append(this.guildDescription);
-                sbM833U.append(", verifiedPartneredIconRes=");
-                sbM833U.append(this.verifiedPartneredIconRes);
-                sbM833U.append(", banner=");
-                sbM833U.append(this.banner);
-                sbM833U.append(", onlineCount=");
-                sbM833U.append(this.onlineCount);
-                sbM833U.append(", memberCount=");
-                sbM833U.append(this.memberCount);
-                sbM833U.append(", tabItems=");
-                sbM833U.append(this.tabItems);
-                sbM833U.append(", actions=");
-                sbM833U.append(this.actions);
-                sbM833U.append(", emojisData=");
-                sbM833U.append(this.emojisData);
-                sbM833U.append(", bottomActions=");
-                sbM833U.append(this.bottomActions);
-                sbM833U.append(", isGuildHub=");
-                sbM833U.append(this.isGuildHub);
-                sbM833U.append(", meUser=");
-                sbM833U.append(this.meUser);
-                sbM833U.append(")");
-                return sbM833U.toString();
-            }
-        }
-
-        /* JADX INFO: compiled from: WidgetGuildProfileSheetViewModel.kt */
-        public final class Loading extends ViewState {
-            public static final Loading INSTANCE = new Loading();
-
-            private Loading() {
-                super(null);
-            }
-        }
-
-        private ViewState() {
-        }
-
-        public /* synthetic */ ViewState(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public /* synthetic */ WidgetGuildProfileSheetViewModel(StoreUserSettings storeUserSettings, StoreUserGuildSettings storeUserGuildSettings, boolean z2, RestAPI restAPI, StoreLurking storeLurking, StoreAnalytics storeAnalytics, long j, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? StoreStream.INSTANCE.getUserSettings() : storeUserSettings, (i & 2) != 0 ? StoreStream.INSTANCE.getUserGuildSettings() : storeUserGuildSettings, z2, (i & 8) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 16) != 0 ? StoreStream.INSTANCE.getLurking() : storeLurking, (i & 32) != 0 ? StoreStream.INSTANCE.getAnalytics() : storeAnalytics, j, (i & 128) != 0 ? INSTANCE.observeStores(j) : observable);
+        this((i & 1) != 0 ? StoreStream.Companion.getUserSettings() : storeUserSettings, (i & 2) != 0 ? StoreStream.Companion.getUserGuildSettings() : storeUserGuildSettings, z2, (i & 8) != 0 ? RestAPI.Companion.getApi() : restAPI, (i & 16) != 0 ? StoreStream.Companion.getLurking() : storeLurking, (i & 32) != 0 ? StoreStream.Companion.getAnalytics() : storeAnalytics, j, (i & 128) != 0 ? Companion.observeStores(j) : observable);
+    }
+
+    public static final /* synthetic */ PublishSubject access$getEventSubject$p(WidgetGuildProfileSheetViewModel widgetGuildProfileSheetViewModel) {
+        return widgetGuildProfileSheetViewModel.eventSubject;
+    }
+
+    public static final /* synthetic */ void access$handleStoreState(WidgetGuildProfileSheetViewModel widgetGuildProfileSheetViewModel, WidgetGuildProfileSheetViewModel$StoreState widgetGuildProfileSheetViewModel$StoreState) {
+        widgetGuildProfileSheetViewModel.handleStoreState(widgetGuildProfileSheetViewModel$StoreState);
     }
 
     /* JADX WARN: Code duplicated, block: B:12:0x0044  */
@@ -1487,31 +83,31 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     /* JADX WARN: Code duplicated, block: B:51:0x0132  */
     private final void handleLoadedGuild(Guild guild, GuildPreview guildPreview, GuildChannelsInfo guildChannelsInfo, MeUser me2, GuildMember computedMe, List<Long> restrictedGuildIds, boolean isDeveloper, List<? extends Emoji> emojis, boolean isLurking, boolean isUnread) {
         Integer num;
-        Integer numValueOf;
+        int i;
         ManageGuildContext manageGuildContext;
-        TabItems tabItems;
-        Actions actions;
+        WidgetGuildProfileSheetViewModel$TabItems widgetGuildProfileSheetViewModel$TabItems;
+        WidgetGuildProfileSheetViewModel$Actions widgetGuildProfileSheetViewModel$Actions;
         List<? extends Emoji> listEmptyList;
         boolean z2;
         Integer approximatePresenceCount;
-        List<GuildEmoji> listM7887d;
+        List<GuildEmoji> listD;
         String nick;
         String avatarHash;
         if (!guild.getFeatures().contains(GuildFeature.VERIFIED)) {
             if (guild.getFeatures().contains(GuildFeature.PARTNERED)) {
-                numValueOf = Integer.valueOf(C5419R.drawable.ic_partnered_badge);
+                i = 2131231995;
             } else {
                 num = null;
             }
-            Banner banner = new Banner(guild.getId(), guild.getBanner(), Banner.Type.BANNER);
+            WidgetGuildProfileSheetViewModel$Banner widgetGuildProfileSheetViewModel$Banner = new WidgetGuildProfileSheetViewModel$Banner(guild.getId(), guild.getBanner(), WidgetGuildProfileSheetViewModel$Banner$Type.BANNER);
             manageGuildContext = guildChannelsInfo.getManageGuildContext();
             if (isLurking) {
-                tabItems = null;
+                widgetGuildProfileSheetViewModel$TabItems = null;
             } else {
-                tabItems = new TabItems(manageGuildContext.canManage(), guildChannelsInfo.getAbleToInstantInvite(), guild.getPremiumSubscriptionCount());
+                widgetGuildProfileSheetViewModel$TabItems = new WidgetGuildProfileSheetViewModel$TabItems(manageGuildContext.canManage(), guildChannelsInfo.getAbleToInstantInvite(), guild.getPremiumSubscriptionCount());
             }
             if (isLurking) {
-                actions = null;
+                widgetGuildProfileSheetViewModel$Actions = null;
             } else {
                 boolean canManageChannels = manageGuildContext.getCanManageChannels();
                 boolean canManageEvents = manageGuildContext.getCanManageEvents();
@@ -1529,15 +125,15 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
                 } else {
                     avatarHash = null;
                 }
-                actions = new Actions(isUnread, canManageChannels, canManageEvents, canChangeNickname, nick, avatarHash, z3, hideMutedChannels, z4, isDeveloper, me2.getUsername());
+                widgetGuildProfileSheetViewModel$Actions = new WidgetGuildProfileSheetViewModel$Actions(isUnread, canManageChannels, canManageEvents, canChangeNickname, nick, avatarHash, z3, hideMutedChannels, z4, isDeveloper, me2.getUsername());
             }
             if (isLurking) {
                 listEmptyList = emojis;
-            } else if (guildPreview != null || (listM7887d = guildPreview.m7887d()) == null) {
+            } else if (guildPreview != null || (listD = guildPreview.d()) == null) {
                 listEmptyList = null;
             } else {
-                listEmptyList = new ArrayList<>(C12149o.collectionSizeOrDefault(listM7887d, 10));
-                Iterator<T> it = listM7887d.iterator();
+                listEmptyList = new ArrayList<>(o.collectionSizeOrDefault(listD, 10));
+                Iterator<T> it = listD.iterator();
                 while (it.hasNext()) {
                     listEmptyList.add(new ModelEmojiCustom((GuildEmoji) it.next(), guildPreview.getId()));
                 }
@@ -1547,7 +143,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             } else {
                 z2 = false;
             }
-            BottomActions bottomActions = new BottomActions(z2, isLurking, true ^ this.viewingGuild);
+            WidgetGuildProfileSheetViewModel$BottomActions widgetGuildProfileSheetViewModel$BottomActions = new WidgetGuildProfileSheetViewModel$BottomActions(z2, isLurking, true ^ this.viewingGuild);
             long id2 = guild.getId();
             String name = guild.getName();
             String shortName = guild.getShortName();
@@ -1559,22 +155,22 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
                 approximatePresenceCount = null;
             }
             Integer approximateMemberCount = guildPreview != null ? guildPreview.getApproximateMemberCount() : null;
-            TabItems tabItems2 = tabItems;
+            WidgetGuildProfileSheetViewModel$TabItems widgetGuildProfileSheetViewModel$TabItems2 = widgetGuildProfileSheetViewModel$TabItems;
             boolean zIsPremium = UserUtils.INSTANCE.isPremium(me2);
             boolean z5 = this.isEmojiSectionExpanded;
             if (listEmptyList == null) {
-                listEmptyList = C12147n.emptyList();
+                listEmptyList = n.emptyList();
             }
-            updateViewState(new ViewState.Loaded(id2, name, shortName, icon, description, num, banner, approximatePresenceCount, approximateMemberCount, tabItems2, actions, new EmojisData(zIsPremium, z5, listEmptyList), bottomActions, guild.isHub(), me2));
+            updateViewState(new WidgetGuildProfileSheetViewModel$ViewState$Loaded(id2, name, shortName, icon, description, num, widgetGuildProfileSheetViewModel$Banner, approximatePresenceCount, approximateMemberCount, widgetGuildProfileSheetViewModel$TabItems2, widgetGuildProfileSheetViewModel$Actions, new WidgetGuildProfileSheetViewModel$EmojisData(zIsPremium, z5, listEmptyList), widgetGuildProfileSheetViewModel$BottomActions, guild.isHub(), me2));
         }
-        numValueOf = Integer.valueOf(C5419R.drawable.ic_verified_badge);
-        num = numValueOf;
-        Banner banner2 = new Banner(guild.getId(), guild.getBanner(), Banner.Type.BANNER);
+        i = 2131232241;
+        num = i;
+        WidgetGuildProfileSheetViewModel$Banner widgetGuildProfileSheetViewModel$Banner2 = new WidgetGuildProfileSheetViewModel$Banner(guild.getId(), guild.getBanner(), WidgetGuildProfileSheetViewModel$Banner$Type.BANNER);
         manageGuildContext = guildChannelsInfo.getManageGuildContext();
         if (isLurking) {
-            tabItems = new TabItems(manageGuildContext.canManage(), guildChannelsInfo.getAbleToInstantInvite(), guild.getPremiumSubscriptionCount());
+            widgetGuildProfileSheetViewModel$TabItems = new WidgetGuildProfileSheetViewModel$TabItems(manageGuildContext.canManage(), guildChannelsInfo.getAbleToInstantInvite(), guild.getPremiumSubscriptionCount());
         } else {
-            tabItems = null;
+            widgetGuildProfileSheetViewModel$TabItems = null;
         }
         if (isLurking) {
             boolean canManageChannels2 = manageGuildContext.getCanManageChannels();
@@ -1593,9 +189,9 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             } else {
                 avatarHash = null;
             }
-            actions = new Actions(isUnread, canManageChannels2, canManageEvents2, canChangeNickname2, nick, avatarHash, z6, hideMutedChannels2, z7, isDeveloper, me2.getUsername());
+            widgetGuildProfileSheetViewModel$Actions = new WidgetGuildProfileSheetViewModel$Actions(isUnread, canManageChannels2, canManageEvents2, canChangeNickname2, nick, avatarHash, z6, hideMutedChannels2, z7, isDeveloper, me2.getUsername());
         } else {
-            actions = null;
+            widgetGuildProfileSheetViewModel$Actions = null;
         }
         if (isLurking) {
             listEmptyList = emojis;
@@ -1609,7 +205,7 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
         } else {
             z2 = false;
         }
-        BottomActions bottomActions2 = new BottomActions(z2, isLurking, true ^ this.viewingGuild);
+        WidgetGuildProfileSheetViewModel$BottomActions widgetGuildProfileSheetViewModel$BottomActions2 = new WidgetGuildProfileSheetViewModel$BottomActions(z2, isLurking, true ^ this.viewingGuild);
         long id3 = guild.getId();
         String name2 = guild.getName();
         String shortName2 = guild.getShortName();
@@ -1622,25 +218,25 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
         }
         if (guildPreview != null) {
         }
-        TabItems tabItems3 = tabItems;
+        WidgetGuildProfileSheetViewModel$TabItems widgetGuildProfileSheetViewModel$TabItems3 = widgetGuildProfileSheetViewModel$TabItems;
         boolean zIsPremium2 = UserUtils.INSTANCE.isPremium(me2);
         boolean z8 = this.isEmojiSectionExpanded;
         if (listEmptyList == null) {
-            listEmptyList = C12147n.emptyList();
+            listEmptyList = n.emptyList();
         }
-        updateViewState(new ViewState.Loaded(id3, name2, shortName2, icon2, description2, num, banner2, approximatePresenceCount, approximateMemberCount, tabItems3, actions, new EmojisData(zIsPremium2, z8, listEmptyList), bottomActions2, guild.isHub(), me2));
+        updateViewState(new WidgetGuildProfileSheetViewModel$ViewState$Loaded(id3, name2, shortName2, icon2, description2, num, widgetGuildProfileSheetViewModel$Banner2, approximatePresenceCount, approximateMemberCount, widgetGuildProfileSheetViewModel$TabItems3, widgetGuildProfileSheetViewModel$Actions, new WidgetGuildProfileSheetViewModel$EmojisData(zIsPremium2, z8, listEmptyList), widgetGuildProfileSheetViewModel$BottomActions2, guild.isHub(), me2));
     }
 
     private final void handleLoadedGuildPreview(GuildPreview guildPreview, MeUser meUser) {
-        Integer numValueOf;
-        if (guildPreview.m7889f().contains(GuildFeature.VERIFIED)) {
-            numValueOf = Integer.valueOf(C5419R.drawable.ic_verified_badge);
+        Integer num;
+        if (guildPreview.f().contains(GuildFeature.VERIFIED)) {
+            num = 2131232241;
         } else {
-            numValueOf = guildPreview.m7889f().contains(GuildFeature.PARTNERED) ? Integer.valueOf(C5419R.drawable.ic_partnered_badge) : null;
+            num = guildPreview.f().contains(GuildFeature.PARTNERED) ? 2131231995 : null;
         }
-        Integer num = numValueOf;
-        Banner banner = new Banner(guildPreview.getId(), guildPreview.getSplash(), Banner.Type.SPLASH);
-        BottomActions bottomActions = new BottomActions(false, true, !this.viewingGuild);
+        Integer num2 = num;
+        WidgetGuildProfileSheetViewModel$Banner widgetGuildProfileSheetViewModel$Banner = new WidgetGuildProfileSheetViewModel$Banner(guildPreview.getId(), guildPreview.getSplash(), WidgetGuildProfileSheetViewModel$Banner$Type.SPLASH);
+        WidgetGuildProfileSheetViewModel$BottomActions widgetGuildProfileSheetViewModel$BottomActions = new WidgetGuildProfileSheetViewModel$BottomActions(false, true, !this.viewingGuild);
         long id2 = guildPreview.getId();
         String name = guildPreview.getName();
         String strComputeShortName = GuildUtilsKt.computeShortName(guildPreview.getName());
@@ -1650,22 +246,22 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
         Integer approximateMemberCount = guildPreview.getApproximateMemberCount();
         boolean zIsPremium = UserUtils.INSTANCE.isPremium(meUser);
         boolean z2 = this.isEmojiSectionExpanded;
-        List<GuildEmoji> listM7887d = guildPreview.m7887d();
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(listM7887d, 10));
-        Iterator it = listM7887d.iterator();
+        List<GuildEmoji> listD = guildPreview.d();
+        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listD, 10));
+        Iterator it = listD.iterator();
         while (it.hasNext()) {
             arrayList.add(new ModelEmojiCustom((GuildEmoji) it.next(), guildPreview.getId()));
             it = it;
             approximatePresenceCount = approximatePresenceCount;
             approximateMemberCount = approximateMemberCount;
         }
-        updateViewState(new ViewState.Loaded(id2, name, strComputeShortName, icon, description, num, banner, approximatePresenceCount, approximateMemberCount, null, null, new EmojisData(zIsPremium, z2, arrayList), bottomActions, guildPreview.m7889f().contains(GuildFeature.HUB), meUser));
+        updateViewState(new WidgetGuildProfileSheetViewModel$ViewState$Loaded(id2, name, strComputeShortName, icon, description, num2, widgetGuildProfileSheetViewModel$Banner, approximatePresenceCount, approximateMemberCount, null, null, new WidgetGuildProfileSheetViewModel$EmojisData(zIsPremium, z2, arrayList), widgetGuildProfileSheetViewModel$BottomActions, guildPreview.f().contains(GuildFeature.HUB), meUser));
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    private final void handleStoreState(StoreState storeState) {
+    private final void handleStoreState(WidgetGuildProfileSheetViewModel$StoreState storeState) {
         Guild guild = storeState.getGuild();
-        StoreGuildProfiles.GuildProfileData guildProfile = storeState.getGuildProfile();
+        StoreGuildProfiles$GuildProfileData guildProfile = storeState.getGuildProfile();
         GuildChannelsInfo guildChannelsInfo = storeState.getGuildChannelsInfo();
         MeUser me2 = storeState.getMe();
         GuildMember computedMe = storeState.getComputedMe();
@@ -1679,67 +275,67 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
             return;
         }
         Object fetchState = guildProfile != null ? guildProfile.getFetchState() : null;
-        Object obj = StoreGuildProfiles.FetchStates.SUCCEEDED;
+        Object obj = StoreGuildProfiles$FetchStates.SUCCEEDED;
         if (fetchState == obj && guildProfile.getData() != null) {
             handleLoadedGuildPreview(guildProfile.getData(), me2);
             return;
         }
-        if ((guildProfile != null ? guildProfile.getFetchState() : null) != StoreGuildProfiles.FetchStates.FAILED) {
+        if ((guildProfile != null ? guildProfile.getFetchState() : null) != StoreGuildProfiles$FetchStates.FAILED) {
             if ((guildProfile != null ? guildProfile.getFetchState() : null) != obj || guildProfile.getData() != null) {
-                updateViewState(ViewState.Loading.INSTANCE);
+                updateViewState(WidgetGuildProfileSheetViewModel$ViewState$Loading.INSTANCE);
                 return;
             }
         }
-        updateViewState(ViewState.Invalid.INSTANCE);
+        updateViewState(WidgetGuildProfileSheetViewModel$ViewState$Invalid.INSTANCE);
     }
 
-    public final Observable<Event> observeEvents() {
-        PublishSubject<Event> publishSubject = this.eventSubject;
-        C12238m.checkNotNullExpressionValue(publishSubject, "eventSubject");
+    public final Observable<WidgetGuildProfileSheetViewModel$Event> observeEvents() {
+        PublishSubject<WidgetGuildProfileSheetViewModel$Event> publishSubject = this.eventSubject;
+        m.checkNotNullExpressionValue(publishSubject, "eventSubject");
         return publishSubject;
     }
 
     public final void onClickEmoji() {
-        ViewState viewState = getViewState();
-        if (!(viewState instanceof ViewState.Loaded)) {
+        WidgetGuildProfileSheetViewModel$ViewState viewState = getViewState();
+        if (!(viewState instanceof WidgetGuildProfileSheetViewModel$ViewState$Loaded)) {
             viewState = null;
         }
-        ViewState.Loaded loaded = (ViewState.Loaded) viewState;
-        if (loaded == null || this.isEmojiSectionExpanded) {
+        WidgetGuildProfileSheetViewModel$ViewState$Loaded widgetGuildProfileSheetViewModel$ViewState$Loaded = (WidgetGuildProfileSheetViewModel$ViewState$Loaded) viewState;
+        if (widgetGuildProfileSheetViewModel$ViewState$Loaded == null || this.isEmojiSectionExpanded) {
             return;
         }
         this.isEmojiSectionExpanded = true;
-        updateViewState(ViewState.Loaded.copy$default(loaded, 0L, null, null, null, null, null, null, null, null, null, null, EmojisData.copy$default(loaded.getEmojisData(), false, this.isEmojiSectionExpanded, null, 5, null), null, false, null, 30719, null));
+        updateViewState(WidgetGuildProfileSheetViewModel$ViewState$Loaded.copy$default(widgetGuildProfileSheetViewModel$ViewState$Loaded, 0L, null, null, null, null, null, null, null, null, null, null, WidgetGuildProfileSheetViewModel$EmojisData.copy$default(widgetGuildProfileSheetViewModel$ViewState$Loaded.getEmojisData(), false, this.isEmojiSectionExpanded, null, 5, null), null, false, null, 30719, null));
     }
 
     public final void onClickJoinServer(long guildId, Fragment fragment) {
-        C12238m.checkNotNullParameter(fragment, "fragment");
+        m.checkNotNullParameter(fragment, "fragment");
         Context context = fragment.getContext();
         if (context != null) {
             StoreLurking storeLurking = this.storeLurking;
-            C12238m.checkNotNullExpressionValue(context, "it");
+            m.checkNotNullExpressionValue(context, "it");
             storeLurking.postJoinGuildAsMember(guildId, context);
         }
     }
 
     public final void onClickLeaveServer(long guildId, Function0<Unit> onSuccess) {
-        C12238m.checkNotNullParameter(onSuccess, "onSuccess");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.leaveGuild(guildId), false, 1, null), this, null, 2, null), (Class<?>) WidgetGuildProfileSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88051(onSuccess));
+        m.checkNotNullParameter(onSuccess, "onSuccess");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.leaveGuild(guildId), false, 1, null), this, null, 2, null), WidgetGuildProfileSheetViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildProfileSheetViewModel$onClickLeaveServer$1(onSuccess), 62, (Object) null);
     }
 
     public final void onClickMarkAsRead(long guildId) {
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.ackGuild(guildId), false, 1, null), this, null, 2, null), (Class<?>) WidgetGuildProfileSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88061());
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.ackGuild(guildId), false, 1, null), this, null, 2, null), WidgetGuildProfileSheetViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildProfileSheetViewModel$onClickMarkAsRead$1(this), 62, (Object) null);
     }
 
     public final void onClickResetNickname(long guildId, Function0<Unit> onSuccess) {
-        C12238m.checkNotNullParameter(onSuccess, "onSuccess");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.changeGuildNickname(guildId, new RestAPIParams.Nick("")), false, 1, null), this, null, 2, null), (Class<?>) WidgetGuildProfileSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88071(onSuccess));
+        m.checkNotNullParameter(onSuccess, "onSuccess");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.changeGuildNickname(guildId, new RestAPIParams$Nick("")), false, 1, null), this, null, 2, null), WidgetGuildProfileSheetViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildProfileSheetViewModel$onClickResetNickname$1(onSuccess), 62, (Object) null);
     }
 
     public final void onClickSaveNickname(long guildId, String nick, Function0<Unit> onSuccess) {
-        C12238m.checkNotNullParameter(nick, ModelAuditLogEntry.CHANGE_KEY_NICK);
-        C12238m.checkNotNullParameter(onSuccess, "onSuccess");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.changeGuildNickname(guildId, new RestAPIParams.Nick(nick)), false, 1, null), this, null, 2, null), (Class<?>) WidgetGuildProfileSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88081(onSuccess));
+        m.checkNotNullParameter(nick, ModelAuditLogEntry.CHANGE_KEY_NICK);
+        m.checkNotNullParameter(onSuccess, "onSuccess");
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restAPI.changeGuildNickname(guildId, new RestAPIParams$Nick(nick)), false, 1, null), this, null, 2, null), WidgetGuildProfileSheetViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildProfileSheetViewModel$onClickSaveNickname$1(onSuccess), 62, (Object) null);
     }
 
     public final void onClickViewServer(long guildId, Long channelId) {
@@ -1755,22 +351,22 @@ public final class WidgetGuildProfileSheetViewModel extends AbstractC0859d0<View
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetGuildProfileSheetViewModel(StoreUserSettings storeUserSettings, StoreUserGuildSettings storeUserGuildSettings, boolean z2, RestAPI restAPI, StoreLurking storeLurking, StoreAnalytics storeAnalytics, long j, Observable<StoreState> observable) {
-        super(ViewState.Loading.INSTANCE);
-        C12238m.checkNotNullParameter(storeUserSettings, "storeUserSettings");
-        C12238m.checkNotNullParameter(storeUserGuildSettings, "storeUserGuildSettings");
-        C12238m.checkNotNullParameter(restAPI, "restAPI");
-        C12238m.checkNotNullParameter(storeLurking, "storeLurking");
-        C12238m.checkNotNullParameter(storeAnalytics, "storeAnalytics");
-        C12238m.checkNotNullParameter(observable, "storeObservable");
+    public WidgetGuildProfileSheetViewModel(StoreUserSettings storeUserSettings, StoreUserGuildSettings storeUserGuildSettings, boolean z2, RestAPI restAPI, StoreLurking storeLurking, StoreAnalytics storeAnalytics, long j, Observable<WidgetGuildProfileSheetViewModel$StoreState> observable) {
+        super(WidgetGuildProfileSheetViewModel$ViewState$Loading.INSTANCE);
+        m.checkNotNullParameter(storeUserSettings, "storeUserSettings");
+        m.checkNotNullParameter(storeUserGuildSettings, "storeUserGuildSettings");
+        m.checkNotNullParameter(restAPI, "restAPI");
+        m.checkNotNullParameter(storeLurking, "storeLurking");
+        m.checkNotNullParameter(storeAnalytics, "storeAnalytics");
+        m.checkNotNullParameter(observable, "storeObservable");
         this.storeUserSettings = storeUserSettings;
         this.storeUserGuildSettings = storeUserGuildSettings;
         this.viewingGuild = z2;
         this.restAPI = restAPI;
         this.storeLurking = storeLurking;
         this.guildId = j;
-        this.eventSubject = PublishSubject.m11133k0();
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), (Class<?>) WidgetGuildProfileSheetViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C88031());
+        this.eventSubject = PublishSubject.k0();
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.computationLatest(observable), this, null, 2, null), WidgetGuildProfileSheetViewModel.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildProfileSheetViewModel$1(this), 62, (Object) null);
         storeAnalytics.trackGuildProfileOpened(j);
     }
 }

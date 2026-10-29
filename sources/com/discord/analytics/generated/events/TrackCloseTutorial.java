@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackCloseTutorial.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, Tra
             return false;
         }
         TrackCloseTutorial trackCloseTutorial = (TrackCloseTutorial) other;
-        return C12238m.areEqual(this.acknowledged, trackCloseTutorial.acknowledged) && C12238m.areEqual(this.tutorial, trackCloseTutorial.tutorial) && C12238m.areEqual(this.applicationId, trackCloseTutorial.applicationId);
+        return m.areEqual(this.acknowledged, trackCloseTutorial.acknowledged) && m.areEqual(this.tutorial, trackCloseTutorial.tutorial) && m.areEqual(this.applicationId, trackCloseTutorial.applicationId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackCloseTutorial implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackCloseTutorial(acknowledged=");
-        sbM833U.append(this.acknowledged);
-        sbM833U.append(", tutorial=");
-        sbM833U.append(this.tutorial);
-        sbM833U.append(", applicationId=");
-        return C1643a.m819G(sbM833U, this.applicationId, ")");
+        StringBuilder sbU = a.U("TrackCloseTutorial(acknowledged=");
+        sbU.append(this.acknowledged);
+        sbU.append(", tutorial=");
+        sbU.append(this.tutorial);
+        sbU.append(", applicationId=");
+        return a.G(sbU, this.applicationId, ")");
     }
 }

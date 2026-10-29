@@ -1,7 +1,7 @@
 package com.discord.api.message.embed;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: EmbedVideo.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class EmbedVideo {
             return false;
         }
         EmbedVideo embedVideo = (EmbedVideo) other;
-        return C12238m.areEqual(this.url, embedVideo.url) && C12238m.areEqual(this.proxyUrl, embedVideo.proxyUrl) && C12238m.areEqual(this.height, embedVideo.height) && C12238m.areEqual(this.width, embedVideo.width);
+        return m.areEqual(this.url, embedVideo.url) && m.areEqual(this.proxyUrl, embedVideo.proxyUrl) && m.areEqual(this.height, embedVideo.height) && m.areEqual(this.width, embedVideo.width);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -54,13 +54,13 @@ public final /* data */ class EmbedVideo {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EmbedVideo(url=");
-        sbM833U.append(this.url);
-        sbM833U.append(", proxyUrl=");
-        sbM833U.append(this.proxyUrl);
-        sbM833U.append(", height=");
-        sbM833U.append(this.height);
-        sbM833U.append(", width=");
-        return C1643a.m818F(sbM833U, this.width, ")");
+        StringBuilder sbU = a.U("EmbedVideo(url=");
+        sbU.append(this.url);
+        sbU.append(", proxyUrl=");
+        sbU.append(this.proxyUrl);
+        sbU.append(", height=");
+        sbU.append(this.height);
+        sbU.append(", width=");
+        return a.F(sbU, this.width, ")");
     }
 }

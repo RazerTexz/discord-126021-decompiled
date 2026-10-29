@@ -1,8 +1,6 @@
 package androidx.recyclerview.widget;
 
-import android.R;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.R$attr;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -15,7 +13,7 @@ import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
 @VisibleForTesting
-public class FastScroller extends RecyclerView.ItemDecoration implements RecyclerView.OnItemTouchListener {
+public class FastScroller extends RecyclerView$ItemDecoration implements RecyclerView$OnItemTouchListener {
     private static final int ANIMATION_STATE_FADING_IN = 1;
     private static final int ANIMATION_STATE_FADING_OUT = 3;
     private static final int ANIMATION_STATE_IN = 2;
@@ -47,7 +45,7 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
     private final Drawable mHorizontalTrackDrawable;
     private final int mHorizontalTrackHeight;
     private final int mMargin;
-    private final RecyclerView.OnScrollListener mOnScrollListener;
+    private final RecyclerView$OnScrollListener mOnScrollListener;
     private RecyclerView mRecyclerView;
     private final int mScrollbarMinimumRange;
     public final ValueAnimator mShowHideAnimator;
@@ -64,7 +62,7 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
     private final int mVerticalThumbWidth;
     public final Drawable mVerticalTrackDrawable;
     private final int mVerticalTrackWidth;
-    private static final int[] PRESSED_STATE_SET = {R.attr.state_pressed};
+    private static final int[] PRESSED_STATE_SET = {R$attr.state_pressed};
     private static final int[] EMPTY_STATE_SET = new int[0];
     private int mRecyclerViewWidth = 0;
     private int mRecyclerViewHeight = 0;
@@ -75,35 +73,12 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
     private final int[] mVerticalRange = new int[2];
     private final int[] mHorizontalRange = new int[2];
 
-    public class AnimatorUpdater implements ValueAnimator.AnimatorUpdateListener {
-        public AnimatorUpdater() {
-        }
-
-        @Override // android.animation.ValueAnimator.AnimatorUpdateListener
-        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-            int iFloatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f);
-            FastScroller.this.mVerticalThumbDrawable.setAlpha(iFloatValue);
-            FastScroller.this.mVerticalTrackDrawable.setAlpha(iFloatValue);
-            FastScroller.this.requestRedraw();
-        }
-    }
-
     public FastScroller(RecyclerView recyclerView, StateListDrawable stateListDrawable, Drawable drawable, StateListDrawable stateListDrawable2, Drawable drawable2, int i, int i2, int i3) {
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.mShowHideAnimator = valueAnimatorOfFloat;
         this.mAnimationState = 0;
-        this.mHideRunnable = new Runnable() { // from class: androidx.recyclerview.widget.FastScroller.1
-            @Override // java.lang.Runnable
-            public void run() {
-                FastScroller.this.hide(500);
-            }
-        };
-        this.mOnScrollListener = new RecyclerView.OnScrollListener() { // from class: androidx.recyclerview.widget.FastScroller.2
-            @Override // androidx.recyclerview.widget.RecyclerView.OnScrollListener
-            public void onScrolled(RecyclerView recyclerView2, int i4, int i5) {
-                FastScroller.this.updateScrollPosition(recyclerView2.computeHorizontalScrollOffset(), recyclerView2.computeVerticalScrollOffset());
-            }
-        };
+        this.mHideRunnable = new FastScroller$1(this);
+        this.mOnScrollListener = new FastScroller$2(this);
         this.mVerticalThumbDrawable = stateListDrawable;
         this.mVerticalTrackDrawable = drawable;
         this.mHorizontalThumbDrawable = stateListDrawable2;
@@ -116,8 +91,8 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
         this.mMargin = i3;
         stateListDrawable.setAlpha(255);
         drawable.setAlpha(255);
-        valueAnimatorOfFloat.addListener(new AnimatorListener());
-        valueAnimatorOfFloat.addUpdateListener(new AnimatorUpdater());
+        valueAnimatorOfFloat.addListener(new FastScroller$AnimatorListener(this));
+        valueAnimatorOfFloat.addUpdateListener(new FastScroller$AnimatorUpdater(this));
         attachToRecyclerView(recyclerView);
     }
 
@@ -288,8 +263,8 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
         return this.mState == 1;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.ItemDecoration
-    public void onDrawOver(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
+    @Override // androidx.recyclerview.widget.RecyclerView$ItemDecoration
+    public void onDrawOver(Canvas canvas, RecyclerView recyclerView, RecyclerView$State recyclerView$State) {
         if (this.mRecyclerViewWidth != this.mRecyclerView.getWidth() || this.mRecyclerViewHeight != this.mRecyclerView.getHeight()) {
             this.mRecyclerViewWidth = this.mRecyclerView.getWidth();
             this.mRecyclerViewHeight = this.mRecyclerView.getHeight();
@@ -304,7 +279,7 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
         }
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+    @Override // androidx.recyclerview.widget.RecyclerView$OnItemTouchListener
     public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
         int i = this.mState;
         if (i == 1) {
@@ -330,11 +305,11 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
         return true;
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+    @Override // androidx.recyclerview.widget.RecyclerView$OnItemTouchListener
     public void onRequestDisallowInterceptTouchEvent(boolean z2) {
     }
 
-    @Override // androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+    @Override // androidx.recyclerview.widget.RecyclerView$OnItemTouchListener
     public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
         if (this.mState == 0) {
             return;
@@ -481,34 +456,5 @@ public class FastScroller extends RecyclerView.ItemDecoration implements Recycle
             this.mRecyclerView.scrollBy(0, iScrollTo);
         }
         this.mVerticalDragY = fMax;
-    }
-
-    public class AnimatorListener extends AnimatorListenerAdapter {
-        private boolean mCanceled = false;
-
-        public AnimatorListener() {
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationCancel(Animator animator) {
-            this.mCanceled = true;
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            if (this.mCanceled) {
-                this.mCanceled = false;
-                return;
-            }
-            if (((Float) FastScroller.this.mShowHideAnimator.getAnimatedValue()).floatValue() == 0.0f) {
-                FastScroller fastScroller = FastScroller.this;
-                fastScroller.mAnimationState = 0;
-                fastScroller.setState(0);
-            } else {
-                FastScroller fastScroller2 = FastScroller.this;
-                fastScroller2.mAnimationState = 2;
-                fastScroller2.requestRedraw();
-            }
-        }
     }
 }

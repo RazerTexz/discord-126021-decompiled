@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotificationDeviceTokenUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackNotificationDeviceTokenUpdate implements Anal
             return false;
         }
         TrackNotificationDeviceTokenUpdate trackNotificationDeviceTokenUpdate = (TrackNotificationDeviceTokenUpdate) other;
-        return C12238m.areEqual(this.provider, trackNotificationDeviceTokenUpdate.provider) && C12238m.areEqual(this.token, trackNotificationDeviceTokenUpdate.token) && C12238m.areEqual(this.type, trackNotificationDeviceTokenUpdate.type) && C12238m.areEqual(this.pushToken, trackNotificationDeviceTokenUpdate.pushToken);
+        return m.areEqual(this.provider, trackNotificationDeviceTokenUpdate.provider) && m.areEqual(this.token, trackNotificationDeviceTokenUpdate.token) && m.areEqual(this.type, trackNotificationDeviceTokenUpdate.type) && m.areEqual(this.pushToken, trackNotificationDeviceTokenUpdate.pushToken);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackNotificationDeviceTokenUpdate implements Anal
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotificationDeviceTokenUpdate(provider=");
-        sbM833U.append(this.provider);
-        sbM833U.append(", token=");
-        sbM833U.append(this.token);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", pushToken=");
-        return C1643a.m817E(sbM833U, this.pushToken, ")");
+        StringBuilder sbU = a.U("TrackNotificationDeviceTokenUpdate(provider=");
+        sbU.append(this.provider);
+        sbU.append(", token=");
+        sbU.append(this.token);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", pushToken=");
+        return a.E(sbU, this.pushToken, ")");
     }
 }

@@ -11,25 +11,25 @@ public class NativeAndroidVideoTrackSource {
     }
 
     @Nullable
-    public VideoProcessor.FrameAdaptationParameters adaptFrame(VideoFrame videoFrame) {
+    public VideoProcessor$FrameAdaptationParameters adaptFrame(VideoFrame videoFrame) {
         return nativeAdaptFrame(this.nativeAndroidVideoTrackSource, videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation(), videoFrame.getTimestampNs());
     }
 
-    public void adaptOutputFormat(VideoSource.AspectRatio aspectRatio, @Nullable Integer num, VideoSource.AspectRatio aspectRatio2, @Nullable Integer num2, @Nullable Integer num3) {
-        nativeAdaptOutputFormat(this.nativeAndroidVideoTrackSource, aspectRatio.width, aspectRatio.height, num, aspectRatio2.width, aspectRatio2.height, num2, num3);
+    public void adaptOutputFormat(VideoSource$AspectRatio videoSource$AspectRatio, @Nullable Integer num, VideoSource$AspectRatio videoSource$AspectRatio2, @Nullable Integer num2, @Nullable Integer num3) {
+        nativeAdaptOutputFormat(this.nativeAndroidVideoTrackSource, videoSource$AspectRatio.width, videoSource$AspectRatio.height, num, videoSource$AspectRatio2.width, videoSource$AspectRatio2.height, num2, num3);
     }
 
     @CalledByNative
-    public static VideoProcessor.FrameAdaptationParameters createFrameAdaptationParameters(int i, int i2, int i3, int i4, int i5, int i6, long j, boolean z2) {
-        return new VideoProcessor.FrameAdaptationParameters(i, i2, i3, i4, i5, i6, j, z2);
+    public static VideoProcessor$FrameAdaptationParameters createFrameAdaptationParameters(int i, int i2, int i3, int i4, int i5, int i6, long j, boolean z2) {
+        return new VideoProcessor$FrameAdaptationParameters(i, i2, i3, i4, i5, i6, j, z2);
     }
 
     @Nullable
-    private static native VideoProcessor.FrameAdaptationParameters nativeAdaptFrame(long j, int i, int i2, int i3, long j2);
+    private static native VideoProcessor$FrameAdaptationParameters nativeAdaptFrame(long j, int i, int i2, int i3, long j2);
 
     private static native void nativeAdaptOutputFormat(long j, int i, int i2, @Nullable Integer num, int i3, int i4, @Nullable Integer num2, @Nullable Integer num3);
 
-    private static native void nativeOnFrameCaptured(long j, int i, long j2, VideoFrame.Buffer buffer);
+    private static native void nativeOnFrameCaptured(long j, int i, long j2, VideoFrame$Buffer videoFrame$Buffer);
 
     private static native void nativeSetIsScreencast(long j, boolean z2);
 

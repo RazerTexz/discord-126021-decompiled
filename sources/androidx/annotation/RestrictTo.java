@@ -9,15 +9,5 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.FIELD, ElementType.PACKAGE})
 @Retention(RetentionPolicy.CLASS)
 public @interface RestrictTo {
-
-    public enum Scope {
-        LIBRARY,
-        LIBRARY_GROUP,
-        LIBRARY_GROUP_PREFIX,
-        GROUP_ID,
-        TESTS,
-        SUBCLASSES
-    }
-
-    Scope[] value();
+    RestrictTo$Scope[] value();
 }

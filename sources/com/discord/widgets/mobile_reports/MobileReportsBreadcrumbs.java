@@ -8,21 +8,22 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.C5419R;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.api.report.NodeElementResult;
 import com.discord.api.report.NodeResult;
 import com.discord.api.report.ReportNodeChild;
 import com.discord.api.report.ReportNodeElementData;
 import com.discord.databinding.ViewMobileReportsBreadcrumbsBinding;
 import com.discord.databinding.ViewMobileReportsBreadcrumbsItemBinding;
+import d0.t.n;
+import d0.t.r;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12160r;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MobileReportsBreadcrumbs.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -43,19 +44,19 @@ public final class MobileReportsBreadcrumbs extends LinearLayout {
 
     private final ViewMobileReportsBreadcrumbsItemBinding getBoundBreadcrumbItem() {
         LayoutInflater layoutInflaterFrom = LayoutInflater.from(getContext());
-        View view = this.binding.f15517a;
+        View view = this.binding.a;
         Objects.requireNonNull(view, "null cannot be cast to non-null type android.view.ViewGroup");
         ViewGroup viewGroup = (ViewGroup) view;
-        View viewInflate = layoutInflaterFrom.inflate(C5419R.layout.view_mobile_reports_breadcrumbs_item, viewGroup, false);
+        View viewInflate = layoutInflaterFrom.inflate(R$layout.view_mobile_reports_breadcrumbs_item, viewGroup, false);
         viewGroup.addView(viewInflate);
-        int i = C5419R.id.reports_breadcrumbs_item_dot;
-        View viewFindViewById = viewInflate.findViewById(C5419R.id.reports_breadcrumbs_item_dot);
+        int i = R$id.reports_breadcrumbs_item_dot;
+        View viewFindViewById = viewInflate.findViewById(R$id.reports_breadcrumbs_item_dot);
         if (viewFindViewById != null) {
-            i = C5419R.id.reports_breadcrumbs_item_title;
-            TextView textView = (TextView) viewInflate.findViewById(C5419R.id.reports_breadcrumbs_item_title);
+            i = R$id.reports_breadcrumbs_item_title;
+            TextView textView = (TextView) viewInflate.findViewById(R$id.reports_breadcrumbs_item_title);
             if (textView != null) {
                 ViewMobileReportsBreadcrumbsItemBinding viewMobileReportsBreadcrumbsItemBinding = new ViewMobileReportsBreadcrumbsItemBinding((ConstraintLayout) viewInflate, viewFindViewById, textView);
-                C12238m.checkNotNullExpressionValue(viewMobileReportsBreadcrumbsItemBinding, "ViewMobileReportsBreadcr…ach to parent */ true\n  )");
+                m.checkNotNullExpressionValue(viewMobileReportsBreadcrumbsItemBinding, "ViewMobileReportsBreadcr…ach to parent */ true\n  )");
                 return viewMobileReportsBreadcrumbsItemBinding;
             }
         }
@@ -66,8 +67,8 @@ public final class MobileReportsBreadcrumbs extends LinearLayout {
     public final void setup(List<NodeResult> history) {
         boolean z2;
         List<ReportNodeElementData> list;
-        List<ReportNodeElementData> listM8166a;
-        View view = this.binding.f15517a;
+        List<ReportNodeElementData> listA;
+        View view = this.binding.a;
         if (!(view instanceof LinearLayout)) {
             view = null;
         }
@@ -80,19 +81,19 @@ public final class MobileReportsBreadcrumbs extends LinearLayout {
                 ArrayList arrayList = new ArrayList();
                 for (NodeResult nodeResult : history) {
                     NodeElementResult elementResult = nodeResult.getElementResult();
-                    if (elementResult == null || (listM8166a = elementResult.m8166a()) == null) {
+                    if (elementResult == null || (listA = elementResult.a()) == null) {
                         list = null;
                     } else {
-                        if (listM8166a.isEmpty()) {
-                            listM8166a = null;
+                        if (listA.isEmpty()) {
+                            listA = null;
                         }
-                        list = listM8166a;
+                        list = listA;
                     }
                     String[] strArr = new String[2];
-                    strArr[0] = list != null ? C12163u.joinToString$default(list, ", ", null, null, 0, null, MobileReportsBreadcrumbs$setup$1$1.INSTANCE, 30, null) : null;
+                    strArr[0] = list != null ? u.joinToString$default(list, ", ", null, null, 0, null, MobileReportsBreadcrumbs$setup$1$1.INSTANCE, 30, null) : null;
                     ReportNodeChild destination = nodeResult.getDestination();
                     strArr[1] = destination != null ? destination.getName() : null;
-                    C12160r.addAll(arrayList, C12147n.listOf((Object[]) strArr));
+                    r.addAll(arrayList, n.listOf((Object[]) strArr));
                 }
                 ArrayList<String> arrayList2 = new ArrayList();
                 for (Object obj : arrayList) {
@@ -109,8 +110,8 @@ public final class MobileReportsBreadcrumbs extends LinearLayout {
                     }
                 }
                 for (String str2 : arrayList2) {
-                    TextView textView = getBoundBreadcrumbItem().f15519b;
-                    C12238m.checkNotNullExpressionValue(textView, "getBoundBreadcrumbItem()…portsBreadcrumbsItemTitle");
+                    TextView textView = getBoundBreadcrumbItem().f2203b;
+                    m.checkNotNullExpressionValue(textView, "getBoundBreadcrumbItem()…portsBreadcrumbsItemTitle");
                     textView.setText(str2);
                 }
             }
@@ -120,10 +121,10 @@ public final class MobileReportsBreadcrumbs extends LinearLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public MobileReportsBreadcrumbs(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        C12238m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(C5419R.layout.view_mobile_reports_breadcrumbs, this);
+        m.checkNotNullParameter(context, "context");
+        LayoutInflater.from(context).inflate(R$layout.view_mobile_reports_breadcrumbs, this);
         ViewMobileReportsBreadcrumbsBinding viewMobileReportsBreadcrumbsBinding = new ViewMobileReportsBreadcrumbsBinding(this);
-        C12238m.checkNotNullExpressionValue(viewMobileReportsBreadcrumbsBinding, "ViewMobileReportsBreadcr…ater.from(context), this)");
+        m.checkNotNullExpressionValue(viewMobileReportsBreadcrumbsBinding, "ViewMobileReportsBreadcr…ater.from(context), this)");
         this.binding = viewMobileReportsBreadcrumbsBinding;
     }
 }

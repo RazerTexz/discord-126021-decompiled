@@ -1,35 +1,23 @@
 package kotlin.ranges;
 
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p512d0.InterfaceC11221a;
+import d0.d0.a;
 
 /* JADX INFO: compiled from: Ranges.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public final class IntRange extends IntProgression implements InterfaceC11221a<Integer> {
-
-    /* JADX INFO: renamed from: o, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: n */
-    public static final IntRange f27436n = new IntRange(1, 0);
-
-    /* JADX INFO: renamed from: kotlin.ranges.IntRange$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: Ranges.kt */
-    public final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        public final IntRange getEMPTY() {
-            return IntRange.f27436n;
-        }
-    }
+public final class IntRange extends IntProgression implements a<Integer> {
+    public static final IntRange$a o = new IntRange$a(null);
+    public static final IntRange n = new IntRange(1, 0);
 
     public IntRange(int i, int i2) {
         super(i, i2, 1);
     }
 
+    public static final /* synthetic */ IntRange access$getEMPTY$cp() {
+        return n;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
-    @Override // p507d0.p512d0.InterfaceC11221a
+    @Override // d0.d0.a
     public /* bridge */ /* synthetic */ boolean contains(Comparable comparable) {
         return contains(((Number) comparable).intValue());
     }
@@ -45,6 +33,16 @@ public final class IntRange extends IntProgression implements InterfaceC11221a<I
             return true;
         }
         return false;
+    }
+
+    @Override // d0.d0.a
+    public /* bridge */ /* synthetic */ Comparable getEndInclusive() {
+        return getEndInclusive();
+    }
+
+    @Override // d0.d0.a
+    public /* bridge */ /* synthetic */ Comparable getStart() {
+        return getStart();
     }
 
     @Override // kotlin.ranges.IntProgression
@@ -69,12 +67,12 @@ public final class IntRange extends IntProgression implements InterfaceC11221a<I
         return getFirst() <= value && value <= getLast();
     }
 
-    @Override // p507d0.p512d0.InterfaceC11221a
+    @Override // d0.d0.a
     public Integer getEndInclusive() {
         return Integer.valueOf(getLast());
     }
 
-    @Override // p507d0.p512d0.InterfaceC11221a
+    @Override // d0.d0.a
     public Integer getStart() {
         return Integer.valueOf(getFirst());
     }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -11,8 +12,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSourceMetadata;
 import com.discord.analytics.generated.traits.TrackSourceMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackFileSizeLimitExceeded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,6 +27,11 @@ public final /* data */ class TrackFileSizeLimitExceeded implements AnalyticsSch
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "file_size_limit_exceeded";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,7 +40,7 @@ public final /* data */ class TrackFileSizeLimitExceeded implements AnalyticsSch
             return false;
         }
         TrackFileSizeLimitExceeded trackFileSizeLimitExceeded = (TrackFileSizeLimitExceeded) other;
-        return C12238m.areEqual(this.limit, trackFileSizeLimitExceeded.limit) && C12238m.areEqual(this.filesize, trackFileSizeLimitExceeded.filesize) && C12238m.areEqual(this.type, trackFileSizeLimitExceeded.type);
+        return m.areEqual(this.limit, trackFileSizeLimitExceeded.limit) && m.areEqual(this.filesize, trackFileSizeLimitExceeded.filesize) && m.areEqual(this.type, trackFileSizeLimitExceeded.type);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -59,18 +64,12 @@ public final /* data */ class TrackFileSizeLimitExceeded implements AnalyticsSch
         return iHashCode2 + (charSequence != null ? charSequence.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackFileSizeLimitExceeded(limit=");
-        sbM833U.append(this.limit);
-        sbM833U.append(", filesize=");
-        sbM833U.append(this.filesize);
-        sbM833U.append(", type=");
-        return C1643a.m817E(sbM833U, this.type, ")");
+        StringBuilder sbU = a.U("TrackFileSizeLimitExceeded(limit=");
+        sbU.append(this.limit);
+        sbU.append(", filesize=");
+        sbU.append(this.filesize);
+        sbU.append(", type=");
+        return a.E(sbU, this.type, ")");
     }
 }

@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackGuildDiscoveryExited.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackGuildDiscoveryExited implements AnalyticsSche
             return false;
         }
         TrackGuildDiscoveryExited trackGuildDiscoveryExited = (TrackGuildDiscoveryExited) other;
-        return C12238m.areEqual(this.loadId, trackGuildDiscoveryExited.loadId) && C12238m.areEqual(this.guildIdsViewed, trackGuildDiscoveryExited.guildIdsViewed) && C12238m.areEqual(this.recommendationsSource, trackGuildDiscoveryExited.recommendationsSource);
+        return m.areEqual(this.loadId, trackGuildDiscoveryExited.loadId) && m.areEqual(this.guildIdsViewed, trackGuildDiscoveryExited.guildIdsViewed) && m.areEqual(this.recommendationsSource, trackGuildDiscoveryExited.recommendationsSource);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -46,11 +46,11 @@ public final /* data */ class TrackGuildDiscoveryExited implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildDiscoveryExited(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", guildIdsViewed=");
-        sbM833U.append(this.guildIdsViewed);
-        sbM833U.append(", recommendationsSource=");
-        return C1643a.m817E(sbM833U, this.recommendationsSource, ")");
+        StringBuilder sbU = a.U("TrackGuildDiscoveryExited(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", guildIdsViewed=");
+        sbU.append(this.guildIdsViewed);
+        sbU.append(", recommendationsSource=");
+        return a.E(sbU, this.recommendationsSource, ")");
     }
 }

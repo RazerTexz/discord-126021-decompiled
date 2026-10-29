@@ -2,36 +2,23 @@ package androidx.browser.browseractions;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.browser.C0143R;
+import androidx.browser.R$id;
+import androidx.browser.R$layout;
 import androidx.core.content.res.ResourcesCompat;
+import b.i.b.d.a.a;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
 public class BrowserActionsFallbackMenuAdapter extends BaseAdapter {
     private final Context mContext;
     private final List<BrowserActionItem> mMenuItems;
-
-    public class ViewHolderItem {
-        public final ImageView mIcon;
-        public final TextView mText;
-
-        public ViewHolderItem(ImageView imageView, TextView textView) {
-            this.mIcon = imageView;
-            this.mText = textView;
-        }
-    }
 
     public BrowserActionsFallbackMenuAdapter(List<BrowserActionItem> list, Context context) {
         this.mMenuItems = list;
@@ -55,55 +42,30 @@ public class BrowserActionsFallbackMenuAdapter extends BaseAdapter {
 
     @Override // android.widget.Adapter
     public View getView(int i, View view, ViewGroup viewGroup) {
-        final ViewHolderItem viewHolderItem;
+        BrowserActionsFallbackMenuAdapter$ViewHolderItem browserActionsFallbackMenuAdapter$ViewHolderItem;
         BrowserActionItem browserActionItem = this.mMenuItems.get(i);
         if (view == null) {
-            view = LayoutInflater.from(this.mContext).inflate(C0143R.layout.browser_actions_context_menu_row, (ViewGroup) null);
-            ImageView imageView = (ImageView) view.findViewById(C0143R.id.browser_actions_menu_item_icon);
-            TextView textView = (TextView) view.findViewById(C0143R.id.browser_actions_menu_item_text);
+            view = LayoutInflater.from(this.mContext).inflate(R$layout.browser_actions_context_menu_row, (ViewGroup) null);
+            ImageView imageView = (ImageView) view.findViewById(R$id.browser_actions_menu_item_icon);
+            TextView textView = (TextView) view.findViewById(R$id.browser_actions_menu_item_text);
             if (imageView == null || textView == null) {
                 throw new IllegalStateException("Browser Actions fallback UI does not contain necessary Views.");
             }
-            viewHolderItem = new ViewHolderItem(imageView, textView);
-            view.setTag(viewHolderItem);
+            browserActionsFallbackMenuAdapter$ViewHolderItem = new BrowserActionsFallbackMenuAdapter$ViewHolderItem(imageView, textView);
+            view.setTag(browserActionsFallbackMenuAdapter$ViewHolderItem);
         } else {
-            viewHolderItem = (ViewHolderItem) view.getTag();
+            browserActionsFallbackMenuAdapter$ViewHolderItem = (BrowserActionsFallbackMenuAdapter$ViewHolderItem) view.getTag();
         }
-        final String title = browserActionItem.getTitle();
-        viewHolderItem.mText.setText(title);
+        String title = browserActionItem.getTitle();
+        browserActionsFallbackMenuAdapter$ViewHolderItem.mText.setText(title);
         if (browserActionItem.getIconId() != 0) {
-            viewHolderItem.mIcon.setImageDrawable(ResourcesCompat.getDrawable(this.mContext.getResources(), browserActionItem.getIconId(), null));
+            browserActionsFallbackMenuAdapter$ViewHolderItem.mIcon.setImageDrawable(ResourcesCompat.getDrawable(this.mContext.getResources(), browserActionItem.getIconId(), null));
         } else if (browserActionItem.getIconUri() != null) {
-            final InterfaceFutureC4539a<Bitmap> interfaceFutureC4539aLoadBitmap = BrowserServiceFileProvider.loadBitmap(this.mContext.getContentResolver(), browserActionItem.getIconUri());
-            interfaceFutureC4539aLoadBitmap.addListener(new Runnable() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuAdapter.1
-                /* JADX WARN: Multi-variable type inference failed */
-                @Override // java.lang.Runnable
-                public void run() {
-                    Bitmap bitmap;
-                    if (TextUtils.equals(title, viewHolderItem.mText.getText())) {
-                        try {
-                            bitmap = (Bitmap) interfaceFutureC4539aLoadBitmap.get();
-                        } catch (InterruptedException | ExecutionException unused) {
-                            bitmap = null;
-                        }
-                        if (bitmap != null) {
-                            viewHolderItem.mIcon.setVisibility(0);
-                            viewHolderItem.mIcon.setImageBitmap(bitmap);
-                        } else {
-                            viewHolderItem.mIcon.setVisibility(4);
-                            viewHolderItem.mIcon.setImageBitmap(null);
-                        }
-                    }
-                }
-            }, new Executor() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuAdapter.2
-                @Override // java.util.concurrent.Executor
-                public void execute(@NonNull Runnable runnable) {
-                    runnable.run();
-                }
-            });
+            a<Bitmap> aVarLoadBitmap = BrowserServiceFileProvider.loadBitmap(this.mContext.getContentResolver(), browserActionItem.getIconUri());
+            aVarLoadBitmap.addListener(new BrowserActionsFallbackMenuAdapter$1(this, title, browserActionsFallbackMenuAdapter$ViewHolderItem, aVarLoadBitmap), new BrowserActionsFallbackMenuAdapter$2(this));
         } else {
-            viewHolderItem.mIcon.setImageBitmap(null);
-            viewHolderItem.mIcon.setVisibility(4);
+            browserActionsFallbackMenuAdapter$ViewHolderItem.mIcon.setImageBitmap(null);
+            browserActionsFallbackMenuAdapter$ViewHolderItem.mIcon.setVisibility(4);
         }
         return view;
     }

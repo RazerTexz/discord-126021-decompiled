@@ -1,66 +1,30 @@
 package com.google.android.exoplayer2.metadata.id3;
 
 import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.annotation.Nullable;
+import b.d.b.a.a;
+import b.i.a.c.f3.e0;
+import b.i.a.c.p1$b;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import java.util.ArrayList;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p225i.p226a.p242c.C2835p1;
-import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class TextInformationFrame extends Id3Frame {
 
-    /* JADX INFO: renamed from: k */
     @Nullable
-    public final String f20000k;
-
-    /* JADX INFO: renamed from: l */
-    public final String f20001l;
-    public static final Parcelable.Creator<TextInformationFrame> CREATOR = new C10735a();
-
-    /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.id3.TextInformationFrame$a */
-    public class C10735a implements Parcelable.Creator<TextInformationFrame> {
-        @Override // android.os.Parcelable.Creator
-        public TextInformationFrame createFromParcel(Parcel parcel) {
-            return new TextInformationFrame(parcel);
-        }
-
-        @Override // android.os.Parcelable.Creator
-        public TextInformationFrame[] newArray(int i) {
-            return new TextInformationFrame[i];
-        }
-    }
+    public final String k;
+    public final String l;
+    public static final Parcelable$Creator<TextInformationFrame> CREATOR = new TextInformationFrame$a();
 
     public TextInformationFrame(String str, @Nullable String str2, String str3) {
         super(str);
-        this.f20000k = str2;
-        this.f20001l = str3;
+        this.k = str2;
+        this.l = str3;
     }
 
-    public boolean equals(@Nullable Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || TextInformationFrame.class != obj.getClass()) {
-            return false;
-        }
-        TextInformationFrame textInformationFrame = (TextInformationFrame) obj;
-        return C2738e0.m2993a(this.f19989j, textInformationFrame.f19989j) && C2738e0.m2993a(this.f20000k, textInformationFrame.f20000k) && C2738e0.m2993a(this.f20001l, textInformationFrame.f20001l);
-    }
-
-    public int hashCode() {
-        int iM863m = C1643a.m863m(this.f19989j, 527, 31);
-        String str = this.f20000k;
-        int iHashCode = (iM863m + (str != null ? str.hashCode() : 0)) * 31;
-        String str2 = this.f20001l;
-        return iHashCode + (str2 != null ? str2.hashCode() : 0);
-    }
-
-    /* JADX INFO: renamed from: a */
-    public static List<Integer> m8882a(String str) {
+    public static List<Integer> a(String str) {
         ArrayList arrayList = new ArrayList();
         try {
             if (str.length() >= 10) {
@@ -79,11 +43,29 @@ public final class TextInformationFrame extends Id3Frame {
         }
     }
 
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || TextInformationFrame.class != obj.getClass()) {
+            return false;
+        }
+        TextInformationFrame textInformationFrame = (TextInformationFrame) obj;
+        return e0.a(this.j, textInformationFrame.j) && e0.a(this.k, textInformationFrame.k) && e0.a(this.l, textInformationFrame.l);
+    }
+
+    public int hashCode() {
+        int iM = a.m(this.j, 527, 31);
+        String str = this.k;
+        int iHashCode = (iM + (str != null ? str.hashCode() : 0)) * 31;
+        String str2 = this.l;
+        return iHashCode + (str2 != null ? str2.hashCode() : 0);
+    }
+
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-    @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame, com.google.android.exoplayer2.metadata.Metadata.Entry
-    /* JADX INFO: renamed from: n */
-    public void mo8878n(C2835p1.b bVar) {
-        String str = this.f19989j;
+    @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame, com.google.android.exoplayer2.metadata.Metadata$Entry
+    public void n(p1$b p1_b) {
+        String str = this.j;
         str.hashCode();
         byte b2 = -1;
         switch (str.hashCode()) {
@@ -202,76 +184,76 @@ public final class TextInformationFrame extends Id3Frame {
             switch (b2) {
                 case 0:
                 case 10:
-                    bVar.f7409c = this.f20001l;
+                    p1_b.c = this.l;
                     break;
                 case 1:
                 case 11:
-                    bVar.f7431y = this.f20001l;
+                    p1_b.f1053y = this.l;
                     break;
                 case 2:
                 case 12:
-                    int i = Integer.parseInt(this.f20001l.substring(2, 4));
-                    int i2 = Integer.parseInt(this.f20001l.substring(0, 2));
-                    bVar.f7425s = Integer.valueOf(i);
-                    bVar.f7426t = Integer.valueOf(i2);
+                    int i = Integer.parseInt(this.l.substring(2, 4));
+                    int i2 = Integer.parseInt(this.l.substring(0, 2));
+                    p1_b.f1051s = Integer.valueOf(i);
+                    p1_b.t = Integer.valueOf(i2);
                     break;
                 case 3:
                 case 17:
-                    bVar.f7408b = this.f20001l;
+                    p1_b.f1050b = this.l;
                     break;
                 case 4:
                 case 18:
-                    bVar.f7410d = this.f20001l;
+                    p1_b.d = this.l;
                     break;
                 case 5:
                 case 19:
-                    bVar.f7432z = this.f20001l;
+                    p1_b.f1054z = this.l;
                     break;
                 case 6:
                 case 20:
-                    String[] strArrM2987H = C2738e0.m2987H(this.f20001l, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
-                    int i3 = Integer.parseInt(strArrM2987H[0]);
-                    Integer numValueOf = strArrM2987H.length > 1 ? Integer.valueOf(Integer.parseInt(strArrM2987H[1])) : null;
-                    bVar.f7420n = Integer.valueOf(i3);
-                    bVar.f7421o = numValueOf;
+                    String[] strArrH = e0.H(this.l, AutocompleteViewModel.COMMAND_DISCOVER_TOKEN);
+                    int i3 = Integer.parseInt(strArrH[0]);
+                    Integer numValueOf = strArrH.length > 1 ? Integer.valueOf(Integer.parseInt(strArrH[1])) : null;
+                    p1_b.n = Integer.valueOf(i3);
+                    p1_b.o = numValueOf;
                     break;
                 case 7:
                 case 16:
-                    bVar.f7407a = this.f20001l;
+                    p1_b.a = this.l;
                     break;
                 case 8:
                 case 15:
-                    bVar.f7430x = this.f20001l;
+                    p1_b.f1052x = this.l;
                     break;
                 case 9:
                 case 21:
-                    bVar.f7424r = Integer.valueOf(Integer.parseInt(this.f20001l));
+                    p1_b.r = Integer.valueOf(Integer.parseInt(this.l));
                     break;
                 case 13:
-                    ArrayList arrayList = (ArrayList) m8882a(this.f20001l);
+                    ArrayList arrayList = (ArrayList) a(this.l);
                     int size = arrayList.size();
                     if (size != 1) {
                         if (size != 2) {
                             if (size == 3) {
-                                bVar.f7426t = (Integer) arrayList.get(2);
+                                p1_b.t = (Integer) arrayList.get(2);
                             }
                         }
-                        bVar.f7425s = (Integer) arrayList.get(1);
+                        p1_b.f1051s = (Integer) arrayList.get(1);
                     }
-                    bVar.f7424r = (Integer) arrayList.get(0);
+                    p1_b.r = (Integer) arrayList.get(0);
                     break;
                 case 14:
-                    ArrayList arrayList2 = (ArrayList) m8882a(this.f20001l);
+                    ArrayList arrayList2 = (ArrayList) a(this.l);
                     int size2 = arrayList2.size();
                     if (size2 != 1) {
                         if (size2 != 2) {
                             if (size2 == 3) {
-                                bVar.f7429w = (Integer) arrayList2.get(2);
+                                p1_b.w = (Integer) arrayList2.get(2);
                             }
                         }
-                        bVar.f7428v = (Integer) arrayList2.get(1);
+                        p1_b.v = (Integer) arrayList2.get(1);
                     }
-                    bVar.f7427u = (Integer) arrayList2.get(0);
+                    p1_b.u = (Integer) arrayList2.get(0);
                     break;
             }
         } catch (NumberFormatException | StringIndexOutOfBoundsException unused) {
@@ -280,27 +262,27 @@ public final class TextInformationFrame extends Id3Frame {
 
     @Override // com.google.android.exoplayer2.metadata.id3.Id3Frame
     public String toString() {
-        String str = this.f19989j;
-        String str2 = this.f20000k;
-        String str3 = this.f20001l;
-        StringBuilder sbM831S = C1643a.m831S(C1643a.m841b(str3, C1643a.m841b(str2, C1643a.m841b(str, 22))), str, ": description=", str2, ": value=");
-        sbM831S.append(str3);
-        return sbM831S.toString();
+        String str = this.j;
+        String str2 = this.k;
+        String str3 = this.l;
+        StringBuilder sbS = a.S(a.b(str3, a.b(str2, a.b(str, 22))), str, ": description=", str2, ": value=");
+        sbS.append(str3);
+        return sbS.toString();
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.f19989j);
-        parcel.writeString(this.f20000k);
-        parcel.writeString(this.f20001l);
+        parcel.writeString(this.j);
+        parcel.writeString(this.k);
+        parcel.writeString(this.l);
     }
 
     /* JADX WARN: Illegal instructions before constructor call */
     public TextInformationFrame(Parcel parcel) {
         String string = parcel.readString();
-        int i = C2738e0.f6708a;
+        int i = e0.a;
         super(string);
-        this.f20000k = parcel.readString();
-        this.f20001l = parcel.readString();
+        this.k = parcel.readString();
+        this.l = parcel.readString();
     }
 }

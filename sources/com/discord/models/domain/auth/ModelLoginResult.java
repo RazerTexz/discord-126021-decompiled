@@ -1,11 +1,11 @@
 package com.discord.models.domain.auth;
 
+import b.d.b.a.a;
 import com.discord.api.auth.RequiredAction;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelLoginResult.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -64,7 +64,7 @@ public final /* data */ class ModelLoginResult {
             return false;
         }
         ModelLoginResult modelLoginResult = (ModelLoginResult) other;
-        return this.mfa == modelLoginResult.mfa && C12238m.areEqual(this.ticket, modelLoginResult.ticket) && C12238m.areEqual(this.token, modelLoginResult.token) && C12238m.areEqual(this.userSettings, modelLoginResult.userSettings) && C12238m.areEqual(this.requiredActions, modelLoginResult.requiredActions);
+        return this.mfa == modelLoginResult.mfa && m.areEqual(this.ticket, modelLoginResult.ticket) && m.areEqual(this.token, modelLoginResult.token) && m.areEqual(this.userSettings, modelLoginResult.userSettings) && m.areEqual(this.requiredActions, modelLoginResult.requiredActions);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -129,16 +129,16 @@ public final /* data */ class ModelLoginResult {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelLoginResult(mfa=");
-        sbM833U.append(this.mfa);
-        sbM833U.append(", ticket=");
-        sbM833U.append(this.ticket);
-        sbM833U.append(", token=");
-        sbM833U.append(this.token);
-        sbM833U.append(", userSettings=");
-        sbM833U.append(this.userSettings);
-        sbM833U.append(", requiredActions=");
-        return C1643a.m824L(sbM833U, this.requiredActions, ")");
+        StringBuilder sbU = a.U("ModelLoginResult(mfa=");
+        sbU.append(this.mfa);
+        sbU.append(", ticket=");
+        sbU.append(this.ticket);
+        sbU.append(", token=");
+        sbU.append(this.token);
+        sbU.append(", userSettings=");
+        sbU.append(this.userSettings);
+        sbU.append(", requiredActions=");
+        return a.L(sbU, this.requiredActions, ")");
     }
 
     public /* synthetic */ ModelLoginResult(boolean z2, String str, String str2, ModelUserSettingsBootstrap modelUserSettingsBootstrap, List list, int i, DefaultConstructorMarker defaultConstructorMarker) {

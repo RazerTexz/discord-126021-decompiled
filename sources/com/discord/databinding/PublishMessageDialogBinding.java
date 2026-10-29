@@ -10,42 +10,37 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class PublishMessageDialogBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15219a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15220b;
+    public final TextView f2137b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f15221c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15222d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LinearLayout f15223e;
+    public final LinearLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final MaterialButton f15224f;
+    public final MaterialButton f;
 
     public PublishMessageDialogBinding(@NonNull LinearLayout linearLayout, @NonNull LinearLayout linearLayout2, @NonNull TextView textView, @NonNull MaterialButton materialButton, @NonNull TextView textView2, @NonNull LinearLayout linearLayout3, @NonNull MaterialButton materialButton2) {
-        this.f15219a = linearLayout;
-        this.f15220b = textView;
-        this.f15221c = materialButton;
-        this.f15222d = textView2;
-        this.f15223e = linearLayout3;
-        this.f15224f = materialButton2;
+        this.a = linearLayout;
+        this.f2137b = textView;
+        this.c = materialButton;
+        this.d = textView2;
+        this.e = linearLayout3;
+        this.f = materialButton2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15219a;
+        return this.a;
     }
 }

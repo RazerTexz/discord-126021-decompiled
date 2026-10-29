@@ -1,9 +1,8 @@
 package androidx.constraintlayout.solver.state;
 
-import androidx.constraintlayout.solver.widgets.ConstraintAnchor;
+import androidx.constraintlayout.solver.widgets.ConstraintAnchor$Type;
 import androidx.constraintlayout.solver.widgets.ConstraintWidget;
 import java.util.ArrayList;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ConstraintReference implements Reference {
@@ -42,103 +41,7 @@ public class ConstraintReference implements Reference {
     public Object mBottomToTop = null;
     public Object mBottomToBottom = null;
     public Object mBaselineToBaseline = null;
-    public State.Constraint mLast = null;
-
-    /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.ConstraintReference$1 */
-    public /* synthetic */ class C01841 {
-
-        /* JADX INFO: renamed from: $SwitchMap$androidx$constraintlayout$solver$state$State$Constraint */
-        public static final /* synthetic */ int[] f111x7d4bfe12;
-
-        static {
-            State.Constraint.values();
-            int[] iArr = new int[15];
-            f111x7d4bfe12 = iArr;
-            try {
-                iArr[State.Constraint.LEFT_TO_LEFT.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.LEFT_TO_RIGHT.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.RIGHT_TO_LEFT.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.RIGHT_TO_RIGHT.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.START_TO_START.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.START_TO_END.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.END_TO_START.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.END_TO_END.ordinal()] = 8;
-            } catch (NoSuchFieldError unused8) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.TOP_TO_TOP.ordinal()] = 9;
-            } catch (NoSuchFieldError unused9) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.TOP_TO_BOTTOM.ordinal()] = 10;
-            } catch (NoSuchFieldError unused10) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.BOTTOM_TO_TOP.ordinal()] = 11;
-            } catch (NoSuchFieldError unused11) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.BOTTOM_TO_BOTTOM.ordinal()] = 12;
-            } catch (NoSuchFieldError unused12) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.BASELINE_TO_BASELINE.ordinal()] = 13;
-            } catch (NoSuchFieldError unused13) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.CENTER_HORIZONTALLY.ordinal()] = 14;
-            } catch (NoSuchFieldError unused14) {
-            }
-            try {
-                f111x7d4bfe12[State.Constraint.CENTER_VERTICALLY.ordinal()] = 15;
-            } catch (NoSuchFieldError unused15) {
-            }
-        }
-    }
-
-    public interface ConstraintReferenceFactory {
-        ConstraintReference create(State state);
-    }
-
-    public class IncorrectConstraintException extends Exception {
-        private final ArrayList<String> mErrors;
-
-        public IncorrectConstraintException(ArrayList<String> arrayList) {
-            this.mErrors = arrayList;
-        }
-
-        public ArrayList<String> getErrors() {
-            return this.mErrors;
-        }
-
-        @Override // java.lang.Throwable
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("IncorrectConstraintException: ");
-            sbM833U.append(this.mErrors.toString());
-            return sbM833U.toString();
-        }
-    }
+    public State$Constraint mLast = null;
 
     public ConstraintReference(State state) {
         Object obj = Dimension.WRAP_DIMENSION;
@@ -156,19 +59,19 @@ public class ConstraintReference implements Reference {
         this.mHorizontalDimension.apply(this.mState, constraintWidget, 0);
         this.mVerticalDimension.apply(this.mState, this.mConstraintWidget, 1);
         dereference();
-        applyConnection(this.mConstraintWidget, this.mLeftToLeft, State.Constraint.LEFT_TO_LEFT);
-        applyConnection(this.mConstraintWidget, this.mLeftToRight, State.Constraint.LEFT_TO_RIGHT);
-        applyConnection(this.mConstraintWidget, this.mRightToLeft, State.Constraint.RIGHT_TO_LEFT);
-        applyConnection(this.mConstraintWidget, this.mRightToRight, State.Constraint.RIGHT_TO_RIGHT);
-        applyConnection(this.mConstraintWidget, this.mStartToStart, State.Constraint.START_TO_START);
-        applyConnection(this.mConstraintWidget, this.mStartToEnd, State.Constraint.START_TO_END);
-        applyConnection(this.mConstraintWidget, this.mEndToStart, State.Constraint.END_TO_START);
-        applyConnection(this.mConstraintWidget, this.mEndToEnd, State.Constraint.END_TO_END);
-        applyConnection(this.mConstraintWidget, this.mTopToTop, State.Constraint.TOP_TO_TOP);
-        applyConnection(this.mConstraintWidget, this.mTopToBottom, State.Constraint.TOP_TO_BOTTOM);
-        applyConnection(this.mConstraintWidget, this.mBottomToTop, State.Constraint.BOTTOM_TO_TOP);
-        applyConnection(this.mConstraintWidget, this.mBottomToBottom, State.Constraint.BOTTOM_TO_BOTTOM);
-        applyConnection(this.mConstraintWidget, this.mBaselineToBaseline, State.Constraint.BASELINE_TO_BASELINE);
+        applyConnection(this.mConstraintWidget, this.mLeftToLeft, State$Constraint.LEFT_TO_LEFT);
+        applyConnection(this.mConstraintWidget, this.mLeftToRight, State$Constraint.LEFT_TO_RIGHT);
+        applyConnection(this.mConstraintWidget, this.mRightToLeft, State$Constraint.RIGHT_TO_LEFT);
+        applyConnection(this.mConstraintWidget, this.mRightToRight, State$Constraint.RIGHT_TO_RIGHT);
+        applyConnection(this.mConstraintWidget, this.mStartToStart, State$Constraint.START_TO_START);
+        applyConnection(this.mConstraintWidget, this.mStartToEnd, State$Constraint.START_TO_END);
+        applyConnection(this.mConstraintWidget, this.mEndToStart, State$Constraint.END_TO_START);
+        applyConnection(this.mConstraintWidget, this.mEndToEnd, State$Constraint.END_TO_END);
+        applyConnection(this.mConstraintWidget, this.mTopToTop, State$Constraint.TOP_TO_TOP);
+        applyConnection(this.mConstraintWidget, this.mTopToBottom, State$Constraint.TOP_TO_BOTTOM);
+        applyConnection(this.mConstraintWidget, this.mBottomToTop, State$Constraint.BOTTOM_TO_TOP);
+        applyConnection(this.mConstraintWidget, this.mBottomToBottom, State$Constraint.BOTTOM_TO_BOTTOM);
+        applyConnection(this.mConstraintWidget, this.mBaselineToBaseline, State$Constraint.BASELINE_TO_BASELINE);
         int i = this.mHorizontalChainStyle;
         if (i != 0) {
             this.mConstraintWidget.setHorizontalChainStyle(i);
@@ -181,79 +84,79 @@ public class ConstraintReference implements Reference {
         this.mConstraintWidget.setVerticalBiasPercent(this.mVerticalBias);
     }
 
-    private void applyConnection(ConstraintWidget constraintWidget, Object obj, State.Constraint constraint) {
+    private void applyConnection(ConstraintWidget constraintWidget, Object obj, State$Constraint state$Constraint) {
         ConstraintWidget target = getTarget(obj);
         if (target == null) {
         }
-        int i = C01841.f111x7d4bfe12[constraint.ordinal()];
-        switch (constraint) {
+        int i = ConstraintReference$1.$SwitchMap$androidx$constraintlayout$solver$state$State$Constraint[state$Constraint.ordinal()];
+        switch (state$Constraint) {
             case LEFT_TO_LEFT:
-                ConstraintAnchor.Type type = ConstraintAnchor.Type.LEFT;
-                constraintWidget.getAnchor(type).connect(target.getAnchor(type), this.mMarginLeft, this.mMarginLeftGone, false);
+                ConstraintAnchor$Type constraintAnchor$Type = ConstraintAnchor$Type.LEFT;
+                constraintWidget.getAnchor(constraintAnchor$Type).connect(target.getAnchor(constraintAnchor$Type), this.mMarginLeft, this.mMarginLeftGone, false);
                 break;
             case LEFT_TO_RIGHT:
-                constraintWidget.getAnchor(ConstraintAnchor.Type.LEFT).connect(target.getAnchor(ConstraintAnchor.Type.RIGHT), this.mMarginLeft, this.mMarginLeftGone, false);
+                constraintWidget.getAnchor(ConstraintAnchor$Type.LEFT).connect(target.getAnchor(ConstraintAnchor$Type.RIGHT), this.mMarginLeft, this.mMarginLeftGone, false);
                 break;
             case RIGHT_TO_LEFT:
-                constraintWidget.getAnchor(ConstraintAnchor.Type.RIGHT).connect(target.getAnchor(ConstraintAnchor.Type.LEFT), this.mMarginRight, this.mMarginRightGone, false);
+                constraintWidget.getAnchor(ConstraintAnchor$Type.RIGHT).connect(target.getAnchor(ConstraintAnchor$Type.LEFT), this.mMarginRight, this.mMarginRightGone, false);
                 break;
             case RIGHT_TO_RIGHT:
-                ConstraintAnchor.Type type2 = ConstraintAnchor.Type.RIGHT;
-                constraintWidget.getAnchor(type2).connect(target.getAnchor(type2), this.mMarginRight, this.mMarginRightGone, false);
+                ConstraintAnchor$Type constraintAnchor$Type2 = ConstraintAnchor$Type.RIGHT;
+                constraintWidget.getAnchor(constraintAnchor$Type2).connect(target.getAnchor(constraintAnchor$Type2), this.mMarginRight, this.mMarginRightGone, false);
                 break;
             case START_TO_START:
-                ConstraintAnchor.Type type3 = ConstraintAnchor.Type.LEFT;
-                constraintWidget.getAnchor(type3).connect(target.getAnchor(type3), this.mMarginStart, this.mMarginStartGone, false);
+                ConstraintAnchor$Type constraintAnchor$Type3 = ConstraintAnchor$Type.LEFT;
+                constraintWidget.getAnchor(constraintAnchor$Type3).connect(target.getAnchor(constraintAnchor$Type3), this.mMarginStart, this.mMarginStartGone, false);
                 break;
             case START_TO_END:
-                constraintWidget.getAnchor(ConstraintAnchor.Type.LEFT).connect(target.getAnchor(ConstraintAnchor.Type.RIGHT), this.mMarginStart, this.mMarginStartGone, false);
+                constraintWidget.getAnchor(ConstraintAnchor$Type.LEFT).connect(target.getAnchor(ConstraintAnchor$Type.RIGHT), this.mMarginStart, this.mMarginStartGone, false);
                 break;
             case END_TO_START:
-                constraintWidget.getAnchor(ConstraintAnchor.Type.RIGHT).connect(target.getAnchor(ConstraintAnchor.Type.LEFT), this.mMarginEnd, this.mMarginEndGone, false);
+                constraintWidget.getAnchor(ConstraintAnchor$Type.RIGHT).connect(target.getAnchor(ConstraintAnchor$Type.LEFT), this.mMarginEnd, this.mMarginEndGone, false);
                 break;
             case END_TO_END:
-                ConstraintAnchor.Type type4 = ConstraintAnchor.Type.RIGHT;
-                constraintWidget.getAnchor(type4).connect(target.getAnchor(type4), this.mMarginEnd, this.mMarginEndGone, false);
+                ConstraintAnchor$Type constraintAnchor$Type4 = ConstraintAnchor$Type.RIGHT;
+                constraintWidget.getAnchor(constraintAnchor$Type4).connect(target.getAnchor(constraintAnchor$Type4), this.mMarginEnd, this.mMarginEndGone, false);
                 break;
             case TOP_TO_TOP:
-                ConstraintAnchor.Type type5 = ConstraintAnchor.Type.TOP;
-                constraintWidget.getAnchor(type5).connect(target.getAnchor(type5), this.mMarginTop, this.mMarginTopGone, false);
+                ConstraintAnchor$Type constraintAnchor$Type5 = ConstraintAnchor$Type.TOP;
+                constraintWidget.getAnchor(constraintAnchor$Type5).connect(target.getAnchor(constraintAnchor$Type5), this.mMarginTop, this.mMarginTopGone, false);
                 break;
             case TOP_TO_BOTTOM:
-                constraintWidget.getAnchor(ConstraintAnchor.Type.TOP).connect(target.getAnchor(ConstraintAnchor.Type.BOTTOM), this.mMarginTop, this.mMarginTopGone, false);
+                constraintWidget.getAnchor(ConstraintAnchor$Type.TOP).connect(target.getAnchor(ConstraintAnchor$Type.BOTTOM), this.mMarginTop, this.mMarginTopGone, false);
                 break;
             case BOTTOM_TO_TOP:
-                constraintWidget.getAnchor(ConstraintAnchor.Type.BOTTOM).connect(target.getAnchor(ConstraintAnchor.Type.TOP), this.mMarginBottom, this.mMarginBottomGone, false);
+                constraintWidget.getAnchor(ConstraintAnchor$Type.BOTTOM).connect(target.getAnchor(ConstraintAnchor$Type.TOP), this.mMarginBottom, this.mMarginBottomGone, false);
                 break;
             case BOTTOM_TO_BOTTOM:
-                ConstraintAnchor.Type type6 = ConstraintAnchor.Type.BOTTOM;
-                constraintWidget.getAnchor(type6).connect(target.getAnchor(type6), this.mMarginBottom, this.mMarginBottomGone, false);
+                ConstraintAnchor$Type constraintAnchor$Type6 = ConstraintAnchor$Type.BOTTOM;
+                constraintWidget.getAnchor(constraintAnchor$Type6).connect(target.getAnchor(constraintAnchor$Type6), this.mMarginBottom, this.mMarginBottomGone, false);
                 break;
             case BASELINE_TO_BASELINE:
-                ConstraintAnchor.Type type7 = ConstraintAnchor.Type.BASELINE;
-                constraintWidget.immediateConnect(type7, target, type7, 0, 0);
+                ConstraintAnchor$Type constraintAnchor$Type7 = ConstraintAnchor$Type.BASELINE;
+                constraintWidget.immediateConnect(constraintAnchor$Type7, target, constraintAnchor$Type7, 0, 0);
                 break;
         }
     }
 
     public ConstraintReference baseline() {
-        this.mLast = State.Constraint.BASELINE_TO_BASELINE;
+        this.mLast = State$Constraint.BASELINE_TO_BASELINE;
         return this;
     }
 
     public ConstraintReference baselineToBaseline(Object obj) {
-        this.mLast = State.Constraint.BASELINE_TO_BASELINE;
+        this.mLast = State$Constraint.BASELINE_TO_BASELINE;
         this.mBaselineToBaseline = obj;
         return this;
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     public ConstraintReference bias(float f) {
-        State.Constraint constraint = this.mLast;
-        if (constraint == null) {
+        State$Constraint state$Constraint = this.mLast;
+        if (state$Constraint == null) {
             return this;
         }
-        switch (constraint) {
+        switch (state$Constraint) {
             case LEFT_TO_LEFT:
             case LEFT_TO_RIGHT:
             case RIGHT_TO_LEFT:
@@ -280,21 +183,21 @@ public class ConstraintReference implements Reference {
 
     public ConstraintReference bottom() {
         if (this.mBottomToTop != null) {
-            this.mLast = State.Constraint.BOTTOM_TO_TOP;
+            this.mLast = State$Constraint.BOTTOM_TO_TOP;
         } else {
-            this.mLast = State.Constraint.BOTTOM_TO_BOTTOM;
+            this.mLast = State$Constraint.BOTTOM_TO_BOTTOM;
         }
         return this;
     }
 
     public ConstraintReference bottomToBottom(Object obj) {
-        this.mLast = State.Constraint.BOTTOM_TO_BOTTOM;
+        this.mLast = State$Constraint.BOTTOM_TO_BOTTOM;
         this.mBottomToBottom = obj;
         return this;
     }
 
     public ConstraintReference bottomToTop(Object obj) {
-        this.mLast = State.Constraint.BOTTOM_TO_TOP;
+        this.mLast = State$Constraint.BOTTOM_TO_TOP;
         this.mBottomToTop = obj;
         return this;
     }
@@ -303,7 +206,7 @@ public class ConstraintReference implements Reference {
         Object obj2 = get(obj);
         this.mStartToStart = obj2;
         this.mEndToEnd = obj2;
-        this.mLast = State.Constraint.CENTER_HORIZONTALLY;
+        this.mLast = State$Constraint.CENTER_HORIZONTALLY;
         this.mHorizontalBias = 0.5f;
         return this;
     }
@@ -312,16 +215,16 @@ public class ConstraintReference implements Reference {
         Object obj2 = get(obj);
         this.mTopToTop = obj2;
         this.mBottomToBottom = obj2;
-        this.mLast = State.Constraint.CENTER_VERTICALLY;
+        this.mLast = State$Constraint.CENTER_VERTICALLY;
         this.mVerticalBias = 0.5f;
         return this;
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     public ConstraintReference clear() {
-        State.Constraint constraint = this.mLast;
-        if (constraint != null) {
-            switch (constraint) {
+        State$Constraint state$Constraint = this.mLast;
+        if (state$Constraint != null) {
+            switch (state$Constraint) {
                 case LEFT_TO_LEFT:
                 case LEFT_TO_RIGHT:
                     this.mLeftToLeft = null;
@@ -437,21 +340,21 @@ public class ConstraintReference implements Reference {
 
     public ConstraintReference end() {
         if (this.mEndToStart != null) {
-            this.mLast = State.Constraint.END_TO_START;
+            this.mLast = State$Constraint.END_TO_START;
         } else {
-            this.mLast = State.Constraint.END_TO_END;
+            this.mLast = State$Constraint.END_TO_END;
         }
         return this;
     }
 
     public ConstraintReference endToEnd(Object obj) {
-        this.mLast = State.Constraint.END_TO_END;
+        this.mLast = State$Constraint.END_TO_END;
         this.mEndToEnd = obj;
         return this;
     }
 
     public ConstraintReference endToStart(Object obj) {
-        this.mLast = State.Constraint.END_TO_START;
+        this.mLast = State$Constraint.END_TO_START;
         this.mEndToStart = obj;
         return this;
     }
@@ -516,21 +419,21 @@ public class ConstraintReference implements Reference {
 
     public ConstraintReference left() {
         if (this.mLeftToLeft != null) {
-            this.mLast = State.Constraint.LEFT_TO_LEFT;
+            this.mLast = State$Constraint.LEFT_TO_LEFT;
         } else {
-            this.mLast = State.Constraint.LEFT_TO_RIGHT;
+            this.mLast = State$Constraint.LEFT_TO_RIGHT;
         }
         return this;
     }
 
     public ConstraintReference leftToLeft(Object obj) {
-        this.mLast = State.Constraint.LEFT_TO_LEFT;
+        this.mLast = State$Constraint.LEFT_TO_LEFT;
         this.mLeftToLeft = obj;
         return this;
     }
 
     public ConstraintReference leftToRight(Object obj) {
-        this.mLast = State.Constraint.LEFT_TO_RIGHT;
+        this.mLast = State$Constraint.LEFT_TO_RIGHT;
         this.mLeftToRight = obj;
         return this;
     }
@@ -541,9 +444,9 @@ public class ConstraintReference implements Reference {
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     public ConstraintReference marginGone(int i) {
-        State.Constraint constraint = this.mLast;
-        if (constraint != null) {
-            switch (constraint) {
+        State$Constraint state$Constraint = this.mLast;
+        if (state$Constraint != null) {
+            switch (state$Constraint) {
                 case LEFT_TO_LEFT:
                 case LEFT_TO_RIGHT:
                     this.mMarginLeftGone = i;
@@ -582,21 +485,21 @@ public class ConstraintReference implements Reference {
 
     public ConstraintReference right() {
         if (this.mRightToLeft != null) {
-            this.mLast = State.Constraint.RIGHT_TO_LEFT;
+            this.mLast = State$Constraint.RIGHT_TO_LEFT;
         } else {
-            this.mLast = State.Constraint.RIGHT_TO_RIGHT;
+            this.mLast = State$Constraint.RIGHT_TO_RIGHT;
         }
         return this;
     }
 
     public ConstraintReference rightToLeft(Object obj) {
-        this.mLast = State.Constraint.RIGHT_TO_LEFT;
+        this.mLast = State$Constraint.RIGHT_TO_LEFT;
         this.mRightToLeft = obj;
         return this;
     }
 
     public ConstraintReference rightToRight(Object obj) {
-        this.mLast = State.Constraint.RIGHT_TO_RIGHT;
+        this.mLast = State$Constraint.RIGHT_TO_RIGHT;
         this.mRightToRight = obj;
         return this;
     }
@@ -643,47 +546,47 @@ public class ConstraintReference implements Reference {
 
     public ConstraintReference start() {
         if (this.mStartToStart != null) {
-            this.mLast = State.Constraint.START_TO_START;
+            this.mLast = State$Constraint.START_TO_START;
         } else {
-            this.mLast = State.Constraint.START_TO_END;
+            this.mLast = State$Constraint.START_TO_END;
         }
         return this;
     }
 
     public ConstraintReference startToEnd(Object obj) {
-        this.mLast = State.Constraint.START_TO_END;
+        this.mLast = State$Constraint.START_TO_END;
         this.mStartToEnd = obj;
         return this;
     }
 
     public ConstraintReference startToStart(Object obj) {
-        this.mLast = State.Constraint.START_TO_START;
+        this.mLast = State$Constraint.START_TO_START;
         this.mStartToStart = obj;
         return this;
     }
 
     public ConstraintReference top() {
         if (this.mTopToTop != null) {
-            this.mLast = State.Constraint.TOP_TO_TOP;
+            this.mLast = State$Constraint.TOP_TO_TOP;
         } else {
-            this.mLast = State.Constraint.TOP_TO_BOTTOM;
+            this.mLast = State$Constraint.TOP_TO_BOTTOM;
         }
         return this;
     }
 
     public ConstraintReference topToBottom(Object obj) {
-        this.mLast = State.Constraint.TOP_TO_BOTTOM;
+        this.mLast = State$Constraint.TOP_TO_BOTTOM;
         this.mTopToBottom = obj;
         return this;
     }
 
     public ConstraintReference topToTop(Object obj) {
-        this.mLast = State.Constraint.TOP_TO_TOP;
+        this.mLast = State$Constraint.TOP_TO_TOP;
         this.mTopToTop = obj;
         return this;
     }
 
-    public void validate() throws IncorrectConstraintException {
+    public void validate() throws ConstraintReference$IncorrectConstraintException {
         ArrayList arrayList = new ArrayList();
         if (this.mLeftToLeft != null && this.mLeftToRight != null) {
             arrayList.add("LeftToLeft and LeftToRight both defined");
@@ -701,7 +604,7 @@ public class ConstraintReference implements Reference {
             arrayList.add("Both left/right and start/end constraints defined");
         }
         if (arrayList.size() > 0) {
-            throw new IncorrectConstraintException(arrayList);
+            throw new ConstraintReference$IncorrectConstraintException(this, arrayList);
         }
     }
 
@@ -716,9 +619,9 @@ public class ConstraintReference implements Reference {
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     public ConstraintReference margin(int i) {
-        State.Constraint constraint = this.mLast;
-        if (constraint != null) {
-            switch (constraint) {
+        State$Constraint state$Constraint = this.mLast;
+        if (state$Constraint != null) {
+            switch (state$Constraint) {
                 case LEFT_TO_LEFT:
                 case LEFT_TO_RIGHT:
                     this.mMarginLeft = i;

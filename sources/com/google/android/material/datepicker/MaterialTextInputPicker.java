@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleRes;
-import java.util.Iterator;
-import p007b.p225i.p226a.p341g.p345d.AbstractC4398i;
+import b.i.a.g.d.i;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-public final class MaterialTextInputPicker<S> extends AbstractC4398i<S> {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+public final class MaterialTextInputPicker<S> extends i<S> {
     private static final String CALENDAR_CONSTRAINTS_KEY = "CALENDAR_CONSTRAINTS_KEY";
     private static final String DATE_SELECTOR_KEY = "DATE_SELECTOR_KEY";
     private static final String THEME_RES_ID_KEY = "THEME_RES_ID_KEY";
@@ -28,29 +28,7 @@ public final class MaterialTextInputPicker<S> extends AbstractC4398i<S> {
     @StyleRes
     private int themeResId;
 
-    /* JADX INFO: renamed from: com.google.android.material.datepicker.MaterialTextInputPicker$a */
-    public class C10901a extends OnSelectionChangedListener<S> {
-        public C10901a() {
-        }
-
-        @Override // com.google.android.material.datepicker.OnSelectionChangedListener
-        public void onIncompleteSelectionChanged() {
-            Iterator<OnSelectionChangedListener<S>> it = MaterialTextInputPicker.this.onSelectionChangedListeners.iterator();
-            while (it.hasNext()) {
-                it.next().onIncompleteSelectionChanged();
-            }
-        }
-
-        @Override // com.google.android.material.datepicker.OnSelectionChangedListener
-        public void onSelectionChanged(S s2) {
-            Iterator<OnSelectionChangedListener<S>> it = MaterialTextInputPicker.this.onSelectionChangedListeners.iterator();
-            while (it.hasNext()) {
-                it.next().onSelectionChanged(s2);
-            }
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p341g.p345d.AbstractC4398i
+    @Override // b.i.a.g.d.i
     @NonNull
     public DateSelector<S> getDateSelector() {
         DateSelector<S> dateSelector = this.dateSelector;
@@ -85,7 +63,7 @@ public final class MaterialTextInputPicker<S> extends AbstractC4398i<S> {
     @Override // androidx.fragment.app.Fragment
     @NonNull
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        return this.dateSelector.onCreateTextInputView(layoutInflater.cloneInContext(new ContextThemeWrapper(getContext(), this.themeResId)), viewGroup, bundle, this.calendarConstraints, new C10901a());
+        return this.dateSelector.onCreateTextInputView(layoutInflater.cloneInContext(new ContextThemeWrapper(getContext(), this.themeResId)), viewGroup, bundle, this.calendarConstraints, new MaterialTextInputPicker$a(this));
     }
 
     @Override // androidx.fragment.app.Fragment

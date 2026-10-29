@@ -4,11 +4,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract;
+import android.provider.ContactsContract$CommonDataKinds$Phone;
+import android.provider.ContactsContract$PhoneLookup;
 import androidx.core.content.ContextCompat;
+import d0.z.d.m;
 import java.util.HashSet;
 import java.util.Set;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ContactsProviderUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,10 +21,10 @@ public final class ContactsProviderUtils {
     }
 
     public final Set<String> getAllContactPhoneNumbers(Context ctx) {
-        C12238m.checkNotNullParameter(ctx, "ctx");
+        m.checkNotNullParameter(ctx, "ctx");
         ContentResolver contentResolver = ctx.getContentResolver();
         HashSet hashSet = new HashSet();
-        Cursor cursorQuery = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
+        Cursor cursorQuery = contentResolver.query(ContactsContract$CommonDataKinds$Phone.CONTENT_URI, null, null, null, null);
         if (cursorQuery != null) {
             while (cursorQuery.moveToNext()) {
                 String string = cursorQuery.getString(cursorQuery.getColumnIndex("data4"));
@@ -37,14 +38,14 @@ public final class ContactsProviderUtils {
     }
 
     public final String getOwnName(Context ctx, String number) {
-        C12238m.checkNotNullParameter(ctx, "ctx");
-        C12238m.checkNotNullParameter(number, "number");
+        m.checkNotNullParameter(ctx, "ctx");
+        m.checkNotNullParameter(number, "number");
         ContentResolver contentResolver = ctx.getContentResolver();
-        Uri uriWithAppendedPath = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
-        C12238m.checkNotNullExpressionValue(uriWithAppendedPath, "Uri.withAppendedPath(Pho…_URI, Uri.encode(number))");
+        Uri uriWithAppendedPath = Uri.withAppendedPath(ContactsContract$PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
+        m.checkNotNullExpressionValue(uriWithAppendedPath, "Uri.withAppendedPath(Pho…_URI, Uri.encode(number))");
         Cursor cursorQuery = contentResolver.query(uriWithAppendedPath, new String[]{"display_name"}, null, null, null);
         if (cursorQuery != null) {
-            C12238m.checkNotNullExpressionValue(cursorQuery, "contentResolver.query(ur…ull, null) ?: return null");
+            m.checkNotNullExpressionValue(cursorQuery, "contentResolver.query(ur…ull, null) ?: return null");
             while (cursorQuery.moveToNext()) {
                 String string = cursorQuery.getString(0);
                 if (string != null) {
@@ -57,7 +58,7 @@ public final class ContactsProviderUtils {
     }
 
     public final boolean hasContactPermissions(Context ctx) {
-        C12238m.checkNotNullParameter(ctx, "ctx");
+        m.checkNotNullParameter(ctx, "ctx");
         return ContextCompat.checkSelfPermission(ctx, CONTACTS_PERMISSION) == 0;
     }
 }

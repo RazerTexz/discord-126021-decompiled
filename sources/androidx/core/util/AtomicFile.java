@@ -3,12 +3,12 @@ package androidx.core.util;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.d.b.a.a;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AtomicFile {
@@ -44,9 +44,9 @@ public class AtomicFile {
         if (this.mNewName.delete()) {
             return;
         }
-        StringBuilder sbM833U = C1643a.m833U("Failed to delete new file ");
-        sbM833U.append(this.mNewName);
-        Log.e(LOG_TAG, sbM833U.toString());
+        StringBuilder sbU = a.U("Failed to delete new file ");
+        sbU.append(this.mNewName);
+        Log.e(LOG_TAG, sbU.toString());
     }
 
     public void finishWrite(@Nullable FileOutputStream fileOutputStream) {
@@ -75,9 +75,9 @@ public class AtomicFile {
             rename(this.mLegacyBackupName, this.mBaseName);
         }
         if (this.mNewName.exists() && this.mBaseName.exists() && !this.mNewName.delete()) {
-            StringBuilder sbM833U = C1643a.m833U("Failed to delete outdated new file ");
-            sbM833U.append(this.mNewName);
-            Log.e(LOG_TAG, sbM833U.toString());
+            StringBuilder sbU = a.U("Failed to delete outdated new file ");
+            sbU.append(this.mNewName);
+            Log.e(LOG_TAG, sbU.toString());
         }
         return new FileInputStream(this.mBaseName);
     }
@@ -127,16 +127,16 @@ public class AtomicFile {
             return new FileOutputStream(this.mNewName);
         } catch (FileNotFoundException unused) {
             if (!this.mNewName.getParentFile().mkdirs()) {
-                StringBuilder sbM833U = C1643a.m833U("Failed to create directory for ");
-                sbM833U.append(this.mNewName);
-                throw new IOException(sbM833U.toString());
+                StringBuilder sbU = a.U("Failed to create directory for ");
+                sbU.append(this.mNewName);
+                throw new IOException(sbU.toString());
             }
             try {
                 return new FileOutputStream(this.mNewName);
             } catch (FileNotFoundException e) {
-                StringBuilder sbM833U2 = C1643a.m833U("Failed to create new file ");
-                sbM833U2.append(this.mNewName);
-                throw new IOException(sbM833U2.toString(), e);
+                StringBuilder sbU2 = a.U("Failed to create new file ");
+                sbU2.append(this.mNewName);
+                throw new IOException(sbU2.toString(), e);
             }
         }
     }

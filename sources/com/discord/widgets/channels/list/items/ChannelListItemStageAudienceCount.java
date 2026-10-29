@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemStageAudienceCount.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,7 +12,7 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
     private final int type;
 
     public ChannelListItemStageAudienceCount(Channel channel, int i) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.audienceSize = i;
         this.type = 16;
@@ -29,7 +29,7 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
     }
 
     public final ChannelListItemStageAudienceCount copy(Channel channel, int audienceSize) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemStageAudienceCount(channel, audienceSize);
     }
 
@@ -41,7 +41,7 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
             return false;
         }
         ChannelListItemStageAudienceCount channelListItemStageAudienceCount = (ChannelListItemStageAudienceCount) other;
-        return C12238m.areEqual(this.channel, channelListItemStageAudienceCount.channel) && this.audienceSize == channelListItemStageAudienceCount.audienceSize;
+        return m.areEqual(this.channel, channelListItemStageAudienceCount.channel) && this.audienceSize == channelListItemStageAudienceCount.audienceSize;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -64,7 +64,7 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
-        return ChannelListItem.DefaultImpls.getKey(this);
+        return ChannelListItem$DefaultImpls.getKey(this);
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload
@@ -78,9 +78,9 @@ public final /* data */ class ChannelListItemStageAudienceCount implements Chann
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemStageAudienceCount(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", audienceSize=");
-        return C1643a.m814B(sbM833U, this.audienceSize, ")");
+        StringBuilder sbU = a.U("ChannelListItemStageAudienceCount(channel=");
+        sbU.append(this.channel);
+        sbU.append(", audienceSize=");
+        return a.B(sbU, this.audienceSize, ")");
     }
 }

@@ -1,9 +1,9 @@
 package com.discord.api.report;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,6 +18,14 @@ public final /* data */ class ReportNode {
     private final String menu_name;
     private final String subheader;
 
+    public final List<ReportNodeChild> b() {
+        return this.children;
+    }
+
+    public final List<ReportNodeElement> c() {
+        return this.elements;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -26,7 +34,7 @@ public final /* data */ class ReportNode {
             return false;
         }
         ReportNode reportNode = (ReportNode) other;
-        return this.id == reportNode.id && C12238m.areEqual(this.menu_name, reportNode.menu_name) && C12238m.areEqual(this.header, reportNode.header) && C12238m.areEqual(this.subheader, reportNode.subheader) && C12238m.areEqual(this.info, reportNode.info) && C12238m.areEqual(this.description, reportNode.description) && C12238m.areEqual(this.children, reportNode.children) && C12238m.areEqual(this.elements, reportNode.elements) && C12238m.areEqual(this.button, reportNode.button);
+        return this.id == reportNode.id && m.areEqual(this.menu_name, reportNode.menu_name) && m.areEqual(this.header, reportNode.header) && m.areEqual(this.subheader, reportNode.subheader) && m.areEqual(this.info, reportNode.info) && m.areEqual(this.description, reportNode.description) && m.areEqual(this.children, reportNode.children) && m.areEqual(this.elements, reportNode.elements) && m.areEqual(this.button, reportNode.button);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -74,36 +82,26 @@ public final /* data */ class ReportNode {
         return iHashCode7 + (reportNodeBottomButton != null ? reportNodeBottomButton.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final List<ReportNodeChild> m8172b() {
-        return this.children;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<ReportNodeElement> m8173c() {
-        return this.elements;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ReportNode(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", menu_name=");
-        sbM833U.append(this.menu_name);
-        sbM833U.append(", header=");
-        sbM833U.append(this.header);
-        sbM833U.append(", subheader=");
-        sbM833U.append(this.subheader);
-        sbM833U.append(", info=");
-        sbM833U.append(this.info);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", children=");
-        sbM833U.append(this.children);
-        sbM833U.append(", elements=");
-        sbM833U.append(this.elements);
-        sbM833U.append(", button=");
-        sbM833U.append(this.button);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ReportNode(id=");
+        sbU.append(this.id);
+        sbU.append(", menu_name=");
+        sbU.append(this.menu_name);
+        sbU.append(", header=");
+        sbU.append(this.header);
+        sbU.append(", subheader=");
+        sbU.append(this.subheader);
+        sbU.append(", info=");
+        sbU.append(this.info);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", children=");
+        sbU.append(this.children);
+        sbU.append(", elements=");
+        sbU.append(this.elements);
+        sbU.append(", button=");
+        sbU.append(this.button);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

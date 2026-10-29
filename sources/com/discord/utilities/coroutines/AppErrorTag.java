@@ -1,28 +1,23 @@
 package com.discord.utilities.coroutines;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.CoroutineContext$Element;
+import kotlin.coroutines.CoroutineContext$Element$a;
+import kotlin.coroutines.CoroutineContext$Key;
 import kotlin.jvm.functions.Function2;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AppCoroutineScope.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class AppErrorTag implements CoroutineContext.Element {
+public final /* data */ class AppErrorTag implements CoroutineContext$Element {
     private final String errorTag;
-    private final CoroutineContext.Key<AppErrorTag> key;
-
-    /* JADX INFO: compiled from: AppCoroutineScope.kt */
-    public final class Key implements CoroutineContext.Key<AppErrorTag> {
-        public static final Key INSTANCE = new Key();
-
-        private Key() {
-        }
-    }
+    private final CoroutineContext$Key<AppErrorTag> key;
 
     public AppErrorTag(String str) {
-        C12238m.checkNotNullParameter(str, "errorTag");
+        m.checkNotNullParameter(str, "errorTag");
         this.errorTag = str;
-        this.key = Key.INSTANCE;
+        this.key = AppErrorTag$Key.INSTANCE;
     }
 
     public static /* synthetic */ AppErrorTag copy$default(AppErrorTag appErrorTag, String str, int i, Object obj) {
@@ -33,27 +28,27 @@ public final /* data */ class AppErrorTag implements CoroutineContext.Element {
     }
 
     public final AppErrorTag copy(String errorTag) {
-        C12238m.checkNotNullParameter(errorTag, "errorTag");
+        m.checkNotNullParameter(errorTag, "errorTag");
         return new AppErrorTag(errorTag);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof AppErrorTag) && C12238m.areEqual(this.errorTag, ((AppErrorTag) other).errorTag);
+            return (other instanceof AppErrorTag) && m.areEqual(this.errorTag, ((AppErrorTag) other).errorTag);
         }
         return true;
     }
 
     @Override // kotlin.coroutines.CoroutineContext
-    public <R> R fold(R r, Function2<? super R, ? super CoroutineContext.Element, ? extends R> function2) {
-        C12238m.checkNotNullParameter(function2, "operation");
-        return (R) CoroutineContext.Element.C12790a.fold(this, r, function2);
+    public <R> R fold(R r, Function2<? super R, ? super CoroutineContext$Element, ? extends R> function2) {
+        m.checkNotNullParameter(function2, "operation");
+        return (R) CoroutineContext$Element$a.fold(this, r, function2);
     }
 
-    @Override // kotlin.coroutines.CoroutineContext.Element, kotlin.coroutines.CoroutineContext
-    public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
-        C12238m.checkNotNullParameter(key, "key");
-        return (E) CoroutineContext.Element.C12790a.get(this, key);
+    @Override // kotlin.coroutines.CoroutineContext$Element, kotlin.coroutines.CoroutineContext
+    public <E extends CoroutineContext$Element> E get(CoroutineContext$Key<E> coroutineContext$Key) {
+        m.checkNotNullParameter(coroutineContext$Key, "key");
+        return (E) CoroutineContext$Element$a.get(this, coroutineContext$Key);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -65,8 +60,8 @@ public final /* data */ class AppErrorTag implements CoroutineContext.Element {
         return this.errorTag;
     }
 
-    @Override // kotlin.coroutines.CoroutineContext.Element
-    public CoroutineContext.Key<AppErrorTag> getKey() {
+    @Override // kotlin.coroutines.CoroutineContext$Element
+    public CoroutineContext$Key<AppErrorTag> getKey() {
         return this.key;
     }
 
@@ -79,18 +74,18 @@ public final /* data */ class AppErrorTag implements CoroutineContext.Element {
     }
 
     @Override // kotlin.coroutines.CoroutineContext
-    public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
-        C12238m.checkNotNullParameter(key, "key");
-        return CoroutineContext.Element.C12790a.minusKey(this, key);
+    public CoroutineContext minusKey(CoroutineContext$Key<?> coroutineContext$Key) {
+        m.checkNotNullParameter(coroutineContext$Key, "key");
+        return CoroutineContext$Element$a.minusKey(this, coroutineContext$Key);
     }
 
     @Override // kotlin.coroutines.CoroutineContext
     public CoroutineContext plus(CoroutineContext coroutineContext) {
-        C12238m.checkNotNullParameter(coroutineContext, "context");
-        return CoroutineContext.Element.C12790a.plus(this, coroutineContext);
+        m.checkNotNullParameter(coroutineContext, "context");
+        return CoroutineContext$Element$a.plus(this, coroutineContext);
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("AppErrorTag(errorTag="), this.errorTag, ")");
+        return a.J(a.U("AppErrorTag(errorTag="), this.errorTag, ")");
     }
 }

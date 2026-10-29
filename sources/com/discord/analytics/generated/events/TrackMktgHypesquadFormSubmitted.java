@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
 import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMktgHypesquadFormSubmitted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class TrackMktgHypesquadFormSubmitted implements Analyti
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackMktgHypesquadFormSubmitted) && C12238m.areEqual(this.referredByCode, ((TrackMktgHypesquadFormSubmitted) other).referredByCode);
+            return (other instanceof TrackMktgHypesquadFormSubmitted) && m.areEqual(this.referredByCode, ((TrackMktgHypesquadFormSubmitted) other).referredByCode);
         }
         return true;
     }
@@ -38,6 +38,6 @@ public final /* data */ class TrackMktgHypesquadFormSubmitted implements Analyti
     }
 
     public String toString() {
-        return C1643a.m817E(C1643a.m833U("TrackMktgHypesquadFormSubmitted(referredByCode="), this.referredByCode, ")");
+        return a.E(a.U("TrackMktgHypesquadFormSubmitted(referredByCode="), this.referredByCode, ")");
     }
 }

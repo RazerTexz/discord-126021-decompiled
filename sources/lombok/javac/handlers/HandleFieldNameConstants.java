@@ -2,17 +2,27 @@ package lombok.javac.handlers;
 
 import com.discord.api.permission.Permission;
 import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCAnnotation;
+import com.sun.tools.javac.tree.JCTree$JCBlock;
+import com.sun.tools.javac.tree.JCTree$JCClassDecl;
+import com.sun.tools.javac.tree.JCTree$JCIdent;
+import com.sun.tools.javac.tree.JCTree$JCMethodDecl;
+import com.sun.tools.javac.tree.JCTree$JCModifiers;
+import com.sun.tools.javac.tree.JCTree$JCNewClass;
+import com.sun.tools.javac.tree.JCTree$JCVariableDecl;
 import com.sun.tools.javac.util.Name;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.ConfigurationKeys;
-import lombok.core.AST;
+import lombok.core.AST$Kind;
 import lombok.core.AnnotationValues;
 import lombok.core.configuration.IdentifierName;
 import lombok.core.handlers.HandlerUtil;
 import lombok.experimental.FieldNameConstants;
+import lombok.experimental.FieldNameConstants$Exclude;
+import lombok.experimental.FieldNameConstants$Include;
 import lombok.javac.JavacAnnotationHandler;
 import lombok.javac.JavacNode;
 import lombok.javac.JavacTreeMaker;
@@ -22,7 +32,7 @@ public class HandleFieldNameConstants extends JavacAnnotationHandler<FieldNameCo
     private static final IdentifierName FIELDS = IdentifierName.valueOf("Fields");
 
     public void generateFieldNameConstantsForType(JavacNode typeNode, JavacNode errorNode, AccessLevel level, boolean asEnum, IdentifierName innerTypeName, boolean onlyExplicit, boolean uppercase) {
-        JCTree.JCClassDecl typeDecl = typeNode.get() instanceof JCTree.JCClassDecl ? (JCTree.JCClassDecl) typeNode.get() : null;
+        JCTree$JCClassDecl typeDecl = typeNode.get() instanceof JCTree$JCClassDecl ? (JCTree$JCClassDecl) typeNode.get() : null;
         long modifiers = typeDecl == null ? 0L : typeDecl.mods.flags;
         boolean notAClass = (modifiers & 8704) != 0;
         if (typeDecl == null || notAClass) {
@@ -43,11 +53,11 @@ public class HandleFieldNameConstants extends JavacAnnotationHandler<FieldNameCo
     }
 
     private boolean fieldQualifiesForFieldNameConstantsGeneration(JavacNode field, boolean onlyExplicit) {
-        if (field.getKind() != AST.Kind.FIELD) {
+        if (field.getKind() != AST$Kind.FIELD) {
             return false;
         }
-        boolean exclAnn = JavacHandlerUtil.hasAnnotationAndDeleteIfNeccessary(FieldNameConstants.Exclude.class, field);
-        boolean inclAnn = JavacHandlerUtil.hasAnnotationAndDeleteIfNeccessary(FieldNameConstants.Include.class, field);
+        boolean exclAnn = JavacHandlerUtil.hasAnnotationAndDeleteIfNeccessary(FieldNameConstants$Exclude.class, field);
+        boolean inclAnn = JavacHandlerUtil.hasAnnotationAndDeleteIfNeccessary(FieldNameConstants$Include.class, field);
         if (exclAnn) {
             return false;
         }
@@ -57,20 +67,20 @@ public class HandleFieldNameConstants extends JavacAnnotationHandler<FieldNameCo
         if (onlyExplicit) {
             return false;
         }
-        JCTree.JCVariableDecl fieldDecl = field.get();
+        JCTree$JCVariableDecl fieldDecl = field.get();
         return !fieldDecl.name.toString().startsWith("$") && (fieldDecl.mods.flags & 8) == 0;
     }
 
     @Override // lombok.javac.JavacAnnotationHandler
-    public void handle(AnnotationValues<FieldNameConstants> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
+    public void handle(AnnotationValues<FieldNameConstants> annotation, JCTree$JCAnnotation ast, JavacNode annotationNode) {
         HandlerUtil.handleExperimentalFlagUsage(annotationNode, ConfigurationKeys.FIELD_NAME_CONSTANTS_FLAG_USAGE, "@FieldNameConstants");
         JavacHandlerUtil.deleteAnnotationIfNeccessary(annotationNode, (Class<? extends Annotation>) FieldNameConstants.class);
         JavacHandlerUtil.deleteImportFromCompilationUnit(annotationNode, "lombok.AccessLevel");
-        JavacNode node = annotationNode.m10925up();
+        JavacNode node = annotationNode.up();
         FieldNameConstants annotationInstance = annotation.getInstance();
         AccessLevel level = annotationInstance.level();
         boolean asEnum = annotationInstance.asEnum();
-        boolean usingLombokv1_18_2 = annotation.isExplicit("prefix") || annotation.isExplicit("suffix") || node.getKind() == AST.Kind.FIELD;
+        boolean usingLombokv1_18_2 = annotation.isExplicit("prefix") || annotation.isExplicit("suffix") || node.getKind() == AST$Kind.FIELD;
         if (usingLombokv1_18_2) {
             annotationNode.addError("@FieldNameConstants has been redesigned in lombok v1.18.4; please upgrade your project dependency on lombok. See https://projectlombok.org/features/experimental/FieldNameConstants for more information.");
             return;
@@ -99,22 +109,22 @@ public class HandleFieldNameConstants extends JavacAnnotationHandler<FieldNameCo
 
     private void createInnerTypeFieldNameConstants(JavacNode typeNode, JavacNode errorNode, JCTree pos, AccessLevel level, List<JavacNode> fields, boolean asEnum, IdentifierName innerTypeName, boolean uppercase) {
         boolean genConstr;
-        JCTree.JCIdent jCIdentChainDots;
-        JCTree.JCNewClass jCNewClassLiteral;
+        JCTree$JCIdent jCTree$JCIdentChainDots;
+        JCTree$JCNewClass jCTree$JCNewClassLiteral;
         if (fields.isEmpty()) {
             return;
         }
         JavacTreeMaker maker = typeNode.getTreeMaker();
-        JCTree.JCModifiers mods = maker.Modifiers(JavacHandlerUtil.toJavacModifier(level) | (asEnum ? 16384 : 24));
+        JCTree$JCModifiers mods = maker.Modifiers(JavacHandlerUtil.toJavacModifier(level) | (asEnum ? 16384 : 24));
         Name fieldsName = typeNode.toName(innerTypeName.getName());
         JavacNode fieldsType = JavacHandlerUtil.findInnerClass(typeNode, innerTypeName.getName());
         if (fieldsType == null) {
-            JCTree.JCClassDecl innerType = maker.ClassDef(mods, fieldsName, com.sun.tools.javac.util.List.nil(), null, com.sun.tools.javac.util.List.nil(), com.sun.tools.javac.util.List.nil());
+            JCTree$JCClassDecl innerType = maker.ClassDef(mods, fieldsName, com.sun.tools.javac.util.List.nil(), null, com.sun.tools.javac.util.List.nil(), com.sun.tools.javac.util.List.nil());
             fieldsType = JavacHandlerUtil.injectType(typeNode, innerType);
             JavacHandlerUtil.recursiveSetGeneratedBy(innerType, pos, typeNode.getContext());
             genConstr = true;
         } else {
-            JCTree.JCClassDecl builderTypeDeclaration = fieldsType.get();
+            JCTree$JCClassDecl builderTypeDeclaration = fieldsType.get();
             long f = builderTypeDeclaration.getModifiers().flags;
             if (asEnum && (f & Permission.EMBED_LINKS) == 0) {
                 errorNode.addError("Existing " + innerTypeName + " must be declared as an 'enum'.");
@@ -124,38 +134,38 @@ public class HandleFieldNameConstants extends JavacAnnotationHandler<FieldNameCo
                     errorNode.addError("Existing " + innerTypeName + " must be declared as a 'static class'.");
                     return;
                 }
-                genConstr = JavacHandlerUtil.constructorExists(fieldsType) == JavacHandlerUtil.MemberExistsResult.NOT_EXISTS;
+                genConstr = JavacHandlerUtil.constructorExists(fieldsType) == JavacHandlerUtil$MemberExistsResult.NOT_EXISTS;
             }
         }
         if (genConstr) {
-            JCTree.JCModifiers genConstrMods = maker.Modifiers(Permission.CREATE_PRIVATE_THREADS | (asEnum ? 0L : 2L));
-            JCTree.JCBlock genConstrBody = maker.Block(0L, com.sun.tools.javac.util.List.of(maker.Exec(maker.Apply(com.sun.tools.javac.util.List.nil(), maker.Ident(typeNode.toName("super")), com.sun.tools.javac.util.List.nil()))));
-            JCTree.JCMethodDecl c = maker.MethodDef(genConstrMods, typeNode.toName("<init>"), null, com.sun.tools.javac.util.List.nil(), com.sun.tools.javac.util.List.nil(), com.sun.tools.javac.util.List.nil(), genConstrBody, null);
+            JCTree$JCModifiers genConstrMods = maker.Modifiers(Permission.CREATE_PRIVATE_THREADS | (asEnum ? 0L : 2L));
+            JCTree$JCBlock genConstrBody = maker.Block(0L, com.sun.tools.javac.util.List.of(maker.Exec(maker.Apply(com.sun.tools.javac.util.List.nil(), maker.Ident(typeNode.toName("super")), com.sun.tools.javac.util.List.nil()))));
+            JCTree$JCMethodDecl c = maker.MethodDef(genConstrMods, typeNode.toName("<init>"), null, com.sun.tools.javac.util.List.nil(), com.sun.tools.javac.util.List.nil(), com.sun.tools.javac.util.List.nil(), genConstrBody, null);
             JavacHandlerUtil.recursiveSetGeneratedBy(c, pos, typeNode.getContext());
             JavacHandlerUtil.injectMethod(fieldsType, c);
         }
-        List<JCTree.JCVariableDecl> generated = new ArrayList<>();
+        List<JCTree$JCVariableDecl> generated = new ArrayList<>();
         for (JavacNode field : fields) {
             Name fName = field.get().name;
             if (uppercase) {
                 fName = typeNode.toName(HandlerUtil.camelCaseToConstant(fName.toString()));
             }
-            if (JavacHandlerUtil.fieldExists(fName.toString(), fieldsType) == JavacHandlerUtil.MemberExistsResult.NOT_EXISTS) {
-                JCTree.JCModifiers constantValueMods = maker.Modifiers(25 | (asEnum ? Permission.EMBED_LINKS : 0L));
+            if (JavacHandlerUtil.fieldExists(fName.toString(), fieldsType) == JavacHandlerUtil$MemberExistsResult.NOT_EXISTS) {
+                JCTree$JCModifiers constantValueMods = maker.Modifiers(25 | (asEnum ? Permission.EMBED_LINKS : 0L));
                 if (asEnum) {
-                    jCIdentChainDots = maker.Ident(fieldsName);
-                    jCNewClassLiteral = maker.NewClass(null, com.sun.tools.javac.util.List.nil(), maker.Ident(fieldsName), com.sun.tools.javac.util.List.nil(), null);
+                    jCTree$JCIdentChainDots = maker.Ident(fieldsName);
+                    jCTree$JCNewClassLiteral = maker.NewClass(null, com.sun.tools.javac.util.List.nil(), maker.Ident(fieldsName), com.sun.tools.javac.util.List.nil(), null);
                 } else {
-                    jCIdentChainDots = JavacHandlerUtil.chainDots(field, "java", "lang", "String");
-                    jCNewClassLiteral = maker.Literal(field.getName());
+                    jCTree$JCIdentChainDots = JavacHandlerUtil.chainDots(field, "java", "lang", "String");
+                    jCTree$JCNewClassLiteral = maker.Literal(field.getName());
                 }
-                JCTree.JCVariableDecl constantField = maker.VarDef(constantValueMods, fName, jCIdentChainDots, jCNewClassLiteral);
+                JCTree$JCVariableDecl constantField = maker.VarDef(constantValueMods, fName, jCTree$JCIdentChainDots, jCTree$JCNewClassLiteral);
                 JavacHandlerUtil.injectField(fieldsType, constantField, false, true);
                 JavacHandlerUtil.setGeneratedBy(constantField, pos, typeNode.getContext());
                 generated.add(constantField);
             }
         }
-        for (JCTree.JCVariableDecl cf : generated) {
+        for (JCTree$JCVariableDecl cf : generated) {
             JavacHandlerUtil.recursiveSetGeneratedBy(cf, pos, typeNode.getContext());
         }
     }

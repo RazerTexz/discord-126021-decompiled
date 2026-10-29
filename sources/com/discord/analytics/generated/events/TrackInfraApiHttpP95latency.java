@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackInfraApiHttpP95latency.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public final /* data */ class TrackInfraApiHttpP95latency implements AnalyticsSc
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackInfraApiHttpP95latency) && C12238m.areEqual(this.p95Latency, ((TrackInfraApiHttpP95latency) other).p95Latency);
+            return (other instanceof TrackInfraApiHttpP95latency) && m.areEqual(this.p95Latency, ((TrackInfraApiHttpP95latency) other).p95Latency);
         }
         return true;
     }
@@ -35,9 +35,9 @@ public final /* data */ class TrackInfraApiHttpP95latency implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackInfraApiHttpP95latency(p95Latency=");
-        sbM833U.append(this.p95Latency);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TrackInfraApiHttpP95latency(p95Latency=");
+        sbU.append(this.p95Latency);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

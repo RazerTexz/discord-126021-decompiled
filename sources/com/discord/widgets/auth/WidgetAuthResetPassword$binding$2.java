@@ -2,16 +2,16 @@ package com.discord.widgets.auth;
 
 import android.view.View;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.databinding.WidgetAuthResetPasswordBinding;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetAuthResetPassword.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetAuthResetPassword$binding$2 extends C12236k implements Function1<View, WidgetAuthResetPasswordBinding> {
+public final /* synthetic */ class WidgetAuthResetPassword$binding$2 extends k implements Function1<View, WidgetAuthResetPasswordBinding> {
     public static final WidgetAuthResetPassword$binding$2 INSTANCE = new WidgetAuthResetPassword$binding$2();
 
     public WidgetAuthResetPassword$binding$2() {
@@ -19,13 +19,18 @@ public final /* synthetic */ class WidgetAuthResetPassword$binding$2 extends C12
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetAuthResetPasswordBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.auth_reset_password_back;
-        MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.auth_reset_password_back);
+    public /* bridge */ /* synthetic */ WidgetAuthResetPasswordBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetAuthResetPasswordBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.auth_reset_password_back;
+        MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.auth_reset_password_back);
         if (materialButton != null) {
-            i = C5419R.id.auth_reset_password_submit;
-            MaterialButton materialButton2 = (MaterialButton) view.findViewById(C5419R.id.auth_reset_password_submit);
+            i = R$id.auth_reset_password_submit;
+            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.auth_reset_password_submit);
             if (materialButton2 != null) {
                 return new WidgetAuthResetPasswordBinding((CoordinatorLayout) view, materialButton, materialButton2);
             }

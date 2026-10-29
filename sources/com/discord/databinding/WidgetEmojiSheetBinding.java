@@ -13,97 +13,81 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetEmojiSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final AppViewFlipper f16565a;
+    public final AppViewFlipper a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FrameLayout f16566b;
+    public final FrameLayout f2377b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16567c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f16568d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final AppViewFlipper f16569e;
+    public final AppViewFlipper e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final MaterialButton f16570f;
+    public final MaterialButton f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final FrameLayout f16571g;
+    public final FrameLayout g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final MaterialButton f16572h;
+    public final MaterialButton h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f16573i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final FrameLayout f16574j;
+    public final FrameLayout j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final LinearLayout f16575k;
+    public final LinearLayout k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final TextView f16576l;
+    public final TextView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final SimpleDraweeView f16577m;
+    public final SimpleDraweeView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f16578n;
+    public final TextView n;
 
-    /* JADX INFO: renamed from: o */
     @NonNull
-    public final MaterialButton f16579o;
+    public final MaterialButton o;
 
-    /* JADX INFO: renamed from: p */
     @NonNull
-    public final TextView f16580p;
+    public final TextView p;
 
-    /* JADX INFO: renamed from: q */
     @NonNull
-    public final MaterialButton f16581q;
+    public final MaterialButton q;
 
     public WidgetEmojiSheetBinding(@NonNull AppViewFlipper appViewFlipper, @NonNull TextView textView, @NonNull FrameLayout frameLayout, @NonNull View view, @NonNull TextView textView2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull AppViewFlipper appViewFlipper2, @NonNull MaterialButton materialButton, @NonNull FrameLayout frameLayout2, @NonNull MaterialButton materialButton2, @NonNull TextView textView3, @NonNull FrameLayout frameLayout3, @NonNull LinearLayout linearLayout, @NonNull TextView textView4, @NonNull SimpleDraweeView simpleDraweeView2, @NonNull TextView textView5, @NonNull MaterialButton materialButton3, @NonNull TextView textView6, @NonNull MaterialButton materialButton4) {
-        this.f16565a = appViewFlipper;
-        this.f16566b = frameLayout;
-        this.f16567c = textView2;
-        this.f16568d = simpleDraweeView;
-        this.f16569e = appViewFlipper2;
-        this.f16570f = materialButton;
-        this.f16571g = frameLayout2;
-        this.f16572h = materialButton2;
-        this.f16573i = textView3;
-        this.f16574j = frameLayout3;
-        this.f16575k = linearLayout;
-        this.f16576l = textView4;
-        this.f16577m = simpleDraweeView2;
-        this.f16578n = textView5;
-        this.f16579o = materialButton3;
-        this.f16580p = textView6;
-        this.f16581q = materialButton4;
+        this.a = appViewFlipper;
+        this.f2377b = frameLayout;
+        this.c = textView2;
+        this.d = simpleDraweeView;
+        this.e = appViewFlipper2;
+        this.f = materialButton;
+        this.g = frameLayout2;
+        this.h = materialButton2;
+        this.i = textView3;
+        this.j = frameLayout3;
+        this.k = linearLayout;
+        this.l = textView4;
+        this.m = simpleDraweeView2;
+        this.n = textView5;
+        this.o = materialButton3;
+        this.p = textView6;
+        this.q = materialButton4;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16565a;
+        return this.a;
     }
 }

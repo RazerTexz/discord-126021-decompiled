@@ -1,7 +1,7 @@
 package com.discord.models.gifpicker.dto;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrendingGifPreviewDto.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -9,7 +9,7 @@ public final /* data */ class TrendingGifPreviewDto {
     private final String src;
 
     public TrendingGifPreviewDto(String str) {
-        C12238m.checkNotNullParameter(str, "src");
+        m.checkNotNullParameter(str, "src");
         this.src = str;
     }
 
@@ -21,13 +21,13 @@ public final /* data */ class TrendingGifPreviewDto {
     }
 
     public final TrendingGifPreviewDto copy(String src) {
-        C12238m.checkNotNullParameter(src, "src");
+        m.checkNotNullParameter(src, "src");
         return new TrendingGifPreviewDto(src);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrendingGifPreviewDto) && C12238m.areEqual(this.src, ((TrendingGifPreviewDto) other).src);
+            return (other instanceof TrendingGifPreviewDto) && m.areEqual(this.src, ((TrendingGifPreviewDto) other).src);
         }
         return true;
     }
@@ -50,6 +50,6 @@ public final /* data */ class TrendingGifPreviewDto {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("TrendingGifPreviewDto(src="), this.src, ")");
+        return a.J(a.U("TrendingGifPreviewDto(src="), this.src, ")");
     }
 }

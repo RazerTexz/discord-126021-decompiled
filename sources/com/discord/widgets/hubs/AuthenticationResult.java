@@ -1,31 +1,16 @@
 package com.discord.widgets.hubs;
 
+import a0.a.a.b;
 import android.os.Parcel;
-import android.os.Parcelable;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: WidgetHubAuthenticationlViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class AuthenticationResult implements MultipleDomainResult {
-    public static final Parcelable.Creator<AuthenticationResult> CREATOR = new Creator();
+    public static final Parcelable$Creator<AuthenticationResult> CREATOR = new AuthenticationResult$Creator();
     private final long guildId;
-
-    public final class Creator implements Parcelable.Creator<AuthenticationResult> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final AuthenticationResult createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            return new AuthenticationResult(parcel.readLong());
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final AuthenticationResult[] newArray(int i) {
-            return new AuthenticationResult[i];
-        }
-    }
 
     public AuthenticationResult(long j) {
         this.guildId = j;
@@ -64,16 +49,16 @@ public final /* data */ class AuthenticationResult implements MultipleDomainResu
     }
 
     public int hashCode() {
-        return C0002b.m3a(this.guildId);
+        return b.a(this.guildId);
     }
 
     public String toString() {
-        return C1643a.m815C(C1643a.m833U("AuthenticationResult(guildId="), this.guildId, ")");
+        return a.C(a.U("AuthenticationResult(guildId="), this.guildId, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeLong(this.guildId);
     }
 }

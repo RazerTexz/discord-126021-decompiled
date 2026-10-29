@@ -8,27 +8,11 @@ import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class ActivityResultContract<I, O> {
-
-    public final class SynchronousResult<T> {
-
-        @SuppressLint({"UnknownNullness"})
-        private final T mValue;
-
-        public SynchronousResult(@SuppressLint({"UnknownNullness"}) T t) {
-            this.mValue = t;
-        }
-
-        @SuppressLint({"UnknownNullness"})
-        public T getValue() {
-            return this.mValue;
-        }
-    }
-
     @NonNull
     public abstract Intent createIntent(@NonNull Context context, @SuppressLint({"UnknownNullness"}) I i);
 
     @Nullable
-    public SynchronousResult<O> getSynchronousResult(@NonNull Context context, @SuppressLint({"UnknownNullness"}) I i) {
+    public ActivityResultContract$SynchronousResult<O> getSynchronousResult(@NonNull Context context, @SuppressLint({"UnknownNullness"}) I i) {
         return null;
     }
 

@@ -1,7 +1,7 @@
 package com.discord.api.botuikit;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ButtonComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class ButtonComponent extends ActionComponent {
             return false;
         }
         ButtonComponent buttonComponent = (ButtonComponent) other;
-        return C12238m.areEqual(this.type, buttonComponent.type) && C12238m.areEqual(this.customId, buttonComponent.customId) && C12238m.areEqual(this.label, buttonComponent.label) && C12238m.areEqual(this.style, buttonComponent.style) && this.disabled == buttonComponent.disabled && C12238m.areEqual(this.emoji, buttonComponent.emoji) && C12238m.areEqual(this.url, buttonComponent.url);
+        return m.areEqual(this.type, buttonComponent.type) && m.areEqual(this.customId, buttonComponent.customId) && m.areEqual(this.label, buttonComponent.label) && m.areEqual(this.style, buttonComponent.style) && this.disabled == buttonComponent.disabled && m.areEqual(this.emoji, buttonComponent.emoji) && m.areEqual(this.url, buttonComponent.url);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -87,19 +87,19 @@ public final /* data */ class ButtonComponent extends ActionComponent {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ButtonComponent(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", customId=");
-        sbM833U.append(this.customId);
-        sbM833U.append(", label=");
-        sbM833U.append(this.label);
-        sbM833U.append(", style=");
-        sbM833U.append(this.style);
-        sbM833U.append(", disabled=");
-        sbM833U.append(this.disabled);
-        sbM833U.append(", emoji=");
-        sbM833U.append(this.emoji);
-        sbM833U.append(", url=");
-        return C1643a.m822J(sbM833U, this.url, ")");
+        StringBuilder sbU = a.U("ButtonComponent(type=");
+        sbU.append(this.type);
+        sbU.append(", customId=");
+        sbU.append(this.customId);
+        sbU.append(", label=");
+        sbU.append(this.label);
+        sbU.append(", style=");
+        sbU.append(this.style);
+        sbU.append(", disabled=");
+        sbU.append(this.disabled);
+        sbU.append(", emoji=");
+        sbU.append(this.emoji);
+        sbU.append(", url=");
+        return a.J(sbU, this.url, ")");
     }
 }

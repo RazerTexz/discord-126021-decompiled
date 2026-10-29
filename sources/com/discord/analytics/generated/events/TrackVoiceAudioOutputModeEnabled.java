@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVoiceAudioOutputModeEnabled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackVoiceAudioOutputModeEnabled implements Analyt
             return false;
         }
         TrackVoiceAudioOutputModeEnabled trackVoiceAudioOutputModeEnabled = (TrackVoiceAudioOutputModeEnabled) other;
-        return C12238m.areEqual(this.channelId, trackVoiceAudioOutputModeEnabled.channelId) && C12238m.areEqual(this.channelType, trackVoiceAudioOutputModeEnabled.channelType) && C12238m.areEqual(this.guildId, trackVoiceAudioOutputModeEnabled.guildId) && C12238m.areEqual(this.rtcConnectionId, trackVoiceAudioOutputModeEnabled.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackVoiceAudioOutputModeEnabled.mediaSessionId) && C12238m.areEqual(this.fromAudioOutputMode, trackVoiceAudioOutputModeEnabled.fromAudioOutputMode) && C12238m.areEqual(this.toAudioOutputMode, trackVoiceAudioOutputModeEnabled.toAudioOutputMode) && C12238m.areEqual(this.videoStreamCount, trackVoiceAudioOutputModeEnabled.videoStreamCount) && C12238m.areEqual(this.voiceStateCount, trackVoiceAudioOutputModeEnabled.voiceStateCount);
+        return m.areEqual(this.channelId, trackVoiceAudioOutputModeEnabled.channelId) && m.areEqual(this.channelType, trackVoiceAudioOutputModeEnabled.channelType) && m.areEqual(this.guildId, trackVoiceAudioOutputModeEnabled.guildId) && m.areEqual(this.rtcConnectionId, trackVoiceAudioOutputModeEnabled.rtcConnectionId) && m.areEqual(this.mediaSessionId, trackVoiceAudioOutputModeEnabled.mediaSessionId) && m.areEqual(this.fromAudioOutputMode, trackVoiceAudioOutputModeEnabled.fromAudioOutputMode) && m.areEqual(this.toAudioOutputMode, trackVoiceAudioOutputModeEnabled.toAudioOutputMode) && m.areEqual(this.videoStreamCount, trackVoiceAudioOutputModeEnabled.videoStreamCount) && m.areEqual(this.voiceStateCount, trackVoiceAudioOutputModeEnabled.voiceStateCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,23 +60,23 @@ public final /* data */ class TrackVoiceAudioOutputModeEnabled implements Analyt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVoiceAudioOutputModeEnabled(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", fromAudioOutputMode=");
-        sbM833U.append(this.fromAudioOutputMode);
-        sbM833U.append(", toAudioOutputMode=");
-        sbM833U.append(this.toAudioOutputMode);
-        sbM833U.append(", videoStreamCount=");
-        sbM833U.append(this.videoStreamCount);
-        sbM833U.append(", voiceStateCount=");
-        return C1643a.m819G(sbM833U, this.voiceStateCount, ")");
+        StringBuilder sbU = a.U("TrackVoiceAudioOutputModeEnabled(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", fromAudioOutputMode=");
+        sbU.append(this.fromAudioOutputMode);
+        sbU.append(", toAudioOutputMode=");
+        sbU.append(this.toAudioOutputMode);
+        sbU.append(", videoStreamCount=");
+        sbU.append(this.videoStreamCount);
+        sbU.append(", voiceStateCount=");
+        return a.G(sbU, this.voiceStateCount, ")");
     }
 }

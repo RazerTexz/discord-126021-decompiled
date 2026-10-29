@@ -1,7 +1,7 @@
 package com.discord.models.gifpicker.dto;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GifDto.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,8 +12,8 @@ public final /* data */ class GifDto {
     private final int width;
 
     public GifDto(String str, String str2, int i, int i2) {
-        C12238m.checkNotNullParameter(str, "src");
-        C12238m.checkNotNullParameter(str2, "url");
+        m.checkNotNullParameter(str, "src");
+        m.checkNotNullParameter(str2, "url");
         this.src = str;
         this.url = str2;
         this.width = i;
@@ -37,8 +37,8 @@ public final /* data */ class GifDto {
     }
 
     public final GifDto copy(String src, String url, int width, int height) {
-        C12238m.checkNotNullParameter(src, "src");
-        C12238m.checkNotNullParameter(url, "url");
+        m.checkNotNullParameter(src, "src");
+        m.checkNotNullParameter(url, "url");
         return new GifDto(src, url, width, height);
     }
 
@@ -50,7 +50,7 @@ public final /* data */ class GifDto {
             return false;
         }
         GifDto gifDto = (GifDto) other;
-        return C12238m.areEqual(this.src, gifDto.src) && C12238m.areEqual(this.url, gifDto.url) && this.width == gifDto.width && this.height == gifDto.height;
+        return m.areEqual(this.src, gifDto.src) && m.areEqual(this.url, gifDto.url) && this.width == gifDto.width && this.height == gifDto.height;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -97,13 +97,13 @@ public final /* data */ class GifDto {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GifDto(src=");
-        sbM833U.append(this.src);
-        sbM833U.append(", url=");
-        sbM833U.append(this.url);
-        sbM833U.append(", width=");
-        sbM833U.append(this.width);
-        sbM833U.append(", height=");
-        return C1643a.m814B(sbM833U, this.height, ")");
+        StringBuilder sbU = a.U("GifDto(src=");
+        sbU.append(this.src);
+        sbU.append(", url=");
+        sbU.append(this.url);
+        sbU.append(", width=");
+        sbU.append(this.width);
+        sbU.append(", height=");
+        return a.B(sbU, this.height, ")");
     }
 }

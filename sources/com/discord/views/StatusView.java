@@ -4,17 +4,18 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint$Style;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+import android.widget.ImageView$ScaleType;
 import androidx.annotation.Px;
 import androidx.appcompat.widget.AppCompatImageView;
-import com.discord.C5419R;
+import com.discord.R$a;
 import com.discord.api.presence.ClientStatus;
 import com.discord.api.presence.ClientStatuses;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.presence.Presence;
 import com.discord.utilities.presence.PresenceUtils;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StatusView.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -35,19 +36,19 @@ public final class StatusView extends AppCompatImageView {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public StatusView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         this.cornerRadius = 2.0f;
         this.showMobile = true;
         this.isCircle = true;
         setAdjustViewBounds(true);
-        setScaleType(ImageView.ScaleType.FIT_XY);
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C5419R.a.StatusView, 0, 0);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…yleable.StatusView, 0, 0)");
+        setScaleType(ImageView$ScaleType.FIT_XY);
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$a.StatusView, 0, 0);
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…yleable.StatusView, 0, 0)");
         try {
             setBorderWidth((int) typedArrayObtainStyledAttributes.getDimension(1, 0.0f));
             int color = typedArrayObtainStyledAttributes.getColor(0, 0);
             Paint paint = new Paint();
-            paint.setStyle(Paint.Style.FILL);
+            paint.setStyle(Paint$Style.FILL);
             paint.setColor(color);
             paint.setAntiAlias(true);
             this.backgroundPaint = paint;
@@ -60,14 +61,14 @@ public final class StatusView extends AppCompatImageView {
 
     @Override // android.widget.ImageView, android.view.View
     public void onDraw(Canvas canvas) {
-        C12238m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(canvas, "canvas");
         if (this.isCircle) {
             float width = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
             float width2 = getWidth() / 2.0f;
             Paint paint = this.backgroundPaint;
             if (paint == null) {
-                C12238m.throwUninitializedPropertyAccessException("backgroundPaint");
+                m.throwUninitializedPropertyAccessException("backgroundPaint");
             }
             canvas.drawCircle(width, height, width2, paint);
         } else {
@@ -76,7 +77,7 @@ public final class StatusView extends AppCompatImageView {
             float f = this.cornerRadius;
             Paint paint2 = this.backgroundPaint;
             if (paint2 == null) {
-                C12238m.throwUninitializedPropertyAccessException("backgroundPaint");
+                m.throwUninitializedPropertyAccessException("backgroundPaint");
             }
             canvas.drawRoundRect(0.0f, 0.0f, width3, height2, f, f, paint2);
         }
@@ -86,7 +87,7 @@ public final class StatusView extends AppCompatImageView {
     @Override // android.view.View
     public void setBackgroundColor(int color) {
         Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint$Style.FILL);
         paint.setColor(color);
         paint.setAntiAlias(true);
         this.backgroundPaint = paint;
@@ -108,26 +109,26 @@ public final class StatusView extends AppCompatImageView {
         ClientStatuses clientStatuses2;
         if (!this.showMobile || presence == null || (clientStatuses2 = presence.getClientStatuses()) == null || !PresenceUtils.INSTANCE.isMobile(clientStatuses2)) {
             if ((presence != null ? PresenceUtils.INSTANCE.getStreamingActivity(presence) : null) != null) {
-                i = C5419R.drawable.ic_status_streaming_16dp;
+                i = 2131232164;
             } else {
                 ClientStatus status = presence != null ? presence.getStatus() : null;
                 if (status != null) {
                     int iOrdinal = status.ordinal();
                     if (iOrdinal == 0) {
-                        i = C5419R.drawable.ic_status_online_16dp;
+                        i = 2131232163;
                     } else if (iOrdinal == 1) {
-                        i = C5419R.drawable.ic_status_idle_16dp;
+                        i = 2131232161;
                     } else if (iOrdinal != 2) {
-                        i = C5419R.drawable.ic_status_invisible_16dp;
+                        i = 2131232162;
                     } else {
-                        i = C5419R.drawable.ic_status_dnd_16dp;
+                        i = 2131232160;
                     }
                 } else {
-                    i = C5419R.drawable.ic_status_invisible_16dp;
+                    i = 2131232162;
                 }
             }
         } else {
-            i = C5419R.drawable.ic_mobile;
+            i = 2131231936;
         }
         setImageResource(i);
         this.isCircle = !(this.showMobile && presence != null && (clientStatuses = presence.getClientStatuses()) != null && PresenceUtils.INSTANCE.isMobile(clientStatuses));

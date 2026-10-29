@@ -5,7 +5,7 @@ import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ArrayCreatingInputMerger extends InputMerger {
@@ -42,13 +42,13 @@ public final class ArrayCreatingInputMerger extends InputMerger {
     @Override // androidx.work.InputMerger
     @NonNull
     public Data merge(@NonNull List<Data> list) {
-        Data.Builder builder = new Data.Builder();
+        Data$Builder data$Builder = new Data$Builder();
         HashMap map = new HashMap();
         Iterator<Data> it = list.iterator();
         while (it.hasNext()) {
-            for (Map.Entry<String, Object> entry : it.next().getKeyValueMap().entrySet()) {
-                String key = entry.getKey();
-                Object value = entry.getValue();
+            for (Map$Entry<String, Object> map$Entry : it.next().getKeyValueMap().entrySet()) {
+                String key = map$Entry.getKey();
+                Object value = map$Entry.getValue();
                 Class<?> cls = value.getClass();
                 Object obj = map.get(key);
                 if (obj != null) {
@@ -69,7 +69,7 @@ public final class ArrayCreatingInputMerger extends InputMerger {
                 map.put(key, value);
             }
         }
-        builder.putAll(map);
-        return builder.build();
+        data$Builder.putAll(map);
+        return data$Builder.build();
     }
 }

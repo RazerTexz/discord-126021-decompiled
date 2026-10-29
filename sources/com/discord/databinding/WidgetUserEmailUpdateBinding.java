@@ -12,37 +12,33 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUserEmailUpdateBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f18325a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f18326b;
+    public final MaterialButton f2680b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f18327c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextInputLayout f18328d;
+    public final TextInputLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final DimmerView f18329e;
+    public final DimmerView e;
 
     public WidgetUserEmailUpdateBinding(@NonNull RelativeLayout relativeLayout, @NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull TextInputLayout textInputLayout, @NonNull TextInputLayout textInputLayout2, @NonNull DimmerView dimmerView) {
-        this.f18325a = relativeLayout;
-        this.f18326b = materialButton;
-        this.f18327c = textInputLayout;
-        this.f18328d = textInputLayout2;
-        this.f18329e = dimmerView;
+        this.a = relativeLayout;
+        this.f2680b = materialButton;
+        this.c = textInputLayout;
+        this.d = textInputLayout2;
+        this.e = dimmerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18325a;
+        return this.a;
     }
 }

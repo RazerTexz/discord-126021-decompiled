@@ -1,29 +1,33 @@
 package com.discord.widgets.voice.fullscreen.stage;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup$MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.C5419R;
+import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
+import b.a.y.j0.g;
+import b.a.y.j0.h;
+import b.a.y.j0.i;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.databinding.WidgetStageChannelSpeakerBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.stores.StoreVoiceParticipants;
+import com.discord.stores.StoreVoiceParticipants$VoiceUser;
 import com.discord.utilities.colors.RepresentativeColorsKt;
 import com.discord.utilities.dimen.DimenUtils;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$1;
+import com.discord.utilities.rx.ObservableExtensionsKt$filterNull$2;
 import com.discord.views.calls.StageCallSpeakerView;
+import d0.z.d.m;
 import java.util.Objects;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import p007b.p008a.p062y.p063j0.C1344g;
-import p007b.p008a.p062y.p063j0.C1345h;
-import p007b.p008a.p062y.p063j0.C1346i;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
+import rx.Subscription;
 
 /* JADX INFO: compiled from: StageCallViewHolder.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,78 +36,83 @@ public final class SpeakerViewHolder extends StageCallViewHolder {
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SpeakerViewHolder(StageCallAdapter stageCallAdapter) {
-        super(C5419R.layout.widget_stage_channel_speaker, stageCallAdapter, null);
-        C12238m.checkNotNullParameter(stageCallAdapter, "adapter");
+        super(R$layout.widget_stage_channel_speaker, stageCallAdapter, null);
+        m.checkNotNullParameter(stageCallAdapter, "adapter");
         View view = this.itemView;
-        StageCallSpeakerView stageCallSpeakerView = (StageCallSpeakerView) view.findViewById(C5419R.id.stage_channel_speaker_container);
+        StageCallSpeakerView stageCallSpeakerView = (StageCallSpeakerView) view.findViewById(R$id.stage_channel_speaker_container);
         if (stageCallSpeakerView == null) {
-            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(C5419R.id.stage_channel_speaker_container)));
+            throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(R$id.stage_channel_speaker_container)));
         }
         WidgetStageChannelSpeakerBinding widgetStageChannelSpeakerBinding = new WidgetStageChannelSpeakerBinding((ConstraintLayout) view, stageCallSpeakerView);
-        C12238m.checkNotNullExpressionValue(widgetStageChannelSpeakerBinding, "WidgetStageChannelSpeakerBinding.bind(itemView)");
+        m.checkNotNullExpressionValue(widgetStageChannelSpeakerBinding, "WidgetStageChannelSpeakerBinding.bind(itemView)");
         this.binding = widgetStageChannelSpeakerBinding;
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public void onConfigure(int position, StageCallItem data) {
+    public /* bridge */ /* synthetic */ void onConfigure(int i, StageCallItem stageCallItem) {
+        onConfigure2(i, stageCallItem);
+    }
+
+    /* JADX INFO: renamed from: onConfigure, reason: avoid collision after fix types in other method */
+    public void onConfigure2(int position, StageCallItem data) {
         int dimensionPixelSize;
-        C12238m.checkNotNullParameter(data, "data");
+        m.checkNotNullParameter(data, "data");
         super.onConfigure(position, data);
-        StageCallItem.SpeakerItem speakerItem = (StageCallItem.SpeakerItem) data;
-        StageCallSpeakerView stageCallSpeakerView = this.binding.f18159b;
-        C12238m.checkNotNullExpressionValue(stageCallSpeakerView, "binding.stageChannelSpeakerContainer");
-        ViewGroup.LayoutParams layoutParams = stageCallSpeakerView.getLayoutParams();
+        StageCallItem$SpeakerItem stageCallItem$SpeakerItem = (StageCallItem$SpeakerItem) data;
+        StageCallSpeakerView stageCallSpeakerView = this.binding.f2654b;
+        m.checkNotNullExpressionValue(stageCallSpeakerView, "binding.stageChannelSpeakerContainer");
+        ViewGroup$LayoutParams layoutParams = stageCallSpeakerView.getLayoutParams();
         Objects.requireNonNull(layoutParams, "null cannot be cast to non-null type androidx.constraintlayout.widget.ConstraintLayout.LayoutParams");
-        ConstraintLayout.LayoutParams layoutParams2 = (ConstraintLayout.LayoutParams) layoutParams;
-        int speakersPerRow = speakerItem.getSpeakersPerRow();
+        ConstraintLayout$LayoutParams constraintLayout$LayoutParams = (ConstraintLayout$LayoutParams) layoutParams;
+        int speakersPerRow = stageCallItem$SpeakerItem.getSpeakersPerRow();
         if (speakersPerRow == 1) {
             dimensionPixelSize = 0;
         } else if (speakersPerRow != 2) {
-            ConstraintLayout constraintLayout = this.binding.f18158a;
-            C12238m.checkNotNullExpressionValue(constraintLayout, "binding.root");
-            dimensionPixelSize = constraintLayout.getResources().getDimensionPixelSize(C5419R.dimen.speaker_height_three_up);
+            ConstraintLayout constraintLayout = this.binding.a;
+            m.checkNotNullExpressionValue(constraintLayout, "binding.root");
+            dimensionPixelSize = constraintLayout.getResources().getDimensionPixelSize(2131165738);
         } else {
-            ConstraintLayout constraintLayout2 = this.binding.f18158a;
-            C12238m.checkNotNullExpressionValue(constraintLayout2, "binding.root");
-            dimensionPixelSize = constraintLayout2.getResources().getDimensionPixelSize(C5419R.dimen.speaker_height_two_up);
+            ConstraintLayout constraintLayout2 = this.binding.a;
+            m.checkNotNullExpressionValue(constraintLayout2, "binding.root");
+            dimensionPixelSize = constraintLayout2.getResources().getDimensionPixelSize(2131165739);
         }
-        ((ViewGroup.MarginLayoutParams) layoutParams2).height = dimensionPixelSize;
-        layoutParams2.dimensionRatio = speakerItem.getSpeakersPerRow() != 1 ? null : "H,16:9";
-        stageCallSpeakerView.setLayoutParams(layoutParams2);
-        StageCallSpeakerView stageCallSpeakerView2 = this.binding.f18159b;
-        StoreVoiceParticipants.VoiceUser voiceUser = speakerItem.getVoiceUser();
-        boolean zIsModerator = speakerItem.isModerator();
-        boolean zIsBlocked = speakerItem.isBlocked();
+        ((ViewGroup$MarginLayoutParams) constraintLayout$LayoutParams).height = dimensionPixelSize;
+        constraintLayout$LayoutParams.dimensionRatio = stageCallItem$SpeakerItem.getSpeakersPerRow() != 1 ? null : "H,16:9";
+        stageCallSpeakerView.setLayoutParams(constraintLayout$LayoutParams);
+        StageCallSpeakerView stageCallSpeakerView2 = this.binding.f2654b;
+        StoreVoiceParticipants$VoiceUser voiceUser = stageCallItem$SpeakerItem.getVoiceUser();
+        boolean zIsModerator = stageCallItem$SpeakerItem.isModerator();
+        boolean zIsBlocked = stageCallItem$SpeakerItem.isBlocked();
         Objects.requireNonNull(stageCallSpeakerView2);
-        C12238m.checkNotNullParameter(voiceUser, "voiceUser");
+        m.checkNotNullParameter(voiceUser, "voiceUser");
         String colorId = RepresentativeColorsKt.getColorId(voiceUser.getUser());
-        stageCallSpeakerView2.binding.f1349b.setOnBitmapLoadedListener(new C1344g(colorId));
-        stageCallSpeakerView2.binding.f1355h.setPulsing(voiceUser.getIsSpeaking());
-        stageCallSpeakerView2.binding.f1349b.m8570a(voiceUser, C5419R.dimen.avatar_size_hero);
-        stageCallSpeakerView2.binding.f1349b.setRingMargin(DimenUtils.dpToPixels(2));
-        ImageView imageView = stageCallSpeakerView2.binding.f1353f;
-        C12238m.checkNotNullExpressionValue(imageView, "binding.stageChannelSpeakerMuteIndicator");
+        stageCallSpeakerView2.binding.f223b.setOnBitmapLoadedListener(new g(colorId));
+        stageCallSpeakerView2.binding.h.setPulsing(voiceUser.getIsSpeaking());
+        stageCallSpeakerView2.binding.f223b.a(voiceUser, 2131165291);
+        stageCallSpeakerView2.binding.f223b.setRingMargin(DimenUtils.dpToPixels(2));
+        ImageView imageView = stageCallSpeakerView2.binding.f;
+        m.checkNotNullExpressionValue(imageView, "binding.stageChannelSpeakerMuteIndicator");
         imageView.setVisibility(voiceUser.getIsMuted() && !voiceUser.getIsDeafened() ? 0 : 8);
-        ImageView imageView2 = stageCallSpeakerView2.binding.f1351d;
-        C12238m.checkNotNullExpressionValue(imageView2, "binding.stageChannelSpeakerDeafenIndicator");
+        ImageView imageView2 = stageCallSpeakerView2.binding.d;
+        m.checkNotNullExpressionValue(imageView2, "binding.stageChannelSpeakerDeafenIndicator");
         imageView2.setVisibility(voiceUser.getIsDeafened() ? 0 : 8);
-        ImageView imageView3 = stageCallSpeakerView2.binding.f1352e;
-        C12238m.checkNotNullExpressionValue(imageView3, "binding.stageChannelSpeakerModIndicator");
+        ImageView imageView3 = stageCallSpeakerView2.binding.e;
+        m.checkNotNullExpressionValue(imageView3, "binding.stageChannelSpeakerModIndicator");
         imageView3.setVisibility(zIsModerator ? 0 : 8);
-        TextView textView = stageCallSpeakerView2.binding.f1354g;
-        C12238m.checkNotNullExpressionValue(textView, "binding.stageChannelSpeakerName");
+        TextView textView = stageCallSpeakerView2.binding.g;
+        m.checkNotNullExpressionValue(textView, "binding.stageChannelSpeakerName");
         textView.setText(voiceUser.getDisplayName());
-        ImageView imageView4 = stageCallSpeakerView2.binding.f1350c;
-        C12238m.checkNotNullExpressionValue(imageView4, "binding.stageChannelSpeakerBlocked");
+        ImageView imageView4 = stageCallSpeakerView2.binding.c;
+        m.checkNotNullExpressionValue(imageView4, "binding.stageChannelSpeakerBlocked");
         imageView4.setVisibility(zIsBlocked ? 0 : 8);
-        Subscription subscription = stageCallSpeakerView2.com.discord.utilities.analytics.Traits.Payment.Type.SUBSCRIPTION java.lang.String;
+        Subscription subscription = stageCallSpeakerView2.com.discord.utilities.analytics.Traits$Payment$Type.SUBSCRIPTION java.lang.String;
         if (subscription != null) {
             subscription.unsubscribe();
         }
-        Observable<R> observableM11083G = RepresentativeColorsKt.getUserRepresentativeColors().observeRepresentativeColor(colorId).m11118y(ObservableExtensionsKt.C68871.INSTANCE).m11083G(ObservableExtensionsKt.C68882.INSTANCE);
-        C12238m.checkNotNullExpressionValue(observableM11083G, "filter { it != null }.map { it!! }");
-        Observable observableM11100Z = observableM11083G.m11100Z(1);
-        C12238m.checkNotNullExpressionValue(observableM11100Z, "UserRepresentativeColors…erNull()\n        .take(1)");
-        ObservableExtensionsKt.appSubscribe(observableM11100Z, (Class<?>) StageCallSpeakerView.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C1345h(stageCallSpeakerView2)), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C1346i(stageCallSpeakerView2));
+        Observable<R> observableG = RepresentativeColorsKt.getUserRepresentativeColors().observeRepresentativeColor(colorId).y(ObservableExtensionsKt$filterNull$1.INSTANCE).G(ObservableExtensionsKt$filterNull$2.INSTANCE);
+        m.checkNotNullExpressionValue(observableG, "filter { it != null }.map { it!! }");
+        Observable observableZ = observableG.Z(1);
+        m.checkNotNullExpressionValue(observableZ, "UserRepresentativeColors…erNull()\n        .take(1)");
+        ObservableExtensionsKt.appSubscribe$default(observableZ, StageCallSpeakerView.class, (Context) null, new h(stageCallSpeakerView2), (Function1) null, (Function0) null, (Function0) null, new i(stageCallSpeakerView2), 58, (Object) null);
     }
 }

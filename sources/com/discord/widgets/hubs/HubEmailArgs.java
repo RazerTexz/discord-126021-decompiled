@@ -2,40 +2,26 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubEmailViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class HubEmailArgs implements Parcelable {
-    public static final Parcelable.Creator<HubEmailArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<HubEmailArgs> CREATOR = new HubEmailArgs$Creator();
     private final HubEmailEntryPoint entryPoint;
     private final int guildMemberCount;
     private final String guildName;
-
-    public final class Creator implements Parcelable.Creator<HubEmailArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubEmailArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            return new HubEmailArgs(parcel.readString(), parcel.readInt(), (HubEmailEntryPoint) Enum.valueOf(HubEmailEntryPoint.class, parcel.readString()));
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final HubEmailArgs[] newArray(int i) {
-            return new HubEmailArgs[i];
-        }
-    }
 
     public HubEmailArgs() {
         this(null, 0, null, 7, null);
     }
 
     public HubEmailArgs(String str, int i, HubEmailEntryPoint hubEmailEntryPoint) {
-        C12238m.checkNotNullParameter(str, "guildName");
-        C12238m.checkNotNullParameter(hubEmailEntryPoint, "entryPoint");
+        m.checkNotNullParameter(str, "guildName");
+        m.checkNotNullParameter(hubEmailEntryPoint, "entryPoint");
         this.guildName = str;
         this.guildMemberCount = i;
         this.entryPoint = hubEmailEntryPoint;
@@ -55,8 +41,8 @@ public final /* data */ class HubEmailArgs implements Parcelable {
     }
 
     public final HubEmailArgs copy(String guildName, int guildMemberCount, HubEmailEntryPoint entryPoint) {
-        C12238m.checkNotNullParameter(guildName, "guildName");
-        C12238m.checkNotNullParameter(entryPoint, "entryPoint");
+        m.checkNotNullParameter(guildName, "guildName");
+        m.checkNotNullParameter(entryPoint, "entryPoint");
         return new HubEmailArgs(guildName, guildMemberCount, entryPoint);
     }
 
@@ -73,7 +59,7 @@ public final /* data */ class HubEmailArgs implements Parcelable {
             return false;
         }
         HubEmailArgs hubEmailArgs = (HubEmailArgs) other;
-        return C12238m.areEqual(this.guildName, hubEmailArgs.guildName) && this.guildMemberCount == hubEmailArgs.guildMemberCount && C12238m.areEqual(this.entryPoint, hubEmailArgs.entryPoint);
+        return m.areEqual(this.guildName, hubEmailArgs.guildName) && this.guildMemberCount == hubEmailArgs.guildMemberCount && m.areEqual(this.entryPoint, hubEmailArgs.entryPoint);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -111,19 +97,19 @@ public final /* data */ class HubEmailArgs implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubEmailArgs(guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", guildMemberCount=");
-        sbM833U.append(this.guildMemberCount);
-        sbM833U.append(", entryPoint=");
-        sbM833U.append(this.entryPoint);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HubEmailArgs(guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", guildMemberCount=");
+        sbU.append(this.guildMemberCount);
+        sbU.append(", entryPoint=");
+        sbU.append(this.entryPoint);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeString(this.guildName);
         parcel.writeInt(this.guildMemberCount);
         parcel.writeString(this.entryPoint.name());

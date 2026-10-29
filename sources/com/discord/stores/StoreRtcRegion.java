@@ -1,31 +1,25 @@
 package com.discord.stores;
 
-import com.discord.app.AppLog;
+import android.content.Context;
 import com.discord.models.domain.ModelRtcLatencyRegion;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
 import com.discord.utilities.persister.Persister;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.time.Clock;
-import java.util.ArrayList;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12149o;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
 
 /* JADX INFO: compiled from: StoreRtcRegion.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreRtcRegion {
+    public static final StoreRtcRegion$Companion Companion = new StoreRtcRegion$Companion(null);
     private static final int LATENCY_TEST_CACHE_TTL_MS = 86400000;
     private static final int MAX_LATENCY_TEST_CONN_OPEN_JITTER_MS = 30000;
     private static final int MIN_LATENCY_TEST_CONN_OPEN_JITTER_MS = 1000;
@@ -37,107 +31,43 @@ public final class StoreRtcRegion {
     private final StoreExperiments storeExperiments;
     private final StoreMediaEngine storeMediaEngine;
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$fetchRtcLatencyTestRegionsIps$1 */
-    /* JADX INFO: compiled from: StoreRtcRegion.kt */
-    public final class C63741 extends AbstractC12240o implements Function1<List<? extends ModelRtcLatencyRegion>, Unit> {
-        public C63741() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends ModelRtcLatencyRegion> list) {
-            invoke2((List<ModelRtcLatencyRegion>) list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<ModelRtcLatencyRegion> list) {
-            C12238m.checkNotNullParameter(list, "it");
-            StoreRtcRegion.this.maybePerformLatencyTest(list);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$maybePerformLatencyTest$1 */
-    /* JADX INFO: compiled from: StoreRtcRegion.kt */
-    public final class C63751 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ List $regionsWithIps;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreRtcRegion$maybePerformLatencyTest$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreRtcRegion.kt */
-        public final class AnonymousClass1 extends AbstractC12240o implements Function1<List<? extends String>, Unit> {
-            public final /* synthetic */ List $newGeoRankedRegions;
-            public final /* synthetic */ long $timeNowMs;
-
-            /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-            public AnonymousClass1(List list, long j) {
-                super(1);
-                this.$newGeoRankedRegions = list;
-                this.$timeNowMs = j;
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public /* bridge */ /* synthetic */ Unit invoke(List<? extends String> list) {
-                invoke2((List<String>) list);
-                return Unit.f27425a;
-            }
-
-            /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-            public final void invoke2(List<String> list) {
-                C12238m.checkNotNullParameter(list, "latencyRankedRegions");
-                AppLog.m8358i("RTC region latency test ranking is " + list);
-                StoreRtcRegion.this.updateLastTestResult(new RtcLatencyTestResult(list, this.$newGeoRankedRegions, this.$timeNowMs));
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C63751(List list) {
-            super(0);
-            this.$regionsWithIps = list;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            List list = this.$regionsWithIps;
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(list, 10));
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                arrayList.add(((ModelRtcLatencyRegion) it.next()).getRegion());
-            }
-            long jCurrentTimeMillis = StoreRtcRegion.this.clock.currentTimeMillis();
-            if (StoreRtcRegion.this.shouldPerformLatencyTest(arrayList, jCurrentTimeMillis)) {
-                StoreRtcRegion.this.storeMediaEngine.getRankedRtcRegions(this.$regionsWithIps, new AnonymousClass1(arrayList, jCurrentTimeMillis));
-                return;
-            }
-            StringBuilder sbM833U = C1643a.m833U("RTC region latency test cached preferred region is ");
-            sbM833U.append(StoreRtcRegion.this.getPreferredRegion());
-            AppLog.m8358i(sbM833U.toString());
-        }
-    }
-
     public StoreRtcRegion(Dispatcher dispatcher, Clock clock, StoreMediaEngine storeMediaEngine, StoreExperiments storeExperiments, RestAPI restAPI) {
-        C12238m.checkNotNullParameter(dispatcher, "dispatcher");
-        C12238m.checkNotNullParameter(clock, "clock");
-        C12238m.checkNotNullParameter(storeMediaEngine, "storeMediaEngine");
-        C12238m.checkNotNullParameter(storeExperiments, "storeExperiments");
-        C12238m.checkNotNullParameter(restAPI, "restAPI");
+        m.checkNotNullParameter(dispatcher, "dispatcher");
+        m.checkNotNullParameter(clock, "clock");
+        m.checkNotNullParameter(storeMediaEngine, "storeMediaEngine");
+        m.checkNotNullParameter(storeExperiments, "storeExperiments");
+        m.checkNotNullParameter(restAPI, "restAPI");
         this.dispatcher = dispatcher;
         this.clock = clock;
         this.storeMediaEngine = storeMediaEngine;
         this.storeExperiments = storeExperiments;
         this.restAPI = restAPI;
-        List list = null;
-        List list2 = null;
-        long j = 0;
-        int i = 7;
-        DefaultConstructorMarker defaultConstructorMarker = null;
-        this.lastTestResultCache = new Persister<>("CACHE_KEY_LATENCY_TEST_RESULT", new RtcLatencyTestResult(list, list2, j, i, defaultConstructorMarker));
-        this.lastTestResult = new RtcLatencyTestResult(list, list2, j, i, defaultConstructorMarker);
+        this.lastTestResultCache = new Persister<>("CACHE_KEY_LATENCY_TEST_RESULT", new RtcLatencyTestResult(null, null, 0L, 7, null));
+        this.lastTestResult = new RtcLatencyTestResult(null, null, 0L, 7, null);
+    }
+
+    public static final /* synthetic */ void access$fetchRtcLatencyTestRegionsIps(StoreRtcRegion storeRtcRegion) {
+        storeRtcRegion.fetchRtcLatencyTestRegionsIps();
+    }
+
+    public static final /* synthetic */ Clock access$getClock$p(StoreRtcRegion storeRtcRegion) {
+        return storeRtcRegion.clock;
+    }
+
+    public static final /* synthetic */ StoreMediaEngine access$getStoreMediaEngine$p(StoreRtcRegion storeRtcRegion) {
+        return storeRtcRegion.storeMediaEngine;
+    }
+
+    public static final /* synthetic */ void access$maybePerformLatencyTest(StoreRtcRegion storeRtcRegion, List list) {
+        storeRtcRegion.maybePerformLatencyTest(list);
+    }
+
+    public static final /* synthetic */ boolean access$shouldPerformLatencyTest(StoreRtcRegion storeRtcRegion, List list, long j) {
+        return storeRtcRegion.shouldPerformLatencyTest(list, j);
+    }
+
+    public static final /* synthetic */ void access$updateLastTestResult(StoreRtcRegion storeRtcRegion, RtcLatencyTestResult rtcLatencyTestResult) {
+        storeRtcRegion.updateLastTestResult(rtcLatencyTestResult);
     }
 
     private final boolean areStringListsEqual(List<String> list1, List<String> list2) {
@@ -147,7 +77,7 @@ public final class StoreRtcRegion {
         Iterator<T> it = list1.iterator();
         int i = 0;
         while (it.hasNext()) {
-            if (!C12238m.areEqual(list2.get(i), (String) it.next())) {
+            if (!m.areEqual(list2.get(i), (String) it.next())) {
                 return false;
             }
             i++;
@@ -157,7 +87,7 @@ public final class StoreRtcRegion {
 
     private final void fetchRtcLatencyTestRegionsIps() {
         if (this.storeMediaEngine.hasNativeEngineEverInitialized()) {
-            ObservableExtensionsKt.appSubscribe(this.restAPI.getRtcLatencyTestRegionsIps(), (Class<?>) StoreRtcRegion.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C63741());
+            ObservableExtensionsKt.appSubscribe$default(this.restAPI.getRtcLatencyTestRegionsIps(), StoreRtcRegion.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcRegion$fetchRtcLatencyTestRegionsIps$1(this), 62, (Object) null);
         }
     }
 
@@ -171,9 +101,9 @@ public final class StoreRtcRegion {
 
     @StoreThread
     public final void handleConnectionOpen$app_productionGoogleRelease() {
-        Observable<Long> observableM11068d0 = Observable.m11068d0(new Random().nextInt(29000) + 1000, TimeUnit.MILLISECONDS);
-        C12238m.checkNotNullExpressionValue(observableM11068d0, "Observable.timer(fetchJi…), TimeUnit.MILLISECONDS)");
-        ObservableExtensionsKt.appSubscribe(observableM11068d0, (Class<?>) StoreRtcRegion.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new StoreRtcRegion$handleConnectionOpen$1(this));
+        Observable<Long> observableD0 = Observable.d0(new Random().nextInt(29000) + 1000, TimeUnit.MILLISECONDS);
+        m.checkNotNullExpressionValue(observableD0, "Observable.timer(fetchJi…), TimeUnit.MILLISECONDS)");
+        ObservableExtensionsKt.appSubscribe$default(observableD0, StoreRtcRegion.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new StoreRtcRegion$handleConnectionOpen$1(this), 62, (Object) null);
     }
 
     public final void init() {
@@ -181,7 +111,7 @@ public final class StoreRtcRegion {
     }
 
     private final void maybePerformLatencyTest(List<ModelRtcLatencyRegion> regionsWithIps) {
-        this.dispatcher.schedule(new C63751(regionsWithIps));
+        this.dispatcher.schedule(new StoreRtcRegion$maybePerformLatencyTest$1(this, regionsWithIps));
     }
 
     @StoreThread
@@ -199,6 +129,6 @@ public final class StoreRtcRegion {
     }
 
     public /* synthetic */ StoreRtcRegion(Dispatcher dispatcher, Clock clock, StoreMediaEngine storeMediaEngine, StoreExperiments storeExperiments, RestAPI restAPI, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this(dispatcher, clock, storeMediaEngine, storeExperiments, (i & 16) != 0 ? RestAPI.INSTANCE.getApi() : restAPI);
+        this(dispatcher, clock, storeMediaEngine, storeExperiments, (i & 16) != 0 ? RestAPI.Companion.getApi() : restAPI);
     }
 }

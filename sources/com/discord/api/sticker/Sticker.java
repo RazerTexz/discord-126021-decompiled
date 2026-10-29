@@ -1,10 +1,10 @@
 package com.discord.api.sticker;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.io.Serializable;
 import kotlin.NoWhenBranchMatchedException;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Sticker.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,27 +19,13 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
     private final String tags;
     private final StickerType type;
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            StickerFormatType.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[StickerFormatType.UNKNOWN.ordinal()] = 1;
-            iArr[StickerFormatType.PNG.ordinal()] = 2;
-            iArr[StickerFormatType.APNG.ordinal()] = 3;
-            iArr[StickerFormatType.LOTTIE.ordinal()] = 4;
-        }
-    }
-
     public Sticker(long j, Long l, Long l2, String str, String str2, StickerFormatType stickerFormatType, String str3, StickerType stickerType, Boolean bool, int i) {
         int i2 = i & 256;
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
-        C12238m.checkNotNullParameter(stickerFormatType, "formatType");
-        C12238m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_TAGS);
-        C12238m.checkNotNullParameter(stickerType, "type");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+        m.checkNotNullParameter(stickerFormatType, "formatType");
+        m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_TAGS);
+        m.checkNotNullParameter(stickerType, "type");
         this.id = j;
         this.packId = l;
         this.guildId = l2;
@@ -51,6 +37,26 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
         this.available = null;
     }
 
+    @Override // com.discord.api.sticker.BaseSticker
+    public String b() {
+        int iOrdinal = this.formatType.ordinal();
+        if (iOrdinal == 0) {
+            return "";
+        }
+        if (iOrdinal == 1 || iOrdinal == 2) {
+            return ".png";
+        }
+        if (iOrdinal == 3) {
+            return ".json";
+        }
+        throw new NoWhenBranchMatchedException();
+    }
+
+    @Override // com.discord.api.sticker.BaseSticker
+    public StickerPartial c() {
+        return new StickerPartial(this.id, this.formatType, this.name);
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -59,7 +65,7 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
             return false;
         }
         Sticker sticker = (Sticker) other;
-        return this.id == sticker.id && C12238m.areEqual(this.packId, sticker.packId) && C12238m.areEqual(this.guildId, sticker.guildId) && C12238m.areEqual(this.name, sticker.name) && C12238m.areEqual(this.description, sticker.description) && C12238m.areEqual(this.formatType, sticker.formatType) && C12238m.areEqual(this.tags, sticker.tags) && C12238m.areEqual(this.type, sticker.type) && C12238m.areEqual(this.available, sticker.available);
+        return this.id == sticker.id && m.areEqual(this.packId, sticker.packId) && m.areEqual(this.guildId, sticker.guildId) && m.areEqual(this.name, sticker.name) && m.areEqual(this.description, sticker.description) && m.areEqual(this.formatType, sticker.formatType) && m.areEqual(this.tags, sticker.tags) && m.areEqual(this.type, sticker.type) && m.areEqual(this.available, sticker.available);
     }
 
     /* JADX INFO: renamed from: e, reason: from getter */
@@ -134,52 +140,29 @@ public final /* data */ class Sticker implements Serializable, BaseSticker {
         return iHashCode7 + (bool != null ? bool.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: l */
-    public final boolean m8241l() {
+    public final boolean l() {
         StickerFormatType stickerFormatType = this.formatType;
         return stickerFormatType == StickerFormatType.APNG || stickerFormatType == StickerFormatType.LOTTIE;
     }
 
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: b */
-    public String mo8228b() {
-        int iOrdinal = this.formatType.ordinal();
-        if (iOrdinal == 0) {
-            return "";
-        }
-        if (iOrdinal == 1 || iOrdinal == 2) {
-            return ".png";
-        }
-        if (iOrdinal == 3) {
-            return ".json";
-        }
-        throw new NoWhenBranchMatchedException();
-    }
-
-    @Override // com.discord.api.sticker.BaseSticker
-    /* JADX INFO: renamed from: c */
-    public StickerPartial mo8229c() {
-        return new StickerPartial(this.id, this.formatType, this.name);
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Sticker(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", packId=");
-        sbM833U.append(this.packId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", formatType=");
-        sbM833U.append(this.formatType);
-        sbM833U.append(", tags=");
-        sbM833U.append(this.tags);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", available=");
-        return C1643a.m816D(sbM833U, this.available, ")");
+        StringBuilder sbU = a.U("Sticker(id=");
+        sbU.append(this.id);
+        sbU.append(", packId=");
+        sbU.append(this.packId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", formatType=");
+        sbU.append(this.formatType);
+        sbU.append(", tags=");
+        sbU.append(this.tags);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", available=");
+        return a.D(sbU, this.available, ")");
     }
 }

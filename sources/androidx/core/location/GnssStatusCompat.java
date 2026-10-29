@@ -7,9 +7,6 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.annotation.RestrictTo;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class GnssStatusCompat {
@@ -38,46 +35,27 @@ public abstract class GnssStatusCompat {
     @SuppressLint({"InlinedApi"})
     public static final int CONSTELLATION_UNKNOWN = 0;
 
-    public abstract class Callback {
-        public void onFirstFix(@IntRange(from = 0) int i) {
-        }
-
-        public void onSatelliteStatusChanged(@NonNull GnssStatusCompat gnssStatusCompat) {
-        }
-
-        public void onStarted() {
-        }
-
-        public void onStopped() {
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public @interface ConstellationType {
-    }
-
-    @FloatRange(from = 0.0d, m75to = 360.0d)
+    @FloatRange(from = 0.0d, to = 360.0d)
     public abstract float getAzimuthDegrees(@IntRange(from = 0) int i);
 
-    @FloatRange(from = 0.0d, m75to = 63.0d)
+    @FloatRange(from = 0.0d, to = 63.0d)
     public abstract float getBasebandCn0DbHz(@IntRange(from = 0) int i);
 
     @FloatRange(from = 0.0d)
     public abstract float getCarrierFrequencyHz(@IntRange(from = 0) int i);
 
-    @FloatRange(from = 0.0d, m75to = 63.0d)
+    @FloatRange(from = 0.0d, to = 63.0d)
     public abstract float getCn0DbHz(@IntRange(from = 0) int i);
 
     public abstract int getConstellationType(@IntRange(from = 0) int i);
 
-    @FloatRange(from = -90.0d, m75to = 90.0d)
+    @FloatRange(from = -90.0d, to = 90.0d)
     public abstract float getElevationDegrees(@IntRange(from = 0) int i);
 
     @IntRange(from = 0)
     public abstract int getSatelliteCount();
 
-    @IntRange(from = 1, m76to = 200)
+    @IntRange(from = 1, to = 200)
     public abstract int getSvid(@IntRange(from = 0) int i);
 
     public abstract boolean hasAlmanacData(@IntRange(from = 0) int i);

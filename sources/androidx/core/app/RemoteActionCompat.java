@@ -2,10 +2,11 @@ package androidx.core.app;
 
 import android.app.PendingIntent;
 import android.app.RemoteAction;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.util.Preconditions;
 import androidx.versionedparcelable.VersionedParcelable;
@@ -13,22 +14,22 @@ import androidx.versionedparcelable.VersionedParcelable;
 /* JADX INFO: loaded from: classes.dex */
 public final class RemoteActionCompat implements VersionedParcelable {
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public PendingIntent mActionIntent;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public CharSequence mContentDescription;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public boolean mEnabled;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public IconCompat mIcon;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public boolean mShouldShowIcon;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public CharSequence mTitle;
 
     public RemoteActionCompat(@NonNull IconCompat iconCompat, @NonNull CharSequence charSequence, @NonNull CharSequence charSequence2, @NonNull PendingIntent pendingIntent) {
@@ -46,7 +47,7 @@ public final class RemoteActionCompat implements VersionedParcelable {
         Preconditions.checkNotNull(remoteAction);
         RemoteActionCompat remoteActionCompat = new RemoteActionCompat(IconCompat.createFromIcon(remoteAction.getIcon()), remoteAction.getTitle(), remoteAction.getContentDescription(), remoteAction.getActionIntent());
         remoteActionCompat.setEnabled(remoteAction.isEnabled());
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             remoteActionCompat.setShouldShowIcon(remoteAction.shouldShowIcon());
         }
         return remoteActionCompat;
@@ -93,13 +94,13 @@ public final class RemoteActionCompat implements VersionedParcelable {
     public RemoteAction toRemoteAction() {
         RemoteAction remoteAction = new RemoteAction(this.mIcon.toIcon(), this.mTitle, this.mContentDescription, this.mActionIntent);
         remoteAction.setEnabled(isEnabled());
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             remoteAction.setShouldShowIcon(shouldShowIcon());
         }
         return remoteAction;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public RemoteActionCompat() {
     }
 

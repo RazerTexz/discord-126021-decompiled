@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackUpdateUserSettings.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -53,7 +53,7 @@ public final /* data */ class TrackUpdateUserSettings implements AnalyticsSchema
             return false;
         }
         TrackUpdateUserSettings trackUpdateUserSettings = (TrackUpdateUserSettings) other;
-        return C12238m.areEqual(this.convertEmoticons, trackUpdateUserSettings.convertEmoticons) && C12238m.areEqual(this.developerMode, trackUpdateUserSettings.developerMode) && C12238m.areEqual(this.enableTtsCommand, trackUpdateUserSettings.enableTtsCommand) && C12238m.areEqual(this.friendSourceFlags, trackUpdateUserSettings.friendSourceFlags) && C12238m.areEqual(this.guildPositions, trackUpdateUserSettings.guildPositions) && C12238m.areEqual(this.inlineAttachmentMedia, trackUpdateUserSettings.inlineAttachmentMedia) && C12238m.areEqual(this.inlineEmbedMedia, trackUpdateUserSettings.inlineEmbedMedia) && C12238m.areEqual(this.gifAutoPlay, trackUpdateUserSettings.gifAutoPlay) && C12238m.areEqual(this.locale, trackUpdateUserSettings.locale) && C12238m.areEqual(this.messageDisplayCompact, trackUpdateUserSettings.messageDisplayCompact) && C12238m.areEqual(this.renderEmbeds, trackUpdateUserSettings.renderEmbeds) && C12238m.areEqual(this.renderReactions, trackUpdateUserSettings.renderReactions) && C12238m.areEqual(this.animateEmoji, trackUpdateUserSettings.animateEmoji) && C12238m.areEqual(this.restrictedGuilds, trackUpdateUserSettings.restrictedGuilds) && C12238m.areEqual(this.showCurrentGame, trackUpdateUserSettings.showCurrentGame) && C12238m.areEqual(this.theme, trackUpdateUserSettings.theme) && C12238m.areEqual(this.detectPlatformAccounts, trackUpdateUserSettings.detectPlatformAccounts) && C12238m.areEqual(this.status, trackUpdateUserSettings.status) && C12238m.areEqual(this.defaultGuildsRestricted, trackUpdateUserSettings.defaultGuildsRestricted) && C12238m.areEqual(this.explicitContentFilter, trackUpdateUserSettings.explicitContentFilter) && C12238m.areEqual(this.afkTimeout, trackUpdateUserSettings.afkTimeout) && C12238m.areEqual(this.timezoneOffset, trackUpdateUserSettings.timezoneOffset) && C12238m.areEqual(this.disableGamesTab, trackUpdateUserSettings.disableGamesTab) && C12238m.areEqual(this.numServerFolders, trackUpdateUserSettings.numServerFolders) && C12238m.areEqual(this.streamNotificationsEnabled, trackUpdateUserSettings.streamNotificationsEnabled) && C12238m.areEqual(this.hasCustomStatus, trackUpdateUserSettings.hasCustomStatus) && C12238m.areEqual(this.allowAccessibilityDetection, trackUpdateUserSettings.allowAccessibilityDetection) && C12238m.areEqual(this.contactSyncEnabled, trackUpdateUserSettings.contactSyncEnabled) && C12238m.areEqual(this.nativePhoneIntegrationEnabled, trackUpdateUserSettings.nativePhoneIntegrationEnabled) && C12238m.areEqual(this.animateStickers, trackUpdateUserSettings.animateStickers) && C12238m.areEqual(this.viewNsfwGuilds, trackUpdateUserSettings.viewNsfwGuilds) && C12238m.areEqual(this.passwordless, trackUpdateUserSettings.passwordless);
+        return m.areEqual(this.convertEmoticons, trackUpdateUserSettings.convertEmoticons) && m.areEqual(this.developerMode, trackUpdateUserSettings.developerMode) && m.areEqual(this.enableTtsCommand, trackUpdateUserSettings.enableTtsCommand) && m.areEqual(this.friendSourceFlags, trackUpdateUserSettings.friendSourceFlags) && m.areEqual(this.guildPositions, trackUpdateUserSettings.guildPositions) && m.areEqual(this.inlineAttachmentMedia, trackUpdateUserSettings.inlineAttachmentMedia) && m.areEqual(this.inlineEmbedMedia, trackUpdateUserSettings.inlineEmbedMedia) && m.areEqual(this.gifAutoPlay, trackUpdateUserSettings.gifAutoPlay) && m.areEqual(this.locale, trackUpdateUserSettings.locale) && m.areEqual(this.messageDisplayCompact, trackUpdateUserSettings.messageDisplayCompact) && m.areEqual(this.renderEmbeds, trackUpdateUserSettings.renderEmbeds) && m.areEqual(this.renderReactions, trackUpdateUserSettings.renderReactions) && m.areEqual(this.animateEmoji, trackUpdateUserSettings.animateEmoji) && m.areEqual(this.restrictedGuilds, trackUpdateUserSettings.restrictedGuilds) && m.areEqual(this.showCurrentGame, trackUpdateUserSettings.showCurrentGame) && m.areEqual(this.theme, trackUpdateUserSettings.theme) && m.areEqual(this.detectPlatformAccounts, trackUpdateUserSettings.detectPlatformAccounts) && m.areEqual(this.status, trackUpdateUserSettings.status) && m.areEqual(this.defaultGuildsRestricted, trackUpdateUserSettings.defaultGuildsRestricted) && m.areEqual(this.explicitContentFilter, trackUpdateUserSettings.explicitContentFilter) && m.areEqual(this.afkTimeout, trackUpdateUserSettings.afkTimeout) && m.areEqual(this.timezoneOffset, trackUpdateUserSettings.timezoneOffset) && m.areEqual(this.disableGamesTab, trackUpdateUserSettings.disableGamesTab) && m.areEqual(this.numServerFolders, trackUpdateUserSettings.numServerFolders) && m.areEqual(this.streamNotificationsEnabled, trackUpdateUserSettings.streamNotificationsEnabled) && m.areEqual(this.hasCustomStatus, trackUpdateUserSettings.hasCustomStatus) && m.areEqual(this.allowAccessibilityDetection, trackUpdateUserSettings.allowAccessibilityDetection) && m.areEqual(this.contactSyncEnabled, trackUpdateUserSettings.contactSyncEnabled) && m.areEqual(this.nativePhoneIntegrationEnabled, trackUpdateUserSettings.nativePhoneIntegrationEnabled) && m.areEqual(this.animateStickers, trackUpdateUserSettings.animateStickers) && m.areEqual(this.viewNsfwGuilds, trackUpdateUserSettings.viewNsfwGuilds) && m.areEqual(this.passwordless, trackUpdateUserSettings.passwordless);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -130,69 +130,69 @@ public final /* data */ class TrackUpdateUserSettings implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpdateUserSettings(convertEmoticons=");
-        sbM833U.append(this.convertEmoticons);
-        sbM833U.append(", developerMode=");
-        sbM833U.append(this.developerMode);
-        sbM833U.append(", enableTtsCommand=");
-        sbM833U.append(this.enableTtsCommand);
-        sbM833U.append(", friendSourceFlags=");
-        sbM833U.append(this.friendSourceFlags);
-        sbM833U.append(", guildPositions=");
-        sbM833U.append(this.guildPositions);
-        sbM833U.append(", inlineAttachmentMedia=");
-        sbM833U.append(this.inlineAttachmentMedia);
-        sbM833U.append(", inlineEmbedMedia=");
-        sbM833U.append(this.inlineEmbedMedia);
-        sbM833U.append(", gifAutoPlay=");
-        sbM833U.append(this.gifAutoPlay);
-        sbM833U.append(", locale=");
-        sbM833U.append(this.locale);
-        sbM833U.append(", messageDisplayCompact=");
-        sbM833U.append(this.messageDisplayCompact);
-        sbM833U.append(", renderEmbeds=");
-        sbM833U.append(this.renderEmbeds);
-        sbM833U.append(", renderReactions=");
-        sbM833U.append(this.renderReactions);
-        sbM833U.append(", animateEmoji=");
-        sbM833U.append(this.animateEmoji);
-        sbM833U.append(", restrictedGuilds=");
-        sbM833U.append(this.restrictedGuilds);
-        sbM833U.append(", showCurrentGame=");
-        sbM833U.append(this.showCurrentGame);
-        sbM833U.append(", theme=");
-        sbM833U.append(this.theme);
-        sbM833U.append(", detectPlatformAccounts=");
-        sbM833U.append(this.detectPlatformAccounts);
-        sbM833U.append(", status=");
-        sbM833U.append(this.status);
-        sbM833U.append(", defaultGuildsRestricted=");
-        sbM833U.append(this.defaultGuildsRestricted);
-        sbM833U.append(", explicitContentFilter=");
-        sbM833U.append(this.explicitContentFilter);
-        sbM833U.append(", afkTimeout=");
-        sbM833U.append(this.afkTimeout);
-        sbM833U.append(", timezoneOffset=");
-        sbM833U.append(this.timezoneOffset);
-        sbM833U.append(", disableGamesTab=");
-        sbM833U.append(this.disableGamesTab);
-        sbM833U.append(", numServerFolders=");
-        sbM833U.append(this.numServerFolders);
-        sbM833U.append(", streamNotificationsEnabled=");
-        sbM833U.append(this.streamNotificationsEnabled);
-        sbM833U.append(", hasCustomStatus=");
-        sbM833U.append(this.hasCustomStatus);
-        sbM833U.append(", allowAccessibilityDetection=");
-        sbM833U.append(this.allowAccessibilityDetection);
-        sbM833U.append(", contactSyncEnabled=");
-        sbM833U.append(this.contactSyncEnabled);
-        sbM833U.append(", nativePhoneIntegrationEnabled=");
-        sbM833U.append(this.nativePhoneIntegrationEnabled);
-        sbM833U.append(", animateStickers=");
-        sbM833U.append(this.animateStickers);
-        sbM833U.append(", viewNsfwGuilds=");
-        sbM833U.append(this.viewNsfwGuilds);
-        sbM833U.append(", passwordless=");
-        return C1643a.m816D(sbM833U, this.passwordless, ")");
+        StringBuilder sbU = a.U("TrackUpdateUserSettings(convertEmoticons=");
+        sbU.append(this.convertEmoticons);
+        sbU.append(", developerMode=");
+        sbU.append(this.developerMode);
+        sbU.append(", enableTtsCommand=");
+        sbU.append(this.enableTtsCommand);
+        sbU.append(", friendSourceFlags=");
+        sbU.append(this.friendSourceFlags);
+        sbU.append(", guildPositions=");
+        sbU.append(this.guildPositions);
+        sbU.append(", inlineAttachmentMedia=");
+        sbU.append(this.inlineAttachmentMedia);
+        sbU.append(", inlineEmbedMedia=");
+        sbU.append(this.inlineEmbedMedia);
+        sbU.append(", gifAutoPlay=");
+        sbU.append(this.gifAutoPlay);
+        sbU.append(", locale=");
+        sbU.append(this.locale);
+        sbU.append(", messageDisplayCompact=");
+        sbU.append(this.messageDisplayCompact);
+        sbU.append(", renderEmbeds=");
+        sbU.append(this.renderEmbeds);
+        sbU.append(", renderReactions=");
+        sbU.append(this.renderReactions);
+        sbU.append(", animateEmoji=");
+        sbU.append(this.animateEmoji);
+        sbU.append(", restrictedGuilds=");
+        sbU.append(this.restrictedGuilds);
+        sbU.append(", showCurrentGame=");
+        sbU.append(this.showCurrentGame);
+        sbU.append(", theme=");
+        sbU.append(this.theme);
+        sbU.append(", detectPlatformAccounts=");
+        sbU.append(this.detectPlatformAccounts);
+        sbU.append(", status=");
+        sbU.append(this.status);
+        sbU.append(", defaultGuildsRestricted=");
+        sbU.append(this.defaultGuildsRestricted);
+        sbU.append(", explicitContentFilter=");
+        sbU.append(this.explicitContentFilter);
+        sbU.append(", afkTimeout=");
+        sbU.append(this.afkTimeout);
+        sbU.append(", timezoneOffset=");
+        sbU.append(this.timezoneOffset);
+        sbU.append(", disableGamesTab=");
+        sbU.append(this.disableGamesTab);
+        sbU.append(", numServerFolders=");
+        sbU.append(this.numServerFolders);
+        sbU.append(", streamNotificationsEnabled=");
+        sbU.append(this.streamNotificationsEnabled);
+        sbU.append(", hasCustomStatus=");
+        sbU.append(this.hasCustomStatus);
+        sbU.append(", allowAccessibilityDetection=");
+        sbU.append(this.allowAccessibilityDetection);
+        sbU.append(", contactSyncEnabled=");
+        sbU.append(this.contactSyncEnabled);
+        sbU.append(", nativePhoneIntegrationEnabled=");
+        sbU.append(this.nativePhoneIntegrationEnabled);
+        sbU.append(", animateStickers=");
+        sbU.append(this.animateStickers);
+        sbU.append(", viewNsfwGuilds=");
+        sbU.append(this.viewNsfwGuilds);
+        sbU.append(", passwordless=");
+        return a.D(sbU, this.passwordless, ")");
     }
 }

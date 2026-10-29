@@ -10,20 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(api = 28)
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class CoreComponentFactory extends android.app.AppComponentFactory {
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public interface CompatWrapped {
-        Object getWrapper();
-    }
-
     public static <T> T checkCompatWrapper(T t) {
         T t2;
-        return (!(t instanceof CompatWrapped) || (t2 = (T) ((CompatWrapped) t).getWrapper()) == null) ? t : t2;
+        return (!(t instanceof CoreComponentFactory$CompatWrapped) || (t2 = (T) ((CoreComponentFactory$CompatWrapped) t).getWrapper()) == null) ? t : t2;
     }
 
     @Override // android.app.AppComponentFactory

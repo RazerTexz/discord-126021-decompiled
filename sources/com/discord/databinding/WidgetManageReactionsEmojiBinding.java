@@ -11,32 +11,29 @@ import com.discord.utilities.view.text.SimpleDraweeSpanTextView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetManageReactionsEmojiBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17218a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17219b;
+    public final TextView f2483b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeSpanTextView f17220c;
+    public final SimpleDraweeSpanTextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final View f17221d;
+    public final View d;
 
     public WidgetManageReactionsEmojiBinding(@NonNull RelativeLayout relativeLayout, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView, @NonNull View view) {
-        this.f17218a = relativeLayout;
-        this.f17219b = textView;
-        this.f17220c = simpleDraweeSpanTextView;
-        this.f17221d = view;
+        this.a = relativeLayout;
+        this.f2483b = textView;
+        this.c = simpleDraweeSpanTextView;
+        this.d = view;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17218a;
+        return this.a;
     }
 }

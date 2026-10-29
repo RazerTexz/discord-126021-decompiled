@@ -1,26 +1,13 @@
 package org.webrtc;
 
-import java.util.Locale;
-
 /* JADX INFO: loaded from: classes3.dex */
 public class SessionDescription {
     public final String description;
-    public final Type type;
-
-    public enum Type {
-        OFFER,
-        PRANSWER,
-        ANSWER,
-        ROLLBACK;
-
-        public String canonicalForm() {
-            return name().toLowerCase(Locale.US);
-        }
-    }
+    public final SessionDescription$Type type;
 
     @CalledByNative
-    public SessionDescription(Type type, String str) {
-        this.type = type;
+    public SessionDescription(SessionDescription$Type sessionDescription$Type, String str) {
+        this.type = sessionDescription$Type;
         this.description = str;
     }
 

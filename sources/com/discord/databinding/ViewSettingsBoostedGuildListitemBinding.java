@@ -11,47 +11,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewSettingsBoostedGuildListitemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15573a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f15574b;
+    public final SimpleDraweeView f2213b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final View f15575c;
+    public final View c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final GuildBoostProgressView f15576d;
+    public final GuildBoostProgressView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f15577e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final SimpleDraweeView f15578f;
+    public final SimpleDraweeView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f15579g;
+    public final TextView g;
 
     public ViewSettingsBoostedGuildListitemBinding(@NonNull LinearLayout linearLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull View view, @NonNull GuildBoostProgressView guildBoostProgressView, @NonNull TextView textView, @NonNull SimpleDraweeView simpleDraweeView2, @NonNull TextView textView2) {
-        this.f15573a = linearLayout;
-        this.f15574b = simpleDraweeView;
-        this.f15575c = view;
-        this.f15576d = guildBoostProgressView;
-        this.f15577e = textView;
-        this.f15578f = simpleDraweeView2;
-        this.f15579g = textView2;
+        this.a = linearLayout;
+        this.f2213b = simpleDraweeView;
+        this.c = view;
+        this.d = guildBoostProgressView;
+        this.e = textView;
+        this.f = simpleDraweeView2;
+        this.g = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15573a;
+        return this.a;
     }
 }

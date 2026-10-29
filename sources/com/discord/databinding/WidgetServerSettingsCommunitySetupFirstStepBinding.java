@@ -11,27 +11,25 @@ import com.discord.views.ScreenTitleView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsCommunitySetupFirstStepBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ScrollView f17581a;
+    public final ScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f17582b;
+    public final CheckedSetting f2554b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final CheckedSetting f17583c;
+    public final CheckedSetting c;
 
     public WidgetServerSettingsCommunitySetupFirstStepBinding(@NonNull ScrollView scrollView, @NonNull ScrollView scrollView2, @NonNull ImageView imageView, @NonNull CheckedSetting checkedSetting, @NonNull CheckedSetting checkedSetting2, @NonNull ScreenTitleView screenTitleView) {
-        this.f17581a = scrollView;
-        this.f17582b = checkedSetting;
-        this.f17583c = checkedSetting2;
+        this.a = scrollView;
+        this.f2554b = checkedSetting;
+        this.c = checkedSetting2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17581a;
+        return this.a;
     }
 }

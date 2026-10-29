@@ -1,15 +1,17 @@
 package androidx.browser.trusted;
 
 import android.app.Notification;
+import android.app.Notification$Builder;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class NotificationApiHelperForO {
     private NotificationApiHelperForO() {
     }
@@ -21,9 +23,9 @@ public class NotificationApiHelperForO {
         if (notificationManager.getNotificationChannel(str).getImportance() == 0) {
             return null;
         }
-        Notification.Builder builderRecoverBuilder = Notification.Builder.recoverBuilder(context, notification);
-        builderRecoverBuilder.setChannelId(str);
-        return builderRecoverBuilder.build();
+        Notification$Builder notification$BuilderRecoverBuilder = Notification$Builder.recoverBuilder(context, notification);
+        notification$BuilderRecoverBuilder.setChannelId(str);
+        return notification$BuilderRecoverBuilder.build();
     }
 
     @RequiresApi(26)

@@ -1,17 +1,17 @@
 package com.discord.models.domain;
 
 import com.discord.api.message.Message;
+import d0.t.n;
+import d0.t.u;
+import d0.z.d.o;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.functions.Function0;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: ModelSearchResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class ModelSearchResponse$hits$2 extends AbstractC12240o implements Function0<List<? extends Message>> {
+public final class ModelSearchResponse$hits$2 extends o implements Function0<List<? extends Message>> {
     public final /* synthetic */ ModelSearchResponse this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -21,7 +21,13 @@ public final class ModelSearchResponse$hits$2 extends AbstractC12240o implements
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public final List<? extends Message> invoke() {
+    public /* bridge */ /* synthetic */ List<? extends Message> invoke() {
+        return invoke2();
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final List<? extends Message> invoke2() {
         Object next;
         Boolean hit;
         List<List<Message>> messages = this.this$0.getMessages();
@@ -43,11 +49,11 @@ public final class ModelSearchResponse$hits$2 extends AbstractC12240o implements
                     arrayList.add(message);
                 }
             }
-            List<? extends Message> list = C12163u.toList(arrayList);
+            List<? extends Message> list = u.toList(arrayList);
             if (list != null) {
                 return list;
             }
         }
-        return C12147n.emptyList();
+        return n.emptyList();
     }
 }

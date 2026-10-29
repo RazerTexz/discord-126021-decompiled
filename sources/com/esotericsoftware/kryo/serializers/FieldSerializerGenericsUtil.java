@@ -1,5 +1,7 @@
 package com.esotericsoftware.kryo.serializers;
 
+import b.e.a.a;
+import b.e.a.a$a;
 import com.esotericsoftware.kryo.Kryo;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -9,7 +11,6 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.HashMap;
-import p007b.p106e.p107a.C1644a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class FieldSerializerGenericsUtil {
@@ -64,12 +65,12 @@ public final class FieldSerializerGenericsUtil {
         if (typeParameters == null || typeParameters.length <= 0) {
             return null;
         }
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
         HashMap map = new HashMap();
         int i3 = 0;
         for (TypeVariable typeVariable : typeParameters) {
             String name = typeVariable.getName();
-            C1644a.a aVar2 = C1644a.f3007a;
+            a$a a_a2 = a.a;
             Class<?> typeVarConcreteClass = getTypeVarConcreteClass(clsArr, i3, name);
             if (typeVarConcreteClass != null) {
                 map.put(name, typeVarConcreteClass);
@@ -92,7 +93,7 @@ public final class FieldSerializerGenericsUtil {
             }
             clsArr[0] = concreteClass2;
             Class[] clsArr2 = {clsArr[0]};
-            C1644a.a aVar = C1644a.f3007a;
+            a$a a_a = a.a;
             return clsArr2;
         }
         if (!(type instanceof ParameterizedType)) {
@@ -100,7 +101,7 @@ public final class FieldSerializerGenericsUtil {
                 return null;
             }
             Class[] clsArrComputeFieldGenerics = computeFieldGenerics(((GenericArrayType) type).getGenericComponentType(), field, new Class[]{clsArr[0]});
-            C1644a.a aVar2 = C1644a.f3007a;
+            a$a a_a2 = a.a;
             return clsArrComputeFieldGenerics;
         }
         Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
@@ -132,7 +133,7 @@ public final class FieldSerializerGenericsUtil {
                 clsArr3[i] = null;
             }
         }
-        C1644a.a aVar3 = C1644a.f3007a;
+        a$a a_a3 = a.a;
         return clsArr3;
     }
 
@@ -146,14 +147,14 @@ public final class FieldSerializerGenericsUtil {
         if (!(type instanceof ParameterizedType)) {
             return null;
         }
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
         Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
         Class[] clsArr = new Class[actualTypeArguments.length];
         int length = actualTypeArguments.length;
         int i = 0;
         for (int i2 = 0; i2 < length; i2++) {
             Type type2 = actualTypeArguments[i2];
-            C1644a.a aVar2 = C1644a.f3007a;
+            a$a a_a2 = a.a;
             clsArr[i2] = Object.class;
             if (type2 instanceof Class) {
                 clsArr[i2] = (Class) type2;
@@ -194,7 +195,7 @@ public final class FieldSerializerGenericsUtil {
         if (clsArr != null && clsArr.length > i) {
             return clsArr[i];
         }
-        C1644a.a aVar = C1644a.f3007a;
+        a$a a_a = a.a;
         GenericsResolver genericsResolver = this.kryo.getGenericsResolver();
         if (genericsResolver.isSet()) {
             return genericsResolver.getConcreteClass(str);
@@ -202,8 +203,8 @@ public final class FieldSerializerGenericsUtil {
         return null;
     }
 
-    public FieldSerializer.CachedField newCachedFieldOfGenericType(Field field, int i, Class[] clsArr, Type type) {
-        C1644a.a aVar = C1644a.f3007a;
+    public FieldSerializer$CachedField newCachedFieldOfGenericType(Field field, int i, Class[] clsArr, Type type) {
+        a$a a_a = a.a;
         buildGenericsScope(clsArr[0], getGenerics(type, this.kryo));
         if (clsArr[0] == Object.class && (type instanceof TypeVariable) && this.serializer.getGenericsScope() != null) {
             TypeVariable typeVariable = (TypeVariable) type;
@@ -213,10 +214,10 @@ public final class FieldSerializerGenericsUtil {
             }
         }
         Class[] clsArrComputeFieldGenerics = computeFieldGenerics(type, field, clsArr);
-        FieldSerializer.CachedField cachedFieldNewMatchingCachedField = this.serializer.newMatchingCachedField(field, i, clsArr[0], type, clsArrComputeFieldGenerics);
-        if (clsArrComputeFieldGenerics != null && (cachedFieldNewMatchingCachedField instanceof ObjectField) && clsArrComputeFieldGenerics.length > 0 && clsArrComputeFieldGenerics[0] != null) {
-            ((ObjectField) cachedFieldNewMatchingCachedField).generics = clsArrComputeFieldGenerics;
+        FieldSerializer$CachedField fieldSerializer$CachedFieldNewMatchingCachedField = this.serializer.newMatchingCachedField(field, i, clsArr[0], type, clsArrComputeFieldGenerics);
+        if (clsArrComputeFieldGenerics != null && (fieldSerializer$CachedFieldNewMatchingCachedField instanceof ObjectField) && clsArrComputeFieldGenerics.length > 0 && clsArrComputeFieldGenerics[0] != null) {
+            ((ObjectField) fieldSerializer$CachedFieldNewMatchingCachedField).generics = clsArrComputeFieldGenerics;
         }
-        return cachedFieldNewMatchingCachedField;
+        return fieldSerializer$CachedFieldNewMatchingCachedField;
     }
 }

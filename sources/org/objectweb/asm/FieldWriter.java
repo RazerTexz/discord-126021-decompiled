@@ -118,7 +118,7 @@ final class FieldWriter extends FieldVisitor {
         }
     }
 
-    final void collectAttributePrototypes(Attribute.Set attributePrototypes) {
+    final void collectAttributePrototypes(Attribute$Set attributePrototypes) {
         attributePrototypes.addAttributes(this.firstAttribute);
     }
 }

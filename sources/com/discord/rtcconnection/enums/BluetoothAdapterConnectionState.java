@@ -9,6 +9,7 @@ public enum BluetoothAdapterConnectionState {
     Connected(2),
     Disconnecting(3);
 
+    public static final BluetoothAdapterConnectionState$a Companion = new BluetoothAdapterConnectionState$a(null);
     private final int value;
 
     BluetoothAdapterConnectionState(int i) {

@@ -1,19 +1,20 @@
 package com.discord.api.message.attachment;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.g0.t;
+import d0.g0.w;
+import d0.z.d.m;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12103t;
-import p507d0.p579g0.C12106w;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MessageAttachment.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class MessageAttachment {
+    public static final MessageAttachment$Companion Companion = new MessageAttachment$Companion(null);
     public static final String SPOILER_PREFIX = "SPOILER_";
     private final String filename;
     private final Integer height;
@@ -23,6 +24,49 @@ public final /* data */ class MessageAttachment {
     private final String url;
     private final Integer width;
 
+    public final MessageAttachmentType e() {
+        boolean z2;
+        String str = this.url;
+        Locale locale = Locale.ROOT;
+        m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+        Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
+        String lowerCase = str.toLowerCase(locale);
+        m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
+        List<String> listA = MessageAttachmentKt.a();
+        boolean z3 = true;
+        if (!(listA instanceof Collection) || !listA.isEmpty()) {
+            Iterator<T> it = listA.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    z2 = false;
+                    break;
+                }
+                if (w.contains$default((CharSequence) lowerCase, (CharSequence) it.next(), false, 2, (Object) null)) {
+                    z2 = true;
+                    break;
+                }
+            }
+        } else {
+            z2 = false;
+            break;
+        }
+        if (z2) {
+            return MessageAttachmentType.IMAGE;
+        }
+        List<String> listB = MessageAttachmentKt.b();
+        if ((listB instanceof Collection) && listB.isEmpty()) {
+            z3 = false;
+        } else {
+            Iterator<T> it2 = listB.iterator();
+            while (it2.hasNext()) {
+                if (w.contains$default((CharSequence) lowerCase, (CharSequence) it2.next(), false, 2, (Object) null)) {
+                }
+            }
+            z3 = false;
+        }
+        return z3 ? MessageAttachmentType.VIDEO : MessageAttachmentType.FILE;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +75,7 @@ public final /* data */ class MessageAttachment {
             return false;
         }
         MessageAttachment messageAttachment = (MessageAttachment) other;
-        return C12238m.areEqual(this.url, messageAttachment.url) && this.size == messageAttachment.size && this.id == messageAttachment.id && C12238m.areEqual(this.proxyUrl, messageAttachment.proxyUrl) && C12238m.areEqual(this.filename, messageAttachment.filename) && C12238m.areEqual(this.width, messageAttachment.width) && C12238m.areEqual(this.height, messageAttachment.height);
+        return m.areEqual(this.url, messageAttachment.url) && this.size == messageAttachment.size && this.id == messageAttachment.id && m.areEqual(this.proxyUrl, messageAttachment.proxyUrl) && m.areEqual(this.filename, messageAttachment.filename) && m.areEqual(this.width, messageAttachment.width) && m.areEqual(this.height, messageAttachment.height);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -64,6 +108,10 @@ public final /* data */ class MessageAttachment {
         return this.width;
     }
 
+    public final boolean h() {
+        return t.startsWith$default(this.filename, SPOILER_PREFIX, false, 2, null);
+    }
+
     public int hashCode() {
         String str = this.url;
         int iHashCode = str != null ? str.hashCode() : 0;
@@ -81,69 +129,20 @@ public final /* data */ class MessageAttachment {
         return iHashCode4 + (num2 != null ? num2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: e */
-    public final MessageAttachmentType m8068e() {
-        boolean z2;
-        String str = this.url;
-        Locale locale = Locale.ROOT;
-        C12238m.checkNotNullExpressionValue(locale, "Locale.ROOT");
-        Objects.requireNonNull(str, "null cannot be cast to non-null type java.lang.String");
-        String lowerCase = str.toLowerCase(locale);
-        C12238m.checkNotNullExpressionValue(lowerCase, "(this as java.lang.String).toLowerCase(locale)");
-        List<String> listM8072a = MessageAttachmentKt.m8072a();
-        boolean z3 = true;
-        if (!(listM8072a instanceof Collection) || !listM8072a.isEmpty()) {
-            Iterator<T> it = listM8072a.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    z2 = false;
-                    break;
-                }
-                if (C12106w.contains$default((CharSequence) lowerCase, (CharSequence) it.next(), false, 2, (Object) null)) {
-                    z2 = true;
-                    break;
-                }
-            }
-        } else {
-            z2 = false;
-            break;
-        }
-        if (z2) {
-            return MessageAttachmentType.IMAGE;
-        }
-        List<String> listM8073b = MessageAttachmentKt.m8073b();
-        if ((listM8073b instanceof Collection) && listM8073b.isEmpty()) {
-            z3 = false;
-        } else {
-            Iterator<T> it2 = listM8073b.iterator();
-            while (it2.hasNext()) {
-                if (C12106w.contains$default((CharSequence) lowerCase, (CharSequence) it2.next(), false, 2, (Object) null)) {
-                }
-            }
-            z3 = false;
-        }
-        return z3 ? MessageAttachmentType.VIDEO : MessageAttachmentType.FILE;
-    }
-
-    /* JADX INFO: renamed from: h */
-    public final boolean m8071h() {
-        return C12103t.startsWith$default(this.filename, SPOILER_PREFIX, false, 2, null);
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MessageAttachment(url=");
-        sbM833U.append(this.url);
-        sbM833U.append(", size=");
-        sbM833U.append(this.size);
-        sbM833U.append(", id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", proxyUrl=");
-        sbM833U.append(this.proxyUrl);
-        sbM833U.append(", filename=");
-        sbM833U.append(this.filename);
-        sbM833U.append(", width=");
-        sbM833U.append(this.width);
-        sbM833U.append(", height=");
-        return C1643a.m818F(sbM833U, this.height, ")");
+        StringBuilder sbU = a.U("MessageAttachment(url=");
+        sbU.append(this.url);
+        sbU.append(", size=");
+        sbU.append(this.size);
+        sbU.append(", id=");
+        sbU.append(this.id);
+        sbU.append(", proxyUrl=");
+        sbU.append(this.proxyUrl);
+        sbU.append(", filename=");
+        sbU.append(this.filename);
+        sbU.append(", width=");
+        sbU.append(this.width);
+        sbU.append(", height=");
+        return a.F(sbU, this.height, ")");
     }
 }

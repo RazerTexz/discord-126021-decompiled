@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
+import b.d.b.a.a;
 import com.discord.models.message.Message;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ReactionsEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,7 +15,7 @@ public final /* data */ class ReactionsEntry extends ChatListEntry {
     private final int type;
 
     public ReactionsEntry(Message message, boolean z2, boolean z3, boolean z4) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         this.message = message;
         this.canAddReactions = z2;
         this.canCreateReactions = z3;
@@ -45,7 +45,7 @@ public final /* data */ class ReactionsEntry extends ChatListEntry {
     }
 
     public final ReactionsEntry copy(Message message, boolean canAddReactions, boolean canCreateReactions, boolean animateEmojis) {
-        C12238m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(message, "message");
         return new ReactionsEntry(message, canAddReactions, canCreateReactions, animateEmojis);
     }
 
@@ -57,7 +57,7 @@ public final /* data */ class ReactionsEntry extends ChatListEntry {
             return false;
         }
         ReactionsEntry reactionsEntry = (ReactionsEntry) other;
-        return C12238m.areEqual(this.message, reactionsEntry.message) && this.canAddReactions == reactionsEntry.canAddReactions && this.canCreateReactions == reactionsEntry.canCreateReactions && this.animateEmojis == reactionsEntry.animateEmojis;
+        return m.areEqual(this.message, reactionsEntry.message) && this.canAddReactions == reactionsEntry.canAddReactions && this.canCreateReactions == reactionsEntry.canCreateReactions && this.animateEmojis == reactionsEntry.animateEmojis;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -139,13 +139,13 @@ public final /* data */ class ReactionsEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ReactionsEntry(message=");
-        sbM833U.append(this.message);
-        sbM833U.append(", canAddReactions=");
-        sbM833U.append(this.canAddReactions);
-        sbM833U.append(", canCreateReactions=");
-        sbM833U.append(this.canCreateReactions);
-        sbM833U.append(", animateEmojis=");
-        return C1643a.m827O(sbM833U, this.animateEmojis, ")");
+        StringBuilder sbU = a.U("ReactionsEntry(message=");
+        sbU.append(this.message);
+        sbU.append(", canAddReactions=");
+        sbU.append(this.canAddReactions);
+        sbU.append(", canCreateReactions=");
+        sbU.append(this.canCreateReactions);
+        sbU.append(", animateEmojis=");
+        return a.O(sbU, this.animateEmojis, ")");
     }
 }

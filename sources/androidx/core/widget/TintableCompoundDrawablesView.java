@@ -1,7 +1,7 @@
 package androidx.core.widget;
 
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import androidx.annotation.Nullable;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -10,9 +10,9 @@ public interface TintableCompoundDrawablesView {
     ColorStateList getSupportCompoundDrawablesTintList();
 
     @Nullable
-    PorterDuff.Mode getSupportCompoundDrawablesTintMode();
+    PorterDuff$Mode getSupportCompoundDrawablesTintMode();
 
     void setSupportCompoundDrawablesTintList(@Nullable ColorStateList colorStateList);
 
-    void setSupportCompoundDrawablesTintMode(@Nullable PorterDuff.Mode mode);
+    void setSupportCompoundDrawablesTintMode(@Nullable PorterDuff$Mode porterDuff$Mode);
 }

@@ -3,10 +3,11 @@ package androidx.arch.core.executor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.concurrent.Executor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ArchTaskExecutor extends TaskExecutor {
 
     @NonNull
@@ -17,20 +18,10 @@ public class ArchTaskExecutor extends TaskExecutor {
     private static volatile ArchTaskExecutor sInstance;
 
     @NonNull
-    private static final Executor sMainThreadExecutor = new Executor() { // from class: androidx.arch.core.executor.ArchTaskExecutor.1
-        @Override // java.util.concurrent.Executor
-        public void execute(Runnable runnable) {
-            ArchTaskExecutor.getInstance().postToMainThread(runnable);
-        }
-    };
+    private static final Executor sMainThreadExecutor = new ArchTaskExecutor$1();
 
     @NonNull
-    private static final Executor sIOThreadExecutor = new Executor() { // from class: androidx.arch.core.executor.ArchTaskExecutor.2
-        @Override // java.util.concurrent.Executor
-        public void execute(Runnable runnable) {
-            ArchTaskExecutor.getInstance().executeOnDiskIO(runnable);
-        }
-    };
+    private static final Executor sIOThreadExecutor = new ArchTaskExecutor$2();
 
     private ArchTaskExecutor() {
         DefaultTaskExecutor defaultTaskExecutor = new DefaultTaskExecutor();

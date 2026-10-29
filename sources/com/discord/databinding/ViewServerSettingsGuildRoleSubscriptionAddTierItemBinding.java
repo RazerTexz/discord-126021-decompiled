@@ -10,22 +10,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewServerSettingsGuildRoleSubscriptionAddTierItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15558a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15559b;
+    public final TextView f2209b;
 
     public ViewServerSettingsGuildRoleSubscriptionAddTierItemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ImageView imageView, @NonNull TextView textView) {
-        this.f15558a = constraintLayout;
-        this.f15559b = textView;
+        this.a = constraintLayout;
+        this.f2209b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15558a;
+        return this.a;
     }
 }

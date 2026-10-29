@@ -1,8 +1,8 @@
 package com.discord.api.forum;
 
+import b.d.b.a.a;
 import com.discord.api.message.Message;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ForumPostFirstMessages.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class ForumPostFirstMessage {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof ForumPostFirstMessage) && C12238m.areEqual(this.firstMessage, ((ForumPostFirstMessage) other).firstMessage);
+            return (other instanceof ForumPostFirstMessage) && m.areEqual(this.firstMessage, ((ForumPostFirstMessage) other).firstMessage);
         }
         return true;
     }
@@ -30,9 +30,9 @@ public final /* data */ class ForumPostFirstMessage {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ForumPostFirstMessage(firstMessage=");
-        sbM833U.append(this.firstMessage);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ForumPostFirstMessage(firstMessage=");
+        sbU.append(this.firstMessage);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

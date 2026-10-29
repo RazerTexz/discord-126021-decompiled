@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDevPortalRpVizUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackDevPortalRpVizUsed implements AnalyticsSchema
             return false;
         }
         TrackDevPortalRpVizUsed trackDevPortalRpVizUsed = (TrackDevPortalRpVizUsed) other;
-        return C12238m.areEqual(this.applicationId, trackDevPortalRpVizUsed.applicationId) && C12238m.areEqual(this.botId, trackDevPortalRpVizUsed.botId) && C12238m.areEqual(this.applicationName, trackDevPortalRpVizUsed.applicationName) && C12238m.areEqual(this.hasBot, trackDevPortalRpVizUsed.hasBot) && C12238m.areEqual(this.hasRedirectUri, trackDevPortalRpVizUsed.hasRedirectUri) && C12238m.areEqual(this.currentView, trackDevPortalRpVizUsed.currentView) && C12238m.areEqual(this.prevView, trackDevPortalRpVizUsed.prevView) && C12238m.areEqual(this.codeCopied, trackDevPortalRpVizUsed.codeCopied);
+        return m.areEqual(this.applicationId, trackDevPortalRpVizUsed.applicationId) && m.areEqual(this.botId, trackDevPortalRpVizUsed.botId) && m.areEqual(this.applicationName, trackDevPortalRpVizUsed.applicationName) && m.areEqual(this.hasBot, trackDevPortalRpVizUsed.hasBot) && m.areEqual(this.hasRedirectUri, trackDevPortalRpVizUsed.hasRedirectUri) && m.areEqual(this.currentView, trackDevPortalRpVizUsed.currentView) && m.areEqual(this.prevView, trackDevPortalRpVizUsed.prevView) && m.areEqual(this.codeCopied, trackDevPortalRpVizUsed.codeCopied);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,21 +57,21 @@ public final /* data */ class TrackDevPortalRpVizUsed implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDevPortalRpVizUsed(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", applicationName=");
-        sbM833U.append(this.applicationName);
-        sbM833U.append(", hasBot=");
-        sbM833U.append(this.hasBot);
-        sbM833U.append(", hasRedirectUri=");
-        sbM833U.append(this.hasRedirectUri);
-        sbM833U.append(", currentView=");
-        sbM833U.append(this.currentView);
-        sbM833U.append(", prevView=");
-        sbM833U.append(this.prevView);
-        sbM833U.append(", codeCopied=");
-        return C1643a.m816D(sbM833U, this.codeCopied, ")");
+        StringBuilder sbU = a.U("TrackDevPortalRpVizUsed(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", botId=");
+        sbU.append(this.botId);
+        sbU.append(", applicationName=");
+        sbU.append(this.applicationName);
+        sbU.append(", hasBot=");
+        sbU.append(this.hasBot);
+        sbU.append(", hasRedirectUri=");
+        sbU.append(this.hasRedirectUri);
+        sbU.append(", currentView=");
+        sbU.append(this.currentView);
+        sbU.append(", prevView=");
+        sbU.append(this.prevView);
+        sbU.append(", codeCopied=");
+        return a.D(sbU, this.codeCopied, ")");
     }
 }

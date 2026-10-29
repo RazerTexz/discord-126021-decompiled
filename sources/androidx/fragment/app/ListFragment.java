@@ -1,6 +1,8 @@
 package androidx.fragment.app;
 
-import android.R;
+import android.R$anim;
+import android.R$attr;
+import android.R$id;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
+import android.widget.AdapterView$OnItemClickListener;
 import android.widget.FrameLayout;
+import android.widget.FrameLayout$LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -32,19 +35,8 @@ public class ListFragment extends Fragment {
     public View mProgressContainer;
     public TextView mStandardEmptyView;
     private final Handler mHandler = new Handler();
-    private final Runnable mRequestFocus = new Runnable() { // from class: androidx.fragment.app.ListFragment.1
-        @Override // java.lang.Runnable
-        public void run() {
-            ListView listView = ListFragment.this.mList;
-            listView.focusableViewAvailable(listView);
-        }
-    };
-    private final AdapterView.OnItemClickListener mOnClickListener = new AdapterView.OnItemClickListener() { // from class: androidx.fragment.app.ListFragment.2
-        @Override // android.widget.AdapterView.OnItemClickListener
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-            ListFragment.this.onListItemClick((ListView) adapterView, view, i, j);
-        }
-    };
+    private final Runnable mRequestFocus = new ListFragment$1(this);
+    private final AdapterView$OnItemClickListener mOnClickListener = new ListFragment$2(this);
 
     private void ensureList() {
         if (this.mList != null) {
@@ -60,13 +52,13 @@ public class ListFragment extends Fragment {
             TextView textView = (TextView) view.findViewById(INTERNAL_EMPTY_ID);
             this.mStandardEmptyView = textView;
             if (textView == null) {
-                this.mEmptyView = view.findViewById(R.id.empty);
+                this.mEmptyView = view.findViewById(R$id.empty);
             } else {
                 textView.setVisibility(8);
             }
             this.mProgressContainer = view.findViewById(INTERNAL_PROGRESS_CONTAINER_ID);
             this.mListContainer = view.findViewById(INTERNAL_LIST_CONTAINER_ID);
-            View viewFindViewById = view.findViewById(R.id.list);
+            View viewFindViewById = view.findViewById(R$id.list);
             if (!(viewFindViewById instanceof ListView)) {
                 if (viewFindViewById != null) {
                     throw new RuntimeException("Content has view with id attribute 'android.R.id.list' that is not a ListView class");
@@ -129,20 +121,20 @@ public class ListFragment extends Fragment {
         linearLayout.setOrientation(1);
         linearLayout.setVisibility(8);
         linearLayout.setGravity(17);
-        linearLayout.addView(new ProgressBar(contextRequireContext, null, R.attr.progressBarStyleLarge), new FrameLayout.LayoutParams(-2, -2));
-        frameLayout.addView(linearLayout, new FrameLayout.LayoutParams(-1, -1));
+        linearLayout.addView(new ProgressBar(contextRequireContext, null, R$attr.progressBarStyleLarge), new FrameLayout$LayoutParams(-2, -2));
+        frameLayout.addView(linearLayout, new FrameLayout$LayoutParams(-1, -1));
         FrameLayout frameLayout2 = new FrameLayout(contextRequireContext);
         frameLayout2.setId(INTERNAL_LIST_CONTAINER_ID);
         TextView textView = new TextView(contextRequireContext);
         textView.setId(INTERNAL_EMPTY_ID);
         textView.setGravity(17);
-        frameLayout2.addView(textView, new FrameLayout.LayoutParams(-1, -1));
+        frameLayout2.addView(textView, new FrameLayout$LayoutParams(-1, -1));
         ListView listView = new ListView(contextRequireContext);
-        listView.setId(R.id.list);
+        listView.setId(R$id.list);
         listView.setDrawSelectorOnTop(false);
-        frameLayout2.addView(listView, new FrameLayout.LayoutParams(-1, -1));
-        frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(-1, -1));
-        frameLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        frameLayout2.addView(listView, new FrameLayout$LayoutParams(-1, -1));
+        frameLayout.addView(frameLayout2, new FrameLayout$LayoutParams(-1, -1));
+        frameLayout.setLayoutParams(new FrameLayout$LayoutParams(-1, -1));
         return frameLayout;
     }
 
@@ -227,7 +219,7 @@ public class ListFragment extends Fragment {
         this.mListShown = z2;
         if (z2) {
             if (z3) {
-                view.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_out));
+                view.startAnimation(AnimationUtils.loadAnimation(getContext(), R$anim.fade_out));
                 this.mListContainer.startAnimation(AnimationUtils.loadAnimation(getContext(), 17432576));
             } else {
                 view.clearAnimation();
@@ -239,7 +231,7 @@ public class ListFragment extends Fragment {
         }
         if (z3) {
             view.startAnimation(AnimationUtils.loadAnimation(getContext(), 17432576));
-            this.mListContainer.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_out));
+            this.mListContainer.startAnimation(AnimationUtils.loadAnimation(getContext(), R$anim.fade_out));
         } else {
             view.clearAnimation();
             this.mListContainer.clearAnimation();

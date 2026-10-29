@@ -7,7 +7,7 @@ import com.discord.app.LoggingConfig;
 public final class WidgetHubGuildTemplates extends WidgetGuildTemplates {
     private final LoggingConfig loggingConfig = new LoggingConfig(false, null, WidgetHubGuildTemplates$loggingConfig$1.INSTANCE, 3);
 
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger$a
     public LoggingConfig getLoggingConfig() {
         return this.loggingConfig;
     }

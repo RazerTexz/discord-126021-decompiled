@@ -4,20 +4,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.material.tabs.TabLayout;
-import java.util.List;
-import kotlin.jvm.functions.Function0;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p580t.C12139j;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SimplePager.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -27,68 +20,8 @@ public final class SimplePager extends ViewPager {
     private boolean preserveSelectedPage;
     private boolean wrapHeight;
 
-    /* JADX INFO: compiled from: SimplePager.kt */
-    public final class Adapter extends FragmentPagerAdapter {
-        private final List<Item> items;
-
-        /* JADX INFO: compiled from: SimplePager.kt */
-        public final class Item {
-            private final Function0<Fragment> creator;
-            private final String title;
-
-            /* JADX WARN: Multi-variable type inference failed */
-            public Item(String str, Function0<? extends Fragment> function0) {
-                C12238m.checkNotNullParameter(str, "title");
-                C12238m.checkNotNullParameter(function0, "creator");
-                this.title = str;
-                this.creator = function0;
-            }
-
-            public final Function0<Fragment> getCreator$utils_release() {
-                return this.creator;
-            }
-
-            /* JADX INFO: renamed from: getTitle$utils_release, reason: from getter */
-            public final String getTitle() {
-                return this.title;
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public Adapter(FragmentManager fragmentManager, Item... itemArr) {
-            super(fragmentManager, 1);
-            C12238m.checkNotNullParameter(fragmentManager, "fm");
-            C12238m.checkNotNullParameter(itemArr, "items");
-            this.items = C12139j.asList(itemArr);
-        }
-
-        @Override // androidx.viewpager.widget.PagerAdapter
-        public int getCount() {
-            return this.items.size();
-        }
-
-        @Override // androidx.fragment.app.FragmentPagerAdapter
-        public Fragment getItem(int position) {
-            Function0<Fragment> creator$utils_release;
-            Fragment fragmentInvoke;
-            Item item = (Item) C12163u.getOrNull(this.items, position);
-            if (item != null && (creator$utils_release = item.getCreator$utils_release()) != null && (fragmentInvoke = creator$utils_release.invoke()) != null) {
-                return fragmentInvoke;
-            }
-            throw new IllegalArgumentException("Invalid position: " + position + '.');
-        }
-
-        @Override // androidx.viewpager.widget.PagerAdapter
-        public CharSequence getPageTitle(int position) {
-            String title;
-            Item item = (Item) C12163u.getOrNull(this.items, position);
-            return (item == null || (title = item.getTitle()) == null) ? super.getPageTitle(position) : title;
-        }
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
     public SimplePager(Context context) {
-        this(context, null, 2, 0 == true ? 1 : 0);
+        this(context, null, 2, null);
     }
 
     public /* synthetic */ SimplePager(Context context, AttributeSet attributeSet, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -120,7 +53,7 @@ public final class SimplePager extends ViewPager {
 
     @Override // androidx.viewpager.widget.ViewPager, android.view.ViewGroup
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        C12238m.checkNotNullParameter(event, "event");
+        m.checkNotNullParameter(event, "event");
         return this.isScrollingEnabled && super.onInterceptTouchEvent(event);
     }
 
@@ -134,22 +67,22 @@ public final class SimplePager extends ViewPager {
         int i = 0;
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = getChildAt(i2);
-            childAt.measure(widthMeasureSpec, View.MeasureSpec.makeMeasureSpec(0, 0));
-            C12238m.checkNotNullExpressionValue(childAt, "child");
+            childAt.measure(widthMeasureSpec, View$MeasureSpec.makeMeasureSpec(0, 0));
+            m.checkNotNullExpressionValue(childAt, "child");
             int measuredHeight = childAt.getMeasuredHeight();
             if (measuredHeight > i) {
                 i = measuredHeight;
             }
         }
         if (i != 0) {
-            heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(i, BasicMeasure.EXACTLY);
+            heightMeasureSpec = View$MeasureSpec.makeMeasureSpec(i, BasicMeasure.EXACTLY);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override // androidx.viewpager.widget.ViewPager, android.view.View
     public boolean onTouchEvent(MotionEvent event) {
-        C12238m.checkNotNullParameter(event, "event");
+        m.checkNotNullParameter(event, "event");
         return this.isScrollingEnabled && super.onTouchEvent(event);
     }
 
@@ -194,7 +127,7 @@ public final class SimplePager extends ViewPager {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public SimplePager(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         this.preserveSelectedPage = true;
         this.keepAllPagesLoaded = true;
         this.isScrollingEnabled = true;

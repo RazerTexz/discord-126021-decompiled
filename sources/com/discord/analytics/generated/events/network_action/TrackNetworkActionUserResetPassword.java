@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -8,8 +9,7 @@ import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.widgets.settings.account.WidgetSettingsAccountChangePassword;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionUserResetPassword.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,9 +20,14 @@ public final /* data */ class TrackNetworkActionUserResetPassword implements Ana
     private TrackNetworkMetadata trackNetworkMetadata;
     private final transient String analyticsSchemaTypeName = "network_action_user_reset_password";
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackNetworkActionUserResetPassword) && C12238m.areEqual(this.mfa, ((TrackNetworkActionUserResetPassword) other).mfa);
+            return (other instanceof TrackNetworkActionUserResetPassword) && m.areEqual(this.mfa, ((TrackNetworkActionUserResetPassword) other).mfa);
         }
         return true;
     }
@@ -41,13 +46,7 @@ public final /* data */ class TrackNetworkActionUserResetPassword implements Ana
         return 0;
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        return C1643a.m816D(C1643a.m833U("TrackNetworkActionUserResetPassword(mfa="), this.mfa, ")");
+        return a.D(a.U("TrackNetworkActionUserResetPassword(mfa="), this.mfa, ")");
     }
 }

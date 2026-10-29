@@ -3,14 +3,12 @@ package lombok.patcher.scripts;
 import java.util.List;
 import java.util.Set;
 import lombok.patcher.Hook;
-import lombok.patcher.MethodLogistics;
-import lombok.patcher.PatchScript;
+import lombok.patcher.PatchScript$MethodPatcher;
 import lombok.patcher.StackRequest;
 import lombok.patcher.TargetMatcher;
 import lombok.patcher.TransplantMapper;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/WrapReturnValuesScript.SCL.lombok */
 public final class WrapReturnValuesScript extends MethodLevelPatchScript {
@@ -22,8 +20,36 @@ public final class WrapReturnValuesScript extends MethodLevelPatchScript {
     private final boolean cast;
     static final /* synthetic */ boolean $assertionsDisabled;
 
+    static /* synthetic */ void access$5(Hook hook, MethodVisitor methodVisitor) {
+        insertMethod(hook, methodVisitor);
+    }
+
     static {
         $assertionsDisabled = !WrapReturnValuesScript.class.desiredAssertionStatus();
+    }
+
+    static /* synthetic */ Hook access$4(WrapReturnValuesScript wrapReturnValuesScript) {
+        return wrapReturnValuesScript.wrapper;
+    }
+
+    static /* synthetic */ Set access$1(WrapReturnValuesScript wrapReturnValuesScript) {
+        return wrapReturnValuesScript.requests;
+    }
+
+    static /* synthetic */ boolean access$2(WrapReturnValuesScript wrapReturnValuesScript) {
+        return wrapReturnValuesScript.hijackReturnValue;
+    }
+
+    static /* synthetic */ boolean access$3(WrapReturnValuesScript wrapReturnValuesScript) {
+        return wrapReturnValuesScript.insert;
+    }
+
+    static /* synthetic */ boolean access$6(WrapReturnValuesScript wrapReturnValuesScript) {
+        return wrapReturnValuesScript.transplant;
+    }
+
+    static /* synthetic */ boolean access$7(WrapReturnValuesScript wrapReturnValuesScript) {
+        return wrapReturnValuesScript.cast;
     }
 
     @Override // lombok.patcher.PatchScript
@@ -51,17 +77,16 @@ public final class WrapReturnValuesScript extends MethodLevelPatchScript {
     }
 
     @Override // lombok.patcher.scripts.MethodLevelPatchScript
-    protected PatchScript.MethodPatcher createPatcher(ClassWriter writer, final String classSpec, TransplantMapper transplantMapper) {
-        PatchScript.MethodPatcher patcher = new PatchScript.MethodPatcher(writer, transplantMapper, new PatchScript.MethodPatcherFactory() { // from class: lombok.patcher.scripts.WrapReturnValuesScript.1
-            @Override // lombok.patcher.PatchScript.MethodPatcherFactory
-            public MethodVisitor createMethodVisitor(String name, String desc, MethodVisitor parent, MethodLogistics logistics) {
-                return WrapReturnValuesScript.this.new WrapReturnValues(parent, logistics, classSpec, desc);
-            }
-        });
+    protected PatchScript$MethodPatcher createPatcher(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
+        PatchScript$MethodPatcher patcher = new PatchScript$MethodPatcher(writer, transplantMapper, new WrapReturnValuesScript$1(this, classSpec));
         if (this.transplant) {
             patcher.addTransplant(this.wrapper);
         }
         return patcher;
+    }
+
+    static /* synthetic */ String access$0(String str) {
+        return extractReturnValueFromDesc(str);
     }
 
     private static String extractReturnValueFromDesc(String desc) {
@@ -71,52 +96,6 @@ public final class WrapReturnValuesScript extends MethodLevelPatchScript {
         }
         String rd = desc.substring(lastIdx + 1);
         return (rd.startsWith("L") && rd.endsWith(";")) ? rd.substring(1, rd.length() - 1) : rd;
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/patcher/scripts/WrapReturnValuesScript$WrapReturnValues.SCL.lombok */
-    class WrapReturnValues extends MethodVisitor {
-        private final MethodLogistics logistics;
-        private final String ownClassSpec;
-        private final String returnValueDesc;
-
-        public WrapReturnValues(MethodVisitor mv, MethodLogistics logistics, String ownClassSpec, String desc) {
-            super(Opcodes.ASM7, mv);
-            this.logistics = logistics;
-            this.ownClassSpec = ownClassSpec;
-            this.returnValueDesc = WrapReturnValuesScript.extractReturnValueFromDesc(desc);
-        }
-
-        @Override // org.objectweb.asm.MethodVisitor
-        public void visitInsn(int opcode) {
-            if (opcode == this.logistics.getReturnOpcode()) {
-                if (WrapReturnValuesScript.this.requests.contains(StackRequest.RETURN_VALUE)) {
-                    if (!WrapReturnValuesScript.this.hijackReturnValue) {
-                        this.logistics.generateDupForReturn(this.f27600mv);
-                    }
-                } else if (WrapReturnValuesScript.this.hijackReturnValue) {
-                    this.logistics.generatePopForReturn(this.f27600mv);
-                }
-                if (WrapReturnValuesScript.this.requests.contains(StackRequest.THIS)) {
-                    this.logistics.generateLoadOpcodeForThis(this.f27600mv);
-                }
-                for (StackRequest param : StackRequest.PARAMS_IN_ORDER) {
-                    if (WrapReturnValuesScript.this.requests.contains(param)) {
-                        this.logistics.generateLoadOpcodeForParam(param.getParamPos(), this.f27600mv);
-                    }
-                }
-                if (WrapReturnValuesScript.this.insert) {
-                    WrapReturnValuesScript.insertMethod(WrapReturnValuesScript.this.wrapper, this.f27600mv);
-                } else {
-                    super.visitMethodInsn(Opcodes.INVOKESTATIC, WrapReturnValuesScript.this.transplant ? this.ownClassSpec : WrapReturnValuesScript.this.wrapper.getClassSpec(), WrapReturnValuesScript.this.wrapper.getMethodName(), WrapReturnValuesScript.this.wrapper.getMethodDescriptor(), false);
-                }
-                if (WrapReturnValuesScript.this.cast) {
-                    super.visitTypeInsn(Opcodes.CHECKCAST, this.returnValueDesc);
-                }
-                super.visitInsn(opcode);
-                return;
-            }
-            super.visitInsn(opcode);
-        }
     }
 
     public String toString() {

@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
 import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDmEmptyAction.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackDmEmptyAction implements AnalyticsSchema, Tra
             return false;
         }
         TrackDmEmptyAction trackDmEmptyAction = (TrackDmEmptyAction) other;
-        return C12238m.areEqual(this.source, trackDmEmptyAction.source) && C12238m.areEqual(this.type, trackDmEmptyAction.type);
+        return m.areEqual(this.source, trackDmEmptyAction.source) && m.areEqual(this.type, trackDmEmptyAction.type);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackDmEmptyAction implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDmEmptyAction(source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", type=");
-        return C1643a.m817E(sbM833U, this.type, ")");
+        StringBuilder sbU = a.U("TrackDmEmptyAction(source=");
+        sbU.append(this.source);
+        sbU.append(", type=");
+        return a.E(sbU, this.type, ")");
     }
 }

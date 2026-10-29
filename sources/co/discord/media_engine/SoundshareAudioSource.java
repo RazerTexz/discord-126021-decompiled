@@ -1,15 +1,12 @@
 package co.discord.media_engine;
 
 import android.media.AudioRecord;
-import android.os.Process;
 import android.util.Log;
-import com.discord.models.domain.ModelAuditLogEntry;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.nio.ByteBuffer;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.webrtc.ThreadUtils;
 import org.webrtc.TimestampAligner;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SoundshareAudioSource.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,99 +16,29 @@ public final class SoundshareAudioSource {
     private static final int BUFFERS_PER_SECOND = 100;
     private static final int BUFFER_SIZE_FACTOR = 2;
     private static final int CALLBACK_BUFFER_SIZE_MS = 10;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final SoundshareAudioSource$Companion Companion = new SoundshareAudioSource$Companion(null);
     private static final String TAG = "SoundshareAudioSource";
     private AudioRecord audioRecord;
-    private AudioRecordThread audioThread;
+    private SoundshareAudioSource$AudioRecordThread audioThread;
     private ByteBuffer byteBuffer;
     private static volatile boolean microphoneMute;
     private boolean released;
     private final long nativeInstance = nativeCreateInstance();
 
-    /* JADX INFO: compiled from: SoundshareAudioSource.kt */
-    public final class AudioRecordThread extends Thread {
-        private final AudioRecord audioRecord;
-        private final ByteBuffer byteBuffer;
-        private final byte[] emptyBytes;
-        private volatile boolean keepAlive;
-        public final /* synthetic */ SoundshareAudioSource this$0;
-        private long timestamp;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public AudioRecordThread(SoundshareAudioSource soundshareAudioSource, String str, AudioRecord audioRecord, ByteBuffer byteBuffer, long j) {
-            super(str);
-            C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
-            C12238m.checkNotNullParameter(audioRecord, "audioRecord");
-            C12238m.checkNotNullParameter(byteBuffer, "byteBuffer");
-            this.this$0 = soundshareAudioSource;
-            this.audioRecord = audioRecord;
-            this.byteBuffer = byteBuffer;
-            this.timestamp = j;
-            this.keepAlive = true;
-            this.emptyBytes = new byte[byteBuffer.capacity()];
-        }
-
-        @Override // java.lang.Thread, java.lang.Runnable
-        public void run() {
-            Process.setThreadPriority(-19);
-            SoundshareAudioSource.INSTANCE.assertTrue(this.audioRecord.getRecordingState() == 3);
-            while (this.keepAlive) {
-                AudioRecord audioRecord = this.audioRecord;
-                ByteBuffer byteBuffer = this.byteBuffer;
-                int i = audioRecord.read(byteBuffer, byteBuffer.capacity());
-                this.timestamp = TimestampAligner.getRtcTimeNanos();
-                if (i == this.byteBuffer.capacity()) {
-                    if (SoundshareAudioSource.microphoneMute) {
-                        this.byteBuffer.clear();
-                        this.byteBuffer.put(this.emptyBytes);
-                    }
-                    if (this.keepAlive) {
-                        this.this$0.dataIsRecorded(i, this.timestamp);
-                    }
-                } else {
-                    String str = "AudioRecord.read failed: " + i;
-                    Log.e(SoundshareAudioSource.TAG, str);
-                    if (i == -3) {
-                        this.keepAlive = false;
-                        this.this$0.reportSoundshareAudioSourceError(str);
-                    }
-                }
-            }
-            try {
-                this.audioRecord.stop();
-            } catch (IllegalStateException e) {
-                StringBuilder sbM833U = C1643a.m833U("AudioRecord.stop failed: ");
-                sbM833U.append(e.getMessage());
-                Log.e(SoundshareAudioSource.TAG, sbM833U.toString());
-            }
-        }
-
-        public final void stopThread() {
-            this.keepAlive = false;
-        }
+    public static final /* synthetic */ void access$dataIsRecorded(SoundshareAudioSource soundshareAudioSource, int i, long j) {
+        soundshareAudioSource.dataIsRecorded(i, j);
     }
 
-    /* JADX INFO: compiled from: SoundshareAudioSource.kt */
-    public final class Companion {
-        private Companion() {
-        }
+    public static final /* synthetic */ boolean access$getMicrophoneMute$cp() {
+        return microphoneMute;
+    }
 
-        private final void assertTrue(boolean condition) {
-            if (!condition) {
-                throw new AssertionError("Expected condition to be true");
-            }
-        }
+    public static final /* synthetic */ void access$reportSoundshareAudioSourceError(SoundshareAudioSource soundshareAudioSource, String str) {
+        soundshareAudioSource.reportSoundshareAudioSourceError(str);
+    }
 
-        public final void setMicrophoneMute(boolean mute) {
-            Log.w(SoundshareAudioSource.TAG, "setMicrophoneMute(" + mute + ')');
-            SoundshareAudioSource.microphoneMute = mute;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
+    public static final /* synthetic */ void access$setMicrophoneMute$cp(boolean z2) {
+        microphoneMute = z2;
     }
 
     private final int channelCountToConfiguration(int channels) {
@@ -167,7 +94,7 @@ public final class SoundshareAudioSource {
     }
 
     public final boolean startRecording(AudioRecord audioRecord) {
-        C12238m.checkNotNullParameter(audioRecord, "audioRecord");
+        m.checkNotNullParameter(audioRecord, "audioRecord");
         int channelCount = audioRecord.getChannelCount();
         int sampleRate = audioRecord.getSampleRate();
         if (this.audioRecord != null) {
@@ -181,7 +108,7 @@ public final class SoundshareAudioSource {
         nativeCacheDirectBufferAddress(this.nativeInstance, byteBufferAllocateDirect);
         int minBufferSize = AudioRecord.getMinBufferSize(sampleRate, channelCountToConfiguration(channelCount), 2);
         if (minBufferSize == -1 || minBufferSize == -2) {
-            reportSoundshareAudioSourceInitError(C1643a.m871q("AudioRecord.getMinBufferSize failed: ", minBufferSize));
+            reportSoundshareAudioSourceInitError(a.q("AudioRecord.getMinBufferSize failed: ", minBufferSize));
             return false;
         }
         Math.max(minBufferSize * 2, byteBufferAllocateDirect.capacity());
@@ -192,7 +119,7 @@ public final class SoundshareAudioSource {
         }
         try {
             try {
-                INSTANCE.assertTrue(this.audioThread == null);
+                SoundshareAudioSource$Companion.access$assertTrue(Companion, this.audioThread == null);
                 long rtcTimeNanos = TimestampAligner.getRtcTimeNanos();
                 try {
                     audioRecord.startRecording();
@@ -200,11 +127,11 @@ public final class SoundshareAudioSource {
                         reportSoundshareAudioSourceStartError("AudioRecord.startRecording failed - incorrect state :" + audioRecord.getRecordingState());
                         return false;
                     }
-                    C12238m.checkNotNullExpressionValue(byteBufferAllocateDirect, "byteBuffer");
-                    AudioRecordThread audioRecordThread = new AudioRecordThread(this, "SoundshareThread", audioRecord, byteBufferAllocateDirect, rtcTimeNanos);
-                    this.audioThread = audioRecordThread;
-                    C12238m.checkNotNull(audioRecordThread);
-                    audioRecordThread.start();
+                    m.checkNotNullExpressionValue(byteBufferAllocateDirect, "byteBuffer");
+                    SoundshareAudioSource$AudioRecordThread soundshareAudioSource$AudioRecordThread = new SoundshareAudioSource$AudioRecordThread(this, "SoundshareThread", audioRecord, byteBufferAllocateDirect, rtcTimeNanos);
+                    this.audioThread = soundshareAudioSource$AudioRecordThread;
+                    m.checkNotNull(soundshareAudioSource$AudioRecordThread);
+                    soundshareAudioSource$AudioRecordThread.start();
                     return true;
                 } catch (IllegalStateException e) {
                     reportSoundshareAudioSourceStartError("AudioRecord.startRecording failed: " + e.getMessage());
@@ -221,12 +148,12 @@ public final class SoundshareAudioSource {
     }
 
     public final boolean stopRecording() {
-        AudioRecordThread audioRecordThread = this.audioThread;
-        if (audioRecordThread == null) {
+        SoundshareAudioSource$AudioRecordThread soundshareAudioSource$AudioRecordThread = this.audioThread;
+        if (soundshareAudioSource$AudioRecordThread == null) {
             return false;
         }
-        audioRecordThread.stopThread();
-        if (!ThreadUtils.joinUninterruptibly(audioRecordThread, AUDIO_RECORD_THREAD_JOIN_TIMEOUT_MS)) {
+        soundshareAudioSource$AudioRecordThread.stopThread();
+        if (!ThreadUtils.joinUninterruptibly(soundshareAudioSource$AudioRecordThread, AUDIO_RECORD_THREAD_JOIN_TIMEOUT_MS)) {
             Log.e(TAG, "Join of SoundshareThread timed out");
         }
         this.audioThread = null;

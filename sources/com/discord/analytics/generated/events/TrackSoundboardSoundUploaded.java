@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSoundboardSoundUploaded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackSoundboardSoundUploaded implements AnalyticsS
             return false;
         }
         TrackSoundboardSoundUploaded trackSoundboardSoundUploaded = (TrackSoundboardSoundUploaded) other;
-        return C12238m.areEqual(this.guildId, trackSoundboardSoundUploaded.guildId) && C12238m.areEqual(this.success, trackSoundboardSoundUploaded.success) && C12238m.areEqual(this.reasonCode, trackSoundboardSoundUploaded.reasonCode) && C12238m.areEqual(this.reasonMessage, trackSoundboardSoundUploaded.reasonMessage) && C12238m.areEqual(this.mimeType, trackSoundboardSoundUploaded.mimeType) && C12238m.areEqual(this.durationS, trackSoundboardSoundUploaded.durationS);
+        return m.areEqual(this.guildId, trackSoundboardSoundUploaded.guildId) && m.areEqual(this.success, trackSoundboardSoundUploaded.success) && m.areEqual(this.reasonCode, trackSoundboardSoundUploaded.reasonCode) && m.areEqual(this.reasonMessage, trackSoundboardSoundUploaded.reasonMessage) && m.areEqual(this.mimeType, trackSoundboardSoundUploaded.mimeType) && m.areEqual(this.durationS, trackSoundboardSoundUploaded.durationS);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,19 +51,19 @@ public final /* data */ class TrackSoundboardSoundUploaded implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSoundboardSoundUploaded(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", success=");
-        sbM833U.append(this.success);
-        sbM833U.append(", reasonCode=");
-        sbM833U.append(this.reasonCode);
-        sbM833U.append(", reasonMessage=");
-        sbM833U.append(this.reasonMessage);
-        sbM833U.append(", mimeType=");
-        sbM833U.append(this.mimeType);
-        sbM833U.append(", durationS=");
-        sbM833U.append(this.durationS);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TrackSoundboardSoundUploaded(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", success=");
+        sbU.append(this.success);
+        sbU.append(", reasonCode=");
+        sbU.append(this.reasonCode);
+        sbU.append(", reasonMessage=");
+        sbU.append(this.reasonMessage);
+        sbU.append(", mimeType=");
+        sbU.append(this.mimeType);
+        sbU.append(", durationS=");
+        sbU.append(this.durationS);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

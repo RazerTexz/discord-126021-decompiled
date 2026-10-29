@@ -11,32 +11,29 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetCaptchaBottomSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f15799a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15800b;
+    public final TextView f2251b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f15801c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15802d;
+    public final TextView d;
 
     public WidgetCaptchaBottomSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull MaterialButton materialButton, @NonNull TextView textView2, @NonNull ImageView imageView) {
-        this.f15799a = nestedScrollView;
-        this.f15800b = textView;
-        this.f15801c = materialButton;
-        this.f15802d = textView2;
+        this.a = nestedScrollView;
+        this.f2251b = textView;
+        this.c = materialButton;
+        this.d = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15799a;
+        return this.a;
     }
 }

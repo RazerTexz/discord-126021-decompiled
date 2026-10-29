@@ -4,19 +4,21 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.graphics.Region;
-import android.graphics.Shader;
+import android.graphics.Region$Op;
+import android.graphics.Shader$TileMode;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class ShadowRenderer {
     private static final int COLOR_ALPHA_END = 0;
     private static final int COLOR_ALPHA_MIDDLE = 20;
@@ -74,11 +76,11 @@ public class ShadowRenderer {
         float[] fArr = cornerPositions;
         fArr[1] = f4;
         fArr[2] = ((1.0f - f4) / 2.0f) + f4;
-        this.cornerShadowPaint.setShader(new RadialGradient(rectF.centerX(), rectF.centerY(), fWidth, cornerColors, fArr, Shader.TileMode.CLAMP));
+        this.cornerShadowPaint.setShader(new RadialGradient(rectF.centerX(), rectF.centerY(), fWidth, cornerColors, fArr, Shader$TileMode.CLAMP));
         canvas.save();
         canvas.concat(matrix);
         if (!z2) {
-            canvas.clipPath(path, Region.Op.DIFFERENCE);
+            canvas.clipPath(path, Region$Op.DIFFERENCE);
             canvas.drawPath(path, this.transparentPaint);
         }
         canvas.drawArc(rectF, f, f2, true, this.cornerShadowPaint);
@@ -94,7 +96,7 @@ public class ShadowRenderer {
         iArr[2] = this.shadowStartColor;
         Paint paint = this.edgeShadowPaint;
         float f = rectF.left;
-        paint.setShader(new LinearGradient(f, rectF.top, f, rectF.bottom, iArr, edgePositions, Shader.TileMode.CLAMP));
+        paint.setShader(new LinearGradient(f, rectF.top, f, rectF.bottom, iArr, edgePositions, Shader$TileMode.CLAMP));
         canvas.save();
         canvas.concat(matrix);
         canvas.drawRect(rectF, this.edgeShadowPaint);
@@ -121,7 +123,7 @@ public class ShadowRenderer {
         this.transparentPaint.setColor(0);
         Paint paint = new Paint(4);
         this.cornerShadowPaint = paint;
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint$Style.FILL);
         this.edgeShadowPaint = new Paint(paint);
     }
 }

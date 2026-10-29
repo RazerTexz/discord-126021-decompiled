@@ -11,82 +11,69 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChannelsListItemThreadActionsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f16054a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinearLayout f16055b;
+    public final LinearLayout f2297b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16056c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f16057d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16058e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final View f16059f;
+    public final View f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final View f16060g;
+    public final View g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f16061h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final SimpleDraweeView f16062i;
+    public final SimpleDraweeView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f16063j;
+    public final TextView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final TextView f16064k;
+    public final TextView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final TextView f16065l;
+    public final TextView l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final TextView f16066m;
+    public final TextView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f16067n;
+    public final TextView n;
 
     public WidgetChannelsListItemThreadActionsBinding(@NonNull NestedScrollView nestedScrollView, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull TextView textView4, @NonNull View view, @NonNull View view2, @NonNull TextView textView5, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView6, @NonNull TextView textView7, @NonNull TextView textView8, @NonNull TextView textView9, @NonNull TextView textView10) {
-        this.f16054a = nestedScrollView;
-        this.f16055b = linearLayout;
-        this.f16056c = textView2;
-        this.f16057d = textView3;
-        this.f16058e = textView4;
-        this.f16059f = view;
-        this.f16060g = view2;
-        this.f16061h = textView5;
-        this.f16062i = simpleDraweeView;
-        this.f16063j = textView6;
-        this.f16064k = textView7;
-        this.f16065l = textView8;
-        this.f16066m = textView9;
-        this.f16067n = textView10;
+        this.a = nestedScrollView;
+        this.f2297b = linearLayout;
+        this.c = textView2;
+        this.d = textView3;
+        this.e = textView4;
+        this.f = view;
+        this.g = view2;
+        this.h = textView5;
+        this.i = simpleDraweeView;
+        this.j = textView6;
+        this.k = textView7;
+        this.l = textView8;
+        this.m = textView9;
+        this.n = textView10;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16054a;
+        return this.a;
     }
 }

@@ -6,6 +6,7 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.delombok.Delombok;
+import lombok.delombok.Delombok$InvalidFormatOptionException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Location;
 import org.apache.tools.ant.types.Path;
@@ -72,7 +73,7 @@ public class DelombokTaskImpl {
                 } catch (IOException e) {
                     throw new BuildException("I/O problem during delombok", e, location);
                 }
-            } catch (Delombok.InvalidFormatOptionException e2) {
+            } catch (Delombok$InvalidFormatOptionException e2) {
                 throw new BuildException(String.valueOf(e2.getMessage()) + " Run java -jar lombok.jar --format-help for detailed format help.");
             }
         } catch (UnsupportedCharsetException unused) {

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUserTrialOfferCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackUserTrialOfferCreated implements AnalyticsSch
             return false;
         }
         TrackUserTrialOfferCreated trackUserTrialOfferCreated = (TrackUserTrialOfferCreated) other;
-        return C12238m.areEqual(this.trialOfferId, trackUserTrialOfferCreated.trialOfferId) && C12238m.areEqual(this.trialId, trackUserTrialOfferCreated.trialId) && C12238m.areEqual(this.expiresAt, trackUserTrialOfferCreated.expiresAt);
+        return m.areEqual(this.trialOfferId, trackUserTrialOfferCreated.trialOfferId) && m.areEqual(this.trialId, trackUserTrialOfferCreated.trialId) && m.areEqual(this.expiresAt, trackUserTrialOfferCreated.expiresAt);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackUserTrialOfferCreated implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUserTrialOfferCreated(trialOfferId=");
-        sbM833U.append(this.trialOfferId);
-        sbM833U.append(", trialId=");
-        sbM833U.append(this.trialId);
-        sbM833U.append(", expiresAt=");
-        return C1643a.m819G(sbM833U, this.expiresAt, ")");
+        StringBuilder sbU = a.U("TrackUserTrialOfferCreated(trialOfferId=");
+        sbU.append(this.trialOfferId);
+        sbU.append(", trialId=");
+        sbU.append(this.trialId);
+        sbU.append(", expiresAt=");
+        return a.G(sbU, this.expiresAt, ")");
     }
 }

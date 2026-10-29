@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Objects;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -179,7 +180,7 @@ public class LruCache<K, V> {
                     break;
                 }
                 if (this.size > i && !this.map.isEmpty()) {
-                    Map.Entry<K, V> next = this.map.entrySet().iterator().next();
+                    Map$Entry<K, V> next = this.map.entrySet().iterator().next();
                     key = next.getKey();
                     value = next.getValue();
                     this.map.remove(key);

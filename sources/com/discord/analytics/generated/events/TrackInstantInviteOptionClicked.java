@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackInstantInviteOptionClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackInstantInviteOptionClicked implements Analyti
             return false;
         }
         TrackInstantInviteOptionClicked trackInstantInviteOptionClicked = (TrackInstantInviteOptionClicked) other;
-        return C12238m.areEqual(this.inviteType, trackInstantInviteOptionClicked.inviteType) && C12238m.areEqual(this.guildId, trackInstantInviteOptionClicked.guildId) && C12238m.areEqual(this.channelId, trackInstantInviteOptionClicked.channelId) && C12238m.areEqual(this.inviteCode, trackInstantInviteOptionClicked.inviteCode) && C12238m.areEqual(this.inviteChannelType, trackInstantInviteOptionClicked.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackInstantInviteOptionClicked.inviteInviterId);
+        return m.areEqual(this.inviteType, trackInstantInviteOptionClicked.inviteType) && m.areEqual(this.guildId, trackInstantInviteOptionClicked.guildId) && m.areEqual(this.channelId, trackInstantInviteOptionClicked.channelId) && m.areEqual(this.inviteCode, trackInstantInviteOptionClicked.inviteCode) && m.areEqual(this.inviteChannelType, trackInstantInviteOptionClicked.inviteChannelType) && m.areEqual(this.inviteInviterId, trackInstantInviteOptionClicked.inviteInviterId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackInstantInviteOptionClicked implements Analyti
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackInstantInviteOptionClicked(inviteType=");
-        sbM833U.append(this.inviteType);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", inviteChannelType=");
-        sbM833U.append(this.inviteChannelType);
-        sbM833U.append(", inviteInviterId=");
-        return C1643a.m819G(sbM833U, this.inviteInviterId, ")");
+        StringBuilder sbU = a.U("TrackInstantInviteOptionClicked(inviteType=");
+        sbU.append(this.inviteType);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", inviteChannelType=");
+        sbU.append(this.inviteChannelType);
+        sbU.append(", inviteInviterId=");
+        return a.G(sbU, this.inviteInviterId, ")");
     }
 }

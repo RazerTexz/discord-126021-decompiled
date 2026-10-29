@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLinkSecurityCheckBlocked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public final /* data */ class TrackLinkSecurityCheckBlocked implements Analytics
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof TrackLinkSecurityCheckBlocked) && C12238m.areEqual(this.blockedDomain, ((TrackLinkSecurityCheckBlocked) other).blockedDomain);
+            return (other instanceof TrackLinkSecurityCheckBlocked) && m.areEqual(this.blockedDomain, ((TrackLinkSecurityCheckBlocked) other).blockedDomain);
         }
         return true;
     }
@@ -35,6 +35,6 @@ public final /* data */ class TrackLinkSecurityCheckBlocked implements Analytics
     }
 
     public String toString() {
-        return C1643a.m817E(C1643a.m833U("TrackLinkSecurityCheckBlocked(blockedDomain="), this.blockedDomain, ")");
+        return a.E(a.U("TrackLinkSecurityCheckBlocked(blockedDomain="), this.blockedDomain, ")");
     }
 }

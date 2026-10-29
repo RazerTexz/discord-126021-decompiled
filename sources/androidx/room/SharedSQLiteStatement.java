@@ -1,11 +1,12 @@
 package androidx.room;
 
 import androidx.annotation.RestrictTo;
-import androidx.sqlite.p006db.SupportSQLiteStatement;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.sqlite.db.SupportSQLiteStatement;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public abstract class SharedSQLiteStatement {
     private final RoomDatabase mDatabase;
     private volatile SupportSQLiteStatement mStmt;

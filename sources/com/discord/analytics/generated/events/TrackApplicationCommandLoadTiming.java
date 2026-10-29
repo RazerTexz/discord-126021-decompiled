@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackApplicationCommandLoadTiming.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackApplicationCommandLoadTiming implements Analy
             return false;
         }
         TrackApplicationCommandLoadTiming trackApplicationCommandLoadTiming = (TrackApplicationCommandLoadTiming) other;
-        return C12238m.areEqual(this.durationMs, trackApplicationCommandLoadTiming.durationMs) && C12238m.areEqual(this.method, trackApplicationCommandLoadTiming.method) && C12238m.areEqual(this.area, trackApplicationCommandLoadTiming.area);
+        return m.areEqual(this.durationMs, trackApplicationCommandLoadTiming.durationMs) && m.areEqual(this.method, trackApplicationCommandLoadTiming.method) && m.areEqual(this.area, trackApplicationCommandLoadTiming.area);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackApplicationCommandLoadTiming implements Analy
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackApplicationCommandLoadTiming(durationMs=");
-        sbM833U.append(this.durationMs);
-        sbM833U.append(", method=");
-        sbM833U.append(this.method);
-        sbM833U.append(", area=");
-        return C1643a.m817E(sbM833U, this.area, ")");
+        StringBuilder sbU = a.U("TrackApplicationCommandLoadTiming(durationMs=");
+        sbU.append(this.durationMs);
+        sbU.append(", method=");
+        sbU.append(this.method);
+        sbU.append(", area=");
+        return a.E(sbU, this.area, ")");
     }
 }

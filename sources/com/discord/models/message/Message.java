@@ -1,8 +1,10 @@
 package com.discord.models.message;
 
+import a0.a.a.b;
 import androidx.appcompat.widget.ActivityChooserModel;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.api.application.Application;
 import com.discord.api.botuikit.Component;
 import com.discord.api.channel.Channel;
@@ -22,21 +24,20 @@ import com.discord.api.sticker.StickerPartial;
 import com.discord.api.user.User;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import com.discord.utilities.captcha.CaptchaHelper;
+import com.discord.utilities.captcha.CaptchaHelper$CaptchaPayload;
+import d0.g0.w;
+import d0.t.h0;
+import d0.z.d.m;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import org.objectweb.asm.Opcodes;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12106w;
-import p507d0.p580t.C12136h0;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Message.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class Message {
+    public static final Message$Companion Companion = new Message$Companion(null);
     private final MessageActivity activity;
     private final MessageAllowedMentions allowedMentions;
     private final Application application;
@@ -45,7 +46,7 @@ public final /* data */ class Message {
     private final User author;
     private Map<String, MessageReaction> cachedReactionsMap;
     private final MessageCall call;
-    private final CaptchaHelper.CaptchaPayload captchaPayload;
+    private final CaptchaHelper$CaptchaPayload captchaPayload;
     private final long channelId;
     private final List<Component> components;
     private final String content;
@@ -77,10 +78,10 @@ public final /* data */ class Message {
     private final Boolean tts;
     private final Integer type;
     private final Long webhookId;
-    private static final Map<String, MessageReaction> EMPTY_REACTIONS = C12136h0.emptyMap();
+    private static final Map<String, MessageReaction> EMPTY_REACTIONS = h0.emptyMap();
 
     /* JADX WARN: Multi-variable type inference failed */
-    public Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List<User> list, List<Long> list2, List<MessageAttachment> list3, List<MessageEmbed> list4, List<MessageReaction> list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List<Sticker> list6, List<StickerPartial> list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List<? extends Component> list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List<LocalAttachment> list9, CaptchaHelper.CaptchaPayload captchaPayload) {
+    public Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List<User> list, List<Long> list2, List<MessageAttachment> list3, List<MessageEmbed> list4, List<MessageReaction> list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List<Sticker> list6, List<StickerPartial> list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List<? extends Component> list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List<LocalAttachment> list9, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload) {
         this.id = j;
         this.channelId = j2;
         this.guildId = l;
@@ -119,7 +120,7 @@ public final /* data */ class Message {
         this.lastManualAttemptTimestamp = l5;
         this.initialAttemptTimestamp = l6;
         this.localAttachments = list9;
-        this.captchaPayload = captchaPayload;
+        this.captchaPayload = captchaHelper$CaptchaPayload;
     }
 
     public final boolean canResend() {
@@ -164,11 +165,11 @@ public final /* data */ class Message {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ Message copy$default(Message message, long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message2, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper.CaptchaPayload captchaPayload, int i, int i2, Object obj) {
-        return message.copy((i & 1) != 0 ? message.id : j, (i & 2) != 0 ? message.channelId : j2, (i & 4) != 0 ? message.guildId : l, (i & 8) != 0 ? message.author : user, (i & 16) != 0 ? message.content : str, (i & 32) != 0 ? message.timestamp : utcDateTime, (i & 64) != 0 ? message.editedTimestamp : utcDateTime2, (i & 128) != 0 ? message.tts : bool, (i & 256) != 0 ? message.mentionEveryone : bool2, (i & 512) != 0 ? message.mentions : list, (i & 1024) != 0 ? message.mentionRoles : list2, (i & 2048) != 0 ? message.attachments : list3, (i & 4096) != 0 ? message.embeds : list4, (i & 8192) != 0 ? message.reactions : list5, (i & 16384) != 0 ? message.nonce : str2, (i & 32768) != 0 ? message.pinned : bool3, (i & 65536) != 0 ? message.webhookId : l2, (i & 131072) != 0 ? message.type : num, (i & 262144) != 0 ? message.activity : messageActivity, (i & 524288) != 0 ? message.application : application, (i & 1048576) != 0 ? message.applicationId : l3, (i & 2097152) != 0 ? message.messageReference : messageReference, (i & 4194304) != 0 ? message.flags : l4, (i & 8388608) != 0 ? message.stickers : list6, (i & 16777216) != 0 ? message.stickerItems : list7, (i & 33554432) != 0 ? message.referencedMessage : message2, (i & 67108864) != 0 ? message.interaction : interaction, (i & 134217728) != 0 ? message.thread : channel, (i & 268435456) != 0 ? message.components : list8, (i & 536870912) != 0 ? message.call : messageCall, (i & BasicMeasure.EXACTLY) != 0 ? message.hit : bool4, (i & Integer.MIN_VALUE) != 0 ? message.roleSubscriptionData : roleSubscriptionData, (i2 & 1) != 0 ? message.hasLocalUploads : z2, (i2 & 2) != 0 ? message.allowedMentions : messageAllowedMentions, (i2 & 4) != 0 ? message.numRetries : num2, (i2 & 8) != 0 ? message.lastManualAttemptTimestamp : l5, (i2 & 16) != 0 ? message.initialAttemptTimestamp : l6, (i2 & 32) != 0 ? message.localAttachments : list9, (i2 & 64) != 0 ? message.captchaPayload : captchaPayload);
+    public static /* synthetic */ Message copy$default(Message message, long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message2, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, int i2, Object obj) {
+        return message.copy((i & 1) != 0 ? message.id : j, (i & 2) != 0 ? message.channelId : j2, (i & 4) != 0 ? message.guildId : l, (i & 8) != 0 ? message.author : user, (i & 16) != 0 ? message.content : str, (i & 32) != 0 ? message.timestamp : utcDateTime, (i & 64) != 0 ? message.editedTimestamp : utcDateTime2, (i & 128) != 0 ? message.tts : bool, (i & 256) != 0 ? message.mentionEveryone : bool2, (i & 512) != 0 ? message.mentions : list, (i & 1024) != 0 ? message.mentionRoles : list2, (i & 2048) != 0 ? message.attachments : list3, (i & 4096) != 0 ? message.embeds : list4, (i & 8192) != 0 ? message.reactions : list5, (i & 16384) != 0 ? message.nonce : str2, (i & 32768) != 0 ? message.pinned : bool3, (i & 65536) != 0 ? message.webhookId : l2, (i & 131072) != 0 ? message.type : num, (i & 262144) != 0 ? message.activity : messageActivity, (i & 524288) != 0 ? message.application : application, (i & 1048576) != 0 ? message.applicationId : l3, (i & 2097152) != 0 ? message.messageReference : messageReference, (i & 4194304) != 0 ? message.flags : l4, (i & 8388608) != 0 ? message.stickers : list6, (i & 16777216) != 0 ? message.stickerItems : list7, (i & 33554432) != 0 ? message.referencedMessage : message2, (i & 67108864) != 0 ? message.interaction : interaction, (i & 134217728) != 0 ? message.thread : channel, (i & 268435456) != 0 ? message.components : list8, (i & 536870912) != 0 ? message.call : messageCall, (i & BasicMeasure.EXACTLY) != 0 ? message.hit : bool4, (i & Integer.MIN_VALUE) != 0 ? message.roleSubscriptionData : roleSubscriptionData, (i2 & 1) != 0 ? message.hasLocalUploads : z2, (i2 & 2) != 0 ? message.allowedMentions : messageAllowedMentions, (i2 & 4) != 0 ? message.numRetries : num2, (i2 & 8) != 0 ? message.lastManualAttemptTimestamp : l5, (i2 & 16) != 0 ? message.initialAttemptTimestamp : l6, (i2 & 32) != 0 ? message.localAttachments : list9, (i2 & 64) != 0 ? message.captchaPayload : captchaHelper$CaptchaPayload);
     }
 
-    public final Message copy(long id2, long channelId, Long guildId, User author, String content, UtcDateTime timestamp, UtcDateTime editedTimestamp, Boolean tts, Boolean mentionEveryone, List<User> mentions, List<Long> mentionRoles, List<MessageAttachment> attachments, List<MessageEmbed> embeds, List<MessageReaction> reactions, String nonce, Boolean pinned, Long webhookId, Integer type, MessageActivity activity, Application application, Long applicationId, MessageReference messageReference, Long flags, List<Sticker> stickers, List<StickerPartial> stickerItems, com.discord.api.message.Message referencedMessage, Interaction interaction, Channel thread, List<? extends Component> components, MessageCall call, Boolean hit, RoleSubscriptionData roleSubscriptionData, boolean hasLocalUploads, MessageAllowedMentions allowedMentions, Integer numRetries, Long lastManualAttemptTimestamp, Long initialAttemptTimestamp, List<LocalAttachment> localAttachments, CaptchaHelper.CaptchaPayload captchaPayload) {
+    public final Message copy(long id2, long channelId, Long guildId, User author, String content, UtcDateTime timestamp, UtcDateTime editedTimestamp, Boolean tts, Boolean mentionEveryone, List<User> mentions, List<Long> mentionRoles, List<MessageAttachment> attachments, List<MessageEmbed> embeds, List<MessageReaction> reactions, String nonce, Boolean pinned, Long webhookId, Integer type, MessageActivity activity, Application application, Long applicationId, MessageReference messageReference, Long flags, List<Sticker> stickers, List<StickerPartial> stickerItems, com.discord.api.message.Message referencedMessage, Interaction interaction, Channel thread, List<? extends Component> components, MessageCall call, Boolean hit, RoleSubscriptionData roleSubscriptionData, boolean hasLocalUploads, MessageAllowedMentions allowedMentions, Integer numRetries, Long lastManualAttemptTimestamp, Long initialAttemptTimestamp, List<LocalAttachment> localAttachments, CaptchaHelper$CaptchaPayload captchaPayload) {
         return new Message(id2, channelId, guildId, author, content, timestamp, editedTimestamp, tts, mentionEveryone, mentions, mentionRoles, attachments, embeds, reactions, nonce, pinned, webhookId, type, activity, application, applicationId, messageReference, flags, stickers, stickerItems, referencedMessage, interaction, thread, components, call, hit, roleSubscriptionData, hasLocalUploads, allowedMentions, numRetries, lastManualAttemptTimestamp, initialAttemptTimestamp, localAttachments, captchaPayload);
     }
 
@@ -180,7 +181,7 @@ public final /* data */ class Message {
             return false;
         }
         Message message = (Message) other;
-        return this.id == message.id && this.channelId == message.channelId && C12238m.areEqual(this.guildId, message.guildId) && C12238m.areEqual(this.author, message.author) && C12238m.areEqual(this.content, message.content) && C12238m.areEqual(this.timestamp, message.timestamp) && C12238m.areEqual(this.editedTimestamp, message.editedTimestamp) && C12238m.areEqual(this.tts, message.tts) && C12238m.areEqual(this.mentionEveryone, message.mentionEveryone) && C12238m.areEqual(this.mentions, message.mentions) && C12238m.areEqual(this.mentionRoles, message.mentionRoles) && C12238m.areEqual(this.attachments, message.attachments) && C12238m.areEqual(this.embeds, message.embeds) && C12238m.areEqual(this.reactions, message.reactions) && C12238m.areEqual(this.nonce, message.nonce) && C12238m.areEqual(this.pinned, message.pinned) && C12238m.areEqual(this.webhookId, message.webhookId) && C12238m.areEqual(this.type, message.type) && C12238m.areEqual(this.activity, message.activity) && C12238m.areEqual(this.application, message.application) && C12238m.areEqual(this.applicationId, message.applicationId) && C12238m.areEqual(this.messageReference, message.messageReference) && C12238m.areEqual(this.flags, message.flags) && C12238m.areEqual(this.stickers, message.stickers) && C12238m.areEqual(this.stickerItems, message.stickerItems) && C12238m.areEqual(this.referencedMessage, message.referencedMessage) && C12238m.areEqual(this.interaction, message.interaction) && C12238m.areEqual(this.thread, message.thread) && C12238m.areEqual(this.components, message.components) && C12238m.areEqual(this.call, message.call) && C12238m.areEqual(this.hit, message.hit) && C12238m.areEqual(this.roleSubscriptionData, message.roleSubscriptionData) && this.hasLocalUploads == message.hasLocalUploads && C12238m.areEqual(this.allowedMentions, message.allowedMentions) && C12238m.areEqual(this.numRetries, message.numRetries) && C12238m.areEqual(this.lastManualAttemptTimestamp, message.lastManualAttemptTimestamp) && C12238m.areEqual(this.initialAttemptTimestamp, message.initialAttemptTimestamp) && C12238m.areEqual(this.localAttachments, message.localAttachments) && C12238m.areEqual(this.captchaPayload, message.captchaPayload);
+        return this.id == message.id && this.channelId == message.channelId && m.areEqual(this.guildId, message.guildId) && m.areEqual(this.author, message.author) && m.areEqual(this.content, message.content) && m.areEqual(this.timestamp, message.timestamp) && m.areEqual(this.editedTimestamp, message.editedTimestamp) && m.areEqual(this.tts, message.tts) && m.areEqual(this.mentionEveryone, message.mentionEveryone) && m.areEqual(this.mentions, message.mentions) && m.areEqual(this.mentionRoles, message.mentionRoles) && m.areEqual(this.attachments, message.attachments) && m.areEqual(this.embeds, message.embeds) && m.areEqual(this.reactions, message.reactions) && m.areEqual(this.nonce, message.nonce) && m.areEqual(this.pinned, message.pinned) && m.areEqual(this.webhookId, message.webhookId) && m.areEqual(this.type, message.type) && m.areEqual(this.activity, message.activity) && m.areEqual(this.application, message.application) && m.areEqual(this.applicationId, message.applicationId) && m.areEqual(this.messageReference, message.messageReference) && m.areEqual(this.flags, message.flags) && m.areEqual(this.stickers, message.stickers) && m.areEqual(this.stickerItems, message.stickerItems) && m.areEqual(this.referencedMessage, message.referencedMessage) && m.areEqual(this.interaction, message.interaction) && m.areEqual(this.thread, message.thread) && m.areEqual(this.components, message.components) && m.areEqual(this.call, message.call) && m.areEqual(this.hit, message.hit) && m.areEqual(this.roleSubscriptionData, message.roleSubscriptionData) && this.hasLocalUploads == message.hasLocalUploads && m.areEqual(this.allowedMentions, message.allowedMentions) && m.areEqual(this.numRetries, message.numRetries) && m.areEqual(this.lastManualAttemptTimestamp, message.lastManualAttemptTimestamp) && m.areEqual(this.initialAttemptTimestamp, message.initialAttemptTimestamp) && m.areEqual(this.localAttachments, message.localAttachments) && m.areEqual(this.captchaPayload, message.captchaPayload);
     }
 
     /* JADX INFO: renamed from: component19, reason: from getter */
@@ -242,21 +243,21 @@ public final /* data */ class Message {
     }
 
     public final long getCallDuration() {
-        UtcDateTime utcDateTimeM8074a;
+        UtcDateTime utcDateTimeA;
         UtcDateTime utcDateTime;
         MessageCall messageCall = this.call;
-        if (messageCall == null || (utcDateTimeM8074a = messageCall.getEndedTimestamp()) == null || (utcDateTime = this.timestamp) == null) {
+        if (messageCall == null || (utcDateTimeA = messageCall.getEndedTimestamp()) == null || (utcDateTime = this.timestamp) == null) {
             return 0L;
         }
-        return utcDateTimeM8074a.getDateTimeMillis() - utcDateTime.getDateTimeMillis();
+        return utcDateTimeA.getDateTimeMillis() - utcDateTime.getDateTimeMillis();
     }
 
     /* JADX INFO: renamed from: component39, reason: from getter */
-    public final CaptchaHelper.CaptchaPayload getCaptchaPayload() {
+    public final CaptchaHelper$CaptchaPayload getCaptchaPayload() {
         return this.captchaPayload;
     }
 
-    public final CaptchaHelper.CaptchaPayload getCaptchaPayload() {
+    public final CaptchaHelper$CaptchaPayload getCaptchaPayload() {
         return this.captchaPayload;
     }
 
@@ -431,7 +432,7 @@ public final /* data */ class Message {
     public final Map<String, MessageReaction> getReactionsMap() {
         Map<String, MessageReaction> map = this.cachedReactionsMap;
         if (map != null) {
-            C12238m.checkNotNull(map);
+            m.checkNotNull(map);
         } else {
             List<MessageReaction> list = this.reactions;
             if (list == null || !(!list.isEmpty())) {
@@ -440,7 +441,7 @@ public final /* data */ class Message {
                 List<MessageReaction> list2 = this.reactions;
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
                 for (Object obj : list2) {
-                    linkedHashMap.put(((MessageReaction) obj).getEmoji().m8116c(), obj);
+                    linkedHashMap.put(((MessageReaction) obj).getEmoji().c(), obj);
                 }
                 map = linkedHashMap;
             }
@@ -556,9 +557,9 @@ public final /* data */ class Message {
     /* JADX WARN: Type inference failed for: r0v94, types: [int] */
     /* JADX WARN: Type inference failed for: r1v64, types: [int] */
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.channelId) + (C0002b.m3a(this.id) * 31)) * 31;
+        int iA = (b.a(this.channelId) + (b.a(this.id) * 31)) * 31;
         Long l = this.guildId;
-        int iHashCode = (iM3a + (l != null ? l.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (l != null ? l.hashCode() : 0)) * 31;
         User user = this.author;
         int iHashCode2 = (iHashCode + (user != null ? user.hashCode() : 0)) * 31;
         String str = this.content;
@@ -633,8 +634,8 @@ public final /* data */ class Message {
         int iHashCode34 = (iHashCode33 + (l6 != null ? l6.hashCode() : 0)) * 31;
         List<LocalAttachment> list9 = this.localAttachments;
         int iHashCode35 = (iHashCode34 + (list9 != null ? list9.hashCode() : 0)) * 31;
-        CaptchaHelper.CaptchaPayload captchaPayload = this.captchaPayload;
-        return iHashCode35 + (captchaPayload != null ? captchaPayload.hashCode() : 0);
+        CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload = this.captchaPayload;
+        return iHashCode35 + (captchaHelper$CaptchaPayload != null ? captchaHelper$CaptchaPayload.hashCode() : 0);
     }
 
     public final boolean isApplicationMessage() {
@@ -698,7 +699,7 @@ public final /* data */ class Message {
 
     public final boolean isSpotifyListeningActivity() {
         MessageActivity messageActivity = this.activity;
-        return messageActivity != null && messageActivity.getType() == MessageActivityType.LISTEN && C12106w.contains$default((CharSequence) messageActivity.getPartyId(), (CharSequence) "spotify", false, 2, (Object) null);
+        return messageActivity != null && messageActivity.getType() == MessageActivityType.LISTEN && w.contains$default((CharSequence) messageActivity.getPartyId(), (CharSequence) "spotify", false, 2, (Object) null);
     }
 
     public final boolean isSystemMessage() {
@@ -720,154 +721,154 @@ public final /* data */ class Message {
     }
 
     public final Message merge(com.discord.api.message.Message message) {
-        C12238m.checkNotNullParameter(message, "new");
-        long jM8042o = message.getId();
-        long jM8034g = message.getChannelId() != 0 ? message.getChannelId() : this.channelId;
-        Long lM8040m = message.getGuildId();
-        if (lM8040m == null) {
-            lM8040m = this.guildId;
+        m.checkNotNullParameter(message, "new");
+        long jO = message.getId();
+        long jG = message.getChannelId() != 0 ? message.getChannelId() : this.channelId;
+        Long lM = message.getGuildId();
+        if (lM == null) {
+            lM = this.guildId;
         }
-        Long l = lM8040m;
-        User userM8032e = message.getAuthor();
-        if (userM8032e == null) {
-            userM8032e = this.author;
+        Long l = lM;
+        User userE = message.getAuthor();
+        if (userE == null) {
+            userE = this.author;
         }
-        User user = userM8032e;
-        String strM8036i = message.getContent();
-        if (strM8036i == null) {
-            strM8036i = this.content;
+        User user = userE;
+        String strI = message.getContent();
+        if (strI == null) {
+            strI = this.content;
         }
-        String str = strM8036i;
-        UtcDateTime utcDateTimeM8024D = message.getTimestamp();
-        if (utcDateTimeM8024D == null) {
-            utcDateTimeM8024D = this.timestamp;
+        String str = strI;
+        UtcDateTime utcDateTimeD = message.getTimestamp();
+        if (utcDateTimeD == null) {
+            utcDateTimeD = this.timestamp;
         }
-        UtcDateTime utcDateTime = utcDateTimeM8024D;
-        UtcDateTime utcDateTimeM8037j = message.getEditedTimestamp();
-        if (utcDateTimeM8037j == null) {
-            utcDateTimeM8037j = this.editedTimestamp;
+        UtcDateTime utcDateTime = utcDateTimeD;
+        UtcDateTime utcDateTimeJ = message.getEditedTimestamp();
+        if (utcDateTimeJ == null) {
+            utcDateTimeJ = this.editedTimestamp;
         }
-        UtcDateTime utcDateTime2 = utcDateTimeM8037j;
-        List<MessageAttachment> listM8031d = message.m8031d();
-        if (listM8031d == null) {
-            listM8031d = this.attachments;
+        UtcDateTime utcDateTime2 = utcDateTimeJ;
+        List<MessageAttachment> listD = message.d();
+        if (listD == null) {
+            listD = this.attachments;
         }
-        List<MessageAttachment> list = listM8031d;
-        List<MessageEmbed> listM8038k = message.m8038k();
-        if (listM8038k == null) {
-            listM8038k = this.embeds;
+        List<MessageAttachment> list = listD;
+        List<MessageEmbed> listK = message.k();
+        if (listK == null) {
+            listK = this.embeds;
         }
-        List<MessageEmbed> list2 = listM8038k;
-        Boolean boolM8025E = message.getTts();
-        if (boolM8025E == null) {
-            boolM8025E = this.tts;
+        List<MessageEmbed> list2 = listK;
+        Boolean boolE = message.getTts();
+        if (boolE == null) {
+            boolE = this.tts;
         }
-        Boolean bool = boolM8025E;
-        Boolean boolM8045r = message.getMentionEveryone();
-        if (boolM8045r == null) {
-            boolM8045r = this.mentionEveryone;
+        Boolean bool = boolE;
+        Boolean boolR = message.getMentionEveryone();
+        if (boolR == null) {
+            boolR = this.mentionEveryone;
         }
-        Boolean bool2 = boolM8045r;
-        List<User> listM8047t = message.m8047t();
-        if (listM8047t == null) {
-            listM8047t = this.mentions;
+        Boolean bool2 = boolR;
+        List<User> listT = message.t();
+        if (listT == null) {
+            listT = this.mentions;
         }
-        List<User> list3 = listM8047t;
-        List<Long> listM8046s = message.m8046s();
-        if (listM8046s == null) {
-            listM8046s = this.mentionRoles;
+        List<User> list3 = listT;
+        List<Long> listS = message.s();
+        if (listS == null) {
+            listS = this.mentionRoles;
         }
-        List<Long> list4 = listM8046s;
-        List<MessageReaction> listM8051x = message.m8051x();
-        if (listM8051x == null) {
-            listM8051x = this.reactions;
+        List<Long> list4 = listS;
+        List<MessageReaction> listX = message.x();
+        if (listX == null) {
+            listX = this.reactions;
         }
-        List<MessageReaction> list5 = listM8051x;
-        String strM8049v = message.getNonce();
-        if (strM8049v == null) {
-            strM8049v = this.nonce;
+        List<MessageReaction> list5 = listX;
+        String strV = message.getNonce();
+        if (strV == null) {
+            strV = this.nonce;
         }
-        String str2 = strM8049v;
-        Boolean boolM8050w = message.getPinned();
-        if (boolM8050w == null) {
-            boolM8050w = this.pinned;
+        String str2 = strV;
+        Boolean boolW = message.getPinned();
+        if (boolW == null) {
+            boolW = this.pinned;
         }
-        Boolean bool3 = boolM8050w;
-        Long lM8027G = message.getWebhookId();
-        if (lM8027G == null) {
-            lM8027G = this.webhookId;
+        Boolean bool3 = boolW;
+        Long lG = message.getWebhookId();
+        if (lG == null) {
+            lG = this.webhookId;
         }
-        Long l2 = lM8027G;
-        Integer numM8026F = message.getType();
-        if (numM8026F == null) {
-            numM8026F = this.type;
+        Long l2 = lG;
+        Integer numF = message.getType();
+        if (numF == null) {
+            numF = this.type;
         }
-        Integer num = numM8026F;
-        MessageActivity messageActivityM8028a = message.getActivity();
-        if (messageActivityM8028a == null) {
-            messageActivityM8028a = this.activity;
+        Integer num = numF;
+        MessageActivity messageActivityA = message.getActivity();
+        if (messageActivityA == null) {
+            messageActivityA = this.activity;
         }
-        MessageActivity messageActivity = messageActivityM8028a;
-        Application applicationM8029b = message.getApplication();
-        if (applicationM8029b == null) {
-            applicationM8029b = this.application;
+        MessageActivity messageActivity = messageActivityA;
+        Application applicationB = message.getApplication();
+        if (applicationB == null) {
+            applicationB = this.application;
         }
-        Application application = applicationM8029b;
-        Long lM8030c = message.getApplicationId();
-        if (lM8030c == null) {
-            lM8030c = this.applicationId;
+        Application application = applicationB;
+        Long lC = message.getApplicationId();
+        if (lC == null) {
+            lC = this.applicationId;
         }
-        Long l3 = lM8030c;
-        MessageReference messageReferenceM8048u = message.getMessageReference();
-        if (messageReferenceM8048u == null) {
-            messageReferenceM8048u = this.messageReference;
+        Long l3 = lC;
+        MessageReference messageReferenceU = message.getMessageReference();
+        if (messageReferenceU == null) {
+            messageReferenceU = this.messageReference;
         }
-        MessageReference messageReference = messageReferenceM8048u;
-        Long lM8039l = message.getFlags();
-        if (lM8039l == null) {
-            lM8039l = this.flags;
+        MessageReference messageReference = messageReferenceU;
+        Long l4 = message.getFlags();
+        if (l4 == null) {
+            l4 = this.flags;
         }
-        Long l4 = lM8039l;
-        List<Sticker> listM8022B = message.m8022B();
-        if (listM8022B == null) {
-            listM8022B = this.stickers;
+        Long l5 = l4;
+        List<Sticker> listB = message.B();
+        if (listB == null) {
+            listB = this.stickers;
         }
-        List<Sticker> list6 = listM8022B;
-        List<StickerPartial> listM8021A = message.m8021A();
-        if (listM8021A == null) {
-            listM8021A = this.stickerItems;
+        List<Sticker> list6 = listB;
+        List<StickerPartial> listA = message.A();
+        if (listA == null) {
+            listA = this.stickerItems;
         }
-        List<StickerPartial> list7 = listM8021A;
-        com.discord.api.message.Message messageM8052y = message.getReferencedMessage();
-        if (messageM8052y == null) {
-            messageM8052y = this.referencedMessage;
+        List<StickerPartial> list7 = listA;
+        com.discord.api.message.Message messageY = message.getReferencedMessage();
+        if (messageY == null) {
+            messageY = this.referencedMessage;
         }
-        com.discord.api.message.Message message2 = messageM8052y;
-        Interaction interactionM8043p = message.getInteraction();
-        if (interactionM8043p == null) {
-            interactionM8043p = this.interaction;
+        com.discord.api.message.Message message2 = messageY;
+        Interaction interactionP = message.getInteraction();
+        if (interactionP == null) {
+            interactionP = this.interaction;
         }
-        Interaction interaction = interactionM8043p;
-        Channel channelM8023C = message.getThread();
-        if (channelM8023C == null) {
-            channelM8023C = this.thread;
+        Interaction interaction = interactionP;
+        Channel channelC = message.getThread();
+        if (channelC == null) {
+            channelC = this.thread;
         }
-        Channel channel = channelM8023C;
-        List<Component> listM8035h = message.m8035h();
-        if (listM8035h == null) {
-            listM8035h = this.components;
+        Channel channel = channelC;
+        List<Component> listH = message.h();
+        if (listH == null) {
+            listH = this.components;
         }
-        List<Component> list8 = listM8035h;
-        MessageCall messageCallM8033f = message.getCall();
-        if (messageCallM8033f == null) {
-            messageCallM8033f = this.call;
+        List<Component> list8 = listH;
+        MessageCall messageCallF = message.getCall();
+        if (messageCallF == null) {
+            messageCallF = this.call;
         }
-        MessageCall messageCall = messageCallM8033f;
-        RoleSubscriptionData roleSubscriptionDataM8053z = message.getRoleSubscriptionData();
-        if (roleSubscriptionDataM8053z == null) {
-            roleSubscriptionDataM8053z = this.roleSubscriptionData;
+        MessageCall messageCall = messageCallF;
+        RoleSubscriptionData roleSubscriptionDataZ = message.getRoleSubscriptionData();
+        if (roleSubscriptionDataZ == null) {
+            roleSubscriptionDataZ = this.roleSubscriptionData;
         }
-        return copy$default(this, jM8042o, jM8034g, l, user, str, utcDateTime, utcDateTime2, bool, bool2, list3, list4, list, list2, list5, str2, bool3, l2, num, messageActivity, application, l3, messageReference, l4, list6, list7, message2, interaction, channel, list8, messageCall, null, roleSubscriptionDataM8053z, false, null, null, null, null, null, null, BasicMeasure.EXACTLY, Opcodes.LAND, null);
+        return copy$default(this, jO, jG, l, user, str, utcDateTime, utcDateTime2, bool, bool2, list3, list4, list, list2, list5, str2, bool3, l2, num, messageActivity, application, l3, messageReference, l5, list6, list7, message2, interaction, channel, list8, messageCall, null, roleSubscriptionDataZ, false, null, null, null, null, null, null, BasicMeasure.EXACTLY, Opcodes.LAND, null);
     }
 
     public final boolean shouldShowReplyPreviewAsAttachment() {
@@ -879,95 +880,95 @@ public final /* data */ class Message {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Message(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", author=");
-        sbM833U.append(this.author);
-        sbM833U.append(", content=");
-        sbM833U.append(this.content);
-        sbM833U.append(", timestamp=");
-        sbM833U.append(this.timestamp);
-        sbM833U.append(", editedTimestamp=");
-        sbM833U.append(this.editedTimestamp);
-        sbM833U.append(", tts=");
-        sbM833U.append(this.tts);
-        sbM833U.append(", mentionEveryone=");
-        sbM833U.append(this.mentionEveryone);
-        sbM833U.append(", mentions=");
-        sbM833U.append(this.mentions);
-        sbM833U.append(", mentionRoles=");
-        sbM833U.append(this.mentionRoles);
-        sbM833U.append(", attachments=");
-        sbM833U.append(this.attachments);
-        sbM833U.append(", embeds=");
-        sbM833U.append(this.embeds);
-        sbM833U.append(", reactions=");
-        sbM833U.append(this.reactions);
-        sbM833U.append(", nonce=");
-        sbM833U.append(this.nonce);
-        sbM833U.append(", pinned=");
-        sbM833U.append(this.pinned);
-        sbM833U.append(", webhookId=");
-        sbM833U.append(this.webhookId);
-        sbM833U.append(", type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", activity=");
-        sbM833U.append(this.activity);
-        sbM833U.append(", application=");
-        sbM833U.append(this.application);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", messageReference=");
-        sbM833U.append(this.messageReference);
-        sbM833U.append(", flags=");
-        sbM833U.append(this.flags);
-        sbM833U.append(", stickers=");
-        sbM833U.append(this.stickers);
-        sbM833U.append(", stickerItems=");
-        sbM833U.append(this.stickerItems);
-        sbM833U.append(", referencedMessage=");
-        sbM833U.append(this.referencedMessage);
-        sbM833U.append(", interaction=");
-        sbM833U.append(this.interaction);
-        sbM833U.append(", thread=");
-        sbM833U.append(this.thread);
-        sbM833U.append(", components=");
-        sbM833U.append(this.components);
-        sbM833U.append(", call=");
-        sbM833U.append(this.call);
-        sbM833U.append(", hit=");
-        sbM833U.append(this.hit);
-        sbM833U.append(", roleSubscriptionData=");
-        sbM833U.append(this.roleSubscriptionData);
-        sbM833U.append(", hasLocalUploads=");
-        sbM833U.append(this.hasLocalUploads);
-        sbM833U.append(", allowedMentions=");
-        sbM833U.append(this.allowedMentions);
-        sbM833U.append(", numRetries=");
-        sbM833U.append(this.numRetries);
-        sbM833U.append(", lastManualAttemptTimestamp=");
-        sbM833U.append(this.lastManualAttemptTimestamp);
-        sbM833U.append(", initialAttemptTimestamp=");
-        sbM833U.append(this.initialAttemptTimestamp);
-        sbM833U.append(", localAttachments=");
-        sbM833U.append(this.localAttachments);
-        sbM833U.append(", captchaPayload=");
-        sbM833U.append(this.captchaPayload);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("Message(id=");
+        sbU.append(this.id);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", author=");
+        sbU.append(this.author);
+        sbU.append(", content=");
+        sbU.append(this.content);
+        sbU.append(", timestamp=");
+        sbU.append(this.timestamp);
+        sbU.append(", editedTimestamp=");
+        sbU.append(this.editedTimestamp);
+        sbU.append(", tts=");
+        sbU.append(this.tts);
+        sbU.append(", mentionEveryone=");
+        sbU.append(this.mentionEveryone);
+        sbU.append(", mentions=");
+        sbU.append(this.mentions);
+        sbU.append(", mentionRoles=");
+        sbU.append(this.mentionRoles);
+        sbU.append(", attachments=");
+        sbU.append(this.attachments);
+        sbU.append(", embeds=");
+        sbU.append(this.embeds);
+        sbU.append(", reactions=");
+        sbU.append(this.reactions);
+        sbU.append(", nonce=");
+        sbU.append(this.nonce);
+        sbU.append(", pinned=");
+        sbU.append(this.pinned);
+        sbU.append(", webhookId=");
+        sbU.append(this.webhookId);
+        sbU.append(", type=");
+        sbU.append(this.type);
+        sbU.append(", activity=");
+        sbU.append(this.activity);
+        sbU.append(", application=");
+        sbU.append(this.application);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", messageReference=");
+        sbU.append(this.messageReference);
+        sbU.append(", flags=");
+        sbU.append(this.flags);
+        sbU.append(", stickers=");
+        sbU.append(this.stickers);
+        sbU.append(", stickerItems=");
+        sbU.append(this.stickerItems);
+        sbU.append(", referencedMessage=");
+        sbU.append(this.referencedMessage);
+        sbU.append(", interaction=");
+        sbU.append(this.interaction);
+        sbU.append(", thread=");
+        sbU.append(this.thread);
+        sbU.append(", components=");
+        sbU.append(this.components);
+        sbU.append(", call=");
+        sbU.append(this.call);
+        sbU.append(", hit=");
+        sbU.append(this.hit);
+        sbU.append(", roleSubscriptionData=");
+        sbU.append(this.roleSubscriptionData);
+        sbU.append(", hasLocalUploads=");
+        sbU.append(this.hasLocalUploads);
+        sbU.append(", allowedMentions=");
+        sbU.append(this.allowedMentions);
+        sbU.append(", numRetries=");
+        sbU.append(this.numRetries);
+        sbU.append(", lastManualAttemptTimestamp=");
+        sbU.append(this.lastManualAttemptTimestamp);
+        sbU.append(", initialAttemptTimestamp=");
+        sbU.append(this.initialAttemptTimestamp);
+        sbU.append(", localAttachments=");
+        sbU.append(this.localAttachments);
+        sbU.append(", captchaPayload=");
+        sbU.append(this.captchaPayload);
+        sbU.append(")");
+        return sbU.toString();
     }
 
-    public /* synthetic */ Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper.CaptchaPayload captchaPayload, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this(j, j2, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : user, (i & 16) != 0 ? null : str, (i & 32) != 0 ? null : utcDateTime, (i & 64) != 0 ? null : utcDateTime2, (i & 128) != 0 ? null : bool, (i & 256) != 0 ? null : bool2, (i & 512) != 0 ? null : list, (i & 1024) != 0 ? null : list2, (i & 2048) != 0 ? null : list3, (i & 4096) != 0 ? null : list4, (i & 8192) != 0 ? null : list5, (i & 16384) != 0 ? null : str2, (32768 & i) != 0 ? null : bool3, (65536 & i) != 0 ? null : l2, (131072 & i) != 0 ? null : num, (262144 & i) != 0 ? null : messageActivity, (524288 & i) != 0 ? null : application, (1048576 & i) != 0 ? null : l3, (2097152 & i) != 0 ? null : messageReference, (4194304 & i) != 0 ? null : l4, (8388608 & i) != 0 ? null : list6, (16777216 & i) != 0 ? null : list7, (33554432 & i) != 0 ? null : message, (67108864 & i) != 0 ? null : interaction, (134217728 & i) != 0 ? null : channel, (268435456 & i) != 0 ? null : list8, (536870912 & i) != 0 ? null : messageCall, (1073741824 & i) != 0 ? null : bool4, (i & Integer.MIN_VALUE) != 0 ? null : roleSubscriptionData, (i2 & 1) != 0 ? false : z2, (i2 & 2) != 0 ? null : messageAllowedMentions, (i2 & 4) != 0 ? null : num2, (i2 & 8) != 0 ? null : l5, (i2 & 16) != 0 ? null : l6, (i2 & 32) != 0 ? null : list9, (i2 & 64) != 0 ? null : captchaPayload);
+    public /* synthetic */ Message(long j, long j2, Long l, User user, String str, UtcDateTime utcDateTime, UtcDateTime utcDateTime2, Boolean bool, Boolean bool2, List list, List list2, List list3, List list4, List list5, String str2, Boolean bool3, Long l2, Integer num, MessageActivity messageActivity, Application application, Long l3, MessageReference messageReference, Long l4, List list6, List list7, com.discord.api.message.Message message, Interaction interaction, Channel channel, List list8, MessageCall messageCall, Boolean bool4, RoleSubscriptionData roleSubscriptionData, boolean z2, MessageAllowedMentions messageAllowedMentions, Integer num2, Long l5, Long l6, List list9, CaptchaHelper$CaptchaPayload captchaHelper$CaptchaPayload, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
+        this(j, j2, (i & 4) != 0 ? null : l, (i & 8) != 0 ? null : user, (i & 16) != 0 ? null : str, (i & 32) != 0 ? null : utcDateTime, (i & 64) != 0 ? null : utcDateTime2, (i & 128) != 0 ? null : bool, (i & 256) != 0 ? null : bool2, (i & 512) != 0 ? null : list, (i & 1024) != 0 ? null : list2, (i & 2048) != 0 ? null : list3, (i & 4096) != 0 ? null : list4, (i & 8192) != 0 ? null : list5, (i & 16384) != 0 ? null : str2, (32768 & i) != 0 ? null : bool3, (65536 & i) != 0 ? null : l2, (131072 & i) != 0 ? null : num, (262144 & i) != 0 ? null : messageActivity, (524288 & i) != 0 ? null : application, (1048576 & i) != 0 ? null : l3, (2097152 & i) != 0 ? null : messageReference, (4194304 & i) != 0 ? null : l4, (8388608 & i) != 0 ? null : list6, (16777216 & i) != 0 ? null : list7, (33554432 & i) != 0 ? null : message, (67108864 & i) != 0 ? null : interaction, (134217728 & i) != 0 ? null : channel, (268435456 & i) != 0 ? null : list8, (536870912 & i) != 0 ? null : messageCall, (1073741824 & i) != 0 ? null : bool4, (i & Integer.MIN_VALUE) != 0 ? null : roleSubscriptionData, (i2 & 1) != 0 ? false : z2, (i2 & 2) != 0 ? null : messageAllowedMentions, (i2 & 4) != 0 ? null : num2, (i2 & 8) != 0 ? null : l5, (i2 & 16) != 0 ? null : l6, (i2 & 32) != 0 ? null : list9, (i2 & 64) != 0 ? null : captchaHelper$CaptchaPayload);
     }
 
     /* JADX WARN: 'this' call moved to the top of the method (can break code semantics) */
     public Message(com.discord.api.message.Message message) {
-        this(message.getId(), message.getChannelId(), message.getGuildId(), message.getAuthor(), message.getContent(), message.getTimestamp(), message.getEditedTimestamp(), message.getTts(), message.getMentionEveryone(), message.m8047t(), message.m8046s(), message.m8031d(), message.m8038k(), message.m8051x(), message.getNonce(), message.getPinned(), message.getWebhookId(), message.getType(), message.getActivity(), message.getApplication(), message.getApplicationId(), message.getMessageReference(), message.getFlags(), message.m8022B(), message.m8021A(), message.getReferencedMessage(), message.getInteraction(), message.getThread(), message.m8035h(), message.getCall(), message.getHit(), message.getRoleSubscriptionData(), false, null, null, null, null, null, null, 0, Opcodes.LAND, null);
-        C12238m.checkNotNullParameter(message, "message");
+        this(message.getId(), message.getChannelId(), message.getGuildId(), message.getAuthor(), message.getContent(), message.getTimestamp(), message.getEditedTimestamp(), message.getTts(), message.getMentionEveryone(), message.t(), message.s(), message.d(), message.k(), message.x(), message.getNonce(), message.getPinned(), message.getWebhookId(), message.getType(), message.getActivity(), message.getApplication(), message.getApplicationId(), message.getMessageReference(), message.getFlags(), message.B(), message.A(), message.getReferencedMessage(), message.getInteraction(), message.getThread(), message.h(), message.getCall(), message.getHit(), message.getRoleSubscriptionData(), false, null, null, null, null, null, null, 0, Opcodes.LAND, null);
+        m.checkNotNullParameter(message, "message");
     }
 }

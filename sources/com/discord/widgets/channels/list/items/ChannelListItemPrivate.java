@@ -1,14 +1,14 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.models.presence.Presence;
-import com.discord.widgets.channels.list.WidgetChannelListUnreads;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemPrivate.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* data */ class ChannelListItemPrivate implements ChannelListItem, WidgetChannelListUnreads.UnreadItem {
+public final /* data */ class ChannelListItemPrivate implements ChannelListItem, WidgetChannelListUnreads$UnreadItem {
     private final Channel channel;
     private final boolean isApplicationStreaming;
     private final String key;
@@ -19,7 +19,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
     private final int type;
 
     public ChannelListItemPrivate(Channel channel, Presence presence, boolean z2, int i, boolean z3, boolean z4) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.presence = presence;
         this.selected = z2;
@@ -61,7 +61,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
     }
 
     public final ChannelListItemPrivate copy(Channel channel, Presence presence, boolean selected, int mentionCount, boolean isApplicationStreaming, boolean muted) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemPrivate(channel, presence, selected, mentionCount, isApplicationStreaming, muted);
     }
 
@@ -73,7 +73,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
             return false;
         }
         ChannelListItemPrivate channelListItemPrivate = (ChannelListItemPrivate) other;
-        return C12238m.areEqual(this.channel, channelListItemPrivate.channel) && C12238m.areEqual(this.presence, channelListItemPrivate.presence) && this.selected == channelListItemPrivate.selected && getMentionCount() == channelListItemPrivate.getMentionCount() && this.isApplicationStreaming == channelListItemPrivate.isApplicationStreaming && this.muted == channelListItemPrivate.muted;
+        return m.areEqual(this.channel, channelListItemPrivate.channel) && m.areEqual(this.presence, channelListItemPrivate.presence) && this.selected == channelListItemPrivate.selected && getMentionCount() == channelListItemPrivate.getMentionCount() && this.isApplicationStreaming == channelListItemPrivate.isApplicationStreaming && this.muted == channelListItemPrivate.muted;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -90,7 +90,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         return this.isApplicationStreaming;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
     /* JADX INFO: renamed from: isUnread */
     public boolean getIsUnread() {
         return false;
@@ -101,7 +101,7 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
         return this.key;
     }
 
-    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads.UnreadItem
+    @Override // com.discord.widgets.channels.list.WidgetChannelListUnreads$UnreadItem
     public int getMentionCount() {
         return this.mentionCount;
     }
@@ -176,17 +176,17 @@ public final /* data */ class ChannelListItemPrivate implements ChannelListItem,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemPrivate(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", presence=");
-        sbM833U.append(this.presence);
-        sbM833U.append(", selected=");
-        sbM833U.append(this.selected);
-        sbM833U.append(", mentionCount=");
-        sbM833U.append(getMentionCount());
-        sbM833U.append(", isApplicationStreaming=");
-        sbM833U.append(this.isApplicationStreaming);
-        sbM833U.append(", muted=");
-        return C1643a.m827O(sbM833U, this.muted, ")");
+        StringBuilder sbU = a.U("ChannelListItemPrivate(channel=");
+        sbU.append(this.channel);
+        sbU.append(", presence=");
+        sbU.append(this.presence);
+        sbU.append(", selected=");
+        sbU.append(this.selected);
+        sbU.append(", mentionCount=");
+        sbU.append(getMentionCount());
+        sbU.append(", isApplicationStreaming=");
+        sbU.append(this.isApplicationStreaming);
+        sbU.append(", muted=");
+        return a.O(sbU, this.muted, ")");
     }
 }

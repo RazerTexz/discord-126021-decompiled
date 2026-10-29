@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAppUiViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -37,7 +37,7 @@ public final /* data */ class TrackAppUiViewed implements AnalyticsSchema, Track
             return false;
         }
         TrackAppUiViewed trackAppUiViewed = (TrackAppUiViewed) other;
-        return C12238m.areEqual(this.loadId, trackAppUiViewed.loadId) && C12238m.areEqual(this.screenName, trackAppUiViewed.screenName) && C12238m.areEqual(this.durationMsSinceAppOpened, trackAppUiViewed.durationMsSinceAppOpened) && C12238m.areEqual(this.durationMsSinceRequiredJsBundleLoaded, trackAppUiViewed.durationMsSinceRequiredJsBundleLoaded) && C12238m.areEqual(this.durationMsSinceRequiredJsBundleParsed, trackAppUiViewed.durationMsSinceRequiredJsBundleParsed) && C12238m.areEqual(this.hasCachedData, trackAppUiViewed.hasCachedData) && C12238m.areEqual(this.manifest, trackAppUiViewed.manifest) && C12238m.areEqual(this.totalCompressedByteSize, trackAppUiViewed.totalCompressedByteSize) && C12238m.areEqual(this.totalUncompressedByteSize, trackAppUiViewed.totalUncompressedByteSize) && C12238m.areEqual(this.totalTransferByteSize, trackAppUiViewed.totalTransferByteSize) && C12238m.areEqual(this.jsCompressedByteSize, trackAppUiViewed.jsCompressedByteSize) && C12238m.areEqual(this.jsUncompressedByteSize, trackAppUiViewed.jsUncompressedByteSize) && C12238m.areEqual(this.jsTransferByteSize, trackAppUiViewed.jsTransferByteSize) && C12238m.areEqual(this.cssCompressedByteSize, trackAppUiViewed.cssCompressedByteSize) && C12238m.areEqual(this.cssUncompressedByteSize, trackAppUiViewed.cssUncompressedByteSize) && C12238m.areEqual(this.cssTransferByteSize, trackAppUiViewed.cssTransferByteSize) && C12238m.areEqual(this.theme, trackAppUiViewed.theme);
+        return m.areEqual(this.loadId, trackAppUiViewed.loadId) && m.areEqual(this.screenName, trackAppUiViewed.screenName) && m.areEqual(this.durationMsSinceAppOpened, trackAppUiViewed.durationMsSinceAppOpened) && m.areEqual(this.durationMsSinceRequiredJsBundleLoaded, trackAppUiViewed.durationMsSinceRequiredJsBundleLoaded) && m.areEqual(this.durationMsSinceRequiredJsBundleParsed, trackAppUiViewed.durationMsSinceRequiredJsBundleParsed) && m.areEqual(this.hasCachedData, trackAppUiViewed.hasCachedData) && m.areEqual(this.manifest, trackAppUiViewed.manifest) && m.areEqual(this.totalCompressedByteSize, trackAppUiViewed.totalCompressedByteSize) && m.areEqual(this.totalUncompressedByteSize, trackAppUiViewed.totalUncompressedByteSize) && m.areEqual(this.totalTransferByteSize, trackAppUiViewed.totalTransferByteSize) && m.areEqual(this.jsCompressedByteSize, trackAppUiViewed.jsCompressedByteSize) && m.areEqual(this.jsUncompressedByteSize, trackAppUiViewed.jsUncompressedByteSize) && m.areEqual(this.jsTransferByteSize, trackAppUiViewed.jsTransferByteSize) && m.areEqual(this.cssCompressedByteSize, trackAppUiViewed.cssCompressedByteSize) && m.areEqual(this.cssUncompressedByteSize, trackAppUiViewed.cssUncompressedByteSize) && m.areEqual(this.cssTransferByteSize, trackAppUiViewed.cssTransferByteSize) && m.areEqual(this.theme, trackAppUiViewed.theme);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -84,39 +84,39 @@ public final /* data */ class TrackAppUiViewed implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAppUiViewed(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", screenName=");
-        sbM833U.append(this.screenName);
-        sbM833U.append(", durationMsSinceAppOpened=");
-        sbM833U.append(this.durationMsSinceAppOpened);
-        sbM833U.append(", durationMsSinceRequiredJsBundleLoaded=");
-        sbM833U.append(this.durationMsSinceRequiredJsBundleLoaded);
-        sbM833U.append(", durationMsSinceRequiredJsBundleParsed=");
-        sbM833U.append(this.durationMsSinceRequiredJsBundleParsed);
-        sbM833U.append(", hasCachedData=");
-        sbM833U.append(this.hasCachedData);
-        sbM833U.append(", manifest=");
-        sbM833U.append(this.manifest);
-        sbM833U.append(", totalCompressedByteSize=");
-        sbM833U.append(this.totalCompressedByteSize);
-        sbM833U.append(", totalUncompressedByteSize=");
-        sbM833U.append(this.totalUncompressedByteSize);
-        sbM833U.append(", totalTransferByteSize=");
-        sbM833U.append(this.totalTransferByteSize);
-        sbM833U.append(", jsCompressedByteSize=");
-        sbM833U.append(this.jsCompressedByteSize);
-        sbM833U.append(", jsUncompressedByteSize=");
-        sbM833U.append(this.jsUncompressedByteSize);
-        sbM833U.append(", jsTransferByteSize=");
-        sbM833U.append(this.jsTransferByteSize);
-        sbM833U.append(", cssCompressedByteSize=");
-        sbM833U.append(this.cssCompressedByteSize);
-        sbM833U.append(", cssUncompressedByteSize=");
-        sbM833U.append(this.cssUncompressedByteSize);
-        sbM833U.append(", cssTransferByteSize=");
-        sbM833U.append(this.cssTransferByteSize);
-        sbM833U.append(", theme=");
-        return C1643a.m817E(sbM833U, this.theme, ")");
+        StringBuilder sbU = a.U("TrackAppUiViewed(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", screenName=");
+        sbU.append(this.screenName);
+        sbU.append(", durationMsSinceAppOpened=");
+        sbU.append(this.durationMsSinceAppOpened);
+        sbU.append(", durationMsSinceRequiredJsBundleLoaded=");
+        sbU.append(this.durationMsSinceRequiredJsBundleLoaded);
+        sbU.append(", durationMsSinceRequiredJsBundleParsed=");
+        sbU.append(this.durationMsSinceRequiredJsBundleParsed);
+        sbU.append(", hasCachedData=");
+        sbU.append(this.hasCachedData);
+        sbU.append(", manifest=");
+        sbU.append(this.manifest);
+        sbU.append(", totalCompressedByteSize=");
+        sbU.append(this.totalCompressedByteSize);
+        sbU.append(", totalUncompressedByteSize=");
+        sbU.append(this.totalUncompressedByteSize);
+        sbU.append(", totalTransferByteSize=");
+        sbU.append(this.totalTransferByteSize);
+        sbU.append(", jsCompressedByteSize=");
+        sbU.append(this.jsCompressedByteSize);
+        sbU.append(", jsUncompressedByteSize=");
+        sbU.append(this.jsUncompressedByteSize);
+        sbU.append(", jsTransferByteSize=");
+        sbU.append(this.jsTransferByteSize);
+        sbU.append(", cssCompressedByteSize=");
+        sbU.append(this.cssCompressedByteSize);
+        sbU.append(", cssUncompressedByteSize=");
+        sbU.append(this.cssUncompressedByteSize);
+        sbU.append(", cssTransferByteSize=");
+        sbU.append(this.cssTransferByteSize);
+        sbU.append(", theme=");
+        return a.E(sbU, this.theme, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAccountLinkFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema,
             return false;
         }
         TrackAccountLinkFailed trackAccountLinkFailed = (TrackAccountLinkFailed) other;
-        return C12238m.areEqual(this.errorMessage, trackAccountLinkFailed.errorMessage) && C12238m.areEqual(this.statusCode, trackAccountLinkFailed.statusCode) && C12238m.areEqual(this.linkMethod, trackAccountLinkFailed.linkMethod) && C12238m.areEqual(this.sessionId, trackAccountLinkFailed.sessionId) && C12238m.areEqual(this.currentStep, trackAccountLinkFailed.currentStep) && C12238m.areEqual(this.platformType, trackAccountLinkFailed.platformType);
+        return m.areEqual(this.errorMessage, trackAccountLinkFailed.errorMessage) && m.areEqual(this.statusCode, trackAccountLinkFailed.statusCode) && m.areEqual(this.linkMethod, trackAccountLinkFailed.linkMethod) && m.areEqual(this.sessionId, trackAccountLinkFailed.sessionId) && m.areEqual(this.currentStep, trackAccountLinkFailed.currentStep) && m.areEqual(this.platformType, trackAccountLinkFailed.platformType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackAccountLinkFailed implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAccountLinkFailed(errorMessage=");
-        sbM833U.append(this.errorMessage);
-        sbM833U.append(", statusCode=");
-        sbM833U.append(this.statusCode);
-        sbM833U.append(", linkMethod=");
-        sbM833U.append(this.linkMethod);
-        sbM833U.append(", sessionId=");
-        sbM833U.append(this.sessionId);
-        sbM833U.append(", currentStep=");
-        sbM833U.append(this.currentStep);
-        sbM833U.append(", platformType=");
-        return C1643a.m817E(sbM833U, this.platformType, ")");
+        StringBuilder sbU = a.U("TrackAccountLinkFailed(errorMessage=");
+        sbU.append(this.errorMessage);
+        sbU.append(", statusCode=");
+        sbU.append(this.statusCode);
+        sbU.append(", linkMethod=");
+        sbU.append(this.linkMethod);
+        sbU.append(", sessionId=");
+        sbU.append(this.sessionId);
+        sbU.append(", currentStep=");
+        sbU.append(this.currentStep);
+        sbU.append(", platformType=");
+        return a.E(sbU, this.platformType, ")");
     }
 }

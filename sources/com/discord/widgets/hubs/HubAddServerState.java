@@ -1,12 +1,12 @@
 package com.discord.widgets.hubs;
 
+import b.d.b.a.a;
 import com.discord.api.directory.DirectoryEntryGuild;
 import com.discord.models.guild.Guild;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetHubAddServerViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -23,10 +23,10 @@ public final /* data */ class HubAddServerState {
     }
 
     public HubAddServerState(String str, Long l, int i, List<Guild> list, List<Guild> list2, List<DirectoryEntryGuild> list3) {
-        C12238m.checkNotNullParameter(str, "hubName");
-        C12238m.checkNotNullParameter(list, "selectableGuilds");
-        C12238m.checkNotNullParameter(list2, "addedGuilds");
-        C12238m.checkNotNullParameter(list3, "addedDirectories");
+        m.checkNotNullParameter(str, "hubName");
+        m.checkNotNullParameter(list, "selectableGuilds");
+        m.checkNotNullParameter(list2, "addedGuilds");
+        m.checkNotNullParameter(list3, "addedDirectories");
         this.hubName = str;
         this.directoryChannelId = l;
         this.selectedIndex = i;
@@ -75,10 +75,10 @@ public final /* data */ class HubAddServerState {
     }
 
     public final HubAddServerState copy(String hubName, Long directoryChannelId, int selectedIndex, List<Guild> selectableGuilds, List<Guild> addedGuilds, List<DirectoryEntryGuild> addedDirectories) {
-        C12238m.checkNotNullParameter(hubName, "hubName");
-        C12238m.checkNotNullParameter(selectableGuilds, "selectableGuilds");
-        C12238m.checkNotNullParameter(addedGuilds, "addedGuilds");
-        C12238m.checkNotNullParameter(addedDirectories, "addedDirectories");
+        m.checkNotNullParameter(hubName, "hubName");
+        m.checkNotNullParameter(selectableGuilds, "selectableGuilds");
+        m.checkNotNullParameter(addedGuilds, "addedGuilds");
+        m.checkNotNullParameter(addedDirectories, "addedDirectories");
         return new HubAddServerState(hubName, directoryChannelId, selectedIndex, selectableGuilds, addedGuilds, addedDirectories);
     }
 
@@ -90,7 +90,7 @@ public final /* data */ class HubAddServerState {
             return false;
         }
         HubAddServerState hubAddServerState = (HubAddServerState) other;
-        return C12238m.areEqual(this.hubName, hubAddServerState.hubName) && C12238m.areEqual(this.directoryChannelId, hubAddServerState.directoryChannelId) && this.selectedIndex == hubAddServerState.selectedIndex && C12238m.areEqual(this.selectableGuilds, hubAddServerState.selectableGuilds) && C12238m.areEqual(this.addedGuilds, hubAddServerState.addedGuilds) && C12238m.areEqual(this.addedDirectories, hubAddServerState.addedDirectories);
+        return m.areEqual(this.hubName, hubAddServerState.hubName) && m.areEqual(this.directoryChannelId, hubAddServerState.directoryChannelId) && this.selectedIndex == hubAddServerState.selectedIndex && m.areEqual(this.selectableGuilds, hubAddServerState.selectableGuilds) && m.areEqual(this.addedGuilds, hubAddServerState.addedGuilds) && m.areEqual(this.addedDirectories, hubAddServerState.addedDirectories);
     }
 
     public final List<DirectoryEntryGuild> getAddedDirectories() {
@@ -146,21 +146,21 @@ public final /* data */ class HubAddServerState {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HubAddServerState(hubName=");
-        sbM833U.append(this.hubName);
-        sbM833U.append(", directoryChannelId=");
-        sbM833U.append(this.directoryChannelId);
-        sbM833U.append(", selectedIndex=");
-        sbM833U.append(this.selectedIndex);
-        sbM833U.append(", selectableGuilds=");
-        sbM833U.append(this.selectableGuilds);
-        sbM833U.append(", addedGuilds=");
-        sbM833U.append(this.addedGuilds);
-        sbM833U.append(", addedDirectories=");
-        return C1643a.m824L(sbM833U, this.addedDirectories, ")");
+        StringBuilder sbU = a.U("HubAddServerState(hubName=");
+        sbU.append(this.hubName);
+        sbU.append(", directoryChannelId=");
+        sbU.append(this.directoryChannelId);
+        sbU.append(", selectedIndex=");
+        sbU.append(this.selectedIndex);
+        sbU.append(", selectableGuilds=");
+        sbU.append(this.selectableGuilds);
+        sbU.append(", addedGuilds=");
+        sbU.append(this.addedGuilds);
+        sbU.append(", addedDirectories=");
+        return a.L(sbU, this.addedDirectories, ")");
     }
 
     public /* synthetic */ HubAddServerState(String str, Long l, int i, List list, List list2, List list3, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i2 & 1) != 0 ? "" : str, (i2 & 2) != 0 ? null : l, (i2 & 4) != 0 ? 0 : i, (i2 & 8) != 0 ? C12147n.emptyList() : list, (i2 & 16) != 0 ? C12147n.emptyList() : list2, (i2 & 32) != 0 ? C12147n.emptyList() : list3);
+        this((i2 & 1) != 0 ? "" : str, (i2 & 2) != 0 ? null : l, (i2 & 4) != 0 ? 0 : i, (i2 & 8) != 0 ? n.emptyList() : list, (i2 & 16) != 0 ? n.emptyList() : list2, (i2 & 32) != 0 ? n.emptyList() : list3);
     }
 }

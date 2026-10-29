@@ -3,12 +3,13 @@ package com.discord.utilities.device;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.Build$VERSION;
 import android.provider.Settings;
+import d0.g0.w;
+import d0.t.m0;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.Set;
-import p507d0.p579g0.C12106w;
-import p507d0.p580t.C12146m0;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: DeviceUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,8 +21,8 @@ public final class DeviceUtils {
     }
 
     public final boolean canDrawOverlays(Context context) {
-        C12238m.checkNotNullParameter(context, "context");
-        return Build.VERSION.SDK_INT <= 22 || Settings.canDrawOverlays(context);
+        m.checkNotNullParameter(context, "context");
+        return Build$VERSION.SDK_INT <= 22 || Settings.canDrawOverlays(context);
     }
 
     public static /* synthetic */ boolean isDevice$default(DeviceUtils deviceUtils, String str, Integer num, String str2, int i, Object obj) {
@@ -38,16 +39,16 @@ public final class DeviceUtils {
     }
 
     public final boolean isDevice(String manufacturer, Integer versionCode, String model) {
-        return isDevice(manufacturer != null ? C12146m0.setOf(manufacturer) : null, versionCode != null ? C12146m0.setOf(Integer.valueOf(versionCode.intValue())) : null, model != null ? C12146m0.setOf(model) : null);
+        return isDevice(manufacturer != null ? m0.setOf(manufacturer) : null, versionCode != null ? m0.setOf(Integer.valueOf(versionCode.intValue())) : null, model != null ? m0.setOf(model) : null);
     }
 
     public final boolean isSmallScreen(Resources resources) {
-        C12238m.checkNotNullParameter(resources, "resources");
+        m.checkNotNullParameter(resources, "resources");
         return ((float) resources.getDisplayMetrics().widthPixels) <= ((float) SMALL_SCREEN_WIDTH_DP) * resources.getDisplayMetrics().density;
     }
 
     public final boolean isTablet(Resources resources) {
-        C12238m.checkNotNullParameter(resources, "resources");
+        m.checkNotNullParameter(resources, "resources");
         return (resources.getConfiguration().screenLayout & 15) >= 3;
     }
 
@@ -78,8 +79,8 @@ public final class DeviceUtils {
                     if (it.hasNext()) {
                         String str = (String) it.next();
                         String str2 = Build.MANUFACTURER;
-                        C12238m.checkNotNullExpressionValue(str2, "Build.MANUFACTURER");
-                        if (C12106w.contains((CharSequence) str2, (CharSequence) str, true)) {
+                        m.checkNotNullExpressionValue(str2, "Build.MANUFACTURER");
+                        if (w.contains((CharSequence) str2, (CharSequence) str, true)) {
                             z2 = true;
                         }
                     }
@@ -94,7 +95,7 @@ public final class DeviceUtils {
                 Iterator<T> it2 = versionCodes.iterator();
                 while (true) {
                     if (it2.hasNext()) {
-                        if (Build.VERSION.SDK_INT == ((Number) it2.next()).intValue()) {
+                        if (Build$VERSION.SDK_INT == ((Number) it2.next()).intValue()) {
                             z3 = true;
                         }
                     }
@@ -111,8 +112,8 @@ public final class DeviceUtils {
                     if (it3.hasNext()) {
                         String str3 = (String) it3.next();
                         String str4 = Build.MODEL;
-                        C12238m.checkNotNullExpressionValue(str4, "Build.MODEL");
-                        if (C12106w.contains((CharSequence) str4, (CharSequence) str3, true)) {
+                        m.checkNotNullExpressionValue(str4, "Build.MODEL");
+                        if (w.contains((CharSequence) str4, (CharSequence) str3, true)) {
                             z4 = true;
                         }
                     }

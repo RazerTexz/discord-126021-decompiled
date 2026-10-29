@@ -8,11 +8,11 @@ import android.opengl.EGLContext;
 import android.opengl.EGLDisplay;
 import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.Surface;
 import androidx.annotation.Nullable;
-import p007b.p100d.p104b.p105a.C1643a;
-import p617h0.p628c.C12477n0;
+import b.d.b.a.a;
+import h0.c.n0;
 
 /* JADX INFO: loaded from: classes3.dex */
 @TargetApi(18)
@@ -24,35 +24,20 @@ public class EglBase14Impl implements EglBase14 {
     private EGLConfig eglConfig;
     private EGLContext eglContext;
     private EGLDisplay eglDisplay;
-    private static final int CURRENT_SDK_VERSION = Build.VERSION.SDK_INT;
+    private static final int CURRENT_SDK_VERSION = Build$VERSION.SDK_INT;
     private EGLSurface eglSurface = EGL14.EGL_NO_SURFACE;
-
-    public class Context implements EglBase14.Context {
-        private final EGLContext egl14Context;
-
-        public Context(EGLContext eGLContext) {
-            this.egl14Context = eGLContext;
-        }
-
-        @Override // org.webrtc.EglBase.Context
-        @TargetApi(21)
-        public long getNativeEglContext() {
-            return EglBase14Impl.CURRENT_SDK_VERSION >= 21 ? this.egl14Context.getNativeHandle() : this.egl14Context.getHandle();
-        }
-
-        @Override // org.webrtc.EglBase14.Context
-        public EGLContext getRawContext() {
-            return this.egl14Context;
-        }
-    }
 
     public EglBase14Impl(EGLContext eGLContext, int[] iArr) {
         EGLDisplay eglDisplay = getEglDisplay();
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(eglDisplay, iArr);
-        int iM10664c = C12477n0.m10664c(iArr);
-        Logging.m11027d(TAG, "Using OpenGL ES version " + iM10664c);
-        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, iM10664c);
+        int iC = n0.c(iArr);
+        Logging.d(TAG, "Using OpenGL ES version " + iC);
+        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, iC);
+    }
+
+    public static /* synthetic */ int access$000() {
+        return CURRENT_SDK_VERSION;
     }
 
     private void checkIsNotReleased() {
@@ -81,9 +66,9 @@ public class EglBase14Impl implements EglBase14 {
         if (eGLContextEglCreateContext != EGL14.EGL_NO_CONTEXT) {
             return eGLContextEglCreateContext;
         }
-        StringBuilder sbM833U = C1643a.m833U("Failed to create EGL context: 0x");
-        sbM833U.append(Integer.toHexString(EGL14.eglGetError()));
-        throw new RuntimeException(sbM833U.toString());
+        StringBuilder sbU = a.U("Failed to create EGL context: 0x");
+        sbU.append(Integer.toHexString(EGL14.eglGetError()));
+        throw new RuntimeException(sbU.toString());
     }
 
     @Override // org.webrtc.EglBase
@@ -97,9 +82,9 @@ public class EglBase14Impl implements EglBase14 {
         if (eGLSurfaceEglCreatePbufferSurface != EGL14.EGL_NO_SURFACE) {
             return;
         }
-        StringBuilder sbM835W = C1643a.m835W("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
-        sbM835W.append(Integer.toHexString(EGL14.eglGetError()));
-        throw new RuntimeException(sbM835W.toString());
+        StringBuilder sbW = a.W("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
+        sbW.append(Integer.toHexString(EGL14.eglGetError()));
+        throw new RuntimeException(sbW.toString());
     }
 
     @Override // org.webrtc.EglBase
@@ -120,9 +105,9 @@ public class EglBase14Impl implements EglBase14 {
         if (eGLSurfaceEglCreateWindowSurface != EGL14.EGL_NO_SURFACE) {
             return;
         }
-        StringBuilder sbM833U = C1643a.m833U("Failed to create window surface: 0x");
-        sbM833U.append(Integer.toHexString(EGL14.eglGetError()));
-        throw new RuntimeException(sbM833U.toString());
+        StringBuilder sbU = a.U("Failed to create window surface: 0x");
+        sbU.append(Integer.toHexString(EGL14.eglGetError()));
+        throw new RuntimeException(sbU.toString());
     }
 
     @Override // org.webrtc.EglBase
@@ -136,13 +121,18 @@ public class EglBase14Impl implements EglBase14 {
         }
     }
 
+    @Override // org.webrtc.EglBase
+    public /* bridge */ /* synthetic */ EglBase$Context getEglBaseContext() {
+        return getEglBaseContext();
+    }
+
     private static EGLConfig getEglConfig(EGLDisplay eGLDisplay, int[] iArr) {
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
         int[] iArr2 = new int[1];
         if (!EGL14.eglChooseConfig(eGLDisplay, iArr, 0, eGLConfigArr, 0, 1, iArr2, 0)) {
-            StringBuilder sbM833U = C1643a.m833U("eglChooseConfig failed: 0x");
-            sbM833U.append(Integer.toHexString(EGL14.eglGetError()));
-            throw new RuntimeException(sbM833U.toString());
+            StringBuilder sbU = a.U("eglChooseConfig failed: 0x");
+            sbU.append(Integer.toHexString(EGL14.eglGetError()));
+            throw new RuntimeException(sbU.toString());
         }
         if (iArr2[0] <= 0) {
             throw new RuntimeException("Unable to find any matching EGL config");
@@ -157,17 +147,17 @@ public class EglBase14Impl implements EglBase14 {
     private static EGLDisplay getEglDisplay() {
         EGLDisplay eGLDisplayEglGetDisplay = EGL14.eglGetDisplay(0);
         if (eGLDisplayEglGetDisplay == EGL14.EGL_NO_DISPLAY) {
-            StringBuilder sbM833U = C1643a.m833U("Unable to get EGL14 display: 0x");
-            sbM833U.append(Integer.toHexString(EGL14.eglGetError()));
-            throw new RuntimeException(sbM833U.toString());
+            StringBuilder sbU = a.U("Unable to get EGL14 display: 0x");
+            sbU.append(Integer.toHexString(EGL14.eglGetError()));
+            throw new RuntimeException(sbU.toString());
         }
         int[] iArr = new int[2];
         if (EGL14.eglInitialize(eGLDisplayEglGetDisplay, iArr, 0, iArr, 1)) {
             return eGLDisplayEglGetDisplay;
         }
-        StringBuilder sbM833U2 = C1643a.m833U("Unable to initialize EGL14: 0x");
-        sbM833U2.append(Integer.toHexString(EGL14.eglGetError()));
-        throw new RuntimeException(sbM833U2.toString());
+        StringBuilder sbU2 = a.U("Unable to initialize EGL14: 0x");
+        sbU2.append(Integer.toHexString(EGL14.eglGetError()));
+        throw new RuntimeException(sbU2.toString());
     }
 
     @Override // org.webrtc.EglBase
@@ -176,12 +166,12 @@ public class EglBase14Impl implements EglBase14 {
     }
 
     public static boolean isEGL14Supported() {
-        StringBuilder sbM833U = C1643a.m833U("SDK version: ");
+        StringBuilder sbU = a.U("SDK version: ");
         int i = CURRENT_SDK_VERSION;
-        sbM833U.append(i);
-        sbM833U.append(". isEGL14Supported: ");
-        sbM833U.append(i >= 18);
-        Logging.m11027d(TAG, sbM833U.toString());
+        sbU.append(i);
+        sbU.append(". isEGL14Supported: ");
+        sbU.append(i >= 18);
+        Logging.d(TAG, sbU.toString());
         return i >= 18;
     }
 
@@ -255,8 +245,8 @@ public class EglBase14Impl implements EglBase14 {
     }
 
     @Override // org.webrtc.EglBase
-    public Context getEglBaseContext() {
-        return new Context(this.eglContext);
+    public EglBase14Impl$Context getEglBaseContext() {
+        return new EglBase14Impl$Context(this.eglContext);
     }
 
     @Override // org.webrtc.EglBase

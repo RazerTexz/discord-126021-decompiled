@@ -1,12 +1,9 @@
 package com.discord.models.domain;
 
-import java.io.IOException;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.jvm.internal.Ref$ObjectRef;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
 
 /* JADX INFO: compiled from: ModelGuildFolder.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,68 +13,8 @@ public final /* data */ class ModelGuildFolder {
     private final Long id;
     private final String name;
 
-    /* JADX INFO: compiled from: ModelGuildFolder.kt */
-    public final class Parser implements Model.Parser<ModelGuildFolder> {
-        public static final Parser INSTANCE = new Parser();
-
-        private Parser() {
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // com.discord.models.domain.Model.Parser
-        public ModelGuildFolder parse(final Model.JsonReader reader) throws IOException {
-            final Ref$ObjectRef ref$ObjectRefM844c0 = C1643a.m844c0(reader, "reader");
-            ref$ObjectRefM844c0.element = null;
-            final Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
-            ref$ObjectRef.element = null;
-            final Ref$ObjectRef ref$ObjectRef2 = new Ref$ObjectRef();
-            ref$ObjectRef2.element = null;
-            final Ref$ObjectRef ref$ObjectRef3 = new Ref$ObjectRef();
-            ref$ObjectRef3.element = null;
-            reader.nextObject(new Action1<String>() { // from class: com.discord.models.domain.ModelGuildFolder$Parser$parse$1
-                @Override // p658rx.functions.Action1
-                public final void call(String str) throws IOException {
-                    if (str != null) {
-                        int iHashCode = str.hashCode();
-                        if (iHashCode != -1847996308) {
-                            if (iHashCode != 3355) {
-                                if (iHashCode != 3373707) {
-                                    if (iHashCode == 94842723 && str.equals(ModelAuditLogEntry.CHANGE_KEY_COLOR)) {
-                                        ref$ObjectRef2.element = (T) reader.nextIntOrNull();
-                                        return;
-                                    }
-                                } else if (str.equals(ModelAuditLogEntry.CHANGE_KEY_NAME)) {
-                                    ref$ObjectRef3.element = (T) reader.nextStringOrNull();
-                                    return;
-                                }
-                            } else if (str.equals(ModelAuditLogEntry.CHANGE_KEY_ID)) {
-                                ref$ObjectRefM844c0.element = (T) reader.nextLongOrNull();
-                                return;
-                            }
-                        } else if (str.equals("guild_ids")) {
-                            ref$ObjectRef.element = (T) reader.nextList(new Model.JsonReader.ItemFactory<Long>() { // from class: com.discord.models.domain.ModelGuildFolder$Parser$parse$1.1
-                                /* JADX WARN: Can't rename method to resolve collision */
-                                @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                                public final Long get() {
-                                    return reader.nextLongOrNull();
-                                }
-                            });
-                            return;
-                        }
-                    }
-                    reader.skipValue();
-                }
-            });
-            Long l = (Long) ref$ObjectRefM844c0.element;
-            List list = (List) ref$ObjectRef.element;
-            C12238m.checkNotNull(list);
-            return new ModelGuildFolder(l, list, (Integer) ref$ObjectRef2.element, (String) ref$ObjectRef3.element);
-        }
-    }
-
     public ModelGuildFolder(Long l, List<Long> list, Integer num, String str) {
-        C12238m.checkNotNullParameter(list, "guildIds");
+        m.checkNotNullParameter(list, "guildIds");
         this.id = l;
         this.guildIds = list;
         this.color = num;
@@ -106,7 +43,7 @@ public final /* data */ class ModelGuildFolder {
     }
 
     public final ModelGuildFolder copy(Long id2, List<Long> guildIds, Integer color, String name) {
-        C12238m.checkNotNullParameter(guildIds, "guildIds");
+        m.checkNotNullParameter(guildIds, "guildIds");
         return new ModelGuildFolder(id2, guildIds, color, name);
     }
 
@@ -118,7 +55,7 @@ public final /* data */ class ModelGuildFolder {
             return false;
         }
         ModelGuildFolder modelGuildFolder = (ModelGuildFolder) other;
-        return C12238m.areEqual(this.id, modelGuildFolder.id) && C12238m.areEqual(this.guildIds, modelGuildFolder.guildIds) && C12238m.areEqual(this.color, modelGuildFolder.color) && C12238m.areEqual(this.name, modelGuildFolder.name);
+        return m.areEqual(this.id, modelGuildFolder.id) && m.areEqual(this.guildIds, modelGuildFolder.guildIds) && m.areEqual(this.color, modelGuildFolder.color) && m.areEqual(this.name, modelGuildFolder.name);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -164,14 +101,14 @@ public final /* data */ class ModelGuildFolder {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelGuildFolder(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", guildIds=");
-        sbM833U.append(this.guildIds);
-        sbM833U.append(", color=");
-        sbM833U.append(this.color);
-        sbM833U.append(", name=");
-        return C1643a.m822J(sbM833U, this.name, ")");
+        StringBuilder sbU = a.U("ModelGuildFolder(id=");
+        sbU.append(this.id);
+        sbU.append(", guildIds=");
+        sbU.append(this.guildIds);
+        sbU.append(", color=");
+        sbU.append(this.color);
+        sbU.append(", name=");
+        return a.J(sbU, this.name, ")");
     }
 
     public /* synthetic */ ModelGuildFolder(Long l, List list, Integer num, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {

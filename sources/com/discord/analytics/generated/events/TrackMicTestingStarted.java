@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMicTestingStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema,
             return false;
         }
         TrackMicTestingStarted trackMicTestingStarted = (TrackMicTestingStarted) other;
-        return C12238m.areEqual(this.inputDeviceName, trackMicTestingStarted.inputDeviceName) && C12238m.areEqual(this.inputDeviceVolume, trackMicTestingStarted.inputDeviceVolume) && C12238m.areEqual(this.outputDeviceName, trackMicTestingStarted.outputDeviceName) && C12238m.areEqual(this.outputDeviceVolume, trackMicTestingStarted.outputDeviceVolume) && C12238m.areEqual(this.inputMode, trackMicTestingStarted.inputMode) && C12238m.areEqual(this.inputSensitivityIsAutomatic, trackMicTestingStarted.inputSensitivityIsAutomatic) && C12238m.areEqual(this.inputSensitivityThreshold, trackMicTestingStarted.inputSensitivityThreshold);
+        return m.areEqual(this.inputDeviceName, trackMicTestingStarted.inputDeviceName) && m.areEqual(this.inputDeviceVolume, trackMicTestingStarted.inputDeviceVolume) && m.areEqual(this.outputDeviceName, trackMicTestingStarted.outputDeviceName) && m.areEqual(this.outputDeviceVolume, trackMicTestingStarted.outputDeviceVolume) && m.areEqual(this.inputMode, trackMicTestingStarted.inputMode) && m.areEqual(this.inputSensitivityIsAutomatic, trackMicTestingStarted.inputSensitivityIsAutomatic) && m.areEqual(this.inputSensitivityThreshold, trackMicTestingStarted.inputSensitivityThreshold);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,19 +57,19 @@ public final /* data */ class TrackMicTestingStarted implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMicTestingStarted(inputDeviceName=");
-        sbM833U.append(this.inputDeviceName);
-        sbM833U.append(", inputDeviceVolume=");
-        sbM833U.append(this.inputDeviceVolume);
-        sbM833U.append(", outputDeviceName=");
-        sbM833U.append(this.outputDeviceName);
-        sbM833U.append(", outputDeviceVolume=");
-        sbM833U.append(this.outputDeviceVolume);
-        sbM833U.append(", inputMode=");
-        sbM833U.append(this.inputMode);
-        sbM833U.append(", inputSensitivityIsAutomatic=");
-        sbM833U.append(this.inputSensitivityIsAutomatic);
-        sbM833U.append(", inputSensitivityThreshold=");
-        return C1643a.m819G(sbM833U, this.inputSensitivityThreshold, ")");
+        StringBuilder sbU = a.U("TrackMicTestingStarted(inputDeviceName=");
+        sbU.append(this.inputDeviceName);
+        sbU.append(", inputDeviceVolume=");
+        sbU.append(this.inputDeviceVolume);
+        sbU.append(", outputDeviceName=");
+        sbU.append(this.outputDeviceName);
+        sbU.append(", outputDeviceVolume=");
+        sbU.append(this.outputDeviceVolume);
+        sbU.append(", inputMode=");
+        sbU.append(this.inputMode);
+        sbU.append(", inputSensitivityIsAutomatic=");
+        sbU.append(this.inputSensitivityIsAutomatic);
+        sbU.append(", inputSensitivityThreshold=");
+        return a.G(sbU, this.inputSensitivityThreshold, ")");
     }
 }

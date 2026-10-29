@@ -2,6 +2,7 @@ package com.adjust.sdk;
 
 import android.net.Uri;
 import android.net.UrlQuerySanitizer;
+import android.net.UrlQuerySanitizer$ParameterValuePair;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.LinkedHashMap;
@@ -72,14 +73,14 @@ public class PackageFactory {
         return packageBuilderQueryStringClickPackageBuilder.buildClickPackage(Constants.REFTAG);
     }
 
-    private static PackageBuilder queryStringClickPackageBuilder(List<UrlQuerySanitizer.ParameterValuePair> list, ActivityState activityState, AdjustConfig adjustConfig, DeviceInfo deviceInfo, SessionParameters sessionParameters) {
+    private static PackageBuilder queryStringClickPackageBuilder(List<UrlQuerySanitizer$ParameterValuePair> list, ActivityState activityState, AdjustConfig adjustConfig, DeviceInfo deviceInfo, SessionParameters sessionParameters) {
         if (list == null) {
             return null;
         }
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         AdjustAttribution adjustAttribution = new AdjustAttribution();
-        for (UrlQuerySanitizer.ParameterValuePair parameterValuePair : list) {
-            readQueryString(parameterValuePair.mParameter, parameterValuePair.mValue, linkedHashMap, adjustAttribution);
+        for (UrlQuerySanitizer$ParameterValuePair urlQuerySanitizer$ParameterValuePair : list) {
+            readQueryString(urlQuerySanitizer$ParameterValuePair.mParameter, urlQuerySanitizer$ParameterValuePair.mValue, linkedHashMap, adjustAttribution);
         }
         long jCurrentTimeMillis = System.currentTimeMillis();
         String str = (String) linkedHashMap.remove(Constants.REFTAG);

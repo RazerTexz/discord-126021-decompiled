@@ -3,34 +3,22 @@ package androidx.core.view;
 import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$OnLongClickListener;
+import android.view.View$OnTouchListener;
 
 /* JADX INFO: loaded from: classes.dex */
 public class DragStartHelper {
     private boolean mDragging;
     private int mLastTouchX;
     private int mLastTouchY;
-    private final OnDragStartListener mListener;
+    private final DragStartHelper$OnDragStartListener mListener;
     private final View mView;
-    private final View.OnLongClickListener mLongClickListener = new View.OnLongClickListener() { // from class: androidx.core.view.DragStartHelper.1
-        @Override // android.view.View.OnLongClickListener
-        public boolean onLongClick(View view) {
-            return DragStartHelper.this.onLongClick(view);
-        }
-    };
-    private final View.OnTouchListener mTouchListener = new View.OnTouchListener() { // from class: androidx.core.view.DragStartHelper.2
-        @Override // android.view.View.OnTouchListener
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            return DragStartHelper.this.onTouch(view, motionEvent);
-        }
-    };
+    private final View$OnLongClickListener mLongClickListener = new DragStartHelper$1(this);
+    private final View$OnTouchListener mTouchListener = new DragStartHelper$2(this);
 
-    public interface OnDragStartListener {
-        boolean onDragStart(View view, DragStartHelper dragStartHelper);
-    }
-
-    public DragStartHelper(View view, OnDragStartListener onDragStartListener) {
+    public DragStartHelper(View view, DragStartHelper$OnDragStartListener dragStartHelper$OnDragStartListener) {
         this.mView = view;
-        this.mListener = onDragStartListener;
+        this.mListener = dragStartHelper$OnDragStartListener;
     }
 
     public void attach() {

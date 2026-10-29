@@ -1,17 +1,22 @@
 package com.discord.widgets.guilds.invite;
 
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetGuildInviteSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildInviteSettings$viewModel$2 extends AbstractC12240o implements Function0<GuildInviteSettingsViewModel> {
+public final class WidgetGuildInviteSettings$viewModel$2 extends o implements Function0<GuildInviteSettingsViewModel> {
     public final /* synthetic */ WidgetGuildInviteSettings this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public WidgetGuildInviteSettings$viewModel$2(WidgetGuildInviteSettings widgetGuildInviteSettings) {
         super(0);
         this.this$0 = widgetGuildInviteSettings;
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ GuildInviteSettingsViewModel invoke() {
+        return invoke();
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

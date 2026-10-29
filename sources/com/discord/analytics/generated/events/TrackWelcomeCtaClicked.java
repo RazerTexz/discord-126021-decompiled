@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
-import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackWelcomeCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,7 +33,7 @@ public final /* data */ class TrackWelcomeCtaClicked implements AnalyticsSchema,
             return false;
         }
         TrackWelcomeCtaClicked trackWelcomeCtaClicked = (TrackWelcomeCtaClicked) other;
-        return C12238m.areEqual(this.isReply, trackWelcomeCtaClicked.isReply) && C12238m.areEqual(this.stickerId, trackWelcomeCtaClicked.stickerId) && C12238m.areEqual(this.targetUser, trackWelcomeCtaClicked.targetUser) && C12238m.areEqual(this.sender, trackWelcomeCtaClicked.sender);
+        return m.areEqual(this.isReply, trackWelcomeCtaClicked.isReply) && m.areEqual(this.stickerId, trackWelcomeCtaClicked.stickerId) && m.areEqual(this.targetUser, trackWelcomeCtaClicked.targetUser) && m.areEqual(this.sender, trackWelcomeCtaClicked.sender);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,14 +54,14 @@ public final /* data */ class TrackWelcomeCtaClicked implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackWelcomeCtaClicked(isReply=");
-        sbM833U.append(this.isReply);
-        sbM833U.append(", stickerId=");
-        sbM833U.append(this.stickerId);
-        sbM833U.append(", targetUser=");
-        sbM833U.append(this.targetUser);
-        sbM833U.append(", sender=");
-        return C1643a.m819G(sbM833U, this.sender, ")");
+        StringBuilder sbU = a.U("TrackWelcomeCtaClicked(isReply=");
+        sbU.append(this.isReply);
+        sbU.append(", stickerId=");
+        sbU.append(this.stickerId);
+        sbU.append(", targetUser=");
+        sbU.append(this.targetUser);
+        sbU.append(", sender=");
+        return a.G(sbU, this.sender, ")");
     }
 
     public TrackWelcomeCtaClicked(Boolean bool, CharSequence charSequence, Long l, Long l2) {

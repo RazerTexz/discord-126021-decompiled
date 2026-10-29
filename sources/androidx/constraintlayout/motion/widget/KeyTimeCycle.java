@@ -1,16 +1,14 @@
 package androidx.constraintlayout.motion.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.SparseIntArray;
-import androidx.constraintlayout.widget.C0201R;
 import androidx.constraintlayout.widget.ConstraintAttribute;
+import androidx.constraintlayout.widget.R$styleable;
+import b.d.b.a.a;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class KeyTimeCycle extends Key {
@@ -35,148 +33,158 @@ public class KeyTimeCycle extends Key {
     private float mWavePeriod = Float.NaN;
     private float mWaveOffset = 0.0f;
 
-    public class Loader {
-        private static final int ANDROID_ALPHA = 1;
-        private static final int ANDROID_ELEVATION = 2;
-        private static final int ANDROID_ROTATION = 4;
-        private static final int ANDROID_ROTATION_X = 5;
-        private static final int ANDROID_ROTATION_Y = 6;
-        private static final int ANDROID_SCALE_X = 7;
-        private static final int ANDROID_SCALE_Y = 14;
-        private static final int ANDROID_TRANSLATION_X = 15;
-        private static final int ANDROID_TRANSLATION_Y = 16;
-        private static final int ANDROID_TRANSLATION_Z = 17;
-        private static final int CURVE_FIT = 13;
-        private static final int FRAME_POSITION = 12;
-        private static final int PROGRESS = 18;
-        private static final int TARGET_ID = 10;
-        private static final int TRANSITION_EASING = 9;
-        private static final int TRANSITION_PATH_ROTATE = 8;
-        private static final int WAVE_OFFSET = 21;
-        private static final int WAVE_PERIOD = 20;
-        private static final int WAVE_SHAPE = 19;
-        private static SparseIntArray mAttrMap;
-
-        static {
-            SparseIntArray sparseIntArray = new SparseIntArray();
-            mAttrMap = sparseIntArray;
-            sparseIntArray.append(C0201R.styleable.KeyTimeCycle_android_alpha, 1);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_elevation, 2);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_rotation, 4);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_rotationX, 5);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_rotationY, 6);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_scaleX, 7);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_transitionPathRotate, 8);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_transitionEasing, 9);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_motionTarget, 10);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_framePosition, 12);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_curveFit, 13);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_scaleY, 14);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_translationX, 15);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_translationY, 16);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_android_translationZ, 17);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_motionProgress, 18);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_wavePeriod, 20);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_waveOffset, 21);
-            mAttrMap.append(C0201R.styleable.KeyTimeCycle_waveShape, 19);
-        }
-
-        private Loader() {
-        }
-
-        public static void read(KeyTimeCycle keyTimeCycle, TypedArray typedArray) {
-            int indexCount = typedArray.getIndexCount();
-            for (int i = 0; i < indexCount; i++) {
-                int index = typedArray.getIndex(i);
-                switch (mAttrMap.get(index)) {
-                    case 1:
-                        keyTimeCycle.mAlpha = typedArray.getFloat(index, keyTimeCycle.mAlpha);
-                        break;
-                    case 2:
-                        keyTimeCycle.mElevation = typedArray.getDimension(index, keyTimeCycle.mElevation);
-                        break;
-                    case 3:
-                    case 11:
-                    default:
-                        StringBuilder sbM833U = C1643a.m833U("unused attribute 0x");
-                        sbM833U.append(Integer.toHexString(index));
-                        sbM833U.append("   ");
-                        sbM833U.append(mAttrMap.get(index));
-                        Log.e("KeyTimeCycle", sbM833U.toString());
-                        break;
-                    case 4:
-                        keyTimeCycle.mRotation = typedArray.getFloat(index, keyTimeCycle.mRotation);
-                        break;
-                    case 5:
-                        keyTimeCycle.mRotationX = typedArray.getFloat(index, keyTimeCycle.mRotationX);
-                        break;
-                    case 6:
-                        keyTimeCycle.mRotationY = typedArray.getFloat(index, keyTimeCycle.mRotationY);
-                        break;
-                    case 7:
-                        keyTimeCycle.mScaleX = typedArray.getFloat(index, keyTimeCycle.mScaleX);
-                        break;
-                    case 8:
-                        keyTimeCycle.mTransitionPathRotate = typedArray.getFloat(index, keyTimeCycle.mTransitionPathRotate);
-                        break;
-                    case 9:
-                        keyTimeCycle.mTransitionEasing = typedArray.getString(index);
-                        break;
-                    case 10:
-                        if (MotionLayout.IS_IN_EDIT_MODE) {
-                            int resourceId = typedArray.getResourceId(index, keyTimeCycle.mTargetId);
-                            keyTimeCycle.mTargetId = resourceId;
-                            if (resourceId == -1) {
-                                keyTimeCycle.mTargetString = typedArray.getString(index);
-                            }
-                        } else if (typedArray.peekValue(index).type == 3) {
-                            keyTimeCycle.mTargetString = typedArray.getString(index);
-                        } else {
-                            keyTimeCycle.mTargetId = typedArray.getResourceId(index, keyTimeCycle.mTargetId);
-                        }
-                        break;
-                    case 12:
-                        keyTimeCycle.mFramePosition = typedArray.getInt(index, keyTimeCycle.mFramePosition);
-                        break;
-                    case 13:
-                        keyTimeCycle.mCurveFit = typedArray.getInteger(index, keyTimeCycle.mCurveFit);
-                        break;
-                    case 14:
-                        keyTimeCycle.mScaleY = typedArray.getFloat(index, keyTimeCycle.mScaleY);
-                        break;
-                    case 15:
-                        keyTimeCycle.mTranslationX = typedArray.getDimension(index, keyTimeCycle.mTranslationX);
-                        break;
-                    case 16:
-                        keyTimeCycle.mTranslationY = typedArray.getDimension(index, keyTimeCycle.mTranslationY);
-                        break;
-                    case 17:
-                        keyTimeCycle.mTranslationZ = typedArray.getDimension(index, keyTimeCycle.mTranslationZ);
-                        break;
-                    case 18:
-                        keyTimeCycle.mProgress = typedArray.getFloat(index, keyTimeCycle.mProgress);
-                        break;
-                    case 19:
-                        keyTimeCycle.mWaveShape = typedArray.getInt(index, keyTimeCycle.mWaveShape);
-                        break;
-                    case 20:
-                        keyTimeCycle.mWavePeriod = typedArray.getFloat(index, keyTimeCycle.mWavePeriod);
-                        break;
-                    case 21:
-                        if (typedArray.peekValue(index).type == 5) {
-                            keyTimeCycle.mWaveOffset = typedArray.getDimension(index, keyTimeCycle.mWaveOffset);
-                        } else {
-                            keyTimeCycle.mWaveOffset = typedArray.getFloat(index, keyTimeCycle.mWaveOffset);
-                        }
-                        break;
-                }
-            }
-        }
-    }
-
     public KeyTimeCycle() {
         this.mType = 3;
         this.mCustomConstraints = new HashMap<>();
+    }
+
+    public static /* synthetic */ float access$000(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mAlpha;
+    }
+
+    public static /* synthetic */ float access$002(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mAlpha = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$100(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mElevation;
+    }
+
+    public static /* synthetic */ String access$1002(KeyTimeCycle keyTimeCycle, String str) {
+        keyTimeCycle.mTransitionEasing = str;
+        return str;
+    }
+
+    public static /* synthetic */ float access$102(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mElevation = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1100(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mScaleY;
+    }
+
+    public static /* synthetic */ float access$1102(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mScaleY = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1200(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mTransitionPathRotate;
+    }
+
+    public static /* synthetic */ float access$1202(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mTransitionPathRotate = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1300(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mTranslationX;
+    }
+
+    public static /* synthetic */ float access$1302(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mTranslationX = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1400(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mTranslationY;
+    }
+
+    public static /* synthetic */ float access$1402(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mTranslationY = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1500(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mTranslationZ;
+    }
+
+    public static /* synthetic */ float access$1502(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mTranslationZ = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1600(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mProgress;
+    }
+
+    public static /* synthetic */ float access$1602(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mProgress = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$200(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mRotation;
+    }
+
+    public static /* synthetic */ float access$202(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mRotation = f;
+        return f;
+    }
+
+    public static /* synthetic */ int access$300(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mCurveFit;
+    }
+
+    public static /* synthetic */ int access$302(KeyTimeCycle keyTimeCycle, int i) {
+        keyTimeCycle.mCurveFit = i;
+        return i;
+    }
+
+    public static /* synthetic */ int access$400(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mWaveShape;
+    }
+
+    public static /* synthetic */ int access$402(KeyTimeCycle keyTimeCycle, int i) {
+        keyTimeCycle.mWaveShape = i;
+        return i;
+    }
+
+    public static /* synthetic */ float access$500(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mWavePeriod;
+    }
+
+    public static /* synthetic */ float access$502(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mWavePeriod = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$600(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mWaveOffset;
+    }
+
+    public static /* synthetic */ float access$602(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mWaveOffset = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$700(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mScaleX;
+    }
+
+    public static /* synthetic */ float access$702(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mScaleX = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$800(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mRotationX;
+    }
+
+    public static /* synthetic */ float access$802(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mRotationX = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$900(KeyTimeCycle keyTimeCycle) {
+        return keyTimeCycle.mRotationY;
+    }
+
+    public static /* synthetic */ float access$902(KeyTimeCycle keyTimeCycle, float f) {
+        keyTimeCycle.mRotationY = f;
+        return f;
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
@@ -289,7 +297,7 @@ public class KeyTimeCycle extends Key {
             } else {
                 ConstraintAttribute constraintAttribute = this.mCustomConstraints.get(str.substring(7));
                 if (constraintAttribute != null) {
-                    ((TimeCycleSplineSet.CustomSet) timeCycleSplineSet).setPoint(this.mFramePosition, constraintAttribute, this.mWavePeriod, this.mWaveShape, this.mWaveOffset);
+                    ((TimeCycleSplineSet$CustomSet) timeCycleSplineSet).setPoint(this.mFramePosition, constraintAttribute, this.mWavePeriod, this.mWaveShape, this.mWaveOffset);
                 }
             }
         }
@@ -348,7 +356,7 @@ public class KeyTimeCycle extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0201R.styleable.KeyTimeCycle));
+        KeyTimeCycle$Loader.read(this, context.obtainStyledAttributes(attributeSet, R$styleable.KeyTimeCycle));
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
@@ -395,7 +403,7 @@ public class KeyTimeCycle extends Key {
         if (this.mCustomConstraints.size() > 0) {
             Iterator<String> it = this.mCustomConstraints.keySet().iterator();
             while (it.hasNext()) {
-                map.put(C1643a.m883w("CUSTOM,", it.next()), Integer.valueOf(this.mCurveFit));
+                map.put(a.w("CUSTOM,", it.next()), Integer.valueOf(this.mCurveFit));
             }
         }
     }

@@ -3,20 +3,22 @@ package com.discord.utilities.string;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
+import android.content.res.Resources$NotFoundException;
+import android.os.Build$VERSION;
+import b.a.k.b;
 import com.discord.utilities.locale.LocaleManager;
-import com.discord.utils.C7063R;
+import com.discord.utils.R$a;
 import com.discord.widgets.chat.input.MentionUtilsKt;
+import d0.t.n;
+import d0.z.d.m;
 import java.net.IDN;
 import java.net.URL;
 import java.text.Normalizer;
+import java.text.Normalizer$Form;
 import java.text.NumberFormat;
 import java.util.Locale;
 import kotlin.jvm.functions.Function1;
 import kotlin.text.Regex;
-import p007b.p008a.p027k.C1107b;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StringUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -25,13 +27,13 @@ public final class StringUtilsKt {
     private static final Regex STRIP_ACCENTS_REGEX = new Regex("[\\p{InCombiningDiacriticalMarks}]");
 
     static {
-        STATIC_IMAGE_EXTENSION = C12147n.listOf((Object[]) new Integer[]{28, 29}).contains(Integer.valueOf(Build.VERSION.SDK_INT)) ? "png" : "webp";
+        STATIC_IMAGE_EXTENSION = n.listOf((Object[]) new Integer[]{28, 29}).contains(Integer.valueOf(Build$VERSION.SDK_INT)) ? "png" : "webp";
     }
 
     public static final String encodeToBase32String(byte[] bArr) {
         int i;
         int i2;
-        C12238m.checkNotNullParameter(bArr, "$this$encodeToBase32String");
+        m.checkNotNullParameter(bArr, "$this$encodeToBase32String");
         StringBuffer stringBuffer = new StringBuffer(((bArr.length + 7) * 8) / 5);
         int i3 = 0;
         int i4 = 0;
@@ -58,19 +60,19 @@ public final class StringUtilsKt {
             stringBuffer.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".charAt(i));
         }
         String string = stringBuffer.toString();
-        C12238m.checkNotNullExpressionValue(string, "Base32.encodeOriginal(this)");
+        m.checkNotNullExpressionValue(string, "Base32.encodeOriginal(this)");
         return string;
     }
 
     public static final String filenameSanitized(CharSequence charSequence) {
-        C12238m.checkNotNullParameter(charSequence, "$this$filenameSanitized");
+        m.checkNotNullParameter(charSequence, "$this$filenameSanitized");
         return new Regex("[/\\\\]").replace(charSequence, "_");
     }
 
     public static final String format(int i, Context context) {
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         String str = NumberFormat.getInstance(new LocaleManager().getPrimaryLocale(context)).format(Integer.valueOf(i));
-        C12238m.checkNotNullExpressionValue(str, "NumberFormat.getInstance…le(context)).format(this)");
+        m.checkNotNullExpressionValue(str, "NumberFormat.getInstance…le(context)).format(this)");
         return str;
     }
 
@@ -79,39 +81,39 @@ public final class StringUtilsKt {
     }
 
     public static final CharSequence getStringByLocale(Context context, int i, String str) {
-        C12238m.checkNotNullParameter(context, "$this$getStringByLocale");
-        C12238m.checkNotNullParameter(str, "locale");
+        m.checkNotNullParameter(context, "$this$getStringByLocale");
+        m.checkNotNullParameter(str, "locale");
         try {
             Resources resources = context.getResources();
-            C12238m.checkNotNullExpressionValue(resources, "resources");
+            m.checkNotNullExpressionValue(resources, "resources");
             Configuration configuration = new Configuration(resources.getConfiguration());
             configuration.setLocale(new Locale(str));
             Context contextCreateConfigurationContext = context.createConfigurationContext(configuration);
-            C12238m.checkNotNullExpressionValue(contextCreateConfigurationContext, "createConfigurationContext(configuration)");
+            m.checkNotNullExpressionValue(contextCreateConfigurationContext, "createConfigurationContext(configuration)");
             Resources resources2 = contextCreateConfigurationContext.getResources();
-            C12238m.checkNotNullExpressionValue(resources2, "createConfigurationConte…(configuration).resources");
-            return C1107b.m211c(resources2, i, new Object[0], (4 & 4) != 0 ? C1107b.d.f1493j : null);
-        } catch (Resources.NotFoundException unused) {
+            m.checkNotNullExpressionValue(resources2, "createConfigurationConte…(configuration).resources");
+            return b.i(resources2, i, new Object[0], null, 4);
+        } catch (Resources$NotFoundException unused) {
             return null;
         }
     }
 
     public static final String stripAccents(String str) {
-        C12238m.checkNotNullParameter(str, "$this$stripAccents");
-        String strNormalize = Normalizer.normalize(str, Normalizer.Form.NFKD);
-        C12238m.checkNotNullExpressionValue(strNormalize, "normalizedString");
+        m.checkNotNullParameter(str, "$this$stripAccents");
+        String strNormalize = Normalizer.normalize(str, Normalizer$Form.NFKD);
+        m.checkNotNullExpressionValue(strNormalize, "normalizedString");
         return STRIP_ACCENTS_REGEX.replace(strNormalize, "");
     }
 
     public static final void test(Context context, Resources resources) {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(resources, "resources");
-        context.getString(C7063R.a.common_google_play_services_unknown_issue, 1);
-        resources.getString(C7063R.a.common_google_play_services_enable_button, 1);
+        m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(resources, "resources");
+        context.getString(R$a.common_google_play_services_unknown_issue, 1);
+        resources.getString(R$a.common_google_play_services_enable_button, 1);
     }
 
     public static final String toPunyCodeASCIIUrl(String str) {
-        C12238m.checkNotNullParameter(str, "$this$toPunyCodeASCIIUrl");
+        m.checkNotNullParameter(str, "$this$toPunyCodeASCIIUrl");
         URL url = new URL(str);
         StringBuilder sb = new StringBuilder(new URL(url.getProtocol(), IDN.toASCII(url.getHost(), 1), url.getPort(), url.getFile()).toString());
         if (url.getRef() != null) {
@@ -119,7 +121,7 @@ public final class StringUtilsKt {
             sb.append(url.getRef());
         }
         String string = sb.toString();
-        C12238m.checkNotNullExpressionValue(string, "safeUrlStringBuilder.toString()");
+        m.checkNotNullExpressionValue(string, "safeUrlStringBuilder.toString()");
         return string;
     }
 

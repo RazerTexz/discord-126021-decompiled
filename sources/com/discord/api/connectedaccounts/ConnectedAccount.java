@@ -1,13 +1,14 @@
 package com.discord.api.connectedaccounts;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ConnectedAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class ConnectedAccount {
+    public static final ConnectedAccount$Companion Companion = new ConnectedAccount$Companion(null);
     public static final int HIDDEN = 0;
     public static final int VISIBLE = 1;
     private final boolean friendSync;
@@ -21,7 +22,7 @@ public final /* data */ class ConnectedAccount {
     private final int visibility;
 
     public ConnectedAccount() {
-        C1643a.m872q0("", ModelAuditLogEntry.CHANGE_KEY_ID, "", ModelAuditLogEntry.CHANGE_KEY_NAME, "", "type");
+        a.q0("", ModelAuditLogEntry.CHANGE_KEY_ID, "", ModelAuditLogEntry.CHANGE_KEY_NAME, "", "type");
         this.id = "";
         this.name = "";
         this.visibility = 0;
@@ -33,6 +34,10 @@ public final /* data */ class ConnectedAccount {
         this.type = "";
     }
 
+    public final List<ConnectedAccountIntegration> c() {
+        return this.integrations;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -41,7 +46,7 @@ public final /* data */ class ConnectedAccount {
             return false;
         }
         ConnectedAccount connectedAccount = (ConnectedAccount) other;
-        return C12238m.areEqual(this.id, connectedAccount.id) && C12238m.areEqual(this.name, connectedAccount.name) && this.visibility == connectedAccount.visibility && this.friendSync == connectedAccount.friendSync && this.showActivity == connectedAccount.showActivity && this.revoked == connectedAccount.revoked && this.verified == connectedAccount.verified && C12238m.areEqual(this.integrations, connectedAccount.integrations) && C12238m.areEqual(this.type, connectedAccount.type);
+        return m.areEqual(this.id, connectedAccount.id) && m.areEqual(this.name, connectedAccount.name) && this.visibility == connectedAccount.visibility && this.friendSync == connectedAccount.friendSync && this.showActivity == connectedAccount.showActivity && this.revoked == connectedAccount.revoked && this.verified == connectedAccount.verified && m.areEqual(this.integrations, connectedAccount.integrations) && m.areEqual(this.type, connectedAccount.type);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -129,29 +134,24 @@ public final /* data */ class ConnectedAccount {
         return iHashCode3 + (str3 != null ? str3.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: c */
-    public final List<ConnectedAccountIntegration> m7751c() {
-        return this.integrations;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ConnectedAccount(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", visibility=");
-        sbM833U.append(this.visibility);
-        sbM833U.append(", friendSync=");
-        sbM833U.append(this.friendSync);
-        sbM833U.append(", showActivity=");
-        sbM833U.append(this.showActivity);
-        sbM833U.append(", revoked=");
-        sbM833U.append(this.revoked);
-        sbM833U.append(", verified=");
-        sbM833U.append(this.verified);
-        sbM833U.append(", integrations=");
-        sbM833U.append(this.integrations);
-        sbM833U.append(", type=");
-        return C1643a.m822J(sbM833U, this.type, ")");
+        StringBuilder sbU = a.U("ConnectedAccount(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", visibility=");
+        sbU.append(this.visibility);
+        sbU.append(", friendSync=");
+        sbU.append(this.friendSync);
+        sbU.append(", showActivity=");
+        sbU.append(this.showActivity);
+        sbU.append(", revoked=");
+        sbU.append(this.revoked);
+        sbU.append(", verified=");
+        sbU.append(this.verified);
+        sbU.append(", integrations=");
+        sbU.append(this.integrations);
+        sbU.append(", type=");
+        return a.J(sbU, this.type, ")");
     }
 }

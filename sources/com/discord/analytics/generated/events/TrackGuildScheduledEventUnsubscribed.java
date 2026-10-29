@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildScheduledEventUnsubscribed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,6 +17,11 @@ public final /* data */ class TrackGuildScheduledEventUnsubscribed implements An
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_scheduled_event_unsubscribed";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -25,7 +30,7 @@ public final /* data */ class TrackGuildScheduledEventUnsubscribed implements An
             return false;
         }
         TrackGuildScheduledEventUnsubscribed trackGuildScheduledEventUnsubscribed = (TrackGuildScheduledEventUnsubscribed) other;
-        return C12238m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventUnsubscribed.guildScheduledEventId) && C12238m.areEqual(this.privacyLevel, trackGuildScheduledEventUnsubscribed.privacyLevel);
+        return m.areEqual(this.guildScheduledEventId, trackGuildScheduledEventUnsubscribed.guildScheduledEventId) && m.areEqual(this.privacyLevel, trackGuildScheduledEventUnsubscribed.privacyLevel);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,16 +52,10 @@ public final /* data */ class TrackGuildScheduledEventUnsubscribed implements An
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildScheduledEventUnsubscribed(guildScheduledEventId=");
-        sbM833U.append(this.guildScheduledEventId);
-        sbM833U.append(", privacyLevel=");
-        return C1643a.m819G(sbM833U, this.privacyLevel, ")");
+        StringBuilder sbU = a.U("TrackGuildScheduledEventUnsubscribed(guildScheduledEventId=");
+        sbU.append(this.guildScheduledEventId);
+        sbU.append(", privacyLevel=");
+        return a.G(sbU, this.privacyLevel, ")");
     }
 }

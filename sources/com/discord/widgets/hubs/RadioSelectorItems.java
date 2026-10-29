@@ -2,44 +2,22 @@ package com.discord.widgets.hubs;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.ArrayList;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetRadioSelectorBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class RadioSelectorItems implements Parcelable {
-    public static final Parcelable.Creator<RadioSelectorItems> CREATOR = new Creator();
+    public static final Parcelable$Creator<RadioSelectorItems> CREATOR = new RadioSelectorItems$Creator();
     private final List<RadioSelectorItem> items;
     private final String title;
 
-    public final class Creator implements Parcelable.Creator<RadioSelectorItems> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final RadioSelectorItems createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            String string = parcel.readString();
-            int i = parcel.readInt();
-            ArrayList arrayList = new ArrayList(i);
-            while (i != 0) {
-                arrayList.add(RadioSelectorItem.CREATOR.createFromParcel(parcel));
-                i--;
-            }
-            return new RadioSelectorItems(string, arrayList);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final RadioSelectorItems[] newArray(int i) {
-            return new RadioSelectorItems[i];
-        }
-    }
-
     public RadioSelectorItems(String str, List<RadioSelectorItem> list) {
-        C12238m.checkNotNullParameter(str, "title");
-        C12238m.checkNotNullParameter(list, "items");
+        m.checkNotNullParameter(str, "title");
+        m.checkNotNullParameter(list, "items");
         this.title = str;
         this.items = list;
     }
@@ -60,8 +38,8 @@ public final /* data */ class RadioSelectorItems implements Parcelable {
     }
 
     public final RadioSelectorItems copy(String title, List<RadioSelectorItem> items) {
-        C12238m.checkNotNullParameter(title, "title");
-        C12238m.checkNotNullParameter(items, "items");
+        m.checkNotNullParameter(title, "title");
+        m.checkNotNullParameter(items, "items");
         return new RadioSelectorItems(title, items);
     }
 
@@ -78,7 +56,7 @@ public final /* data */ class RadioSelectorItems implements Parcelable {
             return false;
         }
         RadioSelectorItems radioSelectorItems = (RadioSelectorItems) other;
-        return C12238m.areEqual(this.title, radioSelectorItems.title) && C12238m.areEqual(this.items, radioSelectorItems.items);
+        return m.areEqual(this.title, radioSelectorItems.title) && m.areEqual(this.items, radioSelectorItems.items);
     }
 
     public final List<RadioSelectorItem> getItems() {
@@ -102,15 +80,15 @@ public final /* data */ class RadioSelectorItems implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("RadioSelectorItems(title=");
-        sbM833U.append(this.title);
-        sbM833U.append(", items=");
-        return C1643a.m824L(sbM833U, this.items, ")");
+        StringBuilder sbU = a.U("RadioSelectorItems(title=");
+        sbU.append(this.title);
+        sbU.append(", items=");
+        return a.L(sbU, this.items, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeString(this.title);
         List<RadioSelectorItem> list = this.items;
         parcel.writeInt(list.size());

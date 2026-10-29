@@ -9,12 +9,12 @@ import com.discord.stores.StoreGuilds;
 import com.discord.stores.StorePermissions;
 import com.discord.stores.StoreUser;
 import com.discord.widgets.chat.list.NewThreadsPermissionsFeatureFlag;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetChannelSettingsEditPermissionsModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForUser$1 extends AbstractC12240o implements Function0<WidgetChannelSettingsEditPermissionsModel> {
+public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForUser$1 extends o implements Function0<WidgetChannelSettingsEditPermissionsModel> {
     public final /* synthetic */ long $channelId;
     public final /* synthetic */ long $guildId;
     public final /* synthetic */ StoreChannels $storeChannels;
@@ -35,6 +35,11 @@ public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForUse
         this.$storePermissions = storePermissions;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ WidgetChannelSettingsEditPermissionsModel invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final WidgetChannelSettingsEditPermissionsModel invoke() {
@@ -43,10 +48,10 @@ public final class WidgetChannelSettingsEditPermissionsModel$Companion$getForUse
         User user = this.$storeUser.getUsers().get(Long.valueOf(this.$targetUserId));
         Guild guild = this.$storeGuilds.getGuild(this.$guildId);
         Long l = this.$storePermissions.getPermissionsByChannel().get(Long.valueOf(this.$channelId));
-        boolean zIsEnabled = NewThreadsPermissionsFeatureFlag.INSTANCE.getINSTANCE().isEnabled(this.$guildId);
-        if (channel == null || guild == null || user == null || l == null || !WidgetChannelSettingsEditPermissionsModel.INSTANCE.isAbleToManagePerms(guild, meSnapshot, l.longValue())) {
+        boolean zIsEnabled = NewThreadsPermissionsFeatureFlag.Companion.getINSTANCE().isEnabled(this.$guildId);
+        if (channel == null || guild == null || user == null || l == null || !WidgetChannelSettingsEditPermissionsModel$Companion.access$isAbleToManagePerms(WidgetChannelSettingsEditPermissionsModel.Companion, guild, meSnapshot, l.longValue())) {
             return null;
         }
-        return new WidgetChannelSettingsEditPermissionsModel.ModelForUser(channel, l.longValue(), user.getId() == meSnapshot.getId(), user, this.$storeGuilds.getMember(this.$guildId, user.getId()), zIsEnabled);
+        return new WidgetChannelSettingsEditPermissionsModel$ModelForUser(channel, l.longValue(), user.getId() == meSnapshot.getId(), user, this.$storeGuilds.getMember(this.$guildId, user.getId()), zIsEnabled);
     }
 }

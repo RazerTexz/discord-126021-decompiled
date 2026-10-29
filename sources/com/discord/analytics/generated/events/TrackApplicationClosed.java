@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackApplicationClosed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackApplicationClosed implements AnalyticsSchema,
             return false;
         }
         TrackApplicationClosed trackApplicationClosed = (TrackApplicationClosed) other;
-        return C12238m.areEqual(this.applicationId, trackApplicationClosed.applicationId) && C12238m.areEqual(this.activityDurationS, trackApplicationClosed.activityDurationS) && C12238m.areEqual(this.totalDurationS, trackApplicationClosed.totalDurationS) && C12238m.areEqual(this.totalDiscordSkuDurationS, trackApplicationClosed.totalDiscordSkuDurationS) && C12238m.areEqual(this.distributor, trackApplicationClosed.distributor);
+        return m.areEqual(this.applicationId, trackApplicationClosed.applicationId) && m.areEqual(this.activityDurationS, trackApplicationClosed.activityDurationS) && m.areEqual(this.totalDurationS, trackApplicationClosed.totalDurationS) && m.areEqual(this.totalDiscordSkuDurationS, trackApplicationClosed.totalDiscordSkuDurationS) && m.areEqual(this.distributor, trackApplicationClosed.distributor);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackApplicationClosed implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackApplicationClosed(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", activityDurationS=");
-        sbM833U.append(this.activityDurationS);
-        sbM833U.append(", totalDurationS=");
-        sbM833U.append(this.totalDurationS);
-        sbM833U.append(", totalDiscordSkuDurationS=");
-        sbM833U.append(this.totalDiscordSkuDurationS);
-        sbM833U.append(", distributor=");
-        return C1643a.m817E(sbM833U, this.distributor, ")");
+        StringBuilder sbU = a.U("TrackApplicationClosed(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", activityDurationS=");
+        sbU.append(this.activityDurationS);
+        sbU.append(", totalDurationS=");
+        sbU.append(this.totalDurationS);
+        sbU.append(", totalDiscordSkuDurationS=");
+        sbU.append(this.totalDiscordSkuDurationS);
+        sbU.append(", distributor=");
+        return a.E(sbU, this.distributor, ")");
     }
 }

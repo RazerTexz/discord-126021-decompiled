@@ -1,14 +1,14 @@
 package com.discord.gateway;
 
+import d0.z.d.m;
+import d0.z.d.o;
 import java.io.InputStreamReader;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GatewaySocket.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class GatewaySocket$connect$$inlined$apply$lambda$3 extends AbstractC12240o implements Function2<InputStreamReader, Integer, Unit> {
+public final class GatewaySocket$connect$$inlined$apply$lambda$3 extends o implements Function2<InputStreamReader, Integer, Unit> {
     public final /* synthetic */ String $gatewayUrl$inlined;
     public final /* synthetic */ GatewaySocket this$0;
 
@@ -22,11 +22,11 @@ public final class GatewaySocket$connect$$inlined$apply$lambda$3 extends Abstrac
     @Override // kotlin.jvm.functions.Function2
     public /* bridge */ /* synthetic */ Unit invoke(InputStreamReader inputStreamReader, Integer num) {
         invoke(inputStreamReader, num.intValue());
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     public final void invoke(InputStreamReader inputStreamReader, int i) {
-        C12238m.checkNotNullParameter(inputStreamReader, "reader");
-        this.this$0.handleWebSocketMessage(inputStreamReader, i);
+        m.checkNotNullParameter(inputStreamReader, "reader");
+        GatewaySocket.access$handleWebSocketMessage(this.this$0, inputStreamReader, i);
     }
 }

@@ -25,9 +25,9 @@ public class Optimizer {
     public static void checkMatchParent(ConstraintWidgetContainer constraintWidgetContainer, LinearSystem linearSystem, ConstraintWidget constraintWidget) {
         constraintWidget.mHorizontalResolution = -1;
         constraintWidget.mVerticalResolution = -1;
-        ConstraintWidget.DimensionBehaviour dimensionBehaviour = constraintWidgetContainer.mListDimensionBehaviors[0];
-        ConstraintWidget.DimensionBehaviour dimensionBehaviour2 = ConstraintWidget.DimensionBehaviour.WRAP_CONTENT;
-        if (dimensionBehaviour != dimensionBehaviour2 && constraintWidget.mListDimensionBehaviors[0] == ConstraintWidget.DimensionBehaviour.MATCH_PARENT) {
+        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour = constraintWidgetContainer.mListDimensionBehaviors[0];
+        ConstraintWidget$DimensionBehaviour constraintWidget$DimensionBehaviour2 = ConstraintWidget$DimensionBehaviour.WRAP_CONTENT;
+        if (constraintWidget$DimensionBehaviour != constraintWidget$DimensionBehaviour2 && constraintWidget.mListDimensionBehaviors[0] == ConstraintWidget$DimensionBehaviour.MATCH_PARENT) {
             int i = constraintWidget.mLeft.mMargin;
             int width = constraintWidgetContainer.getWidth() - constraintWidget.mRight.mMargin;
             ConstraintAnchor constraintAnchor = constraintWidget.mLeft;
@@ -39,7 +39,7 @@ public class Optimizer {
             constraintWidget.mHorizontalResolution = 2;
             constraintWidget.setHorizontalDimension(i, width);
         }
-        if (constraintWidgetContainer.mListDimensionBehaviors[1] == dimensionBehaviour2 || constraintWidget.mListDimensionBehaviors[1] != ConstraintWidget.DimensionBehaviour.MATCH_PARENT) {
+        if (constraintWidgetContainer.mListDimensionBehaviors[1] == constraintWidget$DimensionBehaviour2 || constraintWidget.mListDimensionBehaviors[1] != ConstraintWidget$DimensionBehaviour.MATCH_PARENT) {
             return;
         }
         int i2 = constraintWidget.mTop.mMargin;

@@ -2,14 +2,15 @@ package androidx.room.util;
 
 import android.database.AbstractWindowedCursor;
 import android.database.Cursor;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.CancellationSignal;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.p006db.SupportSQLiteDatabase;
-import androidx.sqlite.p006db.SupportSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteQuery;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class DBUtil {
     private DBUtil() {
     }
@@ -83,6 +84,6 @@ public class DBUtil {
         }
         AbstractWindowedCursor abstractWindowedCursor = (AbstractWindowedCursor) cursorQuery;
         int count = abstractWindowedCursor.getCount();
-        return (Build.VERSION.SDK_INT < 23 || (abstractWindowedCursor.hasWindow() ? abstractWindowedCursor.getWindow().getNumRows() : count) < count) ? CursorUtil.copyAndClose(abstractWindowedCursor) : cursorQuery;
+        return (Build$VERSION.SDK_INT < 23 || (abstractWindowedCursor.hasWindow() ? abstractWindowedCursor.getWindow().getNumRows() : count) < count) ? CursorUtil.copyAndClose(abstractWindowedCursor) : cursorQuery;
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.api.user.User;
 import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
 import java.io.IOException;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelUserRelationship implements Model {
@@ -14,8 +14,8 @@ public class ModelUserRelationship implements Model {
     public static final int TYPE_INVITE_OUTGOING = 4;
     public static final int TYPE_NONE = 0;
 
-    /* JADX INFO: renamed from: id */
-    private long f18584id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private long f2735id;
     private int type;
     private User user;
     private Long userId;
@@ -24,24 +24,24 @@ public class ModelUserRelationship implements Model {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "user_id":
-                this.userId = jsonReader.nextLongOrNull();
+                this.userId = model$JsonReader.nextLongOrNull();
                 break;
             case "id":
-                this.f18584id = jsonReader.nextLong(this.f18584id);
+                this.f2735id = model$JsonReader.nextLong(this.f2735id);
                 break;
             case "type":
-                this.type = jsonReader.nextInt(this.type);
+                this.type = model$JsonReader.nextInt(this.type);
                 break;
             case "user":
-                this.user = (User) InboundGatewayGsonParser.fromJson(jsonReader, User.class);
+                this.user = (User) InboundGatewayGsonParser.fromJson(model$JsonReader, User.class);
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -72,7 +72,7 @@ public class ModelUserRelationship implements Model {
     }
 
     public long getId() {
-        return this.f18584id;
+        return this.f2735id;
     }
 
     public int getType() {
@@ -111,20 +111,20 @@ public class ModelUserRelationship implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelUserRelationship(id=");
-        sbM833U.append(getId());
-        sbM833U.append(", type=");
-        sbM833U.append(getType());
-        sbM833U.append(", user=");
-        sbM833U.append(getUser());
-        sbM833U.append(", userId=");
-        sbM833U.append(getUserId());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelUserRelationship(id=");
+        sbU.append(getId());
+        sbU.append(", type=");
+        sbU.append(getType());
+        sbU.append(", user=");
+        sbU.append(getUser());
+        sbU.append(", userId=");
+        sbU.append(getUserId());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public ModelUserRelationship(long j, int i, User user, Long l) {
-        this.f18584id = j;
+        this.f2735id = j;
         this.type = i;
         this.user = user;
         this.userId = l;
@@ -138,6 +138,6 @@ public class ModelUserRelationship implements Model {
     }
 
     public ModelUserRelationship(ModelUserRelationship modelUserRelationship) {
-        this(modelUserRelationship.f18584id, modelUserRelationship.type, modelUserRelationship.user, modelUserRelationship.userId);
+        this(modelUserRelationship.f2735id, modelUserRelationship.type, modelUserRelationship.user, modelUserRelationship.userId);
     }
 }

@@ -1,6 +1,6 @@
 package com.discord.api.guildjoinrequest;
 
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: GuildJoinRequest.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -37,9 +37,9 @@ public final /* data */ class GuildJoinRequestDelete {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildJoinRequestDelete(userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", guildId=");
-        return C1643a.m815C(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("GuildJoinRequestDelete(userId=");
+        sbU.append(this.userId);
+        sbU.append(", guildId=");
+        return a.C(sbU, this.guildId, ")");
     }
 }

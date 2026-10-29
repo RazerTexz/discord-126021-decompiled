@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSubscriptionPaymentSourceAdded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackSubscriptionPaymentSourceAdded implements Ana
             return false;
         }
         TrackSubscriptionPaymentSourceAdded trackSubscriptionPaymentSourceAdded = (TrackSubscriptionPaymentSourceAdded) other;
-        return C12238m.areEqual(this.subscriptionId, trackSubscriptionPaymentSourceAdded.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionPaymentSourceAdded.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionPaymentSourceAdded.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionPaymentSourceAdded.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionPaymentSourceAdded.paymentGateway) && C12238m.areEqual(this.paymentSourceGateway, trackSubscriptionPaymentSourceAdded.paymentSourceGateway) && C12238m.areEqual(this.paymentSourceId, trackSubscriptionPaymentSourceAdded.paymentSourceId) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionPaymentSourceAdded.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionPaymentSourceAdded.currentPeriodEnd);
+        return m.areEqual(this.subscriptionId, trackSubscriptionPaymentSourceAdded.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionPaymentSourceAdded.subscriptionType) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionPaymentSourceAdded.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionPaymentSourceAdded.planId) && m.areEqual(this.paymentGateway, trackSubscriptionPaymentSourceAdded.paymentGateway) && m.areEqual(this.paymentSourceGateway, trackSubscriptionPaymentSourceAdded.paymentSourceGateway) && m.areEqual(this.paymentSourceId, trackSubscriptionPaymentSourceAdded.paymentSourceId) && m.areEqual(this.currentPeriodStart, trackSubscriptionPaymentSourceAdded.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionPaymentSourceAdded.currentPeriodEnd);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -60,23 +60,23 @@ public final /* data */ class TrackSubscriptionPaymentSourceAdded implements Ana
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSubscriptionPaymentSourceAdded(subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", subscriptionType=");
-        sbM833U.append(this.subscriptionType);
-        sbM833U.append(", paymentGatewayPlanId=");
-        sbM833U.append(this.paymentGatewayPlanId);
-        sbM833U.append(", planId=");
-        sbM833U.append(this.planId);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", paymentSourceGateway=");
-        sbM833U.append(this.paymentSourceGateway);
-        sbM833U.append(", paymentSourceId=");
-        sbM833U.append(this.paymentSourceId);
-        sbM833U.append(", currentPeriodStart=");
-        sbM833U.append(this.currentPeriodStart);
-        sbM833U.append(", currentPeriodEnd=");
-        return C1643a.m819G(sbM833U, this.currentPeriodEnd, ")");
+        StringBuilder sbU = a.U("TrackSubscriptionPaymentSourceAdded(subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", subscriptionType=");
+        sbU.append(this.subscriptionType);
+        sbU.append(", paymentGatewayPlanId=");
+        sbU.append(this.paymentGatewayPlanId);
+        sbU.append(", planId=");
+        sbU.append(this.planId);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", paymentSourceGateway=");
+        sbU.append(this.paymentSourceGateway);
+        sbU.append(", paymentSourceId=");
+        sbU.append(this.paymentSourceId);
+        sbU.append(", currentPeriodStart=");
+        sbU.append(this.currentPeriodStart);
+        sbU.append(", currentPeriodEnd=");
+        return a.G(sbU, this.currentPeriodEnd, ")");
     }
 }

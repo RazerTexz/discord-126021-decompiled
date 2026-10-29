@@ -1,13 +1,13 @@
 package com.discord.analytics.generated.events;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackEmail;
 import com.discord.analytics.generated.traits.TrackEmailReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackEmailSent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -32,7 +32,7 @@ public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBa
             return false;
         }
         TrackEmailSent trackEmailSent = (TrackEmailSent) other;
-        return C12238m.areEqual(this.email, trackEmailSent.email) && C12238m.areEqual(this.emailDomain, trackEmailSent.emailDomain) && C12238m.areEqual(this.mmNumGuildsMissed, trackEmailSent.mmNumGuildsMissed) && C12238m.areEqual(this.mmNumChannelsMissed, trackEmailSent.mmNumChannelsMissed) && C12238m.areEqual(this.mmNumDmsMissed, trackEmailSent.mmNumDmsMissed) && C12238m.areEqual(this.mmNumMessagesMissed, trackEmailSent.mmNumMessagesMissed) && C12238m.areEqual(this.userLastActive, trackEmailSent.userLastActive) && C12238m.areEqual(this.clickProbability, trackEmailSent.clickProbability);
+        return m.areEqual(this.email, trackEmailSent.email) && m.areEqual(this.emailDomain, trackEmailSent.emailDomain) && m.areEqual(this.mmNumGuildsMissed, trackEmailSent.mmNumGuildsMissed) && m.areEqual(this.mmNumChannelsMissed, trackEmailSent.mmNumChannelsMissed) && m.areEqual(this.mmNumDmsMissed, trackEmailSent.mmNumDmsMissed) && m.areEqual(this.mmNumMessagesMissed, trackEmailSent.mmNumMessagesMissed) && m.areEqual(this.userLastActive, trackEmailSent.userLastActive) && m.areEqual(this.clickProbability, trackEmailSent.clickProbability);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -61,23 +61,23 @@ public final /* data */ class TrackEmailSent implements AnalyticsSchema, TrackBa
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackEmailSent(email=");
-        sbM833U.append(this.email);
-        sbM833U.append(", emailDomain=");
-        sbM833U.append(this.emailDomain);
-        sbM833U.append(", mmNumGuildsMissed=");
-        sbM833U.append(this.mmNumGuildsMissed);
-        sbM833U.append(", mmNumChannelsMissed=");
-        sbM833U.append(this.mmNumChannelsMissed);
-        sbM833U.append(", mmNumDmsMissed=");
-        sbM833U.append(this.mmNumDmsMissed);
-        sbM833U.append(", mmNumMessagesMissed=");
-        sbM833U.append(this.mmNumMessagesMissed);
-        sbM833U.append(", userLastActive=");
-        sbM833U.append(this.userLastActive);
-        sbM833U.append(", clickProbability=");
-        sbM833U.append(this.clickProbability);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TrackEmailSent(email=");
+        sbU.append(this.email);
+        sbU.append(", emailDomain=");
+        sbU.append(this.emailDomain);
+        sbU.append(", mmNumGuildsMissed=");
+        sbU.append(this.mmNumGuildsMissed);
+        sbU.append(", mmNumChannelsMissed=");
+        sbU.append(this.mmNumChannelsMissed);
+        sbU.append(", mmNumDmsMissed=");
+        sbU.append(this.mmNumDmsMissed);
+        sbU.append(", mmNumMessagesMissed=");
+        sbU.append(this.mmNumMessagesMissed);
+        sbU.append(", userLastActive=");
+        sbU.append(this.userLastActive);
+        sbU.append(", clickProbability=");
+        sbU.append(this.clickProbability);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

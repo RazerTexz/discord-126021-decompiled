@@ -1,10 +1,10 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.api.premium.SubscriptionPlan;
 import com.discord.api.user.User;
 import com.discord.utilities.time.TimeUtils;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelGift.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class ModelGift {
     private final int uses;
 
     public ModelGift(long j, boolean z2, String str, String str2, int i, ModelStoreListing modelStoreListing, int i2, User user, Long l, SubscriptionPlan subscriptionPlan, Integer num) {
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_CODE);
         this.skuId = j;
         this.redeemed = z2;
         this.expiresAt = str;
@@ -36,8 +36,12 @@ public final /* data */ class ModelGift {
         this.giftStyle = num;
     }
 
+    public static /* synthetic */ ModelGift copy$default(ModelGift modelGift, long j, boolean z2, String str, String str2, int i, ModelStoreListing modelStoreListing, int i2, User user, Long l, SubscriptionPlan subscriptionPlan, Integer num, int i3, Object obj) {
+        return modelGift.copy((i3 & 1) != 0 ? modelGift.skuId : j, (i3 & 2) != 0 ? modelGift.redeemed : z2, (i3 & 4) != 0 ? modelGift.expiresAt : str, (i3 & 8) != 0 ? modelGift.code : str2, (i3 & 16) != 0 ? modelGift.uses : i, (i3 & 32) != 0 ? modelGift.storeListing : modelStoreListing, (i3 & 64) != 0 ? modelGift.maxUses : i2, (i3 & 128) != 0 ? modelGift.user : user, (i3 & 256) != 0 ? modelGift.subscriptionPlanId : l, (i3 & 512) != 0 ? modelGift.subscriptionPlan : subscriptionPlan, (i3 & 1024) != 0 ? modelGift.giftStyle : num);
+    }
+
     public final ModelGift copy(long skuId, boolean redeemed, String expiresAt, String code, int uses, ModelStoreListing storeListing, int maxUses, User user, Long subscriptionPlanId, SubscriptionPlan subscriptionPlan, Integer giftStyle) {
-        C12238m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
         return new ModelGift(skuId, redeemed, expiresAt, code, uses, storeListing, maxUses, user, subscriptionPlanId, subscriptionPlan, giftStyle);
     }
 
@@ -49,7 +53,7 @@ public final /* data */ class ModelGift {
             return false;
         }
         ModelGift modelGift = (ModelGift) other;
-        return this.skuId == modelGift.skuId && this.redeemed == modelGift.redeemed && C12238m.areEqual(this.expiresAt, modelGift.expiresAt) && C12238m.areEqual(this.code, modelGift.code) && this.uses == modelGift.uses && C12238m.areEqual(this.storeListing, modelGift.storeListing) && this.maxUses == modelGift.maxUses && C12238m.areEqual(this.user, modelGift.user) && C12238m.areEqual(this.subscriptionPlanId, modelGift.subscriptionPlanId) && C12238m.areEqual(this.subscriptionPlan, modelGift.subscriptionPlan) && C12238m.areEqual(this.giftStyle, modelGift.giftStyle);
+        return this.skuId == modelGift.skuId && this.redeemed == modelGift.redeemed && m.areEqual(this.expiresAt, modelGift.expiresAt) && m.areEqual(this.code, modelGift.code) && this.uses == modelGift.uses && m.areEqual(this.storeListing, modelGift.storeListing) && this.maxUses == modelGift.maxUses && m.areEqual(this.user, modelGift.user) && m.areEqual(this.subscriptionPlanId, modelGift.subscriptionPlanId) && m.areEqual(this.subscriptionPlan, modelGift.subscriptionPlan) && m.areEqual(this.giftStyle, modelGift.giftStyle);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -209,37 +213,37 @@ public final /* data */ class ModelGift {
     public final boolean isNitroClassicGift() {
         ModelSku sku;
         ModelStoreListing modelStoreListing = this.storeListing;
-        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku.SkuCategory.NITRO_CLASSIC;
+        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku$SkuCategory.NITRO_CLASSIC;
     }
 
     public final boolean isNitroGift() {
         ModelSku sku;
         ModelStoreListing modelStoreListing = this.storeListing;
-        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku.SkuCategory.NITRO;
+        return ((modelStoreListing == null || (sku = modelStoreListing.getSku()) == null) ? null : sku.getSkuCategory()) == ModelSku$SkuCategory.NITRO;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelGift(skuId=");
-        sbM833U.append(this.skuId);
-        sbM833U.append(", redeemed=");
-        sbM833U.append(this.redeemed);
-        sbM833U.append(", expiresAt=");
-        sbM833U.append(this.expiresAt);
-        sbM833U.append(", code=");
-        sbM833U.append(this.code);
-        sbM833U.append(", uses=");
-        sbM833U.append(this.uses);
-        sbM833U.append(", storeListing=");
-        sbM833U.append(this.storeListing);
-        sbM833U.append(", maxUses=");
-        sbM833U.append(this.maxUses);
-        sbM833U.append(", user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", subscriptionPlanId=");
-        sbM833U.append(this.subscriptionPlanId);
-        sbM833U.append(", subscriptionPlan=");
-        sbM833U.append(this.subscriptionPlan);
-        sbM833U.append(", giftStyle=");
-        return C1643a.m818F(sbM833U, this.giftStyle, ")");
+        StringBuilder sbU = a.U("ModelGift(skuId=");
+        sbU.append(this.skuId);
+        sbU.append(", redeemed=");
+        sbU.append(this.redeemed);
+        sbU.append(", expiresAt=");
+        sbU.append(this.expiresAt);
+        sbU.append(", code=");
+        sbU.append(this.code);
+        sbU.append(", uses=");
+        sbU.append(this.uses);
+        sbU.append(", storeListing=");
+        sbU.append(this.storeListing);
+        sbU.append(", maxUses=");
+        sbU.append(this.maxUses);
+        sbU.append(", user=");
+        sbU.append(this.user);
+        sbU.append(", subscriptionPlanId=");
+        sbU.append(this.subscriptionPlanId);
+        sbU.append(", subscriptionPlan=");
+        sbU.append(this.subscriptionPlan);
+        sbU.append(", giftStyle=");
+        return a.F(sbU, this.giftStyle, ")");
     }
 }

@@ -1,12 +1,10 @@
 package androidx.recyclerview.widget;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import b.d.b.a.a;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SortedList<T> {
@@ -16,8 +14,8 @@ public class SortedList<T> {
     public static final int INVALID_POSITION = -1;
     private static final int LOOKUP = 4;
     private static final int MIN_CAPACITY = 10;
-    private BatchedCallback mBatchedCallback;
-    private Callback mCallback;
+    private SortedList$BatchedCallback mBatchedCallback;
+    private SortedList$Callback mCallback;
     public T[] mData;
     private int mNewDataStart;
     private T[] mOldData;
@@ -26,88 +24,8 @@ public class SortedList<T> {
     private int mSize;
     private final Class<T> mTClass;
 
-    public class BatchedCallback<T2> extends Callback<T2> {
-        private final BatchingListUpdateCallback mBatchingListUpdateCallback;
-        public final Callback<T2> mWrappedCallback;
-
-        public BatchedCallback(Callback<T2> callback) {
-            this.mWrappedCallback = callback;
-            this.mBatchingListUpdateCallback = new BatchingListUpdateCallback(callback);
-        }
-
-        @Override // androidx.recyclerview.widget.SortedList.Callback
-        public boolean areContentsTheSame(T2 t2, T2 t3) {
-            return this.mWrappedCallback.areContentsTheSame(t2, t3);
-        }
-
-        @Override // androidx.recyclerview.widget.SortedList.Callback
-        public boolean areItemsTheSame(T2 t2, T2 t3) {
-            return this.mWrappedCallback.areItemsTheSame(t2, t3);
-        }
-
-        @Override // androidx.recyclerview.widget.SortedList.Callback, java.util.Comparator
-        public int compare(T2 t2, T2 t3) {
-            return this.mWrappedCallback.compare(t2, t3);
-        }
-
-        public void dispatchLastEvent() {
-            this.mBatchingListUpdateCallback.dispatchLastEvent();
-        }
-
-        @Override // androidx.recyclerview.widget.SortedList.Callback
-        @Nullable
-        public Object getChangePayload(T2 t2, T2 t3) {
-            return this.mWrappedCallback.getChangePayload(t2, t3);
-        }
-
-        @Override // androidx.recyclerview.widget.SortedList.Callback
-        public void onChanged(int i, int i2) {
-            this.mBatchingListUpdateCallback.onChanged(i, i2, null);
-        }
-
-        @Override // androidx.recyclerview.widget.ListUpdateCallback
-        public void onInserted(int i, int i2) {
-            this.mBatchingListUpdateCallback.onInserted(i, i2);
-        }
-
-        @Override // androidx.recyclerview.widget.ListUpdateCallback
-        public void onMoved(int i, int i2) {
-            this.mBatchingListUpdateCallback.onMoved(i, i2);
-        }
-
-        @Override // androidx.recyclerview.widget.ListUpdateCallback
-        public void onRemoved(int i, int i2) {
-            this.mBatchingListUpdateCallback.onRemoved(i, i2);
-        }
-
-        @Override // androidx.recyclerview.widget.SortedList.Callback, androidx.recyclerview.widget.ListUpdateCallback
-        public void onChanged(int i, int i2, Object obj) {
-            this.mBatchingListUpdateCallback.onChanged(i, i2, obj);
-        }
-    }
-
-    public abstract class Callback<T2> implements Comparator<T2>, ListUpdateCallback {
-        public abstract boolean areContentsTheSame(T2 t2, T2 t3);
-
-        public abstract boolean areItemsTheSame(T2 t2, T2 t3);
-
-        @Override // java.util.Comparator
-        public abstract int compare(T2 t2, T2 t3);
-
-        @Nullable
-        public Object getChangePayload(T2 t2, T2 t3) {
-            return null;
-        }
-
-        public abstract void onChanged(int i, int i2);
-
-        public void onChanged(int i, int i2, Object obj) {
-            onChanged(i, i2);
-        }
-    }
-
-    public SortedList(@NonNull Class<T> cls, @NonNull Callback<T> callback) {
-        this(cls, callback, 10);
+    public SortedList(@NonNull Class<T> cls, @NonNull SortedList$Callback<T> sortedList$Callback) {
+        this(cls, sortedList$Callback, 10);
     }
 
     public int add(T t) {
@@ -144,9 +62,9 @@ public class SortedList<T> {
     private void addToData(int i, T t) {
         int i2 = this.mSize;
         if (i > i2) {
-            StringBuilder sbM834V = C1643a.m834V("cannot add item to ", i, " because size is ");
-            sbM834V.append(this.mSize);
-            throw new IndexOutOfBoundsException(sbM834V.toString());
+            StringBuilder sbV = a.V("cannot add item to ", i, " because size is ");
+            sbV.append(this.mSize);
+            throw new IndexOutOfBoundsException(sbV.toString());
         }
         T[] tArr = this.mData;
         if (i2 == tArr.length) {
@@ -164,12 +82,12 @@ public class SortedList<T> {
 
     public void beginBatchedUpdates() {
         throwIfInMutationOperation();
-        Callback callback = this.mCallback;
-        if (callback instanceof BatchedCallback) {
+        SortedList$Callback sortedList$Callback = this.mCallback;
+        if (sortedList$Callback instanceof SortedList$BatchedCallback) {
             return;
         }
         if (this.mBatchedCallback == null) {
-            this.mBatchedCallback = new BatchedCallback(callback);
+            this.mBatchedCallback = new SortedList$BatchedCallback(sortedList$Callback);
         }
         this.mCallback = this.mBatchedCallback;
     }
@@ -193,14 +111,14 @@ public class SortedList<T> {
 
     public void endBatchedUpdates() {
         throwIfInMutationOperation();
-        Callback callback = this.mCallback;
-        if (callback instanceof BatchedCallback) {
-            ((BatchedCallback) callback).dispatchLastEvent();
+        SortedList$Callback sortedList$Callback = this.mCallback;
+        if (sortedList$Callback instanceof SortedList$BatchedCallback) {
+            ((SortedList$BatchedCallback) sortedList$Callback).dispatchLastEvent();
         }
-        Callback callback2 = this.mCallback;
-        BatchedCallback batchedCallback = this.mBatchedCallback;
-        if (callback2 == batchedCallback) {
-            this.mCallback = batchedCallback.mWrappedCallback;
+        SortedList$Callback sortedList$Callback2 = this.mCallback;
+        SortedList$BatchedCallback sortedList$BatchedCallback = this.mBatchedCallback;
+        if (sortedList$Callback2 == sortedList$BatchedCallback) {
+            this.mCallback = sortedList$BatchedCallback.mWrappedCallback;
         }
     }
 
@@ -244,9 +162,9 @@ public class SortedList<T> {
             T[] tArr = this.mOldData;
             return (tArr == null || i < (i2 = this.mNewDataStart)) ? this.mData[i] : tArr[(i - i2) + this.mOldDataStart];
         }
-        StringBuilder sbM834V = C1643a.m834V("Asked to get item at ", i, " but size is ");
-        sbM834V.append(this.mSize);
-        throw new IndexOutOfBoundsException(sbM834V.toString());
+        StringBuilder sbV = a.V("Asked to get item at ", i, " but size is ");
+        sbV.append(this.mSize);
+        throw new IndexOutOfBoundsException(sbV.toString());
     }
 
     public int indexOf(T t) {
@@ -289,7 +207,7 @@ public class SortedList<T> {
     }
 
     private void merge(T[] tArr, int i) {
-        boolean z2 = !(this.mCallback instanceof BatchedCallback);
+        boolean z2 = !(this.mCallback instanceof SortedList$BatchedCallback);
         if (z2) {
             beginBatchedUpdates();
         }
@@ -341,8 +259,8 @@ public class SortedList<T> {
                 i2++;
                 this.mOldDataStart++;
                 if (!this.mCallback.areContentsTheSame(t, t2)) {
-                    Callback callback = this.mCallback;
-                    callback.onChanged(this.mNewDataStart - 1, 1, callback.getChangePayload(t, t2));
+                    SortedList$Callback sortedList$Callback = this.mCallback;
+                    sortedList$Callback.onChanged(this.mNewDataStart - 1, 1, sortedList$Callback.getChangePayload(t, t2));
                 }
             } else {
                 T[] tArr4 = this.mData;
@@ -411,7 +329,7 @@ public class SortedList<T> {
     }
 
     private void replaceAllInternal(@NonNull T[] tArr) {
-        boolean z2 = !(this.mCallback instanceof BatchedCallback);
+        boolean z2 = !(this.mCallback instanceof SortedList$BatchedCallback);
         if (z2) {
             beginBatchedUpdates();
         }
@@ -456,8 +374,8 @@ public class SortedList<T> {
                 this.mOldDataStart++;
                 this.mNewDataStart = i6 + 1;
                 if (!this.mCallback.areContentsTheSame(t, t2)) {
-                    Callback callback = this.mCallback;
-                    callback.onChanged(this.mNewDataStart - 1, 1, callback.getChangePayload(t, t2));
+                    SortedList$Callback sortedList$Callback = this.mCallback;
+                    sortedList$Callback.onChanged(this.mNewDataStart - 1, 1, sortedList$Callback.getChangePayload(t, t2));
                 }
             } else {
                 replaceAllRemove();
@@ -523,15 +441,15 @@ public class SortedList<T> {
         if (t2 != t && this.mCallback.compare(t2, t) == 0) {
             this.mData[i] = t;
             if (z2) {
-                Callback callback = this.mCallback;
-                callback.onChanged(i, 1, callback.getChangePayload(t2, t));
+                SortedList$Callback sortedList$Callback = this.mCallback;
+                sortedList$Callback.onChanged(i, 1, sortedList$Callback.getChangePayload(t2, t));
                 return;
             }
             return;
         }
         if (z2) {
-            Callback callback2 = this.mCallback;
-            callback2.onChanged(i, 1, callback2.getChangePayload(t2, t));
+            SortedList$Callback sortedList$Callback2 = this.mCallback;
+            sortedList$Callback2.onChanged(i, 1, sortedList$Callback2.getChangePayload(t2, t));
         }
         removeItemAtIndex(i, false);
         int iAdd = add(t, false);
@@ -540,10 +458,10 @@ public class SortedList<T> {
         }
     }
 
-    public SortedList(@NonNull Class<T> cls, @NonNull Callback<T> callback, int i) {
+    public SortedList(@NonNull Class<T> cls, @NonNull SortedList$Callback<T> sortedList$Callback, int i) {
         this.mTClass = cls;
         this.mData = (T[]) ((Object[]) Array.newInstance((Class<?>) cls, i));
-        this.mCallback = callback;
+        this.mCallback = sortedList$Callback;
         this.mSize = 0;
     }
 
@@ -559,8 +477,8 @@ public class SortedList<T> {
                     return iFindIndexOf;
                 }
                 this.mData[iFindIndexOf] = t;
-                Callback callback = this.mCallback;
-                callback.onChanged(iFindIndexOf, 1, callback.getChangePayload(t2, t));
+                SortedList$Callback sortedList$Callback = this.mCallback;
+                sortedList$Callback.onChanged(iFindIndexOf, 1, sortedList$Callback.getChangePayload(t2, t));
                 return iFindIndexOf;
             }
         }

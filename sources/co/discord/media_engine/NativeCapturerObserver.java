@@ -6,6 +6,7 @@ import org.webrtc.CapturerObserver;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoCapturer;
 import org.webrtc.VideoFrame;
+import org.webrtc.VideoFrame$Buffer;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class NativeCapturerObserver implements CapturerObserver {
@@ -40,7 +41,7 @@ public final class NativeCapturerObserver implements CapturerObserver {
         }
     }
 
-    private native void nativeOnFrame(long j, @NonNull VideoFrame.Buffer buffer, int i, int i2, int i3, long j2);
+    private native void nativeOnFrame(long j, @NonNull VideoFrame$Buffer videoFrame$Buffer, int i, int i2, int i3, long j2);
 
     @Override // org.webrtc.CapturerObserver
     public void onCapturerStarted(boolean z2) {

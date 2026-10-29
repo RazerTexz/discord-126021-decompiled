@@ -1,18 +1,14 @@
 package androidx.core.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.pm.PackageManager;
-import android.graphics.Matrix;
-import android.graphics.RectF;
+import android.content.IntentSender$SendIntentException;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.DragEvent;
 import android.view.View;
@@ -20,94 +16,17 @@ import androidx.annotation.IdRes;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.LocusIdCompat;
 import androidx.core.view.DragAndDropPermissionsCompat;
+import b.d.b.a.a;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ActivityCompat extends ContextCompat {
-    private static PermissionCompatDelegate sDelegate;
-
-    @RequiresApi(30)
-    public class Api30Impl {
-        private Api30Impl() {
-        }
-
-        public static void setLocusContext(@NonNull Activity activity, @Nullable LocusIdCompat locusIdCompat, @Nullable Bundle bundle) {
-            activity.setLocusContext(locusIdCompat == null ? null : locusIdCompat.toLocusId(), bundle);
-        }
-    }
-
-    public interface OnRequestPermissionsResultCallback {
-        void onRequestPermissionsResult(int i, @NonNull String[] strArr, @NonNull int[] iArr);
-    }
-
-    public interface PermissionCompatDelegate {
-        boolean onActivityResult(@NonNull Activity activity, @IntRange(from = 0) int i, int i2, @Nullable Intent intent);
-
-        boolean requestPermissions(@NonNull Activity activity, @NonNull String[] strArr, @IntRange(from = 0) int i);
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public interface RequestPermissionsRequestCodeValidator {
-        void validateRequestPermissionsRequestCode(int i);
-    }
-
-    @RequiresApi(21)
-    public class SharedElementCallback21Impl extends android.app.SharedElementCallback {
-        private final SharedElementCallback mCallback;
-
-        public SharedElementCallback21Impl(SharedElementCallback sharedElementCallback) {
-            this.mCallback = sharedElementCallback;
-        }
-
-        @Override // android.app.SharedElementCallback
-        public Parcelable onCaptureSharedElementSnapshot(View view, Matrix matrix, RectF rectF) {
-            return this.mCallback.onCaptureSharedElementSnapshot(view, matrix, rectF);
-        }
-
-        @Override // android.app.SharedElementCallback
-        public View onCreateSnapshotView(Context context, Parcelable parcelable) {
-            return this.mCallback.onCreateSnapshotView(context, parcelable);
-        }
-
-        @Override // android.app.SharedElementCallback
-        public void onMapSharedElements(List<String> list, Map<String, View> map) {
-            this.mCallback.onMapSharedElements(list, map);
-        }
-
-        @Override // android.app.SharedElementCallback
-        public void onRejectSharedElements(List<View> list) {
-            this.mCallback.onRejectSharedElements(list);
-        }
-
-        @Override // android.app.SharedElementCallback
-        public void onSharedElementEnd(List<String> list, List<View> list2, List<View> list3) {
-            this.mCallback.onSharedElementEnd(list, list2, list3);
-        }
-
-        @Override // android.app.SharedElementCallback
-        public void onSharedElementStart(List<String> list, List<View> list2, List<View> list3) {
-            this.mCallback.onSharedElementStart(list, list2, list3);
-        }
-
-        @Override // android.app.SharedElementCallback
-        @RequiresApi(23)
-        public void onSharedElementsArrived(List<String> list, List<View> list2, final android.app.SharedElementCallback.OnSharedElementsReadyListener onSharedElementsReadyListener) {
-            this.mCallback.onSharedElementsArrived(list, list2, new SharedElementCallback.OnSharedElementsReadyListener() { // from class: androidx.core.app.ActivityCompat.SharedElementCallback21Impl.1
-                @Override // androidx.core.app.SharedElementCallback.OnSharedElementsReadyListener
-                public void onSharedElementsReady() {
-                    onSharedElementsReadyListener.onSharedElementsReady();
-                }
-            });
-        }
-    }
+    private static ActivityCompat$PermissionCompatDelegate sDelegate;
 
     public static void finishAffinity(@NonNull Activity activity) {
         activity.finishAffinity();
@@ -117,14 +36,14 @@ public class ActivityCompat extends ContextCompat {
         activity.finishAfterTransition();
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static PermissionCompatDelegate getPermissionCompatDelegate() {
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public static ActivityCompat$PermissionCompatDelegate getPermissionCompatDelegate() {
         return sDelegate;
     }
 
     @Nullable
     public static Uri getReferrer(@NonNull Activity activity) {
-        if (Build.VERSION.SDK_INT >= 22) {
+        if (Build$VERSION.SDK_INT >= 22) {
             return activity.getReferrer();
         }
         Intent intent = activity.getIntent();
@@ -149,20 +68,12 @@ public class ActivityCompat extends ContextCompat {
         activity.postponeEnterTransition();
     }
 
-    public static void recreate(@NonNull final Activity activity) {
-        int i = Build.VERSION.SDK_INT;
+    public static void recreate(@NonNull Activity activity) {
+        int i = Build$VERSION.SDK_INT;
         if (i >= 28) {
             activity.recreate();
         } else if (i <= 23) {
-            new Handler(activity.getMainLooper()).post(new Runnable() { // from class: androidx.core.app.ActivityCompat.2
-                @Override // java.lang.Runnable
-                public void run() {
-                    if (activity.isFinishing() || ActivityRecreator.recreate(activity)) {
-                        return;
-                    }
-                    activity.recreate();
-                }
-            });
+            new Handler(activity.getMainLooper()).post(new ActivityCompat$2(activity));
         } else {
             if (ActivityRecreator.recreate(activity)) {
                 return;
@@ -177,40 +88,28 @@ public class ActivityCompat extends ContextCompat {
     }
 
     /* JADX WARN: Multi-variable type inference failed */
-    public static void requestPermissions(@NonNull final Activity activity, @NonNull final String[] strArr, @IntRange(from = 0) final int i) {
-        PermissionCompatDelegate permissionCompatDelegate = sDelegate;
-        if (permissionCompatDelegate == null || !permissionCompatDelegate.requestPermissions(activity, strArr, i)) {
+    public static void requestPermissions(@NonNull Activity activity, @NonNull String[] strArr, @IntRange(from = 0) int i) {
+        ActivityCompat$PermissionCompatDelegate activityCompat$PermissionCompatDelegate = sDelegate;
+        if (activityCompat$PermissionCompatDelegate == null || !activityCompat$PermissionCompatDelegate.requestPermissions(activity, strArr, i)) {
             for (String str : strArr) {
                 if (TextUtils.isEmpty(str)) {
-                    throw new IllegalArgumentException(C1643a.m822J(C1643a.m833U("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
+                    throw new IllegalArgumentException(a.J(a.U("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
                 }
             }
-            if (Build.VERSION.SDK_INT >= 23) {
-                if (activity instanceof RequestPermissionsRequestCodeValidator) {
-                    ((RequestPermissionsRequestCodeValidator) activity).validateRequestPermissionsRequestCode(i);
+            if (Build$VERSION.SDK_INT >= 23) {
+                if (activity instanceof ActivityCompat$RequestPermissionsRequestCodeValidator) {
+                    ((ActivityCompat$RequestPermissionsRequestCodeValidator) activity).validateRequestPermissionsRequestCode(i);
                 }
                 activity.requestPermissions(strArr, i);
-            } else if (activity instanceof OnRequestPermissionsResultCallback) {
-                new Handler(Looper.getMainLooper()).post(new Runnable() { // from class: androidx.core.app.ActivityCompat.1
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        int[] iArr = new int[strArr.length];
-                        PackageManager packageManager = activity.getPackageManager();
-                        String packageName = activity.getPackageName();
-                        int length = strArr.length;
-                        for (int i2 = 0; i2 < length; i2++) {
-                            iArr[i2] = packageManager.checkPermission(strArr[i2], packageName);
-                        }
-                        ((OnRequestPermissionsResultCallback) activity).onRequestPermissionsResult(i, strArr, iArr);
-                    }
-                });
+            } else if (activity instanceof ActivityCompat$OnRequestPermissionsResultCallback) {
+                new Handler(Looper.getMainLooper()).post(new ActivityCompat$1(strArr, activity, i));
             }
         }
     }
 
     @NonNull
     public static <T extends View> T requireViewById(@NonNull Activity activity, @IdRes int i) {
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             return (T) activity.requireViewById(i);
         }
         T t = (T) activity.findViewById(i);
@@ -221,25 +120,25 @@ public class ActivityCompat extends ContextCompat {
     }
 
     public static void setEnterSharedElementCallback(@NonNull Activity activity, @Nullable SharedElementCallback sharedElementCallback) {
-        activity.setEnterSharedElementCallback(sharedElementCallback != null ? new SharedElementCallback21Impl(sharedElementCallback) : null);
+        activity.setEnterSharedElementCallback(sharedElementCallback != null ? new ActivityCompat$SharedElementCallback21Impl(sharedElementCallback) : null);
     }
 
     public static void setExitSharedElementCallback(@NonNull Activity activity, @Nullable SharedElementCallback sharedElementCallback) {
-        activity.setExitSharedElementCallback(sharedElementCallback != null ? new SharedElementCallback21Impl(sharedElementCallback) : null);
+        activity.setExitSharedElementCallback(sharedElementCallback != null ? new ActivityCompat$SharedElementCallback21Impl(sharedElementCallback) : null);
     }
 
     public static void setLocusContext(@NonNull Activity activity, @Nullable LocusIdCompat locusIdCompat, @Nullable Bundle bundle) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            Api30Impl.setLocusContext(activity, locusIdCompat, bundle);
+        if (Build$VERSION.SDK_INT >= 30) {
+            ActivityCompat$Api30Impl.setLocusContext(activity, locusIdCompat, bundle);
         }
     }
 
-    public static void setPermissionCompatDelegate(@Nullable PermissionCompatDelegate permissionCompatDelegate) {
-        sDelegate = permissionCompatDelegate;
+    public static void setPermissionCompatDelegate(@Nullable ActivityCompat$PermissionCompatDelegate activityCompat$PermissionCompatDelegate) {
+        sDelegate = activityCompat$PermissionCompatDelegate;
     }
 
     public static boolean shouldShowRequestPermissionRationale(@NonNull Activity activity, @NonNull String str) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return activity.shouldShowRequestPermissionRationale(str);
         }
         return false;
@@ -249,7 +148,7 @@ public class ActivityCompat extends ContextCompat {
         activity.startActivityForResult(intent, i, bundle);
     }
 
-    public static void startIntentSenderForResult(@NonNull Activity activity, @NonNull IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender.SendIntentException {
+    public static void startIntentSenderForResult(@NonNull Activity activity, @NonNull IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws IntentSender$SendIntentException {
         activity.startIntentSenderForResult(intentSender, i, intent, i2, i3, i4, bundle);
     }
 

@@ -3,11 +3,11 @@ package androidx.appcompat.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.graphics.PorterDuff;
+import android.content.res.Resources$NotFoundException;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.LocaleList;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$styleable;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.AutoSizeableTextView;
 import androidx.core.widget.TextViewCompat;
@@ -75,7 +75,7 @@ public class AppCompatTextHelper {
         applyCompoundDrawableTint(compoundDrawablesRelative[2], this.mDrawableEndTint);
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void autoSizeText() {
         this.mAutoSizeTextHelper.autoSizeText();
     }
@@ -121,7 +121,7 @@ public class AppCompatTextHelper {
     }
 
     @Nullable
-    public PorterDuff.Mode getCompoundDrawableTintMode() {
+    public PorterDuff$Mode getCompoundDrawableTintMode() {
         TintInfo tintInfo = this.mDrawableTint;
         if (tintInfo != null) {
             return tintInfo.mTintMode;
@@ -129,7 +129,7 @@ public class AppCompatTextHelper {
         return null;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public boolean isAutoSizeEnabled() {
         return this.mAutoSizeTextHelper.isAutoSizeEnabled();
     }
@@ -160,45 +160,45 @@ public class AppCompatTextHelper {
         int i5;
         Context context = this.mView.getContext();
         AppCompatDrawableManager appCompatDrawableManager2 = AppCompatDrawableManager.get();
-        int[] iArr = C0051R.styleable.AppCompatTextHelper;
+        int[] iArr = R$styleable.AppCompatTextHelper;
         TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, iArr, i, 0);
         TextView textView = this.mView;
         ViewCompat.saveAttributeDataForStyleable(textView, textView.getContext(), iArr, attributeSet, tintTypedArrayObtainStyledAttributes.getWrappedTypeArray(), i, 0);
-        int resourceId = tintTypedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.AppCompatTextHelper_android_textAppearance, -1);
-        int i6 = C0051R.styleable.AppCompatTextHelper_android_drawableLeft;
+        int resourceId = tintTypedArrayObtainStyledAttributes.getResourceId(R$styleable.AppCompatTextHelper_android_textAppearance, -1);
+        int i6 = R$styleable.AppCompatTextHelper_android_drawableLeft;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i6)) {
             this.mDrawableLeftTint = createTintInfo(context, appCompatDrawableManager2, tintTypedArrayObtainStyledAttributes.getResourceId(i6, 0));
         }
-        int i7 = C0051R.styleable.AppCompatTextHelper_android_drawableTop;
+        int i7 = R$styleable.AppCompatTextHelper_android_drawableTop;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i7)) {
             this.mDrawableTopTint = createTintInfo(context, appCompatDrawableManager2, tintTypedArrayObtainStyledAttributes.getResourceId(i7, 0));
         }
-        int i8 = C0051R.styleable.AppCompatTextHelper_android_drawableRight;
+        int i8 = R$styleable.AppCompatTextHelper_android_drawableRight;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i8)) {
             this.mDrawableRightTint = createTintInfo(context, appCompatDrawableManager2, tintTypedArrayObtainStyledAttributes.getResourceId(i8, 0));
         }
-        int i9 = C0051R.styleable.AppCompatTextHelper_android_drawableBottom;
+        int i9 = R$styleable.AppCompatTextHelper_android_drawableBottom;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i9)) {
             this.mDrawableBottomTint = createTintInfo(context, appCompatDrawableManager2, tintTypedArrayObtainStyledAttributes.getResourceId(i9, 0));
         }
-        int i10 = Build.VERSION.SDK_INT;
-        int i11 = C0051R.styleable.AppCompatTextHelper_android_drawableStart;
+        int i10 = Build$VERSION.SDK_INT;
+        int i11 = R$styleable.AppCompatTextHelper_android_drawableStart;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i11)) {
             this.mDrawableStartTint = createTintInfo(context, appCompatDrawableManager2, tintTypedArrayObtainStyledAttributes.getResourceId(i11, 0));
         }
-        int i12 = C0051R.styleable.AppCompatTextHelper_android_drawableEnd;
+        int i12 = R$styleable.AppCompatTextHelper_android_drawableEnd;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i12)) {
             this.mDrawableEndTint = createTintInfo(context, appCompatDrawableManager2, tintTypedArrayObtainStyledAttributes.getResourceId(i12, 0));
         }
         tintTypedArrayObtainStyledAttributes.recycle();
         boolean z4 = this.mView.getTransformationMethod() instanceof PasswordTransformationMethod;
         if (resourceId != -1) {
-            TintTypedArray tintTypedArrayObtainStyledAttributes2 = TintTypedArray.obtainStyledAttributes(context, resourceId, C0051R.styleable.TextAppearance);
+            TintTypedArray tintTypedArrayObtainStyledAttributes2 = TintTypedArray.obtainStyledAttributes(context, resourceId, R$styleable.TextAppearance);
             if (z4) {
                 z2 = false;
                 z3 = false;
             } else {
-                int i13 = C0051R.styleable.TextAppearance_textAllCaps;
+                int i13 = R$styleable.TextAppearance_textAllCaps;
                 if (tintTypedArrayObtainStyledAttributes2.hasValue(i13)) {
                     z2 = tintTypedArrayObtainStyledAttributes2.getBoolean(i13, false);
                     z3 = true;
@@ -209,20 +209,20 @@ public class AppCompatTextHelper {
             }
             updateTypefaceAndStyle(context, tintTypedArrayObtainStyledAttributes2);
             if (i10 < 23) {
-                int i14 = C0051R.styleable.TextAppearance_android_textColor;
+                int i14 = R$styleable.TextAppearance_android_textColor;
                 colorStateList = tintTypedArrayObtainStyledAttributes2.hasValue(i14) ? tintTypedArrayObtainStyledAttributes2.getColorStateList(i14) : null;
-                int i15 = C0051R.styleable.TextAppearance_android_textColorHint;
+                int i15 = R$styleable.TextAppearance_android_textColorHint;
                 colorStateList2 = tintTypedArrayObtainStyledAttributes2.hasValue(i15) ? tintTypedArrayObtainStyledAttributes2.getColorStateList(i15) : null;
-                int i16 = C0051R.styleable.TextAppearance_android_textColorLink;
+                int i16 = R$styleable.TextAppearance_android_textColorLink;
                 colorStateList3 = tintTypedArrayObtainStyledAttributes2.hasValue(i16) ? tintTypedArrayObtainStyledAttributes2.getColorStateList(i16) : null;
-                i4 = C0051R.styleable.TextAppearance_textLocale;
+                i4 = R$styleable.TextAppearance_textLocale;
                 if (tintTypedArrayObtainStyledAttributes2.hasValue(i4)) {
                     string2 = tintTypedArrayObtainStyledAttributes2.getString(i4);
                 } else {
                     string2 = null;
                 }
                 if (i10 >= 26) {
-                    i5 = C0051R.styleable.TextAppearance_fontVariationSettings;
+                    i5 = R$styleable.TextAppearance_fontVariationSettings;
                     if (tintTypedArrayObtainStyledAttributes2.hasValue(i5)) {
                         string = tintTypedArrayObtainStyledAttributes2.getString(i5);
                     } else {
@@ -236,14 +236,14 @@ public class AppCompatTextHelper {
                 colorStateList = null;
                 colorStateList2 = null;
             }
-            i4 = C0051R.styleable.TextAppearance_textLocale;
+            i4 = R$styleable.TextAppearance_textLocale;
             if (tintTypedArrayObtainStyledAttributes2.hasValue(i4)) {
                 string2 = tintTypedArrayObtainStyledAttributes2.getString(i4);
             } else {
                 string2 = null;
             }
             if (i10 >= 26) {
-                i5 = C0051R.styleable.TextAppearance_fontVariationSettings;
+                i5 = R$styleable.TextAppearance_fontVariationSettings;
                 if (tintTypedArrayObtainStyledAttributes2.hasValue(i5)) {
                     string = tintTypedArrayObtainStyledAttributes2.getString(i5);
                 } else {
@@ -262,11 +262,11 @@ public class AppCompatTextHelper {
             colorStateList3 = null;
             z3 = false;
         }
-        TintTypedArray tintTypedArrayObtainStyledAttributes3 = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0051R.styleable.TextAppearance, i, 0);
+        TintTypedArray tintTypedArrayObtainStyledAttributes3 = TintTypedArray.obtainStyledAttributes(context, attributeSet, R$styleable.TextAppearance, i, 0);
         if (z4) {
             i2 = 23;
         } else {
-            int i17 = C0051R.styleable.TextAppearance_textAllCaps;
+            int i17 = R$styleable.TextAppearance_textAllCaps;
             if (tintTypedArrayObtainStyledAttributes3.hasValue(i17)) {
                 z2 = tintTypedArrayObtainStyledAttributes3.getBoolean(i17, false);
                 i2 = 23;
@@ -276,25 +276,25 @@ public class AppCompatTextHelper {
             }
         }
         if (i10 < i2) {
-            int i18 = C0051R.styleable.TextAppearance_android_textColor;
+            int i18 = R$styleable.TextAppearance_android_textColor;
             if (tintTypedArrayObtainStyledAttributes3.hasValue(i18)) {
                 colorStateList = tintTypedArrayObtainStyledAttributes3.getColorStateList(i18);
             }
-            int i19 = C0051R.styleable.TextAppearance_android_textColorHint;
+            int i19 = R$styleable.TextAppearance_android_textColorHint;
             if (tintTypedArrayObtainStyledAttributes3.hasValue(i19)) {
                 colorStateList2 = tintTypedArrayObtainStyledAttributes3.getColorStateList(i19);
             }
-            int i20 = C0051R.styleable.TextAppearance_android_textColorLink;
+            int i20 = R$styleable.TextAppearance_android_textColorLink;
             if (tintTypedArrayObtainStyledAttributes3.hasValue(i20)) {
                 colorStateList3 = tintTypedArrayObtainStyledAttributes3.getColorStateList(i20);
             }
         }
-        int i21 = C0051R.styleable.TextAppearance_textLocale;
+        int i21 = R$styleable.TextAppearance_textLocale;
         if (tintTypedArrayObtainStyledAttributes3.hasValue(i21)) {
             string2 = tintTypedArrayObtainStyledAttributes3.getString(i21);
         }
         if (i10 >= 26) {
-            int i22 = C0051R.styleable.TextAppearance_fontVariationSettings;
+            int i22 = R$styleable.TextAppearance_fontVariationSettings;
             if (tintTypedArrayObtainStyledAttributes3.hasValue(i22)) {
                 string3 = tintTypedArrayObtainStyledAttributes3.getString(i22);
             } else {
@@ -304,7 +304,7 @@ public class AppCompatTextHelper {
             string3 = string;
         }
         if (i10 >= 28) {
-            int i23 = C0051R.styleable.TextAppearance_android_textSize;
+            int i23 = R$styleable.TextAppearance_android_textSize;
             if (tintTypedArrayObtainStyledAttributes3.hasValue(i23)) {
                 appCompatDrawableManager = appCompatDrawableManager2;
                 if (tintTypedArrayObtainStyledAttributes3.getDimensionPixelSize(i23, -1) == 0) {
@@ -359,34 +359,34 @@ public class AppCompatTextHelper {
                 }
             }
         }
-        TintTypedArray tintTypedArrayObtainStyledAttributes4 = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0051R.styleable.AppCompatTextView);
-        int resourceId2 = tintTypedArrayObtainStyledAttributes4.getResourceId(C0051R.styleable.AppCompatTextView_drawableLeftCompat, -1);
+        TintTypedArray tintTypedArrayObtainStyledAttributes4 = TintTypedArray.obtainStyledAttributes(context, attributeSet, R$styleable.AppCompatTextView);
+        int resourceId2 = tintTypedArrayObtainStyledAttributes4.getResourceId(R$styleable.AppCompatTextView_drawableLeftCompat, -1);
         AppCompatDrawableManager appCompatDrawableManager3 = appCompatDrawableManager;
         Drawable drawable = resourceId2 != -1 ? appCompatDrawableManager3.getDrawable(context, resourceId2) : null;
-        int resourceId3 = tintTypedArrayObtainStyledAttributes4.getResourceId(C0051R.styleable.AppCompatTextView_drawableTopCompat, -1);
+        int resourceId3 = tintTypedArrayObtainStyledAttributes4.getResourceId(R$styleable.AppCompatTextView_drawableTopCompat, -1);
         Drawable drawable2 = resourceId3 != -1 ? appCompatDrawableManager3.getDrawable(context, resourceId3) : null;
-        int resourceId4 = tintTypedArrayObtainStyledAttributes4.getResourceId(C0051R.styleable.AppCompatTextView_drawableRightCompat, -1);
+        int resourceId4 = tintTypedArrayObtainStyledAttributes4.getResourceId(R$styleable.AppCompatTextView_drawableRightCompat, -1);
         Drawable drawable3 = resourceId4 != -1 ? appCompatDrawableManager3.getDrawable(context, resourceId4) : null;
-        int resourceId5 = tintTypedArrayObtainStyledAttributes4.getResourceId(C0051R.styleable.AppCompatTextView_drawableBottomCompat, -1);
+        int resourceId5 = tintTypedArrayObtainStyledAttributes4.getResourceId(R$styleable.AppCompatTextView_drawableBottomCompat, -1);
         Drawable drawable4 = resourceId5 != -1 ? appCompatDrawableManager3.getDrawable(context, resourceId5) : null;
-        int resourceId6 = tintTypedArrayObtainStyledAttributes4.getResourceId(C0051R.styleable.AppCompatTextView_drawableStartCompat, -1);
+        int resourceId6 = tintTypedArrayObtainStyledAttributes4.getResourceId(R$styleable.AppCompatTextView_drawableStartCompat, -1);
         Drawable drawable5 = resourceId6 != -1 ? appCompatDrawableManager3.getDrawable(context, resourceId6) : null;
-        int resourceId7 = tintTypedArrayObtainStyledAttributes4.getResourceId(C0051R.styleable.AppCompatTextView_drawableEndCompat, -1);
+        int resourceId7 = tintTypedArrayObtainStyledAttributes4.getResourceId(R$styleable.AppCompatTextView_drawableEndCompat, -1);
         setCompoundDrawables(drawable, drawable2, drawable3, drawable4, drawable5, resourceId7 != -1 ? appCompatDrawableManager3.getDrawable(context, resourceId7) : null);
-        int i24 = C0051R.styleable.AppCompatTextView_drawableTint;
+        int i24 = R$styleable.AppCompatTextView_drawableTint;
         if (tintTypedArrayObtainStyledAttributes4.hasValue(i24)) {
             TextViewCompat.setCompoundDrawableTintList(this.mView, tintTypedArrayObtainStyledAttributes4.getColorStateList(i24));
         }
-        int i25 = C0051R.styleable.AppCompatTextView_drawableTintMode;
+        int i25 = R$styleable.AppCompatTextView_drawableTintMode;
         if (tintTypedArrayObtainStyledAttributes4.hasValue(i25)) {
             i3 = -1;
             TextViewCompat.setCompoundDrawableTintMode(this.mView, DrawableUtils.parseTintMode(tintTypedArrayObtainStyledAttributes4.getInt(i25, -1), null));
         } else {
             i3 = -1;
         }
-        int dimensionPixelSize = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(C0051R.styleable.AppCompatTextView_firstBaselineToTopHeight, i3);
-        int dimensionPixelSize2 = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(C0051R.styleable.AppCompatTextView_lastBaselineToBottomHeight, i3);
-        int dimensionPixelSize3 = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(C0051R.styleable.AppCompatTextView_lineHeight, i3);
+        int dimensionPixelSize = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(R$styleable.AppCompatTextView_firstBaselineToTopHeight, i3);
+        int dimensionPixelSize2 = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(R$styleable.AppCompatTextView_lastBaselineToBottomHeight, i3);
+        int dimensionPixelSize3 = tintTypedArrayObtainStyledAttributes4.getDimensionPixelSize(R$styleable.AppCompatTextView_lineHeight, i3);
         tintTypedArrayObtainStyledAttributes4.recycle();
         if (dimensionPixelSize != i3) {
             TextViewCompat.setFirstBaselineToTopHeight(this.mView, dimensionPixelSize);
@@ -409,7 +409,7 @@ public class AppCompatTextHelper {
         }
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE) {
             return;
@@ -424,25 +424,25 @@ public class AppCompatTextHelper {
     public void onSetTextAppearance(Context context, int i) {
         String string;
         ColorStateList colorStateList;
-        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i, C0051R.styleable.TextAppearance);
-        int i2 = C0051R.styleable.TextAppearance_textAllCaps;
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, i, R$styleable.TextAppearance);
+        int i2 = R$styleable.TextAppearance_textAllCaps;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i2)) {
             setAllCaps(tintTypedArrayObtainStyledAttributes.getBoolean(i2, false));
         }
-        int i3 = Build.VERSION.SDK_INT;
+        int i3 = Build$VERSION.SDK_INT;
         if (i3 < 23) {
-            int i4 = C0051R.styleable.TextAppearance_android_textColor;
+            int i4 = R$styleable.TextAppearance_android_textColor;
             if (tintTypedArrayObtainStyledAttributes.hasValue(i4) && (colorStateList = tintTypedArrayObtainStyledAttributes.getColorStateList(i4)) != null) {
                 this.mView.setTextColor(colorStateList);
             }
         }
-        int i5 = C0051R.styleable.TextAppearance_android_textSize;
+        int i5 = R$styleable.TextAppearance_android_textSize;
         if (tintTypedArrayObtainStyledAttributes.hasValue(i5) && tintTypedArrayObtainStyledAttributes.getDimensionPixelSize(i5, -1) == 0) {
             this.mView.setTextSize(0, 0.0f);
         }
         updateTypefaceAndStyle(context, tintTypedArrayObtainStyledAttributes);
         if (i3 >= 26) {
-            int i6 = C0051R.styleable.TextAppearance_fontVariationSettings;
+            int i6 = R$styleable.TextAppearance_fontVariationSettings;
             if (tintTypedArrayObtainStyledAttributes.hasValue(i6) && (string = tintTypedArrayObtainStyledAttributes.getString(i6)) != null) {
                 this.mView.setFontVariationSettings(string);
             }
@@ -480,13 +480,13 @@ public class AppCompatTextHelper {
         setCompoundTints();
     }
 
-    public void setCompoundDrawableTintMode(@Nullable PorterDuff.Mode mode) {
+    public void setCompoundDrawableTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
         if (this.mDrawableTint == null) {
             this.mDrawableTint = new TintInfo();
         }
         TintInfo tintInfo = this.mDrawableTint;
-        tintInfo.mTintMode = mode;
-        tintInfo.mHasTintMode = mode != null;
+        tintInfo.mTintMode = porterDuff$Mode;
+        tintInfo.mHasTintMode = porterDuff$Mode != null;
         setCompoundTints();
     }
 
@@ -553,7 +553,7 @@ public class AppCompatTextHelper {
         this.mDrawableEndTint = tintInfo;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void setTextSize(int i, float f) {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE || isAutoSizeEnabled()) {
             return;
@@ -567,18 +567,18 @@ public class AppCompatTextHelper {
 
     private void updateTypefaceAndStyle(Context context, TintTypedArray tintTypedArray) {
         String string;
-        this.mStyle = tintTypedArray.getInt(C0051R.styleable.TextAppearance_android_textStyle, this.mStyle);
-        int i = Build.VERSION.SDK_INT;
+        this.mStyle = tintTypedArray.getInt(R$styleable.TextAppearance_android_textStyle, this.mStyle);
+        int i = Build$VERSION.SDK_INT;
         if (i >= 28) {
-            int i2 = tintTypedArray.getInt(C0051R.styleable.TextAppearance_android_textFontWeight, -1);
+            int i2 = tintTypedArray.getInt(R$styleable.TextAppearance_android_textFontWeight, -1);
             this.mFontWeight = i2;
             if (i2 != -1) {
                 this.mStyle = (this.mStyle & 2) | 0;
             }
         }
-        int i3 = C0051R.styleable.TextAppearance_android_fontFamily;
-        if (!tintTypedArray.hasValue(i3) && !tintTypedArray.hasValue(C0051R.styleable.TextAppearance_fontFamily)) {
-            int i4 = C0051R.styleable.TextAppearance_android_typeface;
+        int i3 = R$styleable.TextAppearance_android_fontFamily;
+        if (!tintTypedArray.hasValue(i3) && !tintTypedArray.hasValue(R$styleable.TextAppearance_fontFamily)) {
+            int i4 = R$styleable.TextAppearance_android_typeface;
             if (tintTypedArray.hasValue(i4)) {
                 this.mAsyncFontPending = false;
                 int i5 = tintTypedArray.getInt(i4, 1);
@@ -599,29 +599,15 @@ public class AppCompatTextHelper {
             return;
         }
         this.mFontTypeface = null;
-        int i6 = C0051R.styleable.TextAppearance_fontFamily;
+        int i6 = R$styleable.TextAppearance_fontFamily;
         if (tintTypedArray.hasValue(i6)) {
             i3 = i6;
         }
-        final int i7 = this.mFontWeight;
-        final int i8 = this.mStyle;
+        int i7 = this.mFontWeight;
+        int i8 = this.mStyle;
         if (!context.isRestricted()) {
-            final WeakReference weakReference = new WeakReference(this.mView);
             try {
-                Typeface font = tintTypedArray.getFont(i3, this.mStyle, new ResourcesCompat.FontCallback() { // from class: androidx.appcompat.widget.AppCompatTextHelper.1
-                    @Override // androidx.core.content.res.ResourcesCompat.FontCallback
-                    public void onFontRetrievalFailed(int i9) {
-                    }
-
-                    @Override // androidx.core.content.res.ResourcesCompat.FontCallback
-                    public void onFontRetrieved(@NonNull Typeface typeface) {
-                        int i9;
-                        if (Build.VERSION.SDK_INT >= 28 && (i9 = i7) != -1) {
-                            typeface = Typeface.create(typeface, i9, (i8 & 2) != 0);
-                        }
-                        AppCompatTextHelper.this.onAsyncTypefaceReceived(weakReference, typeface);
-                    }
-                });
+                Typeface font = tintTypedArray.getFont(i3, this.mStyle, new AppCompatTextHelper$1(this, i7, i8, new WeakReference(this.mView)));
                 if (font != null) {
                     if (i < 28 || this.mFontWeight == -1) {
                         this.mFontTypeface = font;
@@ -630,13 +616,13 @@ public class AppCompatTextHelper {
                     }
                 }
                 this.mAsyncFontPending = this.mFontTypeface == null;
-            } catch (Resources.NotFoundException | UnsupportedOperationException unused) {
+            } catch (Resources$NotFoundException | UnsupportedOperationException unused) {
             }
         }
         if (this.mFontTypeface != null || (string = tintTypedArray.getString(i3)) == null) {
             return;
         }
-        if (Build.VERSION.SDK_INT < 28 || this.mFontWeight == -1) {
+        if (Build$VERSION.SDK_INT < 28 || this.mFontWeight == -1) {
             this.mFontTypeface = Typeface.create(string, this.mStyle);
         } else {
             this.mFontTypeface = Typeface.create(Typeface.create(string, 0), this.mFontWeight, (this.mStyle & 2) != 0);

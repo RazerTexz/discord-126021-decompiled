@@ -2,17 +2,18 @@ package androidx.room.util;
 
 import android.database.Cursor;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
-import androidx.sqlite.p006db.SupportSQLiteDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class FtsTableInfo {
     public final Set<String> columns;
     public final String name;
@@ -143,15 +144,15 @@ public class FtsTableInfo {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("FtsTableInfo{name='");
-        sbM833U.append(this.name);
-        sbM833U.append('\'');
-        sbM833U.append(", columns=");
-        sbM833U.append(this.columns);
-        sbM833U.append(", options=");
-        sbM833U.append(this.options);
-        sbM833U.append('}');
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("FtsTableInfo{name='");
+        sbU.append(this.name);
+        sbU.append('\'');
+        sbU.append(", columns=");
+        sbU.append(this.columns);
+        sbU.append(", options=");
+        sbU.append(this.options);
+        sbU.append('}');
+        return sbU.toString();
     }
 
     public FtsTableInfo(String str, Set<String> set, String str2) {

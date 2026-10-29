@@ -1,12 +1,14 @@
 package androidx.work.impl.utils;
 
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.work.Operation;
+import androidx.work.Operation$State$FAILURE;
 import androidx.work.impl.OperationImpl;
 import androidx.work.impl.WorkManagerImpl;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class PruneWorkRunnable implements Runnable {
     private final WorkManagerImpl mWorkManagerImpl;
     private final OperationImpl mOperation = new OperationImpl();
@@ -25,7 +27,7 @@ public class PruneWorkRunnable implements Runnable {
             this.mWorkManagerImpl.getWorkDatabase().workSpecDao().pruneFinishedWorkWithZeroDependentsIgnoringKeepForAtLeast();
             this.mOperation.setState(Operation.SUCCESS);
         } catch (Throwable th) {
-            this.mOperation.setState(new Operation.State.FAILURE(th));
+            this.mOperation.setState(new Operation$State$FAILURE(th));
         }
     }
 }

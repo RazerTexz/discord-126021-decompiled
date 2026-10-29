@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -8,8 +9,7 @@ import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionUserCommunicationDisabledUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,6 +33,11 @@ public final /* data */ class TrackNetworkActionUserCommunicationDisabledUpdate 
         this.analyticsSchemaTypeName = "network_action_user_communication_disabled_update";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -41,7 +46,7 @@ public final /* data */ class TrackNetworkActionUserCommunicationDisabledUpdate 
             return false;
         }
         TrackNetworkActionUserCommunicationDisabledUpdate trackNetworkActionUserCommunicationDisabledUpdate = (TrackNetworkActionUserCommunicationDisabledUpdate) other;
-        return C12238m.areEqual(this.guildId, trackNetworkActionUserCommunicationDisabledUpdate.guildId) && C12238m.areEqual(this.targetUserId, trackNetworkActionUserCommunicationDisabledUpdate.targetUserId) && C12238m.areEqual(this.duration, trackNetworkActionUserCommunicationDisabledUpdate.duration) && C12238m.areEqual(this.reason, trackNetworkActionUserCommunicationDisabledUpdate.reason) && C12238m.areEqual(this.communicationDisabledUntil, trackNetworkActionUserCommunicationDisabledUpdate.communicationDisabledUntil);
+        return m.areEqual(this.guildId, trackNetworkActionUserCommunicationDisabledUpdate.guildId) && m.areEqual(this.targetUserId, trackNetworkActionUserCommunicationDisabledUpdate.targetUserId) && m.areEqual(this.duration, trackNetworkActionUserCommunicationDisabledUpdate.duration) && m.areEqual(this.reason, trackNetworkActionUserCommunicationDisabledUpdate.reason) && m.areEqual(this.communicationDisabledUntil, trackNetworkActionUserCommunicationDisabledUpdate.communicationDisabledUntil);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,23 +68,17 @@ public final /* data */ class TrackNetworkActionUserCommunicationDisabledUpdate 
         return iHashCode4 + (l3 != null ? l3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionUserCommunicationDisabledUpdate(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", targetUserId=");
-        sbM833U.append(this.targetUserId);
-        sbM833U.append(", duration=");
-        sbM833U.append(this.duration);
-        sbM833U.append(", reason=");
-        sbM833U.append(this.reason);
-        sbM833U.append(", communicationDisabledUntil=");
-        return C1643a.m819G(sbM833U, this.communicationDisabledUntil, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionUserCommunicationDisabledUpdate(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", targetUserId=");
+        sbU.append(this.targetUserId);
+        sbU.append(", duration=");
+        sbU.append(this.duration);
+        sbU.append(", reason=");
+        sbU.append(this.reason);
+        sbU.append(", communicationDisabledUntil=");
+        return a.G(sbU, this.communicationDisabledUntil, ")");
     }
 
     public TrackNetworkActionUserCommunicationDisabledUpdate() {

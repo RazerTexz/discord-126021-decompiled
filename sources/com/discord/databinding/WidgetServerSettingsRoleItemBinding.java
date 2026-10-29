@@ -11,37 +11,33 @@ import com.discord.widgets.roles.RoleIconView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsRoleItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f17739a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final View f17740b;
+    public final View f2583b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f17741c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17742d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final RoleIconView f17743e;
+    public final RoleIconView e;
 
     public WidgetServerSettingsRoleItemBinding(@NonNull RelativeLayout relativeLayout, @NonNull View view, @NonNull View view2, @NonNull View view3, @NonNull ImageView imageView, @NonNull TextView textView, @NonNull RoleIconView roleIconView) {
-        this.f17739a = relativeLayout;
-        this.f17740b = view3;
-        this.f17741c = imageView;
-        this.f17742d = textView;
-        this.f17743e = roleIconView;
+        this.a = relativeLayout;
+        this.f2583b = view3;
+        this.c = imageView;
+        this.d = textView;
+        this.e = roleIconView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17739a;
+        return this.a;
     }
 }

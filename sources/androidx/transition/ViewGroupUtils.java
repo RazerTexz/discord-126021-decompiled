@@ -1,7 +1,7 @@
 package androidx.transition;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -18,7 +18,7 @@ public class ViewGroupUtils {
     }
 
     public static int getChildDrawingOrder(@NonNull ViewGroup viewGroup, int i) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             return viewGroup.getChildDrawingOrder(i);
         }
         if (!sGetChildDrawingOrderMethodFetched) {
@@ -58,7 +58,7 @@ public class ViewGroupUtils {
     }
 
     public static void suppressLayout(@NonNull ViewGroup viewGroup, boolean z2) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             viewGroup.suppressLayout(z2);
         } else {
             hiddenSuppressLayout(viewGroup, z2);

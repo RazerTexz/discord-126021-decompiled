@@ -3,15 +3,15 @@ package kotlinx.coroutines.android;
 import android.os.Looper;
 import java.util.List;
 import kotlinx.coroutines.internal.MainDispatcherFactory;
-import p659s.p660a.AbstractC13128l1;
-import p659s.p660a.p662b2.C13048a;
-import p659s.p660a.p662b2.C13050c;
+import s.a.b2.a;
+import s.a.b2.c;
+import s.a.l1;
 
 /* JADX INFO: compiled from: HandlerDispatcher.kt */
 /* JADX INFO: loaded from: classes3.dex */
 public final class AndroidDispatcherFactory implements MainDispatcherFactory {
     @Override // kotlinx.coroutines.internal.MainDispatcherFactory
-    public /* bridge */ /* synthetic */ AbstractC13128l1 createDispatcher(List list) {
+    public /* bridge */ /* synthetic */ l1 createDispatcher(List list) {
         return createDispatcher((List<? extends MainDispatcherFactory>) list);
     }
 
@@ -26,7 +26,7 @@ public final class AndroidDispatcherFactory implements MainDispatcherFactory {
     }
 
     @Override // kotlinx.coroutines.internal.MainDispatcherFactory
-    public C13048a createDispatcher(List<? extends MainDispatcherFactory> allFactories) {
-        return new C13048a(C13050c.m11197a(Looper.getMainLooper(), true), null, false);
+    public a createDispatcher(List<? extends MainDispatcherFactory> allFactories) {
+        return new a(c.a(Looper.getMainLooper(), true), null, false);
     }
 }

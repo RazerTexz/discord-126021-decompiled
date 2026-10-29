@@ -1,7 +1,7 @@
 package co.discord.media_engine;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StreamParameters.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,8 +16,8 @@ public final /* data */ class StreamParameters {
     private final MediaType type;
 
     public StreamParameters(MediaType mediaType, String str, int i, int i2, boolean z2, int i3, int i4, int i5) {
-        C12238m.checkNotNullParameter(mediaType, "type");
-        C12238m.checkNotNullParameter(str, "rid");
+        m.checkNotNullParameter(mediaType, "type");
+        m.checkNotNullParameter(str, "rid");
         this.type = mediaType;
         this.rid = str;
         this.ssrc = i;
@@ -28,9 +28,13 @@ public final /* data */ class StreamParameters {
         this.maxPixelCount = i5;
     }
 
+    public static /* synthetic */ StreamParameters copy$default(StreamParameters streamParameters, MediaType mediaType, String str, int i, int i2, boolean z2, int i3, int i4, int i5, int i6, Object obj) {
+        return streamParameters.copy((i6 & 1) != 0 ? streamParameters.type : mediaType, (i6 & 2) != 0 ? streamParameters.rid : str, (i6 & 4) != 0 ? streamParameters.ssrc : i, (i6 & 8) != 0 ? streamParameters.rtxSsrc : i2, (i6 & 16) != 0 ? streamParameters.active : z2, (i6 & 32) != 0 ? streamParameters.maxBitrate : i3, (i6 & 64) != 0 ? streamParameters.quality : i4, (i6 & 128) != 0 ? streamParameters.maxPixelCount : i5);
+    }
+
     public final StreamParameters copy(MediaType type, String rid, int ssrc, int rtxSsrc, boolean active, int maxBitrate, int quality, int maxPixelCount) {
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(rid, "rid");
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(rid, "rid");
         return new StreamParameters(type, rid, ssrc, rtxSsrc, active, maxBitrate, quality, maxPixelCount);
     }
 
@@ -42,7 +46,7 @@ public final /* data */ class StreamParameters {
             return false;
         }
         StreamParameters streamParameters = (StreamParameters) other;
-        return C12238m.areEqual(this.type, streamParameters.type) && C12238m.areEqual(this.rid, streamParameters.rid) && this.ssrc == streamParameters.ssrc && this.rtxSsrc == streamParameters.rtxSsrc && this.active == streamParameters.active && this.maxBitrate == streamParameters.maxBitrate && this.quality == streamParameters.quality && this.maxPixelCount == streamParameters.maxPixelCount;
+        return m.areEqual(this.type, streamParameters.type) && m.areEqual(this.rid, streamParameters.rid) && this.ssrc == streamParameters.ssrc && this.rtxSsrc == streamParameters.rtxSsrc && this.active == streamParameters.active && this.maxBitrate == streamParameters.maxBitrate && this.quality == streamParameters.quality && this.maxPixelCount == streamParameters.maxPixelCount;
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -136,21 +140,21 @@ public final /* data */ class StreamParameters {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StreamParameters(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", rid=");
-        sbM833U.append(this.rid);
-        sbM833U.append(", ssrc=");
-        sbM833U.append(this.ssrc);
-        sbM833U.append(", rtxSsrc=");
-        sbM833U.append(this.rtxSsrc);
-        sbM833U.append(", active=");
-        sbM833U.append(this.active);
-        sbM833U.append(", maxBitrate=");
-        sbM833U.append(this.maxBitrate);
-        sbM833U.append(", quality=");
-        sbM833U.append(this.quality);
-        sbM833U.append(", maxPixelCount=");
-        return C1643a.m814B(sbM833U, this.maxPixelCount, ")");
+        StringBuilder sbU = a.U("StreamParameters(type=");
+        sbU.append(this.type);
+        sbU.append(", rid=");
+        sbU.append(this.rid);
+        sbU.append(", ssrc=");
+        sbU.append(this.ssrc);
+        sbU.append(", rtxSsrc=");
+        sbU.append(this.rtxSsrc);
+        sbU.append(", active=");
+        sbU.append(this.active);
+        sbU.append(", maxBitrate=");
+        sbU.append(this.maxBitrate);
+        sbU.append(", quality=");
+        sbU.append(this.quality);
+        sbU.append(", maxPixelCount=");
+        return a.B(sbU, this.maxPixelCount, ")");
     }
 }

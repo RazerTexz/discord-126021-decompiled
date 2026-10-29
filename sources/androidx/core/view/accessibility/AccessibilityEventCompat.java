@@ -2,9 +2,6 @@ package androidx.core.view.accessibility;
 
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityRecord;
-import androidx.annotation.RestrictTo;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class AccessibilityEventCompat {
@@ -49,11 +46,6 @@ public final class AccessibilityEventCompat {
 
     @Deprecated
     public static final int TYPE_WINDOW_CONTENT_CHANGED = 2048;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface ContentChangeType {
-    }
 
     private AccessibilityEventCompat() {
     }

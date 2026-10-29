@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackStopRingingCall.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackStopRingingCall implements AnalyticsSchema, T
             return false;
         }
         TrackStopRingingCall trackStopRingingCall = (TrackStopRingingCall) other;
-        return C12238m.areEqual(this.channelId, trackStopRingingCall.channelId) && C12238m.areEqual(this.messageId, trackStopRingingCall.messageId) && C12238m.areEqual(this.channelType, trackStopRingingCall.channelType) && C12238m.areEqual(this.self, trackStopRingingCall.self) && C12238m.areEqual(this.recipientIds, trackStopRingingCall.recipientIds);
+        return m.areEqual(this.channelId, trackStopRingingCall.channelId) && m.areEqual(this.messageId, trackStopRingingCall.messageId) && m.areEqual(this.channelType, trackStopRingingCall.channelType) && m.areEqual(this.self, trackStopRingingCall.self) && m.areEqual(this.recipientIds, trackStopRingingCall.recipientIds);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -49,15 +49,15 @@ public final /* data */ class TrackStopRingingCall implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStopRingingCall(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", channelType=");
-        sbM833U.append(this.channelType);
-        sbM833U.append(", self=");
-        sbM833U.append(this.self);
-        sbM833U.append(", recipientIds=");
-        return C1643a.m824L(sbM833U, this.recipientIds, ")");
+        StringBuilder sbU = a.U("TrackStopRingingCall(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", channelType=");
+        sbU.append(this.channelType);
+        sbU.append(", self=");
+        sbU.append(this.self);
+        sbU.append(", recipientIds=");
+        return a.L(sbU, this.recipientIds, ")");
     }
 }

@@ -10,27 +10,25 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatInputApplicationCommandsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16084a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16085b;
+    public final TextView f2301b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f16086c;
+    public final RecyclerView c;
 
     public WidgetChatInputApplicationCommandsBinding(@NonNull ConstraintLayout constraintLayout, @NonNull TextView textView, @NonNull RecyclerView recyclerView, @NonNull View view) {
-        this.f16084a = constraintLayout;
-        this.f16085b = textView;
-        this.f16086c = recyclerView;
+        this.a = constraintLayout;
+        this.f2301b = textView;
+        this.c = recyclerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16084a;
+        return this.a;
     }
 }

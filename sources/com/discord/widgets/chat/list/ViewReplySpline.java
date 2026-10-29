@@ -5,14 +5,16 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Paint$Cap;
+import android.graphics.Paint$Style;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
-import com.discord.C5419R;
+import com.discord.R$a;
 import com.discord.utilities.color.ColorCompat;
 import com.discord.utilities.dimen.DimenUtils;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ViewReplySpline.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -20,6 +22,7 @@ public final class ViewReplySpline extends View {
     private static final int BOTTOM_TO_END = 0;
     private static final int CAP_LONG = 1;
     private static final int CAP_LONG_AND_SHORT = 0;
+    public static final ViewReplySpline$Companion Companion = new ViewReplySpline$Companion(null);
     private static final int TOP_TO_END = 1;
     private final float arcPercent;
     private RectF arcRectLocal;
@@ -42,7 +45,7 @@ public final class ViewReplySpline extends View {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ViewReplySpline(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(context, "context");
         Paint paint = new Paint();
         this.paint = paint;
         this.path = new Path();
@@ -56,13 +59,13 @@ public final class ViewReplySpline extends View {
         this.pathRectLocal = new RectF();
         this.arcRectLocal = new RectF();
         this.transformMatrix = new Matrix();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint$Style.STROKE);
+        paint.setStrokeCap(Paint$Cap.ROUND);
         paint.setStrokeWidth(f);
-        paint.setColor(ColorCompat.getThemedColor(this, C5419R.attr.colorBackgroundAccent));
+        paint.setColor(ColorCompat.getThemedColor(this, 2130968896));
         if (attributeSet != null) {
-            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C5419R.a.ViewReplySpline, 0, 0);
-            C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…* defStyleRes */0\n      )");
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.ViewReplySpline, 0, 0);
+            m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…* defStyleRes */0\n      )");
             float dimension = typedArrayObtainStyledAttributes.getDimension(3, 0.0f);
             float dimension2 = typedArrayObtainStyledAttributes.getDimension(1, 0.0f);
             this.orientation = typedArrayObtainStyledAttributes.getInteger(2, 0);

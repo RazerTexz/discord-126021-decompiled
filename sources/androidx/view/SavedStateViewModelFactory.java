@@ -10,11 +10,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class SavedStateViewModelFactory extends ViewModelProvider.KeyedFactory {
+public final class SavedStateViewModelFactory extends ViewModelProvider$KeyedFactory {
     private static final Class<?>[] ANDROID_VIEWMODEL_SIGNATURE = {Application.class, SavedStateHandle.class};
     private final Application mApplication;
     private final Bundle mDefaultArgs;
-    private final ViewModelProvider.Factory mFactory;
+    private final ViewModelProvider$Factory mFactory;
     private final Lifecycle mLifecycle;
     private final SavedStateRegistry mSavedStateRegistry;
     private static final Class<?>[] VIEWMODEL_SIGNATURE = {SavedStateHandle.class};
@@ -24,7 +24,7 @@ public final class SavedStateViewModelFactory extends ViewModelProvider.KeyedFac
     }
 
     /* JADX WARN: Code duplicated, block: B:16:0x0046 A[Catch: InvocationTargetException -> 0x005a, InstantiationException -> 0x0076, IllegalAccessException -> 0x0093, TryCatch #2 {IllegalAccessException -> 0x0093, InstantiationException -> 0x0076, InvocationTargetException -> 0x005a, blocks: (B:13:0x0030, B:15:0x0034, B:17:0x0054, B:16:0x0046), top: B:28:0x0030 }] */
-    @Override // androidx.lifecycle.ViewModelProvider.KeyedFactory
+    @Override // androidx.view.ViewModelProvider$KeyedFactory
     @NonNull
     public <T extends ViewModel> T create(@NonNull String str, @NonNull Class<T> cls) {
         T t;
@@ -66,7 +66,7 @@ public final class SavedStateViewModelFactory extends ViewModelProvider.KeyedFac
         return null;
     }
 
-    @Override // androidx.lifecycle.ViewModelProvider.OnRequeryFactory
+    @Override // androidx.view.ViewModelProvider$OnRequeryFactory
     public void onRequery(@NonNull ViewModel viewModel) {
         SavedStateHandleController.attachHandleIfNeeded(viewModel, this.mSavedStateRegistry, this.mLifecycle);
     }
@@ -77,10 +77,10 @@ public final class SavedStateViewModelFactory extends ViewModelProvider.KeyedFac
         this.mLifecycle = savedStateRegistryOwner.getLifecycle();
         this.mDefaultArgs = bundle;
         this.mApplication = application;
-        this.mFactory = application != null ? ViewModelProvider.AndroidViewModelFactory.getInstance(application) : ViewModelProvider.NewInstanceFactory.getInstance();
+        this.mFactory = application != null ? ViewModelProvider$AndroidViewModelFactory.getInstance(application) : ViewModelProvider$NewInstanceFactory.getInstance();
     }
 
-    @Override // androidx.lifecycle.ViewModelProvider.KeyedFactory, androidx.lifecycle.ViewModelProvider.Factory
+    @Override // androidx.view.ViewModelProvider$KeyedFactory, androidx.view.ViewModelProvider$Factory
     @NonNull
     public <T extends ViewModel> T create(@NonNull Class<T> cls) {
         String canonicalName = cls.getCanonicalName();

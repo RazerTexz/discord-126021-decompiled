@@ -7,19 +7,21 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.LocaleList;
 import android.os.Looper;
-import android.provider.Settings;
+import android.provider.Settings$Secure;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import b.d.b.a.a;
 import com.adjust.sdk.scheduler.SingleThreadFutureScheduler;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
+import java.io.ObjectInputStream$GetField;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -31,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -38,7 +41,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.regex.Pattern;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Util {
@@ -47,6 +49,10 @@ public class Util {
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'Z";
     public static final SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT, Locale.US);
     private static volatile SingleThreadFutureScheduler playAdIdScheduler = null;
+
+    public static /* synthetic */ String access$000(Context context) {
+        return getGoogleAdId(context);
+    }
 
     public static boolean checkPermission(Context context, String str) {
         try {
@@ -58,7 +64,7 @@ public class Util {
     }
 
     public static String convertToHex(byte[] bArr) {
-        return formatString(C1643a.m814B(C1643a.m833U("%0"), bArr.length << 1, "x"), new BigInteger(1, bArr));
+        return formatString(a.B(a.U("%0"), bArr.length << 1, "x"), new BigInteger(1, bArr));
     }
 
     public static String createUuid() {
@@ -103,17 +109,8 @@ public class Util {
         return String.format(Locale.US, str, objArr);
     }
 
-    public static Object getAdvertisingInfoObject(final Context context, long j) {
-        return runSyncInPlayAdIdSchedulerWithTimeout(context, new Callable<Object>() { // from class: com.adjust.sdk.Util.1
-            @Override // java.util.concurrent.Callable
-            public Object call() {
-                try {
-                    return Reflection.getAdvertisingInfoObject(context);
-                } catch (Exception unused) {
-                    return null;
-                }
-            }
-        }, j);
+    public static Object getAdvertisingInfoObject(Context context, long j) {
+        return runSyncInPlayAdIdSchedulerWithTimeout(context, new Util$1(context), j);
     }
 
     public static String getAndroidId(Context context) {
@@ -127,7 +124,7 @@ public class Util {
             if (connectivityManager == null) {
                 return -1;
             }
-            int i = Build.VERSION.SDK_INT;
+            int i = Build$VERSION.SDK_INT;
             if (i < 23) {
                 return connectivityManager.getActiveNetworkInfo().getType();
             }
@@ -171,7 +168,7 @@ public class Util {
             return null;
         }
         try {
-            return Settings.Secure.getString(contentResolver, "advertising_id");
+            return Settings$Secure.getString(contentResolver, "advertising_id");
         } catch (Exception unused) {
             return null;
         }
@@ -179,42 +176,28 @@ public class Util {
 
     public static Boolean getFireTrackingEnabled(ContentResolver contentResolver) {
         try {
-            return Boolean.valueOf(Settings.Secure.getInt(contentResolver, "limit_ad_tracking") == 0);
+            return Boolean.valueOf(Settings$Secure.getInt(contentResolver, "limit_ad_tracking") == 0);
         } catch (Exception unused) {
             return null;
         }
     }
 
-    public static void getGoogleAdId(Context context, final OnDeviceIdsRead onDeviceIdsRead) {
+    public static void getGoogleAdId(Context context, OnDeviceIdsRead onDeviceIdsRead) {
         ILogger logger = AdjustFactory.getLogger();
         if (Looper.myLooper() == Looper.getMainLooper()) {
             logger.debug("GoogleAdId being read in the foreground", new Object[0]);
-            new AsyncTask<Context, Void, String>() { // from class: com.adjust.sdk.Util.5
-                @Override // android.os.AsyncTask
-                public String doInBackground(Context... contextArr) {
-                    ILogger logger2 = AdjustFactory.getLogger();
-                    String googleAdId = Util.getGoogleAdId(contextArr[0]);
-                    logger2.debug(C1643a.m883w("GoogleAdId read ", googleAdId), new Object[0]);
-                    return googleAdId;
-                }
-
-                @Override // android.os.AsyncTask
-                public void onPostExecute(String str) {
-                    AdjustFactory.getLogger();
-                    onDeviceIdsRead.onGoogleAdIdRead(str);
-                }
-            }.execute(context);
+            new Util$5(onDeviceIdsRead).execute(context);
         } else {
             logger.debug("GoogleAdId being read in the background", new Object[0]);
             String googleAdId = getGoogleAdId(context);
-            logger.debug(C1643a.m883w("GoogleAdId read ", googleAdId), new Object[0]);
+            logger.debug(a.w("GoogleAdId read ", googleAdId), new Object[0]);
             onDeviceIdsRead.onGoogleAdIdRead(googleAdId);
         }
     }
 
     public static Locale getLocale(Configuration configuration) {
         LocaleList locales;
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i >= 24 && (locales = configuration.getLocales()) != null && !locales.isEmpty()) {
             return locales.get(0);
         }
@@ -269,13 +252,8 @@ public class Util {
         }
     }
 
-    public static String getPlayAdId(final Context context, final Object obj, long j) {
-        return (String) runSyncInPlayAdIdSchedulerWithTimeout(context, new Callable<String>() { // from class: com.adjust.sdk.Util.2
-            @Override // java.util.concurrent.Callable
-            public String call() {
-                return Reflection.getPlayAdId(context, obj);
-            }
-        }, j);
+    public static String getPlayAdId(Context context, Object obj, long j) {
+        return (String) runSyncInPlayAdIdSchedulerWithTimeout(context, new Util$2(context, obj), j);
     }
 
     public static String getReasonString(String str, Throwable th) {
@@ -378,14 +356,8 @@ public class Util {
         return str.hashCode();
     }
 
-    public static Boolean isPlayTrackingEnabled(final Context context, final Object obj, long j) {
-        return (Boolean) runSyncInPlayAdIdSchedulerWithTimeout(context, new Callable<Boolean>() { // from class: com.adjust.sdk.Util.3
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // java.util.concurrent.Callable
-            public Boolean call() {
-                return Reflection.isPlayTrackingEnabled(context, obj);
-            }
-        }, j);
+    public static Boolean isPlayTrackingEnabled(Context context, Object obj, long j) {
+        return (Boolean) runSyncInPlayAdIdSchedulerWithTimeout(context, new Util$3(context, obj), j);
     }
 
     public static boolean isUrlFilteredOut(Uri uri) {
@@ -418,10 +390,10 @@ public class Util {
         }
         HashMap map3 = new HashMap(map);
         ILogger logger = getLogger();
-        for (Map.Entry<String, String> entry : map2.entrySet()) {
-            String str2 = (String) map3.put(entry.getKey(), entry.getValue());
+        for (Map$Entry<String, String> map$Entry : map2.entrySet()) {
+            String str2 = (String) map3.put(map$Entry.getKey(), map$Entry.getValue());
             if (str2 != null) {
-                logger.warn("Key %s with value %s from %s parameter was replaced by value %s", entry.getKey(), str2, str, entry.getValue());
+                logger.warn("Key %s with value %s from %s parameter was replaced by value %s", map$Entry.getKey(), str2, str, map$Entry.getValue());
             }
         }
         return map3;
@@ -442,27 +414,27 @@ public class Util {
         return (new Random().nextDouble() * (d2 - d)) + d;
     }
 
-    public static boolean readBooleanField(ObjectInputStream.GetField getField, String str, boolean z2) {
+    public static boolean readBooleanField(ObjectInputStream$GetField objectInputStream$GetField, String str, boolean z2) {
         try {
-            return getField.get(str, z2);
+            return objectInputStream$GetField.get(str, z2);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return z2;
         }
     }
 
-    public static int readIntField(ObjectInputStream.GetField getField, String str, int i) {
+    public static int readIntField(ObjectInputStream$GetField objectInputStream$GetField, String str, int i) {
         try {
-            return getField.get(str, i);
+            return objectInputStream$GetField.get(str, i);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return i;
         }
     }
 
-    public static long readLongField(ObjectInputStream.GetField getField, String str, long j) {
+    public static long readLongField(ObjectInputStream$GetField objectInputStream$GetField, String str, long j) {
         try {
-            return getField.get(str, j);
+            return objectInputStream$GetField.get(str, j);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return j;
@@ -540,17 +512,17 @@ public class Util {
         return tCast;
     }
 
-    public static <T> T readObjectField(ObjectInputStream.GetField getField, String str, T t) {
+    public static <T> T readObjectField(ObjectInputStream$GetField objectInputStream$GetField, String str, T t) {
         try {
-            return (T) getField.get(str, t);
+            return (T) objectInputStream$GetField.get(str, t);
         } catch (Exception e) {
             getLogger().debug(fieldReadErrorMessage, str, e.getMessage());
             return t;
         }
     }
 
-    public static String readStringField(ObjectInputStream.GetField getField, String str, String str2) {
-        return (String) readObjectField(getField, str, str2);
+    public static String readStringField(ObjectInputStream$GetField objectInputStream$GetField, String str, String str2) {
+        return (String) readObjectField(objectInputStream$GetField, str, str2);
     }
 
     public static boolean resolveContentProvider(Context context, String str) {
@@ -565,13 +537,7 @@ public class Util {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             runnable.run();
         } else {
-            new AsyncTask<Object, Void, Void>() { // from class: com.adjust.sdk.Util.4
-                @Override // android.os.AsyncTask
-                public Void doInBackground(Object... objArr) {
-                    ((Runnable) objArr[0]).run();
-                    return null;
-                }
-            }.execute(runnable);
+            new Util$4().execute(runnable);
         }
     }
 
@@ -654,7 +620,7 @@ public class Util {
         Object advertisingInfoObject;
         String gpsAdid = null;
         try {
-            GooglePlayServicesClient.GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, 11000L);
+            GooglePlayServicesClient$GooglePlayServicesInfo googlePlayServicesInfo = GooglePlayServicesClient.getGooglePlayServicesInfo(context, 11000L);
             if (googlePlayServicesInfo != null) {
                 gpsAdid = googlePlayServicesInfo.getGpsAdid();
             }

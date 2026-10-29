@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import java.io.IOException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelConnectionState implements Model {
@@ -10,21 +10,21 @@ public class ModelConnectionState implements Model {
     private String state;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "code":
-                this.code = jsonReader.nextString("");
+                this.code = model$JsonReader.nextString("");
                 break;
             case "state":
-                this.state = jsonReader.nextString("");
+                this.state = model$JsonReader.nextString("");
                 break;
             case "provider_id":
-                this.providerId = jsonReader.nextString("");
+                this.providerId = model$JsonReader.nextString("");
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -81,13 +81,13 @@ public class ModelConnectionState implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelConnectionState(code=");
-        sbM833U.append(getCode());
-        sbM833U.append(", state=");
-        sbM833U.append(getState());
-        sbM833U.append(", providerId=");
-        sbM833U.append(getProviderId());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelConnectionState(code=");
+        sbU.append(getCode());
+        sbU.append(", state=");
+        sbU.append(getState());
+        sbU.append(", providerId=");
+        sbU.append(getProviderId());
+        sbU.append(")");
+        return sbU.toString();
     }
 }

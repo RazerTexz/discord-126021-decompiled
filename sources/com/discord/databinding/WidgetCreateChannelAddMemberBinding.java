@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetCreateChannelAddMemberBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f16417a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FragmentContainerView f16418b;
+    public final FragmentContainerView f2356b;
 
     public WidgetCreateChannelAddMemberBinding(@NonNull LinearLayout linearLayout, @NonNull FragmentContainerView fragmentContainerView) {
-        this.f16417a = linearLayout;
-        this.f16418b = fragmentContainerView;
+        this.a = linearLayout;
+        this.f2356b = fragmentContainerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16417a;
+        return this.a;
     }
 }

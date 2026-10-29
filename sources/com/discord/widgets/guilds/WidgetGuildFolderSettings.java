@@ -1,9 +1,8 @@
 package com.discord.widgets.guilds;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -17,14 +16,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentViewModelLazyKt;
-import com.discord.C5419R;
+import b.a.d.g0;
+import b.a.d.i0;
+import b.d.b.a.a;
+import com.discord.R$array;
+import com.discord.R$layout;
 import com.discord.app.AppFragment;
 import com.discord.databinding.WidgetGuildFolderSettingsBinding;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.utilities.color.ColorCompat;
-import com.discord.utilities.error.Error;
 import com.discord.utilities.font.FontUtils;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.rx.ObservableExtensionsKt;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegate;
 import com.discord.utilities.viewbinding.FragmentViewBindingDelegateKt;
@@ -32,37 +34,25 @@ import com.discord.widgets.chat.input.MentionUtilsKt;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
+import com.jaredrummler.android.colorpicker.ColorPickerDialog$k;
+import d0.z.d.a0;
+import d0.z.d.m;
+import f0.e0.c;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 import kotlin.Lazy;
-import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.reflect.KProperty;
-import p007b.p008a.p018d.C0865g0;
-import p007b.p008a.p018d.C0869i0;
-import p007b.p008a.p018d.C0870j;
-import p007b.p008a.p018d.C0876m;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p440k.p441a.p442a.InterfaceC5079f;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12216a0;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
-import p600f0.p601e0.C12272c;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
 
 /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildFolderSettings extends AppFragment {
-    public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildFolderSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildFolderSettingsBinding;", 0)};
+    public static final /* synthetic */ KProperty[] $$delegatedProperties = {a.d0(WidgetGuildFolderSettings.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildFolderSettingsBinding;", 0)};
+    public static final WidgetGuildFolderSettings$Companion Companion = new WidgetGuildFolderSettings$Companion(null);
     private static final String DIALOG_TAG_COLOR_PICKER = "DIALOG_TAG_COLOR_PICKER";
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -70,164 +60,99 @@ public final class WidgetGuildFolderSettings extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$configureUI$1 */
-    /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final class C85721 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C85721() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "editable");
-            WidgetGuildFolderSettings.this.getViewModel().setName(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final /* synthetic */ class C85761 extends C12236k implements Function1<WidgetGuildFolderSettingsViewModel.ViewState, Unit> {
-        public C85761(WidgetGuildFolderSettings widgetGuildFolderSettings) {
-            super(1, widgetGuildFolderSettings, WidgetGuildFolderSettings.class, "configureUI", "configureUI(Lcom/discord/widgets/guilds/WidgetGuildFolderSettingsViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildFolderSettingsViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetGuildFolderSettingsViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildFolderSettings) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.WidgetGuildFolderSettings$onViewBoundOrOnResume$2 */
-    /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final /* synthetic */ class C85772 extends C12236k implements Function1<WidgetGuildFolderSettingsViewModel.Event, Unit> {
-        public C85772(WidgetGuildFolderSettings widgetGuildFolderSettings) {
-            super(1, widgetGuildFolderSettings, WidgetGuildFolderSettings.class, "handleEvent", "handleEvent(Lcom/discord/widgets/guilds/WidgetGuildFolderSettingsViewModel$Event;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildFolderSettingsViewModel.Event event) {
-            invoke2(event);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetGuildFolderSettingsViewModel.Event event) {
-            C12238m.checkNotNullParameter(event, "p1");
-            ((WidgetGuildFolderSettings) this.receiver).handleEvent(event);
-        }
-    }
-
-    /* JADX INFO: compiled from: WidgetGuildFolderSettings.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final void create(Context context, long folderId) {
-            C12238m.checkNotNullParameter(context, "context");
-            C0870j.m156d(context, WidgetGuildFolderSettings.class, new Intent().putExtra("com.discord.intent.extra.EXTRA_GUILD_FOLDER_ID", folderId));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public WidgetGuildFolderSettings() {
-        super(C5419R.layout.widget_guild_folder_settings);
+        super(R$layout.widget_guild_folder_settings);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetGuildFolderSettings$binding$2.INSTANCE, null, 2, null);
         WidgetGuildFolderSettings$viewModel$2 widgetGuildFolderSettings$viewModel$2 = new WidgetGuildFolderSettings$viewModel$2(this);
-        C0865g0 c0865g0 = new C0865g0(this);
-        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, C12216a0.getOrCreateKotlinClass(WidgetGuildFolderSettingsViewModel.class), new WidgetGuildFolderSettings$appViewModels$$inlined$viewModels$1(c0865g0), new C0869i0(widgetGuildFolderSettings$viewModel$2));
+        g0 g0Var = new g0(this);
+        this.viewModel = FragmentViewModelLazyKt.createViewModelLazy(this, a0.getOrCreateKotlinClass(WidgetGuildFolderSettingsViewModel.class), new WidgetGuildFolderSettings$appViewModels$$inlined$viewModels$1(g0Var), new i0(widgetGuildFolderSettings$viewModel$2));
+    }
+
+    public static final /* synthetic */ int access$argbColorToRGB(WidgetGuildFolderSettings widgetGuildFolderSettings, int i) {
+        return widgetGuildFolderSettings.argbColorToRGB(i);
+    }
+
+    public static final /* synthetic */ void access$configureUI(WidgetGuildFolderSettings widgetGuildFolderSettings, WidgetGuildFolderSettingsViewModel$ViewState widgetGuildFolderSettingsViewModel$ViewState) {
+        widgetGuildFolderSettings.configureUI(widgetGuildFolderSettingsViewModel$ViewState);
+    }
+
+    public static final /* synthetic */ WidgetGuildFolderSettingsViewModel access$getViewModel$p(WidgetGuildFolderSettings widgetGuildFolderSettings) {
+        return widgetGuildFolderSettings.getViewModel();
+    }
+
+    public static final /* synthetic */ void access$handleEvent(WidgetGuildFolderSettings widgetGuildFolderSettings, WidgetGuildFolderSettingsViewModel$Event widgetGuildFolderSettingsViewModel$Event) {
+        widgetGuildFolderSettings.handleEvent(widgetGuildFolderSettingsViewModel$Event);
+    }
+
+    public static final /* synthetic */ void access$launchColorPicker(WidgetGuildFolderSettings widgetGuildFolderSettings, WidgetGuildFolderSettingsViewModel$ViewState$Loaded widgetGuildFolderSettingsViewModel$ViewState$Loaded) {
+        widgetGuildFolderSettings.launchColorPicker(widgetGuildFolderSettingsViewModel$ViewState$Loaded);
     }
 
     private final int argbColorToRGB(int color) {
         return Color.argb(0, Color.red(color), Color.green(color), Color.blue(color));
     }
 
-    private final void configureUI(final WidgetGuildFolderSettingsViewModel.ViewState state) {
+    private final void configureUI(WidgetGuildFolderSettingsViewModel$ViewState state) {
         int themedColor;
-        if (state instanceof WidgetGuildFolderSettingsViewModel.ViewState.Loaded) {
-            View view = getBinding().f16778e;
-            C12238m.checkNotNullExpressionValue(view, "binding.guildFolderSettingsColorDisplay");
-            Drawable drawable = ContextCompat.getDrawable(view.getContext(), C5419R.drawable.drawable_circle_white_1);
-            WidgetGuildFolderSettingsViewModel.ViewState.Loaded loaded = (WidgetGuildFolderSettingsViewModel.ViewState.Loaded) state;
-            Integer numRgbColorToARGB = rgbColorToARGB(loaded.getFormState().getColor());
+        if (state instanceof WidgetGuildFolderSettingsViewModel$ViewState$Loaded) {
+            View view = getBinding().e;
+            m.checkNotNullExpressionValue(view, "binding.guildFolderSettingsColorDisplay");
+            Drawable drawable = ContextCompat.getDrawable(view.getContext(), 2131231192);
+            WidgetGuildFolderSettingsViewModel$ViewState$Loaded widgetGuildFolderSettingsViewModel$ViewState$Loaded = (WidgetGuildFolderSettingsViewModel$ViewState$Loaded) state;
+            Integer numRgbColorToARGB = rgbColorToARGB(widgetGuildFolderSettingsViewModel$ViewState$Loaded.getFormState().getColor());
             if (numRgbColorToARGB != null) {
                 themedColor = numRgbColorToARGB.intValue();
             } else {
-                View view2 = getBinding().f16778e;
-                C12238m.checkNotNullExpressionValue(view2, "binding.guildFolderSettingsColorDisplay");
-                themedColor = ColorCompat.getThemedColor(view2, C5419R.attr.color_brand);
+                View view2 = getBinding().e;
+                m.checkNotNullExpressionValue(view2, "binding.guildFolderSettingsColorDisplay");
+                themedColor = ColorCompat.getThemedColor(view2, 2130969062);
             }
             if (drawable != null) {
-                drawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_ATOP));
-                View view3 = getBinding().f16778e;
-                C12238m.checkNotNullExpressionValue(view3, "binding.guildFolderSettingsColorDisplay");
+                drawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff$Mode.SRC_ATOP));
+                View view3 = getBinding().e;
+                m.checkNotNullExpressionValue(view3, "binding.guildFolderSettingsColorDisplay");
                 view3.setBackground(drawable);
             }
-            TextInputLayout textInputLayout = getBinding().f16775b;
-            C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editGuildFolderName");
-            ViewExtensions.addBindedTextWatcher(textInputLayout, this, new C85721());
-            TextInputLayout textInputLayout2 = getBinding().f16775b;
-            C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.editGuildFolderName");
+            TextInputLayout textInputLayout = getBinding().f2413b;
+            m.checkNotNullExpressionValue(textInputLayout, "binding.editGuildFolderName");
+            ViewExtensions.addBindedTextWatcher(textInputLayout, this, new WidgetGuildFolderSettings$configureUI$1(this));
+            TextInputLayout textInputLayout2 = getBinding().f2413b;
+            m.checkNotNullExpressionValue(textInputLayout2, "binding.editGuildFolderName");
             String textOrEmpty = ViewExtensions.getTextOrEmpty(textInputLayout2);
-            if (!C12238m.areEqual(loaded.getFormState().getName(), textOrEmpty)) {
-                TextInputLayout textInputLayout3 = getBinding().f16775b;
-                C12238m.checkNotNullExpressionValue(textInputLayout3, "binding.editGuildFolderName");
-                ViewExtensions.setText(textInputLayout3, loaded.getFormState().getName());
+            if (!m.areEqual(widgetGuildFolderSettingsViewModel$ViewState$Loaded.getFormState().getName(), textOrEmpty)) {
+                TextInputLayout textInputLayout3 = getBinding().f2413b;
+                m.checkNotNullExpressionValue(textInputLayout3, "binding.editGuildFolderName");
+                ViewExtensions.setText(textInputLayout3, widgetGuildFolderSettingsViewModel$ViewState$Loaded.getFormState().getName());
                 if (textOrEmpty.length() == 0) {
-                    TextInputLayout textInputLayout4 = getBinding().f16775b;
-                    C12238m.checkNotNullExpressionValue(textInputLayout4, "binding.editGuildFolderName");
+                    TextInputLayout textInputLayout4 = getBinding().f2413b;
+                    m.checkNotNullExpressionValue(textInputLayout4, "binding.editGuildFolderName");
                     EditText editText = textInputLayout4.getEditText();
                     Editable text = editText != null ? editText.getText() : null;
-                    TextInputLayout textInputLayout5 = getBinding().f16775b;
-                    C12238m.checkNotNullExpressionValue(textInputLayout5, "binding.editGuildFolderName");
+                    TextInputLayout textInputLayout5 = getBinding().f2413b;
+                    m.checkNotNullExpressionValue(textInputLayout5, "binding.editGuildFolderName");
                     Selection.setSelection(text, ViewExtensions.getTextOrEmpty(textInputLayout5).length());
                 }
             }
-            TextView textView = getBinding().f16776c;
-            C12238m.checkNotNullExpressionValue(textView, "binding.guildFolderColorName");
+            TextView textView = getBinding().c;
+            m.checkNotNullExpressionValue(textView, "binding.guildFolderColorName");
             StringBuilder sb = new StringBuilder();
             sb.append(MentionUtilsKt.CHANNELS_CHAR);
-            String strM10143x = C12272c.m10143x(themedColor);
-            Objects.requireNonNull(strM10143x, "null cannot be cast to non-null type java.lang.String");
-            String strSubstring = strM10143x.substring(2);
-            C12238m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
+            String strX = c.x(themedColor);
+            Objects.requireNonNull(strX, "null cannot be cast to non-null type java.lang.String");
+            String strSubstring = strX.substring(2);
+            m.checkNotNullExpressionValue(strSubstring, "(this as java.lang.String).substring(startIndex)");
             Locale locale = Locale.ROOT;
-            C12238m.checkNotNullExpressionValue(locale, "Locale.ROOT");
+            m.checkNotNullExpressionValue(locale, "Locale.ROOT");
             Objects.requireNonNull(strSubstring, "null cannot be cast to non-null type java.lang.String");
             String upperCase = strSubstring.toUpperCase(locale);
-            C12238m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
+            m.checkNotNullExpressionValue(upperCase, "(this as java.lang.String).toUpperCase(locale)");
             sb.append(upperCase);
             textView.setText(sb.toString());
-            getBinding().f16777d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.WidgetGuildFolderSettings.configureUI.2
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view4) {
-                    WidgetGuildFolderSettings.this.launchColorPicker((WidgetGuildFolderSettingsViewModel.ViewState.Loaded) state);
-                }
-            });
-            FloatingActionButton floatingActionButton = getBinding().f16779f;
-            C12238m.checkNotNullExpressionValue(floatingActionButton, "binding.guildFolderSettingsSave");
-            floatingActionButton.setVisibility(loaded.getShowSave() ? 0 : 8);
-            getBinding().f16779f.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.WidgetGuildFolderSettings.configureUI.3
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view4) {
-                    WidgetGuildFolderSettings.this.getViewModel().saveFolder();
-                }
-            });
+            getBinding().d.setOnClickListener(new WidgetGuildFolderSettings$configureUI$2(this, state));
+            FloatingActionButton floatingActionButton = getBinding().f;
+            m.checkNotNullExpressionValue(floatingActionButton, "binding.guildFolderSettingsSave");
+            floatingActionButton.setVisibility(widgetGuildFolderSettingsViewModel$ViewState$Loaded.getShowSave() ? 0 : 8);
+            getBinding().f.setOnClickListener(new WidgetGuildFolderSettings$configureUI$3(this));
         }
     }
 
@@ -237,8 +162,8 @@ public final class WidgetGuildFolderSettings extends AppFragment {
 
     @ColorInt
     private final int[] getColorsToDisplay(@ColorInt int currentColor) {
-        int[] intArray = getResources().getIntArray(C5419R.array.color_picker_palette);
-        C12238m.checkNotNullExpressionValue(intArray, "resources.getIntArray(R.…ray.color_picker_palette)");
+        int[] intArray = getResources().getIntArray(R$array.color_picker_palette);
+        m.checkNotNullExpressionValue(intArray, "resources.getIntArray(R.…ray.color_picker_palette)");
         ArrayList arrayList = new ArrayList();
         boolean z2 = false;
         for (int i : intArray) {
@@ -262,84 +187,70 @@ public final class WidgetGuildFolderSettings extends AppFragment {
         return (WidgetGuildFolderSettingsViewModel) this.viewModel.getValue();
     }
 
-    private final void handleEvent(WidgetGuildFolderSettingsViewModel.Event event) {
-        if (!(event instanceof WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsSuccess)) {
-            if (event instanceof WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsFailure) {
-                C0876m.m169g(getContext(), ((WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsFailure) event).getFailureMessageStringRes(), 0, null, 12);
+    private final void handleEvent(WidgetGuildFolderSettingsViewModel$Event event) {
+        if (!(event instanceof WidgetGuildFolderSettingsViewModel$Event$UpdateFolderSettingsSuccess)) {
+            if (event instanceof WidgetGuildFolderSettingsViewModel$Event$UpdateFolderSettingsFailure) {
+                b.a.d.m.g(getContext(), ((WidgetGuildFolderSettingsViewModel$Event$UpdateFolderSettingsFailure) event).getFailureMessageStringRes(), 0, null, 12);
             }
         } else {
-            C0876m.m171i(this, ((WidgetGuildFolderSettingsViewModel.Event.UpdateFolderSettingsSuccess) event).getSuccessMessageStringRes(), 0, 4);
+            b.a.d.m.i(this, ((WidgetGuildFolderSettingsViewModel$Event$UpdateFolderSettingsSuccess) event).getSuccessMessageStringRes(), 0, 4);
             AppFragment.hideKeyboard$default(this, null, 1, null);
-            FragmentActivity fragmentActivityM95e = m95e();
-            if (fragmentActivityM95e != null) {
-                fragmentActivityM95e.onBackPressed();
+            FragmentActivity activity = getActivity();
+            if (activity != null) {
+                activity.onBackPressed();
             }
         }
     }
 
-    private final void launchColorPicker(WidgetGuildFolderSettingsViewModel.ViewState.Loaded data) {
+    private final void launchColorPicker(WidgetGuildFolderSettingsViewModel$ViewState$Loaded data) {
         Integer numRgbColorToARGB = rgbColorToARGB(data.getFormState().getColor());
-        int iIntValue = numRgbColorToARGB != null ? numRgbColorToARGB.intValue() : ColorCompat.getThemedColor(getContext(), C5419R.attr.color_brand);
-        ColorPickerDialog.C11163k c11163k = new ColorPickerDialog.C11163k();
-        c11163k.f21754h = iIntValue;
-        c11163k.f21765s = ColorCompat.getThemedColor(getContext(), C5419R.attr.colorBackgroundPrimary);
-        c11163k.f21755i = false;
-        c11163k.f21753g = getColorsToDisplay(iIntValue);
-        c11163k.f21747a = C5419R.string.guild_folder_color;
-        c11163k.f21764r = ColorCompat.getThemedColor(getContext(), C5419R.attr.colorHeaderPrimary);
+        int iIntValue = numRgbColorToARGB != null ? numRgbColorToARGB.intValue() : ColorCompat.getThemedColor(getContext(), 2130969062);
+        ColorPickerDialog$k colorPickerDialog$k = new ColorPickerDialog$k();
+        colorPickerDialog$k.h = iIntValue;
+        colorPickerDialog$k.f3148s = ColorCompat.getThemedColor(getContext(), 2130968911);
+        colorPickerDialog$k.i = false;
+        colorPickerDialog$k.g = getColorsToDisplay(iIntValue);
+        colorPickerDialog$k.a = 2131890226;
+        colorPickerDialog$k.r = ColorCompat.getThemedColor(getContext(), 2130968989);
         FontUtils fontUtils = FontUtils.INSTANCE;
-        c11163k.f21770x = fontUtils.getThemedFontResId(getContext(), C5419R.attr.font_display_bold);
-        c11163k.f21761o = ColorCompat.getThemedColor(getContext(), C5419R.attr.colorBackgroundAccent);
-        c11163k.f21749c = C5419R.string.color_picker_custom;
-        c11163k.f21768v = ColorCompat.getColor(getContext(), C5419R.color.white);
-        c11163k.f21748b = C5419R.string.color_picker_presets;
-        c11163k.f21762p = ColorCompat.getThemedColor(getContext(), C5419R.attr.color_brand);
-        c11163k.f21750d = C5419R.string.select;
-        c11163k.f21758l = true;
-        c11163k.f21751e = C5419R.string.reset;
-        c11163k.f21769w = ColorCompat.getColor(getContext(), C5419R.color.white);
-        c11163k.f21771y = fontUtils.getThemedFontResId(getContext(), C5419R.attr.font_primary_semibold);
-        c11163k.f21763q = ColorCompat.getThemedColor(getContext(), C5419R.attr.colorBackgroundModifierAccent);
-        c11163k.f21766t = ColorCompat.getThemedColor(getContext(), C5419R.attr.colorTextMuted);
-        c11163k.f21767u = C5419R.drawable.drawable_cpv_edit_text_background;
-        c11163k.f21772z = fontUtils.getThemedFontResId(getContext(), C5419R.attr.font_primary_normal);
-        ColorPickerDialog colorPickerDialogM9275a = c11163k.m9275a();
-        colorPickerDialogM9275a.f21719k = new InterfaceC5079f() { // from class: com.discord.widgets.guilds.WidgetGuildFolderSettings.launchColorPicker.1
-            @Override // p007b.p440k.p441a.p442a.InterfaceC5079f
-            public void onColorReset(int dialogId) {
-                WidgetGuildFolderSettings.this.getViewModel().setColor(Integer.valueOf(WidgetGuildFolderSettings.this.argbColorToRGB(ColorCompat.getThemedColor(WidgetGuildFolderSettings.this.getContext(), C5419R.attr.color_brand))));
-            }
-
-            @Override // p007b.p440k.p441a.p442a.InterfaceC5079f
-            public void onColorSelected(int dialogId, int selectedColor) {
-                WidgetGuildFolderSettings.this.getViewModel().setColor(Integer.valueOf(WidgetGuildFolderSettings.this.argbColorToRGB(selectedColor)));
-            }
-
-            @Override // p007b.p440k.p441a.p442a.InterfaceC5079f
-            public void onDialogDismissed(int dialogId) {
-            }
-        };
+        colorPickerDialog$k.f3149x = fontUtils.getThemedFontResId(getContext(), 2130969390);
+        colorPickerDialog$k.o = ColorCompat.getThemedColor(getContext(), 2130968896);
+        colorPickerDialog$k.c = 2131887706;
+        colorPickerDialog$k.v = ColorCompat.getColor(getContext(), 2131100487);
+        colorPickerDialog$k.f3147b = 2131887707;
+        colorPickerDialog$k.p = ColorCompat.getThemedColor(getContext(), 2130969062);
+        colorPickerDialog$k.d = 2131895390;
+        colorPickerDialog$k.l = true;
+        colorPickerDialog$k.e = 2131894833;
+        colorPickerDialog$k.w = ColorCompat.getColor(getContext(), 2131100487);
+        colorPickerDialog$k.f3150y = fontUtils.getThemedFontResId(getContext(), 2130969396);
+        colorPickerDialog$k.q = ColorCompat.getThemedColor(getContext(), 2130968906);
+        colorPickerDialog$k.t = ColorCompat.getThemedColor(getContext(), 2130969056);
+        colorPickerDialog$k.u = 2131231203;
+        colorPickerDialog$k.f3151z = fontUtils.getThemedFontResId(getContext(), 2130969395);
+        ColorPickerDialog colorPickerDialogA = colorPickerDialog$k.a();
+        colorPickerDialogA.k = new WidgetGuildFolderSettings$launchColorPicker$1(this);
         AppFragment.hideKeyboard$default(this, null, 1, null);
-        colorPickerDialogM9275a.show(getParentFragmentManager(), DIALOG_TAG_COLOR_PICKER);
+        colorPickerDialogA.show(getParentFragmentManager(), DIALOG_TAG_COLOR_PICKER);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(view, "view");
         super.onViewBound(view);
         AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        setActionBarTitle(C5419R.string.server_folder_settings);
+        setActionBarTitle(2131895580);
     }
 
     @Override // com.discord.app.AppFragment
     public void onViewBoundOrOnResume() {
         super.onViewBoundOrOnResume();
-        Observable observableM11112r = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel.observeViewSta…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(observableM11112r, (Class<?>) WidgetGuildFolderSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C85761(this));
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), (Class<?>) WidgetGuildFolderSettings.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C85772(this));
+        Observable observableR = ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeViewState(), this, null, 2, null).r();
+        m.checkNotNullExpressionValue(observableR, "viewModel.observeViewSta…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe$default(observableR, WidgetGuildFolderSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildFolderSettings$onViewBoundOrOnResume$1(this), 62, (Object) null);
+        ObservableExtensionsKt.appSubscribe$default(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().observeEvents(), this, null, 2, null), WidgetGuildFolderSettings.class, (Context) null, (Function1) null, (Function1) null, (Function0) null, (Function0) null, new WidgetGuildFolderSettings$onViewBoundOrOnResume$2(this), 62, (Object) null);
         FragmentManager parentFragmentManager = getParentFragmentManager();
-        C12238m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
+        m.checkNotNullExpressionValue(parentFragmentManager, "parentFragmentManager");
         Fragment fragmentFindFragmentByTag = parentFragmentManager.findFragmentByTag(DIALOG_TAG_COLOR_PICKER);
         if (fragmentFindFragmentByTag != null) {
             parentFragmentManager.beginTransaction().remove(fragmentFindFragmentByTag).commit();

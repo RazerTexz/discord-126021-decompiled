@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.list.entries;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelInvite;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StageInviteEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -17,8 +17,8 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
     private final long userId;
 
     public StageInviteEntry(long j, long j2, String str, ModelInvite modelInvite, long j3) {
-        C12238m.checkNotNullParameter(str, "inviteCode");
-        C12238m.checkNotNullParameter(modelInvite, "invite");
+        m.checkNotNullParameter(str, "inviteCode");
+        m.checkNotNullParameter(modelInvite, "invite");
         this.userId = j;
         this.messageId = j2;
         this.inviteCode = str;
@@ -28,9 +28,13 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
         this.key = "39 -- " + j2 + " -- " + str;
     }
 
+    public static /* synthetic */ StageInviteEntry copy$default(StageInviteEntry stageInviteEntry, long j, long j2, String str, ModelInvite modelInvite, long j3, int i, Object obj) {
+        return stageInviteEntry.copy((i & 1) != 0 ? stageInviteEntry.userId : j, (i & 2) != 0 ? stageInviteEntry.messageId : j2, (i & 4) != 0 ? stageInviteEntry.inviteCode : str, (i & 8) != 0 ? stageInviteEntry.invite : modelInvite, (i & 16) != 0 ? stageInviteEntry.guildId : j3);
+    }
+
     public final StageInviteEntry copy(long userId, long messageId, String inviteCode, ModelInvite invite, long guildId) {
-        C12238m.checkNotNullParameter(inviteCode, "inviteCode");
-        C12238m.checkNotNullParameter(invite, "invite");
+        m.checkNotNullParameter(inviteCode, "inviteCode");
+        m.checkNotNullParameter(invite, "invite");
         return new StageInviteEntry(userId, messageId, inviteCode, invite, guildId);
     }
 
@@ -42,7 +46,7 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
             return false;
         }
         StageInviteEntry stageInviteEntry = (StageInviteEntry) other;
-        return this.userId == stageInviteEntry.userId && this.messageId == stageInviteEntry.messageId && C12238m.areEqual(this.inviteCode, stageInviteEntry.inviteCode) && C12238m.areEqual(this.invite, stageInviteEntry.invite) && this.guildId == stageInviteEntry.guildId;
+        return this.userId == stageInviteEntry.userId && this.messageId == stageInviteEntry.messageId && m.areEqual(this.inviteCode, stageInviteEntry.inviteCode) && m.areEqual(this.invite, stageInviteEntry.invite) && this.guildId == stageInviteEntry.guildId;
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -101,23 +105,23 @@ public final /* data */ class StageInviteEntry extends ChatListEntry {
     }
 
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.messageId) + (C0002b.m3a(this.userId) * 31)) * 31;
+        int iA = (b.a(this.messageId) + (b.a(this.userId) * 31)) * 31;
         String str = this.inviteCode;
-        int iHashCode = (iM3a + (str != null ? str.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (str != null ? str.hashCode() : 0)) * 31;
         ModelInvite modelInvite = this.invite;
-        return C0002b.m3a(this.guildId) + ((iHashCode + (modelInvite != null ? modelInvite.hashCode() : 0)) * 31);
+        return b.a(this.guildId) + ((iHashCode + (modelInvite != null ? modelInvite.hashCode() : 0)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StageInviteEntry(userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", invite=");
-        sbM833U.append(this.invite);
-        sbM833U.append(", guildId=");
-        return C1643a.m815C(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("StageInviteEntry(userId=");
+        sbU.append(this.userId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", invite=");
+        sbU.append(this.invite);
+        sbU.append(", guildId=");
+        return a.C(sbU, this.guildId, ")");
     }
 }

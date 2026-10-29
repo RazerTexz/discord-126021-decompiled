@@ -16,7 +16,9 @@ import java.util.Arrays;
 public class CursorLoader extends AsyncTaskLoader<Cursor> {
     public CancellationSignal mCancellationSignal;
     public Cursor mCursor;
-    public final Loader<Cursor>.ForceLoadContentObserver mObserver;
+
+    /* JADX WARN: Incorrect inner types in field signature: Landroidx/loader/content/Loader<Landroid/database/Cursor;>.ForceLoadContentObserver; */
+    public final Loader$ForceLoadContentObserver mObserver;
     public String[] mProjection;
     public String mSelection;
     public String[] mSelectionArgs;
@@ -25,7 +27,7 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
 
     public CursorLoader(@NonNull Context context) {
         super(context);
-        this.mObserver = new Loader.ForceLoadContentObserver();
+        this.mObserver = new Loader$ForceLoadContentObserver(this);
     }
 
     @Override // androidx.loader.content.AsyncTaskLoader
@@ -37,6 +39,11 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
                 cancellationSignal.cancel();
             }
         }
+    }
+
+    @Override // androidx.loader.content.Loader
+    public /* bridge */ /* synthetic */ void deliverResult(Object obj) {
+        deliverResult((Cursor) obj);
     }
 
     @Override // androidx.loader.content.AsyncTaskLoader, androidx.loader.content.Loader
@@ -91,6 +98,16 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
         return this.mUri;
     }
 
+    @Override // androidx.loader.content.AsyncTaskLoader
+    public /* bridge */ /* synthetic */ Cursor loadInBackground() {
+        return loadInBackground();
+    }
+
+    @Override // androidx.loader.content.AsyncTaskLoader
+    public /* bridge */ /* synthetic */ void onCanceled(Cursor cursor) {
+        onCanceled2(cursor);
+    }
+
     @Override // androidx.loader.content.Loader
     public void onReset() {
         super.onReset();
@@ -138,7 +155,6 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
         this.mUri = uri;
     }
 
-    @Override // androidx.loader.content.Loader
     public void deliverResult(Cursor cursor) {
         if (isReset()) {
             if (cursor != null) {
@@ -190,8 +206,8 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
         }
     }
 
-    @Override // androidx.loader.content.AsyncTaskLoader
-    public void onCanceled(Cursor cursor) {
+    /* JADX INFO: renamed from: onCanceled, reason: avoid collision after fix types in other method */
+    public void onCanceled2(Cursor cursor) {
         if (cursor == null || cursor.isClosed()) {
             return;
         }
@@ -200,7 +216,7 @@ public class CursorLoader extends AsyncTaskLoader<Cursor> {
 
     public CursorLoader(@NonNull Context context, @NonNull Uri uri, @Nullable String[] strArr, @Nullable String str, @Nullable String[] strArr2, @Nullable String str2) {
         super(context);
-        this.mObserver = new Loader.ForceLoadContentObserver();
+        this.mObserver = new Loader$ForceLoadContentObserver(this);
         this.mUri = uri;
         this.mProjection = strArr;
         this.mSelection = str;

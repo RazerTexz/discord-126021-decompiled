@@ -2,13 +2,12 @@ package androidx.preference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
+import android.view.View$OnKeyListener;
 import android.widget.SeekBar;
+import android.widget.SeekBar$OnSeekBarChangeListener;
 import android.widget.TextView;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -18,109 +17,26 @@ public class SeekBarPreference extends Preference {
     private int mMax;
     public int mMin;
     public SeekBar mSeekBar;
-    private SeekBar.OnSeekBarChangeListener mSeekBarChangeListener;
+    private SeekBar$OnSeekBarChangeListener mSeekBarChangeListener;
     private int mSeekBarIncrement;
-    private View.OnKeyListener mSeekBarKeyListener;
+    private View$OnKeyListener mSeekBarKeyListener;
     public int mSeekBarValue;
     private TextView mSeekBarValueTextView;
     private boolean mShowSeekBarValue;
     public boolean mTrackingTouch;
     public boolean mUpdatesContinuously;
 
-    public class SavedState extends Preference.BaseSavedState {
-        public int mMax;
-        public int mMin;
-        public int mSeekBarValue;
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.SeekBarPreference.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mSeekBarValue = parcel.readInt();
-            this.mMin = parcel.readInt();
-            this.mMax = parcel.readInt();
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.mSeekBarValue);
-            parcel.writeInt(this.mMin);
-            parcel.writeInt(this.mMax);
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-    }
-
     public SeekBarPreference(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
-        this.mSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() { // from class: androidx.preference.SeekBarPreference.1
-            @Override // android.widget.SeekBar.OnSeekBarChangeListener
-            public void onProgressChanged(SeekBar seekBar, int i3, boolean z2) {
-                if (z2) {
-                    SeekBarPreference seekBarPreference = SeekBarPreference.this;
-                    if (seekBarPreference.mUpdatesContinuously || !seekBarPreference.mTrackingTouch) {
-                        seekBarPreference.syncValueInternal(seekBar);
-                        return;
-                    }
-                }
-                SeekBarPreference seekBarPreference2 = SeekBarPreference.this;
-                seekBarPreference2.updateLabelValue(i3 + seekBarPreference2.mMin);
-            }
-
-            @Override // android.widget.SeekBar.OnSeekBarChangeListener
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                SeekBarPreference.this.mTrackingTouch = true;
-            }
-
-            @Override // android.widget.SeekBar.OnSeekBarChangeListener
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                SeekBarPreference.this.mTrackingTouch = false;
-                int progress = seekBar.getProgress();
-                SeekBarPreference seekBarPreference = SeekBarPreference.this;
-                if (progress + seekBarPreference.mMin != seekBarPreference.mSeekBarValue) {
-                    seekBarPreference.syncValueInternal(seekBar);
-                }
-            }
-        };
-        this.mSeekBarKeyListener = new View.OnKeyListener() { // from class: androidx.preference.SeekBarPreference.2
-            @Override // android.view.View.OnKeyListener
-            public boolean onKey(View view, int i3, KeyEvent keyEvent) {
-                if (keyEvent.getAction() != 0) {
-                    return false;
-                }
-                SeekBarPreference seekBarPreference = SeekBarPreference.this;
-                if ((!seekBarPreference.mAdjustable && (i3 == 21 || i3 == 22)) || i3 == 23 || i3 == 66) {
-                    return false;
-                }
-                SeekBar seekBar = seekBarPreference.mSeekBar;
-                if (seekBar != null) {
-                    return seekBar.onKeyDown(i3, keyEvent);
-                }
-                Log.e(SeekBarPreference.TAG, "SeekBar view is null and hence cannot be adjusted.");
-                return false;
-            }
-        };
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0525R.styleable.SeekBarPreference, i, i2);
-        this.mMin = typedArrayObtainStyledAttributes.getInt(C0525R.styleable.SeekBarPreference_min, 0);
-        setMax(typedArrayObtainStyledAttributes.getInt(C0525R.styleable.SeekBarPreference_android_max, 100));
-        setSeekBarIncrement(typedArrayObtainStyledAttributes.getInt(C0525R.styleable.SeekBarPreference_seekBarIncrement, 0));
-        this.mAdjustable = typedArrayObtainStyledAttributes.getBoolean(C0525R.styleable.SeekBarPreference_adjustable, true);
-        this.mShowSeekBarValue = typedArrayObtainStyledAttributes.getBoolean(C0525R.styleable.SeekBarPreference_showSeekBarValue, false);
-        this.mUpdatesContinuously = typedArrayObtainStyledAttributes.getBoolean(C0525R.styleable.SeekBarPreference_updatesContinuously, false);
+        this.mSeekBarChangeListener = new SeekBarPreference$1(this);
+        this.mSeekBarKeyListener = new SeekBarPreference$2(this);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$styleable.SeekBarPreference, i, i2);
+        this.mMin = typedArrayObtainStyledAttributes.getInt(R$styleable.SeekBarPreference_min, 0);
+        setMax(typedArrayObtainStyledAttributes.getInt(R$styleable.SeekBarPreference_android_max, 100));
+        setSeekBarIncrement(typedArrayObtainStyledAttributes.getInt(R$styleable.SeekBarPreference_seekBarIncrement, 0));
+        this.mAdjustable = typedArrayObtainStyledAttributes.getBoolean(R$styleable.SeekBarPreference_adjustable, true);
+        this.mShowSeekBarValue = typedArrayObtainStyledAttributes.getBoolean(R$styleable.SeekBarPreference_showSeekBarValue, false);
+        this.mUpdatesContinuously = typedArrayObtainStyledAttributes.getBoolean(R$styleable.SeekBarPreference_updatesContinuously, false);
         typedArrayObtainStyledAttributes.recycle();
     }
 
@@ -156,8 +72,8 @@ public class SeekBarPreference extends Preference {
     public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
         super.onBindViewHolder(preferenceViewHolder);
         preferenceViewHolder.itemView.setOnKeyListener(this.mSeekBarKeyListener);
-        this.mSeekBar = (SeekBar) preferenceViewHolder.findViewById(C0525R.id.seekbar);
-        TextView textView = (TextView) preferenceViewHolder.findViewById(C0525R.id.seekbar_value);
+        this.mSeekBar = (SeekBar) preferenceViewHolder.findViewById(R$id.seekbar);
+        TextView textView = (TextView) preferenceViewHolder.findViewById(R$id.seekbar_value);
         this.mSeekBarValueTextView = textView;
         if (this.mShowSeekBarValue) {
             textView.setVisibility(0);
@@ -190,15 +106,15 @@ public class SeekBarPreference extends Preference {
 
     @Override // androidx.preference.Preference
     public void onRestoreInstanceState(Parcelable parcelable) {
-        if (!parcelable.getClass().equals(SavedState.class)) {
+        if (!parcelable.getClass().equals(SeekBarPreference$SavedState.class)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        SavedState savedState = (SavedState) parcelable;
-        super.onRestoreInstanceState(savedState.getSuperState());
-        this.mSeekBarValue = savedState.mSeekBarValue;
-        this.mMin = savedState.mMin;
-        this.mMax = savedState.mMax;
+        SeekBarPreference$SavedState seekBarPreference$SavedState = (SeekBarPreference$SavedState) parcelable;
+        super.onRestoreInstanceState(seekBarPreference$SavedState.getSuperState());
+        this.mSeekBarValue = seekBarPreference$SavedState.mSeekBarValue;
+        this.mMin = seekBarPreference$SavedState.mMin;
+        this.mMax = seekBarPreference$SavedState.mMax;
         notifyChanged();
     }
 
@@ -208,11 +124,11 @@ public class SeekBarPreference extends Preference {
         if (isPersistent()) {
             return parcelableOnSaveInstanceState;
         }
-        SavedState savedState = new SavedState(parcelableOnSaveInstanceState);
-        savedState.mSeekBarValue = this.mSeekBarValue;
-        savedState.mMin = this.mMin;
-        savedState.mMax = this.mMax;
-        return savedState;
+        SeekBarPreference$SavedState seekBarPreference$SavedState = new SeekBarPreference$SavedState(parcelableOnSaveInstanceState);
+        seekBarPreference$SavedState.mSeekBarValue = this.mSeekBarValue;
+        seekBarPreference$SavedState.mMin = this.mMin;
+        seekBarPreference$SavedState.mMax = this.mMax;
+        return seekBarPreference$SavedState;
     }
 
     @Override // androidx.preference.Preference
@@ -312,7 +228,7 @@ public class SeekBarPreference extends Preference {
     }
 
     public SeekBarPreference(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, C0525R.attr.seekBarPreferenceStyle);
+        this(context, attributeSet, R$attr.seekBarPreferenceStyle);
     }
 
     public SeekBarPreference(Context context) {

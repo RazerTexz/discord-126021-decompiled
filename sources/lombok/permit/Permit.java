@@ -60,18 +60,9 @@ public class Permit {
             return UNSAFE.objectFieldOffset(f);
         }
         try {
-            return UNSAFE.objectFieldOffset(Fake.class.getDeclaredField("override"));
+            return UNSAFE.objectFieldOffset(Permit$Fake.class.getDeclaredField("override"));
         } catch (Throwable unused) {
             throw saved;
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/permit/Permit$Fake.SCL.lombok */
-    class Fake {
-        boolean override;
-        Object accessCheckCache;
-
-        Fake() {
         }
     }
 

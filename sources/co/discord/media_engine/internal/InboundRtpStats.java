@@ -1,7 +1,7 @@
 package co.discord.media_engine.internal;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
+import a0.a.a.b;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: NativeStatistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,6 +20,10 @@ public final /* data */ class InboundRtpStats {
         this.headerBytes = j3;
         this.paddingBytes = j4;
         this.payloadBytes = j5;
+    }
+
+    public static /* synthetic */ InboundRtpStats copy$default(InboundRtpStats inboundRtpStats, long j, long j2, int i, long j3, long j4, long j5, int i2, Object obj) {
+        return inboundRtpStats.copy((i2 & 1) != 0 ? inboundRtpStats.packets : j, (i2 & 2) != 0 ? inboundRtpStats.jitter : j2, (i2 & 4) != 0 ? inboundRtpStats.packetsLost : i, (i2 & 8) != 0 ? inboundRtpStats.headerBytes : j3, (i2 & 16) != 0 ? inboundRtpStats.paddingBytes : j4, (i2 & 32) != 0 ? inboundRtpStats.payloadBytes : j5);
     }
 
     public final InboundRtpStats copy(long packets, long jitter, int packetsLost, long headerBytes, long paddingBytes, long payloadBytes) {
@@ -92,21 +96,21 @@ public final /* data */ class InboundRtpStats {
     }
 
     public int hashCode() {
-        return C0002b.m3a(this.payloadBytes) + ((C0002b.m3a(this.paddingBytes) + ((C0002b.m3a(this.headerBytes) + ((((C0002b.m3a(this.jitter) + (C0002b.m3a(this.packets) * 31)) * 31) + this.packetsLost) * 31)) * 31)) * 31);
+        return b.a(this.payloadBytes) + ((b.a(this.paddingBytes) + ((b.a(this.headerBytes) + ((((b.a(this.jitter) + (b.a(this.packets) * 31)) * 31) + this.packetsLost) * 31)) * 31)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InboundRtpStats(packets=");
-        sbM833U.append(this.packets);
-        sbM833U.append(", jitter=");
-        sbM833U.append(this.jitter);
-        sbM833U.append(", packetsLost=");
-        sbM833U.append(this.packetsLost);
-        sbM833U.append(", headerBytes=");
-        sbM833U.append(this.headerBytes);
-        sbM833U.append(", paddingBytes=");
-        sbM833U.append(this.paddingBytes);
-        sbM833U.append(", payloadBytes=");
-        return C1643a.m815C(sbM833U, this.payloadBytes, ")");
+        StringBuilder sbU = a.U("InboundRtpStats(packets=");
+        sbU.append(this.packets);
+        sbU.append(", jitter=");
+        sbU.append(this.jitter);
+        sbU.append(", packetsLost=");
+        sbU.append(this.packetsLost);
+        sbU.append(", headerBytes=");
+        sbU.append(this.headerBytes);
+        sbU.append(", paddingBytes=");
+        sbU.append(this.paddingBytes);
+        sbU.append(", payloadBytes=");
+        return a.C(sbU, this.payloadBytes, ")");
     }
 }

@@ -3,6 +3,8 @@ package com.google.android.material.timepicker;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface$OnCancelListener;
+import android.content.DialogInterface$OnDismissListener;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.Window;
@@ -21,20 +24,23 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.DialogFragment;
-import com.google.android.material.C10817R;
+import b.d.b.a.a;
+import b.i.a.g.k.f;
+import b.i.a.g.k.g;
+import b.i.a.g.k.i;
+import com.google.android.material.R$attr;
+import com.google.android.material.R$id;
+import com.google.android.material.R$layout;
+import com.google.android.material.R$string;
+import com.google.android.material.R$style;
+import com.google.android.material.R$styleable;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.resources.MaterialAttributes;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p225i.p226a.p341g.p352k.C4451f;
-import p007b.p225i.p226a.p341g.p352k.C4454i;
-import p007b.p225i.p226a.p341g.p352k.InterfaceC4452g;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class MaterialTimePicker extends DialogFragment {
@@ -46,7 +52,7 @@ public final class MaterialTimePicker extends DialogFragment {
     public static final String TITLE_TEXT_EXTRA = "TIME_PICKER_TITLE_TEXT";
 
     @Nullable
-    private InterfaceC4452g activePresenter;
+    private g activePresenter;
 
     @DrawableRes
     private int clockIcon;
@@ -59,142 +65,66 @@ public final class MaterialTimePicker extends DialogFragment {
     private TimeModel time;
 
     @Nullable
-    private C4451f timePickerClockPresenter;
+    private f timePickerClockPresenter;
 
     @Nullable
-    private C4454i timePickerTextInputPresenter;
+    private i timePickerTextInputPresenter;
     private TimePickerView timePickerView;
     private String titleText;
-    private final Set<View.OnClickListener> positiveButtonListeners = new LinkedHashSet();
-    private final Set<View.OnClickListener> negativeButtonListeners = new LinkedHashSet();
-    private final Set<DialogInterface.OnCancelListener> cancelListeners = new LinkedHashSet();
-    private final Set<DialogInterface.OnDismissListener> dismissListeners = new LinkedHashSet();
+    private final Set<View$OnClickListener> positiveButtonListeners = new LinkedHashSet();
+    private final Set<View$OnClickListener> negativeButtonListeners = new LinkedHashSet();
+    private final Set<DialogInterface$OnCancelListener> cancelListeners = new LinkedHashSet();
+    private final Set<DialogInterface$OnDismissListener> dismissListeners = new LinkedHashSet();
     private int titleResId = 0;
     private int inputMode = 0;
 
-    public final class Builder {
-        private int inputMode;
-        private CharSequence titleText;
-        private TimeModel time = new TimeModel(0, 0, 10, 0);
-        private int titleTextResId = 0;
-
-        @NonNull
-        public MaterialTimePicker build() {
-            return MaterialTimePicker.newInstance(this);
-        }
-
-        @NonNull
-        public Builder setHour(@IntRange(from = 0, m76to = 23) int i) {
-            TimeModel timeModel = this.time;
-            timeModel.f21226p = i >= 12 ? 1 : 0;
-            timeModel.f21223m = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setInputMode(int i) {
-            this.inputMode = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setMinute(@IntRange(from = 0, m76to = 60) int i) {
-            TimeModel timeModel = this.time;
-            Objects.requireNonNull(timeModel);
-            timeModel.f21224n = i % 60;
-            return this;
-        }
-
-        @NonNull
-        public Builder setTimeFormat(int i) {
-            TimeModel timeModel = this.time;
-            int i2 = timeModel.f21223m;
-            int i3 = timeModel.f21224n;
-            TimeModel timeModel2 = new TimeModel(0, 0, 10, i);
-            this.time = timeModel2;
-            timeModel2.f21224n = i3 % 60;
-            timeModel2.f21226p = i2 >= 12 ? 1 : 0;
-            timeModel2.f21223m = i2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setTitleText(@StringRes int i) {
-            this.titleTextResId = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setTitleText(@Nullable CharSequence charSequence) {
-            this.titleText = charSequence;
-            return this;
-        }
+    public static /* synthetic */ MaterialTimePicker access$1000(MaterialTimePicker$Builder materialTimePicker$Builder) {
+        return newInstance(materialTimePicker$Builder);
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.timepicker.MaterialTimePicker$a */
-    public class C11023a implements TimePickerView.InterfaceC11029b {
-        public C11023a() {
-        }
+    public static /* synthetic */ int access$400(MaterialTimePicker materialTimePicker) {
+        return materialTimePicker.inputMode;
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.timepicker.MaterialTimePicker$b */
-    public class ViewOnClickListenerC11024b implements View.OnClickListener {
-        public ViewOnClickListenerC11024b() {
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            Iterator it = MaterialTimePicker.this.positiveButtonListeners.iterator();
-            while (it.hasNext()) {
-                ((View.OnClickListener) it.next()).onClick(view);
-            }
-            MaterialTimePicker.this.dismiss();
-        }
+    public static /* synthetic */ int access$402(MaterialTimePicker materialTimePicker, int i) {
+        materialTimePicker.inputMode = i;
+        return i;
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.timepicker.MaterialTimePicker$c */
-    public class ViewOnClickListenerC11025c implements View.OnClickListener {
-        public ViewOnClickListenerC11025c() {
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            Iterator it = MaterialTimePicker.this.negativeButtonListeners.iterator();
-            while (it.hasNext()) {
-                ((View.OnClickListener) it.next()).onClick(view);
-            }
-            MaterialTimePicker.this.dismiss();
-        }
+    public static /* synthetic */ MaterialButton access$500(MaterialTimePicker materialTimePicker) {
+        return materialTimePicker.modeButton;
     }
 
-    /* JADX INFO: renamed from: com.google.android.material.timepicker.MaterialTimePicker$d */
-    public class ViewOnClickListenerC11026d implements View.OnClickListener {
-        public ViewOnClickListenerC11026d() {
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            MaterialTimePicker materialTimePicker = MaterialTimePicker.this;
-            materialTimePicker.inputMode = materialTimePicker.inputMode == 0 ? 1 : 0;
-            MaterialTimePicker materialTimePicker2 = MaterialTimePicker.this;
-            materialTimePicker2.updateInputMode(materialTimePicker2.modeButton);
-        }
+    public static /* synthetic */ void access$600(MaterialTimePicker materialTimePicker, MaterialButton materialButton) {
+        materialTimePicker.updateInputMode(materialButton);
     }
 
-    public boolean addOnCancelListener(@NonNull DialogInterface.OnCancelListener onCancelListener) {
-        return this.cancelListeners.add(onCancelListener);
+    public static /* synthetic */ i access$700(MaterialTimePicker materialTimePicker) {
+        return materialTimePicker.timePickerTextInputPresenter;
     }
 
-    public boolean addOnDismissListener(@NonNull DialogInterface.OnDismissListener onDismissListener) {
-        return this.dismissListeners.add(onDismissListener);
+    public static /* synthetic */ Set access$800(MaterialTimePicker materialTimePicker) {
+        return materialTimePicker.positiveButtonListeners;
     }
 
-    public boolean addOnNegativeButtonClickListener(@NonNull View.OnClickListener onClickListener) {
-        return this.negativeButtonListeners.add(onClickListener);
+    public static /* synthetic */ Set access$900(MaterialTimePicker materialTimePicker) {
+        return materialTimePicker.negativeButtonListeners;
     }
 
-    public boolean addOnPositiveButtonClickListener(@NonNull View.OnClickListener onClickListener) {
-        return this.positiveButtonListeners.add(onClickListener);
+    public boolean addOnCancelListener(@NonNull DialogInterface$OnCancelListener dialogInterface$OnCancelListener) {
+        return this.cancelListeners.add(dialogInterface$OnCancelListener);
+    }
+
+    public boolean addOnDismissListener(@NonNull DialogInterface$OnDismissListener dialogInterface$OnDismissListener) {
+        return this.dismissListeners.add(dialogInterface$OnDismissListener);
+    }
+
+    public boolean addOnNegativeButtonClickListener(@NonNull View$OnClickListener view$OnClickListener) {
+        return this.negativeButtonListeners.add(view$OnClickListener);
+    }
+
+    public boolean addOnPositiveButtonClickListener(@NonNull View$OnClickListener view$OnClickListener) {
+        return this.positiveButtonListeners.add(view$OnClickListener);
     }
 
     public void clearOnCancelListeners() {
@@ -215,70 +145,70 @@ public final class MaterialTimePicker extends DialogFragment {
 
     private Pair<Integer, Integer> dataForMode(int i) {
         if (i == 0) {
-            return new Pair<>(Integer.valueOf(this.keyboardIcon), Integer.valueOf(C10817R.string.material_timepicker_text_input_mode_description));
+            return new Pair<>(Integer.valueOf(this.keyboardIcon), Integer.valueOf(R$string.material_timepicker_text_input_mode_description));
         }
         if (i == 1) {
-            return new Pair<>(Integer.valueOf(this.clockIcon), Integer.valueOf(C10817R.string.material_timepicker_clock_mode_description));
+            return new Pair<>(Integer.valueOf(this.clockIcon), Integer.valueOf(R$string.material_timepicker_clock_mode_description));
         }
-        throw new IllegalArgumentException(C1643a.m871q("no icon for mode: ", i));
+        throw new IllegalArgumentException(a.q("no icon for mode: ", i));
     }
 
-    @IntRange(from = 0, m76to = 23)
+    @IntRange(from = 0, to = 23)
     public int getHour() {
-        return this.time.f21223m % 24;
+        return this.time.m % 24;
     }
 
     public int getInputMode() {
         return this.inputMode;
     }
 
-    @IntRange(from = 0, m76to = 60)
+    @IntRange(from = 0, to = 60)
     public int getMinute() {
-        return this.time.f21224n;
+        return this.time.n;
     }
 
     @Nullable
-    public C4451f getTimePickerClockPresenter() {
+    public f getTimePickerClockPresenter() {
         return this.timePickerClockPresenter;
     }
 
-    private InterfaceC4452g initializeOrRetrieveActivePresenterForMode(int i) {
+    private g initializeOrRetrieveActivePresenterForMode(int i) {
         if (i == 0) {
-            C4451f c4451f = this.timePickerClockPresenter;
-            if (c4451f == null) {
-                c4451f = new C4451f(this.timePickerView, this.time);
+            f fVar = this.timePickerClockPresenter;
+            if (fVar == null) {
+                fVar = new f(this.timePickerView, this.time);
             }
-            this.timePickerClockPresenter = c4451f;
-            return c4451f;
+            this.timePickerClockPresenter = fVar;
+            return fVar;
         }
         if (this.timePickerTextInputPresenter == null) {
             LinearLayout linearLayout = (LinearLayout) this.textInputStub.inflate();
             this.textInputView = linearLayout;
-            this.timePickerTextInputPresenter = new C4454i(linearLayout, this.time);
+            this.timePickerTextInputPresenter = new i(linearLayout, this.time);
         }
-        C4454i c4454i = this.timePickerTextInputPresenter;
-        c4454i.f11881n.setChecked(false);
-        c4454i.f11882o.setChecked(false);
+        i iVar = this.timePickerTextInputPresenter;
+        iVar.n.setChecked(false);
+        iVar.o.setChecked(false);
         return this.timePickerTextInputPresenter;
     }
 
     @NonNull
-    private static MaterialTimePicker newInstance(@NonNull Builder builder) {
+    private static MaterialTimePicker newInstance(@NonNull MaterialTimePicker$Builder materialTimePicker$Builder) {
         MaterialTimePicker materialTimePicker = new MaterialTimePicker();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(TIME_MODEL_EXTRA, builder.time);
-        bundle.putInt(INPUT_MODE_EXTRA, builder.inputMode);
-        bundle.putInt(TITLE_RES_EXTRA, builder.titleTextResId);
-        if (builder.titleText != null) {
-            bundle.putString(TITLE_TEXT_EXTRA, builder.titleText.toString());
+        bundle.putParcelable(TIME_MODEL_EXTRA, MaterialTimePicker$Builder.access$000(materialTimePicker$Builder));
+        bundle.putInt(INPUT_MODE_EXTRA, MaterialTimePicker$Builder.access$100(materialTimePicker$Builder));
+        bundle.putInt(TITLE_RES_EXTRA, MaterialTimePicker$Builder.access$200(materialTimePicker$Builder));
+        if (MaterialTimePicker$Builder.access$300(materialTimePicker$Builder) != null) {
+            bundle.putString(TITLE_TEXT_EXTRA, MaterialTimePicker$Builder.access$300(materialTimePicker$Builder).toString());
         }
         materialTimePicker.setArguments(bundle);
         return materialTimePicker;
     }
 
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnCancelListener
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnCancelListener
     public final void onCancel(@NonNull DialogInterface dialogInterface) {
-        Iterator<DialogInterface.OnCancelListener> it = this.cancelListeners.iterator();
+        Iterator<DialogInterface$OnCancelListener> it = this.cancelListeners.iterator();
         while (it.hasNext()) {
             it.next().onCancel(dialogInterface);
         }
@@ -297,16 +227,16 @@ public final class MaterialTimePicker extends DialogFragment {
     @Override // androidx.fragment.app.DialogFragment
     @NonNull
     public final Dialog onCreateDialog(@Nullable Bundle bundle) {
-        TypedValue typedValueResolve = MaterialAttributes.resolve(requireContext(), C10817R.attr.materialTimePickerTheme);
+        TypedValue typedValueResolve = MaterialAttributes.resolve(requireContext(), R$attr.materialTimePickerTheme);
         Dialog dialog = new Dialog(requireContext(), typedValueResolve == null ? 0 : typedValueResolve.data);
         Context context = dialog.getContext();
-        int iResolveOrThrow = MaterialAttributes.resolveOrThrow(context, C10817R.attr.colorSurface, MaterialTimePicker.class.getCanonicalName());
-        int i = C10817R.attr.materialTimePickerStyle;
-        int i2 = C10817R.style.Widget_MaterialComponents_TimePicker;
+        int iResolveOrThrow = MaterialAttributes.resolveOrThrow(context, R$attr.colorSurface, MaterialTimePicker.class.getCanonicalName());
+        int i = R$attr.materialTimePickerStyle;
+        int i2 = R$style.Widget_MaterialComponents_TimePicker;
         MaterialShapeDrawable materialShapeDrawable = new MaterialShapeDrawable(context, null, i, i2);
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(null, C10817R.styleable.MaterialTimePicker, i, i2);
-        this.clockIcon = typedArrayObtainStyledAttributes.getResourceId(C10817R.styleable.MaterialTimePicker_clockIcon, 0);
-        this.keyboardIcon = typedArrayObtainStyledAttributes.getResourceId(C10817R.styleable.MaterialTimePicker_keyboardIcon, 0);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(null, R$styleable.MaterialTimePicker, i, i2);
+        this.clockIcon = typedArrayObtainStyledAttributes.getResourceId(R$styleable.MaterialTimePicker_clockIcon, 0);
+        this.keyboardIcon = typedArrayObtainStyledAttributes.getResourceId(R$styleable.MaterialTimePicker_keyboardIcon, 0);
         typedArrayObtainStyledAttributes.recycle();
         materialShapeDrawable.initializeElevationOverlay(context);
         materialShapeDrawable.setFillColor(ColorStateList.valueOf(iResolveOrThrow));
@@ -320,13 +250,13 @@ public final class MaterialTimePicker extends DialogFragment {
     @Override // androidx.fragment.app.Fragment
     @NonNull
     public final View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        ViewGroup viewGroup2 = (ViewGroup) layoutInflater.inflate(C10817R.layout.material_timepicker_dialog, viewGroup);
-        TimePickerView timePickerView = (TimePickerView) viewGroup2.findViewById(C10817R.id.material_timepicker_view);
+        ViewGroup viewGroup2 = (ViewGroup) layoutInflater.inflate(R$layout.material_timepicker_dialog, viewGroup);
+        TimePickerView timePickerView = (TimePickerView) viewGroup2.findViewById(R$id.material_timepicker_view);
         this.timePickerView = timePickerView;
-        timePickerView.f21235r = new C11023a();
-        this.textInputStub = (ViewStub) viewGroup2.findViewById(C10817R.id.material_textinput_timepicker);
-        this.modeButton = (MaterialButton) viewGroup2.findViewById(C10817R.id.material_timepicker_mode_button);
-        TextView textView = (TextView) viewGroup2.findViewById(C10817R.id.header_title);
+        timePickerView.r = new MaterialTimePicker$a(this);
+        this.textInputStub = (ViewStub) viewGroup2.findViewById(R$id.material_textinput_timepicker);
+        this.modeButton = (MaterialButton) viewGroup2.findViewById(R$id.material_timepicker_mode_button);
+        TextView textView = (TextView) viewGroup2.findViewById(R$id.header_title);
         if (!TextUtils.isEmpty(this.titleText)) {
             textView.setText(this.titleText);
         }
@@ -335,15 +265,15 @@ public final class MaterialTimePicker extends DialogFragment {
             textView.setText(i);
         }
         updateInputMode(this.modeButton);
-        ((Button) viewGroup2.findViewById(C10817R.id.material_timepicker_ok_button)).setOnClickListener(new ViewOnClickListenerC11024b());
-        ((Button) viewGroup2.findViewById(C10817R.id.material_timepicker_cancel_button)).setOnClickListener(new ViewOnClickListenerC11025c());
-        this.modeButton.setOnClickListener(new ViewOnClickListenerC11026d());
+        ((Button) viewGroup2.findViewById(R$id.material_timepicker_ok_button)).setOnClickListener(new MaterialTimePicker$b(this));
+        ((Button) viewGroup2.findViewById(R$id.material_timepicker_cancel_button)).setOnClickListener(new MaterialTimePicker$c(this));
+        this.modeButton.setOnClickListener(new MaterialTimePicker$d(this));
         return viewGroup2;
     }
 
-    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface.OnDismissListener
+    @Override // androidx.fragment.app.DialogFragment, android.content.DialogInterface$OnDismissListener
     public final void onDismiss(@NonNull DialogInterface dialogInterface) {
-        Iterator<DialogInterface.OnDismissListener> it = this.dismissListeners.iterator();
+        Iterator<DialogInterface$OnDismissListener> it = this.dismissListeners.iterator();
         while (it.hasNext()) {
             it.next().onDismiss(dialogInterface);
         }
@@ -363,20 +293,20 @@ public final class MaterialTimePicker extends DialogFragment {
         bundle.putString(TITLE_TEXT_EXTRA, this.titleText);
     }
 
-    public boolean removeOnCancelListener(@NonNull DialogInterface.OnCancelListener onCancelListener) {
-        return this.cancelListeners.remove(onCancelListener);
+    public boolean removeOnCancelListener(@NonNull DialogInterface$OnCancelListener dialogInterface$OnCancelListener) {
+        return this.cancelListeners.remove(dialogInterface$OnCancelListener);
     }
 
-    public boolean removeOnDismissListener(@NonNull DialogInterface.OnDismissListener onDismissListener) {
-        return this.dismissListeners.remove(onDismissListener);
+    public boolean removeOnDismissListener(@NonNull DialogInterface$OnDismissListener dialogInterface$OnDismissListener) {
+        return this.dismissListeners.remove(dialogInterface$OnDismissListener);
     }
 
-    public boolean removeOnNegativeButtonClickListener(@NonNull View.OnClickListener onClickListener) {
-        return this.negativeButtonListeners.remove(onClickListener);
+    public boolean removeOnNegativeButtonClickListener(@NonNull View$OnClickListener view$OnClickListener) {
+        return this.negativeButtonListeners.remove(view$OnClickListener);
     }
 
-    public boolean removeOnPositiveButtonClickListener(@NonNull View.OnClickListener onClickListener) {
-        return this.positiveButtonListeners.remove(onClickListener);
+    public boolean removeOnPositiveButtonClickListener(@NonNull View$OnClickListener view$OnClickListener) {
+        return this.positiveButtonListeners.remove(view$OnClickListener);
     }
 
     private void restoreState(@Nullable Bundle bundle) {
@@ -394,14 +324,14 @@ public final class MaterialTimePicker extends DialogFragment {
     }
 
     private void updateInputMode(MaterialButton materialButton) {
-        InterfaceC4452g interfaceC4452g = this.activePresenter;
-        if (interfaceC4452g != null) {
-            interfaceC4452g.mo6173c();
+        g gVar = this.activePresenter;
+        if (gVar != null) {
+            gVar.c();
         }
-        InterfaceC4452g interfaceC4452gInitializeOrRetrieveActivePresenterForMode = initializeOrRetrieveActivePresenterForMode(this.inputMode);
-        this.activePresenter = interfaceC4452gInitializeOrRetrieveActivePresenterForMode;
-        interfaceC4452gInitializeOrRetrieveActivePresenterForMode.show();
-        this.activePresenter.mo6171a();
+        g gVarInitializeOrRetrieveActivePresenterForMode = initializeOrRetrieveActivePresenterForMode(this.inputMode);
+        this.activePresenter = gVarInitializeOrRetrieveActivePresenterForMode;
+        gVarInitializeOrRetrieveActivePresenterForMode.show();
+        this.activePresenter.a();
         Pair<Integer, Integer> pairDataForMode = dataForMode(this.inputMode);
         materialButton.setIconResource(((Integer) pairDataForMode.first).intValue());
         materialButton.setContentDescription(getResources().getString(((Integer) pairDataForMode.second).intValue()));

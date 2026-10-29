@@ -1,8 +1,8 @@
 package com.esotericsoftware.kryo;
 
-import com.esotericsoftware.kryo.p502io.Input;
-import com.esotericsoftware.kryo.p502io.Output;
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class Serializer<T> {
@@ -16,9 +16,9 @@ public abstract class Serializer<T> {
         if (isImmutable()) {
             return t;
         }
-        StringBuilder sbM833U = C1643a.m833U("Serializer does not support copy: ");
-        sbM833U.append(getClass().getName());
-        throw new KryoException(sbM833U.toString());
+        StringBuilder sbU = a.U("Serializer does not support copy: ");
+        sbU.append(getClass().getName());
+        throw new KryoException(sbU.toString());
     }
 
     public boolean getAcceptsNull() {

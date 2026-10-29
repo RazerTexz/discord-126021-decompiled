@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackMediaDeviceChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema
             return false;
         }
         TrackMediaDeviceChanged trackMediaDeviceChanged = (TrackMediaDeviceChanged) other;
-        return C12238m.areEqual(this.deviceFromName, trackMediaDeviceChanged.deviceFromName) && C12238m.areEqual(this.deviceToName, trackMediaDeviceChanged.deviceToName) && C12238m.areEqual(this.deviceType, trackMediaDeviceChanged.deviceType) && C12238m.areEqual(this.deviceIsCertified, trackMediaDeviceChanged.deviceIsCertified);
+        return m.areEqual(this.deviceFromName, trackMediaDeviceChanged.deviceFromName) && m.areEqual(this.deviceToName, trackMediaDeviceChanged.deviceToName) && m.areEqual(this.deviceType, trackMediaDeviceChanged.deviceType) && m.areEqual(this.deviceIsCertified, trackMediaDeviceChanged.deviceIsCertified);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackMediaDeviceChanged implements AnalyticsSchema
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackMediaDeviceChanged(deviceFromName=");
-        sbM833U.append(this.deviceFromName);
-        sbM833U.append(", deviceToName=");
-        sbM833U.append(this.deviceToName);
-        sbM833U.append(", deviceType=");
-        sbM833U.append(this.deviceType);
-        sbM833U.append(", deviceIsCertified=");
-        return C1643a.m816D(sbM833U, this.deviceIsCertified, ")");
+        StringBuilder sbU = a.U("TrackMediaDeviceChanged(deviceFromName=");
+        sbU.append(this.deviceFromName);
+        sbU.append(", deviceToName=");
+        sbU.append(this.deviceToName);
+        sbU.append(", deviceType=");
+        sbU.append(this.deviceType);
+        sbU.append(", deviceIsCertified=");
+        return a.D(sbU, this.deviceIsCertified, ")");
     }
 }

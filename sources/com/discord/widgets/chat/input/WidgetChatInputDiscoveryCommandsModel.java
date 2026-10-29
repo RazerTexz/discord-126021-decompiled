@@ -1,33 +1,21 @@
 package com.discord.widgets.chat.input;
 
+import b.d.b.a.a;
 import com.discord.models.commands.Application;
 import com.discord.models.commands.ApplicationCommand;
-import com.discord.models.commands.ApplicationCommandKt;
-import com.discord.models.commands.ModelApplicationComparator;
 import com.discord.stores.DiscoverCommands;
 import com.discord.stores.LoadState;
-import com.discord.widgets.chat.input.autocomplete.ApplicationCommandAutocompletable;
-import com.discord.widgets.chat.input.autocomplete.ApplicationCommandLoadingPlaceholder;
-import com.discord.widgets.chat.input.autocomplete.ApplicationPlaceholder;
 import com.discord.widgets.chat.input.autocomplete.Autocompletable;
+import d0.z.d.m;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.TreeSet;
 import kotlin.Pair;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetChatInputDiscoveryCommandsModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final WidgetChatInputDiscoveryCommandsModel$Companion Companion = new WidgetChatInputDiscoveryCommandsModel$Companion(null);
     private final List<Pair<Application, List<Autocompletable>>> commandsByApplication;
     private final boolean hasMoreAfter;
     private final boolean hasMoreBefore;
@@ -35,96 +23,10 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
     private final int jumpedSequenceId;
     private final LoadState loadState;
 
-    /* JADX INFO: compiled from: WidgetChatInputDiscoveryCommandsModel.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        private final List<Autocompletable> createPlaceholderModels(int placeholdersCount, Application app) {
-            ArrayList arrayList = new ArrayList();
-            for (int i = 0; i < placeholdersCount; i++) {
-                arrayList.add(i, new ApplicationCommandLoadingPlaceholder(app));
-            }
-            return arrayList;
-        }
-
-        public final WidgetChatInputDiscoveryCommandsModel parseModelDiscoveryCommands(long myId, List<Long> myRoles, List<Application> applications, DiscoverCommands discoveryCommands, boolean includeHeaders, int placeholdersCount, List<? extends ApplicationCommand> frecencyCommands) {
-            C12238m.checkNotNullParameter(myRoles, "myRoles");
-            C12238m.checkNotNullParameter(applications, "applications");
-            C12238m.checkNotNullParameter(discoveryCommands, "discoveryCommands");
-            C12238m.checkNotNullParameter(frecencyCommands, "frecencyCommands");
-            HashMap map = new HashMap();
-            for (Application application : applications) {
-                map.put(Long.valueOf(application.getId()), application);
-            }
-            TreeSet<Application> treeSet = new TreeSet(ModelApplicationComparator.INSTANCE);
-            HashMap map2 = new HashMap();
-            for (ApplicationCommand applicationCommand : discoveryCommands.getCommands()) {
-                long applicationId = applicationCommand.getApplicationId();
-                Application application2 = (Application) map.get(Long.valueOf(applicationId));
-                if (application2 != null) {
-                    C12238m.checkNotNullExpressionValue(application2, "appMap[appId] ?: continue");
-                    treeSet.add(application2);
-                    ApplicationCommandAutocompletable applicationCommandAutocompletable = new ApplicationCommandAutocompletable(application2, applicationCommand, ApplicationCommandKt.hasPermission(applicationCommand, myId, myRoles), false);
-                    if (map2.containsKey(Long.valueOf(applicationId))) {
-                        List list = (List) map2.get(Long.valueOf(applicationId));
-                        if (list != null) {
-                            list.add(applicationCommandAutocompletable);
-                        }
-                    } else {
-                        ArrayList arrayList = new ArrayList();
-                        arrayList.add(applicationCommandAutocompletable);
-                        map2.put(Long.valueOf(applicationId), arrayList);
-                    }
-                }
-            }
-            ArrayList arrayList2 = new ArrayList();
-            for (Application application3 : treeSet) {
-                List list2 = (List) map2.get(Long.valueOf(application3.getId()));
-                if (list2 != null && (true ^ list2.isEmpty())) {
-                    if (includeHeaders) {
-                        list2.add(0, new ApplicationPlaceholder(application3));
-                    }
-                    arrayList2.add(new Pair(application3, list2));
-                }
-            }
-            if (placeholdersCount > 0 && (!arrayList2.isEmpty())) {
-                if (discoveryCommands.getHasMoreBefore()) {
-                    Pair pair = (Pair) C12163u.first((List) arrayList2);
-                    Application application4 = (Application) pair.component1();
-                    arrayList2.set(0, new Pair(application4, C12163u.plus((Collection) createPlaceholderModels(placeholdersCount, application4), (Iterable) pair.component2())));
-                }
-                if (discoveryCommands.getHasMoreAfter()) {
-                    Pair pair2 = (Pair) C12163u.last((List) arrayList2);
-                    Application application5 = (Application) pair2.component1();
-                    arrayList2.set(arrayList2.size() - 1, new Pair(application5, C12163u.plus((Collection) pair2.component2(), (Iterable) createPlaceholderModels(placeholdersCount, application5))));
-                }
-            }
-            Application application6 = (Application) map.get(-2L);
-            if (!discoveryCommands.getHasMoreBefore() && application6 != null && (!frecencyCommands.isEmpty())) {
-                ArrayList arrayList3 = new ArrayList();
-                arrayList3.add(new ApplicationPlaceholder(application6));
-                for (ApplicationCommand applicationCommand2 : frecencyCommands) {
-                    Application application7 = (Application) map.get(Long.valueOf(applicationCommand2.getApplicationId()));
-                    if (application7 != null) {
-                        C12238m.checkNotNullExpressionValue(application7, "appMap[command.applicationId] ?: return@forEach");
-                        arrayList3.add(new ApplicationCommandAutocompletable(application7, applicationCommand2, ApplicationCommandKt.hasPermission(applicationCommand2, myId, myRoles), true));
-                    }
-                }
-                arrayList2.add(0, new Pair(application6, arrayList3));
-            }
-            return new WidgetChatInputDiscoveryCommandsModel(arrayList2, discoveryCommands.getHasMoreBefore(), discoveryCommands.getHasMoreAfter(), discoveryCommands.getJumpedSequenceId(), discoveryCommands.getJumpedApplicationId(), discoveryCommands.getLoadState());
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public WidgetChatInputDiscoveryCommandsModel(List<? extends Pair<Application, ? extends List<? extends Autocompletable>>> list, boolean z2, boolean z3, int i, Long l, LoadState loadState) {
-        C12238m.checkNotNullParameter(list, "commandsByApplication");
-        C12238m.checkNotNullParameter(loadState, "loadState");
+        m.checkNotNullParameter(list, "commandsByApplication");
+        m.checkNotNullParameter(loadState, "loadState");
         this.commandsByApplication = list;
         this.hasMoreBefore = z2;
         this.hasMoreAfter = z3;
@@ -165,8 +67,8 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
     }
 
     public final WidgetChatInputDiscoveryCommandsModel copy(List<? extends Pair<Application, ? extends List<? extends Autocompletable>>> commandsByApplication, boolean hasMoreBefore, boolean hasMoreAfter, int jumpedSequenceId, Long jumpedApplicationId, LoadState loadState) {
-        C12238m.checkNotNullParameter(commandsByApplication, "commandsByApplication");
-        C12238m.checkNotNullParameter(loadState, "loadState");
+        m.checkNotNullParameter(commandsByApplication, "commandsByApplication");
+        m.checkNotNullParameter(loadState, "loadState");
         return new WidgetChatInputDiscoveryCommandsModel(commandsByApplication, hasMoreBefore, hasMoreAfter, jumpedSequenceId, jumpedApplicationId, loadState);
     }
 
@@ -178,7 +80,7 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
             return false;
         }
         WidgetChatInputDiscoveryCommandsModel widgetChatInputDiscoveryCommandsModel = (WidgetChatInputDiscoveryCommandsModel) other;
-        return C12238m.areEqual(this.commandsByApplication, widgetChatInputDiscoveryCommandsModel.commandsByApplication) && this.hasMoreBefore == widgetChatInputDiscoveryCommandsModel.hasMoreBefore && this.hasMoreAfter == widgetChatInputDiscoveryCommandsModel.hasMoreAfter && this.jumpedSequenceId == widgetChatInputDiscoveryCommandsModel.jumpedSequenceId && C12238m.areEqual(this.jumpedApplicationId, widgetChatInputDiscoveryCommandsModel.jumpedApplicationId) && C12238m.areEqual(this.loadState, widgetChatInputDiscoveryCommandsModel.loadState);
+        return m.areEqual(this.commandsByApplication, widgetChatInputDiscoveryCommandsModel.commandsByApplication) && this.hasMoreBefore == widgetChatInputDiscoveryCommandsModel.hasMoreBefore && this.hasMoreAfter == widgetChatInputDiscoveryCommandsModel.hasMoreAfter && this.jumpedSequenceId == widgetChatInputDiscoveryCommandsModel.jumpedSequenceId && m.areEqual(this.jumpedApplicationId, widgetChatInputDiscoveryCommandsModel.jumpedApplicationId) && m.areEqual(this.loadState, widgetChatInputDiscoveryCommandsModel.loadState);
     }
 
     public final List<Pair<Application, List<Autocompletable>>> getCommandsByApplication() {
@@ -264,23 +166,23 @@ public final /* data */ class WidgetChatInputDiscoveryCommandsModel {
     }
 
     public static final WidgetChatInputDiscoveryCommandsModel parseModelDiscoveryCommands(long j, List<Long> list, List<Application> list2, DiscoverCommands discoverCommands, boolean z2, int i, List<? extends ApplicationCommand> list3) {
-        return INSTANCE.parseModelDiscoveryCommands(j, list, list2, discoverCommands, z2, i, list3);
+        return Companion.parseModelDiscoveryCommands(j, list, list2, discoverCommands, z2, i, list3);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("WidgetChatInputDiscoveryCommandsModel(commandsByApplication=");
-        sbM833U.append(this.commandsByApplication);
-        sbM833U.append(", hasMoreBefore=");
-        sbM833U.append(this.hasMoreBefore);
-        sbM833U.append(", hasMoreAfter=");
-        sbM833U.append(this.hasMoreAfter);
-        sbM833U.append(", jumpedSequenceId=");
-        sbM833U.append(this.jumpedSequenceId);
-        sbM833U.append(", jumpedApplicationId=");
-        sbM833U.append(this.jumpedApplicationId);
-        sbM833U.append(", loadState=");
-        sbM833U.append(this.loadState);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("WidgetChatInputDiscoveryCommandsModel(commandsByApplication=");
+        sbU.append(this.commandsByApplication);
+        sbU.append(", hasMoreBefore=");
+        sbU.append(this.hasMoreBefore);
+        sbU.append(", hasMoreAfter=");
+        sbU.append(this.hasMoreAfter);
+        sbU.append(", jumpedSequenceId=");
+        sbU.append(this.jumpedSequenceId);
+        sbU.append(", jumpedApplicationId=");
+        sbU.append(this.jumpedApplicationId);
+        sbU.append(", loadState=");
+        sbU.append(this.loadState);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

@@ -1,69 +1,11 @@
 package com.discord.api.report;
 
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
 public abstract class ReportNodeBottomButton {
     private final String type;
-
-    /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public final class Cancel extends ReportNodeBottomButton {
-        public static final Cancel INSTANCE = new Cancel();
-
-        public Cancel() {
-            super("cancel", null);
-        }
-    }
-
-    /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public final class Done extends ReportNodeBottomButton {
-        public static final Done INSTANCE = new Done();
-
-        public Done() {
-            super("done", null);
-        }
-    }
-
-    /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public final /* data */ class Next extends ReportNodeBottomButton {
-        private final int target;
-
-        public Next(int i) {
-            super("next", null);
-            this.target = i;
-        }
-
-        public boolean equals(Object other) {
-            if (this != other) {
-                return (other instanceof Next) && this.target == ((Next) other).target;
-            }
-            return true;
-        }
-
-        /* JADX INFO: renamed from: b, reason: from getter */
-        public final int getTarget() {
-            return this.target;
-        }
-
-        public int hashCode() {
-            return this.target;
-        }
-
-        public String toString() {
-            return C1643a.m814B(C1643a.m833U("Next(target="), this.target, ")");
-        }
-    }
-
-    /* JADX INFO: compiled from: InAppReportsMenu.kt */
-    public final class Submit extends ReportNodeBottomButton {
-        public static final Submit INSTANCE = new Submit();
-
-        public Submit() {
-            super("submit", null);
-        }
-    }
 
     public ReportNodeBottomButton(String str, DefaultConstructorMarker defaultConstructorMarker) {
         this.type = str;

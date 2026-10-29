@@ -1,8 +1,8 @@
 package com.discord.api.premium;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: SubscriptionPlan.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,7 +21,7 @@ public final /* data */ class SubscriptionPlan {
             return false;
         }
         SubscriptionPlan subscriptionPlan = (SubscriptionPlan) other;
-        return this.id == subscriptionPlan.id && this.intervalCount == subscriptionPlan.intervalCount && C12238m.areEqual(this.interval, subscriptionPlan.interval) && C12238m.areEqual(this.name, subscriptionPlan.name) && this.price == subscriptionPlan.price;
+        return this.id == subscriptionPlan.id && this.intervalCount == subscriptionPlan.intervalCount && m.areEqual(this.interval, subscriptionPlan.interval) && m.areEqual(this.name, subscriptionPlan.name) && this.price == subscriptionPlan.price;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -54,15 +54,15 @@ public final /* data */ class SubscriptionPlan {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("SubscriptionPlan(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", intervalCount=");
-        sbM833U.append(this.intervalCount);
-        sbM833U.append(", interval=");
-        sbM833U.append(this.interval);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", price=");
-        return C1643a.m814B(sbM833U, this.price, ")");
+        StringBuilder sbU = a.U("SubscriptionPlan(id=");
+        sbU.append(this.id);
+        sbU.append(", intervalCount=");
+        sbU.append(this.intervalCount);
+        sbU.append(", interval=");
+        sbU.append(this.interval);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", price=");
+        return a.B(sbU, this.price, ")");
     }
 }

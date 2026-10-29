@@ -10,27 +10,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class LayoutUnhandledUriBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15174a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15175b;
+    public final TextView f2127b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f15176c;
+    public final MaterialButton c;
 
     public LayoutUnhandledUriBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull MaterialButton materialButton) {
-        this.f15174a = linearLayout;
-        this.f15175b = textView;
-        this.f15176c = materialButton;
+        this.a = linearLayout;
+        this.f2127b = textView;
+        this.c = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15174a;
+        return this.a;
     }
 }

@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.view.Lifecycle;
+import androidx.view.Lifecycle$State;
 import androidx.viewpager.widget.PagerAdapter;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -82,7 +82,7 @@ public abstract class FragmentPagerAdapter extends PagerAdapter {
         if (fragmentFindFragmentByTag != this.mCurrentPrimaryItem) {
             fragmentFindFragmentByTag.setMenuVisibility(false);
             if (this.mBehavior == 1) {
-                this.mCurTransaction.setMaxLifecycle(fragmentFindFragmentByTag, Lifecycle.State.STARTED);
+                this.mCurTransaction.setMaxLifecycle(fragmentFindFragmentByTag, Lifecycle$State.STARTED);
             } else {
                 fragmentFindFragmentByTag.setUserVisibleHint(false);
             }
@@ -120,7 +120,7 @@ public abstract class FragmentPagerAdapter extends PagerAdapter {
                     if (this.mCurTransaction == null) {
                         this.mCurTransaction = this.mFragmentManager.beginTransaction();
                     }
-                    this.mCurTransaction.setMaxLifecycle(this.mCurrentPrimaryItem, Lifecycle.State.STARTED);
+                    this.mCurTransaction.setMaxLifecycle(this.mCurrentPrimaryItem, Lifecycle$State.STARTED);
                 } else {
                     this.mCurrentPrimaryItem.setUserVisibleHint(false);
                 }
@@ -130,7 +130,7 @@ public abstract class FragmentPagerAdapter extends PagerAdapter {
                 if (this.mCurTransaction == null) {
                     this.mCurTransaction = this.mFragmentManager.beginTransaction();
                 }
-                this.mCurTransaction.setMaxLifecycle(fragment, Lifecycle.State.RESUMED);
+                this.mCurTransaction.setMaxLifecycle(fragment, Lifecycle$State.RESUMED);
             } else {
                 fragment.setUserVisibleHint(true);
             }

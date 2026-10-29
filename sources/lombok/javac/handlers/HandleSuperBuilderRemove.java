@@ -1,6 +1,6 @@
 package lombok.javac.handlers;
 
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCAnnotation;
 import java.lang.annotation.Annotation;
 import lombok.core.AlreadyHandledAnnotations;
 import lombok.core.AnnotationValues;
@@ -14,7 +14,7 @@ import lombok.javac.JavacNode;
 @AlreadyHandledAnnotations
 public class HandleSuperBuilderRemove extends JavacAnnotationHandler<SuperBuilder> {
     @Override // lombok.javac.JavacAnnotationHandler
-    public void handle(AnnotationValues<SuperBuilder> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
+    public void handle(AnnotationValues<SuperBuilder> annotation, JCTree$JCAnnotation ast, JavacNode annotationNode) {
         JavacHandlerUtil.deleteAnnotationIfNeccessary(annotationNode, (Class<? extends Annotation>) SuperBuilder.class);
     }
 }

@@ -6,13 +6,6 @@ import androidx.annotation.NonNull;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AnimatorUtils {
-
-    public interface AnimatorPauseListenerCompat {
-        void onAnimationPause(Animator animator);
-
-        void onAnimationResume(Animator animator);
-    }
-
     private AnimatorUtils() {
     }
 

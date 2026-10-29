@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackMarketingSite;
 import com.discord.analytics.generated.traits.TrackMarketingSiteReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPartnersApplyform.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackPartnersApplyform implements AnalyticsSchema,
             return false;
         }
         TrackPartnersApplyform trackPartnersApplyform = (TrackPartnersApplyform) other;
-        return C12238m.areEqual(this.linkclicked, trackPartnersApplyform.linkclicked) && C12238m.areEqual(this.googleanalytics, trackPartnersApplyform.googleanalytics);
+        return m.areEqual(this.linkclicked, trackPartnersApplyform.linkclicked) && m.areEqual(this.googleanalytics, trackPartnersApplyform.googleanalytics);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackPartnersApplyform implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPartnersApplyform(linkclicked=");
-        sbM833U.append(this.linkclicked);
-        sbM833U.append(", googleanalytics=");
-        return C1643a.m816D(sbM833U, this.googleanalytics, ")");
+        StringBuilder sbU = a.U("TrackPartnersApplyform(linkclicked=");
+        sbU.append(this.linkclicked);
+        sbU.append(", googleanalytics=");
+        return a.D(sbU, this.googleanalytics, ")");
     }
 }

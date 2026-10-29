@@ -6,14 +6,21 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
+import android.view.ViewGroup$LayoutParams;
+import android.view.ViewGroup$MarginLayoutParams;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$attr;
+import androidx.appcompat.R$id;
+import androidx.appcompat.R$layout;
+import androidx.appcompat.R$styleable;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
@@ -21,7 +28,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewPropertyAnimatorCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ActionBarContextView extends AbsActionBarView {
     private View mClose;
     private int mCloseItemLayout;
@@ -61,13 +68,13 @@ public class ActionBarContextView extends AbsActionBarView {
     }
 
     @Override // android.view.ViewGroup
-    public ViewGroup.LayoutParams generateDefaultLayoutParams() {
-        return new ViewGroup.MarginLayoutParams(-1, -2);
+    public ViewGroup$LayoutParams generateDefaultLayoutParams() {
+        return new ViewGroup$MarginLayoutParams(-1, -2);
     }
 
     @Override // android.view.ViewGroup
-    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attributeSet) {
-        return new ViewGroup.MarginLayoutParams(getContext(), attributeSet);
+    public ViewGroup$LayoutParams generateLayoutParams(AttributeSet attributeSet) {
+        return new ViewGroup$MarginLayoutParams(getContext(), attributeSet);
     }
 
     @Override // androidx.appcompat.widget.AbsActionBarView
@@ -97,7 +104,7 @@ public class ActionBarContextView extends AbsActionBarView {
         return false;
     }
 
-    public void initForMode(final ActionMode actionMode) {
+    public void initForMode(ActionMode actionMode) {
         View view = this.mClose;
         if (view == null) {
             View viewInflate = LayoutInflater.from(getContext()).inflate(this.mCloseItemLayout, (ViewGroup) this, false);
@@ -106,12 +113,7 @@ public class ActionBarContextView extends AbsActionBarView {
         } else if (view.getParent() == null) {
             addView(this.mClose);
         }
-        this.mClose.findViewById(C0051R.id.action_mode_close_button).setOnClickListener(new View.OnClickListener() { // from class: androidx.appcompat.widget.ActionBarContextView.1
-            @Override // android.view.View.OnClickListener
-            public void onClick(View view2) {
-                actionMode.finish();
-            }
-        });
+        this.mClose.findViewById(R$id.action_mode_close_button).setOnClickListener(new ActionBarContextView$1(this, actionMode));
         MenuBuilder menuBuilder = (MenuBuilder) actionMode.getMenu();
         ActionMenuPresenter actionMenuPresenter = this.mActionMenuPresenter;
         if (actionMenuPresenter != null) {
@@ -120,21 +122,21 @@ public class ActionBarContextView extends AbsActionBarView {
         ActionMenuPresenter actionMenuPresenter2 = new ActionMenuPresenter(getContext());
         this.mActionMenuPresenter = actionMenuPresenter2;
         actionMenuPresenter2.setReserveOverflow(true);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-2, -1);
+        ViewGroup$LayoutParams viewGroup$LayoutParams = new ViewGroup$LayoutParams(-2, -1);
         menuBuilder.addMenuPresenter(this.mActionMenuPresenter, this.mPopupContext);
         ActionMenuView actionMenuView = (ActionMenuView) this.mActionMenuPresenter.getMenuView(this);
         this.mMenuView = actionMenuView;
         ViewCompat.setBackground(actionMenuView, null);
-        addView(this.mMenuView, layoutParams);
+        addView(this.mMenuView, viewGroup$LayoutParams);
     }
 
     private void initTitle() {
         if (this.mTitleLayout == null) {
-            LayoutInflater.from(getContext()).inflate(C0051R.layout.abc_action_bar_title_item, this);
+            LayoutInflater.from(getContext()).inflate(R$layout.abc_action_bar_title_item, this);
             LinearLayout linearLayout = (LinearLayout) getChildAt(getChildCount() - 1);
             this.mTitleLayout = linearLayout;
-            this.mTitleView = (TextView) linearLayout.findViewById(C0051R.id.action_bar_title);
-            this.mSubtitleView = (TextView) this.mTitleLayout.findViewById(C0051R.id.action_bar_subtitle);
+            this.mTitleView = (TextView) linearLayout.findViewById(R$id.action_bar_title);
+            this.mSubtitleView = (TextView) this.mTitleLayout.findViewById(R$id.action_bar_subtitle);
             if (this.mTitleStyleRes != 0) {
                 this.mTitleView.setTextAppearance(getContext(), this.mTitleStyleRes);
             }
@@ -222,9 +224,9 @@ public class ActionBarContextView extends AbsActionBarView {
         int paddingTop2 = ((i4 - i2) - getPaddingTop()) - getPaddingBottom();
         View view = this.mClose;
         if (view != null && view.getVisibility() != 8) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.mClose.getLayoutParams();
-            int i5 = zIsLayoutRtl ? marginLayoutParams.rightMargin : marginLayoutParams.leftMargin;
-            int i6 = zIsLayoutRtl ? marginLayoutParams.leftMargin : marginLayoutParams.rightMargin;
+            ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) this.mClose.getLayoutParams();
+            int i5 = zIsLayoutRtl ? viewGroup$MarginLayoutParams.rightMargin : viewGroup$MarginLayoutParams.leftMargin;
+            int i6 = zIsLayoutRtl ? viewGroup$MarginLayoutParams.leftMargin : viewGroup$MarginLayoutParams.rightMargin;
             int next = AbsActionBarView.next(paddingRight, i5, zIsLayoutRtl);
             paddingRight = AbsActionBarView.next(next + positionChild(this.mClose, next, paddingTop, paddingTop2, zIsLayoutRtl), i6, zIsLayoutRtl);
         }
@@ -247,28 +249,28 @@ public class ActionBarContextView extends AbsActionBarView {
 
     @Override // android.view.View
     public void onMeasure(int i, int i2) {
-        int mode = View.MeasureSpec.getMode(i);
+        int mode = View$MeasureSpec.getMode(i);
         int i3 = BasicMeasure.EXACTLY;
         if (mode != 1073741824) {
             throw new IllegalStateException(getClass().getSimpleName() + " can only be used with android:layout_width=\"match_parent\" (or fill_parent)");
         }
-        if (View.MeasureSpec.getMode(i2) == 0) {
+        if (View$MeasureSpec.getMode(i2) == 0) {
             throw new IllegalStateException(getClass().getSimpleName() + " can only be used with android:layout_height=\"wrap_content\"");
         }
-        int size = View.MeasureSpec.getSize(i);
+        int size = View$MeasureSpec.getSize(i);
         int size2 = this.mContentHeight;
         if (size2 <= 0) {
-            size2 = View.MeasureSpec.getSize(i2);
+            size2 = View$MeasureSpec.getSize(i2);
         }
         int paddingBottom = getPaddingBottom() + getPaddingTop();
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
         int iMin = size2 - paddingBottom;
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(iMin, Integer.MIN_VALUE);
+        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(iMin, Integer.MIN_VALUE);
         View view = this.mClose;
         if (view != null) {
             int iMeasureChildView = measureChildView(view, paddingLeft, iMakeMeasureSpec, 0);
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.mClose.getLayoutParams();
-            paddingLeft = iMeasureChildView - (marginLayoutParams.leftMargin + marginLayoutParams.rightMargin);
+            ViewGroup$MarginLayoutParams viewGroup$MarginLayoutParams = (ViewGroup$MarginLayoutParams) this.mClose.getLayoutParams();
+            paddingLeft = iMeasureChildView - (viewGroup$MarginLayoutParams.leftMargin + viewGroup$MarginLayoutParams.rightMargin);
         }
         ActionMenuView actionMenuView = this.mMenuView;
         if (actionMenuView != null && actionMenuView.getParent() == this) {
@@ -277,7 +279,7 @@ public class ActionBarContextView extends AbsActionBarView {
         LinearLayout linearLayout = this.mTitleLayout;
         if (linearLayout != null && this.mCustomView == null) {
             if (this.mTitleOptional) {
-                this.mTitleLayout.measure(View.MeasureSpec.makeMeasureSpec(0, 0), iMakeMeasureSpec);
+                this.mTitleLayout.measure(View$MeasureSpec.makeMeasureSpec(0, 0), iMakeMeasureSpec);
                 int measuredWidth = this.mTitleLayout.getMeasuredWidth();
                 boolean z2 = measuredWidth <= paddingLeft;
                 if (z2) {
@@ -290,7 +292,7 @@ public class ActionBarContextView extends AbsActionBarView {
         }
         View view2 = this.mCustomView;
         if (view2 != null) {
-            ViewGroup.LayoutParams layoutParams = view2.getLayoutParams();
+            ViewGroup$LayoutParams layoutParams = view2.getLayoutParams();
             int i4 = layoutParams.width;
             int i5 = i4 != -2 ? BasicMeasure.EXACTLY : Integer.MIN_VALUE;
             if (i4 >= 0) {
@@ -303,7 +305,7 @@ public class ActionBarContextView extends AbsActionBarView {
             if (i6 >= 0) {
                 iMin = Math.min(i6, iMin);
             }
-            this.mCustomView.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, i5), View.MeasureSpec.makeMeasureSpec(iMin, i3));
+            this.mCustomView.measure(View$MeasureSpec.makeMeasureSpec(paddingLeft, i5), View$MeasureSpec.makeMeasureSpec(iMin, i3));
         }
         if (this.mContentHeight > 0) {
             setMeasuredDimension(size, size2);
@@ -394,17 +396,17 @@ public class ActionBarContextView extends AbsActionBarView {
     }
 
     public ActionBarContextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0051R.attr.actionModeStyle);
+        this(context, attributeSet, R$attr.actionModeStyle);
     }
 
     public ActionBarContextView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, C0051R.styleable.ActionMode, i, 0);
-        ViewCompat.setBackground(this, tintTypedArrayObtainStyledAttributes.getDrawable(C0051R.styleable.ActionMode_background));
-        this.mTitleStyleRes = tintTypedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.ActionMode_titleTextStyle, 0);
-        this.mSubtitleStyleRes = tintTypedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.ActionMode_subtitleTextStyle, 0);
-        this.mContentHeight = tintTypedArrayObtainStyledAttributes.getLayoutDimension(C0051R.styleable.ActionMode_height, 0);
-        this.mCloseItemLayout = tintTypedArrayObtainStyledAttributes.getResourceId(C0051R.styleable.ActionMode_closeItemLayout, C0051R.layout.abc_action_mode_close_item_material);
+        TintTypedArray tintTypedArrayObtainStyledAttributes = TintTypedArray.obtainStyledAttributes(context, attributeSet, R$styleable.ActionMode, i, 0);
+        ViewCompat.setBackground(this, tintTypedArrayObtainStyledAttributes.getDrawable(R$styleable.ActionMode_background));
+        this.mTitleStyleRes = tintTypedArrayObtainStyledAttributes.getResourceId(R$styleable.ActionMode_titleTextStyle, 0);
+        this.mSubtitleStyleRes = tintTypedArrayObtainStyledAttributes.getResourceId(R$styleable.ActionMode_subtitleTextStyle, 0);
+        this.mContentHeight = tintTypedArrayObtainStyledAttributes.getLayoutDimension(R$styleable.ActionMode_height, 0);
+        this.mCloseItemLayout = tintTypedArrayObtainStyledAttributes.getResourceId(R$styleable.ActionMode_closeItemLayout, R$layout.abc_action_mode_close_item_material);
         tintTypedArrayObtainStyledAttributes.recycle();
     }
 }

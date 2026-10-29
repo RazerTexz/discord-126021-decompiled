@@ -28,56 +28,17 @@ public abstract class ExploreByTouchHelper extends AccessibilityDelegateCompat {
     public static final int INVALID_ID = Integer.MIN_VALUE;
     private final View mHost;
     private final AccessibilityManager mManager;
-    private MyNodeProvider mNodeProvider;
+    private ExploreByTouchHelper$MyNodeProvider mNodeProvider;
     private static final Rect INVALID_PARENT_BOUNDS = new Rect(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-    private static final FocusStrategy.BoundsAdapter<AccessibilityNodeInfoCompat> NODE_ADAPTER = new FocusStrategy.BoundsAdapter<AccessibilityNodeInfoCompat>() { // from class: androidx.customview.widget.ExploreByTouchHelper.1
-        @Override // androidx.customview.widget.FocusStrategy.BoundsAdapter
-        public void obtainBounds(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, Rect rect) {
-            accessibilityNodeInfoCompat.getBoundsInParent(rect);
-        }
-    };
+    private static final FocusStrategy$BoundsAdapter<AccessibilityNodeInfoCompat> NODE_ADAPTER = new ExploreByTouchHelper$1();
     private final Rect mTempScreenRect = new Rect();
-    private static final FocusStrategy.CollectionAdapter<SparseArrayCompat<AccessibilityNodeInfoCompat>, AccessibilityNodeInfoCompat> SPARSE_VALUES_ADAPTER = new FocusStrategy.CollectionAdapter<SparseArrayCompat<AccessibilityNodeInfoCompat>, AccessibilityNodeInfoCompat>() { // from class: androidx.customview.widget.ExploreByTouchHelper.2
-        @Override // androidx.customview.widget.FocusStrategy.CollectionAdapter
-        public AccessibilityNodeInfoCompat get(SparseArrayCompat<AccessibilityNodeInfoCompat> sparseArrayCompat, int i) {
-            return sparseArrayCompat.valueAt(i);
-        }
-
-        @Override // androidx.customview.widget.FocusStrategy.CollectionAdapter
-        public int size(SparseArrayCompat<AccessibilityNodeInfoCompat> sparseArrayCompat) {
-            return sparseArrayCompat.size();
-        }
-    };
+    private static final FocusStrategy$CollectionAdapter<SparseArrayCompat<AccessibilityNodeInfoCompat>, AccessibilityNodeInfoCompat> SPARSE_VALUES_ADAPTER = new ExploreByTouchHelper$2();
     private final Rect mTempParentRect = new Rect();
     private final Rect mTempVisibleRect = new Rect();
     private final int[] mTempGlobalRect = new int[2];
     public int mAccessibilityFocusedVirtualViewId = Integer.MIN_VALUE;
     public int mKeyboardFocusedVirtualViewId = Integer.MIN_VALUE;
     private int mHoveredVirtualViewId = Integer.MIN_VALUE;
-
-    public class MyNodeProvider extends AccessibilityNodeProviderCompat {
-        public MyNodeProvider() {
-        }
-
-        @Override // androidx.core.view.accessibility.AccessibilityNodeProviderCompat
-        public AccessibilityNodeInfoCompat createAccessibilityNodeInfo(int i) {
-            return AccessibilityNodeInfoCompat.obtain(ExploreByTouchHelper.this.obtainAccessibilityNodeInfo(i));
-        }
-
-        @Override // androidx.core.view.accessibility.AccessibilityNodeProviderCompat
-        public AccessibilityNodeInfoCompat findFocus(int i) {
-            int i2 = i == 2 ? ExploreByTouchHelper.this.mAccessibilityFocusedVirtualViewId : ExploreByTouchHelper.this.mKeyboardFocusedVirtualViewId;
-            if (i2 == Integer.MIN_VALUE) {
-                return null;
-            }
-            return createAccessibilityNodeInfo(i2);
-        }
-
-        @Override // androidx.core.view.accessibility.AccessibilityNodeProviderCompat
-        public boolean performAction(int i, int i2, Bundle bundle) {
-            return ExploreByTouchHelper.this.performAction(i, i2, bundle);
-        }
-    }
 
     public ExploreByTouchHelper(@NonNull View view) {
         if (view == null) {
@@ -302,7 +263,7 @@ public abstract class ExploreByTouchHelper extends AccessibilityDelegateCompat {
     @Override // androidx.core.view.AccessibilityDelegateCompat
     public AccessibilityNodeProviderCompat getAccessibilityNodeProvider(View view) {
         if (this.mNodeProvider == null) {
-            this.mNodeProvider = new MyNodeProvider();
+            this.mNodeProvider = new ExploreByTouchHelper$MyNodeProvider(this);
         }
         return this.mNodeProvider;
     }

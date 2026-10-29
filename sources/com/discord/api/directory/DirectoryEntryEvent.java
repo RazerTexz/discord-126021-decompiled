@@ -1,10 +1,10 @@
 package com.discord.api.directory;
 
+import b.d.b.a.a;
 import com.discord.api.guildscheduledevent.GuildScheduledEvent;
 import com.discord.api.utcdatetime.UtcDateTime;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: DirectoryEntryGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class DirectoryEntryEvent {
             return false;
         }
         DirectoryEntryEvent directoryEntryEvent = (DirectoryEntryEvent) other;
-        return this.directoryChannelId == directoryEntryEvent.directoryChannelId && this.entityId == directoryEntryEvent.entityId && this.authorId == directoryEntryEvent.authorId && C12238m.areEqual(this.description, directoryEntryEvent.description) && this.primaryCategoryId == directoryEntryEvent.primaryCategoryId && C12238m.areEqual(this.createdAt, directoryEntryEvent.createdAt) && C12238m.areEqual(this.guildScheduledEvent, directoryEntryEvent.guildScheduledEvent);
+        return this.directoryChannelId == directoryEntryEvent.directoryChannelId && this.entityId == directoryEntryEvent.entityId && this.authorId == directoryEntryEvent.authorId && m.areEqual(this.description, directoryEntryEvent.description) && this.primaryCategoryId == directoryEntryEvent.primaryCategoryId && m.areEqual(this.createdAt, directoryEntryEvent.createdAt) && m.areEqual(this.guildScheduledEvent, directoryEntryEvent.guildScheduledEvent);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -48,21 +48,21 @@ public final /* data */ class DirectoryEntryEvent {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("DirectoryEntryEvent(directoryChannelId=");
-        sbM833U.append(this.directoryChannelId);
-        sbM833U.append(", entityId=");
-        sbM833U.append(this.entityId);
-        sbM833U.append(", authorId=");
-        sbM833U.append(this.authorId);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", primaryCategoryId=");
-        sbM833U.append(this.primaryCategoryId);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", guildScheduledEvent=");
-        sbM833U.append(this.guildScheduledEvent);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("DirectoryEntryEvent(directoryChannelId=");
+        sbU.append(this.directoryChannelId);
+        sbU.append(", entityId=");
+        sbU.append(this.entityId);
+        sbU.append(", authorId=");
+        sbU.append(this.authorId);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", primaryCategoryId=");
+        sbU.append(this.primaryCategoryId);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", guildScheduledEvent=");
+        sbU.append(this.guildScheduledEvent);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

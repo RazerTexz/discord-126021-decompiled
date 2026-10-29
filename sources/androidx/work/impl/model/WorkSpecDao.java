@@ -8,7 +8,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.view.LiveData;
 import androidx.work.Data;
-import androidx.work.WorkInfo;
+import androidx.work.WorkInfo$State;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -43,7 +43,7 @@ public interface WorkSpecDao {
     List<WorkSpec> getScheduledWork();
 
     @Query("SELECT state FROM workspec WHERE id=:id")
-    WorkInfo.State getState(String str);
+    WorkInfo$State getState(String str);
 
     @Query("SELECT id FROM workspec WHERE state NOT IN (2, 3, 5) AND id IN (SELECT work_spec_id FROM workname WHERE name=:name)")
     List<String> getUnfinishedWorkWithName(@NonNull String str);
@@ -55,38 +55,38 @@ public interface WorkSpecDao {
     WorkSpec getWorkSpec(String str);
 
     @Query("SELECT id, state FROM workspec WHERE id IN (SELECT work_spec_id FROM workname WHERE name=:name)")
-    List<WorkSpec.IdAndState> getWorkSpecIdAndStatesForName(String str);
+    List<WorkSpec$IdAndState> getWorkSpecIdAndStatesForName(String str);
 
     @Query("SELECT * FROM workspec WHERE id IN (:ids)")
     WorkSpec[] getWorkSpecs(List<String> list);
 
     @Query("SELECT id, state, output, run_attempt_count FROM workspec WHERE id=:id")
     @Transaction
-    WorkSpec.WorkInfoPojo getWorkStatusPojoForId(String str);
+    WorkSpec$WorkInfoPojo getWorkStatusPojoForId(String str);
 
     @Query("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (:ids)")
     @Transaction
-    List<WorkSpec.WorkInfoPojo> getWorkStatusPojoForIds(List<String> list);
+    List<WorkSpec$WorkInfoPojo> getWorkStatusPojoForIds(List<String> list);
 
     @Query("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM workname WHERE name=:name)")
     @Transaction
-    List<WorkSpec.WorkInfoPojo> getWorkStatusPojoForName(String str);
+    List<WorkSpec$WorkInfoPojo> getWorkStatusPojoForName(String str);
 
     @Query("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM worktag WHERE tag=:tag)")
     @Transaction
-    List<WorkSpec.WorkInfoPojo> getWorkStatusPojoForTag(String str);
+    List<WorkSpec$WorkInfoPojo> getWorkStatusPojoForTag(String str);
 
     @Query("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (:ids)")
     @Transaction
-    LiveData<List<WorkSpec.WorkInfoPojo>> getWorkStatusPojoLiveDataForIds(List<String> list);
+    LiveData<List<WorkSpec$WorkInfoPojo>> getWorkStatusPojoLiveDataForIds(List<String> list);
 
     @Query("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM workname WHERE name=:name)")
     @Transaction
-    LiveData<List<WorkSpec.WorkInfoPojo>> getWorkStatusPojoLiveDataForName(String str);
+    LiveData<List<WorkSpec$WorkInfoPojo>> getWorkStatusPojoLiveDataForName(String str);
 
     @Query("SELECT id, state, output, run_attempt_count FROM workspec WHERE id IN (SELECT work_spec_id FROM worktag WHERE tag=:tag)")
     @Transaction
-    LiveData<List<WorkSpec.WorkInfoPojo>> getWorkStatusPojoLiveDataForTag(String str);
+    LiveData<List<WorkSpec$WorkInfoPojo>> getWorkStatusPojoLiveDataForTag(String str);
 
     @Query("UPDATE workspec SET run_attempt_count=run_attempt_count+1 WHERE id=:id")
     int incrementWorkSpecRunAttemptCount(String str);
@@ -113,5 +113,5 @@ public interface WorkSpecDao {
     void setPeriodStartTime(String str, long j);
 
     @Query("UPDATE workspec SET state=:state WHERE id IN (:ids)")
-    int setState(WorkInfo.State state, String... strArr);
+    int setState(WorkInfo$State workInfo$State, String... strArr);
 }

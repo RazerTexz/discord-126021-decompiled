@@ -1,7 +1,7 @@
 package androidx.core.text;
 
 import android.icu.util.ULocale;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import java.lang.reflect.InvocationTargetException;
@@ -15,7 +15,7 @@ public final class ICUCompat {
     private static Method sGetScriptMethod;
 
     static {
-        if (Build.VERSION.SDK_INT < 24) {
+        if (Build$VERSION.SDK_INT < 24) {
             try {
                 sAddLikelySubtagsMethod = Class.forName("libcore.icu.ICU").getMethod("addLikelySubtags", Locale.class);
             } catch (Exception e) {
@@ -58,7 +58,7 @@ public final class ICUCompat {
 
     @Nullable
     public static String maximizeAndGetScript(Locale locale) {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             return ULocale.addLikelySubtags(ULocale.forLocale(locale)).getScript();
         }
         try {

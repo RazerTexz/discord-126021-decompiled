@@ -1,11 +1,11 @@
 package com.discord.models.commands;
 
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Map;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ApplicationCommand.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,8 +17,8 @@ public final class BuiltInCommand extends ApplicationCommand {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public BuiltInCommand(String str, long j, String str2, Integer num, List<ApplicationCommandOption> list, Function1<? super Map<String, ? extends Object>, String> function1) {
         super(str, j, str2, null, num, list, true, null, null, null, null, function1, 1928, null);
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
-        C12238m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(list, "options");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_ID);
+        m.checkNotNullParameter(str2, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(list, "options");
     }
 }

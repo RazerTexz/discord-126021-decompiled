@@ -5,11 +5,9 @@ import android.util.SparseArray;
 import android.view.View;
 import androidx.constraintlayout.motion.utils.CurveFit;
 import androidx.constraintlayout.widget.ConstraintAttribute;
+import b.d.b.a.a;
 import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DecimalFormat;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class TimeCycleSplineSet {
@@ -28,241 +26,6 @@ public abstract class TimeCycleSplineSet {
     private float[] mCache = new float[3];
     public boolean mContinue = false;
     public float last_cycle = Float.NaN;
-
-    public class AlphaSet extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setAlpha(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class CustomSet extends TimeCycleSplineSet {
-        public String mAttributeName;
-        public float[] mCache;
-        public SparseArray<ConstraintAttribute> mConstraintAttributeList;
-        public float[] mTempValues;
-        public SparseArray<float[]> mWaveProperties = new SparseArray<>();
-
-        public CustomSet(String str, SparseArray<ConstraintAttribute> sparseArray) {
-            this.mAttributeName = str.split(",")[1];
-            this.mConstraintAttributeList = sparseArray;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public void setPoint(int i, float f, float f2, int i2, float f3) {
-            throw new RuntimeException("don't call for custom attribute call setPoint(pos, ConstraintAttribute,...)");
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            this.mCurveFit.getPos(f, this.mTempValues);
-            float[] fArr = this.mTempValues;
-            float f2 = fArr[fArr.length - 2];
-            float f3 = fArr[fArr.length - 1];
-            long j2 = j - this.last_time;
-            if (Float.isNaN(this.last_cycle)) {
-                float floatValue = keyCache.getFloatValue(view, this.mAttributeName, 0);
-                this.last_cycle = floatValue;
-                if (Float.isNaN(floatValue)) {
-                    this.last_cycle = 0.0f;
-                }
-            }
-            float f4 = (float) ((((j2 * 1.0E-9d) * ((double) f2)) + ((double) this.last_cycle)) % 1.0d);
-            this.last_cycle = f4;
-            this.last_time = j;
-            float fCalcWave = calcWave(f4);
-            this.mContinue = false;
-            int i = 0;
-            while (true) {
-                float[] fArr2 = this.mCache;
-                if (i >= fArr2.length) {
-                    break;
-                }
-                boolean z2 = this.mContinue;
-                float[] fArr3 = this.mTempValues;
-                this.mContinue = z2 | (((double) fArr3[i]) != 0.0d);
-                fArr2[i] = (fArr3[i] * fCalcWave) + f3;
-                i++;
-            }
-            this.mConstraintAttributeList.valueAt(0).setInterpolatedValue(view, this.mCache);
-            if (f2 != 0.0f) {
-                this.mContinue = true;
-            }
-            return this.mContinue;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public void setup(int i) {
-            int size = this.mConstraintAttributeList.size();
-            int iNoOfInterpValues = this.mConstraintAttributeList.valueAt(0).noOfInterpValues();
-            double[] dArr = new double[size];
-            int i2 = iNoOfInterpValues + 2;
-            this.mTempValues = new float[i2];
-            this.mCache = new float[iNoOfInterpValues];
-            double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) double.class, size, i2);
-            for (int i3 = 0; i3 < size; i3++) {
-                int iKeyAt = this.mConstraintAttributeList.keyAt(i3);
-                ConstraintAttribute constraintAttributeValueAt = this.mConstraintAttributeList.valueAt(i3);
-                float[] fArrValueAt = this.mWaveProperties.valueAt(i3);
-                dArr[i3] = ((double) iKeyAt) * 0.01d;
-                constraintAttributeValueAt.getValuesToInterpolate(this.mTempValues);
-                int i4 = 0;
-                while (true) {
-                    float[] fArr = this.mTempValues;
-                    if (i4 < fArr.length) {
-                        dArr2[i3][i4] = fArr[i4];
-                        i4++;
-                    }
-                }
-                dArr2[i3][iNoOfInterpValues] = fArrValueAt[0];
-                dArr2[i3][iNoOfInterpValues + 1] = fArrValueAt[1];
-            }
-            this.mCurveFit = CurveFit.get(i, dArr, dArr2);
-        }
-
-        public void setPoint(int i, ConstraintAttribute constraintAttribute, float f, int i2, float f2) {
-            this.mConstraintAttributeList.append(i, constraintAttribute);
-            this.mWaveProperties.append(i, new float[]{f, f2});
-            this.mWaveShape = Math.max(this.mWaveShape, i2);
-        }
-    }
-
-    public class ElevationSet extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setElevation(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class PathRotate extends TimeCycleSplineSet {
-        public boolean setPathRotate(View view, KeyCache keyCache, float f, long j, double d, double d2) {
-            view.setRotation(get(f, j, view, keyCache) + ((float) Math.toDegrees(Math.atan2(d2, d))));
-            return this.mContinue;
-        }
-
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            return this.mContinue;
-        }
-    }
-
-    public class RotationSet extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setRotation(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class RotationXset extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setRotationX(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class RotationYset extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setRotationY(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class ScaleXset extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setScaleX(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class ScaleYset extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setScaleY(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class Sort {
-        private Sort() {
-        }
-
-        public static void doubleQuickSort(int[] iArr, float[][] fArr, int i, int i2) {
-            int[] iArr2 = new int[iArr.length + 10];
-            iArr2[0] = i2;
-            iArr2[1] = i;
-            int i3 = 2;
-            while (i3 > 0) {
-                int i4 = i3 - 1;
-                int i5 = iArr2[i4];
-                i3 = i4 - 1;
-                int i6 = iArr2[i3];
-                if (i5 < i6) {
-                    int iPartition = partition(iArr, fArr, i5, i6);
-                    int i7 = i3 + 1;
-                    iArr2[i3] = iPartition - 1;
-                    int i8 = i7 + 1;
-                    iArr2[i7] = i5;
-                    int i9 = i8 + 1;
-                    iArr2[i8] = i6;
-                    i3 = i9 + 1;
-                    iArr2[i9] = iPartition + 1;
-                }
-            }
-        }
-
-        private static int partition(int[] iArr, float[][] fArr, int i, int i2) {
-            int i3 = iArr[i2];
-            int i4 = i;
-            while (i < i2) {
-                if (iArr[i] <= i3) {
-                    swap(iArr, fArr, i4, i);
-                    i4++;
-                }
-                i++;
-            }
-            swap(iArr, fArr, i4, i2);
-            return i4;
-        }
-
-        private static void swap(int[] iArr, float[][] fArr, int i, int i2) {
-            int i3 = iArr[i];
-            iArr[i] = iArr[i2];
-            iArr[i2] = i3;
-            float[] fArr2 = fArr[i];
-            fArr[i] = fArr[i2];
-            fArr[i2] = fArr2;
-        }
-    }
-
-    public class TranslationXset extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setTranslationX(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class TranslationYset extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setTranslationY(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
-
-    public class TranslationZset extends TimeCycleSplineSet {
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            view.setTranslationZ(get(f, j, view, keyCache));
-            return this.mContinue;
-        }
-    }
 
     public float calcWave(float f) {
         float fAbs;
@@ -319,54 +82,54 @@ public abstract class TimeCycleSplineSet {
     }
 
     public static TimeCycleSplineSet makeCustomSpline(String str, SparseArray<ConstraintAttribute> sparseArray) {
-        return new CustomSet(str, sparseArray);
+        return new TimeCycleSplineSet$CustomSet(str, sparseArray);
     }
 
     public static TimeCycleSplineSet makeSpline(String str, long j) {
-        TimeCycleSplineSet rotationXset;
+        TimeCycleSplineSet timeCycleSplineSet$RotationXset;
         str.hashCode();
         switch (str) {
             case "rotationX":
-                rotationXset = new RotationXset();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$RotationXset();
                 break;
             case "rotationY":
-                rotationXset = new RotationYset();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$RotationYset();
                 break;
             case "translationX":
-                rotationXset = new TranslationXset();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$TranslationXset();
                 break;
             case "translationY":
-                rotationXset = new TranslationYset();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$TranslationYset();
                 break;
             case "translationZ":
-                rotationXset = new TranslationZset();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$TranslationZset();
                 break;
             case "progress":
-                rotationXset = new ProgressSet();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$ProgressSet();
                 break;
             case "scaleX":
-                rotationXset = new ScaleXset();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$ScaleXset();
                 break;
             case "scaleY":
-                rotationXset = new ScaleYset();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$ScaleYset();
                 break;
             case "rotation":
-                rotationXset = new RotationSet();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$RotationSet();
                 break;
             case "elevation":
-                rotationXset = new ElevationSet();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$ElevationSet();
                 break;
             case "transitionPathRotate":
-                rotationXset = new PathRotate();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$PathRotate();
                 break;
             case "alpha":
-                rotationXset = new AlphaSet();
+                timeCycleSplineSet$RotationXset = new TimeCycleSplineSet$AlphaSet();
                 break;
             default:
                 return null;
         }
-        rotationXset.setStartTime(j);
-        return rotationXset;
+        timeCycleSplineSet$RotationXset.setStartTime(j);
+        return timeCycleSplineSet$RotationXset;
     }
 
     public void setPoint(int i, float f, float f2, int i2, float f3) {
@@ -395,12 +158,12 @@ public abstract class TimeCycleSplineSet {
     public void setup(int i) {
         int i2 = this.count;
         if (i2 == 0) {
-            StringBuilder sbM833U = C1643a.m833U("Error no points added to ");
-            sbM833U.append(this.mType);
-            Log.e(TAG, sbM833U.toString());
+            StringBuilder sbU = a.U("Error no points added to ");
+            sbU.append(this.mType);
+            Log.e(TAG, sbU.toString());
             return;
         }
-        Sort.doubleQuickSort(this.mTimePoints, this.mValues, 0, i2 - 1);
+        TimeCycleSplineSet$Sort.doubleQuickSort(this.mTimePoints, this.mValues, 0, i2 - 1);
         int i3 = 1;
         int i4 = 0;
         while (true) {
@@ -448,45 +211,13 @@ public abstract class TimeCycleSplineSet {
         String string = this.mType;
         DecimalFormat decimalFormat = new DecimalFormat("##.##");
         for (int i = 0; i < this.count; i++) {
-            StringBuilder sbM836X = C1643a.m836X(string, "[");
-            sbM836X.append(this.mTimePoints[i]);
-            sbM836X.append(" , ");
-            sbM836X.append(decimalFormat.format(this.mValues[i]));
-            sbM836X.append("] ");
-            string = sbM836X.toString();
+            StringBuilder sbX = a.X(string, "[");
+            sbX.append(this.mTimePoints[i]);
+            sbX.append(" , ");
+            sbX.append(decimalFormat.format(this.mValues[i]));
+            sbX.append("] ");
+            string = sbX.toString();
         }
         return string;
-    }
-
-    public class ProgressSet extends TimeCycleSplineSet {
-        public boolean mNoMethod = false;
-
-        @Override // androidx.constraintlayout.motion.widget.TimeCycleSplineSet
-        public boolean setProperty(View view, float f, long j, KeyCache keyCache) {
-            if (view instanceof MotionLayout) {
-                ((MotionLayout) view).setProgress(get(f, j, view, keyCache));
-            } else {
-                if (this.mNoMethod) {
-                    return false;
-                }
-                Method method = null;
-                try {
-                    method = view.getClass().getMethod("setProgress", Float.TYPE);
-                } catch (NoSuchMethodException unused) {
-                    this.mNoMethod = true;
-                }
-                Method method2 = method;
-                if (method2 != null) {
-                    try {
-                        method2.invoke(view, Float.valueOf(get(f, j, view, keyCache)));
-                    } catch (IllegalAccessException e) {
-                        Log.e(TimeCycleSplineSet.TAG, "unable to setProgress", e);
-                    } catch (InvocationTargetException e2) {
-                        Log.e(TimeCycleSplineSet.TAG, "unable to setProgress", e2);
-                    }
-                }
-            }
-            return this.mContinue;
-        }
     }
 }

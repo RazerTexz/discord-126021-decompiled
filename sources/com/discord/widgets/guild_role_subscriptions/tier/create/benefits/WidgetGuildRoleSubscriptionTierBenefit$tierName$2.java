@@ -1,11 +1,11 @@
 package com.discord.widgets.guild_role_subscriptions.tier.create.benefits;
 
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetGuildRoleSubscriptionTierBenefit.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetGuildRoleSubscriptionTierBenefit$tierName$2 extends AbstractC12240o implements Function0<String> {
+public final class WidgetGuildRoleSubscriptionTierBenefit$tierName$2 extends o implements Function0<String> {
     public final /* synthetic */ WidgetGuildRoleSubscriptionTierBenefit this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -15,7 +15,13 @@ public final class WidgetGuildRoleSubscriptionTierBenefit$tierName$2 extends Abs
     }
 
     @Override // kotlin.jvm.functions.Function0
-    public final String invoke() {
+    public /* bridge */ /* synthetic */ String invoke() {
+        return invoke2();
+    }
+
+    @Override // kotlin.jvm.functions.Function0
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final String invoke2() {
         return this.this$0.getMostRecentIntent().getStringExtra("INTENT_EXTRA_TIER_NAME");
     }
 }

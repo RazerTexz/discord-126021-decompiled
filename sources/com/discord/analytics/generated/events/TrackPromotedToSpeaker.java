@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -8,8 +9,7 @@ import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPromotedToSpeaker.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,6 +23,11 @@ public final /* data */ class TrackPromotedToSpeaker implements AnalyticsSchema,
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "promoted_to_speaker";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +36,7 @@ public final /* data */ class TrackPromotedToSpeaker implements AnalyticsSchema,
             return false;
         }
         TrackPromotedToSpeaker trackPromotedToSpeaker = (TrackPromotedToSpeaker) other;
-        return C12238m.areEqual(this.topic, trackPromotedToSpeaker.topic) && C12238m.areEqual(this.requestToSpeakState, trackPromotedToSpeaker.requestToSpeakState) && C12238m.areEqual(this.mediaSessionId, trackPromotedToSpeaker.mediaSessionId) && C12238m.areEqual(this.stageInstanceId, trackPromotedToSpeaker.stageInstanceId);
+        return m.areEqual(this.topic, trackPromotedToSpeaker.topic) && m.areEqual(this.requestToSpeakState, trackPromotedToSpeaker.requestToSpeakState) && m.areEqual(this.mediaSessionId, trackPromotedToSpeaker.mediaSessionId) && m.areEqual(this.stageInstanceId, trackPromotedToSpeaker.stageInstanceId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,20 +62,14 @@ public final /* data */ class TrackPromotedToSpeaker implements AnalyticsSchema,
         return iHashCode3 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPromotedToSpeaker(topic=");
-        sbM833U.append(this.topic);
-        sbM833U.append(", requestToSpeakState=");
-        sbM833U.append(this.requestToSpeakState);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", stageInstanceId=");
-        return C1643a.m819G(sbM833U, this.stageInstanceId, ")");
+        StringBuilder sbU = a.U("TrackPromotedToSpeaker(topic=");
+        sbU.append(this.topic);
+        sbU.append(", requestToSpeakState=");
+        sbU.append(this.requestToSpeakState);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", stageInstanceId=");
+        return a.G(sbU, this.stageInstanceId, ")");
     }
 }

@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Statistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class StatsCodec {
     private final String name;
 
     public StatsCodec(int i, String str) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.id = i;
         this.name = str;
     }
@@ -27,7 +27,7 @@ public final /* data */ class StatsCodec {
     }
 
     public final StatsCodec copy(int id2, String name) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new StatsCodec(id2, name);
     }
 
@@ -39,7 +39,7 @@ public final /* data */ class StatsCodec {
             return false;
         }
         StatsCodec statsCodec = (StatsCodec) other;
-        return this.id == statsCodec.id && C12238m.areEqual(this.name, statsCodec.name);
+        return this.id == statsCodec.id && m.areEqual(this.name, statsCodec.name);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -67,9 +67,9 @@ public final /* data */ class StatsCodec {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StatsCodec(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", name=");
-        return C1643a.m822J(sbM833U, this.name, ")");
+        StringBuilder sbU = a.U("StatsCodec(id=");
+        sbU.append(this.id);
+        sbU.append(", name=");
+        return a.J(sbU, this.name, ")");
     }
 }

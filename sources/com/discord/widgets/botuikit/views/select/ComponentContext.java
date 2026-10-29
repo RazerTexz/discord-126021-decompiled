@@ -1,9 +1,9 @@
 package com.discord.widgets.botuikit.views.select;
 
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.io.Serializable;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SelectComponentBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -22,6 +22,10 @@ public final /* data */ class ComponentContext implements Serializable {
         this.applicationId = j3;
     }
 
+    public static /* synthetic */ ComponentContext copy$default(ComponentContext componentContext, Long l, long j, long j2, Long l2, long j3, int i, Object obj) {
+        return componentContext.copy((i & 1) != 0 ? componentContext.guildId : l, (i & 2) != 0 ? componentContext.messageId : j, (i & 4) != 0 ? componentContext.channelId : j2, (i & 8) != 0 ? componentContext.messageFlags : l2, (i & 16) != 0 ? componentContext.applicationId : j3);
+    }
+
     public final ComponentContext copy(Long guildId, long messageId, long channelId, Long messageFlags, long applicationId) {
         return new ComponentContext(guildId, messageId, channelId, messageFlags, applicationId);
     }
@@ -34,7 +38,7 @@ public final /* data */ class ComponentContext implements Serializable {
             return false;
         }
         ComponentContext componentContext = (ComponentContext) other;
-        return C12238m.areEqual(this.guildId, componentContext.guildId) && this.messageId == componentContext.messageId && this.channelId == componentContext.channelId && C12238m.areEqual(this.messageFlags, componentContext.messageFlags) && this.applicationId == componentContext.applicationId;
+        return m.areEqual(this.guildId, componentContext.guildId) && this.messageId == componentContext.messageId && this.channelId == componentContext.channelId && m.areEqual(this.messageFlags, componentContext.messageFlags) && this.applicationId == componentContext.applicationId;
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -84,21 +88,21 @@ public final /* data */ class ComponentContext implements Serializable {
 
     public int hashCode() {
         Long l = this.guildId;
-        int iM3a = (C0002b.m3a(this.channelId) + ((C0002b.m3a(this.messageId) + ((l != null ? l.hashCode() : 0) * 31)) * 31)) * 31;
+        int iA = (b.a(this.channelId) + ((b.a(this.messageId) + ((l != null ? l.hashCode() : 0) * 31)) * 31)) * 31;
         Long l2 = this.messageFlags;
-        return C0002b.m3a(this.applicationId) + ((iM3a + (l2 != null ? l2.hashCode() : 0)) * 31);
+        return b.a(this.applicationId) + ((iA + (l2 != null ? l2.hashCode() : 0)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ComponentContext(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", messageFlags=");
-        sbM833U.append(this.messageFlags);
-        sbM833U.append(", applicationId=");
-        return C1643a.m815C(sbM833U, this.applicationId, ")");
+        StringBuilder sbU = a.U("ComponentContext(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", messageFlags=");
+        sbU.append(this.messageFlags);
+        sbU.append(", applicationId=");
+        return a.C(sbU, this.applicationId, ")");
     }
 }

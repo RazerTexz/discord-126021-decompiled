@@ -1,54 +1,35 @@
 package com.discord.widgets.chat.input.autocomplete;
 
-import androidx.core.app.NotificationCompat;
-import com.discord.models.domain.ModelGuildMemberListUpdate;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import b.d.b.a.a;
+import d0.g;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.Lazy;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.C12083g;
-import p507d0.p580t.C12145m;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Autocompletable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GlobalRoleAutocompletable extends Autocompletable {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final GlobalRoleAutocompletable$Companion Companion = new GlobalRoleAutocompletable$Companion(null);
     private final String text;
     private final List<String> textMatchers;
-    private static final Lazy here$delegate = C12083g.lazy(GlobalRoleAutocompletable$Companion$here$2.INSTANCE);
-    private static final Lazy everyone$delegate = C12083g.lazy(GlobalRoleAutocompletable$Companion$everyone$2.INSTANCE);
-
-    /* JADX INFO: compiled from: Autocompletable.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final GlobalRoleAutocompletable getEveryone() {
-            Lazy lazy = GlobalRoleAutocompletable.everyone$delegate;
-            Companion companion = GlobalRoleAutocompletable.INSTANCE;
-            return (GlobalRoleAutocompletable) lazy.getValue();
-        }
-
-        public final GlobalRoleAutocompletable getHere() {
-            Lazy lazy = GlobalRoleAutocompletable.here$delegate;
-            Companion companion = GlobalRoleAutocompletable.INSTANCE;
-            return (GlobalRoleAutocompletable) lazy.getValue();
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private static final Lazy here$delegate = g.lazy(GlobalRoleAutocompletable$Companion$here$2.INSTANCE);
+    private static final Lazy everyone$delegate = g.lazy(GlobalRoleAutocompletable$Companion$everyone$2.INSTANCE);
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public GlobalRoleAutocompletable(String str) {
         super(null);
-        C12238m.checkNotNullParameter(str, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(str, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         this.text = str;
-        this.textMatchers = C12145m.listOf(leadingIdentifier().getIdentifier() + str);
+        this.textMatchers = d0.t.m.listOf(leadingIdentifier().getIdentifier() + str);
+    }
+
+    public static final /* synthetic */ Lazy access$getEveryone$cp() {
+        return everyone$delegate;
+    }
+
+    public static final /* synthetic */ Lazy access$getHere$cp() {
+        return here$delegate;
     }
 
     public static /* synthetic */ GlobalRoleAutocompletable copy$default(GlobalRoleAutocompletable globalRoleAutocompletable, String str, int i, Object obj) {
@@ -59,13 +40,13 @@ public final /* data */ class GlobalRoleAutocompletable extends Autocompletable 
     }
 
     public final GlobalRoleAutocompletable copy(String text) {
-        C12238m.checkNotNullParameter(text, NotificationCompat.MessagingStyle.Message.KEY_TEXT);
+        m.checkNotNullParameter(text, NotificationCompat$MessagingStyle$Message.KEY_TEXT);
         return new GlobalRoleAutocompletable(text);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof GlobalRoleAutocompletable) && C12238m.areEqual(this.text, ((GlobalRoleAutocompletable) other).text);
+            return (other instanceof GlobalRoleAutocompletable) && m.areEqual(this.text, ((GlobalRoleAutocompletable) other).text);
         }
         return true;
     }
@@ -107,6 +88,6 @@ public final /* data */ class GlobalRoleAutocompletable extends Autocompletable 
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("GlobalRoleAutocompletable(text="), this.text, ")");
+        return a.J(a.U("GlobalRoleAutocompletable(text="), this.text, ")");
     }
 }

@@ -14,6 +14,10 @@ public class HistogramTracker {
     private final PrintStream out;
     private static final long[] RANGES = {250001, 500001, 1000001, 2000001, 4000001, 8000001, 16000001, 32000001, 64000001, 128000001, 256000001, 512000001, 1024000001, 2048000001, 10000000001L};
 
+    static /* synthetic */ AtomicStampedReference access$0(HistogramTracker histogramTracker) {
+        return histogramTracker.bars;
+    }
+
     public HistogramTracker(String category) {
         this.bars = new AtomicStampedReference<>(new long[RANGES.length + 2], 0);
         this.addedSysHook = new AtomicBoolean(false);
@@ -54,14 +58,7 @@ public class HistogramTracker {
     public void end(long startToken) {
         long[] newBars;
         if (!this.addedSysHook.getAndSet(true)) {
-            Runtime.getRuntime().addShutdownHook(new Thread("Histogram Printer") { // from class: lombok.core.debug.HistogramTracker.1
-                @Override // java.lang.Thread, java.lang.Runnable
-                public void run() {
-                    int[] currentInterval = new int[1];
-                    long[] b2 = (long[]) HistogramTracker.this.bars.get(currentInterval);
-                    HistogramTracker.this.printReport(currentInterval[0], b2);
-                }
-            });
+            Runtime.getRuntime().addShutdownHook(new HistogramTracker$1(this, "Histogram Printer"));
         }
         long end = System.nanoTime();
         long now = System.currentTimeMillis();
@@ -95,6 +92,10 @@ public class HistogramTracker {
         long[] jArr3 = newBars;
         int length2 = RANGES.length;
         jArr3[length2] = jArr3[length2] + 1;
+    }
+
+    static /* synthetic */ void access$1(HistogramTracker histogramTracker, int i, long[] jArr) {
+        histogramTracker.printReport(i, jArr);
     }
 
     private void printReport(int interval, long[] bars) {

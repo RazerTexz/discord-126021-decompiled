@@ -4,17 +4,17 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.text.TextUtils;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.ForegroundInfo;
 import androidx.work.Logger;
 import androidx.work.impl.ExecutionListener;
-import androidx.work.impl.WorkDatabase;
 import androidx.work.impl.WorkManagerImpl;
 import androidx.work.impl.constraints.WorkConstraintsCallback;
 import androidx.work.impl.constraints.WorkConstraintsTracker;
@@ -26,11 +26,12 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import java.util.UUID;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class SystemForegroundDispatcher implements WorkConstraintsCallback, ExecutionListener {
     private static final String ACTION_CANCEL_WORK = "ACTION_CANCEL_WORK";
     private static final String ACTION_NOTIFY = "ACTION_NOTIFY";
@@ -41,7 +42,7 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
     private static final String KEY_WORKSPEC_ID = "KEY_WORKSPEC_ID";
 
     @Nullable
-    private Callback mCallback;
+    private SystemForegroundDispatcher$Callback mCallback;
     public final WorkConstraintsTracker mConstraintsTracker;
     private Context mContext;
     public String mCurrentForegroundWorkSpecId;
@@ -53,16 +54,6 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
     private WorkManagerImpl mWorkManagerImpl;
     public final Map<String, WorkSpec> mWorkSpecById;
     public static final String TAG = Logger.tagWithPrefix("SystemFgDispatcher");
-
-    public interface Callback {
-        void cancelNotification(int i);
-
-        void notify(int i, @NonNull Notification notification);
-
-        void startForeground(int i, int i2, @NonNull Notification notification);
-
-        void stop();
-    }
 
     public SystemForegroundDispatcher(@NonNull Context context) {
         this.mContext = context;
@@ -144,10 +135,10 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
             return;
         }
         this.mCallback.notify(intExtra, notification);
-        if (intExtra2 == 0 || Build.VERSION.SDK_INT < 29) {
+        if (intExtra2 == 0 || Build$VERSION.SDK_INT < 29) {
             return;
         }
-        Iterator<Map.Entry<String, ForegroundInfo>> it = this.mForegroundInfoById.entrySet().iterator();
+        Iterator<Map$Entry<String, ForegroundInfo>> it = this.mForegroundInfoById.entrySet().iterator();
         while (it.hasNext()) {
             foregroundServiceType |= it.next().getValue().getForegroundServiceType();
         }
@@ -160,33 +151,17 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
     @MainThread
     private void handleStartForeground(@NonNull Intent intent) {
         Logger.get().info(TAG, String.format("Started foreground service %s", intent), new Throwable[0]);
-        final String stringExtra = intent.getStringExtra(KEY_WORKSPEC_ID);
-        final WorkDatabase workDatabase = this.mWorkManagerImpl.getWorkDatabase();
-        this.mTaskExecutor.executeOnBackgroundThread(new Runnable() { // from class: androidx.work.impl.foreground.SystemForegroundDispatcher.1
-            @Override // java.lang.Runnable
-            public void run() {
-                WorkSpec workSpec = workDatabase.workSpecDao().getWorkSpec(stringExtra);
-                if (workSpec == null || !workSpec.hasConstraints()) {
-                    return;
-                }
-                synchronized (SystemForegroundDispatcher.this.mLock) {
-                    SystemForegroundDispatcher.this.mWorkSpecById.put(stringExtra, workSpec);
-                    SystemForegroundDispatcher.this.mTrackedWorkSpecs.add(workSpec);
-                    SystemForegroundDispatcher systemForegroundDispatcher = SystemForegroundDispatcher.this;
-                    systemForegroundDispatcher.mConstraintsTracker.replace(systemForegroundDispatcher.mTrackedWorkSpecs);
-                }
-            }
-        });
+        this.mTaskExecutor.executeOnBackgroundThread(new SystemForegroundDispatcher$1(this, this.mWorkManagerImpl.getWorkDatabase(), intent.getStringExtra(KEY_WORKSPEC_ID)));
     }
 
     @MainThread
     public void handleStop() {
         Logger.get().info(TAG, "Stopping foreground service", new Throwable[0]);
-        Callback callback = this.mCallback;
-        if (callback != null) {
+        SystemForegroundDispatcher$Callback systemForegroundDispatcher$Callback = this.mCallback;
+        if (systemForegroundDispatcher$Callback != null) {
             ForegroundInfo foregroundInfo = this.mLastForegroundInfo;
             if (foregroundInfo != null) {
-                callback.cancelNotification(foregroundInfo.getNotificationId());
+                systemForegroundDispatcher$Callback.cancelNotification(foregroundInfo.getNotificationId());
                 this.mLastForegroundInfo = null;
             }
             this.mCallback.stop();
@@ -220,8 +195,8 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
     @Override // androidx.work.impl.ExecutionListener
     @MainThread
     public void onExecuted(@NonNull String str, boolean z2) {
-        Callback callback;
-        Map.Entry<String, ForegroundInfo> entry;
+        SystemForegroundDispatcher$Callback systemForegroundDispatcher$Callback;
+        Map$Entry<String, ForegroundInfo> map$Entry;
         synchronized (this.mLock) {
             WorkSpec workSpecRemove = this.mWorkSpecById.remove(str);
             if (workSpecRemove != null ? this.mTrackedWorkSpecs.remove(workSpecRemove) : false) {
@@ -231,26 +206,26 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
         this.mLastForegroundInfo = this.mForegroundInfoById.remove(str);
         if (!str.equals(this.mCurrentForegroundWorkSpecId)) {
             ForegroundInfo foregroundInfo = this.mLastForegroundInfo;
-            if (foregroundInfo == null || (callback = this.mCallback) == null) {
+            if (foregroundInfo == null || (systemForegroundDispatcher$Callback = this.mCallback) == null) {
                 return;
             }
-            callback.cancelNotification(foregroundInfo.getNotificationId());
+            systemForegroundDispatcher$Callback.cancelNotification(foregroundInfo.getNotificationId());
             return;
         }
         if (this.mForegroundInfoById.size() > 0) {
-            Iterator<Map.Entry<String, ForegroundInfo>> it = this.mForegroundInfoById.entrySet().iterator();
-            Map.Entry<String, ForegroundInfo> next = it.next();
+            Iterator<Map$Entry<String, ForegroundInfo>> it = this.mForegroundInfoById.entrySet().iterator();
+            Map$Entry<String, ForegroundInfo> next = it.next();
             while (true) {
-                entry = next;
+                map$Entry = next;
                 if (!it.hasNext()) {
                     break;
                 } else {
                     next = it.next();
                 }
             }
-            this.mCurrentForegroundWorkSpecId = entry.getKey();
+            this.mCurrentForegroundWorkSpecId = map$Entry.getKey();
             if (this.mCallback != null) {
-                ForegroundInfo value = entry.getValue();
+                ForegroundInfo value = map$Entry.getValue();
                 this.mCallback.startForeground(value.getNotificationId(), value.getForegroundServiceType(), value.getNotification());
                 this.mCallback.cancelNotification(value.getNotificationId());
             }
@@ -270,11 +245,11 @@ public class SystemForegroundDispatcher implements WorkConstraintsCallback, Exec
     }
 
     @MainThread
-    public void setCallback(@NonNull Callback callback) {
+    public void setCallback(@NonNull SystemForegroundDispatcher$Callback systemForegroundDispatcher$Callback) {
         if (this.mCallback != null) {
             Logger.get().error(TAG, "A callback already exists.", new Throwable[0]);
         } else {
-            this.mCallback = callback;
+            this.mCallback = systemForegroundDispatcher$Callback;
         }
     }
 

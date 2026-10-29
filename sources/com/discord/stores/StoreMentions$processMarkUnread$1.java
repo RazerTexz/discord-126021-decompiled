@@ -1,13 +1,13 @@
 package com.discord.stores;
 
 import com.discord.models.domain.ModelReadState;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreMentions.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class StoreMentions$processMarkUnread$1 extends AbstractC12240o implements Function1<ModelReadState, Boolean> {
+public final class StoreMentions$processMarkUnread$1 extends o implements Function1<ModelReadState, Boolean> {
     public final /* synthetic */ long $channelId;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -23,7 +23,7 @@ public final class StoreMentions$processMarkUnread$1 extends AbstractC12240o imp
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final boolean invoke2(ModelReadState modelReadState) {
-        C12238m.checkNotNullParameter(modelReadState, "it");
+        m.checkNotNullParameter(modelReadState, "it");
         return modelReadState.getChannelId() == this.$channelId;
     }
 }

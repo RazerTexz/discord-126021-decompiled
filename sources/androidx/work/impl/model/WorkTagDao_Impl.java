@@ -5,7 +5,6 @@ import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
 import androidx.room.util.DBUtil;
-import androidx.sqlite.p006db.SupportSQLiteStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,28 +15,7 @@ public final class WorkTagDao_Impl implements WorkTagDao {
 
     public WorkTagDao_Impl(RoomDatabase roomDatabase) {
         this.__db = roomDatabase;
-        this.__insertionAdapterOfWorkTag = new EntityInsertionAdapter<WorkTag>(roomDatabase) { // from class: androidx.work.impl.model.WorkTagDao_Impl.1
-            @Override // androidx.room.SharedSQLiteStatement
-            public String createQuery() {
-                return "INSERT OR IGNORE INTO `WorkTag` (`tag`,`work_spec_id`) VALUES (?,?)";
-            }
-
-            @Override // androidx.room.EntityInsertionAdapter
-            public void bind(SupportSQLiteStatement supportSQLiteStatement, WorkTag workTag) {
-                String str = workTag.tag;
-                if (str == null) {
-                    supportSQLiteStatement.bindNull(1);
-                } else {
-                    supportSQLiteStatement.bindString(1, str);
-                }
-                String str2 = workTag.workSpecId;
-                if (str2 == null) {
-                    supportSQLiteStatement.bindNull(2);
-                } else {
-                    supportSQLiteStatement.bindString(2, str2);
-                }
-            }
-        };
+        this.__insertionAdapterOfWorkTag = new WorkTagDao_Impl$1(this, roomDatabase);
     }
 
     @Override // androidx.work.impl.model.WorkTagDao

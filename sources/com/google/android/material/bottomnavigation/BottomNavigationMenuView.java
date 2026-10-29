@@ -1,6 +1,6 @@
 package com.google.android.material.bottomnavigation;
 
-import android.R;
+import android.R$attr;
 import android.animation.TimeInterpolator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,34 +12,39 @@ import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View$MeasureSpec;
+import android.view.View$OnClickListener;
+import android.view.View$OnTouchListener;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleRes;
 import androidx.annotation.VisibleForTesting;
-import androidx.appcompat.C0051R;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuItemImpl;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
-import androidx.core.util.Pools;
+import androidx.core.util.Pools$Pool;
+import androidx.core.util.Pools$SynchronizedPool;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat$CollectionInfoCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$dimen;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.internal.TextScale;
 import java.util.HashSet;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     private static final long ACTIVE_ANIMATION_DURATION_MS = 115;
     private static final int ITEM_POOL_SIZE = 5;
@@ -61,7 +66,7 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     @Dimension
     private int itemIconSize;
     private ColorStateList itemIconTint;
-    private final Pools.Pool<BottomNavigationItemView> itemPool;
+    private final Pools$Pool<BottomNavigationItemView> itemPool;
 
     @StyleRes
     private int itemTextAppearanceActive;
@@ -76,10 +81,10 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     private MenuBuilder menu;
 
     @NonNull
-    private final View.OnClickListener onClickListener;
+    private final View$OnClickListener onClickListener;
 
     @NonNull
-    private final SparseArray<View.OnTouchListener> onTouchListeners;
+    private final SparseArray<View$OnTouchListener> onTouchListeners;
     private BottomNavigationPresenter presenter;
     private int selectedItemId;
     private int selectedItemPosition;
@@ -87,26 +92,19 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     @NonNull
     private final TransitionSet set;
     private int[] tempChildWidths;
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
+    private static final int[] CHECKED_STATE_SET = {R$attr.state_checked};
     private static final int[] DISABLED_STATE_SET = {-16842910};
-
-    /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationMenuView$a */
-    public class ViewOnClickListenerC10847a implements View.OnClickListener {
-        public ViewOnClickListenerC10847a() {
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            MenuItemImpl itemData = ((BottomNavigationItemView) view).getItemData();
-            if (BottomNavigationMenuView.this.menu.performItemAction(itemData, BottomNavigationMenuView.this.presenter, 0)) {
-                return;
-            }
-            itemData.setChecked(true);
-        }
-    }
 
     public BottomNavigationMenuView(Context context) {
         this(context, null);
+    }
+
+    public static /* synthetic */ BottomNavigationPresenter access$000(BottomNavigationMenuView bottomNavigationMenuView) {
+        return bottomNavigationMenuView.presenter;
+    }
+
+    public static /* synthetic */ MenuBuilder access$100(BottomNavigationMenuView bottomNavigationMenuView) {
+        return bottomNavigationMenuView.menu;
     }
 
     @SuppressLint({"ClickableViewAccessibility"})
@@ -175,7 +173,7 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
             return null;
         }
         ColorStateList colorStateList = AppCompatResources.getColorStateList(getContext(), typedValue.resourceId);
-        if (!getContext().getTheme().resolveAttribute(C0051R.attr.colorPrimary, typedValue, true)) {
+        if (!getContext().getTheme().resolveAttribute(androidx.appcompat.R$attr.colorPrimary, typedValue, true)) {
             return null;
         }
         int i2 = typedValue.data;
@@ -303,7 +301,7 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     @Override // android.view.View
     public void onInitializeAccessibilityNodeInfo(@NonNull AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionInfo(AccessibilityNodeInfoCompat.CollectionInfoCompat.obtain(1, this.menu.getVisibleItems().size(), false, 1));
+        AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo).setCollectionInfo(AccessibilityNodeInfoCompat$CollectionInfoCompat.obtain(1, this.menu.getVisibleItems().size(), false, 1));
     }
 
     @Override // android.view.ViewGroup, android.view.View
@@ -328,15 +326,15 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
 
     @Override // android.view.View
     public void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
+        int size = View$MeasureSpec.getSize(i);
         int size2 = this.menu.getVisibleItems().size();
         int childCount = getChildCount();
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(this.itemHeight, BasicMeasure.EXACTLY);
+        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(this.itemHeight, BasicMeasure.EXACTLY);
         if (isShifting(this.labelVisibilityMode, size2) && this.itemHorizontalTranslationEnabled) {
             View childAt = getChildAt(this.selectedItemPosition);
             int iMax = this.activeItemMinWidth;
             if (childAt.getVisibility() != 8) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(this.activeItemMaxWidth, Integer.MIN_VALUE), iMakeMeasureSpec);
+                childAt.measure(View$MeasureSpec.makeMeasureSpec(this.activeItemMaxWidth, Integer.MIN_VALUE), iMakeMeasureSpec);
                 iMax = Math.max(iMax, childAt.getMeasuredWidth());
             }
             int i3 = size2 - (childAt.getVisibility() != 8 ? 1 : 0);
@@ -378,12 +376,12 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
         for (int i9 = 0; i9 < childCount; i9++) {
             View childAt2 = getChildAt(i9);
             if (childAt2.getVisibility() != 8) {
-                childAt2.measure(View.MeasureSpec.makeMeasureSpec(this.tempChildWidths[i9], BasicMeasure.EXACTLY), iMakeMeasureSpec);
+                childAt2.measure(View$MeasureSpec.makeMeasureSpec(this.tempChildWidths[i9], BasicMeasure.EXACTLY), iMakeMeasureSpec);
                 childAt2.getLayoutParams().width = childAt2.getMeasuredWidth();
                 measuredWidth += childAt2.getMeasuredWidth();
             }
         }
-        setMeasuredDimension(View.resolveSizeAndState(measuredWidth, View.MeasureSpec.makeMeasureSpec(measuredWidth, BasicMeasure.EXACTLY), 0), View.resolveSizeAndState(this.itemHeight, iMakeMeasureSpec, 0));
+        setMeasuredDimension(View.resolveSizeAndState(measuredWidth, View$MeasureSpec.makeMeasureSpec(measuredWidth, BasicMeasure.EXACTLY), 0), View.resolveSizeAndState(this.itemHeight, iMakeMeasureSpec, 0));
     }
 
     public void removeBadge(int i) {
@@ -474,17 +472,17 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
     }
 
     @SuppressLint({"ClickableViewAccessibility"})
-    public void setItemOnTouchListener(int i, @Nullable View.OnTouchListener onTouchListener) {
-        if (onTouchListener == null) {
+    public void setItemOnTouchListener(int i, @Nullable View$OnTouchListener view$OnTouchListener) {
+        if (view$OnTouchListener == null) {
             this.onTouchListeners.remove(i);
         } else {
-            this.onTouchListeners.put(i, onTouchListener);
+            this.onTouchListeners.put(i, view$OnTouchListener);
         }
         BottomNavigationItemView[] bottomNavigationItemViewArr = this.buttons;
         if (bottomNavigationItemViewArr != null) {
             for (BottomNavigationItemView bottomNavigationItemView : bottomNavigationItemViewArr) {
                 if (bottomNavigationItemView.getItemData().getItemId() == i) {
-                    bottomNavigationItemView.setOnTouchListener(onTouchListener);
+                    bottomNavigationItemView.setOnTouchListener(view$OnTouchListener);
                 }
             }
         }
@@ -589,25 +587,25 @@ public class BottomNavigationMenuView extends ViewGroup implements MenuView {
 
     public BottomNavigationMenuView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.itemPool = new Pools.SynchronizedPool(5);
+        this.itemPool = new Pools$SynchronizedPool(5);
         this.onTouchListeners = new SparseArray<>(5);
         this.selectedItemId = 0;
         this.selectedItemPosition = 0;
         this.badgeDrawables = new SparseArray<>(5);
         Resources resources = getResources();
-        this.inactiveItemMaxWidth = resources.getDimensionPixelSize(C10817R.dimen.design_bottom_navigation_item_max_width);
-        this.inactiveItemMinWidth = resources.getDimensionPixelSize(C10817R.dimen.design_bottom_navigation_item_min_width);
-        this.activeItemMaxWidth = resources.getDimensionPixelSize(C10817R.dimen.design_bottom_navigation_active_item_max_width);
-        this.activeItemMinWidth = resources.getDimensionPixelSize(C10817R.dimen.design_bottom_navigation_active_item_min_width);
-        this.itemHeight = resources.getDimensionPixelSize(C10817R.dimen.design_bottom_navigation_height);
-        this.itemTextColorDefault = createDefaultColorStateList(R.attr.textColorSecondary);
+        this.inactiveItemMaxWidth = resources.getDimensionPixelSize(R$dimen.design_bottom_navigation_item_max_width);
+        this.inactiveItemMinWidth = resources.getDimensionPixelSize(R$dimen.design_bottom_navigation_item_min_width);
+        this.activeItemMaxWidth = resources.getDimensionPixelSize(R$dimen.design_bottom_navigation_active_item_max_width);
+        this.activeItemMinWidth = resources.getDimensionPixelSize(R$dimen.design_bottom_navigation_active_item_min_width);
+        this.itemHeight = resources.getDimensionPixelSize(R$dimen.design_bottom_navigation_height);
+        this.itemTextColorDefault = createDefaultColorStateList(R$attr.textColorSecondary);
         AutoTransition autoTransition = new AutoTransition();
         this.set = autoTransition;
         autoTransition.setOrdering(0);
         autoTransition.setDuration(ACTIVE_ANIMATION_DURATION_MS);
         autoTransition.setInterpolator((TimeInterpolator) new FastOutSlowInInterpolator());
         autoTransition.addTransition(new TextScale());
-        this.onClickListener = new ViewOnClickListenerC10847a();
+        this.onClickListener = new BottomNavigationMenuView$a(this);
         this.tempChildWidths = new int[5];
         ViewCompat.setImportantForAccessibility(this, 1);
     }

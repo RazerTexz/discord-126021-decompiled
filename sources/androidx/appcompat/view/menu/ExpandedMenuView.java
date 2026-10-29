@@ -1,23 +1,25 @@
 package androidx.appcompat.view.menu;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView$OnItemClickListener;
 import android.widget.ListView;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.widget.TintTypedArray;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-public final class ExpandedMenuView extends ListView implements MenuBuilder.ItemInvoker, MenuView, AdapterView.OnItemClickListener {
-    private static final int[] TINT_ATTRS = {R.attr.background, R.attr.divider};
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+public final class ExpandedMenuView extends ListView implements MenuBuilder$ItemInvoker, MenuView, AdapterView$OnItemClickListener {
+    private static final int[] TINT_ATTRS = {R$attr.background, R$attr.divider};
     private int mAnimations;
     private MenuBuilder mMenu;
 
     public ExpandedMenuView(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.listViewStyle);
+        this(context, attributeSet, R$attr.listViewStyle);
     }
 
     @Override // androidx.appcompat.view.menu.MenuView
@@ -30,7 +32,7 @@ public final class ExpandedMenuView extends ListView implements MenuBuilder.Item
         this.mMenu = menuBuilder;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuBuilder.ItemInvoker
+    @Override // androidx.appcompat.view.menu.MenuBuilder$ItemInvoker
     public boolean invokeItem(MenuItemImpl menuItemImpl) {
         return this.mMenu.performItemAction(menuItemImpl, 0);
     }
@@ -41,7 +43,7 @@ public final class ExpandedMenuView extends ListView implements MenuBuilder.Item
         setChildrenDrawingCacheEnabled(false);
     }
 
-    @Override // android.widget.AdapterView.OnItemClickListener
+    @Override // android.widget.AdapterView$OnItemClickListener
     public void onItemClick(AdapterView adapterView, View view, int i, long j) {
         invokeItem((MenuItemImpl) getAdapter().getItem(i));
     }

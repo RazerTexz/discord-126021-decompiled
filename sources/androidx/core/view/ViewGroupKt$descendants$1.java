@@ -2,21 +2,21 @@ package androidx.core.view;
 
 import android.view.View;
 import android.view.ViewGroup;
+import d0.f0.k;
+import d0.l;
+import d0.w.h.c;
+import d0.w.i.a.e;
+import d0.w.i.a.j;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function2;
 import kotlin.sequences.Sequence;
-import p507d0.C12113l;
-import p507d0.p578f0.AbstractC12072k;
-import p507d0.p584w.p585h.C12183c;
-import p507d0.p584w.p586i.p587a.AbstractC12193j;
-import p507d0.p584w.p586i.p587a.InterfaceC12188e;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ViewGroup.kt */
 /* JADX INFO: loaded from: classes.dex */
-@InterfaceC12188e(m10084c = "androidx.core.view.ViewGroupKt$descendants$1", m10085f = "ViewGroup.kt", m10086l = {97, 99}, m10087m = "invokeSuspend")
-public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements Function2<AbstractC12072k<? super View>, Continuation<? super Unit>, Object> {
+@e(c = "androidx.core.view.ViewGroupKt$descendants$1", f = "ViewGroup.kt", l = {97, 99}, m = "invokeSuspend")
+public final class ViewGroupKt$descendants$1 extends j implements Function2<k<? super View>, Continuation<? super Unit>, Object> {
     public final /* synthetic */ ViewGroup $this_descendants;
     public int I$0;
     public int I$1;
@@ -31,7 +31,7 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
         this.$this_descendants = viewGroup;
     }
 
-    @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+    @Override // d0.w.i.a.a
     public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
         ViewGroupKt$descendants$1 viewGroupKt$descendants$1 = new ViewGroupKt$descendants$1(this.$this_descendants, continuation);
         viewGroupKt$descendants$1.L$0 = obj;
@@ -39,8 +39,13 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public final Object invoke(AbstractC12072k<? super View> abstractC12072k, Continuation<? super Unit> continuation) {
-        return ((ViewGroupKt$descendants$1) create(abstractC12072k, continuation)).invokeSuspend(Unit.f27425a);
+    public /* bridge */ /* synthetic */ Object invoke(k<? super View> kVar, Continuation<? super Unit> continuation) {
+        return invoke2(kVar, continuation);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final Object invoke2(k<? super View> kVar, Continuation<? super Unit> continuation) {
+        return ((ViewGroupKt$descendants$1) create(kVar, continuation)).invokeSuspend(Unit.a);
     }
 
     /* JADX WARN: Code duplicated, block: B:19:0x0077  */
@@ -53,12 +58,12 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
      */
     /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:22:0x0091 -> B:23:0x0093). Please report as a decompilation issue!!! */
     /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:24:0x0099 -> B:25:0x009c). Please report as a decompilation issue!!! */
-    @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
+    @Override // d0.w.i.a.a
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
     public final Object invokeSuspend(Object obj) throws Throwable {
-        AbstractC12072k abstractC12072k;
+        k kVar;
         ViewGroup viewGroup;
         int i;
         int childCount;
@@ -69,8 +74,8 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
         int i2;
         Sequence<View> descendants;
         ViewGroup viewGroup3;
-        AbstractC12072k abstractC12072k2;
-        Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
+        k kVar2;
+        Object coroutine_suspended = c.getCOROUTINE_SUSPENDED();
         int i3 = this.label;
         if (i3 != 0) {
             if (i3 == 1) {
@@ -78,23 +83,23 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
                 i = this.I$0;
                 view = (View) this.L$2;
                 viewGroup2 = (ViewGroup) this.L$1;
-                AbstractC12072k abstractC12072k3 = (AbstractC12072k) this.L$0;
-                C12113l.throwOnFailure(obj);
-                abstractC12072k = abstractC12072k3;
+                k kVar3 = (k) this.L$0;
+                l.throwOnFailure(obj);
+                kVar = kVar3;
                 viewGroupKt$descendants$2 = this;
                 if (view instanceof ViewGroup) {
                     descendants = ViewGroupKt.getDescendants((ViewGroup) view);
-                    viewGroupKt$descendants$2.L$0 = abstractC12072k;
+                    viewGroupKt$descendants$2.L$0 = kVar;
                     viewGroupKt$descendants$2.L$1 = viewGroup2;
                     viewGroupKt$descendants$2.L$2 = null;
                     viewGroupKt$descendants$2.I$0 = i;
                     viewGroupKt$descendants$2.I$1 = i2;
                     viewGroupKt$descendants$2.label = 2;
-                    if (abstractC12072k.yieldAll(descendants, viewGroupKt$descendants$2) == coroutine_suspended) {
+                    if (kVar.yieldAll(descendants, viewGroupKt$descendants$2) == coroutine_suspended) {
                         return coroutine_suspended;
                     }
                     viewGroup3 = viewGroup2;
-                    abstractC12072k2 = abstractC12072k;
+                    kVar2 = kVar;
                 } else {
                     childCount = i2;
                     viewGroup = viewGroup2;
@@ -107,18 +112,18 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
                 i2 = this.I$1;
                 i = this.I$0;
                 viewGroup3 = (ViewGroup) this.L$1;
-                abstractC12072k2 = (AbstractC12072k) this.L$0;
-                C12113l.throwOnFailure(obj);
+                kVar2 = (k) this.L$0;
+                l.throwOnFailure(obj);
                 viewGroupKt$descendants$2 = this;
             }
-            abstractC12072k = abstractC12072k2;
+            kVar = kVar2;
             viewGroupKt$descendants$1 = viewGroupKt$descendants$2;
             ViewGroup viewGroup4 = viewGroup3;
             childCount = i2;
             viewGroup = viewGroup4;
         } else {
-            C12113l.throwOnFailure(obj);
-            abstractC12072k = (AbstractC12072k) this.L$0;
+            l.throwOnFailure(obj);
+            kVar = (k) this.L$0;
             viewGroup = this.$this_descendants;
             i = 0;
             childCount = viewGroup.getChildCount();
@@ -126,14 +131,14 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
                 viewGroupKt$descendants$1 = this;
                 int i4 = i + 1;
                 View childAt = viewGroup.getChildAt(i);
-                C12238m.checkNotNullExpressionValue(childAt, "getChildAt(index)");
-                viewGroupKt$descendants$1.L$0 = abstractC12072k;
+                m.checkNotNullExpressionValue(childAt, "getChildAt(index)");
+                viewGroupKt$descendants$1.L$0 = kVar;
                 viewGroupKt$descendants$1.L$1 = viewGroup;
                 viewGroupKt$descendants$1.L$2 = childAt;
                 viewGroupKt$descendants$1.I$0 = i4;
                 viewGroupKt$descendants$1.I$1 = childCount;
                 viewGroupKt$descendants$1.label = 1;
-                if (abstractC12072k.yield(childAt, viewGroupKt$descendants$1) == coroutine_suspended) {
+                if (kVar.yield(childAt, viewGroupKt$descendants$1) == coroutine_suspended) {
                     return coroutine_suspended;
                 }
                 ViewGroupKt$descendants$1 viewGroupKt$descendants$3 = viewGroupKt$descendants$1;
@@ -144,18 +149,18 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
                 viewGroupKt$descendants$2 = viewGroupKt$descendants$3;
                 if (view instanceof ViewGroup) {
                     descendants = ViewGroupKt.getDescendants((ViewGroup) view);
-                    viewGroupKt$descendants$2.L$0 = abstractC12072k;
+                    viewGroupKt$descendants$2.L$0 = kVar;
                     viewGroupKt$descendants$2.L$1 = viewGroup2;
                     viewGroupKt$descendants$2.L$2 = null;
                     viewGroupKt$descendants$2.I$0 = i;
                     viewGroupKt$descendants$2.I$1 = i2;
                     viewGroupKt$descendants$2.label = 2;
-                    if (abstractC12072k.yieldAll(descendants, viewGroupKt$descendants$2) == coroutine_suspended) {
+                    if (kVar.yieldAll(descendants, viewGroupKt$descendants$2) == coroutine_suspended) {
                         return coroutine_suspended;
                     }
                     viewGroup3 = viewGroup2;
-                    abstractC12072k2 = abstractC12072k;
-                    abstractC12072k = abstractC12072k2;
+                    kVar2 = kVar;
+                    kVar = kVar2;
                     viewGroupKt$descendants$1 = viewGroupKt$descendants$2;
                     ViewGroup viewGroup5 = viewGroup3;
                     childCount = i2;
@@ -167,6 +172,6 @@ public final class ViewGroupKt$descendants$1 extends AbstractC12193j implements 
                 }
             }
         }
-        return Unit.f27425a;
+        return Unit.a;
     }
 }

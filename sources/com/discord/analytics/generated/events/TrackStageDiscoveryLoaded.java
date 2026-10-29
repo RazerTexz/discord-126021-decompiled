@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackStageDiscoveryLoaded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSche
             return false;
         }
         TrackStageDiscoveryLoaded trackStageDiscoveryLoaded = (TrackStageDiscoveryLoaded) other;
-        return C12238m.areEqual(this.loadId, trackStageDiscoveryLoaded.loadId) && C12238m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryLoaded.stageInstanceRecommendations) && C12238m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryLoaded.lastVisibleIndexAtLoad) && C12238m.areEqual(this.indexes, trackStageDiscoveryLoaded.indexes) && C12238m.areEqual(this.stageInstanceIds, trackStageDiscoveryLoaded.stageInstanceIds) && C12238m.areEqual(this.recommendationSources, trackStageDiscoveryLoaded.recommendationSources) && C12238m.areEqual(this.recommendationScores, trackStageDiscoveryLoaded.recommendationScores);
+        return m.areEqual(this.loadId, trackStageDiscoveryLoaded.loadId) && m.areEqual(this.stageInstanceRecommendations, trackStageDiscoveryLoaded.stageInstanceRecommendations) && m.areEqual(this.lastVisibleIndexAtLoad, trackStageDiscoveryLoaded.lastVisibleIndexAtLoad) && m.areEqual(this.indexes, trackStageDiscoveryLoaded.indexes) && m.areEqual(this.stageInstanceIds, trackStageDiscoveryLoaded.stageInstanceIds) && m.areEqual(this.recommendationSources, trackStageDiscoveryLoaded.recommendationSources) && m.areEqual(this.recommendationScores, trackStageDiscoveryLoaded.recommendationScores);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -55,19 +55,19 @@ public final /* data */ class TrackStageDiscoveryLoaded implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackStageDiscoveryLoaded(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", stageInstanceRecommendations=");
-        sbM833U.append(this.stageInstanceRecommendations);
-        sbM833U.append(", lastVisibleIndexAtLoad=");
-        sbM833U.append(this.lastVisibleIndexAtLoad);
-        sbM833U.append(", indexes=");
-        sbM833U.append(this.indexes);
-        sbM833U.append(", stageInstanceIds=");
-        sbM833U.append(this.stageInstanceIds);
-        sbM833U.append(", recommendationSources=");
-        sbM833U.append(this.recommendationSources);
-        sbM833U.append(", recommendationScores=");
-        return C1643a.m824L(sbM833U, this.recommendationScores, ")");
+        StringBuilder sbU = a.U("TrackStageDiscoveryLoaded(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", stageInstanceRecommendations=");
+        sbU.append(this.stageInstanceRecommendations);
+        sbU.append(", lastVisibleIndexAtLoad=");
+        sbU.append(this.lastVisibleIndexAtLoad);
+        sbU.append(", indexes=");
+        sbU.append(this.indexes);
+        sbU.append(", stageInstanceIds=");
+        sbU.append(this.stageInstanceIds);
+        sbU.append(", recommendationSources=");
+        sbU.append(this.recommendationSources);
+        sbU.append(", recommendationScores=");
+        return a.L(sbU, this.recommendationScores, ")");
     }
 }

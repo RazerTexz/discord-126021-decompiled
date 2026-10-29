@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildFeedItemFeatured.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,6 +23,11 @@ public final /* data */ class TrackGuildFeedItemFeatured implements AnalyticsSch
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "guild_feed_item_featured";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +36,7 @@ public final /* data */ class TrackGuildFeedItemFeatured implements AnalyticsSch
             return false;
         }
         TrackGuildFeedItemFeatured trackGuildFeedItemFeatured = (TrackGuildFeedItemFeatured) other;
-        return C12238m.areEqual(this.entityType, trackGuildFeedItemFeatured.entityType) && C12238m.areEqual(this.entityId, trackGuildFeedItemFeatured.entityId) && C12238m.areEqual(this.featureUntil, trackGuildFeedItemFeatured.featureUntil) && C12238m.areEqual(this.numMessageUrls, trackGuildFeedItemFeatured.numMessageUrls) && C12238m.areEqual(this.referenceMessageId, trackGuildFeedItemFeatured.referenceMessageId);
+        return m.areEqual(this.entityType, trackGuildFeedItemFeatured.entityType) && m.areEqual(this.entityId, trackGuildFeedItemFeatured.entityId) && m.areEqual(this.featureUntil, trackGuildFeedItemFeatured.featureUntil) && m.areEqual(this.numMessageUrls, trackGuildFeedItemFeatured.numMessageUrls) && m.areEqual(this.referenceMessageId, trackGuildFeedItemFeatured.referenceMessageId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -59,22 +64,16 @@ public final /* data */ class TrackGuildFeedItemFeatured implements AnalyticsSch
         return iHashCode4 + (l4 != null ? l4.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildFeedItemFeatured(entityType=");
-        sbM833U.append(this.entityType);
-        sbM833U.append(", entityId=");
-        sbM833U.append(this.entityId);
-        sbM833U.append(", featureUntil=");
-        sbM833U.append(this.featureUntil);
-        sbM833U.append(", numMessageUrls=");
-        sbM833U.append(this.numMessageUrls);
-        sbM833U.append(", referenceMessageId=");
-        return C1643a.m819G(sbM833U, this.referenceMessageId, ")");
+        StringBuilder sbU = a.U("TrackGuildFeedItemFeatured(entityType=");
+        sbU.append(this.entityType);
+        sbU.append(", entityId=");
+        sbU.append(this.entityId);
+        sbU.append(", featureUntil=");
+        sbU.append(this.featureUntil);
+        sbU.append(", numMessageUrls=");
+        sbU.append(this.numMessageUrls);
+        sbU.append(", referenceMessageId=");
+        return a.G(sbU, this.referenceMessageId, ")");
     }
 }

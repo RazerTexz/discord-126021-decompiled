@@ -9,22 +9,21 @@ import com.discord.views.sticker.StickerView;
 /* JADX INFO: loaded from: classes.dex */
 public final class StickerAutocompleteItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15257a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final StickerView f15258b;
+    public final StickerView f2147b;
 
     public StickerAutocompleteItemBinding(@NonNull FrameLayout frameLayout, @NonNull StickerView stickerView) {
-        this.f15257a = frameLayout;
-        this.f15258b = stickerView;
+        this.a = frameLayout;
+        this.f2147b = stickerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15257a;
+        return this.a;
     }
 }

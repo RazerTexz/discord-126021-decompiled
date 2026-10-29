@@ -1,7 +1,6 @@
 package com.discord.api.guildrolesubscription;
 
 import com.discord.widgets.chat.AutocompleteSelectionTypes;
-import kotlin.jvm.internal.DefaultConstructorMarker;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitType.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,19 +9,8 @@ public enum GuildRoleSubscriptionBenefitType {
     CHANNEL(1),
     INTANGIBLE(2);
 
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final GuildRoleSubscriptionBenefitType$Companion Companion = new GuildRoleSubscriptionBenefitType$Companion(null);
     private final int apiValue;
-
-    /* JADX INFO: compiled from: GuildRoleSubscriptionBenefitType.kt */
-    public final class Companion {
-        public Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-    }
 
     GuildRoleSubscriptionBenefitType(int i) {
         this.apiValue = i;

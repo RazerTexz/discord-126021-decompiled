@@ -11,42 +11,37 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetNuxGuildTemplateBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17323a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f17324b;
+    public final MaterialButton f2505b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final LinearLayout f17325c;
+    public final LinearLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17326d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17327e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final RecyclerView f17328f;
+    public final RecyclerView f;
 
     public WidgetNuxGuildTemplateBinding(@NonNull LinearLayout linearLayout, @NonNull MaterialButton materialButton, @NonNull LinearLayout linearLayout2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull RecyclerView recyclerView) {
-        this.f17323a = linearLayout;
-        this.f17324b = materialButton;
-        this.f17325c = linearLayout2;
-        this.f17326d = textView;
-        this.f17327e = textView2;
-        this.f17328f = recyclerView;
+        this.a = linearLayout;
+        this.f2505b = materialButton;
+        this.c = linearLayout2;
+        this.d = textView;
+        this.e = textView2;
+        this.f = recyclerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17323a;
+        return this.a;
     }
 }

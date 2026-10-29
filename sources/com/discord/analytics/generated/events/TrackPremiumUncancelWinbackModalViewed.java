@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadata;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPremiumUncancelWinbackModalViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -35,7 +35,7 @@ public final /* data */ class TrackPremiumUncancelWinbackModalViewed implements 
             return false;
         }
         TrackPremiumUncancelWinbackModalViewed trackPremiumUncancelWinbackModalViewed = (TrackPremiumUncancelWinbackModalViewed) other;
-        return C12238m.areEqual(this.globalEmojiPosition, trackPremiumUncancelWinbackModalViewed.globalEmojiPosition) && C12238m.areEqual(this.globalEmojiStats, trackPremiumUncancelWinbackModalViewed.globalEmojiStats) && C12238m.areEqual(this.globalEmojiPersonalized, trackPremiumUncancelWinbackModalViewed.globalEmojiPersonalized) && C12238m.areEqual(this.hdStreamingPosition, trackPremiumUncancelWinbackModalViewed.hdStreamingPosition) && C12238m.areEqual(this.hdStreamingStats, trackPremiumUncancelWinbackModalViewed.hdStreamingStats) && C12238m.areEqual(this.hdStreamingPersonalized, trackPremiumUncancelWinbackModalViewed.hdStreamingPersonalized) && C12238m.areEqual(this.largeFileUploadPosition, trackPremiumUncancelWinbackModalViewed.largeFileUploadPosition) && C12238m.areEqual(this.largeFileUploadStats, trackPremiumUncancelWinbackModalViewed.largeFileUploadStats) && C12238m.areEqual(this.largeFileUploadPersonalized, trackPremiumUncancelWinbackModalViewed.largeFileUploadPersonalized);
+        return m.areEqual(this.globalEmojiPosition, trackPremiumUncancelWinbackModalViewed.globalEmojiPosition) && m.areEqual(this.globalEmojiStats, trackPremiumUncancelWinbackModalViewed.globalEmojiStats) && m.areEqual(this.globalEmojiPersonalized, trackPremiumUncancelWinbackModalViewed.globalEmojiPersonalized) && m.areEqual(this.hdStreamingPosition, trackPremiumUncancelWinbackModalViewed.hdStreamingPosition) && m.areEqual(this.hdStreamingStats, trackPremiumUncancelWinbackModalViewed.hdStreamingStats) && m.areEqual(this.hdStreamingPersonalized, trackPremiumUncancelWinbackModalViewed.hdStreamingPersonalized) && m.areEqual(this.largeFileUploadPosition, trackPremiumUncancelWinbackModalViewed.largeFileUploadPosition) && m.areEqual(this.largeFileUploadStats, trackPremiumUncancelWinbackModalViewed.largeFileUploadStats) && m.areEqual(this.largeFileUploadPersonalized, trackPremiumUncancelWinbackModalViewed.largeFileUploadPersonalized);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,23 +66,23 @@ public final /* data */ class TrackPremiumUncancelWinbackModalViewed implements 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPremiumUncancelWinbackModalViewed(globalEmojiPosition=");
-        sbM833U.append(this.globalEmojiPosition);
-        sbM833U.append(", globalEmojiStats=");
-        sbM833U.append(this.globalEmojiStats);
-        sbM833U.append(", globalEmojiPersonalized=");
-        sbM833U.append(this.globalEmojiPersonalized);
-        sbM833U.append(", hdStreamingPosition=");
-        sbM833U.append(this.hdStreamingPosition);
-        sbM833U.append(", hdStreamingStats=");
-        sbM833U.append(this.hdStreamingStats);
-        sbM833U.append(", hdStreamingPersonalized=");
-        sbM833U.append(this.hdStreamingPersonalized);
-        sbM833U.append(", largeFileUploadPosition=");
-        sbM833U.append(this.largeFileUploadPosition);
-        sbM833U.append(", largeFileUploadStats=");
-        sbM833U.append(this.largeFileUploadStats);
-        sbM833U.append(", largeFileUploadPersonalized=");
-        return C1643a.m816D(sbM833U, this.largeFileUploadPersonalized, ")");
+        StringBuilder sbU = a.U("TrackPremiumUncancelWinbackModalViewed(globalEmojiPosition=");
+        sbU.append(this.globalEmojiPosition);
+        sbU.append(", globalEmojiStats=");
+        sbU.append(this.globalEmojiStats);
+        sbU.append(", globalEmojiPersonalized=");
+        sbU.append(this.globalEmojiPersonalized);
+        sbU.append(", hdStreamingPosition=");
+        sbU.append(this.hdStreamingPosition);
+        sbU.append(", hdStreamingStats=");
+        sbU.append(this.hdStreamingStats);
+        sbU.append(", hdStreamingPersonalized=");
+        sbU.append(this.hdStreamingPersonalized);
+        sbU.append(", largeFileUploadPosition=");
+        sbU.append(this.largeFileUploadPosition);
+        sbU.append(", largeFileUploadStats=");
+        sbU.append(this.largeFileUploadStats);
+        sbU.append(", largeFileUploadPersonalized=");
+        return a.D(sbU, this.largeFileUploadPersonalized, ")");
     }
 }

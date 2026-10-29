@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVideoEventTimes.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackVideoEventTimes implements AnalyticsSchema, T
             return false;
         }
         TrackVideoEventTimes trackVideoEventTimes = (TrackVideoEventTimes) other;
-        return C12238m.areEqual(this.gatewayConnection, trackVideoEventTimes.gatewayConnection) && C12238m.areEqual(this.gatewayHello, trackVideoEventTimes.gatewayHello) && C12238m.areEqual(this.voiceConnection, trackVideoEventTimes.voiceConnection) && C12238m.areEqual(this.streamRequested, trackVideoEventTimes.streamRequested) && C12238m.areEqual(this.streamConnection, trackVideoEventTimes.streamConnection) && C12238m.areEqual(this.streamFirstFrame, trackVideoEventTimes.streamFirstFrame) && C12238m.areEqual(this.videoFirstFrame, trackVideoEventTimes.videoFirstFrame) && C12238m.areEqual(this.mediaEngineConnection, trackVideoEventTimes.mediaEngineConnection) && C12238m.areEqual(this.connectionVideoFirstFrame, trackVideoEventTimes.connectionVideoFirstFrame) && C12238m.areEqual(this.connectionStreamFirstFrame, trackVideoEventTimes.connectionStreamFirstFrame) && C12238m.areEqual(this.eventTimeName, trackVideoEventTimes.eventTimeName);
+        return m.areEqual(this.gatewayConnection, trackVideoEventTimes.gatewayConnection) && m.areEqual(this.gatewayHello, trackVideoEventTimes.gatewayHello) && m.areEqual(this.voiceConnection, trackVideoEventTimes.voiceConnection) && m.areEqual(this.streamRequested, trackVideoEventTimes.streamRequested) && m.areEqual(this.streamConnection, trackVideoEventTimes.streamConnection) && m.areEqual(this.streamFirstFrame, trackVideoEventTimes.streamFirstFrame) && m.areEqual(this.videoFirstFrame, trackVideoEventTimes.videoFirstFrame) && m.areEqual(this.mediaEngineConnection, trackVideoEventTimes.mediaEngineConnection) && m.areEqual(this.connectionVideoFirstFrame, trackVideoEventTimes.connectionVideoFirstFrame) && m.areEqual(this.connectionStreamFirstFrame, trackVideoEventTimes.connectionStreamFirstFrame) && m.areEqual(this.eventTimeName, trackVideoEventTimes.eventTimeName);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,27 +66,27 @@ public final /* data */ class TrackVideoEventTimes implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVideoEventTimes(gatewayConnection=");
-        sbM833U.append(this.gatewayConnection);
-        sbM833U.append(", gatewayHello=");
-        sbM833U.append(this.gatewayHello);
-        sbM833U.append(", voiceConnection=");
-        sbM833U.append(this.voiceConnection);
-        sbM833U.append(", streamRequested=");
-        sbM833U.append(this.streamRequested);
-        sbM833U.append(", streamConnection=");
-        sbM833U.append(this.streamConnection);
-        sbM833U.append(", streamFirstFrame=");
-        sbM833U.append(this.streamFirstFrame);
-        sbM833U.append(", videoFirstFrame=");
-        sbM833U.append(this.videoFirstFrame);
-        sbM833U.append(", mediaEngineConnection=");
-        sbM833U.append(this.mediaEngineConnection);
-        sbM833U.append(", connectionVideoFirstFrame=");
-        sbM833U.append(this.connectionVideoFirstFrame);
-        sbM833U.append(", connectionStreamFirstFrame=");
-        sbM833U.append(this.connectionStreamFirstFrame);
-        sbM833U.append(", eventTimeName=");
-        return C1643a.m817E(sbM833U, this.eventTimeName, ")");
+        StringBuilder sbU = a.U("TrackVideoEventTimes(gatewayConnection=");
+        sbU.append(this.gatewayConnection);
+        sbU.append(", gatewayHello=");
+        sbU.append(this.gatewayHello);
+        sbU.append(", voiceConnection=");
+        sbU.append(this.voiceConnection);
+        sbU.append(", streamRequested=");
+        sbU.append(this.streamRequested);
+        sbU.append(", streamConnection=");
+        sbU.append(this.streamConnection);
+        sbU.append(", streamFirstFrame=");
+        sbU.append(this.streamFirstFrame);
+        sbU.append(", videoFirstFrame=");
+        sbU.append(this.videoFirstFrame);
+        sbU.append(", mediaEngineConnection=");
+        sbU.append(this.mediaEngineConnection);
+        sbU.append(", connectionVideoFirstFrame=");
+        sbU.append(this.connectionVideoFirstFrame);
+        sbU.append(", connectionStreamFirstFrame=");
+        sbU.append(this.connectionStreamFirstFrame);
+        sbU.append(", eventTimeName=");
+        return a.E(sbU, this.eventTimeName, ")");
     }
 }

@@ -14,13 +14,11 @@ public class ParserException extends IOException {
         this.dataType = i;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static ParserException m8755a(@Nullable String str, @Nullable Throwable th) {
+    public static ParserException a(@Nullable String str, @Nullable Throwable th) {
         return new ParserException(str, th, true, 1);
     }
 
-    /* JADX INFO: renamed from: b */
-    public static ParserException m8756b(@Nullable String str) {
+    public static ParserException b(@Nullable String str) {
         return new ParserException(str, null, false, 1);
     }
 }

@@ -4,32 +4,35 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.View$MeasureSpec;
 import android.view.ViewGroup;
+import android.view.ViewGroup$MarginLayoutParams;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.appcompat.R$id;
 import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class AlertDialogLayout extends LinearLayoutCompat {
     public AlertDialogLayout(@Nullable Context context) {
         super(context);
     }
 
     private void forceUniformWidth(int i, int i2) {
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), BasicMeasure.EXACTLY);
+        int iMakeMeasureSpec = View$MeasureSpec.makeMeasureSpec(getMeasuredWidth(), BasicMeasure.EXACTLY);
         for (int i3 = 0; i3 < i; i3++) {
             View childAt = getChildAt(i3);
             if (childAt.getVisibility() != 8) {
-                LinearLayoutCompat.LayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) childAt.getLayoutParams();
-                if (((ViewGroup.MarginLayoutParams) layoutParams).width == -1) {
-                    int i4 = ((ViewGroup.MarginLayoutParams) layoutParams).height;
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = childAt.getMeasuredHeight();
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) childAt.getLayoutParams();
+                if (((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).width == -1) {
+                    int i4 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height;
+                    ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height = childAt.getMeasuredHeight();
                     measureChildWithMargins(childAt, iMakeMeasureSpec, 0, i2, 0);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = i4;
+                    ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).height = i4;
                 }
             }
         }
@@ -58,36 +61,36 @@ public class AlertDialogLayout extends LinearLayoutCompat {
             if (childAt != null && childAt.getVisibility() != 8) {
                 int measuredWidth = childAt.getMeasuredWidth();
                 int measuredHeight2 = childAt.getMeasuredHeight();
-                LinearLayoutCompat.LayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) childAt.getLayoutParams();
-                int i12 = layoutParams.gravity;
+                LinearLayoutCompat$LayoutParams linearLayoutCompat$LayoutParams = (LinearLayoutCompat$LayoutParams) childAt.getLayoutParams();
+                int i12 = linearLayoutCompat$LayoutParams.gravity;
                 if (i12 < 0) {
                     i12 = i10;
                 }
                 int absoluteGravity = GravityCompat.getAbsoluteGravity(i12, ViewCompat.getLayoutDirection(this)) & 7;
                 if (absoluteGravity != 1) {
                     if (absoluteGravity != 5) {
-                        i7 = ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin + paddingLeft;
+                        i7 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin + paddingLeft;
                     } else {
                         i5 = paddingRight - measuredWidth;
-                        i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                        i6 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin;
                     }
                     if (hasDividerBeforeChildAt(i11)) {
                         paddingTop += intrinsicHeight;
                     }
-                    int i13 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
+                    int i13 = paddingTop + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin;
                     setChildFrame(childAt, i7, i13, measuredWidth, measuredHeight2);
-                    paddingTop = measuredHeight2 + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i13;
+                    paddingTop = measuredHeight2 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin + i13;
                 } else {
-                    i5 = ((paddingRight2 - measuredWidth) / 2) + paddingLeft + ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin;
-                    i6 = ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin;
+                    i5 = ((paddingRight2 - measuredWidth) / 2) + paddingLeft + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).leftMargin;
+                    i6 = ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).rightMargin;
                 }
                 i7 = i5 - i6;
                 if (hasDividerBeforeChildAt(i11)) {
                     paddingTop += intrinsicHeight;
                 }
-                int i14 = paddingTop + ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
+                int i14 = paddingTop + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).topMargin;
                 setChildFrame(childAt, i7, i14, measuredWidth, measuredHeight2);
-                paddingTop = measuredHeight2 + ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin + i14;
+                paddingTop = measuredHeight2 + ((ViewGroup$MarginLayoutParams) linearLayoutCompat$LayoutParams).bottomMargin + i14;
             }
         }
     }
@@ -131,21 +134,21 @@ public class AlertDialogLayout extends LinearLayoutCompat {
             View childAt = getChildAt(i3);
             if (childAt.getVisibility() != 8) {
                 int id2 = childAt.getId();
-                if (id2 == C0051R.id.topPanel) {
+                if (id2 == R$id.topPanel) {
                     view = childAt;
-                } else if (id2 == C0051R.id.buttonPanel) {
+                } else if (id2 == R$id.buttonPanel) {
                     view2 = childAt;
                 } else {
-                    if ((id2 != C0051R.id.contentPanel && id2 != C0051R.id.customPanel) || view3 != null) {
+                    if ((id2 != R$id.contentPanel && id2 != R$id.customPanel) || view3 != null) {
                         return false;
                     }
                     view3 = childAt;
                 }
             }
         }
-        int mode = View.MeasureSpec.getMode(i2);
-        int size = View.MeasureSpec.getSize(i2);
-        int mode2 = View.MeasureSpec.getMode(i);
+        int mode = View$MeasureSpec.getMode(i2);
+        int size = View$MeasureSpec.getSize(i2);
+        int mode2 = View$MeasureSpec.getMode(i);
         int paddingBottom = getPaddingBottom() + getPaddingTop();
         if (view != null) {
             view.measure(i, 0);
@@ -165,7 +168,7 @@ public class AlertDialogLayout extends LinearLayoutCompat {
             measuredHeight = 0;
         }
         if (view3 != null) {
-            view3.measure(i, mode == 0 ? 0 : View.MeasureSpec.makeMeasureSpec(Math.max(0, size - paddingBottom), mode));
+            view3.measure(i, mode == 0 ? 0 : View$MeasureSpec.makeMeasureSpec(Math.max(0, size - paddingBottom), mode));
             measuredHeight2 = view3.getMeasuredHeight();
             paddingBottom += measuredHeight2;
             iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, view3.getMeasuredState());
@@ -180,12 +183,12 @@ public class AlertDialogLayout extends LinearLayoutCompat {
                 i4 -= iMin;
                 iResolveMinimumHeight += iMin;
             }
-            view2.measure(i, View.MeasureSpec.makeMeasureSpec(iResolveMinimumHeight, BasicMeasure.EXACTLY));
+            view2.measure(i, View$MeasureSpec.makeMeasureSpec(iResolveMinimumHeight, BasicMeasure.EXACTLY));
             paddingBottom = i5 + view2.getMeasuredHeight();
             iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, view2.getMeasuredState());
         }
         if (view3 != null && i4 > 0) {
-            view3.measure(i, View.MeasureSpec.makeMeasureSpec(measuredHeight2 + i4, mode));
+            view3.measure(i, View$MeasureSpec.makeMeasureSpec(measuredHeight2 + i4, mode));
             paddingBottom = (paddingBottom - measuredHeight2) + view3.getMeasuredHeight();
             iCombineMeasuredStates = View.combineMeasuredStates(iCombineMeasuredStates, view3.getMeasuredState());
         }

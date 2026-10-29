@@ -16,9 +16,14 @@ public class DebugSnapshot implements Comparable<DebugSnapshot> {
     private final List<StackTraceElement> trace;
     private static AtomicLong counter = new AtomicLong();
 
-    /* JADX INFO: renamed from: id */
-    private final long f27466id = counter.getAndIncrement();
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private final long f3807id = counter.getAndIncrement();
     private final long when = System.currentTimeMillis();
+
+    @Override // java.lang.Comparable
+    public /* bridge */ /* synthetic */ int compareTo(DebugSnapshot debugSnapshot) {
+        return compareTo2(debugSnapshot);
+    }
 
     public DebugSnapshot(CompilationUnitDeclaration owner, int stackHiding, String message, Object... params) {
         this.bits = owner.bits;
@@ -77,8 +82,8 @@ public class DebugSnapshot implements Comparable<DebugSnapshot> {
         return out.toString();
     }
 
-    @Override // java.lang.Comparable
-    public int compareTo(DebugSnapshot o) {
-        return Long.valueOf(this.f27466id).compareTo(Long.valueOf(o.f27466id));
+    /* JADX INFO: renamed from: compareTo, reason: avoid collision after fix types in other method */
+    public int compareTo2(DebugSnapshot o) {
+        return Long.valueOf(this.f3807id).compareTo(Long.valueOf(o.f3807id));
     }
 }

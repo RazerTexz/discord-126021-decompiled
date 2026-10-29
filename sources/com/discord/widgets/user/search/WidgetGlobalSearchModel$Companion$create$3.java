@@ -1,37 +1,42 @@
 package com.discord.widgets.user.search;
 
+import b.d.b.a.a;
 import com.discord.models.guild.Guild;
+import d0.z.d.m;
+import d0.z.d.o;
 import java.util.Iterator;
 import java.util.List;
 import kotlin.jvm.functions.Function2;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$3 extends AbstractC12240o implements Function2<Guild, String, WidgetGlobalSearchModel.ItemGuild> {
-    public final /* synthetic */ WidgetGlobalSearchModel.ChannelContext $channelContext;
-    public final /* synthetic */ WidgetGlobalSearchModel.SearchContext $searchContext;
+public final class WidgetGlobalSearchModel$Companion$create$3 extends o implements Function2<Guild, String, WidgetGlobalSearchModel$ItemGuild> {
+    public final /* synthetic */ WidgetGlobalSearchModel$ChannelContext $channelContext;
+    public final /* synthetic */ WidgetGlobalSearchModel$SearchContext $searchContext;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public WidgetGlobalSearchModel$Companion$create$3(WidgetGlobalSearchModel.ChannelContext channelContext, WidgetGlobalSearchModel.SearchContext searchContext) {
+    public WidgetGlobalSearchModel$Companion$create$3(WidgetGlobalSearchModel$ChannelContext widgetGlobalSearchModel$ChannelContext, WidgetGlobalSearchModel$SearchContext widgetGlobalSearchModel$SearchContext) {
         super(2);
-        this.$channelContext = channelContext;
-        this.$searchContext = searchContext;
+        this.$channelContext = widgetGlobalSearchModel$ChannelContext;
+        this.$searchContext = widgetGlobalSearchModel$SearchContext;
     }
 
     @Override // kotlin.jvm.functions.Function2
-    public final WidgetGlobalSearchModel.ItemGuild invoke(Guild guild, String str) {
+    public /* bridge */ /* synthetic */ WidgetGlobalSearchModel$ItemGuild invoke(Guild guild, String str) {
+        return invoke2(guild, str);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetGlobalSearchModel$ItemGuild invoke2(Guild guild, String str) {
         int i;
         boolean z2;
-        C12238m.checkNotNullParameter(guild, "$this$toItemGuild");
-        C12238m.checkNotNullParameter(str, "guildFilter");
-        WidgetGlobalSearchModel.MatchedResult matchedResult = WidgetGlobalSearchModel.INSTANCE.toMatchedResult(guild.getName(), str);
+        m.checkNotNullParameter(guild, "$this$toItemGuild");
+        m.checkNotNullParameter(str, "guildFilter");
+        WidgetGlobalSearchModel$MatchedResult matchedResult = WidgetGlobalSearchModel.Companion.toMatchedResult(guild.getName(), str);
         if (matchedResult == null) {
             return null;
         }
-        List list = (List) C1643a.m847e(guild, this.$channelContext.getGuildToChannels());
+        List list = (List) a.e(guild, this.$channelContext.getGuildToChannels());
         if (list != null) {
             Iterator it = list.iterator();
             int iIntValue = 0;
@@ -54,6 +59,6 @@ public final class WidgetGlobalSearchModel$Companion$create$3 extends AbstractC1
             }
             z2 = false;
         }
-        return new WidgetGlobalSearchModel.ItemGuild(matchedResult, guild, null, i, z2, 4, null);
+        return new WidgetGlobalSearchModel$ItemGuild(matchedResult, guild, null, i, z2, 4, null);
     }
 }

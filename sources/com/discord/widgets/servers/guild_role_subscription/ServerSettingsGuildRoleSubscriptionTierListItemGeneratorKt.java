@@ -17,11 +17,11 @@ public final class ServerSettingsGuildRoleSubscriptionTierListItemGeneratorKt {
                 String name = guildRoleSubscriptionTierListing.getName();
                 int price = GuildRoleSubscriptionUtilsKt.getPrice(guildRoleSubscriptionTierListing);
                 ImageAsset imageAsset = guildRoleSubscriptionTierListing.getImageAsset();
-                arrayList.add(new ServerSettingsGuildRoleSubscriptionTierAdapterItem.Tier(id2, name, price, guildRoleSubscriptionTierListing.getApplicationId(), guildRoleSubscriptionTierListing.getPublished(), imageAsset != null ? Long.valueOf(imageAsset.getId()) : null));
+                arrayList.add(new ServerSettingsGuildRoleSubscriptionTierAdapterItem$Tier(id2, name, price, guildRoleSubscriptionTierListing.getApplicationId(), guildRoleSubscriptionTierListing.getPublished(), imageAsset != null ? Long.valueOf(imageAsset.getId()) : null));
             }
         }
         if ((list != null ? list.size() : 0) < i) {
-            arrayList.add(ServerSettingsGuildRoleSubscriptionTierAdapterItem.AddTier.INSTANCE);
+            arrayList.add(ServerSettingsGuildRoleSubscriptionTierAdapterItem$AddTier.INSTANCE);
         }
         return arrayList;
     }

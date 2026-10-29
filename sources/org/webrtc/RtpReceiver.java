@@ -10,24 +10,19 @@ public class RtpReceiver {
     private long nativeObserver;
     private long nativeRtpReceiver;
 
-    public interface Observer {
-        @CalledByNative("Observer")
-        void onFirstPacketReceived(MediaStreamTrack.MediaType mediaType);
-    }
-
     @CalledByNative
     public RtpReceiver(long j) {
         this.nativeRtpReceiver = j;
         this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j));
     }
 
-    public void SetObserver(Observer observer) {
+    public void SetObserver(RtpReceiver$Observer rtpReceiver$Observer) {
         checkRtpReceiverExists();
         long j = this.nativeObserver;
         if (j != 0) {
             nativeUnsetObserver(this.nativeRtpReceiver, j);
         }
-        this.nativeObserver = nativeSetObserver(this.nativeRtpReceiver, observer);
+        this.nativeObserver = nativeSetObserver(this.nativeRtpReceiver, rtpReceiver$Observer);
     }
 
     private void checkRtpReceiverExists() {
@@ -54,8 +49,7 @@ public class RtpReceiver {
         return nativeGetParameters(this.nativeRtpReceiver);
     }
 
-    /* JADX INFO: renamed from: id */
-    public String m11038id() {
+    public String id() {
         checkRtpReceiverExists();
         return nativeGetId(this.nativeRtpReceiver);
     }
@@ -68,7 +62,7 @@ public class RtpReceiver {
 
     private static native void nativeSetFrameDecryptor(long j, long j2);
 
-    private static native long nativeSetObserver(long j, Observer observer);
+    private static native long nativeSetObserver(long j, RtpReceiver$Observer rtpReceiver$Observer);
 
     private static native void nativeUnsetObserver(long j, long j2);
 

@@ -1,9 +1,9 @@
 package com.discord.api.role;
 
+import b.d.b.a.a;
 import com.discord.nullserializable.NullSerializable;
+import d0.z.d.m;
 import java.io.Serializable;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildRoleTags.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,6 +15,10 @@ public final /* data */ class GuildRoleTags implements Serializable {
     private final String skuId;
     private final String subscriptionListingId;
 
+    public final boolean b() {
+        return this.purchasableOrHasSubscribers != null;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -23,7 +27,7 @@ public final /* data */ class GuildRoleTags implements Serializable {
             return false;
         }
         GuildRoleTags guildRoleTags = (GuildRoleTags) other;
-        return C12238m.areEqual(this.premiumSubscriber, guildRoleTags.premiumSubscriber) && C12238m.areEqual(this.botId, guildRoleTags.botId) && C12238m.areEqual(this.integrationId, guildRoleTags.integrationId) && C12238m.areEqual(this.skuId, guildRoleTags.skuId) && C12238m.areEqual(this.subscriptionListingId, guildRoleTags.subscriptionListingId) && C12238m.areEqual(this.purchasableOrHasSubscribers, guildRoleTags.purchasableOrHasSubscribers);
+        return m.areEqual(this.premiumSubscriber, guildRoleTags.premiumSubscriber) && m.areEqual(this.botId, guildRoleTags.botId) && m.areEqual(this.integrationId, guildRoleTags.integrationId) && m.areEqual(this.skuId, guildRoleTags.skuId) && m.areEqual(this.subscriptionListingId, guildRoleTags.subscriptionListingId) && m.areEqual(this.purchasableOrHasSubscribers, guildRoleTags.purchasableOrHasSubscribers);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,25 +50,20 @@ public final /* data */ class GuildRoleTags implements Serializable {
         return iHashCode5 + (nullSerializable2 != null ? nullSerializable2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: b */
-    public final boolean m8210b() {
-        return this.purchasableOrHasSubscribers != null;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildRoleTags(premiumSubscriber=");
-        sbM833U.append(this.premiumSubscriber);
-        sbM833U.append(", botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", integrationId=");
-        sbM833U.append(this.integrationId);
-        sbM833U.append(", skuId=");
-        sbM833U.append(this.skuId);
-        sbM833U.append(", subscriptionListingId=");
-        sbM833U.append(this.subscriptionListingId);
-        sbM833U.append(", purchasableOrHasSubscribers=");
-        sbM833U.append(this.purchasableOrHasSubscribers);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("GuildRoleTags(premiumSubscriber=");
+        sbU.append(this.premiumSubscriber);
+        sbU.append(", botId=");
+        sbU.append(this.botId);
+        sbU.append(", integrationId=");
+        sbU.append(this.integrationId);
+        sbU.append(", skuId=");
+        sbU.append(this.skuId);
+        sbU.append(", subscriptionListingId=");
+        sbU.append(this.subscriptionListingId);
+        sbU.append(", purchasableOrHasSubscribers=");
+        sbU.append(this.purchasableOrHasSubscribers);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

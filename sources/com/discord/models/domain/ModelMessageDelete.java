@@ -1,10 +1,9 @@
 package com.discord.models.domain;
 
+import b.a.m.a.a;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import p007b.p008a.p033m.p034a.C1130a;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelMessageDelete implements Model {
@@ -15,21 +14,21 @@ public class ModelMessageDelete implements Model {
     }
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "channel_id":
-                this.channelId = jsonReader.nextLong(this.channelId);
+                this.channelId = model$JsonReader.nextLong(this.channelId);
                 break;
             case "id":
-                this.messageIds = Collections.singletonList(Long.valueOf(jsonReader.nextLong(0L)));
+                this.messageIds = Collections.singletonList(Long.valueOf(model$JsonReader.nextLong(0L)));
                 break;
             case "ids":
-                this.messageIds = jsonReader.nextList(new C1130a(jsonReader));
+                this.messageIds = model$JsonReader.nextList(new a(model$JsonReader));
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -69,12 +68,12 @@ public class ModelMessageDelete implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelMessageDelete(channelId=");
-        sbM833U.append(getChannelId());
-        sbM833U.append(", messageIds=");
-        sbM833U.append(getMessageIds());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = b.d.b.a.a.U("ModelMessageDelete(channelId=");
+        sbU.append(getChannelId());
+        sbU.append(", messageIds=");
+        sbU.append(getMessageIds());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public ModelMessageDelete(long j, long j2) {

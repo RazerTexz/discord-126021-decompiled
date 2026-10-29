@@ -8,22 +8,21 @@ import com.discord.views.directories.ServerDiscoveryItem;
 /* JADX INFO: loaded from: classes.dex */
 public final class DirectoryEntryListItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ServerDiscoveryItem f15042a;
+    public final ServerDiscoveryItem a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ServerDiscoveryItem f15043b;
+    public final ServerDiscoveryItem f2096b;
 
     public DirectoryEntryListItemBinding(@NonNull ServerDiscoveryItem serverDiscoveryItem, @NonNull ServerDiscoveryItem serverDiscoveryItem2) {
-        this.f15042a = serverDiscoveryItem;
-        this.f15043b = serverDiscoveryItem2;
+        this.a = serverDiscoveryItem;
+        this.f2096b = serverDiscoveryItem2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15042a;
+        return this.a;
     }
 }

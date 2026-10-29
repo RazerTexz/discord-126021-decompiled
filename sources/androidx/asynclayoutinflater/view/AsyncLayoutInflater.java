@@ -2,152 +2,35 @@ package androidx.asynclayoutinflater.view;
 
 import android.content.Context;
 import android.os.Handler;
-import android.os.Message;
-import android.util.AttributeSet;
-import android.util.Log;
+import android.os.Handler$Callback;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
-import androidx.core.util.Pools;
 import java.util.Objects;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class AsyncLayoutInflater {
     private static final String TAG = "AsyncLayoutInflater";
     public LayoutInflater mInflater;
-    private Handler.Callback mHandlerCallback = new Handler.Callback() { // from class: androidx.asynclayoutinflater.view.AsyncLayoutInflater.1
-        @Override // android.os.Handler.Callback
-        public boolean handleMessage(Message message) {
-            InflateRequest inflateRequest = (InflateRequest) message.obj;
-            if (inflateRequest.view == null) {
-                inflateRequest.view = AsyncLayoutInflater.this.mInflater.inflate(inflateRequest.resid, inflateRequest.parent, false);
-            }
-            inflateRequest.callback.onInflateFinished(inflateRequest.view, inflateRequest.resid, inflateRequest.parent);
-            AsyncLayoutInflater.this.mInflateThread.releaseRequest(inflateRequest);
-            return true;
-        }
-    };
+    private Handler$Callback mHandlerCallback = new AsyncLayoutInflater$1(this);
     public Handler mHandler = new Handler(this.mHandlerCallback);
-    public InflateThread mInflateThread = InflateThread.getInstance();
-
-    public class BasicInflater extends LayoutInflater {
-        private static final String[] sClassPrefixList = {"android.widget.", "android.webkit.", "android.app."};
-
-        public BasicInflater(Context context) {
-            super(context);
-        }
-
-        @Override // android.view.LayoutInflater
-        public LayoutInflater cloneInContext(Context context) {
-            return new BasicInflater(context);
-        }
-
-        @Override // android.view.LayoutInflater
-        public View onCreateView(String str, AttributeSet attributeSet) throws ClassNotFoundException {
-            for (String str2 : sClassPrefixList) {
-                try {
-                    View viewCreateView = createView(str, str2, attributeSet);
-                    if (viewCreateView != null) {
-                        return viewCreateView;
-                    }
-                } catch (ClassNotFoundException unused) {
-                }
-            }
-            return super.onCreateView(str, attributeSet);
-        }
-    }
-
-    public class InflateRequest {
-        public OnInflateFinishedListener callback;
-        public AsyncLayoutInflater inflater;
-        public ViewGroup parent;
-        public int resid;
-        public View view;
-    }
-
-    public interface OnInflateFinishedListener {
-        void onInflateFinished(@NonNull View view, @LayoutRes int i, @Nullable ViewGroup viewGroup);
-    }
+    public AsyncLayoutInflater$InflateThread mInflateThread = AsyncLayoutInflater$InflateThread.getInstance();
 
     public AsyncLayoutInflater(@NonNull Context context) {
-        this.mInflater = new BasicInflater(context);
+        this.mInflater = new AsyncLayoutInflater$BasicInflater(context);
     }
 
     @UiThread
-    public void inflate(@LayoutRes int i, @Nullable ViewGroup viewGroup, @NonNull OnInflateFinishedListener onInflateFinishedListener) {
-        Objects.requireNonNull(onInflateFinishedListener, "callback argument may not be null!");
-        InflateRequest inflateRequestObtainRequest = this.mInflateThread.obtainRequest();
-        inflateRequestObtainRequest.inflater = this;
-        inflateRequestObtainRequest.resid = i;
-        inflateRequestObtainRequest.parent = viewGroup;
-        inflateRequestObtainRequest.callback = onInflateFinishedListener;
-        this.mInflateThread.enqueue(inflateRequestObtainRequest);
-    }
-
-    public class InflateThread extends Thread {
-        private static final InflateThread sInstance;
-        private ArrayBlockingQueue<InflateRequest> mQueue = new ArrayBlockingQueue<>(10);
-        private Pools.SynchronizedPool<InflateRequest> mRequestPool = new Pools.SynchronizedPool<>(10);
-
-        static {
-            InflateThread inflateThread = new InflateThread();
-            sInstance = inflateThread;
-            inflateThread.start();
-        }
-
-        private InflateThread() {
-        }
-
-        public void enqueue(InflateRequest inflateRequest) {
-            try {
-                this.mQueue.put(inflateRequest);
-            } catch (InterruptedException e) {
-                throw new RuntimeException("Failed to enqueue async inflate request", e);
-            }
-        }
-
-        public static InflateThread getInstance() {
-            return sInstance;
-        }
-
-        public InflateRequest obtainRequest() {
-            InflateRequest inflateRequestAcquire = this.mRequestPool.acquire();
-            return inflateRequestAcquire == null ? new InflateRequest() : inflateRequestAcquire;
-        }
-
-        public void releaseRequest(InflateRequest inflateRequest) {
-            inflateRequest.callback = null;
-            inflateRequest.inflater = null;
-            inflateRequest.parent = null;
-            inflateRequest.resid = 0;
-            inflateRequest.view = null;
-            this.mRequestPool.release(inflateRequest);
-        }
-
-        @Override // java.lang.Thread, java.lang.Runnable
-        public void run() {
-            while (true) {
-                runInner();
-            }
-        }
-
-        public void runInner() {
-            try {
-                InflateRequest inflateRequestTake = this.mQueue.take();
-                try {
-                    inflateRequestTake.view = inflateRequestTake.inflater.mInflater.inflate(inflateRequestTake.resid, inflateRequestTake.parent, false);
-                } catch (RuntimeException e) {
-                    Log.w(AsyncLayoutInflater.TAG, "Failed to inflate resource in the background! Retrying on the UI thread", e);
-                }
-                Message.obtain(inflateRequestTake.inflater.mHandler, 0, inflateRequestTake).sendToTarget();
-            } catch (InterruptedException e2) {
-                Log.w(AsyncLayoutInflater.TAG, e2);
-            }
-        }
+    public void inflate(@LayoutRes int i, @Nullable ViewGroup viewGroup, @NonNull AsyncLayoutInflater$OnInflateFinishedListener asyncLayoutInflater$OnInflateFinishedListener) {
+        Objects.requireNonNull(asyncLayoutInflater$OnInflateFinishedListener, "callback argument may not be null!");
+        AsyncLayoutInflater$InflateRequest asyncLayoutInflater$InflateRequestObtainRequest = this.mInflateThread.obtainRequest();
+        asyncLayoutInflater$InflateRequestObtainRequest.inflater = this;
+        asyncLayoutInflater$InflateRequestObtainRequest.resid = i;
+        asyncLayoutInflater$InflateRequestObtainRequest.parent = viewGroup;
+        asyncLayoutInflater$InflateRequestObtainRequest.callback = asyncLayoutInflater$OnInflateFinishedListener;
+        this.mInflateThread.enqueue(asyncLayoutInflater$InflateRequestObtainRequest);
     }
 }

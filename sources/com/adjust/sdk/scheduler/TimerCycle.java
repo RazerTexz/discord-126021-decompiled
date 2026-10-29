@@ -28,6 +28,18 @@ public class TimerCycle {
         this.logger.verbose("%s configured to fire after %s seconds of starting and cycles every %s seconds", str, decimalFormat.format(j / 1000.0d), decimalFormat.format(j2 / 1000.0d));
     }
 
+    public static /* synthetic */ String access$000(TimerCycle timerCycle) {
+        return timerCycle.name;
+    }
+
+    public static /* synthetic */ ILogger access$100(TimerCycle timerCycle) {
+        return timerCycle.logger;
+    }
+
+    public static /* synthetic */ Runnable access$200(TimerCycle timerCycle) {
+        return timerCycle.command;
+    }
+
     private void cancel(boolean z2) {
         ScheduledFuture scheduledFuture = this.waitingTask;
         if (scheduledFuture != null) {
@@ -42,13 +54,7 @@ public class TimerCycle {
             return;
         }
         this.logger.verbose("%s starting", this.name);
-        this.waitingTask = this.scheduler.scheduleFutureWithFixedDelay(new Runnable() { // from class: com.adjust.sdk.scheduler.TimerCycle.1
-            @Override // java.lang.Runnable
-            public void run() {
-                TimerCycle.this.logger.verbose("%s fired", TimerCycle.this.name);
-                TimerCycle.this.command.run();
-            }
-        }, this.initialDelay, this.cycleDelay);
+        this.waitingTask = this.scheduler.scheduleFutureWithFixedDelay(new TimerCycle$1(this), this.initialDelay, this.cycleDelay);
         this.isPaused = false;
     }
 

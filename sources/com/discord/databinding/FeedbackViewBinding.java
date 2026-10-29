@@ -14,57 +14,49 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class FeedbackViewBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15067a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageButton f15068b;
+    public final ImageButton f2106b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15069c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final CardView f15070d;
+    public final CardView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final RecyclerView f15071e;
+    public final RecyclerView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ImageButton f15072f;
+    public final ImageButton f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final ConstraintLayout f15073g;
+    public final ConstraintLayout g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final TextView f15074h;
+    public final TextView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final ImageView f15075i;
+    public final ImageView i;
 
     public FeedbackViewBinding(@NonNull LinearLayout linearLayout, @NonNull ImageButton imageButton, @NonNull TextView textView, @NonNull CardView cardView, @NonNull RecyclerView recyclerView, @NonNull ImageButton imageButton2, @NonNull ConstraintLayout constraintLayout, @NonNull TextView textView2, @NonNull ImageView imageView) {
-        this.f15067a = linearLayout;
-        this.f15068b = imageButton;
-        this.f15069c = textView;
-        this.f15070d = cardView;
-        this.f15071e = recyclerView;
-        this.f15072f = imageButton2;
-        this.f15073g = constraintLayout;
-        this.f15074h = textView2;
-        this.f15075i = imageView;
+        this.a = linearLayout;
+        this.f2106b = imageButton;
+        this.c = textView;
+        this.d = cardView;
+        this.e = recyclerView;
+        this.f = imageButton2;
+        this.g = constraintLayout;
+        this.h = textView2;
+        this.i = imageView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15067a;
+        return this.a;
     }
 }

@@ -1,8 +1,6 @@
 package lombok.core.configuration;
 
-import com.adjust.sdk.Constants;
 import com.discord.models.domain.ModelAuditLogEntry;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -19,153 +17,25 @@ public final class ConfigurationDataType {
 
     static {
         Map<Class<?>, ConfigurationValueParser> map = new HashMap<>();
-        map.put(String.class, new ConfigurationValueParser() { // from class: lombok.core.configuration.ConfigurationDataType.1
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public Object parse(String value) {
-                return value;
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String description() {
-                return "string";
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String exampleValue() {
-                return "<text>";
-            }
-        });
-        map.put(Integer.class, new ConfigurationValueParser() { // from class: lombok.core.configuration.ConfigurationDataType.2
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public Object parse(String value) {
-                return Integer.valueOf(Integer.parseInt(value));
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String description() {
-                return "int";
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String exampleValue() {
-                return "<int>";
-            }
-        });
-        map.put(Long.class, new ConfigurationValueParser() { // from class: lombok.core.configuration.ConfigurationDataType.3
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public Object parse(String value) {
-                return Long.valueOf(Long.parseLong(value));
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String description() {
-                return Constants.LONG;
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String exampleValue() {
-                return "<long>";
-            }
-        });
-        map.put(Double.class, new ConfigurationValueParser() { // from class: lombok.core.configuration.ConfigurationDataType.4
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public Object parse(String value) {
-                return Double.valueOf(Double.parseDouble(value));
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String description() {
-                return "double";
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String exampleValue() {
-                return "<double>";
-            }
-        });
-        map.put(Boolean.class, new ConfigurationValueParser() { // from class: lombok.core.configuration.ConfigurationDataType.5
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public Object parse(String value) {
-                return Boolean.valueOf(Boolean.parseBoolean(value));
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String description() {
-                return "boolean";
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String exampleValue() {
-                return "[false | true]";
-            }
-        });
+        map.put(String.class, new ConfigurationDataType$1());
+        map.put(Integer.class, new ConfigurationDataType$2());
+        map.put(Long.class, new ConfigurationDataType$3());
+        map.put(Double.class, new ConfigurationDataType$4());
+        map.put(Boolean.class, new ConfigurationDataType$5());
         SIMPLE_TYPES = map;
     }
 
     private static ConfigurationValueParser enumParser(Type enumType) {
-        final Class<?> type = (Class) enumType;
-        return new ConfigurationValueParser() { // from class: lombok.core.configuration.ConfigurationDataType.6
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public Object parse(String value) {
-                try {
-                    return Enum.valueOf(type, value);
-                } catch (Exception unused) {
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < value.length(); i++) {
-                        char c = value.charAt(i);
-                        if (Character.isUpperCase(c) && i > 0) {
-                            sb.append("_");
-                        }
-                        sb.append(Character.toUpperCase(c));
-                    }
-                    return Enum.valueOf(type, sb.toString());
-                }
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String description() {
-                return "enum (" + type.getName() + ")";
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String exampleValue() {
-                ExampleValueString evs = (ExampleValueString) type.getAnnotation(ExampleValueString.class);
-                return evs != null ? evs.value() : Arrays.toString(type.getEnumConstants()).replace(",", " |");
-            }
-        };
+        Class<?> type = (Class) enumType;
+        return new ConfigurationDataType$6(type, type);
     }
 
     private static ConfigurationValueParser valueTypeParser(Type argumentType) {
         Class<?> type = (Class) argumentType;
-        final Method valueOfMethod = getMethod(type, "valueOf", String.class);
-        final Method descriptionMethod = getMethod(type, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION, new Class[0]);
-        final Method exampleValueMethod = getMethod(type, "exampleValue", new Class[0]);
-        return new ConfigurationValueParser() { // from class: lombok.core.configuration.ConfigurationDataType.7
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public Object parse(String value) {
-                return invokeStaticMethod(valueOfMethod, value);
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String description() {
-                return (String) invokeStaticMethod(descriptionMethod, new Object[0]);
-            }
-
-            @Override // lombok.core.configuration.ConfigurationValueParser
-            public String exampleValue() {
-                return (String) invokeStaticMethod(exampleValueMethod, new Object[0]);
-            }
-
-            private <R> R invokeStaticMethod(Method method, Object... objArr) {
-                try {
-                    return (R) method.invoke(null, objArr);
-                } catch (IllegalAccessException e) {
-                    throw new IllegalStateException("The method " + method.getName() + " ", e);
-                } catch (InvocationTargetException e2) {
-                    throw ((RuntimeException) e2.getTargetException());
-                }
-            }
-        };
+        Method valueOfMethod = getMethod(type, "valueOf", String.class);
+        Method descriptionMethod = getMethod(type, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION, new Class[0]);
+        Method exampleValueMethod = getMethod(type, "exampleValue", new Class[0]);
+        return new ConfigurationDataType$7(valueOfMethod, descriptionMethod, exampleValueMethod);
     }
 
     public static ConfigurationDataType toDataType(Class<? extends ConfigurationKey<?>> keyClass) {

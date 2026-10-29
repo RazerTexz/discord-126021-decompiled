@@ -122,16 +122,16 @@ public final class SpringAnimation extends DynamicAnimation<SpringAnimation> {
         }
         if (this.mPendingPosition != Float.MAX_VALUE) {
             long j2 = j / 2;
-            DynamicAnimation.MassState massStateUpdateValues = this.mSpring.updateValues(this.mValue, this.mVelocity, j2);
+            DynamicAnimation$MassState dynamicAnimation$MassStateUpdateValues = this.mSpring.updateValues(this.mValue, this.mVelocity, j2);
             this.mSpring.setFinalPosition(this.mPendingPosition);
             this.mPendingPosition = Float.MAX_VALUE;
-            DynamicAnimation.MassState massStateUpdateValues2 = this.mSpring.updateValues(massStateUpdateValues.mValue, massStateUpdateValues.mVelocity, j2);
-            this.mValue = massStateUpdateValues2.mValue;
-            this.mVelocity = massStateUpdateValues2.mVelocity;
+            DynamicAnimation$MassState dynamicAnimation$MassStateUpdateValues2 = this.mSpring.updateValues(dynamicAnimation$MassStateUpdateValues.mValue, dynamicAnimation$MassStateUpdateValues.mVelocity, j2);
+            this.mValue = dynamicAnimation$MassStateUpdateValues2.mValue;
+            this.mVelocity = dynamicAnimation$MassStateUpdateValues2.mVelocity;
         } else {
-            DynamicAnimation.MassState massStateUpdateValues3 = this.mSpring.updateValues(this.mValue, this.mVelocity, j);
-            this.mValue = massStateUpdateValues3.mValue;
-            this.mVelocity = massStateUpdateValues3.mVelocity;
+            DynamicAnimation$MassState dynamicAnimation$MassStateUpdateValues3 = this.mSpring.updateValues(this.mValue, this.mVelocity, j);
+            this.mValue = dynamicAnimation$MassStateUpdateValues3.mValue;
+            this.mVelocity = dynamicAnimation$MassStateUpdateValues3.mVelocity;
         }
         float fMax = Math.max(this.mValue, this.mMinValue);
         this.mValue = fMax;

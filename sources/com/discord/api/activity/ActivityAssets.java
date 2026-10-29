@@ -1,7 +1,7 @@
 package com.discord.api.activity;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ActivityAssets.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class ActivityAssets {
             return false;
         }
         ActivityAssets activityAssets = (ActivityAssets) other;
-        return C12238m.areEqual(this.largeImage, activityAssets.largeImage) && C12238m.areEqual(this.largeText, activityAssets.largeText) && C12238m.areEqual(this.smallImage, activityAssets.smallImage) && C12238m.areEqual(this.smallText, activityAssets.smallText);
+        return m.areEqual(this.largeImage, activityAssets.largeImage) && m.areEqual(this.largeText, activityAssets.largeText) && m.areEqual(this.smallImage, activityAssets.smallImage) && m.areEqual(this.smallText, activityAssets.smallText);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -61,13 +61,13 @@ public final /* data */ class ActivityAssets {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ActivityAssets(largeImage=");
-        sbM833U.append(this.largeImage);
-        sbM833U.append(", largeText=");
-        sbM833U.append(this.largeText);
-        sbM833U.append(", smallImage=");
-        sbM833U.append(this.smallImage);
-        sbM833U.append(", smallText=");
-        return C1643a.m822J(sbM833U, this.smallText, ")");
+        StringBuilder sbU = a.U("ActivityAssets(largeImage=");
+        sbU.append(this.largeImage);
+        sbU.append(", largeText=");
+        sbU.append(this.largeText);
+        sbU.append(", smallImage=");
+        sbU.append(this.smallImage);
+        sbU.append(", smallText=");
+        return a.J(sbU, this.smallText, ")");
     }
 }

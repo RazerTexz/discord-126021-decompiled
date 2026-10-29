@@ -14,47 +14,41 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetFriendsListAdapterItemFriendBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f16657a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeSpanTextView f16658b;
+    public final SimpleDraweeSpanTextView f2392b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f16659c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final AppCompatImageView f16660d;
+    public final AppCompatImageView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final AppCompatImageView f16661e;
+    public final AppCompatImageView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f16662f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final StatusView f16663g;
+    public final StatusView g;
 
     public WidgetFriendsListAdapterItemFriendBinding(@NonNull RelativeLayout relativeLayout, @NonNull SimpleDraweeSpanTextView simpleDraweeSpanTextView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull LinearLayout linearLayout, @NonNull AppCompatImageView appCompatImageView, @NonNull AppCompatImageView appCompatImageView2, @NonNull TextView textView, @NonNull StatusView statusView, @NonNull LinearLayout linearLayout2) {
-        this.f16657a = relativeLayout;
-        this.f16658b = simpleDraweeSpanTextView;
-        this.f16659c = simpleDraweeView;
-        this.f16660d = appCompatImageView;
-        this.f16661e = appCompatImageView2;
-        this.f16662f = textView;
-        this.f16663g = statusView;
+        this.a = relativeLayout;
+        this.f2392b = simpleDraweeSpanTextView;
+        this.c = simpleDraweeView;
+        this.d = appCompatImageView;
+        this.e = appCompatImageView2;
+        this.f = textView;
+        this.g = statusView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16657a;
+        return this.a;
     }
 }

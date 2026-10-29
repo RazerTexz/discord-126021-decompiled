@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherHostTransferred.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackActivityInternalWatchTogetherHostTransferred 
             return false;
         }
         TrackActivityInternalWatchTogetherHostTransferred trackActivityInternalWatchTogetherHostTransferred = (TrackActivityInternalWatchTogetherHostTransferred) other;
-        return C12238m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherHostTransferred.isHostMode) && C12238m.areEqual(this.hostType, trackActivityInternalWatchTogetherHostTransferred.hostType);
+        return m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherHostTransferred.isHostMode) && m.areEqual(this.hostType, trackActivityInternalWatchTogetherHostTransferred.hostType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,9 +42,9 @@ public final /* data */ class TrackActivityInternalWatchTogetherHostTransferred 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalWatchTogetherHostTransferred(isHostMode=");
-        sbM833U.append(this.isHostMode);
-        sbM833U.append(", hostType=");
-        return C1643a.m817E(sbM833U, this.hostType, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalWatchTogetherHostTransferred(isHostMode=");
+        sbU.append(this.isHostMode);
+        sbU.append(", hostType=");
+        return a.E(sbU, this.hostType, ")");
     }
 }

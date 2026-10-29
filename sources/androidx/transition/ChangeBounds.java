@@ -1,7 +1,6 @@
 package androidx.transition;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -9,6 +8,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap$Config;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -27,10 +27,6 @@ import java.util.Map;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ChangeBounds extends Transition {
-    private static final Property<View, PointF> BOTTOM_RIGHT_ONLY_PROPERTY;
-    private static final Property<ViewBounds, PointF> BOTTOM_RIGHT_PROPERTY;
-    private static final Property<View, PointF> TOP_LEFT_ONLY_PROPERTY;
-    private static final Property<ViewBounds, PointF> TOP_LEFT_PROPERTY;
     private boolean mReparent;
     private boolean mResizeClip;
     private int[] mTempLocation;
@@ -40,126 +36,13 @@ public class ChangeBounds extends Transition {
     private static final String PROPNAME_WINDOW_X = "android:changeBounds:windowX";
     private static final String PROPNAME_WINDOW_Y = "android:changeBounds:windowY";
     private static final String[] sTransitionProperties = {PROPNAME_BOUNDS, PROPNAME_CLIP, PROPNAME_PARENT, PROPNAME_WINDOW_X, PROPNAME_WINDOW_Y};
-    private static final Property<Drawable, PointF> DRAWABLE_ORIGIN_PROPERTY = new Property<Drawable, PointF>(PointF.class, "boundsOrigin") { // from class: androidx.transition.ChangeBounds.1
-        private Rect mBounds = new Rect();
-
-        @Override // android.util.Property
-        public PointF get(Drawable drawable) {
-            drawable.copyBounds(this.mBounds);
-            Rect rect = this.mBounds;
-            return new PointF(rect.left, rect.top);
-        }
-
-        @Override // android.util.Property
-        public void set(Drawable drawable, PointF pointF) {
-            drawable.copyBounds(this.mBounds);
-            this.mBounds.offsetTo(Math.round(pointF.x), Math.round(pointF.y));
-            drawable.setBounds(this.mBounds);
-        }
-    };
-    private static final Property<View, PointF> POSITION_PROPERTY = new Property<View, PointF>(PointF.class, ModelAuditLogEntry.CHANGE_KEY_POSITION) { // from class: androidx.transition.ChangeBounds.6
-        @Override // android.util.Property
-        public PointF get(View view) {
-            return null;
-        }
-
-        @Override // android.util.Property
-        public void set(View view, PointF pointF) {
-            int iRound = Math.round(pointF.x);
-            int iRound2 = Math.round(pointF.y);
-            ViewUtils.setLeftTopRightBottom(view, iRound, iRound2, view.getWidth() + iRound, view.getHeight() + iRound2);
-        }
-    };
+    private static final Property<Drawable, PointF> DRAWABLE_ORIGIN_PROPERTY = new ChangeBounds$1(PointF.class, "boundsOrigin");
+    private static final Property<ChangeBounds$ViewBounds, PointF> TOP_LEFT_PROPERTY = new ChangeBounds$2(PointF.class, "topLeft");
+    private static final Property<ChangeBounds$ViewBounds, PointF> BOTTOM_RIGHT_PROPERTY = new ChangeBounds$3(PointF.class, "bottomRight");
+    private static final Property<View, PointF> BOTTOM_RIGHT_ONLY_PROPERTY = new ChangeBounds$4(PointF.class, "bottomRight");
+    private static final Property<View, PointF> TOP_LEFT_ONLY_PROPERTY = new ChangeBounds$5(PointF.class, "topLeft");
+    private static final Property<View, PointF> POSITION_PROPERTY = new ChangeBounds$6(PointF.class, ModelAuditLogEntry.CHANGE_KEY_POSITION);
     private static RectEvaluator sRectEvaluator = new RectEvaluator();
-
-    public class ViewBounds {
-        private int mBottom;
-        private int mBottomRightCalls;
-        private int mLeft;
-        private int mRight;
-        private int mTop;
-        private int mTopLeftCalls;
-        private View mView;
-
-        public ViewBounds(View view) {
-            this.mView = view;
-        }
-
-        public void setBottomRight(PointF pointF) {
-            this.mRight = Math.round(pointF.x);
-            this.mBottom = Math.round(pointF.y);
-            int i = this.mBottomRightCalls + 1;
-            this.mBottomRightCalls = i;
-            if (this.mTopLeftCalls == i) {
-                setLeftTopRightBottom();
-            }
-        }
-
-        private void setLeftTopRightBottom() {
-            ViewUtils.setLeftTopRightBottom(this.mView, this.mLeft, this.mTop, this.mRight, this.mBottom);
-            this.mTopLeftCalls = 0;
-            this.mBottomRightCalls = 0;
-        }
-
-        public void setTopLeft(PointF pointF) {
-            this.mLeft = Math.round(pointF.x);
-            this.mTop = Math.round(pointF.y);
-            int i = this.mTopLeftCalls + 1;
-            this.mTopLeftCalls = i;
-            if (i == this.mBottomRightCalls) {
-                setLeftTopRightBottom();
-            }
-        }
-    }
-
-    static {
-        String str = "topLeft";
-        TOP_LEFT_PROPERTY = new Property<ViewBounds, PointF>(PointF.class, str) { // from class: androidx.transition.ChangeBounds.2
-            @Override // android.util.Property
-            public PointF get(ViewBounds viewBounds) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(ViewBounds viewBounds, PointF pointF) {
-                viewBounds.setTopLeft(pointF);
-            }
-        };
-        String str2 = "bottomRight";
-        BOTTOM_RIGHT_PROPERTY = new Property<ViewBounds, PointF>(PointF.class, str2) { // from class: androidx.transition.ChangeBounds.3
-            @Override // android.util.Property
-            public PointF get(ViewBounds viewBounds) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(ViewBounds viewBounds, PointF pointF) {
-                viewBounds.setBottomRight(pointF);
-            }
-        };
-        BOTTOM_RIGHT_ONLY_PROPERTY = new Property<View, PointF>(PointF.class, str2) { // from class: androidx.transition.ChangeBounds.4
-            @Override // android.util.Property
-            public PointF get(View view) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(View view, PointF pointF) {
-                ViewUtils.setLeftTopRightBottom(view, view.getLeft(), view.getTop(), Math.round(pointF.x), Math.round(pointF.y));
-            }
-        };
-        TOP_LEFT_ONLY_PROPERTY = new Property<View, PointF>(PointF.class, str) { // from class: androidx.transition.ChangeBounds.5
-            @Override // android.util.Property
-            public PointF get(View view) {
-                return null;
-            }
-
-            @Override // android.util.Property
-            public void set(View view, PointF pointF) {
-                ViewUtils.setLeftTopRightBottom(view, Math.round(pointF.x), Math.round(pointF.y), view.getRight(), view.getBottom());
-            }
-        };
-    }
 
     public ChangeBounds() {
         this.mTempLocation = new int[2];
@@ -196,9 +79,9 @@ public class ChangeBounds extends Transition {
 
     @Override // androidx.transition.Transition
     @Nullable
-    public Animator createAnimator(@NonNull final ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
+    public Animator createAnimator(@NonNull ViewGroup viewGroup, @Nullable TransitionValues transitionValues, @Nullable TransitionValues transitionValues2) {
         int i;
-        final View view;
+        View view;
         int i2;
         Rect rect;
         ObjectAnimator objectAnimator;
@@ -213,7 +96,7 @@ public class ChangeBounds extends Transition {
         if (viewGroup2 == null || viewGroup3 == null) {
             return null;
         }
-        final View view2 = transitionValues2.view;
+        View view2 = transitionValues2.view;
         if (!parentMatches(viewGroup2, viewGroup3)) {
             int iIntValue = ((Integer) transitionValues.values.get(PROPNAME_WINDOW_X)).intValue();
             int iIntValue2 = ((Integer) transitionValues.values.get(PROPNAME_WINDOW_Y)).intValue();
@@ -223,40 +106,34 @@ public class ChangeBounds extends Transition {
                 return null;
             }
             viewGroup.getLocationInWindow(this.mTempLocation);
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(view2.getWidth(), view2.getHeight(), Bitmap.Config.ARGB_8888);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(view2.getWidth(), view2.getHeight(), Bitmap$Config.ARGB_8888);
             view2.draw(new Canvas(bitmapCreateBitmap));
-            final BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap);
-            final float transitionAlpha = ViewUtils.getTransitionAlpha(view2);
+            BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap);
+            float transitionAlpha = ViewUtils.getTransitionAlpha(view2);
             ViewUtils.setTransitionAlpha(view2, 0.0f);
             ViewUtils.getOverlay(viewGroup).add(bitmapDrawable);
             PathMotion pathMotion = getPathMotion();
             int[] iArr = this.mTempLocation;
             ObjectAnimator objectAnimatorOfPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(bitmapDrawable, PropertyValuesHolderUtils.ofPointF(DRAWABLE_ORIGIN_PROPERTY, pathMotion.getPath(iIntValue - iArr[0], iIntValue2 - iArr[1], iIntValue3 - iArr[0], iIntValue4 - iArr[1])));
-            objectAnimatorOfPropertyValuesHolder.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeBounds.10
-                @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                public void onAnimationEnd(Animator animator) {
-                    ViewUtils.getOverlay(viewGroup).remove(bitmapDrawable);
-                    ViewUtils.setTransitionAlpha(view2, transitionAlpha);
-                }
-            });
+            objectAnimatorOfPropertyValuesHolder.addListener(new ChangeBounds$10(this, viewGroup, bitmapDrawable, view2, transitionAlpha));
             return objectAnimatorOfPropertyValuesHolder;
         }
         Rect rect2 = (Rect) transitionValues.values.get(PROPNAME_BOUNDS);
         Rect rect3 = (Rect) transitionValues2.values.get(PROPNAME_BOUNDS);
         int i3 = rect2.left;
-        final int i4 = rect3.left;
+        int i4 = rect3.left;
         int i5 = rect2.top;
-        final int i6 = rect3.top;
+        int i6 = rect3.top;
         int i7 = rect2.right;
-        final int i8 = rect3.right;
+        int i8 = rect3.right;
         int i9 = rect2.bottom;
-        final int i10 = rect3.bottom;
+        int i10 = rect3.bottom;
         int i11 = i7 - i3;
         int i12 = i9 - i5;
         int i13 = i8 - i4;
         int i14 = i10 - i6;
         Rect rect4 = (Rect) transitionValues.values.get(PROPNAME_CLIP);
-        final Rect rect5 = (Rect) transitionValues2.values.get(PROPNAME_CLIP);
+        Rect rect5 = (Rect) transitionValues2.values.get(PROPNAME_CLIP);
         if ((i11 == 0 || i12 == 0) && (i13 == 0 || i14 == 0)) {
             i = 0;
         } else {
@@ -292,23 +169,7 @@ public class ChangeBounds extends Transition {
                 objArr[i2] = rect;
                 objArr[1] = rect6;
                 ObjectAnimator objectAnimatorOfObject = ObjectAnimator.ofObject(view, "clipBounds", rectEvaluator, objArr);
-                objectAnimatorOfObject.addListener(new AnimatorListenerAdapter() { // from class: androidx.transition.ChangeBounds.8
-                    private boolean mIsCanceled;
-
-                    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                    public void onAnimationCancel(Animator animator) {
-                        this.mIsCanceled = true;
-                    }
-
-                    @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-                    public void onAnimationEnd(Animator animator) {
-                        if (this.mIsCanceled) {
-                            return;
-                        }
-                        ViewCompat.setClipBounds(view, rect5);
-                        ViewUtils.setLeftTopRightBottom(view, i4, i6, i8, i10);
-                    }
-                });
+                objectAnimatorOfObject.addListener(new ChangeBounds$8(this, view, rect5, i4, i6, i8, i10));
                 objectAnimator = objectAnimatorOfObject;
             }
             animatorMergeAnimators = TransitionUtils.mergeAnimators(objectAnimatorOfPointF, objectAnimator);
@@ -320,53 +181,19 @@ public class ChangeBounds extends Transition {
             } else if (i11 == i13 && i12 == i14) {
                 animatorMergeAnimators = ObjectAnimatorUtils.ofPointF(view, POSITION_PROPERTY, getPathMotion().getPath(i3, i5, i4, i6));
             } else {
-                ViewBounds viewBounds = new ViewBounds(view);
-                ObjectAnimator objectAnimatorOfPointF2 = ObjectAnimatorUtils.ofPointF(viewBounds, TOP_LEFT_PROPERTY, getPathMotion().getPath(i3, i5, i4, i6));
-                ObjectAnimator objectAnimatorOfPointF3 = ObjectAnimatorUtils.ofPointF(viewBounds, BOTTOM_RIGHT_PROPERTY, getPathMotion().getPath(i7, i9, i8, i10));
+                ChangeBounds$ViewBounds changeBounds$ViewBounds = new ChangeBounds$ViewBounds(view);
+                ObjectAnimator objectAnimatorOfPointF2 = ObjectAnimatorUtils.ofPointF(changeBounds$ViewBounds, TOP_LEFT_PROPERTY, getPathMotion().getPath(i3, i5, i4, i6));
+                ObjectAnimator objectAnimatorOfPointF3 = ObjectAnimatorUtils.ofPointF(changeBounds$ViewBounds, BOTTOM_RIGHT_PROPERTY, getPathMotion().getPath(i7, i9, i8, i10));
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.playTogether(objectAnimatorOfPointF2, objectAnimatorOfPointF3);
-                animatorSet.addListener(new AnimatorListenerAdapter(viewBounds) { // from class: androidx.transition.ChangeBounds.7
-                    private ViewBounds mViewBounds;
-                    public final /* synthetic */ ViewBounds val$viewBounds;
-
-                    {
-                        this.val$viewBounds = viewBounds;
-                        this.mViewBounds = viewBounds;
-                    }
-                });
+                animatorSet.addListener(new ChangeBounds$7(this, changeBounds$ViewBounds));
                 animatorMergeAnimators = animatorSet;
             }
         }
         if (view.getParent() instanceof ViewGroup) {
-            final ViewGroup viewGroup4 = (ViewGroup) view.getParent();
+            ViewGroup viewGroup4 = (ViewGroup) view.getParent();
             ViewGroupUtils.suppressLayout(viewGroup4, true);
-            addListener(new TransitionListenerAdapter() { // from class: androidx.transition.ChangeBounds.9
-                public boolean mCanceled = false;
-
-                @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-                public void onTransitionCancel(@NonNull Transition transition) {
-                    ViewGroupUtils.suppressLayout(viewGroup4, false);
-                    this.mCanceled = true;
-                }
-
-                @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-                public void onTransitionEnd(@NonNull Transition transition) {
-                    if (!this.mCanceled) {
-                        ViewGroupUtils.suppressLayout(viewGroup4, false);
-                    }
-                    transition.removeListener(this);
-                }
-
-                @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-                public void onTransitionPause(@NonNull Transition transition) {
-                    ViewGroupUtils.suppressLayout(viewGroup4, false);
-                }
-
-                @Override // androidx.transition.TransitionListenerAdapter, androidx.transition.Transition.TransitionListener
-                public void onTransitionResume(@NonNull Transition transition) {
-                    ViewGroupUtils.suppressLayout(viewGroup4, true);
-                }
-            });
+            addListener(new ChangeBounds$9(this, viewGroup4));
         }
         return animatorMergeAnimators;
     }

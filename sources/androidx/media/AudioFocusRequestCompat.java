@@ -2,17 +2,13 @@ package androidx.media;
 
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
-import android.media.AudioManager;
-import android.os.Build;
+import android.media.AudioManager$OnAudioFocusChangeListener;
+import android.os.Build$VERSION;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
-import androidx.annotation.DoNotInline;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.util.ObjectsCompat;
-import java.util.Objects;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AudioFocusRequestCompat {
@@ -20,137 +16,23 @@ public class AudioFocusRequestCompat {
     private final Handler mFocusChangeHandler;
     private final int mFocusGain;
     private final Object mFrameworkAudioFocusRequest;
-    private final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener;
+    private final AudioManager$OnAudioFocusChangeListener mOnAudioFocusChangeListener;
     private final boolean mPauseOnDuck;
-    public static final AudioAttributesCompat FOCUS_DEFAULT_ATTR = new AudioAttributesCompat.Builder().setUsage(1).build();
+    public static final AudioAttributesCompat FOCUS_DEFAULT_ATTR = new AudioAttributesCompat$Builder().setUsage(1).build();
 
-    @RequiresApi(26)
-    public class Api26Impl {
-        private Api26Impl() {
-        }
-
-        @DoNotInline
-        public static AudioFocusRequest createInstance(int i, AudioAttributes audioAttributes, boolean z2, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler) {
-            return new AudioFocusRequest.Builder(i).setAudioAttributes(audioAttributes).setWillPauseWhenDucked(z2).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).build();
-        }
-    }
-
-    public final class Builder {
-        private AudioAttributesCompat mAudioAttributesCompat;
-        private Handler mFocusChangeHandler;
-        private int mFocusGain;
-        private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener;
-        private boolean mPauseOnDuck;
-
-        public Builder(int i) {
-            this.mAudioAttributesCompat = AudioFocusRequestCompat.FOCUS_DEFAULT_ATTR;
-            setFocusGain(i);
-        }
-
-        public AudioFocusRequestCompat build() {
-            if (this.mOnAudioFocusChangeListener != null) {
-                return new AudioFocusRequestCompat(this.mFocusGain, this.mOnAudioFocusChangeListener, this.mFocusChangeHandler, this.mAudioAttributesCompat, this.mPauseOnDuck);
-            }
-            throw new IllegalStateException("Can't build an AudioFocusRequestCompat instance without a listener");
-        }
-
-        private static boolean isValidFocusGain(int i) {
-            return i == 1 || i == 2 || i == 3 || i == 4;
-        }
-
-        @NonNull
-        public Builder setAudioAttributes(@NonNull AudioAttributesCompat audioAttributesCompat) {
-            Objects.requireNonNull(audioAttributesCompat, "Illegal null AudioAttributes");
-            this.mAudioAttributesCompat = audioAttributesCompat;
-            return this;
-        }
-
-        @NonNull
-        public Builder setFocusGain(int i) {
-            if (!isValidFocusGain(i)) {
-                throw new IllegalArgumentException(C1643a.m871q("Illegal audio focus gain type ", i));
-            }
-            this.mFocusGain = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setOnAudioFocusChangeListener(@NonNull AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener) {
-            return setOnAudioFocusChangeListener(onAudioFocusChangeListener, new Handler(Looper.getMainLooper()));
-        }
-
-        @NonNull
-        public Builder setWillPauseWhenDucked(boolean z2) {
-            this.mPauseOnDuck = z2;
-            return this;
-        }
-
-        @NonNull
-        public Builder setOnAudioFocusChangeListener(@NonNull AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, @NonNull Handler handler) {
-            if (onAudioFocusChangeListener == null) {
-                throw new IllegalArgumentException("OnAudioFocusChangeListener must not be null");
-            }
-            if (handler == null) {
-                throw new IllegalArgumentException("Handler must not be null");
-            }
-            this.mOnAudioFocusChangeListener = onAudioFocusChangeListener;
-            this.mFocusChangeHandler = handler;
-            return this;
-        }
-
-        public Builder(@NonNull AudioFocusRequestCompat audioFocusRequestCompat) {
-            this.mAudioAttributesCompat = AudioFocusRequestCompat.FOCUS_DEFAULT_ATTR;
-            if (audioFocusRequestCompat != null) {
-                this.mFocusGain = audioFocusRequestCompat.getFocusGain();
-                this.mOnAudioFocusChangeListener = audioFocusRequestCompat.getOnAudioFocusChangeListener();
-                this.mFocusChangeHandler = audioFocusRequestCompat.getFocusChangeHandler();
-                this.mAudioAttributesCompat = audioFocusRequestCompat.getAudioAttributesCompat();
-                this.mPauseOnDuck = audioFocusRequestCompat.willPauseWhenDucked();
-                return;
-            }
-            throw new IllegalArgumentException("AudioFocusRequestCompat to copy must not be null");
-        }
-    }
-
-    public class OnAudioFocusChangeListenerHandlerCompat implements Handler.Callback, AudioManager.OnAudioFocusChangeListener {
-        private static final int FOCUS_CHANGE = 2782386;
-        private final Handler mHandler;
-        private final AudioManager.OnAudioFocusChangeListener mListener;
-
-        public OnAudioFocusChangeListenerHandlerCompat(@NonNull AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, @NonNull Handler handler) {
-            this.mListener = onAudioFocusChangeListener;
-            this.mHandler = new Handler(handler.getLooper(), this);
-        }
-
-        @Override // android.os.Handler.Callback
-        public boolean handleMessage(Message message) {
-            if (message.what != FOCUS_CHANGE) {
-                return false;
-            }
-            this.mListener.onAudioFocusChange(message.arg1);
-            return true;
-        }
-
-        @Override // android.media.AudioManager.OnAudioFocusChangeListener
-        public void onAudioFocusChange(int i) {
-            Handler handler = this.mHandler;
-            handler.sendMessage(Message.obtain(handler, FOCUS_CHANGE, i, 0));
-        }
-    }
-
-    public AudioFocusRequestCompat(int i, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, AudioAttributesCompat audioAttributesCompat, boolean z2) {
+    public AudioFocusRequestCompat(int i, AudioManager$OnAudioFocusChangeListener audioManager$OnAudioFocusChangeListener, Handler handler, AudioAttributesCompat audioAttributesCompat, boolean z2) {
         this.mFocusGain = i;
         this.mFocusChangeHandler = handler;
         this.mAudioAttributesCompat = audioAttributesCompat;
         this.mPauseOnDuck = z2;
-        int i2 = Build.VERSION.SDK_INT;
+        int i2 = Build$VERSION.SDK_INT;
         if (i2 >= 26 || handler.getLooper() == Looper.getMainLooper()) {
-            this.mOnAudioFocusChangeListener = onAudioFocusChangeListener;
+            this.mOnAudioFocusChangeListener = audioManager$OnAudioFocusChangeListener;
         } else {
-            this.mOnAudioFocusChangeListener = new OnAudioFocusChangeListenerHandlerCompat(onAudioFocusChangeListener, handler);
+            this.mOnAudioFocusChangeListener = new AudioFocusRequestCompat$OnAudioFocusChangeListenerHandlerCompat(audioManager$OnAudioFocusChangeListener, handler);
         }
         if (i2 >= 26) {
-            this.mFrameworkAudioFocusRequest = Api26Impl.createInstance(i, getAudioAttributes(), z2, this.mOnAudioFocusChangeListener, handler);
+            this.mFrameworkAudioFocusRequest = AudioFocusRequestCompat$Api26Impl.createInstance(i, getAudioAttributes(), z2, this.mOnAudioFocusChangeListener, handler);
         } else {
             this.mFrameworkAudioFocusRequest = null;
         }
@@ -196,7 +78,7 @@ public class AudioFocusRequestCompat {
     }
 
     @NonNull
-    public AudioManager.OnAudioFocusChangeListener getOnAudioFocusChangeListener() {
+    public AudioManager$OnAudioFocusChangeListener getOnAudioFocusChangeListener() {
         return this.mOnAudioFocusChangeListener;
     }
 

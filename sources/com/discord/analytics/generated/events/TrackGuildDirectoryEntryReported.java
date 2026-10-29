@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -10,8 +11,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildDirectoryEntryReported.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,6 +28,11 @@ public final /* data */ class TrackGuildDirectoryEntryReported implements Analyt
     private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "guild_directory_entry_reported";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,7 +41,7 @@ public final /* data */ class TrackGuildDirectoryEntryReported implements Analyt
             return false;
         }
         TrackGuildDirectoryEntryReported trackGuildDirectoryEntryReported = (TrackGuildDirectoryEntryReported) other;
-        return C12238m.areEqual(this.reportType, trackGuildDirectoryEntryReported.reportType) && C12238m.areEqual(this.reportSubType, trackGuildDirectoryEntryReported.reportSubType) && C12238m.areEqual(this.subject, trackGuildDirectoryEntryReported.subject) && C12238m.areEqual(this.description, trackGuildDirectoryEntryReported.description) && C12238m.areEqual(this.reasonEnum, trackGuildDirectoryEntryReported.reasonEnum) && C12238m.areEqual(this.reportId, trackGuildDirectoryEntryReported.reportId);
+        return m.areEqual(this.reportType, trackGuildDirectoryEntryReported.reportType) && m.areEqual(this.reportSubType, trackGuildDirectoryEntryReported.reportSubType) && m.areEqual(this.subject, trackGuildDirectoryEntryReported.subject) && m.areEqual(this.description, trackGuildDirectoryEntryReported.description) && m.areEqual(this.reasonEnum, trackGuildDirectoryEntryReported.reasonEnum) && m.areEqual(this.reportId, trackGuildDirectoryEntryReported.reportId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,24 +71,18 @@ public final /* data */ class TrackGuildDirectoryEntryReported implements Analyt
         return iHashCode5 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildDirectoryEntryReported(reportType=");
-        sbM833U.append(this.reportType);
-        sbM833U.append(", reportSubType=");
-        sbM833U.append(this.reportSubType);
-        sbM833U.append(", subject=");
-        sbM833U.append(this.subject);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", reasonEnum=");
-        sbM833U.append(this.reasonEnum);
-        sbM833U.append(", reportId=");
-        return C1643a.m819G(sbM833U, this.reportId, ")");
+        StringBuilder sbU = a.U("TrackGuildDirectoryEntryReported(reportType=");
+        sbU.append(this.reportType);
+        sbU.append(", reportSubType=");
+        sbU.append(this.reportSubType);
+        sbU.append(", subject=");
+        sbU.append(this.subject);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", reasonEnum=");
+        sbU.append(this.reasonEnum);
+        sbU.append(", reportId=");
+        return a.G(sbU, this.reportId, ")");
     }
 }

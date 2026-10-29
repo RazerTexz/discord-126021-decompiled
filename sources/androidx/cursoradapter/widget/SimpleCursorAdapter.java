@@ -7,27 +7,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
 public class SimpleCursorAdapter extends ResourceCursorAdapter {
-    private CursorToStringConverter mCursorToStringConverter;
+    private SimpleCursorAdapter$CursorToStringConverter mCursorToStringConverter;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public int[] mFrom;
     public String[] mOriginalFrom;
     private int mStringConversionColumn;
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public int[] mTo;
-    private ViewBinder mViewBinder;
-
-    public interface CursorToStringConverter {
-        CharSequence convertToString(Cursor cursor);
-    }
-
-    public interface ViewBinder {
-        boolean setViewValue(View view, Cursor cursor, int i);
-    }
+    private SimpleCursorAdapter$ViewBinder mViewBinder;
 
     @Deprecated
     public SimpleCursorAdapter(Context context, int i, Cursor cursor, String[] strArr, int[] iArr) {
@@ -40,14 +33,14 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
 
     @Override // androidx.cursoradapter.widget.CursorAdapter
     public void bindView(View view, Context context, Cursor cursor) {
-        ViewBinder viewBinder = this.mViewBinder;
+        SimpleCursorAdapter$ViewBinder simpleCursorAdapter$ViewBinder = this.mViewBinder;
         int[] iArr = this.mTo;
         int length = iArr.length;
         int[] iArr2 = this.mFrom;
         for (int i = 0; i < length; i++) {
             View viewFindViewById = view.findViewById(iArr[i]);
             if (viewFindViewById != null) {
-                if (viewBinder != null ? viewBinder.setViewValue(viewFindViewById, cursor, iArr2[i]) : false) {
+                if (simpleCursorAdapter$ViewBinder != null ? simpleCursorAdapter$ViewBinder.setViewValue(viewFindViewById, cursor, iArr2[i]) : false) {
                     continue;
                 } else {
                     String string = cursor.getString(iArr2[i]);
@@ -74,11 +67,11 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
         super.changeCursor(cursor);
     }
 
-    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter.CursorFilterClient
+    @Override // androidx.cursoradapter.widget.CursorAdapter, androidx.cursoradapter.widget.CursorFilter$CursorFilterClient
     public CharSequence convertToString(Cursor cursor) {
-        CursorToStringConverter cursorToStringConverter = this.mCursorToStringConverter;
-        if (cursorToStringConverter != null) {
-            return cursorToStringConverter.convertToString(cursor);
+        SimpleCursorAdapter$CursorToStringConverter simpleCursorAdapter$CursorToStringConverter = this.mCursorToStringConverter;
+        if (simpleCursorAdapter$CursorToStringConverter != null) {
+            return simpleCursorAdapter$CursorToStringConverter.convertToString(cursor);
         }
         int i = this.mStringConversionColumn;
         return i > -1 ? cursor.getString(i) : super.convertToString(cursor);
@@ -99,7 +92,7 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
         }
     }
 
-    public CursorToStringConverter getCursorToStringConverter() {
+    public SimpleCursorAdapter$CursorToStringConverter getCursorToStringConverter() {
         return this.mCursorToStringConverter;
     }
 
@@ -107,20 +100,20 @@ public class SimpleCursorAdapter extends ResourceCursorAdapter {
         return this.mStringConversionColumn;
     }
 
-    public ViewBinder getViewBinder() {
+    public SimpleCursorAdapter$ViewBinder getViewBinder() {
         return this.mViewBinder;
     }
 
-    public void setCursorToStringConverter(CursorToStringConverter cursorToStringConverter) {
-        this.mCursorToStringConverter = cursorToStringConverter;
+    public void setCursorToStringConverter(SimpleCursorAdapter$CursorToStringConverter simpleCursorAdapter$CursorToStringConverter) {
+        this.mCursorToStringConverter = simpleCursorAdapter$CursorToStringConverter;
     }
 
     public void setStringConversionColumn(int i) {
         this.mStringConversionColumn = i;
     }
 
-    public void setViewBinder(ViewBinder viewBinder) {
-        this.mViewBinder = viewBinder;
+    public void setViewBinder(SimpleCursorAdapter$ViewBinder simpleCursorAdapter$ViewBinder) {
+        this.mViewBinder = simpleCursorAdapter$ViewBinder;
     }
 
     public void setViewImage(ImageView imageView, String str) {

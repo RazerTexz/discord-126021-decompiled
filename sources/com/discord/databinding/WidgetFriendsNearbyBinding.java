@@ -12,47 +12,41 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetFriendsNearbyBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f16686a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f16687b;
+    public final MaterialButton f2399b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f16688c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final RecyclerView f16689d;
+    public final RecyclerView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16690e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final RLottieImageView f16691f;
+    public final RLottieImageView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f16692g;
+    public final TextView g;
 
     public WidgetFriendsNearbyBinding(@NonNull NestedScrollView nestedScrollView, @NonNull MaterialButton materialButton, @NonNull TextView textView, @NonNull RecyclerView recyclerView, @NonNull TextView textView2, @NonNull RLottieImageView rLottieImageView, @NonNull TextView textView3) {
-        this.f16686a = nestedScrollView;
-        this.f16687b = materialButton;
-        this.f16688c = textView;
-        this.f16689d = recyclerView;
-        this.f16690e = textView2;
-        this.f16691f = rLottieImageView;
-        this.f16692g = textView3;
+        this.a = nestedScrollView;
+        this.f2399b = materialButton;
+        this.c = textView;
+        this.d = recyclerView;
+        this.e = textView2;
+        this.f = rLottieImageView;
+        this.g = textView3;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16686a;
+        return this.a;
     }
 }

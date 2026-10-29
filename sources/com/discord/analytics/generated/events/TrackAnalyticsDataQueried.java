@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAnalyticsDataQueried.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSche
             return false;
         }
         TrackAnalyticsDataQueried trackAnalyticsDataQueried = (TrackAnalyticsDataQueried) other;
-        return C12238m.areEqual(this.applicationId, trackAnalyticsDataQueried.applicationId) && C12238m.areEqual(this.guildId, trackAnalyticsDataQueried.guildId) && C12238m.areEqual(this.tableName, trackAnalyticsDataQueried.tableName) && C12238m.areEqual(this.dateRangeStart, trackAnalyticsDataQueried.dateRangeStart) && C12238m.areEqual(this.dateRangeEnd, trackAnalyticsDataQueried.dateRangeEnd) && C12238m.areEqual(this.interval, trackAnalyticsDataQueried.interval) && C12238m.areEqual(this.responseIsSuccessful, trackAnalyticsDataQueried.responseIsSuccessful) && C12238m.areEqual(this.responseHasData, trackAnalyticsDataQueried.responseHasData);
+        return m.areEqual(this.applicationId, trackAnalyticsDataQueried.applicationId) && m.areEqual(this.guildId, trackAnalyticsDataQueried.guildId) && m.areEqual(this.tableName, trackAnalyticsDataQueried.tableName) && m.areEqual(this.dateRangeStart, trackAnalyticsDataQueried.dateRangeStart) && m.areEqual(this.dateRangeEnd, trackAnalyticsDataQueried.dateRangeEnd) && m.areEqual(this.interval, trackAnalyticsDataQueried.interval) && m.areEqual(this.responseIsSuccessful, trackAnalyticsDataQueried.responseIsSuccessful) && m.areEqual(this.responseHasData, trackAnalyticsDataQueried.responseHasData);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,21 +57,21 @@ public final /* data */ class TrackAnalyticsDataQueried implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAnalyticsDataQueried(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", tableName=");
-        sbM833U.append(this.tableName);
-        sbM833U.append(", dateRangeStart=");
-        sbM833U.append(this.dateRangeStart);
-        sbM833U.append(", dateRangeEnd=");
-        sbM833U.append(this.dateRangeEnd);
-        sbM833U.append(", interval=");
-        sbM833U.append(this.interval);
-        sbM833U.append(", responseIsSuccessful=");
-        sbM833U.append(this.responseIsSuccessful);
-        sbM833U.append(", responseHasData=");
-        return C1643a.m816D(sbM833U, this.responseHasData, ")");
+        StringBuilder sbU = a.U("TrackAnalyticsDataQueried(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", tableName=");
+        sbU.append(this.tableName);
+        sbU.append(", dateRangeStart=");
+        sbU.append(this.dateRangeStart);
+        sbU.append(", dateRangeEnd=");
+        sbU.append(this.dateRangeEnd);
+        sbU.append(", interval=");
+        sbU.append(this.interval);
+        sbU.append(", responseIsSuccessful=");
+        sbU.append(this.responseIsSuccessful);
+        sbU.append(", responseHasData=");
+        return a.D(sbU, this.responseHasData, ")");
     }
 }

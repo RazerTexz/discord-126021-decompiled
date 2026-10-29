@@ -3,7 +3,7 @@ package com.discord.utilities.textprocessing;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import androidx.annotation.ColorInt;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: FontColorSpan.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -23,7 +23,7 @@ public final class FontColorSpan extends MetricAffectingSpan {
 
     @Override // android.text.style.MetricAffectingSpan
     public void updateMeasureState(TextPaint textPaint) {
-        C12238m.checkNotNullParameter(textPaint, "textPaint");
+        m.checkNotNullParameter(textPaint, "textPaint");
         textPaint.setColor(this.colorInt);
     }
 }

@@ -115,7 +115,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:theme="@style/AppTheme.Loading"
-            android:name="com.discord.app.AppActivity.Main"
+            android:name="com.discord.app.AppActivity$Main"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="fullUser"
@@ -338,11 +338,11 @@
                 android:resource="@xml/shortcuts"/>
         </activity>
         <activity
-            android:name="com.discord.app.AppActivity.Call"
+            android:name="com.discord.app.AppActivity$Call"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"/>
         <activity
-            android:name="com.discord.app.AppActivity.IncomingCall"
+            android:name="com.discord.app.AppActivity$IncomingCall"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:showOnLockScreen="true"
@@ -351,7 +351,7 @@
         <activity
             android:theme="@style/AppTheme.Loading"
             android:label="@string/discord"
-            android:name="com.discord.app.AppActivity.AppAction"
+            android:name="com.discord.app.AppActivity$AppAction"
             android:exported="true"
             android:launchMode="standard"
             android:windowSoftInputMode="adjustResize|stateHidden">
@@ -379,7 +379,7 @@
             android:name="com.facebook.flipper.android.diagnostics.FlipperDiagnosticActivity"
             android:exported="true"/>
         <service
-            android:name="com.discord.utilities.fcm.NotificationClient.FCMMessagingService"
+            android:name="com.discord.utilities.fcm.NotificationClient$FCMMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
@@ -420,7 +420,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.discord.utilities.io.NetworkUtils.NetworkDownloadReceiver"
+            android:name="com.discord.utilities.io.NetworkUtils$NetworkDownloadReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
@@ -583,12 +583,12 @@
             android:exported="false"
             android:directBootAware="false"/>
         <receiver
-            android:name="androidx.work.impl.utils.ForceStopRunnable.BroadcastReceiver"
+            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
             android:enabled="true"
             android:exported="false"
             android:directBootAware="false"/>
         <receiver
-            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy.BatteryChargingProxy"
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
             android:enabled="false"
             android:exported="false"
             android:directBootAware="false">
@@ -598,7 +598,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy.BatteryNotLowProxy"
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
             android:enabled="false"
             android:exported="false"
             android:directBootAware="false">
@@ -608,7 +608,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy.StorageNotLowProxy"
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
             android:enabled="false"
             android:exported="false"
             android:directBootAware="false">
@@ -618,7 +618,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy.NetworkStateProxy"
+            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
             android:enabled="false"
             android:exported="false"
             android:directBootAware="false">

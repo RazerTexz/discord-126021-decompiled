@@ -2,32 +2,35 @@ package androidx.appcompat.graphics.drawable;
 
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.content.res.Resources$Theme;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Outline;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.graphics.drawable.Drawable$Callback;
+import android.graphics.drawable.Drawable$ConstantState;
+import android.os.Build$VERSION;
 import android.os.SystemClock;
-import android.util.SparseArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.drawable.DrawableCompat;
 import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-public class DrawableContainer extends Drawable implements Drawable.Callback {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+public class DrawableContainer extends Drawable implements Drawable$Callback {
     private static final boolean DEBUG = false;
     private static final boolean DEFAULT_DITHER = true;
     private static final String TAG = "DrawableContainer";
     private Runnable mAnimationRunnable;
-    private BlockInvalidateCallback mBlockInvalidateCallback;
+    private DrawableContainer$BlockInvalidateCallback mBlockInvalidateCallback;
     private Drawable mCurrDrawable;
-    private DrawableContainerState mDrawableContainerState;
+    private DrawableContainer$DrawableContainerState mDrawableContainerState;
     private long mEnterAnimationEnd;
     private long mExitAnimationEnd;
     private boolean mHasAlpha;
@@ -36,497 +39,6 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
     private boolean mMutated;
     private int mAlpha = 255;
     private int mCurIndex = -1;
-
-    public class BlockInvalidateCallback implements Drawable.Callback {
-        private Drawable.Callback mCallback;
-
-        @Override // android.graphics.drawable.Drawable.Callback
-        public void invalidateDrawable(@NonNull Drawable drawable) {
-        }
-
-        @Override // android.graphics.drawable.Drawable.Callback
-        public void scheduleDrawable(@NonNull Drawable drawable, @NonNull Runnable runnable, long j) {
-            Drawable.Callback callback = this.mCallback;
-            if (callback != null) {
-                callback.scheduleDrawable(drawable, runnable, j);
-            }
-        }
-
-        @Override // android.graphics.drawable.Drawable.Callback
-        public void unscheduleDrawable(@NonNull Drawable drawable, @NonNull Runnable runnable) {
-            Drawable.Callback callback = this.mCallback;
-            if (callback != null) {
-                callback.unscheduleDrawable(drawable, runnable);
-            }
-        }
-
-        public Drawable.Callback unwrap() {
-            Drawable.Callback callback = this.mCallback;
-            this.mCallback = null;
-            return callback;
-        }
-
-        public BlockInvalidateCallback wrap(Drawable.Callback callback) {
-            this.mCallback = callback;
-            return this;
-        }
-    }
-
-    public abstract class DrawableContainerState extends Drawable.ConstantState {
-        public boolean mAutoMirrored;
-        public boolean mCanConstantState;
-        public int mChangingConfigurations;
-        public boolean mCheckedConstantSize;
-        public boolean mCheckedConstantState;
-        public boolean mCheckedOpacity;
-        public boolean mCheckedPadding;
-        public boolean mCheckedStateful;
-        public int mChildrenChangingConfigurations;
-        public ColorFilter mColorFilter;
-        public int mConstantHeight;
-        public int mConstantMinimumHeight;
-        public int mConstantMinimumWidth;
-        public Rect mConstantPadding;
-        public boolean mConstantSize;
-        public int mConstantWidth;
-        public int mDensity;
-        public boolean mDither;
-        public SparseArray<Drawable.ConstantState> mDrawableFutures;
-        public Drawable[] mDrawables;
-        public int mEnterFadeDuration;
-        public int mExitFadeDuration;
-        public boolean mHasColorFilter;
-        public boolean mHasTintList;
-        public boolean mHasTintMode;
-        public int mLayoutDirection;
-        public boolean mMutated;
-        public int mNumChildren;
-        public int mOpacity;
-        public final DrawableContainer mOwner;
-        public Resources mSourceRes;
-        public boolean mStateful;
-        public ColorStateList mTintList;
-        public PorterDuff.Mode mTintMode;
-        public boolean mVariablePadding;
-
-        public DrawableContainerState(DrawableContainerState drawableContainerState, DrawableContainer drawableContainer, Resources resources) {
-            this.mDensity = Opcodes.IF_ICMPNE;
-            this.mVariablePadding = false;
-            this.mConstantSize = false;
-            this.mDither = true;
-            this.mEnterFadeDuration = 0;
-            this.mExitFadeDuration = 0;
-            this.mOwner = drawableContainer;
-            this.mSourceRes = resources != null ? resources : drawableContainerState != null ? drawableContainerState.mSourceRes : null;
-            int iResolveDensity = DrawableContainer.resolveDensity(resources, drawableContainerState != null ? drawableContainerState.mDensity : 0);
-            this.mDensity = iResolveDensity;
-            if (drawableContainerState == null) {
-                this.mDrawables = new Drawable[10];
-                this.mNumChildren = 0;
-                return;
-            }
-            this.mChangingConfigurations = drawableContainerState.mChangingConfigurations;
-            this.mChildrenChangingConfigurations = drawableContainerState.mChildrenChangingConfigurations;
-            this.mCheckedConstantState = true;
-            this.mCanConstantState = true;
-            this.mVariablePadding = drawableContainerState.mVariablePadding;
-            this.mConstantSize = drawableContainerState.mConstantSize;
-            this.mDither = drawableContainerState.mDither;
-            this.mMutated = drawableContainerState.mMutated;
-            this.mLayoutDirection = drawableContainerState.mLayoutDirection;
-            this.mEnterFadeDuration = drawableContainerState.mEnterFadeDuration;
-            this.mExitFadeDuration = drawableContainerState.mExitFadeDuration;
-            this.mAutoMirrored = drawableContainerState.mAutoMirrored;
-            this.mColorFilter = drawableContainerState.mColorFilter;
-            this.mHasColorFilter = drawableContainerState.mHasColorFilter;
-            this.mTintList = drawableContainerState.mTintList;
-            this.mTintMode = drawableContainerState.mTintMode;
-            this.mHasTintList = drawableContainerState.mHasTintList;
-            this.mHasTintMode = drawableContainerState.mHasTintMode;
-            if (drawableContainerState.mDensity == iResolveDensity) {
-                if (drawableContainerState.mCheckedPadding) {
-                    this.mConstantPadding = new Rect(drawableContainerState.mConstantPadding);
-                    this.mCheckedPadding = true;
-                }
-                if (drawableContainerState.mCheckedConstantSize) {
-                    this.mConstantWidth = drawableContainerState.mConstantWidth;
-                    this.mConstantHeight = drawableContainerState.mConstantHeight;
-                    this.mConstantMinimumWidth = drawableContainerState.mConstantMinimumWidth;
-                    this.mConstantMinimumHeight = drawableContainerState.mConstantMinimumHeight;
-                    this.mCheckedConstantSize = true;
-                }
-            }
-            if (drawableContainerState.mCheckedOpacity) {
-                this.mOpacity = drawableContainerState.mOpacity;
-                this.mCheckedOpacity = true;
-            }
-            if (drawableContainerState.mCheckedStateful) {
-                this.mStateful = drawableContainerState.mStateful;
-                this.mCheckedStateful = true;
-            }
-            Drawable[] drawableArr = drawableContainerState.mDrawables;
-            this.mDrawables = new Drawable[drawableArr.length];
-            this.mNumChildren = drawableContainerState.mNumChildren;
-            SparseArray<Drawable.ConstantState> sparseArray = drawableContainerState.mDrawableFutures;
-            if (sparseArray != null) {
-                this.mDrawableFutures = sparseArray.clone();
-            } else {
-                this.mDrawableFutures = new SparseArray<>(this.mNumChildren);
-            }
-            int i = this.mNumChildren;
-            for (int i2 = 0; i2 < i; i2++) {
-                if (drawableArr[i2] != null) {
-                    Drawable.ConstantState constantState = drawableArr[i2].getConstantState();
-                    if (constantState != null) {
-                        this.mDrawableFutures.put(i2, constantState);
-                    } else {
-                        this.mDrawables[i2] = drawableArr[i2];
-                    }
-                }
-            }
-        }
-
-        public final int addChild(Drawable drawable) {
-            int i = this.mNumChildren;
-            if (i >= this.mDrawables.length) {
-                growArray(i, i + 10);
-            }
-            drawable.mutate();
-            drawable.setVisible(false, true);
-            drawable.setCallback(this.mOwner);
-            this.mDrawables[i] = drawable;
-            this.mNumChildren++;
-            this.mChildrenChangingConfigurations = drawable.getChangingConfigurations() | this.mChildrenChangingConfigurations;
-            invalidateCache();
-            this.mConstantPadding = null;
-            this.mCheckedPadding = false;
-            this.mCheckedConstantSize = false;
-            this.mCheckedConstantState = false;
-            return i;
-        }
-
-        @RequiresApi(21)
-        public final void applyTheme(Resources.Theme theme) {
-            if (theme != null) {
-                createAllFutures();
-                int i = this.mNumChildren;
-                Drawable[] drawableArr = this.mDrawables;
-                for (int i2 = 0; i2 < i; i2++) {
-                    if (drawableArr[i2] != null && drawableArr[i2].canApplyTheme()) {
-                        drawableArr[i2].applyTheme(theme);
-                        this.mChildrenChangingConfigurations |= drawableArr[i2].getChangingConfigurations();
-                    }
-                }
-                updateDensity(theme.getResources());
-            }
-        }
-
-        @Override // android.graphics.drawable.Drawable.ConstantState
-        @RequiresApi(21)
-        public boolean canApplyTheme() {
-            int i = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            for (int i2 = 0; i2 < i; i2++) {
-                Drawable drawable = drawableArr[i2];
-                if (drawable == null) {
-                    Drawable.ConstantState constantState = this.mDrawableFutures.get(i2);
-                    if (constantState != null && constantState.canApplyTheme()) {
-                        return true;
-                    }
-                } else if (drawable.canApplyTheme()) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public synchronized boolean canConstantState() {
-            if (this.mCheckedConstantState) {
-                return this.mCanConstantState;
-            }
-            createAllFutures();
-            this.mCheckedConstantState = true;
-            int i = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            for (int i2 = 0; i2 < i; i2++) {
-                if (drawableArr[i2].getConstantState() == null) {
-                    this.mCanConstantState = false;
-                    return false;
-                }
-            }
-            this.mCanConstantState = true;
-            return true;
-        }
-
-        public final void clearMutated() {
-            this.mMutated = false;
-        }
-
-        public void computeConstantSize() {
-            this.mCheckedConstantSize = true;
-            createAllFutures();
-            int i = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            this.mConstantHeight = -1;
-            this.mConstantWidth = -1;
-            this.mConstantMinimumHeight = 0;
-            this.mConstantMinimumWidth = 0;
-            for (int i2 = 0; i2 < i; i2++) {
-                Drawable drawable = drawableArr[i2];
-                int intrinsicWidth = drawable.getIntrinsicWidth();
-                if (intrinsicWidth > this.mConstantWidth) {
-                    this.mConstantWidth = intrinsicWidth;
-                }
-                int intrinsicHeight = drawable.getIntrinsicHeight();
-                if (intrinsicHeight > this.mConstantHeight) {
-                    this.mConstantHeight = intrinsicHeight;
-                }
-                int minimumWidth = drawable.getMinimumWidth();
-                if (minimumWidth > this.mConstantMinimumWidth) {
-                    this.mConstantMinimumWidth = minimumWidth;
-                }
-                int minimumHeight = drawable.getMinimumHeight();
-                if (minimumHeight > this.mConstantMinimumHeight) {
-                    this.mConstantMinimumHeight = minimumHeight;
-                }
-            }
-        }
-
-        private void createAllFutures() {
-            SparseArray<Drawable.ConstantState> sparseArray = this.mDrawableFutures;
-            if (sparseArray != null) {
-                int size = sparseArray.size();
-                for (int i = 0; i < size; i++) {
-                    this.mDrawables[this.mDrawableFutures.keyAt(i)] = prepareDrawable(this.mDrawableFutures.valueAt(i).newDrawable(this.mSourceRes));
-                }
-                this.mDrawableFutures = null;
-            }
-        }
-
-        public final int getCapacity() {
-            return this.mDrawables.length;
-        }
-
-        @Override // android.graphics.drawable.Drawable.ConstantState
-        public int getChangingConfigurations() {
-            return this.mChangingConfigurations | this.mChildrenChangingConfigurations;
-        }
-
-        public final Drawable getChild(int i) {
-            int iIndexOfKey;
-            Drawable drawable = this.mDrawables[i];
-            if (drawable != null) {
-                return drawable;
-            }
-            SparseArray<Drawable.ConstantState> sparseArray = this.mDrawableFutures;
-            if (sparseArray == null || (iIndexOfKey = sparseArray.indexOfKey(i)) < 0) {
-                return null;
-            }
-            Drawable drawablePrepareDrawable = prepareDrawable(this.mDrawableFutures.valueAt(iIndexOfKey).newDrawable(this.mSourceRes));
-            this.mDrawables[i] = drawablePrepareDrawable;
-            this.mDrawableFutures.removeAt(iIndexOfKey);
-            if (this.mDrawableFutures.size() == 0) {
-                this.mDrawableFutures = null;
-            }
-            return drawablePrepareDrawable;
-        }
-
-        public final int getChildCount() {
-            return this.mNumChildren;
-        }
-
-        public final int getConstantHeight() {
-            if (!this.mCheckedConstantSize) {
-                computeConstantSize();
-            }
-            return this.mConstantHeight;
-        }
-
-        public final int getConstantMinimumHeight() {
-            if (!this.mCheckedConstantSize) {
-                computeConstantSize();
-            }
-            return this.mConstantMinimumHeight;
-        }
-
-        public final int getConstantMinimumWidth() {
-            if (!this.mCheckedConstantSize) {
-                computeConstantSize();
-            }
-            return this.mConstantMinimumWidth;
-        }
-
-        public final Rect getConstantPadding() {
-            Rect rect = null;
-            if (this.mVariablePadding) {
-                return null;
-            }
-            Rect rect2 = this.mConstantPadding;
-            if (rect2 != null || this.mCheckedPadding) {
-                return rect2;
-            }
-            createAllFutures();
-            Rect rect3 = new Rect();
-            int i = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            for (int i2 = 0; i2 < i; i2++) {
-                if (drawableArr[i2].getPadding(rect3)) {
-                    if (rect == null) {
-                        rect = new Rect(0, 0, 0, 0);
-                    }
-                    int i3 = rect3.left;
-                    if (i3 > rect.left) {
-                        rect.left = i3;
-                    }
-                    int i4 = rect3.top;
-                    if (i4 > rect.top) {
-                        rect.top = i4;
-                    }
-                    int i5 = rect3.right;
-                    if (i5 > rect.right) {
-                        rect.right = i5;
-                    }
-                    int i6 = rect3.bottom;
-                    if (i6 > rect.bottom) {
-                        rect.bottom = i6;
-                    }
-                }
-            }
-            this.mCheckedPadding = true;
-            this.mConstantPadding = rect;
-            return rect;
-        }
-
-        public final int getConstantWidth() {
-            if (!this.mCheckedConstantSize) {
-                computeConstantSize();
-            }
-            return this.mConstantWidth;
-        }
-
-        public final int getEnterFadeDuration() {
-            return this.mEnterFadeDuration;
-        }
-
-        public final int getExitFadeDuration() {
-            return this.mExitFadeDuration;
-        }
-
-        public final int getOpacity() {
-            if (this.mCheckedOpacity) {
-                return this.mOpacity;
-            }
-            createAllFutures();
-            int i = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            int opacity = i > 0 ? drawableArr[0].getOpacity() : -2;
-            for (int i2 = 1; i2 < i; i2++) {
-                opacity = Drawable.resolveOpacity(opacity, drawableArr[i2].getOpacity());
-            }
-            this.mOpacity = opacity;
-            this.mCheckedOpacity = true;
-            return opacity;
-        }
-
-        public void growArray(int i, int i2) {
-            Drawable[] drawableArr = new Drawable[i2];
-            System.arraycopy(this.mDrawables, 0, drawableArr, 0, i);
-            this.mDrawables = drawableArr;
-        }
-
-        public void invalidateCache() {
-            this.mCheckedOpacity = false;
-            this.mCheckedStateful = false;
-        }
-
-        public final boolean isConstantSize() {
-            return this.mConstantSize;
-        }
-
-        public final boolean isStateful() {
-            if (this.mCheckedStateful) {
-                return this.mStateful;
-            }
-            createAllFutures();
-            int i = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            boolean z2 = false;
-            for (int i2 = 0; i2 < i; i2++) {
-                if (drawableArr[i2].isStateful()) {
-                    z2 = true;
-                    break;
-                }
-            }
-            this.mStateful = z2;
-            this.mCheckedStateful = true;
-            return z2;
-        }
-
-        public void mutate() {
-            int i = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            for (int i2 = 0; i2 < i; i2++) {
-                if (drawableArr[i2] != null) {
-                    drawableArr[i2].mutate();
-                }
-            }
-            this.mMutated = true;
-        }
-
-        private Drawable prepareDrawable(Drawable drawable) {
-            if (Build.VERSION.SDK_INT >= 23) {
-                drawable.setLayoutDirection(this.mLayoutDirection);
-            }
-            Drawable drawableMutate = drawable.mutate();
-            drawableMutate.setCallback(this.mOwner);
-            return drawableMutate;
-        }
-
-        public final void setConstantSize(boolean z2) {
-            this.mConstantSize = z2;
-        }
-
-        public final void setEnterFadeDuration(int i) {
-            this.mEnterFadeDuration = i;
-        }
-
-        public final void setExitFadeDuration(int i) {
-            this.mExitFadeDuration = i;
-        }
-
-        public final boolean setLayoutDirection(int i, int i2) {
-            int i3 = this.mNumChildren;
-            Drawable[] drawableArr = this.mDrawables;
-            boolean z2 = false;
-            for (int i4 = 0; i4 < i3; i4++) {
-                if (drawableArr[i4] != null) {
-                    boolean layoutDirection = Build.VERSION.SDK_INT >= 23 ? drawableArr[i4].setLayoutDirection(i) : false;
-                    if (i4 == i2) {
-                        z2 = layoutDirection;
-                    }
-                }
-            }
-            this.mLayoutDirection = i;
-            return z2;
-        }
-
-        public final void setVariablePadding(boolean z2) {
-            this.mVariablePadding = z2;
-        }
-
-        public final void updateDensity(Resources resources) {
-            if (resources != null) {
-                this.mSourceRes = resources;
-                int iResolveDensity = DrawableContainer.resolveDensity(resources, this.mDensity);
-                int i = this.mDensity;
-                this.mDensity = iResolveDensity;
-                if (i != iResolveDensity) {
-                    this.mCheckedConstantSize = false;
-                    this.mCheckedPadding = false;
-                }
-            }
-        }
-    }
 
     /* JADX WARN: Code duplicated, block: B:14:0x003f  */
     /* JADX WARN: Code duplicated, block: B:16:0x0045  */
@@ -601,8 +113,8 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
 
     @Override // android.graphics.drawable.Drawable
     @RequiresApi(21)
-    public void applyTheme(@NonNull Resources.Theme theme) {
-        this.mDrawableContainerState.applyTheme(theme);
+    public void applyTheme(@NonNull Resources$Theme resources$Theme) {
+        this.mDrawableContainerState.applyTheme(resources$Theme);
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -616,7 +128,7 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
         this.mMutated = false;
     }
 
-    public DrawableContainerState cloneConstantState() {
+    public DrawableContainer$DrawableContainerState cloneConstantState() {
         return this.mDrawableContainerState;
     }
 
@@ -643,7 +155,7 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public final Drawable.ConstantState getConstantState() {
+    public final Drawable$ConstantState getConstantState() {
         if (!this.mDrawableContainerState.canConstantState()) {
             return null;
         }
@@ -758,23 +270,23 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
 
     private void initializeDrawableForDisplay(Drawable drawable) {
         if (this.mBlockInvalidateCallback == null) {
-            this.mBlockInvalidateCallback = new BlockInvalidateCallback();
+            this.mBlockInvalidateCallback = new DrawableContainer$BlockInvalidateCallback();
         }
         drawable.setCallback(this.mBlockInvalidateCallback.wrap(drawable.getCallback()));
         try {
             if (this.mDrawableContainerState.mEnterFadeDuration <= 0 && this.mHasAlpha) {
                 drawable.setAlpha(this.mAlpha);
             }
-            DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-            if (drawableContainerState.mHasColorFilter) {
-                drawable.setColorFilter(drawableContainerState.mColorFilter);
+            DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+            if (drawableContainer$DrawableContainerState.mHasColorFilter) {
+                drawable.setColorFilter(drawableContainer$DrawableContainerState.mColorFilter);
             } else {
-                if (drawableContainerState.mHasTintList) {
-                    DrawableCompat.setTintList(drawable, drawableContainerState.mTintList);
+                if (drawableContainer$DrawableContainerState.mHasTintList) {
+                    DrawableCompat.setTintList(drawable, drawableContainer$DrawableContainerState.mTintList);
                 }
-                DrawableContainerState drawableContainerState2 = this.mDrawableContainerState;
-                if (drawableContainerState2.mHasTintMode) {
-                    DrawableCompat.setTintMode(drawable, drawableContainerState2.mTintMode);
+                DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState2 = this.mDrawableContainerState;
+                if (drawableContainer$DrawableContainerState2.mHasTintMode) {
+                    DrawableCompat.setTintMode(drawable, drawableContainer$DrawableContainerState2.mTintMode);
                 }
             }
             drawable.setVisible(isVisible(), true);
@@ -782,7 +294,7 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
             drawable.setState(getState());
             drawable.setLevel(getLevel());
             drawable.setBounds(getBounds());
-            if (Build.VERSION.SDK_INT >= 23) {
+            if (Build$VERSION.SDK_INT >= 23) {
                 drawable.setLayoutDirection(getLayoutDirection());
             }
             drawable.setAutoMirrored(this.mDrawableContainerState.mAutoMirrored);
@@ -796,9 +308,9 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
     }
 
     public void invalidateDrawable(@NonNull Drawable drawable) {
-        DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-        if (drawableContainerState != null) {
-            drawableContainerState.invalidateCache();
+        DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+        if (drawableContainer$DrawableContainerState != null) {
+            drawableContainer$DrawableContainerState.invalidateCache();
         }
         if (drawable != this.mCurrDrawable || getCallback() == null) {
             return;
@@ -853,9 +365,9 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
     @NonNull
     public Drawable mutate() {
         if (!this.mMutated && super.mutate() == this) {
-            DrawableContainerState drawableContainerStateCloneConstantState = cloneConstantState();
-            drawableContainerStateCloneConstantState.mutate();
-            setConstantState(drawableContainerStateCloneConstantState);
+            DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerStateCloneConstantState = cloneConstantState();
+            drawableContainer$DrawableContainerStateCloneConstantState.mutate();
+            setConstantState(drawableContainer$DrawableContainerStateCloneConstantState);
             this.mMutated = true;
         }
         return this;
@@ -948,9 +460,9 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
             }
         }
         if (i >= 0) {
-            DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-            if (i < drawableContainerState.mNumChildren) {
-                Drawable child = drawableContainerState.getChild(i);
+            DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+            if (i < drawableContainer$DrawableContainerState.mNumChildren) {
+                Drawable child = drawableContainer$DrawableContainerState.getChild(i);
                 this.mCurrDrawable = child;
                 this.mCurIndex = i;
                 if (child != null) {
@@ -971,13 +483,7 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
         if (this.mEnterAnimationEnd != 0 || this.mExitAnimationEnd != 0) {
             Runnable runnable = this.mAnimationRunnable;
             if (runnable == null) {
-                this.mAnimationRunnable = new Runnable() { // from class: androidx.appcompat.graphics.drawable.DrawableContainer.1
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        DrawableContainer.this.animate(true);
-                        DrawableContainer.this.invalidateSelf();
-                    }
-                };
+                this.mAnimationRunnable = new DrawableContainer$1(this);
             } else {
                 unscheduleSelf(runnable);
             }
@@ -1006,9 +512,9 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
 
     @Override // android.graphics.drawable.Drawable
     public void setAutoMirrored(boolean z2) {
-        DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-        if (drawableContainerState.mAutoMirrored != z2) {
-            drawableContainerState.mAutoMirrored = z2;
+        DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+        if (drawableContainer$DrawableContainerState.mAutoMirrored != z2) {
+            drawableContainer$DrawableContainerState.mAutoMirrored = z2;
             Drawable drawable = this.mCurrDrawable;
             if (drawable != null) {
                 DrawableCompat.setAutoMirrored(drawable, z2);
@@ -1018,10 +524,10 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
 
     @Override // android.graphics.drawable.Drawable
     public void setColorFilter(ColorFilter colorFilter) {
-        DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-        drawableContainerState.mHasColorFilter = true;
-        if (drawableContainerState.mColorFilter != colorFilter) {
-            drawableContainerState.mColorFilter = colorFilter;
+        DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+        drawableContainer$DrawableContainerState.mHasColorFilter = true;
+        if (drawableContainer$DrawableContainerState.mColorFilter != colorFilter) {
+            drawableContainer$DrawableContainerState.mColorFilter = colorFilter;
             Drawable drawable = this.mCurrDrawable;
             if (drawable != null) {
                 drawable.setColorFilter(colorFilter);
@@ -1029,11 +535,11 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
         }
     }
 
-    public void setConstantState(DrawableContainerState drawableContainerState) {
-        this.mDrawableContainerState = drawableContainerState;
+    public void setConstantState(DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState) {
+        this.mDrawableContainerState = drawableContainer$DrawableContainerState;
         int i = this.mCurIndex;
         if (i >= 0) {
-            Drawable child = drawableContainerState.getChild(i);
+            Drawable child = drawableContainer$DrawableContainerState.getChild(i);
             this.mCurrDrawable = child;
             if (child != null) {
                 initializeDrawableForDisplay(child);
@@ -1048,9 +554,9 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
 
     @Override // android.graphics.drawable.Drawable
     public void setDither(boolean z2) {
-        DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-        if (drawableContainerState.mDither != z2) {
-            drawableContainerState.mDither = z2;
+        DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+        if (drawableContainer$DrawableContainerState.mDither != z2) {
+            drawableContainer$DrawableContainerState.mDither = z2;
             Drawable drawable = this.mCurrDrawable;
             if (drawable != null) {
                 drawable.setDither(z2);
@@ -1090,21 +596,21 @@ public class DrawableContainer extends Drawable implements Drawable.Callback {
 
     @Override // android.graphics.drawable.Drawable, androidx.core.graphics.drawable.TintAwareDrawable
     public void setTintList(ColorStateList colorStateList) {
-        DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-        drawableContainerState.mHasTintList = true;
-        if (drawableContainerState.mTintList != colorStateList) {
-            drawableContainerState.mTintList = colorStateList;
+        DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+        drawableContainer$DrawableContainerState.mHasTintList = true;
+        if (drawableContainer$DrawableContainerState.mTintList != colorStateList) {
+            drawableContainer$DrawableContainerState.mTintList = colorStateList;
             DrawableCompat.setTintList(this.mCurrDrawable, colorStateList);
         }
     }
 
     @Override // android.graphics.drawable.Drawable, androidx.core.graphics.drawable.TintAwareDrawable
-    public void setTintMode(@NonNull PorterDuff.Mode mode) {
-        DrawableContainerState drawableContainerState = this.mDrawableContainerState;
-        drawableContainerState.mHasTintMode = true;
-        if (drawableContainerState.mTintMode != mode) {
-            drawableContainerState.mTintMode = mode;
-            DrawableCompat.setTintMode(this.mCurrDrawable, mode);
+    public void setTintMode(@NonNull PorterDuff$Mode porterDuff$Mode) {
+        DrawableContainer$DrawableContainerState drawableContainer$DrawableContainerState = this.mDrawableContainerState;
+        drawableContainer$DrawableContainerState.mHasTintMode = true;
+        if (drawableContainer$DrawableContainerState.mTintMode != porterDuff$Mode) {
+            drawableContainer$DrawableContainerState.mTintMode = porterDuff$Mode;
+            DrawableCompat.setTintMode(this.mCurrDrawable, porterDuff$Mode);
         }
     }
 

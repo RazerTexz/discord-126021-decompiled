@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackHookResult.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackB
             return false;
         }
         TrackHookResult trackHookResult = (TrackHookResult) other;
-        return C12238m.areEqual(this.success, trackHookResult.success) && C12238m.areEqual(this.error, trackHookResult.error) && C12238m.areEqual(this.gameName, trackHookResult.gameName) && C12238m.areEqual(this.gameId, trackHookResult.gameId) && C12238m.areEqual(this.soundshareSession, trackHookResult.soundshareSession);
+        return m.areEqual(this.success, trackHookResult.success) && m.areEqual(this.error, trackHookResult.error) && m.areEqual(this.gameName, trackHookResult.gameName) && m.areEqual(this.gameId, trackHookResult.gameId) && m.areEqual(this.soundshareSession, trackHookResult.soundshareSession);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackHookResult implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackHookResult(success=");
-        sbM833U.append(this.success);
-        sbM833U.append(", error=");
-        sbM833U.append(this.error);
-        sbM833U.append(", gameName=");
-        sbM833U.append(this.gameName);
-        sbM833U.append(", gameId=");
-        sbM833U.append(this.gameId);
-        sbM833U.append(", soundshareSession=");
-        return C1643a.m817E(sbM833U, this.soundshareSession, ")");
+        StringBuilder sbU = a.U("TrackHookResult(success=");
+        sbU.append(this.success);
+        sbU.append(", error=");
+        sbU.append(this.error);
+        sbU.append(", gameName=");
+        sbU.append(this.gameName);
+        sbU.append(", gameId=");
+        sbU.append(this.gameId);
+        sbU.append(", soundshareSession=");
+        return a.E(sbU, this.soundshareSession, ")");
     }
 }

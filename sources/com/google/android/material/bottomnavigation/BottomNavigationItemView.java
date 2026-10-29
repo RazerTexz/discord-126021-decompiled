@@ -1,10 +1,11 @@
 package com.google.android.material.bottomnavigation;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable$ConstantState;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,28 +13,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
+import android.widget.FrameLayout$LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.view.menu.MenuItemImpl;
-import androidx.appcompat.view.menu.MenuView;
+import androidx.appcompat.view.menu.MenuView$ItemView;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.PointerIconCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityActionCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat$CollectionItemInfoCompat;
 import androidx.core.widget.TextViewCompat;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$dimen;
+import com.google.android.material.R$drawable;
+import com.google.android.material.R$id;
+import com.google.android.material.R$layout;
+import com.google.android.material.R$string;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.badge.BadgeUtils;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-public class BottomNavigationItemView extends FrameLayout implements MenuView.ItemView {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
+public class BottomNavigationItemView extends FrameLayout implements MenuView$ItemView {
     public static final int INVALID_ITEM_POSITION = -1;
 
     @Nullable
@@ -61,24 +70,18 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
 
     @Nullable
     private Drawable wrappedIconDrawable;
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
-
-    /* JADX INFO: renamed from: com.google.android.material.bottomnavigation.BottomNavigationItemView$a */
-    public class ViewOnLayoutChangeListenerC10846a implements View.OnLayoutChangeListener {
-        public ViewOnLayoutChangeListenerC10846a() {
-        }
-
-        @Override // android.view.View.OnLayoutChangeListener
-        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-            if (BottomNavigationItemView.this.icon.getVisibility() == 0) {
-                BottomNavigationItemView bottomNavigationItemView = BottomNavigationItemView.this;
-                bottomNavigationItemView.tryUpdateBadgeBounds(bottomNavigationItemView.icon);
-            }
-        }
-    }
+    private static final int[] CHECKED_STATE_SET = {R$attr.state_checked};
 
     public BottomNavigationItemView(@NonNull Context context) {
         this(context, null);
+    }
+
+    public static /* synthetic */ ImageView access$000(BottomNavigationItemView bottomNavigationItemView) {
+        return bottomNavigationItemView.icon;
+    }
+
+    public static /* synthetic */ void access$100(BottomNavigationItemView bottomNavigationItemView, View view) {
+        bottomNavigationItemView.tryUpdateBadgeBounds(view);
     }
 
     private void calculateTextScaleFactors(float f, float f2) {
@@ -101,7 +104,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         return null;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public MenuItemImpl getItemData() {
         return this.itemData;
     }
@@ -127,7 +130,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         return this.badgeDrawable != null;
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void initialize(@NonNull MenuItemImpl menuItemImpl, int i) {
         this.itemData = menuItemImpl;
         setCheckable(menuItemImpl.isCheckable());
@@ -165,15 +168,15 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
             accessibilityNodeInfo.setContentDescription(((Object) title) + ", " + ((Object) this.badgeDrawable.getContentDescription()));
         }
         AccessibilityNodeInfoCompat accessibilityNodeInfoCompatWrap = AccessibilityNodeInfoCompat.wrap(accessibilityNodeInfo);
-        accessibilityNodeInfoCompatWrap.setCollectionItemInfo(AccessibilityNodeInfoCompat.CollectionItemInfoCompat.obtain(0, 1, getItemVisiblePosition(), 1, false, isSelected()));
+        accessibilityNodeInfoCompatWrap.setCollectionItemInfo(AccessibilityNodeInfoCompat$CollectionItemInfoCompat.obtain(0, 1, getItemVisiblePosition(), 1, false, isSelected()));
         if (isSelected()) {
             accessibilityNodeInfoCompatWrap.setClickable(false);
-            accessibilityNodeInfoCompatWrap.removeAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK);
+            accessibilityNodeInfoCompatWrap.removeAction(AccessibilityNodeInfoCompat$AccessibilityActionCompat.ACTION_CLICK);
         }
-        accessibilityNodeInfoCompatWrap.setRoleDescription(getResources().getString(C10817R.string.item_view_role_description));
+        accessibilityNodeInfoCompatWrap.setRoleDescription(getResources().getString(R$string.item_view_role_description));
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public boolean prefersCondensedTitle() {
         return false;
     }
@@ -190,12 +193,12 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         }
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setCheckable(boolean z2) {
         refreshDrawableState();
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setChecked(boolean z2) {
         TextView textView = this.largeLabel;
         textView.setPivotX(textView.getWidth() / 2);
@@ -211,7 +214,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
                 if (z2) {
                     setViewLayoutParams(this.icon, this.defaultMargin, 49);
                     ViewGroup viewGroup = this.labelGroup;
-                    updateViewPaddingBottom(viewGroup, ((Integer) viewGroup.getTag(C10817R.id.mtrl_view_tag_bottom_padding)).intValue());
+                    updateViewPaddingBottom(viewGroup, ((Integer) viewGroup.getTag(R$id.mtrl_view_tag_bottom_padding)).intValue());
                     this.largeLabel.setVisibility(0);
                 } else {
                     setViewLayoutParams(this.icon, this.defaultMargin, 17);
@@ -221,7 +224,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
                 this.smallLabel.setVisibility(4);
             } else if (i == 1) {
                 ViewGroup viewGroup2 = this.labelGroup;
-                updateViewPaddingBottom(viewGroup2, ((Integer) viewGroup2.getTag(C10817R.id.mtrl_view_tag_bottom_padding)).intValue());
+                updateViewPaddingBottom(viewGroup2, ((Integer) viewGroup2.getTag(R$id.mtrl_view_tag_bottom_padding)).intValue());
                 if (z2) {
                     setViewLayoutParams(this.icon, (int) (this.defaultMargin + this.shiftAmount), 49);
                     setViewScaleValues(this.largeLabel, 1.0f, 1.0f, 0);
@@ -244,7 +247,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
             if (z2) {
                 setViewLayoutParams(this.icon, this.defaultMargin, 49);
                 ViewGroup viewGroup3 = this.labelGroup;
-                updateViewPaddingBottom(viewGroup3, ((Integer) viewGroup3.getTag(C10817R.id.mtrl_view_tag_bottom_padding)).intValue());
+                updateViewPaddingBottom(viewGroup3, ((Integer) viewGroup3.getTag(R$id.mtrl_view_tag_bottom_padding)).intValue());
                 this.largeLabel.setVisibility(0);
             } else {
                 setViewLayoutParams(this.icon, this.defaultMargin, 17);
@@ -254,7 +257,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
             this.smallLabel.setVisibility(4);
         } else {
             ViewGroup viewGroup4 = this.labelGroup;
-            updateViewPaddingBottom(viewGroup4, ((Integer) viewGroup4.getTag(C10817R.id.mtrl_view_tag_bottom_padding)).intValue());
+            updateViewPaddingBottom(viewGroup4, ((Integer) viewGroup4.getTag(R$id.mtrl_view_tag_bottom_padding)).intValue());
             if (z2) {
                 setViewLayoutParams(this.icon, (int) (this.defaultMargin + this.shiftAmount), 49);
                 setViewScaleValues(this.largeLabel, 1.0f, 1.0f, 0);
@@ -273,7 +276,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         setSelected(z2);
     }
 
-    @Override // android.view.View, androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // android.view.View, androidx.appcompat.view.menu.MenuView$ItemView
     public void setEnabled(boolean z2) {
         super.setEnabled(z2);
         this.smallLabel.setEnabled(z2);
@@ -286,14 +289,14 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         }
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setIcon(@Nullable Drawable drawable) {
         if (drawable == this.originalIconDrawable) {
             return;
         }
         this.originalIconDrawable = drawable;
         if (drawable != null) {
-            Drawable.ConstantState constantState = drawable.getConstantState();
+            Drawable$ConstantState constantState = drawable.getConstantState();
             if (constantState != null) {
                 drawable = constantState.newDrawable();
             }
@@ -308,10 +311,10 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
     }
 
     public void setIconSize(int i) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.icon.getLayoutParams();
-        layoutParams.width = i;
-        layoutParams.height = i;
-        this.icon.setLayoutParams(layoutParams);
+        FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) this.icon.getLayoutParams();
+        frameLayout$LayoutParams.width = i;
+        frameLayout$LayoutParams.height = i;
+        this.icon.setLayoutParams(frameLayout$LayoutParams);
     }
 
     public void setIconTintList(ColorStateList colorStateList) {
@@ -352,7 +355,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         }
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setShortcut(boolean z2, char c) {
     }
 
@@ -373,7 +376,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         }
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public void setTitle(CharSequence charSequence) {
         this.smallLabel.setText(charSequence);
         this.largeLabel.setText(charSequence);
@@ -389,10 +392,10 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
     }
 
     private static void setViewLayoutParams(@NonNull View view, int i, int i2) {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-        layoutParams.topMargin = i;
-        layoutParams.gravity = i2;
-        view.setLayoutParams(layoutParams);
+        FrameLayout$LayoutParams frameLayout$LayoutParams = (FrameLayout$LayoutParams) view.getLayoutParams();
+        frameLayout$LayoutParams.topMargin = i;
+        frameLayout$LayoutParams.gravity = i2;
+        view.setLayoutParams(frameLayout$LayoutParams);
     }
 
     private static void setViewScaleValues(@NonNull View view, float f, float f2, int i) {
@@ -401,7 +404,7 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         view.setVisibility(i);
     }
 
-    @Override // androidx.appcompat.view.menu.MenuView.ItemView
+    @Override // androidx.appcompat.view.menu.MenuView$ItemView
     public boolean showsIcon() {
         return true;
     }
@@ -443,24 +446,24 @@ public class BottomNavigationItemView extends FrameLayout implements MenuView.It
         super(context, attributeSet, i);
         this.itemPosition = -1;
         Resources resources = getResources();
-        LayoutInflater.from(context).inflate(C10817R.layout.design_bottom_navigation_item, (ViewGroup) this, true);
-        setBackgroundResource(C10817R.drawable.design_bottom_navigation_item_background);
-        this.defaultMargin = resources.getDimensionPixelSize(C10817R.dimen.design_bottom_navigation_margin);
-        this.icon = (ImageView) findViewById(C10817R.id.icon);
-        ViewGroup viewGroup = (ViewGroup) findViewById(C10817R.id.labelGroup);
+        LayoutInflater.from(context).inflate(R$layout.design_bottom_navigation_item, (ViewGroup) this, true);
+        setBackgroundResource(R$drawable.design_bottom_navigation_item_background);
+        this.defaultMargin = resources.getDimensionPixelSize(R$dimen.design_bottom_navigation_margin);
+        this.icon = (ImageView) findViewById(R$id.icon);
+        ViewGroup viewGroup = (ViewGroup) findViewById(R$id.labelGroup);
         this.labelGroup = viewGroup;
-        TextView textView = (TextView) findViewById(C10817R.id.smallLabel);
+        TextView textView = (TextView) findViewById(R$id.smallLabel);
         this.smallLabel = textView;
-        TextView textView2 = (TextView) findViewById(C10817R.id.largeLabel);
+        TextView textView2 = (TextView) findViewById(R$id.largeLabel);
         this.largeLabel = textView2;
-        viewGroup.setTag(C10817R.id.mtrl_view_tag_bottom_padding, Integer.valueOf(viewGroup.getPaddingBottom()));
+        viewGroup.setTag(R$id.mtrl_view_tag_bottom_padding, Integer.valueOf(viewGroup.getPaddingBottom()));
         ViewCompat.setImportantForAccessibility(textView, 2);
         ViewCompat.setImportantForAccessibility(textView2, 2);
         setFocusable(true);
         calculateTextScaleFactors(textView.getTextSize(), textView2.getTextSize());
         ImageView imageView = this.icon;
         if (imageView != null) {
-            imageView.addOnLayoutChangeListener(new ViewOnLayoutChangeListenerC10846a());
+            imageView.addOnLayoutChangeListener(new BottomNavigationItemView$a(this));
         }
     }
 

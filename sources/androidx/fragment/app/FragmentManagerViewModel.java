@@ -5,24 +5,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.view.ViewModel;
 import androidx.view.ViewModelProvider;
+import androidx.view.ViewModelProvider$Factory;
 import androidx.view.ViewModelStore;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map$Entry;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class FragmentManagerViewModel extends ViewModel {
     private static final String TAG = "FragmentManager";
     private final boolean mStateAutomaticallySaved;
-    private static final ViewModelProvider.Factory FACTORY = new ViewModelProvider.Factory() { // from class: androidx.fragment.app.FragmentManagerViewModel.1
-        @Override // androidx.lifecycle.ViewModelProvider.Factory
-        @NonNull
-        public <T extends ViewModel> T create(@NonNull Class<T> cls) {
-            return new FragmentManagerViewModel(true);
-        }
-    };
+    private static final ViewModelProvider$Factory FACTORY = new FragmentManagerViewModel$1();
     private final HashMap<String, Fragment> mRetainedFragments = new HashMap<>();
     private final HashMap<String, FragmentManagerViewModel> mChildNonConfigs = new HashMap<>();
     private final HashMap<String, ViewModelStore> mViewModelStores = new HashMap<>();
@@ -110,10 +106,10 @@ public final class FragmentManagerViewModel extends ViewModel {
             return null;
         }
         HashMap map = new HashMap();
-        for (Map.Entry<String, FragmentManagerViewModel> entry : this.mChildNonConfigs.entrySet()) {
-            FragmentManagerNonConfig snapshot = entry.getValue().getSnapshot();
+        for (Map$Entry<String, FragmentManagerViewModel> map$Entry : this.mChildNonConfigs.entrySet()) {
+            FragmentManagerNonConfig snapshot = map$Entry.getValue().getSnapshot();
             if (snapshot != null) {
-                map.put(entry.getKey(), snapshot);
+                map.put(map$Entry.getKey(), snapshot);
             }
         }
         this.mHasSavedSnapshot = true;
@@ -179,10 +175,10 @@ public final class FragmentManagerViewModel extends ViewModel {
             }
             Map<String, FragmentManagerNonConfig> childNonConfigs = fragmentManagerNonConfig.getChildNonConfigs();
             if (childNonConfigs != null) {
-                for (Map.Entry<String, FragmentManagerNonConfig> entry : childNonConfigs.entrySet()) {
+                for (Map$Entry<String, FragmentManagerNonConfig> map$Entry : childNonConfigs.entrySet()) {
                     FragmentManagerViewModel fragmentManagerViewModel = new FragmentManagerViewModel(this.mStateAutomaticallySaved);
-                    fragmentManagerViewModel.restoreFromSnapshot(entry.getValue());
-                    this.mChildNonConfigs.put(entry.getKey(), fragmentManagerViewModel);
+                    fragmentManagerViewModel.restoreFromSnapshot(map$Entry.getValue());
+                    this.mChildNonConfigs.put(map$Entry.getKey(), fragmentManagerViewModel);
                 }
             }
             Map<String, ViewModelStore> viewModelStores = fragmentManagerNonConfig.getViewModelStores();

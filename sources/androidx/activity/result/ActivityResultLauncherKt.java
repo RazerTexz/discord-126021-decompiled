@@ -1,8 +1,8 @@
 package androidx.activity.result;
 
 import androidx.core.app.ActivityOptionsCompat;
+import d0.z.d.m;
 import kotlin.Unit;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ActivityResultLauncher.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public final class ActivityResultLauncherKt {
     }
 
     public static final void launch(ActivityResultLauncher<Void> activityResultLauncher, ActivityOptionsCompat activityOptionsCompat) {
-        C12238m.checkNotNullParameter(activityResultLauncher, "$this$launch");
+        m.checkNotNullParameter(activityResultLauncher, "$this$launch");
         activityResultLauncher.launch(null, activityOptionsCompat);
     }
 
@@ -27,7 +27,7 @@ public final class ActivityResultLauncherKt {
     }
 
     public static final void launchUnit(ActivityResultLauncher<Unit> activityResultLauncher, ActivityOptionsCompat activityOptionsCompat) {
-        C12238m.checkNotNullParameter(activityResultLauncher, "$this$launch");
+        m.checkNotNullParameter(activityResultLauncher, "$this$launch");
         activityResultLauncher.launch(null, activityOptionsCompat);
     }
 }

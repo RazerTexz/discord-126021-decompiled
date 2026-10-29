@@ -5,10 +5,10 @@ import java.util.Comparator;
 /* JADX INFO: compiled from: ChannelUtils.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class ChannelUtils$getSortByNameAndType$1<T> implements Comparator<Channel> {
-    public final /* synthetic */ Channel.Companion $this_getSortByNameAndType;
+    public final /* synthetic */ Channel$Companion $this_getSortByNameAndType;
 
-    public ChannelUtils$getSortByNameAndType$1(Channel.Companion companion) {
-        this.$this_getSortByNameAndType = companion;
+    public ChannelUtils$getSortByNameAndType$1(Channel$Companion channel$Companion) {
+        this.$this_getSortByNameAndType = channel$Companion;
     }
 
     @Override // java.util.Comparator
@@ -37,10 +37,10 @@ public final class ChannelUtils$getSortByNameAndType$1<T> implements Comparator<
                 return -1;
             }
             if (channel4.getType() != 4) {
-                if (channel3.getType() == 0 && ChannelUtils.m7699w(channel4)) {
+                if (channel3.getType() == 0 && ChannelUtils.w(channel4)) {
                     return -1;
                 }
-                if (!ChannelUtils.m7699w(channel3) || channel4.getType() != 0) {
+                if (!ChannelUtils.w(channel3) || channel4.getType() != 0) {
                     if (channel3.getPosition() != channel4.getPosition()) {
                         position = channel3.getPosition();
                         position2 = channel4.getPosition();

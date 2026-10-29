@@ -1,9 +1,9 @@
 package com.discord.models.store.dto;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.io.Serializable;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelStoreAsset.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,7 +16,7 @@ public final /* data */ class ModelStoreAsset implements Serializable {
     private final Integer width;
 
     public ModelStoreAsset(long j, int i, String str, String str2, Integer num, Integer num2) {
-        C12238m.checkNotNullParameter(str, "mimeType");
+        m.checkNotNullParameter(str, "mimeType");
         this.id = j;
         this.size = i;
         this.mimeType = str;
@@ -25,8 +25,12 @@ public final /* data */ class ModelStoreAsset implements Serializable {
         this.height = num2;
     }
 
+    public static /* synthetic */ ModelStoreAsset copy$default(ModelStoreAsset modelStoreAsset, long j, int i, String str, String str2, Integer num, Integer num2, int i2, Object obj) {
+        return modelStoreAsset.copy((i2 & 1) != 0 ? modelStoreAsset.id : j, (i2 & 2) != 0 ? modelStoreAsset.size : i, (i2 & 4) != 0 ? modelStoreAsset.mimeType : str, (i2 & 8) != 0 ? modelStoreAsset.filename : str2, (i2 & 16) != 0 ? modelStoreAsset.width : num, (i2 & 32) != 0 ? modelStoreAsset.height : num2);
+    }
+
     public final ModelStoreAsset copy(long id2, int size, String mimeType, String filename, Integer width, Integer height) {
-        C12238m.checkNotNullParameter(mimeType, "mimeType");
+        m.checkNotNullParameter(mimeType, "mimeType");
         return new ModelStoreAsset(id2, size, mimeType, filename, width, height);
     }
 
@@ -38,7 +42,7 @@ public final /* data */ class ModelStoreAsset implements Serializable {
             return false;
         }
         ModelStoreAsset modelStoreAsset = (ModelStoreAsset) other;
-        return this.id == modelStoreAsset.id && this.size == modelStoreAsset.size && C12238m.areEqual(this.mimeType, modelStoreAsset.mimeType) && C12238m.areEqual(this.filename, modelStoreAsset.filename) && C12238m.areEqual(this.width, modelStoreAsset.width) && C12238m.areEqual(this.height, modelStoreAsset.height);
+        return this.id == modelStoreAsset.id && this.size == modelStoreAsset.size && m.areEqual(this.mimeType, modelStoreAsset.mimeType) && m.areEqual(this.filename, modelStoreAsset.filename) && m.areEqual(this.width, modelStoreAsset.width) && m.areEqual(this.height, modelStoreAsset.height);
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -109,17 +113,17 @@ public final /* data */ class ModelStoreAsset implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelStoreAsset(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", size=");
-        sbM833U.append(this.size);
-        sbM833U.append(", mimeType=");
-        sbM833U.append(this.mimeType);
-        sbM833U.append(", filename=");
-        sbM833U.append(this.filename);
-        sbM833U.append(", width=");
-        sbM833U.append(this.width);
-        sbM833U.append(", height=");
-        return C1643a.m818F(sbM833U, this.height, ")");
+        StringBuilder sbU = a.U("ModelStoreAsset(id=");
+        sbU.append(this.id);
+        sbU.append(", size=");
+        sbU.append(this.size);
+        sbU.append(", mimeType=");
+        sbU.append(this.mimeType);
+        sbU.append(", filename=");
+        sbU.append(this.filename);
+        sbU.append(", width=");
+        sbU.append(this.width);
+        sbU.append(", height=");
+        return a.F(sbU, this.height, ")");
     }
 }

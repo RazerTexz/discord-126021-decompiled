@@ -8,10 +8,10 @@ import android.widget.ViewFlipper;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewGroupKt;
-import com.discord.C5419R;
+import com.discord.R$a;
 import com.discord.utilities.view.extensions.ViewExtensions;
+import d0.z.d.m;
 import java.util.Iterator;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AppViewFlipper.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,14 +23,14 @@ public final class AppViewFlipper extends ViewFlipper {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AppViewFlipper(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(attributeSet, "attrs");
+        m.checkNotNullParameter(context, "context");
+        m.checkNotNullParameter(attributeSet, "attrs");
         ViewExtensions.setForwardingWindowInsetsListener(this);
         if (attributeSet == null) {
             return;
         }
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, C5419R.a.AppViewFlipper, 0, 0);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…ble.AppViewFlipper, 0, 0)");
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, R$a.AppViewFlipper, 0, 0);
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…ble.AppViewFlipper, 0, 0)");
         try {
             this.previewedChildIndex = typedArrayObtainStyledAttributes.getInt(0, 0);
         } finally {
@@ -44,7 +44,7 @@ public final class AppViewFlipper extends ViewFlipper {
         if (getParent() instanceof CoordinatorLayout) {
             Iterator<View> it = ViewGroupKt.getChildren(this).iterator();
             while (it.hasNext()) {
-                ViewCompat.setOnApplyWindowInsetsListener(it.next(), new AppScrollingViewBehavior.C5456a());
+                ViewCompat.setOnApplyWindowInsetsListener(it.next(), new AppScrollingViewBehavior$a());
             }
         }
     }

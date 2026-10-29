@@ -22,21 +22,21 @@ public class Guideline extends View {
     }
 
     public void setGuidelineBegin(int i) {
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) getLayoutParams();
-        layoutParams.guideBegin = i;
-        setLayoutParams(layoutParams);
+        ConstraintLayout$LayoutParams constraintLayout$LayoutParams = (ConstraintLayout$LayoutParams) getLayoutParams();
+        constraintLayout$LayoutParams.guideBegin = i;
+        setLayoutParams(constraintLayout$LayoutParams);
     }
 
     public void setGuidelineEnd(int i) {
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) getLayoutParams();
-        layoutParams.guideEnd = i;
-        setLayoutParams(layoutParams);
+        ConstraintLayout$LayoutParams constraintLayout$LayoutParams = (ConstraintLayout$LayoutParams) getLayoutParams();
+        constraintLayout$LayoutParams.guideEnd = i;
+        setLayoutParams(constraintLayout$LayoutParams);
     }
 
     public void setGuidelinePercent(float f) {
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) getLayoutParams();
-        layoutParams.guidePercent = f;
-        setLayoutParams(layoutParams);
+        ConstraintLayout$LayoutParams constraintLayout$LayoutParams = (ConstraintLayout$LayoutParams) getLayoutParams();
+        constraintLayout$LayoutParams.guidePercent = f;
+        setLayoutParams(constraintLayout$LayoutParams);
     }
 
     @Override // android.view.View

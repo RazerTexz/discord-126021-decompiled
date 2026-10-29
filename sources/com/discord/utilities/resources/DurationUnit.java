@@ -1,17 +1,17 @@
 package com.discord.utilities.resources;
 
-import com.discord.C5419R;
+import com.discord.R$plurals;
 
 /* JADX INFO: compiled from: DurationUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public enum DurationUnit {
-    SECONDS(C5419R.string.duration_seconds, C5419R.plurals.duration_seconds_seconds),
-    MINUTES(C5419R.string.duration_minutes, C5419R.plurals.duration_minutes_minutes),
-    MINS(C5419R.string.duration_mins, C5419R.plurals.duration_mins_mins),
-    HOURS(C5419R.string.duration_hours, C5419R.plurals.duration_hours_hours),
-    DAYS(C5419R.string.duration_days, C5419R.plurals.duration_days_days),
-    WEEKS(C5419R.string.duration_weeks, C5419R.plurals.duration_weeks_weeks),
-    MONTHS(C5419R.string.duration_months, C5419R.plurals.duration_months_months);
+    SECONDS(2131888616, R$plurals.duration_seconds_seconds),
+    MINUTES(2131888611, R$plurals.duration_minutes_minutes),
+    MINS(2131888610, R$plurals.duration_mins_mins),
+    HOURS(2131888606, R$plurals.duration_hours_hours),
+    DAYS(2131888603, R$plurals.duration_days_days),
+    WEEKS(2131888620, R$plurals.duration_weeks_weeks),
+    MONTHS(2131888614, R$plurals.duration_months_months);
 
     private final int quantityPluralRes;
     private final int stringRes;

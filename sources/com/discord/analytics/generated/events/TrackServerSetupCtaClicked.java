@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackServerSetupCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,6 +23,11 @@ public final /* data */ class TrackServerSetupCtaClicked implements AnalyticsSch
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "server_setup_cta_clicked";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -31,7 +36,7 @@ public final /* data */ class TrackServerSetupCtaClicked implements AnalyticsSch
             return false;
         }
         TrackServerSetupCtaClicked trackServerSetupCtaClicked = (TrackServerSetupCtaClicked) other;
-        return C12238m.areEqual(this.setupType, trackServerSetupCtaClicked.setupType) && C12238m.areEqual(this.action, trackServerSetupCtaClicked.action) && C12238m.areEqual(this.actionCompleted, trackServerSetupCtaClicked.actionCompleted) && C12238m.areEqual(this.numTotalActions, trackServerSetupCtaClicked.numTotalActions) && C12238m.areEqual(this.numActionsCompleted, trackServerSetupCtaClicked.numActionsCompleted);
+        return m.areEqual(this.setupType, trackServerSetupCtaClicked.setupType) && m.areEqual(this.action, trackServerSetupCtaClicked.action) && m.areEqual(this.actionCompleted, trackServerSetupCtaClicked.actionCompleted) && m.areEqual(this.numTotalActions, trackServerSetupCtaClicked.numTotalActions) && m.areEqual(this.numActionsCompleted, trackServerSetupCtaClicked.numActionsCompleted);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -59,22 +64,16 @@ public final /* data */ class TrackServerSetupCtaClicked implements AnalyticsSch
         return iHashCode4 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackServerSetupCtaClicked(setupType=");
-        sbM833U.append(this.setupType);
-        sbM833U.append(", action=");
-        sbM833U.append(this.action);
-        sbM833U.append(", actionCompleted=");
-        sbM833U.append(this.actionCompleted);
-        sbM833U.append(", numTotalActions=");
-        sbM833U.append(this.numTotalActions);
-        sbM833U.append(", numActionsCompleted=");
-        return C1643a.m819G(sbM833U, this.numActionsCompleted, ")");
+        StringBuilder sbU = a.U("TrackServerSetupCtaClicked(setupType=");
+        sbU.append(this.setupType);
+        sbU.append(", action=");
+        sbU.append(this.action);
+        sbU.append(", actionCompleted=");
+        sbU.append(this.actionCompleted);
+        sbU.append(", numTotalActions=");
+        sbU.append(this.numTotalActions);
+        sbU.append(", numActionsCompleted=");
+        return a.G(sbU, this.numActionsCompleted, ")");
     }
 }

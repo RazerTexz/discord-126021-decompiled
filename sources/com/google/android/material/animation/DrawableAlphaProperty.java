@@ -18,12 +18,23 @@ public class DrawableAlphaProperty extends Property<Drawable, Integer> {
 
     @Override // android.util.Property
     @Nullable
-    public Integer get(@NonNull Drawable drawable) {
-        return Integer.valueOf(drawable.getAlpha());
+    public /* bridge */ /* synthetic */ Integer get(@NonNull Drawable drawable) {
+        return get2(drawable);
     }
 
     @Override // android.util.Property
-    public void set(@NonNull Drawable drawable, @NonNull Integer num) {
+    public /* bridge */ /* synthetic */ void set(@NonNull Drawable drawable, @NonNull Integer num) {
+        set2(drawable, num);
+    }
+
+    @Nullable
+    /* JADX INFO: renamed from: get, reason: avoid collision after fix types in other method */
+    public Integer get2(@NonNull Drawable drawable) {
+        return Integer.valueOf(drawable.getAlpha());
+    }
+
+    /* JADX INFO: renamed from: set, reason: avoid collision after fix types in other method */
+    public void set2(@NonNull Drawable drawable, @NonNull Integer num) {
         drawable.setAlpha(num.intValue());
     }
 }

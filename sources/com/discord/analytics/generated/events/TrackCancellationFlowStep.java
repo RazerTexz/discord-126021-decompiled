@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadata;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackCancellationFlowStep.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackCancellationFlowStep implements AnalyticsSche
             return false;
         }
         TrackCancellationFlowStep trackCancellationFlowStep = (TrackCancellationFlowStep) other;
-        return C12238m.areEqual(this.toStep, trackCancellationFlowStep.toStep) && C12238m.areEqual(this.fromStep, trackCancellationFlowStep.fromStep) && C12238m.areEqual(this.stepDurationMs, trackCancellationFlowStep.stepDurationMs) && C12238m.areEqual(this.flowDurationMs, trackCancellationFlowStep.flowDurationMs) && C12238m.areEqual(this.subscriptionId, trackCancellationFlowStep.subscriptionId);
+        return m.areEqual(this.toStep, trackCancellationFlowStep.toStep) && m.areEqual(this.fromStep, trackCancellationFlowStep.fromStep) && m.areEqual(this.stepDurationMs, trackCancellationFlowStep.stepDurationMs) && m.areEqual(this.flowDurationMs, trackCancellationFlowStep.flowDurationMs) && m.areEqual(this.subscriptionId, trackCancellationFlowStep.subscriptionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,15 +54,15 @@ public final /* data */ class TrackCancellationFlowStep implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackCancellationFlowStep(toStep=");
-        sbM833U.append(this.toStep);
-        sbM833U.append(", fromStep=");
-        sbM833U.append(this.fromStep);
-        sbM833U.append(", stepDurationMs=");
-        sbM833U.append(this.stepDurationMs);
-        sbM833U.append(", flowDurationMs=");
-        sbM833U.append(this.flowDurationMs);
-        sbM833U.append(", subscriptionId=");
-        return C1643a.m819G(sbM833U, this.subscriptionId, ")");
+        StringBuilder sbU = a.U("TrackCancellationFlowStep(toStep=");
+        sbU.append(this.toStep);
+        sbU.append(", fromStep=");
+        sbU.append(this.fromStep);
+        sbU.append(", stepDurationMs=");
+        sbU.append(this.stepDurationMs);
+        sbU.append(", flowDurationMs=");
+        sbU.append(this.flowDurationMs);
+        sbU.append(", subscriptionId=");
+        return a.G(sbU, this.subscriptionId, ")");
     }
 }

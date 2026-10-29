@@ -1,7 +1,7 @@
 package androidx.preference;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.AlertDialog$Builder;
+import android.content.DialogInterface$OnClickListener;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
@@ -65,18 +65,10 @@ public class ListPreferenceDialogFragment extends PreferenceDialogFragment {
     }
 
     @Override // androidx.preference.PreferenceDialogFragment
-    public void onPrepareDialogBuilder(AlertDialog.Builder builder) {
-        super.onPrepareDialogBuilder(builder);
-        builder.setSingleChoiceItems(this.mEntries, this.mClickedDialogEntryIndex, new DialogInterface.OnClickListener() { // from class: androidx.preference.ListPreferenceDialogFragment.1
-            @Override // android.content.DialogInterface.OnClickListener
-            public void onClick(DialogInterface dialogInterface, int i) {
-                ListPreferenceDialogFragment listPreferenceDialogFragment = ListPreferenceDialogFragment.this;
-                listPreferenceDialogFragment.mClickedDialogEntryIndex = i;
-                listPreferenceDialogFragment.onClick(dialogInterface, -1);
-                dialogInterface.dismiss();
-            }
-        });
-        builder.setPositiveButton((CharSequence) null, (DialogInterface.OnClickListener) null);
+    public void onPrepareDialogBuilder(AlertDialog$Builder alertDialog$Builder) {
+        super.onPrepareDialogBuilder(alertDialog$Builder);
+        alertDialog$Builder.setSingleChoiceItems(this.mEntries, this.mClickedDialogEntryIndex, new ListPreferenceDialogFragment$1(this));
+        alertDialog$Builder.setPositiveButton((CharSequence) null, (DialogInterface$OnClickListener) null);
     }
 
     @Override // androidx.preference.PreferenceDialogFragment, android.app.DialogFragment, android.app.Fragment

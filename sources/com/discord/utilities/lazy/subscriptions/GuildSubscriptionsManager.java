@@ -1,17 +1,18 @@
 package com.discord.utilities.lazy.subscriptions;
 
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function2;
 import kotlin.ranges.IntRange;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildSubscriptionsManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -28,7 +29,7 @@ public final class GuildSubscriptionsManager {
 
     /* JADX WARN: Multi-variable type inference failed */
     public GuildSubscriptionsManager(Function2<? super Long, ? super GuildSubscriptions, Unit> function2) {
-        C12238m.checkNotNullParameter(function2, "onChange");
+        m.checkNotNullParameter(function2, "onChange");
         this.onChange = function2;
         this.typingGuilds = new HashSet<>();
         this.activityGuilds = new HashSet<>();
@@ -40,10 +41,26 @@ public final class GuildSubscriptionsManager {
         this.subscribedGuilds = new HashSet<>();
     }
 
+    public static final /* synthetic */ void access$handleChannelSubscriptionsChange(GuildSubscriptionsManager guildSubscriptionsManager, long j, Map map) {
+        guildSubscriptionsManager.handleChannelSubscriptionsChange(j, map);
+    }
+
+    public static final /* synthetic */ void access$handleMemberSubscriptionsChange(GuildSubscriptionsManager guildSubscriptionsManager, long j, Set set, boolean z2) {
+        guildSubscriptionsManager.handleMemberSubscriptionsChange(j, set, z2);
+    }
+
+    public static final /* synthetic */ void access$handleThreadSubscriptionsChange(GuildSubscriptionsManager guildSubscriptionsManager, long j, List list) {
+        guildSubscriptionsManager.handleThreadSubscriptionsChange(j, list);
+    }
+
+    public static final /* synthetic */ void access$requestFlushUnsubscriptions(GuildSubscriptionsManager guildSubscriptionsManager, Function0 function0) {
+        guildSubscriptionsManager.requestFlushUnsubscriptions(function0);
+    }
+
     public final synchronized void flush() {
-        for (Map.Entry<Long, GuildSubscriptions> entry : this.pendingEmissions.entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            GuildSubscriptions value = entry.getValue();
+        for (Map$Entry<Long, GuildSubscriptions> map$Entry : this.pendingEmissions.entrySet()) {
+            long jLongValue = map$Entry.getKey().longValue();
+            GuildSubscriptions value = map$Entry.getValue();
             this.subscribedGuilds.add(Long.valueOf(jLongValue));
             this.onChange.invoke(Long.valueOf(jLongValue), value);
         }
@@ -125,9 +142,9 @@ public final class GuildSubscriptionsManager {
     }
 
     public final synchronized void retainAll(List<Long> guildIds) {
-        C12238m.checkNotNullParameter(guildIds, "guildIds");
+        m.checkNotNullParameter(guildIds, "guildIds");
         this.subscribedGuilds.retainAll(guildIds);
-        Iterator<Map.Entry<Long, GuildSubscriptions>> it = this.pendingEmissions.entrySet().iterator();
+        Iterator<Map$Entry<Long, GuildSubscriptions>> it = this.pendingEmissions.entrySet().iterator();
         while (it.hasNext()) {
             if (!guildIds.contains(Long.valueOf(it.next().getKey().longValue()))) {
                 it.remove();
@@ -157,7 +174,7 @@ public final class GuildSubscriptionsManager {
     }
 
     public final synchronized void subscribeChannel(long guildId, long channelId, List<IntRange> ranges) {
-        C12238m.checkNotNullParameter(ranges, "ranges");
+        m.checkNotNullParameter(ranges, "ranges");
         this.guildChannelSubscriptionsManager.subscribe(guildId, channelId, ranges);
     }
 

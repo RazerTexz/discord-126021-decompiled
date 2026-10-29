@@ -1,14 +1,14 @@
 package com.discord.widgets.guildscheduledevent.buttonconfiguration;
 
 import android.content.Context;
-import android.view.View;
+import android.view.View$OnClickListener;
 
 /* JADX INFO: compiled from: ButtonConfiguration.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public interface ButtonConfiguration {
-    View.OnClickListener getExtrasButtonOnClickListener();
+    View$OnClickListener getExtrasButtonOnClickListener();
 
-    View.OnClickListener getPrimaryButtonOnClickListener();
+    View$OnClickListener getPrimaryButtonOnClickListener();
 
     boolean getPrimaryButtonVisible();
 
@@ -16,13 +16,13 @@ public interface ButtonConfiguration {
 
     boolean getSecondaryButtonEnabled();
 
-    View.OnClickListener getSecondaryButtonOnClickListener();
+    View$OnClickListener getSecondaryButtonOnClickListener();
 
     int getSecondaryButtonTextDrawableRes();
 
     boolean getSecondaryButtonVisible();
 
-    View.OnClickListener getShareButtonOnClickListener();
+    View$OnClickListener getShareButtonOnClickListener();
 
     boolean isAnyButtonVisible();
 

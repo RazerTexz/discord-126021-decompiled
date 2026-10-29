@@ -12,37 +12,33 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStickerPackStoreSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f18183a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RelativeLayout f18184b;
+    public final RelativeLayout f2660b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f18185c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f18186d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LoadingButton f18187e;
+    public final LoadingButton e;
 
     public WidgetStickerPackStoreSheetBinding(@NonNull RelativeLayout relativeLayout, @NonNull FrameLayout frameLayout, @NonNull RelativeLayout relativeLayout2, @NonNull RecyclerView recyclerView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull LoadingButton loadingButton) {
-        this.f18183a = relativeLayout;
-        this.f18184b = relativeLayout2;
-        this.f18185c = recyclerView;
-        this.f18186d = simpleDraweeView;
-        this.f18187e = loadingButton;
+        this.a = relativeLayout;
+        this.f2660b = relativeLayout2;
+        this.c = recyclerView;
+        this.d = simpleDraweeView;
+        this.e = loadingButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18183a;
+        return this.a;
     }
 }

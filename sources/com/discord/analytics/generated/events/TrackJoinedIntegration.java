@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackJoinedIntegration.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackJoinedIntegration implements AnalyticsSchema,
             return false;
         }
         TrackJoinedIntegration trackJoinedIntegration = (TrackJoinedIntegration) other;
-        return C12238m.areEqual(this.guild, trackJoinedIntegration.guild) && C12238m.areEqual(this.guildOwner, trackJoinedIntegration.guildOwner) && C12238m.areEqual(this.integration, trackJoinedIntegration.integration) && C12238m.areEqual(this.integrationType, trackJoinedIntegration.integrationType) && C12238m.areEqual(this.integrationUser, trackJoinedIntegration.integrationUser) && C12238m.areEqual(this.userDay, trackJoinedIntegration.userDay) && C12238m.areEqual(this.userGuilds, trackJoinedIntegration.userGuilds);
+        return m.areEqual(this.guild, trackJoinedIntegration.guild) && m.areEqual(this.guildOwner, trackJoinedIntegration.guildOwner) && m.areEqual(this.integration, trackJoinedIntegration.integration) && m.areEqual(this.integrationType, trackJoinedIntegration.integrationType) && m.areEqual(this.integrationUser, trackJoinedIntegration.integrationUser) && m.areEqual(this.userDay, trackJoinedIntegration.userDay) && m.areEqual(this.userGuilds, trackJoinedIntegration.userGuilds);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackJoinedIntegration implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackJoinedIntegration(guild=");
-        sbM833U.append(this.guild);
-        sbM833U.append(", guildOwner=");
-        sbM833U.append(this.guildOwner);
-        sbM833U.append(", integration=");
-        sbM833U.append(this.integration);
-        sbM833U.append(", integrationType=");
-        sbM833U.append(this.integrationType);
-        sbM833U.append(", integrationUser=");
-        sbM833U.append(this.integrationUser);
-        sbM833U.append(", userDay=");
-        sbM833U.append(this.userDay);
-        sbM833U.append(", userGuilds=");
-        return C1643a.m819G(sbM833U, this.userGuilds, ")");
+        StringBuilder sbU = a.U("TrackJoinedIntegration(guild=");
+        sbU.append(this.guild);
+        sbU.append(", guildOwner=");
+        sbU.append(this.guildOwner);
+        sbU.append(", integration=");
+        sbU.append(this.integration);
+        sbU.append(", integrationType=");
+        sbU.append(this.integrationType);
+        sbU.append(", integrationUser=");
+        sbU.append(this.integrationUser);
+        sbU.append(", userDay=");
+        sbU.append(this.userDay);
+        sbU.append(", userGuilds=");
+        return a.G(sbU, this.userGuilds, ")");
     }
 }

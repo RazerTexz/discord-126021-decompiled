@@ -13,7 +13,7 @@ public class FileSystemSourceCache {
     private static final long NEVER_CHECKED = -1;
     private static final long FULL_CACHE_CLEAR_INTERVAL = TimeUnit.MINUTES.toMillis(30);
     private static final long RECHECK_FILESYSTEM = TimeUnit.SECONDS.toMillis(2);
-    private final ConcurrentMap<ConfigurationFile, Content> fileCache = new ConcurrentHashMap();
+    private final ConcurrentMap<ConfigurationFile, FileSystemSourceCache$Content> fileCache = new ConcurrentHashMap();
     private final ConcurrentMap<URI, ConfigurationFile> uriCache = new ConcurrentHashMap();
     private volatile long lastCacheClear = System.currentTimeMillis();
 
@@ -27,13 +27,8 @@ public class FileSystemSourceCache {
         }
     }
 
-    public ConfigurationFileToSource fileToSource(final ConfigurationParser parser) {
-        return new ConfigurationFileToSource() { // from class: lombok.core.configuration.FileSystemSourceCache.1
-            @Override // lombok.core.configuration.ConfigurationFileToSource
-            public ConfigurationSource parsed(ConfigurationFile fileLocation) {
-                return FileSystemSourceCache.this.parseIfNeccesary(fileLocation, parser);
-            }
-        };
+    public ConfigurationFileToSource fileToSource(ConfigurationParser parser) {
+        return new FileSystemSourceCache$1(this, parser);
     }
 
     public ConfigurationFile forUri(URI javaFile) {
@@ -65,6 +60,10 @@ public class FileSystemSourceCache {
         return result;
     }
 
+    static /* synthetic */ ConfigurationSource access$0(FileSystemSourceCache fileSystemSourceCache, ConfigurationFile configurationFile, ConfigurationParser configurationParser) {
+        return fileSystemSourceCache.parseIfNeccesary(configurationFile, configurationParser);
+    }
+
     /* JADX WARN: Type inference failed for: r0v2, types: [java.lang.Throwable, lombok.core.configuration.FileSystemSourceCache$Content] */
     private ConfigurationSource parseIfNeccesary(ConfigurationFile file, ConfigurationParser parser) {
         long now = System.currentTimeMillis();
@@ -87,29 +86,12 @@ public class FileSystemSourceCache {
         }
     }
 
-    private Content ensureContent(ConfigurationFile context) {
-        Content content = this.fileCache.get(context);
+    private FileSystemSourceCache$Content ensureContent(ConfigurationFile context) {
+        FileSystemSourceCache$Content content = this.fileCache.get(context);
         if (content != null) {
             return content;
         }
-        this.fileCache.putIfAbsent(context, Content.empty());
+        this.fileCache.putIfAbsent(context, FileSystemSourceCache$Content.empty());
         return this.fileCache.get(context);
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/core/configuration/FileSystemSourceCache$Content.SCL.lombok */
-    class Content {
-        ConfigurationSource source;
-        long lastModified;
-        long lastChecked;
-
-        private Content(ConfigurationSource source, long lastModified, long lastChecked) {
-            this.source = source;
-            this.lastModified = lastModified;
-            this.lastChecked = lastChecked;
-        }
-
-        static Content empty() {
-            return new Content(null, FileSystemSourceCache.MISSING, -1L);
-        }
     }
 }

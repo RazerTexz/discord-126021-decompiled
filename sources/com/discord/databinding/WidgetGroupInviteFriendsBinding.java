@@ -14,42 +14,37 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGroupInviteFriendsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16727a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ChipsView f16728b;
+    public final ChipsView f2406b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RelativeLayout f16729c;
+    public final RelativeLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final RecyclerView f16730d;
+    public final RecyclerView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final FloatingActionButton f16731e;
+    public final FloatingActionButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final AppViewFlipper f16732f;
+    public final AppViewFlipper f;
 
     public WidgetGroupInviteFriendsBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull ChipsView chipsView, @NonNull RelativeLayout relativeLayout, @NonNull RecyclerView recyclerView, @NonNull FloatingActionButton floatingActionButton, @NonNull TextView textView, @NonNull AppViewFlipper appViewFlipper) {
-        this.f16727a = coordinatorLayout;
-        this.f16728b = chipsView;
-        this.f16729c = relativeLayout;
-        this.f16730d = recyclerView;
-        this.f16731e = floatingActionButton;
-        this.f16732f = appViewFlipper;
+        this.a = coordinatorLayout;
+        this.f2406b = chipsView;
+        this.c = relativeLayout;
+        this.d = recyclerView;
+        this.e = floatingActionButton;
+        this.f = appViewFlipper;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16727a;
+        return this.a;
     }
 }

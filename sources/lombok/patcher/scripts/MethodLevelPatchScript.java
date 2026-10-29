@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.patcher.PatchScript;
+import lombok.patcher.PatchScript$MethodPatcher;
 import lombok.patcher.TargetMatcher;
 import lombok.patcher.TransplantMapper;
 import org.objectweb.asm.ClassVisitor;
@@ -15,7 +16,7 @@ public abstract class MethodLevelPatchScript extends PatchScript {
     private final Set<String> affectedClasses;
     private final Collection<TargetMatcher> matchers;
 
-    protected abstract PatchScript.MethodPatcher createPatcher(ClassWriter classWriter, String str, TransplantMapper transplantMapper);
+    protected abstract PatchScript$MethodPatcher createPatcher(ClassWriter classWriter, String str, TransplantMapper transplantMapper);
 
     public String describeMatchers() {
         if (this.matchers.size() == 0) {
@@ -61,7 +62,7 @@ public abstract class MethodLevelPatchScript extends PatchScript {
 
     @Override // lombok.patcher.PatchScript
     protected final ClassVisitor createClassVisitor(ClassWriter writer, String classSpec, TransplantMapper transplantMapper) {
-        PatchScript.MethodPatcher patcher = createPatcher(writer, classSpec, transplantMapper);
+        PatchScript$MethodPatcher patcher = createPatcher(writer, classSpec, transplantMapper);
         for (TargetMatcher matcher : this.matchers) {
             patcher.addTargetMatcher(matcher);
         }

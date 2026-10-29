@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackOverlayAttaching.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackOverlayAttaching implements AnalyticsSchema, 
             return false;
         }
         TrackOverlayAttaching trackOverlayAttaching = (TrackOverlayAttaching) other;
-        return C12238m.areEqual(this.directxVersion, trackOverlayAttaching.directxVersion) && C12238m.areEqual(this.gameName, trackOverlayAttaching.gameName) && C12238m.areEqual(this.gpuInfo, trackOverlayAttaching.gpuInfo) && C12238m.areEqual(this.osName, trackOverlayAttaching.osName) && C12238m.areEqual(this.overlaySession, trackOverlayAttaching.overlaySession) && C12238m.areEqual(this.module, trackOverlayAttaching.module);
+        return m.areEqual(this.directxVersion, trackOverlayAttaching.directxVersion) && m.areEqual(this.gameName, trackOverlayAttaching.gameName) && m.areEqual(this.gpuInfo, trackOverlayAttaching.gpuInfo) && m.areEqual(this.osName, trackOverlayAttaching.osName) && m.areEqual(this.overlaySession, trackOverlayAttaching.overlaySession) && m.areEqual(this.module, trackOverlayAttaching.module);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackOverlayAttaching implements AnalyticsSchema, 
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackOverlayAttaching(directxVersion=");
-        sbM833U.append(this.directxVersion);
-        sbM833U.append(", gameName=");
-        sbM833U.append(this.gameName);
-        sbM833U.append(", gpuInfo=");
-        sbM833U.append(this.gpuInfo);
-        sbM833U.append(", osName=");
-        sbM833U.append(this.osName);
-        sbM833U.append(", overlaySession=");
-        sbM833U.append(this.overlaySession);
-        sbM833U.append(", module=");
-        return C1643a.m817E(sbM833U, this.module, ")");
+        StringBuilder sbU = a.U("TrackOverlayAttaching(directxVersion=");
+        sbU.append(this.directxVersion);
+        sbU.append(", gameName=");
+        sbU.append(this.gameName);
+        sbU.append(", gpuInfo=");
+        sbU.append(this.gpuInfo);
+        sbU.append(", osName=");
+        sbU.append(this.osName);
+        sbU.append(", overlaySession=");
+        sbU.append(this.overlaySession);
+        sbU.append(", module=");
+        return a.E(sbU, this.module, ")");
     }
 }

@@ -1,8 +1,8 @@
 package com.discord.api.hubs;
 
+import b.d.b.a.a;
 import com.discord.api.guild.Guild;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: EmailVerification.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class EmailVerificationCode {
             return false;
         }
         EmailVerificationCode emailVerificationCode = (EmailVerificationCode) other;
-        return C12238m.areEqual(this.guild, emailVerificationCode.guild) && this.joined == emailVerificationCode.joined;
+        return m.areEqual(this.guild, emailVerificationCode.guild) && this.joined == emailVerificationCode.joined;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -48,9 +48,9 @@ public final /* data */ class EmailVerificationCode {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EmailVerificationCode(guild=");
-        sbM833U.append(this.guild);
-        sbM833U.append(", joined=");
-        return C1643a.m827O(sbM833U, this.joined, ")");
+        StringBuilder sbU = a.U("EmailVerificationCode(guild=");
+        sbU.append(this.guild);
+        sbU.append(", joined=");
+        return a.O(sbU, this.joined, ")");
     }
 }

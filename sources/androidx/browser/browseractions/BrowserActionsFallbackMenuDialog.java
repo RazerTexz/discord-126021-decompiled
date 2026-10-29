@@ -1,7 +1,5 @@
 package androidx.browser.browseractions;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -19,6 +17,10 @@ public class BrowserActionsFallbackMenuDialog extends Dialog {
     public BrowserActionsFallbackMenuDialog(Context context, View view) {
         super(context);
         this.mContentView = view;
+    }
+
+    public static /* synthetic */ void access$001(BrowserActionsFallbackMenuDialog browserActionsFallbackMenuDialog) {
+        super.dismiss();
     }
 
     @Override // android.app.Dialog, android.content.DialogInterface
@@ -42,20 +44,12 @@ public class BrowserActionsFallbackMenuDialog extends Dialog {
         super.show();
     }
 
-    private void startAnimation(final boolean z2) {
+    private void startAnimation(boolean z2) {
         float f = z2 ? 0.0f : 1.0f;
         float f2 = z2 ? 1.0f : 0.0f;
         long j = z2 ? ENTER_ANIMATION_DURATION_MS : 150L;
         this.mContentView.setScaleX(f);
         this.mContentView.setScaleY(f);
-        this.mContentView.animate().scaleX(f2).scaleY(f2).setDuration(j).setInterpolator(new LinearOutSlowInInterpolator()).setListener(new AnimatorListenerAdapter() { // from class: androidx.browser.browseractions.BrowserActionsFallbackMenuDialog.1
-            @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animator) {
-                if (z2) {
-                    return;
-                }
-                BrowserActionsFallbackMenuDialog.super.dismiss();
-            }
-        }).start();
+        this.mContentView.animate().scaleX(f2).scaleY(f2).setDuration(j).setInterpolator(new LinearOutSlowInInterpolator()).setListener(new BrowserActionsFallbackMenuDialog$1(this, z2)).start();
     }
 }

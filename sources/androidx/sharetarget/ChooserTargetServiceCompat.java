@@ -11,9 +11,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
-import androidx.core.content.p004pm.ShortcutInfoCompat;
-import androidx.core.content.p004pm.ShortcutManagerCompat;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.IconCompat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,36 +23,13 @@ import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(23)
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class ChooserTargetServiceCompat extends ChooserTargetService {
     public static final String TAG = "ChooserServiceCompat";
 
-    public class ShortcutHolder implements Comparable<ShortcutHolder> {
-        private final ShortcutInfoCompat mShortcut;
-        private final ComponentName mTargetClass;
-
-        public ShortcutHolder(ShortcutInfoCompat shortcutInfoCompat, ComponentName componentName) {
-            this.mShortcut = shortcutInfoCompat;
-            this.mTargetClass = componentName;
-        }
-
-        public ShortcutInfoCompat getShortcut() {
-            return this.mShortcut;
-        }
-
-        public ComponentName getTargetClass() {
-            return this.mTargetClass;
-        }
-
-        @Override // java.lang.Comparable
-        public int compareTo(ShortcutHolder shortcutHolder) {
-            return getShortcut().getRank() - shortcutHolder.getShortcut().getRank();
-        }
-    }
-
     @NonNull
     @VisibleForTesting
-    public static List<ChooserTarget> convertShortcutsToChooserTargets(@NonNull ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl, @NonNull List<ShortcutHolder> list) {
+    public static List<ChooserTarget> convertShortcutsToChooserTargets(@NonNull ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl, @NonNull List<ChooserTargetServiceCompat$ShortcutHolder> list) {
         IconCompat shortcutIcon;
         if (list.isEmpty()) {
             return new ArrayList();
@@ -60,8 +38,8 @@ public class ChooserTargetServiceCompat extends ChooserTargetService {
         ArrayList arrayList = new ArrayList();
         float f = 1.0f;
         int rank = list.get(0).getShortcut().getRank();
-        for (ShortcutHolder shortcutHolder : list) {
-            ShortcutInfoCompat shortcut = shortcutHolder.getShortcut();
+        for (ChooserTargetServiceCompat$ShortcutHolder chooserTargetServiceCompat$ShortcutHolder : list) {
+            ShortcutInfoCompat shortcut = chooserTargetServiceCompat$ShortcutHolder.getShortcut();
             Icon icon = null;
             try {
                 shortcutIcon = shortcutInfoCompatSaverImpl.getShortcutIcon(shortcut.getId());
@@ -79,7 +57,7 @@ public class ChooserTargetServiceCompat extends ChooserTargetService {
             if (shortcutIcon != null) {
                 icon = shortcutIcon.toIcon();
             }
-            arrayList.add(new ChooserTarget(shortLabel, icon, f, shortcutHolder.getTargetClass(), bundle));
+            arrayList.add(new ChooserTarget(shortLabel, icon, f, chooserTargetServiceCompat$ShortcutHolder.getTargetClass(), bundle));
         }
         return arrayList;
     }
@@ -91,8 +69,8 @@ public class ChooserTargetServiceCompat extends ChooserTargetService {
         ArrayList<ShareTargetCompat> arrayList = new ArrayList();
         for (ShareTargetCompat shareTargetCompat : shareTargets) {
             if (shareTargetCompat.mTargetClass.equals(componentName.getClassName())) {
-                for (ShareTargetCompat.TargetData targetData : shareTargetCompat.mTargetData) {
-                    if (intentFilter.hasDataType(targetData.mMimeType)) {
+                for (ShareTargetCompat$TargetData shareTargetCompat$TargetData : shareTargetCompat.mTargetData) {
+                    if (intentFilter.hasDataType(shareTargetCompat$TargetData.mMimeType)) {
                         arrayList.add(shareTargetCompat);
                         break;
                     }
@@ -112,7 +90,7 @@ public class ChooserTargetServiceCompat extends ChooserTargetService {
             for (ShortcutInfoCompat shortcutInfoCompat : shortcuts) {
                 for (ShareTargetCompat shareTargetCompat2 : arrayList) {
                     if (shortcutInfoCompat.getCategories().containsAll(Arrays.asList(shareTargetCompat2.mCategories))) {
-                        arrayList2.add(new ShortcutHolder(shortcutInfoCompat, new ComponentName(applicationContext.getPackageName(), shareTargetCompat2.mTargetClass)));
+                        arrayList2.add(new ChooserTargetServiceCompat$ShortcutHolder(shortcutInfoCompat, new ComponentName(applicationContext.getPackageName(), shareTargetCompat2.mTargetClass)));
                         break;
                     }
                 }

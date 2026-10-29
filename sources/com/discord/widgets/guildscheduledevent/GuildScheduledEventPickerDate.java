@@ -1,35 +1,17 @@
 package com.discord.widgets.guildscheduledevent;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.io.Serializable;
 import java.util.Calendar;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildScheduledEventPickerDateTime.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildScheduledEventPickerDate implements Serializable {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final GuildScheduledEventPickerDate$Companion Companion = new GuildScheduledEventPickerDate$Companion(null);
     private final int dayOfMonth;
     private final int month;
     private final int year;
-
-    /* JADX INFO: compiled from: GuildScheduledEventPickerDateTime.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final GuildScheduledEventPickerDate now() {
-            Calendar calendar = Calendar.getInstance();
-            return new GuildScheduledEventPickerDate(calendar.get(1), calendar.get(2), calendar.get(5));
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
 
     public GuildScheduledEventPickerDate(int i, int i2, int i3) {
         this.year = i;
@@ -99,16 +81,16 @@ public final /* data */ class GuildScheduledEventPickerDate implements Serializa
     public final long toMillis() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(this.year, this.month, this.dayOfMonth, 0, 0);
-        C12238m.checkNotNullExpressionValue(calendar, "Calendar.getInstance().a…, dayOfMonth, 0, 0)\n    }");
+        m.checkNotNullExpressionValue(calendar, "Calendar.getInstance().a…, dayOfMonth, 0, 0)\n    }");
         return calendar.getTimeInMillis();
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventPickerDate(year=");
-        sbM833U.append(this.year);
-        sbM833U.append(", month=");
-        sbM833U.append(this.month);
-        sbM833U.append(", dayOfMonth=");
-        return C1643a.m814B(sbM833U, this.dayOfMonth, ")");
+        StringBuilder sbU = a.U("GuildScheduledEventPickerDate(year=");
+        sbU.append(this.year);
+        sbU.append(", month=");
+        sbU.append(this.month);
+        sbU.append(", dayOfMonth=");
+        return a.B(sbU, this.dayOfMonth, ")");
     }
 }

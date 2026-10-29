@@ -12,15 +12,15 @@ import android.util.SparseBooleanArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.collection.ArrayMap;
 import androidx.collection.ArraySet;
+import b.d.b.a.a;
 import com.discord.api.message.MessageTypes;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.ObjectStreamClass;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -29,11 +29,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public abstract class VersionedParcel {
     private static final int EX_BAD_PARCELABLE = -2;
     private static final int EX_ILLEGAL_ARGUMENT = -3;
@@ -54,12 +54,6 @@ public abstract class VersionedParcel {
     public final ArrayMap<String, Class> mParcelizerCache;
     public final ArrayMap<String, Method> mReadCache;
     public final ArrayMap<String, Method> mWriteCache;
-
-    public class ParcelException extends RuntimeException {
-        public ParcelException(Throwable th) {
-            super(th);
-        }
-    }
 
     public VersionedParcel(ArrayMap<String, Method> arrayMap, ArrayMap<String, Method> arrayMap2, ArrayMap<String, Class> arrayMap3) {
         this.mReadCache = arrayMap;
@@ -364,17 +358,11 @@ public abstract class VersionedParcel {
             return null;
         }
         try {
-            return (Serializable) new ObjectInputStream(new ByteArrayInputStream(readByteArray())) { // from class: androidx.versionedparcelable.VersionedParcel.1
-                @Override // java.io.ObjectInputStream
-                public Class<?> resolveClass(ObjectStreamClass objectStreamClass) throws ClassNotFoundException, IOException {
-                    Class<?> cls = Class.forName(objectStreamClass.getName(), false, getClass().getClassLoader());
-                    return cls != null ? cls : super.resolveClass(objectStreamClass);
-                }
-            }.readObject();
+            return (Serializable) new VersionedParcel$1(this, new ByteArrayInputStream(readByteArray())).readObject();
         } catch (IOException e) {
-            throw new RuntimeException(C1643a.m886y("VersionedParcelable encountered IOException reading a Serializable object (name = ", string, ")"), e);
+            throw new RuntimeException(a.y("VersionedParcelable encountered IOException reading a Serializable object (name = ", string, ")"), e);
         } catch (ClassNotFoundException e2) {
-            throw new RuntimeException(C1643a.m886y("VersionedParcelable encountered ClassNotFoundException reading a Serializable object (name = ", string, ")"), e2);
+            throw new RuntimeException(a.y("VersionedParcelable encountered ClassNotFoundException reading a Serializable object (name = ", string, ")"), e2);
         }
     }
 
@@ -606,9 +594,9 @@ public abstract class VersionedParcel {
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            arrayList.add(entry.getKey());
-            arrayList2.add(entry.getValue());
+        for (Map$Entry<K, V> map$Entry : map.entrySet()) {
+            arrayList.add(map$Entry.getKey());
+            arrayList2.add(map$Entry.getValue());
         }
         writeCollection(arrayList);
         writeCollection(arrayList2);
@@ -1007,7 +995,7 @@ public abstract class VersionedParcel {
             objectOutputStream.close();
             writeByteArray(byteArrayOutputStream.toByteArray());
         } catch (IOException e) {
-            throw new RuntimeException(C1643a.m886y("VersionedParcelable encountered IOException writing serializable object (name = ", name, ")"), e);
+            throw new RuntimeException(a.y("VersionedParcelable encountered IOException writing serializable object (name = ", name, ")"), e);
         }
     }
 

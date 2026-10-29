@@ -1,20 +1,19 @@
 package com.discord.utilities.user;
 
+import android.content.Context;
 import com.discord.api.user.User;
-import com.discord.utilities.analytics.Traits;
-import com.discord.utilities.error.Error;
-import com.discord.utilities.p501rx.ObservableExtensionsKt;
+import com.discord.utilities.analytics.Traits$Payment$Type;
 import com.discord.utilities.rest.RestAPI;
+import com.discord.utilities.rx.ObservableExtensionsKt;
+import d0.z.d.m;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.Subscription;
+import rx.Observable;
+import rx.Subscription;
 
 /* JADX INFO: compiled from: UserRequestManager.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -22,79 +21,23 @@ public final class UserRequestManager {
     private final Function1<User, Unit> onFlush;
     private final HashMap<Long, Subscription> userRequests;
 
-    /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$1 */
-    /* JADX INFO: compiled from: UserRequestManager.kt */
-    public final class C69841 extends AbstractC12240o implements Function1<User, Unit> {
-        public C69841() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(User user) {
-            invoke2(user);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(User user) {
-            if (user != null) {
-                UserRequestManager.this.onFlush.invoke(user);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$2 */
-    /* JADX INFO: compiled from: UserRequestManager.kt */
-    public final class C69852 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $userId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C69852(long j) {
-            super(0);
-            this.$userId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            UserRequestManager.this.onRequestEnded(this.$userId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.user.UserRequestManager$requestUser$3 */
-    /* JADX INFO: compiled from: UserRequestManager.kt */
-    public final class C69863 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public final /* synthetic */ long $userId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C69863(long j) {
-            super(1);
-            this.$userId = j;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, "it");
-            UserRequestManager.this.onRequestStarted(this.$userId, subscription);
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public UserRequestManager(Function1<? super User, Unit> function1) {
-        C12238m.checkNotNullParameter(function1, "onFlush");
+        m.checkNotNullParameter(function1, "onFlush");
         this.onFlush = function1;
         this.userRequests = new HashMap<>();
+    }
+
+    public static final /* synthetic */ Function1 access$getOnFlush$p(UserRequestManager userRequestManager) {
+        return userRequestManager.onFlush;
+    }
+
+    public static final /* synthetic */ void access$onRequestEnded(UserRequestManager userRequestManager, long j) {
+        userRequestManager.onRequestEnded(j);
+    }
+
+    public static final /* synthetic */ void access$onRequestStarted(UserRequestManager userRequestManager, long j, Subscription subscription) {
+        userRequestManager.onRequestStarted(j, subscription);
     }
 
     private final synchronized void onRequestEnded(long userId) {
@@ -112,13 +55,14 @@ public final class UserRequestManager {
         if (this.userRequests.containsKey(Long.valueOf(userId))) {
             return;
         }
-        Observable observableRestSubscribeOn$default = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.INSTANCE.getApi().userGet(userId), false, 1, null);
+        Observable observableRestSubscribeOn$default = ObservableExtensionsKt.restSubscribeOn$default(RestAPI.Companion.getApi().userGet(userId), false, 1, null);
         Class<?> cls = getClass();
-        ObservableExtensionsKt.appSubscribe(observableRestSubscribeOn$default, (Class<?>) cls, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C69863(userId)), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : new C69852(userId)), new C69841());
+        UserRequestManager$requestUser$1 userRequestManager$requestUser$1 = new UserRequestManager$requestUser$1(this);
+        ObservableExtensionsKt.appSubscribe$default(observableRestSubscribeOn$default, cls, (Context) null, new UserRequestManager$requestUser$3(this, userId), (Function1) null, (Function0) null, new UserRequestManager$requestUser$2(this, userId), userRequestManager$requestUser$1, 26, (Object) null);
     }
 
     public final synchronized void requestUsers(Collection<Long> userIds) {
-        C12238m.checkNotNullParameter(userIds, "userIds");
+        m.checkNotNullParameter(userIds, "userIds");
         Iterator<T> it = userIds.iterator();
         while (it.hasNext()) {
             requestUser(((Number) it.next()).longValue());

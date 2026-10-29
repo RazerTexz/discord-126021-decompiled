@@ -3,7 +3,7 @@ package androidx.work.impl.model;
 import androidx.annotation.NonNull;
 import androidx.room.Dao;
 import androidx.room.RawQuery;
-import androidx.sqlite.p006db.SupportSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
 import androidx.view.LiveData;
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
 public interface RawWorkInfoDao {
     @NonNull
     @RawQuery
-    List<WorkSpec.WorkInfoPojo> getWorkInfoPojos(@NonNull SupportSQLiteQuery supportSQLiteQuery);
+    List<WorkSpec$WorkInfoPojo> getWorkInfoPojos(@NonNull SupportSQLiteQuery supportSQLiteQuery);
 
     @NonNull
     @RawQuery
-    LiveData<List<WorkSpec.WorkInfoPojo>> getWorkInfoPojosLiveData(@NonNull SupportSQLiteQuery supportSQLiteQuery);
+    LiveData<List<WorkSpec$WorkInfoPojo>> getWorkInfoPojosLiveData(@NonNull SupportSQLiteQuery supportSQLiteQuery);
 }

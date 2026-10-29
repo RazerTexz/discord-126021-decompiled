@@ -1,18 +1,15 @@
 package com.discord.stores;
 
+import b.d.b.a.a;
 import com.discord.models.commands.ApplicationCommand;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StoreApplicationCommands.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class DiscoverCommands {
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final DiscoverCommands$Companion Companion = new DiscoverCommands$Companion(null);
     private final List<ApplicationCommand> commands;
     private final int currentEndOffset;
     private final int currentStartOffset;
@@ -22,24 +19,10 @@ public final /* data */ class DiscoverCommands {
     private final int jumpedSequenceId;
     private final LoadState loadState;
 
-    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final DiscoverCommands getDefaultModelDiscoveryCommands() {
-            return new DiscoverCommands(C12147n.emptyList(), 0, 0, false, false, 0, null, null, 128, null);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX WARN: Multi-variable type inference failed */
     public DiscoverCommands(List<? extends ApplicationCommand> list, int i, int i2, boolean z2, boolean z3, int i3, Long l, LoadState loadState) {
-        C12238m.checkNotNullParameter(list, "commands");
-        C12238m.checkNotNullParameter(loadState, "loadState");
+        m.checkNotNullParameter(list, "commands");
+        m.checkNotNullParameter(loadState, "loadState");
         this.commands = list;
         this.currentStartOffset = i;
         this.currentEndOffset = i2;
@@ -54,9 +37,14 @@ public final /* data */ class DiscoverCommands {
         return this.commands;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ DiscoverCommands copy$default(DiscoverCommands discoverCommands, List list, int i, int i2, boolean z2, boolean z3, int i3, Long l, LoadState loadState, int i4, Object obj) {
+        return discoverCommands.copy((i4 & 1) != 0 ? discoverCommands.commands : list, (i4 & 2) != 0 ? discoverCommands.currentStartOffset : i, (i4 & 4) != 0 ? discoverCommands.currentEndOffset : i2, (i4 & 8) != 0 ? discoverCommands.hasMoreBefore : z2, (i4 & 16) != 0 ? discoverCommands.hasMoreAfter : z3, (i4 & 32) != 0 ? discoverCommands.jumpedSequenceId : i3, (i4 & 64) != 0 ? discoverCommands.jumpedApplicationId : l, (i4 & 128) != 0 ? discoverCommands.loadState : loadState);
+    }
+
     public final DiscoverCommands copy(List<? extends ApplicationCommand> commands, int currentStartOffset, int currentEndOffset, boolean hasMoreBefore, boolean hasMoreAfter, int jumpedSequenceId, Long jumpedApplicationId, LoadState loadState) {
-        C12238m.checkNotNullParameter(commands, "commands");
-        C12238m.checkNotNullParameter(loadState, "loadState");
+        m.checkNotNullParameter(commands, "commands");
+        m.checkNotNullParameter(loadState, "loadState");
         return new DiscoverCommands(commands, currentStartOffset, currentEndOffset, hasMoreBefore, hasMoreAfter, jumpedSequenceId, jumpedApplicationId, loadState);
     }
 
@@ -68,7 +56,7 @@ public final /* data */ class DiscoverCommands {
             return false;
         }
         DiscoverCommands discoverCommands = (DiscoverCommands) other;
-        return C12238m.areEqual(this.commands, discoverCommands.commands) && this.currentStartOffset == discoverCommands.currentStartOffset && this.currentEndOffset == discoverCommands.currentEndOffset && this.hasMoreBefore == discoverCommands.hasMoreBefore && this.hasMoreAfter == discoverCommands.hasMoreAfter && this.jumpedSequenceId == discoverCommands.jumpedSequenceId && C12238m.areEqual(this.jumpedApplicationId, discoverCommands.jumpedApplicationId) && C12238m.areEqual(this.loadState, discoverCommands.loadState);
+        return m.areEqual(this.commands, discoverCommands.commands) && this.currentStartOffset == discoverCommands.currentStartOffset && this.currentEndOffset == discoverCommands.currentEndOffset && this.hasMoreBefore == discoverCommands.hasMoreBefore && this.hasMoreAfter == discoverCommands.hasMoreAfter && this.jumpedSequenceId == discoverCommands.jumpedSequenceId && m.areEqual(this.jumpedApplicationId, discoverCommands.jumpedApplicationId) && m.areEqual(this.loadState, discoverCommands.loadState);
     }
 
     public final List<ApplicationCommand> getCommands() {
@@ -163,27 +151,27 @@ public final /* data */ class DiscoverCommands {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("DiscoverCommands(commands=");
-        sbM833U.append(this.commands);
-        sbM833U.append(", currentStartOffset=");
-        sbM833U.append(this.currentStartOffset);
-        sbM833U.append(", currentEndOffset=");
-        sbM833U.append(this.currentEndOffset);
-        sbM833U.append(", hasMoreBefore=");
-        sbM833U.append(this.hasMoreBefore);
-        sbM833U.append(", hasMoreAfter=");
-        sbM833U.append(this.hasMoreAfter);
-        sbM833U.append(", jumpedSequenceId=");
-        sbM833U.append(this.jumpedSequenceId);
-        sbM833U.append(", jumpedApplicationId=");
-        sbM833U.append(this.jumpedApplicationId);
-        sbM833U.append(", loadState=");
-        sbM833U.append(this.loadState);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("DiscoverCommands(commands=");
+        sbU.append(this.commands);
+        sbU.append(", currentStartOffset=");
+        sbU.append(this.currentStartOffset);
+        sbU.append(", currentEndOffset=");
+        sbU.append(this.currentEndOffset);
+        sbU.append(", hasMoreBefore=");
+        sbU.append(this.hasMoreBefore);
+        sbU.append(", hasMoreAfter=");
+        sbU.append(this.hasMoreAfter);
+        sbU.append(", jumpedSequenceId=");
+        sbU.append(this.jumpedSequenceId);
+        sbU.append(", jumpedApplicationId=");
+        sbU.append(this.jumpedApplicationId);
+        sbU.append(", loadState=");
+        sbU.append(this.loadState);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public /* synthetic */ DiscoverCommands(List list, int i, int i2, boolean z2, boolean z3, int i3, Long l, LoadState loadState, int i4, DefaultConstructorMarker defaultConstructorMarker) {
-        this(list, i, i2, z2, z3, i3, l, (i4 & 128) != 0 ? LoadState.None.INSTANCE : loadState);
+        this(list, i, i2, z2, z3, i3, l, (i4 & 128) != 0 ? LoadState$None.INSTANCE : loadState);
     }
 }

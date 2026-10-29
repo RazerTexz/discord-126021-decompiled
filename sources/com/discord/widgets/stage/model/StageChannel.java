@@ -1,15 +1,15 @@
 package com.discord.widgets.stage.model;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.stageinstance.StageInstance;
 import com.discord.models.guild.UserGuildMember;
 import com.discord.models.user.User;
 import com.discord.widgets.stage.StageRoles;
+import d0.z.d.m;
 import java.util.List;
 import java.util.Set;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StageChannel.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -57,7 +57,7 @@ public final /* data */ class StageChannel {
             return false;
         }
         StageChannel stageChannel = (StageChannel) other;
-        return C12238m.areEqual(this.channel, stageChannel.channel) && C12238m.areEqual(this.participants, stageChannel.participants) && C12238m.areEqual(this.myRoles, stageChannel.myRoles) && C12238m.areEqual(this.speakerIds, stageChannel.speakerIds) && C12238m.areEqual(this.speakers, stageChannel.speakers) && this.audienceSize == stageChannel.audienceSize && C12238m.areEqual(this.stageInstance, stageChannel.stageInstance) && this.canAccess == stageChannel.canAccess && this.containsMe == stageChannel.containsMe;
+        return m.areEqual(this.channel, stageChannel.channel) && m.areEqual(this.participants, stageChannel.participants) && m.areEqual(this.myRoles, stageChannel.myRoles) && m.areEqual(this.speakerIds, stageChannel.speakerIds) && m.areEqual(this.speakers, stageChannel.speakers) && this.audienceSize == stageChannel.audienceSize && m.areEqual(this.stageInstance, stageChannel.stageInstance) && this.canAccess == stageChannel.canAccess && this.containsMe == stageChannel.containsMe;
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -158,39 +158,45 @@ public final /* data */ class StageChannel {
         return i + (z3 ? 1 : z3);
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX INFO: renamed from: copy-LcZnYPc$default, reason: not valid java name */
+    public static /* synthetic */ StageChannel m43copyLcZnYPc$default(StageChannel stageChannel, Channel channel, List list, StageRoles stageRoles, Set set, List list2, int i, StageInstance stageInstance, boolean z2, boolean z3, int i2, Object obj) {
+        return stageChannel.m45copyLcZnYPc((i2 & 1) != 0 ? stageChannel.channel : channel, (i2 & 2) != 0 ? stageChannel.participants : list, (i2 & 4) != 0 ? stageChannel.myRoles : stageRoles, (i2 & 8) != 0 ? stageChannel.speakerIds : set, (i2 & 16) != 0 ? stageChannel.speakers : list2, (i2 & 32) != 0 ? stageChannel.audienceSize : i, (i2 & 64) != 0 ? stageChannel.stageInstance : stageInstance, (i2 & 128) != 0 ? stageChannel.canAccess : z2, (i2 & 256) != 0 ? stageChannel.containsMe : z3);
+    }
+
     /* JADX INFO: renamed from: copy-LcZnYPc, reason: not valid java name */
-    public final StageChannel m11422copyLcZnYPc(Channel channel, List<? extends User> participants, StageRoles myRoles, Set<Long> speakerIds, List<UserGuildMember> speakers, int audienceSize, StageInstance stageInstance, boolean canAccess, boolean containsMe) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(participants, "participants");
-        C12238m.checkNotNullParameter(speakerIds, "speakerIds");
-        C12238m.checkNotNullParameter(speakers, "speakers");
+    public final StageChannel m45copyLcZnYPc(Channel channel, List<? extends User> participants, StageRoles myRoles, Set<Long> speakerIds, List<UserGuildMember> speakers, int audienceSize, StageInstance stageInstance, boolean canAccess, boolean containsMe) {
+        m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(participants, "participants");
+        m.checkNotNullParameter(speakerIds, "speakerIds");
+        m.checkNotNullParameter(speakers, "speakers");
         return new StageChannel(channel, participants, myRoles, speakerIds, speakers, audienceSize, stageInstance, canAccess, containsMe);
     }
 
     /* JADX INFO: renamed from: getMyRoles-twRsX-0, reason: not valid java name */
-    public final StageRoles m11423getMyRolestwRsX0() {
+    public final StageRoles m46getMyRolestwRsX0() {
         return this.myRoles;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StageChannel(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", participants=");
-        sbM833U.append(this.participants);
-        sbM833U.append(", myRoles=");
-        sbM833U.append(this.myRoles);
-        sbM833U.append(", speakerIds=");
-        sbM833U.append(this.speakerIds);
-        sbM833U.append(", speakers=");
-        sbM833U.append(this.speakers);
-        sbM833U.append(", audienceSize=");
-        sbM833U.append(this.audienceSize);
-        sbM833U.append(", stageInstance=");
-        sbM833U.append(this.stageInstance);
-        sbM833U.append(", canAccess=");
-        sbM833U.append(this.canAccess);
-        sbM833U.append(", containsMe=");
-        return C1643a.m827O(sbM833U, this.containsMe, ")");
+        StringBuilder sbU = a.U("StageChannel(channel=");
+        sbU.append(this.channel);
+        sbU.append(", participants=");
+        sbU.append(this.participants);
+        sbU.append(", myRoles=");
+        sbU.append(this.myRoles);
+        sbU.append(", speakerIds=");
+        sbU.append(this.speakerIds);
+        sbU.append(", speakers=");
+        sbU.append(this.speakers);
+        sbU.append(", audienceSize=");
+        sbU.append(this.audienceSize);
+        sbU.append(", stageInstance=");
+        sbU.append(this.stageInstance);
+        sbU.append(", canAccess=");
+        sbU.append(this.canAccess);
+        sbU.append(", containsMe=");
+        return a.O(sbU, this.containsMe, ")");
     }
 
     public /* synthetic */ StageChannel(Channel channel, List list, StageRoles stageRoles, Set set, List list2, int i, StageInstance stageInstance, boolean z2, boolean z3, DefaultConstructorMarker defaultConstructorMarker) {

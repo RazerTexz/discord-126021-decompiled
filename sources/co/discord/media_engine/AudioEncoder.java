@@ -1,8 +1,8 @@
 package co.discord.media_engine;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: Codecs.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,7 +15,7 @@ public final /* data */ class AudioEncoder {
     private final int type;
 
     public AudioEncoder(int i, String str, int i2, int i3, int i4, int i5) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.type = i;
         this.name = str;
         this.freq = i2;
@@ -51,7 +51,7 @@ public final /* data */ class AudioEncoder {
     }
 
     public final AudioEncoder copy(int type, String name, int freq, int pacsize, int channels, int rate) {
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new AudioEncoder(type, name, freq, pacsize, channels, rate);
     }
 
@@ -63,7 +63,7 @@ public final /* data */ class AudioEncoder {
             return false;
         }
         AudioEncoder audioEncoder = (AudioEncoder) other;
-        return this.type == audioEncoder.type && C12238m.areEqual(this.name, audioEncoder.name) && this.freq == audioEncoder.freq && this.pacsize == audioEncoder.pacsize && this.channels == audioEncoder.channels && this.rate == audioEncoder.rate;
+        return this.type == audioEncoder.type && m.areEqual(this.name, audioEncoder.name) && this.freq == audioEncoder.freq && this.pacsize == audioEncoder.pacsize && this.channels == audioEncoder.channels && this.rate == audioEncoder.rate;
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -127,17 +127,17 @@ public final /* data */ class AudioEncoder {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AudioEncoder(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", freq=");
-        sbM833U.append(this.freq);
-        sbM833U.append(", pacsize=");
-        sbM833U.append(this.pacsize);
-        sbM833U.append(", channels=");
-        sbM833U.append(this.channels);
-        sbM833U.append(", rate=");
-        return C1643a.m814B(sbM833U, this.rate, ")");
+        StringBuilder sbU = a.U("AudioEncoder(type=");
+        sbU.append(this.type);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", freq=");
+        sbU.append(this.freq);
+        sbU.append(", pacsize=");
+        sbU.append(this.pacsize);
+        sbU.append(", channels=");
+        sbU.append(this.channels);
+        sbU.append(", rate=");
+        return a.B(sbU, this.rate, ")");
     }
 }

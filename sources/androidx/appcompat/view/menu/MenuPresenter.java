@@ -3,19 +3,12 @@ package androidx.appcompat.view.menu;
 import android.content.Context;
 import android.os.Parcelable;
 import android.view.ViewGroup;
-import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public interface MenuPresenter {
-
-    public interface Callback {
-        void onCloseMenu(@NonNull MenuBuilder menuBuilder, boolean z2);
-
-        boolean onOpenSubMenu(@NonNull MenuBuilder menuBuilder);
-    }
-
     boolean collapseItemActionView(MenuBuilder menuBuilder, MenuItemImpl menuItemImpl);
 
     boolean expandItemActionView(MenuBuilder menuBuilder, MenuItemImpl menuItemImpl);
@@ -36,7 +29,7 @@ public interface MenuPresenter {
 
     boolean onSubMenuSelected(SubMenuBuilder subMenuBuilder);
 
-    void setCallback(Callback callback);
+    void setCallback(MenuPresenter$Callback menuPresenter$Callback);
 
     void updateMenuView(boolean z2);
 }

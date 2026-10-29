@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.list.entries;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import a0.a.a.b;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: InviteEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,7 +16,7 @@ public final /* data */ class InviteEntry extends ChatListEntry {
     private final long userId;
 
     public InviteEntry(long j, long j2, String str, long j3, String str2) {
-        C12238m.checkNotNullParameter(str, "inviteCode");
+        m.checkNotNullParameter(str, "inviteCode");
         this.userId = j;
         this.messageId = j2;
         this.inviteCode = str;
@@ -26,8 +26,12 @@ public final /* data */ class InviteEntry extends ChatListEntry {
         this.key = "24 -- " + j2 + " -- " + str;
     }
 
+    public static /* synthetic */ InviteEntry copy$default(InviteEntry inviteEntry, long j, long j2, String str, long j3, String str2, int i, Object obj) {
+        return inviteEntry.copy((i & 1) != 0 ? inviteEntry.userId : j, (i & 2) != 0 ? inviteEntry.messageId : j2, (i & 4) != 0 ? inviteEntry.inviteCode : str, (i & 8) != 0 ? inviteEntry.guildId : j3, (i & 16) != 0 ? inviteEntry.eventId : str2);
+    }
+
     public final InviteEntry copy(long userId, long messageId, String inviteCode, long guildId, String eventId) {
-        C12238m.checkNotNullParameter(inviteCode, "inviteCode");
+        m.checkNotNullParameter(inviteCode, "inviteCode");
         return new InviteEntry(userId, messageId, inviteCode, guildId, eventId);
     }
 
@@ -39,7 +43,7 @@ public final /* data */ class InviteEntry extends ChatListEntry {
             return false;
         }
         InviteEntry inviteEntry = (InviteEntry) other;
-        return this.userId == inviteEntry.userId && this.messageId == inviteEntry.messageId && C12238m.areEqual(this.inviteCode, inviteEntry.inviteCode) && this.guildId == inviteEntry.guildId && C12238m.areEqual(this.eventId, inviteEntry.eventId);
+        return this.userId == inviteEntry.userId && this.messageId == inviteEntry.messageId && m.areEqual(this.inviteCode, inviteEntry.inviteCode) && this.guildId == inviteEntry.guildId && m.areEqual(this.eventId, inviteEntry.eventId);
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -98,23 +102,23 @@ public final /* data */ class InviteEntry extends ChatListEntry {
     }
 
     public int hashCode() {
-        int iM3a = (C0002b.m3a(this.messageId) + (C0002b.m3a(this.userId) * 31)) * 31;
+        int iA = (b.a(this.messageId) + (b.a(this.userId) * 31)) * 31;
         String str = this.inviteCode;
-        int iM3a2 = (C0002b.m3a(this.guildId) + ((iM3a + (str != null ? str.hashCode() : 0)) * 31)) * 31;
+        int iA2 = (b.a(this.guildId) + ((iA + (str != null ? str.hashCode() : 0)) * 31)) * 31;
         String str2 = this.eventId;
-        return iM3a2 + (str2 != null ? str2.hashCode() : 0);
+        return iA2 + (str2 != null ? str2.hashCode() : 0);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InviteEntry(userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", eventId=");
-        return C1643a.m822J(sbM833U, this.eventId, ")");
+        StringBuilder sbU = a.U("InviteEntry(userId=");
+        sbU.append(this.userId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", eventId=");
+        return a.J(sbU, this.eventId, ")");
     }
 }

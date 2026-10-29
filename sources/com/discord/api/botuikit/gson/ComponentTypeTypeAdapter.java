@@ -1,12 +1,12 @@
 package com.discord.api.botuikit.gson;
 
+import b.c.a.a0.d;
 import com.discord.api.botuikit.ComponentType;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import d0.z.d.m;
 import java.io.IOException;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ComponentTypeTypeAdapter.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,12 +16,12 @@ public final class ComponentTypeTypeAdapter extends TypeAdapter<ComponentType> {
     @Override // com.google.gson.TypeAdapter
     public ComponentType read(JsonReader jsonReader) throws IOException {
         ComponentType componentType;
-        C12238m.checkNotNullParameter(jsonReader, "in");
-        Integer numM549n1 = C1460d.m549n1(jsonReader);
+        m.checkNotNullParameter(jsonReader, "in");
+        Integer numN1 = d.n1(jsonReader);
         ComponentType[] componentTypeArrValues = ComponentType.values();
         for (int i = 0; i < 5; i++) {
             componentType = componentTypeArrValues[i];
-            if (numM549n1 != null && componentType.getType() == numM549n1.intValue()) {
+            if (numN1 != null && componentType.getType() == numN1.intValue()) {
                 if (componentType != null) {
                     return componentType;
                 }
@@ -38,9 +38,9 @@ public final class ComponentTypeTypeAdapter extends TypeAdapter<ComponentType> {
     @Override // com.google.gson.TypeAdapter
     public void write(JsonWriter jsonWriter, ComponentType componentType) throws IOException {
         ComponentType componentType2 = componentType;
-        C12238m.checkNotNullParameter(jsonWriter, "out");
+        m.checkNotNullParameter(jsonWriter, "out");
         if (componentType2 != null) {
-            jsonWriter.mo6894D(Integer.valueOf(componentType2.getType()));
+            jsonWriter.D(Integer.valueOf(componentType2.getType()));
         }
     }
 }

@@ -1,36 +1,37 @@
 package kotlinx.coroutines.android;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.Keep;
+import d0.w.a;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineExceptionHandler;
-import p507d0.p584w.AbstractC12174a;
+import kotlinx.coroutines.CoroutineExceptionHandler$a;
 
 /* JADX INFO: compiled from: AndroidExceptionPreHandler.kt */
 /* JADX INFO: loaded from: classes3.dex */
 @Keep
-public final class AndroidExceptionPreHandler extends AbstractC12174a implements CoroutineExceptionHandler {
+public final class AndroidExceptionPreHandler extends a implements CoroutineExceptionHandler {
     private volatile Object _preHandler;
 
     public AndroidExceptionPreHandler() {
-        super(CoroutineExceptionHandler.C12804a.f27456a);
+        super(CoroutineExceptionHandler$a.a);
         this._preHandler = this;
     }
 
     @Override // kotlinx.coroutines.CoroutineExceptionHandler
     public void handleException(CoroutineContext context, Throwable exception) {
         Thread threadCurrentThread = Thread.currentThread();
-        if (Build.VERSION.SDK_INT >= 28) {
+        if (Build$VERSION.SDK_INT >= 28) {
             threadCurrentThread.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread, exception);
             return;
         }
         Method methodPreHandler = preHandler();
         Object objInvoke = methodPreHandler != null ? methodPreHandler.invoke(null, new Object[0]) : null;
-        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = (Thread.UncaughtExceptionHandler) (objInvoke instanceof Thread.UncaughtExceptionHandler ? objInvoke : null);
-        if (uncaughtExceptionHandler != null) {
-            uncaughtExceptionHandler.uncaughtException(threadCurrentThread, exception);
+        Thread$UncaughtExceptionHandler thread$UncaughtExceptionHandler = (Thread$UncaughtExceptionHandler) (objInvoke instanceof Thread$UncaughtExceptionHandler ? objInvoke : null);
+        if (thread$UncaughtExceptionHandler != null) {
+            thread$UncaughtExceptionHandler.uncaughtException(threadCurrentThread, exception);
         }
     }
 

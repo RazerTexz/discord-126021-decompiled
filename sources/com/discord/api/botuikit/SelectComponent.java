@@ -1,8 +1,8 @@
 package com.discord.api.botuikit;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SelectComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,6 +15,10 @@ public final /* data */ class SelectComponent extends ActionComponent {
     private final String placeholder;
     private final ComponentType type;
 
+    public final List<SelectItem> e() {
+        return this.options;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -23,7 +27,7 @@ public final /* data */ class SelectComponent extends ActionComponent {
             return false;
         }
         SelectComponent selectComponent = (SelectComponent) other;
-        return C12238m.areEqual(this.type, selectComponent.type) && C12238m.areEqual(this.customId, selectComponent.customId) && this.disabled == selectComponent.disabled && C12238m.areEqual(this.placeholder, selectComponent.placeholder) && this.minValues == selectComponent.minValues && this.maxValues == selectComponent.maxValues && C12238m.areEqual(this.options, selectComponent.options);
+        return m.areEqual(this.type, selectComponent.type) && m.areEqual(this.customId, selectComponent.customId) && this.disabled == selectComponent.disabled && m.areEqual(this.placeholder, selectComponent.placeholder) && this.minValues == selectComponent.minValues && this.maxValues == selectComponent.maxValues && m.areEqual(this.options, selectComponent.options);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -78,25 +82,20 @@ public final /* data */ class SelectComponent extends ActionComponent {
         return iHashCode3 + (list != null ? list.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: e */
-    public final List<SelectItem> m7609e() {
-        return this.options;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("SelectComponent(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", customId=");
-        sbM833U.append(this.customId);
-        sbM833U.append(", disabled=");
-        sbM833U.append(this.disabled);
-        sbM833U.append(", placeholder=");
-        sbM833U.append(this.placeholder);
-        sbM833U.append(", minValues=");
-        sbM833U.append(this.minValues);
-        sbM833U.append(", maxValues=");
-        sbM833U.append(this.maxValues);
-        sbM833U.append(", options=");
-        return C1643a.m824L(sbM833U, this.options, ")");
+        StringBuilder sbU = a.U("SelectComponent(type=");
+        sbU.append(this.type);
+        sbU.append(", customId=");
+        sbU.append(this.customId);
+        sbU.append(", disabled=");
+        sbU.append(this.disabled);
+        sbU.append(", placeholder=");
+        sbU.append(this.placeholder);
+        sbU.append(", minValues=");
+        sbU.append(this.minValues);
+        sbU.append(", maxValues=");
+        sbU.append(this.maxValues);
+        sbU.append(", options=");
+        return a.L(sbU, this.options, ")");
     }
 }

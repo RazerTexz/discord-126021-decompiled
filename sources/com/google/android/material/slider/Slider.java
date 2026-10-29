@@ -1,6 +1,5 @@
 package com.google.android.material.slider;
 
-import android.R;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -13,17 +12,10 @@ import androidx.annotation.Dimension;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$attr;
 
 /* JADX INFO: loaded from: classes3.dex */
-public class Slider extends BaseSlider<Slider, OnChangeListener, OnSliderTouchListener> {
-
-    public interface OnChangeListener extends BaseOnChangeListener<Slider> {
-    }
-
-    public interface OnSliderTouchListener extends BaseOnSliderTouchListener<Slider> {
-    }
-
+public class Slider extends BaseSlider<Slider, Slider$OnChangeListener, Slider$OnSliderTouchListener> {
     public Slider(@NonNull Context context) {
         this(context, null);
     }
@@ -191,12 +183,12 @@ public class Slider extends BaseSlider<Slider, OnChangeListener, OnSliderTouchLi
         return super.isTickVisible();
     }
 
-    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent.Callback
+    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent$Callback
     public /* bridge */ /* synthetic */ boolean onKeyDown(int i, @NonNull KeyEvent keyEvent) {
         return super.onKeyDown(i, keyEvent);
     }
 
-    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent.Callback
+    @Override // com.google.android.material.slider.BaseSlider, android.view.View, android.view.KeyEvent$Callback
     public /* bridge */ /* synthetic */ boolean onKeyUp(int i, @NonNull KeyEvent keyEvent) {
         return super.onKeyUp(i, keyEvent);
     }
@@ -355,12 +347,12 @@ public class Slider extends BaseSlider<Slider, OnChangeListener, OnSliderTouchLi
     }
 
     public Slider(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C10817R.attr.sliderStyle);
+        this(context, attributeSet, R$attr.sliderStyle);
     }
 
     public Slider(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, new int[]{R.attr.value});
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, new int[]{android.R$attr.value});
         if (typedArrayObtainStyledAttributes.hasValue(0)) {
             setValue(typedArrayObtainStyledAttributes.getFloat(0, 0.0f));
         }

@@ -3,13 +3,14 @@ package com.discord.utilities.view.rounded;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Path;
+import android.graphics.Path$Direction;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.StyleableRes;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: RoundedCornerViewCoordinator.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -21,31 +22,9 @@ public final class RoundedCornerViewCoordinator {
     private Path path = new Path();
     private final float[] radii = new float[8];
 
-    /* JADX INFO: compiled from: RoundedCornerViewCoordinator.kt */
-    public enum Corner {
-        TOP_LEFT,
-        TOP_RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_RIGHT
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            Corner.values();
-            int[] iArr = new int[4];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[Corner.TOP_LEFT.ordinal()] = 1;
-            iArr[Corner.TOP_RIGHT.ordinal()] = 2;
-            iArr[Corner.BOTTOM_LEFT.ordinal()] = 3;
-            iArr[Corner.BOTTOM_RIGHT.ordinal()] = 4;
-        }
-    }
-
     public final void draw(Canvas canvas, Function1<? super Canvas, Unit> onDraw) {
-        C12238m.checkNotNullParameter(canvas, "canvas");
-        C12238m.checkNotNullParameter(onDraw, "onDraw");
+        m.checkNotNullParameter(canvas, "canvas");
+        m.checkNotNullParameter(onDraw, "onDraw");
         canvas.save();
         canvas.clipPath(this.path);
         onDraw.invoke(canvas);
@@ -53,11 +32,11 @@ public final class RoundedCornerViewCoordinator {
     }
 
     public final void initialize(View view, AttributeSet attrs, @StyleableRes int[] attrsIndexArray, @StyleableRes int attrsIndexTopLeftRadius, @StyleableRes int attrsIndexTopRightRadius, @StyleableRes int attrsIndexBottomLeftRadius, @StyleableRes int attrsIndexBottomRightRadius) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(attrsIndexArray, "attrsIndexArray");
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(attrsIndexArray, "attrsIndexArray");
         view.setWillNotDraw(false);
         TypedArray typedArrayObtainStyledAttributes = view.getContext().obtainStyledAttributes(attrs, attrsIndexArray);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "view.context.obtainStyle…s(attrs, attrsIndexArray)");
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "view.context.obtainStyle…s(attrs, attrsIndexArray)");
         try {
             this.topLeftRadius = typedArrayObtainStyledAttributes.getDimension(attrsIndexTopLeftRadius, 0.0f);
             this.topRightRadius = typedArrayObtainStyledAttributes.getDimension(attrsIndexTopRightRadius, 0.0f);
@@ -84,13 +63,13 @@ public final class RoundedCornerViewCoordinator {
         float f4 = this.bottomLeftRadius;
         fArr[6] = f4;
         fArr[7] = f4;
-        path.addRoundRect(new RectF(0.0f, 0.0f, w, h), this.radii, Path.Direction.CW);
+        path.addRoundRect(new RectF(0.0f, 0.0f, w, h), this.radii, Path$Direction.CW);
         this.path.close();
     }
 
-    public final void updateRadius(View view, float radius, Corner corner) {
-        C12238m.checkNotNullParameter(view, "view");
-        C12238m.checkNotNullParameter(corner, "corner");
+    public final void updateRadius(View view, float radius, RoundedCornerViewCoordinator$Corner corner) {
+        m.checkNotNullParameter(view, "view");
+        m.checkNotNullParameter(corner, "corner");
         int iOrdinal = corner.ordinal();
         if (iOrdinal == 0) {
             this.topLeftRadius = radius;

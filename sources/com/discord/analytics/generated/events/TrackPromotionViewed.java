@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackPriceMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackPromotionViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -34,7 +34,7 @@ public final /* data */ class TrackPromotionViewed implements AnalyticsSchema, T
             return false;
         }
         TrackPromotionViewed trackPromotionViewed = (TrackPromotionViewed) other;
-        return C12238m.areEqual(this.loadId, trackPromotionViewed.loadId) && C12238m.areEqual(this.promotionId, trackPromotionViewed.promotionId) && C12238m.areEqual(this.promotionType, trackPromotionViewed.promotionType) && C12238m.areEqual(this.promotionUrl, trackPromotionViewed.promotionUrl) && C12238m.areEqual(this.listIndex, trackPromotionViewed.listIndex);
+        return m.areEqual(this.loadId, trackPromotionViewed.loadId) && m.areEqual(this.promotionId, trackPromotionViewed.promotionId) && m.areEqual(this.promotionType, trackPromotionViewed.promotionType) && m.areEqual(this.promotionUrl, trackPromotionViewed.promotionUrl) && m.areEqual(this.listIndex, trackPromotionViewed.listIndex);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,15 +57,15 @@ public final /* data */ class TrackPromotionViewed implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackPromotionViewed(loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", promotionId=");
-        sbM833U.append(this.promotionId);
-        sbM833U.append(", promotionType=");
-        sbM833U.append(this.promotionType);
-        sbM833U.append(", promotionUrl=");
-        sbM833U.append(this.promotionUrl);
-        sbM833U.append(", listIndex=");
-        return C1643a.m819G(sbM833U, this.listIndex, ")");
+        StringBuilder sbU = a.U("TrackPromotionViewed(loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", promotionId=");
+        sbU.append(this.promotionId);
+        sbU.append(", promotionType=");
+        sbU.append(this.promotionType);
+        sbU.append(", promotionUrl=");
+        sbU.append(this.promotionUrl);
+        sbU.append(", listIndex=");
+        return a.G(sbU, this.listIndex, ")");
     }
 }

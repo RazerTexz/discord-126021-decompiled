@@ -20,6 +20,46 @@ import javax.lang.model.util.AbstractTypeVisitor6;
 public class FindTypeVarScanner extends AbstractTypeVisitor6<Void, Void> {
     private Set<String> typeVariables = new HashSet();
 
+    public /* bridge */ /* synthetic */ Object visitArray(ArrayType arrayType, Object obj) {
+        return visitArray(arrayType, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitDeclared(DeclaredType declaredType, Object obj) {
+        return visitDeclared(declaredType, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitError(ErrorType errorType, Object obj) {
+        return visitError(errorType, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitExecutable(ExecutableType executableType, Object obj) {
+        return visitExecutable(executableType, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitNoType(NoType noType, Object obj) {
+        return visitNoType(noType, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitNull(NullType nullType, Object obj) {
+        return visitNull(nullType, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitPrimitive(PrimitiveType primitiveType, Object obj) {
+        return visitPrimitive(primitiveType, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitTypeVariable(TypeVariable typeVariable, Object obj) {
+        return visitTypeVariable(typeVariable, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitUnknown(TypeMirror typeMirror, Object obj) {
+        return visitUnknown(typeMirror, (Void) obj);
+    }
+
+    public /* bridge */ /* synthetic */ Object visitWildcard(WildcardType wildcardType, Object obj) {
+        return visitWildcard(wildcardType, (Void) obj);
+    }
+
     public Set<String> getTypeVariables() {
         return this.typeVariables;
     }

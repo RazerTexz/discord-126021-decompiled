@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVideoStreamQualityChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackVideoStreamQualityChanged implements Analytic
             return false;
         }
         TrackVideoStreamQualityChanged trackVideoStreamQualityChanged = (TrackVideoStreamQualityChanged) other;
-        return C12238m.areEqual(this.channelId, trackVideoStreamQualityChanged.channelId) && C12238m.areEqual(this.guildId, trackVideoStreamQualityChanged.guildId) && C12238m.areEqual(this.rtcConnectionId, trackVideoStreamQualityChanged.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackVideoStreamQualityChanged.mediaSessionId) && C12238m.areEqual(this.senderUserId, trackVideoStreamQualityChanged.senderUserId) && C12238m.areEqual(this.previousQuality, trackVideoStreamQualityChanged.previousQuality) && C12238m.areEqual(this.quality, trackVideoStreamQualityChanged.quality);
+        return m.areEqual(this.channelId, trackVideoStreamQualityChanged.channelId) && m.areEqual(this.guildId, trackVideoStreamQualityChanged.guildId) && m.areEqual(this.rtcConnectionId, trackVideoStreamQualityChanged.rtcConnectionId) && m.areEqual(this.mediaSessionId, trackVideoStreamQualityChanged.mediaSessionId) && m.areEqual(this.senderUserId, trackVideoStreamQualityChanged.senderUserId) && m.areEqual(this.previousQuality, trackVideoStreamQualityChanged.previousQuality) && m.areEqual(this.quality, trackVideoStreamQualityChanged.quality);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackVideoStreamQualityChanged implements Analytic
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVideoStreamQualityChanged(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", rtcConnectionId=");
-        sbM833U.append(this.rtcConnectionId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", senderUserId=");
-        sbM833U.append(this.senderUserId);
-        sbM833U.append(", previousQuality=");
-        sbM833U.append(this.previousQuality);
-        sbM833U.append(", quality=");
-        return C1643a.m817E(sbM833U, this.quality, ")");
+        StringBuilder sbU = a.U("TrackVideoStreamQualityChanged(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", rtcConnectionId=");
+        sbU.append(this.rtcConnectionId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", senderUserId=");
+        sbU.append(this.senderUserId);
+        sbU.append(", previousQuality=");
+        sbU.append(this.previousQuality);
+        sbU.append(", quality=");
+        return a.E(sbU, this.quality, ")");
     }
 }

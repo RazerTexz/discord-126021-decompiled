@@ -1,16 +1,15 @@
 package androidx.constraintlayout.motion.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.SparseIntArray;
-import androidx.constraintlayout.widget.C0201R;
 import androidx.constraintlayout.widget.ConstraintAttribute;
+import androidx.constraintlayout.widget.ConstraintAttribute$AttributeType;
+import androidx.constraintlayout.widget.R$styleable;
+import b.d.b.a.a;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class KeyCycle extends Key {
@@ -36,158 +35,174 @@ public class KeyCycle extends Key {
     private float mTranslationY = Float.NaN;
     private float mTranslationZ = Float.NaN;
 
-    public class Loader {
-        private static final int ANDROID_ALPHA = 9;
-        private static final int ANDROID_ELEVATION = 10;
-        private static final int ANDROID_ROTATION = 11;
-        private static final int ANDROID_ROTATION_X = 12;
-        private static final int ANDROID_ROTATION_Y = 13;
-        private static final int ANDROID_SCALE_X = 15;
-        private static final int ANDROID_SCALE_Y = 16;
-        private static final int ANDROID_TRANSLATION_X = 17;
-        private static final int ANDROID_TRANSLATION_Y = 18;
-        private static final int ANDROID_TRANSLATION_Z = 19;
-        private static final int CURVE_FIT = 4;
-        private static final int FRAME_POSITION = 2;
-        private static final int PROGRESS = 20;
-        private static final int TARGET_ID = 1;
-        private static final int TRANSITION_EASING = 3;
-        private static final int TRANSITION_PATH_ROTATE = 14;
-        private static final int WAVE_OFFSET = 7;
-        private static final int WAVE_PERIOD = 6;
-        private static final int WAVE_SHAPE = 5;
-        private static final int WAVE_VARIES_BY = 8;
-        private static SparseIntArray mAttrMap;
-
-        static {
-            SparseIntArray sparseIntArray = new SparseIntArray();
-            mAttrMap = sparseIntArray;
-            sparseIntArray.append(C0201R.styleable.KeyCycle_motionTarget, 1);
-            mAttrMap.append(C0201R.styleable.KeyCycle_framePosition, 2);
-            mAttrMap.append(C0201R.styleable.KeyCycle_transitionEasing, 3);
-            mAttrMap.append(C0201R.styleable.KeyCycle_curveFit, 4);
-            mAttrMap.append(C0201R.styleable.KeyCycle_waveShape, 5);
-            mAttrMap.append(C0201R.styleable.KeyCycle_wavePeriod, 6);
-            mAttrMap.append(C0201R.styleable.KeyCycle_waveOffset, 7);
-            mAttrMap.append(C0201R.styleable.KeyCycle_waveVariesBy, 8);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_alpha, 9);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_elevation, 10);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_rotation, 11);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_rotationX, 12);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_rotationY, 13);
-            mAttrMap.append(C0201R.styleable.KeyCycle_transitionPathRotate, 14);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_scaleX, 15);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_scaleY, 16);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_translationX, 17);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_translationY, 18);
-            mAttrMap.append(C0201R.styleable.KeyCycle_android_translationZ, 19);
-            mAttrMap.append(C0201R.styleable.KeyCycle_motionProgress, 20);
-        }
-
-        private Loader() {
-        }
-
-        private static void read(KeyCycle keyCycle, TypedArray typedArray) {
-            int indexCount = typedArray.getIndexCount();
-            for (int i = 0; i < indexCount; i++) {
-                int index = typedArray.getIndex(i);
-                switch (mAttrMap.get(index)) {
-                    case 1:
-                        if (MotionLayout.IS_IN_EDIT_MODE) {
-                            int resourceId = typedArray.getResourceId(index, keyCycle.mTargetId);
-                            keyCycle.mTargetId = resourceId;
-                            if (resourceId == -1) {
-                                keyCycle.mTargetString = typedArray.getString(index);
-                            }
-                        } else if (typedArray.peekValue(index).type == 3) {
-                            keyCycle.mTargetString = typedArray.getString(index);
-                        } else {
-                            keyCycle.mTargetId = typedArray.getResourceId(index, keyCycle.mTargetId);
-                        }
-                        break;
-                    case 2:
-                        keyCycle.mFramePosition = typedArray.getInt(index, keyCycle.mFramePosition);
-                        break;
-                    case 3:
-                        keyCycle.mTransitionEasing = typedArray.getString(index);
-                        break;
-                    case 4:
-                        keyCycle.mCurveFit = typedArray.getInteger(index, keyCycle.mCurveFit);
-                        break;
-                    case 5:
-                        keyCycle.mWaveShape = typedArray.getInt(index, keyCycle.mWaveShape);
-                        break;
-                    case 6:
-                        keyCycle.mWavePeriod = typedArray.getFloat(index, keyCycle.mWavePeriod);
-                        break;
-                    case 7:
-                        if (typedArray.peekValue(index).type == 5) {
-                            keyCycle.mWaveOffset = typedArray.getDimension(index, keyCycle.mWaveOffset);
-                        } else {
-                            keyCycle.mWaveOffset = typedArray.getFloat(index, keyCycle.mWaveOffset);
-                        }
-                        break;
-                    case 8:
-                        keyCycle.mWaveVariesBy = typedArray.getInt(index, keyCycle.mWaveVariesBy);
-                        break;
-                    case 9:
-                        keyCycle.mAlpha = typedArray.getFloat(index, keyCycle.mAlpha);
-                        break;
-                    case 10:
-                        keyCycle.mElevation = typedArray.getDimension(index, keyCycle.mElevation);
-                        break;
-                    case 11:
-                        keyCycle.mRotation = typedArray.getFloat(index, keyCycle.mRotation);
-                        break;
-                    case 12:
-                        keyCycle.mRotationX = typedArray.getFloat(index, keyCycle.mRotationX);
-                        break;
-                    case 13:
-                        keyCycle.mRotationY = typedArray.getFloat(index, keyCycle.mRotationY);
-                        break;
-                    case 14:
-                        keyCycle.mTransitionPathRotate = typedArray.getFloat(index, keyCycle.mTransitionPathRotate);
-                        break;
-                    case 15:
-                        keyCycle.mScaleX = typedArray.getFloat(index, keyCycle.mScaleX);
-                        break;
-                    case 16:
-                        keyCycle.mScaleY = typedArray.getFloat(index, keyCycle.mScaleY);
-                        break;
-                    case 17:
-                        keyCycle.mTranslationX = typedArray.getDimension(index, keyCycle.mTranslationX);
-                        break;
-                    case 18:
-                        keyCycle.mTranslationY = typedArray.getDimension(index, keyCycle.mTranslationY);
-                        break;
-                    case 19:
-                        keyCycle.mTranslationZ = typedArray.getDimension(index, keyCycle.mTranslationZ);
-                        break;
-                    case 20:
-                        keyCycle.mProgress = typedArray.getFloat(index, keyCycle.mProgress);
-                        break;
-                    default:
-                        StringBuilder sbM833U = C1643a.m833U("unused attribute 0x");
-                        sbM833U.append(Integer.toHexString(index));
-                        sbM833U.append("   ");
-                        sbM833U.append(mAttrMap.get(index));
-                        Log.e("KeyCycle", sbM833U.toString());
-                        break;
-                }
-            }
-        }
-    }
-
     public KeyCycle() {
         this.mType = 4;
         this.mCustomConstraints = new HashMap<>();
+    }
+
+    public static /* synthetic */ float access$1000(KeyCycle keyCycle) {
+        return keyCycle.mRotationX;
+    }
+
+    public static /* synthetic */ float access$1002(KeyCycle keyCycle, float f) {
+        keyCycle.mRotationX = f;
+        return f;
+    }
+
+    public static /* synthetic */ String access$102(KeyCycle keyCycle, String str) {
+        keyCycle.mTransitionEasing = str;
+        return str;
+    }
+
+    public static /* synthetic */ float access$1100(KeyCycle keyCycle) {
+        return keyCycle.mRotationY;
+    }
+
+    public static /* synthetic */ float access$1102(KeyCycle keyCycle, float f) {
+        keyCycle.mRotationY = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1200(KeyCycle keyCycle) {
+        return keyCycle.mTransitionPathRotate;
+    }
+
+    public static /* synthetic */ float access$1202(KeyCycle keyCycle, float f) {
+        keyCycle.mTransitionPathRotate = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1300(KeyCycle keyCycle) {
+        return keyCycle.mScaleX;
+    }
+
+    public static /* synthetic */ float access$1302(KeyCycle keyCycle, float f) {
+        keyCycle.mScaleX = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1400(KeyCycle keyCycle) {
+        return keyCycle.mScaleY;
+    }
+
+    public static /* synthetic */ float access$1402(KeyCycle keyCycle, float f) {
+        keyCycle.mScaleY = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1500(KeyCycle keyCycle) {
+        return keyCycle.mTranslationX;
+    }
+
+    public static /* synthetic */ float access$1502(KeyCycle keyCycle, float f) {
+        keyCycle.mTranslationX = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1600(KeyCycle keyCycle) {
+        return keyCycle.mTranslationY;
+    }
+
+    public static /* synthetic */ float access$1602(KeyCycle keyCycle, float f) {
+        keyCycle.mTranslationY = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1700(KeyCycle keyCycle) {
+        return keyCycle.mTranslationZ;
+    }
+
+    public static /* synthetic */ float access$1702(KeyCycle keyCycle, float f) {
+        keyCycle.mTranslationZ = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$1800(KeyCycle keyCycle) {
+        return keyCycle.mProgress;
+    }
+
+    public static /* synthetic */ float access$1802(KeyCycle keyCycle, float f) {
+        keyCycle.mProgress = f;
+        return f;
+    }
+
+    public static /* synthetic */ int access$200(KeyCycle keyCycle) {
+        return keyCycle.mCurveFit;
+    }
+
+    public static /* synthetic */ int access$202(KeyCycle keyCycle, int i) {
+        keyCycle.mCurveFit = i;
+        return i;
+    }
+
+    public static /* synthetic */ int access$300(KeyCycle keyCycle) {
+        return keyCycle.mWaveShape;
+    }
+
+    public static /* synthetic */ int access$302(KeyCycle keyCycle, int i) {
+        keyCycle.mWaveShape = i;
+        return i;
+    }
+
+    public static /* synthetic */ float access$400(KeyCycle keyCycle) {
+        return keyCycle.mWavePeriod;
+    }
+
+    public static /* synthetic */ float access$402(KeyCycle keyCycle, float f) {
+        keyCycle.mWavePeriod = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$500(KeyCycle keyCycle) {
+        return keyCycle.mWaveOffset;
+    }
+
+    public static /* synthetic */ float access$502(KeyCycle keyCycle, float f) {
+        keyCycle.mWaveOffset = f;
+        return f;
+    }
+
+    public static /* synthetic */ int access$600(KeyCycle keyCycle) {
+        return keyCycle.mWaveVariesBy;
+    }
+
+    public static /* synthetic */ int access$602(KeyCycle keyCycle, int i) {
+        keyCycle.mWaveVariesBy = i;
+        return i;
+    }
+
+    public static /* synthetic */ float access$700(KeyCycle keyCycle) {
+        return keyCycle.mAlpha;
+    }
+
+    public static /* synthetic */ float access$702(KeyCycle keyCycle, float f) {
+        keyCycle.mAlpha = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$800(KeyCycle keyCycle) {
+        return keyCycle.mElevation;
+    }
+
+    public static /* synthetic */ float access$802(KeyCycle keyCycle, float f) {
+        keyCycle.mElevation = f;
+        return f;
+    }
+
+    public static /* synthetic */ float access$900(KeyCycle keyCycle) {
+        return keyCycle.mRotation;
+    }
+
+    public static /* synthetic */ float access$902(KeyCycle keyCycle, float f) {
+        keyCycle.mRotation = f;
+        return f;
     }
 
     public void addCycleValues(HashMap<String, KeyCycleOscillator> map) {
         for (String str : map.keySet()) {
             if (str.startsWith(Key.CUSTOM)) {
                 ConstraintAttribute constraintAttribute = this.mCustomConstraints.get(str.substring(7));
-                if (constraintAttribute != null && constraintAttribute.getType() == ConstraintAttribute.AttributeType.FLOAT_TYPE) {
+                if (constraintAttribute != null && constraintAttribute.getType() == ConstraintAttribute$AttributeType.FLOAT_TYPE) {
                     map.get(str).setPoint(this.mFramePosition, this.mWaveShape, this.mWaveVariesBy, this.mWavePeriod, this.mWaveOffset, constraintAttribute.getValueToInterpolate(), constraintAttribute);
                 }
             } else {
@@ -201,10 +216,10 @@ public class KeyCycle extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void addValues(HashMap<String, SplineSet> map) {
-        StringBuilder sbM833U = C1643a.m833U("add ");
-        sbM833U.append(map.size());
-        sbM833U.append(" values");
-        Debug.logStack("KeyCycle", sbM833U.toString(), 2);
+        StringBuilder sbU = a.U("add ");
+        sbU.append(map.size());
+        sbU.append(" values");
+        Debug.logStack("KeyCycle", sbU.toString(), 2);
         for (String str : map.keySet()) {
             SplineSet splineSet = map.get(str);
             str.hashCode();
@@ -336,7 +351,7 @@ public class KeyCycle extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0201R.styleable.KeyCycle));
+        KeyCycle$Loader.access$000(this, context.obtainStyledAttributes(attributeSet, R$styleable.KeyCycle));
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key

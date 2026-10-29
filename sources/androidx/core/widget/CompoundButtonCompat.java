@@ -1,9 +1,9 @@
 package androidx.core.widget;
 
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
@@ -21,7 +21,7 @@ public final class CompoundButtonCompat {
 
     @Nullable
     public static Drawable getButtonDrawable(@NonNull CompoundButton compoundButton) {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build$VERSION.SDK_INT >= 23) {
             return compoundButton.getButtonDrawable();
         }
         if (!sButtonDrawableFieldFetched) {
@@ -52,7 +52,7 @@ public final class CompoundButtonCompat {
     }
 
     @Nullable
-    public static PorterDuff.Mode getButtonTintMode(@NonNull CompoundButton compoundButton) {
+    public static PorterDuff$Mode getButtonTintMode(@NonNull CompoundButton compoundButton) {
         return compoundButton.getButtonTintMode();
     }
 
@@ -60,7 +60,7 @@ public final class CompoundButtonCompat {
         compoundButton.setButtonTintList(colorStateList);
     }
 
-    public static void setButtonTintMode(@NonNull CompoundButton compoundButton, @Nullable PorterDuff.Mode mode) {
-        compoundButton.setButtonTintMode(mode);
+    public static void setButtonTintMode(@NonNull CompoundButton compoundButton, @Nullable PorterDuff$Mode porterDuff$Mode) {
+        compoundButton.setButtonTintMode(porterDuff$Mode);
     }
 }

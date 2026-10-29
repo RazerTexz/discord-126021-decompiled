@@ -1,6 +1,6 @@
 package com.discord.models.domain.billing;
 
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: ModelInvoicePreview.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -61,9 +61,9 @@ public final /* data */ class ModelInvoiceDiscount {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelInvoiceDiscount(amount=");
-        sbM833U.append(this.amount);
-        sbM833U.append(", type=");
-        return C1643a.m814B(sbM833U, this.type, ")");
+        StringBuilder sbU = a.U("ModelInvoiceDiscount(amount=");
+        sbU.append(this.amount);
+        sbU.append(", type=");
+        return a.B(sbU, this.type, ")");
     }
 }

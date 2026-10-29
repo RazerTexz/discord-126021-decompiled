@@ -1,14 +1,14 @@
 package com.discord.widgets.chat.list.entries;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
 import com.discord.api.message.embed.MessageEmbed;
 import com.discord.api.role.GuildRole;
 import com.discord.models.member.GuildMember;
 import com.discord.models.message.Message;
-import com.discord.stores.StoreMessageState;
+import com.discord.stores.StoreMessageState$State;
+import d0.z.d.m;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AutoModSystemMessageEmbedEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,19 +19,19 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
     private final MessageEmbed embed;
     private final String key;
     private final Message message;
-    private final StoreMessageState.State messageState;
+    private final StoreMessageState$State messageState;
     private final Map<Long, String> nickOrUsernames;
     private final Map<Long, GuildRole> roles;
     private final int type;
 
-    public AutoModSystemMessageEmbedEntry(Channel channel, Message message, StoreMessageState.State state, MessageEmbed messageEmbed, GuildMember guildMember, boolean z2, Map<Long, GuildRole> map, Map<Long, String> map2) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(message, "message");
-        C12238m.checkNotNullParameter(messageEmbed, "embed");
-        C12238m.checkNotNullParameter(map2, "nickOrUsernames");
+    public AutoModSystemMessageEmbedEntry(Channel channel, Message message, StoreMessageState$State storeMessageState$State, MessageEmbed messageEmbed, GuildMember guildMember, boolean z2, Map<Long, GuildRole> map, Map<Long, String> map2) {
+        m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(messageEmbed, "embed");
+        m.checkNotNullParameter(map2, "nickOrUsernames");
         this.channel = channel;
         this.message = message;
-        this.messageState = state;
+        this.messageState = storeMessageState$State;
         this.embed = messageEmbed;
         this.author = guildMember;
         this.animateEmojis = z2;
@@ -49,11 +49,16 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
         return this.nickOrUsernames;
     }
 
-    public final AutoModSystemMessageEmbedEntry copy(Channel channel, Message message, StoreMessageState.State messageState, MessageEmbed embed, GuildMember author, boolean animateEmojis, Map<Long, GuildRole> roles, Map<Long, String> nickOrUsernames) {
-        C12238m.checkNotNullParameter(channel, "channel");
-        C12238m.checkNotNullParameter(message, "message");
-        C12238m.checkNotNullParameter(embed, "embed");
-        C12238m.checkNotNullParameter(nickOrUsernames, "nickOrUsernames");
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ AutoModSystemMessageEmbedEntry copy$default(AutoModSystemMessageEmbedEntry autoModSystemMessageEmbedEntry, Channel channel, Message message, StoreMessageState$State storeMessageState$State, MessageEmbed messageEmbed, GuildMember guildMember, boolean z2, Map map, Map map2, int i, Object obj) {
+        return autoModSystemMessageEmbedEntry.copy((i & 1) != 0 ? autoModSystemMessageEmbedEntry.channel : channel, (i & 2) != 0 ? autoModSystemMessageEmbedEntry.message : message, (i & 4) != 0 ? autoModSystemMessageEmbedEntry.messageState : storeMessageState$State, (i & 8) != 0 ? autoModSystemMessageEmbedEntry.embed : messageEmbed, (i & 16) != 0 ? autoModSystemMessageEmbedEntry.author : guildMember, (i & 32) != 0 ? autoModSystemMessageEmbedEntry.animateEmojis : z2, (i & 64) != 0 ? autoModSystemMessageEmbedEntry.roles : map, (i & 128) != 0 ? autoModSystemMessageEmbedEntry.nickOrUsernames : map2);
+    }
+
+    public final AutoModSystemMessageEmbedEntry copy(Channel channel, Message message, StoreMessageState$State messageState, MessageEmbed embed, GuildMember author, boolean animateEmojis, Map<Long, GuildRole> roles, Map<Long, String> nickOrUsernames) {
+        m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(message, "message");
+        m.checkNotNullParameter(embed, "embed");
+        m.checkNotNullParameter(nickOrUsernames, "nickOrUsernames");
         return new AutoModSystemMessageEmbedEntry(channel, message, messageState, embed, author, animateEmojis, roles, nickOrUsernames);
     }
 
@@ -65,7 +70,7 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
             return false;
         }
         AutoModSystemMessageEmbedEntry autoModSystemMessageEmbedEntry = (AutoModSystemMessageEmbedEntry) other;
-        return C12238m.areEqual(this.channel, autoModSystemMessageEmbedEntry.channel) && C12238m.areEqual(this.message, autoModSystemMessageEmbedEntry.message) && C12238m.areEqual(this.messageState, autoModSystemMessageEmbedEntry.messageState) && C12238m.areEqual(this.embed, autoModSystemMessageEmbedEntry.embed) && C12238m.areEqual(this.author, autoModSystemMessageEmbedEntry.author) && this.animateEmojis == autoModSystemMessageEmbedEntry.animateEmojis && C12238m.areEqual(this.roles, autoModSystemMessageEmbedEntry.roles) && C12238m.areEqual(this.nickOrUsernames, autoModSystemMessageEmbedEntry.nickOrUsernames);
+        return m.areEqual(this.channel, autoModSystemMessageEmbedEntry.channel) && m.areEqual(this.message, autoModSystemMessageEmbedEntry.message) && m.areEqual(this.messageState, autoModSystemMessageEmbedEntry.messageState) && m.areEqual(this.embed, autoModSystemMessageEmbedEntry.embed) && m.areEqual(this.author, autoModSystemMessageEmbedEntry.author) && this.animateEmojis == autoModSystemMessageEmbedEntry.animateEmojis && m.areEqual(this.roles, autoModSystemMessageEmbedEntry.roles) && m.areEqual(this.nickOrUsernames, autoModSystemMessageEmbedEntry.nickOrUsernames);
     }
 
     /* JADX INFO: renamed from: component6, reason: from getter */
@@ -119,11 +124,11 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
-    public final StoreMessageState.State getMessageState() {
+    public final StoreMessageState$State getMessageState() {
         return this.messageState;
     }
 
-    public final StoreMessageState.State getMessageState() {
+    public final StoreMessageState$State getMessageState() {
         return this.messageState;
     }
 
@@ -150,8 +155,8 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
         int iHashCode = (channel != null ? channel.hashCode() : 0) * 31;
         Message message = this.message;
         int iHashCode2 = (iHashCode + (message != null ? message.hashCode() : 0)) * 31;
-        StoreMessageState.State state = this.messageState;
-        int iHashCode3 = (iHashCode2 + (state != null ? state.hashCode() : 0)) * 31;
+        StoreMessageState$State storeMessageState$State = this.messageState;
+        int iHashCode3 = (iHashCode2 + (storeMessageState$State != null ? storeMessageState$State.hashCode() : 0)) * 31;
         MessageEmbed messageEmbed = this.embed;
         int iHashCode4 = (iHashCode3 + (messageEmbed != null ? messageEmbed.hashCode() : 0)) * 31;
         GuildMember guildMember = this.author;
@@ -169,21 +174,21 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("AutoModSystemMessageEmbedEntry(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", message=");
-        sbM833U.append(this.message);
-        sbM833U.append(", messageState=");
-        sbM833U.append(this.messageState);
-        sbM833U.append(", embed=");
-        sbM833U.append(this.embed);
-        sbM833U.append(", author=");
-        sbM833U.append(this.author);
-        sbM833U.append(", animateEmojis=");
-        sbM833U.append(this.animateEmojis);
-        sbM833U.append(", roles=");
-        sbM833U.append(this.roles);
-        sbM833U.append(", nickOrUsernames=");
-        return C1643a.m825M(sbM833U, this.nickOrUsernames, ")");
+        StringBuilder sbU = a.U("AutoModSystemMessageEmbedEntry(channel=");
+        sbU.append(this.channel);
+        sbU.append(", message=");
+        sbU.append(this.message);
+        sbU.append(", messageState=");
+        sbU.append(this.messageState);
+        sbU.append(", embed=");
+        sbU.append(this.embed);
+        sbU.append(", author=");
+        sbU.append(this.author);
+        sbU.append(", animateEmojis=");
+        sbU.append(this.animateEmojis);
+        sbU.append(", roles=");
+        sbU.append(this.roles);
+        sbU.append(", nickOrUsernames=");
+        return a.M(sbU, this.nickOrUsernames, ")");
     }
 }

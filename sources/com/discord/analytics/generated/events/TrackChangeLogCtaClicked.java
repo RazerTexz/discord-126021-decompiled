@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackChangeLogCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchem
             return false;
         }
         TrackChangeLogCtaClicked trackChangeLogCtaClicked = (TrackChangeLogCtaClicked) other;
-        return C12238m.areEqual(this.changeLogId, trackChangeLogCtaClicked.changeLogId) && C12238m.areEqual(this.secondsOpen, trackChangeLogCtaClicked.secondsOpen) && C12238m.areEqual(this.maxScrolledPercentage, trackChangeLogCtaClicked.maxScrolledPercentage) && C12238m.areEqual(this.ctaType, trackChangeLogCtaClicked.ctaType) && C12238m.areEqual(this.target, trackChangeLogCtaClicked.target);
+        return m.areEqual(this.changeLogId, trackChangeLogCtaClicked.changeLogId) && m.areEqual(this.secondsOpen, trackChangeLogCtaClicked.secondsOpen) && m.areEqual(this.maxScrolledPercentage, trackChangeLogCtaClicked.maxScrolledPercentage) && m.areEqual(this.ctaType, trackChangeLogCtaClicked.ctaType) && m.areEqual(this.target, trackChangeLogCtaClicked.target);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,15 +48,15 @@ public final /* data */ class TrackChangeLogCtaClicked implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackChangeLogCtaClicked(changeLogId=");
-        sbM833U.append(this.changeLogId);
-        sbM833U.append(", secondsOpen=");
-        sbM833U.append(this.secondsOpen);
-        sbM833U.append(", maxScrolledPercentage=");
-        sbM833U.append(this.maxScrolledPercentage);
-        sbM833U.append(", ctaType=");
-        sbM833U.append(this.ctaType);
-        sbM833U.append(", target=");
-        return C1643a.m817E(sbM833U, this.target, ")");
+        StringBuilder sbU = a.U("TrackChangeLogCtaClicked(changeLogId=");
+        sbU.append(this.changeLogId);
+        sbU.append(", secondsOpen=");
+        sbU.append(this.secondsOpen);
+        sbU.append(", maxScrolledPercentage=");
+        sbU.append(this.maxScrolledPercentage);
+        sbU.append(", ctaType=");
+        sbU.append(this.ctaType);
+        sbU.append(", target=");
+        return a.E(sbU, this.target, ")");
     }
 }

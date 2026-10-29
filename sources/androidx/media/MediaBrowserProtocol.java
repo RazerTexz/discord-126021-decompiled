@@ -1,9 +1,10 @@
 package androidx.media;
 
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY})
+@RestrictTo({RestrictTo$Scope.LIBRARY})
 public class MediaBrowserProtocol {
     public static final int CLIENT_MSG_ADD_SUBSCRIPTION = 3;
     public static final int CLIENT_MSG_CONNECT = 1;

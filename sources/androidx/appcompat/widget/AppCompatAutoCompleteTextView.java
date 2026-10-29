@@ -1,12 +1,12 @@
 package androidx.appcompat.widget;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.ActionMode;
+import android.view.ActionMode$Callback;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.AutoCompleteTextView;
@@ -14,7 +14,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.widget.TextViewCompat;
@@ -23,7 +23,7 @@ import androidx.core.widget.TextViewCompat;
 public class AppCompatAutoCompleteTextView extends AutoCompleteTextView implements TintableBackgroundView {
     private final AppCompatBackgroundHelper mBackgroundTintHelper;
     private final AppCompatTextHelper mTextHelper;
-    private static final int[] TINT_ATTRS = {R.attr.popupBackground};
+    private static final int[] TINT_ATTRS = {R$attr.popupBackground};
 
     public AppCompatAutoCompleteTextView(@NonNull Context context) {
         this(context, null);
@@ -44,7 +44,7 @@ public class AppCompatAutoCompleteTextView extends AutoCompleteTextView implemen
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public ColorStateList getSupportBackgroundTintList() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -55,8 +55,8 @@ public class AppCompatAutoCompleteTextView extends AutoCompleteTextView implemen
 
     @Override // androidx.core.view.TintableBackgroundView
     @Nullable
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public PorterDuff.Mode getSupportBackgroundTintMode() {
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public PorterDuff$Mode getSupportBackgroundTintMode() {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
             return appCompatBackgroundHelper.getSupportBackgroundTintMode();
@@ -88,8 +88,8 @@ public class AppCompatAutoCompleteTextView extends AutoCompleteTextView implemen
     }
 
     @Override // android.widget.TextView
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, callback));
+    public void setCustomSelectionActionModeCallback(ActionMode$Callback actionMode$Callback) {
+        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, actionMode$Callback));
     }
 
     @Override // android.widget.AutoCompleteTextView
@@ -98,7 +98,7 @@ public class AppCompatAutoCompleteTextView extends AutoCompleteTextView implemen
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public void setSupportBackgroundTintList(@Nullable ColorStateList colorStateList) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
@@ -107,11 +107,11 @@ public class AppCompatAutoCompleteTextView extends AutoCompleteTextView implemen
     }
 
     @Override // androidx.core.view.TintableBackgroundView
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public void setSupportBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+    public void setSupportBackgroundTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
         AppCompatBackgroundHelper appCompatBackgroundHelper = this.mBackgroundTintHelper;
         if (appCompatBackgroundHelper != null) {
-            appCompatBackgroundHelper.setSupportBackgroundTintMode(mode);
+            appCompatBackgroundHelper.setSupportBackgroundTintMode(porterDuff$Mode);
         }
     }
 
@@ -125,7 +125,7 @@ public class AppCompatAutoCompleteTextView extends AutoCompleteTextView implemen
     }
 
     public AppCompatAutoCompleteTextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0051R.attr.autoCompleteTextViewStyle);
+        this(context, attributeSet, androidx.appcompat.R$attr.autoCompleteTextViewStyle);
     }
 
     public AppCompatAutoCompleteTextView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {

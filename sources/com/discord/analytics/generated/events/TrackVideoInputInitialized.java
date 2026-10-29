@@ -1,11 +1,11 @@
 package com.discord.analytics.generated.events;
 
 import androidx.appcompat.widget.ActivityChooserModel;
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVideoInputInitialized.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,7 +25,7 @@ public final /* data */ class TrackVideoInputInitialized implements AnalyticsSch
             return false;
         }
         TrackVideoInputInitialized trackVideoInputInitialized = (TrackVideoInputInitialized) other;
-        return C12238m.areEqual(this.deviceName, trackVideoInputInitialized.deviceName) && C12238m.areEqual(this.timeToFirstFrameMs, trackVideoInputInitialized.timeToFirstFrameMs) && C12238m.areEqual(this.timedOut, trackVideoInputInitialized.timedOut) && C12238m.areEqual(this.activity, trackVideoInputInitialized.activity);
+        return m.areEqual(this.deviceName, trackVideoInputInitialized.deviceName) && m.areEqual(this.timeToFirstFrameMs, trackVideoInputInitialized.timeToFirstFrameMs) && m.areEqual(this.timedOut, trackVideoInputInitialized.timedOut) && m.areEqual(this.activity, trackVideoInputInitialized.activity);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -46,15 +46,15 @@ public final /* data */ class TrackVideoInputInitialized implements AnalyticsSch
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVideoInputInitialized(deviceName=");
-        sbM833U.append(this.deviceName);
-        sbM833U.append(", timeToFirstFrameMs=");
-        sbM833U.append(this.timeToFirstFrameMs);
-        sbM833U.append(", timedOut=");
-        sbM833U.append(this.timedOut);
-        sbM833U.append(", activity=");
-        sbM833U.append(this.activity);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("TrackVideoInputInitialized(deviceName=");
+        sbU.append(this.deviceName);
+        sbU.append(", timeToFirstFrameMs=");
+        sbU.append(this.timeToFirstFrameMs);
+        sbU.append(", timedOut=");
+        sbU.append(this.timedOut);
+        sbU.append(", activity=");
+        sbU.append(this.activity);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

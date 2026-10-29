@@ -2,10 +2,10 @@ package org.webrtc;
 
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
-import android.os.Build;
+import android.os.Build$VERSION;
 import androidx.annotation.Nullable;
+import h0.c.q0;
 import java.util.ArrayList;
-import p617h0.p628c.C12483q0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
@@ -15,16 +15,16 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     private final Predicate<MediaCodecInfo> codecAllowedPredicate;
 
     @Nullable
-    private final EglBase.Context sharedContext;
+    private final EglBase$Context sharedContext;
 
-    public MediaCodecVideoDecoderFactory(@Nullable EglBase.Context context, @Nullable Predicate<MediaCodecInfo> predicate) {
-        this.sharedContext = context;
+    public MediaCodecVideoDecoderFactory(@Nullable EglBase$Context eglBase$Context, @Nullable Predicate<MediaCodecInfo> predicate) {
+        this.sharedContext = eglBase$Context;
         this.codecAllowedPredicate = predicate;
     }
 
     @Override // org.webrtc.VideoDecoderFactory
     public /* synthetic */ VideoDecoder createDecoder(String str) {
-        return C12483q0.m10671a(this, str);
+        return q0.a(this, str);
     }
 
     @Override // org.webrtc.VideoDecoderFactory
@@ -49,7 +49,7 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
             try {
                 codecInfoAt = MediaCodecList.getCodecInfoAt(i);
             } catch (IllegalArgumentException e) {
-                Logging.m11029e(TAG, "Cannot retrieve decoder codec info", e);
+                Logging.e(TAG, "Cannot retrieve decoder codec info", e);
             }
             if (codecInfoAt != null && !codecInfoAt.isEncoder() && isSupportedCodec(codecInfoAt, videoCodecMimeType)) {
                 return codecInfoAt;
@@ -86,7 +86,7 @@ public class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
 
     private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
         String name = mediaCodecInfo.getName();
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (name.startsWith(MediaCodecUtils.QCOM_PREFIX)) {
             return true;
         }

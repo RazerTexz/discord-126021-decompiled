@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSubscriptionCodeUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackSubscriptionCodeUsed implements AnalyticsSche
             return false;
         }
         TrackSubscriptionCodeUsed trackSubscriptionCodeUsed = (TrackSubscriptionCodeUsed) other;
-        return C12238m.areEqual(this.couponCode, trackSubscriptionCodeUsed.couponCode) && C12238m.areEqual(this.source, trackSubscriptionCodeUsed.source) && C12238m.areEqual(this.subscriptionType, trackSubscriptionCodeUsed.subscriptionType) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionCodeUsed.currentPeriodEnd);
+        return m.areEqual(this.couponCode, trackSubscriptionCodeUsed.couponCode) && m.areEqual(this.source, trackSubscriptionCodeUsed.source) && m.areEqual(this.subscriptionType, trackSubscriptionCodeUsed.subscriptionType) && m.areEqual(this.currentPeriodEnd, trackSubscriptionCodeUsed.currentPeriodEnd);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackSubscriptionCodeUsed implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSubscriptionCodeUsed(couponCode=");
-        sbM833U.append(this.couponCode);
-        sbM833U.append(", source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", subscriptionType=");
-        sbM833U.append(this.subscriptionType);
-        sbM833U.append(", currentPeriodEnd=");
-        return C1643a.m819G(sbM833U, this.currentPeriodEnd, ")");
+        StringBuilder sbU = a.U("TrackSubscriptionCodeUsed(couponCode=");
+        sbU.append(this.couponCode);
+        sbU.append(", source=");
+        sbU.append(this.source);
+        sbU.append(", subscriptionType=");
+        sbU.append(this.subscriptionType);
+        sbU.append(", currentPeriodEnd=");
+        return a.G(sbU, this.currentPeriodEnd, ")");
     }
 }

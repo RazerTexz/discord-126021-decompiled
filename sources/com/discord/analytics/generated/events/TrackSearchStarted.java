@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -9,8 +10,7 @@ import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSearchStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,6 +28,11 @@ public final /* data */ class TrackSearchStarted implements AnalyticsSchema, Tra
     private TrackGuild trackGuild;
     private TrackLocationMetadata trackLocationMetadata;
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,7 +41,7 @@ public final /* data */ class TrackSearchStarted implements AnalyticsSchema, Tra
             return false;
         }
         TrackSearchStarted trackSearchStarted = (TrackSearchStarted) other;
-        return C12238m.areEqual(this.searchType, trackSearchStarted.searchType) && C12238m.areEqual(this.loadId, trackSearchStarted.loadId) && C12238m.areEqual(this.prevSearchId, trackSearchStarted.prevSearchId) && this.modifiers == trackSearchStarted.modifiers && C12238m.areEqual(this.numModifiers, trackSearchStarted.numModifiers) && C12238m.areEqual(this.previewEnabled, trackSearchStarted.previewEnabled) && C12238m.areEqual(this.categoryId, trackSearchStarted.categoryId);
+        return m.areEqual(this.searchType, trackSearchStarted.searchType) && m.areEqual(this.loadId, trackSearchStarted.loadId) && m.areEqual(this.prevSearchId, trackSearchStarted.prevSearchId) && this.modifiers == trackSearchStarted.modifiers && m.areEqual(this.numModifiers, trackSearchStarted.numModifiers) && m.areEqual(this.previewEnabled, trackSearchStarted.previewEnabled) && m.areEqual(this.categoryId, trackSearchStarted.categoryId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -68,26 +73,20 @@ public final /* data */ class TrackSearchStarted implements AnalyticsSchema, Tra
         return iHashCode5 + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSearchStarted(searchType=");
-        sbM833U.append(this.searchType);
-        sbM833U.append(", loadId=");
-        sbM833U.append(this.loadId);
-        sbM833U.append(", prevSearchId=");
-        sbM833U.append(this.prevSearchId);
-        sbM833U.append(", modifiers=");
-        sbM833U.append(this.modifiers);
-        sbM833U.append(", numModifiers=");
-        sbM833U.append(this.numModifiers);
-        sbM833U.append(", previewEnabled=");
-        sbM833U.append(this.previewEnabled);
-        sbM833U.append(", categoryId=");
-        return C1643a.m819G(sbM833U, this.categoryId, ")");
+        StringBuilder sbU = a.U("TrackSearchStarted(searchType=");
+        sbU.append(this.searchType);
+        sbU.append(", loadId=");
+        sbU.append(this.loadId);
+        sbU.append(", prevSearchId=");
+        sbU.append(this.prevSearchId);
+        sbU.append(", modifiers=");
+        sbU.append(this.modifiers);
+        sbU.append(", numModifiers=");
+        sbU.append(this.numModifiers);
+        sbU.append(", previewEnabled=");
+        sbU.append(this.previewEnabled);
+        sbU.append(", categoryId=");
+        return a.G(sbU, this.categoryId, ")");
     }
 }

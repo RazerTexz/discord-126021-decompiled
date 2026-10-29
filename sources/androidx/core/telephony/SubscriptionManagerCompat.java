@@ -1,8 +1,7 @@
 package androidx.core.telephony;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.telephony.SubscriptionManager;
-import androidx.annotation.DoNotInline;
 import androidx.annotation.RequiresApi;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,17 +11,6 @@ import java.lang.reflect.Method;
 public class SubscriptionManagerCompat {
     private static Method sGetSlotIndexMethod;
 
-    @RequiresApi(29)
-    public class Api29Impl {
-        private Api29Impl() {
-        }
-
-        @DoNotInline
-        public static int getSlotIndex(int i) {
-            return SubscriptionManager.getSlotIndex(i);
-        }
-    }
-
     private SubscriptionManagerCompat() {
     }
 
@@ -30,9 +18,9 @@ public class SubscriptionManagerCompat {
         if (i == -1) {
             return -1;
         }
-        int i2 = Build.VERSION.SDK_INT;
+        int i2 = Build$VERSION.SDK_INT;
         if (i2 >= 29) {
-            return Api29Impl.getSlotIndex(i);
+            return SubscriptionManagerCompat$Api29Impl.getSlotIndex(i);
         }
         try {
             if (sGetSlotIndexMethod == null) {

@@ -12,37 +12,33 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class VoiceUserListItemEmbeddedActivityBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f15614a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final SimpleDraweeView f15615b;
+    public final SimpleDraweeView f2219b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15616c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ConstraintLayout f15617d;
+    public final ConstraintLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final PileView f15618e;
+    public final PileView e;
 
     public VoiceUserListItemEmbeddedActivityBinding(@NonNull FrameLayout frameLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView, @NonNull ConstraintLayout constraintLayout, @NonNull PileView pileView) {
-        this.f15614a = frameLayout;
-        this.f15615b = simpleDraweeView;
-        this.f15616c = textView;
-        this.f15617d = constraintLayout;
-        this.f15618e = pileView;
+        this.a = frameLayout;
+        this.f2219b = simpleDraweeView;
+        this.c = textView;
+        this.d = constraintLayout;
+        this.e = pileView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15614a;
+        return this.a;
     }
 }

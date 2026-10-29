@@ -1,9 +1,10 @@
 package co.discord.media_engine;
 
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import p507d0.p592z.p594d.C12238m;
+import java.util.Map$Entry;
 
 /* JADX INFO: compiled from: VoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -14,8 +15,8 @@ public final class VoiceQuality {
 
     public final void getBufferStats(Map<String, Object> result) {
         PlayoutMetric audioJitterBuffer;
-        C12238m.checkNotNullParameter(result, "result");
-        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        m.checkNotNullParameter(result, "result");
+        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         InboundBufferStats bufferStats = null;
         while (it.hasNext()) {
             InboundAudio value = it.next().getValue();
@@ -28,15 +29,15 @@ public final class VoiceQuality {
                 }
             }
         }
-        VoiceQualityKt.explodePlayoutMetric("audio_jitter_buffer", bufferStats != null ? bufferStats.getAudioJitterBuffer() : null, result);
-        VoiceQualityKt.explodePlayoutMetric("audio_jitter_target", bufferStats != null ? bufferStats.getAudioJitterTarget() : null, result);
-        VoiceQualityKt.explodePlayoutMetric("audio_jitter_delay", bufferStats != null ? bufferStats.getAudioJitterDelay() : null, result);
-        VoiceQualityKt.explodePlayoutMetric("relative_reception_delay", bufferStats != null ? bufferStats.getRelativeReceptionDelay() : null, result);
-        VoiceQualityKt.explodePlayoutMetric("relative_playout_delay", bufferStats != null ? bufferStats.getRelativePlayoutDelay() : null, result);
+        VoiceQualityKt.access$explodePlayoutMetric("audio_jitter_buffer", bufferStats != null ? bufferStats.getAudioJitterBuffer() : null, result);
+        VoiceQualityKt.access$explodePlayoutMetric("audio_jitter_target", bufferStats != null ? bufferStats.getAudioJitterTarget() : null, result);
+        VoiceQualityKt.access$explodePlayoutMetric("audio_jitter_delay", bufferStats != null ? bufferStats.getAudioJitterDelay() : null, result);
+        VoiceQualityKt.access$explodePlayoutMetric("relative_reception_delay", bufferStats != null ? bufferStats.getRelativeReceptionDelay() : null, result);
+        VoiceQualityKt.access$explodePlayoutMetric("relative_playout_delay", bufferStats != null ? bufferStats.getRelativePlayoutDelay() : null, result);
     }
 
     public final void getDurationStats(Map<String, Object> result) {
-        C12238m.checkNotNullParameter(result, "result");
+        m.checkNotNullParameter(result, "result");
         result.put("duration_listening", Integer.valueOf(this._duration.getListening()));
         result.put("duration_speaking", Integer.valueOf(this._duration.getSpeaking()));
         result.put("duration_participation", Integer.valueOf(this._duration.getParticipation()));
@@ -44,8 +45,8 @@ public final class VoiceQuality {
     }
 
     public final void getFrameOpStats(Map<String, Object> result) {
-        C12238m.checkNotNullParameter(result, "result");
-        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        m.checkNotNullParameter(result, "result");
+        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         Long lValueOf = null;
         Long lValueOf2 = null;
         Long lValueOf3 = null;
@@ -109,7 +110,7 @@ public final class VoiceQuality {
 
     /* JADX WARN: Multi-variable type inference failed */
     public final void getMosStats(Map<String, Object> result) {
-        C12238m.checkNotNullParameter(result, "result");
+        m.checkNotNullParameter(result, "result");
         Integer[] numArr = new Integer[5];
         Object obj = 0;
         numArr[0] = obj;
@@ -117,7 +118,7 @@ public final class VoiceQuality {
         numArr[2] = obj;
         numArr[3] = obj;
         numArr[4] = obj;
-        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         double mosSum = 0.0d;
         int mosCount = 0;
         while (it.hasNext()) {
@@ -136,8 +137,8 @@ public final class VoiceQuality {
     }
 
     public final void getPacketStats(Map<String, Object> result) {
-        C12238m.checkNotNullParameter(result, "result");
-        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        m.checkNotNullParameter(result, "result");
+        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         long packetsReceived = 0;
         long packetsLost = 0;
         while (it.hasNext()) {
@@ -158,11 +159,11 @@ public final class VoiceQuality {
         long j;
         InboundAudio inboundAudio;
         double d;
-        C12238m.checkNotNullParameter(stats, "stats");
+        m.checkNotNullParameter(stats, "stats");
         Duration duration = this._duration;
         duration.setConnected(duration.getConnected() + 1);
         long packetsSent = this._outboundStats.getPacketsSent();
-        Iterator<Map.Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
+        Iterator<Map$Entry<String, InboundAudio>> it = this._inboundStats.entrySet().iterator();
         long j2 = 0;
         long packetsReceived = 0;
         while (it.hasNext()) {
@@ -170,9 +171,9 @@ public final class VoiceQuality {
         }
         OutboundRtpAudio outboundRtpAudio = stats.getOutboundRtpAudio();
         this._outboundStats = outboundRtpAudio != null ? new OutboundAudio(outboundRtpAudio.getPacketsSent(), outboundRtpAudio.getPacketsLost()) : new OutboundAudio(0L, 0);
-        Iterator<Map.Entry<String, InboundRtpAudio>> it2 = stats.getInboundRtpAudio().entrySet().iterator();
+        Iterator<Map$Entry<String, InboundRtpAudio>> it2 = stats.getInboundRtpAudio().entrySet().iterator();
         while (it2.hasNext()) {
-            Map.Entry<String, InboundRtpAudio> next = it2.next();
+            Map$Entry<String, InboundRtpAudio> next = it2.next();
             String key = next.getKey();
             InboundRtpAudio value = next.getValue();
             Transport transport = stats.getTransport();
@@ -192,10 +193,10 @@ public final class VoiceQuality {
                 if (packetsReceived3 <= 0 || packetsLost2 < 0) {
                     d = 0.0d;
                 } else {
-                    double d_calculateMos = VoiceQualityKt._calculateMos(ping + jitterBuffer, VoiceQualityKt.clamp(packetsLost2 / (packetsReceived3 + packetsLost2), 0.0d, 1.0d));
-                    int iFloor = (int) Math.floor(d_calculateMos);
+                    double dAccess$_calculateMos = VoiceQualityKt.access$_calculateMos(ping + jitterBuffer, VoiceQualityKt.access$clamp(packetsLost2 / (packetsReceived3 + packetsLost2), 0.0d, 1.0d));
+                    int iFloor = (int) Math.floor(dAccess$_calculateMos);
                     mosBuckets[iFloor] = Integer.valueOf(mosBuckets[iFloor].intValue() + 1);
-                    d = d_calculateMos;
+                    d = dAccess$_calculateMos;
                 }
                 inboundAudio = new InboundAudio(packetsReceived2, packetsLost, d, inboundAudio2.getMosSum() + d, inboundAudio2.getMosCount() + (d > ((double) 0) ? 1 : 0), mosBuckets, inboundBufferStats, inboundFrameOpStats);
             } else {
@@ -215,7 +216,7 @@ public final class VoiceQuality {
         } else {
             z2 = false;
         }
-        Iterator<Map.Entry<String, InboundAudio>> it3 = this._inboundStats.entrySet().iterator();
+        Iterator<Map$Entry<String, InboundAudio>> it3 = this._inboundStats.entrySet().iterator();
         long packetsReceived4 = j3;
         while (it3.hasNext()) {
             packetsReceived4 += it3.next().getValue().getPacketsReceived();

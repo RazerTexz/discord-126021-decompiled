@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGooglePlaySubscriptionNotificationReceived.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -33,7 +33,7 @@ public final /* data */ class TrackGooglePlaySubscriptionNotificationReceived im
             return false;
         }
         TrackGooglePlaySubscriptionNotificationReceived trackGooglePlaySubscriptionNotificationReceived = (TrackGooglePlaySubscriptionNotificationReceived) other;
-        return C12238m.areEqual(this.subscriptionId, trackGooglePlaySubscriptionNotificationReceived.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackGooglePlaySubscriptionNotificationReceived.subscriptionType) && C12238m.areEqual(this.paymentGateway, trackGooglePlaySubscriptionNotificationReceived.paymentGateway) && C12238m.areEqual(this.paymentGatewayPlanId, trackGooglePlaySubscriptionNotificationReceived.paymentGatewayPlanId) && C12238m.areEqual(this.messageId, trackGooglePlaySubscriptionNotificationReceived.messageId) && C12238m.areEqual(this.version, trackGooglePlaySubscriptionNotificationReceived.version) && C12238m.areEqual(this.packageName, trackGooglePlaySubscriptionNotificationReceived.packageName) && C12238m.areEqual(this.eventTime, trackGooglePlaySubscriptionNotificationReceived.eventTime) && C12238m.areEqual(this.notificationVersion, trackGooglePlaySubscriptionNotificationReceived.notificationVersion) && C12238m.areEqual(this.notificationType, trackGooglePlaySubscriptionNotificationReceived.notificationType) && C12238m.areEqual(this.purchaseToken, trackGooglePlaySubscriptionNotificationReceived.purchaseToken) && C12238m.areEqual(this.subscriptionSkuId, trackGooglePlaySubscriptionNotificationReceived.subscriptionSkuId) && C12238m.areEqual(this.orderId, trackGooglePlaySubscriptionNotificationReceived.orderId);
+        return m.areEqual(this.subscriptionId, trackGooglePlaySubscriptionNotificationReceived.subscriptionId) && m.areEqual(this.subscriptionType, trackGooglePlaySubscriptionNotificationReceived.subscriptionType) && m.areEqual(this.paymentGateway, trackGooglePlaySubscriptionNotificationReceived.paymentGateway) && m.areEqual(this.paymentGatewayPlanId, trackGooglePlaySubscriptionNotificationReceived.paymentGatewayPlanId) && m.areEqual(this.messageId, trackGooglePlaySubscriptionNotificationReceived.messageId) && m.areEqual(this.version, trackGooglePlaySubscriptionNotificationReceived.version) && m.areEqual(this.packageName, trackGooglePlaySubscriptionNotificationReceived.packageName) && m.areEqual(this.eventTime, trackGooglePlaySubscriptionNotificationReceived.eventTime) && m.areEqual(this.notificationVersion, trackGooglePlaySubscriptionNotificationReceived.notificationVersion) && m.areEqual(this.notificationType, trackGooglePlaySubscriptionNotificationReceived.notificationType) && m.areEqual(this.purchaseToken, trackGooglePlaySubscriptionNotificationReceived.purchaseToken) && m.areEqual(this.subscriptionSkuId, trackGooglePlaySubscriptionNotificationReceived.subscriptionSkuId) && m.areEqual(this.orderId, trackGooglePlaySubscriptionNotificationReceived.orderId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -72,31 +72,31 @@ public final /* data */ class TrackGooglePlaySubscriptionNotificationReceived im
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGooglePlaySubscriptionNotificationReceived(subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", subscriptionType=");
-        sbM833U.append(this.subscriptionType);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", paymentGatewayPlanId=");
-        sbM833U.append(this.paymentGatewayPlanId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", version=");
-        sbM833U.append(this.version);
-        sbM833U.append(", packageName=");
-        sbM833U.append(this.packageName);
-        sbM833U.append(", eventTime=");
-        sbM833U.append(this.eventTime);
-        sbM833U.append(", notificationVersion=");
-        sbM833U.append(this.notificationVersion);
-        sbM833U.append(", notificationType=");
-        sbM833U.append(this.notificationType);
-        sbM833U.append(", purchaseToken=");
-        sbM833U.append(this.purchaseToken);
-        sbM833U.append(", subscriptionSkuId=");
-        sbM833U.append(this.subscriptionSkuId);
-        sbM833U.append(", orderId=");
-        return C1643a.m817E(sbM833U, this.orderId, ")");
+        StringBuilder sbU = a.U("TrackGooglePlaySubscriptionNotificationReceived(subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", subscriptionType=");
+        sbU.append(this.subscriptionType);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", paymentGatewayPlanId=");
+        sbU.append(this.paymentGatewayPlanId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", version=");
+        sbU.append(this.version);
+        sbU.append(", packageName=");
+        sbU.append(this.packageName);
+        sbU.append(", eventTime=");
+        sbU.append(this.eventTime);
+        sbU.append(", notificationVersion=");
+        sbU.append(this.notificationVersion);
+        sbU.append(", notificationType=");
+        sbU.append(this.notificationType);
+        sbU.append(", purchaseToken=");
+        sbU.append(this.purchaseToken);
+        sbU.append(", subscriptionSkuId=");
+        sbU.append(this.subscriptionSkuId);
+        sbU.append(", orderId=");
+        return a.E(sbU, this.orderId, ")");
     }
 }

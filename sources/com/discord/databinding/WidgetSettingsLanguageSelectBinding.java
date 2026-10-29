@@ -9,22 +9,21 @@ import com.discord.utilities.view.recycler.MaxHeightRecyclerView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetSettingsLanguageSelectBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f17999a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaxHeightRecyclerView f18000b;
+    public final MaxHeightRecyclerView f2628b;
 
     public WidgetSettingsLanguageSelectBinding(@NonNull NestedScrollView nestedScrollView, @NonNull MaxHeightRecyclerView maxHeightRecyclerView) {
-        this.f17999a = nestedScrollView;
-        this.f18000b = maxHeightRecyclerView;
+        this.a = nestedScrollView;
+        this.f2628b = maxHeightRecyclerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17999a;
+        return this.a;
     }
 }

@@ -1,28 +1,22 @@
 package com.discord.utilities.view.extensions;
 
 import android.view.ViewPropertyAnimator;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ViewExtensions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class FadeAnimation {
-    private final Type type;
+    private final FadeAnimation$Type type;
     private final ViewPropertyAnimator viewPropertyAnimator;
 
-    /* JADX INFO: compiled from: ViewExtensions.kt */
-    public enum Type {
-        FADE_IN,
-        FADE_OUT
-    }
-
-    public FadeAnimation(ViewPropertyAnimator viewPropertyAnimator, Type type) {
-        C12238m.checkNotNullParameter(viewPropertyAnimator, "viewPropertyAnimator");
-        C12238m.checkNotNullParameter(type, "type");
+    public FadeAnimation(ViewPropertyAnimator viewPropertyAnimator, FadeAnimation$Type fadeAnimation$Type) {
+        m.checkNotNullParameter(viewPropertyAnimator, "viewPropertyAnimator");
+        m.checkNotNullParameter(fadeAnimation$Type, "type");
         this.viewPropertyAnimator = viewPropertyAnimator;
-        this.type = type;
+        this.type = fadeAnimation$Type;
     }
 
-    public final Type getType() {
+    public final FadeAnimation$Type getType() {
         return this.type;
     }
 

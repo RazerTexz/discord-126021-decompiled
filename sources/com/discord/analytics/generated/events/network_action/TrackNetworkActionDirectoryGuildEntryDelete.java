@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events.network_action;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackNetworkMetadata;
 import com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNetworkActionDirectoryGuildEntryDelete.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,6 +26,11 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryDelete implem
         this.analyticsSchemaTypeName = "network_action_directory_guild_entry_delete";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
+    public void b(TrackNetworkMetadata trackNetworkMetadata) {
+        this.trackNetworkMetadata = trackNetworkMetadata;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -34,7 +39,7 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryDelete implem
             return false;
         }
         TrackNetworkActionDirectoryGuildEntryDelete trackNetworkActionDirectoryGuildEntryDelete = (TrackNetworkActionDirectoryGuildEntryDelete) other;
-        return C12238m.areEqual(this.directoryChannelId, trackNetworkActionDirectoryGuildEntryDelete.directoryChannelId) && C12238m.areEqual(this.guildId, trackNetworkActionDirectoryGuildEntryDelete.guildId);
+        return m.areEqual(this.directoryChannelId, trackNetworkActionDirectoryGuildEntryDelete.directoryChannelId) && m.areEqual(this.guildId, trackNetworkActionDirectoryGuildEntryDelete.guildId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -50,17 +55,11 @@ public final /* data */ class TrackNetworkActionDirectoryGuildEntryDelete implem
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackNetworkMetadataReceiver
-    /* JADX INFO: renamed from: b */
-    public void mo7529b(TrackNetworkMetadata trackNetworkMetadata) {
-        this.trackNetworkMetadata = trackNetworkMetadata;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNetworkActionDirectoryGuildEntryDelete(directoryChannelId=");
-        sbM833U.append(this.directoryChannelId);
-        sbM833U.append(", guildId=");
-        return C1643a.m819G(sbM833U, this.guildId, ")");
+        StringBuilder sbU = a.U("TrackNetworkActionDirectoryGuildEntryDelete(directoryChannelId=");
+        sbU.append(this.directoryChannelId);
+        sbU.append(", guildId=");
+        return a.G(sbU, this.guildId, ")");
     }
 
     public TrackNetworkActionDirectoryGuildEntryDelete(Long l, Long l2) {

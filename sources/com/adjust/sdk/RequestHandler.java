@@ -1,12 +1,12 @@
 package com.adjust.sdk;
 
+import b.d.b.a.a;
 import com.adjust.sdk.scheduler.SingleThreadCachedScheduler;
 import com.adjust.sdk.scheduler.ThreadExecutor;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.SocketTimeoutException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class RequestHandler implements IRequestHandler {
@@ -23,6 +23,10 @@ public class RequestHandler implements IRequestHandler {
         this.basePath = iPackageHandler.getBasePath();
         this.gdprPath = iPackageHandler.getGdprPath();
         this.subscriptionPath = iPackageHandler.getSubscriptionPath();
+    }
+
+    public static /* synthetic */ void access$000(RequestHandler requestHandler, ActivityPackage activityPackage, int i) {
+        requestHandler.sendI(activityPackage, i);
     }
 
     private void closePackageI(ActivityPackage activityPackage, String str, Throwable th) {
@@ -49,29 +53,29 @@ public class RequestHandler implements IRequestHandler {
         if (activityPackage.getActivityKind() == ActivityKind.GDPR) {
             baseUrl = AdjustFactory.getGdprUrl();
             if (this.gdprPath != null) {
-                StringBuilder sbM833U = C1643a.m833U(baseUrl);
-                sbM833U.append(this.gdprPath);
-                baseUrl = sbM833U.toString();
+                StringBuilder sbU = a.U(baseUrl);
+                sbU.append(this.gdprPath);
+                baseUrl = sbU.toString();
             }
         } else if (activityPackage.getActivityKind() == ActivityKind.SUBSCRIPTION) {
             baseUrl = AdjustFactory.getSubscriptionUrl();
             if (this.subscriptionPath != null) {
-                StringBuilder sbM833U2 = C1643a.m833U(baseUrl);
-                sbM833U2.append(this.subscriptionPath);
-                baseUrl = sbM833U2.toString();
+                StringBuilder sbU2 = a.U(baseUrl);
+                sbU2.append(this.subscriptionPath);
+                baseUrl = sbU2.toString();
             }
         } else {
             baseUrl = AdjustFactory.getBaseUrl();
             if (this.basePath != null) {
-                StringBuilder sbM833U3 = C1643a.m833U(baseUrl);
-                sbM833U3.append(this.basePath);
-                baseUrl = sbM833U3.toString();
+                StringBuilder sbU3 = a.U(baseUrl);
+                sbU3.append(this.basePath);
+                baseUrl = sbU3.toString();
             }
         }
-        StringBuilder sbM833U4 = C1643a.m833U(baseUrl);
-        sbM833U4.append(activityPackage.getPath());
+        StringBuilder sbU4 = a.U(baseUrl);
+        sbU4.append(activityPackage.getPath());
         try {
-            ResponseData responseDataCreatePOSTHttpsURLConnection = UtilNetworking.createPOSTHttpsURLConnection(sbM833U4.toString(), activityPackage, i);
+            ResponseData responseDataCreatePOSTHttpsURLConnection = UtilNetworking.createPOSTHttpsURLConnection(sbU4.toString(), activityPackage, i);
             IPackageHandler iPackageHandler = this.packageHandlerWeakRef.get();
             if (iPackageHandler == null || (iActivityHandler = this.activityHandlerWeakRef.get()) == null) {
                 return;
@@ -107,13 +111,8 @@ public class RequestHandler implements IRequestHandler {
     }
 
     @Override // com.adjust.sdk.IRequestHandler
-    public void sendPackage(final ActivityPackage activityPackage, final int i) {
-        this.executor.submit(new Runnable() { // from class: com.adjust.sdk.RequestHandler.1
-            @Override // java.lang.Runnable
-            public void run() {
-                RequestHandler.this.sendI(activityPackage, i);
-            }
-        });
+    public void sendPackage(ActivityPackage activityPackage, int i) {
+        this.executor.submit(new RequestHandler$1(this, activityPackage, i));
     }
 
     @Override // com.adjust.sdk.IRequestHandler

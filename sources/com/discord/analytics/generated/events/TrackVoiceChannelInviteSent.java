@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVoiceChannelInviteSent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,6 +19,11 @@ public final /* data */ class TrackVoiceChannelInviteSent implements AnalyticsSc
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "voice_channel_invite_sent";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -27,7 +32,7 @@ public final /* data */ class TrackVoiceChannelInviteSent implements AnalyticsSc
             return false;
         }
         TrackVoiceChannelInviteSent trackVoiceChannelInviteSent = (TrackVoiceChannelInviteSent) other;
-        return C12238m.areEqual(this.recipientId, trackVoiceChannelInviteSent.recipientId) && C12238m.areEqual(this.inviteGuildId, trackVoiceChannelInviteSent.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackVoiceChannelInviteSent.inviteChannelId) && C12238m.areEqual(this.entryPoint, trackVoiceChannelInviteSent.entryPoint);
+        return m.areEqual(this.recipientId, trackVoiceChannelInviteSent.recipientId) && m.areEqual(this.inviteGuildId, trackVoiceChannelInviteSent.inviteGuildId) && m.areEqual(this.inviteChannelId, trackVoiceChannelInviteSent.inviteChannelId) && m.areEqual(this.entryPoint, trackVoiceChannelInviteSent.entryPoint);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,20 +58,14 @@ public final /* data */ class TrackVoiceChannelInviteSent implements AnalyticsSc
         return iHashCode3 + (charSequence != null ? charSequence.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVoiceChannelInviteSent(recipientId=");
-        sbM833U.append(this.recipientId);
-        sbM833U.append(", inviteGuildId=");
-        sbM833U.append(this.inviteGuildId);
-        sbM833U.append(", inviteChannelId=");
-        sbM833U.append(this.inviteChannelId);
-        sbM833U.append(", entryPoint=");
-        return C1643a.m817E(sbM833U, this.entryPoint, ")");
+        StringBuilder sbU = a.U("TrackVoiceChannelInviteSent(recipientId=");
+        sbU.append(this.recipientId);
+        sbU.append(", inviteGuildId=");
+        sbU.append(this.inviteGuildId);
+        sbU.append(", inviteChannelId=");
+        sbU.append(this.inviteChannelId);
+        sbU.append(", entryPoint=");
+        return a.E(sbU, this.entryPoint, ")");
     }
 }

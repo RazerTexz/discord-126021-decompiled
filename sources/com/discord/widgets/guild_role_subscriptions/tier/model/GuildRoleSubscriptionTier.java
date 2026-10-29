@@ -1,13 +1,13 @@
 package com.discord.widgets.guild_role_subscriptions.tier.model;
 
+import b.d.b.a.a;
 import com.discord.api.guildrolesubscription.SubscriptionTrialInterval;
 import com.discord.api.role.GuildRole;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildRoleSubscriptionTier.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -15,12 +15,12 @@ public final /* data */ class GuildRoleSubscriptionTier {
     private final Integer activeTrialUserLimit;
     private final Long applicationId;
     private final Boolean canAccessAllChannels;
-    private final List<Benefit.ChannelBenefit> channelBenefits;
+    private final List<Benefit$ChannelBenefit> channelBenefits;
     private final String description;
     private final GuildRole guildRole;
     private final String image;
     private final Long imageAssetId;
-    private final List<Benefit.IntangibleBenefit> intangibleBenefits;
+    private final List<Benefit$IntangibleBenefit> intangibleBenefits;
     private final Boolean isPublished;
     private final Integer memberColor;
     private final String memberIcon;
@@ -32,9 +32,9 @@ public final /* data */ class GuildRoleSubscriptionTier {
         this(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 32767, null);
     }
 
-    public GuildRoleSubscriptionTier(String str, Long l, Integer num, Integer num2, String str2, GuildRole guildRole, String str3, Long l2, String str4, Boolean bool, Boolean bool2, List<Benefit.ChannelBenefit> list, List<Benefit.IntangibleBenefit> list2, SubscriptionTrialInterval subscriptionTrialInterval, Integer num3) {
-        C12238m.checkNotNullParameter(list, "channelBenefits");
-        C12238m.checkNotNullParameter(list2, "intangibleBenefits");
+    public GuildRoleSubscriptionTier(String str, Long l, Integer num, Integer num2, String str2, GuildRole guildRole, String str3, Long l2, String str4, Boolean bool, Boolean bool2, List<Benefit$ChannelBenefit> list, List<Benefit$IntangibleBenefit> list2, SubscriptionTrialInterval subscriptionTrialInterval, Integer num3) {
+        m.checkNotNullParameter(list, "channelBenefits");
+        m.checkNotNullParameter(list2, "intangibleBenefits");
         this.name = str;
         this.applicationId = l;
         this.priceTier = num;
@@ -54,20 +54,25 @@ public final /* data */ class GuildRoleSubscriptionTier {
 
     public final boolean canAccessAllChannelsOrDefault(Boolean isFullServerGating) {
         Boolean bool = Boolean.TRUE;
-        return C12238m.areEqual(isFullServerGating, bool) && (C12238m.areEqual(this.canAccessAllChannels, bool) || this.canAccessAllChannels == null);
+        return m.areEqual(isFullServerGating, bool) && (m.areEqual(this.canAccessAllChannels, bool) || this.canAccessAllChannels == null);
     }
 
-    public final List<Benefit.ChannelBenefit> component12() {
+    public final List<Benefit$ChannelBenefit> component12() {
         return this.channelBenefits;
     }
 
-    public final List<Benefit.IntangibleBenefit> component13() {
+    public final List<Benefit$IntangibleBenefit> component13() {
         return this.intangibleBenefits;
     }
 
-    public final GuildRoleSubscriptionTier copy(String name, Long applicationId, Integer priceTier, Integer memberColor, String memberIcon, GuildRole guildRole, String image, Long imageAssetId, String description, Boolean isPublished, Boolean canAccessAllChannels, List<Benefit.ChannelBenefit> channelBenefits, List<Benefit.IntangibleBenefit> intangibleBenefits, SubscriptionTrialInterval trialInterval, Integer activeTrialUserLimit) {
-        C12238m.checkNotNullParameter(channelBenefits, "channelBenefits");
-        C12238m.checkNotNullParameter(intangibleBenefits, "intangibleBenefits");
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ GuildRoleSubscriptionTier copy$default(GuildRoleSubscriptionTier guildRoleSubscriptionTier, String str, Long l, Integer num, Integer num2, String str2, GuildRole guildRole, String str3, Long l2, String str4, Boolean bool, Boolean bool2, List list, List list2, SubscriptionTrialInterval subscriptionTrialInterval, Integer num3, int i, Object obj) {
+        return guildRoleSubscriptionTier.copy((i & 1) != 0 ? guildRoleSubscriptionTier.name : str, (i & 2) != 0 ? guildRoleSubscriptionTier.applicationId : l, (i & 4) != 0 ? guildRoleSubscriptionTier.priceTier : num, (i & 8) != 0 ? guildRoleSubscriptionTier.memberColor : num2, (i & 16) != 0 ? guildRoleSubscriptionTier.memberIcon : str2, (i & 32) != 0 ? guildRoleSubscriptionTier.guildRole : guildRole, (i & 64) != 0 ? guildRoleSubscriptionTier.image : str3, (i & 128) != 0 ? guildRoleSubscriptionTier.imageAssetId : l2, (i & 256) != 0 ? guildRoleSubscriptionTier.description : str4, (i & 512) != 0 ? guildRoleSubscriptionTier.isPublished : bool, (i & 1024) != 0 ? guildRoleSubscriptionTier.canAccessAllChannels : bool2, (i & 2048) != 0 ? guildRoleSubscriptionTier.channelBenefits : list, (i & 4096) != 0 ? guildRoleSubscriptionTier.intangibleBenefits : list2, (i & 8192) != 0 ? guildRoleSubscriptionTier.trialInterval : subscriptionTrialInterval, (i & 16384) != 0 ? guildRoleSubscriptionTier.activeTrialUserLimit : num3);
+    }
+
+    public final GuildRoleSubscriptionTier copy(String name, Long applicationId, Integer priceTier, Integer memberColor, String memberIcon, GuildRole guildRole, String image, Long imageAssetId, String description, Boolean isPublished, Boolean canAccessAllChannels, List<Benefit$ChannelBenefit> channelBenefits, List<Benefit$IntangibleBenefit> intangibleBenefits, SubscriptionTrialInterval trialInterval, Integer activeTrialUserLimit) {
+        m.checkNotNullParameter(channelBenefits, "channelBenefits");
+        m.checkNotNullParameter(intangibleBenefits, "intangibleBenefits");
         return new GuildRoleSubscriptionTier(name, applicationId, priceTier, memberColor, memberIcon, guildRole, image, imageAssetId, description, isPublished, canAccessAllChannels, channelBenefits, intangibleBenefits, trialInterval, activeTrialUserLimit);
     }
 
@@ -79,7 +84,7 @@ public final /* data */ class GuildRoleSubscriptionTier {
             return false;
         }
         GuildRoleSubscriptionTier guildRoleSubscriptionTier = (GuildRoleSubscriptionTier) other;
-        return C12238m.areEqual(this.name, guildRoleSubscriptionTier.name) && C12238m.areEqual(this.applicationId, guildRoleSubscriptionTier.applicationId) && C12238m.areEqual(this.priceTier, guildRoleSubscriptionTier.priceTier) && C12238m.areEqual(this.memberColor, guildRoleSubscriptionTier.memberColor) && C12238m.areEqual(this.memberIcon, guildRoleSubscriptionTier.memberIcon) && C12238m.areEqual(this.guildRole, guildRoleSubscriptionTier.guildRole) && C12238m.areEqual(this.image, guildRoleSubscriptionTier.image) && C12238m.areEqual(this.imageAssetId, guildRoleSubscriptionTier.imageAssetId) && C12238m.areEqual(this.description, guildRoleSubscriptionTier.description) && C12238m.areEqual(this.isPublished, guildRoleSubscriptionTier.isPublished) && C12238m.areEqual(this.canAccessAllChannels, guildRoleSubscriptionTier.canAccessAllChannels) && C12238m.areEqual(this.channelBenefits, guildRoleSubscriptionTier.channelBenefits) && C12238m.areEqual(this.intangibleBenefits, guildRoleSubscriptionTier.intangibleBenefits) && C12238m.areEqual(this.trialInterval, guildRoleSubscriptionTier.trialInterval) && C12238m.areEqual(this.activeTrialUserLimit, guildRoleSubscriptionTier.activeTrialUserLimit);
+        return m.areEqual(this.name, guildRoleSubscriptionTier.name) && m.areEqual(this.applicationId, guildRoleSubscriptionTier.applicationId) && m.areEqual(this.priceTier, guildRoleSubscriptionTier.priceTier) && m.areEqual(this.memberColor, guildRoleSubscriptionTier.memberColor) && m.areEqual(this.memberIcon, guildRoleSubscriptionTier.memberIcon) && m.areEqual(this.guildRole, guildRoleSubscriptionTier.guildRole) && m.areEqual(this.image, guildRoleSubscriptionTier.image) && m.areEqual(this.imageAssetId, guildRoleSubscriptionTier.imageAssetId) && m.areEqual(this.description, guildRoleSubscriptionTier.description) && m.areEqual(this.isPublished, guildRoleSubscriptionTier.isPublished) && m.areEqual(this.canAccessAllChannels, guildRoleSubscriptionTier.canAccessAllChannels) && m.areEqual(this.channelBenefits, guildRoleSubscriptionTier.channelBenefits) && m.areEqual(this.intangibleBenefits, guildRoleSubscriptionTier.intangibleBenefits) && m.areEqual(this.trialInterval, guildRoleSubscriptionTier.trialInterval) && m.areEqual(this.activeTrialUserLimit, guildRoleSubscriptionTier.activeTrialUserLimit);
     }
 
     /* JADX INFO: renamed from: component15, reason: from getter */
@@ -105,7 +110,7 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return this.canAccessAllChannels;
     }
 
-    public final List<Benefit.ChannelBenefit> getChannelBenefits() {
+    public final List<Benefit$ChannelBenefit> getChannelBenefits() {
         return this.channelBenefits;
     }
 
@@ -145,7 +150,7 @@ public final /* data */ class GuildRoleSubscriptionTier {
         return this.imageAssetId;
     }
 
-    public final List<Benefit.IntangibleBenefit> getIntangibleBenefits() {
+    public final List<Benefit$IntangibleBenefit> getIntangibleBenefits() {
         return this.intangibleBenefits;
     }
 
@@ -222,9 +227,9 @@ public final /* data */ class GuildRoleSubscriptionTier {
         int iHashCode10 = (iHashCode9 + (bool != null ? bool.hashCode() : 0)) * 31;
         Boolean bool2 = this.canAccessAllChannels;
         int iHashCode11 = (iHashCode10 + (bool2 != null ? bool2.hashCode() : 0)) * 31;
-        List<Benefit.ChannelBenefit> list = this.channelBenefits;
+        List<Benefit$ChannelBenefit> list = this.channelBenefits;
         int iHashCode12 = (iHashCode11 + (list != null ? list.hashCode() : 0)) * 31;
-        List<Benefit.IntangibleBenefit> list2 = this.intangibleBenefits;
+        List<Benefit$IntangibleBenefit> list2 = this.intangibleBenefits;
         int iHashCode13 = (iHashCode12 + (list2 != null ? list2.hashCode() : 0)) * 31;
         SubscriptionTrialInterval subscriptionTrialInterval = this.trialInterval;
         int iHashCode14 = (iHashCode13 + (subscriptionTrialInterval != null ? subscriptionTrialInterval.hashCode() : 0)) * 31;
@@ -237,39 +242,39 @@ public final /* data */ class GuildRoleSubscriptionTier {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildRoleSubscriptionTier(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", priceTier=");
-        sbM833U.append(this.priceTier);
-        sbM833U.append(", memberColor=");
-        sbM833U.append(this.memberColor);
-        sbM833U.append(", memberIcon=");
-        sbM833U.append(this.memberIcon);
-        sbM833U.append(", guildRole=");
-        sbM833U.append(this.guildRole);
-        sbM833U.append(", image=");
-        sbM833U.append(this.image);
-        sbM833U.append(", imageAssetId=");
-        sbM833U.append(this.imageAssetId);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", isPublished=");
-        sbM833U.append(this.isPublished);
-        sbM833U.append(", canAccessAllChannels=");
-        sbM833U.append(this.canAccessAllChannels);
-        sbM833U.append(", channelBenefits=");
-        sbM833U.append(this.channelBenefits);
-        sbM833U.append(", intangibleBenefits=");
-        sbM833U.append(this.intangibleBenefits);
-        sbM833U.append(", trialInterval=");
-        sbM833U.append(this.trialInterval);
-        sbM833U.append(", activeTrialUserLimit=");
-        return C1643a.m818F(sbM833U, this.activeTrialUserLimit, ")");
+        StringBuilder sbU = a.U("GuildRoleSubscriptionTier(name=");
+        sbU.append(this.name);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", priceTier=");
+        sbU.append(this.priceTier);
+        sbU.append(", memberColor=");
+        sbU.append(this.memberColor);
+        sbU.append(", memberIcon=");
+        sbU.append(this.memberIcon);
+        sbU.append(", guildRole=");
+        sbU.append(this.guildRole);
+        sbU.append(", image=");
+        sbU.append(this.image);
+        sbU.append(", imageAssetId=");
+        sbU.append(this.imageAssetId);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", isPublished=");
+        sbU.append(this.isPublished);
+        sbU.append(", canAccessAllChannels=");
+        sbU.append(this.canAccessAllChannels);
+        sbU.append(", channelBenefits=");
+        sbU.append(this.channelBenefits);
+        sbU.append(", intangibleBenefits=");
+        sbU.append(this.intangibleBenefits);
+        sbU.append(", trialInterval=");
+        sbU.append(this.trialInterval);
+        sbU.append(", activeTrialUserLimit=");
+        return a.F(sbU, this.activeTrialUserLimit, ")");
     }
 
     public /* synthetic */ GuildRoleSubscriptionTier(String str, Long l, Integer num, Integer num2, String str2, GuildRole guildRole, String str3, Long l2, String str4, Boolean bool, Boolean bool2, List list, List list2, SubscriptionTrialInterval subscriptionTrialInterval, Integer num3, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? null : str, (i & 2) != 0 ? null : l, (i & 4) != 0 ? null : num, (i & 8) != 0 ? null : num2, (i & 16) != 0 ? null : str2, (i & 32) != 0 ? null : guildRole, (i & 64) != 0 ? null : str3, (i & 128) != 0 ? null : l2, (i & 256) != 0 ? null : str4, (i & 512) != 0 ? null : bool, (i & 1024) != 0 ? null : bool2, (i & 2048) != 0 ? C12147n.emptyList() : list, (i & 4096) != 0 ? C12147n.emptyList() : list2, (i & 8192) != 0 ? null : subscriptionTrialInterval, (i & 16384) == 0 ? num3 : null);
+        this((i & 1) != 0 ? null : str, (i & 2) != 0 ? null : l, (i & 4) != 0 ? null : num, (i & 8) != 0 ? null : num2, (i & 16) != 0 ? null : str2, (i & 32) != 0 ? null : guildRole, (i & 64) != 0 ? null : str3, (i & 128) != 0 ? null : l2, (i & 256) != 0 ? null : str4, (i & 512) != 0 ? null : bool, (i & 1024) != 0 ? null : bool2, (i & 2048) != 0 ? n.emptyList() : list, (i & 4096) != 0 ? n.emptyList() : list2, (i & 8192) != 0 ? null : subscriptionTrialInterval, (i & 16384) == 0 ? num3 : null);
     }
 }

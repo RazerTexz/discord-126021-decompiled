@@ -1,6 +1,6 @@
 package com.discord.app;
 
-import p658rx.subjects.Subject;
+import rx.subjects.Subject;
 
 /* JADX INFO: compiled from: AppComponent.kt */
 /* JADX INFO: loaded from: classes.dex */

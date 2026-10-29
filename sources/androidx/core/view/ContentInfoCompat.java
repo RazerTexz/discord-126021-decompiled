@@ -1,6 +1,7 @@
 package androidx.core.view;
 
 import android.content.ClipData;
+import android.content.ClipData$Item;
 import android.content.ClipDescription;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,13 +9,12 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.util.Preconditions;
 import androidx.core.util.Predicate;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import b.d.b.a.a;
 import java.util.ArrayList;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ContentInfoCompat {
@@ -35,25 +35,15 @@ public final class ContentInfoCompat {
     public final Uri mLinkUri;
     public final int mSource;
 
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface Flags {
+    public ContentInfoCompat(ContentInfoCompat$Builder contentInfoCompat$Builder) {
+        this.mClip = (ClipData) Preconditions.checkNotNull(contentInfoCompat$Builder.mClip);
+        this.mSource = Preconditions.checkArgumentInRange(contentInfoCompat$Builder.mSource, 0, 3, "source");
+        this.mFlags = Preconditions.checkFlagsArgument(contentInfoCompat$Builder.mFlags, 1);
+        this.mLinkUri = contentInfoCompat$Builder.mLinkUri;
+        this.mExtras = contentInfoCompat$Builder.mExtras;
     }
 
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public @interface Source {
-    }
-
-    public ContentInfoCompat(Builder builder) {
-        this.mClip = (ClipData) Preconditions.checkNotNull(builder.mClip);
-        this.mSource = Preconditions.checkArgumentInRange(builder.mSource, 0, 3, "source");
-        this.mFlags = Preconditions.checkFlagsArgument(builder.mFlags, 1);
-        this.mLinkUri = builder.mLinkUri;
-        this.mExtras = builder.mExtras;
-    }
-
-    private static ClipData buildClipData(ClipDescription clipDescription, List<ClipData.Item> list) {
+    private static ClipData buildClipData(ClipDescription clipDescription, List<ClipData$Item> list) {
         ClipData clipData = new ClipData(new ClipDescription(clipDescription), list.get(0));
         for (int i = 1; i < list.size(); i++) {
             clipData.addItem(list.get(i));
@@ -62,7 +52,7 @@ public final class ContentInfoCompat {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static String flagsToString(int i) {
         return (i & 1) != 0 ? "FLAG_CONVERT_TO_PLAIN_TEXT" : String.valueOf(i);
     }
@@ -91,7 +81,7 @@ public final class ContentInfoCompat {
     }
 
     @NonNull
-    public Pair<ContentInfoCompat, ContentInfoCompat> partition(@NonNull Predicate<ClipData.Item> predicate) {
+    public Pair<ContentInfoCompat, ContentInfoCompat> partition(@NonNull Predicate<ClipData$Item> predicate) {
         if (this.mClip.getItemCount() == 1) {
             boolean zTest = predicate.test(this.mClip.getItemAt(0));
             return Pair.create(zTest ? this : null, zTest ? null : this);
@@ -99,7 +89,7 @@ public final class ContentInfoCompat {
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         for (int i = 0; i < this.mClip.getItemCount(); i++) {
-            ClipData.Item itemAt = this.mClip.getItemAt(i);
+            ClipData$Item itemAt = this.mClip.getItemAt(i);
             if (predicate.test(itemAt)) {
                 arrayList.add(itemAt);
             } else {
@@ -109,11 +99,11 @@ public final class ContentInfoCompat {
         if (arrayList.isEmpty()) {
             return Pair.create(null, this);
         }
-        return arrayList2.isEmpty() ? Pair.create(this, null) : Pair.create(new Builder(this).setClip(buildClipData(this.mClip.getDescription(), arrayList)).build(), new Builder(this).setClip(buildClipData(this.mClip.getDescription(), arrayList2)).build());
+        return arrayList2.isEmpty() ? Pair.create(this, null) : Pair.create(new ContentInfoCompat$Builder(this).setClip(buildClipData(this.mClip.getDescription(), arrayList)).build(), new ContentInfoCompat$Builder(this).setClip(buildClipData(this.mClip.getDescription(), arrayList2)).build());
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public static String sourceToString(int i) {
         if (i == 0) {
             return "SOURCE_APP";
@@ -130,83 +120,21 @@ public final class ContentInfoCompat {
     @NonNull
     public String toString() {
         String string;
-        StringBuilder sbM833U = C1643a.m833U("ContentInfoCompat{clip=");
-        sbM833U.append(this.mClip.getDescription());
-        sbM833U.append(", source=");
-        sbM833U.append(sourceToString(this.mSource));
-        sbM833U.append(", flags=");
-        sbM833U.append(flagsToString(this.mFlags));
+        StringBuilder sbU = a.U("ContentInfoCompat{clip=");
+        sbU.append(this.mClip.getDescription());
+        sbU.append(", source=");
+        sbU.append(sourceToString(this.mSource));
+        sbU.append(", flags=");
+        sbU.append(flagsToString(this.mFlags));
         if (this.mLinkUri == null) {
             string = "";
         } else {
-            StringBuilder sbM833U2 = C1643a.m833U(", hasLinkUri(");
-            sbM833U2.append(this.mLinkUri.toString().length());
-            sbM833U2.append(")");
-            string = sbM833U2.toString();
+            StringBuilder sbU2 = a.U(", hasLinkUri(");
+            sbU2.append(this.mLinkUri.toString().length());
+            sbU2.append(")");
+            string = sbU2.toString();
         }
-        sbM833U.append(string);
-        return C1643a.m822J(sbM833U, this.mExtras != null ? ", hasExtras" : "", "}");
-    }
-
-    public final class Builder {
-
-        @NonNull
-        public ClipData mClip;
-
-        @Nullable
-        public Bundle mExtras;
-        public int mFlags;
-
-        @Nullable
-        public Uri mLinkUri;
-        public int mSource;
-
-        public Builder(@NonNull ContentInfoCompat contentInfoCompat) {
-            this.mClip = contentInfoCompat.mClip;
-            this.mSource = contentInfoCompat.mSource;
-            this.mFlags = contentInfoCompat.mFlags;
-            this.mLinkUri = contentInfoCompat.mLinkUri;
-            this.mExtras = contentInfoCompat.mExtras;
-        }
-
-        @NonNull
-        public ContentInfoCompat build() {
-            return new ContentInfoCompat(this);
-        }
-
-        @NonNull
-        public Builder setClip(@NonNull ClipData clipData) {
-            this.mClip = clipData;
-            return this;
-        }
-
-        @NonNull
-        public Builder setExtras(@Nullable Bundle bundle) {
-            this.mExtras = bundle;
-            return this;
-        }
-
-        @NonNull
-        public Builder setFlags(int i) {
-            this.mFlags = i;
-            return this;
-        }
-
-        @NonNull
-        public Builder setLinkUri(@Nullable Uri uri) {
-            this.mLinkUri = uri;
-            return this;
-        }
-
-        @NonNull
-        public Builder setSource(int i) {
-            this.mSource = i;
-            return this;
-        }
-
-        public Builder(@NonNull ClipData clipData, int i) {
-            this.mClip = clipData;
-            this.mSource = i;
-        }
+        sbU.append(string);
+        return a.J(sbU, this.mExtras != null ? ", hasExtras" : "", "}");
     }
 }

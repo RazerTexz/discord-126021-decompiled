@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivitySessionLeft.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -26,7 +26,7 @@ public final /* data */ class TrackActivitySessionLeft implements AnalyticsSchem
             return false;
         }
         TrackActivitySessionLeft trackActivitySessionLeft = (TrackActivitySessionLeft) other;
-        return C12238m.areEqual(this.channelId, trackActivitySessionLeft.channelId) && C12238m.areEqual(this.guildId, trackActivitySessionLeft.guildId) && C12238m.areEqual(this.mediaSessionId, trackActivitySessionLeft.mediaSessionId) && C12238m.areEqual(this.activitySessionId, trackActivitySessionLeft.activitySessionId) && C12238m.areEqual(this.applicationId, trackActivitySessionLeft.applicationId) && C12238m.areEqual(this.durationMs, trackActivitySessionLeft.durationMs);
+        return m.areEqual(this.channelId, trackActivitySessionLeft.channelId) && m.areEqual(this.guildId, trackActivitySessionLeft.guildId) && m.areEqual(this.mediaSessionId, trackActivitySessionLeft.mediaSessionId) && m.areEqual(this.activitySessionId, trackActivitySessionLeft.activitySessionId) && m.areEqual(this.applicationId, trackActivitySessionLeft.applicationId) && m.areEqual(this.durationMs, trackActivitySessionLeft.durationMs);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,17 +51,17 @@ public final /* data */ class TrackActivitySessionLeft implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivitySessionLeft(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", mediaSessionId=");
-        sbM833U.append(this.mediaSessionId);
-        sbM833U.append(", activitySessionId=");
-        sbM833U.append(this.activitySessionId);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", durationMs=");
-        return C1643a.m819G(sbM833U, this.durationMs, ")");
+        StringBuilder sbU = a.U("TrackActivitySessionLeft(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", mediaSessionId=");
+        sbU.append(this.mediaSessionId);
+        sbU.append(", activitySessionId=");
+        sbU.append(this.activitySessionId);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", durationMs=");
+        return a.G(sbU, this.durationMs, ")");
     }
 }

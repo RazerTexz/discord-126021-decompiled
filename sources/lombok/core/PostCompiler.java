@@ -1,6 +1,5 @@
 package lombok.core;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -51,25 +50,7 @@ public final class PostCompiler {
         }
     }
 
-    public static OutputStream wrapOutputStream(final OutputStream originalStream, final String fileName, final DiagnosticsReceiver diagnostics) throws IOException {
-        return System.getProperty("lombok.disablePostCompiler", null) != null ? originalStream : new ByteArrayOutputStream() { // from class: lombok.core.PostCompiler.1
-            @Override // java.io.ByteArrayOutputStream, java.io.OutputStream, java.io.Closeable, java.lang.AutoCloseable
-            public void close() throws IOException {
-                byte[] original = toByteArray();
-                byte[] copy = null;
-                if (original.length > 0) {
-                    try {
-                        copy = PostCompiler.applyTransformations(original, fileName, diagnostics);
-                    } catch (Exception unused) {
-                        diagnostics.addWarning(String.format("Error during the transformation of '%s'; no post-compilation has been applied", fileName));
-                    }
-                }
-                if (copy == null) {
-                    copy = original;
-                }
-                originalStream.write(copy);
-                originalStream.close();
-            }
-        };
+    public static OutputStream wrapOutputStream(OutputStream originalStream, String fileName, DiagnosticsReceiver diagnostics) throws IOException {
+        return System.getProperty("lombok.disablePostCompiler", null) != null ? originalStream : new PostCompiler$1(fileName, diagnostics, originalStream);
     }
 }

@@ -11,42 +11,37 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewConnectionGuildIntegrationBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CardView f15408a;
+    public final CardView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15409b;
+    public final TextView f2183b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f15410c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15411d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f15412e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final MaterialButton f15413f;
+    public final MaterialButton f;
 
     public ViewConnectionGuildIntegrationBinding(@NonNull CardView cardView, @NonNull TextView textView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView2, @NonNull TextView textView3, @NonNull MaterialButton materialButton) {
-        this.f15408a = cardView;
-        this.f15409b = textView;
-        this.f15410c = simpleDraweeView;
-        this.f15411d = textView2;
-        this.f15412e = textView3;
-        this.f15413f = materialButton;
+        this.a = cardView;
+        this.f2183b = textView;
+        this.c = simpleDraweeView;
+        this.d = textView2;
+        this.e = textView3;
+        this.f = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15408a;
+        return this.a;
     }
 }

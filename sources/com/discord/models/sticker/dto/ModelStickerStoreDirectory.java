@@ -1,9 +1,9 @@
 package com.discord.models.sticker.dto;
 
+import b.d.b.a.a;
 import com.discord.models.store.dto.ModelStoreDirectoryLayout;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelStickerStoreDirectory.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -12,7 +12,7 @@ public final /* data */ class ModelStickerStoreDirectory {
     private final ModelStoreDirectoryLayout storeDirectoryLayout;
 
     public ModelStickerStoreDirectory(List<ModelStickerPack> list, ModelStoreDirectoryLayout modelStoreDirectoryLayout) {
-        C12238m.checkNotNullParameter(list, "stickerPacks");
+        m.checkNotNullParameter(list, "stickerPacks");
         this.stickerPacks = list;
         this.storeDirectoryLayout = modelStoreDirectoryLayout;
     }
@@ -33,7 +33,7 @@ public final /* data */ class ModelStickerStoreDirectory {
     }
 
     public final ModelStickerStoreDirectory copy(List<ModelStickerPack> stickerPacks, ModelStoreDirectoryLayout storeDirectoryLayout) {
-        C12238m.checkNotNullParameter(stickerPacks, "stickerPacks");
+        m.checkNotNullParameter(stickerPacks, "stickerPacks");
         return new ModelStickerStoreDirectory(stickerPacks, storeDirectoryLayout);
     }
 
@@ -45,7 +45,7 @@ public final /* data */ class ModelStickerStoreDirectory {
             return false;
         }
         ModelStickerStoreDirectory modelStickerStoreDirectory = (ModelStickerStoreDirectory) other;
-        return C12238m.areEqual(this.stickerPacks, modelStickerStoreDirectory.stickerPacks) && C12238m.areEqual(this.storeDirectoryLayout, modelStickerStoreDirectory.storeDirectoryLayout);
+        return m.areEqual(this.stickerPacks, modelStickerStoreDirectory.stickerPacks) && m.areEqual(this.storeDirectoryLayout, modelStickerStoreDirectory.storeDirectoryLayout);
     }
 
     public final List<ModelStickerPack> getStickerPacks() {
@@ -69,11 +69,11 @@ public final /* data */ class ModelStickerStoreDirectory {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelStickerStoreDirectory(stickerPacks=");
-        sbM833U.append(this.stickerPacks);
-        sbM833U.append(", storeDirectoryLayout=");
-        sbM833U.append(this.storeDirectoryLayout);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelStickerStoreDirectory(stickerPacks=");
+        sbU.append(this.stickerPacks);
+        sbU.append(", storeDirectoryLayout=");
+        sbU.append(this.storeDirectoryLayout);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

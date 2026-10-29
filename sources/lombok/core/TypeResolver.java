@@ -42,15 +42,15 @@ public class TypeResolver {
                 while (true) {
                     LombokNode<?, ?, ?> n = lombokNodeDirectUp;
                     if (n != null) {
-                        if (n.getKind() == AST.Kind.TYPE && firstTypeRef.equals(n.getName())) {
+                        if (n.getKind() == AST$Kind.TYPE && firstTypeRef.equals(n.getName())) {
                             return null;
                         }
-                        if (n.getKind() == AST.Kind.STATEMENT || n.getKind() == AST.Kind.LOCAL) {
+                        if (n.getKind() == AST$Kind.STATEMENT || n.getKind() == AST$Kind.LOCAL) {
                             LombokNode<?, ?, ?> newN = n.directUp();
                             if (newN != null) {
-                                if (newN.getKind() == AST.Kind.STATEMENT || newN.getKind() == AST.Kind.INITIALIZER || newN.getKind() == AST.Kind.METHOD) {
+                                if (newN.getKind() == AST$Kind.STATEMENT || newN.getKind() == AST$Kind.INITIALIZER || newN.getKind() == AST$Kind.METHOD) {
                                     for (LombokNode<?, ?, ?> child : newN.down()) {
-                                        if (child.getKind() == AST.Kind.TYPE && firstTypeRef.equals(child.getName())) {
+                                        if (child.getKind() == AST$Kind.TYPE && firstTypeRef.equals(child.getName())) {
                                             return null;
                                         }
                                         if (child == n) {
@@ -61,9 +61,9 @@ public class TypeResolver {
                                 lombokNodeDirectUp = newN;
                             }
                         } else {
-                            if (n.getKind() == AST.Kind.TYPE || n.getKind() == AST.Kind.COMPILATION_UNIT) {
+                            if (n.getKind() == AST$Kind.TYPE || n.getKind() == AST$Kind.COMPILATION_UNIT) {
                                 for (LombokNode<?, ?, ?> child2 : n.down()) {
-                                    if (child2.getKind() == AST.Kind.TYPE && firstTypeRef.equals(child2.getName())) {
+                                    if (child2.getKind() == AST$Kind.TYPE && firstTypeRef.equals(child2.getName())) {
                                         return null;
                                     }
                                 }

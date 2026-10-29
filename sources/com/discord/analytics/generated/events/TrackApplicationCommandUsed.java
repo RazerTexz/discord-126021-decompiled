@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackApplicationCommandUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,6 +21,11 @@ public final /* data */ class TrackApplicationCommandUsed implements AnalyticsSc
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "application_command_used";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,7 +34,7 @@ public final /* data */ class TrackApplicationCommandUsed implements AnalyticsSc
             return false;
         }
         TrackApplicationCommandUsed trackApplicationCommandUsed = (TrackApplicationCommandUsed) other;
-        return C12238m.areEqual(this.applicationId, trackApplicationCommandUsed.applicationId) && C12238m.areEqual(this.commandId, trackApplicationCommandUsed.commandId) && C12238m.areEqual(this.commandType, trackApplicationCommandUsed.commandType);
+        return m.areEqual(this.applicationId, trackApplicationCommandUsed.applicationId) && m.areEqual(this.commandId, trackApplicationCommandUsed.commandId) && m.areEqual(this.commandType, trackApplicationCommandUsed.commandType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,18 +58,12 @@ public final /* data */ class TrackApplicationCommandUsed implements AnalyticsSc
         return iHashCode2 + (l3 != null ? l3.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackApplicationCommandUsed(applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", commandId=");
-        sbM833U.append(this.commandId);
-        sbM833U.append(", commandType=");
-        return C1643a.m819G(sbM833U, this.commandType, ")");
+        StringBuilder sbU = a.U("TrackApplicationCommandUsed(applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", commandId=");
+        sbU.append(this.commandId);
+        sbU.append(", commandType=");
+        return a.G(sbU, this.commandType, ")");
     }
 }

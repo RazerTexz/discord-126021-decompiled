@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackReceiveFriendSuggestion.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackReceiveFriendSuggestion implements AnalyticsS
             return false;
         }
         TrackReceiveFriendSuggestion trackReceiveFriendSuggestion = (TrackReceiveFriendSuggestion) other;
-        return C12238m.areEqual(this.suggestedUserId, trackReceiveFriendSuggestion.suggestedUserId) && C12238m.areEqual(this.platformType, trackReceiveFriendSuggestion.platformType) && C12238m.areEqual(this.isNonMutual, trackReceiveFriendSuggestion.isNonMutual) && C12238m.areEqual(this.isReverseSuggestion, trackReceiveFriendSuggestion.isReverseSuggestion) && C12238m.areEqual(this.dispatched, trackReceiveFriendSuggestion.dispatched) && C12238m.areEqual(this.pushNotificationSent, trackReceiveFriendSuggestion.pushNotificationSent) && C12238m.areEqual(this.namePresent, trackReceiveFriendSuggestion.namePresent);
+        return m.areEqual(this.suggestedUserId, trackReceiveFriendSuggestion.suggestedUserId) && m.areEqual(this.platformType, trackReceiveFriendSuggestion.platformType) && m.areEqual(this.isNonMutual, trackReceiveFriendSuggestion.isNonMutual) && m.areEqual(this.isReverseSuggestion, trackReceiveFriendSuggestion.isReverseSuggestion) && m.areEqual(this.dispatched, trackReceiveFriendSuggestion.dispatched) && m.areEqual(this.pushNotificationSent, trackReceiveFriendSuggestion.pushNotificationSent) && m.areEqual(this.namePresent, trackReceiveFriendSuggestion.namePresent);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackReceiveFriendSuggestion implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackReceiveFriendSuggestion(suggestedUserId=");
-        sbM833U.append(this.suggestedUserId);
-        sbM833U.append(", platformType=");
-        sbM833U.append(this.platformType);
-        sbM833U.append(", isNonMutual=");
-        sbM833U.append(this.isNonMutual);
-        sbM833U.append(", isReverseSuggestion=");
-        sbM833U.append(this.isReverseSuggestion);
-        sbM833U.append(", dispatched=");
-        sbM833U.append(this.dispatched);
-        sbM833U.append(", pushNotificationSent=");
-        sbM833U.append(this.pushNotificationSent);
-        sbM833U.append(", namePresent=");
-        return C1643a.m816D(sbM833U, this.namePresent, ")");
+        StringBuilder sbU = a.U("TrackReceiveFriendSuggestion(suggestedUserId=");
+        sbU.append(this.suggestedUserId);
+        sbU.append(", platformType=");
+        sbU.append(this.platformType);
+        sbU.append(", isNonMutual=");
+        sbU.append(this.isNonMutual);
+        sbU.append(", isReverseSuggestion=");
+        sbU.append(this.isReverseSuggestion);
+        sbU.append(", dispatched=");
+        sbU.append(this.dispatched);
+        sbU.append(", pushNotificationSent=");
+        sbU.append(this.pushNotificationSent);
+        sbU.append(", namePresent=");
+        return a.D(sbU, this.namePresent, ")");
     }
 }

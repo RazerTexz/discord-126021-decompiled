@@ -1,13 +1,12 @@
 package androidx.core.view.inputmethod;
 
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.inputmethod.EditorInfo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.util.Preconditions;
 
@@ -28,35 +27,13 @@ public final class EditorInfoCompat {
     public static final int MEMORY_EFFICIENT_TEXT_LENGTH = 2048;
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
-    @RequiresApi(30)
-    public class Impl30 {
-        private Impl30() {
-        }
-
-        public static CharSequence getInitialSelectedText(@NonNull EditorInfo editorInfo, int i) {
-            return editorInfo.getInitialSelectedText(i);
-        }
-
-        public static CharSequence getInitialTextAfterCursor(@NonNull EditorInfo editorInfo, int i, int i2) {
-            return editorInfo.getInitialTextAfterCursor(i, i2);
-        }
-
-        public static CharSequence getInitialTextBeforeCursor(@NonNull EditorInfo editorInfo, int i, int i2) {
-            return editorInfo.getInitialTextBeforeCursor(i, i2);
-        }
-
-        public static void setInitialSurroundingSubText(@NonNull EditorInfo editorInfo, CharSequence charSequence, int i) {
-            editorInfo.setInitialSurroundingSubText(charSequence, i);
-        }
-    }
-
     @Deprecated
     public EditorInfoCompat() {
     }
 
     @NonNull
     public static String[] getContentMimeTypes(EditorInfo editorInfo) {
-        if (Build.VERSION.SDK_INT >= 25) {
+        if (Build$VERSION.SDK_INT >= 25) {
             String[] strArr = editorInfo.contentMimeTypes;
             return strArr != null ? strArr : EMPTY_STRING_ARRAY;
         }
@@ -74,8 +51,8 @@ public final class EditorInfoCompat {
     @Nullable
     public static CharSequence getInitialSelectedText(@NonNull EditorInfo editorInfo, int i) {
         CharSequence charSequence;
-        if (Build.VERSION.SDK_INT >= 30) {
-            return Impl30.getInitialSelectedText(editorInfo, i);
+        if (Build$VERSION.SDK_INT >= 30) {
+            return EditorInfoCompat$Impl30.getInitialSelectedText(editorInfo, i);
         }
         Bundle bundle = editorInfo.extras;
         if (bundle == null) {
@@ -99,8 +76,8 @@ public final class EditorInfoCompat {
     @Nullable
     public static CharSequence getInitialTextAfterCursor(@NonNull EditorInfo editorInfo, int i, int i2) {
         CharSequence charSequence;
-        if (Build.VERSION.SDK_INT >= 30) {
-            return Impl30.getInitialTextAfterCursor(editorInfo, i, i2);
+        if (Build$VERSION.SDK_INT >= 30) {
+            return EditorInfoCompat$Impl30.getInitialTextAfterCursor(editorInfo, i, i2);
         }
         Bundle bundle = editorInfo.extras;
         if (bundle == null || (charSequence = bundle.getCharSequence(CONTENT_SURROUNDING_TEXT_KEY)) == null) {
@@ -114,8 +91,8 @@ public final class EditorInfoCompat {
     @Nullable
     public static CharSequence getInitialTextBeforeCursor(@NonNull EditorInfo editorInfo, int i, int i2) {
         CharSequence charSequence;
-        if (Build.VERSION.SDK_INT >= 30) {
-            return Impl30.getInitialTextBeforeCursor(editorInfo, i, i2);
+        if (Build$VERSION.SDK_INT >= 30) {
+            return EditorInfoCompat$Impl30.getInitialTextBeforeCursor(editorInfo, i, i2);
         }
         Bundle bundle = editorInfo.extras;
         if (bundle == null || (charSequence = bundle.getCharSequence(CONTENT_SURROUNDING_TEXT_KEY)) == null) {
@@ -127,7 +104,7 @@ public final class EditorInfoCompat {
     }
 
     public static int getProtocol(EditorInfo editorInfo) {
-        if (Build.VERSION.SDK_INT >= 25) {
+        if (Build$VERSION.SDK_INT >= 25) {
             return 1;
         }
         Bundle bundle = editorInfo.extras;
@@ -161,7 +138,7 @@ public final class EditorInfoCompat {
     }
 
     public static void setContentMimeTypes(@NonNull EditorInfo editorInfo, @Nullable String[] strArr) {
-        if (Build.VERSION.SDK_INT >= 25) {
+        if (Build$VERSION.SDK_INT >= 25) {
             editorInfo.contentMimeTypes = strArr;
             return;
         }
@@ -174,8 +151,8 @@ public final class EditorInfoCompat {
 
     public static void setInitialSurroundingSubText(@NonNull EditorInfo editorInfo, @NonNull CharSequence charSequence, int i) {
         Preconditions.checkNotNull(charSequence);
-        if (Build.VERSION.SDK_INT >= 30) {
-            Impl30.setInitialSurroundingSubText(editorInfo, charSequence, i);
+        if (Build$VERSION.SDK_INT >= 30) {
+            EditorInfoCompat$Impl30.setInitialSurroundingSubText(editorInfo, charSequence, i);
             return;
         }
         int i2 = editorInfo.initialSelStart;
@@ -197,8 +174,8 @@ public final class EditorInfoCompat {
     }
 
     public static void setInitialSurroundingText(@NonNull EditorInfo editorInfo, @NonNull CharSequence charSequence) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            Impl30.setInitialSurroundingSubText(editorInfo, charSequence, 0);
+        if (Build$VERSION.SDK_INT >= 30) {
+            EditorInfoCompat$Impl30.setInitialSurroundingSubText(editorInfo, charSequence, 0);
         } else {
             setInitialSurroundingSubText(editorInfo, charSequence, 0);
         }

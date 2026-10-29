@@ -11,42 +11,37 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildTransferOwnershipBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17073a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final CheckedSetting f17074b;
+    public final CheckedSetting f2455b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17075c;
+    public final MaterialButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f17076d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextInputLayout f17077e;
+    public final TextInputLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final LinearLayout f17078f;
+    public final LinearLayout f;
 
     public WidgetGuildTransferOwnershipBinding(@NonNull LinearLayout linearLayout, @NonNull CheckedSetting checkedSetting, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull TextInputLayout textInputLayout, @NonNull LinearLayout linearLayout2) {
-        this.f17073a = linearLayout;
-        this.f17074b = checkedSetting;
-        this.f17075c = materialButton;
-        this.f17076d = materialButton2;
-        this.f17077e = textInputLayout;
-        this.f17078f = linearLayout2;
+        this.a = linearLayout;
+        this.f2455b = checkedSetting;
+        this.c = materialButton;
+        this.d = materialButton2;
+        this.e = textInputLayout;
+        this.f = linearLayout2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17073a;
+        return this.a;
     }
 }

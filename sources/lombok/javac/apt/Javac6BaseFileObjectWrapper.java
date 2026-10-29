@@ -10,7 +10,7 @@ import java.net.URI;
 import java.nio.charset.CharsetDecoder;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.NestingKind;
-import javax.tools.JavaFileObject;
+import javax.tools.JavaFileObject$Kind;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/apt/Javac6BaseFileObjectWrapper.SCL.lombok */
 class Javac6BaseFileObjectWrapper extends BaseFileObject {
@@ -20,7 +20,7 @@ class Javac6BaseFileObjectWrapper extends BaseFileObject {
         this.delegate = delegate;
     }
 
-    public boolean isNameCompatible(String simpleName, JavaFileObject.Kind kind) {
+    public boolean isNameCompatible(String simpleName, JavaFileObject$Kind kind) {
         return this.delegate.isNameCompatible(simpleName, kind);
     }
 
@@ -60,7 +60,7 @@ class Javac6BaseFileObjectWrapper extends BaseFileObject {
         return this.delegate.delete();
     }
 
-    public JavaFileObject.Kind getKind() {
+    public JavaFileObject$Kind getKind() {
         return this.delegate.getKind();
     }
 

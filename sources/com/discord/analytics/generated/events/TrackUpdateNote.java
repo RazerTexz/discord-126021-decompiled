@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUpdateNote.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackUpdateNote implements AnalyticsSchema, TrackB
             return false;
         }
         TrackUpdateNote trackUpdateNote = (TrackUpdateNote) other;
-        return C12238m.areEqual(this.otherUser, trackUpdateNote.otherUser) && C12238m.areEqual(this.type, trackUpdateNote.type);
+        return m.areEqual(this.otherUser, trackUpdateNote.otherUser) && m.areEqual(this.type, trackUpdateNote.type);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackUpdateNote implements AnalyticsSchema, TrackB
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpdateNote(otherUser=");
-        sbM833U.append(this.otherUser);
-        sbM833U.append(", type=");
-        return C1643a.m817E(sbM833U, this.type, ")");
+        StringBuilder sbU = a.U("TrackUpdateNote(otherUser=");
+        sbU.append(this.otherUser);
+        sbU.append(", type=");
+        return a.E(sbU, this.type, ")");
     }
 }

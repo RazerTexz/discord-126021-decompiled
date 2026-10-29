@@ -5,27 +5,27 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
+import b.f.b.a.f;
+import b.f.j.q.a;
 import com.facebook.cache.common.CacheKey;
-import p007b.p109f.p111b.p112a.C1656f;
-import p007b.p109f.p161j.p182q.AbstractC2025a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GrayscalePostprocessor.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class GrayscalePostprocessor extends AbstractC2025a {
-    @Override // p007b.p109f.p161j.p182q.AbstractC2025a, p007b.p109f.p161j.p182q.InterfaceC2026b
+public final class GrayscalePostprocessor extends a {
+    @Override // b.f.j.q.a, b.f.j.q.b
     public String getName() {
         String simpleName = GrayscalePostprocessor.class.getSimpleName();
-        C12238m.checkNotNullExpressionValue(simpleName, "javaClass.simpleName");
+        m.checkNotNullExpressionValue(simpleName, "javaClass.simpleName");
         return simpleName;
     }
 
-    @Override // p007b.p109f.p161j.p182q.AbstractC2025a, p007b.p109f.p161j.p182q.InterfaceC2026b
+    @Override // b.f.j.q.a, b.f.j.q.b
     public CacheKey getPostprocessorCacheKey() {
-        return new C1656f(getName());
+        return new f(getName());
     }
 
-    @Override // p007b.p109f.p161j.p182q.AbstractC2025a
+    @Override // b.f.j.q.a
     public void process(Bitmap destBitmap, Bitmap sourceBitmap) {
         super.process(destBitmap, sourceBitmap);
         if (destBitmap == null || sourceBitmap == null) {

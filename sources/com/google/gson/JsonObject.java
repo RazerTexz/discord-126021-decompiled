@@ -1,41 +1,36 @@
 package com.google.gson;
 
+import b.i.d.j;
+import b.i.d.k;
 import com.google.gson.internal.LinkedTreeMap;
-import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
-import p007b.p225i.p408d.C4906j;
-import p007b.p225i.p408d.C4907k;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class JsonObject extends JsonElement {
-
-    /* JADX INFO: renamed from: a */
-    public final LinkedTreeMap<String, JsonElement> f21481a = new LinkedTreeMap<>();
+    public final LinkedTreeMap<String, JsonElement> a = new LinkedTreeMap<>();
 
     public boolean equals(Object obj) {
-        return obj == this || ((obj instanceof JsonObject) && ((JsonObject) obj).f21481a.equals(this.f21481a));
+        return obj == this || ((obj instanceof JsonObject) && ((JsonObject) obj).a.equals(this.a));
     }
 
-    public int hashCode() {
-        return this.f21481a.hashCode();
-    }
-
-    /* JADX INFO: renamed from: h */
-    public void m9214h(String str, JsonElement jsonElement) {
-        LinkedTreeMap<String, JsonElement> linkedTreeMap = this.f21481a;
+    public void h(String str, JsonElement jsonElement) {
+        LinkedTreeMap<String, JsonElement> linkedTreeMap = this.a;
         if (jsonElement == null) {
-            jsonElement = C4906j.f13106a;
+            jsonElement = j.a;
         }
         linkedTreeMap.put(str, jsonElement);
     }
 
-    /* JADX INFO: renamed from: i */
-    public void m9215i(String str, Number number) {
-        this.f21481a.put(str, number == null ? C4906j.f13106a : new C4907k(number));
+    public int hashCode() {
+        return this.a.hashCode();
     }
 
-    /* JADX INFO: renamed from: j */
-    public Set<Map.Entry<String, JsonElement>> m9216j() {
-        return this.f21481a.entrySet();
+    public void i(String str, Number number) {
+        this.a.put(str, number == null ? j.a : new k(number));
+    }
+
+    public Set<Map$Entry<String, JsonElement>> j() {
+        return this.a.entrySet();
     }
 }

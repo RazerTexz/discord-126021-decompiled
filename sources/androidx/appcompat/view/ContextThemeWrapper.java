@@ -5,16 +5,17 @@ import android.content.ContextWrapper;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.Resources$Theme;
 import android.view.LayoutInflater;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$style;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ContextThemeWrapper extends ContextWrapper {
     private LayoutInflater mInflater;
     private Configuration mOverrideConfiguration;
     private Resources mResources;
-    private Resources.Theme mTheme;
+    private Resources$Theme mTheme;
     private int mThemeResource;
 
     public ContextThemeWrapper() {
@@ -70,13 +71,13 @@ public class ContextThemeWrapper extends ContextWrapper {
     }
 
     @Override // android.content.ContextWrapper, android.content.Context
-    public Resources.Theme getTheme() {
-        Resources.Theme theme = this.mTheme;
-        if (theme != null) {
-            return theme;
+    public Resources$Theme getTheme() {
+        Resources$Theme resources$Theme = this.mTheme;
+        if (resources$Theme != null) {
+            return resources$Theme;
         }
         if (this.mThemeResource == 0) {
-            this.mThemeResource = C0051R.style.Theme_AppCompat_Light;
+            this.mThemeResource = R$style.Theme_AppCompat_Light;
         }
         initializeTheme();
         return this.mTheme;
@@ -90,7 +91,7 @@ public class ContextThemeWrapper extends ContextWrapper {
         boolean z2 = this.mTheme == null;
         if (z2) {
             this.mTheme = getResources().newTheme();
-            Resources.Theme theme = getBaseContext().getTheme();
+            Resources$Theme theme = getBaseContext().getTheme();
             if (theme != null) {
                 this.mTheme.setTo(theme);
             }
@@ -98,8 +99,8 @@ public class ContextThemeWrapper extends ContextWrapper {
         onApplyThemeResource(this.mTheme, this.mThemeResource, z2);
     }
 
-    public void onApplyThemeResource(Resources.Theme theme, int i, boolean z2) {
-        theme.applyStyle(i, true);
+    public void onApplyThemeResource(Resources$Theme resources$Theme, int i, boolean z2) {
+        resources$Theme.applyStyle(i, true);
     }
 
     @Override // android.content.ContextWrapper, android.content.Context
@@ -115,8 +116,8 @@ public class ContextThemeWrapper extends ContextWrapper {
         this.mThemeResource = i;
     }
 
-    public ContextThemeWrapper(Context context, Resources.Theme theme) {
+    public ContextThemeWrapper(Context context, Resources$Theme resources$Theme) {
         super(context);
-        this.mTheme = theme;
+        this.mTheme = resources$Theme;
     }
 }

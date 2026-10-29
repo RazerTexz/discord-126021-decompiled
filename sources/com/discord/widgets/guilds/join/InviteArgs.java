@@ -1,13 +1,13 @@
 package com.discord.widgets.guilds.join;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelInvite;
 import com.discord.utilities.error.Error;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.functions.Function2;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGuildJoinCaptchaBottomSheet.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -23,12 +23,12 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
     /* JADX WARN: Multi-variable type inference failed */
     public InviteArgs(ModelInvite modelInvite, Class<?> cls, String str, Function2<? super Error, ? super Continuation<? super Unit>, ? extends Object> function2, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> function3, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> function4) {
         super(null);
-        C12238m.checkNotNullParameter(modelInvite, "invite");
-        C12238m.checkNotNullParameter(cls, "javaClass");
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        C12238m.checkNotNullParameter(function2, "onInvitePostError");
-        C12238m.checkNotNullParameter(function3, "onInvitePostSuccess");
-        C12238m.checkNotNullParameter(function4, "onInviteFlowFinished");
+        m.checkNotNullParameter(modelInvite, "invite");
+        m.checkNotNullParameter(cls, "javaClass");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        m.checkNotNullParameter(function2, "onInvitePostError");
+        m.checkNotNullParameter(function3, "onInvitePostSuccess");
+        m.checkNotNullParameter(function4, "onInviteFlowFinished");
         this.invite = modelInvite;
         this.javaClass = cls;
         this.location = str;
@@ -81,12 +81,12 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
     }
 
     public final InviteArgs copy(ModelInvite invite, Class<?> javaClass, String location, Function2<? super Error, ? super Continuation<? super Unit>, ? extends Object> onInvitePostError, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInvitePostSuccess, Function2<? super ModelInvite, ? super Continuation<? super Unit>, ? extends Object> onInviteFlowFinished) {
-        C12238m.checkNotNullParameter(invite, "invite");
-        C12238m.checkNotNullParameter(javaClass, "javaClass");
-        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        C12238m.checkNotNullParameter(onInvitePostError, "onInvitePostError");
-        C12238m.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
-        C12238m.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
+        m.checkNotNullParameter(invite, "invite");
+        m.checkNotNullParameter(javaClass, "javaClass");
+        m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        m.checkNotNullParameter(onInvitePostError, "onInvitePostError");
+        m.checkNotNullParameter(onInvitePostSuccess, "onInvitePostSuccess");
+        m.checkNotNullParameter(onInviteFlowFinished, "onInviteFlowFinished");
         return new InviteArgs(invite, javaClass, location, onInvitePostError, onInvitePostSuccess, onInviteFlowFinished);
     }
 
@@ -98,7 +98,7 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
             return false;
         }
         InviteArgs inviteArgs = (InviteArgs) other;
-        return C12238m.areEqual(this.invite, inviteArgs.invite) && C12238m.areEqual(this.javaClass, inviteArgs.javaClass) && C12238m.areEqual(this.location, inviteArgs.location) && C12238m.areEqual(this.onInvitePostError, inviteArgs.onInvitePostError) && C12238m.areEqual(this.onInvitePostSuccess, inviteArgs.onInvitePostSuccess) && C12238m.areEqual(this.onInviteFlowFinished, inviteArgs.onInviteFlowFinished);
+        return m.areEqual(this.invite, inviteArgs.invite) && m.areEqual(this.javaClass, inviteArgs.javaClass) && m.areEqual(this.location, inviteArgs.location) && m.areEqual(this.onInvitePostError, inviteArgs.onInvitePostError) && m.areEqual(this.onInvitePostSuccess, inviteArgs.onInvitePostSuccess) && m.areEqual(this.onInviteFlowFinished, inviteArgs.onInviteFlowFinished);
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -151,19 +151,19 @@ public final /* data */ class InviteArgs extends CaptchaArgs {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("InviteArgs(invite=");
-        sbM833U.append(this.invite);
-        sbM833U.append(", javaClass=");
-        sbM833U.append(this.javaClass);
-        sbM833U.append(", location=");
-        sbM833U.append(this.location);
-        sbM833U.append(", onInvitePostError=");
-        sbM833U.append(this.onInvitePostError);
-        sbM833U.append(", onInvitePostSuccess=");
-        sbM833U.append(this.onInvitePostSuccess);
-        sbM833U.append(", onInviteFlowFinished=");
-        sbM833U.append(this.onInviteFlowFinished);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("InviteArgs(invite=");
+        sbU.append(this.invite);
+        sbU.append(", javaClass=");
+        sbU.append(this.javaClass);
+        sbU.append(", location=");
+        sbU.append(this.location);
+        sbU.append(", onInvitePostError=");
+        sbU.append(this.onInvitePostError);
+        sbU.append(", onInvitePostSuccess=");
+        sbU.append(this.onInvitePostSuccess);
+        sbU.append(", onInviteFlowFinished=");
+        sbU.append(this.onInviteFlowFinished);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

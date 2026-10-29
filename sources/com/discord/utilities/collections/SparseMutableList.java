@@ -1,6 +1,13 @@
 package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
+import b.d.b.a.a;
+import d0.t.n;
+import d0.t.q;
+import d0.t.s;
+import d0.z.d.g;
+import d0.z.d.g0.c;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,323 +16,16 @@ import java.util.List;
 import java.util.ListIterator;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12153q;
-import p507d0.p580t.C12161s;
-import p507d0.p592z.p594d.C12227g;
-import p507d0.p592z.p594d.C12238m;
-import p507d0.p592z.p594d.p595g0.InterfaceC12228a;
-import p507d0.p592z.p594d.p595g0.InterfaceC12230c;
 
 /* JADX INFO: compiled from: SparseMutableList.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
-    private final List<Chunk<T>> chunks;
+public final class SparseMutableList<T> implements List<T>, c {
+    private final List<SparseMutableList$Chunk<T>> chunks;
     private final int expectedChunkSize;
     private int size;
 
-    /* JADX INFO: compiled from: SparseMutableList.kt */
-    public final /* data */ class Chunk<T> implements Comparable<Chunk<T>> {
-
-        /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-        public static final Companion INSTANCE = new Companion(null);
-        private List<T> list;
-        private int startIndex;
-
-        /* JADX INFO: compiled from: SparseMutableList.kt */
-        public final class Companion {
-            private Companion() {
-            }
-
-            public final <T> Chunk<T> create(T element, int startIndex, int initialCapacity) {
-                ArrayList arrayList = new ArrayList(initialCapacity);
-                arrayList.add(element);
-                return new Chunk<>(startIndex, arrayList);
-            }
-
-            public final <T> Chunk<T> tryMergeChunks(Chunk<T> chunk1, Chunk<T> chunk2) {
-                Chunk<T> chunk;
-                C12238m.checkNotNullParameter(chunk1, "chunk1");
-                C12238m.checkNotNullParameter(chunk2, "chunk2");
-                if (((Chunk) chunk1).startIndex < ((Chunk) chunk2).startIndex) {
-                    chunk = chunk1;
-                } else {
-                    if (((Chunk) chunk2).startIndex >= ((Chunk) chunk1).startIndex) {
-                        throw new IllegalArgumentException("both chunks begin at the same index");
-                    }
-                    chunk = chunk2;
-                }
-                Chunk<T> chunk3 = chunk1 == chunk ? chunk2 : chunk1;
-                int size = (chunk.getSize() + ((Chunk) chunk).startIndex) - 1;
-                if (size < ((Chunk) chunk3).startIndex) {
-                    if (size != ((Chunk) chunk3).startIndex - 1) {
-                        return null;
-                    }
-                    List<T> list = chunk.getList();
-                    list.addAll(chunk3.getList());
-                    return new Chunk<>(((Chunk) chunk).startIndex, list);
-                }
-                throw new IllegalArgumentException("chunks overlap: " + chunk1 + ", " + chunk2);
-            }
-
-            public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-                this();
-            }
-        }
-
-        public Chunk(int i, List<T> list) {
-            C12238m.checkNotNullParameter(list, "list");
-            this.startIndex = i;
-            this.list = list;
-        }
-
-        public final void addAtListIndex(int listIndex, T element) {
-            int i = listIndex - this.startIndex;
-            if (i == 0 && element == null) {
-                incrementStartIndex();
-            } else {
-                this.list.add(i, element);
-            }
-        }
-
-        public final boolean beginsAfterListIndex(int listIndex) {
-            return this.startIndex > listIndex;
-        }
-
-        public final List<T> component2() {
-            return this.list;
-        }
-
-        public final boolean containsListIndex(int listIndex) {
-            return this.startIndex <= listIndex && C12147n.getLastIndex(this.list) + this.startIndex >= listIndex;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ Chunk copy$default(Chunk chunk, int i, List list, int i2, Object obj) {
-            if ((i2 & 1) != 0) {
-                i = chunk.startIndex;
-            }
-            if ((i2 & 2) != 0) {
-                list = chunk.list;
-            }
-            return chunk.copy(i, list);
-        }
-
-        public final Chunk<T> copy(int startIndex, List<T> list) {
-            C12238m.checkNotNullParameter(list, "list");
-            return new Chunk<>(startIndex, list);
-        }
-
-        public final void decrementStartIndex() {
-            this.startIndex--;
-        }
-
-        public final Chunk<T> deepCopy() {
-            return new Chunk<>(this.startIndex, new ArrayList(this.list));
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof Chunk)) {
-                return false;
-            }
-            Chunk chunk = (Chunk) other;
-            return this.startIndex == chunk.startIndex && C12238m.areEqual(this.list, chunk.list);
-        }
-
-        public final int firstListIndexOf(T elenent) {
-            int lastIndex = C12147n.getLastIndex(this.list);
-            if (lastIndex < 0) {
-                return -1;
-            }
-            int i = 0;
-            while (!C12238m.areEqual(this.list.get(i), elenent)) {
-                if (i == lastIndex) {
-                    return -1;
-                }
-                i++;
-            }
-            return this.startIndex + i;
-        }
-
-        public final T getAtListIndex(int listIndex) {
-            return this.list.get(listIndex - this.startIndex);
-        }
-
-        public final List<T> getList() {
-            return this.list;
-        }
-
-        public final int getSize() {
-            return this.list.size();
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final int getStartIndex() {
-            return this.startIndex;
-        }
-
-        public int hashCode() {
-            int i = this.startIndex * 31;
-            List<T> list = this.list;
-            return i + (list != null ? list.hashCode() : 0);
-        }
-
-        public final void incrementStartIndex() {
-            this.startIndex++;
-        }
-
-        public final boolean isEmpty() {
-            return this.list.isEmpty();
-        }
-
-        public final int lastListIndexOf(T element) {
-            for (int lastIndex = C12147n.getLastIndex(this.list); lastIndex >= 0; lastIndex--) {
-                if (C12238m.areEqual(this.list.get(lastIndex), element)) {
-                    return this.startIndex + lastIndex;
-                }
-            }
-            return -1;
-        }
-
-        public final void removeAfterInclusive(int listIndex) {
-            int i = listIndex - this.startIndex;
-            if (i > C12147n.getLastIndex(this.list)) {
-                return;
-            }
-            if (i <= 0) {
-                this.list.clear();
-            } else {
-                this.list = this.list.subList(0, i);
-            }
-        }
-
-        public final T removeAtListIndex(int listIndex) {
-            return this.list.remove(listIndex - this.startIndex);
-        }
-
-        public final T setAtListIndex(int listIndex, T element) {
-            int i = listIndex - this.startIndex;
-            if (element != null) {
-                return this.list.set(i, element);
-            }
-            if (i != 0) {
-                return this.list.set(i, element);
-            }
-            incrementStartIndex();
-            return this.list.remove(0);
-        }
-
-        public final void setList(List<T> list) {
-            C12238m.checkNotNullParameter(list, "<set-?>");
-            this.list = list;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("Chunk(startIndex=");
-            sbM833U.append(this.startIndex);
-            sbM833U.append(", list=");
-            return C1643a.m824L(sbM833U, this.list, ")");
-        }
-
-        @Override // java.lang.Comparable
-        public int compareTo(Chunk<T> other) {
-            C12238m.checkNotNullParameter(other, "other");
-            return this.startIndex - other.startIndex;
-        }
-
-        public final <R> Chunk<R> deepCopy(Function1<? super T, ? extends R> transform) {
-            C12238m.checkNotNullParameter(transform, "transform");
-            ArrayList arrayList = new ArrayList(this.list.size());
-            Iterator<T> it = this.list.iterator();
-            while (it.hasNext()) {
-                T next = it.next();
-                arrayList.add(next != null ? transform.invoke(next) : null);
-            }
-            return new Chunk<>(this.startIndex, arrayList);
-        }
-    }
-
-    /* JADX INFO: compiled from: SparseMutableList.kt */
-    public final class SparseMutableListIterator<T> implements ListIterator<T>, InterfaceC12228a {
-        private int index;
-        private final SparseMutableList<T> sparseMutableList;
-
-        public SparseMutableListIterator(SparseMutableList<T> sparseMutableList, int i) {
-            C12238m.checkNotNullParameter(sparseMutableList, "sparseMutableList");
-            this.sparseMutableList = sparseMutableList;
-            this.index = i;
-        }
-
-        @Override // java.util.ListIterator
-        public void add(T element) {
-            throw new UnsupportedOperationException("add not supported during iteration");
-        }
-
-        public final int getIndex() {
-            return this.index;
-        }
-
-        @Override // java.util.ListIterator, java.util.Iterator
-        public boolean hasNext() {
-            return nextIndex() < C12147n.getLastIndex(this.sparseMutableList);
-        }
-
-        @Override // java.util.ListIterator
-        public boolean hasPrevious() {
-            return this.index > 0;
-        }
-
-        @Override // java.util.ListIterator, java.util.Iterator
-        public T next() {
-            int i = this.index + 1;
-            this.index = i;
-            return this.sparseMutableList.get(i);
-        }
-
-        @Override // java.util.ListIterator
-        public int nextIndex() {
-            return this.index + 1;
-        }
-
-        @Override // java.util.ListIterator
-        public T previous() {
-            int i = this.index - 1;
-            this.index = i;
-            return this.sparseMutableList.get(i);
-        }
-
-        @Override // java.util.ListIterator
-        public int previousIndex() {
-            return this.index - 1;
-        }
-
-        @Override // java.util.ListIterator, java.util.Iterator
-        public void remove() {
-            this.sparseMutableList.remove(this.index);
-        }
-
-        @Override // java.util.ListIterator
-        public void set(T element) {
-            this.sparseMutableList.set(this.index, element);
-        }
-
-        public final void setIndex(int i) {
-            this.index = i;
-        }
-
-        public /* synthetic */ SparseMutableListIterator(SparseMutableList sparseMutableList, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-            this(sparseMutableList, (i2 & 2) != 0 ? -1 : i);
-        }
-    }
-
-    /* JADX WARN: Illegal instructions before constructor call */
     public SparseMutableList() {
-        int i = 0;
-        this(i, i, 3, null);
+        this(0, 0, 3, null);
     }
 
     public SparseMutableList(int i, int i2) {
@@ -342,13 +42,13 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     @Override // java.util.List
     public boolean addAll(int index, Collection<? extends T> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         throw new UnsupportedOperationException();
     }
 
-    private final void addChunk(Chunk<T> chunk) {
+    private final void addChunk(SparseMutableList$Chunk<T> chunk) {
         this.chunks.add(chunk);
-        C12153q.sort(this.chunks);
+        q.sort(this.chunks);
     }
 
     @Override // java.util.List, java.util.Collection
@@ -364,7 +64,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
         }
         Iterator<T> it = iterator();
         while (it.hasNext()) {
-            if (C12238m.areEqual(it.next(), element)) {
+            if (m.areEqual(it.next(), element)) {
                 return true;
             }
         }
@@ -373,7 +73,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     @Override // java.util.List, java.util.Collection
     public boolean containsAll(Collection<? extends Object> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         HashSet hashSet = new HashSet(elements);
         if (hashSet.size() > size()) {
             return false;
@@ -391,8 +91,8 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     private final void decrementChunksFromIndex(int chunkIndex) {
         int lastIndex;
-        int lastIndex2 = C12147n.getLastIndex(this.chunks);
-        if (chunkIndex < 0 || lastIndex2 < chunkIndex || chunkIndex > (lastIndex = C12147n.getLastIndex(this.chunks))) {
+        int lastIndex2 = n.getLastIndex(this.chunks);
+        if (chunkIndex < 0 || lastIndex2 < chunkIndex || chunkIndex > (lastIndex = n.getLastIndex(this.chunks))) {
             return;
         }
         while (true) {
@@ -409,28 +109,28 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
         SparseMutableList<T> sparseMutableList = new SparseMutableList<>(size(), 0, 2, null);
         Iterator<T> it = this.chunks.iterator();
         while (it.hasNext()) {
-            sparseMutableList.chunks.add(((Chunk) it.next()).deepCopy());
+            sparseMutableList.chunks.add(((SparseMutableList$Chunk) it.next()).deepCopy());
         }
         return sparseMutableList;
     }
 
     @Override // java.util.List
     public T get(int index) {
-        if (index > C12147n.getLastIndex(this)) {
-            StringBuilder sbM834V = C1643a.m834V("index ", index, " invalid in list of size ");
-            sbM834V.append(size());
-            throw new IndexOutOfBoundsException(sbM834V.toString());
+        if (index > n.getLastIndex(this)) {
+            StringBuilder sbV = a.V("index ", index, " invalid in list of size ");
+            sbV.append(size());
+            throw new IndexOutOfBoundsException(sbV.toString());
         }
         int chunkIndex = getChunkIndex(index);
-        Chunk<T> chunk = chunkIndex >= 0 ? this.chunks.get(chunkIndex) : null;
-        if (chunk != null) {
-            return chunk.getAtListIndex(index);
+        SparseMutableList$Chunk<T> sparseMutableList$Chunk = chunkIndex >= 0 ? this.chunks.get(chunkIndex) : null;
+        if (sparseMutableList$Chunk != null) {
+            return sparseMutableList$Chunk.getAtListIndex(index);
         }
         return null;
     }
 
     private final int getChunkIndex(int index) {
-        Iterator<Chunk<T>> it = this.chunks.iterator();
+        Iterator<SparseMutableList$Chunk<T>> it = this.chunks.iterator();
         int i = 0;
         while (it.hasNext()) {
             if (it.next().containsListIndex(index)) {
@@ -442,7 +142,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
     }
 
     private final int getFirstChunkIndexAfter(int index) {
-        Iterator<Chunk<T>> it = this.chunks.iterator();
+        Iterator<SparseMutableList$Chunk<T>> it = this.chunks.iterator();
         int i = 0;
         while (it.hasNext()) {
             if (it.next().beginsAfterListIndex(index)) {
@@ -459,8 +159,8 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     private final void incrementChunksFromIndex(int chunkIndex) {
         int lastIndex;
-        int lastIndex2 = C12147n.getLastIndex(this.chunks);
-        if (chunkIndex < 0 || lastIndex2 < chunkIndex || chunkIndex > (lastIndex = C12147n.getLastIndex(this.chunks))) {
+        int lastIndex2 = n.getLastIndex(this.chunks);
+        if (chunkIndex < 0 || lastIndex2 < chunkIndex || chunkIndex > (lastIndex = n.getLastIndex(this.chunks))) {
             return;
         }
         while (true) {
@@ -478,7 +178,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
         if (element != null) {
             Iterator<T> it = this.chunks.iterator();
             while (it.hasNext()) {
-                int iFirstListIndexOf = ((Chunk) it.next()).firstListIndexOf(element);
+                int iFirstListIndexOf = ((SparseMutableList$Chunk) it.next()).firstListIndexOf(element);
                 if (iFirstListIndexOf >= 0) {
                     return iFirstListIndexOf;
                 }
@@ -489,9 +189,9 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
         for (T t : this) {
             int i2 = i + 1;
             if (i < 0) {
-                C12147n.throwIndexOverflow();
+                n.throwIndexOverflow();
             }
-            if (C12238m.areEqual(t, element)) {
+            if (m.areEqual(t, element)) {
                 return i;
             }
             i = i2;
@@ -506,23 +206,23 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     @Override // java.util.List, java.util.Collection, java.lang.Iterable
     public Iterator<T> iterator() {
-        return new SparseMutableListIterator(this, 0, 2, null);
+        return new SparseMutableList$SparseMutableListIterator(this, 0, 2, null);
     }
 
     @Override // java.util.List
     public int lastIndexOf(Object element) {
         if (element != null) {
-            Iterator<T> it = C12161s.asReversedMutable(this.chunks).iterator();
+            Iterator<T> it = s.asReversedMutable(this.chunks).iterator();
             while (it.hasNext()) {
-                int iLastListIndexOf = ((Chunk) it.next()).lastListIndexOf(element);
+                int iLastListIndexOf = ((SparseMutableList$Chunk) it.next()).lastListIndexOf(element);
                 if (iLastListIndexOf >= 0) {
                     return iLastListIndexOf;
                 }
             }
             return -1;
         }
-        for (int lastIndex = C12147n.getLastIndex(this); lastIndex >= 0; lastIndex--) {
-            if (C12238m.areEqual(get(lastIndex), element)) {
+        for (int lastIndex = n.getLastIndex(this); lastIndex >= 0; lastIndex--) {
+            if (m.areEqual(get(lastIndex), element)) {
                 return lastIndex;
             }
         }
@@ -531,7 +231,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     @Override // java.util.List
     public ListIterator<T> listIterator() {
-        return new SparseMutableListIterator(this, 0, 2, null);
+        return new SparseMutableList$SparseMutableListIterator(this, 0, 2, null);
     }
 
     @Override // java.util.List
@@ -539,15 +239,14 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
         return removeAt(i);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
     @Override // java.util.List, java.util.Collection
     public boolean removeAll(Collection<? extends Object> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         boolean z2 = false;
-        SparseMutableListIterator sparseMutableListIterator = new SparseMutableListIterator(this, 0 == true ? 1 : 0, 2, null);
-        while (sparseMutableListIterator.hasNext()) {
-            if (elements.contains(sparseMutableListIterator.next())) {
-                sparseMutableListIterator.remove();
+        SparseMutableList$SparseMutableListIterator sparseMutableList$SparseMutableListIterator = new SparseMutableList$SparseMutableListIterator(this, 0, 2, null);
+        while (sparseMutableList$SparseMutableListIterator.hasNext()) {
+            if (elements.contains(sparseMutableList$SparseMutableListIterator.next())) {
+                sparseMutableList$SparseMutableListIterator.remove();
                 z2 = true;
             }
         }
@@ -557,9 +256,9 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
     public T removeAt(int index) {
         T tRemoveAtListIndex;
         if (index < 0 || index >= size()) {
-            StringBuilder sbM834V = C1643a.m834V("index: ", index, " -- size: ");
-            sbM834V.append(size());
-            throw new ArrayIndexOutOfBoundsException(sbM834V.toString());
+            StringBuilder sbV = a.V("index: ", index, " -- size: ");
+            sbV.append(size());
+            throw new ArrayIndexOutOfBoundsException(sbV.toString());
         }
         int chunkIndex = getChunkIndex(index);
         if (chunkIndex >= 0) {
@@ -578,17 +277,17 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
     }
 
     private final void resolveChunks() {
-        C12153q.sort(this.chunks);
+        q.sort(this.chunks);
         int i = 0;
         while (i < this.chunks.size() - 1) {
-            Chunk<T> chunk = this.chunks.get(i);
-            if (chunk.isEmpty()) {
+            SparseMutableList$Chunk<T> sparseMutableList$Chunk = this.chunks.get(i);
+            if (sparseMutableList$Chunk.isEmpty()) {
                 this.chunks.remove(i);
             } else {
                 int i2 = i + 1;
-                Chunk<T> chunkTryMergeChunks = Chunk.INSTANCE.tryMergeChunks(chunk, this.chunks.get(i2));
-                if (chunkTryMergeChunks != null) {
-                    this.chunks.set(i, chunkTryMergeChunks);
+                SparseMutableList$Chunk<T> sparseMutableList$ChunkTryMergeChunks = SparseMutableList$Chunk.Companion.tryMergeChunks(sparseMutableList$Chunk, this.chunks.get(i2));
+                if (sparseMutableList$ChunkTryMergeChunks != null) {
+                    this.chunks.set(i, sparseMutableList$ChunkTryMergeChunks);
                     this.chunks.remove(i2);
                 } else {
                     i = i2;
@@ -599,7 +298,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     @Override // java.util.List, java.util.Collection
     public boolean retainAll(Collection<? extends Object> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         throw new UnsupportedOperationException();
     }
 
@@ -617,7 +316,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
         if (element == null) {
             return null;
         }
-        addChunk(Chunk.INSTANCE.create(element, index, this.expectedChunkSize));
+        addChunk(SparseMutableList$Chunk.Companion.create(element, index, this.expectedChunkSize));
         resolveChunks();
         return null;
     }
@@ -631,7 +330,7 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
         if (i < i2) {
             Iterator<T> it = this.chunks.iterator();
             while (it.hasNext()) {
-                ((Chunk) it.next()).removeAfterInclusive(i);
+                ((SparseMutableList$Chunk) it.next()).removeAfterInclusive(i);
             }
             this.size = i;
             resolveChunks();
@@ -650,12 +349,12 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     @Override // java.util.List, java.util.Collection
     public Object[] toArray() {
-        return C12227g.toArray(this);
+        return g.toArray(this);
     }
 
     @Override // java.util.List, java.util.Collection
     public <T> T[] toArray(T[] tArr) {
-        return (T[]) C12227g.toArray(this, tArr);
+        return (T[]) g.toArray(this, tArr);
     }
 
     @Override // java.util.List
@@ -673,12 +372,12 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
                 this.chunks.get(chunkIndex).addAtListIndex(index, element);
                 incrementChunksFromIndex(chunkIndex + 1);
             } else {
-                Chunk<T> chunkCreate = Chunk.INSTANCE.create(element, index, this.expectedChunkSize);
+                SparseMutableList$Chunk<T> sparseMutableList$ChunkCreate = SparseMutableList$Chunk.Companion.create(element, index, this.expectedChunkSize);
                 int firstChunkIndexAfter = getFirstChunkIndexAfter(index);
                 if (firstChunkIndexAfter == -1) {
-                    addChunk(chunkCreate);
+                    addChunk(sparseMutableList$ChunkCreate);
                 } else {
-                    addChunk(firstChunkIndexAfter, chunkCreate);
+                    addChunk(firstChunkIndexAfter, sparseMutableList$ChunkCreate);
                     incrementChunksFromIndex(firstChunkIndexAfter + 1);
                 }
             }
@@ -697,30 +396,30 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
 
     @Override // java.util.List, java.util.Collection
     public boolean addAll(Collection<? extends T> elements) {
-        C12238m.checkNotNullParameter(elements, "elements");
+        m.checkNotNullParameter(elements, "elements");
         return addAll(size(), elements);
     }
 
     @Override // java.util.List
     public ListIterator<T> listIterator(int index) {
-        return new SparseMutableListIterator(this, 0, 2, null);
+        return new SparseMutableList$SparseMutableListIterator(this, 0, 2, null);
     }
 
     @Override // java.util.List, java.util.Collection
     public boolean remove(Object element) {
-        SparseMutableListIterator sparseMutableListIterator = new SparseMutableListIterator(this, 0, 2, null);
-        while (sparseMutableListIterator.hasNext()) {
-            if (C12238m.areEqual(sparseMutableListIterator.next(), element)) {
-                sparseMutableListIterator.remove();
+        SparseMutableList$SparseMutableListIterator sparseMutableList$SparseMutableListIterator = new SparseMutableList$SparseMutableListIterator(this, 0, 2, null);
+        while (sparseMutableList$SparseMutableListIterator.hasNext()) {
+            if (m.areEqual(sparseMutableList$SparseMutableListIterator.next(), element)) {
+                sparseMutableList$SparseMutableListIterator.remove();
                 return true;
             }
         }
         return false;
     }
 
-    private final void addChunk(int index, Chunk<T> chunk) {
+    private final void addChunk(int index, SparseMutableList$Chunk<T> chunk) {
         this.chunks.add(index, chunk);
-        C12153q.sort(this.chunks);
+        q.sort(this.chunks);
     }
 
     public /* synthetic */ SparseMutableList(int i, int i2, int i3, DefaultConstructorMarker defaultConstructorMarker) {
@@ -728,11 +427,11 @@ public final class SparseMutableList<T> implements List<T>, InterfaceC12230c {
     }
 
     public final <R> SparseMutableList<R> deepCopy(Function1<? super T, ? extends R> transform) {
-        C12238m.checkNotNullParameter(transform, "transform");
+        m.checkNotNullParameter(transform, "transform");
         SparseMutableList<R> sparseMutableList = new SparseMutableList<>(size(), 0, 2, null);
         Iterator<T> it = this.chunks.iterator();
         while (it.hasNext()) {
-            sparseMutableList.chunks.add(((Chunk) it.next()).deepCopy(transform));
+            sparseMutableList.chunks.add(((SparseMutableList$Chunk) it.next()).deepCopy(transform));
         }
         return sparseMutableList;
     }

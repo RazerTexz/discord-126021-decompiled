@@ -1,13 +1,13 @@
 package com.discord.utilities.collections;
 
 import androidx.exifinterface.media.ExifInterface;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: Add missing generic type declarations: [K] */
 /* JADX INFO: compiled from: ShallowPartitionMap.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class ShallowPartitionMap$Companion$getHashCodePartitionStrategy$1<K> extends AbstractC12240o implements Function1<K, Integer> {
+public final class ShallowPartitionMap$Companion$getHashCodePartitionStrategy$1<K> extends o implements Function1<K, Integer> {
     public final /* synthetic */ int $numPartitions;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

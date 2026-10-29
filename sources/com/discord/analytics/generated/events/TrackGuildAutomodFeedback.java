@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildAutomodFeedback.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -41,6 +41,11 @@ public final /* data */ class TrackGuildAutomodFeedback implements AnalyticsSche
         this.analyticsSchemaTypeName = "guild_automod_feedback";
     }
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -49,7 +54,7 @@ public final /* data */ class TrackGuildAutomodFeedback implements AnalyticsSche
             return false;
         }
         TrackGuildAutomodFeedback trackGuildAutomodFeedback = (TrackGuildAutomodFeedback) other;
-        return C12238m.areEqual(this.decisionId, trackGuildAutomodFeedback.decisionId) && C12238m.areEqual(this.messageId, trackGuildAutomodFeedback.messageId) && C12238m.areEqual(this.messageContent, trackGuildAutomodFeedback.messageContent) && C12238m.areEqual(this.feedbackType, trackGuildAutomodFeedback.feedbackType) && C12238m.areEqual(this.content, trackGuildAutomodFeedback.content);
+        return m.areEqual(this.decisionId, trackGuildAutomodFeedback.decisionId) && m.areEqual(this.messageId, trackGuildAutomodFeedback.messageId) && m.areEqual(this.messageContent, trackGuildAutomodFeedback.messageContent) && m.areEqual(this.feedbackType, trackGuildAutomodFeedback.feedbackType) && m.areEqual(this.content, trackGuildAutomodFeedback.content);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -77,22 +82,16 @@ public final /* data */ class TrackGuildAutomodFeedback implements AnalyticsSche
         return iHashCode4 + (charSequence5 != null ? charSequence5.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildAutomodFeedback(decisionId=");
-        sbM833U.append(this.decisionId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", messageContent=");
-        sbM833U.append(this.messageContent);
-        sbM833U.append(", feedbackType=");
-        sbM833U.append(this.feedbackType);
-        sbM833U.append(", content=");
-        return C1643a.m817E(sbM833U, this.content, ")");
+        StringBuilder sbU = a.U("TrackGuildAutomodFeedback(decisionId=");
+        sbU.append(this.decisionId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", messageContent=");
+        sbU.append(this.messageContent);
+        sbU.append(", feedbackType=");
+        sbU.append(this.feedbackType);
+        sbU.append(", content=");
+        return a.E(sbU, this.content, ")");
     }
 }

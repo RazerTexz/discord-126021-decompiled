@@ -1,92 +1,24 @@
 package com.google.android.material.internal;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
 import android.widget.Checkable;
 import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.C0051R;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
-import androidx.customview.view.AbsSavedState;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class CheckableImageButton extends AppCompatImageButton implements Checkable {
     private boolean checkable;
     private boolean checked;
     private boolean pressable;
-    private static final int[] DRAWABLE_STATE_CHECKED = {R.attr.state_checked};
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.CheckableImageButton$a */
-    public class C10924a extends AccessibilityDelegateCompat {
-        public C10924a() {
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityEvent(View view, @NonNull AccessibilityEvent accessibilityEvent) {
-            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
-            accessibilityEvent.setChecked(CheckableImageButton.this.isChecked());
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityNodeInfo(View view, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
-            accessibilityNodeInfoCompat.setCheckable(CheckableImageButton.this.isCheckable());
-            accessibilityNodeInfoCompat.setChecked(CheckableImageButton.this.isChecked());
-        }
-    }
-
-    public class SavedState extends AbsSavedState {
-
-        /* JADX INFO: renamed from: j */
-        public boolean f21025j;
-        public static final Parcelable.Creator<SavedState> CREATOR = new C10923a();
-
-        /* JADX INFO: renamed from: com.google.android.material.internal.CheckableImageButton$SavedState$a */
-        public final class C10923a implements Parcelable.ClassLoaderCreator<SavedState> {
-            @Override // android.os.Parcelable.ClassLoaderCreator
-            @NonNull
-            public SavedState createFromParcel(@NonNull Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public Object[] newArray(int i) {
-                return new SavedState[i];
-            }
-
-            @Override // android.os.Parcelable.Creator
-            @NonNull
-            public Object createFromParcel(@NonNull Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-        }
-
-        public SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        @Override // androidx.customview.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(@NonNull Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.f21025j ? 1 : 0);
-        }
-
-        public SavedState(@NonNull Parcel parcel, ClassLoader classLoader) {
-            super(parcel, classLoader);
-            this.f21025j = parcel.readInt() == 1;
-        }
-    }
+    private static final int[] DRAWABLE_STATE_CHECKED = {R$attr.state_checked};
 
     public CheckableImageButton(Context context) {
         this(context, null);
@@ -116,21 +48,21 @@ public class CheckableImageButton extends AppCompatImageButton implements Checka
 
     @Override // android.view.View
     public void onRestoreInstanceState(Parcelable parcelable) {
-        if (!(parcelable instanceof SavedState)) {
+        if (!(parcelable instanceof CheckableImageButton$SavedState)) {
             super.onRestoreInstanceState(parcelable);
             return;
         }
-        SavedState savedState = (SavedState) parcelable;
-        super.onRestoreInstanceState(savedState.getSuperState());
-        setChecked(savedState.f21025j);
+        CheckableImageButton$SavedState checkableImageButton$SavedState = (CheckableImageButton$SavedState) parcelable;
+        super.onRestoreInstanceState(checkableImageButton$SavedState.getSuperState());
+        setChecked(checkableImageButton$SavedState.j);
     }
 
     @Override // android.view.View
     @NonNull
     public Parcelable onSaveInstanceState() {
-        SavedState savedState = new SavedState(super.onSaveInstanceState());
-        savedState.f21025j = this.checked;
-        return savedState;
+        CheckableImageButton$SavedState checkableImageButton$SavedState = new CheckableImageButton$SavedState(super.onSaveInstanceState());
+        checkableImageButton$SavedState.j = this.checked;
+        return checkableImageButton$SavedState;
     }
 
     public void setCheckable(boolean z2) {
@@ -167,13 +99,13 @@ public class CheckableImageButton extends AppCompatImageButton implements Checka
     }
 
     public CheckableImageButton(Context context, AttributeSet attributeSet) {
-        this(context, attributeSet, C0051R.attr.imageButtonStyle);
+        this(context, attributeSet, androidx.appcompat.R$attr.imageButtonStyle);
     }
 
     public CheckableImageButton(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         this.checkable = true;
         this.pressable = true;
-        ViewCompat.setAccessibilityDelegate(this, new C10924a());
+        ViewCompat.setAccessibilityDelegate(this, new CheckableImageButton$a(this));
     }
 }

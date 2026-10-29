@@ -7,27 +7,28 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TableRow$LayoutParams;
 import android.widget.TextView;
 import androidx.core.view.ViewGroupKt;
-import com.discord.C5419R;
-import com.discord.stores.StoreVoiceParticipants;
+import com.discord.R$layout;
+import com.discord.stores.StoreVoiceParticipants$VoiceUser;
 import com.discord.utilities.collections.CollectionExtensionsKt;
 import com.discord.utilities.dimen.DimenUtils;
 import com.discord.views.VoiceUserView;
 import com.google.android.material.badge.BadgeDrawable;
+import d0.t.n;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: PrivateCallGridView.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class PrivateCallGridView extends TableLayout {
-    private static final Companion Companion = new Companion(null);
+    private static final PrivateCallGridView$Companion Companion = new PrivateCallGridView$Companion(null);
 
     @Deprecated
     private static final int PARTICIPANT_AVATAR_SIZE_DP = 92;
@@ -38,41 +39,31 @@ public final class PrivateCallGridView extends TableLayout {
     @Deprecated
     private static final int PARTICIPANT_RING_MARGIN = 6;
     private final LinkedHashMap<Long, VoiceUserView> callUserViews;
-    private List<StoreVoiceParticipants.VoiceUser> callUsers;
-
-    /* JADX INFO: compiled from: PrivateCallGridView.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
+    private List<StoreVoiceParticipants$VoiceUser> callUsers;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PrivateCallGridView(Context context) {
         super(context);
-        C12238m.checkNotNullParameter(context, "context");
-        this.callUsers = C12147n.emptyList();
+        m.checkNotNullParameter(context, "context");
+        this.callUsers = n.emptyList();
         this.callUserViews = new LinkedHashMap<>();
     }
 
-    public final void configure(List<StoreVoiceParticipants.VoiceUser> callUsers) {
-        C12238m.checkNotNullParameter(callUsers, "callUsers");
+    public final void configure(List<StoreVoiceParticipants$VoiceUser> callUsers) {
+        m.checkNotNullParameter(callUsers, "callUsers");
         if (!CollectionExtensionsKt.equals(this.callUsers, callUsers, PrivateCallGridView$configure$callUserOrderChanged$1.INSTANCE)) {
             removeViewsAndSubviews();
             int i = 0;
-            for (Object obj : C12163u.chunked(getVisibleCallUsers(callUsers), getColumnSize())) {
+            for (Object obj : u.chunked(getVisibleCallUsers(callUsers), getColumnSize())) {
                 int i2 = i + 1;
                 if (i < 0) {
-                    C12147n.throwIndexOverflow();
+                    n.throwIndexOverflow();
                 }
                 TableRow tableRow = new TableRow(getContext());
                 tableRow.setGravity(17);
                 Iterator it = ((List) obj).iterator();
                 while (it.hasNext()) {
-                    tableRow.addView(getAndUpdateCallUserView((StoreVoiceParticipants.VoiceUser) it.next()));
+                    tableRow.addView(getAndUpdateCallUserView((StoreVoiceParticipants$VoiceUser) it.next()));
                 }
                 View overflowParticipantView = getOverflowParticipantView(callUsers, i);
                 if (overflowParticipantView != null) {
@@ -88,7 +79,7 @@ public final class PrivateCallGridView extends TableLayout {
         } else {
             Iterator<T> it2 = getVisibleCallUsers(callUsers).iterator();
             while (it2.hasNext()) {
-                getAndUpdateCallUserView((StoreVoiceParticipants.VoiceUser) it2.next());
+                getAndUpdateCallUserView((StoreVoiceParticipants$VoiceUser) it2.next());
             }
         }
         this.callUsers = callUsers;
@@ -96,12 +87,12 @@ public final class PrivateCallGridView extends TableLayout {
 
     private final VoiceUserView createCallUserView() {
         Context context = getContext();
-        C12238m.checkNotNullExpressionValue(context, "context");
+        m.checkNotNullExpressionValue(context, "context");
         VoiceUserView voiceUserView = new VoiceUserView(context, null, 0, 6);
-        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams();
+        TableRow$LayoutParams tableRow$LayoutParams = new TableRow$LayoutParams();
         int iDpToPixels = DimenUtils.dpToPixels(2);
-        layoutParams.setMargins(iDpToPixels, iDpToPixels, iDpToPixels, iDpToPixels);
-        voiceUserView.setLayoutParams(layoutParams);
+        tableRow$LayoutParams.setMargins(iDpToPixels, iDpToPixels, iDpToPixels, iDpToPixels);
+        voiceUserView.setLayoutParams(tableRow$LayoutParams);
         voiceUserView.setAnimateAvatarWhenRinging(true);
         voiceUserView.setFadeWhenDisconnected(true);
         voiceUserView.setAvatarSize(DimenUtils.dpToPixels(92));
@@ -109,7 +100,7 @@ public final class PrivateCallGridView extends TableLayout {
         return voiceUserView;
     }
 
-    private final VoiceUserView getAndUpdateCallUserView(StoreVoiceParticipants.VoiceUser callUserItem) {
+    private final VoiceUserView getAndUpdateCallUserView(StoreVoiceParticipants$VoiceUser callUserItem) {
         LinkedHashMap<Long, VoiceUserView> linkedHashMap = this.callUserViews;
         Long lValueOf = Long.valueOf(callUserItem.getUser().getId());
         VoiceUserView voiceUserViewCreateCallUserView = linkedHashMap.get(lValueOf);
@@ -118,58 +109,58 @@ public final class PrivateCallGridView extends TableLayout {
             linkedHashMap.put(lValueOf, voiceUserViewCreateCallUserView);
         }
         VoiceUserView voiceUserView = voiceUserViewCreateCallUserView;
-        int i = VoiceUserView.f19182j;
-        voiceUserView.m8570a(callUserItem, C5419R.dimen.avatar_size_unrestricted);
+        int i = VoiceUserView.j;
+        voiceUserView.a(callUserItem, 2131165301);
         voiceUserView.setSelected(false);
         return voiceUserView;
     }
 
     private final int getColumnSize() {
         Resources resources = getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
+        m.checkNotNullExpressionValue(resources, "resources");
         return isLandscape(resources) ? 6 : 3;
     }
 
     private final int getMaxShownParticipants() {
         Resources resources = getResources();
-        C12238m.checkNotNullExpressionValue(resources, "resources");
+        m.checkNotNullExpressionValue(resources, "resources");
         return isLandscape(resources) ? 6 : 9;
     }
 
-    private final View getOneOnOneSpacerView(List<StoreVoiceParticipants.VoiceUser> callUsers, int rowIndex) {
+    private final View getOneOnOneSpacerView(List<StoreVoiceParticipants$VoiceUser> callUsers, int rowIndex) {
         if (!(rowIndex == 0 && callUsers.size() == 2)) {
             return null;
         }
-        View viewInflate = TableLayout.inflate(getContext(), C5419R.layout.view_private_call_grid_spacer, null);
+        View viewInflate = TableLayout.inflate(getContext(), R$layout.view_private_call_grid_spacer, null);
         Objects.requireNonNull(viewInflate, "null cannot be cast to non-null type android.widget.TextView");
         return (TextView) viewInflate;
     }
 
     @SuppressLint({"SetTextI18n"})
-    private final View getOverflowParticipantView(List<StoreVoiceParticipants.VoiceUser> callUsers, int rowIndex) {
+    private final View getOverflowParticipantView(List<StoreVoiceParticipants$VoiceUser> callUsers, int rowIndex) {
         if (!(rowIndex == ((int) Math.ceil(((double) getMaxShownParticipants()) / ((double) getColumnSize()))) - 1) || !isOverflowingParticipants(callUsers)) {
             return null;
         }
-        View viewInflate = TableLayout.inflate(getContext(), C5419R.layout.view_private_call_grid_overflow, null);
+        View viewInflate = TableLayout.inflate(getContext(), R$layout.view_private_call_grid_overflow, null);
         Objects.requireNonNull(viewInflate, "null cannot be cast to non-null type android.widget.TextView");
         TextView textView = (TextView) viewInflate;
-        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(DimenUtils.dpToPixels(92), DimenUtils.dpToPixels(92));
+        TableRow$LayoutParams tableRow$LayoutParams = new TableRow$LayoutParams(DimenUtils.dpToPixels(92), DimenUtils.dpToPixels(92));
         int iDpToPixels = DimenUtils.dpToPixels(2) * 4;
-        layoutParams.setMargins(iDpToPixels, iDpToPixels, iDpToPixels, iDpToPixels);
-        textView.setLayoutParams(layoutParams);
+        tableRow$LayoutParams.setMargins(iDpToPixels, iDpToPixels, iDpToPixels, iDpToPixels);
+        textView.setLayoutParams(tableRow$LayoutParams);
         textView.setText(BadgeDrawable.DEFAULT_EXCEED_MAX_BADGE_NUMBER_SUFFIX + String.valueOf(callUsers.size() - getMaxShownParticipants()));
         return textView;
     }
 
-    private final List<StoreVoiceParticipants.VoiceUser> getVisibleCallUsers(List<StoreVoiceParticipants.VoiceUser> callUsers) {
-        return isOverflowingParticipants(callUsers) ? C12163u.take(callUsers, getMaxShownParticipants() - 1) : callUsers;
+    private final List<StoreVoiceParticipants$VoiceUser> getVisibleCallUsers(List<StoreVoiceParticipants$VoiceUser> callUsers) {
+        return isOverflowingParticipants(callUsers) ? u.take(callUsers, getMaxShownParticipants() - 1) : callUsers;
     }
 
     private final boolean isLandscape(Resources resources) {
         return resources.getConfiguration().orientation == 2;
     }
 
-    private final boolean isOverflowingParticipants(List<StoreVoiceParticipants.VoiceUser> callUsers) {
+    private final boolean isOverflowingParticipants(List<StoreVoiceParticipants$VoiceUser> callUsers) {
         return callUsers.size() > getMaxShownParticipants();
     }
 
@@ -184,8 +175,8 @@ public final class PrivateCallGridView extends TableLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public PrivateCallGridView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
-        this.callUsers = C12147n.emptyList();
+        m.checkNotNullParameter(context, "context");
+        this.callUsers = n.emptyList();
         this.callUserViews = new LinkedHashMap<>();
     }
 

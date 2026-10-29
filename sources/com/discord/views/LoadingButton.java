@@ -3,26 +3,28 @@ package com.discord.views;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import androidx.annotation.ColorInt;
-import androidx.core.app.NotificationCompat;
-import com.discord.C5419R;
+import androidx.core.app.NotificationCompat$MessagingStyle$Message;
+import b.a.i.n2;
+import com.discord.R$a;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.google.android.material.button.MaterialButton;
-import p007b.p008a.p025i.C1012n2;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: LoadingButton.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class LoadingButton extends FrameLayout {
 
     /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final C1012n2 binding;
+    public final n2 binding;
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public float disabledAlpha;
@@ -43,23 +45,23 @@ public final class LoadingButton extends FrameLayout {
         float f;
         super(context, attributeSet, 0);
         int i = 4;
-        C12238m.checkNotNullParameter(context, "context");
-        LayoutInflater.from(context).inflate(C5419R.layout.view_loading_button, this);
-        int i2 = C5419R.id.loading_button_button;
-        MaterialButton materialButton = (MaterialButton) findViewById(C5419R.id.loading_button_button);
+        m.checkNotNullParameter(context, "context");
+        LayoutInflater.from(context).inflate(R$layout.view_loading_button, this);
+        int i2 = R$id.loading_button_button;
+        MaterialButton materialButton = (MaterialButton) findViewById(R$id.loading_button_button);
         if (materialButton != null) {
-            i2 = C5419R.id.loading_button_progress;
-            ProgressBar progressBar = (ProgressBar) findViewById(C5419R.id.loading_button_progress);
+            i2 = R$id.loading_button_progress;
+            ProgressBar progressBar = (ProgressBar) findViewById(R$id.loading_button_progress);
             if (progressBar != null) {
-                C1012n2 c1012n2 = new C1012n2(this, materialButton, progressBar);
-                C12238m.checkNotNullExpressionValue(c1012n2, "ViewLoadingButtonBinding…ater.from(context), this)");
-                this.binding = c1012n2;
+                n2 n2Var = new n2(this, materialButton, progressBar);
+                m.checkNotNullExpressionValue(n2Var, "ViewLoadingButtonBinding…ater.from(context), this)");
+                this.binding = n2Var;
                 this.disabledAlpha = 0.2f;
                 setClickable(true);
                 setFocusable(true);
                 if (attributeSet != null) {
-                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C5419R.a.LoadingButton, 0, 0);
-                    C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…able.LoadingButton, 0, 0)");
+                    TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R$a.LoadingButton, 0, 0);
+                    m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…able.LoadingButton, 0, 0)");
                     try {
                         String string = typedArrayObtainStyledAttributes.getString(8);
                         setText(string);
@@ -70,41 +72,41 @@ public final class LoadingButton extends FrameLayout {
                         }
                         ColorStateList colorStateList2 = typedArrayObtainStyledAttributes.getColorStateList(0);
                         if (colorStateList2 != null) {
-                            C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                            m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                             materialButton.setBackgroundTintList(colorStateList2);
                         }
                         float dimension = typedArrayObtainStyledAttributes.getDimension(10, -1.0f);
                         if (dimension > 0) {
                             materialButton.setTextSize(0, dimension);
                         }
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         int dimensionPixelSize = typedArrayObtainStyledAttributes.getDimensionPixelSize(6, materialButton.getPaddingTop());
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         int paddingLeft = materialButton.getPaddingLeft();
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         int paddingRight = materialButton.getPaddingRight();
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         materialButton.setPadding(paddingLeft, dimensionPixelSize, paddingRight, materialButton.getPaddingBottom());
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         int dimensionPixelSize2 = typedArrayObtainStyledAttributes.getDimensionPixelSize(5, materialButton.getPaddingBottom());
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         int paddingLeft2 = materialButton.getPaddingLeft();
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         int paddingTop = materialButton.getPaddingTop();
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         materialButton.setPadding(paddingLeft2, paddingTop, materialButton.getPaddingRight(), dimensionPixelSize2);
                         if (typedArrayObtainStyledAttributes.getBoolean(1, false)) {
-                            C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                            m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                             materialButton.setStateListAnimator(null);
                         }
                         Drawable drawable = typedArrayObtainStyledAttributes.getDrawable(3);
                         this.buttonIcon = drawable;
                         if (drawable != null) {
-                            C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                            m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                             materialButton.setIcon(drawable);
                         }
                         String string2 = typedArrayObtainStyledAttributes.getString(4);
-                        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+                        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
                         if (string2 != null) {
                             switch (string2.hashCode()) {
                                 case -1417863058:
@@ -169,28 +171,28 @@ public final class LoadingButton extends FrameLayout {
 
     @Override // android.view.View
     public void setBackgroundColor(@ColorInt int colorInt) {
-        MaterialButton materialButton = this.binding.f1075b;
-        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+        MaterialButton materialButton = this.binding.f166b;
+        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
         materialButton.setBackgroundTintList(ColorStateList.valueOf(colorInt));
     }
 
     @Override // android.view.View
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        MaterialButton materialButton = this.binding.f1075b;
-        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+        MaterialButton materialButton = this.binding.f166b;
+        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
         materialButton.setEnabled(enabled);
         setAlpha(isEnabled() ? 1.0f : this.disabledAlpha);
     }
 
     public final void setIconVisibility(boolean visible) {
         if (visible) {
-            MaterialButton materialButton = this.binding.f1075b;
-            C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+            MaterialButton materialButton = this.binding.f166b;
+            m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
             materialButton.setIcon(this.buttonIcon);
         } else {
-            MaterialButton materialButton2 = this.binding.f1075b;
-            C12238m.checkNotNullExpressionValue(materialButton2, "binding.loadingButtonButton");
+            MaterialButton materialButton2 = this.binding.f166b;
+            m.checkNotNullExpressionValue(materialButton2, "binding.loadingButtonButton");
             materialButton2.setIcon(null);
         }
     }
@@ -198,44 +200,44 @@ public final class LoadingButton extends FrameLayout {
     public final void setIsLoading(boolean isLoading) {
         if (!isLoading) {
             setClickable(true);
-            MaterialButton materialButton = this.binding.f1075b;
-            C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+            MaterialButton materialButton = this.binding.f166b;
+            m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
             materialButton.setText(this.buttonText);
-            MaterialButton materialButton2 = this.binding.f1075b;
-            C12238m.checkNotNullExpressionValue(materialButton2, "binding.loadingButtonButton");
+            MaterialButton materialButton2 = this.binding.f166b;
+            m.checkNotNullExpressionValue(materialButton2, "binding.loadingButtonButton");
             materialButton2.setIcon(this.buttonIcon);
-            ProgressBar progressBar = this.binding.f1076c;
-            C12238m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
+            ProgressBar progressBar = this.binding.c;
+            m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
             progressBar.setVisibility(8);
             return;
         }
         setClickable(false);
-        MaterialButton materialButton3 = this.binding.f1075b;
-        C12238m.checkNotNullExpressionValue(materialButton3, "binding.loadingButtonButton");
+        MaterialButton materialButton3 = this.binding.f166b;
+        m.checkNotNullExpressionValue(materialButton3, "binding.loadingButtonButton");
         this.buttonText = materialButton3.getText().toString();
-        MaterialButton materialButton4 = this.binding.f1075b;
-        C12238m.checkNotNullExpressionValue(materialButton4, "binding.loadingButtonButton");
+        MaterialButton materialButton4 = this.binding.f166b;
+        m.checkNotNullExpressionValue(materialButton4, "binding.loadingButtonButton");
         materialButton4.setText((CharSequence) null);
-        MaterialButton materialButton5 = this.binding.f1075b;
-        C12238m.checkNotNullExpressionValue(materialButton5, "binding.loadingButtonButton");
+        MaterialButton materialButton5 = this.binding.f166b;
+        m.checkNotNullExpressionValue(materialButton5, "binding.loadingButtonButton");
         materialButton5.setIcon(null);
-        ProgressBar progressBar2 = this.binding.f1076c;
-        C12238m.checkNotNullExpressionValue(progressBar2, "binding.loadingButtonProgress");
+        ProgressBar progressBar2 = this.binding.c;
+        m.checkNotNullExpressionValue(progressBar2, "binding.loadingButtonProgress");
         progressBar2.setVisibility(0);
     }
 
     private final void setProgressBarColor(@ColorInt int color) {
-        ProgressBar progressBar = this.binding.f1076c;
-        C12238m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
-        progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        ProgressBar progressBar = this.binding.c;
+        m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
+        progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff$Mode.SRC_IN);
     }
 
     public final void setText(CharSequence text) {
         this.buttonText = text;
-        MaterialButton materialButton = this.binding.f1075b;
-        C12238m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
-        ProgressBar progressBar = this.binding.f1076c;
-        C12238m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
+        MaterialButton materialButton = this.binding.f166b;
+        m.checkNotNullExpressionValue(materialButton, "binding.loadingButtonButton");
+        ProgressBar progressBar = this.binding.c;
+        m.checkNotNullExpressionValue(progressBar, "binding.loadingButtonProgress");
         if (progressBar.getVisibility() == 0) {
             text = null;
         }

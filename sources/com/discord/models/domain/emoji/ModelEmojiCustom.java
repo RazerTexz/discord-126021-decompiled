@@ -2,7 +2,8 @@ package com.discord.models.domain.emoji;
 
 import android.content.Context;
 import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
 import com.discord.api.emoji.GuildEmoji;
 import com.discord.utilities.icon.IconUtils;
 import com.discord.utilities.string.StringUtilsKt;
@@ -12,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelEmojiCustom implements Emoji {
@@ -22,8 +22,8 @@ public class ModelEmojiCustom implements Emoji {
     private transient int disambiguationIndex;
     public static String emojiUriFormat;
 
-    /* JADX INFO: renamed from: id */
-    private long f18590id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private long f2741id;
     private long guildId;
     private String idStr;
     private boolean isAnimated;
@@ -34,23 +34,7 @@ public class ModelEmojiCustom implements Emoji {
     private boolean requireColons;
     private final List<Long> roles;
     private static final List<Long> EMPTY_ROLES = new ArrayList();
-    public static final Parcelable.Creator<ModelEmojiCustom> CREATOR = new Parcelable.Creator<ModelEmojiCustom>() { // from class: com.discord.models.domain.emoji.ModelEmojiCustom.1
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ModelEmojiCustom createFromParcel(Parcel parcel) {
-            long j = parcel.readLong();
-            String string = parcel.readString();
-            ArrayList arrayList = new ArrayList();
-            parcel.readList(arrayList, null);
-            return new ModelEmojiCustom(j, string, arrayList, parcel.readInt() > 0, parcel.readInt() > 0, parcel.readInt(), parcel.readString(), parcel.readInt() > 0, parcel.readInt() > 0, parcel.readInt() > 0, parcel.readLong());
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public ModelEmojiCustom[] newArray(int i) {
-            return new ModelEmojiCustom[i];
-        }
-    };
+    public static final Parcelable$Creator<ModelEmojiCustom> CREATOR = new ModelEmojiCustom$1();
 
     public ModelEmojiCustom() {
         this.idStr = "0";
@@ -110,7 +94,7 @@ public class ModelEmojiCustom implements Emoji {
     }
 
     private String getColonRegex() {
-        return C1643a.m820H(C1643a.m833U("((?<!\\\\)):"), getNameDisambiguated(), MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
+        return a.H(a.U("((?<!\\\\)):"), getNameDisambiguated(), MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
     }
 
     @Override // com.discord.models.domain.emoji.Emoji
@@ -132,7 +116,7 @@ public class ModelEmojiCustom implements Emoji {
     }
 
     public long getId() {
-        return this.f18590id;
+        return this.f2741id;
     }
 
     public String getIdStr() {
@@ -141,7 +125,7 @@ public class ModelEmojiCustom implements Emoji {
 
     @Override // com.discord.models.domain.emoji.Emoji
     public String getImageUri(boolean z2, int i, Context context) {
-        return getImageUri(this.f18590id, this.isAnimated && z2, i);
+        return getImageUri(this.f2741id, this.isAnimated && z2, i);
     }
 
     @Override // com.discord.models.domain.emoji.Emoji
@@ -158,7 +142,7 @@ public class ModelEmojiCustom implements Emoji {
         sb.append(str);
         sb.append(this.name);
         sb.append(MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR);
-        sb.append(this.f18590id);
+        sb.append(this.f2741id);
         sb.append('>');
         return sb.toString();
     }
@@ -178,12 +162,12 @@ public class ModelEmojiCustom implements Emoji {
     }
 
     private String getNoColonRegex() {
-        return C1643a.m822J(C1643a.m833U("([^\\\\:]|^)"), getNameDisambiguated(), "\\b");
+        return a.J(a.U("([^\\\\:]|^)"), getNameDisambiguated(), "\\b");
     }
 
     @Override // com.discord.models.domain.emoji.Emoji
     public String getReactionKey() {
-        return this.name + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + this.f18590id;
+        return this.name + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR + this.f2741id;
     }
 
     @Override // com.discord.models.domain.emoji.Emoji
@@ -260,45 +244,45 @@ public class ModelEmojiCustom implements Emoji {
     }
 
     public static void setCdnUri(String str) {
-        emojiUriFormat = C1643a.m883w(str, "/emojis/%s.%s?size=%s&quality=lossless");
+        emojiUriFormat = a.w(str, "/emojis/%s.%s?size=%s&quality=lossless");
     }
 
     public GuildEmoji toApiEmoji() {
-        return new GuildEmoji(this.f18590id, this.name, this.roles, this.requireColons, this.managed, this.isAnimated, this.available);
+        return new GuildEmoji(this.f2741id, this.name, this.roles, this.requireColons, this.managed, this.isAnimated, this.available);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelEmojiCustom(id=");
-        sbM833U.append(getId());
-        sbM833U.append(", idStr=");
-        sbM833U.append(getIdStr());
-        sbM833U.append(", name=");
-        sbM833U.append(getName());
-        sbM833U.append(", roles=");
-        sbM833U.append(getRoles());
-        sbM833U.append(", requireColons=");
-        sbM833U.append(isRequireColons());
-        sbM833U.append(", managed=");
-        sbM833U.append(isManaged());
-        sbM833U.append(", isAnimated=");
-        sbM833U.append(isAnimated());
-        sbM833U.append(", available=");
-        sbM833U.append(getAvailable());
-        sbM833U.append(", guildId=");
-        sbM833U.append(getGuildId());
-        sbM833U.append(", disambiguationIndex=");
-        sbM833U.append(getDisambiguationIndex());
-        sbM833U.append(", nameDisambiguated=");
-        sbM833U.append(getNameDisambiguated());
-        sbM833U.append(", isUsable=");
-        sbM833U.append(isUsable());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelEmojiCustom(id=");
+        sbU.append(getId());
+        sbU.append(", idStr=");
+        sbU.append(getIdStr());
+        sbU.append(", name=");
+        sbU.append(getName());
+        sbU.append(", roles=");
+        sbU.append(getRoles());
+        sbU.append(", requireColons=");
+        sbU.append(isRequireColons());
+        sbU.append(", managed=");
+        sbU.append(isManaged());
+        sbU.append(", isAnimated=");
+        sbU.append(isAnimated());
+        sbU.append(", available=");
+        sbU.append(getAvailable());
+        sbU.append(", guildId=");
+        sbU.append(getGuildId());
+        sbU.append(", disambiguationIndex=");
+        sbU.append(getDisambiguationIndex());
+        sbU.append(", nameDisambiguated=");
+        sbU.append(getNameDisambiguated());
+        sbU.append(", isUsable=");
+        sbU.append(isUsable());
+        sbU.append(")");
+        return sbU.toString();
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeLong(this.f18590id);
+        parcel.writeLong(this.f2741id);
         parcel.writeString(this.name);
         parcel.writeList(this.roles);
         parcel.writeInt(this.requireColons ? 1 : 0);
@@ -323,7 +307,7 @@ public class ModelEmojiCustom implements Emoji {
 
     public ModelEmojiCustom(long j, String str, List<Long> list, boolean z2, boolean z3, int i, String str2, boolean z4, boolean z5, boolean z6, long j2) {
         this.idStr = "0";
-        this.f18590id = j;
+        this.f2741id = j;
         this.idStr = String.valueOf(j);
         this.name = str;
         this.roles = list;
@@ -339,7 +323,7 @@ public class ModelEmojiCustom implements Emoji {
 
     public ModelEmojiCustom(ModelEmojiCustom modelEmojiCustom, int i, boolean z2) {
         this.idStr = "0";
-        this.f18590id = modelEmojiCustom.f18590id;
+        this.f2741id = modelEmojiCustom.f2741id;
         this.idStr = modelEmojiCustom.idStr;
         this.roles = modelEmojiCustom.getRoles();
         this.requireColons = modelEmojiCustom.requireColons;
@@ -359,10 +343,10 @@ public class ModelEmojiCustom implements Emoji {
     public ModelEmojiCustom(GuildEmoji guildEmoji, long j) {
         this.idStr = "0";
         this.isUsable = true;
-        this.f18590id = guildEmoji.getId();
+        this.f2741id = guildEmoji.getId();
         this.name = guildEmoji.getName();
         this.idStr = String.valueOf(guildEmoji.getId());
-        this.roles = guildEmoji.m7815g() != null ? guildEmoji.m7815g() : new ArrayList<>();
+        this.roles = guildEmoji.g() != null ? guildEmoji.g() : new ArrayList<>();
         this.requireColons = guildEmoji.getRequireColons();
         this.managed = guildEmoji.getManaged();
         this.isAnimated = guildEmoji.getAnimated();

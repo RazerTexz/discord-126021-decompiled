@@ -1,9 +1,9 @@
 package com.discord.widgets.chat.list.entries;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.sticker.Sticker;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StickerGreetEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -16,8 +16,8 @@ public final /* data */ class StickerGreetEntry extends ChatListEntry {
     private final int type;
 
     public StickerGreetEntry(Sticker sticker, long j, String str, int i) {
-        C12238m.checkNotNullParameter(sticker, "sticker");
-        C12238m.checkNotNullParameter(str, "channelName");
+        m.checkNotNullParameter(sticker, "sticker");
+        m.checkNotNullParameter(str, "channelName");
         this.sticker = sticker;
         this.channelId = j;
         this.channelName = str;
@@ -45,8 +45,8 @@ public final /* data */ class StickerGreetEntry extends ChatListEntry {
     }
 
     public final StickerGreetEntry copy(Sticker sticker, long channelId, String channelName, int channelType) {
-        C12238m.checkNotNullParameter(sticker, "sticker");
-        C12238m.checkNotNullParameter(channelName, "channelName");
+        m.checkNotNullParameter(sticker, "sticker");
+        m.checkNotNullParameter(channelName, "channelName");
         return new StickerGreetEntry(sticker, channelId, channelName, channelType);
     }
 
@@ -58,7 +58,7 @@ public final /* data */ class StickerGreetEntry extends ChatListEntry {
             return false;
         }
         StickerGreetEntry stickerGreetEntry = (StickerGreetEntry) other;
-        return C12238m.areEqual(this.sticker, stickerGreetEntry.sticker) && this.channelId == stickerGreetEntry.channelId && C12238m.areEqual(this.channelName, stickerGreetEntry.channelName) && this.channelType == stickerGreetEntry.channelType;
+        return m.areEqual(this.sticker, stickerGreetEntry.sticker) && this.channelId == stickerGreetEntry.channelId && m.areEqual(this.channelName, stickerGreetEntry.channelName) && this.channelType == stickerGreetEntry.channelType;
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -109,19 +109,19 @@ public final /* data */ class StickerGreetEntry extends ChatListEntry {
 
     public int hashCode() {
         Sticker sticker = this.sticker;
-        int iM3a = (C0002b.m3a(this.channelId) + ((sticker != null ? sticker.hashCode() : 0) * 31)) * 31;
+        int iA = (b.a(this.channelId) + ((sticker != null ? sticker.hashCode() : 0) * 31)) * 31;
         String str = this.channelName;
-        return ((iM3a + (str != null ? str.hashCode() : 0)) * 31) + this.channelType;
+        return ((iA + (str != null ? str.hashCode() : 0)) * 31) + this.channelType;
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StickerGreetEntry(sticker=");
-        sbM833U.append(this.sticker);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelName=");
-        sbM833U.append(this.channelName);
-        sbM833U.append(", channelType=");
-        return C1643a.m814B(sbM833U, this.channelType, ")");
+        StringBuilder sbU = a.U("StickerGreetEntry(sticker=");
+        sbU.append(this.sticker);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelName=");
+        sbU.append(this.channelName);
+        sbU.append(", channelType=");
+        return a.B(sbU, this.channelType, ")");
     }
 }

@@ -1,18 +1,16 @@
 package androidx.constraintlayout.motion.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.constraintlayout.widget.C0201R;
+import androidx.constraintlayout.widget.R$styleable;
+import b.d.b.a.a;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class KeyTrigger extends Key {
@@ -40,104 +38,6 @@ public class KeyTrigger extends Key {
     private int mCurveFit = -1;
     private String mCross = null;
 
-    public class Loader {
-        private static final int COLLISION = 9;
-        private static final int CROSS = 4;
-        private static final int FRAME_POS = 8;
-        private static final int NEGATIVE_CROSS = 1;
-        private static final int POSITIVE_CROSS = 2;
-        private static final int POST_LAYOUT = 10;
-        private static final int TARGET_ID = 7;
-        private static final int TRIGGER_ID = 6;
-        private static final int TRIGGER_RECEIVER = 11;
-        private static final int TRIGGER_SLACK = 5;
-        private static SparseIntArray mAttrMap;
-
-        static {
-            SparseIntArray sparseIntArray = new SparseIntArray();
-            mAttrMap = sparseIntArray;
-            sparseIntArray.append(C0201R.styleable.KeyTrigger_framePosition, 8);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_onCross, 4);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_onNegativeCross, 1);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_onPositiveCross, 2);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_motionTarget, 7);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_triggerId, 6);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_triggerSlack, 5);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_motion_triggerOnCollision, 9);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_motion_postLayoutCollision, 10);
-            mAttrMap.append(C0201R.styleable.KeyTrigger_triggerReceiver, 11);
-        }
-
-        private Loader() {
-        }
-
-        public static void read(KeyTrigger keyTrigger, TypedArray typedArray, Context context) {
-            int indexCount = typedArray.getIndexCount();
-            for (int i = 0; i < indexCount; i++) {
-                int index = typedArray.getIndex(i);
-                switch (mAttrMap.get(index)) {
-                    case 1:
-                        keyTrigger.mNegativeCross = typedArray.getString(index);
-                        continue;
-                        break;
-                    case 2:
-                        keyTrigger.mPositiveCross = typedArray.getString(index);
-                        continue;
-                        break;
-                    case 4:
-                        keyTrigger.mCross = typedArray.getString(index);
-                        continue;
-                        break;
-                    case 5:
-                        keyTrigger.mTriggerSlack = typedArray.getFloat(index, keyTrigger.mTriggerSlack);
-                        continue;
-                        break;
-                    case 6:
-                        keyTrigger.mTriggerID = typedArray.getResourceId(index, keyTrigger.mTriggerID);
-                        continue;
-                        break;
-                    case 7:
-                        if (MotionLayout.IS_IN_EDIT_MODE) {
-                            int resourceId = typedArray.getResourceId(index, keyTrigger.mTargetId);
-                            keyTrigger.mTargetId = resourceId;
-                            if (resourceId == -1) {
-                                keyTrigger.mTargetString = typedArray.getString(index);
-                            } else {
-                                continue;
-                            }
-                        } else if (typedArray.peekValue(index).type == 3) {
-                            keyTrigger.mTargetString = typedArray.getString(index);
-                        } else {
-                            keyTrigger.mTargetId = typedArray.getResourceId(index, keyTrigger.mTargetId);
-                        }
-                        break;
-                    case 8:
-                        int integer = typedArray.getInteger(index, keyTrigger.mFramePosition);
-                        keyTrigger.mFramePosition = integer;
-                        keyTrigger.mFireThreshold = (integer + 0.5f) / 100.0f;
-                        continue;
-                        break;
-                    case 9:
-                        keyTrigger.mTriggerCollisionId = typedArray.getResourceId(index, keyTrigger.mTriggerCollisionId);
-                        continue;
-                        break;
-                    case 10:
-                        keyTrigger.mPostLayout = typedArray.getBoolean(index, keyTrigger.mPostLayout);
-                        continue;
-                        break;
-                    case 11:
-                        keyTrigger.mTriggerReceiver = typedArray.getResourceId(index, keyTrigger.mTriggerReceiver);
-                        break;
-                }
-                StringBuilder sbM833U = C1643a.m833U("unused attribute 0x");
-                sbM833U.append(Integer.toHexString(index));
-                sbM833U.append("   ");
-                sbM833U.append(mAttrMap.get(index));
-                Log.e("KeyTrigger", sbM833U.toString());
-            }
-        }
-    }
-
     public KeyTrigger() {
         int i = Key.UNSET;
         this.mTriggerReceiver = i;
@@ -156,6 +56,62 @@ public class KeyTrigger extends Key {
         this.mTargetRect = new RectF();
         this.mType = 5;
         this.mCustomConstraints = new HashMap<>();
+    }
+
+    public static /* synthetic */ float access$002(KeyTrigger keyTrigger, float f) {
+        keyTrigger.mFireThreshold = f;
+        return f;
+    }
+
+    public static /* synthetic */ String access$102(KeyTrigger keyTrigger, String str) {
+        keyTrigger.mNegativeCross = str;
+        return str;
+    }
+
+    public static /* synthetic */ String access$202(KeyTrigger keyTrigger, String str) {
+        keyTrigger.mPositiveCross = str;
+        return str;
+    }
+
+    public static /* synthetic */ String access$302(KeyTrigger keyTrigger, String str) {
+        keyTrigger.mCross = str;
+        return str;
+    }
+
+    public static /* synthetic */ int access$400(KeyTrigger keyTrigger) {
+        return keyTrigger.mTriggerID;
+    }
+
+    public static /* synthetic */ int access$402(KeyTrigger keyTrigger, int i) {
+        keyTrigger.mTriggerID = i;
+        return i;
+    }
+
+    public static /* synthetic */ int access$500(KeyTrigger keyTrigger) {
+        return keyTrigger.mTriggerCollisionId;
+    }
+
+    public static /* synthetic */ int access$502(KeyTrigger keyTrigger, int i) {
+        keyTrigger.mTriggerCollisionId = i;
+        return i;
+    }
+
+    public static /* synthetic */ boolean access$600(KeyTrigger keyTrigger) {
+        return keyTrigger.mPostLayout;
+    }
+
+    public static /* synthetic */ boolean access$602(KeyTrigger keyTrigger, boolean z2) {
+        keyTrigger.mPostLayout = z2;
+        return z2;
+    }
+
+    public static /* synthetic */ int access$700(KeyTrigger keyTrigger) {
+        return keyTrigger.mTriggerReceiver;
+    }
+
+    public static /* synthetic */ int access$702(KeyTrigger keyTrigger, int i) {
+        keyTrigger.mTriggerReceiver = i;
+        return i;
     }
 
     @Override // androidx.constraintlayout.motion.widget.Key
@@ -331,25 +287,25 @@ public class KeyTrigger extends Key {
                 try {
                     this.mFireNegativeCross = view.getClass().getMethod(this.mNegativeCross, new Class[0]);
                 } catch (NoSuchMethodException unused) {
-                    StringBuilder sbM833U = C1643a.m833U("Could not find method \"");
-                    sbM833U.append(this.mNegativeCross);
-                    sbM833U.append("\"on class ");
-                    sbM833U.append(view.getClass().getSimpleName());
-                    sbM833U.append(" ");
-                    sbM833U.append(Debug.getName(view));
-                    Log.e("KeyTrigger", sbM833U.toString());
+                    StringBuilder sbU = a.U("Could not find method \"");
+                    sbU.append(this.mNegativeCross);
+                    sbU.append("\"on class ");
+                    sbU.append(view.getClass().getSimpleName());
+                    sbU.append(" ");
+                    sbU.append(Debug.getName(view));
+                    Log.e("KeyTrigger", sbU.toString());
                 }
             }
             try {
                 this.mFireNegativeCross.invoke(view, new Object[0]);
             } catch (Exception unused2) {
-                StringBuilder sbM833U2 = C1643a.m833U("Exception in call \"");
-                sbM833U2.append(this.mNegativeCross);
-                sbM833U2.append("\"on class ");
-                sbM833U2.append(view.getClass().getSimpleName());
-                sbM833U2.append(" ");
-                sbM833U2.append(Debug.getName(view));
-                Log.e("KeyTrigger", sbM833U2.toString());
+                StringBuilder sbU2 = a.U("Exception in call \"");
+                sbU2.append(this.mNegativeCross);
+                sbU2.append("\"on class ");
+                sbU2.append(view.getClass().getSimpleName());
+                sbU2.append(" ");
+                sbU2.append(Debug.getName(view));
+                Log.e("KeyTrigger", sbU2.toString());
             }
         }
         if (z5 && this.mPositiveCross != null) {
@@ -357,25 +313,25 @@ public class KeyTrigger extends Key {
                 try {
                     this.mFirePositiveCross = view.getClass().getMethod(this.mPositiveCross, new Class[0]);
                 } catch (NoSuchMethodException unused3) {
-                    StringBuilder sbM833U3 = C1643a.m833U("Could not find method \"");
-                    sbM833U3.append(this.mPositiveCross);
-                    sbM833U3.append("\"on class ");
-                    sbM833U3.append(view.getClass().getSimpleName());
-                    sbM833U3.append(" ");
-                    sbM833U3.append(Debug.getName(view));
-                    Log.e("KeyTrigger", sbM833U3.toString());
+                    StringBuilder sbU3 = a.U("Could not find method \"");
+                    sbU3.append(this.mPositiveCross);
+                    sbU3.append("\"on class ");
+                    sbU3.append(view.getClass().getSimpleName());
+                    sbU3.append(" ");
+                    sbU3.append(Debug.getName(view));
+                    Log.e("KeyTrigger", sbU3.toString());
                 }
             }
             try {
                 this.mFirePositiveCross.invoke(view, new Object[0]);
             } catch (Exception unused4) {
-                StringBuilder sbM833U4 = C1643a.m833U("Exception in call \"");
-                sbM833U4.append(this.mPositiveCross);
-                sbM833U4.append("\"on class ");
-                sbM833U4.append(view.getClass().getSimpleName());
-                sbM833U4.append(" ");
-                sbM833U4.append(Debug.getName(view));
-                Log.e("KeyTrigger", sbM833U4.toString());
+                StringBuilder sbU4 = a.U("Exception in call \"");
+                sbU4.append(this.mPositiveCross);
+                sbU4.append("\"on class ");
+                sbU4.append(view.getClass().getSimpleName());
+                sbU4.append(" ");
+                sbU4.append(Debug.getName(view));
+                Log.e("KeyTrigger", sbU4.toString());
             }
         }
         if (!z2 || this.mCross == null) {
@@ -385,25 +341,25 @@ public class KeyTrigger extends Key {
             try {
                 this.mFireCross = view.getClass().getMethod(this.mCross, new Class[0]);
             } catch (NoSuchMethodException unused5) {
-                StringBuilder sbM833U5 = C1643a.m833U("Could not find method \"");
-                sbM833U5.append(this.mCross);
-                sbM833U5.append("\"on class ");
-                sbM833U5.append(view.getClass().getSimpleName());
-                sbM833U5.append(" ");
-                sbM833U5.append(Debug.getName(view));
-                Log.e("KeyTrigger", sbM833U5.toString());
+                StringBuilder sbU5 = a.U("Could not find method \"");
+                sbU5.append(this.mCross);
+                sbU5.append("\"on class ");
+                sbU5.append(view.getClass().getSimpleName());
+                sbU5.append(" ");
+                sbU5.append(Debug.getName(view));
+                Log.e("KeyTrigger", sbU5.toString());
             }
         }
         try {
             this.mFireCross.invoke(view, new Object[0]);
         } catch (Exception unused6) {
-            StringBuilder sbM833U6 = C1643a.m833U("Exception in call \"");
-            sbM833U6.append(this.mCross);
-            sbM833U6.append("\"on class ");
-            sbM833U6.append(view.getClass().getSimpleName());
-            sbM833U6.append(" ");
-            sbM833U6.append(Debug.getName(view));
-            Log.e("KeyTrigger", sbM833U6.toString());
+            StringBuilder sbU6 = a.U("Exception in call \"");
+            sbU6.append(this.mCross);
+            sbU6.append("\"on class ");
+            sbU6.append(view.getClass().getSimpleName());
+            sbU6.append(" ");
+            sbU6.append(Debug.getName(view));
+            Log.e("KeyTrigger", sbU6.toString());
         }
     }
 
@@ -417,7 +373,7 @@ public class KeyTrigger extends Key {
 
     @Override // androidx.constraintlayout.motion.widget.Key
     public void load(Context context, AttributeSet attributeSet) {
-        Loader.read(this, context.obtainStyledAttributes(attributeSet, C0201R.styleable.KeyTrigger), context);
+        KeyTrigger$Loader.read(this, context.obtainStyledAttributes(attributeSet, R$styleable.KeyTrigger), context);
     }
 
     private void setUpRect(RectF rectF, View view, boolean z2) {

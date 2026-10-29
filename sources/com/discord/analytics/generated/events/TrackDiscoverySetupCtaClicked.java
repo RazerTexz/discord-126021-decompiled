@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackDiscoverySetupCtaClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,6 +19,11 @@ public final /* data */ class TrackDiscoverySetupCtaClicked implements Analytics
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "discovery_setup_cta_clicked";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -27,7 +32,7 @@ public final /* data */ class TrackDiscoverySetupCtaClicked implements Analytics
             return false;
         }
         TrackDiscoverySetupCtaClicked trackDiscoverySetupCtaClicked = (TrackDiscoverySetupCtaClicked) other;
-        return C12238m.areEqual(this.ctaName, trackDiscoverySetupCtaClicked.ctaName) && C12238m.areEqual(this.discoverySettingsView, trackDiscoverySetupCtaClicked.discoverySettingsView) && C12238m.areEqual(this.helpCenterArticleId, trackDiscoverySetupCtaClicked.helpCenterArticleId) && C12238m.areEqual(this.modalStep, trackDiscoverySetupCtaClicked.modalStep);
+        return m.areEqual(this.ctaName, trackDiscoverySetupCtaClicked.ctaName) && m.areEqual(this.discoverySettingsView, trackDiscoverySetupCtaClicked.discoverySettingsView) && m.areEqual(this.helpCenterArticleId, trackDiscoverySetupCtaClicked.helpCenterArticleId) && m.areEqual(this.modalStep, trackDiscoverySetupCtaClicked.modalStep);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,20 +58,14 @@ public final /* data */ class TrackDiscoverySetupCtaClicked implements Analytics
         return iHashCode3 + (charSequence4 != null ? charSequence4.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackDiscoverySetupCtaClicked(ctaName=");
-        sbM833U.append(this.ctaName);
-        sbM833U.append(", discoverySettingsView=");
-        sbM833U.append(this.discoverySettingsView);
-        sbM833U.append(", helpCenterArticleId=");
-        sbM833U.append(this.helpCenterArticleId);
-        sbM833U.append(", modalStep=");
-        return C1643a.m817E(sbM833U, this.modalStep, ")");
+        StringBuilder sbU = a.U("TrackDiscoverySetupCtaClicked(ctaName=");
+        sbU.append(this.ctaName);
+        sbU.append(", discoverySettingsView=");
+        sbU.append(this.discoverySettingsView);
+        sbU.append(", helpCenterArticleId=");
+        sbU.append(this.helpCenterArticleId);
+        sbU.append(", modalStep=");
+        return a.E(sbU, this.modalStep, ")");
     }
 }

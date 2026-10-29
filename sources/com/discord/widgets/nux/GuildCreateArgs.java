@@ -2,41 +2,27 @@ package com.discord.widgets.nux;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable$Creator;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.guilds.create.CreateGuildTrigger;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGuildTemplates.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final /* data */ class GuildCreateArgs implements Parcelable {
-    public static final Parcelable.Creator<GuildCreateArgs> CREATOR = new Creator();
+    public static final Parcelable$Creator<GuildCreateArgs> CREATOR = new GuildCreateArgs$Creator();
     private final boolean closeWithResult;
     private final GuildTemplateArgs guildTemplate;
     private final boolean isNux;
     private final String location;
     private final CreateGuildTrigger trigger;
 
-    public final class Creator implements Parcelable.Creator<GuildCreateArgs> {
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final GuildCreateArgs createFromParcel(Parcel parcel) {
-            C12238m.checkNotNullParameter(parcel, "in");
-            return new GuildCreateArgs(parcel.readInt() != 0, parcel.readString(), (CreateGuildTrigger) Enum.valueOf(CreateGuildTrigger.class, parcel.readString()), GuildTemplateArgs.CREATOR.createFromParcel(parcel), parcel.readInt() != 0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // android.os.Parcelable.Creator
-        public final GuildCreateArgs[] newArray(int i) {
-            return new GuildCreateArgs[i];
-        }
-    }
-
     public GuildCreateArgs(boolean z2, String str, CreateGuildTrigger createGuildTrigger, GuildTemplateArgs guildTemplateArgs, boolean z3) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        C12238m.checkNotNullParameter(createGuildTrigger, "trigger");
-        C12238m.checkNotNullParameter(guildTemplateArgs, "guildTemplate");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        m.checkNotNullParameter(createGuildTrigger, "trigger");
+        m.checkNotNullParameter(guildTemplateArgs, "guildTemplate");
         this.isNux = z2;
         this.location = str;
         this.trigger = createGuildTrigger;
@@ -67,9 +53,9 @@ public final /* data */ class GuildCreateArgs implements Parcelable {
     }
 
     public final GuildCreateArgs copy(boolean isNux, String location, CreateGuildTrigger trigger, GuildTemplateArgs guildTemplate, boolean closeWithResult) {
-        C12238m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
-        C12238m.checkNotNullParameter(trigger, "trigger");
-        C12238m.checkNotNullParameter(guildTemplate, "guildTemplate");
+        m.checkNotNullParameter(location, ModelAuditLogEntry.CHANGE_KEY_LOCATION);
+        m.checkNotNullParameter(trigger, "trigger");
+        m.checkNotNullParameter(guildTemplate, "guildTemplate");
         return new GuildCreateArgs(isNux, location, trigger, guildTemplate, closeWithResult);
     }
 
@@ -86,7 +72,7 @@ public final /* data */ class GuildCreateArgs implements Parcelable {
             return false;
         }
         GuildCreateArgs guildCreateArgs = (GuildCreateArgs) other;
-        return this.isNux == guildCreateArgs.isNux && C12238m.areEqual(this.location, guildCreateArgs.location) && C12238m.areEqual(this.trigger, guildCreateArgs.trigger) && C12238m.areEqual(this.guildTemplate, guildCreateArgs.guildTemplate) && this.closeWithResult == guildCreateArgs.closeWithResult;
+        return this.isNux == guildCreateArgs.isNux && m.areEqual(this.location, guildCreateArgs.location) && m.areEqual(this.trigger, guildCreateArgs.trigger) && m.areEqual(this.guildTemplate, guildCreateArgs.guildTemplate) && this.closeWithResult == guildCreateArgs.closeWithResult;
     }
 
     /* JADX INFO: renamed from: component5, reason: from getter */
@@ -160,21 +146,21 @@ public final /* data */ class GuildCreateArgs implements Parcelable {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildCreateArgs(isNux=");
-        sbM833U.append(this.isNux);
-        sbM833U.append(", location=");
-        sbM833U.append(this.location);
-        sbM833U.append(", trigger=");
-        sbM833U.append(this.trigger);
-        sbM833U.append(", guildTemplate=");
-        sbM833U.append(this.guildTemplate);
-        sbM833U.append(", closeWithResult=");
-        return C1643a.m827O(sbM833U, this.closeWithResult, ")");
+        StringBuilder sbU = a.U("GuildCreateArgs(isNux=");
+        sbU.append(this.isNux);
+        sbU.append(", location=");
+        sbU.append(this.location);
+        sbU.append(", trigger=");
+        sbU.append(this.trigger);
+        sbU.append(", guildTemplate=");
+        sbU.append(this.guildTemplate);
+        sbU.append(", closeWithResult=");
+        return a.O(sbU, this.closeWithResult, ")");
     }
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int flags) {
-        C12238m.checkNotNullParameter(parcel, "parcel");
+        m.checkNotNullParameter(parcel, "parcel");
         parcel.writeInt(this.isNux ? 1 : 0);
         parcel.writeString(this.location);
         parcel.writeString(this.trigger.name());

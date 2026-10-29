@@ -1,10 +1,10 @@
 package com.discord.models.botuikit;
 
+import b.d.b.a.a;
 import com.discord.api.botuikit.ComponentType;
 import com.discord.api.botuikit.SelectItem;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: SelectMessageComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,11 +21,11 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
     private final ComponentType type;
 
     public SelectMessageComponent(ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, int i2, int i3, List<SelectItem> list, List<SelectItem> list2, boolean z2) {
-        C12238m.checkNotNullParameter(componentType, "type");
-        C12238m.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
-        C12238m.checkNotNullParameter(str, "customId");
-        C12238m.checkNotNullParameter(list, "options");
-        C12238m.checkNotNullParameter(list2, "selectedOptions");
+        m.checkNotNullParameter(componentType, "type");
+        m.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
+        m.checkNotNullParameter(str, "customId");
+        m.checkNotNullParameter(list, "options");
+        m.checkNotNullParameter(list2, "selectedOptions");
         this.type = componentType;
         this.index = i;
         this.stateInteraction = actionInteractionComponentState;
@@ -58,12 +58,17 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
         return this.selectedOptions;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ SelectMessageComponent copy$default(SelectMessageComponent selectMessageComponent, ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, int i2, int i3, List list, List list2, boolean z2, int i4, Object obj) {
+        return selectMessageComponent.copy((i4 & 1) != 0 ? selectMessageComponent.getType() : componentType, (i4 & 2) != 0 ? selectMessageComponent.getIndex() : i, (i4 & 4) != 0 ? selectMessageComponent.getStateInteraction() : actionInteractionComponentState, (i4 & 8) != 0 ? selectMessageComponent.customId : str, (i4 & 16) != 0 ? selectMessageComponent.placeholder : str2, (i4 & 32) != 0 ? selectMessageComponent.minValues : i2, (i4 & 64) != 0 ? selectMessageComponent.maxValues : i3, (i4 & 128) != 0 ? selectMessageComponent.options : list, (i4 & 256) != 0 ? selectMessageComponent.selectedOptions : list2, (i4 & 512) != 0 ? selectMessageComponent.emojiAnimationsEnabled : z2);
+    }
+
     public final SelectMessageComponent copy(ComponentType type, int index, ActionInteractionComponentState stateInteraction, String customId, String placeholder, int minValues, int maxValues, List<SelectItem> options, List<SelectItem> selectedOptions, boolean emojiAnimationsEnabled) {
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(stateInteraction, "stateInteraction");
-        C12238m.checkNotNullParameter(customId, "customId");
-        C12238m.checkNotNullParameter(options, "options");
-        C12238m.checkNotNullParameter(selectedOptions, "selectedOptions");
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(stateInteraction, "stateInteraction");
+        m.checkNotNullParameter(customId, "customId");
+        m.checkNotNullParameter(options, "options");
+        m.checkNotNullParameter(selectedOptions, "selectedOptions");
         return new SelectMessageComponent(type, index, stateInteraction, customId, placeholder, minValues, maxValues, options, selectedOptions, emojiAnimationsEnabled);
     }
 
@@ -75,7 +80,7 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
             return false;
         }
         SelectMessageComponent selectMessageComponent = (SelectMessageComponent) other;
-        return C12238m.areEqual(getType(), selectMessageComponent.getType()) && getIndex() == selectMessageComponent.getIndex() && C12238m.areEqual(getStateInteraction(), selectMessageComponent.getStateInteraction()) && C12238m.areEqual(this.customId, selectMessageComponent.customId) && C12238m.areEqual(this.placeholder, selectMessageComponent.placeholder) && this.minValues == selectMessageComponent.minValues && this.maxValues == selectMessageComponent.maxValues && C12238m.areEqual(this.options, selectMessageComponent.options) && C12238m.areEqual(this.selectedOptions, selectMessageComponent.selectedOptions) && this.emojiAnimationsEnabled == selectMessageComponent.emojiAnimationsEnabled;
+        return m.areEqual(getType(), selectMessageComponent.getType()) && getIndex() == selectMessageComponent.getIndex() && m.areEqual(getStateInteraction(), selectMessageComponent.getStateInteraction()) && m.areEqual(this.customId, selectMessageComponent.customId) && m.areEqual(this.placeholder, selectMessageComponent.placeholder) && this.minValues == selectMessageComponent.minValues && this.maxValues == selectMessageComponent.maxValues && m.areEqual(this.options, selectMessageComponent.options) && m.areEqual(this.selectedOptions, selectMessageComponent.selectedOptions) && this.emojiAnimationsEnabled == selectMessageComponent.emojiAnimationsEnabled;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -173,25 +178,25 @@ public final /* data */ class SelectMessageComponent extends ActionMessageCompon
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("SelectMessageComponent(type=");
-        sbM833U.append(getType());
-        sbM833U.append(", index=");
-        sbM833U.append(getIndex());
-        sbM833U.append(", stateInteraction=");
-        sbM833U.append(getStateInteraction());
-        sbM833U.append(", customId=");
-        sbM833U.append(this.customId);
-        sbM833U.append(", placeholder=");
-        sbM833U.append(this.placeholder);
-        sbM833U.append(", minValues=");
-        sbM833U.append(this.minValues);
-        sbM833U.append(", maxValues=");
-        sbM833U.append(this.maxValues);
-        sbM833U.append(", options=");
-        sbM833U.append(this.options);
-        sbM833U.append(", selectedOptions=");
-        sbM833U.append(this.selectedOptions);
-        sbM833U.append(", emojiAnimationsEnabled=");
-        return C1643a.m827O(sbM833U, this.emojiAnimationsEnabled, ")");
+        StringBuilder sbU = a.U("SelectMessageComponent(type=");
+        sbU.append(getType());
+        sbU.append(", index=");
+        sbU.append(getIndex());
+        sbU.append(", stateInteraction=");
+        sbU.append(getStateInteraction());
+        sbU.append(", customId=");
+        sbU.append(this.customId);
+        sbU.append(", placeholder=");
+        sbU.append(this.placeholder);
+        sbU.append(", minValues=");
+        sbU.append(this.minValues);
+        sbU.append(", maxValues=");
+        sbU.append(this.maxValues);
+        sbU.append(", options=");
+        sbU.append(this.options);
+        sbU.append(", selectedOptions=");
+        sbU.append(this.selectedOptions);
+        sbU.append(", emojiAnimationsEnabled=");
+        return a.O(sbU, this.emojiAnimationsEnabled, ")");
     }
 }

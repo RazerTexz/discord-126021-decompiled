@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackVoiceQuality.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -31,7 +31,7 @@ public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, Trac
             return false;
         }
         TrackVoiceQuality trackVoiceQuality = (TrackVoiceQuality) other;
-        return C12238m.areEqual(this.averagePing, trackVoiceQuality.averagePing) && C12238m.areEqual(this.channelId, trackVoiceQuality.channelId) && C12238m.areEqual(this.duration, trackVoiceQuality.duration) && C12238m.areEqual(this.guildId, trackVoiceQuality.guildId) && C12238m.areEqual(this.maximumPing, trackVoiceQuality.maximumPing) && C12238m.areEqual(this.minimumPing, trackVoiceQuality.minimumPing) && C12238m.areEqual(this.previousTier, trackVoiceQuality.previousTier) && C12238m.areEqual(this.quality, trackVoiceQuality.quality) && C12238m.areEqual(this.sessionId, trackVoiceQuality.sessionId) && C12238m.areEqual(this.speaker, trackVoiceQuality.speaker) && C12238m.areEqual(this.tier, trackVoiceQuality.tier);
+        return m.areEqual(this.averagePing, trackVoiceQuality.averagePing) && m.areEqual(this.channelId, trackVoiceQuality.channelId) && m.areEqual(this.duration, trackVoiceQuality.duration) && m.areEqual(this.guildId, trackVoiceQuality.guildId) && m.areEqual(this.maximumPing, trackVoiceQuality.maximumPing) && m.areEqual(this.minimumPing, trackVoiceQuality.minimumPing) && m.areEqual(this.previousTier, trackVoiceQuality.previousTier) && m.areEqual(this.quality, trackVoiceQuality.quality) && m.areEqual(this.sessionId, trackVoiceQuality.sessionId) && m.areEqual(this.speaker, trackVoiceQuality.speaker) && m.areEqual(this.tier, trackVoiceQuality.tier);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -66,27 +66,27 @@ public final /* data */ class TrackVoiceQuality implements AnalyticsSchema, Trac
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackVoiceQuality(averagePing=");
-        sbM833U.append(this.averagePing);
-        sbM833U.append(", channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", duration=");
-        sbM833U.append(this.duration);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", maximumPing=");
-        sbM833U.append(this.maximumPing);
-        sbM833U.append(", minimumPing=");
-        sbM833U.append(this.minimumPing);
-        sbM833U.append(", previousTier=");
-        sbM833U.append(this.previousTier);
-        sbM833U.append(", quality=");
-        sbM833U.append(this.quality);
-        sbM833U.append(", sessionId=");
-        sbM833U.append(this.sessionId);
-        sbM833U.append(", speaker=");
-        sbM833U.append(this.speaker);
-        sbM833U.append(", tier=");
-        return C1643a.m819G(sbM833U, this.tier, ")");
+        StringBuilder sbU = a.U("TrackVoiceQuality(averagePing=");
+        sbU.append(this.averagePing);
+        sbU.append(", channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", duration=");
+        sbU.append(this.duration);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", maximumPing=");
+        sbU.append(this.maximumPing);
+        sbU.append(", minimumPing=");
+        sbU.append(this.minimumPing);
+        sbU.append(", previousTier=");
+        sbU.append(this.previousTier);
+        sbU.append(", quality=");
+        sbU.append(this.quality);
+        sbU.append(", sessionId=");
+        sbU.append(this.sessionId);
+        sbU.append(", speaker=");
+        sbU.append(this.speaker);
+        sbU.append(", tier=");
+        return a.G(sbU, this.tier, ")");
     }
 }

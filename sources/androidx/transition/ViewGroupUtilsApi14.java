@@ -47,27 +47,22 @@ public class ViewGroupUtilsApi14 {
     public static void suppressLayout(@NonNull ViewGroup viewGroup, boolean z2) {
         boolean z3 = false;
         if (sEmptyLayoutTransition == null) {
-            LayoutTransition layoutTransition = new LayoutTransition() { // from class: androidx.transition.ViewGroupUtilsApi14.1
-                @Override // android.animation.LayoutTransition
-                public boolean isChangingLayout() {
-                    return true;
-                }
-            };
-            sEmptyLayoutTransition = layoutTransition;
-            layoutTransition.setAnimator(2, null);
+            ViewGroupUtilsApi14$1 viewGroupUtilsApi14$1 = new ViewGroupUtilsApi14$1();
+            sEmptyLayoutTransition = viewGroupUtilsApi14$1;
+            viewGroupUtilsApi14$1.setAnimator(2, null);
             sEmptyLayoutTransition.setAnimator(0, null);
             sEmptyLayoutTransition.setAnimator(1, null);
             sEmptyLayoutTransition.setAnimator(3, null);
             sEmptyLayoutTransition.setAnimator(4, null);
         }
         if (z2) {
-            LayoutTransition layoutTransition2 = viewGroup.getLayoutTransition();
-            if (layoutTransition2 != null) {
-                if (layoutTransition2.isRunning()) {
-                    cancelLayoutTransition(layoutTransition2);
+            LayoutTransition layoutTransition = viewGroup.getLayoutTransition();
+            if (layoutTransition != null) {
+                if (layoutTransition.isRunning()) {
+                    cancelLayoutTransition(layoutTransition);
                 }
-                if (layoutTransition2 != sEmptyLayoutTransition) {
-                    viewGroup.setTag(C0658R.id.transition_layout_save, layoutTransition2);
+                if (layoutTransition != sEmptyLayoutTransition) {
+                    viewGroup.setTag(R$id.transition_layout_save, layoutTransition);
                 }
             }
             viewGroup.setLayoutTransition(sEmptyLayoutTransition);
@@ -103,11 +98,11 @@ public class ViewGroupUtilsApi14 {
         if (z3) {
             viewGroup.requestLayout();
         }
-        int i = C0658R.id.transition_layout_save;
-        LayoutTransition layoutTransition3 = (LayoutTransition) viewGroup.getTag(i);
-        if (layoutTransition3 != null) {
+        int i = R$id.transition_layout_save;
+        LayoutTransition layoutTransition2 = (LayoutTransition) viewGroup.getTag(i);
+        if (layoutTransition2 != null) {
             viewGroup.setTag(i, null);
-            viewGroup.setLayoutTransition(layoutTransition3);
+            viewGroup.setLayoutTransition(layoutTransition2);
         }
     }
 }

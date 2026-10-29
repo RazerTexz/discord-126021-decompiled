@@ -1,6 +1,6 @@
 package com.discord.api.guildscheduledevent;
 
-import p007b.p100d.p104b.p105a.C1643a;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: GuildScheduledEventUserUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -39,11 +39,11 @@ public final /* data */ class GuildScheduledEventUserUpdate {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventUserUpdate(guildScheduledEventId=");
-        sbM833U.append(this.guildScheduledEventId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", userId=");
-        return C1643a.m815C(sbM833U, this.userId, ")");
+        StringBuilder sbU = a.U("GuildScheduledEventUserUpdate(guildScheduledEventId=");
+        sbU.append(this.guildScheduledEventId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", userId=");
+        return a.C(sbU, this.userId, ")");
     }
 }

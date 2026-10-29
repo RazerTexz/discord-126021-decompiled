@@ -16,67 +16,57 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChangeLogSpecialBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15820a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinkifiedTextView f15821b;
+    public final LinkifiedTextView f2254b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageButton f15822c;
+    public final ImageButton c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f15823d;
+    public final MaterialButton d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final ImageButton f15824e;
+    public final ImageButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f15825f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final NestedScrollView f15826g;
+    public final NestedScrollView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final SimpleDraweeView f15827h;
+    public final SimpleDraweeView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final VideoView f15828i;
+    public final VideoView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final SimpleDraweeView f15829j;
+    public final SimpleDraweeView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final CardView f15830k;
+    public final CardView k;
 
     public WidgetChangeLogSpecialBinding(@NonNull LinearLayout linearLayout, @NonNull LinkifiedTextView linkifiedTextView, @NonNull ImageButton imageButton, @NonNull MaterialButton materialButton, @NonNull ImageButton imageButton2, @NonNull LinearLayout linearLayout2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull NestedScrollView nestedScrollView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull VideoView videoView, @NonNull SimpleDraweeView simpleDraweeView2, @NonNull CardView cardView, @NonNull CardView cardView2) {
-        this.f15820a = linearLayout;
-        this.f15821b = linkifiedTextView;
-        this.f15822c = imageButton;
-        this.f15823d = materialButton;
-        this.f15824e = imageButton2;
-        this.f15825f = textView2;
-        this.f15826g = nestedScrollView;
-        this.f15827h = simpleDraweeView;
-        this.f15828i = videoView;
-        this.f15829j = simpleDraweeView2;
-        this.f15830k = cardView;
+        this.a = linearLayout;
+        this.f2254b = linkifiedTextView;
+        this.c = imageButton;
+        this.d = materialButton;
+        this.e = imageButton2;
+        this.f = textView2;
+        this.g = nestedScrollView;
+        this.h = simpleDraweeView;
+        this.i = videoView;
+        this.j = simpleDraweeView2;
+        this.k = cardView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15820a;
+        return this.a;
     }
 }

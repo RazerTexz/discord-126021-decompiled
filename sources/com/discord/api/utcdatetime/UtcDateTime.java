@@ -1,7 +1,7 @@
 package com.discord.api.utcdatetime;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: UtcDateTime.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -13,10 +13,8 @@ public final /* data */ class UtcDateTime implements Comparable<UtcDateTime> {
     }
 
     @Override // java.lang.Comparable
-    /* JADX INFO: renamed from: f, reason: merged with bridge method [inline-methods] */
-    public int compareTo(UtcDateTime other) {
-        C12238m.checkNotNullParameter(other, "other");
-        return (this.dateTimeMillis > other.dateTimeMillis ? 1 : (this.dateTimeMillis == other.dateTimeMillis ? 0 : -1));
+    public /* bridge */ /* synthetic */ int compareTo(UtcDateTime utcDateTime) {
+        return f(utcDateTime);
     }
 
     public boolean equals(Object other) {
@@ -24,6 +22,11 @@ public final /* data */ class UtcDateTime implements Comparable<UtcDateTime> {
             return (other instanceof UtcDateTime) && this.dateTimeMillis == ((UtcDateTime) other).dateTimeMillis;
         }
         return true;
+    }
+
+    public int f(UtcDateTime other) {
+        m.checkNotNullParameter(other, "other");
+        return (this.dateTimeMillis > other.dateTimeMillis ? 1 : (this.dateTimeMillis == other.dateTimeMillis ? 0 : -1));
     }
 
     /* JADX INFO: renamed from: g, reason: from getter */
@@ -37,6 +40,6 @@ public final /* data */ class UtcDateTime implements Comparable<UtcDateTime> {
     }
 
     public String toString() {
-        return C1643a.m815C(C1643a.m833U("UtcDateTime(dateTimeMillis="), this.dateTimeMillis, ")");
+        return a.C(a.U("UtcDateTime(dateTimeMillis="), this.dateTimeMillis, ")");
     }
 }

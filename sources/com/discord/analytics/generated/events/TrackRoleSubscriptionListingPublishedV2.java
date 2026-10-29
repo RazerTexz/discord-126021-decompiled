@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackRoleSubscriptionListingPublishedV2.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,6 +17,11 @@ public final /* data */ class TrackRoleSubscriptionListingPublishedV2 implements
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "role_subscription_listing_published_v2";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -25,7 +30,7 @@ public final /* data */ class TrackRoleSubscriptionListingPublishedV2 implements
             return false;
         }
         TrackRoleSubscriptionListingPublishedV2 trackRoleSubscriptionListingPublishedV2 = (TrackRoleSubscriptionListingPublishedV2) other;
-        return C12238m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingPublishedV2.roleSubscriptionListingId) && C12238m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingPublishedV2.roleSubscriptionGroupListingId);
+        return m.areEqual(this.roleSubscriptionListingId, trackRoleSubscriptionListingPublishedV2.roleSubscriptionListingId) && m.areEqual(this.roleSubscriptionGroupListingId, trackRoleSubscriptionListingPublishedV2.roleSubscriptionGroupListingId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -47,16 +52,10 @@ public final /* data */ class TrackRoleSubscriptionListingPublishedV2 implements
         return iHashCode + (l2 != null ? l2.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackRoleSubscriptionListingPublishedV2(roleSubscriptionListingId=");
-        sbM833U.append(this.roleSubscriptionListingId);
-        sbM833U.append(", roleSubscriptionGroupListingId=");
-        return C1643a.m819G(sbM833U, this.roleSubscriptionGroupListingId, ")");
+        StringBuilder sbU = a.U("TrackRoleSubscriptionListingPublishedV2(roleSubscriptionListingId=");
+        sbU.append(this.roleSubscriptionListingId);
+        sbU.append(", roleSubscriptionGroupListingId=");
+        return a.G(sbU, this.roleSubscriptionGroupListingId, ")");
     }
 }

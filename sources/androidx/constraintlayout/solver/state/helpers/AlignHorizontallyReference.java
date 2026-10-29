@@ -3,6 +3,7 @@ package androidx.constraintlayout.solver.state.helpers;
 import androidx.constraintlayout.solver.state.ConstraintReference;
 import androidx.constraintlayout.solver.state.HelperReference;
 import androidx.constraintlayout.solver.state.State;
+import androidx.constraintlayout.solver.state.State$Helper;
 import java.util.Iterator;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -14,7 +15,7 @@ public class AlignHorizontallyReference extends HelperReference {
     private Object mStartToStart;
 
     public AlignHorizontallyReference(State state) {
-        super(state, State.Helper.ALIGN_VERTICALLY);
+        super(state, State$Helper.ALIGN_VERTICALLY);
         this.mBias = 0.5f;
     }
 

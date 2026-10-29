@@ -5,14 +5,14 @@ import android.view.View;
 import com.discord.api.channel.Channel;
 import com.discord.api.channel.ChannelUtils;
 import com.discord.widgets.channels.settings.WidgetChannelNotificationSettings;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: NoticePopupChannel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class NoticePopupChannel$createModel$onClickTopRightIcon$1 extends AbstractC12240o implements Function1<View, Unit> {
+public final class NoticePopupChannel$createModel$onClickTopRightIcon$1 extends o implements Function1<View, Unit> {
     public final /* synthetic */ Channel $channel;
     public final /* synthetic */ Context $context;
 
@@ -26,15 +26,15 @@ public final class NoticePopupChannel$createModel$onClickTopRightIcon$1 extends 
     @Override // kotlin.jvm.functions.Function1
     public /* bridge */ /* synthetic */ Unit invoke(View view) {
         invoke2(view);
-        return Unit.f27425a;
+        return Unit.a;
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
     public final void invoke2(View view) {
-        C12238m.checkNotNullParameter(view, "it");
-        if (ChannelUtils.m7667B(this.$channel)) {
+        m.checkNotNullParameter(view, "it");
+        if (ChannelUtils.B(this.$channel)) {
             return;
         }
-        WidgetChannelNotificationSettings.INSTANCE.launch(this.$context, this.$channel.getId(), true);
+        WidgetChannelNotificationSettings.Companion.launch(this.$context, this.$channel.getId(), true);
     }
 }

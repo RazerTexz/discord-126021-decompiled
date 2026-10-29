@@ -17,17 +17,45 @@ public class AttributionHandler implements IAttributionHandler {
     private boolean paused;
     private ILogger logger = AdjustFactory.getLogger();
     private ThreadScheduler scheduler = new SingleThreadCachedScheduler("AttributionHandler");
-    private TimerOnce timer = new TimerOnce(new Runnable() { // from class: com.adjust.sdk.AttributionHandler.1
-        @Override // java.lang.Runnable
-        public void run() {
-            AttributionHandler.this.sendAttributionRequest();
-        }
-    }, ATTRIBUTION_TIMER_NAME);
+    private TimerOnce timer = new TimerOnce(new AttributionHandler$1(this), ATTRIBUTION_TIMER_NAME);
 
     public AttributionHandler(IActivityHandler iActivityHandler, boolean z2) {
         this.basePath = iActivityHandler.getBasePath();
         this.clientSdk = iActivityHandler.getDeviceInfo().clientSdk;
         init(iActivityHandler, z2);
+    }
+
+    public static /* synthetic */ void access$000(AttributionHandler attributionHandler) {
+        attributionHandler.sendAttributionRequest();
+    }
+
+    public static /* synthetic */ String access$102(AttributionHandler attributionHandler, String str) {
+        attributionHandler.lastInitiatedBy = str;
+        return str;
+    }
+
+    public static /* synthetic */ void access$200(AttributionHandler attributionHandler, long j) {
+        attributionHandler.getAttributionI(j);
+    }
+
+    public static /* synthetic */ WeakReference access$300(AttributionHandler attributionHandler) {
+        return attributionHandler.activityHandlerWeakRef;
+    }
+
+    public static /* synthetic */ void access$400(AttributionHandler attributionHandler, IActivityHandler iActivityHandler, SessionResponseData sessionResponseData) {
+        attributionHandler.checkSessionResponseI(iActivityHandler, sessionResponseData);
+    }
+
+    public static /* synthetic */ void access$500(AttributionHandler attributionHandler, IActivityHandler iActivityHandler, SdkClickResponseData sdkClickResponseData) {
+        attributionHandler.checkSdkClickResponseI(iActivityHandler, sdkClickResponseData);
+    }
+
+    public static /* synthetic */ void access$600(AttributionHandler attributionHandler, IActivityHandler iActivityHandler, AttributionResponseData attributionResponseData) {
+        attributionHandler.checkAttributionResponseI(iActivityHandler, attributionResponseData);
+    }
+
+    public static /* synthetic */ void access$700(AttributionHandler attributionHandler) {
+        attributionHandler.sendAttributionRequestI();
     }
 
     private ActivityPackage buildAndGetAttributionPackage() {
@@ -54,17 +82,8 @@ public class AttributionHandler implements IAttributionHandler {
         }
     }
 
-    public void checkAttributionResponse(final AttributionResponseData attributionResponseData) {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.AttributionHandler.5
-            @Override // java.lang.Runnable
-            public void run() {
-                IActivityHandler iActivityHandler = (IActivityHandler) AttributionHandler.this.activityHandlerWeakRef.get();
-                if (iActivityHandler == null) {
-                    return;
-                }
-                AttributionHandler.this.checkAttributionResponseI(iActivityHandler, attributionResponseData);
-            }
-        });
+    public void checkAttributionResponse(AttributionResponseData attributionResponseData) {
+        this.scheduler.submit(new AttributionHandler$5(this, attributionResponseData));
     }
 
     private void checkAttributionResponseI(IActivityHandler iActivityHandler, AttributionResponseData attributionResponseData) {
@@ -84,17 +103,8 @@ public class AttributionHandler implements IAttributionHandler {
     }
 
     @Override // com.adjust.sdk.IAttributionHandler
-    public void checkSdkClickResponse(final SdkClickResponseData sdkClickResponseData) {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.AttributionHandler.4
-            @Override // java.lang.Runnable
-            public void run() {
-                IActivityHandler iActivityHandler = (IActivityHandler) AttributionHandler.this.activityHandlerWeakRef.get();
-                if (iActivityHandler == null) {
-                    return;
-                }
-                AttributionHandler.this.checkSdkClickResponseI(iActivityHandler, sdkClickResponseData);
-            }
-        });
+    public void checkSdkClickResponse(SdkClickResponseData sdkClickResponseData) {
+        this.scheduler.submit(new AttributionHandler$4(this, sdkClickResponseData));
     }
 
     private void checkSdkClickResponseI(IActivityHandler iActivityHandler, SdkClickResponseData sdkClickResponseData) {
@@ -103,17 +113,8 @@ public class AttributionHandler implements IAttributionHandler {
     }
 
     @Override // com.adjust.sdk.IAttributionHandler
-    public void checkSessionResponse(final SessionResponseData sessionResponseData) {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.AttributionHandler.3
-            @Override // java.lang.Runnable
-            public void run() {
-                IActivityHandler iActivityHandler = (IActivityHandler) AttributionHandler.this.activityHandlerWeakRef.get();
-                if (iActivityHandler == null) {
-                    return;
-                }
-                AttributionHandler.this.checkSessionResponseI(iActivityHandler, sessionResponseData);
-            }
-        });
+    public void checkSessionResponse(SessionResponseData sessionResponseData) {
+        this.scheduler.submit(new AttributionHandler$3(this, sessionResponseData));
     }
 
     private void checkSessionResponseI(IActivityHandler iActivityHandler, SessionResponseData sessionResponseData) {
@@ -123,13 +124,7 @@ public class AttributionHandler implements IAttributionHandler {
 
     @Override // com.adjust.sdk.IAttributionHandler
     public void getAttribution() {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.AttributionHandler.2
-            @Override // java.lang.Runnable
-            public void run() {
-                AttributionHandler.this.lastInitiatedBy = "sdk";
-                AttributionHandler.this.getAttributionI(0L);
-            }
-        });
+        this.scheduler.submit(new AttributionHandler$2(this));
     }
 
     private void getAttributionI(long j) {
@@ -159,12 +154,7 @@ public class AttributionHandler implements IAttributionHandler {
     }
 
     private void sendAttributionRequest() {
-        this.scheduler.submit(new Runnable() { // from class: com.adjust.sdk.AttributionHandler.6
-            @Override // java.lang.Runnable
-            public void run() {
-                AttributionHandler.this.sendAttributionRequestI();
-            }
-        });
+        this.scheduler.submit(new AttributionHandler$6(this));
     }
 
     private void sendAttributionRequestI() {

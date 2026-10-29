@@ -1,7 +1,7 @@
 package com.discord.api.guildscheduledevent;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: GuildScheduledEventBroadcast.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,7 +17,7 @@ public final /* data */ class GuildScheduledEventBroadcast {
             return false;
         }
         GuildScheduledEventBroadcast guildScheduledEventBroadcast = (GuildScheduledEventBroadcast) other;
-        return this.canBroadcast == guildScheduledEventBroadcast.canBroadcast && C12238m.areEqual(this.hasBroadcast, guildScheduledEventBroadcast.hasBroadcast);
+        return this.canBroadcast == guildScheduledEventBroadcast.canBroadcast && m.areEqual(this.hasBroadcast, guildScheduledEventBroadcast.hasBroadcast);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -46,9 +46,9 @@ public final /* data */ class GuildScheduledEventBroadcast {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventBroadcast(canBroadcast=");
-        sbM833U.append(this.canBroadcast);
-        sbM833U.append(", hasBroadcast=");
-        return C1643a.m816D(sbM833U, this.hasBroadcast, ")");
+        StringBuilder sbU = a.U("GuildScheduledEventBroadcast(canBroadcast=");
+        sbU.append(this.canBroadcast);
+        sbU.append(", hasBroadcast=");
+        return a.D(sbU, this.hasBroadcast, ")");
     }
 }

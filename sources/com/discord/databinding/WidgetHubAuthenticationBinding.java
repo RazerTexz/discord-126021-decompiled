@@ -11,27 +11,25 @@ import com.discord.views.CodeVerificationView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetHubAuthenticationBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17151a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinkifiedTextView f17152b;
+    public final LinkifiedTextView f2469b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final CodeVerificationView f17153c;
+    public final CodeVerificationView c;
 
     public WidgetHubAuthenticationBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull LinkifiedTextView linkifiedTextView, @NonNull TextView textView2, @NonNull CodeVerificationView codeVerificationView) {
-        this.f17151a = linearLayout;
-        this.f17152b = linkifiedTextView;
-        this.f17153c = codeVerificationView;
+        this.a = linearLayout;
+        this.f2469b = linkifiedTextView;
+        this.c = codeVerificationView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17151a;
+        return this.a;
     }
 }

@@ -1,7 +1,7 @@
 package co.discord.media_engine.internal;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
+import a0.a.a.b;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: NativeStatistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -16,6 +16,10 @@ public final /* data */ class PacketStats {
         this.packets = j2;
         this.paddingBytes = j3;
         this.payloadBytes = j4;
+    }
+
+    public static /* synthetic */ PacketStats copy$default(PacketStats packetStats, long j, long j2, long j3, long j4, int i, Object obj) {
+        return packetStats.copy((i & 1) != 0 ? packetStats.headerBytes : j, (i & 2) != 0 ? packetStats.packets : j2, (i & 4) != 0 ? packetStats.paddingBytes : j3, (i & 8) != 0 ? packetStats.payloadBytes : j4);
     }
 
     public final PacketStats copy(long headerBytes, long packets, long paddingBytes, long payloadBytes) {
@@ -70,17 +74,17 @@ public final /* data */ class PacketStats {
     }
 
     public int hashCode() {
-        return C0002b.m3a(this.payloadBytes) + ((C0002b.m3a(this.paddingBytes) + ((C0002b.m3a(this.packets) + (C0002b.m3a(this.headerBytes) * 31)) * 31)) * 31);
+        return b.a(this.payloadBytes) + ((b.a(this.paddingBytes) + ((b.a(this.packets) + (b.a(this.headerBytes) * 31)) * 31)) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PacketStats(headerBytes=");
-        sbM833U.append(this.headerBytes);
-        sbM833U.append(", packets=");
-        sbM833U.append(this.packets);
-        sbM833U.append(", paddingBytes=");
-        sbM833U.append(this.paddingBytes);
-        sbM833U.append(", payloadBytes=");
-        return C1643a.m815C(sbM833U, this.payloadBytes, ")");
+        StringBuilder sbU = a.U("PacketStats(headerBytes=");
+        sbU.append(this.headerBytes);
+        sbU.append(", packets=");
+        sbU.append(this.packets);
+        sbU.append(", paddingBytes=");
+        sbU.append(this.paddingBytes);
+        sbU.append(", payloadBytes=");
+        return a.C(sbU, this.payloadBytes, ")");
     }
 }

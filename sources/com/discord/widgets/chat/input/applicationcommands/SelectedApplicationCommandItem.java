@@ -9,6 +9,7 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: compiled from: SelectedApplicationCommandAdapter.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class SelectedApplicationCommandItem implements MGRecyclerDataPayload {
+    public static final SelectedApplicationCommandItem$Companion Companion = new SelectedApplicationCommandItem$Companion(null);
     public static final int TYPE_PARAM = 1;
     public static final int TYPE_SECTION_HEADING = 2;
     public static final int TYPE_TITLE = 0;

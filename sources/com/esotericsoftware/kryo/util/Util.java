@@ -1,7 +1,8 @@
 package com.esotericsoftware.kryo.util;
 
+import b.e.a.a;
+import b.e.a.a$a;
 import java.util.concurrent.ConcurrentHashMap;
-import p007b.p106e.p107a.C1644a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class Util {
@@ -106,7 +107,7 @@ public class Util {
                 Class.forName(str);
                 bool = Boolean.TRUE;
             } catch (Exception unused) {
-                C1644a.a aVar = C1644a.f3007a;
+                a$a a_a = a.a;
                 bool = Boolean.FALSE;
             }
             classAvailabilities.put(str, bool);
@@ -120,15 +121,15 @@ public class Util {
 
     public static void log(String str, Object obj) {
         if (obj == null) {
-            C1644a.a aVar = C1644a.f3007a;
+            a$a a_a = a.a;
             return;
         }
         Class<?> cls = obj.getClass();
         if (cls.isPrimitive() || cls == Boolean.class || cls == Byte.class || cls == Character.class || cls == Short.class || cls == Integer.class || cls == Long.class || cls == Float.class || cls == Double.class || cls == String.class) {
-            C1644a.a aVar2 = C1644a.f3007a;
+            a$a a_a2 = a.a;
         } else {
             string(obj);
-            C1644a.a aVar3 = C1644a.f3007a;
+            a$a a_a3 = a.a;
         }
     }
 
@@ -142,7 +143,7 @@ public class Util {
         }
         try {
             if (cls.getMethod("toString", new Class[0]).getDeclaringClass() == Object.class) {
-                C1644a.a aVar = C1644a.f3007a;
+                a$a a_a = a.a;
                 return cls.getSimpleName();
             }
         } catch (Exception unused) {
@@ -151,7 +152,7 @@ public class Util {
             return String.valueOf(obj);
         } catch (Throwable th) {
             StringBuilder sb = new StringBuilder();
-            C1644a.a aVar2 = C1644a.f3007a;
+            a$a a_a2 = a.a;
             sb.append(cls.getSimpleName());
             sb.append("(Exception ");
             sb.append(th);

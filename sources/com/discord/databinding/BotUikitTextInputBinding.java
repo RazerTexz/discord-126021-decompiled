@@ -11,32 +11,29 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class BotUikitTextInputBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15014a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextInputEditText f15015b;
+    public final TextInputEditText f2089b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15016c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextInputLayout f15017d;
+    public final TextInputLayout d;
 
     public BotUikitTextInputBinding(@NonNull LinearLayout linearLayout, @NonNull TextInputEditText textInputEditText, @NonNull TextView textView, @NonNull TextInputLayout textInputLayout) {
-        this.f15014a = linearLayout;
-        this.f15015b = textInputEditText;
-        this.f15016c = textView;
-        this.f15017d = textInputLayout;
+        this.a = linearLayout;
+        this.f2089b = textInputEditText;
+        this.c = textView;
+        this.d = textInputLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15014a;
+        return this.a;
     }
 }

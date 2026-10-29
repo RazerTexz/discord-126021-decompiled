@@ -1,13 +1,13 @@
 package com.lytefast.flexinput.viewmodel;
 
 import android.view.View;
+import b.b.a.h.a;
 import com.lytefast.flexinput.FlexInputListener;
 import com.lytefast.flexinput.model.Attachment;
 import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
-import p007b.p076b.p077a.p083h.AbstractC1451a;
-import p658rx.Observable;
+import rx.Observable;
 
 /* JADX INFO: compiled from: FlexInputViewModel.kt */
 /* JADX INFO: loaded from: classes3.dex */
@@ -18,7 +18,7 @@ public interface FlexInputViewModel {
 
     boolean isSingleSelectMode();
 
-    Observable<AbstractC1451a> observeEvents();
+    Observable<a> observeEvents();
 
     Observable<FlexInputState> observeState();
 

@@ -16,6 +16,11 @@ public final class TrackThreadNotificationNudgeClicked implements AnalyticsSchem
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "thread_notification_nudge_clicked";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */
     public String getAnalyticsSchemaTypeName() {
@@ -26,11 +31,5 @@ public final class TrackThreadNotificationNudgeClicked implements AnalyticsSchem
     /* JADX INFO: renamed from: a, reason: from getter */
     public TrackGuild getTrackGuild() {
         return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
     }
 }

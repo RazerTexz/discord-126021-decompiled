@@ -1,14 +1,18 @@
 package com.discord.api.hubs;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: EmailVerification.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class EmailVerification {
     private final List<GuildInfo> guildsInfo;
     private final boolean hasMatchingGuild;
+
+    public final List<GuildInfo> a() {
+        return this.guildsInfo;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -18,7 +22,7 @@ public final /* data */ class EmailVerification {
             return false;
         }
         EmailVerification emailVerification = (EmailVerification) other;
-        return C12238m.areEqual(this.guildsInfo, emailVerification.guildsInfo) && this.hasMatchingGuild == emailVerification.hasMatchingGuild;
+        return m.areEqual(this.guildsInfo, emailVerification.guildsInfo) && this.hasMatchingGuild == emailVerification.hasMatchingGuild;
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -42,15 +46,10 @@ public final /* data */ class EmailVerification {
         return iHashCode + r1;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<GuildInfo> m7998a() {
-        return this.guildsInfo;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EmailVerification(guildsInfo=");
-        sbM833U.append(this.guildsInfo);
-        sbM833U.append(", hasMatchingGuild=");
-        return C1643a.m827O(sbM833U, this.hasMatchingGuild, ")");
+        StringBuilder sbU = a.U("EmailVerification(guildsInfo=");
+        sbU.append(this.guildsInfo);
+        sbU.append(", hasMatchingGuild=");
+        return a.O(sbU, this.hasMatchingGuild, ")");
     }
 }

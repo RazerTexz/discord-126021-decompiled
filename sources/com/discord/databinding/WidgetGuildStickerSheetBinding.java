@@ -14,82 +14,69 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildStickerSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final AppViewFlipper f17057a;
+    public final AppViewFlipper a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FrameLayout f17058b;
+    public final FrameLayout f2453b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17059c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final AppViewFlipper f17060d;
+    public final AppViewFlipper d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final LinearLayout f17061e;
+    public final LinearLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final SimpleDraweeView f17062f;
+    public final SimpleDraweeView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f17063g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final FrameLayout f17064h;
+    public final FrameLayout h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f17065i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f17066j;
+    public final TextView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final MaterialButton f17067k;
+    public final MaterialButton k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final MaterialButton f17068l;
+    public final MaterialButton l;
 
-    /* JADX INFO: renamed from: m */
     @NonNull
-    public final StickerView f17069m;
+    public final StickerView m;
 
-    /* JADX INFO: renamed from: n */
     @NonNull
-    public final TextView f17070n;
+    public final TextView n;
 
     public WidgetGuildStickerSheetBinding(@NonNull AppViewFlipper appViewFlipper, @NonNull View view, @NonNull FrameLayout frameLayout, @NonNull TextView textView, @NonNull AppViewFlipper appViewFlipper2, @NonNull LinearLayout linearLayout, @NonNull TextView textView2, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView3, @NonNull FrameLayout frameLayout2, @NonNull TextView textView4, @NonNull TextView textView5, @NonNull MaterialButton materialButton, @NonNull MaterialButton materialButton2, @NonNull StickerView stickerView, @NonNull TextView textView6) {
-        this.f17057a = appViewFlipper;
-        this.f17058b = frameLayout;
-        this.f17059c = textView;
-        this.f17060d = appViewFlipper2;
-        this.f17061e = linearLayout;
-        this.f17062f = simpleDraweeView;
-        this.f17063g = textView3;
-        this.f17064h = frameLayout2;
-        this.f17065i = textView4;
-        this.f17066j = textView5;
-        this.f17067k = materialButton;
-        this.f17068l = materialButton2;
-        this.f17069m = stickerView;
-        this.f17070n = textView6;
+        this.a = appViewFlipper;
+        this.f2453b = frameLayout;
+        this.c = textView;
+        this.d = appViewFlipper2;
+        this.e = linearLayout;
+        this.f = simpleDraweeView;
+        this.g = textView3;
+        this.h = frameLayout2;
+        this.i = textView4;
+        this.j = textView5;
+        this.k = materialButton;
+        this.l = materialButton2;
+        this.m = stickerView;
+        this.n = textView6;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17057a;
+        return this.a;
     }
 }

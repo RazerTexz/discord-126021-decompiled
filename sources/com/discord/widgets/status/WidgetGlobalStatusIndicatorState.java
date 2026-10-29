@@ -1,172 +1,51 @@
 package com.discord.widgets.status;
 
 import androidx.annotation.MainThread;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
-import p658rx.subjects.BehaviorSubject;
+import d0.z.d.m;
+import rx.Observable;
+import rx.subjects.BehaviorSubject;
 
 /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorState.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGlobalStatusIndicatorState {
-
-    /* JADX INFO: renamed from: Provider, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
+    public static final WidgetGlobalStatusIndicatorState$Provider Provider = new WidgetGlobalStatusIndicatorState$Provider(null);
     private static final WidgetGlobalStatusIndicatorState callIndicatorState = new WidgetGlobalStatusIndicatorState();
-    private final BehaviorSubject<State> stateSubject = BehaviorSubject.m11129k0();
+    private final BehaviorSubject<WidgetGlobalStatusIndicatorState$State> stateSubject = BehaviorSubject.k0();
 
-    /* JADX INFO: renamed from: com.discord.widgets.status.WidgetGlobalStatusIndicatorState$Provider, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorState.kt */
-    public final class Companion {
-        private Companion() {
-        }
-
-        public final WidgetGlobalStatusIndicatorState get() {
-            return WidgetGlobalStatusIndicatorState.callIndicatorState;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
+    public static final /* synthetic */ WidgetGlobalStatusIndicatorState access$getCallIndicatorState$cp() {
+        return callIndicatorState;
     }
 
-    /* JADX INFO: compiled from: WidgetGlobalStatusIndicatorState.kt */
-    public final /* data */ class State {
-        private final boolean isCustomBackground;
-        private final boolean isViewingCall;
-        private final boolean isVisible;
-
-        public State(boolean z2, boolean z3, boolean z4) {
-            this.isVisible = z2;
-            this.isCustomBackground = z3;
-            this.isViewingCall = z4;
-        }
-
-        public static /* synthetic */ State copy$default(State state, boolean z2, boolean z3, boolean z4, int i, Object obj) {
-            if ((i & 1) != 0) {
-                z2 = state.isVisible;
-            }
-            if ((i & 2) != 0) {
-                z3 = state.isCustomBackground;
-            }
-            if ((i & 4) != 0) {
-                z4 = state.isViewingCall;
-            }
-            return state.copy(z2, z3, z4);
-        }
-
-        public final State copy(boolean isVisible, boolean isCustomBackground, boolean isViewingCall) {
-            return new State(isVisible, isCustomBackground, isViewingCall);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof State)) {
-                return false;
-            }
-            State state = (State) other;
-            return this.isVisible == state.isVisible && this.isCustomBackground == state.isCustomBackground && this.isViewingCall == state.isViewingCall;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final boolean getIsCustomBackground() {
-            return this.isCustomBackground;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsViewingCall() {
-            return this.isViewingCall;
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getIsVisible() {
-            return this.isVisible;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        /* JADX WARN: Type inference failed for: r0v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v3, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v5, types: [int] */
-        /* JADX WARN: Type inference failed for: r0v6 */
-        /* JADX WARN: Type inference failed for: r0v7 */
-        /* JADX WARN: Type inference failed for: r1v0 */
-        /* JADX WARN: Type inference failed for: r1v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r1v2 */
-        /* JADX WARN: Type inference failed for: r2v1, types: [int] */
-        /* JADX WARN: Type inference failed for: r2v3 */
-        /* JADX WARN: Type inference failed for: r2v4 */
-        public int hashCode() {
-            boolean z2 = this.isVisible;
-            ?? r0 = z2;
-            if (z2) {
-                r0 = 1;
-            }
-            int i = r0 * 31;
-            boolean z3 = this.isCustomBackground;
-            ?? r2 = z3;
-            if (z3) {
-                r2 = 1;
-            }
-            int i2 = (i + r2) * 31;
-            boolean z4 = this.isViewingCall;
-            return i2 + (z4 ? 1 : z4);
-        }
-
-        public final boolean isCustomBackground() {
-            return this.isCustomBackground;
-        }
-
-        public final boolean isViewingCall() {
-            return this.isViewingCall;
-        }
-
-        public final boolean isVisible() {
-            return this.isVisible;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("State(isVisible=");
-            sbM833U.append(this.isVisible);
-            sbM833U.append(", isCustomBackground=");
-            sbM833U.append(this.isCustomBackground);
-            sbM833U.append(", isViewingCall=");
-            return C1643a.m827O(sbM833U, this.isViewingCall, ")");
-        }
-    }
-
-    public final Observable<State> observeState() {
-        Observable<State> observableM11112r = this.stateSubject.m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "stateSubject.distinctUntilChanged()");
-        return observableM11112r;
+    public final Observable<WidgetGlobalStatusIndicatorState$State> observeState() {
+        Observable<WidgetGlobalStatusIndicatorState$State> observableR = this.stateSubject.r();
+        m.checkNotNullExpressionValue(observableR, "stateSubject.distinctUntilChanged()");
+        return observableR;
     }
 
     public static /* synthetic */ void updateState$default(WidgetGlobalStatusIndicatorState widgetGlobalStatusIndicatorState, boolean z2, boolean z3, boolean z4, int i, Object obj) {
         if ((i & 1) != 0) {
-            BehaviorSubject<State> behaviorSubject = widgetGlobalStatusIndicatorState.stateSubject;
-            C12238m.checkNotNullExpressionValue(behaviorSubject, "stateSubject");
-            State stateM11132n0 = behaviorSubject.m11132n0();
-            z2 = stateM11132n0 != null ? stateM11132n0.isVisible() : false;
+            BehaviorSubject<WidgetGlobalStatusIndicatorState$State> behaviorSubject = widgetGlobalStatusIndicatorState.stateSubject;
+            m.checkNotNullExpressionValue(behaviorSubject, "stateSubject");
+            WidgetGlobalStatusIndicatorState$State widgetGlobalStatusIndicatorState$StateN0 = behaviorSubject.n0();
+            z2 = widgetGlobalStatusIndicatorState$StateN0 != null ? widgetGlobalStatusIndicatorState$StateN0.isVisible() : false;
         }
         if ((i & 2) != 0) {
-            BehaviorSubject<State> behaviorSubject2 = widgetGlobalStatusIndicatorState.stateSubject;
-            C12238m.checkNotNullExpressionValue(behaviorSubject2, "stateSubject");
-            State stateM11132n1 = behaviorSubject2.m11132n0();
-            z3 = stateM11132n1 != null ? stateM11132n1.isCustomBackground() : false;
+            BehaviorSubject<WidgetGlobalStatusIndicatorState$State> behaviorSubject2 = widgetGlobalStatusIndicatorState.stateSubject;
+            m.checkNotNullExpressionValue(behaviorSubject2, "stateSubject");
+            WidgetGlobalStatusIndicatorState$State widgetGlobalStatusIndicatorState$StateN1 = behaviorSubject2.n0();
+            z3 = widgetGlobalStatusIndicatorState$StateN1 != null ? widgetGlobalStatusIndicatorState$StateN1.isCustomBackground() : false;
         }
         if ((i & 4) != 0) {
-            BehaviorSubject<State> behaviorSubject3 = widgetGlobalStatusIndicatorState.stateSubject;
-            C12238m.checkNotNullExpressionValue(behaviorSubject3, "stateSubject");
-            State stateM11132n2 = behaviorSubject3.m11132n0();
-            z4 = stateM11132n2 != null ? stateM11132n2.isViewingCall() : false;
+            BehaviorSubject<WidgetGlobalStatusIndicatorState$State> behaviorSubject3 = widgetGlobalStatusIndicatorState.stateSubject;
+            m.checkNotNullExpressionValue(behaviorSubject3, "stateSubject");
+            WidgetGlobalStatusIndicatorState$State widgetGlobalStatusIndicatorState$StateN2 = behaviorSubject3.n0();
+            z4 = widgetGlobalStatusIndicatorState$StateN2 != null ? widgetGlobalStatusIndicatorState$StateN2.isViewingCall() : false;
         }
         widgetGlobalStatusIndicatorState.updateState(z2, z3, z4);
     }
 
     @MainThread
     public final void updateState(boolean isVisible, boolean isPrimaryBackground, boolean isViewingCall) {
-        this.stateSubject.onNext(new State(isVisible, isPrimaryBackground, isViewingCall));
+        this.stateSubject.onNext(new WidgetGlobalStatusIndicatorState$State(isVisible, isPrimaryBackground, isViewingCall));
     }
 }

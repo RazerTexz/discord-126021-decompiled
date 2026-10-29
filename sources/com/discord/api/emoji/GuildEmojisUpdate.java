@@ -1,9 +1,9 @@
 package com.discord.api.emoji;
 
+import b.d.b.a.a;
 import com.discord.api.guildhash.GuildHashes;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: GuildEmojisUpdate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,6 +11,10 @@ public final /* data */ class GuildEmojisUpdate {
     private final List<GuildEmoji> emojis;
     private final GuildHashes guildHashes;
     private final long guildId;
+
+    public final List<GuildEmoji> a() {
+        return this.emojis;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -20,7 +24,7 @@ public final /* data */ class GuildEmojisUpdate {
             return false;
         }
         GuildEmojisUpdate guildEmojisUpdate = (GuildEmojisUpdate) other;
-        return this.guildId == guildEmojisUpdate.guildId && C12238m.areEqual(this.emojis, guildEmojisUpdate.emojis) && C12238m.areEqual(this.guildHashes, guildEmojisUpdate.guildHashes);
+        return this.guildId == guildEmojisUpdate.guildId && m.areEqual(this.emojis, guildEmojisUpdate.emojis) && m.areEqual(this.guildHashes, guildEmojisUpdate.guildHashes);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -42,19 +46,14 @@ public final /* data */ class GuildEmojisUpdate {
         return iHashCode + (guildHashes != null ? guildHashes.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<GuildEmoji> m7816a() {
-        return this.emojis;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildEmojisUpdate(guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", emojis=");
-        sbM833U.append(this.emojis);
-        sbM833U.append(", guildHashes=");
-        sbM833U.append(this.guildHashes);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("GuildEmojisUpdate(guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", emojis=");
+        sbU.append(this.emojis);
+        sbU.append(", guildHashes=");
+        sbU.append(this.guildHashes);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

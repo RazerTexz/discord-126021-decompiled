@@ -5,20 +5,21 @@ import android.content.res.Configuration;
 import com.discord.rtcconnection.enums.TrimMemoryLevel;
 import com.discord.utilities.logging.Logger;
 import com.discord.utilities.logging.LoggingProvider;
+import d0.z.d.m;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: LowMemoryDetector.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class LowMemoryDetector implements ComponentCallbacks2 {
+    public static final LowMemoryDetector$a j = new LowMemoryDetector$a(null);
 
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final AtomicBoolean isOom = new AtomicBoolean(false);
 
     @Override // android.content.ComponentCallbacks
     public void onConfigurationChanged(Configuration newConfig) {
-        C12238m.checkNotNullParameter(newConfig, "newConfig");
+        m.checkNotNullParameter(newConfig, "newConfig");
     }
 
     @Override // android.content.ComponentCallbacks
@@ -34,7 +35,7 @@ public final class LowMemoryDetector implements ComponentCallbacks2 {
     @Override // android.content.ComponentCallbacks2
     public void onTrimMemory(int level) {
         TrimMemoryLevel trimMemoryLevel;
-        Objects.requireNonNull(TrimMemoryLevel.INSTANCE);
+        Objects.requireNonNull(TrimMemoryLevel.Companion);
         TrimMemoryLevel[] trimMemoryLevelArrValues = TrimMemoryLevel.values();
         int i = 0;
         while (true) {

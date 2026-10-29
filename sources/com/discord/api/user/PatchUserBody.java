@@ -1,8 +1,8 @@
 package com.discord.api.user;
 
+import b.d.b.a.a;
 import com.discord.nullserializable.NullSerializable;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: PatchUserBody.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class PatchUserBody {
             return false;
         }
         PatchUserBody patchUserBody = (PatchUserBody) other;
-        return C12238m.areEqual(this.avatar, patchUserBody.avatar) && C12238m.areEqual(this.banner, patchUserBody.banner) && C12238m.areEqual(this.bannerColor, patchUserBody.bannerColor) && C12238m.areEqual(this.bio, patchUserBody.bio);
+        return m.areEqual(this.avatar, patchUserBody.avatar) && m.areEqual(this.banner, patchUserBody.banner) && m.areEqual(this.bannerColor, patchUserBody.bannerColor) && m.areEqual(this.bio, patchUserBody.bio);
     }
 
     public int hashCode() {
@@ -42,16 +42,16 @@ public final /* data */ class PatchUserBody {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PatchUserBody(avatar=");
-        sbM833U.append(this.avatar);
-        sbM833U.append(", banner=");
-        sbM833U.append(this.banner);
-        sbM833U.append(", bannerColor=");
-        sbM833U.append(this.bannerColor);
-        sbM833U.append(", bio=");
-        sbM833U.append(this.bio);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("PatchUserBody(avatar=");
+        sbU.append(this.avatar);
+        sbU.append(", banner=");
+        sbU.append(this.banner);
+        sbU.append(", bannerColor=");
+        sbU.append(this.bannerColor);
+        sbU.append(", bio=");
+        sbU.append(this.bio);
+        sbU.append(")");
+        return sbU.toString();
     }
 
     public PatchUserBody(NullSerializable<String> nullSerializable, NullSerializable<String> nullSerializable2, NullSerializable<String> nullSerializable3, NullSerializable<String> nullSerializable4) {

@@ -1,7 +1,7 @@
 package com.discord.widgets.chat.list.entries;
 
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
+import a0.a.a.b;
+import b.d.b.a.a;
 
 /* JADX INFO: compiled from: TimestampEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -71,13 +71,13 @@ public final /* data */ class TimestampEntry extends ChatListEntry {
     }
 
     public int hashCode() {
-        return C0002b.m3a(this.timestamp) + (C0002b.m3a(this.messageId) * 31);
+        return b.a(this.timestamp) + (b.a(this.messageId) * 31);
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TimestampEntry(messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", timestamp=");
-        return C1643a.m815C(sbM833U, this.timestamp, ")");
+        StringBuilder sbU = a.U("TimestampEntry(messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", timestamp=");
+        return a.C(sbU, this.timestamp, ")");
     }
 }

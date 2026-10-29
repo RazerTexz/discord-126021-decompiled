@@ -1,8 +1,8 @@
 package com.discord.analytics.generated.traits;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: TrackGuildWelcomeScreen.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class TrackGuildWelcomeScreen {
             return false;
         }
         TrackGuildWelcomeScreen trackGuildWelcomeScreen = (TrackGuildWelcomeScreen) other;
-        return C12238m.areEqual(this.options, trackGuildWelcomeScreen.options) && C12238m.areEqual(this.optionsChannelIds, trackGuildWelcomeScreen.optionsChannelIds) && C12238m.areEqual(this.guildDescription, trackGuildWelcomeScreen.guildDescription) && C12238m.areEqual(this.hasCustomEmojis, trackGuildWelcomeScreen.hasCustomEmojis);
+        return m.areEqual(this.options, trackGuildWelcomeScreen.options) && m.areEqual(this.optionsChannelIds, trackGuildWelcomeScreen.optionsChannelIds) && m.areEqual(this.guildDescription, trackGuildWelcomeScreen.guildDescription) && m.areEqual(this.hasCustomEmojis, trackGuildWelcomeScreen.hasCustomEmojis);
     }
 
     public int hashCode() {
@@ -35,13 +35,13 @@ public final /* data */ class TrackGuildWelcomeScreen {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildWelcomeScreen(options=");
-        sbM833U.append(this.options);
-        sbM833U.append(", optionsChannelIds=");
-        sbM833U.append(this.optionsChannelIds);
-        sbM833U.append(", guildDescription=");
-        sbM833U.append(this.guildDescription);
-        sbM833U.append(", hasCustomEmojis=");
-        return C1643a.m816D(sbM833U, this.hasCustomEmojis, ")");
+        StringBuilder sbU = a.U("TrackGuildWelcomeScreen(options=");
+        sbU.append(this.options);
+        sbU.append(", optionsChannelIds=");
+        sbU.append(this.optionsChannelIds);
+        sbU.append(", guildDescription=");
+        sbU.append(this.guildDescription);
+        sbU.append(", hasCustomEmojis=");
+        return a.D(sbU, this.hasCustomEmojis, ")");
     }
 }

@@ -1,13 +1,14 @@
 package com.discord.widgets.chat.input.autocomplete;
 
 import com.discord.models.domain.emoji.Emoji;
+import d0.t.n;
+import d0.z.d.m;
 import java.util.List;
-import p507d0.p580t.C12147n;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Autocompletable.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class EmojiUpsellPlaceholder extends Autocompletable {
+    public static final EmojiUpsellPlaceholder$Companion Companion = new EmojiUpsellPlaceholder$Companion(null);
     public static final int EMOJI_PREVIEW_COUNT = 3;
     private final boolean allowEmojiToAnimate;
     private final List<Emoji> lockedFirstThree;
@@ -17,7 +18,7 @@ public final class EmojiUpsellPlaceholder extends Autocompletable {
     /* JADX WARN: Multi-variable type inference failed */
     public EmojiUpsellPlaceholder(int i, List<? extends Emoji> list, boolean z2) {
         super(null);
-        C12238m.checkNotNullParameter(list, "lockedFirstThree");
+        m.checkNotNullParameter(list, "lockedFirstThree");
         this.lockedTotal = i;
         this.lockedFirstThree = list;
         this.allowEmojiToAnimate = z2;
@@ -34,7 +35,7 @@ public final class EmojiUpsellPlaceholder extends Autocompletable {
 
     @Override // com.discord.widgets.chat.input.autocomplete.Autocompletable
     public List<String> getInputTextMatchers() {
-        return C12147n.emptyList();
+        return n.emptyList();
     }
 
     public final List<Emoji> getLockedFirstThree() {

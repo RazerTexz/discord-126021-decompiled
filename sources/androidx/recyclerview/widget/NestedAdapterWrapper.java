@@ -2,104 +2,27 @@ package androidx.recyclerview.widget;
 
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.util.Preconditions;
 
 /* JADX INFO: loaded from: classes.dex */
 public class NestedAdapterWrapper {
-    public final RecyclerView.Adapter<RecyclerView.ViewHolder> adapter;
+    public final RecyclerView$Adapter<RecyclerView$ViewHolder> adapter;
     public int mCachedItemCount;
-    public final Callback mCallback;
+    public final NestedAdapterWrapper$Callback mCallback;
 
     @NonNull
-    private final StableIdStorage.StableIdLookup mStableIdLookup;
+    private final StableIdStorage$StableIdLookup mStableIdLookup;
 
     @NonNull
-    private final ViewTypeStorage.ViewTypeLookup mViewTypeLookup;
-    private RecyclerView.AdapterDataObserver mAdapterObserver = new RecyclerView.AdapterDataObserver() { // from class: androidx.recyclerview.widget.NestedAdapterWrapper.1
-        @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-        public void onChanged() {
-            NestedAdapterWrapper nestedAdapterWrapper = NestedAdapterWrapper.this;
-            nestedAdapterWrapper.mCachedItemCount = nestedAdapterWrapper.adapter.getItemCount();
-            NestedAdapterWrapper nestedAdapterWrapper2 = NestedAdapterWrapper.this;
-            nestedAdapterWrapper2.mCallback.onChanged(nestedAdapterWrapper2);
-        }
+    private final ViewTypeStorage$ViewTypeLookup mViewTypeLookup;
+    private RecyclerView$AdapterDataObserver mAdapterObserver = new NestedAdapterWrapper$1(this);
 
-        @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-        public void onItemRangeChanged(int i, int i2) {
-            NestedAdapterWrapper nestedAdapterWrapper = NestedAdapterWrapper.this;
-            nestedAdapterWrapper.mCallback.onItemRangeChanged(nestedAdapterWrapper, i, i2, null);
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-        public void onItemRangeInserted(int i, int i2) {
-            NestedAdapterWrapper nestedAdapterWrapper = NestedAdapterWrapper.this;
-            nestedAdapterWrapper.mCachedItemCount += i2;
-            nestedAdapterWrapper.mCallback.onItemRangeInserted(nestedAdapterWrapper, i, i2);
-            NestedAdapterWrapper nestedAdapterWrapper2 = NestedAdapterWrapper.this;
-            if (nestedAdapterWrapper2.mCachedItemCount <= 0 || nestedAdapterWrapper2.adapter.getStateRestorationPolicy() != RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY) {
-                return;
-            }
-            NestedAdapterWrapper nestedAdapterWrapper3 = NestedAdapterWrapper.this;
-            nestedAdapterWrapper3.mCallback.onStateRestorationPolicyChanged(nestedAdapterWrapper3);
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-        public void onItemRangeMoved(int i, int i2, int i3) {
-            Preconditions.checkArgument(i3 == 1, "moving more than 1 item is not supported in RecyclerView");
-            NestedAdapterWrapper nestedAdapterWrapper = NestedAdapterWrapper.this;
-            nestedAdapterWrapper.mCallback.onItemRangeMoved(nestedAdapterWrapper, i, i2);
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-        public void onItemRangeRemoved(int i, int i2) {
-            NestedAdapterWrapper nestedAdapterWrapper = NestedAdapterWrapper.this;
-            nestedAdapterWrapper.mCachedItemCount -= i2;
-            nestedAdapterWrapper.mCallback.onItemRangeRemoved(nestedAdapterWrapper, i, i2);
-            NestedAdapterWrapper nestedAdapterWrapper2 = NestedAdapterWrapper.this;
-            if (nestedAdapterWrapper2.mCachedItemCount >= 1 || nestedAdapterWrapper2.adapter.getStateRestorationPolicy() != RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY) {
-                return;
-            }
-            NestedAdapterWrapper nestedAdapterWrapper3 = NestedAdapterWrapper.this;
-            nestedAdapterWrapper3.mCallback.onStateRestorationPolicyChanged(nestedAdapterWrapper3);
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-        public void onStateRestorationPolicyChanged() {
-            NestedAdapterWrapper nestedAdapterWrapper = NestedAdapterWrapper.this;
-            nestedAdapterWrapper.mCallback.onStateRestorationPolicyChanged(nestedAdapterWrapper);
-        }
-
-        @Override // androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-        public void onItemRangeChanged(int i, int i2, @Nullable Object obj) {
-            NestedAdapterWrapper nestedAdapterWrapper = NestedAdapterWrapper.this;
-            nestedAdapterWrapper.mCallback.onItemRangeChanged(nestedAdapterWrapper, i, i2, obj);
-        }
-    };
-
-    public interface Callback {
-        void onChanged(@NonNull NestedAdapterWrapper nestedAdapterWrapper);
-
-        void onItemRangeChanged(@NonNull NestedAdapterWrapper nestedAdapterWrapper, int i, int i2);
-
-        void onItemRangeChanged(@NonNull NestedAdapterWrapper nestedAdapterWrapper, int i, int i2, @Nullable Object obj);
-
-        void onItemRangeInserted(@NonNull NestedAdapterWrapper nestedAdapterWrapper, int i, int i2);
-
-        void onItemRangeMoved(@NonNull NestedAdapterWrapper nestedAdapterWrapper, int i, int i2);
-
-        void onItemRangeRemoved(@NonNull NestedAdapterWrapper nestedAdapterWrapper, int i, int i2);
-
-        void onStateRestorationPolicyChanged(NestedAdapterWrapper nestedAdapterWrapper);
-    }
-
-    public NestedAdapterWrapper(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter, Callback callback, ViewTypeStorage viewTypeStorage, StableIdStorage.StableIdLookup stableIdLookup) {
-        this.adapter = adapter;
-        this.mCallback = callback;
+    public NestedAdapterWrapper(RecyclerView$Adapter<RecyclerView$ViewHolder> recyclerView$Adapter, NestedAdapterWrapper$Callback nestedAdapterWrapper$Callback, ViewTypeStorage viewTypeStorage, StableIdStorage$StableIdLookup stableIdStorage$StableIdLookup) {
+        this.adapter = recyclerView$Adapter;
+        this.mCallback = nestedAdapterWrapper$Callback;
         this.mViewTypeLookup = viewTypeStorage.createViewTypeWrapper(this);
-        this.mStableIdLookup = stableIdLookup;
-        this.mCachedItemCount = adapter.getItemCount();
-        adapter.registerAdapterDataObserver(this.mAdapterObserver);
+        this.mStableIdLookup = stableIdStorage$StableIdLookup;
+        this.mCachedItemCount = recyclerView$Adapter.getItemCount();
+        recyclerView$Adapter.registerAdapterDataObserver(this.mAdapterObserver);
     }
 
     public void dispose() {
@@ -119,11 +42,11 @@ public class NestedAdapterWrapper {
         return this.mViewTypeLookup.localToGlobal(this.adapter.getItemViewType(i));
     }
 
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        this.adapter.bindViewHolder(viewHolder, i);
+    public void onBindViewHolder(RecyclerView$ViewHolder recyclerView$ViewHolder, int i) {
+        this.adapter.bindViewHolder(recyclerView$ViewHolder, i);
     }
 
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RecyclerView$ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return this.adapter.onCreateViewHolder(viewGroup, this.mViewTypeLookup.globalToLocal(i));
     }
 }

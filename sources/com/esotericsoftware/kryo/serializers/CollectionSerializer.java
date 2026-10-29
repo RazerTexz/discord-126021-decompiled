@@ -2,12 +2,8 @@ package com.esotericsoftware.kryo.serializers;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
-import com.esotericsoftware.kryo.p502io.Input;
-import com.esotericsoftware.kryo.p502io.Output;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -19,18 +15,13 @@ public class CollectionSerializer extends Serializer<Collection> {
     private Class genericType;
     private Serializer serializer;
 
-    @Target({ElementType.FIELD})
-    @Retention(RetentionPolicy.RUNTIME)
-    public @interface BindCollection {
-        Class<?> elementClass() default Object.class;
-
-        Class<? extends Serializer> elementSerializer() default Serializer.class;
-
-        boolean elementsCanBeNull() default true;
-    }
-
     public CollectionSerializer() {
         this.elementsCanBeNull = true;
+    }
+
+    @Override // com.esotericsoftware.kryo.Serializer
+    public /* bridge */ /* synthetic */ Collection copy(Kryo kryo, Collection collection) {
+        return copy2(kryo, collection);
     }
 
     public Collection create(Kryo kryo, Input input, Class<Collection> cls) {
@@ -39,6 +30,11 @@ public class CollectionSerializer extends Serializer<Collection> {
 
     public Collection createCopy(Kryo kryo, Collection collection) {
         return (Collection) kryo.newInstance(collection.getClass());
+    }
+
+    @Override // com.esotericsoftware.kryo.Serializer
+    public /* bridge */ /* synthetic */ Collection read(Kryo kryo, Input input, Class<Collection> cls) {
+        return read2(kryo, input, cls);
     }
 
     public void setElementClass(Class cls, Serializer serializer) {
@@ -60,7 +56,12 @@ public class CollectionSerializer extends Serializer<Collection> {
     }
 
     @Override // com.esotericsoftware.kryo.Serializer
-    public Collection copy(Kryo kryo, Collection collection) {
+    public /* bridge */ /* synthetic */ void write(Kryo kryo, Output output, Collection collection) {
+        write2(kryo, output, collection);
+    }
+
+    /* JADX INFO: renamed from: copy, reason: avoid collision after fix types in other method */
+    public Collection copy2(Kryo kryo, Collection collection) {
         Collection collectionCreateCopy = createCopy(kryo, collection);
         kryo.reference(collectionCreateCopy);
         Iterator it = collection.iterator();
@@ -71,7 +72,8 @@ public class CollectionSerializer extends Serializer<Collection> {
     }
 
     @Override // com.esotericsoftware.kryo.Serializer
-    public Collection read(Kryo kryo, Input input, Class<Collection> cls) {
+    /* JADX INFO: renamed from: read, reason: avoid collision after fix types in other method */
+    public Collection read2(Kryo kryo, Input input, Class<Collection> cls) {
         Collection collectionCreate = create(kryo, input, cls);
         kryo.reference(collectionCreate);
         int varInt = input.readVarInt(true);
@@ -108,8 +110,8 @@ public class CollectionSerializer extends Serializer<Collection> {
         return collectionCreate;
     }
 
-    @Override // com.esotericsoftware.kryo.Serializer
-    public void write(Kryo kryo, Output output, Collection collection) {
+    /* JADX INFO: renamed from: write, reason: avoid collision after fix types in other method */
+    public void write2(Kryo kryo, Output output, Collection collection) {
         output.writeVarInt(collection.size(), true);
         Serializer serializer = this.serializer;
         Class cls = this.genericType;

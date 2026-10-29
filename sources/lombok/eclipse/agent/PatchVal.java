@@ -182,8 +182,7 @@ public class PatchVal {
         return false;
     }
 
-    /* JADX INFO: renamed from: is */
-    private static boolean m10928is(TypeReference ref, BlockScope scope, String key) {
+    private static boolean is(TypeReference ref, BlockScope scope, String key) {
         Scope s2;
         Scope scope2 = scope.parent;
         while (true) {
@@ -220,24 +219,6 @@ public class PatchVal {
         return matches(key, fullName);
     }
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchVal$Reflection.SCL.lombok */
-    public final class Reflection {
-        private static final Field initCopyField;
-        private static final Field iterableCopyField;
-
-        static {
-            Field a = null;
-            Field b2 = null;
-            try {
-                a = Permit.getField(LocalDeclaration.class, "$initCopy");
-                b2 = Permit.getField(LocalDeclaration.class, "$iterableCopy");
-            } catch (Throwable unused) {
-            }
-            initCopyField = a;
-            iterableCopyField = b2;
-        }
-    }
-
     public static boolean handleValForLocalDeclaration(LocalDeclaration local, BlockScope scope) {
         TypeBinding resolved;
         if (local == null || !LocalDeclaration.class.equals(local.getClass())) {
@@ -262,15 +243,15 @@ public class PatchVal {
             }
         }
         Expression init = local.initialization;
-        if (init == null && Reflection.initCopyField != null) {
+        if (init == null && PatchVal$Reflection.access$0() != null) {
             try {
-                init = (Expression) Reflection.initCopyField.get(local);
+                init = (Expression) PatchVal$Reflection.access$0().get(local);
             } catch (Exception unused) {
             }
         }
-        if (init == null && Reflection.iterableCopyField != null) {
+        if (init == null && PatchVal$Reflection.access$1() != null) {
             try {
-                init = (Expression) Reflection.iterableCopyField.get(local);
+                init = (Expression) PatchVal$Reflection.access$1().get(local);
                 decomponent = true;
             } catch (Exception unused2) {
             }
@@ -307,11 +288,11 @@ public class PatchVal {
     }
 
     private static boolean isVar(LocalDeclaration local, BlockScope scope) {
-        return m10928is(local.type, scope, "lombok.experimental.var") || m10928is(local.type, scope, "lombok.var");
+        return is(local.type, scope, "lombok.experimental.var") || is(local.type, scope, "lombok.var");
     }
 
     private static boolean isVal(LocalDeclaration local, BlockScope scope) {
-        return m10928is(local.type, scope, "lombok.val");
+        return is(local.type, scope, "lombok.val");
     }
 
     public static boolean handleValForForEach(ForeachStatement forEach, BlockScope scope) {

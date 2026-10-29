@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackOverlaySettingsUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSc
             return false;
         }
         TrackOverlaySettingsUpdated trackOverlaySettingsUpdated = (TrackOverlaySettingsUpdated) other;
-        return C12238m.areEqual(this.enabled, trackOverlaySettingsUpdated.enabled) && C12238m.areEqual(this.notificationsEnabled, trackOverlaySettingsUpdated.notificationsEnabled) && C12238m.areEqual(this.notificationsPosition, trackOverlaySettingsUpdated.notificationsPosition) && C12238m.areEqual(this.textNotificationsMode, trackOverlaySettingsUpdated.textNotificationsMode) && C12238m.areEqual(this.hotkey, trackOverlaySettingsUpdated.hotkey) && C12238m.areEqual(this.textActivationHotkey, trackOverlaySettingsUpdated.textActivationHotkey) && C12238m.areEqual(this.textOpacitySlider, trackOverlaySettingsUpdated.textOpacitySlider);
+        return m.areEqual(this.enabled, trackOverlaySettingsUpdated.enabled) && m.areEqual(this.notificationsEnabled, trackOverlaySettingsUpdated.notificationsEnabled) && m.areEqual(this.notificationsPosition, trackOverlaySettingsUpdated.notificationsPosition) && m.areEqual(this.textNotificationsMode, trackOverlaySettingsUpdated.textNotificationsMode) && m.areEqual(this.hotkey, trackOverlaySettingsUpdated.hotkey) && m.areEqual(this.textActivationHotkey, trackOverlaySettingsUpdated.textActivationHotkey) && m.areEqual(this.textOpacitySlider, trackOverlaySettingsUpdated.textOpacitySlider);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,19 +57,19 @@ public final /* data */ class TrackOverlaySettingsUpdated implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackOverlaySettingsUpdated(enabled=");
-        sbM833U.append(this.enabled);
-        sbM833U.append(", notificationsEnabled=");
-        sbM833U.append(this.notificationsEnabled);
-        sbM833U.append(", notificationsPosition=");
-        sbM833U.append(this.notificationsPosition);
-        sbM833U.append(", textNotificationsMode=");
-        sbM833U.append(this.textNotificationsMode);
-        sbM833U.append(", hotkey=");
-        sbM833U.append(this.hotkey);
-        sbM833U.append(", textActivationHotkey=");
-        sbM833U.append(this.textActivationHotkey);
-        sbM833U.append(", textOpacitySlider=");
-        return C1643a.m819G(sbM833U, this.textOpacitySlider, ")");
+        StringBuilder sbU = a.U("TrackOverlaySettingsUpdated(enabled=");
+        sbU.append(this.enabled);
+        sbU.append(", notificationsEnabled=");
+        sbU.append(this.notificationsEnabled);
+        sbU.append(", notificationsPosition=");
+        sbU.append(this.notificationsPosition);
+        sbU.append(", textNotificationsMode=");
+        sbU.append(this.textNotificationsMode);
+        sbU.append(", hotkey=");
+        sbU.append(this.hotkey);
+        sbU.append(", textActivationHotkey=");
+        sbU.append(this.textActivationHotkey);
+        sbU.append(", textOpacitySlider=");
+        return a.G(sbU, this.textOpacitySlider, ")");
     }
 }

@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackAfCard;
 import com.discord.analytics.generated.traits.TrackAfCardReceiver;
 import com.discord.analytics.generated.traits.TrackAfGame;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackAfGameReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAfNewsChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackAfNewsChanged implements AnalyticsSchema, Tra
             return false;
         }
         TrackAfNewsChanged trackAfNewsChanged = (TrackAfNewsChanged) other;
-        return C12238m.areEqual(this.newsUrl, trackAfNewsChanged.newsUrl) && C12238m.areEqual(this.newsToIndex, trackAfNewsChanged.newsToIndex) && C12238m.areEqual(this.newsFromIndex, trackAfNewsChanged.newsFromIndex) && C12238m.areEqual(this.newsChangeType, trackAfNewsChanged.newsChangeType);
+        return m.areEqual(this.newsUrl, trackAfNewsChanged.newsUrl) && m.areEqual(this.newsToIndex, trackAfNewsChanged.newsToIndex) && m.areEqual(this.newsFromIndex, trackAfNewsChanged.newsFromIndex) && m.areEqual(this.newsChangeType, trackAfNewsChanged.newsChangeType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,13 +51,13 @@ public final /* data */ class TrackAfNewsChanged implements AnalyticsSchema, Tra
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAfNewsChanged(newsUrl=");
-        sbM833U.append(this.newsUrl);
-        sbM833U.append(", newsToIndex=");
-        sbM833U.append(this.newsToIndex);
-        sbM833U.append(", newsFromIndex=");
-        sbM833U.append(this.newsFromIndex);
-        sbM833U.append(", newsChangeType=");
-        return C1643a.m817E(sbM833U, this.newsChangeType, ")");
+        StringBuilder sbU = a.U("TrackAfNewsChanged(newsUrl=");
+        sbU.append(this.newsUrl);
+        sbU.append(", newsToIndex=");
+        sbU.append(this.newsToIndex);
+        sbU.append(", newsFromIndex=");
+        sbU.append(this.newsFromIndex);
+        sbU.append(", newsChangeType=");
+        return a.E(sbU, this.newsChangeType, ")");
     }
 }

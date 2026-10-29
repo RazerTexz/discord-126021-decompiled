@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActiveChannelClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,6 +21,11 @@ public final /* data */ class TrackActiveChannelClicked implements AnalyticsSche
     private final Long voiceChannelsShown = null;
     private final transient String analyticsSchemaTypeName = "active_channel_clicked";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -29,7 +34,7 @@ public final /* data */ class TrackActiveChannelClicked implements AnalyticsSche
             return false;
         }
         TrackActiveChannelClicked trackActiveChannelClicked = (TrackActiveChannelClicked) other;
-        return C12238m.areEqual(this.textChannelsShown, trackActiveChannelClicked.textChannelsShown) && C12238m.areEqual(this.voiceChannelsShown, trackActiveChannelClicked.voiceChannelsShown) && C12238m.areEqual(this.homeSessionId, trackActiveChannelClicked.homeSessionId);
+        return m.areEqual(this.textChannelsShown, trackActiveChannelClicked.textChannelsShown) && m.areEqual(this.voiceChannelsShown, trackActiveChannelClicked.voiceChannelsShown) && m.areEqual(this.homeSessionId, trackActiveChannelClicked.homeSessionId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -53,18 +58,12 @@ public final /* data */ class TrackActiveChannelClicked implements AnalyticsSche
         return iHashCode2 + (charSequence != null ? charSequence.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActiveChannelClicked(textChannelsShown=");
-        sbM833U.append(this.textChannelsShown);
-        sbM833U.append(", voiceChannelsShown=");
-        sbM833U.append(this.voiceChannelsShown);
-        sbM833U.append(", homeSessionId=");
-        return C1643a.m817E(sbM833U, this.homeSessionId, ")");
+        StringBuilder sbU = a.U("TrackActiveChannelClicked(textChannelsShown=");
+        sbU.append(this.textChannelsShown);
+        sbU.append(", voiceChannelsShown=");
+        sbU.append(this.voiceChannelsShown);
+        sbU.append(", homeSessionId=");
+        return a.E(sbU, this.homeSessionId, ")");
     }
 }

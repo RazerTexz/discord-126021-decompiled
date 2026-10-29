@@ -1,8 +1,8 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.models.domain.billing.ModelBillingAddress;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelPaymentSource.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class PatchPaymentSourceRaw {
     private final boolean default;
 
     public PatchPaymentSourceRaw(ModelBillingAddress modelBillingAddress, boolean z2) {
-        C12238m.checkNotNullParameter(modelBillingAddress, "billingAddress");
+        m.checkNotNullParameter(modelBillingAddress, "billingAddress");
         this.billingAddress = modelBillingAddress;
         this.default = z2;
     }
@@ -27,7 +27,7 @@ public final /* data */ class PatchPaymentSourceRaw {
     }
 
     public final PatchPaymentSourceRaw copy(ModelBillingAddress billingAddress, boolean z2) {
-        C12238m.checkNotNullParameter(billingAddress, "billingAddress");
+        m.checkNotNullParameter(billingAddress, "billingAddress");
         return new PatchPaymentSourceRaw(billingAddress, z2);
     }
 
@@ -39,7 +39,7 @@ public final /* data */ class PatchPaymentSourceRaw {
             return false;
         }
         PatchPaymentSourceRaw patchPaymentSourceRaw = (PatchPaymentSourceRaw) other;
-        return C12238m.areEqual(this.billingAddress, patchPaymentSourceRaw.billingAddress) && this.default == patchPaymentSourceRaw.default;
+        return m.areEqual(this.billingAddress, patchPaymentSourceRaw.billingAddress) && this.default == patchPaymentSourceRaw.default;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -77,9 +77,9 @@ public final /* data */ class PatchPaymentSourceRaw {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("PatchPaymentSourceRaw(billingAddress=");
-        sbM833U.append(this.billingAddress);
-        sbM833U.append(", default=");
-        return C1643a.m827O(sbM833U, this.default, ")");
+        StringBuilder sbU = a.U("PatchPaymentSourceRaw(billingAddress=");
+        sbU.append(this.billingAddress);
+        sbU.append(", default=");
+        return a.O(sbU, this.default, ")");
     }
 }

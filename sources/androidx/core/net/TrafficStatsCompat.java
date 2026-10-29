@@ -1,7 +1,7 @@
 package androidx.core.net;
 
 import android.net.TrafficStats;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 import java.net.DatagramSocket;
@@ -34,7 +34,7 @@ public final class TrafficStatsCompat {
     }
 
     public static void tagDatagramSocket(@NonNull DatagramSocket datagramSocket) throws SocketException {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             TrafficStats.tagDatagramSocket(datagramSocket);
             return;
         }
@@ -49,7 +49,7 @@ public final class TrafficStatsCompat {
     }
 
     public static void untagDatagramSocket(@NonNull DatagramSocket datagramSocket) throws SocketException {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             TrafficStats.untagDatagramSocket(datagramSocket);
             return;
         }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
 import android.graphics.RectF;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
@@ -19,9 +18,11 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import androidx.constraintlayout.motion.utils.Easing;
-import androidx.constraintlayout.widget.C0201R;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.constraintlayout.widget.R$id;
+import androidx.constraintlayout.widget.R$styleable;
 import androidx.constraintlayout.widget.StateSet;
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.widgets.chat.input.autocomplete.AutocompleteViewModel;
 import java.io.IOException;
@@ -30,10 +31,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Map$Entry;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class MotionScene {
@@ -57,13 +57,13 @@ public class MotionScene {
     public float mLastTouchY;
     private final MotionLayout mMotionLayout;
     private boolean mRtl;
-    private MotionLayout.MotionTracker mVelocityTracker;
+    private MotionLayout$MotionTracker mVelocityTracker;
     public StateSet mStateSet = null;
-    public Transition mCurrentTransition = null;
+    public MotionScene$Transition mCurrentTransition = null;
     private boolean mDisableAutoTransition = false;
-    private ArrayList<Transition> mTransitionList = new ArrayList<>();
-    private Transition mDefaultTransition = null;
-    private ArrayList<Transition> mAbstractTransitionList = new ArrayList<>();
+    private ArrayList<MotionScene$Transition> mTransitionList = new ArrayList<>();
+    private MotionScene$Transition mDefaultTransition = null;
+    private ArrayList<MotionScene$Transition> mAbstractTransitionList = new ArrayList<>();
     private SparseArray<ConstraintSet> mConstraintSetMap = new SparseArray<>();
     private HashMap<String, Integer> mConstraintSetIdMap = new HashMap<>();
     private SparseIntArray mDeriveMap = new SparseIntArray();
@@ -77,47 +77,63 @@ public class MotionScene {
         this.mMotionLayout = motionLayout;
     }
 
+    public static /* synthetic */ int access$1000(MotionScene motionScene) {
+        return motionScene.mLayoutDuringTransition;
+    }
+
+    public static /* synthetic */ SparseArray access$1100(MotionScene motionScene) {
+        return motionScene.mConstraintSetMap;
+    }
+
+    public static /* synthetic */ MotionLayout access$800(MotionScene motionScene) {
+        return motionScene.mMotionLayout;
+    }
+
+    public static /* synthetic */ int access$900(MotionScene motionScene) {
+        return motionScene.mDefaultDuration;
+    }
+
     public void addOnClickListeners(MotionLayout motionLayout, int i) {
-        for (Transition transition : this.mTransitionList) {
-            if (transition.mOnClicks.size() > 0) {
-                Iterator it = transition.mOnClicks.iterator();
+        for (MotionScene$Transition motionScene$Transition : this.mTransitionList) {
+            if (MotionScene$Transition.access$400(motionScene$Transition).size() > 0) {
+                Iterator it = MotionScene$Transition.access$400(motionScene$Transition).iterator();
                 while (it.hasNext()) {
-                    ((Transition.TransitionOnClick) it.next()).removeOnClickListeners(motionLayout);
+                    ((MotionScene$Transition$TransitionOnClick) it.next()).removeOnClickListeners(motionLayout);
                 }
             }
         }
-        for (Transition transition2 : this.mAbstractTransitionList) {
-            if (transition2.mOnClicks.size() > 0) {
-                Iterator it2 = transition2.mOnClicks.iterator();
+        for (MotionScene$Transition motionScene$Transition2 : this.mAbstractTransitionList) {
+            if (MotionScene$Transition.access$400(motionScene$Transition2).size() > 0) {
+                Iterator it2 = MotionScene$Transition.access$400(motionScene$Transition2).iterator();
                 while (it2.hasNext()) {
-                    ((Transition.TransitionOnClick) it2.next()).removeOnClickListeners(motionLayout);
+                    ((MotionScene$Transition$TransitionOnClick) it2.next()).removeOnClickListeners(motionLayout);
                 }
             }
         }
-        for (Transition transition3 : this.mTransitionList) {
-            if (transition3.mOnClicks.size() > 0) {
-                Iterator it3 = transition3.mOnClicks.iterator();
+        for (MotionScene$Transition motionScene$Transition3 : this.mTransitionList) {
+            if (MotionScene$Transition.access$400(motionScene$Transition3).size() > 0) {
+                Iterator it3 = MotionScene$Transition.access$400(motionScene$Transition3).iterator();
                 while (it3.hasNext()) {
-                    ((Transition.TransitionOnClick) it3.next()).addOnClickListeners(motionLayout, i, transition3);
+                    ((MotionScene$Transition$TransitionOnClick) it3.next()).addOnClickListeners(motionLayout, i, motionScene$Transition3);
                 }
             }
         }
-        for (Transition transition4 : this.mAbstractTransitionList) {
-            if (transition4.mOnClicks.size() > 0) {
-                Iterator it4 = transition4.mOnClicks.iterator();
+        for (MotionScene$Transition motionScene$Transition4 : this.mAbstractTransitionList) {
+            if (MotionScene$Transition.access$400(motionScene$Transition4).size() > 0) {
+                Iterator it4 = MotionScene$Transition.access$400(motionScene$Transition4).iterator();
                 while (it4.hasNext()) {
-                    ((Transition.TransitionOnClick) it4.next()).addOnClickListeners(motionLayout, i, transition4);
+                    ((MotionScene$Transition$TransitionOnClick) it4.next()).addOnClickListeners(motionLayout, i, motionScene$Transition4);
                 }
             }
         }
     }
 
-    public void addTransition(Transition transition) {
-        int index = getIndex(transition);
+    public void addTransition(MotionScene$Transition motionScene$Transition) {
+        int index = getIndex(motionScene$Transition);
         if (index == -1) {
-            this.mTransitionList.add(transition);
+            this.mTransitionList.add(motionScene$Transition);
         } else {
-            this.mTransitionList.set(index, transition);
+            this.mTransitionList.set(index, motionScene$Transition);
         }
     }
 
@@ -125,40 +141,40 @@ public class MotionScene {
         if (isProcessingTouch() || this.mDisableAutoTransition) {
             return false;
         }
-        for (Transition transition : this.mTransitionList) {
-            if (transition.mAutoTransition != 0 && this.mCurrentTransition != transition) {
-                if (i == transition.mConstraintSetStart && (transition.mAutoTransition == 4 || transition.mAutoTransition == 2)) {
-                    MotionLayout.TransitionState transitionState = MotionLayout.TransitionState.FINISHED;
-                    motionLayout.setState(transitionState);
-                    motionLayout.setTransition(transition);
-                    if (transition.mAutoTransition == 4) {
+        for (MotionScene$Transition motionScene$Transition : this.mTransitionList) {
+            if (MotionScene$Transition.access$600(motionScene$Transition) != 0 && this.mCurrentTransition != motionScene$Transition) {
+                if (i == MotionScene$Transition.access$100(motionScene$Transition) && (MotionScene$Transition.access$600(motionScene$Transition) == 4 || MotionScene$Transition.access$600(motionScene$Transition) == 2)) {
+                    MotionLayout$TransitionState motionLayout$TransitionState = MotionLayout$TransitionState.FINISHED;
+                    motionLayout.setState(motionLayout$TransitionState);
+                    motionLayout.setTransition(motionScene$Transition);
+                    if (MotionScene$Transition.access$600(motionScene$Transition) == 4) {
                         motionLayout.transitionToEnd();
-                        motionLayout.setState(MotionLayout.TransitionState.SETUP);
-                        motionLayout.setState(MotionLayout.TransitionState.MOVING);
+                        motionLayout.setState(MotionLayout$TransitionState.SETUP);
+                        motionLayout.setState(MotionLayout$TransitionState.MOVING);
                     } else {
                         motionLayout.setProgress(1.0f);
                         motionLayout.evaluate(true);
-                        motionLayout.setState(MotionLayout.TransitionState.SETUP);
-                        motionLayout.setState(MotionLayout.TransitionState.MOVING);
-                        motionLayout.setState(transitionState);
+                        motionLayout.setState(MotionLayout$TransitionState.SETUP);
+                        motionLayout.setState(MotionLayout$TransitionState.MOVING);
+                        motionLayout.setState(motionLayout$TransitionState);
                         motionLayout.onNewStateAttachHandlers();
                     }
                     return true;
                 }
-                if (i == transition.mConstraintSetEnd && (transition.mAutoTransition == 3 || transition.mAutoTransition == 1)) {
-                    MotionLayout.TransitionState transitionState2 = MotionLayout.TransitionState.FINISHED;
-                    motionLayout.setState(transitionState2);
-                    motionLayout.setTransition(transition);
-                    if (transition.mAutoTransition == 3) {
+                if (i == MotionScene$Transition.access$000(motionScene$Transition) && (MotionScene$Transition.access$600(motionScene$Transition) == 3 || MotionScene$Transition.access$600(motionScene$Transition) == 1)) {
+                    MotionLayout$TransitionState motionLayout$TransitionState2 = MotionLayout$TransitionState.FINISHED;
+                    motionLayout.setState(motionLayout$TransitionState2);
+                    motionLayout.setTransition(motionScene$Transition);
+                    if (MotionScene$Transition.access$600(motionScene$Transition) == 3) {
                         motionLayout.transitionToStart();
-                        motionLayout.setState(MotionLayout.TransitionState.SETUP);
-                        motionLayout.setState(MotionLayout.TransitionState.MOVING);
+                        motionLayout.setState(MotionLayout$TransitionState.SETUP);
+                        motionLayout.setState(MotionLayout$TransitionState.MOVING);
                     } else {
                         motionLayout.setProgress(0.0f);
                         motionLayout.evaluate(true);
-                        motionLayout.setState(MotionLayout.TransitionState.SETUP);
-                        motionLayout.setState(MotionLayout.TransitionState.MOVING);
-                        motionLayout.setState(transitionState2);
+                        motionLayout.setState(MotionLayout$TransitionState.SETUP);
+                        motionLayout.setState(MotionLayout$TransitionState.MOVING);
+                        motionLayout.setState(motionLayout$TransitionState2);
                         motionLayout.onNewStateAttachHandlers();
                     }
                     return true;
@@ -168,31 +184,31 @@ public class MotionScene {
         return false;
     }
 
-    public Transition bestTransitionFor(int i, float f, float f2, MotionEvent motionEvent) {
+    public MotionScene$Transition bestTransitionFor(int i, float f, float f2, MotionEvent motionEvent) {
         if (i == -1) {
             return this.mCurrentTransition;
         }
-        List<Transition> transitionsWithState = getTransitionsWithState(i);
+        List<MotionScene$Transition> transitionsWithState = getTransitionsWithState(i);
         float f3 = 0.0f;
-        Transition transition = null;
+        MotionScene$Transition motionScene$Transition = null;
         RectF rectF = new RectF();
-        for (Transition transition2 : transitionsWithState) {
-            if (!transition2.mDisable && transition2.mTouchResponse != null) {
-                transition2.mTouchResponse.setRTL(this.mRtl);
-                RectF touchRegion = transition2.mTouchResponse.getTouchRegion(this.mMotionLayout, rectF);
+        for (MotionScene$Transition motionScene$Transition2 : transitionsWithState) {
+            if (!MotionScene$Transition.access$500(motionScene$Transition2) && MotionScene$Transition.access$200(motionScene$Transition2) != null) {
+                MotionScene$Transition.access$200(motionScene$Transition2).setRTL(this.mRtl);
+                RectF touchRegion = MotionScene$Transition.access$200(motionScene$Transition2).getTouchRegion(this.mMotionLayout, rectF);
                 if (touchRegion == null || motionEvent == null || touchRegion.contains(motionEvent.getX(), motionEvent.getY())) {
-                    RectF touchRegion2 = transition2.mTouchResponse.getTouchRegion(this.mMotionLayout, rectF);
+                    RectF touchRegion2 = MotionScene$Transition.access$200(motionScene$Transition2).getTouchRegion(this.mMotionLayout, rectF);
                     if (touchRegion2 == null || motionEvent == null || touchRegion2.contains(motionEvent.getX(), motionEvent.getY())) {
-                        float fDot = transition2.mTouchResponse.dot(f, f2) * (transition2.mConstraintSetEnd == i ? -1.0f : 1.1f);
+                        float fDot = MotionScene$Transition.access$200(motionScene$Transition2).dot(f, f2) * (MotionScene$Transition.access$000(motionScene$Transition2) == i ? -1.0f : 1.1f);
                         if (fDot > f3) {
-                            transition = transition2;
+                            motionScene$Transition = motionScene$Transition2;
                             f3 = fDot;
                         }
                     }
                 }
             }
         }
-        return transition;
+        return motionScene$Transition;
     }
 
     public void disableAutoTransition(boolean z2) {
@@ -200,9 +216,9 @@ public class MotionScene {
     }
 
     public int gatPathMotionArc() {
-        Transition transition = this.mCurrentTransition;
-        if (transition != null) {
-            return transition.mPathMotionArc;
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition != null) {
+            return MotionScene$Transition.access$1800(motionScene$Transition);
         }
         return -1;
     }
@@ -211,9 +227,9 @@ public class MotionScene {
         if (this.DEBUG_DESKTOP) {
             System.out.println("id " + str);
             PrintStream printStream = System.out;
-            StringBuilder sbM833U = C1643a.m833U("size ");
-            sbM833U.append(this.mConstraintSetMap.size());
-            printStream.println(sbM833U.toString());
+            StringBuilder sbU = a.U("size ");
+            sbU.append(this.mConstraintSetMap.size());
+            printStream.println(sbU.toString());
         }
         for (int i = 0; i < this.mConstraintSetMap.size(); i++) {
             int iKeyAt = this.mConstraintSetMap.keyAt(i);
@@ -237,21 +253,21 @@ public class MotionScene {
         return iArr;
     }
 
-    public ArrayList<Transition> getDefinedTransitions() {
+    public ArrayList<MotionScene$Transition> getDefinedTransitions() {
         return this.mTransitionList;
     }
 
     public int getDuration() {
-        Transition transition = this.mCurrentTransition;
-        return transition != null ? transition.mDuration : this.mDefaultDuration;
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        return motionScene$Transition != null ? MotionScene$Transition.access$1700(motionScene$Transition) : this.mDefaultDuration;
     }
 
     public int getEndId() {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null) {
             return -1;
         }
-        return transition.mConstraintSetEnd;
+        return MotionScene$Transition.access$000(motionScene$Transition);
     }
 
     private int getId(Context context, String str) {
@@ -274,57 +290,51 @@ public class MotionScene {
         return identifier;
     }
 
-    private int getIndex(Transition transition) {
-        int i = transition.mId;
-        if (i == -1) {
+    private int getIndex(MotionScene$Transition motionScene$Transition) {
+        int iAccess$300 = MotionScene$Transition.access$300(motionScene$Transition);
+        if (iAccess$300 == -1) {
             throw new IllegalArgumentException("The transition must have an id");
         }
-        for (int i2 = 0; i2 < this.mTransitionList.size(); i2++) {
-            if (this.mTransitionList.get(i2).mId == i) {
-                return i2;
+        for (int i = 0; i < this.mTransitionList.size(); i++) {
+            if (MotionScene$Transition.access$300(this.mTransitionList.get(i)) == iAccess$300) {
+                return i;
             }
         }
         return -1;
     }
 
     public Interpolator getInterpolator() {
-        int i = this.mCurrentTransition.mDefaultInterpolator;
-        if (i == -2) {
-            return AnimationUtils.loadInterpolator(this.mMotionLayout.getContext(), this.mCurrentTransition.mDefaultInterpolatorID);
+        int iAccess$1400 = MotionScene$Transition.access$1400(this.mCurrentTransition);
+        if (iAccess$1400 == -2) {
+            return AnimationUtils.loadInterpolator(this.mMotionLayout.getContext(), MotionScene$Transition.access$1600(this.mCurrentTransition));
         }
-        if (i == -1) {
-            final Easing interpolator = Easing.getInterpolator(this.mCurrentTransition.mDefaultInterpolatorString);
-            return new Interpolator() { // from class: androidx.constraintlayout.motion.widget.MotionScene.1
-                @Override // android.animation.TimeInterpolator
-                public float getInterpolation(float f) {
-                    return (float) interpolator.get(f);
-                }
-            };
+        if (iAccess$1400 == -1) {
+            return new MotionScene$1(this, Easing.getInterpolator(MotionScene$Transition.access$1500(this.mCurrentTransition)));
         }
-        if (i == 0) {
+        if (iAccess$1400 == 0) {
             return new AccelerateDecelerateInterpolator();
         }
-        if (i == 1) {
+        if (iAccess$1400 == 1) {
             return new AccelerateInterpolator();
         }
-        if (i == 2) {
+        if (iAccess$1400 == 2) {
             return new DecelerateInterpolator();
         }
-        if (i == 4) {
+        if (iAccess$1400 == 4) {
             return new AnticipateInterpolator();
         }
-        if (i != 5) {
+        if (iAccess$1400 != 5) {
             return null;
         }
         return new BounceInterpolator();
     }
 
     public Key getKeyFrame(Context context, int i, int i2, int i3) {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null) {
             return null;
         }
-        for (KeyFrames keyFrames : transition.mKeyFramesList) {
+        for (KeyFrames keyFrames : MotionScene$Transition.access$1300(motionScene$Transition)) {
             for (Integer num : keyFrames.getKeys()) {
                 if (i2 == num.intValue()) {
                     for (Key key : keyFrames.getKeyFramesForView(num.intValue())) {
@@ -339,16 +349,16 @@ public class MotionScene {
     }
 
     public void getKeyFrames(MotionController motionController) {
-        Transition transition = this.mCurrentTransition;
-        if (transition != null) {
-            Iterator it = transition.mKeyFramesList.iterator();
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition != null) {
+            Iterator it = MotionScene$Transition.access$1300(motionScene$Transition).iterator();
             while (it.hasNext()) {
                 ((KeyFrames) it.next()).addFrames(motionController);
             }
         } else {
-            Transition transition2 = this.mDefaultTransition;
-            if (transition2 != null) {
-                Iterator it2 = transition2.mKeyFramesList.iterator();
+            MotionScene$Transition motionScene$Transition2 = this.mDefaultTransition;
+            if (motionScene$Transition2 != null) {
+                Iterator it2 = MotionScene$Transition.access$1300(motionScene$Transition2).iterator();
                 while (it2.hasNext()) {
                     ((KeyFrames) it2.next()).addFrames(motionController);
                 }
@@ -357,27 +367,27 @@ public class MotionScene {
     }
 
     public float getMaxAcceleration() {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return 0.0f;
         }
-        return this.mCurrentTransition.mTouchResponse.getMaxAcceleration();
+        return MotionScene$Transition.access$200(this.mCurrentTransition).getMaxAcceleration();
     }
 
     public float getMaxVelocity() {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return 0.0f;
         }
-        return this.mCurrentTransition.mTouchResponse.getMaxVelocity();
+        return MotionScene$Transition.access$200(this.mCurrentTransition).getMaxVelocity();
     }
 
     public boolean getMoveWhenScrollAtTop() {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return false;
         }
-        return this.mCurrentTransition.mTouchResponse.getMoveWhenScrollAtTop();
+        return MotionScene$Transition.access$200(this.mCurrentTransition).getMoveWhenScrollAtTop();
     }
 
     public float getPathPercent(View view, int i) {
@@ -385,11 +395,11 @@ public class MotionScene {
     }
 
     public float getProgressDirection(float f, float f2) {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return 0.0f;
         }
-        return this.mCurrentTransition.mTouchResponse.getProgressDirection(f, f2);
+        return MotionScene$Transition.access$200(this.mCurrentTransition).getProgressDirection(f, f2);
     }
 
     private int getRealID(int i) {
@@ -399,46 +409,46 @@ public class MotionScene {
     }
 
     public float getStaggered() {
-        Transition transition = this.mCurrentTransition;
-        if (transition != null) {
-            return transition.mStagger;
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition != null) {
+            return MotionScene$Transition.access$1900(motionScene$Transition);
         }
         return 0.0f;
     }
 
     public int getStartId() {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null) {
             return -1;
         }
-        return transition.mConstraintSetStart;
+        return MotionScene$Transition.access$100(motionScene$Transition);
     }
 
-    public Transition getTransitionById(int i) {
-        for (Transition transition : this.mTransitionList) {
-            if (transition.mId == i) {
-                return transition;
+    public MotionScene$Transition getTransitionById(int i) {
+        for (MotionScene$Transition motionScene$Transition : this.mTransitionList) {
+            if (MotionScene$Transition.access$300(motionScene$Transition) == i) {
+                return motionScene$Transition;
             }
         }
         return null;
     }
 
     public int getTransitionDirection(int i) {
-        Iterator<Transition> it = this.mTransitionList.iterator();
+        Iterator<MotionScene$Transition> it = this.mTransitionList.iterator();
         while (it.hasNext()) {
-            if (it.next().mConstraintSetStart == i) {
+            if (MotionScene$Transition.access$100(it.next()) == i) {
                 return 0;
             }
         }
         return 1;
     }
 
-    public List<Transition> getTransitionsWithState(int i) {
+    public List<MotionScene$Transition> getTransitionsWithState(int i) {
         int realID = getRealID(i);
         ArrayList arrayList = new ArrayList();
-        for (Transition transition : this.mTransitionList) {
-            if (transition.mConstraintSetStart == realID || transition.mConstraintSetEnd == realID) {
-                arrayList.add(transition);
+        for (MotionScene$Transition motionScene$Transition : this.mTransitionList) {
+            if (MotionScene$Transition.access$100(motionScene$Transition) == realID || MotionScene$Transition.access$000(motionScene$Transition) == realID) {
+                arrayList.add(motionScene$Transition);
             }
         }
         return arrayList;
@@ -462,11 +472,11 @@ public class MotionScene {
     }
 
     public boolean hasKeyFramePosition(View view, int i) {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null) {
             return false;
         }
-        Iterator it = transition.mKeyFramesList.iterator();
+        Iterator it = MotionScene$Transition.access$1300(motionScene$Transition).iterator();
         while (it.hasNext()) {
             Iterator<Key> it2 = ((KeyFrames) it.next()).getKeyFramesForView(view.getId()).iterator();
             while (it2.hasNext()) {
@@ -486,7 +496,7 @@ public class MotionScene {
     /* JADX WARN: Code duplicated, block: B:38:0x0084  */
     private void load(Context context, int i) {
         XmlResourceParser xml = context.getResources().getXml(i);
-        Transition transition = null;
+        MotionScene$Transition motionScene$Transition = null;
         try {
             int eventType = xml.getEventType();
             while (true) {
@@ -505,33 +515,33 @@ public class MotionScene {
                             parseMotionSceneTags(context, xml);
                             break;
                         case "Transition":
-                            ArrayList<Transition> arrayList = this.mTransitionList;
-                            Transition transition2 = new Transition(this, context, xml);
-                            arrayList.add(transition2);
-                            if (this.mCurrentTransition == null && !transition2.mIsAbstract) {
-                                this.mCurrentTransition = transition2;
-                                if (transition2.mTouchResponse != null) {
-                                    this.mCurrentTransition.mTouchResponse.setRTL(this.mRtl);
+                            ArrayList<MotionScene$Transition> arrayList = this.mTransitionList;
+                            MotionScene$Transition motionScene$Transition2 = new MotionScene$Transition(this, context, xml);
+                            arrayList.add(motionScene$Transition2);
+                            if (this.mCurrentTransition == null && !MotionScene$Transition.access$1200(motionScene$Transition2)) {
+                                this.mCurrentTransition = motionScene$Transition2;
+                                if (MotionScene$Transition.access$200(motionScene$Transition2) != null) {
+                                    MotionScene$Transition.access$200(this.mCurrentTransition).setRTL(this.mRtl);
                                 }
                             }
-                            if (transition2.mIsAbstract) {
-                                if (transition2.mConstraintSetEnd == -1) {
-                                    this.mDefaultTransition = transition2;
+                            if (MotionScene$Transition.access$1200(motionScene$Transition2)) {
+                                if (MotionScene$Transition.access$000(motionScene$Transition2) == -1) {
+                                    this.mDefaultTransition = motionScene$Transition2;
                                 } else {
-                                    this.mAbstractTransitionList.add(transition2);
+                                    this.mAbstractTransitionList.add(motionScene$Transition2);
                                 }
-                                this.mTransitionList.remove(transition2);
+                                this.mTransitionList.remove(motionScene$Transition2);
                             }
-                            transition = transition2;
+                            motionScene$Transition = motionScene$Transition2;
                             break;
                         case "OnSwipe":
-                            if (transition == null) {
+                            if (motionScene$Transition == null) {
                                 Log.v(TAG, " OnSwipe (" + context.getResources().getResourceEntryName(i) + ".xml:" + xml.getLineNumber() + ")");
                             }
-                            transition.mTouchResponse = new TouchResponse(context, this.mMotionLayout, xml);
+                            MotionScene$Transition.access$202(motionScene$Transition, new TouchResponse(context, this.mMotionLayout, xml));
                             break;
                         case "OnClick":
-                            transition.addOnClick(context, xml);
+                            motionScene$Transition.addOnClick(context, xml);
                             break;
                         case "StateSet":
                             this.mStateSet = new StateSet(context, xml);
@@ -540,7 +550,7 @@ public class MotionScene {
                             parseConstraintSet(context, xml);
                             break;
                         case "KeyFrameSet":
-                            transition.mKeyFramesList.add(new KeyFrames(context, xml));
+                            MotionScene$Transition.access$1300(motionScene$Transition).add(new KeyFrames(context, xml));
                             break;
                         default:
                             Log.v(TAG, "WARNING UNKNOWN ATTRIBUTE " + name);
@@ -561,9 +571,9 @@ public class MotionScene {
     }
 
     public String lookUpConstraintName(int i) {
-        for (Map.Entry<String, Integer> entry : this.mConstraintSetIdMap.entrySet()) {
-            if (entry.getValue().intValue() == i) {
-                return entry.getKey();
+        for (Map$Entry<String, Integer> map$Entry : this.mConstraintSetIdMap.entrySet()) {
+            if (map$Entry.getValue().intValue() == i) {
+                return map$Entry.getKey();
             }
         }
         return null;
@@ -605,13 +615,13 @@ public class MotionScene {
     }
 
     private void parseMotionSceneTags(Context context, XmlPullParser xmlPullParser) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0201R.styleable.MotionScene);
+        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), R$styleable.MotionScene);
         int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
         for (int i = 0; i < indexCount; i++) {
             int index = typedArrayObtainStyledAttributes.getIndex(i);
-            if (index == C0201R.styleable.MotionScene_defaultDuration) {
+            if (index == R$styleable.MotionScene_defaultDuration) {
                 this.mDefaultDuration = typedArrayObtainStyledAttributes.getInt(index, this.mDefaultDuration);
-            } else if (index == C0201R.styleable.MotionScene_layoutDuringTransition) {
+            } else if (index == R$styleable.MotionScene_layoutDuringTransition) {
                 this.mLayoutDuringTransition = typedArrayObtainStyledAttributes.getInteger(index, 0);
             }
         }
@@ -619,23 +629,23 @@ public class MotionScene {
     }
 
     public void processScrollMove(float f, float f2) {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return;
         }
-        this.mCurrentTransition.mTouchResponse.scrollMove(f, f2);
+        MotionScene$Transition.access$200(this.mCurrentTransition).scrollMove(f, f2);
     }
 
     public void processScrollUp(float f, float f2) {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return;
         }
-        this.mCurrentTransition.mTouchResponse.scrollUp(f, f2);
+        MotionScene$Transition.access$200(this.mCurrentTransition).scrollUp(f, f2);
     }
 
     public void processTouchEvent(MotionEvent motionEvent, int i, MotionLayout motionLayout) {
-        MotionLayout.MotionTracker motionTracker;
+        MotionLayout$MotionTracker motionLayout$MotionTracker;
         MotionEvent motionEvent2;
         RectF rectF = new RectF();
         if (this.mVelocityTracker == null) {
@@ -650,20 +660,20 @@ public class MotionScene {
                 this.mLastTouchY = motionEvent.getRawY();
                 this.mLastTouchDown = motionEvent;
                 this.mIgnoreTouch = false;
-                if (this.mCurrentTransition.mTouchResponse != null) {
-                    RectF limitBoundsTo = this.mCurrentTransition.mTouchResponse.getLimitBoundsTo(this.mMotionLayout, rectF);
+                if (MotionScene$Transition.access$200(this.mCurrentTransition) != null) {
+                    RectF limitBoundsTo = MotionScene$Transition.access$200(this.mCurrentTransition).getLimitBoundsTo(this.mMotionLayout, rectF);
                     if (limitBoundsTo != null && !limitBoundsTo.contains(this.mLastTouchDown.getX(), this.mLastTouchDown.getY())) {
                         this.mLastTouchDown = null;
                         this.mIgnoreTouch = true;
                         return;
                     }
-                    RectF touchRegion = this.mCurrentTransition.mTouchResponse.getTouchRegion(this.mMotionLayout, rectF);
+                    RectF touchRegion = MotionScene$Transition.access$200(this.mCurrentTransition).getTouchRegion(this.mMotionLayout, rectF);
                     if (touchRegion == null || touchRegion.contains(this.mLastTouchDown.getX(), this.mLastTouchDown.getY())) {
                         this.mMotionOutsideRegion = false;
                     } else {
                         this.mMotionOutsideRegion = true;
                     }
-                    this.mCurrentTransition.mTouchResponse.setDown(this.mLastTouchX, this.mLastTouchY);
+                    MotionScene$Transition.access$200(this.mCurrentTransition).setDown(this.mLastTouchX, this.mLastTouchY);
                     return;
                 }
                 return;
@@ -674,31 +684,31 @@ public class MotionScene {
                 if ((rawX == 0.0d && rawY == 0.0d) || (motionEvent2 = this.mLastTouchDown) == null) {
                     return;
                 }
-                Transition transitionBestTransitionFor = bestTransitionFor(i, rawX, rawY, motionEvent2);
-                if (transitionBestTransitionFor != null) {
-                    motionLayout.setTransition(transitionBestTransitionFor);
-                    RectF touchRegion2 = this.mCurrentTransition.mTouchResponse.getTouchRegion(this.mMotionLayout, rectF);
+                MotionScene$Transition motionScene$TransitionBestTransitionFor = bestTransitionFor(i, rawX, rawY, motionEvent2);
+                if (motionScene$TransitionBestTransitionFor != null) {
+                    motionLayout.setTransition(motionScene$TransitionBestTransitionFor);
+                    RectF touchRegion2 = MotionScene$Transition.access$200(this.mCurrentTransition).getTouchRegion(this.mMotionLayout, rectF);
                     if (touchRegion2 != null && !touchRegion2.contains(this.mLastTouchDown.getX(), this.mLastTouchDown.getY())) {
                         z2 = true;
                     }
                     this.mMotionOutsideRegion = z2;
-                    this.mCurrentTransition.mTouchResponse.setUpTouchEvent(this.mLastTouchX, this.mLastTouchY);
+                    MotionScene$Transition.access$200(this.mCurrentTransition).setUpTouchEvent(this.mLastTouchX, this.mLastTouchY);
                 }
             }
         }
         if (this.mIgnoreTouch) {
             return;
         }
-        Transition transition = this.mCurrentTransition;
-        if (transition != null && transition.mTouchResponse != null && !this.mMotionOutsideRegion) {
-            this.mCurrentTransition.mTouchResponse.processTouchEvent(motionEvent, this.mVelocityTracker, i, this);
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition != null && MotionScene$Transition.access$200(motionScene$Transition) != null && !this.mMotionOutsideRegion) {
+            MotionScene$Transition.access$200(this.mCurrentTransition).processTouchEvent(motionEvent, this.mVelocityTracker, i, this);
         }
         this.mLastTouchX = motionEvent.getRawX();
         this.mLastTouchY = motionEvent.getRawY();
-        if (motionEvent.getAction() != 1 || (motionTracker = this.mVelocityTracker) == null) {
+        if (motionEvent.getAction() != 1 || (motionLayout$MotionTracker = this.mVelocityTracker) == null) {
             return;
         }
-        motionTracker.recycle();
+        motionLayout$MotionTracker.recycle();
         this.mVelocityTracker = null;
         int i2 = motionLayout.mCurrentState;
         if (i2 != -1) {
@@ -716,9 +726,9 @@ public class MotionScene {
                 constraintSet.readFallback(constraintSet2);
                 this.mDeriveMap.put(i, -1);
             } else {
-                StringBuilder sbM833U = C1643a.m833U("ERROR! invalid deriveConstraintsFrom: @id/");
-                sbM833U.append(Debug.getName(this.mMotionLayout.getContext(), i2));
-                Log.e(TAG, sbM833U.toString());
+                StringBuilder sbU = a.U("ERROR! invalid deriveConstraintsFrom: @id/");
+                sbU.append(Debug.getName(this.mMotionLayout.getContext(), i2));
+                Log.e(TAG, sbU.toString());
             }
         }
     }
@@ -737,8 +747,8 @@ public class MotionScene {
         }
     }
 
-    public void removeTransition(Transition transition) {
-        int index = getIndex(transition);
+    public void removeTransition(MotionScene$Transition motionScene$Transition) {
+        int index = getIndex(motionScene$Transition);
         if (index != -1) {
             this.mTransitionList.remove(index);
         }
@@ -749,20 +759,20 @@ public class MotionScene {
     }
 
     public void setDuration(int i) {
-        Transition transition = this.mCurrentTransition;
-        if (transition != null) {
-            transition.setDuration(i);
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition != null) {
+            motionScene$Transition.setDuration(i);
         } else {
             this.mDefaultDuration = i;
         }
     }
 
     public void setKeyframe(View view, int i, String str, Object obj) {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null) {
             return;
         }
-        Iterator it = transition.mKeyFramesList.iterator();
+        Iterator it = MotionScene$Transition.access$1300(motionScene$Transition).iterator();
         while (it.hasNext()) {
             Iterator<Key> it2 = ((KeyFrames) it.next()).getKeyFramesForView(view.getId()).iterator();
             while (it2.hasNext()) {
@@ -776,11 +786,11 @@ public class MotionScene {
 
     public void setRtl(boolean z2) {
         this.mRtl = z2;
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return;
         }
-        this.mCurrentTransition.mTouchResponse.setRTL(this.mRtl);
+        MotionScene$Transition.access$200(this.mCurrentTransition).setRTL(this.mRtl);
     }
 
     /* JADX WARN: Code duplicated, block: B:16:0x0024  */
@@ -792,10 +802,10 @@ public class MotionScene {
     public void setTransition(int i, int i2) {
         int iStateGetConstraintID;
         int iStateGetConstraintID2;
-        Iterator<Transition> it;
-        Transition transition;
-        Transition transition2;
-        Transition next;
+        Iterator<MotionScene$Transition> it;
+        MotionScene$Transition motionScene$Transition;
+        MotionScene$Transition motionScene$Transition2;
+        MotionScene$Transition next;
         StateSet stateSet = this.mStateSet;
         if (stateSet != null) {
             iStateGetConstraintID = stateSet.stateGetConstraintID(i, -1, -1);
@@ -808,30 +818,30 @@ public class MotionScene {
             it = this.mTransitionList.iterator();
             while (true) {
                 if (it.hasNext()) {
-                    transition = this.mDefaultTransition;
-                    for (Transition transition3 : this.mAbstractTransitionList) {
-                        if (transition3.mConstraintSetEnd == i2) {
-                            transition = transition3;
+                    motionScene$Transition = this.mDefaultTransition;
+                    for (MotionScene$Transition motionScene$Transition3 : this.mAbstractTransitionList) {
+                        if (MotionScene$Transition.access$000(motionScene$Transition3) == i2) {
+                            motionScene$Transition = motionScene$Transition3;
                         }
                     }
-                    transition2 = new Transition(this, transition);
-                    transition2.mConstraintSetStart = iStateGetConstraintID;
-                    transition2.mConstraintSetEnd = iStateGetConstraintID2;
+                    motionScene$Transition2 = new MotionScene$Transition(this, motionScene$Transition);
+                    MotionScene$Transition.access$102(motionScene$Transition2, iStateGetConstraintID);
+                    MotionScene$Transition.access$002(motionScene$Transition2, iStateGetConstraintID2);
                     if (iStateGetConstraintID != -1) {
-                        this.mTransitionList.add(transition2);
+                        this.mTransitionList.add(motionScene$Transition2);
                     }
-                    this.mCurrentTransition = transition2;
+                    this.mCurrentTransition = motionScene$Transition2;
                     return;
                 }
                 next = it.next();
-                if ((next.mConstraintSetEnd != iStateGetConstraintID2 && next.mConstraintSetStart == iStateGetConstraintID) || (next.mConstraintSetEnd == i2 && next.mConstraintSetStart == i)) {
+                if ((MotionScene$Transition.access$000(next) != iStateGetConstraintID2 && MotionScene$Transition.access$100(next) == iStateGetConstraintID) || (MotionScene$Transition.access$000(next) == i2 && MotionScene$Transition.access$100(next) == i)) {
                     break;
                 }
             }
             this.mCurrentTransition = next;
-            if (next != null || next.mTouchResponse == null) {
+            if (next != null || MotionScene$Transition.access$200(next) == null) {
             }
-            this.mCurrentTransition.mTouchResponse.setRTL(this.mRtl);
+            MotionScene$Transition.access$200(this.mCurrentTransition).setRTL(this.mRtl);
             return;
         }
         iStateGetConstraintID = i;
@@ -839,23 +849,23 @@ public class MotionScene {
         it = this.mTransitionList.iterator();
         while (true) {
             if (it.hasNext()) {
-                transition = this.mDefaultTransition;
+                motionScene$Transition = this.mDefaultTransition;
                 while (r3.hasNext()) {
-                    if (transition3.mConstraintSetEnd == i2) {
-                        transition = transition3;
+                    if (MotionScene$Transition.access$000(motionScene$Transition3) == i2) {
+                        motionScene$Transition = motionScene$Transition3;
                     }
                 }
-                transition2 = new Transition(this, transition);
-                transition2.mConstraintSetStart = iStateGetConstraintID;
-                transition2.mConstraintSetEnd = iStateGetConstraintID2;
+                motionScene$Transition2 = new MotionScene$Transition(this, motionScene$Transition);
+                MotionScene$Transition.access$102(motionScene$Transition2, iStateGetConstraintID);
+                MotionScene$Transition.access$002(motionScene$Transition2, iStateGetConstraintID2);
                 if (iStateGetConstraintID != -1) {
-                    this.mTransitionList.add(transition2);
+                    this.mTransitionList.add(motionScene$Transition2);
                 }
-                this.mCurrentTransition = transition2;
+                this.mCurrentTransition = motionScene$Transition2;
                 return;
             }
             next = it.next();
-            if (next.mConstraintSetEnd != iStateGetConstraintID2) {
+            if (MotionScene$Transition.access$000(next) != iStateGetConstraintID2) {
             }
         }
         this.mCurrentTransition = next;
@@ -864,11 +874,11 @@ public class MotionScene {
     }
 
     public void setupTouch() {
-        Transition transition = this.mCurrentTransition;
-        if (transition == null || transition.mTouchResponse == null) {
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return;
         }
-        this.mCurrentTransition.mTouchResponse.setupTouch();
+        MotionScene$Transition.access$200(this.mCurrentTransition).setupTouch();
     }
 
     public static String stripID(String str) {
@@ -880,14 +890,14 @@ public class MotionScene {
     }
 
     public boolean supportTouch() {
-        Iterator<Transition> it = this.mTransitionList.iterator();
+        Iterator<MotionScene$Transition> it = this.mTransitionList.iterator();
         while (it.hasNext()) {
-            if (it.next().mTouchResponse != null) {
+            if (MotionScene$Transition.access$200(it.next()) != null) {
                 return true;
             }
         }
-        Transition transition = this.mCurrentTransition;
-        return (transition == null || transition.mTouchResponse == null) ? false : true;
+        MotionScene$Transition motionScene$Transition = this.mCurrentTransition;
+        return (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) ? false : true;
     }
 
     public boolean validateLayout(MotionLayout motionLayout) {
@@ -903,19 +913,19 @@ public class MotionScene {
         if (this.DEBUG_DESKTOP) {
             System.out.println("id " + i);
             PrintStream printStream = System.out;
-            StringBuilder sbM833U = C1643a.m833U("size ");
-            sbM833U.append(this.mConstraintSetMap.size());
-            printStream.println(sbM833U.toString());
+            StringBuilder sbU = a.U("size ");
+            sbU.append(this.mConstraintSetMap.size());
+            printStream.println(sbU.toString());
         }
         StateSet stateSet = this.mStateSet;
         if (stateSet != null && (iStateGetConstraintID = stateSet.stateGetConstraintID(i, i2, i3)) != -1) {
             i = iStateGetConstraintID;
         }
         if (this.mConstraintSetMap.get(i) == null) {
-            StringBuilder sbM833U2 = C1643a.m833U("Warning could not find ConstraintSet id/");
-            sbM833U2.append(Debug.getName(this.mMotionLayout.getContext(), i));
-            sbM833U2.append(" In MotionScene");
-            Log.e(TAG, sbM833U2.toString());
+            StringBuilder sbU2 = a.U("Warning could not find ConstraintSet id/");
+            sbU2.append(Debug.getName(this.mMotionLayout.getContext(), i));
+            sbU2.append(" In MotionScene");
+            Log.e(TAG, sbU2.toString());
             SparseArray<ConstraintSet> sparseArray = this.mConstraintSetMap;
             return sparseArray.get(sparseArray.keyAt(0));
         }
@@ -926,421 +936,16 @@ public class MotionScene {
         this.mMotionLayout = motionLayout;
         load(context, i);
         SparseArray<ConstraintSet> sparseArray = this.mConstraintSetMap;
-        int i2 = C0201R.id.motion_base;
+        int i2 = R$id.motion_base;
         sparseArray.put(i2, new ConstraintSet());
         this.mConstraintSetIdMap.put("motion_base", Integer.valueOf(i2));
     }
 
-    public void setTransition(Transition transition) {
-        this.mCurrentTransition = transition;
-        if (transition == null || transition.mTouchResponse == null) {
+    public void setTransition(MotionScene$Transition motionScene$Transition) {
+        this.mCurrentTransition = motionScene$Transition;
+        if (motionScene$Transition == null || MotionScene$Transition.access$200(motionScene$Transition) == null) {
             return;
         }
-        this.mCurrentTransition.mTouchResponse.setRTL(this.mRtl);
-    }
-
-    public class Transition {
-        public static final int AUTO_ANIMATE_TO_END = 4;
-        public static final int AUTO_ANIMATE_TO_START = 3;
-        public static final int AUTO_JUMP_TO_END = 2;
-        public static final int AUTO_JUMP_TO_START = 1;
-        public static final int AUTO_NONE = 0;
-        public static final int TRANSITION_FLAG_FIRST_DRAW = 1;
-        private int mAutoTransition;
-        private int mConstraintSetEnd;
-        private int mConstraintSetStart;
-        private int mDefaultInterpolator;
-        private int mDefaultInterpolatorID;
-        private String mDefaultInterpolatorString;
-        private boolean mDisable;
-        private int mDuration;
-        private int mId;
-        private boolean mIsAbstract;
-        private ArrayList<KeyFrames> mKeyFramesList;
-        private int mLayoutDuringTransition;
-        private final MotionScene mMotionScene;
-        private ArrayList<TransitionOnClick> mOnClicks;
-        private int mPathMotionArc;
-        private float mStagger;
-        private TouchResponse mTouchResponse;
-        private int mTransitionFlags;
-
-        public class TransitionOnClick implements View.OnClickListener {
-            public static final int ANIM_TOGGLE = 17;
-            public static final int ANIM_TO_END = 1;
-            public static final int ANIM_TO_START = 16;
-            public static final int JUMP_TO_END = 256;
-            public static final int JUMP_TO_START = 4096;
-            public int mMode;
-            public int mTargetId;
-            private final Transition mTransition;
-
-            public TransitionOnClick(Context context, Transition transition, XmlPullParser xmlPullParser) {
-                this.mTargetId = -1;
-                this.mMode = 17;
-                this.mTransition = transition;
-                TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(Xml.asAttributeSet(xmlPullParser), C0201R.styleable.OnClick);
-                int indexCount = typedArrayObtainStyledAttributes.getIndexCount();
-                for (int i = 0; i < indexCount; i++) {
-                    int index = typedArrayObtainStyledAttributes.getIndex(i);
-                    if (index == C0201R.styleable.OnClick_targetId) {
-                        this.mTargetId = typedArrayObtainStyledAttributes.getResourceId(index, this.mTargetId);
-                    } else if (index == C0201R.styleable.OnClick_clickAction) {
-                        this.mMode = typedArrayObtainStyledAttributes.getInt(index, this.mMode);
-                    }
-                }
-                typedArrayObtainStyledAttributes.recycle();
-            }
-
-            public void addOnClickListeners(MotionLayout motionLayout, int i, Transition transition) {
-                int i2 = this.mTargetId;
-                View viewFindViewById = motionLayout;
-                if (i2 != -1) {
-                    viewFindViewById = motionLayout.findViewById(i2);
-                }
-                if (viewFindViewById == null) {
-                    StringBuilder sbM833U = C1643a.m833U("OnClick could not find id ");
-                    sbM833U.append(this.mTargetId);
-                    Log.e(MotionScene.TAG, sbM833U.toString());
-                    return;
-                }
-                int i3 = transition.mConstraintSetStart;
-                int i4 = transition.mConstraintSetEnd;
-                if (i3 == -1) {
-                    viewFindViewById.setOnClickListener(this);
-                    return;
-                }
-                int i5 = this.mMode;
-                boolean z2 = false;
-                boolean z3 = ((i5 & 1) != 0 && i == i3) | ((i5 & 1) != 0 && i == i3) | ((i5 & 256) != 0 && i == i3) | ((i5 & 16) != 0 && i == i4);
-                if ((i5 & 4096) != 0 && i == i4) {
-                    z2 = true;
-                }
-                if (z3 || z2) {
-                    viewFindViewById.setOnClickListener(this);
-                }
-            }
-
-            public boolean isTransitionViable(Transition transition, MotionLayout motionLayout) {
-                Transition transition2 = this.mTransition;
-                if (transition2 == transition) {
-                    return true;
-                }
-                int i = transition2.mConstraintSetEnd;
-                int i2 = this.mTransition.mConstraintSetStart;
-                if (i2 == -1) {
-                    return motionLayout.mCurrentState != i;
-                }
-                int i3 = motionLayout.mCurrentState;
-                return i3 == i2 || i3 == i;
-            }
-
-            @Override // android.view.View.OnClickListener
-            public void onClick(View view) {
-                MotionLayout motionLayout = this.mTransition.mMotionScene.mMotionLayout;
-                if (motionLayout.isInteractionEnabled()) {
-                    if (this.mTransition.mConstraintSetStart == -1) {
-                        int currentState = motionLayout.getCurrentState();
-                        if (currentState == -1) {
-                            motionLayout.transitionToState(this.mTransition.mConstraintSetEnd);
-                            return;
-                        }
-                        Transition transition = new Transition(this.mTransition.mMotionScene, this.mTransition);
-                        transition.mConstraintSetStart = currentState;
-                        transition.mConstraintSetEnd = this.mTransition.mConstraintSetEnd;
-                        motionLayout.setTransition(transition);
-                        motionLayout.transitionToEnd();
-                        return;
-                    }
-                    Transition transition2 = this.mTransition.mMotionScene.mCurrentTransition;
-                    int i = this.mMode;
-                    boolean z2 = false;
-                    boolean z3 = ((i & 1) == 0 && (i & 256) == 0) ? false : true;
-                    boolean z4 = ((i & 16) == 0 && (i & 4096) == 0) ? false : true;
-                    if (z3 && z4) {
-                        Transition transition3 = this.mTransition.mMotionScene.mCurrentTransition;
-                        Transition transition4 = this.mTransition;
-                        if (transition3 != transition4) {
-                            motionLayout.setTransition(transition4);
-                        }
-                        if (motionLayout.getCurrentState() != motionLayout.getEndState() && motionLayout.getProgress() <= 0.5f) {
-                            z2 = z3;
-                            z4 = false;
-                        }
-                    } else {
-                        z2 = z3;
-                    }
-                    if (isTransitionViable(transition2, motionLayout)) {
-                        if (z2 && (this.mMode & 1) != 0) {
-                            motionLayout.setTransition(this.mTransition);
-                            motionLayout.transitionToEnd();
-                            return;
-                        }
-                        if (z4 && (this.mMode & 16) != 0) {
-                            motionLayout.setTransition(this.mTransition);
-                            motionLayout.transitionToStart();
-                        } else if (z2 && (this.mMode & 256) != 0) {
-                            motionLayout.setTransition(this.mTransition);
-                            motionLayout.setProgress(1.0f);
-                        } else {
-                            if (!z4 || (this.mMode & 4096) == 0) {
-                                return;
-                            }
-                            motionLayout.setTransition(this.mTransition);
-                            motionLayout.setProgress(0.0f);
-                        }
-                    }
-                }
-            }
-
-            public void removeOnClickListeners(MotionLayout motionLayout) {
-                int i = this.mTargetId;
-                if (i == -1) {
-                    return;
-                }
-                View viewFindViewById = motionLayout.findViewById(i);
-                if (viewFindViewById != null) {
-                    viewFindViewById.setOnClickListener(null);
-                    return;
-                }
-                StringBuilder sbM833U = C1643a.m833U(" (*)  could not find id ");
-                sbM833U.append(this.mTargetId);
-                Log.e(MotionScene.TAG, sbM833U.toString());
-            }
-        }
-
-        public Transition(MotionScene motionScene, Transition transition) {
-            this.mId = -1;
-            this.mIsAbstract = false;
-            this.mConstraintSetEnd = -1;
-            this.mConstraintSetStart = -1;
-            this.mDefaultInterpolator = 0;
-            this.mDefaultInterpolatorString = null;
-            this.mDefaultInterpolatorID = -1;
-            this.mDuration = 400;
-            this.mStagger = 0.0f;
-            this.mKeyFramesList = new ArrayList<>();
-            this.mTouchResponse = null;
-            this.mOnClicks = new ArrayList<>();
-            this.mAutoTransition = 0;
-            this.mDisable = false;
-            this.mPathMotionArc = -1;
-            this.mLayoutDuringTransition = 0;
-            this.mTransitionFlags = 0;
-            this.mMotionScene = motionScene;
-            if (transition != null) {
-                this.mPathMotionArc = transition.mPathMotionArc;
-                this.mDefaultInterpolator = transition.mDefaultInterpolator;
-                this.mDefaultInterpolatorString = transition.mDefaultInterpolatorString;
-                this.mDefaultInterpolatorID = transition.mDefaultInterpolatorID;
-                this.mDuration = transition.mDuration;
-                this.mKeyFramesList = transition.mKeyFramesList;
-                this.mStagger = transition.mStagger;
-                this.mLayoutDuringTransition = transition.mLayoutDuringTransition;
-            }
-        }
-
-        public void addOnClick(Context context, XmlPullParser xmlPullParser) {
-            this.mOnClicks.add(new TransitionOnClick(context, this, xmlPullParser));
-        }
-
-        public String debugString(Context context) {
-            String resourceEntryName = this.mConstraintSetStart == -1 ? "null" : context.getResources().getResourceEntryName(this.mConstraintSetStart);
-            if (this.mConstraintSetEnd == -1) {
-                return C1643a.m883w(resourceEntryName, " -> null");
-            }
-            StringBuilder sbM836X = C1643a.m836X(resourceEntryName, " -> ");
-            sbM836X.append(context.getResources().getResourceEntryName(this.mConstraintSetEnd));
-            return sbM836X.toString();
-        }
-
-        private void fill(MotionScene motionScene, Context context, TypedArray typedArray) {
-            int indexCount = typedArray.getIndexCount();
-            for (int i = 0; i < indexCount; i++) {
-                int index = typedArray.getIndex(i);
-                if (index == C0201R.styleable.Transition_constraintSetEnd) {
-                    this.mConstraintSetEnd = typedArray.getResourceId(index, this.mConstraintSetEnd);
-                    if ("layout".equals(context.getResources().getResourceTypeName(this.mConstraintSetEnd))) {
-                        ConstraintSet constraintSet = new ConstraintSet();
-                        constraintSet.load(context, this.mConstraintSetEnd);
-                        motionScene.mConstraintSetMap.append(this.mConstraintSetEnd, constraintSet);
-                    }
-                } else if (index == C0201R.styleable.Transition_constraintSetStart) {
-                    this.mConstraintSetStart = typedArray.getResourceId(index, this.mConstraintSetStart);
-                    if ("layout".equals(context.getResources().getResourceTypeName(this.mConstraintSetStart))) {
-                        ConstraintSet constraintSet2 = new ConstraintSet();
-                        constraintSet2.load(context, this.mConstraintSetStart);
-                        motionScene.mConstraintSetMap.append(this.mConstraintSetStart, constraintSet2);
-                    }
-                } else if (index == C0201R.styleable.Transition_motionInterpolator) {
-                    int i2 = typedArray.peekValue(index).type;
-                    if (i2 == 1) {
-                        int resourceId = typedArray.getResourceId(index, -1);
-                        this.mDefaultInterpolatorID = resourceId;
-                        if (resourceId != -1) {
-                            this.mDefaultInterpolator = -2;
-                        }
-                    } else if (i2 == 3) {
-                        String string = typedArray.getString(index);
-                        this.mDefaultInterpolatorString = string;
-                        if (string.indexOf(AutocompleteViewModel.COMMAND_DISCOVER_TOKEN) > 0) {
-                            this.mDefaultInterpolatorID = typedArray.getResourceId(index, -1);
-                            this.mDefaultInterpolator = -2;
-                        } else {
-                            this.mDefaultInterpolator = -1;
-                        }
-                    } else {
-                        this.mDefaultInterpolator = typedArray.getInteger(index, this.mDefaultInterpolator);
-                    }
-                } else if (index == C0201R.styleable.Transition_duration) {
-                    this.mDuration = typedArray.getInt(index, this.mDuration);
-                } else if (index == C0201R.styleable.Transition_staggered) {
-                    this.mStagger = typedArray.getFloat(index, this.mStagger);
-                } else if (index == C0201R.styleable.Transition_autoTransition) {
-                    this.mAutoTransition = typedArray.getInteger(index, this.mAutoTransition);
-                } else if (index == C0201R.styleable.Transition_android_id) {
-                    this.mId = typedArray.getResourceId(index, this.mId);
-                } else if (index == C0201R.styleable.Transition_transitionDisable) {
-                    this.mDisable = typedArray.getBoolean(index, this.mDisable);
-                } else if (index == C0201R.styleable.Transition_pathMotionArc) {
-                    this.mPathMotionArc = typedArray.getInteger(index, -1);
-                } else if (index == C0201R.styleable.Transition_layoutDuringTransition) {
-                    this.mLayoutDuringTransition = typedArray.getInteger(index, 0);
-                } else if (index == C0201R.styleable.Transition_transitionFlags) {
-                    this.mTransitionFlags = typedArray.getInteger(index, 0);
-                }
-            }
-            if (this.mConstraintSetStart == -1) {
-                this.mIsAbstract = true;
-            }
-        }
-
-        private void fillFromAttributeList(MotionScene motionScene, Context context, AttributeSet attributeSet) {
-            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, C0201R.styleable.Transition);
-            fill(motionScene, context, typedArrayObtainStyledAttributes);
-            typedArrayObtainStyledAttributes.recycle();
-        }
-
-        public int getAutoTransition() {
-            return this.mAutoTransition;
-        }
-
-        public int getDuration() {
-            return this.mDuration;
-        }
-
-        public int getEndConstraintSetId() {
-            return this.mConstraintSetEnd;
-        }
-
-        public int getId() {
-            return this.mId;
-        }
-
-        public List<KeyFrames> getKeyFrameList() {
-            return this.mKeyFramesList;
-        }
-
-        public int getLayoutDuringTransition() {
-            return this.mLayoutDuringTransition;
-        }
-
-        public List<TransitionOnClick> getOnClickList() {
-            return this.mOnClicks;
-        }
-
-        public int getPathMotionArc() {
-            return this.mPathMotionArc;
-        }
-
-        public float getStagger() {
-            return this.mStagger;
-        }
-
-        public int getStartConstraintSetId() {
-            return this.mConstraintSetStart;
-        }
-
-        public TouchResponse getTouchResponse() {
-            return this.mTouchResponse;
-        }
-
-        public boolean isEnabled() {
-            return !this.mDisable;
-        }
-
-        public boolean isTransitionFlag(int i) {
-            return (i & this.mTransitionFlags) != 0;
-        }
-
-        public void setAutoTransition(int i) {
-            this.mAutoTransition = i;
-        }
-
-        public void setDuration(int i) {
-            this.mDuration = i;
-        }
-
-        public void setEnable(boolean z2) {
-            this.mDisable = !z2;
-        }
-
-        public void setPathMotionArc(int i) {
-            this.mPathMotionArc = i;
-        }
-
-        public void setStagger(float f) {
-            this.mStagger = f;
-        }
-
-        public Transition(int i, MotionScene motionScene, int i2, int i3) {
-            this.mId = -1;
-            this.mIsAbstract = false;
-            this.mConstraintSetEnd = -1;
-            this.mConstraintSetStart = -1;
-            this.mDefaultInterpolator = 0;
-            this.mDefaultInterpolatorString = null;
-            this.mDefaultInterpolatorID = -1;
-            this.mDuration = 400;
-            this.mStagger = 0.0f;
-            this.mKeyFramesList = new ArrayList<>();
-            this.mTouchResponse = null;
-            this.mOnClicks = new ArrayList<>();
-            this.mAutoTransition = 0;
-            this.mDisable = false;
-            this.mPathMotionArc = -1;
-            this.mLayoutDuringTransition = 0;
-            this.mTransitionFlags = 0;
-            this.mId = i;
-            this.mMotionScene = motionScene;
-            this.mConstraintSetStart = i2;
-            this.mConstraintSetEnd = i3;
-            this.mDuration = motionScene.mDefaultDuration;
-            this.mLayoutDuringTransition = motionScene.mLayoutDuringTransition;
-        }
-
-        public Transition(MotionScene motionScene, Context context, XmlPullParser xmlPullParser) {
-            this.mId = -1;
-            this.mIsAbstract = false;
-            this.mConstraintSetEnd = -1;
-            this.mConstraintSetStart = -1;
-            this.mDefaultInterpolator = 0;
-            this.mDefaultInterpolatorString = null;
-            this.mDefaultInterpolatorID = -1;
-            this.mDuration = 400;
-            this.mStagger = 0.0f;
-            this.mKeyFramesList = new ArrayList<>();
-            this.mTouchResponse = null;
-            this.mOnClicks = new ArrayList<>();
-            this.mAutoTransition = 0;
-            this.mDisable = false;
-            this.mPathMotionArc = -1;
-            this.mLayoutDuringTransition = 0;
-            this.mTransitionFlags = 0;
-            this.mDuration = motionScene.mDefaultDuration;
-            this.mLayoutDuringTransition = motionScene.mLayoutDuringTransition;
-            this.mMotionScene = motionScene;
-            fillFromAttributeList(motionScene, context, Xml.asAttributeSet(xmlPullParser));
-        }
+        MotionScene$Transition.access$200(this.mCurrentTransition).setRTL(this.mRtl);
     }
 }

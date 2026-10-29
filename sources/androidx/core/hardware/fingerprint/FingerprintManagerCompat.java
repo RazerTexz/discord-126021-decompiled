@@ -2,59 +2,32 @@ package androidx.core.hardware.fingerprint;
 
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
+import android.hardware.fingerprint.FingerprintManager$AuthenticationCallback;
+import android.hardware.fingerprint.FingerprintManager$CryptoObject;
+import android.os.Build$VERSION;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import androidx.core.os.CancellationSignal;
-import java.security.Signature;
-import javax.crypto.Cipher;
-import javax.crypto.Mac;
 
 /* JADX INFO: loaded from: classes.dex */
 @Deprecated
 public class FingerprintManagerCompat {
     private final Context mContext;
 
-    public abstract class AuthenticationCallback {
-        public void onAuthenticationError(int i, CharSequence charSequence) {
-        }
-
-        public void onAuthenticationFailed() {
-        }
-
-        public void onAuthenticationHelp(int i, CharSequence charSequence) {
-        }
-
-        public void onAuthenticationSucceeded(AuthenticationResult authenticationResult) {
-        }
-    }
-
-    public final class AuthenticationResult {
-        private final CryptoObject mCryptoObject;
-
-        public AuthenticationResult(CryptoObject cryptoObject) {
-            this.mCryptoObject = cryptoObject;
-        }
-
-        public CryptoObject getCryptoObject() {
-            return this.mCryptoObject;
-        }
-    }
-
     private FingerprintManagerCompat(Context context) {
         this.mContext = context;
     }
 
     @RequiresPermission("android.permission.USE_FINGERPRINT")
-    public void authenticate(@Nullable CryptoObject cryptoObject, int i, @Nullable CancellationSignal cancellationSignal, @NonNull AuthenticationCallback authenticationCallback, @Nullable Handler handler) {
+    public void authenticate(@Nullable FingerprintManagerCompat$CryptoObject fingerprintManagerCompat$CryptoObject, int i, @Nullable CancellationSignal cancellationSignal, @NonNull FingerprintManagerCompat$AuthenticationCallback fingerprintManagerCompat$AuthenticationCallback, @Nullable Handler handler) {
         FingerprintManager fingerprintManagerOrNull;
-        if (Build.VERSION.SDK_INT < 23 || (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) == null) {
+        if (Build$VERSION.SDK_INT < 23 || (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) == null) {
             return;
         }
-        fingerprintManagerOrNull.authenticate(wrapCryptoObject(cryptoObject), cancellationSignal != null ? (android.os.CancellationSignal) cancellationSignal.getCancellationSignalObject() : null, i, wrapCallback(authenticationCallback), handler);
+        fingerprintManagerOrNull.authenticate(wrapCryptoObject(fingerprintManagerCompat$CryptoObject), cancellationSignal != null ? (android.os.CancellationSignal) cancellationSignal.getCancellationSignalObject() : null, i, wrapCallback(fingerprintManagerCompat$AuthenticationCallback), handler);
     }
 
     @NonNull
@@ -65,7 +38,7 @@ public class FingerprintManagerCompat {
     @Nullable
     @RequiresApi(23)
     private static FingerprintManager getFingerprintManagerOrNull(@NonNull Context context) {
-        int i = Build.VERSION.SDK_INT;
+        int i = Build$VERSION.SDK_INT;
         if (i == 23) {
             return (FingerprintManager) context.getSystemService(FingerprintManager.class);
         }
@@ -78,110 +51,51 @@ public class FingerprintManagerCompat {
     @RequiresPermission("android.permission.USE_FINGERPRINT")
     public boolean hasEnrolledFingerprints() {
         FingerprintManager fingerprintManagerOrNull;
-        return Build.VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.hasEnrolledFingerprints();
+        return Build$VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.hasEnrolledFingerprints();
     }
 
     @RequiresPermission("android.permission.USE_FINGERPRINT")
     public boolean isHardwareDetected() {
         FingerprintManager fingerprintManagerOrNull;
-        return Build.VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.isHardwareDetected();
+        return Build$VERSION.SDK_INT >= 23 && (fingerprintManagerOrNull = getFingerprintManagerOrNull(this.mContext)) != null && fingerprintManagerOrNull.isHardwareDetected();
     }
 
     @RequiresApi(23)
-    public static CryptoObject unwrapCryptoObject(FingerprintManager.CryptoObject cryptoObject) {
-        if (cryptoObject == null) {
+    public static FingerprintManagerCompat$CryptoObject unwrapCryptoObject(FingerprintManager$CryptoObject fingerprintManager$CryptoObject) {
+        if (fingerprintManager$CryptoObject == null) {
             return null;
         }
-        if (cryptoObject.getCipher() != null) {
-            return new CryptoObject(cryptoObject.getCipher());
+        if (fingerprintManager$CryptoObject.getCipher() != null) {
+            return new FingerprintManagerCompat$CryptoObject(fingerprintManager$CryptoObject.getCipher());
         }
-        if (cryptoObject.getSignature() != null) {
-            return new CryptoObject(cryptoObject.getSignature());
+        if (fingerprintManager$CryptoObject.getSignature() != null) {
+            return new FingerprintManagerCompat$CryptoObject(fingerprintManager$CryptoObject.getSignature());
         }
-        if (cryptoObject.getMac() != null) {
-            return new CryptoObject(cryptoObject.getMac());
+        if (fingerprintManager$CryptoObject.getMac() != null) {
+            return new FingerprintManagerCompat$CryptoObject(fingerprintManager$CryptoObject.getMac());
         }
         return null;
     }
 
     @RequiresApi(23)
-    private static FingerprintManager.AuthenticationCallback wrapCallback(final AuthenticationCallback authenticationCallback) {
-        return new FingerprintManager.AuthenticationCallback() { // from class: androidx.core.hardware.fingerprint.FingerprintManagerCompat.1
-            @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
-            public void onAuthenticationError(int i, CharSequence charSequence) {
-                authenticationCallback.onAuthenticationError(i, charSequence);
-            }
-
-            @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
-            public void onAuthenticationFailed() {
-                authenticationCallback.onAuthenticationFailed();
-            }
-
-            @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
-            public void onAuthenticationHelp(int i, CharSequence charSequence) {
-                authenticationCallback.onAuthenticationHelp(i, charSequence);
-            }
-
-            @Override // android.hardware.fingerprint.FingerprintManager.AuthenticationCallback
-            public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
-                authenticationCallback.onAuthenticationSucceeded(new AuthenticationResult(FingerprintManagerCompat.unwrapCryptoObject(authenticationResult.getCryptoObject())));
-            }
-        };
+    private static FingerprintManager$AuthenticationCallback wrapCallback(FingerprintManagerCompat$AuthenticationCallback fingerprintManagerCompat$AuthenticationCallback) {
+        return new FingerprintManagerCompat$1(fingerprintManagerCompat$AuthenticationCallback);
     }
 
     @RequiresApi(23)
-    private static FingerprintManager.CryptoObject wrapCryptoObject(CryptoObject cryptoObject) {
-        if (cryptoObject == null) {
+    private static FingerprintManager$CryptoObject wrapCryptoObject(FingerprintManagerCompat$CryptoObject fingerprintManagerCompat$CryptoObject) {
+        if (fingerprintManagerCompat$CryptoObject == null) {
             return null;
         }
-        if (cryptoObject.getCipher() != null) {
-            return new FingerprintManager.CryptoObject(cryptoObject.getCipher());
+        if (fingerprintManagerCompat$CryptoObject.getCipher() != null) {
+            return new FingerprintManager$CryptoObject(fingerprintManagerCompat$CryptoObject.getCipher());
         }
-        if (cryptoObject.getSignature() != null) {
-            return new FingerprintManager.CryptoObject(cryptoObject.getSignature());
+        if (fingerprintManagerCompat$CryptoObject.getSignature() != null) {
+            return new FingerprintManager$CryptoObject(fingerprintManagerCompat$CryptoObject.getSignature());
         }
-        if (cryptoObject.getMac() != null) {
-            return new FingerprintManager.CryptoObject(cryptoObject.getMac());
+        if (fingerprintManagerCompat$CryptoObject.getMac() != null) {
+            return new FingerprintManager$CryptoObject(fingerprintManagerCompat$CryptoObject.getMac());
         }
         return null;
-    }
-
-    public class CryptoObject {
-        private final Cipher mCipher;
-        private final Mac mMac;
-        private final Signature mSignature;
-
-        public CryptoObject(@NonNull Signature signature) {
-            this.mSignature = signature;
-            this.mCipher = null;
-            this.mMac = null;
-        }
-
-        @Nullable
-        public Cipher getCipher() {
-            return this.mCipher;
-        }
-
-        @Nullable
-        public Mac getMac() {
-            return this.mMac;
-        }
-
-        @Nullable
-        public Signature getSignature() {
-            return this.mSignature;
-        }
-
-        public CryptoObject(@NonNull Cipher cipher) {
-            this.mCipher = cipher;
-            this.mSignature = null;
-            this.mMac = null;
-        }
-
-        public CryptoObject(@NonNull Mac mac) {
-            this.mMac = mac;
-            this.mCipher = null;
-            this.mSignature = null;
-        }
     }
 }

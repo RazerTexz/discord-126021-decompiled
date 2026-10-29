@@ -1,10 +1,10 @@
 package androidx.constraintlayout.solver;
 
+import b.d.b.a.a;
 import java.util.Arrays;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
-public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
+public class ArrayLinkedVariables implements ArrayRow$ArrayRowVariables {
     private static final boolean DEBUG = false;
     private static final boolean FULL_NEW_CHECK = false;
     public static final int NONE = -1;
@@ -26,7 +26,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         this.mCache = cache;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public void add(SolverVariable solverVariable, float f, boolean z2) {
         float f2 = epsilon;
         if (f <= (-f2) || f >= f2) {
@@ -34,7 +34,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             if (i == -1) {
                 this.mHead = 0;
                 this.mArrayValues[0] = f;
-                this.mArrayIndices[0] = solverVariable.f110id;
+                this.mArrayIndices[0] = solverVariable.f30id;
                 this.mArrayNextIndices[0] = -1;
                 solverVariable.usageInRowCount++;
                 solverVariable.addToRow(this.mRow);
@@ -56,7 +56,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             for (int i4 = 0; i != -1 && i4 < this.currentSize; i4++) {
                 int[] iArr2 = this.mArrayIndices;
                 int i5 = iArr2[i];
-                int i6 = solverVariable.f110id;
+                int i6 = solverVariable.f30id;
                 if (i5 == i6) {
                     float[] fArr = this.mArrayValues;
                     float f3 = fArr[i] + f;
@@ -125,7 +125,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
                 this.mArrayIndices = Arrays.copyOf(this.mArrayIndices, this.ROW_SIZE);
                 this.mArrayNextIndices = Arrays.copyOf(this.mArrayNextIndices, this.ROW_SIZE);
             }
-            this.mArrayIndices[length] = solverVariable.f110id;
+            this.mArrayIndices[length] = solverVariable.f30id;
             this.mArrayValues[length] = f;
             if (i3 != -1) {
                 int[] iArr8 = this.mArrayNextIndices;
@@ -150,7 +150,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         }
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public final void clear() {
         int i = this.mHead;
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
@@ -166,14 +166,14 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         this.currentSize = 0;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public boolean contains(SolverVariable solverVariable) {
         int i = this.mHead;
         if (i == -1) {
             return false;
         }
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
-            if (this.mArrayIndices[i] == solverVariable.f110id) {
+            if (this.mArrayIndices[i] == solverVariable.f30id) {
                 return true;
             }
             i = this.mArrayNextIndices[i];
@@ -181,7 +181,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         return false;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public void display() {
         int i = this.currentSize;
         System.out.print("{ ");
@@ -194,7 +194,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         System.out.println(" }");
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public void divideByAmount(float f) {
         int i = this.mHead;
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
@@ -204,11 +204,11 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         }
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public final float get(SolverVariable solverVariable) {
         int i = this.mHead;
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
-            if (this.mArrayIndices[i] == solverVariable.f110id) {
+            if (this.mArrayIndices[i] == solverVariable.f30id) {
                 return this.mArrayValues[i];
             }
             i = this.mArrayNextIndices[i];
@@ -216,7 +216,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         return 0.0f;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public int getCurrentSize() {
         return this.currentSize;
     }
@@ -256,7 +256,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         return this.mArrayValues[i];
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public SolverVariable getVariable(int i) {
         int i2 = this.mHead;
         for (int i3 = 0; i2 != -1 && i3 < this.currentSize; i3++) {
@@ -268,7 +268,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         return null;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public float getVariableValue(int i) {
         int i2 = this.mHead;
         for (int i3 = 0; i2 != -1 && i3 < this.currentSize; i3++) {
@@ -291,14 +291,14 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         return false;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public int indexOf(SolverVariable solverVariable) {
         int i = this.mHead;
         if (i == -1) {
             return -1;
         }
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
-            if (this.mArrayIndices[i] == solverVariable.f110id) {
+            if (this.mArrayIndices[i] == solverVariable.f30id) {
                 return i;
             }
             i = this.mArrayNextIndices[i];
@@ -306,7 +306,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         return -1;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public void invert() {
         int i = this.mHead;
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
@@ -316,7 +316,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         }
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public final void put(SolverVariable solverVariable, float f) {
         if (f == 0.0f) {
             remove(solverVariable, true);
@@ -326,7 +326,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         if (i == -1) {
             this.mHead = 0;
             this.mArrayValues[0] = f;
-            this.mArrayIndices[0] = solverVariable.f110id;
+            this.mArrayIndices[0] = solverVariable.f30id;
             this.mArrayNextIndices[0] = -1;
             solverVariable.usageInRowCount++;
             solverVariable.addToRow(this.mRow);
@@ -348,7 +348,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         for (int i4 = 0; i != -1 && i4 < this.currentSize; i4++) {
             int[] iArr2 = this.mArrayIndices;
             int i5 = iArr2[i];
-            int i6 = solverVariable.f110id;
+            int i6 = solverVariable.f30id;
             if (i5 == i6) {
                 this.mArrayValues[i] = f;
                 return;
@@ -394,7 +394,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
             this.mArrayIndices = Arrays.copyOf(this.mArrayIndices, this.ROW_SIZE);
             this.mArrayNextIndices = Arrays.copyOf(this.mArrayNextIndices, this.ROW_SIZE);
         }
-        this.mArrayIndices[length] = solverVariable.f110id;
+        this.mArrayIndices[length] = solverVariable.f30id;
         this.mArrayValues[length] = f;
         if (i3 != -1) {
             int[] iArr7 = this.mArrayNextIndices;
@@ -421,7 +421,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         }
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public final float remove(SolverVariable solverVariable, boolean z2) {
         if (this.candidate == solverVariable) {
             this.candidate = null;
@@ -433,7 +433,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         int i2 = 0;
         int i3 = -1;
         while (i != -1 && i2 < this.currentSize) {
-            if (this.mArrayIndices[i] == solverVariable.f110id) {
+            if (this.mArrayIndices[i] == solverVariable.f30id) {
                 if (i == this.mHead) {
                     this.mHead = this.mArrayNextIndices[i];
                 } else {
@@ -458,7 +458,7 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         return 0.0f;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public int sizeInBytes() {
         return (this.mArrayIndices.length * 4 * 3) + 0 + 36;
     }
@@ -467,26 +467,26 @@ public class ArrayLinkedVariables implements ArrayRow.ArrayRowVariables {
         int i = this.mHead;
         String string = "";
         for (int i2 = 0; i != -1 && i2 < this.currentSize; i2++) {
-            StringBuilder sbM833U = C1643a.m833U(C1643a.m883w(string, " -> "));
-            sbM833U.append(this.mArrayValues[i]);
-            sbM833U.append(" : ");
-            StringBuilder sbM833U2 = C1643a.m833U(sbM833U.toString());
-            sbM833U2.append(this.mCache.mIndexedVariables[this.mArrayIndices[i]]);
-            string = sbM833U2.toString();
+            StringBuilder sbU = a.U(a.w(string, " -> "));
+            sbU.append(this.mArrayValues[i]);
+            sbU.append(" : ");
+            StringBuilder sbU2 = a.U(sbU.toString());
+            sbU2.append(this.mCache.mIndexedVariables[this.mArrayIndices[i]]);
+            string = sbU2.toString();
             i = this.mArrayNextIndices[i];
         }
         return string;
     }
 
-    @Override // androidx.constraintlayout.solver.ArrayRow.ArrayRowVariables
+    @Override // androidx.constraintlayout.solver.ArrayRow$ArrayRowVariables
     public float use(ArrayRow arrayRow, boolean z2) {
         float f = get(arrayRow.variable);
         remove(arrayRow.variable, z2);
-        ArrayRow.ArrayRowVariables arrayRowVariables = arrayRow.variables;
-        int currentSize = arrayRowVariables.getCurrentSize();
+        ArrayRow$ArrayRowVariables arrayRow$ArrayRowVariables = arrayRow.variables;
+        int currentSize = arrayRow$ArrayRowVariables.getCurrentSize();
         for (int i = 0; i < currentSize; i++) {
-            SolverVariable variable = arrayRowVariables.getVariable(i);
-            add(variable, arrayRowVariables.get(variable) * f, z2);
+            SolverVariable variable = arrayRow$ArrayRowVariables.getVariable(i);
+            add(variable, arrayRow$ArrayRowVariables.get(variable) * f, z2);
         }
         return f;
     }

@@ -1,37 +1,30 @@
 package com.facebook.imagepipeline.nativecode;
 
-import p007b.p109f.p115d.p119d.InterfaceC1680c;
-import p007b.p109f.p160i.C1831b;
-import p007b.p109f.p160i.C1832c;
-import p007b.p109f.p161j.p184s.InterfaceC2032b;
-import p007b.p109f.p161j.p184s.InterfaceC2033c;
+import b.f.d.d.c;
+import b.f.j.s.b;
 
 /* JADX INFO: loaded from: classes3.dex */
-@InterfaceC1680c
-public class NativeJpegTranscoderFactory implements InterfaceC2033c {
+@c
+public class NativeJpegTranscoderFactory implements b.f.j.s.c {
+    public final int a;
 
-    /* JADX INFO: renamed from: a */
-    public final int f19571a;
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public final boolean f2900b;
+    public final boolean c;
 
-    /* JADX INFO: renamed from: b */
-    public final boolean f19572b;
-
-    /* JADX INFO: renamed from: c */
-    public final boolean f19573c;
-
-    @InterfaceC1680c
+    @c
     public NativeJpegTranscoderFactory(int i, boolean z2, boolean z3) {
-        this.f19571a = i;
-        this.f19572b = z2;
-        this.f19573c = z3;
+        this.a = i;
+        this.f2900b = z2;
+        this.c = z3;
     }
 
-    @Override // p007b.p109f.p161j.p184s.InterfaceC2033c
-    @InterfaceC1680c
-    public InterfaceC2032b createImageTranscoder(C1832c c1832c, boolean z2) {
-        if (c1832c != C1831b.f3585a) {
+    @Override // b.f.j.s.c
+    @c
+    public b createImageTranscoder(b.f.i.c cVar, boolean z2) {
+        if (cVar != b.f.i.b.a) {
             return null;
         }
-        return new NativeJpegTranscoder(z2, this.f19571a, this.f19572b, this.f19573c);
+        return new NativeJpegTranscoder(z2, this.a, this.f2900b, this.c);
     }
 }

@@ -7,70 +7,59 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
-import com.discord.C5419R;
+import com.discord.R$id;
+import com.discord.R$layout;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewGuildRoleSubscriptionImageUploadBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final View f15477a;
+    public final View a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15478b;
+    public final TextView f2195b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f15479c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final SimpleDraweeView f15480d;
+    public final SimpleDraweeView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialButton f15481e;
+    public final MaterialButton e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f15482f;
+    public final TextView f;
 
     public ViewGuildRoleSubscriptionImageUploadBinding(@NonNull View view, @NonNull TextView textView, @NonNull ImageView imageView, @NonNull SimpleDraweeView simpleDraweeView, @NonNull MaterialButton materialButton, @NonNull TextView textView2) {
-        this.f15477a = view;
-        this.f15478b = textView;
-        this.f15479c = imageView;
-        this.f15480d = simpleDraweeView;
-        this.f15481e = materialButton;
-        this.f15482f = textView2;
-    }
-
-    @Override // androidx.viewbinding.ViewBinding
-    @NonNull
-    public View getRoot() {
-        return this.f15477a;
+        this.a = view;
+        this.f2195b = textView;
+        this.c = imageView;
+        this.d = simpleDraweeView;
+        this.e = materialButton;
+        this.f = textView2;
     }
 
     @NonNull
-    /* JADX INFO: renamed from: a */
-    public static ViewGuildRoleSubscriptionImageUploadBinding m8397a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
-        layoutInflater.inflate(C5419R.layout.view_guild_role_subscription_image_upload, viewGroup);
-        int i = C5419R.id.guild_subscription_custom_image_title;
-        TextView textView = (TextView) viewGroup.findViewById(C5419R.id.guild_subscription_custom_image_title);
+    public static ViewGuildRoleSubscriptionImageUploadBinding a(@NonNull LayoutInflater layoutInflater, @NonNull ViewGroup viewGroup) {
+        layoutInflater.inflate(R$layout.view_guild_role_subscription_image_upload, viewGroup);
+        int i = R$id.guild_subscription_custom_image_title;
+        TextView textView = (TextView) viewGroup.findViewById(R$id.guild_subscription_custom_image_title);
         if (textView != null) {
-            i = C5419R.id.guild_subscription_edit_image;
-            ImageView imageView = (ImageView) viewGroup.findViewById(C5419R.id.guild_subscription_edit_image);
+            i = R$id.guild_subscription_edit_image;
+            ImageView imageView = (ImageView) viewGroup.findViewById(R$id.guild_subscription_edit_image);
             if (imageView != null) {
-                i = C5419R.id.guild_subscription_image;
-                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(C5419R.id.guild_subscription_image);
+                i = R$id.guild_subscription_image;
+                SimpleDraweeView simpleDraweeView = (SimpleDraweeView) viewGroup.findViewById(R$id.guild_subscription_image);
                 if (simpleDraweeView != null) {
-                    i = C5419R.id.guild_subscription_upload_image;
-                    MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(C5419R.id.guild_subscription_upload_image);
+                    i = R$id.guild_subscription_upload_image;
+                    MaterialButton materialButton = (MaterialButton) viewGroup.findViewById(R$id.guild_subscription_upload_image);
                     if (materialButton != null) {
-                        i = C5419R.id.guild_subscription_upload_image_label;
-                        TextView textView2 = (TextView) viewGroup.findViewById(C5419R.id.guild_subscription_upload_image_label);
+                        i = R$id.guild_subscription_upload_image_label;
+                        TextView textView2 = (TextView) viewGroup.findViewById(R$id.guild_subscription_upload_image_label);
                         if (textView2 != null) {
                             return new ViewGuildRoleSubscriptionImageUploadBinding(viewGroup, textView, imageView, simpleDraweeView, materialButton, textView2);
                         }
@@ -79,5 +68,11 @@ public final class ViewGuildRoleSubscriptionImageUploadBinding implements ViewBi
             }
         }
         throw new NullPointerException("Missing required view with ID: ".concat(viewGroup.getResources().getResourceName(i)));
+    }
+
+    @Override // androidx.viewbinding.ViewBinding
+    @NonNull
+    public View getRoot() {
+        return this.a;
     }
 }

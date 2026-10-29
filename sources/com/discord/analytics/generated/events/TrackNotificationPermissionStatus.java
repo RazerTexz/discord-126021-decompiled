@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackNotificationPermissionStatus.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackNotificationPermissionStatus implements Analy
             return false;
         }
         TrackNotificationPermissionStatus trackNotificationPermissionStatus = (TrackNotificationPermissionStatus) other;
-        return C12238m.areEqual(this.osEnabled, trackNotificationPermissionStatus.osEnabled) && C12238m.areEqual(this.foregroundAppEnabled, trackNotificationPermissionStatus.foregroundAppEnabled) && C12238m.areEqual(this.backgroundAppEnabled, trackNotificationPermissionStatus.backgroundAppEnabled);
+        return m.areEqual(this.osEnabled, trackNotificationPermissionStatus.osEnabled) && m.areEqual(this.foregroundAppEnabled, trackNotificationPermissionStatus.foregroundAppEnabled) && m.areEqual(this.backgroundAppEnabled, trackNotificationPermissionStatus.backgroundAppEnabled);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackNotificationPermissionStatus implements Analy
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackNotificationPermissionStatus(osEnabled=");
-        sbM833U.append(this.osEnabled);
-        sbM833U.append(", foregroundAppEnabled=");
-        sbM833U.append(this.foregroundAppEnabled);
-        sbM833U.append(", backgroundAppEnabled=");
-        return C1643a.m816D(sbM833U, this.backgroundAppEnabled, ")");
+        StringBuilder sbU = a.U("TrackNotificationPermissionStatus(osEnabled=");
+        sbU.append(this.osEnabled);
+        sbU.append(", foregroundAppEnabled=");
+        sbU.append(this.foregroundAppEnabled);
+        sbU.append(", backgroundAppEnabled=");
+        return a.D(sbU, this.backgroundAppEnabled, ")");
     }
 }

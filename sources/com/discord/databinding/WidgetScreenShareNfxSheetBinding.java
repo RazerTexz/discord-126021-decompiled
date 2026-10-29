@@ -10,27 +10,25 @@ import com.google.android.material.button.MaterialButton;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetScreenShareNfxSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final NestedScrollView f17416a;
+    public final NestedScrollView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f17417b;
+    public final TextView f2521b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final MaterialButton f17418c;
+    public final MaterialButton c;
 
     public WidgetScreenShareNfxSheetBinding(@NonNull NestedScrollView nestedScrollView, @NonNull TextView textView, @NonNull MaterialButton materialButton) {
-        this.f17416a = nestedScrollView;
-        this.f17417b = textView;
-        this.f17418c = materialButton;
+        this.a = nestedScrollView;
+        this.f2521b = textView;
+        this.c = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17416a;
+        return this.a;
     }
 }

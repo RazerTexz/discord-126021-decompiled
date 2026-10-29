@@ -2,13 +2,13 @@ package com.discord.widgets.home;
 
 import android.view.View;
 import com.discord.databinding.ViewDialogConfirmationBinding;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetMainSurveyDialog.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetMainSurveyDialog$binding$2 extends C12236k implements Function1<View, ViewDialogConfirmationBinding> {
+public final /* synthetic */ class WidgetMainSurveyDialog$binding$2 extends k implements Function1<View, ViewDialogConfirmationBinding> {
     public static final WidgetMainSurveyDialog$binding$2 INSTANCE = new WidgetMainSurveyDialog$binding$2();
 
     public WidgetMainSurveyDialog$binding$2() {
@@ -16,8 +16,13 @@ public final /* synthetic */ class WidgetMainSurveyDialog$binding$2 extends C122
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final ViewDialogConfirmationBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        return ViewDialogConfirmationBinding.m8393a(view);
+    public /* bridge */ /* synthetic */ ViewDialogConfirmationBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final ViewDialogConfirmationBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        return ViewDialogConfirmationBinding.a(view);
     }
 }

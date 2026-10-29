@@ -1,9 +1,9 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import com.discord.api.guild.Guild;
 import com.discord.api.user.User;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelGuildTemplate.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,11 +20,11 @@ public final /* data */ class ModelGuildTemplate {
     private final int usageCount;
 
     public ModelGuildTemplate(long j, User user, long j2, Guild guild, String str, String str2, int i, String str3, String str4, String str5) {
-        C12238m.checkNotNullParameter(str, "createdAt");
-        C12238m.checkNotNullParameter(str2, "updatedAt");
-        C12238m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_CODE);
-        C12238m.checkNotNullParameter(str4, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(str5, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+        m.checkNotNullParameter(str, "createdAt");
+        m.checkNotNullParameter(str2, "updatedAt");
+        m.checkNotNullParameter(str3, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        m.checkNotNullParameter(str4, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str5, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
         this.creatorId = j;
         this.creator = user;
         this.sourceGuildId = j2;
@@ -37,12 +37,16 @@ public final /* data */ class ModelGuildTemplate {
         this.description = str5;
     }
 
+    public static /* synthetic */ ModelGuildTemplate copy$default(ModelGuildTemplate modelGuildTemplate, long j, User user, long j2, Guild guild, String str, String str2, int i, String str3, String str4, String str5, int i2, Object obj) {
+        return modelGuildTemplate.copy((i2 & 1) != 0 ? modelGuildTemplate.creatorId : j, (i2 & 2) != 0 ? modelGuildTemplate.creator : user, (i2 & 4) != 0 ? modelGuildTemplate.sourceGuildId : j2, (i2 & 8) != 0 ? modelGuildTemplate.serializedSourceGuild : guild, (i2 & 16) != 0 ? modelGuildTemplate.createdAt : str, (i2 & 32) != 0 ? modelGuildTemplate.updatedAt : str2, (i2 & 64) != 0 ? modelGuildTemplate.usageCount : i, (i2 & 128) != 0 ? modelGuildTemplate.code : str3, (i2 & 256) != 0 ? modelGuildTemplate.name : str4, (i2 & 512) != 0 ? modelGuildTemplate.description : str5);
+    }
+
     public final ModelGuildTemplate copy(long creatorId, User creator, long sourceGuildId, Guild serializedSourceGuild, String createdAt, String updatedAt, int usageCount, String code, String name, String description) {
-        C12238m.checkNotNullParameter(createdAt, "createdAt");
-        C12238m.checkNotNullParameter(updatedAt, "updatedAt");
-        C12238m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
-        C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
-        C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+        m.checkNotNullParameter(createdAt, "createdAt");
+        m.checkNotNullParameter(updatedAt, "updatedAt");
+        m.checkNotNullParameter(code, ModelAuditLogEntry.CHANGE_KEY_CODE);
+        m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
         return new ModelGuildTemplate(creatorId, creator, sourceGuildId, serializedSourceGuild, createdAt, updatedAt, usageCount, code, name, description);
     }
 
@@ -54,7 +58,7 @@ public final /* data */ class ModelGuildTemplate {
             return false;
         }
         ModelGuildTemplate modelGuildTemplate = (ModelGuildTemplate) other;
-        return this.creatorId == modelGuildTemplate.creatorId && C12238m.areEqual(this.creator, modelGuildTemplate.creator) && this.sourceGuildId == modelGuildTemplate.sourceGuildId && C12238m.areEqual(this.serializedSourceGuild, modelGuildTemplate.serializedSourceGuild) && C12238m.areEqual(this.createdAt, modelGuildTemplate.createdAt) && C12238m.areEqual(this.updatedAt, modelGuildTemplate.updatedAt) && this.usageCount == modelGuildTemplate.usageCount && C12238m.areEqual(this.code, modelGuildTemplate.code) && C12238m.areEqual(this.name, modelGuildTemplate.name) && C12238m.areEqual(this.description, modelGuildTemplate.description);
+        return this.creatorId == modelGuildTemplate.creatorId && m.areEqual(this.creator, modelGuildTemplate.creator) && this.sourceGuildId == modelGuildTemplate.sourceGuildId && m.areEqual(this.serializedSourceGuild, modelGuildTemplate.serializedSourceGuild) && m.areEqual(this.createdAt, modelGuildTemplate.createdAt) && m.areEqual(this.updatedAt, modelGuildTemplate.updatedAt) && this.usageCount == modelGuildTemplate.usageCount && m.areEqual(this.code, modelGuildTemplate.code) && m.areEqual(this.name, modelGuildTemplate.name) && m.areEqual(this.description, modelGuildTemplate.description);
     }
 
     /* JADX INFO: renamed from: component8, reason: from getter */
@@ -169,25 +173,25 @@ public final /* data */ class ModelGuildTemplate {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelGuildTemplate(creatorId=");
-        sbM833U.append(this.creatorId);
-        sbM833U.append(", creator=");
-        sbM833U.append(this.creator);
-        sbM833U.append(", sourceGuildId=");
-        sbM833U.append(this.sourceGuildId);
-        sbM833U.append(", serializedSourceGuild=");
-        sbM833U.append(this.serializedSourceGuild);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", updatedAt=");
-        sbM833U.append(this.updatedAt);
-        sbM833U.append(", usageCount=");
-        sbM833U.append(this.usageCount);
-        sbM833U.append(", code=");
-        sbM833U.append(this.code);
-        sbM833U.append(", name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", description=");
-        return C1643a.m822J(sbM833U, this.description, ")");
+        StringBuilder sbU = a.U("ModelGuildTemplate(creatorId=");
+        sbU.append(this.creatorId);
+        sbU.append(", creator=");
+        sbU.append(this.creator);
+        sbU.append(", sourceGuildId=");
+        sbU.append(this.sourceGuildId);
+        sbU.append(", serializedSourceGuild=");
+        sbU.append(this.serializedSourceGuild);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", updatedAt=");
+        sbU.append(this.updatedAt);
+        sbU.append(", usageCount=");
+        sbU.append(this.usageCount);
+        sbU.append(", code=");
+        sbU.append(this.code);
+        sbU.append(", name=");
+        sbU.append(this.name);
+        sbU.append(", description=");
+        return a.J(sbU, this.description, ")");
     }
 }

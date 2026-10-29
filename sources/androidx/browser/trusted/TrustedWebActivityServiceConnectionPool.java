@@ -5,19 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.util.Log;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentTransaction;
+import b.i.b.d.a.a;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import p007b.p100d.p104b.p105a.C1643a;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
+import y.a.b.c;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class TrustedWebActivityServiceConnectionPool {
@@ -25,47 +23,17 @@ public final class TrustedWebActivityServiceConnectionPool {
     private final Context mContext;
     private final Map<Uri, ConnectionHolder> mConnections = new HashMap();
 
-    public class BindToServiceAsyncTask extends AsyncTask<Void, Void, Exception> {
-        private final Context mAppContext;
-        private final ConnectionHolder mConnection;
-        private final Intent mIntent;
-
-        public BindToServiceAsyncTask(Context context, Intent intent, ConnectionHolder connectionHolder) {
-            this.mAppContext = context.getApplicationContext();
-            this.mIntent = intent;
-            this.mConnection = connectionHolder;
-        }
-
-        @Override // android.os.AsyncTask
-        @Nullable
-        public Exception doInBackground(Void... voidArr) {
-            try {
-                if (this.mAppContext.bindService(this.mIntent, this.mConnection, FragmentTransaction.TRANSIT_FRAGMENT_OPEN)) {
-                    return null;
-                }
-                this.mAppContext.unbindService(this.mConnection);
-                return new IllegalStateException("Could not bind to the service");
-            } catch (SecurityException e) {
-                Log.w(TrustedWebActivityServiceConnectionPool.TAG, "SecurityException while binding.", e);
-                return e;
-            }
-        }
-
-        @Override // android.os.AsyncTask
-        public void onPostExecute(Exception exc) {
-            if (exc != null) {
-                this.mConnection.cancel(exc);
-            }
-        }
-    }
-
     private TrustedWebActivityServiceConnectionPool(@NonNull Context context) {
         this.mContext = context.getApplicationContext();
     }
 
+    public /* synthetic */ void a(Uri uri) {
+        this.mConnections.remove(uri);
+    }
+
     @NonNull
     @MainThread
-    public InterfaceFutureC4539a<TrustedWebActivityServiceConnection> connect(@NonNull final Uri uri, @NonNull Set<Token> set, @NonNull Executor executor) {
+    public a<TrustedWebActivityServiceConnection> connect(@NonNull Uri uri, @NonNull Set<Token> set, @NonNull Executor executor) {
         ConnectionHolder connectionHolder = this.mConnections.get(uri);
         if (connectionHolder != null) {
             return connectionHolder.getServiceWrapper();
@@ -74,14 +42,9 @@ public final class TrustedWebActivityServiceConnectionPool {
         if (intentCreateServiceIntent == null) {
             return FutureUtils.immediateFailedFuture(new IllegalArgumentException("No service exists for scope"));
         }
-        ConnectionHolder connectionHolder2 = new ConnectionHolder(new Runnable() { // from class: y.a.b.c
-            @Override // java.lang.Runnable
-            public final void run() {
-                this.f27954j.m79a(uri);
-            }
-        });
+        ConnectionHolder connectionHolder2 = new ConnectionHolder(new c(this, uri));
         this.mConnections.put(uri, connectionHolder2);
-        new BindToServiceAsyncTask(this.mContext, intentCreateServiceIntent, connectionHolder2).executeOnExecutor(executor, new Void[0]);
+        new TrustedWebActivityServiceConnectionPool$BindToServiceAsyncTask(this.mContext, intentCreateServiceIntent, connectionHolder2).executeOnExecutor(executor, new Void[0]);
         return connectionHolder2.getServiceWrapper();
     }
 
@@ -127,20 +90,15 @@ public final class TrustedWebActivityServiceConnectionPool {
             return null;
         }
         if (z2) {
-            StringBuilder sbM833U = C1643a.m833U("Found ");
-            sbM833U.append(resolveInfoResolveService.serviceInfo.name);
-            sbM833U.append(" to handle request for ");
-            sbM833U.append(uri);
-            Log.i(TAG, sbM833U.toString());
+            StringBuilder sbU = b.d.b.a.a.U("Found ");
+            sbU.append(resolveInfoResolveService.serviceInfo.name);
+            sbU.append(" to handle request for ");
+            sbU.append(uri);
+            Log.i(TAG, sbU.toString());
         }
         Intent intent3 = new Intent();
         intent3.setComponent(new ComponentName(str, resolveInfoResolveService.serviceInfo.name));
         return intent3;
-    }
-
-    /* JADX INFO: renamed from: a */
-    public /* synthetic */ void m79a(Uri uri) {
-        this.mConnections.remove(uri);
     }
 
     @MainThread

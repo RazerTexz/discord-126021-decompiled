@@ -2,12 +2,12 @@ package androidx.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.text.TextUtils;
+import android.content.SharedPreferences$Editor;
+import android.os.Build$VERSION;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.content.ContextCompat;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -18,12 +18,12 @@ public class PreferenceManager {
     private Context mContext;
 
     @Nullable
-    private SharedPreferences.Editor mEditor;
+    private SharedPreferences$Editor mEditor;
     private boolean mNoCommit;
-    private OnDisplayPreferenceDialogListener mOnDisplayPreferenceDialogListener;
-    private OnNavigateToScreenListener mOnNavigateToScreenListener;
-    private OnPreferenceTreeClickListener mOnPreferenceTreeClickListener;
-    private PreferenceComparisonCallback mPreferenceComparisonCallback;
+    private PreferenceManager$OnDisplayPreferenceDialogListener mOnDisplayPreferenceDialogListener;
+    private PreferenceManager$OnNavigateToScreenListener mOnNavigateToScreenListener;
+    private PreferenceManager$OnPreferenceTreeClickListener mOnPreferenceTreeClickListener;
+    private PreferenceManager$PreferenceComparisonCallback mPreferenceComparisonCallback;
 
     @Nullable
     private PreferenceDataStore mPreferenceDataStore;
@@ -36,51 +36,7 @@ public class PreferenceManager {
     private long mNextId = 0;
     private int mStorage = 0;
 
-    public interface OnDisplayPreferenceDialogListener {
-        void onDisplayPreferenceDialog(Preference preference);
-    }
-
-    public interface OnNavigateToScreenListener {
-        void onNavigateToScreen(PreferenceScreen preferenceScreen);
-    }
-
-    public interface OnPreferenceTreeClickListener {
-        boolean onPreferenceTreeClick(Preference preference);
-    }
-
-    public abstract class PreferenceComparisonCallback {
-        public abstract boolean arePreferenceContentsTheSame(Preference preference, Preference preference2);
-
-        public abstract boolean arePreferenceItemsTheSame(Preference preference, Preference preference2);
-    }
-
-    public class SimplePreferenceComparisonCallback extends PreferenceComparisonCallback {
-        @Override // androidx.preference.PreferenceManager.PreferenceComparisonCallback
-        public boolean arePreferenceContentsTheSame(Preference preference, Preference preference2) {
-            if (preference.getClass() != preference2.getClass()) {
-                return false;
-            }
-            if ((preference == preference2 && preference.wasDetached()) || !TextUtils.equals(preference.getTitle(), preference2.getTitle()) || !TextUtils.equals(preference.getSummary(), preference2.getSummary())) {
-                return false;
-            }
-            Drawable icon = preference.getIcon();
-            Drawable icon2 = preference2.getIcon();
-            if ((icon != icon2 && (icon == null || !icon.equals(icon2))) || preference.isEnabled() != preference2.isEnabled() || preference.isSelectable() != preference2.isSelectable()) {
-                return false;
-            }
-            if (!(preference instanceof TwoStatePreference) || ((TwoStatePreference) preference).isChecked() == ((TwoStatePreference) preference2).isChecked()) {
-                return !(preference instanceof DropDownPreference) || preference == preference2;
-            }
-            return false;
-        }
-
-        @Override // androidx.preference.PreferenceManager.PreferenceComparisonCallback
-        public boolean arePreferenceItemsTheSame(Preference preference, Preference preference2) {
-            return preference.getId() == preference2.getId();
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public PreferenceManager(Context context) {
         this.mContext = context;
         setSharedPreferencesName(getDefaultSharedPreferencesName(context));
@@ -117,7 +73,7 @@ public class PreferenceManager {
         return context.getPackageName() + "_preferences";
     }
 
-    public SharedPreferences.Editor getEditor() {
+    public SharedPreferences$Editor getEditor() {
         if (this.mPreferenceDataStore != null) {
             return null;
         }
@@ -139,19 +95,19 @@ public class PreferenceManager {
         return j;
     }
 
-    public OnDisplayPreferenceDialogListener getOnDisplayPreferenceDialogListener() {
+    public PreferenceManager$OnDisplayPreferenceDialogListener getOnDisplayPreferenceDialogListener() {
         return this.mOnDisplayPreferenceDialogListener;
     }
 
-    public OnNavigateToScreenListener getOnNavigateToScreenListener() {
+    public PreferenceManager$OnNavigateToScreenListener getOnNavigateToScreenListener() {
         return this.mOnNavigateToScreenListener;
     }
 
-    public OnPreferenceTreeClickListener getOnPreferenceTreeClickListener() {
+    public PreferenceManager$OnPreferenceTreeClickListener getOnPreferenceTreeClickListener() {
         return this.mOnPreferenceTreeClickListener;
     }
 
-    public PreferenceComparisonCallback getPreferenceComparisonCallback() {
+    public PreferenceManager$PreferenceComparisonCallback getPreferenceComparisonCallback() {
         return this.mPreferenceComparisonCallback;
     }
 
@@ -182,7 +138,7 @@ public class PreferenceManager {
         return this.mSharedPreferencesName;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
     public PreferenceScreen inflateFromResource(Context context, int i, PreferenceScreen preferenceScreen) {
         setNoCommit(true);
         PreferenceScreen preferenceScreen2 = (PreferenceScreen) new PreferenceInflater(context, this).inflate(i, preferenceScreen);
@@ -192,11 +148,11 @@ public class PreferenceManager {
     }
 
     public boolean isStorageDefault() {
-        return Build.VERSION.SDK_INT < 24 || this.mStorage == 0;
+        return Build$VERSION.SDK_INT < 24 || this.mStorage == 0;
     }
 
     public boolean isStorageDeviceProtected() {
-        return Build.VERSION.SDK_INT >= 24 && this.mStorage == 1;
+        return Build$VERSION.SDK_INT >= 24 && this.mStorage == 1;
     }
 
     public static void setDefaultValues(Context context, int i, boolean z2) {
@@ -204,27 +160,27 @@ public class PreferenceManager {
     }
 
     private void setNoCommit(boolean z2) {
-        SharedPreferences.Editor editor;
-        if (!z2 && (editor = this.mEditor) != null) {
-            editor.apply();
+        SharedPreferences$Editor sharedPreferences$Editor;
+        if (!z2 && (sharedPreferences$Editor = this.mEditor) != null) {
+            sharedPreferences$Editor.apply();
         }
         this.mNoCommit = z2;
     }
 
-    public void setOnDisplayPreferenceDialogListener(OnDisplayPreferenceDialogListener onDisplayPreferenceDialogListener) {
-        this.mOnDisplayPreferenceDialogListener = onDisplayPreferenceDialogListener;
+    public void setOnDisplayPreferenceDialogListener(PreferenceManager$OnDisplayPreferenceDialogListener preferenceManager$OnDisplayPreferenceDialogListener) {
+        this.mOnDisplayPreferenceDialogListener = preferenceManager$OnDisplayPreferenceDialogListener;
     }
 
-    public void setOnNavigateToScreenListener(OnNavigateToScreenListener onNavigateToScreenListener) {
-        this.mOnNavigateToScreenListener = onNavigateToScreenListener;
+    public void setOnNavigateToScreenListener(PreferenceManager$OnNavigateToScreenListener preferenceManager$OnNavigateToScreenListener) {
+        this.mOnNavigateToScreenListener = preferenceManager$OnNavigateToScreenListener;
     }
 
-    public void setOnPreferenceTreeClickListener(OnPreferenceTreeClickListener onPreferenceTreeClickListener) {
-        this.mOnPreferenceTreeClickListener = onPreferenceTreeClickListener;
+    public void setOnPreferenceTreeClickListener(PreferenceManager$OnPreferenceTreeClickListener preferenceManager$OnPreferenceTreeClickListener) {
+        this.mOnPreferenceTreeClickListener = preferenceManager$OnPreferenceTreeClickListener;
     }
 
-    public void setPreferenceComparisonCallback(PreferenceComparisonCallback preferenceComparisonCallback) {
-        this.mPreferenceComparisonCallback = preferenceComparisonCallback;
+    public void setPreferenceComparisonCallback(PreferenceManager$PreferenceComparisonCallback preferenceManager$PreferenceComparisonCallback) {
+        this.mPreferenceComparisonCallback = preferenceManager$PreferenceComparisonCallback;
     }
 
     public void setPreferenceDataStore(PreferenceDataStore preferenceDataStore) {
@@ -254,14 +210,14 @@ public class PreferenceManager {
     }
 
     public void setStorageDefault() {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             this.mStorage = 0;
             this.mSharedPreferences = null;
         }
     }
 
     public void setStorageDeviceProtected() {
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build$VERSION.SDK_INT >= 24) {
             this.mStorage = 1;
             this.mSharedPreferences = null;
         }
@@ -272,9 +228,9 @@ public class PreferenceManager {
     }
 
     public void showDialog(Preference preference) {
-        OnDisplayPreferenceDialogListener onDisplayPreferenceDialogListener = this.mOnDisplayPreferenceDialogListener;
-        if (onDisplayPreferenceDialogListener != null) {
-            onDisplayPreferenceDialogListener.onDisplayPreferenceDialog(preference);
+        PreferenceManager$OnDisplayPreferenceDialogListener preferenceManager$OnDisplayPreferenceDialogListener = this.mOnDisplayPreferenceDialogListener;
+        if (preferenceManager$OnDisplayPreferenceDialogListener != null) {
+            preferenceManager$OnDisplayPreferenceDialogListener.onDisplayPreferenceDialog(preference);
         }
     }
 

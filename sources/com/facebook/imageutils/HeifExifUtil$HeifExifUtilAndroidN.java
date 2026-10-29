@@ -1,9 +1,9 @@
 package com.facebook.imageutils;
 
-import p007b.p109f.p190m.InterfaceC2051d;
+import b.f.m.d;
 
 /* JADX INFO: loaded from: classes3.dex */
-@InterfaceC2051d
+@d
 public class HeifExifUtil$HeifExifUtilAndroidN {
     private HeifExifUtil$HeifExifUtilAndroidN() {
     }

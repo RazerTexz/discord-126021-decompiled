@@ -3,16 +3,18 @@ package androidx.appcompat.graphics.drawable;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable$Callback;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-public class DrawableWrapper extends Drawable implements Drawable.Callback {
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
+public class DrawableWrapper extends Drawable implements Drawable$Callback {
     private Drawable mDrawable;
 
     public DrawableWrapper(Drawable drawable) {
@@ -78,7 +80,7 @@ public class DrawableWrapper extends Drawable implements Drawable.Callback {
         return this.mDrawable;
     }
 
-    @Override // android.graphics.drawable.Drawable.Callback
+    @Override // android.graphics.drawable.Drawable$Callback
     public void invalidateDrawable(Drawable drawable) {
         invalidateSelf();
     }
@@ -108,7 +110,7 @@ public class DrawableWrapper extends Drawable implements Drawable.Callback {
         return this.mDrawable.setLevel(i);
     }
 
-    @Override // android.graphics.drawable.Drawable.Callback
+    @Override // android.graphics.drawable.Drawable$Callback
     public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
         scheduleSelf(runnable, j);
     }
@@ -169,8 +171,8 @@ public class DrawableWrapper extends Drawable implements Drawable.Callback {
     }
 
     @Override // android.graphics.drawable.Drawable
-    public void setTintMode(PorterDuff.Mode mode) {
-        DrawableCompat.setTintMode(this.mDrawable, mode);
+    public void setTintMode(PorterDuff$Mode porterDuff$Mode) {
+        DrawableCompat.setTintMode(this.mDrawable, porterDuff$Mode);
     }
 
     @Override // android.graphics.drawable.Drawable
@@ -189,7 +191,7 @@ public class DrawableWrapper extends Drawable implements Drawable.Callback {
         }
     }
 
-    @Override // android.graphics.drawable.Drawable.Callback
+    @Override // android.graphics.drawable.Drawable$Callback
     public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
         unscheduleSelf(runnable);
     }

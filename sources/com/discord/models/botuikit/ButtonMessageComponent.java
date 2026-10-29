@@ -1,11 +1,11 @@
 package com.discord.models.botuikit;
 
+import b.d.b.a.a;
 import com.discord.api.botuikit.ButtonStyle;
 import com.discord.api.botuikit.ComponentEmoji;
 import com.discord.api.botuikit.ComponentType;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ButtonMessageComponent.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -21,7 +21,7 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
     private final String url;
 
     public /* synthetic */ ButtonMessageComponent(ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonStyle buttonStyle, ComponentEmoji componentEmoji, String str3, boolean z2, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        this(componentType, i, (i2 & 4) != 0 ? ActionInteractionComponentState.Enabled.INSTANCE : actionInteractionComponentState, str, str2, buttonStyle, (i2 & 64) != 0 ? null : componentEmoji, (i2 & 128) != 0 ? null : str3, z2);
+        this(componentType, i, (i2 & 4) != 0 ? ActionInteractionComponentState$Enabled.INSTANCE : actionInteractionComponentState, str, str2, buttonStyle, (i2 & 64) != 0 ? null : componentEmoji, (i2 & 128) != 0 ? null : str3, z2);
     }
 
     public final ComponentType component1() {
@@ -36,10 +36,14 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
         return getStateInteraction();
     }
 
+    public static /* synthetic */ ButtonMessageComponent copy$default(ButtonMessageComponent buttonMessageComponent, ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonStyle buttonStyle, ComponentEmoji componentEmoji, String str3, boolean z2, int i2, Object obj) {
+        return buttonMessageComponent.copy((i2 & 1) != 0 ? buttonMessageComponent.getType() : componentType, (i2 & 2) != 0 ? buttonMessageComponent.getIndex() : i, (i2 & 4) != 0 ? buttonMessageComponent.getStateInteraction() : actionInteractionComponentState, (i2 & 8) != 0 ? buttonMessageComponent.customId : str, (i2 & 16) != 0 ? buttonMessageComponent.label : str2, (i2 & 32) != 0 ? buttonMessageComponent.style : buttonStyle, (i2 & 64) != 0 ? buttonMessageComponent.emoji : componentEmoji, (i2 & 128) != 0 ? buttonMessageComponent.url : str3, (i2 & 256) != 0 ? buttonMessageComponent.emojiAnimationsEnabled : z2);
+    }
+
     public final ButtonMessageComponent copy(ComponentType type, int index, ActionInteractionComponentState stateInteraction, String customId, String label, ButtonStyle style, ComponentEmoji emoji, String url, boolean emojiAnimationsEnabled) {
-        C12238m.checkNotNullParameter(type, "type");
-        C12238m.checkNotNullParameter(stateInteraction, "stateInteraction");
-        C12238m.checkNotNullParameter(style, "style");
+        m.checkNotNullParameter(type, "type");
+        m.checkNotNullParameter(stateInteraction, "stateInteraction");
+        m.checkNotNullParameter(style, "style");
         return new ButtonMessageComponent(type, index, stateInteraction, customId, label, style, emoji, url, emojiAnimationsEnabled);
     }
 
@@ -51,7 +55,7 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
             return false;
         }
         ButtonMessageComponent buttonMessageComponent = (ButtonMessageComponent) other;
-        return C12238m.areEqual(getType(), buttonMessageComponent.getType()) && getIndex() == buttonMessageComponent.getIndex() && C12238m.areEqual(getStateInteraction(), buttonMessageComponent.getStateInteraction()) && C12238m.areEqual(this.customId, buttonMessageComponent.customId) && C12238m.areEqual(this.label, buttonMessageComponent.label) && C12238m.areEqual(this.style, buttonMessageComponent.style) && C12238m.areEqual(this.emoji, buttonMessageComponent.emoji) && C12238m.areEqual(this.url, buttonMessageComponent.url) && this.emojiAnimationsEnabled == buttonMessageComponent.emojiAnimationsEnabled;
+        return m.areEqual(getType(), buttonMessageComponent.getType()) && getIndex() == buttonMessageComponent.getIndex() && m.areEqual(getStateInteraction(), buttonMessageComponent.getStateInteraction()) && m.areEqual(this.customId, buttonMessageComponent.customId) && m.areEqual(this.label, buttonMessageComponent.label) && m.areEqual(this.style, buttonMessageComponent.style) && m.areEqual(this.emoji, buttonMessageComponent.emoji) && m.areEqual(this.url, buttonMessageComponent.url) && this.emojiAnimationsEnabled == buttonMessageComponent.emojiAnimationsEnabled;
     }
 
     /* JADX INFO: renamed from: component4, reason: from getter */
@@ -152,30 +156,30 @@ public final /* data */ class ButtonMessageComponent extends ActionMessageCompon
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ButtonMessageComponent(type=");
-        sbM833U.append(getType());
-        sbM833U.append(", index=");
-        sbM833U.append(getIndex());
-        sbM833U.append(", stateInteraction=");
-        sbM833U.append(getStateInteraction());
-        sbM833U.append(", customId=");
-        sbM833U.append(this.customId);
-        sbM833U.append(", label=");
-        sbM833U.append(this.label);
-        sbM833U.append(", style=");
-        sbM833U.append(this.style);
-        sbM833U.append(", emoji=");
-        sbM833U.append(this.emoji);
-        sbM833U.append(", url=");
-        sbM833U.append(this.url);
-        sbM833U.append(", emojiAnimationsEnabled=");
-        return C1643a.m827O(sbM833U, this.emojiAnimationsEnabled, ")");
+        StringBuilder sbU = a.U("ButtonMessageComponent(type=");
+        sbU.append(getType());
+        sbU.append(", index=");
+        sbU.append(getIndex());
+        sbU.append(", stateInteraction=");
+        sbU.append(getStateInteraction());
+        sbU.append(", customId=");
+        sbU.append(this.customId);
+        sbU.append(", label=");
+        sbU.append(this.label);
+        sbU.append(", style=");
+        sbU.append(this.style);
+        sbU.append(", emoji=");
+        sbU.append(this.emoji);
+        sbU.append(", url=");
+        sbU.append(this.url);
+        sbU.append(", emojiAnimationsEnabled=");
+        return a.O(sbU, this.emojiAnimationsEnabled, ")");
     }
 
     public ButtonMessageComponent(ComponentType componentType, int i, ActionInteractionComponentState actionInteractionComponentState, String str, String str2, ButtonStyle buttonStyle, ComponentEmoji componentEmoji, String str3, boolean z2) {
-        C12238m.checkNotNullParameter(componentType, "type");
-        C12238m.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
-        C12238m.checkNotNullParameter(buttonStyle, "style");
+        m.checkNotNullParameter(componentType, "type");
+        m.checkNotNullParameter(actionInteractionComponentState, "stateInteraction");
+        m.checkNotNullParameter(buttonStyle, "style");
         this.type = componentType;
         this.index = i;
         this.stateInteraction = actionInteractionComponentState;

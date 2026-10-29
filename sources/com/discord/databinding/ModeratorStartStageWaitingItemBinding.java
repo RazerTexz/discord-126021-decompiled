@@ -10,27 +10,25 @@ import com.discord.views.user.UserSummaryView;
 /* JADX INFO: loaded from: classes.dex */
 public final class ModeratorStartStageWaitingItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f15186a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final UserSummaryView f15187b;
+    public final UserSummaryView f2129b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f15188c;
+    public final TextView c;
 
     public ModeratorStartStageWaitingItemBinding(@NonNull ConstraintLayout constraintLayout, @NonNull UserSummaryView userSummaryView, @NonNull TextView textView) {
-        this.f15186a = constraintLayout;
-        this.f15187b = userSummaryView;
-        this.f15188c = textView;
+        this.a = constraintLayout;
+        this.f2129b = userSummaryView;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15186a;
+        return this.a;
     }
 }

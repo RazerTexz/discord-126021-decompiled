@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackScreenshareFailed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -23,7 +23,7 @@ public final /* data */ class TrackScreenshareFailed implements AnalyticsSchema,
             return false;
         }
         TrackScreenshareFailed trackScreenshareFailed = (TrackScreenshareFailed) other;
-        return C12238m.areEqual(this.sourceId, trackScreenshareFailed.sourceId) && C12238m.areEqual(this.screens, trackScreenshareFailed.screens) && C12238m.areEqual(this.windows, trackScreenshareFailed.windows);
+        return m.areEqual(this.sourceId, trackScreenshareFailed.sourceId) && m.areEqual(this.screens, trackScreenshareFailed.screens) && m.areEqual(this.windows, trackScreenshareFailed.windows);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -42,11 +42,11 @@ public final /* data */ class TrackScreenshareFailed implements AnalyticsSchema,
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackScreenshareFailed(sourceId=");
-        sbM833U.append(this.sourceId);
-        sbM833U.append(", screens=");
-        sbM833U.append(this.screens);
-        sbM833U.append(", windows=");
-        return C1643a.m819G(sbM833U, this.windows, ")");
+        StringBuilder sbU = a.U("TrackScreenshareFailed(sourceId=");
+        sbU.append(this.sourceId);
+        sbU.append(", screens=");
+        sbU.append(this.screens);
+        sbU.append(", windows=");
+        return a.G(sbU, this.windows, ")");
     }
 }

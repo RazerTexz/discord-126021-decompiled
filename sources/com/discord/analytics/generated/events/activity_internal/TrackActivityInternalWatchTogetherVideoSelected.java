@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events.activity_internal;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadata;
 import com.discord.analytics.generated.traits.TrackActivityInternalMetadataReceiver;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackActivityInternalWatchTogetherVideoSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackActivityInternalWatchTogetherVideoSelected im
             return false;
         }
         TrackActivityInternalWatchTogetherVideoSelected trackActivityInternalWatchTogetherVideoSelected = (TrackActivityInternalWatchTogetherVideoSelected) other;
-        return C12238m.areEqual(this.isHost, trackActivityInternalWatchTogetherVideoSelected.isHost) && C12238m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherVideoSelected.isHostMode) && C12238m.areEqual(this.orderCurrent, trackActivityInternalWatchTogetherVideoSelected.orderCurrent) && C12238m.areEqual(this.orderSelected, trackActivityInternalWatchTogetherVideoSelected.orderSelected);
+        return m.areEqual(this.isHost, trackActivityInternalWatchTogetherVideoSelected.isHost) && m.areEqual(this.isHostMode, trackActivityInternalWatchTogetherVideoSelected.isHostMode) && m.areEqual(this.orderCurrent, trackActivityInternalWatchTogetherVideoSelected.orderCurrent) && m.areEqual(this.orderSelected, trackActivityInternalWatchTogetherVideoSelected.orderSelected);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackActivityInternalWatchTogetherVideoSelected im
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackActivityInternalWatchTogetherVideoSelected(isHost=");
-        sbM833U.append(this.isHost);
-        sbM833U.append(", isHostMode=");
-        sbM833U.append(this.isHostMode);
-        sbM833U.append(", orderCurrent=");
-        sbM833U.append(this.orderCurrent);
-        sbM833U.append(", orderSelected=");
-        return C1643a.m819G(sbM833U, this.orderSelected, ")");
+        StringBuilder sbU = a.U("TrackActivityInternalWatchTogetherVideoSelected(isHost=");
+        sbU.append(this.isHost);
+        sbU.append(", isHostMode=");
+        sbU.append(this.isHostMode);
+        sbU.append(", orderCurrent=");
+        sbU.append(this.orderCurrent);
+        sbU.append(", orderSelected=");
+        return a.G(sbU, this.orderSelected, ")");
     }
 }

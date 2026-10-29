@@ -1,8 +1,8 @@
 package com.discord.widgets.channels.list.items;
 
+import b.d.b.a.a;
 import com.discord.api.channel.Channel;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ChannelListItemDirectory.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,7 +14,7 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
     private final int unreadCount;
 
     public ChannelListItemDirectory(Channel channel, boolean z2, int i) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         this.channel = channel;
         this.selected = z2;
         this.unreadCount = i;
@@ -36,7 +36,7 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
     }
 
     public final ChannelListItemDirectory copy(Channel channel, boolean selected, int unreadCount) {
-        C12238m.checkNotNullParameter(channel, "channel");
+        m.checkNotNullParameter(channel, "channel");
         return new ChannelListItemDirectory(channel, selected, unreadCount);
     }
 
@@ -48,7 +48,7 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
             return false;
         }
         ChannelListItemDirectory channelListItemDirectory = (ChannelListItemDirectory) other;
-        return C12238m.areEqual(this.channel, channelListItemDirectory.channel) && this.selected == channelListItemDirectory.selected && this.unreadCount == channelListItemDirectory.unreadCount;
+        return m.areEqual(this.channel, channelListItemDirectory.channel) && this.selected == channelListItemDirectory.selected && this.unreadCount == channelListItemDirectory.unreadCount;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -105,11 +105,11 @@ public final /* data */ class ChannelListItemDirectory implements ChannelListIte
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ChannelListItemDirectory(channel=");
-        sbM833U.append(this.channel);
-        sbM833U.append(", selected=");
-        sbM833U.append(this.selected);
-        sbM833U.append(", unreadCount=");
-        return C1643a.m814B(sbM833U, this.unreadCount, ")");
+        StringBuilder sbU = a.U("ChannelListItemDirectory(channel=");
+        sbU.append(this.channel);
+        sbU.append(", selected=");
+        sbU.append(this.selected);
+        sbU.append(", unreadCount=");
+        return a.B(sbU, this.unreadCount, ")");
     }
 }

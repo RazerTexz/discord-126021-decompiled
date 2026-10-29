@@ -5,21 +5,21 @@ import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.os.LocaleList;
 import android.util.AttributeSet;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.app.AppCompatActivity;
+import d0.z.d.m;
 import java.util.Locale;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ContextExtensions.kt */
 /* JADX INFO: loaded from: classes2.dex */
 public final class ContextExtensionsKt {
     public static final AppCompatActivity findActivity(Context context) {
-        C12238m.checkNotNullParameter(context, "$this$findActivity");
+        m.checkNotNullParameter(context, "$this$findActivity");
         while (context != null) {
             if (context instanceof AppCompatActivity) {
                 return (AppCompatActivity) context;
@@ -37,8 +37,8 @@ public final class ContextExtensionsKt {
         Configuration configuration;
         Configuration configuration2;
         LocaleList locales;
-        C12238m.checkNotNullParameter(context, "$this$getLocaleOrNull");
-        if (Build.VERSION.SDK_INT < 24) {
+        m.checkNotNullParameter(context, "$this$getLocaleOrNull");
+        if (Build$VERSION.SDK_INT < 24) {
             Resources resources = context.getResources();
             if (resources == null || (configuration = resources.getConfiguration()) == null) {
                 return null;
@@ -53,11 +53,11 @@ public final class ContextExtensionsKt {
     }
 
     public static final void useAttrs(Context context, AttributeSet attributeSet, @StyleableRes int[] iArr, Function1<? super TypedArray, Unit> function1) {
-        C12238m.checkNotNullParameter(context, "$this$useAttrs");
-        C12238m.checkNotNullParameter(iArr, "styleable");
-        C12238m.checkNotNullParameter(function1, "block");
+        m.checkNotNullParameter(context, "$this$useAttrs");
+        m.checkNotNullParameter(iArr, "styleable");
+        m.checkNotNullParameter(function1, "block");
         TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, iArr);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "obtainStyledAttributes(attrs, styleable)");
         function1.invoke(typedArrayObtainStyledAttributes);
         typedArrayObtainStyledAttributes.recycle();
     }

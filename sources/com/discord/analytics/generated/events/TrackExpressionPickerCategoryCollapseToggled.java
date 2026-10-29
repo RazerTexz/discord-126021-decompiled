@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackLocationMetadata;
 import com.discord.analytics.generated.traits.TrackLocationMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackExpressionPickerCategoryCollapseToggled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackExpressionPickerCategoryCollapseToggled imple
             return false;
         }
         TrackExpressionPickerCategoryCollapseToggled trackExpressionPickerCategoryCollapseToggled = (TrackExpressionPickerCategoryCollapseToggled) other;
-        return C12238m.areEqual(this.tab, trackExpressionPickerCategoryCollapseToggled.tab) && C12238m.areEqual(this.collapsed, trackExpressionPickerCategoryCollapseToggled.collapsed) && C12238m.areEqual(this.guildId, trackExpressionPickerCategoryCollapseToggled.guildId) && C12238m.areEqual(this.stickerPackId, trackExpressionPickerCategoryCollapseToggled.stickerPackId);
+        return m.areEqual(this.tab, trackExpressionPickerCategoryCollapseToggled.tab) && m.areEqual(this.collapsed, trackExpressionPickerCategoryCollapseToggled.collapsed) && m.areEqual(this.guildId, trackExpressionPickerCategoryCollapseToggled.guildId) && m.areEqual(this.stickerPackId, trackExpressionPickerCategoryCollapseToggled.stickerPackId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -48,13 +48,13 @@ public final /* data */ class TrackExpressionPickerCategoryCollapseToggled imple
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackExpressionPickerCategoryCollapseToggled(tab=");
-        sbM833U.append(this.tab);
-        sbM833U.append(", collapsed=");
-        sbM833U.append(this.collapsed);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", stickerPackId=");
-        return C1643a.m819G(sbM833U, this.stickerPackId, ")");
+        StringBuilder sbU = a.U("TrackExpressionPickerCategoryCollapseToggled(tab=");
+        sbU.append(this.tab);
+        sbU.append(", collapsed=");
+        sbU.append(this.collapsed);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", stickerPackId=");
+        return a.G(sbU, this.stickerPackId, ")");
     }
 }

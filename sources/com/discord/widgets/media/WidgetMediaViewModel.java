@@ -1,20 +1,17 @@
 package com.discord.widgets.media;
 
+import b.a.d.d0;
 import kotlin.Unit;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p008a.p018d.AbstractC0859d0;
 
 /* JADX INFO: compiled from: WidgetMediaViewModel.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetMediaViewModel extends AbstractC0859d0<Unit> {
+public final class WidgetMediaViewModel extends d0<Unit> {
     private long currentPlayerPositionMs;
     private boolean isPlaying;
     private boolean showCoverFrame;
 
-    /* JADX WARN: Illegal instructions before constructor call */
     public WidgetMediaViewModel() {
-        DefaultConstructorMarker defaultConstructorMarker = null;
-        super(defaultConstructorMarker, 1, defaultConstructorMarker);
+        super(null, 1, null);
         this.isPlaying = true;
         this.showCoverFrame = true;
     }

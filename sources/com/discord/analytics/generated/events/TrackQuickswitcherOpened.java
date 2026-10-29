@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackQuickswitcherOpened.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -24,7 +24,7 @@ public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchem
             return false;
         }
         TrackQuickswitcherOpened trackQuickswitcherOpened = (TrackQuickswitcherOpened) other;
-        return C12238m.areEqual(this.source, trackQuickswitcherOpened.source) && C12238m.areEqual(this.currentGuildId, trackQuickswitcherOpened.currentGuildId) && C12238m.areEqual(this.currentChannelId, trackQuickswitcherOpened.currentChannelId) && C12238m.areEqual(this.currentChannelType, trackQuickswitcherOpened.currentChannelType);
+        return m.areEqual(this.source, trackQuickswitcherOpened.source) && m.areEqual(this.currentGuildId, trackQuickswitcherOpened.currentGuildId) && m.areEqual(this.currentChannelId, trackQuickswitcherOpened.currentChannelId) && m.areEqual(this.currentChannelType, trackQuickswitcherOpened.currentChannelType);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -45,13 +45,13 @@ public final /* data */ class TrackQuickswitcherOpened implements AnalyticsSchem
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackQuickswitcherOpened(source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", currentGuildId=");
-        sbM833U.append(this.currentGuildId);
-        sbM833U.append(", currentChannelId=");
-        sbM833U.append(this.currentChannelId);
-        sbM833U.append(", currentChannelType=");
-        return C1643a.m819G(sbM833U, this.currentChannelType, ")");
+        StringBuilder sbU = a.U("TrackQuickswitcherOpened(source=");
+        sbU.append(this.source);
+        sbU.append(", currentGuildId=");
+        sbU.append(this.currentGuildId);
+        sbU.append(", currentChannelId=");
+        sbU.append(this.currentChannelId);
+        sbU.append(", currentChannelType=");
+        return a.G(sbU, this.currentChannelType, ")");
     }
 }

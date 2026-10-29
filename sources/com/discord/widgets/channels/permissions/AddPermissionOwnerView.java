@@ -6,10 +6,10 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.discord.C5419R;
+import com.discord.R$a;
 import com.discord.databinding.ViewAddPermissionOwnerBinding;
+import d0.z.d.m;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: AddPermissionOwnerView.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -19,19 +19,19 @@ public final class AddPermissionOwnerView extends ConstraintLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AddPermissionOwnerView(Context context) {
         super(context);
-        C12238m.checkNotNullParameter(context, "context");
-        ViewAddPermissionOwnerBinding viewAddPermissionOwnerBindingM8391a = ViewAddPermissionOwnerBinding.m8391a(LayoutInflater.from(getContext()), this);
-        C12238m.checkNotNullExpressionValue(viewAddPermissionOwnerBindingM8391a, "ViewAddPermissionOwnerBi…ater.from(context), this)");
-        this.binding = viewAddPermissionOwnerBindingM8391a;
+        m.checkNotNullParameter(context, "context");
+        ViewAddPermissionOwnerBinding viewAddPermissionOwnerBindingA = ViewAddPermissionOwnerBinding.a(LayoutInflater.from(getContext()), this);
+        m.checkNotNullExpressionValue(viewAddPermissionOwnerBindingA, "ViewAddPermissionOwnerBi…ater.from(context), this)");
+        this.binding = viewAddPermissionOwnerBindingA;
     }
 
     private final void initialize(AttributeSet attrs) {
-        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, C5419R.a.AddPermissionOwnerView, 0, 0);
-        C12238m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…ermissionOwnerView, 0, 0)");
+        TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R$a.AddPermissionOwnerView, 0, 0);
+        m.checkNotNullExpressionValue(typedArrayObtainStyledAttributes, "context.obtainStyledAttr…ermissionOwnerView, 0, 0)");
         try {
             String string = typedArrayObtainStyledAttributes.getString(0);
-            TextView textView = this.binding.f15366b;
-            C12238m.checkNotNullExpressionValue(textView, "binding.label");
+            TextView textView = this.binding.f2170b;
+            m.checkNotNullExpressionValue(textView, "binding.label");
             textView.setText(string);
         } finally {
             typedArrayObtainStyledAttributes.recycle();
@@ -41,10 +41,10 @@ public final class AddPermissionOwnerView extends ConstraintLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AddPermissionOwnerView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        C12238m.checkNotNullParameter(context, "context");
-        ViewAddPermissionOwnerBinding viewAddPermissionOwnerBindingM8391a = ViewAddPermissionOwnerBinding.m8391a(LayoutInflater.from(getContext()), this);
-        C12238m.checkNotNullExpressionValue(viewAddPermissionOwnerBindingM8391a, "ViewAddPermissionOwnerBi…ater.from(context), this)");
-        this.binding = viewAddPermissionOwnerBindingM8391a;
+        m.checkNotNullParameter(context, "context");
+        ViewAddPermissionOwnerBinding viewAddPermissionOwnerBindingA = ViewAddPermissionOwnerBinding.a(LayoutInflater.from(getContext()), this);
+        m.checkNotNullExpressionValue(viewAddPermissionOwnerBindingA, "ViewAddPermissionOwnerBi…ater.from(context), this)");
+        this.binding = viewAddPermissionOwnerBindingA;
         initialize(attributeSet);
     }
 
@@ -55,10 +55,10 @@ public final class AddPermissionOwnerView extends ConstraintLayout {
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public AddPermissionOwnerView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        C12238m.checkNotNullParameter(context, "context");
-        ViewAddPermissionOwnerBinding viewAddPermissionOwnerBindingM8391a = ViewAddPermissionOwnerBinding.m8391a(LayoutInflater.from(getContext()), this);
-        C12238m.checkNotNullExpressionValue(viewAddPermissionOwnerBindingM8391a, "ViewAddPermissionOwnerBi…ater.from(context), this)");
-        this.binding = viewAddPermissionOwnerBindingM8391a;
+        m.checkNotNullParameter(context, "context");
+        ViewAddPermissionOwnerBinding viewAddPermissionOwnerBindingA = ViewAddPermissionOwnerBinding.a(LayoutInflater.from(getContext()), this);
+        m.checkNotNullExpressionValue(viewAddPermissionOwnerBindingA, "ViewAddPermissionOwnerBi…ater.from(context), this)");
+        this.binding = viewAddPermissionOwnerBindingA;
         initialize(attributeSet);
     }
 

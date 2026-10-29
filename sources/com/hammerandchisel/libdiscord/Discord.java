@@ -3,16 +3,12 @@ package com.hammerandchisel.libdiscord;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import co.discord.media_engine.AudioInputDeviceDescription;
-import co.discord.media_engine.AudioOutputDeviceDescription;
 import co.discord.media_engine.CameraEnumeratorProvider;
 import co.discord.media_engine.Connection;
 import co.discord.media_engine.RtcRegion;
 import co.discord.media_engine.SharedEglBaseContext;
 import co.discord.media_engine.StreamParameters;
-import co.discord.media_engine.VideoInputDeviceDescription;
-import org.webrtc.EglBase;
-import org.webrtc.VideoFrame;
+import org.webrtc.EglBase$Context;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class Discord {
@@ -26,78 +22,8 @@ public class Discord {
     private Context context;
 
     @NonNull
-    private LocalVoiceLevelChangedCallback localVoiceLevelChangedCallback;
+    private Discord$LocalVoiceLevelChangedCallback localVoiceLevelChangedCallback;
     private long nativeInstance;
-
-    public interface AecConfigCallback {
-        void onConfigureAEC(boolean z2, boolean z3, boolean z4, boolean z5, boolean z6);
-    }
-
-    public interface BuiltinAECCallback {
-        void onConfigureBuiltinAEC(boolean z2, boolean z3, boolean z4);
-    }
-
-    public interface ConnectToServerCallback {
-        void onConnectToServer(@NonNull ConnectionInfo connectionInfo, @NonNull String str);
-    }
-
-    public class ConnectionInfo {
-        public boolean isConnected;
-
-        @NonNull
-        public String localAddress;
-        public int localPort;
-
-        @NonNull
-        public String protocol;
-
-        public ConnectionInfo(boolean z2, @NonNull String str, @NonNull String str2, int i) {
-            this.isConnected = z2;
-            this.protocol = str;
-            this.localAddress = str2;
-            this.localPort = i;
-        }
-    }
-
-    public interface GetAudioInputDevicesCallback {
-        void onDevices(@NonNull AudioInputDeviceDescription[] audioInputDeviceDescriptionArr);
-    }
-
-    public interface GetAudioOutputDevicesCallback {
-        void onDevices(@NonNull AudioOutputDeviceDescription[] audioOutputDeviceDescriptionArr);
-    }
-
-    public interface GetAudioSubsystemCallback {
-        void onAudioSubsystem(@NonNull String str, @NonNull String str2);
-    }
-
-    public interface GetRankedRtcRegionsCallback {
-        void onRankedRtcRegions(@NonNull String[] strArr);
-    }
-
-    public interface GetSupportedVideoCodecsCallback {
-        void onSupportedVideoCodecs(@NonNull String[] strArr);
-    }
-
-    public interface GetVideoInputDevicesCallback {
-        void onDevices(@NonNull VideoInputDeviceDescription[] videoInputDeviceDescriptionArr);
-    }
-
-    public interface LocalVoiceLevelChangedCallback {
-        void onLocalVoiceLevelChanged(float f, int i);
-    }
-
-    public interface NoAudioInputCallback {
-        void onNoAudioInput(boolean z2);
-    }
-
-    public interface OnVideoCallback {
-        void onVideo(long j, int i, @NonNull String str, @NonNull StreamParameters[] streamParametersArr);
-    }
-
-    public interface VideoFrameCallback {
-        boolean onFrame(@NonNull VideoFrame videoFrame);
-    }
 
     static {
         System.loadLibrary("discord");
@@ -105,13 +31,13 @@ public class Discord {
 
     public Discord(@NonNull Context context, int i) {
         this.context = context;
-        krispVersion = context.getString(C11150R.string.krisp_model_version);
+        krispVersion = context.getString(R$string.krisp_model_version);
         CameraEnumeratorProvider.maybeInit(this.context);
         this.nativeInstance = nativeConstructor(context, SharedEglBaseContext.getEglContext(), i);
     }
 
     @NonNull
-    public native Connection connectToServer(int i, long j, @NonNull String str, int i2, @NonNull StreamParameters[] streamParametersArr, @NonNull ConnectToServerCallback connectToServerCallback);
+    public native Connection connectToServer(int i, long j, @NonNull String str, int i2, @NonNull StreamParameters[] streamParametersArr, @NonNull Discord$ConnectToServerCallback discord$ConnectToServerCallback);
 
     public native void crash();
 
@@ -120,21 +46,21 @@ public class Discord {
     @Deprecated
     public native void enableBuiltInAEC(boolean z2);
 
-    public native void enableBuiltInAEC(boolean z2, @Nullable BuiltinAECCallback builtinAECCallback);
+    public native void enableBuiltInAEC(boolean z2, @Nullable Discord$BuiltinAECCallback discord$BuiltinAECCallback);
 
-    public native void getAudioInputDevices(@NonNull GetAudioInputDevicesCallback getAudioInputDevicesCallback);
+    public native void getAudioInputDevices(@NonNull Discord$GetAudioInputDevicesCallback discord$GetAudioInputDevicesCallback);
 
-    public native void getAudioOutputDevices(@NonNull GetAudioOutputDevicesCallback getAudioOutputDevicesCallback);
+    public native void getAudioOutputDevices(@NonNull Discord$GetAudioOutputDevicesCallback discord$GetAudioOutputDevicesCallback);
 
-    public native void getAudioSubsystem(@NonNull GetAudioSubsystemCallback getAudioSubsystemCallback);
+    public native void getAudioSubsystem(@NonNull Discord$GetAudioSubsystemCallback discord$GetAudioSubsystemCallback);
 
-    public native void getRankedRtcRegions(@NonNull RtcRegion[] rtcRegionArr, @NonNull GetRankedRtcRegionsCallback getRankedRtcRegionsCallback);
+    public native void getRankedRtcRegions(@NonNull RtcRegion[] rtcRegionArr, @NonNull Discord$GetRankedRtcRegionsCallback discord$GetRankedRtcRegionsCallback);
 
-    public native void getSupportedVideoCodecs(@NonNull GetSupportedVideoCodecsCallback getSupportedVideoCodecsCallback);
+    public native void getSupportedVideoCodecs(@NonNull Discord$GetSupportedVideoCodecsCallback discord$GetSupportedVideoCodecsCallback);
 
-    public native void getVideoInputDevices(@NonNull GetVideoInputDevicesCallback getVideoInputDevicesCallback);
+    public native void getVideoInputDevices(@NonNull Discord$GetVideoInputDevicesCallback discord$GetVideoInputDevicesCallback);
 
-    private native long nativeConstructor(@NonNull Context context, @NonNull EglBase.Context context2, int i);
+    private native long nativeConstructor(@NonNull Context context, @NonNull EglBase$Context eglBase$Context, int i);
 
     public native void setAudioInputEnabled(boolean z2);
 
@@ -143,20 +69,20 @@ public class Discord {
     @Deprecated
     public native void setEchoCancellation(boolean z2);
 
-    public native void setEchoCancellation(boolean z2, boolean z3, @Nullable AecConfigCallback aecConfigCallback);
+    public native void setEchoCancellation(boolean z2, boolean z3, @Nullable Discord$AecConfigCallback discord$AecConfigCallback);
 
     public native void setKeepAliveChannel(boolean z2);
 
-    public void setLocalVoiceLevelChangedCallback(@Nullable LocalVoiceLevelChangedCallback localVoiceLevelChangedCallback) {
-        this.localVoiceLevelChangedCallback = localVoiceLevelChangedCallback;
-        setLocalVoiceLevelChangedCallbackNative(localVoiceLevelChangedCallback != null);
+    public void setLocalVoiceLevelChangedCallback(@Nullable Discord$LocalVoiceLevelChangedCallback discord$LocalVoiceLevelChangedCallback) {
+        this.localVoiceLevelChangedCallback = discord$LocalVoiceLevelChangedCallback;
+        setLocalVoiceLevelChangedCallbackNative(discord$LocalVoiceLevelChangedCallback != null);
     }
 
     private native void setLocalVoiceLevelChangedCallbackNative(boolean z2);
 
     public native void setMicVolume(float f);
 
-    public native void setNoAudioInputCallback(@NonNull NoAudioInputCallback noAudioInputCallback);
+    public native void setNoAudioInputCallback(@NonNull Discord$NoAudioInputCallback discord$NoAudioInputCallback);
 
     public native void setNoAudioInputThreshold(float f);
 
@@ -172,7 +98,7 @@ public class Discord {
 
     public native void setVideoInputDevice(int i);
 
-    public native void setVideoOutputSink(@NonNull String str, @Nullable VideoFrameCallback videoFrameCallback);
+    public native void setVideoOutputSink(@NonNull String str, @Nullable Discord$VideoFrameCallback discord$VideoFrameCallback);
 
     public native void signalVideoOutputSinkReady(@NonNull String str);
 

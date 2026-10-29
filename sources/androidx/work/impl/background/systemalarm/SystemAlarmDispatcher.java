@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.PowerManager;
+import android.os.PowerManager$WakeLock;
 import android.text.TextUtils;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.Logger;
 import androidx.work.impl.ExecutionListener;
@@ -24,7 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class SystemAlarmDispatcher implements ExecutionListener {
     private static final int DEFAULT_START_ID = 0;
     private static final String KEY_START_ID = "KEY_START_ID";
@@ -32,7 +33,7 @@ public class SystemAlarmDispatcher implements ExecutionListener {
     public final CommandHandler mCommandHandler;
 
     @Nullable
-    private CommandsCompletedListener mCompletedListener;
+    private SystemAlarmDispatcher$CommandsCompletedListener mCompletedListener;
     public final Context mContext;
     public Intent mCurrentIntent;
     public final List<Intent> mIntents;
@@ -42,40 +43,6 @@ public class SystemAlarmDispatcher implements ExecutionListener {
     private final WorkManagerImpl mWorkManager;
     private final WorkTimer mWorkTimer;
     public static final String TAG = Logger.tagWithPrefix("SystemAlarmDispatcher");
-
-    public class AddRunnable implements Runnable {
-        private final SystemAlarmDispatcher mDispatcher;
-        private final Intent mIntent;
-        private final int mStartId;
-
-        public AddRunnable(@NonNull SystemAlarmDispatcher systemAlarmDispatcher, @NonNull Intent intent, int i) {
-            this.mDispatcher = systemAlarmDispatcher;
-            this.mIntent = intent;
-            this.mStartId = i;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            this.mDispatcher.add(this.mIntent, this.mStartId);
-        }
-    }
-
-    public interface CommandsCompletedListener {
-        void onAllCommandsCompleted();
-    }
-
-    public class DequeueAndCheckForCompletion implements Runnable {
-        private final SystemAlarmDispatcher mDispatcher;
-
-        public DequeueAndCheckForCompletion(@NonNull SystemAlarmDispatcher systemAlarmDispatcher) {
-            this.mDispatcher = systemAlarmDispatcher;
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            this.mDispatcher.dequeueAndCheckForCompletion();
-        }
-    }
 
     public SystemAlarmDispatcher(@NonNull Context context) {
         this(context, null, null);
@@ -129,9 +96,9 @@ public class SystemAlarmDispatcher implements ExecutionListener {
             SerialExecutor backgroundExecutor = this.mTaskExecutor.getBackgroundExecutor();
             if (!this.mCommandHandler.hasPendingCommands() && this.mIntents.isEmpty() && !backgroundExecutor.hasPendingTasks()) {
                 Logger.get().debug(str, "No more commands & intents.", new Throwable[0]);
-                CommandsCompletedListener commandsCompletedListener = this.mCompletedListener;
-                if (commandsCompletedListener != null) {
-                    commandsCompletedListener.onAllCommandsCompleted();
+                SystemAlarmDispatcher$CommandsCompletedListener systemAlarmDispatcher$CommandsCompletedListener = this.mCompletedListener;
+                if (systemAlarmDispatcher$CommandsCompletedListener != null) {
+                    systemAlarmDispatcher$CommandsCompletedListener.onAllCommandsCompleted();
                 }
             } else if (!this.mIntents.isEmpty()) {
                 processCommand();
@@ -178,7 +145,7 @@ public class SystemAlarmDispatcher implements ExecutionListener {
 
     @Override // androidx.work.impl.ExecutionListener
     public void onExecuted(@NonNull String str, boolean z2) {
-        postOnMainThread(new AddRunnable(this, CommandHandler.createExecutionCompletedIntent(this.mContext, str, z2), 0));
+        postOnMainThread(new SystemAlarmDispatcher$AddRunnable(this, CommandHandler.createExecutionCompletedIntent(this.mContext, str, z2), 0));
     }
 
     public void postOnMainThread(@NonNull Runnable runnable) {
@@ -188,66 +155,20 @@ public class SystemAlarmDispatcher implements ExecutionListener {
     @MainThread
     private void processCommand() {
         assertMainThread();
-        PowerManager.WakeLock wakeLockNewWakeLock = WakeLocks.newWakeLock(this.mContext, PROCESS_COMMAND_TAG);
+        PowerManager$WakeLock powerManager$WakeLockNewWakeLock = WakeLocks.newWakeLock(this.mContext, PROCESS_COMMAND_TAG);
         try {
-            wakeLockNewWakeLock.acquire();
-            this.mWorkManager.getWorkTaskExecutor().executeOnBackgroundThread(new Runnable() { // from class: androidx.work.impl.background.systemalarm.SystemAlarmDispatcher.1
-                @Override // java.lang.Runnable
-                public void run() {
-                    SystemAlarmDispatcher systemAlarmDispatcher;
-                    DequeueAndCheckForCompletion dequeueAndCheckForCompletion;
-                    synchronized (SystemAlarmDispatcher.this.mIntents) {
-                        SystemAlarmDispatcher systemAlarmDispatcher2 = SystemAlarmDispatcher.this;
-                        systemAlarmDispatcher2.mCurrentIntent = systemAlarmDispatcher2.mIntents.get(0);
-                    }
-                    Intent intent = SystemAlarmDispatcher.this.mCurrentIntent;
-                    if (intent != null) {
-                        String action = intent.getAction();
-                        int intExtra = SystemAlarmDispatcher.this.mCurrentIntent.getIntExtra(SystemAlarmDispatcher.KEY_START_ID, 0);
-                        Logger logger = Logger.get();
-                        String str = SystemAlarmDispatcher.TAG;
-                        logger.debug(str, String.format("Processing command %s, %s", SystemAlarmDispatcher.this.mCurrentIntent, Integer.valueOf(intExtra)), new Throwable[0]);
-                        PowerManager.WakeLock wakeLockNewWakeLock2 = WakeLocks.newWakeLock(SystemAlarmDispatcher.this.mContext, String.format("%s (%s)", action, Integer.valueOf(intExtra)));
-                        try {
-                            Logger.get().debug(str, String.format("Acquiring operation wake lock (%s) %s", action, wakeLockNewWakeLock2), new Throwable[0]);
-                            wakeLockNewWakeLock2.acquire();
-                            SystemAlarmDispatcher systemAlarmDispatcher3 = SystemAlarmDispatcher.this;
-                            systemAlarmDispatcher3.mCommandHandler.onHandleIntent(systemAlarmDispatcher3.mCurrentIntent, intExtra, systemAlarmDispatcher3);
-                            Logger.get().debug(str, String.format("Releasing operation wake lock (%s) %s", action, wakeLockNewWakeLock2), new Throwable[0]);
-                            wakeLockNewWakeLock2.release();
-                            systemAlarmDispatcher = SystemAlarmDispatcher.this;
-                            dequeueAndCheckForCompletion = new DequeueAndCheckForCompletion(systemAlarmDispatcher);
-                        } catch (Throwable th) {
-                            try {
-                                Logger logger2 = Logger.get();
-                                String str2 = SystemAlarmDispatcher.TAG;
-                                logger2.error(str2, "Unexpected error in onHandleIntent", th);
-                                Logger.get().debug(str2, String.format("Releasing operation wake lock (%s) %s", action, wakeLockNewWakeLock2), new Throwable[0]);
-                                wakeLockNewWakeLock2.release();
-                                systemAlarmDispatcher = SystemAlarmDispatcher.this;
-                                dequeueAndCheckForCompletion = new DequeueAndCheckForCompletion(systemAlarmDispatcher);
-                            } catch (Throwable th2) {
-                                Logger.get().debug(SystemAlarmDispatcher.TAG, String.format("Releasing operation wake lock (%s) %s", action, wakeLockNewWakeLock2), new Throwable[0]);
-                                wakeLockNewWakeLock2.release();
-                                SystemAlarmDispatcher systemAlarmDispatcher4 = SystemAlarmDispatcher.this;
-                                systemAlarmDispatcher4.postOnMainThread(new DequeueAndCheckForCompletion(systemAlarmDispatcher4));
-                                throw th2;
-                            }
-                        }
-                        systemAlarmDispatcher.postOnMainThread(dequeueAndCheckForCompletion);
-                    }
-                }
-            });
+            powerManager$WakeLockNewWakeLock.acquire();
+            this.mWorkManager.getWorkTaskExecutor().executeOnBackgroundThread(new SystemAlarmDispatcher$1(this));
         } finally {
-            wakeLockNewWakeLock.release();
+            powerManager$WakeLockNewWakeLock.release();
         }
     }
 
-    public void setCompletedListener(@NonNull CommandsCompletedListener commandsCompletedListener) {
+    public void setCompletedListener(@NonNull SystemAlarmDispatcher$CommandsCompletedListener systemAlarmDispatcher$CommandsCompletedListener) {
         if (this.mCompletedListener != null) {
             Logger.get().error(TAG, "A completion listener for SystemAlarmDispatcher already exists.", new Throwable[0]);
         } else {
-            this.mCompletedListener = commandsCompletedListener;
+            this.mCompletedListener = systemAlarmDispatcher$CommandsCompletedListener;
         }
     }
 

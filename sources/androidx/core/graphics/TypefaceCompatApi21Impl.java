@@ -12,8 +12,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
-import androidx.core.content.res.FontResourcesParserCompat;
-import androidx.core.provider.FontsContractCompat;
+import androidx.annotation.RestrictTo$Scope;
+import androidx.core.content.res.FontResourcesParserCompat$FontFamilyFilesResourceEntry;
+import androidx.core.content.res.FontResourcesParserCompat$FontFileResourceEntry;
+import androidx.core.provider.FontsContractCompat$FontInfo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,7 +26,7 @@ import java.lang.reflect.Method;
 
 /* JADX INFO: loaded from: classes.dex */
 @RequiresApi(21)
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
     private static final String ADD_FONT_WEIGHT_STYLE_METHOD = "addFontWeightStyle";
     private static final String CREATE_FROM_FAMILIES_WITH_DEFAULT_METHOD = "createFromFamiliesWithDefault";
@@ -57,18 +59,18 @@ public class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
     }
 
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
-    public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat.FontFamilyFilesResourceEntry fontFamilyFilesResourceEntry, Resources resources, int i) throws NoSuchMethodException {
+    public Typeface createFromFontFamilyFilesResourceEntry(Context context, FontResourcesParserCompat$FontFamilyFilesResourceEntry fontResourcesParserCompat$FontFamilyFilesResourceEntry, Resources resources, int i) throws NoSuchMethodException {
         Object objNewFamily = newFamily();
-        for (FontResourcesParserCompat.FontFileResourceEntry fontFileResourceEntry : fontFamilyFilesResourceEntry.getEntries()) {
+        for (FontResourcesParserCompat$FontFileResourceEntry fontResourcesParserCompat$FontFileResourceEntry : fontResourcesParserCompat$FontFamilyFilesResourceEntry.getEntries()) {
             File tempFile = TypefaceCompatUtil.getTempFile(context);
             if (tempFile == null) {
                 return null;
             }
             try {
-                if (!TypefaceCompatUtil.copyToFile(tempFile, resources, fontFileResourceEntry.getResourceId())) {
+                if (!TypefaceCompatUtil.copyToFile(tempFile, resources, fontResourcesParserCompat$FontFileResourceEntry.getResourceId())) {
                     return null;
                 }
-                if (!addFontWeightStyle(objNewFamily, tempFile.getPath(), fontFileResourceEntry.getWeight(), fontFileResourceEntry.isItalic())) {
+                if (!addFontWeightStyle(objNewFamily, tempFile.getPath(), fontResourcesParserCompat$FontFileResourceEntry.getWeight(), fontResourcesParserCompat$FontFileResourceEntry.isItalic())) {
                     return null;
                 }
                 tempFile.delete();
@@ -82,13 +84,13 @@ public class TypefaceCompatApi21Impl extends TypefaceCompatBaseImpl {
     }
 
     @Override // androidx.core.graphics.TypefaceCompatBaseImpl
-    public Typeface createFromFontInfo(Context context, CancellationSignal cancellationSignal, @NonNull FontsContractCompat.FontInfo[] fontInfoArr, int i) {
-        if (fontInfoArr.length < 1) {
+    public Typeface createFromFontInfo(Context context, CancellationSignal cancellationSignal, @NonNull FontsContractCompat$FontInfo[] fontsContractCompat$FontInfoArr, int i) {
+        if (fontsContractCompat$FontInfoArr.length < 1) {
             return null;
         }
-        FontsContractCompat.FontInfo fontInfoFindBestInfo = findBestInfo(fontInfoArr, i);
+        FontsContractCompat$FontInfo fontsContractCompat$FontInfoFindBestInfo = findBestInfo(fontsContractCompat$FontInfoArr, i);
         try {
-            ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = context.getContentResolver().openFileDescriptor(fontInfoFindBestInfo.getUri(), "r", cancellationSignal);
+            ParcelFileDescriptor parcelFileDescriptorOpenFileDescriptor = context.getContentResolver().openFileDescriptor(fontsContractCompat$FontInfoFindBestInfo.getUri(), "r", cancellationSignal);
             if (parcelFileDescriptorOpenFileDescriptor == null) {
                 if (parcelFileDescriptorOpenFileDescriptor != null) {
                     parcelFileDescriptorOpenFileDescriptor.close();

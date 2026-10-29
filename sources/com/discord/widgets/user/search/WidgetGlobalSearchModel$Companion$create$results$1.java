@@ -1,13 +1,13 @@
 package com.discord.widgets.user.search;
 
 import com.discord.api.channel.Channel;
+import d0.z.d.m;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchModel$Companion$create$results$1 extends AbstractC12240o implements Function1<WidgetGlobalSearchModel.ItemDataPayload, Boolean> {
+public final class WidgetGlobalSearchModel$Companion$create$results$1 extends o implements Function1<WidgetGlobalSearchModel$ItemDataPayload, Boolean> {
     public final /* synthetic */ Channel $lastChannel;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -17,15 +17,15 @@ public final class WidgetGlobalSearchModel$Companion$create$results$1 extends Ab
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public /* bridge */ /* synthetic */ Boolean invoke(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload) {
-        return Boolean.valueOf(invoke2(itemDataPayload));
+    public /* bridge */ /* synthetic */ Boolean invoke(WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload) {
+        return Boolean.valueOf(invoke2(widgetGlobalSearchModel$ItemDataPayload));
     }
 
     /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-    public final boolean invoke2(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload) {
-        C12238m.checkNotNullParameter(itemDataPayload, "it");
+    public final boolean invoke2(WidgetGlobalSearchModel$ItemDataPayload widgetGlobalSearchModel$ItemDataPayload) {
+        m.checkNotNullParameter(widgetGlobalSearchModel$ItemDataPayload, "it");
         long id2 = this.$lastChannel.getId();
-        Channel channel = itemDataPayload.getChannel();
+        Channel channel = widgetGlobalSearchModel$ItemDataPayload.getChannel();
         return channel != null && id2 == channel.getId();
     }
 }

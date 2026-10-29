@@ -3,11 +3,12 @@ package androidx.work.impl.constraints.trackers;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.annotation.VisibleForTesting;
 import androidx.work.impl.utils.taskexecutor.TaskExecutor;
 
 /* JADX INFO: loaded from: classes.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public class Trackers {
     private static Trackers sInstance;
     private BatteryChargingTracker mBatteryChargingTracker;

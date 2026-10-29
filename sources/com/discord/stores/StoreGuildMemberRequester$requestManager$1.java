@@ -1,11 +1,11 @@
 package com.discord.stores;
 
+import d0.z.d.k;
 import kotlin.jvm.functions.Function2;
-import p507d0.p592z.p594d.C12236k;
 
 /* JADX INFO: compiled from: StoreGuildMemberRequester.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class StoreGuildMemberRequester$requestManager$1 extends C12236k implements Function2<Long, Long, Boolean> {
+public final /* synthetic */ class StoreGuildMemberRequester$requestManager$1 extends k implements Function2<Long, Long, Boolean> {
     public StoreGuildMemberRequester$requestManager$1(StoreGuildMemberRequester storeGuildMemberRequester) {
         super(2, storeGuildMemberRequester, StoreGuildMemberRequester.class, "guildMemberExists", "guildMemberExists(JJ)Z", 0);
     }
@@ -16,6 +16,6 @@ public final /* synthetic */ class StoreGuildMemberRequester$requestManager$1 ex
     }
 
     public final boolean invoke(long j, long j2) {
-        return ((StoreGuildMemberRequester) this.receiver).guildMemberExists(j, j2);
+        return StoreGuildMemberRequester.access$guildMemberExists((StoreGuildMemberRequester) this.receiver, j, j2);
     }
 }

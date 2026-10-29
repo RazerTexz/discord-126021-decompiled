@@ -1,6 +1,5 @@
 package com.discord.widgets.notice;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
@@ -8,23 +7,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import androidx.core.view.ViewCompat;
+import b.p.a.b;
+import b.p.a.g;
+import b.p.a.i;
 import com.discord.api.sticker.Sticker;
 import com.discord.app.AppComponent;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.stores.StoreNotices;
+import com.discord.stores.StoreNotices$Notice;
 import com.discord.stores.StoreStream;
+import com.discord.widgets.home.WidgetHome;
+import d0.e0.c;
+import d0.z.d.a0;
+import d0.z.d.m;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Objects;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
-import p007b.p483p.p484a.C5279i;
-import p007b.p483p.p484a.RunnableC5277g;
-import p007b.p483p.p484a.ViewOnClickListenerC5272b;
-import p507d0.p513e0.InterfaceC11230c;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: NoticePopup.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -32,28 +33,19 @@ public final class NoticePopup {
     private static final int DEFAULT_AUTO_DISMISS_PERIOD_SECONDS = 5;
     public static final NoticePopup INSTANCE = new NoticePopup();
 
-    /* JADX INFO: renamed from: com.discord.widgets.notice.NoticePopup$enqueue$1 */
-    /* JADX INFO: compiled from: NoticePopup.kt */
-    public final class C90901 extends AbstractC12240o implements Function1<View, Unit> {
-        public static final C90901 INSTANCE = new C90901();
-
-        public C90901() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(View view) {
-            invoke2(view);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(View view) {
-            C12238m.checkNotNullParameter(view, "it");
-        }
+    private NoticePopup() {
     }
 
-    private NoticePopup() {
+    public static final /* synthetic */ void access$cancelCountdown(NoticePopup noticePopup, ValueAnimator valueAnimator) {
+        noticePopup.cancelCountdown(valueAnimator);
+    }
+
+    public static final /* synthetic */ void access$dismiss(NoticePopup noticePopup, String str) {
+        noticePopup.dismiss(str);
+    }
+
+    public static final /* synthetic */ ValueAnimator access$getAutoDismissAnimator(NoticePopup noticePopup, Integer num, Function0 function0) {
+        return noticePopup.getAutoDismissAnimator(num, function0);
     }
 
     private final void cancelCountdown(ValueAnimator autoDismissAnimator) {
@@ -67,23 +59,23 @@ public final class NoticePopup {
 
     private final void dismiss(String name) {
         ViewGroup viewGroup;
-        ViewOnClickListenerC5272b viewOnClickListenerC5272b;
-        WeakReference<ViewGroup> weakReference = C5279i.f14367a;
+        b bVar;
+        WeakReference<ViewGroup> weakReference = i.a;
         if (weakReference != null && (viewGroup = weakReference.get()) != null) {
-            C12238m.checkNotNullExpressionValue(viewGroup, "it");
+            m.checkNotNullExpressionValue(viewGroup, "it");
             int childCount = viewGroup.getChildCount();
             if (childCount >= 0) {
                 int i = 0;
                 while (true) {
-                    if (viewGroup.getChildAt(i) instanceof ViewOnClickListenerC5272b) {
+                    if (viewGroup.getChildAt(i) instanceof b) {
                         View childAt = viewGroup.getChildAt(i);
                         Objects.requireNonNull(childAt, "null cannot be cast to non-null type com.tapadoo.alerter.Alert");
-                        viewOnClickListenerC5272b = (ViewOnClickListenerC5272b) childAt;
+                        bVar = (b) childAt;
                     } else {
-                        viewOnClickListenerC5272b = null;
+                        bVar = null;
                     }
-                    if (viewOnClickListenerC5272b != null && viewOnClickListenerC5272b.getWindowToken() != null) {
-                        ViewCompat.animate(viewOnClickListenerC5272b).alpha(0.0f).withEndAction(new RunnableC5277g(viewOnClickListenerC5272b));
+                    if (bVar != null && bVar.getWindowToken() != null) {
+                        ViewCompat.animate(bVar).alpha(0.0f).withEndAction(new g(bVar));
                     }
                     if (i == childCount) {
                         break;
@@ -93,47 +85,32 @@ public final class NoticePopup {
                 }
             }
         }
-        StoreNotices.markSeen$default(StoreStream.INSTANCE.getNotices(), name, 0L, 2, null);
+        StoreNotices.markSeen$default(StoreStream.Companion.getNotices(), name, 0L, 2, null);
     }
 
-    public final void enqueue(String noticeName, CharSequence noticeTitle, CharSequence noticeSubtitle, CharSequence noticeBody, Drawable noticeBodyBackgroundDrawable, String noticeBodyImageUrl, Drawable noticeBodyImageDrawable, List<Sticker> noticeStickers, String noticeIconUrl, Integer noticeIconResId, Drawable noticeIconTopRight, Integer noticeAutoDismissPeriodSecs, List<? extends InterfaceC11230c<? extends AppComponent>> validScreens, Function1<? super View, Unit> onClickTopRightIcon, Function1<? super View, Unit> onClick) {
-        C12238m.checkNotNullParameter(noticeName, "noticeName");
-        C12238m.checkNotNullParameter(validScreens, "validScreens");
-        C12238m.checkNotNullParameter(onClickTopRightIcon, "onClickTopRightIcon");
-        C12238m.checkNotNullParameter(onClick, "onClick");
-        StoreStream.INSTANCE.getNotices().requestToShow(new StoreNotices.Notice(noticeName, null, 0L, 1, false, validScreens, 1000L, false, 0L, new NoticePopup$enqueue$notice$1(onClick, noticeName, noticeAutoDismissPeriodSecs, noticeIconUrl, noticeIconResId, noticeBodyImageUrl, noticeBodyImageDrawable, noticeBodyBackgroundDrawable, noticeTitle, noticeSubtitle, noticeBody, noticeIconTopRight, noticeStickers, onClickTopRightIcon), 150, null));
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void enqueue$default(NoticePopup noticePopup, String str, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Drawable drawable, String str2, Drawable drawable2, List list, String str3, Integer num, Drawable drawable3, Integer num2, List list2, Function1 function1, Function1 function2, int i, Object obj) {
+        noticePopup.enqueue(str, charSequence, (i & 4) != 0 ? null : charSequence2, charSequence3, (i & 16) != 0 ? null : drawable, (i & 32) != 0 ? null : str2, (i & 64) != 0 ? null : drawable2, (i & 128) != 0 ? null : list, (i & 256) != 0 ? null : str3, (i & 512) != 0 ? null : num, (i & 1024) != 0 ? null : drawable3, (i & 2048) != 0 ? 5 : num2, (i & 4096) != 0 ? d0.t.m.listOf(a0.getOrCreateKotlinClass(WidgetHome.class)) : list2, (i & 8192) != 0 ? NoticePopup$enqueue$1.INSTANCE : function1, function2);
     }
 
-    private final ValueAnimator getAutoDismissAnimator(Integer autoDismissPeriodSecs, final Function0<Unit> onEnd) {
+    public final void enqueue(String noticeName, CharSequence noticeTitle, CharSequence noticeSubtitle, CharSequence noticeBody, Drawable noticeBodyBackgroundDrawable, String noticeBodyImageUrl, Drawable noticeBodyImageDrawable, List<Sticker> noticeStickers, String noticeIconUrl, Integer noticeIconResId, Drawable noticeIconTopRight, Integer noticeAutoDismissPeriodSecs, List<? extends c<? extends AppComponent>> validScreens, Function1<? super View, Unit> onClickTopRightIcon, Function1<? super View, Unit> onClick) {
+        m.checkNotNullParameter(noticeName, "noticeName");
+        m.checkNotNullParameter(validScreens, "validScreens");
+        m.checkNotNullParameter(onClickTopRightIcon, "onClickTopRightIcon");
+        m.checkNotNullParameter(onClick, "onClick");
+        StoreStream.Companion.getNotices().requestToShow(new StoreNotices$Notice(noticeName, null, 0L, 1, false, validScreens, 1000L, false, 0L, new NoticePopup$enqueue$notice$1(onClick, noticeName, noticeAutoDismissPeriodSecs, noticeIconUrl, noticeIconResId, noticeBodyImageUrl, noticeBodyImageDrawable, noticeBodyBackgroundDrawable, noticeTitle, noticeSubtitle, noticeBody, noticeIconTopRight, noticeStickers, onClickTopRightIcon), 150, null));
+    }
+
+    private final ValueAnimator getAutoDismissAnimator(Integer autoDismissPeriodSecs, Function0<Unit> onEnd) {
         if (autoDismissPeriodSecs == null) {
             return null;
         }
         ValueAnimator valueAnimatorOfInt = ObjectAnimator.ofInt(0, 1);
-        Animator.AnimatorListener animatorListener = new Animator.AnimatorListener() { // from class: com.discord.widgets.notice.NoticePopup$getAutoDismissAnimator$animatorListener$1
-            @Override // android.animation.Animator.AnimatorListener
-            public void onAnimationCancel(Animator animation) {
-                if (animation != null) {
-                    animation.removeListener(this);
-                }
-            }
-
-            @Override // android.animation.Animator.AnimatorListener
-            public void onAnimationEnd(Animator animation) {
-                onEnd.invoke();
-            }
-
-            @Override // android.animation.Animator.AnimatorListener
-            public void onAnimationRepeat(Animator animation) {
-            }
-
-            @Override // android.animation.Animator.AnimatorListener
-            public void onAnimationStart(Animator animation) {
-            }
-        };
-        C12238m.checkNotNullExpressionValue(valueAnimatorOfInt, "animator");
+        NoticePopup$getAutoDismissAnimator$animatorListener$1 noticePopup$getAutoDismissAnimator$animatorListener$1 = new NoticePopup$getAutoDismissAnimator$animatorListener$1(onEnd);
+        m.checkNotNullExpressionValue(valueAnimatorOfInt, "animator");
         valueAnimatorOfInt.setInterpolator(new LinearInterpolator());
         valueAnimatorOfInt.setDuration(((long) autoDismissPeriodSecs.intValue()) * 1000);
-        valueAnimatorOfInt.addListener(animatorListener);
+        valueAnimatorOfInt.addListener(noticePopup$getAutoDismissAnimator$animatorListener$1);
         valueAnimatorOfInt.start();
         return valueAnimatorOfInt;
     }

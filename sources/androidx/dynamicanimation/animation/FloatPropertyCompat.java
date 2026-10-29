@@ -12,18 +12,8 @@ public abstract class FloatPropertyCompat<T> {
     }
 
     @RequiresApi(24)
-    public static <T> FloatPropertyCompat<T> createFloatPropertyCompat(final FloatProperty<T> floatProperty) {
-        return new FloatPropertyCompat<T>(floatProperty.getName()) { // from class: androidx.dynamicanimation.animation.FloatPropertyCompat.1
-            @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-            public float getValue(T t) {
-                return ((Float) floatProperty.get(t)).floatValue();
-            }
-
-            @Override // androidx.dynamicanimation.animation.FloatPropertyCompat
-            public void setValue(T t, float f) {
-                floatProperty.setValue(t, f);
-            }
-        };
+    public static <T> FloatPropertyCompat<T> createFloatPropertyCompat(FloatProperty<T> floatProperty) {
+        return new FloatPropertyCompat$1(floatProperty.getName(), floatProperty);
     }
 
     public abstract float getValue(T t);

@@ -14,52 +14,45 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetAuthLoginBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f15680a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f15681b;
+    public final MaterialButton f2232b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final LinearLayout f15682c;
+    public final LinearLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15683d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final PhoneOrEmailInputView f15684e;
+    public final PhoneOrEmailInputView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final TextView f15685f;
+    public final TextView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextInputLayout f15686g;
+    public final TextInputLayout g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final DimmerView f15687h;
+    public final DimmerView h;
 
     public WidgetAuthLoginBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull MaterialButton materialButton, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull PhoneOrEmailInputView phoneOrEmailInputView, @NonNull TextView textView2, @NonNull TextInputLayout textInputLayout, @NonNull DimmerView dimmerView) {
-        this.f15680a = coordinatorLayout;
-        this.f15681b = materialButton;
-        this.f15682c = linearLayout;
-        this.f15683d = textView;
-        this.f15684e = phoneOrEmailInputView;
-        this.f15685f = textView2;
-        this.f15686g = textInputLayout;
-        this.f15687h = dimmerView;
+        this.a = coordinatorLayout;
+        this.f2232b = materialButton;
+        this.c = linearLayout;
+        this.d = textView;
+        this.e = phoneOrEmailInputView;
+        this.f = textView2;
+        this.g = textInputLayout;
+        this.h = dimmerView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15680a;
+        return this.a;
     }
 }

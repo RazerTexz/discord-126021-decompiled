@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadata;
 import com.discord.analytics.generated.traits.TrackOverlayClientMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackAppNativeCrash.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -36,7 +36,7 @@ public final /* data */ class TrackAppNativeCrash implements AnalyticsSchema, Tr
             return false;
         }
         TrackAppNativeCrash trackAppNativeCrash = (TrackAppNativeCrash) other;
-        return C12238m.areEqual(this.didCrash, trackAppNativeCrash.didCrash) && C12238m.areEqual(this.rendererCrashReason, trackAppNativeCrash.rendererCrashReason) && C12238m.areEqual(this.minidumpExceptionType, trackAppNativeCrash.minidumpExceptionType) && C12238m.areEqual(this.exitReason, trackAppNativeCrash.exitReason) && C12238m.areEqual(this.exitDescription, trackAppNativeCrash.exitDescription) && C12238m.areEqual(this.tombstoneHash, trackAppNativeCrash.tombstoneHash) && C12238m.areEqual(this.tombstoneCause, trackAppNativeCrash.tombstoneCause) && C12238m.areEqual(this.signal, trackAppNativeCrash.signal) && C12238m.areEqual(this.exceptionType, trackAppNativeCrash.exceptionType) && C12238m.areEqual(this.exceptionCode, trackAppNativeCrash.exceptionCode) && C12238m.areEqual(this.terminationReason, trackAppNativeCrash.terminationReason) && C12238m.areEqual(this.binaryName, trackAppNativeCrash.binaryName) && C12238m.areEqual(this.callstackHash, trackAppNativeCrash.callstackHash);
+        return m.areEqual(this.didCrash, trackAppNativeCrash.didCrash) && m.areEqual(this.rendererCrashReason, trackAppNativeCrash.rendererCrashReason) && m.areEqual(this.minidumpExceptionType, trackAppNativeCrash.minidumpExceptionType) && m.areEqual(this.exitReason, trackAppNativeCrash.exitReason) && m.areEqual(this.exitDescription, trackAppNativeCrash.exitDescription) && m.areEqual(this.tombstoneHash, trackAppNativeCrash.tombstoneHash) && m.areEqual(this.tombstoneCause, trackAppNativeCrash.tombstoneCause) && m.areEqual(this.signal, trackAppNativeCrash.signal) && m.areEqual(this.exceptionType, trackAppNativeCrash.exceptionType) && m.areEqual(this.exceptionCode, trackAppNativeCrash.exceptionCode) && m.areEqual(this.terminationReason, trackAppNativeCrash.terminationReason) && m.areEqual(this.binaryName, trackAppNativeCrash.binaryName) && m.areEqual(this.callstackHash, trackAppNativeCrash.callstackHash);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -75,31 +75,31 @@ public final /* data */ class TrackAppNativeCrash implements AnalyticsSchema, Tr
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackAppNativeCrash(didCrash=");
-        sbM833U.append(this.didCrash);
-        sbM833U.append(", rendererCrashReason=");
-        sbM833U.append(this.rendererCrashReason);
-        sbM833U.append(", minidumpExceptionType=");
-        sbM833U.append(this.minidumpExceptionType);
-        sbM833U.append(", exitReason=");
-        sbM833U.append(this.exitReason);
-        sbM833U.append(", exitDescription=");
-        sbM833U.append(this.exitDescription);
-        sbM833U.append(", tombstoneHash=");
-        sbM833U.append(this.tombstoneHash);
-        sbM833U.append(", tombstoneCause=");
-        sbM833U.append(this.tombstoneCause);
-        sbM833U.append(", signal=");
-        sbM833U.append(this.signal);
-        sbM833U.append(", exceptionType=");
-        sbM833U.append(this.exceptionType);
-        sbM833U.append(", exceptionCode=");
-        sbM833U.append(this.exceptionCode);
-        sbM833U.append(", terminationReason=");
-        sbM833U.append(this.terminationReason);
-        sbM833U.append(", binaryName=");
-        sbM833U.append(this.binaryName);
-        sbM833U.append(", callstackHash=");
-        return C1643a.m817E(sbM833U, this.callstackHash, ")");
+        StringBuilder sbU = a.U("TrackAppNativeCrash(didCrash=");
+        sbU.append(this.didCrash);
+        sbU.append(", rendererCrashReason=");
+        sbU.append(this.rendererCrashReason);
+        sbU.append(", minidumpExceptionType=");
+        sbU.append(this.minidumpExceptionType);
+        sbU.append(", exitReason=");
+        sbU.append(this.exitReason);
+        sbU.append(", exitDescription=");
+        sbU.append(this.exitDescription);
+        sbU.append(", tombstoneHash=");
+        sbU.append(this.tombstoneHash);
+        sbU.append(", tombstoneCause=");
+        sbU.append(this.tombstoneCause);
+        sbU.append(", signal=");
+        sbU.append(this.signal);
+        sbU.append(", exceptionType=");
+        sbU.append(this.exceptionType);
+        sbU.append(", exceptionCode=");
+        sbU.append(this.exceptionCode);
+        sbU.append(", terminationReason=");
+        sbU.append(this.terminationReason);
+        sbU.append(", binaryName=");
+        sbU.append(this.binaryName);
+        sbU.append(", callstackHash=");
+        return a.E(sbU, this.callstackHash, ")");
     }
 }

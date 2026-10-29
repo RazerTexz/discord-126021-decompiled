@@ -4,53 +4,37 @@ import com.adjust.sdk.Constants;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.FileDialog;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.TextAttribute;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Pattern;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.Scrollable;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.filechooser.FileFilter;
 import lombok.core.Version;
-import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI.SCL.lombok */
 public class InstallerGUI {
@@ -77,12 +61,48 @@ public class InstallerGUI {
     private List<IdeLocation> toUninstall;
     private Component uninstallArea;
     private Box uninstallBox;
-    private JHyperLink uninstallButton;
+    private InstallerGUI$JHyperLink uninstallButton;
     private JLabel uninstallPlaceholder;
     static final AtomicReference<Integer> exitMarker = new AtomicReference<>();
     private final Set<String> installSpecificMessages = new LinkedHashSet();
     private JFrame appWindow = new JFrame(String.format("Project Lombok v%s - Installer", Version.getVersion()));
-    private IdesList idesList = new IdesList();
+    private InstallerGUI$IdesList idesList = new InstallerGUI$IdesList(this);
+
+    static /* synthetic */ JFrame access$0(InstallerGUI installerGUI) {
+        return installerGUI.appWindow;
+    }
+
+    static /* synthetic */ JComponent access$9(InstallerGUI installerGUI) {
+        return installerGUI.loadingExpl;
+    }
+
+    static /* synthetic */ Component access$2(InstallerGUI installerGUI) {
+        return installerGUI.javacArea;
+    }
+
+    static /* synthetic */ Component access$3(InstallerGUI installerGUI) {
+        return installerGUI.ideArea;
+    }
+
+    static /* synthetic */ Component access$5(InstallerGUI installerGUI) {
+        return installerGUI.uninstallArea;
+    }
+
+    static /* synthetic */ Component access$1(InstallerGUI installerGUI) {
+        return installerGUI.howIWorkArea;
+    }
+
+    static /* synthetic */ Component access$4(InstallerGUI installerGUI) {
+        return installerGUI.successArea;
+    }
+
+    static /* synthetic */ List access$15(InstallerGUI installerGUI) {
+        return installerGUI.toUninstall;
+    }
+
+    static /* synthetic */ Set access$13(InstallerGUI installerGUI) {
+        return installerGUI.installSpecificMessages;
+    }
 
     public InstallerGUI() {
         this.appWindow.setLocationByPlatform(true);
@@ -105,15 +125,12 @@ public class InstallerGUI {
         }
     }
 
-    private void handleException(final Throwable t) {
-        SwingUtilities.invokeLater(new Runnable() { // from class: lombok.installer.InstallerGUI.1
-            @Override // java.lang.Runnable
-            public void run() {
-                JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, "There was a problem during the installation process:\n" + t, "Uh Oh!", 0);
-                t.printStackTrace();
-                System.exit(1);
-            }
-        });
+    static /* synthetic */ void access$8(InstallerGUI installerGUI, Throwable th) {
+        installerGUI.handleException(th);
+    }
+
+    private void handleException(Throwable t) {
+        SwingUtilities.invokeLater(new InstallerGUI$1(this, t));
     }
 
     private Component buildHowIWorkArea() {
@@ -129,20 +146,16 @@ public class InstallerGUI {
         JButton backButton = new JButton("Okay - Good to know!");
         buttonBar.add(Box.createHorizontalGlue());
         buttonBar.add(backButton);
-        backButton.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.2
-            public void actionPerformed(ActionEvent e) {
-                InstallerGUI.this.howIWorkArea.setVisible(false);
-                InstallerGUI.this.javacArea.setVisible(true);
-                InstallerGUI.this.ideArea.setVisible(true);
-                InstallerGUI.this.successArea.setVisible(false);
-                InstallerGUI.this.appWindow.pack();
-            }
-        });
+        backButton.addActionListener(new InstallerGUI$2(this));
         constraints.gridy = 2;
         container.add(buttonBar, constraints);
         container.setPreferredSize(new Dimension(INSTALLER_WINDOW_WIDTH, 415));
         container.setMinimumSize(new Dimension(INSTALLER_WINDOW_WIDTH, 415));
         return container;
+    }
+
+    static /* synthetic */ void access$14(InstallerGUI installerGUI, String str) {
+        installerGUI.showSuccess(str);
     }
 
     private void showSuccess(String installSpecific) {
@@ -242,19 +255,8 @@ public class InstallerGUI {
         buttonBar.add(Box.createHorizontalGlue());
         JButton yesButton = new JButton("Yes - uninstall Lombok");
         buttonBar.add(yesButton);
-        noButton.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.3
-            public void actionPerformed(ActionEvent e) {
-                InstallerGUI.this.uninstallArea.setVisible(false);
-                InstallerGUI.this.javacArea.setVisible(true);
-                InstallerGUI.this.ideArea.setVisible(true);
-                InstallerGUI.this.appWindow.pack();
-            }
-        });
-        yesButton.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.4
-            public void actionPerformed(ActionEvent e) {
-                InstallerGUI.this.doUninstall();
-            }
-        });
+        noButton.addActionListener(new InstallerGUI$3(this));
+        yesButton.addActionListener(new InstallerGUI$4(this));
         constraints.gridy = 4;
         container.add(buttonBar, constraints);
         container.setPreferredSize(new Dimension(INSTALLER_WINDOW_WIDTH, 415));
@@ -298,154 +300,33 @@ public class InstallerGUI {
         constraints.weightx = 1.0d;
         constraints.gridy = 3;
         constraints.fill = 2;
-        this.idesList = new IdesList();
+        this.idesList = new InstallerGUI$IdesList(this);
         JScrollPane idesListScroll = new JScrollPane(this.idesList);
         idesListScroll.setBackground(Color.WHITE);
         idesListScroll.getViewport().setBackground(Color.WHITE);
         container.add(idesListScroll, constraints);
-        Thread findIdesThread = new Thread() { // from class: lombok.installer.InstallerGUI.5
-            @Override // java.lang.Thread, java.lang.Runnable
-            public void run() {
-                try {
-                    final List<IdeLocation> locations = new ArrayList<>();
-                    final List<CorruptedIdeLocationException> problems = new ArrayList<>();
-                    Installer.autoDiscover(locations, problems);
-                    SwingUtilities.invokeLater(new Runnable() { // from class: lombok.installer.InstallerGUI.5.1
-                        @Override // java.lang.Runnable
-                        public void run() {
-                            for (IdeLocation location : locations) {
-                                try {
-                                    InstallerGUI.this.idesList.addLocation(location);
-                                } catch (Throwable t) {
-                                    InstallerGUI.this.handleException(t);
-                                }
-                            }
-                            for (CorruptedIdeLocationException problem : problems) {
-                                problem.showDialog(InstallerGUI.this.appWindow);
-                            }
-                            InstallerGUI.this.loadingExpl.setVisible(false);
-                            if (locations.size() + problems.size() == 0) {
-                                JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, "I can't find any IDEs on your computer.\nIf you have IDEs installed on this computer, please use the 'Specify Location...' button to manually point out the \nlocation of your IDE installation to me. Thanks!", "Can't find IDE", 1);
-                            }
-                        }
-                    });
-                } catch (Throwable t) {
-                    InstallerGUI.this.handleException(t);
-                }
-            }
-        };
+        Thread findIdesThread = new InstallerGUI$5(this);
         findIdesThread.start();
         Box buttonBar = Box.createHorizontalBox();
         JButton specifyIdeLocationButton = new JButton("Specify location...");
         buttonBar.add(specifyIdeLocationButton);
-        specifyIdeLocationButton.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.6
-            public void actionPerformed(ActionEvent event) {
-                final List<Pattern> exeNames = Installer.getIdeExecutableNames();
-                String file = null;
-                if (OsUtils.getOS() == OsUtils.EnumC12884OS.MAC_OS_X) {
-                    FileDialog chooser = new FileDialog(InstallerGUI.this.appWindow);
-                    chooser.setMode(0);
-                    chooser.setFilenameFilter(new FilenameFilter() { // from class: lombok.installer.InstallerGUI.6.1
-                        @Override // java.io.FilenameFilter
-                        public boolean accept(File dir, String fileName) {
-                            for (Pattern exeName : exeNames) {
-                                if (exeName.matcher(fileName).matches()) {
-                                    return true;
-                                }
-                            }
-                            return false;
-                        }
-                    });
-                    chooser.setVisible(true);
-                    if (chooser.getDirectory() != null && chooser.getFile() != null) {
-                        file = new File(chooser.getDirectory(), chooser.getFile()).getAbsolutePath();
-                    }
-                } else {
-                    JFileChooser chooser2 = new JFileChooser();
-                    chooser2.setAcceptAllFileFilterUsed(false);
-                    chooser2.setFileSelectionMode(2);
-                    chooser2.setFileFilter(new FileFilter() { // from class: lombok.installer.InstallerGUI.6.2
-                        public boolean accept(File f) {
-                            if (f.isDirectory()) {
-                                return true;
-                            }
-                            for (Pattern exeName : exeNames) {
-                                if (exeName.matcher(f.getName()).matches()) {
-                                    return true;
-                                }
-                            }
-                            return false;
-                        }
-
-                        public String getDescription() {
-                            return "IDE Installation";
-                        }
-                    });
-                    switch (chooser2.showDialog(InstallerGUI.this.appWindow, "Select")) {
-                        case 0:
-                            file = chooser2.getSelectedFile().getAbsolutePath();
-                            break;
-                    }
-                }
-                if (file != null) {
-                    try {
-                        IdeLocation loc = Installer.tryAllProviders(file);
-                        if (loc == null) {
-                            JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, "I can't find any IDE that lombok supports at location: " + file, "No IDE found", 2);
-                        } else {
-                            InstallerGUI.this.idesList.addLocation(loc);
-                        }
-                    } catch (CorruptedIdeLocationException e) {
-                        e.showDialog(InstallerGUI.this.appWindow);
-                    } catch (Throwable t) {
-                        InstallerGUI.this.handleException(t);
-                    }
-                }
-            }
-        });
+        specifyIdeLocationButton.addActionListener(new InstallerGUI$6(this));
         buttonBar.add(Box.createHorizontalGlue());
         this.installButton = new JButton("Install / Update");
         buttonBar.add(this.installButton);
-        this.installButton.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.7
-            public void actionPerformed(ActionEvent e) {
-                List<IdeLocation> locationsToInstall = new ArrayList<>(InstallerGUI.this.idesList.getSelectedIdes());
-                if (locationsToInstall.isEmpty()) {
-                    JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, "You haven't selected any IDE installations!.", "No Selection", 2);
-                } else {
-                    InstallerGUI.this.install(locationsToInstall);
-                }
-            }
-        });
+        this.installButton.addActionListener(new InstallerGUI$7(this));
         constraints.gridy = 4;
         constraints.weightx = 0.0d;
         container.add(buttonBar, constraints);
         constraints.gridy = 5;
         constraints.fill = 0;
-        JHyperLink showMe = new JHyperLink("Show me what this installer will do to my IDE installation.");
+        InstallerGUI$JHyperLink showMe = new InstallerGUI$JHyperLink("Show me what this installer will do to my IDE installation.");
         container.add(showMe, constraints);
-        showMe.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.8
-            public void actionPerformed(ActionEvent e) {
-                InstallerGUI.this.showWhatIDo();
-            }
-        });
+        showMe.addActionListener(new InstallerGUI$8(this));
         constraints.gridy = 6;
-        this.uninstallButton = new JHyperLink("Uninstall lombok from selected IDE installations.");
+        this.uninstallButton = new InstallerGUI$JHyperLink("Uninstall lombok from selected IDE installations.");
         this.uninstallPlaceholder = new JLabel("<html>&nbsp;</html>");
-        this.uninstallButton.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.9
-            public void actionPerformed(ActionEvent e) {
-                List<IdeLocation> locationsToUninstall = new ArrayList<>();
-                for (IdeLocation location : InstallerGUI.this.idesList.getSelectedIdes()) {
-                    if (location.hasLombok()) {
-                        locationsToUninstall.add(location);
-                    }
-                }
-                if (locationsToUninstall.isEmpty()) {
-                    JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, "You haven't selected any IDE installations that have been lombok-enabled.", "No Selection", 2);
-                } else {
-                    InstallerGUI.this.uninstall(locationsToUninstall);
-                }
-            }
-        });
+        this.uninstallButton.addActionListener(new InstallerGUI$9(this));
         container.add(this.uninstallButton, constraints);
         this.uninstallPlaceholder.setVisible(false);
         container.add(this.uninstallPlaceholder, constraints);
@@ -454,12 +335,20 @@ public class InstallerGUI {
         return container;
     }
 
+    static /* synthetic */ void access$11(InstallerGUI installerGUI) {
+        installerGUI.showWhatIDo();
+    }
+
     private void showWhatIDo() {
         this.javacArea.setVisible(false);
         this.ideArea.setVisible(false);
         this.howIWorkArea.setVisible(true);
         this.successArea.setVisible(false);
         this.appWindow.pack();
+    }
+
+    static /* synthetic */ void access$12(InstallerGUI installerGUI, List list) {
+        installerGUI.uninstall(list);
     }
 
     private void uninstall(List<IdeLocation> locations) {
@@ -478,94 +367,24 @@ public class InstallerGUI {
         this.appWindow.pack();
     }
 
-    /* JADX WARN: Type inference failed for: r0v12, types: [lombok.installer.InstallerGUI$10] */
-    private void install(final List<IdeLocation> toInstall) {
+    static /* synthetic */ void access$10(InstallerGUI installerGUI, List list) {
+        installerGUI.install(list);
+    }
+
+    private void install(List<IdeLocation> toInstall) {
         JPanel spinner = new JPanel();
         spinner.setOpaque(true);
         spinner.setLayout(new FlowLayout());
         spinner.add(new JLabel(new ImageIcon(Installer.class.getResource("loading.gif"))));
-        final Container appWindowContent = this.appWindow.getContentPane();
+        Container appWindowContent = this.appWindow.getContentPane();
         this.appWindow.setContentPane(spinner);
-        final AtomicInteger successes = new AtomicInteger();
-        final AtomicBoolean failure = new AtomicBoolean();
-        new Thread() { // from class: lombok.installer.InstallerGUI.10
-            @Override // java.lang.Thread, java.lang.Runnable
-            public void run() {
-                for (IdeLocation loc : toInstall) {
-                    try {
-                        InstallerGUI.this.installSpecificMessages.add(loc.install());
-                        successes.incrementAndGet();
-                    } catch (InstallException e) {
-                        if (e.isWarning()) {
-                            try {
-                                SwingUtilities.invokeAndWait(new Runnable() { // from class: lombok.installer.InstallerGUI.10.1
-                                    @Override // java.lang.Runnable
-                                    public void run() {
-                                        JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, e.getMessage(), "Install Problem", 2);
-                                    }
-                                });
-                            } catch (Exception e2) {
-                                e2.printStackTrace();
-                                throw new RuntimeException(e2);
-                            }
-                        } else {
-                            failure.set(true);
-                            try {
-                                SwingUtilities.invokeAndWait(new Runnable() { // from class: lombok.installer.InstallerGUI.10.2
-                                    @Override // java.lang.Runnable
-                                    public void run() {
-                                        JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, e.getMessage(), "Install Problem", 0);
-                                    }
-                                });
-                            } catch (Exception e3) {
-                                e3.printStackTrace();
-                                throw new RuntimeException(e3);
-                            }
-                        }
-                    }
-                }
-                if (successes.get() > 0) {
-                    try {
-                        final Container container = appWindowContent;
-                        SwingUtilities.invokeAndWait(new Runnable() { // from class: lombok.installer.InstallerGUI.10.3
-                            @Override // java.lang.Runnable
-                            public void run() {
-                                InstallerGUI.this.appWindow.setContentPane(container);
-                                InstallerGUI.this.appWindow.pack();
-                                StringBuilder installSpecific = new StringBuilder();
-                                for (String installSpecificMessage : InstallerGUI.this.installSpecificMessages) {
-                                    installSpecific.append("<br>").append(installSpecificMessage);
-                                }
-                                InstallerGUI.this.showSuccess(installSpecific.toString());
-                            }
-                        });
-                        return;
-                    } catch (Exception e4) {
-                        throw new RuntimeException(e4);
-                    }
-                }
-                final AtomicBoolean atomicBoolean = failure;
-                SwingUtilities.invokeLater(new Runnable() { // from class: lombok.installer.InstallerGUI.10.4
-                    /* JADX WARN: Multi-variable type inference failed */
-                    /* JADX WARN: Type inference failed for: r0v0, types: [java.util.concurrent.atomic.AtomicReference<java.lang.Integer>] */
-                    /* JADX WARN: Type inference failed for: r0v1, types: [java.lang.Throwable] */
-                    /* JADX WARN: Type inference failed for: r0v4 */
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        ?? r0 = InstallerGUI.exitMarker;
-                        synchronized (r0) {
-                            try {
-                                InstallerGUI.exitMarker.set(Integer.valueOf(atomicBoolean.get() ? 1 : 0));
-                                InstallerGUI.exitMarker.notifyAll();
-                                r0 = r0;
-                            } catch (Throwable th) {
-                                throw r0;
-                            }
-                        }
-                    }
-                });
-            }
-        }.start();
+        AtomicInteger successes = new AtomicInteger();
+        AtomicBoolean failure = new AtomicBoolean();
+        new InstallerGUI$10(this, toInstall, successes, failure, appWindowContent).start();
+    }
+
+    static /* synthetic */ void access$6(InstallerGUI installerGUI) {
+        installerGUI.doUninstall();
     }
 
     private void doUninstall() {
@@ -573,60 +392,14 @@ public class InstallerGUI {
         spinner.setOpaque(true);
         spinner.setLayout(new FlowLayout());
         spinner.add(new JLabel(new ImageIcon(Installer.class.getResource("/lombok/installer/loading.gif"))));
-        final Container originalContentPane = this.appWindow.getContentPane();
+        Container originalContentPane = this.appWindow.getContentPane();
         this.appWindow.setContentPane(spinner);
-        final AtomicInteger successes = new AtomicInteger();
-        new Thread(new Runnable() { // from class: lombok.installer.InstallerGUI.11
-            @Override // java.lang.Runnable
-            public void run() {
-                for (IdeLocation loc : InstallerGUI.this.toUninstall) {
-                    try {
-                        loc.uninstall();
-                        successes.incrementAndGet();
-                    } catch (UninstallException e) {
-                        if (e.isWarning()) {
-                            try {
-                                SwingUtilities.invokeAndWait(new Runnable() { // from class: lombok.installer.InstallerGUI.11.1
-                                    @Override // java.lang.Runnable
-                                    public void run() {
-                                        JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, e.getMessage(), "Uninstall Problem", 2);
-                                    }
-                                });
-                            } catch (Exception e2) {
-                                e2.printStackTrace();
-                                throw new RuntimeException(e2);
-                            }
-                        } else {
-                            try {
-                                SwingUtilities.invokeAndWait(new Runnable() { // from class: lombok.installer.InstallerGUI.11.2
-                                    @Override // java.lang.Runnable
-                                    public void run() {
-                                        JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, e.getMessage(), "Uninstall Problem", 0);
-                                    }
-                                });
-                            } catch (Exception e3) {
-                                e3.printStackTrace();
-                                throw new RuntimeException(e3);
-                            }
-                        }
-                    }
-                }
-                final AtomicInteger atomicInteger = successes;
-                final Container container = originalContentPane;
-                SwingUtilities.invokeLater(new Runnable() { // from class: lombok.installer.InstallerGUI.11.3
-                    @Override // java.lang.Runnable
-                    public void run() {
-                        if (atomicInteger.get() > 0) {
-                            JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, "Lombok has been removed from the selected IDE installations.", "Uninstall successful", 1);
-                            InstallerGUI.this.appWindow.setVisible(false);
-                            System.exit(0);
-                            return;
-                        }
-                        InstallerGUI.this.appWindow.setContentPane(container);
-                    }
-                });
-            }
-        }).start();
+        AtomicInteger successes = new AtomicInteger();
+        new Thread(new InstallerGUI$11(this, successes, originalContentPane)).start();
+    }
+
+    static /* synthetic */ InstallerGUI$IdesList access$7(InstallerGUI installerGUI) {
+        return installerGUI.idesList;
     }
 
     void selectedLomboksChanged(List<IdeLocation> selectedIdes) {
@@ -641,78 +414,6 @@ public class InstallerGUI {
         this.uninstallButton.setVisible(uninstallAvailable);
         this.uninstallPlaceholder.setVisible(!uninstallAvailable);
         this.installButton.setEnabled(installAvailable);
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$IdesList.SCL.lombok */
-    class IdesList extends JPanel implements Scrollable {
-        private static final long serialVersionUID = 1;
-        List<IdeLocation> locations = new ArrayList();
-
-        IdesList() {
-            setLayout(new BoxLayout(this, 1));
-            setBackground(Color.WHITE);
-        }
-
-        List<IdeLocation> getSelectedIdes() {
-            List<IdeLocation> list = new ArrayList<>();
-            for (IdeLocation loc : this.locations) {
-                if (loc.selected) {
-                    list.add(loc);
-                }
-            }
-            return list;
-        }
-
-        void fireSelectionChange() {
-            InstallerGUI.this.selectedLomboksChanged(getSelectedIdes());
-        }
-
-        void addLocation(final IdeLocation location) {
-            if (this.locations.contains(location)) {
-                return;
-            }
-            Box box = Box.createHorizontalBox();
-            box.setBackground(Color.WHITE);
-            final JCheckBox checkbox = new JCheckBox(location.getName());
-            checkbox.setBackground(Color.WHITE);
-            box.add(new JLabel(new ImageIcon(location.getIdeIcon())));
-            box.add(checkbox);
-            checkbox.setSelected(true);
-            checkbox.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.IdesList.1
-                public void actionPerformed(ActionEvent e) {
-                    location.selected = checkbox.isSelected();
-                    IdesList.this.fireSelectionChange();
-                }
-            });
-            if (location.hasLombok()) {
-                box.add(new JLabel(new ImageIcon(Installer.class.getResource("lombokIcon.png"))));
-            }
-            box.add(Box.createHorizontalGlue());
-            this.locations.add(location);
-            add(box);
-            getParent().doLayout();
-            fireSelectionChange();
-        }
-
-        public Dimension getPreferredScrollableViewportSize() {
-            return new Dimension(1, 100);
-        }
-
-        public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
-            return 12;
-        }
-
-        public boolean getScrollableTracksViewportHeight() {
-            return false;
-        }
-
-        public boolean getScrollableTracksViewportWidth() {
-            return true;
-        }
-
-        public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
-            return 1;
-        }
     }
 
     private void buildChrome(Container appWindowContainer) {
@@ -753,7 +454,7 @@ public class InstallerGUI {
 
     private Box buildButtonBar() {
         Box buttonBar = Box.createHorizontalBox();
-        JHyperLink aboutLink = new JHyperLink(Installer.ABOUT_LOMBOK_URL.toString());
+        InstallerGUI$JHyperLink aboutLink = new InstallerGUI$JHyperLink(Installer.ABOUT_LOMBOK_URL.toString());
         aboutLink.addActionListener(openBrowser(aboutLink, Installer.ABOUT_LOMBOK_URL));
         buttonBar.add(aboutLink);
         buttonBar.add(Box.createRigidArea(new Dimension(16, 1)));
@@ -761,98 +462,27 @@ public class InstallerGUI {
         versionLabel.setText("v" + Version.getVersion());
         buttonBar.add(versionLabel);
         buttonBar.add(Box.createRigidArea(new Dimension(16, 1)));
-        JHyperLink changelogLink = new JHyperLink("View full changelog");
+        InstallerGUI$JHyperLink changelogLink = new InstallerGUI$JHyperLink("View full changelog");
         changelogLink.addActionListener(openBrowser(changelogLink, Installer.ABOUT_LOMBOK_URL.resolve("/changelog.html")));
         buttonBar.add(changelogLink);
         buttonBar.add(Box.createHorizontalGlue());
         JButton quitButton = new JButton("Quit Installer");
-        quitButton.addActionListener(new ActionListener() { // from class: lombok.installer.InstallerGUI.12
-            public void actionPerformed(ActionEvent e) {
-                InstallerGUI.this.appWindow.setVisible(false);
-                System.exit(0);
-            }
-        });
+        quitButton.addActionListener(new InstallerGUI$12(this));
         buttonBar.add(quitButton);
         return buttonBar;
     }
 
-    private ActionListener openBrowser(final JHyperLink hyperlink, final URI location) {
-        return new ActionListener() { // from class: lombok.installer.InstallerGUI.13
-            private static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS;
-
-            static /* synthetic */ int[] $SWITCH_TABLE$lombok$installer$OsUtils$OS() {
-                int[] iArr = $SWITCH_TABLE$lombok$installer$OsUtils$OS;
-                if (iArr != null) {
-                    return iArr;
-                }
-                int[] iArr2 = new int[OsUtils.EnumC12884OS.valuesCustom().length];
-                try {
-                    iArr2[OsUtils.EnumC12884OS.MAC_OS_X.ordinal()] = 1;
-                } catch (NoSuchFieldError unused) {
-                }
-                try {
-                    iArr2[OsUtils.EnumC12884OS.UNIX.ordinal()] = 3;
-                } catch (NoSuchFieldError unused2) {
-                }
-                try {
-                    iArr2[OsUtils.EnumC12884OS.WINDOWS.ordinal()] = 2;
-                } catch (NoSuchFieldError unused3) {
-                }
-                $SWITCH_TABLE$lombok$installer$OsUtils$OS = iArr2;
-                return iArr2;
-            }
-
-            public void actionPerformed(ActionEvent event) {
-                hyperlink.setForeground(new Color(85, Opcodes.I2B, 90));
-                try {
-                    Object desktop = Class.forName("java.awt.Desktop").getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
-                    Class.forName("java.awt.Desktop").getMethod("browse", URI.class).invoke(desktop, location);
-                } catch (Exception unused) {
-                    Runtime rt = Runtime.getRuntime();
-                    try {
-                        switch ($SWITCH_TABLE$lombok$installer$OsUtils$OS()[OsUtils.getOS().ordinal()]) {
-                            case 1:
-                                rt.exec("open " + location.toString());
-                                break;
-                            case 2:
-                                String[] cmd = {"cmd.exe", "/C", "start", location.toString()};
-                                rt.exec(cmd);
-                                break;
-                            case 3:
-                            default:
-                                rt.exec("firefox " + location.toString());
-                                break;
-                        }
-                    } catch (Exception unused2) {
-                        JOptionPane.showMessageDialog(InstallerGUI.this.appWindow, "Well, this is embarrassing. I don't know how to open a webbrowser.\nI guess you'll have to open it. Browse to:\n" + location + " for more information about Lombok.", "I'm embarrassed", 1);
-                    }
-                }
-            }
-        };
+    private ActionListener openBrowser(InstallerGUI$JHyperLink hyperlink, URI location) {
+        return new InstallerGUI$13(this, hyperlink, location);
     }
 
     public void show() {
         this.appWindow.setVisible(true);
-        if (OsUtils.getOS() == OsUtils.EnumC12884OS.MAC_OS_X) {
+        if (OsUtils.getOS() == OsUtils$OS.MAC_OS_X) {
             try {
-                AppleNativeLook.m10938go();
+                AppleNativeLook.go();
             } catch (Throwable unused) {
             }
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/installer/InstallerGUI$JHyperLink.SCL.lombok */
-    class JHyperLink extends JButton {
-        private static final long serialVersionUID = 1;
-
-        public JHyperLink(String text) {
-            setFont(getFont().deriveFont(Collections.singletonMap(TextAttribute.UNDERLINE, 1)));
-            setText(text);
-            setBorder(null);
-            setContentAreaFilled(false);
-            setForeground(Color.BLUE);
-            setCursor(Cursor.getPredefinedCursor(12));
-            setMargin(new Insets(0, 0, 0, 0));
         }
     }
 }

@@ -1,6 +1,6 @@
 package lombok.javac.handlers;
 
-import com.sun.tools.javac.tree.JCTree;
+import com.sun.tools.javac.tree.JCTree$JCAnnotation;
 import java.lang.annotation.Annotation;
 import lombok.ConfigurationKeys;
 import lombok.core.AnnotationValues;
@@ -14,7 +14,7 @@ import lombok.javac.JavacNode;
 @HandlerPriority(65536)
 public class HandleAccessors extends JavacAnnotationHandler<Accessors> {
     @Override // lombok.javac.JavacAnnotationHandler
-    public void handle(AnnotationValues<Accessors> annotation, JCTree.JCAnnotation ast, JavacNode annotationNode) {
+    public void handle(AnnotationValues<Accessors> annotation, JCTree$JCAnnotation ast, JavacNode annotationNode) {
         HandlerUtil.handleExperimentalFlagUsage(annotationNode, ConfigurationKeys.ACCESSORS_FLAG_USAGE, "@Accessors");
         JavacHandlerUtil.deleteAnnotationIfNeccessary(annotationNode, (Class<? extends Annotation>) Accessors.class);
     }

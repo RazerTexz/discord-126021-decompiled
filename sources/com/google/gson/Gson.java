@@ -1,5 +1,13 @@
 package com.google.gson;
 
+import b.i.d.c;
+import b.i.d.d;
+import b.i.d.f;
+import b.i.d.j;
+import b.i.d.n;
+import b.i.d.o;
+import b.i.d.q.g;
+import b.i.d.q.x.a;
 import com.google.gson.internal.Excluder;
 import com.google.gson.internal.bind.ArrayTypeAdapter;
 import com.google.gson.internal.bind.CollectionTypeAdapterFactory;
@@ -11,6 +19,8 @@ import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import com.google.gson.internal.bind.SqlDateTypeAdapter;
 import com.google.gson.internal.bind.TimeTypeAdapter;
 import com.google.gson.internal.bind.TypeAdapters;
+import com.google.gson.internal.bind.TypeAdapters$32;
+import com.google.gson.internal.bind.TypeAdapters$33;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
@@ -34,94 +44,34 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicLongArray;
-import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
-import p007b.p225i.p408d.C4906j;
-import p007b.p225i.p408d.EnumC4899c;
-import p007b.p225i.p408d.EnumC4910n;
-import p007b.p225i.p408d.InterfaceC4900d;
-import p007b.p225i.p408d.InterfaceC4902f;
-import p007b.p225i.p408d.InterfaceC4911o;
-import p007b.p225i.p408d.p410q.C4922g;
-import p007b.p225i.p408d.p410q.p411x.C4939a;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class Gson {
+    public final Map<TypeToken<?>, TypeAdapter<?>> c;
+    public final g d;
+    public final JsonAdapterAnnotationTypeAdapterFactory e;
 
-    /* JADX INFO: renamed from: b */
-    public final ThreadLocal<Map<TypeToken<?>, FutureTypeAdapter<?>>> f21465b;
-
-    /* JADX INFO: renamed from: c */
-    public final Map<TypeToken<?>, TypeAdapter<?>> f21466c;
-
-    /* JADX INFO: renamed from: d */
-    public final C4922g f21467d;
-
-    /* JADX INFO: renamed from: e */
-    public final JsonAdapterAnnotationTypeAdapterFactory f21468e;
-
-    /* JADX INFO: renamed from: f */
-    public final List<InterfaceC4911o> f21469f;
-
-    /* JADX INFO: renamed from: g */
-    public final Map<Type, InterfaceC4902f<?>> f21470g;
-
-    /* JADX INFO: renamed from: h */
-    public final boolean f21471h;
-
-    /* JADX INFO: renamed from: i */
-    public final boolean f21472i;
-
-    /* JADX INFO: renamed from: j */
-    public final boolean f21473j;
-
-    /* JADX INFO: renamed from: k */
-    public final boolean f21474k;
-
-    /* JADX INFO: renamed from: l */
-    public final boolean f21475l;
-
-    /* JADX INFO: renamed from: m */
-    public final List<InterfaceC4911o> f21476m;
-
-    /* JADX INFO: renamed from: n */
-    public final List<InterfaceC4911o> f21477n;
-
-    /* JADX INFO: renamed from: a */
-    public static final TypeToken<?> f21464a = TypeToken.get(Object.class);
-
-    public class FutureTypeAdapter<T> extends TypeAdapter<T> {
-
-        /* JADX INFO: renamed from: a */
-        public TypeAdapter<T> f21480a;
-
-        @Override // com.google.gson.TypeAdapter
-        public T read(JsonReader jsonReader) throws IOException {
-            TypeAdapter<T> typeAdapter = this.f21480a;
-            if (typeAdapter != null) {
-                return typeAdapter.read(jsonReader);
-            }
-            throw new IllegalStateException();
-        }
-
-        @Override // com.google.gson.TypeAdapter
-        public void write(JsonWriter jsonWriter, T t) throws IOException {
-            TypeAdapter<T> typeAdapter = this.f21480a;
-            if (typeAdapter == null) {
-                throw new IllegalStateException();
-            }
-            typeAdapter.write(jsonWriter, t);
-        }
-    }
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
+    public final ThreadLocal<Map<TypeToken<?>, Gson$FutureTypeAdapter<?>>> f3115b;
+    public final List<o> f;
+    public final Map<Type, f<?>> g;
+    public final boolean h;
+    public final boolean i;
+    public final boolean j;
+    public final boolean k;
+    public final boolean l;
+    public final List<o> m;
+    public final List<o> n;
+    public static final TypeToken<?> a = TypeToken.get(Object.class);
 
     public Gson() {
-        this(Excluder.f21483j, EnumC4899c.f13088j, Collections.emptyMap(), false, false, false, true, false, false, false, EnumC4910n.f13108j, null, 2, 2, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+        this(Excluder.j, c.j, Collections.emptyMap(), false, false, false, true, false, false, false, n.j, null, 2, 2, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
     }
 
-    /* JADX INFO: renamed from: a */
-    public static void m9197a(Object obj, JsonReader jsonReader) {
+    public static void a(Object obj, JsonReader jsonReader) {
         if (obj != null) {
             try {
-                if (jsonReader.mo6878N() == JsonToken.END_DOCUMENT) {
+                if (jsonReader.N() == JsonToken.END_DOCUMENT) {
                 } else {
                     throw new JsonIOException("JSON document was not fully consumed.");
                 }
@@ -133,30 +83,27 @@ public final class Gson {
         }
     }
 
-    /* JADX INFO: renamed from: b */
-    public static void m9198b(double d) {
+    public static void b(double d) {
         if (Double.isNaN(d) || Double.isInfinite(d)) {
             throw new IllegalArgumentException(d + " is not a valid double value as per JSON specification. To override this behavior, use GsonBuilder.serializeSpecialFloatingPointValues() method.");
         }
     }
 
-    /* JADX INFO: renamed from: c */
-    public <T> T m9199c(JsonElement jsonElement, Class<T> cls) throws JsonSyntaxException {
-        return (T) C3404f.m4203E1(cls).cast(jsonElement == null ? null : m9200d(new C4939a(jsonElement), cls));
+    public <T> T c(JsonElement jsonElement, Class<T> cls) throws JsonSyntaxException {
+        return (T) b.i.a.f.e.o.f.E1(cls).cast(jsonElement == null ? null : d(new a(jsonElement), cls));
     }
 
-    /* JADX INFO: renamed from: d */
-    public <T> T m9200d(JsonReader jsonReader, Type type) throws JsonSyntaxException, JsonIOException {
-        boolean z2 = jsonReader.f21627l;
+    public <T> T d(JsonReader jsonReader, Type type) throws JsonSyntaxException, JsonIOException {
+        boolean z2 = jsonReader.l;
         boolean z3 = true;
-        jsonReader.f21627l = true;
+        jsonReader.l = true;
         try {
             try {
                 try {
-                    jsonReader.mo6878N();
+                    jsonReader.N();
                     z3 = false;
-                    T t = m9204h(TypeToken.get(type)).read(jsonReader);
-                    jsonReader.f21627l = z2;
+                    T t = h(TypeToken.get(type)).read(jsonReader);
+                    jsonReader.l = z2;
                     return t;
                 } catch (IOException e) {
                     throw new JsonSyntaxException(e);
@@ -169,73 +116,69 @@ public final class Gson {
                 if (!z3) {
                     throw new JsonSyntaxException(e3);
                 }
-                jsonReader.f21627l = z2;
+                jsonReader.l = z2;
                 return null;
             } catch (IllegalStateException e4) {
                 throw new JsonSyntaxException(e4);
             }
         } catch (Throwable th) {
-            jsonReader.f21627l = z2;
+            jsonReader.l = z2;
             throw th;
         }
     }
 
-    /* JADX INFO: renamed from: e */
-    public <T> T m9201e(Reader reader, Class<T> cls) throws JsonSyntaxException, JsonIOException {
-        JsonReader jsonReaderM9207k = m9207k(reader);
-        Object objM9200d = m9200d(jsonReaderM9207k, cls);
-        m9197a(objM9200d, jsonReaderM9207k);
-        return (T) C3404f.m4203E1(cls).cast(objM9200d);
+    public <T> T e(Reader reader, Class<T> cls) throws JsonSyntaxException, JsonIOException {
+        JsonReader jsonReaderK = k(reader);
+        Object objD = d(jsonReaderK, cls);
+        a(objD, jsonReaderK);
+        return (T) b.i.a.f.e.o.f.E1(cls).cast(objD);
     }
 
-    /* JADX INFO: renamed from: f */
-    public <T> T m9202f(String str, Class<T> cls) throws JsonSyntaxException {
-        return (T) C3404f.m4203E1(cls).cast(m9203g(str, cls));
+    public <T> T f(String str, Class<T> cls) throws JsonSyntaxException {
+        return (T) b.i.a.f.e.o.f.E1(cls).cast(g(str, cls));
     }
 
-    /* JADX INFO: renamed from: g */
-    public <T> T m9203g(String str, Type type) throws JsonSyntaxException {
+    public <T> T g(String str, Type type) throws JsonSyntaxException {
         if (str == null) {
             return null;
         }
-        JsonReader jsonReaderM9207k = m9207k(new StringReader(str));
-        T t = (T) m9200d(jsonReaderM9207k, type);
-        m9197a(t, jsonReaderM9207k);
+        JsonReader jsonReaderK = k(new StringReader(str));
+        T t = (T) d(jsonReaderK, type);
+        a(t, jsonReaderK);
         return t;
     }
 
-    /* JADX INFO: renamed from: h */
-    public <T> TypeAdapter<T> m9204h(TypeToken<T> typeToken) {
-        TypeAdapter<T> typeAdapter = (TypeAdapter) this.f21466c.get(typeToken == null ? f21464a : typeToken);
+    public <T> TypeAdapter<T> h(TypeToken<T> typeToken) {
+        TypeAdapter<T> typeAdapter = (TypeAdapter) this.c.get(typeToken == null ? a : typeToken);
         if (typeAdapter != null) {
             return typeAdapter;
         }
-        Map<TypeToken<?>, FutureTypeAdapter<?>> map = this.f21465b.get();
+        Map<TypeToken<?>, Gson$FutureTypeAdapter<?>> map = this.f3115b.get();
         boolean z2 = false;
         if (map == null) {
             map = new HashMap<>();
-            this.f21465b.set(map);
+            this.f3115b.set(map);
             z2 = true;
         }
-        FutureTypeAdapter<?> futureTypeAdapter = map.get(typeToken);
-        if (futureTypeAdapter != null) {
-            return futureTypeAdapter;
+        Gson$FutureTypeAdapter<?> gson$FutureTypeAdapter = map.get(typeToken);
+        if (gson$FutureTypeAdapter != null) {
+            return gson$FutureTypeAdapter;
         }
         try {
-            FutureTypeAdapter<?> futureTypeAdapter2 = new FutureTypeAdapter<>();
-            map.put(typeToken, futureTypeAdapter2);
-            Iterator<InterfaceC4911o> it = this.f21469f.iterator();
+            Gson$FutureTypeAdapter<?> gson$FutureTypeAdapter2 = new Gson$FutureTypeAdapter<>();
+            map.put(typeToken, gson$FutureTypeAdapter2);
+            Iterator<o> it = this.f.iterator();
             while (it.hasNext()) {
                 TypeAdapter<T> typeAdapterCreate = it.next().create(this, typeToken);
                 if (typeAdapterCreate != null) {
-                    if (futureTypeAdapter2.f21480a != null) {
+                    if (gson$FutureTypeAdapter2.a != null) {
                         throw new AssertionError();
                     }
-                    futureTypeAdapter2.f21480a = typeAdapterCreate;
-                    this.f21466c.put(typeToken, typeAdapterCreate);
+                    gson$FutureTypeAdapter2.a = typeAdapterCreate;
+                    this.c.put(typeToken, typeAdapterCreate);
                     map.remove(typeToken);
                     if (z2) {
-                        this.f21465b.remove();
+                        this.f3115b.remove();
                     }
                     return typeAdapterCreate;
                 }
@@ -244,64 +187,59 @@ public final class Gson {
         } catch (Throwable th) {
             map.remove(typeToken);
             if (z2) {
-                this.f21465b.remove();
+                this.f3115b.remove();
             }
             throw th;
         }
     }
 
-    /* JADX INFO: renamed from: i */
-    public <T> TypeAdapter<T> m9205i(Class<T> cls) {
-        return m9204h(TypeToken.get((Class) cls));
+    public <T> TypeAdapter<T> i(Class<T> cls) {
+        return h(TypeToken.get((Class) cls));
     }
 
-    /* JADX INFO: renamed from: j */
-    public <T> TypeAdapter<T> m9206j(InterfaceC4911o interfaceC4911o, TypeToken<T> typeToken) {
-        if (!this.f21469f.contains(interfaceC4911o)) {
-            interfaceC4911o = this.f21468e;
+    public <T> TypeAdapter<T> j(o oVar, TypeToken<T> typeToken) {
+        if (!this.f.contains(oVar)) {
+            oVar = this.e;
         }
         boolean z2 = false;
-        for (InterfaceC4911o interfaceC4911o2 : this.f21469f) {
+        for (o oVar2 : this.f) {
             if (z2) {
-                TypeAdapter<T> typeAdapterCreate = interfaceC4911o2.create(this, typeToken);
+                TypeAdapter<T> typeAdapterCreate = oVar2.create(this, typeToken);
                 if (typeAdapterCreate != null) {
                     return typeAdapterCreate;
                 }
-            } else if (interfaceC4911o2 == interfaceC4911o) {
+            } else if (oVar2 == oVar) {
                 z2 = true;
             }
         }
         throw new IllegalArgumentException("GSON cannot serialize " + typeToken);
     }
 
-    /* JADX INFO: renamed from: k */
-    public JsonReader m9207k(Reader reader) {
+    public JsonReader k(Reader reader) {
         JsonReader jsonReader = new JsonReader(reader);
-        jsonReader.f21627l = this.f21475l;
+        jsonReader.l = this.l;
         return jsonReader;
     }
 
-    /* JADX INFO: renamed from: l */
-    public JsonWriter m9208l(Writer writer) throws IOException {
-        if (this.f21472i) {
+    public JsonWriter l(Writer writer) throws IOException {
+        if (this.i) {
             writer.write(")]}'\n");
         }
         JsonWriter jsonWriter = new JsonWriter(writer);
-        if (this.f21474k) {
-            jsonWriter.f21657o = "  ";
-            jsonWriter.f21658p = ": ";
+        if (this.k) {
+            jsonWriter.o = "  ";
+            jsonWriter.p = ": ";
         }
-        jsonWriter.f21662t = this.f21471h;
+        jsonWriter.t = this.h;
         return jsonWriter;
     }
 
-    /* JADX INFO: renamed from: m */
-    public String m9209m(Object obj) {
+    public String m(Object obj) {
         if (obj == null) {
-            JsonElement jsonElement = C4906j.f13106a;
+            JsonElement jsonElement = j.a;
             StringWriter stringWriter = new StringWriter();
             try {
-                m9210n(jsonElement, m9208l(stringWriter));
+                n(jsonElement, l(stringWriter));
                 return stringWriter.toString();
             } catch (IOException e) {
                 throw new JsonIOException(e);
@@ -310,27 +248,26 @@ public final class Gson {
         Type type = obj.getClass();
         StringWriter stringWriter2 = new StringWriter();
         try {
-            m9211o(obj, type, m9208l(stringWriter2));
+            o(obj, type, l(stringWriter2));
             return stringWriter2.toString();
         } catch (IOException e2) {
             throw new JsonIOException(e2);
         }
     }
 
-    /* JADX INFO: renamed from: n */
-    public void m9210n(JsonElement jsonElement, JsonWriter jsonWriter) throws JsonIOException {
-        boolean z2 = jsonWriter.f21659q;
-        jsonWriter.f21659q = true;
-        boolean z3 = jsonWriter.f21660r;
-        jsonWriter.f21660r = this.f21473j;
-        boolean z4 = jsonWriter.f21662t;
-        jsonWriter.f21662t = this.f21471h;
+    public void n(JsonElement jsonElement, JsonWriter jsonWriter) throws JsonIOException {
+        boolean z2 = jsonWriter.q;
+        jsonWriter.q = true;
+        boolean z3 = jsonWriter.r;
+        jsonWriter.r = this.j;
+        boolean z4 = jsonWriter.t;
+        jsonWriter.t = this.h;
         try {
             try {
-                TypeAdapters.f21579X.write(jsonWriter, jsonElement);
-                jsonWriter.f21659q = z2;
-                jsonWriter.f21660r = z3;
-                jsonWriter.f21662t = z4;
+                TypeAdapters.X.write(jsonWriter, jsonElement);
+                jsonWriter.q = z2;
+                jsonWriter.r = z3;
+                jsonWriter.t = z4;
             } catch (IOException e) {
                 throw new JsonIOException(e);
             } catch (AssertionError e2) {
@@ -339,29 +276,28 @@ public final class Gson {
                 throw assertionError;
             }
         } catch (Throwable th) {
-            jsonWriter.f21659q = z2;
-            jsonWriter.f21660r = z3;
-            jsonWriter.f21662t = z4;
+            jsonWriter.q = z2;
+            jsonWriter.r = z3;
+            jsonWriter.t = z4;
             throw th;
         }
     }
 
-    /* JADX INFO: renamed from: o */
-    public void m9211o(Object obj, Type type, JsonWriter jsonWriter) throws JsonIOException {
-        TypeAdapter typeAdapterM9204h = m9204h(TypeToken.get(type));
-        boolean z2 = jsonWriter.f21659q;
-        jsonWriter.f21659q = true;
-        boolean z3 = jsonWriter.f21660r;
-        jsonWriter.f21660r = this.f21473j;
-        boolean z4 = jsonWriter.f21662t;
-        jsonWriter.f21662t = this.f21471h;
+    public void o(Object obj, Type type, JsonWriter jsonWriter) throws JsonIOException {
+        TypeAdapter typeAdapterH = h(TypeToken.get(type));
+        boolean z2 = jsonWriter.q;
+        jsonWriter.q = true;
+        boolean z3 = jsonWriter.r;
+        jsonWriter.r = this.j;
+        boolean z4 = jsonWriter.t;
+        jsonWriter.t = this.h;
         try {
             try {
                 try {
-                    typeAdapterM9204h.write(jsonWriter, obj);
-                    jsonWriter.f21659q = z2;
-                    jsonWriter.f21660r = z3;
-                    jsonWriter.f21662t = z4;
+                    typeAdapterH.write(jsonWriter, obj);
+                    jsonWriter.q = z2;
+                    jsonWriter.r = z3;
+                    jsonWriter.t = z4;
                 } catch (IOException e) {
                     throw new JsonIOException(e);
                 }
@@ -371,190 +307,94 @@ public final class Gson {
                 throw assertionError;
             }
         } catch (Throwable th) {
-            jsonWriter.f21659q = z2;
-            jsonWriter.f21660r = z3;
-            jsonWriter.f21662t = z4;
+            jsonWriter.q = z2;
+            jsonWriter.r = z3;
+            jsonWriter.t = z4;
             throw th;
         }
     }
 
     public String toString() {
-        return "{serializeNulls:" + this.f21471h + ",factories:" + this.f21469f + ",instanceCreators:" + this.f21467d + "}";
+        return "{serializeNulls:" + this.h + ",factories:" + this.f + ",instanceCreators:" + this.d + "}";
     }
 
-    public Gson(Excluder excluder, InterfaceC4900d interfaceC4900d, Map<Type, InterfaceC4902f<?>> map, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, EnumC4910n enumC4910n, String str, int i, int i2, List<InterfaceC4911o> list, List<InterfaceC4911o> list2, List<InterfaceC4911o> list3) {
-        final TypeAdapter<Number> typeAdapter;
-        TypeAdapter<Number> typeAdapter2;
-        TypeAdapter<Number> typeAdapter3;
-        this.f21465b = new ThreadLocal<>();
-        this.f21466c = new ConcurrentHashMap();
-        this.f21470g = map;
-        this.f21467d = new C4922g(map);
-        this.f21471h = z2;
-        this.f21472i = z4;
-        this.f21473j = z5;
-        this.f21474k = z6;
-        this.f21475l = z7;
-        this.f21476m = list;
-        this.f21477n = list2;
+    public Gson(Excluder excluder, d dVar, Map<Type, f<?>> map, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, n nVar, String str, int i, int i2, List<o> list, List<o> list2, List<o> list3) {
+        TypeAdapter gson$3;
+        TypeAdapter gson$1;
+        TypeAdapter gson$2;
+        this.f3115b = new ThreadLocal<>();
+        this.c = new ConcurrentHashMap();
+        this.g = map;
+        this.d = new g(map);
+        this.h = z2;
+        this.i = z4;
+        this.j = z5;
+        this.k = z6;
+        this.l = z7;
+        this.m = list;
+        this.n = list2;
         ArrayList arrayList = new ArrayList();
-        arrayList.add(TypeAdapters.f21580Y);
-        arrayList.add(ObjectTypeAdapter.f21525a);
+        arrayList.add(TypeAdapters.Y);
+        arrayList.add(ObjectTypeAdapter.a);
         arrayList.add(excluder);
         arrayList.addAll(list3);
-        arrayList.add(TypeAdapters.f21559D);
-        arrayList.add(TypeAdapters.f21594m);
-        arrayList.add(TypeAdapters.f21588g);
-        arrayList.add(TypeAdapters.f21590i);
-        arrayList.add(TypeAdapters.f21592k);
-        if (enumC4910n == EnumC4910n.f13108j) {
-            typeAdapter = TypeAdapters.f21601t;
+        arrayList.add(TypeAdapters.D);
+        arrayList.add(TypeAdapters.m);
+        arrayList.add(TypeAdapters.g);
+        arrayList.add(TypeAdapters.i);
+        arrayList.add(TypeAdapters.k);
+        if (nVar == n.j) {
+            gson$3 = TypeAdapters.t;
         } else {
-            typeAdapter = new TypeAdapter<Number>() { // from class: com.google.gson.Gson.3
-                @Override // com.google.gson.TypeAdapter
-                public Number read(JsonReader jsonReader) throws IOException {
-                    if (jsonReader.mo6878N() != JsonToken.NULL) {
-                        return Long.valueOf(jsonReader.mo6874A());
-                    }
-                    jsonReader.mo6876H();
-                    return null;
-                }
-
-                @Override // com.google.gson.TypeAdapter
-                public void write(JsonWriter jsonWriter, Number number) throws IOException {
-                    Number number2 = number;
-                    if (number2 == null) {
-                        jsonWriter.mo6905s();
-                    } else {
-                        jsonWriter.mo6895H(number2.toString());
-                    }
-                }
-            };
+            gson$3 = new Gson$3();
         }
-        arrayList.add(new TypeAdapters.C1114033(Long.TYPE, Long.class, typeAdapter));
+        arrayList.add(new TypeAdapters$33(Long.TYPE, Long.class, gson$3));
         Class cls = Double.TYPE;
         if (z8) {
-            typeAdapter2 = TypeAdapters.f21603v;
+            gson$1 = TypeAdapters.v;
         } else {
-            typeAdapter2 = new TypeAdapter<Number>(this) { // from class: com.google.gson.Gson.1
-                @Override // com.google.gson.TypeAdapter
-                public Number read(JsonReader jsonReader) throws IOException {
-                    if (jsonReader.mo6878N() != JsonToken.NULL) {
-                        return Double.valueOf(jsonReader.mo6890x());
-                    }
-                    jsonReader.mo6876H();
-                    return null;
-                }
-
-                @Override // com.google.gson.TypeAdapter
-                public void write(JsonWriter jsonWriter, Number number) throws IOException {
-                    Number number2 = number;
-                    if (number2 == null) {
-                        jsonWriter.mo6905s();
-                    } else {
-                        Gson.m9198b(number2.doubleValue());
-                        jsonWriter.mo6894D(number2);
-                    }
-                }
-            };
+            gson$1 = new Gson$1(this);
         }
-        arrayList.add(new TypeAdapters.C1114033(cls, Double.class, typeAdapter2));
+        arrayList.add(new TypeAdapters$33(cls, Double.class, gson$1));
         Class cls2 = Float.TYPE;
         if (z8) {
-            typeAdapter3 = TypeAdapters.f21602u;
+            gson$2 = TypeAdapters.u;
         } else {
-            typeAdapter3 = new TypeAdapter<Number>(this) { // from class: com.google.gson.Gson.2
-                @Override // com.google.gson.TypeAdapter
-                public Number read(JsonReader jsonReader) throws IOException {
-                    if (jsonReader.mo6878N() != JsonToken.NULL) {
-                        return Float.valueOf((float) jsonReader.mo6890x());
-                    }
-                    jsonReader.mo6876H();
-                    return null;
-                }
-
-                @Override // com.google.gson.TypeAdapter
-                public void write(JsonWriter jsonWriter, Number number) throws IOException {
-                    Number number2 = number;
-                    if (number2 == null) {
-                        jsonWriter.mo6905s();
-                    } else {
-                        Gson.m9198b(number2.floatValue());
-                        jsonWriter.mo6894D(number2);
-                    }
-                }
-            };
+            gson$2 = new Gson$2(this);
         }
-        arrayList.add(new TypeAdapters.C1114033(cls2, Float.class, typeAdapter3));
-        arrayList.add(TypeAdapters.f21605x);
-        arrayList.add(TypeAdapters.f21596o);
-        arrayList.add(TypeAdapters.f21598q);
-        arrayList.add(new TypeAdapters.C1113932(AtomicLong.class, new TypeAdapter<AtomicLong>() { // from class: com.google.gson.Gson.4
-            @Override // com.google.gson.TypeAdapter
-            public AtomicLong read(JsonReader jsonReader) throws IOException {
-                return new AtomicLong(((Number) typeAdapter.read(jsonReader)).longValue());
-            }
-
-            @Override // com.google.gson.TypeAdapter
-            public void write(JsonWriter jsonWriter, AtomicLong atomicLong) throws IOException {
-                typeAdapter.write(jsonWriter, Long.valueOf(atomicLong.get()));
-            }
-        }.nullSafe()));
-        arrayList.add(new TypeAdapters.C1113932(AtomicLongArray.class, new TypeAdapter<AtomicLongArray>() { // from class: com.google.gson.Gson.5
-            @Override // com.google.gson.TypeAdapter
-            public AtomicLongArray read(JsonReader jsonReader) throws IOException {
-                ArrayList arrayList2 = new ArrayList();
-                jsonReader.mo6882a();
-                while (jsonReader.mo6888q()) {
-                    arrayList2.add(Long.valueOf(((Number) typeAdapter.read(jsonReader)).longValue()));
-                }
-                jsonReader.mo6886e();
-                int size = arrayList2.size();
-                AtomicLongArray atomicLongArray = new AtomicLongArray(size);
-                for (int i3 = 0; i3 < size; i3++) {
-                    atomicLongArray.set(i3, ((Long) arrayList2.get(i3)).longValue());
-                }
-                return atomicLongArray;
-            }
-
-            @Override // com.google.gson.TypeAdapter
-            public void write(JsonWriter jsonWriter, AtomicLongArray atomicLongArray) throws IOException {
-                AtomicLongArray atomicLongArray2 = atomicLongArray;
-                jsonWriter.mo6900b();
-                int length = atomicLongArray2.length();
-                for (int i3 = 0; i3 < length; i3++) {
-                    typeAdapter.write(jsonWriter, Long.valueOf(atomicLongArray2.get(i3)));
-                }
-                jsonWriter.mo6902e();
-            }
-        }.nullSafe()));
-        arrayList.add(TypeAdapters.f21600s);
-        arrayList.add(TypeAdapters.f21607z);
-        arrayList.add(TypeAdapters.f21561F);
-        arrayList.add(TypeAdapters.f21563H);
-        arrayList.add(new TypeAdapters.C1113932(BigDecimal.class, TypeAdapters.f21557B));
-        arrayList.add(new TypeAdapters.C1113932(BigInteger.class, TypeAdapters.f21558C));
-        arrayList.add(TypeAdapters.f21565J);
-        arrayList.add(TypeAdapters.f21567L);
-        arrayList.add(TypeAdapters.f21571P);
-        arrayList.add(TypeAdapters.f21573R);
-        arrayList.add(TypeAdapters.f21578W);
-        arrayList.add(TypeAdapters.f21569N);
-        arrayList.add(TypeAdapters.f21585d);
-        arrayList.add(DateTypeAdapter.f21516a);
-        arrayList.add(TypeAdapters.f21576U);
-        arrayList.add(TimeTypeAdapter.f21539a);
-        arrayList.add(SqlDateTypeAdapter.f21537a);
-        arrayList.add(TypeAdapters.f21574S);
-        arrayList.add(ArrayTypeAdapter.f21510a);
-        arrayList.add(TypeAdapters.f21583b);
-        arrayList.add(new CollectionTypeAdapterFactory(this.f21467d));
-        arrayList.add(new MapTypeAdapterFactory(this.f21467d, z3));
-        JsonAdapterAnnotationTypeAdapterFactory jsonAdapterAnnotationTypeAdapterFactory = new JsonAdapterAnnotationTypeAdapterFactory(this.f21467d);
-        this.f21468e = jsonAdapterAnnotationTypeAdapterFactory;
+        arrayList.add(new TypeAdapters$33(cls2, Float.class, gson$2));
+        arrayList.add(TypeAdapters.f3130x);
+        arrayList.add(TypeAdapters.o);
+        arrayList.add(TypeAdapters.q);
+        arrayList.add(new TypeAdapters$32(AtomicLong.class, new Gson$4(gson$3).nullSafe()));
+        arrayList.add(new TypeAdapters$32(AtomicLongArray.class, new Gson$5(gson$3).nullSafe()));
+        arrayList.add(TypeAdapters.f3129s);
+        arrayList.add(TypeAdapters.f3132z);
+        arrayList.add(TypeAdapters.F);
+        arrayList.add(TypeAdapters.H);
+        arrayList.add(new TypeAdapters$32(BigDecimal.class, TypeAdapters.B));
+        arrayList.add(new TypeAdapters$32(BigInteger.class, TypeAdapters.C));
+        arrayList.add(TypeAdapters.J);
+        arrayList.add(TypeAdapters.L);
+        arrayList.add(TypeAdapters.P);
+        arrayList.add(TypeAdapters.R);
+        arrayList.add(TypeAdapters.W);
+        arrayList.add(TypeAdapters.N);
+        arrayList.add(TypeAdapters.d);
+        arrayList.add(DateTypeAdapter.a);
+        arrayList.add(TypeAdapters.U);
+        arrayList.add(TimeTypeAdapter.a);
+        arrayList.add(SqlDateTypeAdapter.a);
+        arrayList.add(TypeAdapters.S);
+        arrayList.add(ArrayTypeAdapter.a);
+        arrayList.add(TypeAdapters.f3128b);
+        arrayList.add(new CollectionTypeAdapterFactory(this.d));
+        arrayList.add(new MapTypeAdapterFactory(this.d, z3));
+        JsonAdapterAnnotationTypeAdapterFactory jsonAdapterAnnotationTypeAdapterFactory = new JsonAdapterAnnotationTypeAdapterFactory(this.d);
+        this.e = jsonAdapterAnnotationTypeAdapterFactory;
         arrayList.add(jsonAdapterAnnotationTypeAdapterFactory);
-        arrayList.add(TypeAdapters.f21581Z);
-        arrayList.add(new ReflectiveTypeAdapterFactory(this.f21467d, interfaceC4900d, excluder, jsonAdapterAnnotationTypeAdapterFactory));
-        this.f21469f = Collections.unmodifiableList(arrayList);
+        arrayList.add(TypeAdapters.Z);
+        arrayList.add(new ReflectiveTypeAdapterFactory(this.d, dVar, excluder, jsonAdapterAnnotationTypeAdapterFactory));
+        this.f = Collections.unmodifiableList(arrayList);
     }
 }

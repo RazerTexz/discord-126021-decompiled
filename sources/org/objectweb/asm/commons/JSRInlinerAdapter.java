@@ -1,13 +1,12 @@
 package org.objectweb.asm.commons;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Map$Entry;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
@@ -40,7 +39,7 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
         this.mainSubroutineInsns = new BitSet();
         this.subroutinesInsns = new HashMap();
         this.sharedSubroutineInsns = new BitSet();
-        this.f27600mv = methodVisitor;
+        this.mv = methodVisitor;
     }
 
     @Override // org.objectweb.asm.tree.MethodNode, org.objectweb.asm.MethodVisitor
@@ -58,15 +57,15 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
             findSubroutinesInsns();
             emitCode();
         }
-        if (this.f27600mv != null) {
-            accept(this.f27600mv);
+        if (this.mv != null) {
+            accept(this.mv);
         }
     }
 
     private void findSubroutinesInsns() {
         BitSet visitedInsns = new BitSet();
         findSubroutineInsns(0, this.mainSubroutineInsns, visitedInsns);
-        for (Map.Entry<LabelNode, BitSet> entry : this.subroutinesInsns.entrySet()) {
+        for (Map$Entry<LabelNode, BitSet> entry : this.subroutinesInsns.entrySet()) {
             LabelNode jsrLabelNode = entry.getKey();
             BitSet subroutineInsns = entry.getValue();
             findSubroutineInsns(this.instructions.indexOf(jsrLabelNode), subroutineInsns, visitedInsns);
@@ -151,13 +150,13 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
     }
 
     private void emitCode() {
-        LinkedList<Instantiation> worklist = new LinkedList<>();
-        worklist.add(new Instantiation(null, this.mainSubroutineInsns));
+        LinkedList<JSRInlinerAdapter$Instantiation> worklist = new LinkedList<>();
+        worklist.add(new JSRInlinerAdapter$Instantiation(this, null, this.mainSubroutineInsns));
         InsnList newInstructions = new InsnList();
         List<TryCatchBlockNode> newTryCatchBlocks = new ArrayList<>();
         List<LocalVariableNode> newLocalVariables = new ArrayList<>();
         while (!worklist.isEmpty()) {
-            Instantiation instantiation = worklist.removeFirst();
+            JSRInlinerAdapter$Instantiation instantiation = worklist.removeFirst();
             emitInstantiation(instantiation, worklist, newInstructions, newTryCatchBlocks, newLocalVariables);
         }
         this.instructions = newInstructions;
@@ -165,7 +164,7 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
         this.localVariables = newLocalVariables;
     }
 
-    private void emitInstantiation(Instantiation instantiation, List<Instantiation> worklist, InsnList newInstructions, List<TryCatchBlockNode> newTryCatchBlocks, List<LocalVariableNode> newLocalVariables) {
+    private void emitInstantiation(JSRInlinerAdapter$Instantiation instantiation, List<JSRInlinerAdapter$Instantiation> worklist, InsnList newInstructions, List<TryCatchBlockNode> newTryCatchBlocks, List<LocalVariableNode> newLocalVariables) {
         LabelNode previousLabelNode = null;
         for (int i = 0; i < this.instructions.size(); i++) {
             AbstractInsnNode insnNode = this.instructions.get(i);
@@ -180,16 +179,16 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
                 continue;
             } else if (insnNode.getOpcode() == 169) {
                 LabelNode retLabel = null;
-                Instantiation instantiation2 = instantiation;
+                JSRInlinerAdapter$Instantiation jSRInlinerAdapter$Instantiation = instantiation;
                 while (true) {
-                    Instantiation retLabelOwner = instantiation2;
+                    JSRInlinerAdapter$Instantiation retLabelOwner = jSRInlinerAdapter$Instantiation;
                     if (retLabelOwner == null) {
                         break;
                     }
                     if (retLabelOwner.subroutineInsns.get(i)) {
                         retLabel = retLabelOwner.returnLabel;
                     }
-                    instantiation2 = retLabelOwner.parent;
+                    jSRInlinerAdapter$Instantiation = retLabelOwner.parent;
                 }
                 if (retLabel == null) {
                     throw new IllegalArgumentException("Instruction #" + i + " is a RET not owned by any subroutine");
@@ -198,7 +197,7 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
             } else if (insnNode.getOpcode() == 168) {
                 LabelNode jsrLabelNode = ((JumpInsnNode) insnNode).label;
                 BitSet subroutineInsns = this.subroutinesInsns.get(jsrLabelNode);
-                Instantiation newInstantiation = new Instantiation(instantiation, subroutineInsns);
+                JSRInlinerAdapter$Instantiation newInstantiation = new JSRInlinerAdapter$Instantiation(this, instantiation, subroutineInsns);
                 LabelNode clonedJsrLabelNode = newInstantiation.getClonedLabelForJumpInsn(jsrLabelNode);
                 newInstructions.add(new InsnNode(1));
                 newInstructions.add(new JumpInsnNode(Opcodes.GOTO, clonedJsrLabelNode));
@@ -225,95 +224,6 @@ public class JSRInlinerAdapter extends MethodNode implements Opcodes {
             if (start2 != end2) {
                 newLocalVariables.add(new LocalVariableNode(localVariableNode.name, localVariableNode.desc, localVariableNode.signature, start2, end2, localVariableNode.index));
             }
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:org/objectweb/asm/commons/JSRInlinerAdapter$Instantiation.SCL.lombok */
-    class Instantiation extends AbstractMap<LabelNode, LabelNode> {
-        final Instantiation parent;
-        final BitSet subroutineInsns;
-        final Map<LabelNode, LabelNode> clonedLabels;
-        final LabelNode returnLabel;
-
-        Instantiation(Instantiation parent, BitSet subroutineInsns) {
-            Instantiation instantiation = parent;
-            while (true) {
-                Instantiation instantiation2 = instantiation;
-                if (instantiation2 != null) {
-                    if (instantiation2.subroutineInsns != subroutineInsns) {
-                        instantiation = instantiation2.parent;
-                    } else {
-                        throw new IllegalArgumentException("Recursive invocation of " + subroutineInsns);
-                    }
-                } else {
-                    this.parent = parent;
-                    this.subroutineInsns = subroutineInsns;
-                    this.returnLabel = parent == null ? null : new LabelNode();
-                    this.clonedLabels = new HashMap();
-                    LabelNode clonedLabelNode = null;
-                    for (int insnIndex = 0; insnIndex < JSRInlinerAdapter.this.instructions.size(); insnIndex++) {
-                        AbstractInsnNode insnNode = JSRInlinerAdapter.this.instructions.get(insnIndex);
-                        if (insnNode.getType() == 8) {
-                            LabelNode labelNode = (LabelNode) insnNode;
-                            clonedLabelNode = clonedLabelNode == null ? new LabelNode() : clonedLabelNode;
-                            this.clonedLabels.put(labelNode, clonedLabelNode);
-                        } else if (findOwner(insnIndex) == this) {
-                            clonedLabelNode = null;
-                        }
-                    }
-                    return;
-                }
-            }
-        }
-
-        Instantiation findOwner(int insnIndex) {
-            if (!this.subroutineInsns.get(insnIndex)) {
-                return null;
-            }
-            if (!JSRInlinerAdapter.this.sharedSubroutineInsns.get(insnIndex)) {
-                return this;
-            }
-            Instantiation owner = this;
-            Instantiation instantiation = this.parent;
-            while (true) {
-                Instantiation instantiation2 = instantiation;
-                if (instantiation2 != null) {
-                    if (instantiation2.subroutineInsns.get(insnIndex)) {
-                        owner = instantiation2;
-                    }
-                    instantiation = instantiation2.parent;
-                } else {
-                    return owner;
-                }
-            }
-        }
-
-        LabelNode getClonedLabelForJumpInsn(LabelNode labelNode) {
-            return findOwner(JSRInlinerAdapter.this.instructions.indexOf(labelNode)).clonedLabels.get(labelNode);
-        }
-
-        LabelNode getClonedLabel(LabelNode labelNode) {
-            return this.clonedLabels.get(labelNode);
-        }
-
-        @Override // java.util.AbstractMap, java.util.Map
-        public Set<Map.Entry<LabelNode, LabelNode>> entrySet() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override // java.util.AbstractMap, java.util.Map
-        public LabelNode get(Object key) {
-            return getClonedLabelForJumpInsn((LabelNode) key);
-        }
-
-        @Override // java.util.AbstractMap, java.util.Map
-        public boolean equals(Object other) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override // java.util.AbstractMap, java.util.Map
-        public int hashCode() {
-            throw new UnsupportedOperationException();
         }
     }
 }

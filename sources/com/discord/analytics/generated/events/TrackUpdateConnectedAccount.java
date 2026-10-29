@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUpdateConnectedAccount.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -28,7 +28,7 @@ public final /* data */ class TrackUpdateConnectedAccount implements AnalyticsSc
             return false;
         }
         TrackUpdateConnectedAccount trackUpdateConnectedAccount = (TrackUpdateConnectedAccount) other;
-        return C12238m.areEqual(this.accountId, trackUpdateConnectedAccount.accountId) && C12238m.areEqual(this.accountName, trackUpdateConnectedAccount.accountName) && C12238m.areEqual(this.connected, trackUpdateConnectedAccount.connected) && C12238m.areEqual(this.platformType, trackUpdateConnectedAccount.platformType) && C12238m.areEqual(this.visibility, trackUpdateConnectedAccount.visibility) && C12238m.areEqual(this.friendSync, trackUpdateConnectedAccount.friendSync) && C12238m.areEqual(this.partner, trackUpdateConnectedAccount.partner) && C12238m.areEqual(this.linkMethod, trackUpdateConnectedAccount.linkMethod);
+        return m.areEqual(this.accountId, trackUpdateConnectedAccount.accountId) && m.areEqual(this.accountName, trackUpdateConnectedAccount.accountName) && m.areEqual(this.connected, trackUpdateConnectedAccount.connected) && m.areEqual(this.platformType, trackUpdateConnectedAccount.platformType) && m.areEqual(this.visibility, trackUpdateConnectedAccount.visibility) && m.areEqual(this.friendSync, trackUpdateConnectedAccount.friendSync) && m.areEqual(this.partner, trackUpdateConnectedAccount.partner) && m.areEqual(this.linkMethod, trackUpdateConnectedAccount.linkMethod);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,21 +57,21 @@ public final /* data */ class TrackUpdateConnectedAccount implements AnalyticsSc
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUpdateConnectedAccount(accountId=");
-        sbM833U.append(this.accountId);
-        sbM833U.append(", accountName=");
-        sbM833U.append(this.accountName);
-        sbM833U.append(", connected=");
-        sbM833U.append(this.connected);
-        sbM833U.append(", platformType=");
-        sbM833U.append(this.platformType);
-        sbM833U.append(", visibility=");
-        sbM833U.append(this.visibility);
-        sbM833U.append(", friendSync=");
-        sbM833U.append(this.friendSync);
-        sbM833U.append(", partner=");
-        sbM833U.append(this.partner);
-        sbM833U.append(", linkMethod=");
-        return C1643a.m817E(sbM833U, this.linkMethod, ")");
+        StringBuilder sbU = a.U("TrackUpdateConnectedAccount(accountId=");
+        sbU.append(this.accountId);
+        sbU.append(", accountName=");
+        sbU.append(this.accountName);
+        sbU.append(", connected=");
+        sbU.append(this.connected);
+        sbU.append(", platformType=");
+        sbU.append(this.platformType);
+        sbU.append(", visibility=");
+        sbU.append(this.visibility);
+        sbU.append(", friendSync=");
+        sbU.append(this.friendSync);
+        sbU.append(", partner=");
+        sbU.append(this.partner);
+        sbU.append(", linkMethod=");
+        return a.E(sbU, this.linkMethod, ")");
     }
 }

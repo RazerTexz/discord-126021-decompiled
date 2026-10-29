@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.MainThread;
 import androidx.core.view.ViewKt;
 import androidx.fragment.app.FragmentManager;
-import com.discord.C5419R;
+import b.a.k.b;
 import com.discord.api.activity.Activity;
 import com.discord.api.activity.ActivityAssets;
 import com.discord.api.activity.ActivityPlatform;
@@ -23,10 +23,8 @@ import com.discord.utilities.time.ClockFactory;
 import com.discord.utilities.time.TimeUtils;
 import com.discord.utilities.view.extensions.ViewExtensions;
 import com.facebook.drawee.view.SimpleDraweeView;
-import p007b.p008a.p027k.C1107b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p579g0.C12103t;
-import p507d0.p592z.p594d.C12238m;
+import d0.g0.t;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ViewHolderMusicRichPresence.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -39,18 +37,18 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
     public ViewHolderMusicRichPresence(View view, SimpleDraweeView simpleDraweeView, SimpleDraweeView simpleDraweeView2, TextView textView, TextView textView2, TextView textView3, TextView textView4, View view2, Button button, SeekBar seekBar, TextView textView5, TextView textView6) {
         super(view, simpleDraweeView, simpleDraweeView2, textView, textView2, textView3, textView4, null, view2, button, null, 2);
-        C12238m.checkNotNullParameter(view, "root");
-        C12238m.checkNotNullParameter(simpleDraweeView, "richPresenceImageLarge");
-        C12238m.checkNotNullParameter(simpleDraweeView2, "richPresenceImageSmall");
-        C12238m.checkNotNullParameter(textView, "richPresenceHeader");
-        C12238m.checkNotNullParameter(textView2, "richPresenceTitle");
-        C12238m.checkNotNullParameter(textView3, "richPresenceDetails");
-        C12238m.checkNotNullParameter(textView4, "richPresenceTime");
-        C12238m.checkNotNullParameter(view2, "richPresenceTextContainer");
-        C12238m.checkNotNullParameter(button, "richPresencePrimaryButton");
-        C12238m.checkNotNullParameter(seekBar, "richPresenceSeekbar");
-        C12238m.checkNotNullParameter(textView5, "richPresenceMusicDuration");
-        C12238m.checkNotNullParameter(textView6, "richPresenceMusicElapsed");
+        m.checkNotNullParameter(view, "root");
+        m.checkNotNullParameter(simpleDraweeView, "richPresenceImageLarge");
+        m.checkNotNullParameter(simpleDraweeView2, "richPresenceImageSmall");
+        m.checkNotNullParameter(textView, "richPresenceHeader");
+        m.checkNotNullParameter(textView2, "richPresenceTitle");
+        m.checkNotNullParameter(textView3, "richPresenceDetails");
+        m.checkNotNullParameter(textView4, "richPresenceTime");
+        m.checkNotNullParameter(view2, "richPresenceTextContainer");
+        m.checkNotNullParameter(button, "richPresencePrimaryButton");
+        m.checkNotNullParameter(seekBar, "richPresenceSeekbar");
+        m.checkNotNullParameter(textView5, "richPresenceMusicDuration");
+        m.checkNotNullParameter(textView6, "richPresenceMusicElapsed");
         this.richPresenceSeekbar = seekBar;
         this.richPresenceMusicDuration = textView5;
         this.richPresenceMusicElapsed = textView6;
@@ -68,36 +66,36 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
 
     @Override // com.discord.widgets.user.presence.ViewHolderUserRichPresence
     @MainThread
-    public void configureUi(FragmentManager fragmentManager, StreamContext streamContext, final boolean isMe, final User user, Context applicationContext, ModelRichPresence richPresence, boolean userInSameVoiceChannel) {
-        C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-        C12238m.checkNotNullParameter(applicationContext, "applicationContext");
+    public void configureUi(FragmentManager fragmentManager, StreamContext streamContext, boolean isMe, User user, Context applicationContext, ModelRichPresence richPresence, boolean userInSameVoiceChannel) {
+        m.checkNotNullParameter(fragmentManager, "fragmentManager");
+        m.checkNotNullParameter(applicationContext, "applicationContext");
         disposeTimer();
         Context context = getRoot().getContext();
-        final Activity primaryActivity = richPresence != null ? richPresence.getPrimaryActivity() : null;
+        Activity primaryActivity = richPresence != null ? richPresence.getPrimaryActivity() : null;
         if (primaryActivity == null || !ActivityUtilsKt.isRichPresence(primaryActivity)) {
             getRoot().setVisibility(8);
             return;
         }
         getRoot().setVisibility(0);
-        boolean zEquals = C12103t.equals(primaryActivity.getName(), ActivityPlatform.SPOTIFY.name(), true);
+        boolean zEquals = t.equals(primaryActivity.getName(), ActivityPlatform.SPOTIFY.name(), true);
         String state = primaryActivity.getState();
-        String strReplace$default = state != null ? C12103t.replace$default(state, ';', ',', false, 4, (Object) null) : null;
+        String strReplace$default = state != null ? t.replace$default(state, ';', ',', false, 4, (Object) null) : null;
         TextView richPresenceHeader = getRichPresenceHeader();
         Context context2 = getRichPresenceHeader().getContext();
-        C12238m.checkNotNullExpressionValue(context2, "richPresenceHeader.context");
+        m.checkNotNullExpressionValue(context2, "richPresenceHeader.context");
         richPresenceHeader.setText(PresenceUtils.getActivityHeader(context2, primaryActivity));
         getRichPresenceTitle().setText(primaryActivity.getDetails());
         TextView richPresenceDetails = getRichPresenceDetails();
         if (richPresenceDetails != null) {
-            C12238m.checkNotNullExpressionValue(context, "context");
-            ViewExtensions.setTextAndVisibilityBy(richPresenceDetails, C1107b.m216h(context, C5419R.string.user_activity_listening_artists, new Object[]{strReplace$default}, null, 4));
+            m.checkNotNullExpressionValue(context, "context");
+            ViewExtensions.setTextAndVisibilityBy(richPresenceDetails, b.h(context, 2131896737, new Object[]{strReplace$default}, null, 4));
         }
         TextView richPresenceTime = getRichPresenceTime();
-        C12238m.checkNotNullExpressionValue(context, "context");
+        m.checkNotNullExpressionValue(context, "context");
         Object[] objArr = new Object[1];
         ActivityAssets assets = primaryActivity.getAssets();
         objArr[0] = assets != null ? assets.getLargeText() : null;
-        ViewExtensions.setTextAndVisibilityBy(richPresenceTime, C1107b.m216h(context, C5419R.string.user_activity_listening_album, objArr, null, 4));
+        ViewExtensions.setTextAndVisibilityBy(richPresenceTime, b.h(context, 2131896736, objArr, null, 4));
         getRichPresenceTextContainer().setSelected(true);
         configureAssetUi(primaryActivity, streamContext);
         Button richPresencePrimaryButton = getRichPresencePrimaryButton();
@@ -110,7 +108,7 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
         if (isMe) {
             Button richPresencePrimaryButton2 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton2 != null) {
-                C1107b.m221m(richPresencePrimaryButton2, C5419R.string.user_activity_cannot_play_self, new Object[0], (4 & 4) != 0 ? C1107b.g.f1495j : null);
+                b.n(richPresencePrimaryButton2, 2131896720, new Object[0], null, 4);
             }
             Button richPresencePrimaryButton3 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton3 != null) {
@@ -119,7 +117,7 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
         } else {
             Button richPresencePrimaryButton4 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton4 != null) {
-                C1107b.m221m(richPresencePrimaryButton4, C5419R.string.user_activity_play_on_platform, new Object[]{primaryActivity.getName()}, (4 & 4) != 0 ? C1107b.g.f1495j : null);
+                b.n(richPresencePrimaryButton4, 2131896739, new Object[]{primaryActivity.getName()}, null, 4);
             }
             Button richPresencePrimaryButton5 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton5 != null) {
@@ -129,58 +127,30 @@ public final class ViewHolderMusicRichPresence extends ViewHolderUserRichPresenc
         if (!SpotifyHelper.INSTANCE.isSpotifyInstalled(context)) {
             Button richPresencePrimaryButton6 = getRichPresencePrimaryButton();
             if (richPresencePrimaryButton6 != null) {
-                richPresencePrimaryButton6.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.presence.ViewHolderMusicRichPresence.configureUi.4
-                    @Override // android.view.View.OnClickListener
-                    public final void onClick(View view) {
-                        SpotifyHelper spotifyHelper = SpotifyHelper.INSTANCE;
-                        C12238m.checkNotNullExpressionValue(view, "it");
-                        Context context3 = view.getContext();
-                        C12238m.checkNotNullExpressionValue(context3, "it.context");
-                        spotifyHelper.openPlayStoreForSpotify(context3);
-                    }
-                });
+                richPresencePrimaryButton6.setOnClickListener(ViewHolderMusicRichPresence$configureUi$4.INSTANCE);
                 return;
             }
             return;
         }
-        getRichPresenceTitle().setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.presence.ViewHolderMusicRichPresence.configureUi.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                SpotifyHelper.INSTANCE.launchTrack(C1643a.m885x(view, "it", "it.context"), primaryActivity);
-            }
-        });
+        getRichPresenceTitle().setOnClickListener(new ViewHolderMusicRichPresence$configureUi$1(primaryActivity));
         Button richPresencePrimaryButton7 = getRichPresencePrimaryButton();
         if (richPresencePrimaryButton7 != null) {
-            richPresencePrimaryButton7.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.presence.ViewHolderMusicRichPresence.configureUi.2
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view) {
-                    SpotifyHelper.INSTANCE.launchTrack(C1643a.m885x(view, "it", "it.context"), primaryActivity);
-                }
-            });
+            richPresencePrimaryButton7.setOnClickListener(new ViewHolderMusicRichPresence$configureUi$2(primaryActivity));
         }
-        getRichPresenceImageLarge().setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.presence.ViewHolderMusicRichPresence.configureUi.3
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view) {
-                SpotifyHelper spotifyHelper = SpotifyHelper.INSTANCE;
-                Context contextM885x = C1643a.m885x(view, "it", "it.context");
-                Activity activity = primaryActivity;
-                User user2 = user;
-                spotifyHelper.launchAlbum(contextM885x, activity, user2 != null ? user2.getId() : 0L, isMe);
-            }
-        });
+        getRichPresenceImageLarge().setOnClickListener(new ViewHolderMusicRichPresence$configureUi$3(primaryActivity, user, isMe));
     }
 
     @Override // com.discord.widgets.user.presence.ViewHolderUserRichPresence
     public void setTimeTextViews(ActivityTimestamps timestamps) {
         if (timestamps != null) {
             long jCurrentTimeMillis = this.clock.currentTimeMillis();
-            long jM7561b = timestamps.m7561b() - timestamps.m7562c();
-            long jM7562c = jCurrentTimeMillis >= timestamps.m7561b() ? jM7561b : jCurrentTimeMillis - timestamps.m7562c();
-            this.richPresenceSeekbar.setProgress((int) ((jM7562c / jM7561b) * ((double) 100.0f)));
+            long jB = timestamps.b() - timestamps.c();
+            long jC = jCurrentTimeMillis >= timestamps.b() ? jB : jCurrentTimeMillis - timestamps.c();
+            this.richPresenceSeekbar.setProgress((int) ((jC / jB) * ((double) 100.0f)));
             TextView textView = this.richPresenceMusicElapsed;
             TimeUtils timeUtils = TimeUtils.INSTANCE;
-            textView.setText(TimeUtils.toFriendlyStringSimple$default(timeUtils, jM7562c, null, null, 4, null));
-            this.richPresenceMusicDuration.setText(TimeUtils.toFriendlyStringSimple$default(timeUtils, jM7561b, null, null, 4, null));
+            textView.setText(TimeUtils.toFriendlyStringSimple$default(timeUtils, jC, null, null, 4, null));
+            this.richPresenceMusicDuration.setText(TimeUtils.toFriendlyStringSimple$default(timeUtils, jB, null, null, 4, null));
         }
     }
 }

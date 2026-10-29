@@ -1,6 +1,6 @@
 package com.discord.tooltips;
 
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: DefaultTooltipCreator.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -10,7 +10,7 @@ public final class DefaultTooltipCreator {
     public final TooltipManager tooltipManager;
 
     public DefaultTooltipCreator(TooltipManager tooltipManager) {
-        C12238m.checkNotNullParameter(tooltipManager, "tooltipManager");
+        m.checkNotNullParameter(tooltipManager, "tooltipManager");
         this.tooltipManager = tooltipManager;
     }
 }

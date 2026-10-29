@@ -1,14 +1,13 @@
 package com.discord.widgets.status;
 
 import android.content.res.ColorStateList;
-import com.discord.C5419R;
 import com.discord.utilities.color.ColorCompat;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetForumPostStatus.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetForumPostStatus$reactionMeTextColor$2 extends AbstractC12240o implements Function0<ColorStateList> {
+public final class WidgetForumPostStatus$reactionMeTextColor$2 extends o implements Function0<ColorStateList> {
     public final /* synthetic */ WidgetForumPostStatus this$0;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -17,9 +16,14 @@ public final class WidgetForumPostStatus$reactionMeTextColor$2 extends AbstractC
         this.this$0 = widgetForumPostStatus;
     }
 
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ ColorStateList invoke() {
+        return invoke();
+    }
+
     /* JADX WARN: Can't rename method to resolve collision */
     @Override // kotlin.jvm.functions.Function0
     public final ColorStateList invoke() {
-        return ColorStateList.valueOf(ColorCompat.getThemedColor(this.this$0.getContext(), C5419R.attr.colorHeaderPrimary));
+        return ColorStateList.valueOf(ColorCompat.getThemedColor(this.this$0.getContext(), 2130968989));
     }
 }

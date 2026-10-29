@@ -1,8 +1,8 @@
 package com.discord.api.message.embed;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: EmbedProvider.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -18,7 +18,7 @@ public final /* data */ class EmbedProvider {
             return false;
         }
         EmbedProvider embedProvider = (EmbedProvider) other;
-        return C12238m.areEqual(this.name, embedProvider.name) && C12238m.areEqual(this.url, embedProvider.url);
+        return m.areEqual(this.name, embedProvider.name) && m.areEqual(this.url, embedProvider.url);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -39,9 +39,9 @@ public final /* data */ class EmbedProvider {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("EmbedProvider(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", url=");
-        return C1643a.m822J(sbM833U, this.url, ")");
+        StringBuilder sbU = a.U("EmbedProvider(name=");
+        sbU.append(this.name);
+        sbU.append(", url=");
+        return a.J(sbU, this.url, ")");
     }
 }

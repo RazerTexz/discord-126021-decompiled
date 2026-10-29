@@ -1,10 +1,7 @@
 package com.discord.models.domain;
 
-import java.io.IOException;
-import kotlin.jvm.internal.Ref$ObjectRef;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.functions.Action1;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelApplicationStream.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -13,59 +10,8 @@ public final /* data */ class StreamServerUpdate {
     private final String streamKey;
     private final String token;
 
-    /* JADX INFO: compiled from: ModelApplicationStream.kt */
-    public final class Parser implements Model.Parser<StreamServerUpdate> {
-        public static final Parser INSTANCE = new Parser();
-
-        private Parser() {
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // com.discord.models.domain.Model.Parser
-        public StreamServerUpdate parse(final Model.JsonReader reader) throws IOException {
-            final Ref$ObjectRef ref$ObjectRefM844c0 = C1643a.m844c0(reader, "reader");
-            ref$ObjectRefM844c0.element = null;
-            final Ref$ObjectRef ref$ObjectRef = new Ref$ObjectRef();
-            ref$ObjectRef.element = null;
-            final Ref$ObjectRef ref$ObjectRef2 = new Ref$ObjectRef();
-            ref$ObjectRef2.element = null;
-            reader.nextObject(new Action1<String>() { // from class: com.discord.models.domain.StreamServerUpdate$Parser$parse$1
-                @Override // p658rx.functions.Action1
-                public final void call(String str) throws IOException {
-                    if (str != null) {
-                        int iHashCode = str.hashCode();
-                        if (iHashCode != -1194435296) {
-                            if (iHashCode != 110541305) {
-                                if (iHashCode == 1741102485 && str.equals("endpoint")) {
-                                    ref$ObjectRef.element = (T) reader.nextStringOrNull();
-                                    return;
-                                }
-                            } else if (str.equals("token")) {
-                                ref$ObjectRef2.element = (T) reader.nextStringOrNull();
-                                return;
-                            }
-                        } else if (str.equals("stream_key")) {
-                            Ref$ObjectRef ref$ObjectRef3 = ref$ObjectRefM844c0;
-                            T t = (T) reader.nextStringOrNull();
-                            C12238m.checkNotNull(t);
-                            ref$ObjectRef3.element = t;
-                            return;
-                        }
-                    }
-                    reader.skipValue();
-                }
-            });
-            T t = ref$ObjectRefM844c0.element;
-            if (t == 0) {
-                C12238m.throwUninitializedPropertyAccessException("streamKey");
-            }
-            return new StreamServerUpdate((String) t, (String) ref$ObjectRef.element, (String) ref$ObjectRef2.element);
-        }
-    }
-
     public StreamServerUpdate(String str, String str2, String str3) {
-        C12238m.checkNotNullParameter(str, "streamKey");
+        m.checkNotNullParameter(str, "streamKey");
         this.streamKey = str;
         this.endpoint = str2;
         this.token = str3;
@@ -85,7 +31,7 @@ public final /* data */ class StreamServerUpdate {
     }
 
     public final StreamServerUpdate copy(String streamKey, String endpoint, String token) {
-        C12238m.checkNotNullParameter(streamKey, "streamKey");
+        m.checkNotNullParameter(streamKey, "streamKey");
         return new StreamServerUpdate(streamKey, endpoint, token);
     }
 
@@ -97,7 +43,7 @@ public final /* data */ class StreamServerUpdate {
             return false;
         }
         StreamServerUpdate streamServerUpdate = (StreamServerUpdate) other;
-        return C12238m.areEqual(this.streamKey, streamServerUpdate.streamKey) && C12238m.areEqual(this.endpoint, streamServerUpdate.endpoint) && C12238m.areEqual(this.token, streamServerUpdate.token);
+        return m.areEqual(this.streamKey, streamServerUpdate.streamKey) && m.areEqual(this.endpoint, streamServerUpdate.endpoint) && m.areEqual(this.token, streamServerUpdate.token);
     }
 
     /* JADX INFO: renamed from: component2, reason: from getter */
@@ -137,11 +83,11 @@ public final /* data */ class StreamServerUpdate {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StreamServerUpdate(streamKey=");
-        sbM833U.append(this.streamKey);
-        sbM833U.append(", endpoint=");
-        sbM833U.append(this.endpoint);
-        sbM833U.append(", token=");
-        return C1643a.m822J(sbM833U, this.token, ")");
+        StringBuilder sbU = a.U("StreamServerUpdate(streamKey=");
+        sbU.append(this.streamKey);
+        sbU.append(", endpoint=");
+        sbU.append(this.endpoint);
+        sbU.append(", token=");
+        return a.J(sbU, this.token, ")");
     }
 }

@@ -2,21 +2,18 @@ package com.discord.models.domain;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import b.a.m.a.i;
+import b.a.m.a.j;
+import b.d.b.a.a;
 import com.discord.api.voice.state.VoiceState;
-import com.discord.models.deserialization.gson.InboundGatewayGsonParser;
-import com.discord.models.domain.Model;
-import com.discord.models.domain.ModelCall;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelCall implements Model {
     private long channelId;
-
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ int f18564j = 0;
+    public static final /* synthetic */ int j = 0;
     private long messageId;
     private String region;
     private List<Long> ringing;
@@ -26,90 +23,31 @@ public class ModelCall implements Model {
     private List<VoiceState> voiceStates;
     private static final List<Long> EMPTY_RINGING = new ArrayList();
 
-    public class Ringable implements Model {
-        private boolean ringable;
-
-        @Override // com.discord.models.domain.Model
-        public void assignField(Model.JsonReader jsonReader) throws IOException {
-            String strNextName = jsonReader.nextName();
-            strNextName.hashCode();
-            if (strNextName.equals("ringable")) {
-                this.ringable = jsonReader.nextBoolean(this.ringable);
-            } else {
-                jsonReader.skipValue();
-            }
-        }
-
-        public boolean canEqual(Object obj) {
-            return obj instanceof Ringable;
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof Ringable)) {
-                return false;
-            }
-            Ringable ringable = (Ringable) obj;
-            return ringable.canEqual(this) && isRingable() == ringable.isRingable();
-        }
-
-        public int hashCode() {
-            return 59 + (isRingable() ? 79 : 97);
-        }
-
-        public boolean isRingable() {
-            return this.ringable;
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("ModelCall.Ringable(ringable=");
-            sbM833U.append(isRingable());
-            sbM833U.append(")");
-            return sbM833U.toString();
-        }
-    }
-
     @Override // com.discord.models.domain.Model
-    public void assignField(final Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "channel_id":
-                this.channelId = jsonReader.nextLong(this.channelId);
+                this.channelId = model$JsonReader.nextLong(this.channelId);
                 break;
             case "message_id":
-                this.messageId = jsonReader.nextLong(this.messageId);
+                this.messageId = model$JsonReader.nextLong(this.messageId);
                 break;
             case "region":
-                this.region = jsonReader.nextString(this.region);
+                this.region = model$JsonReader.nextString(this.region);
                 break;
             case "unavailable":
-                this.unavailable = jsonReader.nextBoolean(this.unavailable);
+                this.unavailable = model$JsonReader.nextBoolean(this.unavailable);
                 break;
             case "voice_states":
-                this.voiceStates = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.j
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        Model.JsonReader jsonReader2 = jsonReader;
-                        int i = ModelCall.f18564j;
-                        return (VoiceState) InboundGatewayGsonParser.fromJson(jsonReader2, VoiceState.class);
-                    }
-                });
+                this.voiceStates = model$JsonReader.nextList(new j(model$JsonReader));
                 break;
             case "ringing":
-                this.ringing = jsonReader.nextList(new Model.JsonReader.ItemFactory() { // from class: b.a.m.a.i
-                    @Override // com.discord.models.domain.Model.JsonReader.ItemFactory
-                    public final Object get() {
-                        Model.JsonReader jsonReader2 = jsonReader;
-                        int i = ModelCall.f18564j;
-                        return Long.valueOf(jsonReader2.nextLong(1L));
-                    }
-                });
+                this.ringing = model$JsonReader.nextList(new i(model$JsonReader));
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -184,19 +122,19 @@ public class ModelCall implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelCall(channelId=");
-        sbM833U.append(getChannelId());
-        sbM833U.append(", messageId=");
-        sbM833U.append(getMessageId());
-        sbM833U.append(", region=");
-        sbM833U.append(getRegion());
-        sbM833U.append(", unavailable=");
-        sbM833U.append(isUnavailable());
-        sbM833U.append(", ringing=");
-        sbM833U.append(getRinging());
-        sbM833U.append(", voiceStates=");
-        sbM833U.append(getVoiceStates());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelCall(channelId=");
+        sbU.append(getChannelId());
+        sbU.append(", messageId=");
+        sbU.append(getMessageId());
+        sbU.append(", region=");
+        sbU.append(getRegion());
+        sbU.append(", unavailable=");
+        sbU.append(isUnavailable());
+        sbU.append(", ringing=");
+        sbU.append(getRinging());
+        sbU.append(", voiceStates=");
+        sbU.append(getVoiceStates());
+        sbU.append(")");
+        return sbU.toString();
     }
 }

@@ -1,7 +1,7 @@
 package com.discord.models.domain;
 
+import b.d.b.a.a;
 import java.io.IOException;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class ModelWebhook implements Model {
@@ -9,32 +9,32 @@ public class ModelWebhook implements Model {
     private long channelId;
     private long guildId;
 
-    /* JADX INFO: renamed from: id */
-    private long f18586id;
+    /* JADX INFO: renamed from: id, reason: collision with root package name */
+    private long f2737id;
     private String name;
 
     @Override // com.discord.models.domain.Model
-    public void assignField(Model.JsonReader jsonReader) throws IOException {
-        String strNextName = jsonReader.nextName();
+    public void assignField(Model$JsonReader model$JsonReader) throws IOException {
+        String strNextName = model$JsonReader.nextName();
         strNextName.hashCode();
         switch (strNextName) {
             case "channel_id":
-                this.channelId = jsonReader.nextLong(this.channelId);
+                this.channelId = model$JsonReader.nextLong(this.channelId);
                 break;
             case "avatar":
-                this.avatar = jsonReader.nextString(this.avatar);
+                this.avatar = model$JsonReader.nextString(this.avatar);
                 break;
             case "guild_id":
-                this.guildId = jsonReader.nextLong(this.guildId);
+                this.guildId = model$JsonReader.nextLong(this.guildId);
                 break;
             case "id":
-                this.f18586id = jsonReader.nextLong(this.f18586id);
+                this.f2737id = model$JsonReader.nextLong(this.f2737id);
                 break;
             case "name":
-                this.name = jsonReader.nextString(this.name);
+                this.name = model$JsonReader.nextString(this.name);
                 break;
             default:
-                jsonReader.skipValue();
+                model$JsonReader.skipValue();
                 break;
         }
     }
@@ -77,7 +77,7 @@ public class ModelWebhook implements Model {
     }
 
     public long getId() {
-        return this.f18586id;
+        return this.f2737id;
     }
 
     public String getName() {
@@ -96,17 +96,17 @@ public class ModelWebhook implements Model {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelWebhook(avatar=");
-        sbM833U.append(getAvatar());
-        sbM833U.append(", name=");
-        sbM833U.append(getName());
-        sbM833U.append(", channelId=");
-        sbM833U.append(getChannelId());
-        sbM833U.append(", guildId=");
-        sbM833U.append(getGuildId());
-        sbM833U.append(", id=");
-        sbM833U.append(getId());
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelWebhook(avatar=");
+        sbU.append(getAvatar());
+        sbU.append(", name=");
+        sbU.append(getName());
+        sbU.append(", channelId=");
+        sbU.append(getChannelId());
+        sbU.append(", guildId=");
+        sbU.append(getGuildId());
+        sbU.append(", id=");
+        sbU.append(getId());
+        sbU.append(")");
+        return sbU.toString();
     }
 }

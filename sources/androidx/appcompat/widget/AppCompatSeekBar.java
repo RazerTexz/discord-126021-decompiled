@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.C0051R;
+import androidx.appcompat.R$attr;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatSeekBar extends SeekBar {
@@ -35,7 +35,7 @@ public class AppCompatSeekBar extends SeekBar {
     }
 
     public AppCompatSeekBar(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, C0051R.attr.seekBarStyle);
+        this(context, attributeSet, R$attr.seekBarStyle);
     }
 
     public AppCompatSeekBar(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {

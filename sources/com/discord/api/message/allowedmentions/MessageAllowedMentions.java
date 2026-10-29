@@ -1,8 +1,8 @@
 package com.discord.api.message.allowedmentions;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: MessageAllowedMentions.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,6 +27,18 @@ public final /* data */ class MessageAllowedMentions {
         this.repliedUser = bool;
     }
 
+    public final List<MessageAllowedMentionsTypes> a() {
+        return this.parse;
+    }
+
+    public final List<Long> c() {
+        return this.roles;
+    }
+
+    public final List<Long> d() {
+        return this.users;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -35,7 +47,7 @@ public final /* data */ class MessageAllowedMentions {
             return false;
         }
         MessageAllowedMentions messageAllowedMentions = (MessageAllowedMentions) other;
-        return C12238m.areEqual(this.parse, messageAllowedMentions.parse) && C12238m.areEqual(this.users, messageAllowedMentions.users) && C12238m.areEqual(this.roles, messageAllowedMentions.roles) && C12238m.areEqual(this.repliedUser, messageAllowedMentions.repliedUser);
+        return m.areEqual(this.parse, messageAllowedMentions.parse) && m.areEqual(this.users, messageAllowedMentions.users) && m.areEqual(this.roles, messageAllowedMentions.roles) && m.areEqual(this.repliedUser, messageAllowedMentions.repliedUser);
     }
 
     /* JADX INFO: renamed from: b, reason: from getter */
@@ -54,29 +66,14 @@ public final /* data */ class MessageAllowedMentions {
         return iHashCode3 + (bool != null ? bool.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<MessageAllowedMentionsTypes> m8060a() {
-        return this.parse;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<Long> m8062c() {
-        return this.roles;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public final List<Long> m8063d() {
-        return this.users;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("MessageAllowedMentions(parse=");
-        sbM833U.append(this.parse);
-        sbM833U.append(", users=");
-        sbM833U.append(this.users);
-        sbM833U.append(", roles=");
-        sbM833U.append(this.roles);
-        sbM833U.append(", repliedUser=");
-        return C1643a.m816D(sbM833U, this.repliedUser, ")");
+        StringBuilder sbU = a.U("MessageAllowedMentions(parse=");
+        sbU.append(this.parse);
+        sbU.append(", users=");
+        sbU.append(this.users);
+        sbU.append(", roles=");
+        sbU.append(this.roles);
+        sbU.append(", repliedUser=");
+        return a.D(sbU, this.repliedUser, ")");
     }
 }

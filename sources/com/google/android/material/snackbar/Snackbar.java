@@ -3,13 +3,12 @@ package com.google.android.material.snackbar;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.graphics.PorterDuff$Mode;
+import android.os.Build$VERSION;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View$OnClickListener;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
@@ -18,11 +17,10 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Dimension;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
 import androidx.annotation.StringRes;
-import androidx.constraintlayout.solver.widgets.analyzer.BasicMeasure;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.C10817R;
+import com.google.android.material.R$attr;
+import com.google.android.material.R$layout;
 
 /* JADX INFO: loaded from: classes3.dex */
 public class Snackbar extends BaseTransientBottomBar<Snackbar> {
@@ -33,95 +31,13 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
     private final AccessibilityManager accessibilityManager;
 
     @Nullable
-    private BaseTransientBottomBar.BaseCallback<Snackbar> callback;
+    private BaseTransientBottomBar$BaseCallback<Snackbar> callback;
     private boolean hasAction;
 
-    public class Callback extends BaseTransientBottomBar.BaseCallback<Snackbar> {
-        public static final int DISMISS_EVENT_ACTION = 1;
-        public static final int DISMISS_EVENT_CONSECUTIVE = 4;
-        public static final int DISMISS_EVENT_MANUAL = 3;
-        public static final int DISMISS_EVENT_SWIPE = 0;
-        public static final int DISMISS_EVENT_TIMEOUT = 2;
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback
-        public void onDismissed(Snackbar snackbar, int i) {
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.BaseCallback
-        public void onShown(Snackbar snackbar) {
-        }
-    }
-
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public final class SnackbarLayout extends BaseTransientBottomBar.SnackbarBaseLayout {
-        public SnackbarLayout(Context context) {
-            super(context);
-        }
-
-        @Override // android.widget.FrameLayout, android.view.View
-        public void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            int childCount = getChildCount();
-            int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-            for (int i3 = 0; i3 < childCount; i3++) {
-                View childAt = getChildAt(i3);
-                if (childAt.getLayoutParams().width == -1) {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, BasicMeasure.EXACTLY), View.MeasureSpec.makeMeasureSpec(childAt.getMeasuredHeight(), BasicMeasure.EXACTLY));
-                }
-            }
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
-        public /* bridge */ /* synthetic */ void setBackground(@Nullable Drawable drawable) {
-            super.setBackground(drawable);
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
-        public /* bridge */ /* synthetic */ void setBackgroundDrawable(@Nullable Drawable drawable) {
-            super.setBackgroundDrawable(drawable);
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
-        public /* bridge */ /* synthetic */ void setBackgroundTintList(@Nullable ColorStateList colorStateList) {
-            super.setBackgroundTintList(colorStateList);
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
-        public /* bridge */ /* synthetic */ void setBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
-            super.setBackgroundTintMode(mode);
-        }
-
-        @Override // com.google.android.material.snackbar.BaseTransientBottomBar.SnackbarBaseLayout, android.view.View
-        public /* bridge */ /* synthetic */ void setOnClickListener(@Nullable View.OnClickListener onClickListener) {
-            super.setOnClickListener(onClickListener);
-        }
-
-        public SnackbarLayout(Context context, AttributeSet attributeSet) {
-            super(context, attributeSet);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.snackbar.Snackbar$a */
-    public class ViewOnClickListenerC11003a implements View.OnClickListener {
-
-        /* JADX INFO: renamed from: j */
-        public final /* synthetic */ View.OnClickListener f21146j;
-
-        public ViewOnClickListenerC11003a(View.OnClickListener onClickListener) {
-            this.f21146j = onClickListener;
-        }
-
-        @Override // android.view.View.OnClickListener
-        public void onClick(View view) {
-            this.f21146j.onClick(view);
-            Snackbar.this.dispatchDismiss(1);
-        }
-    }
-
     static {
-        int i = C10817R.attr.snackbarButtonStyle;
+        int i = R$attr.snackbarButtonStyle;
         SNACKBAR_BUTTON_STYLE_ATTR = new int[]{i};
-        SNACKBAR_CONTENT_STYLE_ATTRS = new int[]{i, C10817R.attr.snackbarTextViewStyle};
+        SNACKBAR_CONTENT_STYLE_ATTRS = new int[]{i, R$attr.snackbarTextViewStyle};
     }
 
     private Snackbar(@NonNull Context context, @NonNull ViewGroup viewGroup, @NonNull View view, @NonNull ContentViewCallback contentViewCallback) {
@@ -161,7 +77,7 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
         if (duration == -2) {
             return -2;
         }
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             return this.accessibilityManager.getRecommendedTimeoutMillis(duration, (this.hasAction ? 4 : 0) | 1 | 2);
         }
         if (this.hasAction && this.accessibilityManager.isTouchExplorationEnabled()) {
@@ -205,7 +121,7 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
         if (context == null) {
             context = viewGroupFindSuitableParent.getContext();
         }
-        SnackbarContentLayout snackbarContentLayout = (SnackbarContentLayout) LayoutInflater.from(context).inflate(hasSnackbarContentStyleAttrs(context) ? C10817R.layout.mtrl_layout_snackbar_include : C10817R.layout.design_layout_snackbar_include, viewGroupFindSuitableParent, false);
+        SnackbarContentLayout snackbarContentLayout = (SnackbarContentLayout) LayoutInflater.from(context).inflate(hasSnackbarContentStyleAttrs(context) ? R$layout.mtrl_layout_snackbar_include : R$layout.design_layout_snackbar_include, viewGroupFindSuitableParent, false);
         Snackbar snackbar = new Snackbar(context, viewGroupFindSuitableParent, snackbarContentLayout, snackbarContentLayout);
         snackbar.setText(charSequence);
         snackbar.setDuration(i);
@@ -213,8 +129,8 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
-    public Snackbar setAction(@StringRes int i, View.OnClickListener onClickListener) {
-        return setAction(getContext().getText(i), onClickListener);
+    public Snackbar setAction(@StringRes int i, View$OnClickListener view$OnClickListener) {
+        return setAction(getContext().getText(i), view$OnClickListener);
     }
 
     @NonNull
@@ -235,22 +151,22 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
-    public Snackbar setBackgroundTintMode(@Nullable PorterDuff.Mode mode) {
-        this.view.setBackgroundTintMode(mode);
+    public Snackbar setBackgroundTintMode(@Nullable PorterDuff$Mode porterDuff$Mode) {
+        this.view.setBackgroundTintMode(porterDuff$Mode);
         return this;
     }
 
     @NonNull
     @Deprecated
-    public Snackbar setCallback(@Nullable Callback callback) {
-        BaseTransientBottomBar.BaseCallback<Snackbar> baseCallback = this.callback;
-        if (baseCallback != null) {
-            removeCallback(baseCallback);
+    public Snackbar setCallback(@Nullable Snackbar$Callback snackbar$Callback) {
+        BaseTransientBottomBar$BaseCallback<Snackbar> baseTransientBottomBar$BaseCallback = this.callback;
+        if (baseTransientBottomBar$BaseCallback != null) {
+            removeCallback(baseTransientBottomBar$BaseCallback);
         }
-        if (callback != null) {
-            addCallback(callback);
+        if (snackbar$Callback != null) {
+            addCallback(snackbar$Callback);
         }
-        this.callback = callback;
+        this.callback = snackbar$Callback;
         return this;
     }
 
@@ -283,9 +199,9 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
     }
 
     @NonNull
-    public Snackbar setAction(@Nullable CharSequence charSequence, @Nullable View.OnClickListener onClickListener) {
+    public Snackbar setAction(@Nullable CharSequence charSequence, @Nullable View$OnClickListener view$OnClickListener) {
         Button actionView = ((SnackbarContentLayout) this.view.getChildAt(0)).getActionView();
-        if (TextUtils.isEmpty(charSequence) || onClickListener == null) {
+        if (TextUtils.isEmpty(charSequence) || view$OnClickListener == null) {
             actionView.setVisibility(8);
             actionView.setOnClickListener(null);
             this.hasAction = false;
@@ -293,7 +209,7 @@ public class Snackbar extends BaseTransientBottomBar<Snackbar> {
             this.hasAction = true;
             actionView.setVisibility(0);
             actionView.setText(charSequence);
-            actionView.setOnClickListener(new ViewOnClickListenerC11003a(onClickListener));
+            actionView.setOnClickListener(new Snackbar$a(this, view$OnClickListener));
         }
         return this;
     }

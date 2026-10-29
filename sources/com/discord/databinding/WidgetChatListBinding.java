@@ -8,22 +8,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RecyclerView f16354a;
+    public final RecyclerView a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f16355b;
+    public final RecyclerView f2343b;
 
     public WidgetChatListBinding(@NonNull RecyclerView recyclerView, @NonNull RecyclerView recyclerView2) {
-        this.f16354a = recyclerView;
-        this.f16355b = recyclerView2;
+        this.a = recyclerView;
+        this.f2343b = recyclerView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16354a;
+        return this.a;
     }
 }

@@ -5,17 +5,17 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import com.discord.C5419R;
+import com.discord.R$id;
 import com.discord.app.AppViewFlipper;
 import com.discord.databinding.WidgetClaimOutboundPromoBinding;
 import com.google.android.material.button.MaterialButton;
+import d0.z.d.k;
+import d0.z.d.m;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.C12236k;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: WidgetClaimOutboundPromo.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final /* synthetic */ class WidgetClaimOutboundPromo$binding$2 extends C12236k implements Function1<View, WidgetClaimOutboundPromoBinding> {
+public final /* synthetic */ class WidgetClaimOutboundPromo$binding$2 extends k implements Function1<View, WidgetClaimOutboundPromoBinding> {
     public static final WidgetClaimOutboundPromo$binding$2 INSTANCE = new WidgetClaimOutboundPromo$binding$2();
 
     public WidgetClaimOutboundPromo$binding$2() {
@@ -23,40 +23,45 @@ public final /* synthetic */ class WidgetClaimOutboundPromo$binding$2 extends C1
     }
 
     @Override // kotlin.jvm.functions.Function1
-    public final WidgetClaimOutboundPromoBinding invoke(View view) {
-        C12238m.checkNotNullParameter(view, "p1");
-        int i = C5419R.id.claimPromoBody;
-        TextView textView = (TextView) view.findViewById(C5419R.id.claimPromoBody);
+    public /* bridge */ /* synthetic */ WidgetClaimOutboundPromoBinding invoke(View view) {
+        return invoke2(view);
+    }
+
+    /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+    public final WidgetClaimOutboundPromoBinding invoke2(View view) {
+        m.checkNotNullParameter(view, "p1");
+        int i = R$id.claimPromoBody;
+        TextView textView = (TextView) view.findViewById(R$id.claimPromoBody);
         if (textView != null) {
-            i = C5419R.id.claimPromoCode;
-            TextView textView2 = (TextView) view.findViewById(C5419R.id.claimPromoCode);
+            i = R$id.claimPromoCode;
+            TextView textView2 = (TextView) view.findViewById(R$id.claimPromoCode);
             if (textView2 != null) {
-                i = C5419R.id.claimPromoCodeBox;
-                LinearLayout linearLayout = (LinearLayout) view.findViewById(C5419R.id.claimPromoCodeBox);
+                i = R$id.claimPromoCodeBox;
+                LinearLayout linearLayout = (LinearLayout) view.findViewById(R$id.claimPromoCodeBox);
                 if (linearLayout != null) {
-                    i = C5419R.id.claimPromoCopyButton;
-                    MaterialButton materialButton = (MaterialButton) view.findViewById(C5419R.id.claimPromoCopyButton);
+                    i = R$id.claimPromoCopyButton;
+                    MaterialButton materialButton = (MaterialButton) view.findViewById(R$id.claimPromoCopyButton);
                     if (materialButton != null) {
-                        i = C5419R.id.claimPromoFailure;
-                        LinearLayoutCompat linearLayoutCompat = (LinearLayoutCompat) view.findViewById(C5419R.id.claimPromoFailure);
+                        i = R$id.claimPromoFailure;
+                        LinearLayoutCompat linearLayoutCompat = (LinearLayoutCompat) view.findViewById(R$id.claimPromoFailure);
                         if (linearLayoutCompat != null) {
-                            i = C5419R.id.claimPromoFailureCloseButton;
-                            MaterialButton materialButton2 = (MaterialButton) view.findViewById(C5419R.id.claimPromoFailureCloseButton);
+                            i = R$id.claimPromoFailureCloseButton;
+                            MaterialButton materialButton2 = (MaterialButton) view.findViewById(R$id.claimPromoFailureCloseButton);
                             if (materialButton2 != null) {
-                                i = C5419R.id.claimPromoFlipper;
-                                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(C5419R.id.claimPromoFlipper);
+                                i = R$id.claimPromoFlipper;
+                                AppViewFlipper appViewFlipper = (AppViewFlipper) view.findViewById(R$id.claimPromoFlipper);
                                 if (appViewFlipper != null) {
-                                    i = C5419R.id.claimPromoLoading;
-                                    FrameLayout frameLayout = (FrameLayout) view.findViewById(C5419R.id.claimPromoLoading);
+                                    i = R$id.claimPromoLoading;
+                                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R$id.claimPromoLoading);
                                     if (frameLayout != null) {
-                                        i = C5419R.id.claimPromoMaybeLaterButton;
-                                        MaterialButton materialButton3 = (MaterialButton) view.findViewById(C5419R.id.claimPromoMaybeLaterButton);
+                                        i = R$id.claimPromoMaybeLaterButton;
+                                        MaterialButton materialButton3 = (MaterialButton) view.findViewById(R$id.claimPromoMaybeLaterButton);
                                         if (materialButton3 != null) {
-                                            i = C5419R.id.claimPromoRedeemButton;
-                                            MaterialButton materialButton4 = (MaterialButton) view.findViewById(C5419R.id.claimPromoRedeemButton);
+                                            i = R$id.claimPromoRedeemButton;
+                                            MaterialButton materialButton4 = (MaterialButton) view.findViewById(R$id.claimPromoRedeemButton);
                                             if (materialButton4 != null) {
-                                                i = C5419R.id.claimPromoSuccess;
-                                                LinearLayoutCompat linearLayoutCompat2 = (LinearLayoutCompat) view.findViewById(C5419R.id.claimPromoSuccess);
+                                                i = R$id.claimPromoSuccess;
+                                                LinearLayoutCompat linearLayoutCompat2 = (LinearLayoutCompat) view.findViewById(R$id.claimPromoSuccess);
                                                 if (linearLayoutCompat2 != null) {
                                                     return new WidgetClaimOutboundPromoBinding((LinearLayoutCompat) view, textView, textView2, linearLayout, materialButton, linearLayoutCompat, materialButton2, appViewFlipper, frameLayout, materialButton3, materialButton4, linearLayoutCompat2);
                                                 }

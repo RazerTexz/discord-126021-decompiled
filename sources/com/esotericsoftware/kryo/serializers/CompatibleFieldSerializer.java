@@ -1,12 +1,13 @@
 package com.esotericsoftware.kryo.serializers;
 
+import b.e.a.a;
+import b.e.a.a$a;
 import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryo.p502io.Input;
-import com.esotericsoftware.kryo.p502io.InputChunked;
-import com.esotericsoftware.kryo.p502io.Output;
-import com.esotericsoftware.kryo.p502io.OutputChunked;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.InputChunked;
+import com.esotericsoftware.kryo.io.Output;
+import com.esotericsoftware.kryo.io.OutputChunked;
 import com.esotericsoftware.kryo.util.ObjectMap;
-import p007b.p106e.p107a.C1644a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CompatibleFieldSerializer<T> extends FieldSerializer<T> {
@@ -21,16 +22,16 @@ public class CompatibleFieldSerializer<T> extends FieldSerializer<T> {
         T tCreate = create(kryo, input, cls);
         kryo.reference(tCreate);
         ObjectMap graphContext = kryo.getGraphContext();
-        FieldSerializer.CachedField[] cachedFieldArr = (FieldSerializer.CachedField[]) graphContext.get(this);
-        if (cachedFieldArr == null) {
+        FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr = (FieldSerializer$CachedField[]) graphContext.get(this);
+        if (fieldSerializer$CachedFieldArr == null) {
             int varInt = input.readVarInt(true);
-            C1644a.a aVar = C1644a.f3007a;
+            a$a a_a = a.a;
             String[] strArr = new String[varInt];
             for (int i = 0; i < varInt; i++) {
                 strArr[i] = input.readString();
             }
-            FieldSerializer.CachedField[] cachedFieldArr2 = new FieldSerializer.CachedField[varInt];
-            FieldSerializer.CachedField[] fields = getFields();
+            FieldSerializer$CachedField[] fieldSerializer$CachedFieldArr2 = new FieldSerializer$CachedField[varInt];
+            FieldSerializer$CachedField[] fields = getFields();
             if (varInt < 32) {
                 for (int i2 = 0; i2 < varInt; i2++) {
                     String str = strArr[i2];
@@ -38,11 +39,11 @@ public class CompatibleFieldSerializer<T> extends FieldSerializer<T> {
                     int i3 = 0;
                     while (true) {
                         if (i3 >= length) {
-                            C1644a.a aVar2 = C1644a.f3007a;
+                            a$a a_a2 = a.a;
                             break;
                         }
                         if (getCachedFieldName(fields[i3]).equals(str)) {
-                            cachedFieldArr2[i2] = fields[i3];
+                            fieldSerializer$CachedFieldArr2[i2] = fields[i3];
                             break;
                         }
                         i3++;
@@ -56,14 +57,14 @@ public class CompatibleFieldSerializer<T> extends FieldSerializer<T> {
                     int i6 = 0;
                     while (true) {
                         if (i6 > i5) {
-                            C1644a.a aVar3 = C1644a.f3007a;
+                            a$a a_a3 = a.a;
                             break;
                         }
                         int i7 = (i6 + i5) >>> 1;
                         int iCompareTo = str2.compareTo(getCachedFieldName(fields[i7]));
                         if (iCompareTo >= 0) {
                             if (iCompareTo <= 0) {
-                                cachedFieldArr2[i4] = fields[i7];
+                                fieldSerializer$CachedFieldArr2[i4] = fields[i7];
                                 break;
                             }
                             i6 = i7 + 1;
@@ -73,17 +74,17 @@ public class CompatibleFieldSerializer<T> extends FieldSerializer<T> {
                     }
                 }
             }
-            graphContext.put(this, cachedFieldArr2);
-            cachedFieldArr = cachedFieldArr2;
+            graphContext.put(this, fieldSerializer$CachedFieldArr2);
+            fieldSerializer$CachedFieldArr = fieldSerializer$CachedFieldArr2;
         }
         InputChunked inputChunked = new InputChunked(input, 1024);
         boolean z2 = getGenerics() != null;
-        for (FieldSerializer.CachedField field : cachedFieldArr) {
+        for (FieldSerializer$CachedField field : fieldSerializer$CachedFieldArr) {
             if (field != null && z2) {
                 field = getField(getCachedFieldName(field));
             }
             if (field == null) {
-                C1644a.a aVar4 = C1644a.f3007a;
+                a$a a_a4 = a.a;
                 inputChunked.nextChunks();
             } else {
                 field.read(inputChunked, tCreate);
@@ -95,19 +96,19 @@ public class CompatibleFieldSerializer<T> extends FieldSerializer<T> {
 
     @Override // com.esotericsoftware.kryo.serializers.FieldSerializer, com.esotericsoftware.kryo.Serializer
     public void write(Kryo kryo, Output output, T t) {
-        FieldSerializer.CachedField[] fields = getFields();
+        FieldSerializer$CachedField[] fields = getFields();
         ObjectMap graphContext = kryo.getGraphContext();
         if (!graphContext.containsKey(this)) {
             graphContext.put(this, null);
-            C1644a.a aVar = C1644a.f3007a;
+            a$a a_a = a.a;
             output.writeVarInt(fields.length, true);
-            for (FieldSerializer.CachedField cachedField : fields) {
-                output.writeString(getCachedFieldName(cachedField));
+            for (FieldSerializer$CachedField fieldSerializer$CachedField : fields) {
+                output.writeString(getCachedFieldName(fieldSerializer$CachedField));
             }
         }
         OutputChunked outputChunked = new OutputChunked(output, 1024);
-        for (FieldSerializer.CachedField cachedField2 : fields) {
-            cachedField2.write(outputChunked, t);
+        for (FieldSerializer$CachedField fieldSerializer$CachedField2 : fields) {
+            fieldSerializer$CachedField2.write(outputChunked, t);
             outputChunked.endChunks();
         }
     }

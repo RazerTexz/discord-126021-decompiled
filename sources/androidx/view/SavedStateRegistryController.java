@@ -27,7 +27,7 @@ public final class SavedStateRegistryController {
     @MainThread
     public void performRestore(@Nullable Bundle bundle) {
         Lifecycle lifecycle = this.mOwner.getLifecycle();
-        if (lifecycle.getCurrentState() != Lifecycle.State.INITIALIZED) {
+        if (lifecycle.getCurrentState() != Lifecycle$State.INITIALIZED) {
             throw new IllegalStateException("Restarter must be created only during owner's initialization stage");
         }
         lifecycle.addObserver(new Recreator(this.mOwner));

@@ -25,7 +25,7 @@ public class HelperReferences extends WidgetRun {
             boolean zAllowsGoneWidget = barrier.allowsGoneWidget();
             int i = 0;
             if (barrierType == 0) {
-                this.start.type = DependencyNode.Type.LEFT;
+                this.start.type = DependencyNode$Type.LEFT;
                 while (i < barrier.mWidgetsCount) {
                     ConstraintWidget constraintWidget2 = barrier.mWidgets[i];
                     if (zAllowsGoneWidget || constraintWidget2.getVisibility() != 8) {
@@ -40,7 +40,7 @@ public class HelperReferences extends WidgetRun {
                 return;
             }
             if (barrierType == 1) {
-                this.start.type = DependencyNode.Type.RIGHT;
+                this.start.type = DependencyNode$Type.RIGHT;
                 while (i < barrier.mWidgetsCount) {
                     ConstraintWidget constraintWidget3 = barrier.mWidgets[i];
                     if (zAllowsGoneWidget || constraintWidget3.getVisibility() != 8) {
@@ -55,7 +55,7 @@ public class HelperReferences extends WidgetRun {
                 return;
             }
             if (barrierType == 2) {
-                this.start.type = DependencyNode.Type.TOP;
+                this.start.type = DependencyNode$Type.TOP;
                 while (i < barrier.mWidgetsCount) {
                     ConstraintWidget constraintWidget4 = barrier.mWidgets[i];
                     if (zAllowsGoneWidget || constraintWidget4.getVisibility() != 8) {
@@ -72,7 +72,7 @@ public class HelperReferences extends WidgetRun {
             if (barrierType != 3) {
                 return;
             }
-            this.start.type = DependencyNode.Type.BOTTOM;
+            this.start.type = DependencyNode$Type.BOTTOM;
             while (i < barrier.mWidgetsCount) {
                 ConstraintWidget constraintWidget5 = barrier.mWidgets[i];
                 if (zAllowsGoneWidget || constraintWidget5.getVisibility() != 8) {

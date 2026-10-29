@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Xml;
 import androidx.constraintlayout.widget.ConstraintAttribute;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout$LayoutParams;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ public class KeyFrames {
         ArrayList<Key> arrayList2 = this.mFramesMap.get(-1);
         if (arrayList2 != null) {
             for (Key key : arrayList2) {
-                if (key.matches(((ConstraintLayout.LayoutParams) motionController.mView.getLayoutParams()).constraintTag)) {
+                if (key.matches(((ConstraintLayout$LayoutParams) motionController.mView.getLayoutParams()).constraintTag)) {
                     motionController.addKey(key);
                 }
             }

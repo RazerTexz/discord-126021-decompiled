@@ -2,10 +2,11 @@ package androidx.work;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.view.LiveData;
+import b.i.b.d.a.a;
 import java.util.Collections;
 import java.util.List;
-import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 
 /* JADX INFO: loaded from: classes.dex */
 public abstract class WorkContinuation {
@@ -15,14 +16,14 @@ public abstract class WorkContinuation {
     }
 
     @NonNull
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    @RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
     public abstract WorkContinuation combineInternal(@NonNull List<WorkContinuation> list);
 
     @NonNull
     public abstract Operation enqueue();
 
     @NonNull
-    public abstract InterfaceFutureC4539a<List<WorkInfo>> getWorkInfos();
+    public abstract a<List<WorkInfo>> getWorkInfos();
 
     @NonNull
     public abstract LiveData<List<WorkInfo>> getWorkInfosLiveData();

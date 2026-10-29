@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackUploadFileLimitError.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackUploadFileLimitError implements AnalyticsSche
             return false;
         }
         TrackUploadFileLimitError trackUploadFileLimitError = (TrackUploadFileLimitError) other;
-        return C12238m.areEqual(this.existingCount, trackUploadFileLimitError.existingCount) && C12238m.areEqual(this.newCount, trackUploadFileLimitError.newCount);
+        return m.areEqual(this.existingCount, trackUploadFileLimitError.existingCount) && m.areEqual(this.newCount, trackUploadFileLimitError.newCount);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackUploadFileLimitError implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackUploadFileLimitError(existingCount=");
-        sbM833U.append(this.existingCount);
-        sbM833U.append(", newCount=");
-        return C1643a.m819G(sbM833U, this.newCount, ")");
+        StringBuilder sbU = a.U("TrackUploadFileLimitError(existingCount=");
+        sbU.append(this.existingCount);
+        sbU.append(", newCount=");
+        return a.G(sbU, this.newCount, ")");
     }
 }

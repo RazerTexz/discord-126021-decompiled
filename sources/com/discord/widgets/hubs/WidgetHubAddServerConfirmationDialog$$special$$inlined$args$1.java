@@ -1,14 +1,14 @@
 package com.discord.widgets.hubs;
 
 import android.os.Bundle;
+import b.d.b.a.a;
 import com.discord.app.AppDialog;
+import d0.z.d.o;
 import kotlin.jvm.functions.Function0;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: ArgUtils.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class WidgetHubAddServerConfirmationDialog$$special$$inlined$args$1 extends AbstractC12240o implements Function0<AddServerConfirmationArgs> {
+public final class WidgetHubAddServerConfirmationDialog$$special$$inlined$args$1 extends o implements Function0<AddServerConfirmationArgs> {
     public final /* synthetic */ String $argsKey;
     public final /* synthetic */ AppDialog $this_args;
 
@@ -28,8 +28,14 @@ public final class WidgetHubAddServerConfirmationDialog$$special$$inlined$args$1
         if (addServerConfirmationArgs != null) {
             return addServerConfirmationArgs;
         }
-        StringBuilder sbM833U = C1643a.m833U("Missing args for class type ");
-        C1643a.m862l0(AddServerConfirmationArgs.class, sbM833U, " + key ");
-        throw new IllegalStateException(C1643a.m820H(sbM833U, this.$argsKey, '!'));
+        StringBuilder sbU = a.U("Missing args for class type ");
+        a.l0(AddServerConfirmationArgs.class, sbU, " + key ");
+        throw new IllegalStateException(a.H(sbU, this.$argsKey, '!'));
+    }
+
+    /* JADX WARN: Type inference failed for: r0v0, types: [android.os.Parcelable, com.discord.widgets.hubs.AddServerConfirmationArgs] */
+    @Override // kotlin.jvm.functions.Function0
+    public /* bridge */ /* synthetic */ AddServerConfirmationArgs invoke() {
+        return invoke();
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.widgets.stage.settings;
 
-import com.discord.tooltips.TooltipManager;
+import com.discord.tooltips.TooltipManager$b;
 
 /* JADX INFO: compiled from: LiveStageNotificationBadgeTooltip.kt */
 /* JADX INFO: loaded from: classes2.dex */
-public final class LiveStageNotificationBadgeTooltip extends TooltipManager.C6648b {
+public final class LiveStageNotificationBadgeTooltip extends TooltipManager$b {
     public static final LiveStageNotificationBadgeTooltip INSTANCE = new LiveStageNotificationBadgeTooltip();
 
     private LiveStageNotificationBadgeTooltip() {

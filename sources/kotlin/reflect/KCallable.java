@@ -2,26 +2,26 @@ package kotlin.reflect;
 
 import androidx.core.app.NotificationCompat;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.e0.b;
+import d0.e0.f;
+import d0.e0.h;
 import java.util.List;
 import java.util.Map;
-import p507d0.p513e0.InterfaceC11229b;
-import p507d0.p513e0.InterfaceC11233f;
-import p507d0.p513e0.InterfaceC11235h;
 
 /* JADX INFO: compiled from: KCallable.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public interface KCallable<R> extends InterfaceC11229b {
+public interface KCallable<R> extends b {
     R call(Object... args);
 
-    R callBy(Map<InterfaceC11233f, ? extends Object> args);
+    R callBy(Map<f, ? extends Object> args);
 
     String getName();
 
-    List<InterfaceC11233f> getParameters();
+    List<f> getParameters();
 
     KType getReturnType();
 
-    List<InterfaceC11235h> getTypeParameters();
+    List<h> getTypeParameters();
 
     KVisibility getVisibility();
 

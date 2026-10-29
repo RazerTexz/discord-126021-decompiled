@@ -10,72 +10,61 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetStageChannelDetailsBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f18139a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ImageView f18140b;
+    public final ImageView f2651b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f18141c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f18142d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f18143e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ImageView f18144f;
+    public final ImageView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final TextView f18145g;
+    public final TextView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final ImageView f18146h;
+    public final ImageView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f18147i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f18148j;
+    public final TextView j;
 
-    /* JADX INFO: renamed from: k */
     @NonNull
-    public final ImageView f18149k;
+    public final ImageView k;
 
-    /* JADX INFO: renamed from: l */
     @NonNull
-    public final TextView f18150l;
+    public final TextView l;
 
     public WidgetStageChannelDetailsBinding(@NonNull ConstraintLayout constraintLayout, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull TextView textView, @NonNull TextView textView2, @NonNull ImageView imageView3, @NonNull ImageView imageView4, @NonNull TextView textView3, @NonNull ImageView imageView5, @NonNull TextView textView4, @NonNull TextView textView5, @NonNull ImageView imageView6, @NonNull TextView textView6) {
-        this.f18139a = constraintLayout;
-        this.f18140b = imageView;
-        this.f18141c = imageView2;
-        this.f18142d = textView;
-        this.f18143e = textView2;
-        this.f18144f = imageView3;
-        this.f18145g = textView3;
-        this.f18146h = imageView5;
-        this.f18147i = textView4;
-        this.f18148j = textView5;
-        this.f18149k = imageView6;
-        this.f18150l = textView6;
+        this.a = constraintLayout;
+        this.f2651b = imageView;
+        this.c = imageView2;
+        this.d = textView;
+        this.e = textView2;
+        this.f = imageView3;
+        this.g = textView3;
+        this.h = imageView5;
+        this.i = textView4;
+        this.j = textView5;
+        this.k = imageView6;
+        this.l = textView6;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18139a;
+        return this.a;
     }
 }

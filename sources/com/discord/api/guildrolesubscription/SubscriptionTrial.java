@@ -1,8 +1,8 @@
 package com.discord.api.guildrolesubscription;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: SubscriptionTrial.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class SubscriptionTrial {
             return false;
         }
         SubscriptionTrial subscriptionTrial = (SubscriptionTrial) other;
-        return this.id == subscriptionTrial.id && C12238m.areEqual(this.interval, subscriptionTrial.interval) && this.intervalCount == subscriptionTrial.intervalCount && this.skuId == subscriptionTrial.skuId;
+        return this.id == subscriptionTrial.id && m.areEqual(this.interval, subscriptionTrial.interval) && this.intervalCount == subscriptionTrial.intervalCount && this.skuId == subscriptionTrial.skuId;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -43,13 +43,13 @@ public final /* data */ class SubscriptionTrial {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("SubscriptionTrial(id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", interval=");
-        sbM833U.append(this.interval);
-        sbM833U.append(", intervalCount=");
-        sbM833U.append(this.intervalCount);
-        sbM833U.append(", skuId=");
-        return C1643a.m815C(sbM833U, this.skuId, ")");
+        StringBuilder sbU = a.U("SubscriptionTrial(id=");
+        sbU.append(this.id);
+        sbU.append(", interval=");
+        sbU.append(this.interval);
+        sbU.append(", intervalCount=");
+        sbU.append(this.intervalCount);
+        sbU.append(", skuId=");
+        return a.C(sbU, this.skuId, ")");
     }
 }

@@ -11,32 +11,29 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetAuthMfaBackupCodesBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f15688a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final MaterialButton f15689b;
+    public final MaterialButton f2233b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextInputLayout f15690c;
+    public final TextInputLayout c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialButton f15691d;
+    public final MaterialButton d;
 
     public WidgetAuthMfaBackupCodesBinding(@NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull MaterialButton materialButton, @NonNull TextInputLayout textInputLayout, @NonNull MaterialButton materialButton2) {
-        this.f15688a = linearLayout;
-        this.f15689b = materialButton;
-        this.f15690c = textInputLayout;
-        this.f15691d = materialButton2;
+        this.a = linearLayout;
+        this.f2233b = materialButton;
+        this.c = textInputLayout;
+        this.d = materialButton2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15688a;
+        return this.a;
     }
 }

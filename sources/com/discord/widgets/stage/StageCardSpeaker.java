@@ -1,9 +1,9 @@
 package com.discord.widgets.stage;
 
+import b.d.b.a.a;
 import com.discord.models.member.GuildMember;
 import com.discord.models.user.User;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StageCardSpeaker.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -14,7 +14,7 @@ public final /* data */ class StageCardSpeaker {
 
     public StageCardSpeaker(User user, GuildMember guildMember) {
         String nick;
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(user, "user");
         this.user = user;
         this.guildMember = guildMember;
         this.displayName = (guildMember == null || (nick = guildMember.getNick()) == null) ? user.getUsername() : nick;
@@ -31,7 +31,7 @@ public final /* data */ class StageCardSpeaker {
     }
 
     public final StageCardSpeaker copy(User user, GuildMember guildMember) {
-        C12238m.checkNotNullParameter(user, "user");
+        m.checkNotNullParameter(user, "user");
         return new StageCardSpeaker(user, guildMember);
     }
 
@@ -43,7 +43,7 @@ public final /* data */ class StageCardSpeaker {
             return false;
         }
         StageCardSpeaker stageCardSpeaker = (StageCardSpeaker) other;
-        return C12238m.areEqual(this.user, stageCardSpeaker.user) && C12238m.areEqual(this.guildMember, stageCardSpeaker.guildMember);
+        return m.areEqual(this.user, stageCardSpeaker.user) && m.areEqual(this.guildMember, stageCardSpeaker.guildMember);
     }
 
     public final String getDisplayName() {
@@ -76,11 +76,11 @@ public final /* data */ class StageCardSpeaker {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StageCardSpeaker(user=");
-        sbM833U.append(this.user);
-        sbM833U.append(", guildMember=");
-        sbM833U.append(this.guildMember);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("StageCardSpeaker(user=");
+        sbU.append(this.user);
+        sbU.append(", guildMember=");
+        sbU.append(this.guildMember);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

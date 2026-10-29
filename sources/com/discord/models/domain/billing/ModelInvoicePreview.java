@@ -1,9 +1,9 @@
 package com.discord.models.domain.billing;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: ModelInvoicePreview.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,10 +19,10 @@ public final /* data */ class ModelInvoicePreview {
     private final int total;
 
     public ModelInvoicePreview(String str, long j, List<ModelInvoiceItem> list, String str2, String str3, int i, int i2, boolean z2, int i3) {
-        C12238m.checkNotNullParameter(str, "currency");
-        C12238m.checkNotNullParameter(list, "invoiceItems");
-        C12238m.checkNotNullParameter(str2, "subscriptionPeriodEnd");
-        C12238m.checkNotNullParameter(str3, "subscriptionPeriodStart");
+        m.checkNotNullParameter(str, "currency");
+        m.checkNotNullParameter(list, "invoiceItems");
+        m.checkNotNullParameter(str2, "subscriptionPeriodEnd");
+        m.checkNotNullParameter(str3, "subscriptionPeriodStart");
         this.currency = str;
         this.id = j;
         this.invoiceItems = list;
@@ -38,11 +38,16 @@ public final /* data */ class ModelInvoicePreview {
         return this.invoiceItems;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ ModelInvoicePreview copy$default(ModelInvoicePreview modelInvoicePreview, String str, long j, List list, String str2, String str3, int i, int i2, boolean z2, int i3, int i4, Object obj) {
+        return modelInvoicePreview.copy((i4 & 1) != 0 ? modelInvoicePreview.currency : str, (i4 & 2) != 0 ? modelInvoicePreview.id : j, (i4 & 4) != 0 ? modelInvoicePreview.invoiceItems : list, (i4 & 8) != 0 ? modelInvoicePreview.subscriptionPeriodEnd : str2, (i4 & 16) != 0 ? modelInvoicePreview.subscriptionPeriodStart : str3, (i4 & 32) != 0 ? modelInvoicePreview.subtotal : i, (i4 & 64) != 0 ? modelInvoicePreview.tax : i2, (i4 & 128) != 0 ? modelInvoicePreview.taxInclusive : z2, (i4 & 256) != 0 ? modelInvoicePreview.total : i3);
+    }
+
     public final ModelInvoicePreview copy(String currency, long id2, List<ModelInvoiceItem> invoiceItems, String subscriptionPeriodEnd, String subscriptionPeriodStart, int subtotal, int tax, boolean taxInclusive, int total) {
-        C12238m.checkNotNullParameter(currency, "currency");
-        C12238m.checkNotNullParameter(invoiceItems, "invoiceItems");
-        C12238m.checkNotNullParameter(subscriptionPeriodEnd, "subscriptionPeriodEnd");
-        C12238m.checkNotNullParameter(subscriptionPeriodStart, "subscriptionPeriodStart");
+        m.checkNotNullParameter(currency, "currency");
+        m.checkNotNullParameter(invoiceItems, "invoiceItems");
+        m.checkNotNullParameter(subscriptionPeriodEnd, "subscriptionPeriodEnd");
+        m.checkNotNullParameter(subscriptionPeriodStart, "subscriptionPeriodStart");
         return new ModelInvoicePreview(currency, id2, invoiceItems, subscriptionPeriodEnd, subscriptionPeriodStart, subtotal, tax, taxInclusive, total);
     }
 
@@ -54,7 +59,7 @@ public final /* data */ class ModelInvoicePreview {
             return false;
         }
         ModelInvoicePreview modelInvoicePreview = (ModelInvoicePreview) other;
-        return C12238m.areEqual(this.currency, modelInvoicePreview.currency) && this.id == modelInvoicePreview.id && C12238m.areEqual(this.invoiceItems, modelInvoicePreview.invoiceItems) && C12238m.areEqual(this.subscriptionPeriodEnd, modelInvoicePreview.subscriptionPeriodEnd) && C12238m.areEqual(this.subscriptionPeriodStart, modelInvoicePreview.subscriptionPeriodStart) && this.subtotal == modelInvoicePreview.subtotal && this.tax == modelInvoicePreview.tax && this.taxInclusive == modelInvoicePreview.taxInclusive && this.total == modelInvoicePreview.total;
+        return m.areEqual(this.currency, modelInvoicePreview.currency) && this.id == modelInvoicePreview.id && m.areEqual(this.invoiceItems, modelInvoicePreview.invoiceItems) && m.areEqual(this.subscriptionPeriodEnd, modelInvoicePreview.subscriptionPeriodEnd) && m.areEqual(this.subscriptionPeriodStart, modelInvoicePreview.subscriptionPeriodStart) && this.subtotal == modelInvoicePreview.subtotal && this.tax == modelInvoicePreview.tax && this.taxInclusive == modelInvoicePreview.taxInclusive && this.total == modelInvoicePreview.total;
     }
 
     /* JADX INFO: renamed from: component1, reason: from getter */
@@ -158,23 +163,23 @@ public final /* data */ class ModelInvoicePreview {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelInvoicePreview(currency=");
-        sbM833U.append(this.currency);
-        sbM833U.append(", id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", invoiceItems=");
-        sbM833U.append(this.invoiceItems);
-        sbM833U.append(", subscriptionPeriodEnd=");
-        sbM833U.append(this.subscriptionPeriodEnd);
-        sbM833U.append(", subscriptionPeriodStart=");
-        sbM833U.append(this.subscriptionPeriodStart);
-        sbM833U.append(", subtotal=");
-        sbM833U.append(this.subtotal);
-        sbM833U.append(", tax=");
-        sbM833U.append(this.tax);
-        sbM833U.append(", taxInclusive=");
-        sbM833U.append(this.taxInclusive);
-        sbM833U.append(", total=");
-        return C1643a.m814B(sbM833U, this.total, ")");
+        StringBuilder sbU = a.U("ModelInvoicePreview(currency=");
+        sbU.append(this.currency);
+        sbU.append(", id=");
+        sbU.append(this.id);
+        sbU.append(", invoiceItems=");
+        sbU.append(this.invoiceItems);
+        sbU.append(", subscriptionPeriodEnd=");
+        sbU.append(this.subscriptionPeriodEnd);
+        sbU.append(", subscriptionPeriodStart=");
+        sbU.append(this.subscriptionPeriodStart);
+        sbU.append(", subtotal=");
+        sbU.append(this.subtotal);
+        sbU.append(", tax=");
+        sbU.append(this.tax);
+        sbU.append(", taxInclusive=");
+        sbU.append(this.taxInclusive);
+        sbU.append(", total=");
+        return a.B(sbU, this.total, ")");
     }
 }

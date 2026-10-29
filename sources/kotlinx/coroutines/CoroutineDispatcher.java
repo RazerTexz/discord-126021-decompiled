@@ -1,38 +1,27 @@
 package kotlinx.coroutines;
 
 import androidx.exifinterface.media.ExifInterface;
+import b.i.a.f.e.o.f;
 import com.discord.widgets.chat.input.MentionUtilsKt;
+import d0.w.a;
+import d0.w.d;
+import d0.w.d$a;
+import d0.w.d$b;
 import java.util.Objects;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import p007b.p225i.p226a.p288f.p299e.p308o.C3404f;
-import p507d0.p584w.AbstractC12174a;
-import p507d0.p584w.AbstractC12175b;
-import p507d0.p584w.InterfaceC12177d;
-import p659s.p660a.C13042a0;
-import p659s.p660a.C13126l;
-import p659s.p660a.p661a.C13024g;
+import kotlin.coroutines.CoroutineContext$Element;
+import kotlin.coroutines.CoroutineContext$Key;
+import s.a.a.g;
+import s.a.l;
 
 /* JADX INFO: compiled from: CoroutineDispatcher.kt */
 /* JADX INFO: loaded from: classes3.dex */
-public abstract class CoroutineDispatcher extends AbstractC12174a implements InterfaceC12177d {
-
-    /* JADX INFO: renamed from: Key, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
-
-    /* JADX INFO: renamed from: kotlinx.coroutines.CoroutineDispatcher$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: CoroutineDispatcher.kt */
-    public final class Companion extends AbstractC12175b<InterfaceC12177d, CoroutineDispatcher> {
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            super(InterfaceC12177d.b.f25236a, C13042a0.f27711j);
-            int i = InterfaceC12177d.f25235e;
-        }
-    }
+public abstract class CoroutineDispatcher extends a implements d {
+    public static final CoroutineDispatcher$a Key = new CoroutineDispatcher$a(null);
 
     public CoroutineDispatcher() {
-        super(InterfaceC12177d.b.f25236a);
+        super(d$b.a);
     }
 
     public abstract void dispatch(CoroutineContext context, Runnable block);
@@ -41,43 +30,43 @@ public abstract class CoroutineDispatcher extends AbstractC12174a implements Int
         dispatch(context, block);
     }
 
-    @Override // p507d0.p584w.AbstractC12174a, kotlin.coroutines.CoroutineContext.Element, kotlin.coroutines.CoroutineContext
-    public <E extends CoroutineContext.Element> E get(CoroutineContext.Key<E> key) {
-        return (E) InterfaceC12177d.a.get(this, key);
+    @Override // d0.w.a, kotlin.coroutines.CoroutineContext$Element, kotlin.coroutines.CoroutineContext
+    public <E extends CoroutineContext$Element> E get(CoroutineContext$Key<E> coroutineContext$Key) {
+        return (E) d$a.get(this, coroutineContext$Key);
     }
 
-    @Override // p507d0.p584w.InterfaceC12177d
+    @Override // d0.w.d
     public final <T> Continuation<T> interceptContinuation(Continuation<? super T> continuation) {
-        return new C13024g(this, continuation);
+        return new g(this, continuation);
     }
 
     public boolean isDispatchNeeded(CoroutineContext context) {
         return true;
     }
 
-    @Override // p507d0.p584w.AbstractC12174a, kotlin.coroutines.CoroutineContext
-    public CoroutineContext minusKey(CoroutineContext.Key<?> key) {
-        return InterfaceC12177d.a.minusKey(this, key);
+    @Override // d0.w.a, kotlin.coroutines.CoroutineContext
+    public CoroutineContext minusKey(CoroutineContext$Key<?> coroutineContext$Key) {
+        return d$a.minusKey(this, coroutineContext$Key);
     }
 
     public final CoroutineDispatcher plus(CoroutineDispatcher other) {
         return other;
     }
 
-    @Override // p507d0.p584w.InterfaceC12177d
+    @Override // d0.w.d
     public void releaseInterceptedContinuation(Continuation<?> continuation) {
         Objects.requireNonNull(continuation, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
-        Object obj = ((C13024g) continuation)._reusableCancellableContinuation;
-        if (!(obj instanceof C13126l)) {
+        Object obj = ((g) continuation)._reusableCancellableContinuation;
+        if (!(obj instanceof l)) {
             obj = null;
         }
-        C13126l c13126l = (C13126l) obj;
-        if (c13126l != null) {
-            c13126l.m11323q();
+        l lVar = (l) obj;
+        if (lVar != null) {
+            lVar.q();
         }
     }
 
     public String toString() {
-        return getClass().getSimpleName() + MentionUtilsKt.MENTIONS_CHAR + C3404f.m4312l0(this);
+        return getClass().getSimpleName() + MentionUtilsKt.MENTIONS_CHAR + f.l0(this);
     }
 }

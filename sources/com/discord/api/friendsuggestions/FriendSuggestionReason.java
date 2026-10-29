@@ -1,8 +1,8 @@
 package com.discord.api.friendsuggestions;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: FriendSuggestionReason.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -19,7 +19,7 @@ public final /* data */ class FriendSuggestionReason {
             return false;
         }
         FriendSuggestionReason friendSuggestionReason = (FriendSuggestionReason) other;
-        return C12238m.areEqual(this.type, friendSuggestionReason.type) && C12238m.areEqual(this.platformType, friendSuggestionReason.platformType) && C12238m.areEqual(this.name, friendSuggestionReason.name);
+        return m.areEqual(this.type, friendSuggestionReason.type) && m.areEqual(this.platformType, friendSuggestionReason.platformType) && m.areEqual(this.name, friendSuggestionReason.name);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -42,11 +42,11 @@ public final /* data */ class FriendSuggestionReason {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("FriendSuggestionReason(type=");
-        sbM833U.append(this.type);
-        sbM833U.append(", platformType=");
-        sbM833U.append(this.platformType);
-        sbM833U.append(", name=");
-        return C1643a.m822J(sbM833U, this.name, ")");
+        StringBuilder sbU = a.U("FriendSuggestionReason(type=");
+        sbU.append(this.type);
+        sbU.append(", platformType=");
+        sbU.append(this.platformType);
+        sbU.append(", name=");
+        return a.J(sbU, this.name, ")");
     }
 }

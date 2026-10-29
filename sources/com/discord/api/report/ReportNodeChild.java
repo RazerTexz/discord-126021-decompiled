@@ -1,8 +1,8 @@
 package com.discord.api.report;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: InAppReportsMenu.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -11,7 +11,7 @@ public final /* data */ class ReportNodeChild {
     private final int ref;
 
     public ReportNodeChild(String str, int i) {
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_NAME);
         this.name = str;
         this.ref = i;
     }
@@ -24,7 +24,7 @@ public final /* data */ class ReportNodeChild {
             return false;
         }
         ReportNodeChild reportNodeChild = (ReportNodeChild) other;
-        return C12238m.areEqual(this.name, reportNodeChild.name) && this.ref == reportNodeChild.ref;
+        return m.areEqual(this.name, reportNodeChild.name) && this.ref == reportNodeChild.ref;
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -43,9 +43,9 @@ public final /* data */ class ReportNodeChild {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ReportNodeChild(name=");
-        sbM833U.append(this.name);
-        sbM833U.append(", ref=");
-        return C1643a.m814B(sbM833U, this.ref, ")");
+        StringBuilder sbU = a.U("ReportNodeChild(name=");
+        sbU.append(this.name);
+        sbU.append(", ref=");
+        return a.B(sbU, this.ref, ")");
     }
 }

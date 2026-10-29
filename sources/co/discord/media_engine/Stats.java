@@ -1,9 +1,9 @@
 package co.discord.media_engine;
 
 import androidx.core.app.NotificationCompat;
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.Map;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Statistics.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -15,8 +15,8 @@ public final /* data */ class Stats {
     private final Transport transport;
 
     public Stats(Transport transport, OutboundRtpAudio outboundRtpAudio, OutboundRtpVideo outboundRtpVideo, Map<String, InboundRtpAudio> map, Map<String, InboundRtpVideo> map2) {
-        C12238m.checkNotNullParameter(map, "inboundRtpAudio");
-        C12238m.checkNotNullParameter(map2, "inboundRtpVideo");
+        m.checkNotNullParameter(map, "inboundRtpAudio");
+        m.checkNotNullParameter(map2, "inboundRtpVideo");
         this.transport = transport;
         this.outboundRtpAudio = outboundRtpAudio;
         this.outboundRtpVideo = outboundRtpVideo;
@@ -56,8 +56,8 @@ public final /* data */ class Stats {
     }
 
     public final Stats copy(Transport transport, OutboundRtpAudio outboundRtpAudio, OutboundRtpVideo outboundRtpVideo, Map<String, InboundRtpAudio> inboundRtpAudio, Map<String, InboundRtpVideo> inboundRtpVideo) {
-        C12238m.checkNotNullParameter(inboundRtpAudio, "inboundRtpAudio");
-        C12238m.checkNotNullParameter(inboundRtpVideo, "inboundRtpVideo");
+        m.checkNotNullParameter(inboundRtpAudio, "inboundRtpAudio");
+        m.checkNotNullParameter(inboundRtpVideo, "inboundRtpVideo");
         return new Stats(transport, outboundRtpAudio, outboundRtpVideo, inboundRtpAudio, inboundRtpVideo);
     }
 
@@ -69,7 +69,7 @@ public final /* data */ class Stats {
             return false;
         }
         Stats stats = (Stats) other;
-        return C12238m.areEqual(this.transport, stats.transport) && C12238m.areEqual(this.outboundRtpAudio, stats.outboundRtpAudio) && C12238m.areEqual(this.outboundRtpVideo, stats.outboundRtpVideo) && C12238m.areEqual(this.inboundRtpAudio, stats.inboundRtpAudio) && C12238m.areEqual(this.inboundRtpVideo, stats.inboundRtpVideo);
+        return m.areEqual(this.transport, stats.transport) && m.areEqual(this.outboundRtpAudio, stats.outboundRtpAudio) && m.areEqual(this.outboundRtpVideo, stats.outboundRtpVideo) && m.areEqual(this.inboundRtpAudio, stats.inboundRtpAudio) && m.areEqual(this.inboundRtpVideo, stats.inboundRtpVideo);
     }
 
     public final Map<String, InboundRtpAudio> getInboundRtpAudio() {
@@ -121,15 +121,15 @@ public final /* data */ class Stats {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("Stats(transport=");
-        sbM833U.append(this.transport);
-        sbM833U.append(", outboundRtpAudio=");
-        sbM833U.append(this.outboundRtpAudio);
-        sbM833U.append(", outboundRtpVideo=");
-        sbM833U.append(this.outboundRtpVideo);
-        sbM833U.append(", inboundRtpAudio=");
-        sbM833U.append(this.inboundRtpAudio);
-        sbM833U.append(", inboundRtpVideo=");
-        return C1643a.m825M(sbM833U, this.inboundRtpVideo, ")");
+        StringBuilder sbU = a.U("Stats(transport=");
+        sbU.append(this.transport);
+        sbU.append(", outboundRtpAudio=");
+        sbU.append(this.outboundRtpAudio);
+        sbU.append(", outboundRtpVideo=");
+        sbU.append(this.outboundRtpVideo);
+        sbU.append(", inboundRtpAudio=");
+        sbU.append(this.inboundRtpAudio);
+        sbU.append(", inboundRtpVideo=");
+        return a.M(sbU, this.inboundRtpVideo, ")");
     }
 }

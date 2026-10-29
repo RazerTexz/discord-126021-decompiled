@@ -1,15 +1,9 @@
 package com.discord.utilities.networking;
 
-import com.discord.utilities.logging.Logger;
-import com.discord.utilities.logging.LoggingProvider;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
+import d0.z.d.m;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: Backoff.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -21,118 +15,24 @@ public final class Backoff {
     private final boolean jitter;
     private final long maxBackoffMs;
     private final long minBackoffMs;
-    private final Scheduler scheduler;
-
-    /* JADX INFO: renamed from: com.discord.utilities.networking.Backoff$fail$1 */
-    /* JADX INFO: compiled from: Backoff.kt */
-    public final class C68191 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ Function0 $callback;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C68191(Function0 function0) {
-            super(0);
-            this.$callback = function0;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Backoff.this.executeFailureCallback(this.$callback);
-        }
-    }
-
-    /* JADX INFO: compiled from: Backoff.kt */
-    public interface Scheduler {
-        void cancel();
-
-        void schedule(Function0<Unit> action, long delayMs);
-    }
-
-    /* JADX INFO: compiled from: Backoff.kt */
-    public final class TimerScheduler extends Timer implements Scheduler {
-        private final ExecutorService delegateExecutor;
-        private final String tag;
-        private TimerTask timeoutTimerTask;
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public TimerScheduler() {
-            this(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
-        }
-
-        public /* synthetic */ TimerScheduler(String str, ExecutorService executorService, int i, DefaultConstructorMarker defaultConstructorMarker) {
-            this((i & 1) != 0 ? "TimerScheduler" : str, (i & 2) != 0 ? null : executorService);
-        }
-
-        @Override // java.util.Timer, com.discord.utilities.networking.Backoff.Scheduler
-        public synchronized void cancel() {
-            TimerTask timerTask = this.timeoutTimerTask;
-            if (timerTask != null) {
-                timerTask.cancel();
-            }
-        }
-
-        @Override // com.discord.utilities.networking.Backoff.Scheduler
-        public synchronized void schedule(final Function0<Unit> action, long delayMs) {
-            C12238m.checkNotNullParameter(action, "action");
-            TimerTask timerTask = this.timeoutTimerTask;
-            if (timerTask != null) {
-                timerTask.cancel();
-            }
-            TimerTask timerTask2 = new TimerTask() { // from class: com.discord.utilities.networking.Backoff$TimerScheduler$schedule$1
-                @Override // java.util.TimerTask, java.lang.Runnable
-                public void run() {
-                    if (this.this$0.delegateExecutor == null) {
-                        action.invoke();
-                        return;
-                    }
-                    Logger logger = LoggingProvider.INSTANCE.get();
-                    if (this.this$0.delegateExecutor.isShutdown()) {
-                        Logger.i$default(logger, this.this$0.tag, "skipping delayed task. executor is not running", null, 4, null);
-                        return;
-                    }
-                    Logger.v$default(logger, this.this$0.tag, "TimerScheduler posting to delegate scheduler", null, 4, null);
-                    ExecutorService executorService = this.this$0.delegateExecutor;
-                    final Function0 function0 = action;
-                    Object obj = function0;
-                    if (function0 != null) {
-                        obj = new Runnable() { // from class: com.discord.utilities.networking.Backoff$sam$java_lang_Runnable$0
-                            @Override // java.lang.Runnable
-                            public final /* synthetic */ void run() {
-                                C12238m.checkNotNullExpressionValue(function0.invoke(), "invoke(...)");
-                            }
-                        };
-                    }
-                    executorService.execute((Runnable) obj);
-                }
-            };
-            this.timeoutTimerTask = timerTask2;
-            schedule(timerTask2, delayMs);
-        }
-
-        public TimerScheduler(String str, ExecutorService executorService) {
-            C12238m.checkNotNullParameter(str, "tag");
-            this.tag = str;
-            this.delegateExecutor = executorService;
-        }
-    }
+    private final Backoff$Scheduler scheduler;
 
     public Backoff() {
         this(0L, 0L, 0, false, null, 31, null);
     }
 
-    public Backoff(long j, long j2, int i, boolean z2, Scheduler scheduler) {
-        C12238m.checkNotNullParameter(scheduler, "scheduler");
+    public Backoff(long j, long j2, int i, boolean z2, Backoff$Scheduler backoff$Scheduler) {
+        m.checkNotNullParameter(backoff$Scheduler, "scheduler");
         this.minBackoffMs = j;
         this.maxBackoffMs = j2;
         this.failureThreshold = i;
         this.jitter = z2;
-        this.scheduler = scheduler;
+        this.scheduler = backoff$Scheduler;
         this.current = j;
+    }
+
+    public static final /* synthetic */ void access$executeFailureCallback(Backoff backoff, Function0 function0) {
+        backoff.executeFailureCallback(function0);
     }
 
     public final synchronized void cancel() {
@@ -160,7 +60,7 @@ public final class Backoff {
         this.current = Math.min(j + ((long) (((long) 2) * j * dRandom)), this.maxBackoffMs);
         if (callback != null && !this.isPending) {
             this.isPending = true;
-            this.scheduler.schedule(new C68191(callback), this.current);
+            this.scheduler.schedule(new Backoff$fail$1(this, callback), this.current);
         }
         return this.current;
     }
@@ -180,18 +80,9 @@ public final class Backoff {
         this.current = this.minBackoffMs;
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    public /* synthetic */ Backoff(long j, long j2, int i, boolean z2, Scheduler scheduler, int i2, DefaultConstructorMarker defaultConstructorMarker) {
-        Scheduler timerScheduler;
+    /* JADX WARN: Illegal instructions before constructor call */
+    public /* synthetic */ Backoff(long j, long j2, int i, boolean z2, Backoff$Scheduler backoff$Scheduler, int i2, DefaultConstructorMarker defaultConstructorMarker) {
         long j3 = (i2 & 1) != 0 ? 500L : j;
-        long j4 = (i2 & 2) != 0 ? ((long) 10) * j3 : j2;
-        int i3 = (i2 & 4) != 0 ? Integer.MAX_VALUE : i;
-        boolean z3 = (i2 & 8) != 0 ? true : z2;
-        if ((i2 & 16) != 0) {
-            timerScheduler = new TimerScheduler(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
-        } else {
-            timerScheduler = scheduler;
-        }
-        this(j3, j4, i3, z3, timerScheduler);
+        this(j3, (i2 & 2) != 0 ? ((long) 10) * j3 : j2, (i2 & 4) != 0 ? Integer.MAX_VALUE : i, (i2 & 8) != 0 ? true : z2, (i2 & 16) != 0 ? new Backoff$TimerScheduler(null, null, 3, null) : backoff$Scheduler);
     }
 }

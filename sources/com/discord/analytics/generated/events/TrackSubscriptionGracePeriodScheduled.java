@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadata;
 import com.discord.analytics.generated.traits.TrackSubscriptionMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSubscriptionGracePeriodScheduled.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackSubscriptionGracePeriodScheduled implements A
             return false;
         }
         TrackSubscriptionGracePeriodScheduled trackSubscriptionGracePeriodScheduled = (TrackSubscriptionGracePeriodScheduled) other;
-        return C12238m.areEqual(this.subscriptionId, trackSubscriptionGracePeriodScheduled.subscriptionId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionGracePeriodScheduled.paymentGateway) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionGracePeriodScheduled.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionGracePeriodScheduled.currentPeriodEnd) && C12238m.areEqual(this.invoiceId, trackSubscriptionGracePeriodScheduled.invoiceId) && C12238m.areEqual(this.invoiceDueAt, trackSubscriptionGracePeriodScheduled.invoiceDueAt) && C12238m.areEqual(this.gracePeriodDays, trackSubscriptionGracePeriodScheduled.gracePeriodDays);
+        return m.areEqual(this.subscriptionId, trackSubscriptionGracePeriodScheduled.subscriptionId) && m.areEqual(this.paymentGateway, trackSubscriptionGracePeriodScheduled.paymentGateway) && m.areEqual(this.currentPeriodStart, trackSubscriptionGracePeriodScheduled.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionGracePeriodScheduled.currentPeriodEnd) && m.areEqual(this.invoiceId, trackSubscriptionGracePeriodScheduled.invoiceId) && m.areEqual(this.invoiceDueAt, trackSubscriptionGracePeriodScheduled.invoiceDueAt) && m.areEqual(this.gracePeriodDays, trackSubscriptionGracePeriodScheduled.gracePeriodDays);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -57,19 +57,19 @@ public final /* data */ class TrackSubscriptionGracePeriodScheduled implements A
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSubscriptionGracePeriodScheduled(subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", currentPeriodStart=");
-        sbM833U.append(this.currentPeriodStart);
-        sbM833U.append(", currentPeriodEnd=");
-        sbM833U.append(this.currentPeriodEnd);
-        sbM833U.append(", invoiceId=");
-        sbM833U.append(this.invoiceId);
-        sbM833U.append(", invoiceDueAt=");
-        sbM833U.append(this.invoiceDueAt);
-        sbM833U.append(", gracePeriodDays=");
-        return C1643a.m819G(sbM833U, this.gracePeriodDays, ")");
+        StringBuilder sbU = a.U("TrackSubscriptionGracePeriodScheduled(subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", currentPeriodStart=");
+        sbU.append(this.currentPeriodStart);
+        sbU.append(", currentPeriodEnd=");
+        sbU.append(this.currentPeriodEnd);
+        sbU.append(", invoiceId=");
+        sbU.append(this.invoiceId);
+        sbU.append(", invoiceDueAt=");
+        sbU.append(this.invoiceDueAt);
+        sbU.append(", gracePeriodDays=");
+        return a.G(sbU, this.gracePeriodDays, ")");
     }
 }

@@ -10,27 +10,25 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetQrScannerBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final FrameLayout f17395a;
+    public final FrameLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final ZXingScannerView f17396b;
+    public final ZXingScannerView f2515b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final Chip f17397c;
+    public final Chip c;
 
     public WidgetQrScannerBinding(@NonNull FrameLayout frameLayout, @NonNull ZXingScannerView zXingScannerView, @NonNull Chip chip) {
-        this.f17395a = frameLayout;
-        this.f17396b = zXingScannerView;
-        this.f17397c = chip;
+        this.a = frameLayout;
+        this.f2515b = zXingScannerView;
+        this.c = chip;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17395a;
+        return this.a;
     }
 }

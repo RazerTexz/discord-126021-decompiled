@@ -1,7 +1,7 @@
 package com.discord.api.thread;
 
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import b.d.b.a.a;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: MuteConfig.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -10,7 +10,7 @@ public final /* data */ class MuteConfig {
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof MuteConfig) && C12238m.areEqual(this.endTime, ((MuteConfig) other).endTime);
+            return (other instanceof MuteConfig) && m.areEqual(this.endTime, ((MuteConfig) other).endTime);
         }
         return true;
     }
@@ -29,6 +29,6 @@ public final /* data */ class MuteConfig {
     }
 
     public String toString() {
-        return C1643a.m822J(C1643a.m833U("MuteConfig(endTime="), this.endTime, ")");
+        return a.J(a.U("MuteConfig(endTime="), this.endTime, ")");
     }
 }

@@ -1,11 +1,11 @@
 package com.discord.models.sticker.dto;
 
+import b.d.b.a.a;
 import com.discord.models.domain.ModelAuditLogEntry;
 import com.discord.models.domain.ModelSku;
 import com.discord.models.store.dto.ModelStoreAsset;
 import com.discord.utilities.time.TimeUtils;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ModelStickerPackStoreListing.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -17,8 +17,8 @@ public final /* data */ class ModelStickerPackStoreListing {
     private final String unpublishedAt;
 
     public ModelStickerPackStoreListing(ModelSku modelSku, long j, String str, String str2, ModelStoreAsset modelStoreAsset) {
-        C12238m.checkNotNullParameter(modelSku, "sku");
-        C12238m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+        m.checkNotNullParameter(modelSku, "sku");
+        m.checkNotNullParameter(str, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
         this.sku = modelSku;
         this.id = j;
         this.description = str;
@@ -49,8 +49,8 @@ public final /* data */ class ModelStickerPackStoreListing {
     }
 
     public final ModelStickerPackStoreListing copy(ModelSku sku, long id2, String description, String unpublishedAt, ModelStoreAsset thumbnail) {
-        C12238m.checkNotNullParameter(sku, "sku");
-        C12238m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
+        m.checkNotNullParameter(sku, "sku");
+        m.checkNotNullParameter(description, ModelAuditLogEntry.CHANGE_KEY_DESCRIPTION);
         return new ModelStickerPackStoreListing(sku, id2, description, unpublishedAt, thumbnail);
     }
 
@@ -62,7 +62,7 @@ public final /* data */ class ModelStickerPackStoreListing {
             return false;
         }
         ModelStickerPackStoreListing modelStickerPackStoreListing = (ModelStickerPackStoreListing) other;
-        return C12238m.areEqual(this.sku, modelStickerPackStoreListing.sku) && this.id == modelStickerPackStoreListing.id && C12238m.areEqual(this.description, modelStickerPackStoreListing.description) && C12238m.areEqual(this.unpublishedAt, modelStickerPackStoreListing.unpublishedAt) && C12238m.areEqual(this.thumbnail, modelStickerPackStoreListing.thumbnail);
+        return m.areEqual(this.sku, modelStickerPackStoreListing.sku) && this.id == modelStickerPackStoreListing.id && m.areEqual(this.description, modelStickerPackStoreListing.description) && m.areEqual(this.unpublishedAt, modelStickerPackStoreListing.unpublishedAt) && m.areEqual(this.thumbnail, modelStickerPackStoreListing.thumbnail);
     }
 
     /* JADX INFO: renamed from: component3, reason: from getter */
@@ -128,17 +128,17 @@ public final /* data */ class ModelStickerPackStoreListing {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ModelStickerPackStoreListing(sku=");
-        sbM833U.append(this.sku);
-        sbM833U.append(", id=");
-        sbM833U.append(this.id);
-        sbM833U.append(", description=");
-        sbM833U.append(this.description);
-        sbM833U.append(", unpublishedAt=");
-        sbM833U.append(this.unpublishedAt);
-        sbM833U.append(", thumbnail=");
-        sbM833U.append(this.thumbnail);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ModelStickerPackStoreListing(sku=");
+        sbU.append(this.sku);
+        sbU.append(", id=");
+        sbU.append(this.id);
+        sbU.append(", description=");
+        sbU.append(this.description);
+        sbU.append(", unpublishedAt=");
+        sbU.append(this.unpublishedAt);
+        sbU.append(", thumbnail=");
+        sbU.append(this.thumbnail);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

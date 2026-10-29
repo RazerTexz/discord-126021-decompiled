@@ -6,43 +6,39 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
+import b.a.i.s1;
 import com.google.android.material.button.MaterialButton;
-import p007b.p008a.p025i.C1046s1;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetThreadBrowserArchivedBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f18267a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final C1046s1 f18268b;
+    public final s1 f2669b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final RecyclerView f18269c;
+    public final RecyclerView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final ConstraintLayout f18270d;
+    public final ConstraintLayout d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final MaterialButton f18271e;
+    public final MaterialButton e;
 
-    public WidgetThreadBrowserArchivedBinding(@NonNull ConstraintLayout constraintLayout, @NonNull C1046s1 c1046s1, @NonNull RecyclerView recyclerView, @NonNull TextView textView, @NonNull ConstraintLayout constraintLayout2, @NonNull MaterialButton materialButton) {
-        this.f18267a = constraintLayout;
-        this.f18268b = c1046s1;
-        this.f18269c = recyclerView;
-        this.f18270d = constraintLayout2;
-        this.f18271e = materialButton;
+    public WidgetThreadBrowserArchivedBinding(@NonNull ConstraintLayout constraintLayout, @NonNull s1 s1Var, @NonNull RecyclerView recyclerView, @NonNull TextView textView, @NonNull ConstraintLayout constraintLayout2, @NonNull MaterialButton materialButton) {
+        this.a = constraintLayout;
+        this.f2669b = s1Var;
+        this.c = recyclerView;
+        this.d = constraintLayout2;
+        this.e = materialButton;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18267a;
+        return this.a;
     }
 }

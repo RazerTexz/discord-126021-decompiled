@@ -1,59 +1,30 @@
 package com.google.android.material.internal;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.Animator$AnimatorListener;
 import android.animation.ValueAnimator;
 import android.util.StateSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import java.util.ArrayList;
 
 /* JADX INFO: loaded from: classes3.dex */
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP})
 public final class StateListAnimator {
-    private final ArrayList<C10945b> tuples = new ArrayList<>();
+    private final ArrayList<StateListAnimator$b> tuples = new ArrayList<>();
 
     @Nullable
-    private C10945b lastMatch = null;
+    private StateListAnimator$b lastMatch = null;
 
     @Nullable
     public ValueAnimator runningAnimator = null;
-    private final Animator.AnimatorListener animationListener = new C10944a();
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.StateListAnimator$a */
-    public class C10944a extends AnimatorListenerAdapter {
-        public C10944a() {
-        }
-
-        @Override // android.animation.AnimatorListenerAdapter, android.animation.Animator.AnimatorListener
-        public void onAnimationEnd(Animator animator) {
-            StateListAnimator stateListAnimator = StateListAnimator.this;
-            if (stateListAnimator.runningAnimator == animator) {
-                stateListAnimator.runningAnimator = null;
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.internal.StateListAnimator$b */
-    public class C10945b {
-
-        /* JADX INFO: renamed from: a */
-        public final int[] f21043a;
-
-        /* JADX INFO: renamed from: b */
-        public final ValueAnimator f21044b;
-
-        public C10945b(int[] iArr, ValueAnimator valueAnimator) {
-            this.f21043a = iArr;
-            this.f21044b = valueAnimator;
-        }
-    }
+    private final Animator$AnimatorListener animationListener = new StateListAnimator$a(this);
 
     public void addState(int[] iArr, ValueAnimator valueAnimator) {
-        C10945b c10945b = new C10945b(iArr, valueAnimator);
+        StateListAnimator$b stateListAnimator$b = new StateListAnimator$b(iArr, valueAnimator);
         valueAnimator.addListener(this.animationListener);
-        this.tuples.add(c10945b);
+        this.tuples.add(stateListAnimator$b);
     }
 
     private void cancel() {
@@ -73,36 +44,36 @@ public final class StateListAnimator {
     }
 
     public void setState(int[] iArr) {
-        C10945b c10945b;
+        StateListAnimator$b stateListAnimator$b;
         int size = this.tuples.size();
         int i = 0;
         while (true) {
             if (i >= size) {
-                c10945b = null;
+                stateListAnimator$b = null;
                 break;
             }
-            c10945b = this.tuples.get(i);
-            if (StateSet.stateSetMatches(c10945b.f21043a, iArr)) {
+            stateListAnimator$b = this.tuples.get(i);
+            if (StateSet.stateSetMatches(stateListAnimator$b.a, iArr)) {
                 break;
             } else {
                 i++;
             }
         }
-        C10945b c10945b2 = this.lastMatch;
-        if (c10945b == c10945b2) {
+        StateListAnimator$b stateListAnimator$b2 = this.lastMatch;
+        if (stateListAnimator$b == stateListAnimator$b2) {
             return;
         }
-        if (c10945b2 != null) {
+        if (stateListAnimator$b2 != null) {
             cancel();
         }
-        this.lastMatch = c10945b;
-        if (c10945b != null) {
-            start(c10945b);
+        this.lastMatch = stateListAnimator$b;
+        if (stateListAnimator$b != null) {
+            start(stateListAnimator$b);
         }
     }
 
-    private void start(@NonNull C10945b c10945b) {
-        ValueAnimator valueAnimator = c10945b.f21044b;
+    private void start(@NonNull StateListAnimator$b stateListAnimator$b) {
+        ValueAnimator valueAnimator = stateListAnimator$b.f3047b;
         this.runningAnimator = valueAnimator;
         valueAnimator.start();
     }

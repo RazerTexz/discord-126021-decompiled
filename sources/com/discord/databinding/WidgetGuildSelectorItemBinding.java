@@ -11,37 +11,33 @@ import com.facebook.drawee.view.SimpleDraweeView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGuildSelectorItemBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f17052a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final FrameLayout f17053b;
+    public final FrameLayout f2452b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final SimpleDraweeView f17054c;
+    public final SimpleDraweeView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17055d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f17056e;
+    public final TextView e;
 
     public WidgetGuildSelectorItemBinding(@NonNull LinearLayout linearLayout, @NonNull FrameLayout frameLayout, @NonNull SimpleDraweeView simpleDraweeView, @NonNull TextView textView, @NonNull TextView textView2) {
-        this.f17052a = linearLayout;
-        this.f17053b = frameLayout;
-        this.f17054c = simpleDraweeView;
-        this.f17055d = textView;
-        this.f17056e = textView2;
+        this.a = linearLayout;
+        this.f2452b = frameLayout;
+        this.c = simpleDraweeView;
+        this.d = textView;
+        this.e = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17052a;
+        return this.a;
     }
 }

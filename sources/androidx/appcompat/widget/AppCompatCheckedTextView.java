@@ -1,9 +1,9 @@
 package androidx.appcompat.widget;
 
-import android.R;
+import android.R$attr;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.ActionMode;
+import android.view.ActionMode$Callback;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.CheckedTextView;
@@ -16,7 +16,7 @@ import androidx.core.widget.TextViewCompat;
 /* JADX INFO: loaded from: classes.dex */
 public class AppCompatCheckedTextView extends CheckedTextView {
     private final AppCompatTextHelper mTextHelper;
-    private static final int[] TINT_ATTRS = {R.attr.checkMark};
+    private static final int[] TINT_ATTRS = {R$attr.checkMark};
 
     public AppCompatCheckedTextView(@NonNull Context context) {
         this(context, null);
@@ -42,8 +42,8 @@ public class AppCompatCheckedTextView extends CheckedTextView {
     }
 
     @Override // android.widget.TextView
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, callback));
+    public void setCustomSelectionActionModeCallback(ActionMode$Callback actionMode$Callback) {
+        super.setCustomSelectionActionModeCallback(TextViewCompat.wrapCustomSelectionActionModeCallback(this, actionMode$Callback));
     }
 
     @Override // android.widget.TextView
@@ -56,7 +56,7 @@ public class AppCompatCheckedTextView extends CheckedTextView {
     }
 
     public AppCompatCheckedTextView(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-        this(context, attributeSet, R.attr.checkedTextViewStyle);
+        this(context, attributeSet, R$attr.checkedTextViewStyle);
     }
 
     public AppCompatCheckedTextView(@NonNull Context context, @Nullable AttributeSet attributeSet, int i) {

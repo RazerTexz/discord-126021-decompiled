@@ -1,7 +1,7 @@
 package com.discord.widgets.guildscheduledevent;
 
+import b.d.b.a.a;
 import java.io.Serializable;
-import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: compiled from: GuildScheduledEventPickerDateTime.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -76,11 +76,11 @@ public final /* data */ class GuildScheduledEventPickerTime implements Serializa
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("GuildScheduledEventPickerTime(hourOfDay=");
-        sbM833U.append(this.hourOfDay);
-        sbM833U.append(", minute=");
-        sbM833U.append(this.minute);
-        sbM833U.append(", second=");
-        return C1643a.m814B(sbM833U, this.second, ")");
+        StringBuilder sbU = a.U("GuildScheduledEventPickerTime(hourOfDay=");
+        sbU.append(this.hourOfDay);
+        sbU.append(", minute=");
+        sbU.append(this.minute);
+        sbU.append(", second=");
+        return a.B(sbU, this.second, ")");
     }
 }

@@ -14,37 +14,33 @@ import com.google.android.material.appbar.AppBarLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetGifPickerSearchBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f16702a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final RecyclerView f16703b;
+    public final RecyclerView f2402b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final GifLoadingView f16704c;
+    public final GifLoadingView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final AppViewFlipper f16705d;
+    public final AppViewFlipper d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final SearchInputView f16706e;
+    public final SearchInputView e;
 
     public WidgetGifPickerSearchBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout appBarLayout, @NonNull RecyclerView recyclerView, @NonNull GifLoadingView gifLoadingView, @NonNull Toolbar toolbar, @NonNull AppViewFlipper appViewFlipper, @NonNull SearchInputView searchInputView) {
-        this.f16702a = coordinatorLayout;
-        this.f16703b = recyclerView;
-        this.f16704c = gifLoadingView;
-        this.f16705d = appViewFlipper;
-        this.f16706e = searchInputView;
+        this.a = coordinatorLayout;
+        this.f2402b = recyclerView;
+        this.c = gifLoadingView;
+        this.d = appViewFlipper;
+        this.e = searchInputView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16702a;
+        return this.a;
     }
 }

@@ -1,13 +1,13 @@
 package com.discord.widgets.user.search;
 
 import com.discord.models.guild.Guild;
+import d0.z.d.o;
 import java.util.Map;
 import kotlin.jvm.functions.Function1;
-import p507d0.p592z.p594d.AbstractC12240o;
 
 /* JADX INFO: compiled from: WidgetGlobalSearchGuildsModel.kt */
 /* JADX INFO: loaded from: classes.dex */
-public final class WidgetGlobalSearchGuildsModel$Companion$create$guildItems$1 extends AbstractC12240o implements Function1<Long, Guild> {
+public final class WidgetGlobalSearchGuildsModel$Companion$create$guildItems$1 extends o implements Function1<Long, Guild> {
     public final /* synthetic */ Map $guilds;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

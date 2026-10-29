@@ -8,7 +8,7 @@ import androidx.core.util.Preconditions;
 import androidx.recyclerview.widget.RecyclerView;
 
 /* JADX INFO: loaded from: classes.dex */
-public final class MarginPageTransformer implements ViewPager2.PageTransformer {
+public final class MarginPageTransformer implements ViewPager2$PageTransformer {
     private final int mMarginPx;
 
     public MarginPageTransformer(@Px int i) {
@@ -25,7 +25,7 @@ public final class MarginPageTransformer implements ViewPager2.PageTransformer {
         throw new IllegalStateException("Expected the page view to be managed by a ViewPager2 instance.");
     }
 
-    @Override // androidx.viewpager2.widget.ViewPager2.PageTransformer
+    @Override // androidx.viewpager2.widget.ViewPager2$PageTransformer
     public void transformPage(@NonNull View view, float f) {
         ViewPager2 viewPager2RequireViewPager = requireViewPager(view);
         float f2 = this.mMarginPx * f;

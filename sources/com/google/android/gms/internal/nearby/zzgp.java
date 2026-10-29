@@ -2,61 +2,49 @@ package com.google.android.gms.internal.nearby;
 
 import android.os.Parcel;
 import android.os.ParcelUuid;
-import android.os.Parcelable;
+import android.os.Parcelable$Creator;
 import androidx.annotation.Nullable;
+import b.i.a.f.h.m.d;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import java.util.Arrays;
-import p007b.p085c.p086a.p087a0.C1460d;
-import p007b.p225i.p226a.p288f.p313h.p326m.C3927d;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzgp extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzgp> CREATOR = new C3927d();
+    public static final Parcelable$Creator<zzgp> CREATOR = new d();
+    public final int j;
 
-    /* JADX INFO: renamed from: j */
-    public final int f20635j;
-
-    /* JADX INFO: renamed from: k */
     @Nullable
-    public final ParcelUuid f20636k;
+    public final ParcelUuid k;
 
-    /* JADX INFO: renamed from: l */
     @Nullable
-    public final ParcelUuid f20637l;
+    public final ParcelUuid l;
 
-    /* JADX INFO: renamed from: m */
     @Nullable
-    public final ParcelUuid f20638m;
+    public final ParcelUuid m;
 
-    /* JADX INFO: renamed from: n */
     @Nullable
-    public final byte[] f20639n;
+    public final byte[] n;
 
-    /* JADX INFO: renamed from: o */
     @Nullable
-    public final byte[] f20640o;
+    public final byte[] o;
+    public final int p;
 
-    /* JADX INFO: renamed from: p */
-    public final int f20641p;
-
-    /* JADX INFO: renamed from: q */
     @Nullable
-    public final byte[] f20642q;
+    public final byte[] q;
 
-    /* JADX INFO: renamed from: r */
     @Nullable
-    public final byte[] f20643r;
+    public final byte[] r;
 
     public zzgp(int i, ParcelUuid parcelUuid, ParcelUuid parcelUuid2, ParcelUuid parcelUuid3, byte[] bArr, byte[] bArr2, int i2, byte[] bArr3, byte[] bArr4) {
-        this.f20635j = i;
-        this.f20636k = parcelUuid;
-        this.f20637l = parcelUuid2;
-        this.f20638m = parcelUuid3;
-        this.f20639n = bArr;
-        this.f20640o = bArr2;
-        this.f20641p = i2;
-        this.f20642q = bArr3;
-        this.f20643r = bArr4;
+        this.j = i;
+        this.k = parcelUuid;
+        this.l = parcelUuid2;
+        this.m = parcelUuid3;
+        this.n = bArr;
+        this.o = bArr2;
+        this.p = i2;
+        this.q = bArr3;
+        this.r = bArr4;
     }
 
     public final boolean equals(Object obj) {
@@ -65,7 +53,7 @@ public final class zzgp extends AbstractSafeParcelable {
         }
         if (obj != null && zzgp.class == obj.getClass()) {
             zzgp zzgpVar = (zzgp) obj;
-            if (this.f20641p == zzgpVar.f20641p && Arrays.equals(this.f20642q, zzgpVar.f20642q) && Arrays.equals(this.f20643r, zzgpVar.f20643r) && C1460d.m524h0(this.f20638m, zzgpVar.f20638m) && Arrays.equals(this.f20639n, zzgpVar.f20639n) && Arrays.equals(this.f20640o, zzgpVar.f20640o) && C1460d.m524h0(this.f20636k, zzgpVar.f20636k) && C1460d.m524h0(this.f20637l, zzgpVar.f20637l)) {
+            if (this.p == zzgpVar.p && Arrays.equals(this.q, zzgpVar.q) && Arrays.equals(this.r, zzgpVar.r) && b.c.a.a0.d.h0(this.m, zzgpVar.m) && Arrays.equals(this.n, zzgpVar.n) && Arrays.equals(this.o, zzgpVar.o) && b.c.a.a0.d.h0(this.k, zzgpVar.k) && b.c.a.a0.d.h0(this.l, zzgpVar.l)) {
                 return true;
             }
         }
@@ -73,25 +61,25 @@ public final class zzgp extends AbstractSafeParcelable {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20641p), Integer.valueOf(Arrays.hashCode(this.f20642q)), Integer.valueOf(Arrays.hashCode(this.f20643r)), this.f20638m, Integer.valueOf(Arrays.hashCode(this.f20639n)), Integer.valueOf(Arrays.hashCode(this.f20640o)), this.f20636k, this.f20637l});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.p), Integer.valueOf(Arrays.hashCode(this.q)), Integer.valueOf(Arrays.hashCode(this.r)), this.m, Integer.valueOf(Arrays.hashCode(this.n)), Integer.valueOf(Arrays.hashCode(this.o)), this.k, this.l});
     }
 
     @Override // android.os.Parcelable
     public final void writeToParcel(Parcel parcel, int i) {
-        int iM594y2 = C1460d.m594y2(parcel, 20293);
-        int i2 = this.f20635j;
+        int iY2 = b.c.a.a0.d.y2(parcel, 20293);
+        int i2 = this.j;
         parcel.writeInt(262145);
         parcel.writeInt(i2);
-        C1460d.m570s2(parcel, 4, this.f20636k, i, false);
-        C1460d.m570s2(parcel, 5, this.f20637l, i, false);
-        C1460d.m570s2(parcel, 6, this.f20638m, i, false);
-        C1460d.m562q2(parcel, 7, this.f20639n, false);
-        C1460d.m562q2(parcel, 8, this.f20640o, false);
-        int i3 = this.f20641p;
+        b.c.a.a0.d.s2(parcel, 4, this.k, i, false);
+        b.c.a.a0.d.s2(parcel, 5, this.l, i, false);
+        b.c.a.a0.d.s2(parcel, 6, this.m, i, false);
+        b.c.a.a0.d.q2(parcel, 7, this.n, false);
+        b.c.a.a0.d.q2(parcel, 8, this.o, false);
+        int i3 = this.p;
         parcel.writeInt(262153);
         parcel.writeInt(i3);
-        C1460d.m562q2(parcel, 10, this.f20642q, false);
-        C1460d.m562q2(parcel, 11, this.f20643r, false);
-        C1460d.m418A2(parcel, iM594y2);
+        b.c.a.a0.d.q2(parcel, 10, this.q, false);
+        b.c.a.a0.d.q2(parcel, 11, this.r, false);
+        b.c.a.a0.d.A2(parcel, iY2);
     }
 }

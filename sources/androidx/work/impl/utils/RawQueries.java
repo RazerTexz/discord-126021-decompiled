@@ -1,9 +1,9 @@
 package androidx.work.impl.utils;
 
 import androidx.annotation.NonNull;
-import androidx.sqlite.p006db.SimpleSQLiteQuery;
-import androidx.sqlite.p006db.SupportSQLiteQuery;
-import androidx.work.WorkInfo;
+import androidx.sqlite.db.SimpleSQLiteQuery;
+import androidx.sqlite.db.SupportSQLiteQuery;
+import androidx.work.WorkInfo$State;
 import androidx.work.WorkQuery;
 import androidx.work.impl.model.WorkTypeConverters;
 import java.util.ArrayList;
@@ -30,12 +30,12 @@ public final class RawQueries {
     public static SupportSQLiteQuery workQueryToRawQuery(@NonNull WorkQuery workQuery) {
         ArrayList arrayList = new ArrayList();
         StringBuilder sb = new StringBuilder("SELECT * FROM workspec");
-        List<WorkInfo.State> states = workQuery.getStates();
+        List<WorkInfo$State> states = workQuery.getStates();
         String str = " AND";
         String str2 = " WHERE";
         if (!states.isEmpty()) {
             ArrayList arrayList2 = new ArrayList(states.size());
-            Iterator<WorkInfo.State> it = states.iterator();
+            Iterator<WorkInfo$State> it = states.iterator();
             while (it.hasNext()) {
                 arrayList2.add(Integer.valueOf(WorkTypeConverters.stateToInt(it.next())));
             }

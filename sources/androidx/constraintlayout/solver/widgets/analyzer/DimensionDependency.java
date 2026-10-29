@@ -7,9 +7,9 @@ public class DimensionDependency extends DependencyNode {
     public DimensionDependency(WidgetRun widgetRun) {
         super(widgetRun);
         if (widgetRun instanceof HorizontalWidgetRun) {
-            this.type = DependencyNode.Type.HORIZONTAL_DIMENSION;
+            this.type = DependencyNode$Type.HORIZONTAL_DIMENSION;
         } else {
-            this.type = DependencyNode.Type.VERTICAL_DIMENSION;
+            this.type = DependencyNode$Type.VERTICAL_DIMENSION;
         }
     }
 

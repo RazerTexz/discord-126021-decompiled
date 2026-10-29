@@ -2,6 +2,7 @@ package androidx.constraintlayout.solver.state.helpers;
 
 import androidx.constraintlayout.solver.state.ConstraintReference;
 import androidx.constraintlayout.solver.state.State;
+import androidx.constraintlayout.solver.state.State$Helper;
 import java.util.Iterator;
 
 /* JADX INFO: loaded from: classes.dex */
@@ -11,31 +12,8 @@ public class HorizontalChainReference extends ChainReference {
     private Object mStartToEnd;
     private Object mStartToStart;
 
-    /* JADX INFO: renamed from: androidx.constraintlayout.solver.state.helpers.HorizontalChainReference$1 */
-    public /* synthetic */ class C01871 {
-        public static final /* synthetic */ int[] $SwitchMap$androidx$constraintlayout$solver$state$State$Chain;
-
-        static {
-            State.Chain.values();
-            int[] iArr = new int[3];
-            $SwitchMap$androidx$constraintlayout$solver$state$State$Chain = iArr;
-            try {
-                iArr[State.Chain.SPREAD.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$androidx$constraintlayout$solver$state$State$Chain[State.Chain.SPREAD_INSIDE.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$androidx$constraintlayout$solver$state$State$Chain[State.Chain.PACKED.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-        }
-    }
-
     public HorizontalChainReference(State state) {
-        super(state, State.Helper.HORIZONTAL_CHAIN);
+        super(state, State$Helper.HORIZONTAL_CHAIN);
     }
 
     @Override // androidx.constraintlayout.solver.state.HelperReference

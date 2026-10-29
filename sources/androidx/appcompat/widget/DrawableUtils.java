@@ -1,17 +1,20 @@
 package androidx.appcompat.widget;
 
-import android.R;
+import android.R$attr;
 import android.annotation.SuppressLint;
 import android.graphics.Insets;
-import android.graphics.PorterDuff;
+import android.graphics.PorterDuff$Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable$ConstantState;
 import android.graphics.drawable.DrawableContainer;
+import android.graphics.drawable.DrawableContainer$DrawableContainerState;
 import android.graphics.drawable.ScaleDrawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo$Scope;
 import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.graphics.drawable.WrappedDrawable;
@@ -19,12 +22,12 @@ import java.lang.reflect.Field;
 
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"RestrictedAPI"})
-@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+@RestrictTo({RestrictTo$Scope.LIBRARY_GROUP_PREFIX})
 public class DrawableUtils {
     private static final String TAG = "DrawableUtils";
     private static final String VECTOR_DRAWABLE_CLAZZ_NAME = "android.graphics.drawable.VectorDrawable";
     private static Class<?> sInsetsClazz;
-    private static final int[] CHECKED_STATE_SET = {R.attr.state_checked};
+    private static final int[] CHECKED_STATE_SET = {R$attr.state_checked};
     private static final int[] EMPTY_STATE_SET = new int[0];
     public static final Rect INSETS_NONE = new Rect();
 
@@ -52,11 +55,11 @@ public class DrawableUtils {
             }
             return true;
         }
-        Drawable.ConstantState constantState = drawable.getConstantState();
-        if (!(constantState instanceof DrawableContainer.DrawableContainerState)) {
+        Drawable$ConstantState constantState = drawable.getConstantState();
+        if (!(constantState instanceof DrawableContainer$DrawableContainerState)) {
             return true;
         }
-        for (Drawable drawable2 : ((DrawableContainer.DrawableContainerState) constantState).getChildren()) {
+        for (Drawable drawable2 : ((DrawableContainer$DrawableContainerState) constantState).getChildren()) {
             if (!canSafelyMutateDrawable(drawable2)) {
                 return false;
             }
@@ -65,7 +68,7 @@ public class DrawableUtils {
     }
 
     public static void fixDrawable(@NonNull Drawable drawable) {
-        if (Build.VERSION.SDK_INT == 21 && VECTOR_DRAWABLE_CLAZZ_NAME.equals(drawable.getClass().getName())) {
+        if (Build$VERSION.SDK_INT == 21 && VECTOR_DRAWABLE_CLAZZ_NAME.equals(drawable.getClass().getName())) {
             fixVectorDrawableTinting(drawable);
         }
     }
@@ -82,7 +85,7 @@ public class DrawableUtils {
 
     /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
     public static Rect getOpticalBounds(Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             Insets opticalInsets = drawable.getOpticalInsets();
             Rect rect = new Rect();
             rect.left = opticalInsets.left;
@@ -141,25 +144,25 @@ public class DrawableUtils {
         return INSETS_NONE;
     }
 
-    public static PorterDuff.Mode parseTintMode(int i, PorterDuff.Mode mode) {
+    public static PorterDuff$Mode parseTintMode(int i, PorterDuff$Mode porterDuff$Mode) {
         if (i == 3) {
-            return PorterDuff.Mode.SRC_OVER;
+            return PorterDuff$Mode.SRC_OVER;
         }
         if (i == 5) {
-            return PorterDuff.Mode.SRC_IN;
+            return PorterDuff$Mode.SRC_IN;
         }
         if (i == 9) {
-            return PorterDuff.Mode.SRC_ATOP;
+            return PorterDuff$Mode.SRC_ATOP;
         }
         switch (i) {
             case 14:
-                return PorterDuff.Mode.MULTIPLY;
+                return PorterDuff$Mode.MULTIPLY;
             case 15:
-                return PorterDuff.Mode.SCREEN;
+                return PorterDuff$Mode.SCREEN;
             case 16:
-                return PorterDuff.Mode.ADD;
+                return PorterDuff$Mode.ADD;
             default:
-                return mode;
+                return porterDuff$Mode;
         }
     }
 }

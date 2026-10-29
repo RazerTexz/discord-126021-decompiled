@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackGuild;
 import com.discord.analytics.generated.traits.TrackGuildReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSearchResultExpanded.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -25,6 +25,11 @@ public final /* data */ class TrackSearchResultExpanded implements AnalyticsSche
     private TrackGuild trackGuild;
     private final transient String analyticsSchemaTypeName = "search_result_expanded";
 
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    public void c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
+    }
+
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -33,7 +38,7 @@ public final /* data */ class TrackSearchResultExpanded implements AnalyticsSche
             return false;
         }
         TrackSearchResultExpanded trackSearchResultExpanded = (TrackSearchResultExpanded) other;
-        return C12238m.areEqual(this.searchId, trackSearchResultExpanded.searchId) && C12238m.areEqual(this.messageId, trackSearchResultExpanded.messageId) && C12238m.areEqual(this.limit, trackSearchResultExpanded.limit) && C12238m.areEqual(this.offset, trackSearchResultExpanded.offset) && C12238m.areEqual(this.page, trackSearchResultExpanded.page) && C12238m.areEqual(this.pageResults, trackSearchResultExpanded.pageResults) && C12238m.areEqual(this.resultIndex, trackSearchResultExpanded.resultIndex);
+        return m.areEqual(this.searchId, trackSearchResultExpanded.searchId) && m.areEqual(this.messageId, trackSearchResultExpanded.messageId) && m.areEqual(this.limit, trackSearchResultExpanded.limit) && m.areEqual(this.offset, trackSearchResultExpanded.offset) && m.areEqual(this.page, trackSearchResultExpanded.page) && m.areEqual(this.pageResults, trackSearchResultExpanded.pageResults) && m.areEqual(this.resultIndex, trackSearchResultExpanded.resultIndex);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -65,26 +70,20 @@ public final /* data */ class TrackSearchResultExpanded implements AnalyticsSche
         return iHashCode6 + (l6 != null ? l6.hashCode() : 0);
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSearchResultExpanded(searchId=");
-        sbM833U.append(this.searchId);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", limit=");
-        sbM833U.append(this.limit);
-        sbM833U.append(", offset=");
-        sbM833U.append(this.offset);
-        sbM833U.append(", page=");
-        sbM833U.append(this.page);
-        sbM833U.append(", pageResults=");
-        sbM833U.append(this.pageResults);
-        sbM833U.append(", resultIndex=");
-        return C1643a.m819G(sbM833U, this.resultIndex, ")");
+        StringBuilder sbU = a.U("TrackSearchResultExpanded(searchId=");
+        sbU.append(this.searchId);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", limit=");
+        sbU.append(this.limit);
+        sbU.append(", offset=");
+        sbU.append(this.offset);
+        sbU.append(", page=");
+        sbU.append(this.page);
+        sbU.append(", pageResults=");
+        sbU.append(this.pageResults);
+        sbU.append(", resultIndex=");
+        return a.G(sbU, this.resultIndex, ")");
     }
 }

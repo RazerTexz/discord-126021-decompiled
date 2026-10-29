@@ -1,8 +1,8 @@
 package com.discord.widgets.chat.input.sticker;
 
+import b.d.b.a.a;
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: StickerAdapterItems.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -12,7 +12,7 @@ public final /* data */ class HeaderItem implements MGRecyclerDataPayload {
     private final int type;
 
     public HeaderItem(HeaderType headerType) {
-        C12238m.checkNotNullParameter(headerType, "headerType");
+        m.checkNotNullParameter(headerType, "headerType");
         this.headerType = headerType;
         this.key = headerType.getId();
     }
@@ -25,13 +25,13 @@ public final /* data */ class HeaderItem implements MGRecyclerDataPayload {
     }
 
     public final HeaderItem copy(HeaderType headerType) {
-        C12238m.checkNotNullParameter(headerType, "headerType");
+        m.checkNotNullParameter(headerType, "headerType");
         return new HeaderItem(headerType);
     }
 
     public boolean equals(Object other) {
         if (this != other) {
-            return (other instanceof HeaderItem) && C12238m.areEqual(this.headerType, ((HeaderItem) other).headerType);
+            return (other instanceof HeaderItem) && m.areEqual(this.headerType, ((HeaderItem) other).headerType);
         }
         return true;
     }
@@ -64,9 +64,9 @@ public final /* data */ class HeaderItem implements MGRecyclerDataPayload {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("HeaderItem(headerType=");
-        sbM833U.append(this.headerType);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("HeaderItem(headerType=");
+        sbU.append(this.headerType);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

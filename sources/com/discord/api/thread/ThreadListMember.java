@@ -1,9 +1,9 @@
 package com.discord.api.thread;
 
+import b.d.b.a.a;
 import com.discord.api.guildmember.GuildMember;
 import com.discord.api.presence.Presence;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: ThreadListMember.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -20,7 +20,7 @@ public final /* data */ class ThreadListMember {
             return false;
         }
         ThreadListMember threadListMember = (ThreadListMember) other;
-        return this.userId == threadListMember.userId && C12238m.areEqual(this.member, threadListMember.member) && C12238m.areEqual(this.presence, threadListMember.presence);
+        return this.userId == threadListMember.userId && m.areEqual(this.member, threadListMember.member) && m.areEqual(this.presence, threadListMember.presence);
     }
 
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -48,13 +48,13 @@ public final /* data */ class ThreadListMember {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("ThreadListMember(userId=");
-        sbM833U.append(this.userId);
-        sbM833U.append(", member=");
-        sbM833U.append(this.member);
-        sbM833U.append(", presence=");
-        sbM833U.append(this.presence);
-        sbM833U.append(")");
-        return sbM833U.toString();
+        StringBuilder sbU = a.U("ThreadListMember(userId=");
+        sbU.append(this.userId);
+        sbU.append(", member=");
+        sbU.append(this.member);
+        sbU.append(", presence=");
+        sbU.append(this.presence);
+        sbU.append(")");
+        return sbU.toString();
     }
 }

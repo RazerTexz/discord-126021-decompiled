@@ -1,12 +1,12 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadata;
 import com.discord.analytics.generated.traits.TrackStoreSkuMetadataReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLoginViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -29,7 +29,7 @@ public final /* data */ class TrackLoginViewed implements AnalyticsSchema, Track
             return false;
         }
         TrackLoginViewed trackLoginViewed = (TrackLoginViewed) other;
-        return C12238m.areEqual(this.loginSource, trackLoginViewed.loginSource) && C12238m.areEqual(this.inviteCode, trackLoginViewed.inviteCode) && C12238m.areEqual(this.inviteGuildId, trackLoginViewed.inviteGuildId) && C12238m.areEqual(this.inviteChannelId, trackLoginViewed.inviteChannelId) && C12238m.areEqual(this.inviteChannelType, trackLoginViewed.inviteChannelType) && C12238m.areEqual(this.inviteInviterId, trackLoginViewed.inviteInviterId);
+        return m.areEqual(this.loginSource, trackLoginViewed.loginSource) && m.areEqual(this.inviteCode, trackLoginViewed.inviteCode) && m.areEqual(this.inviteGuildId, trackLoginViewed.inviteGuildId) && m.areEqual(this.inviteChannelId, trackLoginViewed.inviteChannelId) && m.areEqual(this.inviteChannelType, trackLoginViewed.inviteChannelType) && m.areEqual(this.inviteInviterId, trackLoginViewed.inviteInviterId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,17 +54,17 @@ public final /* data */ class TrackLoginViewed implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackLoginViewed(loginSource=");
-        sbM833U.append(this.loginSource);
-        sbM833U.append(", inviteCode=");
-        sbM833U.append(this.inviteCode);
-        sbM833U.append(", inviteGuildId=");
-        sbM833U.append(this.inviteGuildId);
-        sbM833U.append(", inviteChannelId=");
-        sbM833U.append(this.inviteChannelId);
-        sbM833U.append(", inviteChannelType=");
-        sbM833U.append(this.inviteChannelType);
-        sbM833U.append(", inviteInviterId=");
-        return C1643a.m819G(sbM833U, this.inviteInviterId, ")");
+        StringBuilder sbU = a.U("TrackLoginViewed(loginSource=");
+        sbU.append(this.loginSource);
+        sbU.append(", inviteCode=");
+        sbU.append(this.inviteCode);
+        sbU.append(", inviteGuildId=");
+        sbU.append(this.inviteGuildId);
+        sbU.append(", inviteChannelId=");
+        sbU.append(this.inviteChannelId);
+        sbU.append(", inviteChannelType=");
+        sbU.append(this.inviteChannelType);
+        sbU.append(", inviteInviterId=");
+        return a.G(sbU, this.inviteInviterId, ")");
     }
 }

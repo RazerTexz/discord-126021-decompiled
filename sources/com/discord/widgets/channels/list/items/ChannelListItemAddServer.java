@@ -8,7 +8,7 @@ public final class ChannelListItemAddServer implements ChannelListItem {
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider
     public String getKey() {
-        return ChannelListItem.DefaultImpls.getKey(this);
+        return ChannelListItem$DefaultImpls.getKey(this);
     }
 
     @Override // com.discord.utilities.mg_recycler.MGRecyclerDataPayload

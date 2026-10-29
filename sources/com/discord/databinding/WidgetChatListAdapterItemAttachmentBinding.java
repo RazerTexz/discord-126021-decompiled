@@ -15,62 +15,53 @@ import com.google.android.material.card.MaterialCardView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemAttachmentBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final ConstraintLayout f16144a;
+    public final ConstraintLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final View f16145b;
+    public final View f2309b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final View f16146c;
+    public final View c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final MaterialCardView f16147d;
+    public final MaterialCardView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextView f16148e;
+    public final TextView e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final ImageView f16149f;
+    public final ImageView f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final ImageView f16150g;
+    public final ImageView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final InlineMediaView f16151h;
+    public final InlineMediaView h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f16152i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final FrameLayout f16153j;
+    public final FrameLayout j;
 
     public WidgetChatListAdapterItemAttachmentBinding(@NonNull ConstraintLayout constraintLayout, @NonNull View view, @NonNull View view2, @NonNull Barrier barrier, @NonNull MaterialCardView materialCardView, @NonNull TextView textView, @NonNull ImageView imageView, @NonNull ImageView imageView2, @NonNull InlineMediaView inlineMediaView, @NonNull TextView textView2, @NonNull FrameLayout frameLayout, @NonNull Guideline guideline) {
-        this.f16144a = constraintLayout;
-        this.f16145b = view;
-        this.f16146c = view2;
-        this.f16147d = materialCardView;
-        this.f16148e = textView;
-        this.f16149f = imageView;
-        this.f16150g = imageView2;
-        this.f16151h = inlineMediaView;
-        this.f16152i = textView2;
-        this.f16153j = frameLayout;
+        this.a = constraintLayout;
+        this.f2309b = view;
+        this.c = view2;
+        this.d = materialCardView;
+        this.e = textView;
+        this.f = imageView;
+        this.g = imageView2;
+        this.h = inlineMediaView;
+        this.i = textView2;
+        this.j = frameLayout;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16144a;
+        return this.a;
     }
 }

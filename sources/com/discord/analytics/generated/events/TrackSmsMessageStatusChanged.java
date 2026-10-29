@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSmsMessageStatusChanged.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -27,7 +27,7 @@ public final /* data */ class TrackSmsMessageStatusChanged implements AnalyticsS
             return false;
         }
         TrackSmsMessageStatusChanged trackSmsMessageStatusChanged = (TrackSmsMessageStatusChanged) other;
-        return C12238m.areEqual(this.messageStatus, trackSmsMessageStatusChanged.messageStatus) && C12238m.areEqual(this.phoneNumber, trackSmsMessageStatusChanged.phoneNumber) && C12238m.areEqual(this.carrierName, trackSmsMessageStatusChanged.carrierName) && C12238m.areEqual(this.messageId, trackSmsMessageStatusChanged.messageId) && C12238m.areEqual(this.accountId, trackSmsMessageStatusChanged.accountId) && C12238m.areEqual(this.errorCode, trackSmsMessageStatusChanged.errorCode) && C12238m.areEqual(this.phoneCountry, trackSmsMessageStatusChanged.phoneCountry);
+        return m.areEqual(this.messageStatus, trackSmsMessageStatusChanged.messageStatus) && m.areEqual(this.phoneNumber, trackSmsMessageStatusChanged.phoneNumber) && m.areEqual(this.carrierName, trackSmsMessageStatusChanged.carrierName) && m.areEqual(this.messageId, trackSmsMessageStatusChanged.messageId) && m.areEqual(this.accountId, trackSmsMessageStatusChanged.accountId) && m.areEqual(this.errorCode, trackSmsMessageStatusChanged.errorCode) && m.areEqual(this.phoneCountry, trackSmsMessageStatusChanged.phoneCountry);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -54,19 +54,19 @@ public final /* data */ class TrackSmsMessageStatusChanged implements AnalyticsS
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSmsMessageStatusChanged(messageStatus=");
-        sbM833U.append(this.messageStatus);
-        sbM833U.append(", phoneNumber=");
-        sbM833U.append(this.phoneNumber);
-        sbM833U.append(", carrierName=");
-        sbM833U.append(this.carrierName);
-        sbM833U.append(", messageId=");
-        sbM833U.append(this.messageId);
-        sbM833U.append(", accountId=");
-        sbM833U.append(this.accountId);
-        sbM833U.append(", errorCode=");
-        sbM833U.append(this.errorCode);
-        sbM833U.append(", phoneCountry=");
-        return C1643a.m817E(sbM833U, this.phoneCountry, ")");
+        StringBuilder sbU = a.U("TrackSmsMessageStatusChanged(messageStatus=");
+        sbU.append(this.messageStatus);
+        sbU.append(", phoneNumber=");
+        sbU.append(this.phoneNumber);
+        sbU.append(", carrierName=");
+        sbU.append(this.carrierName);
+        sbU.append(", messageId=");
+        sbU.append(this.messageId);
+        sbU.append(", accountId=");
+        sbU.append(this.accountId);
+        sbU.append(", errorCode=");
+        sbU.append(this.errorCode);
+        sbU.append(", phoneCountry=");
+        return a.E(sbU, this.phoneCountry, ")");
     }
 }

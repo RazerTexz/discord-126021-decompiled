@@ -13,62 +13,53 @@ import com.google.android.material.textfield.TextInputLayout;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetServerSettingsEditMemberBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final CoordinatorLayout f17627a;
+    public final CoordinatorLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final LinearLayout f17628b;
+    public final LinearLayout f2561b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f17629c;
+    public final TextView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f17630d;
+    public final TextView d;
 
-    /* JADX INFO: renamed from: e */
     @NonNull
-    public final TextInputLayout f17631e;
+    public final TextInputLayout e;
 
-    /* JADX INFO: renamed from: f */
     @NonNull
-    public final LinearLayout f17632f;
+    public final LinearLayout f;
 
-    /* JADX INFO: renamed from: g */
     @NonNull
-    public final RecyclerView f17633g;
+    public final RecyclerView g;
 
-    /* JADX INFO: renamed from: h */
     @NonNull
-    public final FloatingActionButton f17634h;
+    public final FloatingActionButton h;
 
-    /* JADX INFO: renamed from: i */
     @NonNull
-    public final TextView f17635i;
+    public final TextView i;
 
-    /* JADX INFO: renamed from: j */
     @NonNull
-    public final TextView f17636j;
+    public final TextView j;
 
     public WidgetServerSettingsEditMemberBinding(@NonNull CoordinatorLayout coordinatorLayout, @NonNull LinearLayout linearLayout, @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextInputLayout textInputLayout, @NonNull LinearLayout linearLayout2, @NonNull RecyclerView recyclerView, @NonNull FloatingActionButton floatingActionButton, @NonNull TextView textView3, @NonNull TextView textView4) {
-        this.f17627a = coordinatorLayout;
-        this.f17628b = linearLayout;
-        this.f17629c = textView;
-        this.f17630d = textView2;
-        this.f17631e = textInputLayout;
-        this.f17632f = linearLayout2;
-        this.f17633g = recyclerView;
-        this.f17634h = floatingActionButton;
-        this.f17635i = textView3;
-        this.f17636j = textView4;
+        this.a = coordinatorLayout;
+        this.f2561b = linearLayout;
+        this.c = textView;
+        this.d = textView2;
+        this.e = textInputLayout;
+        this.f = linearLayout2;
+        this.g = recyclerView;
+        this.h = floatingActionButton;
+        this.i = textView3;
+        this.j = textView4;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f17627a;
+        return this.a;
     }
 }

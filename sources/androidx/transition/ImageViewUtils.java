@@ -3,7 +3,7 @@ package androidx.transition;
 import android.annotation.SuppressLint;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.os.Build$VERSION;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +20,7 @@ public class ImageViewUtils {
     }
 
     public static void animateTransform(@NonNull ImageView imageView, @Nullable Matrix matrix) {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build$VERSION.SDK_INT >= 29) {
             imageView.animateTransform(matrix);
             return;
         }

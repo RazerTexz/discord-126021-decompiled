@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildDirectorySearch.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -22,7 +22,7 @@ public final /* data */ class TrackGuildDirectorySearch implements AnalyticsSche
             return false;
         }
         TrackGuildDirectorySearch trackGuildDirectorySearch = (TrackGuildDirectorySearch) other;
-        return C12238m.areEqual(this.directoryChannelId, trackGuildDirectorySearch.directoryChannelId) && C12238m.areEqual(this.directoryGuildId, trackGuildDirectorySearch.directoryGuildId);
+        return m.areEqual(this.directoryChannelId, trackGuildDirectorySearch.directoryChannelId) && m.areEqual(this.directoryGuildId, trackGuildDirectorySearch.directoryGuildId);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -39,9 +39,9 @@ public final /* data */ class TrackGuildDirectorySearch implements AnalyticsSche
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildDirectorySearch(directoryChannelId=");
-        sbM833U.append(this.directoryChannelId);
-        sbM833U.append(", directoryGuildId=");
-        return C1643a.m819G(sbM833U, this.directoryGuildId, ")");
+        StringBuilder sbU = a.U("TrackGuildDirectorySearch(directoryChannelId=");
+        sbU.append(this.directoryChannelId);
+        sbU.append(", directoryGuildId=");
+        return a.G(sbU, this.directoryGuildId, ")");
     }
 }

@@ -1,14 +1,22 @@
 package com.discord.api.friendsuggestions;
 
+import b.d.b.a.a;
+import d0.z.d.m;
 import java.util.List;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: BulkAddFriendsResponse.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class BulkAddFriendsResponse {
     private final List<String> failedRequests;
     private final List<String> successfulRequests;
+
+    public final List<String> a() {
+        return this.failedRequests;
+    }
+
+    public final List<String> b() {
+        return this.successfulRequests;
+    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -18,7 +26,7 @@ public final /* data */ class BulkAddFriendsResponse {
             return false;
         }
         BulkAddFriendsResponse bulkAddFriendsResponse = (BulkAddFriendsResponse) other;
-        return C12238m.areEqual(this.successfulRequests, bulkAddFriendsResponse.successfulRequests) && C12238m.areEqual(this.failedRequests, bulkAddFriendsResponse.failedRequests);
+        return m.areEqual(this.successfulRequests, bulkAddFriendsResponse.successfulRequests) && m.areEqual(this.failedRequests, bulkAddFriendsResponse.failedRequests);
     }
 
     public int hashCode() {
@@ -28,20 +36,10 @@ public final /* data */ class BulkAddFriendsResponse {
         return iHashCode + (list2 != null ? list2.hashCode() : 0);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final List<String> m7826a() {
-        return this.failedRequests;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<String> m7827b() {
-        return this.successfulRequests;
-    }
-
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("BulkAddFriendsResponse(successfulRequests=");
-        sbM833U.append(this.successfulRequests);
-        sbM833U.append(", failedRequests=");
-        return C1643a.m824L(sbM833U, this.failedRequests, ")");
+        StringBuilder sbU = a.U("BulkAddFriendsResponse(successfulRequests=");
+        sbU.append(this.successfulRequests);
+        sbU.append(", failedRequests=");
+        return a.L(sbU, this.failedRequests, ")");
     }
 }

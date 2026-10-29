@@ -6,43 +6,10 @@ public final class CommentInfo {
     public final int prevEndPos;
     public final String content;
     public final int endPos;
-    public final StartConnection start;
-    public final EndConnection end;
+    public final CommentInfo$StartConnection start;
+    public final CommentInfo$EndConnection end;
 
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CommentInfo$EndConnection.SCL.lombok */
-    public enum EndConnection {
-        DIRECT_AFTER_COMMENT,
-        AFTER_COMMENT,
-        ON_NEXT_LINE;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static EndConnection[] valuesCustom() {
-            EndConnection[] endConnectionArrValuesCustom = values();
-            int length = endConnectionArrValuesCustom.length;
-            EndConnection[] endConnectionArr = new EndConnection[length];
-            System.arraycopy(endConnectionArrValuesCustom, 0, endConnectionArr, 0, length);
-            return endConnectionArr;
-        }
-    }
-
-    /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/CommentInfo$StartConnection.SCL.lombok */
-    public enum StartConnection {
-        START_OF_LINE,
-        ON_NEXT_LINE,
-        DIRECT_AFTER_PREVIOUS,
-        AFTER_PREVIOUS;
-
-        /* JADX INFO: renamed from: values, reason: to resolve conflict with enum method */
-        public static StartConnection[] valuesCustom() {
-            StartConnection[] startConnectionArrValuesCustom = values();
-            int length = startConnectionArrValuesCustom.length;
-            StartConnection[] startConnectionArr = new StartConnection[length];
-            System.arraycopy(startConnectionArrValuesCustom, 0, startConnectionArr, 0, length);
-            return startConnectionArr;
-        }
-    }
-
-    public CommentInfo(int prevEndPos, int pos, int endPos, String content, StartConnection start, EndConnection end) {
+    public CommentInfo(int prevEndPos, int pos, int endPos, String content, CommentInfo$StartConnection start, CommentInfo$EndConnection end) {
         this.pos = pos;
         this.prevEndPos = prevEndPos;
         this.endPos = endPos;

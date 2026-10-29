@@ -12,32 +12,29 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class ViewCommunityGetStartedInformationBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final View f15404a;
+    public final View a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f15405b;
+    public final TextView f2182b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final ImageView f15406c;
+    public final ImageView c;
 
-    /* JADX INFO: renamed from: d */
     @NonNull
-    public final TextView f15407d;
+    public final TextView d;
 
     public ViewCommunityGetStartedInformationBinding(@NonNull View view, @NonNull Guideline guideline, @NonNull TextView textView, @NonNull ImageView imageView, @NonNull ConstraintLayout constraintLayout, @NonNull RelativeLayout relativeLayout, @NonNull TextView textView2) {
-        this.f15404a = view;
-        this.f15405b = textView;
-        this.f15406c = imageView;
-        this.f15407d = textView2;
+        this.a = view;
+        this.f2182b = textView;
+        this.c = imageView;
+        this.d = textView2;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f15404a;
+        return this.a;
     }
 }

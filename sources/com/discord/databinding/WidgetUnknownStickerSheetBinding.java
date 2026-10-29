@@ -10,27 +10,25 @@ import com.discord.views.sticker.StickerView;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetUnknownStickerSheetBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final LinearLayout f18312a;
+    public final LinearLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final StickerView f18313b;
+    public final StickerView f2677b;
 
-    /* JADX INFO: renamed from: c */
     @NonNull
-    public final TextView f18314c;
+    public final TextView c;
 
     public WidgetUnknownStickerSheetBinding(@NonNull LinearLayout linearLayout, @NonNull StickerView stickerView, @NonNull TextView textView) {
-        this.f18312a = linearLayout;
-        this.f18313b = stickerView;
-        this.f18314c = textView;
+        this.a = linearLayout;
+        this.f2677b = stickerView;
+        this.c = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f18312a;
+        return this.a;
     }
 }

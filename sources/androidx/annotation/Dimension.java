@@ -11,15 +11,9 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.CLASS)
 public @interface Dimension {
-
-    /* JADX INFO: renamed from: DP */
-    public static final int f76DP = 0;
-
-    /* JADX INFO: renamed from: PX */
-    public static final int f77PX = 1;
-
-    /* JADX INFO: renamed from: SP */
-    public static final int f78SP = 2;
+    public static final int DP = 0;
+    public static final int PX = 1;
+    public static final int SP = 2;
 
     int unit() default 1;
 }

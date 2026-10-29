@@ -1,11 +1,11 @@
 package com.discord.widgets.chat.list.entries;
 
+import a0.a.a.b;
+import b.d.b.a.a;
 import com.discord.api.channel.ForumTag;
 import com.discord.models.member.GuildMember;
+import d0.z.d.m;
 import java.util.List;
-import p001a0.p002a.p003a.C0002b;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
 
 /* JADX INFO: compiled from: StartOfChatEntry.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -28,8 +28,8 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
     private final int type;
 
     public StartOfChatEntry(long j, String str, boolean z2, boolean z3, boolean z4, boolean z5, Integer num, GuildMember guildMember, String str2, boolean z6, boolean z7, boolean z8, List<ForumTag> list, List<Long> list2) {
-        C12238m.checkNotNullParameter(str, "channelName");
-        C12238m.checkNotNullParameter(str2, "threadCreatorName");
+        m.checkNotNullParameter(str, "channelName");
+        m.checkNotNullParameter(str2, "threadCreatorName");
         this.channelId = j;
         this.channelName = str;
         this.canReadMessageHistory = z2;
@@ -56,9 +56,14 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
         return this.appliedTags;
     }
 
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ StartOfChatEntry copy$default(StartOfChatEntry startOfChatEntry, long j, String str, boolean z2, boolean z3, boolean z4, boolean z5, Integer num, GuildMember guildMember, String str2, boolean z6, boolean z7, boolean z8, List list, List list2, int i, Object obj) {
+        return startOfChatEntry.copy((i & 1) != 0 ? startOfChatEntry.channelId : j, (i & 2) != 0 ? startOfChatEntry.channelName : str, (i & 4) != 0 ? startOfChatEntry.canReadMessageHistory : z2, (i & 8) != 0 ? startOfChatEntry.canManageChannel : z3, (i & 16) != 0 ? startOfChatEntry.canManageThread : z4, (i & 32) != 0 ? startOfChatEntry.isThread : z5, (i & 64) != 0 ? startOfChatEntry.threadAutoArchiveDuration : num, (i & 128) != 0 ? startOfChatEntry.threadCreatorMember : guildMember, (i & 256) != 0 ? startOfChatEntry.threadCreatorName : str2, (i & 512) != 0 ? startOfChatEntry.isTextInVoice : z6, (i & 1024) != 0 ? startOfChatEntry.isGuildForumPost : z7, (i & 2048) != 0 ? startOfChatEntry.canAccessRedesignedForumChannels : z8, (i & 4096) != 0 ? startOfChatEntry.availableTags : list, (i & 8192) != 0 ? startOfChatEntry.appliedTags : list2);
+    }
+
     public final StartOfChatEntry copy(long channelId, String channelName, boolean canReadMessageHistory, boolean canManageChannel, boolean canManageThread, boolean isThread, Integer threadAutoArchiveDuration, GuildMember threadCreatorMember, String threadCreatorName, boolean isTextInVoice, boolean isGuildForumPost, boolean canAccessRedesignedForumChannels, List<ForumTag> availableTags, List<Long> appliedTags) {
-        C12238m.checkNotNullParameter(channelName, "channelName");
-        C12238m.checkNotNullParameter(threadCreatorName, "threadCreatorName");
+        m.checkNotNullParameter(channelName, "channelName");
+        m.checkNotNullParameter(threadCreatorName, "threadCreatorName");
         return new StartOfChatEntry(channelId, channelName, canReadMessageHistory, canManageChannel, canManageThread, isThread, threadAutoArchiveDuration, threadCreatorMember, threadCreatorName, isTextInVoice, isGuildForumPost, canAccessRedesignedForumChannels, availableTags, appliedTags);
     }
 
@@ -70,7 +75,7 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
             return false;
         }
         StartOfChatEntry startOfChatEntry = (StartOfChatEntry) other;
-        return this.channelId == startOfChatEntry.channelId && C12238m.areEqual(this.channelName, startOfChatEntry.channelName) && this.canReadMessageHistory == startOfChatEntry.canReadMessageHistory && this.canManageChannel == startOfChatEntry.canManageChannel && this.canManageThread == startOfChatEntry.canManageThread && this.isThread == startOfChatEntry.isThread && C12238m.areEqual(this.threadAutoArchiveDuration, startOfChatEntry.threadAutoArchiveDuration) && C12238m.areEqual(this.threadCreatorMember, startOfChatEntry.threadCreatorMember) && C12238m.areEqual(this.threadCreatorName, startOfChatEntry.threadCreatorName) && this.isTextInVoice == startOfChatEntry.isTextInVoice && this.isGuildForumPost == startOfChatEntry.isGuildForumPost && this.canAccessRedesignedForumChannels == startOfChatEntry.canAccessRedesignedForumChannels && C12238m.areEqual(this.availableTags, startOfChatEntry.availableTags) && C12238m.areEqual(this.appliedTags, startOfChatEntry.appliedTags);
+        return this.channelId == startOfChatEntry.channelId && m.areEqual(this.channelName, startOfChatEntry.channelName) && this.canReadMessageHistory == startOfChatEntry.canReadMessageHistory && this.canManageChannel == startOfChatEntry.canManageChannel && this.canManageThread == startOfChatEntry.canManageThread && this.isThread == startOfChatEntry.isThread && m.areEqual(this.threadAutoArchiveDuration, startOfChatEntry.threadAutoArchiveDuration) && m.areEqual(this.threadCreatorMember, startOfChatEntry.threadCreatorMember) && m.areEqual(this.threadCreatorName, startOfChatEntry.threadCreatorName) && this.isTextInVoice == startOfChatEntry.isTextInVoice && this.isGuildForumPost == startOfChatEntry.isGuildForumPost && this.canAccessRedesignedForumChannels == startOfChatEntry.canAccessRedesignedForumChannels && m.areEqual(this.availableTags, startOfChatEntry.availableTags) && m.areEqual(this.appliedTags, startOfChatEntry.appliedTags);
     }
 
     public final List<Long> getAppliedTags() {
@@ -211,9 +216,9 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
     /* JADX WARN: Type inference failed for: r3v1, types: [int] */
     /* JADX WARN: Type inference failed for: r3v2 */
     public int hashCode() {
-        int iM3a = C0002b.m3a(this.channelId) * 31;
+        int iA = b.a(this.channelId) * 31;
         String str = this.channelName;
-        int iHashCode = (iM3a + (str != null ? str.hashCode() : 0)) * 31;
+        int iHashCode = (iA + (str != null ? str.hashCode() : 0)) * 31;
         boolean z2 = this.canReadMessageHistory;
         ?? r1 = z2;
         if (z2) {
@@ -277,33 +282,33 @@ public final /* data */ class StartOfChatEntry extends ChatListEntry {
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("StartOfChatEntry(channelId=");
-        sbM833U.append(this.channelId);
-        sbM833U.append(", channelName=");
-        sbM833U.append(this.channelName);
-        sbM833U.append(", canReadMessageHistory=");
-        sbM833U.append(this.canReadMessageHistory);
-        sbM833U.append(", canManageChannel=");
-        sbM833U.append(this.canManageChannel);
-        sbM833U.append(", canManageThread=");
-        sbM833U.append(this.canManageThread);
-        sbM833U.append(", isThread=");
-        sbM833U.append(this.isThread);
-        sbM833U.append(", threadAutoArchiveDuration=");
-        sbM833U.append(this.threadAutoArchiveDuration);
-        sbM833U.append(", threadCreatorMember=");
-        sbM833U.append(this.threadCreatorMember);
-        sbM833U.append(", threadCreatorName=");
-        sbM833U.append(this.threadCreatorName);
-        sbM833U.append(", isTextInVoice=");
-        sbM833U.append(this.isTextInVoice);
-        sbM833U.append(", isGuildForumPost=");
-        sbM833U.append(this.isGuildForumPost);
-        sbM833U.append(", canAccessRedesignedForumChannels=");
-        sbM833U.append(this.canAccessRedesignedForumChannels);
-        sbM833U.append(", availableTags=");
-        sbM833U.append(this.availableTags);
-        sbM833U.append(", appliedTags=");
-        return C1643a.m824L(sbM833U, this.appliedTags, ")");
+        StringBuilder sbU = a.U("StartOfChatEntry(channelId=");
+        sbU.append(this.channelId);
+        sbU.append(", channelName=");
+        sbU.append(this.channelName);
+        sbU.append(", canReadMessageHistory=");
+        sbU.append(this.canReadMessageHistory);
+        sbU.append(", canManageChannel=");
+        sbU.append(this.canManageChannel);
+        sbU.append(", canManageThread=");
+        sbU.append(this.canManageThread);
+        sbU.append(", isThread=");
+        sbU.append(this.isThread);
+        sbU.append(", threadAutoArchiveDuration=");
+        sbU.append(this.threadAutoArchiveDuration);
+        sbU.append(", threadCreatorMember=");
+        sbU.append(this.threadCreatorMember);
+        sbU.append(", threadCreatorName=");
+        sbU.append(this.threadCreatorName);
+        sbU.append(", isTextInVoice=");
+        sbU.append(this.isTextInVoice);
+        sbU.append(", isGuildForumPost=");
+        sbU.append(this.isGuildForumPost);
+        sbU.append(", canAccessRedesignedForumChannels=");
+        sbU.append(this.canAccessRedesignedForumChannels);
+        sbU.append(", availableTags=");
+        sbU.append(this.availableTags);
+        sbU.append(", appliedTags=");
+        return a.L(sbU, this.appliedTags, ")");
     }
 }

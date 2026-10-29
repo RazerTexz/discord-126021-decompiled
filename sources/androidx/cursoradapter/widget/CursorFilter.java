@@ -2,23 +2,14 @@ package androidx.cursoradapter.widget;
 
 import android.database.Cursor;
 import android.widget.Filter;
+import android.widget.Filter$FilterResults;
 
 /* JADX INFO: loaded from: classes.dex */
 public class CursorFilter extends Filter {
-    public CursorFilterClient mClient;
+    public CursorFilter$CursorFilterClient mClient;
 
-    public interface CursorFilterClient {
-        void changeCursor(Cursor cursor);
-
-        CharSequence convertToString(Cursor cursor);
-
-        Cursor getCursor();
-
-        Cursor runQueryOnBackgroundThread(CharSequence charSequence);
-    }
-
-    public CursorFilter(CursorFilterClient cursorFilterClient) {
-        this.mClient = cursorFilterClient;
+    public CursorFilter(CursorFilter$CursorFilterClient cursorFilter$CursorFilterClient) {
+        this.mClient = cursorFilter$CursorFilterClient;
     }
 
     @Override // android.widget.Filter
@@ -27,23 +18,23 @@ public class CursorFilter extends Filter {
     }
 
     @Override // android.widget.Filter
-    public Filter.FilterResults performFiltering(CharSequence charSequence) {
+    public Filter$FilterResults performFiltering(CharSequence charSequence) {
         Cursor cursorRunQueryOnBackgroundThread = this.mClient.runQueryOnBackgroundThread(charSequence);
-        Filter.FilterResults filterResults = new Filter.FilterResults();
+        Filter$FilterResults filter$FilterResults = new Filter$FilterResults();
         if (cursorRunQueryOnBackgroundThread != null) {
-            filterResults.count = cursorRunQueryOnBackgroundThread.getCount();
-            filterResults.values = cursorRunQueryOnBackgroundThread;
+            filter$FilterResults.count = cursorRunQueryOnBackgroundThread.getCount();
+            filter$FilterResults.values = cursorRunQueryOnBackgroundThread;
         } else {
-            filterResults.count = 0;
-            filterResults.values = null;
+            filter$FilterResults.count = 0;
+            filter$FilterResults.values = null;
         }
-        return filterResults;
+        return filter$FilterResults;
     }
 
     @Override // android.widget.Filter
-    public void publishResults(CharSequence charSequence, Filter.FilterResults filterResults) {
+    public void publishResults(CharSequence charSequence, Filter$FilterResults filter$FilterResults) {
         Cursor cursor = this.mClient.getCursor();
-        Object obj = filterResults.values;
+        Object obj = filter$FilterResults.values;
         if (obj == null || obj == cursor) {
             return;
         }

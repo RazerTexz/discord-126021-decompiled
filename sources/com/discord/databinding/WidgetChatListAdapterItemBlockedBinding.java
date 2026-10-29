@@ -9,22 +9,21 @@ import androidx.viewbinding.ViewBinding;
 /* JADX INFO: loaded from: classes.dex */
 public final class WidgetChatListAdapterItemBlockedBinding implements ViewBinding {
 
-    /* JADX INFO: renamed from: a */
     @NonNull
-    public final RelativeLayout f16167a;
+    public final RelativeLayout a;
 
-    /* JADX INFO: renamed from: b */
+    /* JADX INFO: renamed from: b, reason: collision with root package name */
     @NonNull
-    public final TextView f16168b;
+    public final TextView f2312b;
 
     public WidgetChatListAdapterItemBlockedBinding(@NonNull RelativeLayout relativeLayout, @NonNull TextView textView) {
-        this.f16167a = relativeLayout;
-        this.f16168b = textView;
+        this.a = relativeLayout;
+        this.f2312b = textView;
     }
 
     @Override // androidx.viewbinding.ViewBinding
     @NonNull
     public View getRoot() {
-        return this.f16167a;
+        return this.a;
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackGuildJoined.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -39,7 +39,7 @@ public final /* data */ class TrackGuildJoined implements AnalyticsSchema, Track
             return false;
         }
         TrackGuildJoined trackGuildJoined = (TrackGuildJoined) other;
-        return C12238m.areEqual(this.joinMethod, trackGuildJoined.joinMethod) && C12238m.areEqual(this.applicationId, trackGuildJoined.applicationId) && C12238m.areEqual(this.botId, trackGuildJoined.botId) && C12238m.areEqual(this.guildId, trackGuildJoined.guildId) && C12238m.areEqual(this.guildName, trackGuildJoined.guildName) && C12238m.areEqual(this.guildOwnerId, trackGuildJoined.guildOwnerId) && C12238m.areEqual(this.userGuilds, trackGuildJoined.userGuilds) && C12238m.areEqual(this.joinType, trackGuildJoined.joinType) && C12238m.areEqual(this.source, trackGuildJoined.source) && C12238m.areEqual(this.locationGuildId, trackGuildJoined.locationGuildId) && C12238m.areEqual(this.locationChannelId, trackGuildJoined.locationChannelId) && C12238m.areEqual(this.locationChannelType, trackGuildJoined.locationChannelType) && C12238m.areEqual(this.locationMessageId, trackGuildJoined.locationMessageId) && C12238m.areEqual(this.inviteGuildScheduledEventId, trackGuildJoined.inviteGuildScheduledEventId) && C12238m.areEqual(this.postableChannels, trackGuildJoined.postableChannels) && C12238m.areEqual(this.recommendationLoadId, trackGuildJoined.recommendationLoadId) && C12238m.areEqual(this.accessibleTextChannels, trackGuildJoined.accessibleTextChannels) && C12238m.areEqual(this.accessibleVoiceChannels, trackGuildJoined.accessibleVoiceChannels) && C12238m.areEqual(this.accessibleStageChannels, trackGuildJoined.accessibleStageChannels);
+        return m.areEqual(this.joinMethod, trackGuildJoined.joinMethod) && m.areEqual(this.applicationId, trackGuildJoined.applicationId) && m.areEqual(this.botId, trackGuildJoined.botId) && m.areEqual(this.guildId, trackGuildJoined.guildId) && m.areEqual(this.guildName, trackGuildJoined.guildName) && m.areEqual(this.guildOwnerId, trackGuildJoined.guildOwnerId) && m.areEqual(this.userGuilds, trackGuildJoined.userGuilds) && m.areEqual(this.joinType, trackGuildJoined.joinType) && m.areEqual(this.source, trackGuildJoined.source) && m.areEqual(this.locationGuildId, trackGuildJoined.locationGuildId) && m.areEqual(this.locationChannelId, trackGuildJoined.locationChannelId) && m.areEqual(this.locationChannelType, trackGuildJoined.locationChannelType) && m.areEqual(this.locationMessageId, trackGuildJoined.locationMessageId) && m.areEqual(this.inviteGuildScheduledEventId, trackGuildJoined.inviteGuildScheduledEventId) && m.areEqual(this.postableChannels, trackGuildJoined.postableChannels) && m.areEqual(this.recommendationLoadId, trackGuildJoined.recommendationLoadId) && m.areEqual(this.accessibleTextChannels, trackGuildJoined.accessibleTextChannels) && m.areEqual(this.accessibleVoiceChannels, trackGuildJoined.accessibleVoiceChannels) && m.areEqual(this.accessibleStageChannels, trackGuildJoined.accessibleStageChannels);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -90,43 +90,43 @@ public final /* data */ class TrackGuildJoined implements AnalyticsSchema, Track
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackGuildJoined(joinMethod=");
-        sbM833U.append(this.joinMethod);
-        sbM833U.append(", applicationId=");
-        sbM833U.append(this.applicationId);
-        sbM833U.append(", botId=");
-        sbM833U.append(this.botId);
-        sbM833U.append(", guildId=");
-        sbM833U.append(this.guildId);
-        sbM833U.append(", guildName=");
-        sbM833U.append(this.guildName);
-        sbM833U.append(", guildOwnerId=");
-        sbM833U.append(this.guildOwnerId);
-        sbM833U.append(", userGuilds=");
-        sbM833U.append(this.userGuilds);
-        sbM833U.append(", joinType=");
-        sbM833U.append(this.joinType);
-        sbM833U.append(", source=");
-        sbM833U.append(this.source);
-        sbM833U.append(", locationGuildId=");
-        sbM833U.append(this.locationGuildId);
-        sbM833U.append(", locationChannelId=");
-        sbM833U.append(this.locationChannelId);
-        sbM833U.append(", locationChannelType=");
-        sbM833U.append(this.locationChannelType);
-        sbM833U.append(", locationMessageId=");
-        sbM833U.append(this.locationMessageId);
-        sbM833U.append(", inviteGuildScheduledEventId=");
-        sbM833U.append(this.inviteGuildScheduledEventId);
-        sbM833U.append(", postableChannels=");
-        sbM833U.append(this.postableChannels);
-        sbM833U.append(", recommendationLoadId=");
-        sbM833U.append(this.recommendationLoadId);
-        sbM833U.append(", accessibleTextChannels=");
-        sbM833U.append(this.accessibleTextChannels);
-        sbM833U.append(", accessibleVoiceChannels=");
-        sbM833U.append(this.accessibleVoiceChannels);
-        sbM833U.append(", accessibleStageChannels=");
-        return C1643a.m819G(sbM833U, this.accessibleStageChannels, ")");
+        StringBuilder sbU = a.U("TrackGuildJoined(joinMethod=");
+        sbU.append(this.joinMethod);
+        sbU.append(", applicationId=");
+        sbU.append(this.applicationId);
+        sbU.append(", botId=");
+        sbU.append(this.botId);
+        sbU.append(", guildId=");
+        sbU.append(this.guildId);
+        sbU.append(", guildName=");
+        sbU.append(this.guildName);
+        sbU.append(", guildOwnerId=");
+        sbU.append(this.guildOwnerId);
+        sbU.append(", userGuilds=");
+        sbU.append(this.userGuilds);
+        sbU.append(", joinType=");
+        sbU.append(this.joinType);
+        sbU.append(", source=");
+        sbU.append(this.source);
+        sbU.append(", locationGuildId=");
+        sbU.append(this.locationGuildId);
+        sbU.append(", locationChannelId=");
+        sbU.append(this.locationChannelId);
+        sbU.append(", locationChannelType=");
+        sbU.append(this.locationChannelType);
+        sbU.append(", locationMessageId=");
+        sbU.append(this.locationMessageId);
+        sbU.append(", inviteGuildScheduledEventId=");
+        sbU.append(this.inviteGuildScheduledEventId);
+        sbU.append(", postableChannels=");
+        sbU.append(this.postableChannels);
+        sbU.append(", recommendationLoadId=");
+        sbU.append(this.recommendationLoadId);
+        sbU.append(", accessibleTextChannels=");
+        sbU.append(this.accessibleTextChannels);
+        sbU.append(", accessibleVoiceChannels=");
+        sbU.append(this.accessibleVoiceChannels);
+        sbU.append(", accessibleStageChannels=");
+        return a.G(sbU, this.accessibleStageChannels, ")");
     }
 }

@@ -1,10 +1,10 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackSubscriptionResubscribed.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackSubscriptionResubscribed implements Analytics
             return false;
         }
         TrackSubscriptionResubscribed trackSubscriptionResubscribed = (TrackSubscriptionResubscribed) other;
-        return C12238m.areEqual(this.subscriptionId, trackSubscriptionResubscribed.subscriptionId) && C12238m.areEqual(this.subscriptionType, trackSubscriptionResubscribed.subscriptionType) && C12238m.areEqual(this.paymentGatewayPlanId, trackSubscriptionResubscribed.paymentGatewayPlanId) && C12238m.areEqual(this.planId, trackSubscriptionResubscribed.planId) && C12238m.areEqual(this.paymentGateway, trackSubscriptionResubscribed.paymentGateway) && C12238m.areEqual(this.createdAt, trackSubscriptionResubscribed.createdAt) && C12238m.areEqual(this.currentPeriodStart, trackSubscriptionResubscribed.currentPeriodStart) && C12238m.areEqual(this.currentPeriodEnd, trackSubscriptionResubscribed.currentPeriodEnd) && C12238m.areEqual(this.trialId, trackSubscriptionResubscribed.trialId) && C12238m.areEqual(this.trialEndsAt, trackSubscriptionResubscribed.trialEndsAt);
+        return m.areEqual(this.subscriptionId, trackSubscriptionResubscribed.subscriptionId) && m.areEqual(this.subscriptionType, trackSubscriptionResubscribed.subscriptionType) && m.areEqual(this.paymentGatewayPlanId, trackSubscriptionResubscribed.paymentGatewayPlanId) && m.areEqual(this.planId, trackSubscriptionResubscribed.planId) && m.areEqual(this.paymentGateway, trackSubscriptionResubscribed.paymentGateway) && m.areEqual(this.createdAt, trackSubscriptionResubscribed.createdAt) && m.areEqual(this.currentPeriodStart, trackSubscriptionResubscribed.currentPeriodStart) && m.areEqual(this.currentPeriodEnd, trackSubscriptionResubscribed.currentPeriodEnd) && m.areEqual(this.trialId, trackSubscriptionResubscribed.trialId) && m.areEqual(this.trialEndsAt, trackSubscriptionResubscribed.trialEndsAt);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -63,25 +63,25 @@ public final /* data */ class TrackSubscriptionResubscribed implements Analytics
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackSubscriptionResubscribed(subscriptionId=");
-        sbM833U.append(this.subscriptionId);
-        sbM833U.append(", subscriptionType=");
-        sbM833U.append(this.subscriptionType);
-        sbM833U.append(", paymentGatewayPlanId=");
-        sbM833U.append(this.paymentGatewayPlanId);
-        sbM833U.append(", planId=");
-        sbM833U.append(this.planId);
-        sbM833U.append(", paymentGateway=");
-        sbM833U.append(this.paymentGateway);
-        sbM833U.append(", createdAt=");
-        sbM833U.append(this.createdAt);
-        sbM833U.append(", currentPeriodStart=");
-        sbM833U.append(this.currentPeriodStart);
-        sbM833U.append(", currentPeriodEnd=");
-        sbM833U.append(this.currentPeriodEnd);
-        sbM833U.append(", trialId=");
-        sbM833U.append(this.trialId);
-        sbM833U.append(", trialEndsAt=");
-        return C1643a.m819G(sbM833U, this.trialEndsAt, ")");
+        StringBuilder sbU = a.U("TrackSubscriptionResubscribed(subscriptionId=");
+        sbU.append(this.subscriptionId);
+        sbU.append(", subscriptionType=");
+        sbU.append(this.subscriptionType);
+        sbU.append(", paymentGatewayPlanId=");
+        sbU.append(this.paymentGatewayPlanId);
+        sbU.append(", planId=");
+        sbU.append(this.planId);
+        sbU.append(", paymentGateway=");
+        sbU.append(this.paymentGateway);
+        sbU.append(", createdAt=");
+        sbU.append(this.createdAt);
+        sbU.append(", currentPeriodStart=");
+        sbU.append(this.currentPeriodStart);
+        sbU.append(", currentPeriodEnd=");
+        sbU.append(this.currentPeriodEnd);
+        sbU.append(", trialId=");
+        sbU.append(this.trialId);
+        sbU.append(", trialEndsAt=");
+        return a.G(sbU, this.trialEndsAt, ")");
     }
 }

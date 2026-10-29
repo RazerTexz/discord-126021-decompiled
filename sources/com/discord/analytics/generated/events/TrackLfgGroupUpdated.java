@@ -1,5 +1,6 @@
 package com.discord.analytics.generated.events;
 
+import b.d.b.a.a;
 import com.discord.analytics.generated.traits.TrackBase;
 import com.discord.analytics.generated.traits.TrackBaseReceiver;
 import com.discord.analytics.generated.traits.TrackChannel;
@@ -7,8 +8,7 @@ import com.discord.analytics.generated.traits.TrackChannelReceiver;
 import com.discord.analytics.generated.traits.TrackLfgGroup;
 import com.discord.analytics.generated.traits.TrackLfgGroupReceiver;
 import com.discord.api.science.AnalyticsSchema;
-import p007b.p100d.p104b.p105a.C1643a;
-import p507d0.p592z.p594d.C12238m;
+import d0.z.d.m;
 
 /* JADX INFO: compiled from: TrackLfgGroupUpdated.kt */
 /* JADX INFO: loaded from: classes.dex */
@@ -30,7 +30,7 @@ public final /* data */ class TrackLfgGroupUpdated implements AnalyticsSchema, T
             return false;
         }
         TrackLfgGroupUpdated trackLfgGroupUpdated = (TrackLfgGroupUpdated) other;
-        return C12238m.areEqual(this.updatedSize, trackLfgGroupUpdated.updatedSize) && C12238m.areEqual(this.previousSize, trackLfgGroupUpdated.previousSize) && C12238m.areEqual(this.updatedTitle, trackLfgGroupUpdated.updatedTitle) && C12238m.areEqual(this.updatedDescription, trackLfgGroupUpdated.updatedDescription);
+        return m.areEqual(this.updatedSize, trackLfgGroupUpdated.updatedSize) && m.areEqual(this.previousSize, trackLfgGroupUpdated.previousSize) && m.areEqual(this.updatedTitle, trackLfgGroupUpdated.updatedTitle) && m.areEqual(this.updatedDescription, trackLfgGroupUpdated.updatedDescription);
     }
 
     @Override // com.discord.api.science.AnalyticsSchema
@@ -51,13 +51,13 @@ public final /* data */ class TrackLfgGroupUpdated implements AnalyticsSchema, T
     }
 
     public String toString() {
-        StringBuilder sbM833U = C1643a.m833U("TrackLfgGroupUpdated(updatedSize=");
-        sbM833U.append(this.updatedSize);
-        sbM833U.append(", previousSize=");
-        sbM833U.append(this.previousSize);
-        sbM833U.append(", updatedTitle=");
-        sbM833U.append(this.updatedTitle);
-        sbM833U.append(", updatedDescription=");
-        return C1643a.m816D(sbM833U, this.updatedDescription, ")");
+        StringBuilder sbU = a.U("TrackLfgGroupUpdated(updatedSize=");
+        sbU.append(this.updatedSize);
+        sbU.append(", previousSize=");
+        sbU.append(this.previousSize);
+        sbU.append(", updatedTitle=");
+        sbU.append(this.updatedTitle);
+        sbU.append(", updatedDescription=");
+        return a.D(sbU, this.updatedDescription, ")");
     }
 }

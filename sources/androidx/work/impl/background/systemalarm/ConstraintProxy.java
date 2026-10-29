@@ -14,34 +14,6 @@ import java.util.List;
 public abstract class ConstraintProxy extends BroadcastReceiver {
     private static final String TAG = Logger.tagWithPrefix("ConstraintProxy");
 
-    public class BatteryChargingProxy extends ConstraintProxy {
-        @Override // androidx.work.impl.background.systemalarm.ConstraintProxy, android.content.BroadcastReceiver
-        public /* bridge */ /* synthetic */ void onReceive(Context context, Intent intent) {
-            super.onReceive(context, intent);
-        }
-    }
-
-    public class BatteryNotLowProxy extends ConstraintProxy {
-        @Override // androidx.work.impl.background.systemalarm.ConstraintProxy, android.content.BroadcastReceiver
-        public /* bridge */ /* synthetic */ void onReceive(Context context, Intent intent) {
-            super.onReceive(context, intent);
-        }
-    }
-
-    public class NetworkStateProxy extends ConstraintProxy {
-        @Override // androidx.work.impl.background.systemalarm.ConstraintProxy, android.content.BroadcastReceiver
-        public /* bridge */ /* synthetic */ void onReceive(Context context, Intent intent) {
-            super.onReceive(context, intent);
-        }
-    }
-
-    public class StorageNotLowProxy extends ConstraintProxy {
-        @Override // androidx.work.impl.background.systemalarm.ConstraintProxy, android.content.BroadcastReceiver
-        public /* bridge */ /* synthetic */ void onReceive(Context context, Intent intent) {
-            super.onReceive(context, intent);
-        }
-    }
-
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
         Logger.get().debug(TAG, String.format("onReceive : %s", intent), new Throwable[0]);

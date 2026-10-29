@@ -7,27 +7,27 @@ import com.discord.api.sticker.Sticker;
 import com.discord.api.sticker.StickerType;
 import com.discord.models.domain.ModelPayload;
 import com.discord.stores.updates.ObservationDeck;
+import com.discord.stores.updates.ObservationDeck$UpdateSource;
 import com.discord.stores.updates.ObservationDeckProvider;
+import d0.d0.f;
+import d0.t.g0;
+import d0.t.h0;
+import d0.t.n;
+import d0.t.o;
+import d0.t.u;
+import d0.z.d.m;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map$Entry;
 import java.util.Set;
 import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import p507d0.p512d0.C11226f;
-import p507d0.p580t.C12134g0;
-import p507d0.p580t.C12136h0;
-import p507d0.p580t.C12147n;
-import p507d0.p580t.C12149o;
-import p507d0.p580t.C12163u;
-import p507d0.p592z.p594d.AbstractC12240o;
-import p507d0.p592z.p594d.C12238m;
-import p658rx.Observable;
+import rx.Observable;
 
 /* JADX INFO: compiled from: StoreGuildStickers.kt */
 /* JADX INFO: loaded from: classes2.dex */
@@ -40,54 +40,20 @@ public final class StoreGuildStickers extends StoreV2 {
     private final ObservationDeck observationDeck;
     private final Function1<List<Long>, Unit> onStickersDeleted;
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildStickers$handleFetchedSticker$1 */
-    /* JADX INFO: compiled from: StoreGuildStickers.kt */
-    public final class C60771 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $guildId;
-        public final /* synthetic */ Sticker $sticker;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C60771(long j, Sticker sticker) {
-            super(0);
-            this.$guildId = j;
-            this.$sticker = sticker;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            LinkedHashMap linkedHashMap = new LinkedHashMap();
-            Map mapEmptyMap = (Map) StoreGuildStickers.this.allGuildStickers.get(Long.valueOf(this.$guildId));
-            if (mapEmptyMap == null) {
-                mapEmptyMap = C12136h0.emptyMap();
-            }
-            linkedHashMap.putAll(mapEmptyMap);
-            linkedHashMap.put(Long.valueOf(this.$sticker.getId()), this.$sticker);
-            StoreGuildStickers.this.allGuildStickers.put(Long.valueOf(this.$guildId), linkedHashMap);
-            StoreGuildStickers.this.markChanged();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreGuildStickers$observeGuildStickers$1 */
-    /* JADX INFO: compiled from: StoreGuildStickers.kt */
-    public final class C60781 extends AbstractC12240o implements Function0<Map<Long, ? extends Map<Long, ? extends Sticker>>> {
-        public C60781() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends Map<Long, ? extends Sticker>> invoke() {
-            return StoreGuildStickers.this.allGuildStickersSnapshot;
-        }
-    }
-
     public /* synthetic */ StoreGuildStickers(Dispatcher dispatcher, ObservationDeck observationDeck, Function1 function1, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(dispatcher, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck, function1);
+    }
+
+    public static final /* synthetic */ Map access$getAllGuildStickers$p(StoreGuildStickers storeGuildStickers) {
+        return storeGuildStickers.allGuildStickers;
+    }
+
+    public static final /* synthetic */ Map access$getAllGuildStickersSnapshot$p(StoreGuildStickers storeGuildStickers) {
+        return storeGuildStickers.allGuildStickersSnapshot;
+    }
+
+    public static final /* synthetic */ void access$setAllGuildStickersSnapshot$p(StoreGuildStickers storeGuildStickers, Map map) {
+        storeGuildStickers.allGuildStickersSnapshot = map;
     }
 
     public final Map<Long, Map<Long, Sticker>> getAllGuildStickers() {
@@ -122,7 +88,7 @@ public final class StoreGuildStickers extends StoreV2 {
 
     public final Map<Long, Sticker> getStickersForGuild(long guildId) {
         Map<Long, Sticker> map = getAllGuildStickers().get(Long.valueOf(guildId));
-        return map != null ? map : C12136h0.emptyMap();
+        return map != null ? map : h0.emptyMap();
     }
 
     @StoreThread
@@ -132,10 +98,10 @@ public final class StoreGuildStickers extends StoreV2 {
 
     @StoreThread
     public final void handleConnectionOpen(ModelPayload payload) {
-        C12238m.checkNotNullParameter(payload, "payload");
+        m.checkNotNullParameter(payload, "payload");
         this.me = payload.getMe().getId();
         for (Guild guild : payload.getGuilds()) {
-            C12238m.checkNotNullExpressionValue(guild, "guild");
+            m.checkNotNullExpressionValue(guild, "guild");
             handleGuildCreateOrUpdate(guild);
         }
     }
@@ -145,18 +111,18 @@ public final class StoreGuildStickers extends StoreV2 {
         if (sticker == null || sticker.getType() != StickerType.GUILD || (guildId = sticker.getGuildId()) == null) {
             return;
         }
-        this.dispatcher.schedule(new C60771(guildId.longValue(), sticker));
+        this.dispatcher.schedule(new StoreGuildStickers$handleFetchedSticker$1(this, guildId.longValue(), sticker));
     }
 
     @StoreThread
     public final Unit handleGuildCreateOrUpdate(Guild guild) {
         Object next;
-        C12238m.checkNotNullParameter(guild, "guild");
-        List<GuildMember> listM7875v = guild.m7875v();
-        if (listM7875v == null) {
+        m.checkNotNullParameter(guild, "guild");
+        List<GuildMember> listV = guild.v();
+        if (listV == null) {
             return null;
         }
-        Iterator<T> it = listM7875v.iterator();
+        Iterator<T> it = listV.iterator();
         do {
             if (!it.hasNext()) {
                 next = null;
@@ -168,12 +134,12 @@ public final class StoreGuildStickers extends StoreV2 {
             return null;
         }
         long id2 = guild.getId();
-        List<Sticker> listM7846K = guild.m7846K();
-        if (listM7846K == null) {
-            listM7846K = C12147n.emptyList();
+        List<Sticker> listK = guild.K();
+        if (listK == null) {
+            listK = n.emptyList();
         }
-        updateStickers(id2, listM7846K);
-        return Unit.f27425a;
+        updateStickers(id2, listK);
+        return Unit.a;
     }
 
     @StoreThread
@@ -187,24 +153,24 @@ public final class StoreGuildStickers extends StoreV2 {
     @StoreThread
     public final void handleStickerUpdate(GuildStickersUpdate stickersUpdate) {
         Collection collectionEmptyList;
-        C12238m.checkNotNullParameter(stickersUpdate, "stickersUpdate");
+        m.checkNotNullParameter(stickersUpdate, "stickersUpdate");
         long guildId = stickersUpdate.getGuildId();
-        List<Sticker> listM8233c = stickersUpdate.m8233c();
-        ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(listM8233c, 10));
-        Iterator<T> it = listM8233c.iterator();
+        List<Sticker> listC = stickersUpdate.c();
+        ArrayList arrayList = new ArrayList(o.collectionSizeOrDefault(listC, 10));
+        Iterator<T> it = listC.iterator();
         while (it.hasNext()) {
             arrayList.add(Long.valueOf(((Sticker) it.next()).getId()));
         }
-        Set set = C12163u.toSet(arrayList);
+        Set set = u.toSet(arrayList);
         Map<Long, Sticker> map = this.allGuildStickersSnapshot.get(Long.valueOf(guildId));
         if (map != null) {
             collectionEmptyList = new ArrayList(map.size());
-            Iterator<Map.Entry<Long, Sticker>> it2 = map.entrySet().iterator();
+            Iterator<Map$Entry<Long, Sticker>> it2 = map.entrySet().iterator();
             while (it2.hasNext()) {
                 collectionEmptyList.add(Long.valueOf(it2.next().getKey().longValue()));
             }
         } else {
-            collectionEmptyList = C12147n.emptyList();
+            collectionEmptyList = n.emptyList();
         }
         ArrayList arrayList2 = new ArrayList();
         for (Object obj : collectionEmptyList) {
@@ -212,14 +178,14 @@ public final class StoreGuildStickers extends StoreV2 {
                 arrayList2.add(obj);
             }
         }
-        updateStickers(guildId, listM8233c);
+        updateStickers(guildId, listC);
         this.onStickersDeleted.invoke(arrayList2);
     }
 
     public final Observable<Map<Long, Map<Long, Sticker>>> observeGuildStickers() {
-        Observable<Map<Long, Map<Long, Sticker>>> observableM11112r = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C60781(), 14, null).m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "observationDeck.connectR… }.distinctUntilChanged()");
-        return observableM11112r;
+        Observable<Map<Long, Map<Long, Sticker>>> observableR = ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck$UpdateSource[]{this}, false, null, null, new StoreGuildStickers$observeGuildStickers$1(this), 14, null).r();
+        m.checkNotNullExpressionValue(observableR, "observationDeck.connectR… }.distinctUntilChanged()");
+        return observableR;
     }
 
     @Override // com.discord.stores.StoreV2
@@ -227,14 +193,14 @@ public final class StoreGuildStickers extends StoreV2 {
         super.snapshotData();
         ArrayList arrayList = new ArrayList();
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        for (Map.Entry<Long, Map<Long, Sticker>> entry : this.allGuildStickers.entrySet()) {
-            long jLongValue = entry.getKey().longValue();
-            Map<Long, Sticker> value = entry.getValue();
-            linkedHashMap.put(Long.valueOf(jLongValue), C12136h0.toMap(value));
+        for (Map$Entry<Long, Map<Long, Sticker>> map$Entry : this.allGuildStickers.entrySet()) {
+            long jLongValue = map$Entry.getKey().longValue();
+            Map<Long, Sticker> value = map$Entry.getValue();
+            linkedHashMap.put(Long.valueOf(jLongValue), h0.toMap(value));
             arrayList.addAll(value.values());
         }
         this.allGuildStickersSnapshot = linkedHashMap;
-        this.allGuildStickersFlattenedSnapshot = C12163u.toList(arrayList);
+        this.allGuildStickersFlattenedSnapshot = u.toList(arrayList);
     }
 
     private final void updateStickers(long guildId, Collection<Sticker> stickers) {
@@ -243,7 +209,7 @@ public final class StoreGuildStickers extends StoreV2 {
         } else {
             Map<Long, Map<Long, Sticker>> map = this.allGuildStickers;
             Long lValueOf = Long.valueOf(guildId);
-            LinkedHashMap linkedHashMap = new LinkedHashMap(C11226f.coerceAtLeast(C12134g0.mapCapacity(C12149o.collectionSizeOrDefault(stickers, 10)), 16));
+            LinkedHashMap linkedHashMap = new LinkedHashMap(f.coerceAtLeast(g0.mapCapacity(o.collectionSizeOrDefault(stickers, 10)), 16));
             for (Object obj : stickers) {
                 linkedHashMap.put(Long.valueOf(((Sticker) obj).getId()), obj);
             }
@@ -254,14 +220,14 @@ public final class StoreGuildStickers extends StoreV2 {
 
     /* JADX WARN: Multi-variable type inference failed */
     public StoreGuildStickers(Dispatcher dispatcher, ObservationDeck observationDeck, Function1<? super List<Long>, Unit> function1) {
-        C12238m.checkNotNullParameter(dispatcher, "dispatcher");
-        C12238m.checkNotNullParameter(observationDeck, "observationDeck");
-        C12238m.checkNotNullParameter(function1, "onStickersDeleted");
+        m.checkNotNullParameter(dispatcher, "dispatcher");
+        m.checkNotNullParameter(observationDeck, "observationDeck");
+        m.checkNotNullParameter(function1, "onStickersDeleted");
         this.dispatcher = dispatcher;
         this.observationDeck = observationDeck;
         this.onStickersDeleted = function1;
         this.allGuildStickers = new LinkedHashMap();
-        this.allGuildStickersSnapshot = C12136h0.emptyMap();
-        this.allGuildStickersFlattenedSnapshot = C12147n.emptyList();
+        this.allGuildStickersSnapshot = h0.emptyMap();
+        this.allGuildStickersFlattenedSnapshot = n.emptyList();
     }
 }

@@ -1,32 +1,26 @@
 package com.facebook.datasource;
 
+import b.f.e.f;
 import java.util.Map;
 import java.util.concurrent.Executor;
-import p007b.p109f.p129e.InterfaceC1726f;
 
 /* JADX INFO: loaded from: classes.dex */
 public interface DataSource<T> {
+    Map<String, Object> a();
+
+    boolean b();
+
+    boolean c();
+
     boolean close();
+
+    Throwable d();
+
+    boolean e();
+
+    void f(f<T> fVar, Executor executor);
 
     float getProgress();
 
     T getResult();
-
-    /* JADX INFO: renamed from: a */
-    Map<String, Object> mo1017a();
-
-    /* JADX INFO: renamed from: b */
-    boolean mo1018b();
-
-    /* JADX INFO: renamed from: c */
-    boolean mo1019c();
-
-    /* JADX INFO: renamed from: d */
-    Throwable mo1020d();
-
-    /* JADX INFO: renamed from: e */
-    boolean mo1021e();
-
-    /* JADX INFO: renamed from: f */
-    void mo1022f(InterfaceC1726f<T> interfaceC1726f, Executor executor);
 }
