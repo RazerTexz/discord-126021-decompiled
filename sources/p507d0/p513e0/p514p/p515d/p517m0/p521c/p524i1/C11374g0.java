@@ -49,6 +49,35 @@ public class C11374g0 extends AbstractC11391q implements InterfaceC11465t0 {
         }
     }
 
+    public static C11374g0 create(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, C11716e c11716e, InterfaceC11321b.a aVar, InterfaceC11467u0 interfaceC11467u0) {
+        if (interfaceC11450m == null) {
+            m9409a(5);
+            throw null;
+        }
+        if (interfaceC11344g == null) {
+            m9409a(6);
+            throw null;
+        }
+        if (c11716e == null) {
+            m9409a(7);
+            throw null;
+        }
+        if (aVar == null) {
+            m9409a(8);
+            throw null;
+        }
+        if (interfaceC11467u0 != null) {
+            return new C11374g0(interfaceC11450m, null, interfaceC11344g, c11716e, aVar, interfaceC11467u0);
+        }
+        m9409a(9);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
+    public /* bridge */ /* synthetic */ AbstractC11391q initialize(InterfaceC11459q0 interfaceC11459q0, InterfaceC11459q0 interfaceC11459q1, List list, List list2, AbstractC11913c0 abstractC11913c0, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u) {
+        return initialize(interfaceC11459q0, interfaceC11459q1, (List<? extends InterfaceC11477z0>) list, (List<InterfaceC11326c1>) list2, abstractC11913c0, enumC11476z, abstractC11466u);
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9409a(int i) {
         String str = (i == 13 || i == 17 || i == 18 || i == 23 || i == 24) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
@@ -150,30 +179,6 @@ public class C11374g0 extends AbstractC11391q implements InterfaceC11465t0 {
         throw new IllegalStateException(str2);
     }
 
-    public static C11374g0 create(InterfaceC11450m interfaceC11450m, InterfaceC11344g interfaceC11344g, C11716e c11716e, InterfaceC11321b.a aVar, InterfaceC11467u0 interfaceC11467u0) {
-        if (interfaceC11450m == null) {
-            m9409a(5);
-            throw null;
-        }
-        if (interfaceC11344g == null) {
-            m9409a(6);
-            throw null;
-        }
-        if (c11716e == null) {
-            m9409a(7);
-            throw null;
-        }
-        if (aVar == null) {
-            m9409a(8);
-            throw null;
-        }
-        if (interfaceC11467u0 != null) {
-            return new C11374g0(interfaceC11450m, null, interfaceC11344g, c11716e, aVar, interfaceC11467u0);
-        }
-        m9409a(9);
-        throw null;
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
     /* JADX INFO: renamed from: b */
     public AbstractC11391q mo9373b(InterfaceC11450m interfaceC11450m, InterfaceC11472x interfaceC11472x, InterfaceC11321b.a aVar, C11716e c11716e, InterfaceC11344g interfaceC11344g, InterfaceC11467u0 interfaceC11467u0) {
@@ -194,11 +199,6 @@ public class C11374g0 extends AbstractC11391q implements InterfaceC11465t0 {
             c11716e = getName();
         }
         return new C11374g0(interfaceC11450m, interfaceC11465t0, interfaceC11344g, c11716e, aVar, interfaceC11467u0);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q
-    public /* bridge */ /* synthetic */ AbstractC11391q initialize(InterfaceC11459q0 interfaceC11459q0, InterfaceC11459q0 interfaceC11459q1, List list, List list2, AbstractC11913c0 abstractC11913c0, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u) {
-        return initialize(interfaceC11459q0, interfaceC11459q1, (List<? extends InterfaceC11477z0>) list, (List<InterfaceC11326c1>) list2, abstractC11913c0, enumC11476z, abstractC11466u);
     }
 
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11391q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11465t0

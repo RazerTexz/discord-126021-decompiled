@@ -11,23 +11,10 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 
 /* JADX INFO: loaded from: classes3.dex */
 public final class Metadata implements Parcelable {
-    public static final Parcelable.Creator<Metadata> CREATOR = new C10719a();
 
     /* JADX INFO: renamed from: j */
     public final Entry[] f19936j;
-
-    public interface Entry extends Parcelable {
-        /* JADX INFO: renamed from: n */
-        void mo8878n(C2835p1.b bVar);
-
-        @Nullable
-        /* JADX INFO: renamed from: o0 */
-        byte[] mo8879o0();
-
-        @Nullable
-        /* JADX INFO: renamed from: y */
-        C2811j1 mo8880y();
-    }
+    public static final Parcelable.Creator<Metadata> CREATOR = new C10719a();
 
     /* JADX INFO: renamed from: com.google.android.exoplayer2.metadata.Metadata$a */
     public class C10719a implements Parcelable.Creator<Metadata> {
@@ -42,20 +29,21 @@ public final class Metadata implements Parcelable {
         }
     }
 
-    public Metadata(Entry... entryArr) {
-        this.f19936j = entryArr;
+    public interface Entry extends Parcelable {
+        /* JADX INFO: renamed from: n */
+        void mo8878n(C2835p1.b bVar);
+
+        @Nullable
+        /* JADX INFO: renamed from: o0 */
+        byte[] mo8879o0();
+
+        @Nullable
+        /* JADX INFO: renamed from: y */
+        C2811j1 mo8880y();
     }
 
-    /* JADX INFO: renamed from: a */
-    public Metadata m8877a(Entry... entryArr) {
-        if (entryArr.length == 0) {
-            return this;
-        }
-        Entry[] entryArr2 = this.f19936j;
-        int i = C2738e0.f6708a;
-        Object[] objArrCopyOf = Arrays.copyOf(entryArr2, entryArr2.length + entryArr.length);
-        System.arraycopy(entryArr, 0, objArrCopyOf, entryArr2.length, entryArr.length);
-        return new Metadata((Entry[]) objArrCopyOf);
+    public Metadata(Entry... entryArr) {
+        this.f19936j = entryArr;
     }
 
     @Override // android.os.Parcelable
@@ -75,6 +63,18 @@ public final class Metadata implements Parcelable {
 
     public int hashCode() {
         return Arrays.hashCode(this.f19936j);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public Metadata m8877a(Entry... entryArr) {
+        if (entryArr.length == 0) {
+            return this;
+        }
+        Entry[] entryArr2 = this.f19936j;
+        int i = C2738e0.f6708a;
+        Object[] objArrCopyOf = Arrays.copyOf(entryArr2, entryArr2.length + entryArr.length);
+        System.arraycopy(entryArr, 0, objArrCopyOf, entryArr2.length, entryArr.length);
+        return new Metadata((Entry[]) objArrCopyOf);
     }
 
     public String toString() {

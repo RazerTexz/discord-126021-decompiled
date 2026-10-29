@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPinMessage.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPinMessage implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long guildId = null;
-    private final Long channelId = null;
     private final Long authorId = null;
+    private final Long channelId = null;
+    private final Long guildId = null;
     private final Boolean pinned = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "pin_message";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackPinMessage implements AnalyticsSchema, TrackB
         }
         TrackPinMessage trackPinMessage = (TrackPinMessage) other;
         return C12238m.areEqual(this.guildId, trackPinMessage.guildId) && C12238m.areEqual(this.channelId, trackPinMessage.channelId) && C12238m.areEqual(this.authorId, trackPinMessage.authorId) && C12238m.areEqual(this.pinned, trackPinMessage.pinned);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

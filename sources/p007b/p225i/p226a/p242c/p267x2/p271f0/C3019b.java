@@ -15,7 +15,7 @@ public final class C3019b {
 
     /* JADX INFO: renamed from: b.i.a.c.x2.f0.b$a */
     /* JADX INFO: compiled from: MotionPhotoDescription.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final String f8167a;

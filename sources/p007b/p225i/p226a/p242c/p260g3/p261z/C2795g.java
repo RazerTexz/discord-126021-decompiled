@@ -14,6 +14,15 @@ import org.objectweb.asm.Opcodes;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2795g implements SensorEventListener {
 
+    /* JADX INFO: renamed from: e */
+    public final Display f6976e;
+
+    /* JADX INFO: renamed from: f */
+    public final a[] f6977f;
+
+    /* JADX INFO: renamed from: g */
+    public boolean f6978g;
+
     /* JADX INFO: renamed from: a */
     public final float[] f6972a = new float[16];
 
@@ -25,15 +34,6 @@ public final class C2795g implements SensorEventListener {
 
     /* JADX INFO: renamed from: d */
     public final float[] f6975d = new float[3];
-
-    /* JADX INFO: renamed from: e */
-    public final Display f6976e;
-
-    /* JADX INFO: renamed from: f */
-    public final a[] f6977f;
-
-    /* JADX INFO: renamed from: g */
-    public boolean f6978g;
 
     /* JADX INFO: renamed from: b.i.a.c.g3.z.g$a */
     /* JADX INFO: compiled from: OrientationListener.java */

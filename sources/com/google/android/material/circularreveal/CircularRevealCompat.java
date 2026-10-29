@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 public final class CircularRevealCompat {
 
     /* JADX INFO: renamed from: com.google.android.material.circularreveal.CircularRevealCompat$a */
-    public static class C10876a extends AnimatorListenerAdapter {
+    public final class C10876a extends AnimatorListenerAdapter {
 
         /* JADX INFO: renamed from: a */
         public final /* synthetic */ CircularRevealWidget f20956a;

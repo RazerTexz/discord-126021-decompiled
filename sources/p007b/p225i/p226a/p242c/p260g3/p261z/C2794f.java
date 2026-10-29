@@ -8,6 +8,9 @@ import p007b.p225i.p226a.p242c.p259f3.C2734c0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2794f {
 
+    /* JADX INFO: renamed from: d */
+    public boolean f6971d;
+
     /* JADX INFO: renamed from: a */
     public final float[] f6968a = new float[16];
 
@@ -16,9 +19,6 @@ public final class C2794f {
 
     /* JADX INFO: renamed from: c */
     public final C2734c0<float[]> f6970c = new C2734c0<>();
-
-    /* JADX INFO: renamed from: d */
-    public boolean f6971d;
 
     /* JADX INFO: renamed from: a */
     public static void m3198a(float[] fArr, float[] fArr2) {

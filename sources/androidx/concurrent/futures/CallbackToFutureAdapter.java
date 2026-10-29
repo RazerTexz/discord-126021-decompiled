@@ -13,77 +13,7 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 /* JADX INFO: loaded from: classes.dex */
 public final class CallbackToFutureAdapter {
 
-    public static final class Completer<T> {
-        private boolean attemptedSetting;
-        private ResolvableFuture<Void> cancellationFuture = ResolvableFuture.create();
-        public SafeFuture<T> future;
-        public Object tag;
-
-        private void setCompletedNormally() {
-            this.tag = null;
-            this.future = null;
-            this.cancellationFuture = null;
-        }
-
-        public void addCancellationListener(@NonNull Runnable runnable, @NonNull Executor executor) {
-            ResolvableFuture<Void> resolvableFuture = this.cancellationFuture;
-            if (resolvableFuture != null) {
-                resolvableFuture.addListener(runnable, executor);
-            }
-        }
-
-        public void finalize() {
-            ResolvableFuture<Void> resolvableFuture;
-            SafeFuture<T> safeFuture = this.future;
-            if (safeFuture != null && !safeFuture.isDone()) {
-                StringBuilder sbM833U = C1643a.m833U("The completer object was garbage collected - this future would otherwise never complete. The tag was: ");
-                sbM833U.append(this.tag);
-                safeFuture.setException(new FutureGarbageCollectedException(sbM833U.toString()));
-            }
-            if (this.attemptedSetting || (resolvableFuture = this.cancellationFuture) == null) {
-                return;
-            }
-            resolvableFuture.set(null);
-        }
-
-        public void fireCancellationListeners() {
-            this.tag = null;
-            this.future = null;
-            this.cancellationFuture.set(null);
-        }
-
-        public boolean set(T t) {
-            this.attemptedSetting = true;
-            SafeFuture<T> safeFuture = this.future;
-            boolean z2 = safeFuture != null && safeFuture.set(t);
-            if (z2) {
-                setCompletedNormally();
-            }
-            return z2;
-        }
-
-        public boolean setCancelled() {
-            this.attemptedSetting = true;
-            SafeFuture<T> safeFuture = this.future;
-            boolean z2 = safeFuture != null && safeFuture.cancelWithoutNotifyingCompleter(true);
-            if (z2) {
-                setCompletedNormally();
-            }
-            return z2;
-        }
-
-        public boolean setException(@NonNull Throwable th) {
-            this.attemptedSetting = true;
-            SafeFuture<T> safeFuture = this.future;
-            boolean z2 = safeFuture != null && safeFuture.setException(th);
-            if (z2) {
-                setCompletedNormally();
-            }
-            return z2;
-        }
-    }
-
-    public static final class FutureGarbageCollectedException extends Throwable {
+    public final class FutureGarbageCollectedException extends Throwable {
         public FutureGarbageCollectedException(String str) {
             super(str);
         }
@@ -99,7 +29,7 @@ public final class CallbackToFutureAdapter {
         Object attachCompleter(@NonNull Completer<T> completer) throws Exception;
     }
 
-    public static final class SafeFuture<T> implements InterfaceFutureC4539a<T> {
+    public final class SafeFuture<T> implements InterfaceFutureC4539a<T> {
         public final WeakReference<Completer<T>> completerWeakReference;
         private final AbstractResolvableFuture<T> delegate = new AbstractResolvableFuture<T>() { // from class: androidx.concurrent.futures.CallbackToFutureAdapter.SafeFuture.1
             @Override // androidx.concurrent.futures.AbstractResolvableFuture
@@ -189,5 +119,75 @@ public final class CallbackToFutureAdapter {
             safeFuture.setException(e);
         }
         return safeFuture;
+    }
+
+    public final class Completer<T> {
+        private boolean attemptedSetting;
+        public SafeFuture<T> future;
+        public Object tag;
+        private ResolvableFuture<Void> cancellationFuture = ResolvableFuture.create();
+
+        public void addCancellationListener(@NonNull Runnable runnable, @NonNull Executor executor) {
+            ResolvableFuture<Void> resolvableFuture = this.cancellationFuture;
+            if (resolvableFuture != null) {
+                resolvableFuture.addListener(runnable, executor);
+            }
+        }
+
+        public void finalize() {
+            ResolvableFuture<Void> resolvableFuture;
+            SafeFuture<T> safeFuture = this.future;
+            if (safeFuture != null && !safeFuture.isDone()) {
+                StringBuilder sbM833U = C1643a.m833U("The completer object was garbage collected - this future would otherwise never complete. The tag was: ");
+                sbM833U.append(this.tag);
+                safeFuture.setException(new FutureGarbageCollectedException(sbM833U.toString()));
+            }
+            if (this.attemptedSetting || (resolvableFuture = this.cancellationFuture) == null) {
+                return;
+            }
+            resolvableFuture.set(null);
+        }
+
+        public void fireCancellationListeners() {
+            this.tag = null;
+            this.future = null;
+            this.cancellationFuture.set(null);
+        }
+
+        public boolean set(T t) {
+            this.attemptedSetting = true;
+            SafeFuture<T> safeFuture = this.future;
+            boolean z2 = safeFuture != null && safeFuture.set(t);
+            if (z2) {
+                setCompletedNormally();
+            }
+            return z2;
+        }
+
+        public boolean setCancelled() {
+            this.attemptedSetting = true;
+            SafeFuture<T> safeFuture = this.future;
+            boolean z2 = safeFuture != null && safeFuture.cancelWithoutNotifyingCompleter(true);
+            if (z2) {
+                setCompletedNormally();
+            }
+            return z2;
+        }
+
+        private void setCompletedNormally() {
+            this.tag = null;
+            this.future = null;
+            this.cancellationFuture = null;
+        }
+
+        public boolean setException(@NonNull Throwable th) {
+            this.attemptedSetting = true;
+            SafeFuture<T> safeFuture = this.future;
+            boolean z2 = safeFuture != null && safeFuture.setException(th);
+            if (z2) {
+                setCompletedNormally();
+            }
+            return z2;
+        }
     }
 }

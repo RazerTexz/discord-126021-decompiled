@@ -55,7 +55,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
 
     /* JADX INFO: compiled from: GuildListViewHolder.kt */
-    public static final class DiscordHubViewHolder extends GuildListViewHolder {
+    public final class DiscordHubViewHolder extends GuildListViewHolder {
         private final WidgetGuildsListItemHubVerificationBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -86,7 +86,7 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: GuildListViewHolder.kt */
-    public static final class FolderViewHolder extends GuildListViewHolder implements GuildsDragAndDropCallback.DraggableViewHolder {
+    public final class FolderViewHolder extends GuildListViewHolder implements GuildsDragAndDropCallback.DraggableViewHolder {
         private final WidgetGuildsListItemFolderBinding binding;
 
         @ColorInt
@@ -285,7 +285,7 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: GuildListViewHolder.kt */
-    public static final class FriendsViewHolder extends GuildListViewHolder {
+    public final class FriendsViewHolder extends GuildListViewHolder {
         private final WidgetGuildsListItemProfileBinding binding;
         private final Function1<GuildListItem.FriendsItem, Unit> onClicked;
 
@@ -357,7 +357,7 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: GuildListViewHolder.kt */
-    public static final class GuildViewHolder extends GuildListViewHolder implements GuildsDragAndDropCallback.DraggableViewHolder {
+    public final class GuildViewHolder extends GuildListViewHolder implements GuildsDragAndDropCallback.DraggableViewHolder {
         private static final float DEFAULT_AVATAR_TEXT_SIZE_SP = 14.0f;
         private static final float TARGETED_AVATAR_TEXT_SIZE_DP = 8.0f;
         private final WidgetGuildsListItemGuildVerticalBinding binding;
@@ -423,6 +423,94 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
                 }
             }
             throw new NullPointerException("Missing required view with ID: ".concat(view.getResources().getResourceName(i3)));
+        }
+
+        @Override // com.discord.widgets.guilds.list.GuildsDragAndDropCallback.DraggableViewHolder
+        public boolean canDrag() {
+            GuildListItem.GuildItem guildItem;
+            GuildListItem.GuildItem guildItem2 = this.data;
+            return (guildItem2 == null || guildItem2.isLurkingGuild() || ((guildItem = this.data) != null && guildItem.isPendingGuild())) ? false : true;
+        }
+
+        public final void configure(final GuildListItem.GuildItem data) {
+            int themedColor;
+            GuildListItem.GuildItem guildItem;
+            Guild guild;
+            C12238m.checkNotNullParameter(data, "data");
+            GuildListItem.GuildItem guildItem2 = this.data;
+            String icon = (guildItem2 == null || (guild = guildItem2.getGuild()) == null) ? null : guild.getIcon();
+            GuildListItem.GuildItem guildItem3 = this.data;
+            boolean z2 = guildItem3 == null || guildItem3.isSelected() != data.isSelected();
+            boolean z3 = icon == null || (C12238m.areEqual(icon, data.getGuild().getIcon()) ^ true);
+            GuildListItem.GuildItem guildItem4 = this.data;
+            boolean z4 = (guildItem4 != null ? Boolean.valueOf(guildItem4.isTargetedForFolderCreation()) : null) != null && ((guildItem = this.data) == null || guildItem.isTargetedForFolderCreation() != data.isTargetedForFolderCreation());
+            this.data = data;
+            View view = this.itemView;
+            C12238m.checkNotNullExpressionValue(view, "itemView");
+            view.setVisibility(0);
+            View view2 = this.itemView;
+            C12238m.checkNotNullExpressionValue(view2, "itemView");
+            view2.setSelected(data.isSelected());
+            this.itemView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.list.GuildListViewHolder$GuildViewHolder$configure$1
+                @Override // android.view.View.OnClickListener
+                public final void onClick(View view3) {
+                    this.this$0.onClicked.invoke(data);
+                }
+            });
+            View view3 = this.itemView;
+            C12238m.checkNotNullExpressionValue(view3, "itemView");
+            ViewExtensions.setOnLongClickListenerConsumeClick(view3, new GuildListViewHolder$GuildViewHolder$configure$2(this, data));
+            boolean z5 = data.getFolderId() != null || data.isTargetedForFolderCreation();
+            configureGuildIconBackground(data.isSelected(), z5, data.getGuild().hasIcon());
+            if (z4) {
+                configureGuildIconPositioning(data.isTargetedForFolderCreation());
+            }
+            if (z3 || z2) {
+                configureGuildIconImage(data.getGuild(), data.isSelected());
+            }
+            configureDraggingAlpha();
+            TextView textView = this.bindingGuild.f17110e;
+            C12238m.checkNotNullExpressionValue(textView, "bindingGuild.guildsItemAvatarText");
+            textView.setText(data.getGuild().hasIcon() ? null : data.getGuild().getShortName());
+            if (z2) {
+                if (data.isSelected()) {
+                    TextView textView2 = this.bindingGuild.f17110e;
+                    C12238m.checkNotNullExpressionValue(textView2, "bindingGuild.guildsItemAvatarText");
+                    themedColor = ColorCompat.getColor(textView2.getContext(), C5419R.color.white);
+                } else {
+                    TextView textView3 = this.bindingGuild.f17110e;
+                    C12238m.checkNotNullExpressionValue(textView3, "bindingGuild.guildsItemAvatarText");
+                    themedColor = ColorCompat.getThemedColor(textView3.getContext(), C5419R.attr.colorHeaderPrimary);
+                }
+                this.bindingGuild.f17110e.setTextColor(themedColor);
+            }
+            TextView textView4 = this.bindingGuild.f17113h;
+            C12238m.checkNotNullExpressionValue(textView4, "bindingGuild.guildsItemMentions");
+            configureMentionsCount(textView4, data.getMentionCount());
+            int mentionCount = data.getMentionCount();
+            Object i18nPluralString = mentionCount > 0 ? StringResourceUtilsKt.getI18nPluralString(C1643a.m885x(this.itemView, "itemView", "itemView.context"), C5419R.plurals.guild_tooltip_a11y_label_mentions, mentionCount, Integer.valueOf(mentionCount)) : "";
+            View view4 = this.itemView;
+            C12238m.checkNotNullExpressionValue(view4, "itemView");
+            View view5 = this.itemView;
+            C12238m.checkNotNullExpressionValue(view5, "itemView");
+            view4.setContentDescription(C1107b.m212d(view5, C5419R.string.guild_tooltip_a11y_label, new Object[]{i18nPluralString, data.getGuild().getName()}, (4 & 4) != 0 ? C1107b.c.f1492j : null));
+            ImageView imageView = this.bindingGuild.f17114i;
+            imageView.setVisibility(data.isConnectedToVoice() || (data.getHasActiveStageChannel() && !data.getHasActiveScheduledEvent()) ? 0 : 8);
+            imageView.setActivated(data.isConnectedToVoice());
+            imageView.setImageResource((!data.isConnectedToVoice() || data.isConnectedToStageChannel()) ? C5419R.drawable.ic_channel_stage_24dp_white : C5419R.drawable.ic_volume_up_white_24dp);
+            ImageView imageView2 = this.bindingGuild.f17112g;
+            C12238m.checkNotNullExpressionValue(imageView2, "bindingGuild.guildsItemEventStatus");
+            imageView2.setVisibility(!data.isConnectedToVoice() && data.getHasActiveScheduledEvent() ? 0 : 8);
+            ImageView imageView3 = this.bindingGuild.f17108c;
+            C12238m.checkNotNullExpressionValue(imageView3, "bindingGuild.guildsItemApplicationStream");
+            imageView3.setVisibility(!data.isConnectedToVoice() && data.getHasOngoingApplicationStream() ? 0 : 8);
+            ImageView imageView4 = this.binding.f17117c;
+            C12238m.checkNotNullExpressionValue(imageView4, "binding.guildsItemUnread");
+            imageView4.setVisibility(data.getIsUnread() ? 0 : 8);
+            ImageView imageView5 = this.binding.f17116b;
+            C12238m.checkNotNullExpressionValue(imageView5, "binding.guildsItemSelected");
+            imageView5.setVisibility(data.isSelected() ? 0 : 8);
+            configureApplicationStatus(null, z5, mentionCount > 0);
         }
 
         private final void configureApplicationStatus(ApplicationStatus applicationStatus, boolean isInFolder, boolean hasMentions) {
@@ -610,94 +698,6 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
             textView.setLayoutParams(layoutParams4);
         }
 
-        @Override // com.discord.widgets.guilds.list.GuildsDragAndDropCallback.DraggableViewHolder
-        public boolean canDrag() {
-            GuildListItem.GuildItem guildItem;
-            GuildListItem.GuildItem guildItem2 = this.data;
-            return (guildItem2 == null || guildItem2.isLurkingGuild() || ((guildItem = this.data) != null && guildItem.isPendingGuild())) ? false : true;
-        }
-
-        public final void configure(final GuildListItem.GuildItem data) {
-            int themedColor;
-            GuildListItem.GuildItem guildItem;
-            Guild guild;
-            C12238m.checkNotNullParameter(data, "data");
-            GuildListItem.GuildItem guildItem2 = this.data;
-            String icon = (guildItem2 == null || (guild = guildItem2.getGuild()) == null) ? null : guild.getIcon();
-            GuildListItem.GuildItem guildItem3 = this.data;
-            boolean z2 = guildItem3 == null || guildItem3.isSelected() != data.isSelected();
-            boolean z3 = icon == null || (C12238m.areEqual(icon, data.getGuild().getIcon()) ^ true);
-            GuildListItem.GuildItem guildItem4 = this.data;
-            boolean z4 = (guildItem4 != null ? Boolean.valueOf(guildItem4.isTargetedForFolderCreation()) : null) != null && ((guildItem = this.data) == null || guildItem.isTargetedForFolderCreation() != data.isTargetedForFolderCreation());
-            this.data = data;
-            View view = this.itemView;
-            C12238m.checkNotNullExpressionValue(view, "itemView");
-            view.setVisibility(0);
-            View view2 = this.itemView;
-            C12238m.checkNotNullExpressionValue(view2, "itemView");
-            view2.setSelected(data.isSelected());
-            this.itemView.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.guilds.list.GuildListViewHolder$GuildViewHolder$configure$1
-                @Override // android.view.View.OnClickListener
-                public final void onClick(View view3) {
-                    this.this$0.onClicked.invoke(data);
-                }
-            });
-            View view3 = this.itemView;
-            C12238m.checkNotNullExpressionValue(view3, "itemView");
-            ViewExtensions.setOnLongClickListenerConsumeClick(view3, new GuildListViewHolder$GuildViewHolder$configure$2(this, data));
-            boolean z5 = data.getFolderId() != null || data.isTargetedForFolderCreation();
-            configureGuildIconBackground(data.isSelected(), z5, data.getGuild().hasIcon());
-            if (z4) {
-                configureGuildIconPositioning(data.isTargetedForFolderCreation());
-            }
-            if (z3 || z2) {
-                configureGuildIconImage(data.getGuild(), data.isSelected());
-            }
-            configureDraggingAlpha();
-            TextView textView = this.bindingGuild.f17110e;
-            C12238m.checkNotNullExpressionValue(textView, "bindingGuild.guildsItemAvatarText");
-            textView.setText(data.getGuild().hasIcon() ? null : data.getGuild().getShortName());
-            if (z2) {
-                if (data.isSelected()) {
-                    TextView textView2 = this.bindingGuild.f17110e;
-                    C12238m.checkNotNullExpressionValue(textView2, "bindingGuild.guildsItemAvatarText");
-                    themedColor = ColorCompat.getColor(textView2.getContext(), C5419R.color.white);
-                } else {
-                    TextView textView3 = this.bindingGuild.f17110e;
-                    C12238m.checkNotNullExpressionValue(textView3, "bindingGuild.guildsItemAvatarText");
-                    themedColor = ColorCompat.getThemedColor(textView3.getContext(), C5419R.attr.colorHeaderPrimary);
-                }
-                this.bindingGuild.f17110e.setTextColor(themedColor);
-            }
-            TextView textView4 = this.bindingGuild.f17113h;
-            C12238m.checkNotNullExpressionValue(textView4, "bindingGuild.guildsItemMentions");
-            configureMentionsCount(textView4, data.getMentionCount());
-            int mentionCount = data.getMentionCount();
-            Object i18nPluralString = mentionCount > 0 ? StringResourceUtilsKt.getI18nPluralString(C1643a.m885x(this.itemView, "itemView", "itemView.context"), C5419R.plurals.guild_tooltip_a11y_label_mentions, mentionCount, Integer.valueOf(mentionCount)) : "";
-            View view4 = this.itemView;
-            C12238m.checkNotNullExpressionValue(view4, "itemView");
-            View view5 = this.itemView;
-            C12238m.checkNotNullExpressionValue(view5, "itemView");
-            view4.setContentDescription(C1107b.m212d(view5, C5419R.string.guild_tooltip_a11y_label, new Object[]{i18nPluralString, data.getGuild().getName()}, (4 & 4) != 0 ? C1107b.c.f1492j : null));
-            ImageView imageView = this.bindingGuild.f17114i;
-            imageView.setVisibility(data.isConnectedToVoice() || (data.getHasActiveStageChannel() && !data.getHasActiveScheduledEvent()) ? 0 : 8);
-            imageView.setActivated(data.isConnectedToVoice());
-            imageView.setImageResource((!data.isConnectedToVoice() || data.isConnectedToStageChannel()) ? C5419R.drawable.ic_channel_stage_24dp_white : C5419R.drawable.ic_volume_up_white_24dp);
-            ImageView imageView2 = this.bindingGuild.f17112g;
-            C12238m.checkNotNullExpressionValue(imageView2, "bindingGuild.guildsItemEventStatus");
-            imageView2.setVisibility(!data.isConnectedToVoice() && data.getHasActiveScheduledEvent() ? 0 : 8);
-            ImageView imageView3 = this.bindingGuild.f17108c;
-            C12238m.checkNotNullExpressionValue(imageView3, "bindingGuild.guildsItemApplicationStream");
-            imageView3.setVisibility(!data.isConnectedToVoice() && data.getHasOngoingApplicationStream() ? 0 : 8);
-            ImageView imageView4 = this.binding.f17117c;
-            C12238m.checkNotNullExpressionValue(imageView4, "binding.guildsItemUnread");
-            imageView4.setVisibility(data.getIsUnread() ? 0 : 8);
-            ImageView imageView5 = this.binding.f17116b;
-            C12238m.checkNotNullExpressionValue(imageView5, "binding.guildsItemSelected");
-            imageView5.setVisibility(data.isSelected() ? 0 : 8);
-            configureApplicationStatus(null, z5, mentionCount > 0);
-        }
-
         public final Long getFolderId() {
             GuildListItem.GuildItem guildItem = this.data;
             if (guildItem != null) {
@@ -740,7 +740,7 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: GuildListViewHolder.kt */
-    public static final class PrivateChannelViewHolder extends GuildListViewHolder {
+    public final class PrivateChannelViewHolder extends GuildListViewHolder {
         private final WidgetGuildsListItemDmBinding binding;
         private final Function1<GuildListItem.PrivateChannelItem, Unit> onClicked;
         private final Function1<GuildListItem.PrivateChannelItem, Unit> onLongPressed;
@@ -787,7 +787,7 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: GuildListViewHolder.kt */
-    public static final class SimpleViewHolder extends GuildListViewHolder {
+    public final class SimpleViewHolder extends GuildListViewHolder {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public SimpleViewHolder(View view) {
             super(view, null);
@@ -796,7 +796,7 @@ public abstract class GuildListViewHolder extends RecyclerView.ViewHolder {
     }
 
     /* JADX INFO: compiled from: GuildListViewHolder.kt */
-    public static final class SpaceViewHolder extends GuildListViewHolder {
+    public final class SpaceViewHolder extends GuildListViewHolder {
         private final View view;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

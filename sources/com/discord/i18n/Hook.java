@@ -13,18 +13,18 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class Hook {
 
-    /* JADX INFO: renamed from: a, reason: from kotlin metadata */
-    public final List<Object> styles = new ArrayList();
+    /* JADX INFO: renamed from: c, reason: from kotlin metadata */
+    public C5524a clickHandler;
 
     /* JADX INFO: renamed from: b, reason: from kotlin metadata */
     public CharSequence replacementText;
 
-    /* JADX INFO: renamed from: c, reason: from kotlin metadata */
-    public C5524a clickHandler;
+    /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+    public final List<Object> styles = new ArrayList();
 
     /* JADX INFO: renamed from: com.discord.i18n.Hook$a */
     /* JADX INFO: compiled from: Hook.kt */
-    public static final class C5524a {
+    public final class C5524a {
 
         /* JADX INFO: renamed from: a */
         @ColorInt

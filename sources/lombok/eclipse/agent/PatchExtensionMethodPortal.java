@@ -65,7 +65,7 @@ public class PatchExtensionMethodPortal {
     }
 
     /* JADX INFO: loaded from: discord-126021.apk:lombok/eclipse/agent/PatchExtensionMethodPortal$Reflection.SCL.lombok */
-    private static final class Reflection {
+    final class Reflection {
         public static final Method resolveType;
         public static final Method errorNoMethodFor;
         public static final Method invalidMethod;

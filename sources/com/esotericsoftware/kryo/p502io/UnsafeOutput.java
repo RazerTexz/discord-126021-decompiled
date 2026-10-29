@@ -10,27 +10,11 @@ import org.objectweb.asm.Opcodes;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class UnsafeOutput extends Output {
-    private static final boolean isLittleEndian = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
     private boolean supportVarInts;
+    private static final boolean isLittleEndian = ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN);
 
     public UnsafeOutput() {
         this.supportVarInts = false;
-    }
-
-    private final void writeLittleEndianInt(int i) {
-        if (isLittleEndian) {
-            writeInt(i);
-        } else {
-            writeInt(Util.swapInt(i));
-        }
-    }
-
-    private final void writeLittleEndianLong(long j) {
-        if (isLittleEndian) {
-            writeLong(j);
-        } else {
-            writeLong(Util.swapLong(j));
-        }
     }
 
     public boolean supportVarInts() {
@@ -90,6 +74,22 @@ public final class UnsafeOutput extends Output {
             super.writeInts(iArr, z2);
         } else {
             writeBytes(iArr, UnsafeUtil.intArrayBaseOffset, 0L, iArr.length << 2);
+        }
+    }
+
+    private final void writeLittleEndianInt(int i) {
+        if (isLittleEndian) {
+            writeInt(i);
+        } else {
+            writeInt(Util.swapInt(i));
+        }
+    }
+
+    private final void writeLittleEndianLong(long j) {
+        if (isLittleEndian) {
+            writeLong(j);
+        } else {
+            writeLong(Util.swapLong(j));
         }
     }
 
@@ -220,6 +220,10 @@ public final class UnsafeOutput extends Output {
         return 9;
     }
 
+    public void supportVarInts(boolean z2) {
+        this.supportVarInts = z2;
+    }
+
     private final void writeBytes(Object obj, long j, long j2, long j3) throws KryoException {
         int iMin = Math.min(this.capacity - this.position, (int) j3);
         long j4 = j3;
@@ -236,10 +240,6 @@ public final class UnsafeOutput extends Output {
             iMin = Math.min(this.capacity, (int) j4);
             require(iMin);
         }
-    }
-
-    public void supportVarInts(boolean z2) {
-        this.supportVarInts = z2;
     }
 
     public UnsafeOutput(int i) {

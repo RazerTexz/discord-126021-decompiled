@@ -11,25 +11,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackActivityInternalActionSketchHeads.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackActivityInternalActionSketchHeads implements AnalyticsSchema, TrackBaseReceiver, TrackActivityInternalMetadataReceiver {
-    private TrackActivityInternalMetadata trackActivityInternalMetadata;
-    private TrackBase trackBase;
     private final CharSequence actionName = null;
     private final CharSequence mode = null;
-    private final CharSequence phase = null;
-    private final CharSequence theme = null;
-    private final Long numRounds = null;
-    private final Long roundLengthMs = null;
-    private final Long numPlayers = null;
     private final Long numDrawers = null;
     private final Long numGuessers = null;
+    private final Long numPlayers = null;
+    private final Long numRounds = null;
     private final Long numSpectators = null;
+    private final CharSequence phase = null;
+    private final Long roundLengthMs = null;
+    private final CharSequence theme = null;
+    private TrackActivityInternalMetadata trackActivityInternalMetadata;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "activity_internal_action_sketch_heads";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackActivityInternalActionSketchHeads implements 
         }
         TrackActivityInternalActionSketchHeads trackActivityInternalActionSketchHeads = (TrackActivityInternalActionSketchHeads) other;
         return C12238m.areEqual(this.actionName, trackActivityInternalActionSketchHeads.actionName) && C12238m.areEqual(this.mode, trackActivityInternalActionSketchHeads.mode) && C12238m.areEqual(this.phase, trackActivityInternalActionSketchHeads.phase) && C12238m.areEqual(this.theme, trackActivityInternalActionSketchHeads.theme) && C12238m.areEqual(this.numRounds, trackActivityInternalActionSketchHeads.numRounds) && C12238m.areEqual(this.roundLengthMs, trackActivityInternalActionSketchHeads.roundLengthMs) && C12238m.areEqual(this.numPlayers, trackActivityInternalActionSketchHeads.numPlayers) && C12238m.areEqual(this.numDrawers, trackActivityInternalActionSketchHeads.numDrawers) && C12238m.areEqual(this.numGuessers, trackActivityInternalActionSketchHeads.numGuessers) && C12238m.areEqual(this.numSpectators, trackActivityInternalActionSketchHeads.numSpectators);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

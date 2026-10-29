@@ -193,180 +193,6 @@ public final class C2538e0 implements InterfaceC2570x, InterfaceC3058j, Loader.I
     /* JADX INFO: renamed from: M */
     public int f5512M = 1;
 
-    /* JADX INFO: renamed from: b.i.a.c.a3.e0$a */
-    /* JADX INFO: compiled from: ProgressiveMediaPeriod.java */
-    public final class a implements Loader.InterfaceC10770e, C2565s.a {
-
-        /* JADX INFO: renamed from: b */
-        public final Uri f5539b;
-
-        /* JADX INFO: renamed from: c */
-        public final C2723y f5540c;
-
-        /* JADX INFO: renamed from: d */
-        public final InterfaceC2536d0 f5541d;
-
-        /* JADX INFO: renamed from: e */
-        public final InterfaceC3058j f5542e;
-
-        /* JADX INFO: renamed from: f */
-        public final C2743j f5543f;
-
-        /* JADX INFO: renamed from: h */
-        public volatile boolean f5545h;
-
-        /* JADX INFO: renamed from: j */
-        public long f5547j;
-
-        /* JADX INFO: renamed from: m */
-        @Nullable
-        public InterfaceC3122w f5550m;
-
-        /* JADX INFO: renamed from: n */
-        public boolean f5551n;
-
-        /* JADX INFO: renamed from: g */
-        public final C3118s f5544g = new C3118s();
-
-        /* JADX INFO: renamed from: i */
-        public boolean f5546i = true;
-
-        /* JADX INFO: renamed from: l */
-        public long f5549l = -1;
-
-        /* JADX INFO: renamed from: a */
-        public final long f5538a = C2566t.f5703a.getAndIncrement();
-
-        /* JADX INFO: renamed from: k */
-        public C2712n f5548k = m2503a(0);
-
-        public a(Uri uri, InterfaceC2710l interfaceC2710l, InterfaceC2536d0 interfaceC2536d0, InterfaceC3058j interfaceC3058j, C2743j c2743j) {
-            this.f5539b = uri;
-            this.f5540c = new C2723y(interfaceC2710l);
-            this.f5541d = interfaceC2536d0;
-            this.f5542e = interfaceC3058j;
-            this.f5543f = c2743j;
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final C2712n m2503a(long j) {
-            Collections.emptyMap();
-            Uri uri = this.f5539b;
-            String str = C2538e0.this.f5531t;
-            Map<String, String> map = C2538e0.f5498j;
-            if (uri != null) {
-                return new C2712n(uri, 0L, 1, null, map, j, -1L, str, 6, null);
-            }
-            throw new IllegalStateException("The uri must be set.");
-        }
-
-        /* JADX INFO: renamed from: b */
-        public void m2504b() throws IOException {
-            InterfaceC2706h c2565s;
-            int i;
-            int iMo3635e = 0;
-            while (iMo3635e == 0 && !this.f5545h) {
-                try {
-                    long j = this.f5544g.f8992a;
-                    C2712n c2712nM2503a = m2503a(j);
-                    this.f5548k = c2712nM2503a;
-                    long jMo2586a = this.f5540c.mo2586a(c2712nM2503a);
-                    this.f5549l = jMo2586a;
-                    if (jMo2586a != -1) {
-                        this.f5549l = jMo2586a + j;
-                    }
-                    C2538e0.this.f5502C = IcyHeaders.m8881a(this.f5540c.mo2588j());
-                    C2723y c2723y = this.f5540c;
-                    IcyHeaders icyHeaders = C2538e0.this.f5502C;
-                    if (icyHeaders == null || (i = icyHeaders.f19962o) == -1) {
-                        c2565s = c2723y;
-                    } else {
-                        c2565s = new C2565s(c2723y, i, this);
-                        InterfaceC3122w interfaceC3122wM2474B = C2538e0.this.m2474B(new d(0, true));
-                        this.f5550m = interfaceC3122wM2474B;
-                        ((C2544h0) interfaceC3122wM2474B).mo2526e(C2538e0.f5499k);
-                    }
-                    long jM2558a = j;
-                    ((C2553m) this.f5541d).m2559b(c2565s, this.f5539b, this.f5540c.mo2588j(), j, this.f5549l, this.f5542e);
-                    if (C2538e0.this.f5502C != null) {
-                        InterfaceC3031h interfaceC3031h = ((C2553m) this.f5541d).f5646b;
-                        if (interfaceC3031h instanceof C3037f) {
-                            ((C3037f) interfaceC3031h).f8333s = true;
-                        }
-                    }
-                    if (this.f5546i) {
-                        InterfaceC2536d0 interfaceC2536d0 = this.f5541d;
-                        long j2 = this.f5547j;
-                        InterfaceC3031h interfaceC3031h2 = ((C2553m) interfaceC2536d0).f5646b;
-                        Objects.requireNonNull(interfaceC3031h2);
-                        interfaceC3031h2.mo3637g(jM2558a, j2);
-                        this.f5546i = false;
-                    }
-                    while (true) {
-                        long j3 = jM2558a;
-                        while (true) {
-                            if (iMo3635e != 0 || this.f5545h) {
-                                break;
-                            }
-                            try {
-                                C2743j c2743j = this.f5543f;
-                                synchronized (c2743j) {
-                                    while (!c2743j.f6728b) {
-                                        try {
-                                            c2743j.wait();
-                                        } catch (Throwable th) {
-                                            throw th;
-                                        }
-                                    }
-                                }
-                                InterfaceC2536d0 interfaceC2536d1 = this.f5541d;
-                                C3118s c3118s = this.f5544g;
-                                C2553m c2553m = (C2553m) interfaceC2536d1;
-                                InterfaceC3031h interfaceC3031h3 = c2553m.f5646b;
-                                Objects.requireNonNull(interfaceC3031h3);
-                                InterfaceC3041i interfaceC3041i = c2553m.f5647c;
-                                Objects.requireNonNull(interfaceC3041i);
-                                iMo3635e = interfaceC3031h3.mo3635e(interfaceC3041i, c3118s);
-                                jM2558a = ((C2553m) this.f5541d).m2558a();
-                                if (jM2558a > C2538e0.this.f5532u + j3) {
-                                    this.f5543f.m3025a();
-                                    C2538e0 c2538e0 = C2538e0.this;
-                                    c2538e0.f5500A.post(c2538e0.f5537z);
-                                }
-                            } catch (InterruptedException unused) {
-                                throw new InterruptedIOException();
-                            }
-                        }
-                    }
-                    if (iMo3635e == 1) {
-                        iMo3635e = 0;
-                    } else if (((C2553m) this.f5541d).m2558a() != -1) {
-                        this.f5544g.f8992a = ((C2553m) this.f5541d).m2558a();
-                    }
-                    C2723y c2723y2 = this.f5540c;
-                    if (c2723y2 != null) {
-                        try {
-                            c2723y2.f6641a.close();
-                        } catch (IOException unused2) {
-                        }
-                    }
-                } catch (Throwable th2) {
-                    if (iMo3635e != 1 && ((C2553m) this.f5541d).m2558a() != -1) {
-                        this.f5544g.f8992a = ((C2553m) this.f5541d).m2558a();
-                    }
-                    C2723y c2723y3 = this.f5540c;
-                    if (c2723y3 != null) {
-                        try {
-                            c2723y3.f6641a.close();
-                        } catch (IOException unused3) {
-                        }
-                    }
-                    throw th2;
-                }
-            }
-        }
-    }
-
     /* JADX INFO: renamed from: b.i.a.c.a3.e0$b */
     /* JADX INFO: compiled from: ProgressiveMediaPeriod.java */
     public interface b {
@@ -521,7 +347,7 @@ public final class C2538e0 implements InterfaceC2570x, InterfaceC3058j, Loader.I
 
     /* JADX INFO: renamed from: b.i.a.c.a3.e0$d */
     /* JADX INFO: compiled from: ProgressiveMediaPeriod.java */
-    public static final class d {
+    public final class d {
 
         /* JADX INFO: renamed from: a */
         public final int f5555a;
@@ -552,7 +378,7 @@ public final class C2538e0 implements InterfaceC2570x, InterfaceC3058j, Loader.I
 
     /* JADX INFO: renamed from: b.i.a.c.a3.e0$e */
     /* JADX INFO: compiled from: ProgressiveMediaPeriod.java */
-    public static final class e {
+    public final class e {
 
         /* JADX INFO: renamed from: a */
         public final C2558o0 f5557a;
@@ -688,6 +514,123 @@ public final class C2538e0 implements InterfaceC2570x, InterfaceC3058j, Loader.I
     /* JADX INFO: renamed from: D */
     public final boolean m2476D() {
         return this.f5514O || m2499w();
+    }
+
+    @EnsuresNonNull({"trackState", "seekMap"})
+    /* JADX INFO: renamed from: t */
+    public final void m2496t() {
+        C1460d.m426D(this.f5506G);
+        Objects.requireNonNull(this.f5508I);
+        Objects.requireNonNull(this.f5509J);
+    }
+
+    /* JADX INFO: renamed from: u */
+    public final int m2497u() {
+        int iM2535n = 0;
+        for (C2544h0 c2544h0 : this.f5503D) {
+            iM2535n += c2544h0.m2535n();
+        }
+        return iM2535n;
+    }
+
+    /* JADX INFO: renamed from: v */
+    public final long m2498v() {
+        long j;
+        long jMax = Long.MIN_VALUE;
+        for (C2544h0 c2544h0 : this.f5503D) {
+            synchronized (c2544h0) {
+                j = c2544h0.f5618w;
+            }
+            jMax = Math.max(jMax, j);
+        }
+        return jMax;
+    }
+
+    /* JADX INFO: renamed from: w */
+    public final boolean m2499w() {
+        return this.f5518S != -9223372036854775807L;
+    }
+
+    /* JADX INFO: renamed from: x */
+    public final void m2500x() {
+        if (this.f5522W || this.f5506G || !this.f5505F || this.f5509J == null) {
+            return;
+        }
+        for (C2544h0 c2544h0 : this.f5503D) {
+            if (c2544h0.m2534m() == null) {
+                return;
+            }
+        }
+        this.f5535x.m3025a();
+        int length = this.f5503D.length;
+        C2556n0[] c2556n0Arr = new C2556n0[length];
+        boolean[] zArr = new boolean[length];
+        for (int i = 0; i < length; i++) {
+            C2811j1 c2811j1M2534m = this.f5503D[i].m2534m();
+            Objects.requireNonNull(c2811j1M2534m);
+            String str = c2811j1M2534m.f7155w;
+            boolean zM3050h = C2753t.m3050h(str);
+            boolean z2 = zM3050h || C2753t.m3052j(str);
+            zArr[i] = z2;
+            this.f5507H = z2 | this.f5507H;
+            IcyHeaders icyHeaders = this.f5502C;
+            if (icyHeaders != null) {
+                if (zM3050h || this.f5504E[i].f5556b) {
+                    Metadata metadata = c2811j1M2534m.f7153u;
+                    Metadata metadata2 = metadata == null ? new Metadata(icyHeaders) : metadata.m8877a(icyHeaders);
+                    C2811j1.b bVarM3275a = c2811j1M2534m.m3275a();
+                    bVarM3275a.f7171i = metadata2;
+                    c2811j1M2534m = bVarM3275a.m3277a();
+                }
+                if (zM3050h && c2811j1M2534m.f7149q == -1 && c2811j1M2534m.f7150r == -1 && icyHeaders.f19957j != -1) {
+                    C2811j1.b bVarM3275a2 = c2811j1M2534m.m3275a();
+                    bVarM3275a2.f7168f = icyHeaders.f19957j;
+                    c2811j1M2534m = bVarM3275a2.m3277a();
+                }
+            }
+            int iMo3600d = this.f5525n.mo3600d(c2811j1M2534m);
+            C2811j1.b bVarM3275a3 = c2811j1M2534m.m3275a();
+            bVarM3275a3.f7162D = iMo3600d;
+            c2556n0Arr[i] = new C2556n0(bVarM3275a3.m3277a());
+        }
+        this.f5508I = new e(new C2558o0(c2556n0Arr), zArr);
+        this.f5506G = true;
+        InterfaceC2570x.a aVar = this.f5501B;
+        Objects.requireNonNull(aVar);
+        aVar.mo2563b(this);
+    }
+
+    /* JADX INFO: renamed from: y */
+    public final void m2501y(int i) {
+        m2496t();
+        e eVar = this.f5508I;
+        boolean[] zArr = eVar.f5560d;
+        if (zArr[i]) {
+            return;
+        }
+        C2811j1 c2811j1 = eVar.f5557a.f5676l[i].f5662l[0];
+        InterfaceC2532b0.a aVar = this.f5527p;
+        aVar.m2467b(new C2569w(1, C2753t.m3049g(c2811j1.f7155w), c2811j1, 0, null, aVar.m2466a(this.f5517R), -9223372036854775807L));
+        zArr[i] = true;
+    }
+
+    /* JADX INFO: renamed from: z */
+    public final void m2502z(int i) {
+        m2496t();
+        boolean[] zArr = this.f5508I.f5558b;
+        if (this.f5519T && zArr[i] && !this.f5503D[i].m2537p(false)) {
+            this.f5518S = 0L;
+            this.f5519T = false;
+            this.f5514O = true;
+            this.f5517R = 0L;
+            this.f5520U = 0;
+            for (C2544h0 c2544h0 : this.f5503D) {
+                c2544h0.m2540s(false);
+            }
+            InterfaceC2570x.a aVar = this.f5501B;
+            Objects.requireNonNull(aVar);
+            aVar.mo2542a(this);
+        }
     }
 
     @Override // p007b.p225i.p226a.p242c.p267x2.InterfaceC3058j
@@ -1179,120 +1122,177 @@ public final class C2538e0 implements InterfaceC2570x, InterfaceC3058j, Loader.I
     public void mo2495s(long j) {
     }
 
-    @EnsuresNonNull({"trackState", "seekMap"})
-    /* JADX INFO: renamed from: t */
-    public final void m2496t() {
-        C1460d.m426D(this.f5506G);
-        Objects.requireNonNull(this.f5508I);
-        Objects.requireNonNull(this.f5509J);
-    }
+    /* JADX INFO: renamed from: b.i.a.c.a3.e0$a */
+    /* JADX INFO: compiled from: ProgressiveMediaPeriod.java */
+    public final class a implements Loader.InterfaceC10770e, C2565s.a {
 
-    /* JADX INFO: renamed from: u */
-    public final int m2497u() {
-        int iM2535n = 0;
-        for (C2544h0 c2544h0 : this.f5503D) {
-            iM2535n += c2544h0.m2535n();
+        /* JADX INFO: renamed from: b */
+        public final Uri f5539b;
+
+        /* JADX INFO: renamed from: c */
+        public final C2723y f5540c;
+
+        /* JADX INFO: renamed from: d */
+        public final InterfaceC2536d0 f5541d;
+
+        /* JADX INFO: renamed from: e */
+        public final InterfaceC3058j f5542e;
+
+        /* JADX INFO: renamed from: f */
+        public final C2743j f5543f;
+
+        /* JADX INFO: renamed from: h */
+        public volatile boolean f5545h;
+
+        /* JADX INFO: renamed from: j */
+        public long f5547j;
+
+        /* JADX INFO: renamed from: m */
+        @Nullable
+        public InterfaceC3122w f5550m;
+
+        /* JADX INFO: renamed from: n */
+        public boolean f5551n;
+
+        /* JADX INFO: renamed from: g */
+        public final C3118s f5544g = new C3118s();
+
+        /* JADX INFO: renamed from: i */
+        public boolean f5546i = true;
+
+        /* JADX INFO: renamed from: l */
+        public long f5549l = -1;
+
+        /* JADX INFO: renamed from: a */
+        public final long f5538a = C2566t.f5703a.getAndIncrement();
+
+        /* JADX INFO: renamed from: k */
+        public C2712n f5548k = m2503a(0);
+
+        public a(Uri uri, InterfaceC2710l interfaceC2710l, InterfaceC2536d0 interfaceC2536d0, InterfaceC3058j interfaceC3058j, C2743j c2743j) {
+            this.f5539b = uri;
+            this.f5540c = new C2723y(interfaceC2710l);
+            this.f5541d = interfaceC2536d0;
+            this.f5542e = interfaceC3058j;
+            this.f5543f = c2743j;
         }
-        return iM2535n;
-    }
 
-    /* JADX INFO: renamed from: v */
-    public final long m2498v() {
-        long j;
-        long jMax = Long.MIN_VALUE;
-        for (C2544h0 c2544h0 : this.f5503D) {
-            synchronized (c2544h0) {
-                j = c2544h0.f5618w;
+        /* JADX INFO: renamed from: a */
+        public final C2712n m2503a(long j) {
+            Collections.emptyMap();
+            Uri uri = this.f5539b;
+            String str = C2538e0.this.f5531t;
+            Map<String, String> map = C2538e0.f5498j;
+            if (uri != null) {
+                return new C2712n(uri, 0L, 1, null, map, j, -1L, str, 6, null);
             }
-            jMax = Math.max(jMax, j);
+            throw new IllegalStateException("The uri must be set.");
         }
-        return jMax;
-    }
 
-    /* JADX INFO: renamed from: w */
-    public final boolean m2499w() {
-        return this.f5518S != -9223372036854775807L;
-    }
-
-    /* JADX INFO: renamed from: x */
-    public final void m2500x() {
-        if (this.f5522W || this.f5506G || !this.f5505F || this.f5509J == null) {
-            return;
-        }
-        for (C2544h0 c2544h0 : this.f5503D) {
-            if (c2544h0.m2534m() == null) {
-                return;
-            }
-        }
-        this.f5535x.m3025a();
-        int length = this.f5503D.length;
-        C2556n0[] c2556n0Arr = new C2556n0[length];
-        boolean[] zArr = new boolean[length];
-        for (int i = 0; i < length; i++) {
-            C2811j1 c2811j1M2534m = this.f5503D[i].m2534m();
-            Objects.requireNonNull(c2811j1M2534m);
-            String str = c2811j1M2534m.f7155w;
-            boolean zM3050h = C2753t.m3050h(str);
-            boolean z2 = zM3050h || C2753t.m3052j(str);
-            zArr[i] = z2;
-            this.f5507H = z2 | this.f5507H;
-            IcyHeaders icyHeaders = this.f5502C;
-            if (icyHeaders != null) {
-                if (zM3050h || this.f5504E[i].f5556b) {
-                    Metadata metadata = c2811j1M2534m.f7153u;
-                    Metadata metadata2 = metadata == null ? new Metadata(icyHeaders) : metadata.m8877a(icyHeaders);
-                    C2811j1.b bVarM3275a = c2811j1M2534m.m3275a();
-                    bVarM3275a.f7171i = metadata2;
-                    c2811j1M2534m = bVarM3275a.m3277a();
+        /* JADX INFO: renamed from: b */
+        public void m2504b() throws IOException {
+            InterfaceC2706h c2565s;
+            int i;
+            int iMo3635e = 0;
+            while (iMo3635e == 0 && !this.f5545h) {
+                try {
+                    long j = this.f5544g.f8992a;
+                    C2712n c2712nM2503a = m2503a(j);
+                    this.f5548k = c2712nM2503a;
+                    long jMo2586a = this.f5540c.mo2586a(c2712nM2503a);
+                    this.f5549l = jMo2586a;
+                    if (jMo2586a != -1) {
+                        this.f5549l = jMo2586a + j;
+                    }
+                    C2538e0.this.f5502C = IcyHeaders.m8881a(this.f5540c.mo2588j());
+                    C2723y c2723y = this.f5540c;
+                    IcyHeaders icyHeaders = C2538e0.this.f5502C;
+                    if (icyHeaders == null || (i = icyHeaders.f19962o) == -1) {
+                        c2565s = c2723y;
+                    } else {
+                        c2565s = new C2565s(c2723y, i, this);
+                        InterfaceC3122w interfaceC3122wM2474B = C2538e0.this.m2474B(new d(0, true));
+                        this.f5550m = interfaceC3122wM2474B;
+                        ((C2544h0) interfaceC3122wM2474B).mo2526e(C2538e0.f5499k);
+                    }
+                    long jM2558a = j;
+                    ((C2553m) this.f5541d).m2559b(c2565s, this.f5539b, this.f5540c.mo2588j(), j, this.f5549l, this.f5542e);
+                    if (C2538e0.this.f5502C != null) {
+                        InterfaceC3031h interfaceC3031h = ((C2553m) this.f5541d).f5646b;
+                        if (interfaceC3031h instanceof C3037f) {
+                            ((C3037f) interfaceC3031h).f8333s = true;
+                        }
+                    }
+                    if (this.f5546i) {
+                        InterfaceC2536d0 interfaceC2536d0 = this.f5541d;
+                        long j2 = this.f5547j;
+                        InterfaceC3031h interfaceC3031h2 = ((C2553m) interfaceC2536d0).f5646b;
+                        Objects.requireNonNull(interfaceC3031h2);
+                        interfaceC3031h2.mo3637g(jM2558a, j2);
+                        this.f5546i = false;
+                    }
+                    while (true) {
+                        long j3 = jM2558a;
+                        while (true) {
+                            if (iMo3635e != 0 || this.f5545h) {
+                                break;
+                            }
+                            try {
+                                C2743j c2743j = this.f5543f;
+                                synchronized (c2743j) {
+                                    while (!c2743j.f6728b) {
+                                        try {
+                                            c2743j.wait();
+                                        } catch (Throwable th) {
+                                            throw th;
+                                        }
+                                    }
+                                }
+                                InterfaceC2536d0 interfaceC2536d1 = this.f5541d;
+                                C3118s c3118s = this.f5544g;
+                                C2553m c2553m = (C2553m) interfaceC2536d1;
+                                InterfaceC3031h interfaceC3031h3 = c2553m.f5646b;
+                                Objects.requireNonNull(interfaceC3031h3);
+                                InterfaceC3041i interfaceC3041i = c2553m.f5647c;
+                                Objects.requireNonNull(interfaceC3041i);
+                                iMo3635e = interfaceC3031h3.mo3635e(interfaceC3041i, c3118s);
+                                jM2558a = ((C2553m) this.f5541d).m2558a();
+                                if (jM2558a > C2538e0.this.f5532u + j3) {
+                                    this.f5543f.m3025a();
+                                    C2538e0 c2538e0 = C2538e0.this;
+                                    c2538e0.f5500A.post(c2538e0.f5537z);
+                                }
+                            } catch (InterruptedException unused) {
+                                throw new InterruptedIOException();
+                            }
+                        }
+                    }
+                    if (iMo3635e == 1) {
+                        iMo3635e = 0;
+                    } else if (((C2553m) this.f5541d).m2558a() != -1) {
+                        this.f5544g.f8992a = ((C2553m) this.f5541d).m2558a();
+                    }
+                    C2723y c2723y2 = this.f5540c;
+                    if (c2723y2 != null) {
+                        try {
+                            c2723y2.f6641a.close();
+                        } catch (IOException unused2) {
+                        }
+                    }
+                } catch (Throwable th2) {
+                    if (iMo3635e != 1 && ((C2553m) this.f5541d).m2558a() != -1) {
+                        this.f5544g.f8992a = ((C2553m) this.f5541d).m2558a();
+                    }
+                    C2723y c2723y3 = this.f5540c;
+                    if (c2723y3 != null) {
+                        try {
+                            c2723y3.f6641a.close();
+                        } catch (IOException unused3) {
+                        }
+                    }
+                    throw th2;
                 }
-                if (zM3050h && c2811j1M2534m.f7149q == -1 && c2811j1M2534m.f7150r == -1 && icyHeaders.f19957j != -1) {
-                    C2811j1.b bVarM3275a2 = c2811j1M2534m.m3275a();
-                    bVarM3275a2.f7168f = icyHeaders.f19957j;
-                    c2811j1M2534m = bVarM3275a2.m3277a();
-                }
             }
-            int iMo3600d = this.f5525n.mo3600d(c2811j1M2534m);
-            C2811j1.b bVarM3275a3 = c2811j1M2534m.m3275a();
-            bVarM3275a3.f7162D = iMo3600d;
-            c2556n0Arr[i] = new C2556n0(bVarM3275a3.m3277a());
-        }
-        this.f5508I = new e(new C2558o0(c2556n0Arr), zArr);
-        this.f5506G = true;
-        InterfaceC2570x.a aVar = this.f5501B;
-        Objects.requireNonNull(aVar);
-        aVar.mo2563b(this);
-    }
-
-    /* JADX INFO: renamed from: y */
-    public final void m2501y(int i) {
-        m2496t();
-        e eVar = this.f5508I;
-        boolean[] zArr = eVar.f5560d;
-        if (zArr[i]) {
-            return;
-        }
-        C2811j1 c2811j1 = eVar.f5557a.f5676l[i].f5662l[0];
-        InterfaceC2532b0.a aVar = this.f5527p;
-        aVar.m2467b(new C2569w(1, C2753t.m3049g(c2811j1.f7155w), c2811j1, 0, null, aVar.m2466a(this.f5517R), -9223372036854775807L));
-        zArr[i] = true;
-    }
-
-    /* JADX INFO: renamed from: z */
-    public final void m2502z(int i) {
-        m2496t();
-        boolean[] zArr = this.f5508I.f5558b;
-        if (this.f5519T && zArr[i] && !this.f5503D[i].m2537p(false)) {
-            this.f5518S = 0L;
-            this.f5519T = false;
-            this.f5514O = true;
-            this.f5517R = 0L;
-            this.f5520U = 0;
-            for (C2544h0 c2544h0 : this.f5503D) {
-                c2544h0.m2540s(false);
-            }
-            InterfaceC2570x.a aVar = this.f5501B;
-            Objects.requireNonNull(aVar);
-            aVar.mo2542a(this);
         }
     }
 }

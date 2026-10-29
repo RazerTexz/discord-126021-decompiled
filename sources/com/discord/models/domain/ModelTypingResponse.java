@@ -24,16 +24,6 @@ public final /* data */ class ModelTypingResponse {
         return modelTypingResponse.copy(l, l2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Long getMessageSendCooldownMs() {
-        return this.messageSendCooldownMs;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Long getThreadCreateCooldownMs() {
-        return this.threadCreateCooldownMs;
-    }
-
     public final ModelTypingResponse copy(Long messageSendCooldownMs, Long threadCreateCooldownMs) {
         return new ModelTypingResponse(messageSendCooldownMs, threadCreateCooldownMs);
     }
@@ -49,8 +39,18 @@ public final /* data */ class ModelTypingResponse {
         return C12238m.areEqual(this.messageSendCooldownMs, modelTypingResponse.messageSendCooldownMs) && C12238m.areEqual(this.threadCreateCooldownMs, modelTypingResponse.threadCreateCooldownMs);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Long getMessageSendCooldownMs() {
         return this.messageSendCooldownMs;
+    }
+
+    public final Long getMessageSendCooldownMs() {
+        return this.messageSendCooldownMs;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final Long getThreadCreateCooldownMs() {
+        return this.threadCreateCooldownMs;
     }
 
     public final Long getThreadCreateCooldownMs() {

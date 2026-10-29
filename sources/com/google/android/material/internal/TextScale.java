@@ -35,13 +35,6 @@ public class TextScale extends Transition {
         }
     }
 
-    private void captureValues(@NonNull TransitionValues transitionValues) {
-        View view = transitionValues.view;
-        if (view instanceof TextView) {
-            transitionValues.values.put(PROPNAME_SCALE, Float.valueOf(((TextView) view).getScaleX()));
-        }
-    }
-
     @Override // androidx.transition.Transition
     public void captureEndValues(@NonNull TransitionValues transitionValues) {
         captureValues(transitionValues);
@@ -50,6 +43,13 @@ public class TextScale extends Transition {
     @Override // androidx.transition.Transition
     public void captureStartValues(@NonNull TransitionValues transitionValues) {
         captureValues(transitionValues);
+    }
+
+    private void captureValues(@NonNull TransitionValues transitionValues) {
+        View view = transitionValues.view;
+        if (view instanceof TextView) {
+            transitionValues.values.put(PROPNAME_SCALE, Float.valueOf(((TextView) view).getScaleX()));
+        }
     }
 
     @Override // androidx.transition.Transition

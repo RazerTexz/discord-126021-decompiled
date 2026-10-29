@@ -27,62 +27,17 @@ import lombok.javac.JavacTreeMaker;
 
 /* JADX INFO: loaded from: discord-126021.apk:lombok/javac/handlers/HandleEqualsAndHashCode.SCL.lombok */
 public class HandleEqualsAndHashCode extends JavacAnnotationHandler<EqualsAndHashCode> {
-    private static final String RESULT_NAME = "result";
-    private static final String PRIME_NAME = "PRIME";
-    private static final String HASH_CODE_CACHE_NAME = "$hashCodeCache";
-    private boolean jcAnnotatedTypeInit;
-    private Class<?> jcAnnotatedTypeClass = null;
-    private Field jcAnnotatedTypeUnderlyingTypeField = null;
+    private static /* synthetic */ int[] $SWITCH_TABLE$javax$lang$model$type$TypeKind;
     private static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType;
+    private static final String HASH_CODE_CACHE_NAME = "$hashCodeCache";
+    private static final String PRIME_NAME = "PRIME";
+    private static final String RESULT_NAME = "result";
 
     /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
     private static /* synthetic */ int[] f27483x2486df07;
-    private static /* synthetic */ int[] $SWITCH_TABLE$javax$lang$model$type$TypeKind;
-
-    static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType() {
-        int[] iArr = $SWITCH_TABLE$lombok$core$configuration$CallSuperType;
-        if (iArr != null) {
-            return iArr;
-        }
-        int[] iArr2 = new int[CallSuperType.valuesCustom().length];
-        try {
-            iArr2[CallSuperType.CALL.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            iArr2[CallSuperType.SKIP.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            iArr2[CallSuperType.WARN.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        $SWITCH_TABLE$lombok$core$configuration$CallSuperType = iArr2;
-        return iArr2;
-    }
-
-    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
-    static /* synthetic */ int[] m10942x2486df07() {
-        int[] iArr = f27483x2486df07;
-        if (iArr != null) {
-            return iArr;
-        }
-        int[] iArr2 = new int[JavacHandlerUtil.MemberExistsResult.valuesCustom().length];
-        try {
-            iArr2[JavacHandlerUtil.MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            iArr2[JavacHandlerUtil.MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            iArr2[JavacHandlerUtil.MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
-        } catch (NoSuchFieldError unused3) {
-        }
-        f27483x2486df07 = iArr2;
-        return iArr2;
-    }
+    private boolean jcAnnotatedTypeInit;
+    private Class<?> jcAnnotatedTypeClass = null;
+    private Field jcAnnotatedTypeUnderlyingTypeField = null;
 
     static /* synthetic */ int[] $SWITCH_TABLE$javax$lang$model$type$TypeKind() {
         int[] iArr = $SWITCH_TABLE$javax$lang$model$type$TypeKind;
@@ -167,6 +122,51 @@ public class HandleEqualsAndHashCode extends JavacAnnotationHandler<EqualsAndHas
         } catch (NoSuchFieldError unused19) {
         }
         $SWITCH_TABLE$javax$lang$model$type$TypeKind = iArr2;
+        return iArr2;
+    }
+
+    static /* synthetic */ int[] $SWITCH_TABLE$lombok$core$configuration$CallSuperType() {
+        int[] iArr = $SWITCH_TABLE$lombok$core$configuration$CallSuperType;
+        if (iArr != null) {
+            return iArr;
+        }
+        int[] iArr2 = new int[CallSuperType.valuesCustom().length];
+        try {
+            iArr2[CallSuperType.CALL.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            iArr2[CallSuperType.SKIP.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            iArr2[CallSuperType.WARN.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        $SWITCH_TABLE$lombok$core$configuration$CallSuperType = iArr2;
+        return iArr2;
+    }
+
+    /* JADX INFO: renamed from: $SWITCH_TABLE$lombok$javac$handlers$JavacHandlerUtil$MemberExistsResult */
+    static /* synthetic */ int[] m10942x2486df07() {
+        int[] iArr = f27483x2486df07;
+        if (iArr != null) {
+            return iArr;
+        }
+        int[] iArr2 = new int[JavacHandlerUtil.MemberExistsResult.valuesCustom().length];
+        try {
+            iArr2[JavacHandlerUtil.MemberExistsResult.EXISTS_BY_LOMBOK.ordinal()] = 2;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            iArr2[JavacHandlerUtil.MemberExistsResult.EXISTS_BY_USER.ordinal()] = 3;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            iArr2[JavacHandlerUtil.MemberExistsResult.NOT_EXISTS.ordinal()] = 1;
+        } catch (NoSuchFieldError unused3) {
+        }
+        f27483x2486df07 = iArr2;
         return iArr2;
     }
 

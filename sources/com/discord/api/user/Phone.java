@@ -9,7 +9,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class Phone {
 
     /* JADX INFO: compiled from: Phone.kt */
-    public static final class NoPhoneNumber extends Phone {
+    public final class NoPhoneNumber extends Phone {
         public static final NoPhoneNumber INSTANCE = new NoPhoneNumber();
 
         public NoPhoneNumber() {
@@ -18,7 +18,7 @@ public abstract class Phone {
     }
 
     /* JADX INFO: compiled from: Phone.kt */
-    public static final /* data */ class PhoneNumber extends Phone {
+    public final /* data */ class PhoneNumber extends Phone {
         private final String number;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -28,16 +28,16 @@ public abstract class Phone {
             this.number = str;
         }
 
-        /* JADX INFO: renamed from: a, reason: from getter */
-        public final String getNumber() {
-            return this.number;
-        }
-
         public boolean equals(Object other) {
             if (this != other) {
                 return (other instanceof PhoneNumber) && C12238m.areEqual(this.number, ((PhoneNumber) other).number);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: a, reason: from getter */
+        public final String getNumber() {
+            return this.number;
         }
 
         public int hashCode() {

@@ -32,6 +32,34 @@ public final class C4683j extends AbstractC4695v.d.AbstractC13233d {
         this.f12591e = cVar;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d)) {
+            return false;
+        }
+        AbstractC4695v.d.AbstractC13233d abstractC13233d = (AbstractC4695v.d.AbstractC13233d) obj;
+        if (this.f12587a == abstractC13233d.mo6566d() && this.f12588b.equals(abstractC13233d.mo6567e()) && this.f12589c.equals(abstractC13233d.mo6563a()) && this.f12590d.equals(abstractC13233d.mo6564b())) {
+            AbstractC4695v.d.AbstractC13233d.c cVar = this.f12591e;
+            if (cVar == null) {
+                if (abstractC13233d.mo6565c() == null) {
+                    return true;
+                }
+            } else if (cVar.equals(abstractC13233d.mo6565c())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        long j = this.f12587a;
+        int iHashCode = (((((((((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003) ^ this.f12588b.hashCode()) * 1000003) ^ this.f12589c.hashCode()) * 1000003) ^ this.f12590d.hashCode()) * 1000003;
+        AbstractC4695v.d.AbstractC13233d.c cVar = this.f12591e;
+        return (cVar == null ? 0 : cVar.hashCode()) ^ iHashCode;
+    }
+
     @Override // p007b.p225i.p361c.p369m.p370d.p375m.AbstractC4695v.d.AbstractC13233d
     @NonNull
     /* JADX INFO: renamed from: a */
@@ -64,34 +92,6 @@ public final class C4683j extends AbstractC4695v.d.AbstractC13233d {
     /* JADX INFO: renamed from: e */
     public String mo6567e() {
         return this.f12588b;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof AbstractC4695v.d.AbstractC13233d)) {
-            return false;
-        }
-        AbstractC4695v.d.AbstractC13233d abstractC13233d = (AbstractC4695v.d.AbstractC13233d) obj;
-        if (this.f12587a == abstractC13233d.mo6566d() && this.f12588b.equals(abstractC13233d.mo6567e()) && this.f12589c.equals(abstractC13233d.mo6563a()) && this.f12590d.equals(abstractC13233d.mo6564b())) {
-            AbstractC4695v.d.AbstractC13233d.c cVar = this.f12591e;
-            if (cVar == null) {
-                if (abstractC13233d.mo6565c() == null) {
-                    return true;
-                }
-            } else if (cVar.equals(abstractC13233d.mo6565c())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int hashCode() {
-        long j = this.f12587a;
-        int iHashCode = (((((((((int) (j ^ (j >>> 32))) ^ 1000003) * 1000003) ^ this.f12588b.hashCode()) * 1000003) ^ this.f12589c.hashCode()) * 1000003) ^ this.f12590d.hashCode()) * 1000003;
-        AbstractC4695v.d.AbstractC13233d.c cVar = this.f12591e;
-        return (cVar == null ? 0 : cVar.hashCode()) ^ iHashCode;
     }
 
     public String toString() {

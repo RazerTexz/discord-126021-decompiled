@@ -27,11 +27,35 @@ import p007b.p225i.p361c.p369m.p370d.p384s.InterfaceC4736d;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4714g {
 
+    /* JADX INFO: renamed from: g */
+    @NonNull
+    public final File f12678g;
+
+    /* JADX INFO: renamed from: h */
+    @NonNull
+    public final File f12679h;
+
+    /* JADX INFO: renamed from: i */
+    @NonNull
+    public final File f12680i;
+
+    /* JADX INFO: renamed from: j */
+    @NonNull
+    public final File f12681j;
+
+    /* JADX INFO: renamed from: k */
+    @NonNull
+    public final InterfaceC4736d f12682k;
+
     /* JADX INFO: renamed from: a */
     public static final Charset f12672a = Charset.forName(Constants.ENCODING);
 
     /* JADX INFO: renamed from: b */
     public static final int f12673b = 15;
+
+    /* JADX INFO: renamed from: f */
+    @NonNull
+    public final AtomicInteger f12677f = new AtomicInteger(0);
 
     /* JADX INFO: renamed from: c */
     public static final C4704h f12674c = new C4704h();
@@ -53,30 +77,6 @@ public class C4714g {
             return str.startsWith("event");
         }
     };
-
-    /* JADX INFO: renamed from: f */
-    @NonNull
-    public final AtomicInteger f12677f = new AtomicInteger(0);
-
-    /* JADX INFO: renamed from: g */
-    @NonNull
-    public final File f12678g;
-
-    /* JADX INFO: renamed from: h */
-    @NonNull
-    public final File f12679h;
-
-    /* JADX INFO: renamed from: i */
-    @NonNull
-    public final File f12680i;
-
-    /* JADX INFO: renamed from: j */
-    @NonNull
-    public final File f12681j;
-
-    /* JADX INFO: renamed from: k */
-    @NonNull
-    public final InterfaceC4736d f12682k;
 
     public C4714g(@NonNull File file, @NonNull InterfaceC4736d interfaceC4736d) {
         File file2 = new File(file, "report-persistence");

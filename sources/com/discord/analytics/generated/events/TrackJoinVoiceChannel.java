@@ -11,30 +11,24 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackJoinVoiceChannel.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackJoinVoiceChannel implements AnalyticsSchema, TrackBaseReceiver, TrackNetworkInformationReceiver {
-    private TrackBase trackBase;
-    private TrackNetworkInformation trackNetworkInformation;
+    private final Long channelBitrate = null;
     private final Long channelId = null;
     private final Long channelType = null;
-    private final Long channelBitrate = null;
-    private final Long guildId = null;
-    private final CharSequence nonce = null;
-    private final CharSequence rtcConnectionId = null;
-    private final Long voiceStateCount = null;
-    private final Long videoStreamCount = null;
-    private final Boolean videoEnabled = null;
+    private final Long customStatusCount = null;
+    private final Long gameId = null;
     private final CharSequence gameName = null;
     private final CharSequence gamePlatform = null;
-    private final Long gameId = null;
-    private final Long customStatusCount = null;
-    private final Long stageInstanceId = null;
+    private final Long guildId = null;
     private final Long guildScheduledEventId = null;
+    private final CharSequence nonce = null;
+    private final CharSequence rtcConnectionId = null;
+    private final Long stageInstanceId = null;
+    private TrackBase trackBase;
+    private TrackNetworkInformation trackNetworkInformation;
+    private final Boolean videoEnabled = null;
+    private final Long videoStreamCount = null;
+    private final Long voiceStateCount = null;
     private final transient String analyticsSchemaTypeName = "join_voice_channel";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -45,6 +39,12 @@ public final /* data */ class TrackJoinVoiceChannel implements AnalyticsSchema, 
         }
         TrackJoinVoiceChannel trackJoinVoiceChannel = (TrackJoinVoiceChannel) other;
         return C12238m.areEqual(this.channelId, trackJoinVoiceChannel.channelId) && C12238m.areEqual(this.channelType, trackJoinVoiceChannel.channelType) && C12238m.areEqual(this.channelBitrate, trackJoinVoiceChannel.channelBitrate) && C12238m.areEqual(this.guildId, trackJoinVoiceChannel.guildId) && C12238m.areEqual(this.nonce, trackJoinVoiceChannel.nonce) && C12238m.areEqual(this.rtcConnectionId, trackJoinVoiceChannel.rtcConnectionId) && C12238m.areEqual(this.voiceStateCount, trackJoinVoiceChannel.voiceStateCount) && C12238m.areEqual(this.videoStreamCount, trackJoinVoiceChannel.videoStreamCount) && C12238m.areEqual(this.videoEnabled, trackJoinVoiceChannel.videoEnabled) && C12238m.areEqual(this.gameName, trackJoinVoiceChannel.gameName) && C12238m.areEqual(this.gamePlatform, trackJoinVoiceChannel.gamePlatform) && C12238m.areEqual(this.gameId, trackJoinVoiceChannel.gameId) && C12238m.areEqual(this.customStatusCount, trackJoinVoiceChannel.customStatusCount) && C12238m.areEqual(this.stageInstanceId, trackJoinVoiceChannel.stageInstanceId) && C12238m.areEqual(this.guildScheduledEventId, trackJoinVoiceChannel.guildScheduledEventId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

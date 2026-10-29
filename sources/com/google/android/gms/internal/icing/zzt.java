@@ -10,7 +10,6 @@ import p007b.p225i.p226a.p288f.p313h.p324k.C3574s;
 /* JADX INFO: compiled from: com.google.firebase:firebase-appindexing@@19.1.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzt extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzt> CREATOR = new C3574s();
 
     /* JADX INFO: renamed from: j */
     public final String f20602j;
@@ -38,6 +37,7 @@ public final class zzt extends AbstractSafeParcelable {
 
     /* JADX INFO: renamed from: r */
     public final zzu f20610r;
+    public static final Parcelable.Creator<zzt> CREATOR = new C3574s();
 
     public zzt(String str, String str2, boolean z2, int i, boolean z3, String str3, zzm[] zzmVarArr, String str4, zzu zzuVar) {
         this.f20602j = str;

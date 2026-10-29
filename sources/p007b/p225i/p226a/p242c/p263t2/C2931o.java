@@ -11,9 +11,6 @@ import p007b.p225i.p226a.p242c.p259f3.C2738e0;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2931o implements InterfaceC2963w0 {
 
-    /* JADX INFO: renamed from: j */
-    public static final C2931o f7779j = new C2931o(0, 0, 1, 1, null);
-
     /* JADX INFO: renamed from: k */
     public final int f7780k;
 
@@ -30,24 +27,14 @@ public final class C2931o implements InterfaceC2963w0 {
     @Nullable
     public AudioAttributes f7784o;
 
+    /* JADX INFO: renamed from: j */
+    public static final C2931o f7779j = new C2931o(0, 0, 1, 1, null);
+
     public C2931o(int i, int i2, int i3, int i4, a aVar) {
         this.f7780k = i;
         this.f7781l = i2;
         this.f7782m = i3;
         this.f7783n = i4;
-    }
-
-    @RequiresApi(21)
-    /* JADX INFO: renamed from: a */
-    public AudioAttributes m3494a() {
-        if (this.f7784o == null) {
-            AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(this.f7780k).setFlags(this.f7781l).setUsage(this.f7782m);
-            if (C2738e0.f6708a >= 29) {
-                usage.setAllowedCapturePolicy(this.f7783n);
-            }
-            this.f7784o = usage.build();
-        }
-        return this.f7784o;
     }
 
     public boolean equals(@Nullable Object obj) {
@@ -63,5 +50,18 @@ public final class C2931o implements InterfaceC2963w0 {
 
     public int hashCode() {
         return ((((((527 + this.f7780k) * 31) + this.f7781l) * 31) + this.f7782m) * 31) + this.f7783n;
+    }
+
+    @RequiresApi(21)
+    /* JADX INFO: renamed from: a */
+    public AudioAttributes m3494a() {
+        if (this.f7784o == null) {
+            AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(this.f7780k).setFlags(this.f7781l).setUsage(this.f7782m);
+            if (C2738e0.f6708a >= 29) {
+                usage.setAllowedCapturePolicy(this.f7783n);
+            }
+            this.f7784o = usage.build();
+        }
+        return this.f7784o;
     }
 }

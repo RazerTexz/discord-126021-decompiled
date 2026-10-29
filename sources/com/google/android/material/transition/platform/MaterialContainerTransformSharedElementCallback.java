@@ -42,23 +42,6 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
     @Nullable
     private ShapeProvider shapeProvider = new ShapeableViewShapeProvider();
 
-    public interface ShapeProvider {
-        @Nullable
-        ShapeAppearanceModel provideShape(@NonNull View view);
-    }
-
-    public static class ShapeableViewShapeProvider implements ShapeProvider {
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback.ShapeProvider
-        @Nullable
-        public ShapeAppearanceModel provideShape(@NonNull View view) {
-            if (view instanceof Shapeable) {
-                return ((Shapeable) view).getShapeAppearanceModel();
-            }
-            return null;
-        }
-    }
-
     /* JADX INFO: renamed from: com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback$a */
     public class C11059a extends AbstractC4478i {
 
@@ -118,43 +101,21 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
         }
     }
 
-    private static void removeWindowBackground(Window window) {
-        window.getDecorView().getBackground().mutate().setColorFilter(BlendModeColorFilterCompat.createBlendModeColorFilterCompat(0, BlendModeCompat.CLEAR));
+    public interface ShapeProvider {
+        @Nullable
+        ShapeAppearanceModel provideShape(@NonNull View view);
     }
 
-    private static void restoreWindowBackground(Window window) {
-        window.getDecorView().getBackground().mutate().clearColorFilter();
-    }
-
-    private void setUpEnterTransform(Window window) {
-        Transition sharedElementEnterTransition = window.getSharedElementEnterTransition();
-        if (sharedElementEnterTransition instanceof MaterialContainerTransform) {
-            MaterialContainerTransform materialContainerTransform = (MaterialContainerTransform) sharedElementEnterTransition;
-            if (!this.sharedElementReenterTransitionEnabled) {
-                window.setSharedElementReenterTransition(null);
+    public class ShapeableViewShapeProvider implements ShapeProvider {
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback.ShapeProvider
+        @Nullable
+        public ShapeAppearanceModel provideShape(@NonNull View view) {
+            if (view instanceof Shapeable) {
+                return ((Shapeable) view).getShapeAppearanceModel();
             }
-            if (this.transparentWindowBackgroundEnabled) {
-                updateBackgroundFadeDuration(window, materialContainerTransform);
-                materialContainerTransform.addListener(new C11059a(this, window));
-            }
+            return null;
         }
-    }
-
-    private void setUpReturnTransform(Activity activity, Window window) {
-        Transition sharedElementReturnTransition = window.getSharedElementReturnTransition();
-        if (sharedElementReturnTransition instanceof MaterialContainerTransform) {
-            MaterialContainerTransform materialContainerTransform = (MaterialContainerTransform) sharedElementReturnTransition;
-            materialContainerTransform.setHoldAtEndEnabled(true);
-            materialContainerTransform.addListener(new C11060b(this, activity));
-            if (this.transparentWindowBackgroundEnabled) {
-                updateBackgroundFadeDuration(window, materialContainerTransform);
-                materialContainerTransform.addListener(new C11061c(this, window));
-            }
-        }
-    }
-
-    private static void updateBackgroundFadeDuration(Window window, MaterialContainerTransform materialContainerTransform) {
-        window.setTransitionBackgroundFadeDuration(materialContainerTransform.getDuration());
     }
 
     @Nullable
@@ -236,6 +197,14 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
         view.layout(rect.left, rect.top, rect.right, rect.bottom);
     }
 
+    private static void removeWindowBackground(Window window) {
+        window.getDecorView().getBackground().mutate().setColorFilter(BlendModeColorFilterCompat.createBlendModeColorFilterCompat(0, BlendModeCompat.CLEAR));
+    }
+
+    private static void restoreWindowBackground(Window window) {
+        window.getDecorView().getBackground().mutate().clearColorFilter();
+    }
+
     public void setShapeProvider(@Nullable ShapeProvider shapeProvider) {
         this.shapeProvider = shapeProvider;
     }
@@ -246,5 +215,36 @@ public class MaterialContainerTransformSharedElementCallback extends SharedEleme
 
     public void setTransparentWindowBackgroundEnabled(boolean z2) {
         this.transparentWindowBackgroundEnabled = z2;
+    }
+
+    private void setUpEnterTransform(Window window) {
+        Transition sharedElementEnterTransition = window.getSharedElementEnterTransition();
+        if (sharedElementEnterTransition instanceof MaterialContainerTransform) {
+            MaterialContainerTransform materialContainerTransform = (MaterialContainerTransform) sharedElementEnterTransition;
+            if (!this.sharedElementReenterTransitionEnabled) {
+                window.setSharedElementReenterTransition(null);
+            }
+            if (this.transparentWindowBackgroundEnabled) {
+                updateBackgroundFadeDuration(window, materialContainerTransform);
+                materialContainerTransform.addListener(new C11059a(this, window));
+            }
+        }
+    }
+
+    private void setUpReturnTransform(Activity activity, Window window) {
+        Transition sharedElementReturnTransition = window.getSharedElementReturnTransition();
+        if (sharedElementReturnTransition instanceof MaterialContainerTransform) {
+            MaterialContainerTransform materialContainerTransform = (MaterialContainerTransform) sharedElementReturnTransition;
+            materialContainerTransform.setHoldAtEndEnabled(true);
+            materialContainerTransform.addListener(new C11060b(this, activity));
+            if (this.transparentWindowBackgroundEnabled) {
+                updateBackgroundFadeDuration(window, materialContainerTransform);
+                materialContainerTransform.addListener(new C11061c(this, window));
+            }
+        }
+    }
+
+    private static void updateBackgroundFadeDuration(Window window, MaterialContainerTransform materialContainerTransform) {
+        window.setTransitionBackgroundFadeDuration(materialContainerTransform.getDuration());
     }
 }

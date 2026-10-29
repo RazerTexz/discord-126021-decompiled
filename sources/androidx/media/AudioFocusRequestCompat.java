@@ -16,16 +16,16 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public class AudioFocusRequestCompat {
-    public static final AudioAttributesCompat FOCUS_DEFAULT_ATTR = new AudioAttributesCompat.Builder().setUsage(1).build();
     private final AudioAttributesCompat mAudioAttributesCompat;
     private final Handler mFocusChangeHandler;
     private final int mFocusGain;
     private final Object mFrameworkAudioFocusRequest;
     private final AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener;
     private final boolean mPauseOnDuck;
+    public static final AudioAttributesCompat FOCUS_DEFAULT_ATTR = new AudioAttributesCompat.Builder().setUsage(1).build();
 
     @RequiresApi(26)
-    public static class Api26Impl {
+    public class Api26Impl {
         private Api26Impl() {
         }
 
@@ -35,7 +35,7 @@ public class AudioFocusRequestCompat {
         }
     }
 
-    public static final class Builder {
+    public final class Builder {
         private AudioAttributesCompat mAudioAttributesCompat;
         private Handler mFocusChangeHandler;
         private int mFocusGain;
@@ -47,15 +47,15 @@ public class AudioFocusRequestCompat {
             setFocusGain(i);
         }
 
-        private static boolean isValidFocusGain(int i) {
-            return i == 1 || i == 2 || i == 3 || i == 4;
-        }
-
         public AudioFocusRequestCompat build() {
             if (this.mOnAudioFocusChangeListener != null) {
                 return new AudioFocusRequestCompat(this.mFocusGain, this.mOnAudioFocusChangeListener, this.mFocusChangeHandler, this.mAudioAttributesCompat, this.mPauseOnDuck);
             }
             throw new IllegalStateException("Can't build an AudioFocusRequestCompat instance without a listener");
+        }
+
+        private static boolean isValidFocusGain(int i) {
+            return i == 1 || i == 2 || i == 3 || i == 4;
         }
 
         @NonNull
@@ -112,7 +112,7 @@ public class AudioFocusRequestCompat {
         }
     }
 
-    public static class OnAudioFocusChangeListenerHandlerCompat implements Handler.Callback, AudioManager.OnAudioFocusChangeListener {
+    public class OnAudioFocusChangeListenerHandlerCompat implements Handler.Callback, AudioManager.OnAudioFocusChangeListener {
         private static final int FOCUS_CHANGE = 2782386;
         private final Handler mHandler;
         private final AudioManager.OnAudioFocusChangeListener mListener;

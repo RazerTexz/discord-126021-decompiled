@@ -178,25 +178,6 @@ public final class C4147p4 extends AbstractC4074i9 implements InterfaceC4016e {
         }
     }
 
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4016e
-    @WorkerThread
-    /* JADX INFO: renamed from: h */
-    public final String mo5500h(String str, String str2) throws Throwable {
-        mo5848b();
-        m5777E(str);
-        Map<String, String> map = this.f11117d.get(str);
-        if (map != null) {
-            return map.get(str2);
-        }
-        return null;
-    }
-
-    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
-    /* JADX INFO: renamed from: p */
-    public final boolean mo5515p() {
-        return false;
-    }
-
     @WorkerThread
     /* JADX INFO: renamed from: s */
     public final C3847u0 m5778s(String str) throws Throwable {
@@ -545,5 +526,24 @@ public final class C4147p4 extends AbstractC4074i9 implements InterfaceC4016e {
             return 1;
         }
         return num.intValue();
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.InterfaceC4016e
+    @WorkerThread
+    /* JADX INFO: renamed from: h */
+    public final String mo5500h(String str, String str2) throws Throwable {
+        mo5848b();
+        m5777E(str);
+        Map<String, String> map = this.f11117d.get(str);
+        if (map != null) {
+            return map.get(str2);
+        }
+        return null;
+    }
+
+    @Override // p007b.p225i.p226a.p288f.p330i.p332b.AbstractC4074i9
+    /* JADX INFO: renamed from: p */
+    public final boolean mo5515p() {
+        return false;
     }
 }

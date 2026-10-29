@@ -23,16 +23,6 @@ public final /* data */ class FrameCounts {
         return frameCounts.copy(i, i2);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getDeltaFrames() {
-        return this.deltaFrames;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final int getKeyFrames() {
-        return this.keyFrames;
-    }
-
     public final FrameCounts copy(int deltaFrames, int keyFrames) {
         return new FrameCounts(deltaFrames, keyFrames);
     }
@@ -48,8 +38,18 @@ public final /* data */ class FrameCounts {
         return this.deltaFrames == frameCounts.deltaFrames && this.keyFrames == frameCounts.keyFrames;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getDeltaFrames() {
         return this.deltaFrames;
+    }
+
+    public final int getDeltaFrames() {
+        return this.deltaFrames;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final int getKeyFrames() {
+        return this.keyFrames;
     }
 
     public final int getKeyFrames() {

@@ -35,7 +35,7 @@ public final class ApngUtils {
     /* JADX INFO: renamed from: com.discord.utilities.apng.ApngUtils$renderApngFromFile$3 */
     /* JADX INFO: compiled from: ApngUtils.kt */
     @InterfaceC12188e(m10084c = "com.discord.utilities.apng.ApngUtils$renderApngFromFile$3", m10085f = "ApngUtils.kt", m10086l = {31}, m10087m = "invokeSuspend")
-    public static final class C66873 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C66873 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public final /* synthetic */ boolean $autoPlay;
         public final /* synthetic */ File $file;
         public final /* synthetic */ Ref$ObjectRef $imageViewRef;
@@ -46,7 +46,7 @@ public final class ApngUtils {
         /* JADX INFO: renamed from: com.discord.utilities.apng.ApngUtils$renderApngFromFile$3$1, reason: invalid class name */
         /* JADX INFO: compiled from: ApngUtils.kt */
         @InterfaceC12188e(m10084c = "com.discord.utilities.apng.ApngUtils$renderApngFromFile$3$1", m10085f = "ApngUtils.kt", m10086l = {}, m10087m = "invokeSuspend")
-        public static final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+        public final class AnonymousClass1 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
             public final /* synthetic */ Ref$ObjectRef $drawable;
             public int label;
 
@@ -69,7 +69,7 @@ public final class ApngUtils {
 
             /* JADX WARN: Multi-variable type inference failed */
             @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-            public final Object invokeSuspend(Object obj) {
+            public final Object invokeSuspend(Object obj) throws Throwable {
                 C12183c.getCOROUTINE_SUSPENDED();
                 if (this.label != 0) {
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
@@ -111,7 +111,7 @@ public final class ApngUtils {
 
         /* JADX WARN: Type inference failed for: r1v4, types: [T, b.l.a.a] */
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             try {

@@ -17,7 +17,7 @@ public final /* data */ class ChannelSettings {
     private final String muteEndTime;
 
     /* JADX INFO: compiled from: ChannelSettings.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -62,21 +62,6 @@ public final /* data */ class ChannelSettings {
         return channelSettings.copy(channel, z2, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final boolean getIsMuted() {
-        return this.isMuted;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getMuteEndTime() {
-        return this.muteEndTime;
-    }
-
     public final ChannelSettings copy(Channel channel, boolean isMuted, String muteEndTime) {
         C12238m.checkNotNullParameter(channel, "channel");
         return new ChannelSettings(channel, isMuted, muteEndTime);
@@ -93,8 +78,23 @@ public final /* data */ class ChannelSettings {
         return C12238m.areEqual(this.channel, channelSettings.channel) && this.isMuted == channelSettings.isMuted && C12238m.areEqual(this.muteEndTime, channelSettings.muteEndTime);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final boolean getIsMuted() {
+        return this.isMuted;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getMuteEndTime() {
+        return this.muteEndTime;
     }
 
     public final String getMuteEndTime() {

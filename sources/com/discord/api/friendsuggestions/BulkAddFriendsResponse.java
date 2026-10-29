@@ -10,16 +10,6 @@ public final /* data */ class BulkAddFriendsResponse {
     private final List<String> failedRequests;
     private final List<String> successfulRequests;
 
-    /* JADX INFO: renamed from: a */
-    public final List<String> m7826a() {
-        return this.failedRequests;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final List<String> m7827b() {
-        return this.successfulRequests;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -36,6 +26,16 @@ public final /* data */ class BulkAddFriendsResponse {
         int iHashCode = (list != null ? list.hashCode() : 0) * 31;
         List<String> list2 = this.failedRequests;
         return iHashCode + (list2 != null ? list2.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final List<String> m7826a() {
+        return this.failedRequests;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final List<String> m7827b() {
+        return this.successfulRequests;
     }
 
     public String toString() {

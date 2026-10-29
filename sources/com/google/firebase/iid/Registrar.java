@@ -23,17 +23,9 @@ public final class Registrar implements InterfaceC4575g {
 
     /* JADX INFO: renamed from: com.google.firebase.iid.Registrar$a */
     /* JADX INFO: compiled from: com.google.firebase:firebase-iid@@21.0.0 */
-    public static class C11079a implements InterfaceC4814a {
+    public class C11079a implements InterfaceC4814a {
         public C11079a(FirebaseInstanceId firebaseInstanceId) {
         }
-    }
-
-    public static final /* synthetic */ FirebaseInstanceId lambda$getComponents$0$Registrar(InterfaceC4573e interfaceC4573e) {
-        return new FirebaseInstanceId((C4542c) interfaceC4573e.mo6346a(C4542c.class), interfaceC4573e.mo6355b(InterfaceC4896h.class), interfaceC4573e.mo6355b(InterfaceC4803d.class), (InterfaceC4843g) interfaceC4573e.mo6346a(InterfaceC4843g.class));
-    }
-
-    public static final /* synthetic */ InterfaceC4814a lambda$getComponents$1$Registrar(InterfaceC4573e interfaceC4573e) {
-        return new C11079a((FirebaseInstanceId) interfaceC4573e.mo6346a(FirebaseInstanceId.class));
     }
 
     @Override // p007b.p225i.p361c.p368l.InterfaceC4575g
@@ -51,5 +43,13 @@ public final class Registrar implements InterfaceC4575g {
         bVarM6348a2.m6351a(new C4583o(FirebaseInstanceId.class, 1, 0));
         bVarM6348a2.m6353c(C4828s.f12891a);
         return Arrays.asList(c4572dM6352b, bVarM6348a2.m6352b(), C3404f.m4228N("fire-iid", "21.0.0"));
+    }
+
+    public static final /* synthetic */ FirebaseInstanceId lambda$getComponents$0$Registrar(InterfaceC4573e interfaceC4573e) {
+        return new FirebaseInstanceId((C4542c) interfaceC4573e.mo6346a(C4542c.class), interfaceC4573e.mo6355b(InterfaceC4896h.class), interfaceC4573e.mo6355b(InterfaceC4803d.class), (InterfaceC4843g) interfaceC4573e.mo6346a(InterfaceC4843g.class));
+    }
+
+    public static final /* synthetic */ InterfaceC4814a lambda$getComponents$1$Registrar(InterfaceC4573e interfaceC4573e) {
+        return new C11079a((FirebaseInstanceId) interfaceC4573e.mo6346a(FirebaseInstanceId.class));
     }
 }

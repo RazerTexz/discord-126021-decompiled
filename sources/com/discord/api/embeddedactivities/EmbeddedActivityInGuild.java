@@ -11,21 +11,6 @@ public final /* data */ class EmbeddedActivityInGuild {
     private final EmbeddedActivity embeddedActivity;
     private final List<Long> users;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: b, reason: from getter */
-    public final EmbeddedActivity getEmbeddedActivity() {
-        return this.embeddedActivity;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final List<Long> m7804c() {
-        return this.users;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -37,6 +22,16 @@ public final /* data */ class EmbeddedActivityInGuild {
         return this.channelId == embeddedActivityInGuild.channelId && C12238m.areEqual(this.embeddedActivity, embeddedActivityInGuild.embeddedActivity) && C12238m.areEqual(this.users, embeddedActivityInGuild.users);
     }
 
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    /* JADX INFO: renamed from: b, reason: from getter */
+    public final EmbeddedActivity getEmbeddedActivity() {
+        return this.embeddedActivity;
+    }
+
     public int hashCode() {
         long j = this.channelId;
         int i = ((int) (j ^ (j >>> 32))) * 31;
@@ -44,6 +39,11 @@ public final /* data */ class EmbeddedActivityInGuild {
         int iHashCode = (i + (embeddedActivity != null ? embeddedActivity.hashCode() : 0)) * 31;
         List<Long> list = this.users;
         return iHashCode + (list != null ? list.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final List<Long> m7804c() {
+        return this.users;
     }
 
     public String toString() {

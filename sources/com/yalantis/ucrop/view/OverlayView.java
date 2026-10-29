@@ -120,15 +120,6 @@ public class OverlayView extends View {
         this.f22221H = getResources().getDimensionPixelSize(C11199R.b.ucrop_default_crop_rect_corner_touch_area_line_length);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final void m9324a() {
-        this.f22228n = C3404f.m4288f0(this.f22224j);
-        C3404f.m4280d0(this.f22224j);
-        this.f22232r = null;
-        this.f22237w.reset();
-        this.f22237w.addCircle(this.f22224j.centerX(), this.f22224j.centerY(), Math.min(this.f22224j.width(), this.f22224j.height()) / 2.0f, Path.Direction.CW);
-    }
-
     @NonNull
     public RectF getCropViewRect() {
         return this.f22224j;
@@ -140,6 +131,15 @@ public class OverlayView extends View {
 
     public InterfaceC5295d getOverlayViewChangeListener() {
         return this.f22222I;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final void m9324a() {
+        this.f22228n = C3404f.m4288f0(this.f22224j);
+        C3404f.m4280d0(this.f22224j);
+        this.f22232r = null;
+        this.f22237w.reset();
+        this.f22237w.addCircle(this.f22224j.centerX(), this.f22224j.centerY(), Math.min(this.f22224j.width(), this.f22224j.height()) / 2.0f, Path.Direction.CW);
     }
 
     @Override // android.view.View

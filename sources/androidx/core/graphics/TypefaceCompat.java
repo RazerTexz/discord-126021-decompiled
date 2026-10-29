@@ -23,7 +23,7 @@ public class TypefaceCompat {
     private static final TypefaceCompatBaseImpl sTypefaceCompatImpl;
 
     @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public static class ResourcesCallbackAdapter extends FontsContractCompat.FontRequestCallback {
+    public class ResourcesCallbackAdapter extends FontsContractCompat.FontRequestCallback {
 
         @Nullable
         private ResourcesCompat.FontCallback mFontCallback;

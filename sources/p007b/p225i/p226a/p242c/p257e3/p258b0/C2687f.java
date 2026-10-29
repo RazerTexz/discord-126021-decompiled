@@ -20,14 +20,14 @@ import p007b.p225i.p226a.p242c.p264u2.InterfaceC2946a;
 /* JADX INFO: loaded from: classes3.dex */
 public final class C2687f {
 
-    /* JADX INFO: renamed from: a */
-    public static final String[] f6461a = {ModelAuditLogEntry.CHANGE_KEY_NAME, "length", "last_touch_timestamp"};
-
     /* JADX INFO: renamed from: b */
     public final InterfaceC2946a f6462b;
 
     /* JADX INFO: renamed from: c */
     public String f6463c;
+
+    /* JADX INFO: renamed from: a */
+    public static final String[] f6461a = {ModelAuditLogEntry.CHANGE_KEY_NAME, "length", "last_touch_timestamp"};
 
     public C2687f(InterfaceC2946a interfaceC2946a) {
         this.f6462b = interfaceC2946a;

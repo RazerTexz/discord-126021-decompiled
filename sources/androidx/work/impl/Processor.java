@@ -29,12 +29,12 @@ import p007b.p225i.p355b.p359d.p360a.InterfaceFutureC4539a;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class Processor implements ExecutionListener, ForegroundProcessor {
     private static final String FOREGROUND_WAKELOCK_TAG = "ProcessorForegroundLck";
-    private static final String TAG = Logger.tagWithPrefix("Processor");
     private Context mAppContext;
     private Configuration mConfiguration;
     private List<Scheduler> mSchedulers;
     private WorkDatabase mWorkDatabase;
     private TaskExecutor mWorkTaskExecutor;
+    private static final String TAG = Logger.tagWithPrefix("Processor");
     private Map<String, WorkerWrapper> mEnqueuedWorkMap = new HashMap();
     private Map<String, WorkerWrapper> mForegroundWorkMap = new HashMap();
     private Set<String> mCancelledIds = new HashSet();
@@ -44,7 +44,7 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
     private PowerManager.WakeLock mForegroundLock = null;
     private final Object mLock = new Object();
 
-    public static class FutureListener implements Runnable {
+    public class FutureListener implements Runnable {
 
         @NonNull
         private ExecutionListener mExecutionListener;
@@ -81,35 +81,6 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
         this.mSchedulers = list;
     }
 
-    private static boolean interrupt(@NonNull String str, @Nullable WorkerWrapper workerWrapper) {
-        if (workerWrapper == null) {
-            Logger.get().debug(TAG, String.format("WorkerWrapper could not be found for %s", str), new Throwable[0]);
-            return false;
-        }
-        workerWrapper.interrupt();
-        Logger.get().debug(TAG, String.format("WorkerWrapper interrupted for %s", str), new Throwable[0]);
-        return true;
-    }
-
-    private void stopForegroundService() {
-        synchronized (this.mLock) {
-            if (!(!this.mForegroundWorkMap.isEmpty())) {
-                SystemForegroundService systemForegroundService = SystemForegroundService.getInstance();
-                if (systemForegroundService != null) {
-                    Logger.get().debug(TAG, "No more foreground work. Stopping SystemForegroundService", new Throwable[0]);
-                    systemForegroundService.stopForegroundService();
-                } else {
-                    Logger.get().debug(TAG, "No more foreground work. SystemForegroundService is already stopped", new Throwable[0]);
-                }
-                PowerManager.WakeLock wakeLock = this.mForegroundLock;
-                if (wakeLock != null) {
-                    wakeLock.release();
-                    this.mForegroundLock = null;
-                }
-            }
-        }
-    }
-
     public void addExecutionListener(@NonNull ExecutionListener executionListener) {
         synchronized (this.mLock) {
             this.mOuterListeners.add(executionListener);
@@ -122,6 +93,16 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
             z2 = (this.mEnqueuedWorkMap.isEmpty() && this.mForegroundWorkMap.isEmpty()) ? false : true;
         }
         return z2;
+    }
+
+    private static boolean interrupt(@NonNull String str, @Nullable WorkerWrapper workerWrapper) {
+        if (workerWrapper == null) {
+            Logger.get().debug(TAG, String.format("WorkerWrapper could not be found for %s", str), new Throwable[0]);
+            return false;
+        }
+        workerWrapper.interrupt();
+        Logger.get().debug(TAG, String.format("WorkerWrapper interrupted for %s", str), new Throwable[0]);
+        return true;
     }
 
     public boolean isCancelled(@NonNull String str) {
@@ -213,6 +194,25 @@ public class Processor implements ExecutionListener, ForegroundProcessor {
         synchronized (this.mLock) {
             this.mForegroundWorkMap.remove(str);
             stopForegroundService();
+        }
+    }
+
+    private void stopForegroundService() {
+        synchronized (this.mLock) {
+            if (!(!this.mForegroundWorkMap.isEmpty())) {
+                SystemForegroundService systemForegroundService = SystemForegroundService.getInstance();
+                if (systemForegroundService != null) {
+                    Logger.get().debug(TAG, "No more foreground work. Stopping SystemForegroundService", new Throwable[0]);
+                    systemForegroundService.stopForegroundService();
+                } else {
+                    Logger.get().debug(TAG, "No more foreground work. SystemForegroundService is already stopped", new Throwable[0]);
+                }
+                PowerManager.WakeLock wakeLock = this.mForegroundLock;
+                if (wakeLock != null) {
+                    wakeLock.release();
+                    this.mForegroundLock = null;
+                }
+            }
         }
     }
 

@@ -51,15 +51,15 @@ public final class AudioManagerMode {
         this.value = i2;
     }
 
+    public final int getValue() {
+        return this.value;
+    }
+
     public static AudioManagerMode valueOf(String str) {
         return (AudioManagerMode) Enum.valueOf(AudioManagerMode.class, str);
     }
 
     public static AudioManagerMode[] values() {
         return (AudioManagerMode[]) $VALUES.clone();
-    }
-
-    public final int getValue() {
-        return this.value;
     }
 }

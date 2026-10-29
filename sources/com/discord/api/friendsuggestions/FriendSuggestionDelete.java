@@ -7,16 +7,16 @@ import p007b.p100d.p104b.p105a.C1643a;
 public final /* data */ class FriendSuggestionDelete {
     private final long suggestedUserId;
 
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public final long getSuggestedUserId() {
-        return this.suggestedUserId;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof FriendSuggestionDelete) && this.suggestedUserId == ((FriendSuggestionDelete) other).suggestedUserId;
         }
         return true;
+    }
+
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public final long getSuggestedUserId() {
+        return this.suggestedUserId;
     }
 
     public int hashCode() {

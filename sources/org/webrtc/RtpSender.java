@@ -28,24 +28,6 @@ public class RtpSender {
         }
     }
 
-    private static native long nativeGetDtmfSender(long j);
-
-    private static native String nativeGetId(long j);
-
-    private static native RtpParameters nativeGetParameters(long j);
-
-    private static native List<String> nativeGetStreams(long j);
-
-    private static native long nativeGetTrack(long j);
-
-    private static native void nativeSetFrameEncryptor(long j, long j2);
-
-    private static native boolean nativeSetParameters(long j, RtpParameters rtpParameters);
-
-    private static native void nativeSetStreams(long j, List<String> list);
-
-    private static native boolean nativeSetTrack(long j, long j2);
-
     public void dispose() {
         checkRtpSenderExists();
         DtmfSender dtmfSender = this.dtmfSender;
@@ -85,6 +67,24 @@ public class RtpSender {
         checkRtpSenderExists();
         return nativeGetId(this.nativeRtpSender);
     }
+
+    private static native long nativeGetDtmfSender(long j);
+
+    private static native String nativeGetId(long j);
+
+    private static native RtpParameters nativeGetParameters(long j);
+
+    private static native List<String> nativeGetStreams(long j);
+
+    private static native long nativeGetTrack(long j);
+
+    private static native void nativeSetFrameEncryptor(long j, long j2);
+
+    private static native boolean nativeSetParameters(long j, RtpParameters rtpParameters);
+
+    private static native void nativeSetStreams(long j, List<String> list);
+
+    private static native boolean nativeSetTrack(long j, long j2);
 
     public void setFrameEncryptor(FrameEncryptor frameEncryptor) {
         checkRtpSenderExists();

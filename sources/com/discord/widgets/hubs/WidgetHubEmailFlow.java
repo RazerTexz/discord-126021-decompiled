@@ -71,7 +71,6 @@ public final class WidgetHubEmailFlow extends AppFragment {
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String NAME = WidgetHubEmailFlow.class.getName();
     private final ActivityResultLauncher<Intent> activityResultHandler;
 
     /* JADX INFO: renamed from: args$delegate, reason: from kotlin metadata */
@@ -86,44 +85,11 @@ public final class WidgetHubEmailFlow extends AppFragment {
 
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
-
-    /* JADX INFO: compiled from: WidgetHubEmailFlow.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final String getNAME() {
-            return WidgetHubEmailFlow.NAME;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
-
-        static {
-            HubEmailEntryPoint.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            HubEmailEntryPoint hubEmailEntryPoint = HubEmailEntryPoint.Invite;
-            iArr[hubEmailEntryPoint.ordinal()] = 1;
-            HubEmailEntryPoint hubEmailEntryPoint2 = HubEmailEntryPoint.Onboarding;
-            iArr[hubEmailEntryPoint2.ordinal()] = 2;
-            HubEmailEntryPoint.values();
-            int[] iArr2 = new int[3];
-            $EnumSwitchMapping$1 = iArr2;
-            iArr2[hubEmailEntryPoint.ordinal()] = 1;
-            iArr2[hubEmailEntryPoint2.ordinal()] = 2;
-        }
-    }
+    private static final String NAME = WidgetHubEmailFlow.class.getName();
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubEmailFlow$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetHubEmailFlow.kt */
-    public static final class C90341 extends AbstractC12240o implements Function1<HubEmailState, Unit> {
+    public final class C90341 extends AbstractC12240o implements Function1<HubEmailState, Unit> {
         public C90341() {
             super(1);
         }
@@ -144,7 +110,7 @@ public final class WidgetHubEmailFlow extends AppFragment {
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubEmailFlow$updateView$4 */
     /* JADX INFO: compiled from: WidgetHubEmailFlow.kt */
-    public static final class C90414 extends AbstractC12240o implements Function1<Success<? extends EmailVerification>, Unit> {
+    public final class C90414 extends AbstractC12240o implements Function1<Success<? extends EmailVerification>, Unit> {
         public final /* synthetic */ Context $context;
         public final /* synthetic */ String $email;
         public final /* synthetic */ HubEmailState $state;
@@ -188,6 +154,40 @@ public final class WidgetHubEmailFlow extends AppFragment {
             }
             c0870j.m160f(context, activityResultLauncher, WidgetHubDomains.class, new HubDomainArgs(str, arrayList));
             WidgetHubEmailFlow.this.getViewModel().reset();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetHubEmailFlow.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final String getNAME() {
+            return WidgetHubEmailFlow.NAME;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
+        public static final /* synthetic */ int[] $EnumSwitchMapping$1;
+
+        static {
+            HubEmailEntryPoint.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            HubEmailEntryPoint hubEmailEntryPoint = HubEmailEntryPoint.Invite;
+            iArr[hubEmailEntryPoint.ordinal()] = 1;
+            HubEmailEntryPoint hubEmailEntryPoint2 = HubEmailEntryPoint.Onboarding;
+            iArr[hubEmailEntryPoint2.ordinal()] = 2;
+            HubEmailEntryPoint.values();
+            int[] iArr2 = new int[3];
+            $EnumSwitchMapping$1 = iArr2;
+            iArr2[hubEmailEntryPoint.ordinal()] = 1;
+            iArr2[hubEmailEntryPoint2.ordinal()] = 2;
         }
     }
 
@@ -253,12 +253,101 @@ public final class WidgetHubEmailFlow extends AppFragment {
         return String.valueOf(textInputEditText.getText());
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return this.loggingConfig;
+    }
+
     private final ValidationManager getValidationManager() {
         return (ValidationManager) this.validationManager.getValue();
     }
 
     private final WidgetHubEmailViewModel getViewModel() {
         return (WidgetHubEmailViewModel) this.viewModel.getValue();
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Observable<HubEmailState> observableM11112r = getViewModel().observeViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetHubEmailFlow.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C90341());
+    }
+
+    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        CharSequence string;
+        int i;
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewCreated(view, savedInstanceState);
+        getBinding().f17174b.f1120d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.hubs.WidgetHubEmailFlow.onViewCreated.1
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetHubEmailFlow.this.verifyEmail();
+            }
+        });
+        getBinding().f17176d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.hubs.WidgetHubEmailFlow.onViewCreated.2
+
+            /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubEmailFlow$onViewCreated$2$1, reason: invalid class name */
+            /* JADX INFO: compiled from: WidgetHubEmailFlow.kt */
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
+                public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
+
+                public AnonymousClass1() {
+                    super(1);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public final StoreNux.NuxState invoke(StoreNux.NuxState nuxState) {
+                    C12238m.checkNotNullParameter(nuxState, "it");
+                    return StoreNux.NuxState.copy$default(nuxState, false, false, false, false, false, null, 62, null);
+                }
+            }
+
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                FragmentActivity fragmentActivityM95e = WidgetHubEmailFlow.this.m95e();
+                if (fragmentActivityM95e != null) {
+                    C12238m.checkNotNullExpressionValue(fragmentActivityM95e, "activity ?: return@setOnClickListener");
+                    if (WidgetHubEmailFlow.this.getArgs().getEntryPoint() == HubEmailEntryPoint.Onboarding) {
+                        StoreStream.INSTANCE.getNux().updateNux(AnonymousClass1.INSTANCE);
+                        WidgetGuildTemplates.INSTANCE.launch(fragmentActivityM95e, CreateGuildTrigger.NUF, true);
+                    }
+                    fragmentActivityM95e.finish();
+                }
+            }
+        });
+        getBinding().f17174b.f1118b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.hubs.WidgetHubEmailFlow.onViewCreated.3
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetHubEmailFlow.this.getViewModel().reset();
+            }
+        });
+        TextView textView = getBinding().f17175c.f821e;
+        C12238m.checkNotNullExpressionValue(textView, "binding.discordHubEmailI…iscordHubEmailHeaderTitle");
+        int iOrdinal = getArgs().getEntryPoint().ordinal();
+        if (iOrdinal == 0) {
+            string = getString(C5419R.string.hub_email_connection_nux_header);
+        } else if (iOrdinal != 1) {
+            string = getString(C5419R.string.hub_waitlist_modal_join_header);
+        } else {
+            Context context = view.getContext();
+            C12238m.checkNotNullExpressionValue(context, "view.context");
+            string = C1107b.m213e(this, C5419R.string.hub_email_connection_invite_header, new Object[]{StringResourceUtilsKt.getI18nPluralString(context, C5419R.plurals.hub_email_connection_invite_header_count, getArgs().getGuildMemberCount(), Integer.valueOf(getArgs().getGuildMemberCount())), getArgs().getGuildName()}, (4 & 4) != 0 ? C1107b.a.f1490j : null);
+        }
+        textView.setText(string);
+        int iOrdinal2 = getArgs().getEntryPoint().ordinal();
+        if (iOrdinal2 != 0) {
+            i = iOrdinal2 != 1 ? C5419R.string.hub_waitlist_modal_join_subheader : C5419R.string.hub_email_connection_content_description;
+        } else {
+            i = C5419R.string.hub_email_connection_nux_content_description;
+        }
+        String string2 = getString(i);
+        C12238m.checkNotNullExpressionValue(string2, "getString(\n        when …subheader\n        }\n    )");
+        CharSequence charSequenceM213e = C1107b.m213e(this, C5419R.string.learn_more_link, new Object[0], new WidgetHubEmailFlow$onViewCreated$learnMore$1(this));
+        LinkifiedTextView linkifiedTextView = getBinding().f17175c.f818b;
+        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.discordHubEmailI…HubEmailHeaderDescription");
+        linkifiedTextView.setText(new SpannableStringBuilder(string2).append((CharSequence) " ").append(charSequenceM213e));
     }
 
     private final void updateView(HubEmailState state) {
@@ -333,94 +422,5 @@ public final class WidgetHubEmailFlow extends AppFragment {
             getViewModel().submitEmail(getEmail());
             hideKeyboard(getView());
         }
-    }
-
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return this.loggingConfig;
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Observable<HubEmailState> observableM11112r = getViewModel().observeViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetHubEmailFlow.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C90341());
-    }
-
-    @Override // com.discord.app.AppFragment, androidx.fragment.app.Fragment
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        CharSequence string;
-        int i;
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewCreated(view, savedInstanceState);
-        getBinding().f17174b.f1120d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.hubs.WidgetHubEmailFlow.onViewCreated.1
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetHubEmailFlow.this.verifyEmail();
-            }
-        });
-        getBinding().f17176d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.hubs.WidgetHubEmailFlow.onViewCreated.2
-
-            /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubEmailFlow$onViewCreated$2$1, reason: invalid class name */
-            /* JADX INFO: compiled from: WidgetHubEmailFlow.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<StoreNux.NuxState, StoreNux.NuxState> {
-                public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
-
-                public AnonymousClass1() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public final StoreNux.NuxState invoke(StoreNux.NuxState nuxState) {
-                    C12238m.checkNotNullParameter(nuxState, "it");
-                    return StoreNux.NuxState.copy$default(nuxState, false, false, false, false, false, null, 62, null);
-                }
-            }
-
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                FragmentActivity fragmentActivityM95e = WidgetHubEmailFlow.this.m95e();
-                if (fragmentActivityM95e != null) {
-                    C12238m.checkNotNullExpressionValue(fragmentActivityM95e, "activity ?: return@setOnClickListener");
-                    if (WidgetHubEmailFlow.this.getArgs().getEntryPoint() == HubEmailEntryPoint.Onboarding) {
-                        StoreStream.INSTANCE.getNux().updateNux(AnonymousClass1.INSTANCE);
-                        WidgetGuildTemplates.INSTANCE.launch(fragmentActivityM95e, CreateGuildTrigger.NUF, true);
-                    }
-                    fragmentActivityM95e.finish();
-                }
-            }
-        });
-        getBinding().f17174b.f1118b.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.hubs.WidgetHubEmailFlow.onViewCreated.3
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetHubEmailFlow.this.getViewModel().reset();
-            }
-        });
-        TextView textView = getBinding().f17175c.f821e;
-        C12238m.checkNotNullExpressionValue(textView, "binding.discordHubEmailI…iscordHubEmailHeaderTitle");
-        int iOrdinal = getArgs().getEntryPoint().ordinal();
-        if (iOrdinal == 0) {
-            string = getString(C5419R.string.hub_email_connection_nux_header);
-        } else if (iOrdinal != 1) {
-            string = getString(C5419R.string.hub_waitlist_modal_join_header);
-        } else {
-            Context context = view.getContext();
-            C12238m.checkNotNullExpressionValue(context, "view.context");
-            string = C1107b.m213e(this, C5419R.string.hub_email_connection_invite_header, new Object[]{StringResourceUtilsKt.getI18nPluralString(context, C5419R.plurals.hub_email_connection_invite_header_count, getArgs().getGuildMemberCount(), Integer.valueOf(getArgs().getGuildMemberCount())), getArgs().getGuildName()}, (4 & 4) != 0 ? C1107b.a.f1490j : null);
-        }
-        textView.setText(string);
-        int iOrdinal2 = getArgs().getEntryPoint().ordinal();
-        if (iOrdinal2 != 0) {
-            i = iOrdinal2 != 1 ? C5419R.string.hub_waitlist_modal_join_subheader : C5419R.string.hub_email_connection_content_description;
-        } else {
-            i = C5419R.string.hub_email_connection_nux_content_description;
-        }
-        String string2 = getString(i);
-        C12238m.checkNotNullExpressionValue(string2, "getString(\n        when …subheader\n        }\n    )");
-        CharSequence charSequenceM213e = C1107b.m213e(this, C5419R.string.learn_more_link, new Object[0], new WidgetHubEmailFlow$onViewCreated$learnMore$1(this));
-        LinkifiedTextView linkifiedTextView = getBinding().f17175c.f818b;
-        C12238m.checkNotNullExpressionValue(linkifiedTextView, "binding.discordHubEmailI…HubEmailHeaderDescription");
-        linkifiedTextView.setText(new SpannableStringBuilder(string2).append((CharSequence) " ").append(charSequenceM213e));
     }
 }

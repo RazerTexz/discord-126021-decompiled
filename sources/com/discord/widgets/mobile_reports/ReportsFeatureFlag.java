@@ -12,7 +12,7 @@ public final class ReportsFeatureFlag {
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: compiled from: ReportsFeatureFlag.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

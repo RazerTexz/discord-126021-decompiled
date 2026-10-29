@@ -9,17 +9,11 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNotificationPermissionPrepromptAcked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNotificationPermissionPrepromptAcked implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final CharSequence actionType = null;
     private final CharSequence actionLocation = null;
+    private final CharSequence actionType = null;
     private final Boolean permissionGranted = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "notification_permission_preprompt_acked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackNotificationPermissionPrepromptAcked implemen
         }
         TrackNotificationPermissionPrepromptAcked trackNotificationPermissionPrepromptAcked = (TrackNotificationPermissionPrepromptAcked) other;
         return C12238m.areEqual(this.actionType, trackNotificationPermissionPrepromptAcked.actionType) && C12238m.areEqual(this.actionLocation, trackNotificationPermissionPrepromptAcked.actionLocation) && C12238m.areEqual(this.permissionGranted, trackNotificationPermissionPrepromptAcked.permissionGranted);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

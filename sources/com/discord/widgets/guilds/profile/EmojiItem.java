@@ -13,7 +13,7 @@ public abstract class EmojiItem {
     private final int type;
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetEmojisAdapter.kt */
-    public static final /* data */ class EmojiData extends EmojiItem {
+    public final /* data */ class EmojiData extends EmojiItem {
         private final Emoji emoji;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -30,11 +30,6 @@ public abstract class EmojiItem {
             return emojiData.copy(emoji);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Emoji getEmoji() {
-            return this.emoji;
-        }
-
         public final EmojiData copy(Emoji emoji) {
             C12238m.checkNotNullParameter(emoji, "emoji");
             return new EmojiData(emoji);
@@ -45,6 +40,11 @@ public abstract class EmojiItem {
                 return (other instanceof EmojiData) && C12238m.areEqual(this.emoji, ((EmojiData) other).emoji);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Emoji getEmoji() {
+            return this.emoji;
         }
 
         public final Emoji getEmoji() {
@@ -68,7 +68,7 @@ public abstract class EmojiItem {
     }
 
     /* JADX INFO: compiled from: WidgetGuildProfileSheetEmojisAdapter.kt */
-    public static final /* data */ class MoreEmoji extends EmojiItem {
+    public final /* data */ class MoreEmoji extends EmojiItem {
         private final int extraEmojiCount;
 
         public MoreEmoji(int i) {
@@ -83,11 +83,6 @@ public abstract class EmojiItem {
             return moreEmoji.copy(i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getExtraEmojiCount() {
-            return this.extraEmojiCount;
-        }
-
         public final MoreEmoji copy(int extraEmojiCount) {
             return new MoreEmoji(extraEmojiCount);
         }
@@ -97,6 +92,11 @@ public abstract class EmojiItem {
                 return (other instanceof MoreEmoji) && this.extraEmojiCount == ((MoreEmoji) other).extraEmojiCount;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getExtraEmojiCount() {
+            return this.extraEmojiCount;
         }
 
         public final int getExtraEmojiCount() {

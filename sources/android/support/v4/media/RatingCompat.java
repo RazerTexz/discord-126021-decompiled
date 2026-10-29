@@ -8,13 +8,13 @@ import p007b.p100d.p104b.p105a.C1643a;
 /* JADX INFO: loaded from: classes.dex */
 @SuppressLint({"BanParcelableUsage"})
 public final class RatingCompat implements Parcelable {
-    public static final Parcelable.Creator<RatingCompat> CREATOR = new C0019a();
 
     /* JADX INFO: renamed from: j */
     public final int f38j;
 
     /* JADX INFO: renamed from: k */
     public final float f39k;
+    public static final Parcelable.Creator<RatingCompat> CREATOR = new C0019a();
 
     /* JADX INFO: renamed from: android.support.v4.media.RatingCompat$a */
     public class C0019a implements Parcelable.Creator<RatingCompat> {

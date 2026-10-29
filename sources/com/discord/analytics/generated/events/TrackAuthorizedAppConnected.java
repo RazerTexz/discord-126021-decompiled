@@ -10,16 +10,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackAuthorizedAppConnected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackAuthorizedAppConnected implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long appId = null;
+    private TrackBase trackBase;
     private final CharSequence transport = null;
     private final transient String analyticsSchemaTypeName = "authorized_app_connected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -30,6 +24,12 @@ public final /* data */ class TrackAuthorizedAppConnected implements AnalyticsSc
         }
         TrackAuthorizedAppConnected trackAuthorizedAppConnected = (TrackAuthorizedAppConnected) other;
         return C12238m.areEqual(this.appId, trackAuthorizedAppConnected.appId) && C12238m.areEqual(this.transport, trackAuthorizedAppConnected.transport);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

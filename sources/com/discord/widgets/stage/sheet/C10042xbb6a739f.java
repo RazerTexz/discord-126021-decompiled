@@ -46,30 +46,9 @@ public final class C10042xbb6a739f<T, R> implements InterfaceC12589b<Channel, Ob
     public final Observable<? extends WidgetStageRaisedHandsBottomSheetViewModel.StoreState> call(final Channel channel) {
         return Observable.m11073h(this.$guildsStore.observeRoles(channel.getGuildId()), this.$guildsStore.observeComputed(channel.getGuildId()), this.$voiceParticipants.get(this.$channelId), this.$stageChannels.observeMyRoles(this.$channelId), new Func4<Map<Long, ? extends GuildRole>, Map<Long, ? extends GuildMember>, Map<Long, ? extends StoreVoiceParticipants.VoiceUser>, StageRoles, WidgetStageRaisedHandsBottomSheetViewModel.StoreState>() { // from class: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheetViewModel$Companion$observeStoreState$1.1
 
-            /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheetViewModel$Companion$observeStoreState$1$1$1, reason: invalid class name and collision with other inner class name */
-            /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheetViewModel.kt */
-            public static final class C132941 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Boolean> {
-                public static final C132941 INSTANCE = new C132941();
-
-                public C132941() {
-                    super(1);
-                }
-
-                @Override // kotlin.jvm.functions.Function1
-                public /* bridge */ /* synthetic */ Boolean invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
-                    return Boolean.valueOf(invoke2(voiceUser));
-                }
-
-                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-                public final boolean invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
-                    C12238m.checkNotNullParameter(voiceUser, "voiceUser");
-                    return voiceUser.getIsRequestingToSpeak();
-                }
-            }
-
             /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheetViewModel$Companion$observeStoreState$1$1$2, reason: invalid class name */
             /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheetViewModel.kt */
-            public static final class AnonymousClass2 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, WidgetStageRaisedHandsBottomSheetAdapter.ListItem.Participant> {
+            public final class AnonymousClass2 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, WidgetStageRaisedHandsBottomSheetAdapter.ListItem.Participant> {
                 public final /* synthetic */ Map $members;
                 public final /* synthetic */ Map $roles;
 
@@ -92,6 +71,27 @@ public final class C10042xbb6a739f<T, R> implements InterfaceC12589b<Channel, Ob
                     Map map = this.$roles;
                     C12238m.checkNotNullExpressionValue(map, "roles");
                     return new WidgetStageRaisedHandsBottomSheetAdapter.ListItem.Participant(voiceUser, utcDateTime, guildMember, RoleUtils.getHighestHoistedRole(map, (GuildMember) this.$members.get(Long.valueOf(voiceUser.getUser().getId()))));
+                }
+            }
+
+            /* JADX INFO: renamed from: com.discord.widgets.stage.sheet.WidgetStageRaisedHandsBottomSheetViewModel$Companion$observeStoreState$1$1$1, reason: invalid class name and collision with other inner class name */
+            /* JADX INFO: compiled from: WidgetStageRaisedHandsBottomSheetViewModel.kt */
+            public final class C132941 extends AbstractC12240o implements Function1<StoreVoiceParticipants.VoiceUser, Boolean> {
+                public static final C132941 INSTANCE = new C132941();
+
+                public C132941() {
+                    super(1);
+                }
+
+                @Override // kotlin.jvm.functions.Function1
+                public /* bridge */ /* synthetic */ Boolean invoke(StoreVoiceParticipants.VoiceUser voiceUser) {
+                    return Boolean.valueOf(invoke2(voiceUser));
+                }
+
+                /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+                public final boolean invoke2(StoreVoiceParticipants.VoiceUser voiceUser) {
+                    C12238m.checkNotNullParameter(voiceUser, "voiceUser");
+                    return voiceUser.getIsRequestingToSpeak();
                 }
             }
 

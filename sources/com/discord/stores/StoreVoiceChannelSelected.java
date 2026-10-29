@@ -49,6 +49,102 @@ public final class StoreVoiceChannelSelected extends StoreV2 implements Dispatch
     private final StoreStream stream;
     private long timeSelectedMs;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$clear$1 */
+    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
+    public final /* synthetic */ class C66181 extends C12236k implements Function0<Unit> {
+        public C66181(StoreVoiceChannelSelected storeVoiceChannelSelected) {
+            super(0, storeVoiceChannelSelected, StoreVoiceChannelSelected.class, "clearInternal", "clearInternal()V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            ((StoreVoiceChannelSelected) this.receiver).clearInternal();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$observeSelectedChannel$1 */
+    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
+    public final class C66191 extends AbstractC12240o implements Function0<Channel> {
+        public C66191() {
+            super(0);
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final Channel invoke() {
+            return StoreVoiceChannelSelected.this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(StoreVoiceChannelSelected.this.selectedVoiceChannelId);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$observeSelectedVoiceChannelId$1 */
+    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
+    public final class C66201 extends AbstractC12240o implements Function0<Long> {
+        public C66201() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Long invoke() {
+            return Long.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final long invoke2() {
+            return StoreVoiceChannelSelected.this.selectedVoiceChannelId;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$observeTimeSelectedMs$1 */
+    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
+    public final class C66211 extends AbstractC12240o implements Function0<Long> {
+        public C66211() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Long invoke() {
+            return Long.valueOf(invoke2());
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final long invoke2() {
+            return StoreVoiceChannelSelected.this.timeSelectedMs;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$selectVoiceChannel$1 */
+    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
+    public final class C66221 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $channelId;
+        public final /* synthetic */ PublishSubject $resultSubject;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C66221(long j, PublishSubject publishSubject) {
+            super(0);
+            this.$channelId = j;
+            this.$resultSubject = publishSubject;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            this.$resultSubject.f27650k.onNext((T) StoreVoiceChannelSelected.this.selectVoiceChannelInternal(this.$channelId, false));
+            this.$resultSubject.f27650k.onCompleted();
+        }
+    }
+
     /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
     public enum JoinVoiceChannelResult {
         SUCCESS,
@@ -98,104 +194,12 @@ public final class StoreVoiceChannelSelected extends StoreV2 implements Dispatch
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$clear$1 */
-    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
-    public static final /* synthetic */ class C66181 extends C12236k implements Function0<Unit> {
-        public C66181(StoreVoiceChannelSelected storeVoiceChannelSelected) {
-            super(0, storeVoiceChannelSelected, StoreVoiceChannelSelected.class, "clearInternal", "clearInternal()V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            ((StoreVoiceChannelSelected) this.receiver).clearInternal();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$observeSelectedChannel$1 */
-    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
-    public static final class C66191 extends AbstractC12240o implements Function0<Channel> {
-        public C66191() {
-            super(0);
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final Channel invoke() {
-            return StoreVoiceChannelSelected.this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(StoreVoiceChannelSelected.this.selectedVoiceChannelId);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$observeSelectedVoiceChannelId$1 */
-    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
-    public static final class C66201 extends AbstractC12240o implements Function0<Long> {
-        public C66201() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Long invoke() {
-            return Long.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final long invoke2() {
-            return StoreVoiceChannelSelected.this.selectedVoiceChannelId;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$observeTimeSelectedMs$1 */
-    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
-    public static final class C66211 extends AbstractC12240o implements Function0<Long> {
-        public C66211() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Long invoke() {
-            return Long.valueOf(invoke2());
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final long invoke2() {
-            return StoreVoiceChannelSelected.this.timeSelectedMs;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreVoiceChannelSelected$selectVoiceChannel$1 */
-    /* JADX INFO: compiled from: StoreVoiceChannelSelected.kt */
-    public static final class C66221 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $channelId;
-        public final /* synthetic */ PublishSubject $resultSubject;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C66221(long j, PublishSubject publishSubject) {
-            super(0);
-            this.$channelId = j;
-            this.$resultSubject = publishSubject;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            this.$resultSubject.f27650k.onNext((T) StoreVoiceChannelSelected.this.selectVoiceChannelInternal(this.$channelId, false));
-            this.$resultSubject.f27650k.onCompleted();
-        }
-    }
-
     public /* synthetic */ StoreVoiceChannelSelected(StoreStream storeStream, Dispatcher dispatcher, Clock clock, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeStream, dispatcher, clock, (i & 8) != 0 ? ObservationDeckProvider.get() : observationDeck);
+    }
+
+    public final void clear() {
+        this.dispatcher.schedule(new C66181(this));
     }
 
     @StoreThread
@@ -235,6 +239,22 @@ public final class StoreVoiceChannelSelected extends StoreV2 implements Dispatch
         return voiceChannelJoinabilityUtils.computeJoinability(channelFindChannelByIdInternal$app_productionGoogleRelease, collectionValues, l, maxVideoChannelUsers, verificationLevelTriggered, Long.valueOf(this.selectedVoiceChannelId), stageInstanceForChannelInternal);
     }
 
+    public final long getLastSelectedVoiceChannelId() {
+        return this.lastSelectedVoiceChannelId;
+    }
+
+    public final Channel getSelectedVoiceChannel() {
+        return this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(this.selectedVoiceChannelId);
+    }
+
+    public final long getSelectedVoiceChannelId() {
+        return this.selectedVoiceChannelId;
+    }
+
+    public final long getTimeSelectedMs() {
+        return this.timeSelectedMs;
+    }
+
     @StoreThread
     private final GuildVerificationLevel getVerificationLevelTriggered(Guild guild) {
         StoreGuilds guilds = this.stream.getGuilds();
@@ -271,106 +291,6 @@ public final class StoreVoiceChannelSelected extends StoreV2 implements Dispatch
             return GuildVerificationLevel.LOW;
         }
         return GuildVerificationLevel.NONE;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:20:0x0038  */
-    @StoreThread
-    private final JoinVoiceChannelResult selectVoiceChannelInternal(long selectedVoiceChannelId, boolean forceMoved) {
-        boolean z2;
-        Channel channel;
-        if (this.sessionId == null) {
-            this.preselectedVoiceChannelId = Long.valueOf(selectedVoiceChannelId);
-            return JoinVoiceChannelResult.DEFERRED_UNTIL_SESSION_START;
-        }
-        this.preselectedVoiceChannelId = null;
-        if (selectedVoiceChannelId == this.selectedVoiceChannelId) {
-            return JoinVoiceChannelResult.ALREADY_CONNECTED;
-        }
-        VoiceChannelJoinability joinability = getJoinability(selectedVoiceChannelId);
-        int iOrdinal = joinability.ordinal();
-        if (iOrdinal == 0) {
-            z2 = true;
-        } else if (iOrdinal == 1) {
-            z2 = forceMoved;
-        } else {
-            if (iOrdinal != 2) {
-                if (iOrdinal == 3) {
-                    z2 = forceMoved;
-                } else if (iOrdinal != 4) {
-                    throw new NoWhenBranchMatchedException();
-                }
-            }
-            z2 = false;
-        }
-        long j = this.selectedVoiceChannelId;
-        if (z2) {
-            if (!forceMoved && (channel = StoreStream.INSTANCE.getChannels().getChannel(selectedVoiceChannelId)) != null && ChannelUtils.m7676K(channel)) {
-                AppSoundManager.Provider.INSTANCE.get().play(AppSound.INSTANCE.getSOUND_USER_JOINED());
-            }
-            this.selectedVoiceChannelId = selectedVoiceChannelId;
-            if (selectedVoiceChannelId > 0) {
-                this.lastSelectedVoiceChannelId = selectedVoiceChannelId;
-            }
-        } else {
-            this.selectedVoiceChannelId = 0L;
-        }
-        if (j != this.selectedVoiceChannelId) {
-            markChanged();
-        }
-        if (z2) {
-            return JoinVoiceChannelResult.SUCCESS;
-        }
-        int iOrdinal2 = joinability.ordinal();
-        if (iOrdinal2 == 0) {
-            return JoinVoiceChannelResult.SUCCESS;
-        }
-        if (iOrdinal2 == 1) {
-            return JoinVoiceChannelResult.FAILED_PERMISSIONS_MISSING;
-        }
-        if (iOrdinal2 == 2) {
-            return JoinVoiceChannelResult.FAILED_GUILD_VIDEO_AT_CAPACITY;
-        }
-        if (iOrdinal2 == 3) {
-            return JoinVoiceChannelResult.FAILED_CHANNEL_FULL;
-        }
-        if (iOrdinal2 == 4) {
-            return JoinVoiceChannelResult.FAILED_CHANNEL_DOES_NOT_EXIST;
-        }
-        throw new NoWhenBranchMatchedException();
-    }
-
-    @StoreThread
-    private final void validateSelectedVoiceChannel() {
-        long j = this.selectedVoiceChannelId;
-        if (j == 0) {
-            return;
-        }
-        if (this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(this.selectedVoiceChannelId) == null) {
-            clearInternal();
-        }
-        if (this.selectedVoiceChannelId != j) {
-            markChanged();
-        }
-    }
-
-    public final void clear() {
-        this.dispatcher.schedule(new C66181(this));
-    }
-
-    public final long getLastSelectedVoiceChannelId() {
-        return this.lastSelectedVoiceChannelId;
-    }
-
-    public final Channel getSelectedVoiceChannel() {
-        return this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(this.selectedVoiceChannelId);
-    }
-
-    public final long getSelectedVoiceChannelId() {
-        return this.selectedVoiceChannelId;
-    }
-
-    public final long getTimeSelectedMs() {
-        return this.timeSelectedMs;
     }
 
     @StoreThread
@@ -489,11 +409,91 @@ public final class StoreVoiceChannelSelected extends StoreV2 implements Dispatch
         return publishSubjectM11133k0;
     }
 
+    /* JADX WARN: Code duplicated, block: B:20:0x0038  */
+    @StoreThread
+    private final JoinVoiceChannelResult selectVoiceChannelInternal(long selectedVoiceChannelId, boolean forceMoved) {
+        boolean z2;
+        Channel channel;
+        if (this.sessionId == null) {
+            this.preselectedVoiceChannelId = Long.valueOf(selectedVoiceChannelId);
+            return JoinVoiceChannelResult.DEFERRED_UNTIL_SESSION_START;
+        }
+        this.preselectedVoiceChannelId = null;
+        if (selectedVoiceChannelId == this.selectedVoiceChannelId) {
+            return JoinVoiceChannelResult.ALREADY_CONNECTED;
+        }
+        VoiceChannelJoinability joinability = getJoinability(selectedVoiceChannelId);
+        int iOrdinal = joinability.ordinal();
+        if (iOrdinal == 0) {
+            z2 = true;
+        } else if (iOrdinal == 1) {
+            z2 = forceMoved;
+        } else {
+            if (iOrdinal != 2) {
+                if (iOrdinal == 3) {
+                    z2 = forceMoved;
+                } else if (iOrdinal != 4) {
+                    throw new NoWhenBranchMatchedException();
+                }
+            }
+            z2 = false;
+        }
+        long j = this.selectedVoiceChannelId;
+        if (z2) {
+            if (!forceMoved && (channel = StoreStream.INSTANCE.getChannels().getChannel(selectedVoiceChannelId)) != null && ChannelUtils.m7676K(channel)) {
+                AppSoundManager.Provider.INSTANCE.get().play(AppSound.INSTANCE.getSOUND_USER_JOINED());
+            }
+            this.selectedVoiceChannelId = selectedVoiceChannelId;
+            if (selectedVoiceChannelId > 0) {
+                this.lastSelectedVoiceChannelId = selectedVoiceChannelId;
+            }
+        } else {
+            this.selectedVoiceChannelId = 0L;
+        }
+        if (j != this.selectedVoiceChannelId) {
+            markChanged();
+        }
+        if (z2) {
+            return JoinVoiceChannelResult.SUCCESS;
+        }
+        int iOrdinal2 = joinability.ordinal();
+        if (iOrdinal2 == 0) {
+            return JoinVoiceChannelResult.SUCCESS;
+        }
+        if (iOrdinal2 == 1) {
+            return JoinVoiceChannelResult.FAILED_PERMISSIONS_MISSING;
+        }
+        if (iOrdinal2 == 2) {
+            return JoinVoiceChannelResult.FAILED_GUILD_VIDEO_AT_CAPACITY;
+        }
+        if (iOrdinal2 == 3) {
+            return JoinVoiceChannelResult.FAILED_CHANNEL_FULL;
+        }
+        if (iOrdinal2 == 4) {
+            return JoinVoiceChannelResult.FAILED_CHANNEL_DOES_NOT_EXIST;
+        }
+        throw new NoWhenBranchMatchedException();
+    }
+
     @Override // com.discord.stores.StoreV2
     @StoreThread
     public void snapshotData() {
         super.snapshotData();
         this.timeSelectedMs = this.selectedVoiceChannelId > 0 ? this.clock.currentTimeMillis() : 0L;
+    }
+
+    @StoreThread
+    private final void validateSelectedVoiceChannel() {
+        long j = this.selectedVoiceChannelId;
+        if (j == 0) {
+            return;
+        }
+        if (this.stream.getChannels().findChannelByIdInternal$app_productionGoogleRelease(this.selectedVoiceChannelId) == null) {
+            clearInternal();
+        }
+        if (this.selectedVoiceChannelId != j) {
+            markChanged();
+        }
     }
 
     public StoreVoiceChannelSelected(StoreStream storeStream, Dispatcher dispatcher, Clock clock, ObservationDeck observationDeck) {

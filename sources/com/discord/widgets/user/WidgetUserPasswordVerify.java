@@ -73,8 +73,28 @@ public final class WidgetUserPasswordVerify extends AppFragment {
     /* JADX INFO: renamed from: validationManager$delegate, reason: from kotlin metadata */
     private final Lazy validationManager;
 
+    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserPasswordVerify$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetUserPasswordVerify.kt */
-    public static final class Companion {
+    public final class C102201 extends AbstractC12240o implements Function1<TextView, Unit> {
+        public C102201() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            C12238m.checkNotNullParameter(textView, "it");
+            WidgetUserPasswordVerify.this.saveInfo();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetUserPasswordVerify.kt */
+    public final class Companion {
 
         /* JADX INFO: compiled from: WidgetUserPasswordVerify.kt */
         public enum Action {
@@ -157,26 +177,6 @@ public final class WidgetUserPasswordVerify extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.user.WidgetUserPasswordVerify$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetUserPasswordVerify.kt */
-    public static final class C102201 extends AbstractC12240o implements Function1<TextView, Unit> {
-        public C102201() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
-            invoke2(textView);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(TextView textView) {
-            C12238m.checkNotNullParameter(textView, "it");
-            WidgetUserPasswordVerify.this.saveInfo();
-        }
-    }
-
     public WidgetUserPasswordVerify() {
         super(C5419R.layout.widget_user_password_verify);
         this.binding = FragmentViewBindingDelegateKt.viewBinding$default(this, WidgetUserPasswordVerify$binding$2.INSTANCE, null, 2, null);
@@ -215,6 +215,29 @@ public final class WidgetUserPasswordVerify extends AppFragment {
         Map<String, List<String>> messages = response.getMessages();
         C12238m.checkNotNullExpressionValue(messages, "error.response.messages");
         return validationManager.setErrors(messages).isEmpty();
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setActionBarSubtitle(C5419R.string.user_settings);
+        setActionBarTitle(C5419R.string.user_settings_account_verify_password_title_in_title_case);
+        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
+        StatefulViews statefulViews = this.state;
+        FloatingActionButton floatingActionButton = getBinding().f18347d;
+        TextInputLayout textInputLayout = getBinding().f18346c;
+        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountPasswordWrap");
+        statefulViews.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout);
+        TextInputLayout textInputLayout2 = getBinding().f18346c;
+        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.editAccountPasswordWrap");
+        ViewExtensions.setOnImeActionDone$default(textInputLayout2, false, new C102201(), 1, null);
+        getBinding().f18347d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserPasswordVerify.onViewBound.2
+            @Override // android.view.View.OnClickListener
+            public final void onClick(View view2) {
+                WidgetUserPasswordVerify.this.saveInfo();
+            }
+        });
     }
 
     private final void removePhoneNumber(String password) {
@@ -300,28 +323,5 @@ public final class WidgetUserPasswordVerify extends AppFragment {
                 error.setShowErrorToasts(!widgetUserPasswordVerify.maybeHandleApiError(error));
             }
         }));
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setActionBarSubtitle(C5419R.string.user_settings);
-        setActionBarTitle(C5419R.string.user_settings_account_verify_password_title_in_title_case);
-        AppFragment.setActionBarDisplayHomeAsUpEnabled$default(this, false, 1, null);
-        StatefulViews statefulViews = this.state;
-        FloatingActionButton floatingActionButton = getBinding().f18347d;
-        TextInputLayout textInputLayout = getBinding().f18346c;
-        C12238m.checkNotNullExpressionValue(textInputLayout, "binding.editAccountPasswordWrap");
-        statefulViews.setupTextWatcherWithSaveAction(this, floatingActionButton, textInputLayout);
-        TextInputLayout textInputLayout2 = getBinding().f18346c;
-        C12238m.checkNotNullExpressionValue(textInputLayout2, "binding.editAccountPasswordWrap");
-        ViewExtensions.setOnImeActionDone$default(textInputLayout2, false, new C102201(), 1, null);
-        getBinding().f18347d.setOnClickListener(new View.OnClickListener() { // from class: com.discord.widgets.user.WidgetUserPasswordVerify.onViewBound.2
-            @Override // android.view.View.OnClickListener
-            public final void onClick(View view2) {
-                WidgetUserPasswordVerify.this.saveInfo();
-            }
-        });
     }
 }

@@ -15,6 +15,9 @@ import p007b.p225i.p226a.p288f.p299e.p304k.C3361j;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-basement@@17.6.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class ConnectionResult extends AbstractSafeParcelable {
+
+    @RecentlyNonNull
+    public static final Parcelable.Creator<ConnectionResult> CREATOR = new C3412q();
     public static final int SUCCESS = 0;
 
     /* JADX INFO: renamed from: k */
@@ -35,9 +38,6 @@ public final class ConnectionResult extends AbstractSafeParcelable {
     @RecentlyNonNull
     public static final ConnectionResult f20472j = new ConnectionResult(0);
 
-    @RecentlyNonNull
-    public static final Parcelable.Creator<ConnectionResult> CREATOR = new C3412q();
-
     public ConnectionResult(int i) {
         this.f20473k = 1;
         this.f20474l = i;
@@ -50,6 +50,21 @@ public final class ConnectionResult extends AbstractSafeParcelable {
         this.f20474l = i2;
         this.f20475m = pendingIntent;
         this.f20476n = str;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ConnectionResult)) {
+            return false;
+        }
+        ConnectionResult connectionResult = (ConnectionResult) obj;
+        return this.f20474l == connectionResult.f20474l && C1460d.m524h0(this.f20475m, connectionResult.f20475m) && C1460d.m524h0(this.f20476n, connectionResult.f20476n);
+    }
+
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20474l), this.f20475m, this.f20476n});
     }
 
     @NonNull
@@ -124,19 +139,14 @@ public final class ConnectionResult extends AbstractSafeParcelable {
         }
     }
 
-    public boolean equals(@Nullable Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof ConnectionResult)) {
-            return false;
-        }
-        ConnectionResult connectionResult = (ConnectionResult) obj;
-        return this.f20474l == connectionResult.f20474l && C1460d.m524h0(this.f20475m, connectionResult.f20475m) && C1460d.m524h0(this.f20476n, connectionResult.f20476n);
+    /* JADX INFO: renamed from: w0 */
+    public boolean m9019w0() {
+        return (this.f20474l == 0 || this.f20475m == null) ? false : true;
     }
 
-    public int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f20474l), this.f20475m, this.f20476n});
+    /* JADX INFO: renamed from: x0 */
+    public boolean m9020x0() {
+        return this.f20474l == 0;
     }
 
     @RecentlyNonNull
@@ -146,11 +156,6 @@ public final class ConnectionResult extends AbstractSafeParcelable {
         c3361j.m4162a("resolution", this.f20475m);
         c3361j.m4162a("message", this.f20476n);
         return c3361j.toString();
-    }
-
-    /* JADX INFO: renamed from: w0 */
-    public boolean m9019w0() {
-        return (this.f20474l == 0 || this.f20475m == null) ? false : true;
     }
 
     @Override // android.os.Parcelable
@@ -165,11 +170,6 @@ public final class ConnectionResult extends AbstractSafeParcelable {
         C1460d.m570s2(parcel, 3, this.f20475m, i, false);
         C1460d.m574t2(parcel, 4, this.f20476n, false);
         C1460d.m418A2(parcel, iM594y2);
-    }
-
-    /* JADX INFO: renamed from: x0 */
-    public boolean m9020x0() {
-        return this.f20474l == 0;
     }
 
     public ConnectionResult(int i, @Nullable PendingIntent pendingIntent) {

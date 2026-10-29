@@ -17,7 +17,7 @@ public abstract class StoreV2 extends Store implements DispatchHandler, Observat
     private final Set<ObservationDeck.UpdateSource> updateSources = new HashSet();
 
     /* JADX INFO: compiled from: StoreV2.kt */
-    public static final class MarkChangedDelegate<T> {
+    public final class MarkChangedDelegate<T> {
         private final ObservationDeck.UpdateSource overrideUpdateSource;
         private T value;
 

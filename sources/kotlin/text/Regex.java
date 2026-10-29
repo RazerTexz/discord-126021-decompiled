@@ -26,35 +26,16 @@ public final class Regex implements Serializable {
     private Set<? extends EnumC12092i> _options;
     private final Pattern nativePattern;
 
-    /* JADX INFO: renamed from: kotlin.text.Regex$a, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: Regex.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        public static final int access$ensureUnicodeCase(Companion companion, int i) {
-            Objects.requireNonNull(companion);
-            return (i & 2) != 0 ? i | 64 : i;
-        }
-
-        public final String escape(String str) {
-            C12238m.checkNotNullParameter(str, "literal");
-            String strQuote = Pattern.quote(str);
-            C12238m.checkNotNullExpressionValue(strQuote, "Pattern.quote(literal)");
-            return strQuote;
-        }
-    }
-
     /* JADX INFO: renamed from: kotlin.text.Regex$b */
     /* JADX INFO: compiled from: Regex.kt */
-    public static final class C12800b implements Serializable {
+    public final class C12800b implements Serializable {
         private static final long serialVersionUID = 0;
         private final int flags;
         private final String pattern;
 
         /* JADX INFO: renamed from: kotlin.text.Regex$b$a */
         /* JADX INFO: compiled from: Regex.kt */
-        public static final class a {
+        public final class a {
             public a(DefaultConstructorMarker defaultConstructorMarker) {
             }
         }
@@ -78,7 +59,7 @@ public final class Regex implements Serializable {
 
     /* JADX INFO: renamed from: kotlin.text.Regex$c */
     /* JADX INFO: compiled from: Regex.kt */
-    public static final class C12801c extends AbstractC12240o implements Function0<MatchResult> {
+    public final class C12801c extends AbstractC12240o implements Function0<MatchResult> {
         public final /* synthetic */ CharSequence $input;
         public final /* synthetic */ int $startIndex;
 
@@ -97,7 +78,7 @@ public final class Regex implements Serializable {
 
     /* JADX INFO: renamed from: kotlin.text.Regex$d */
     /* JADX INFO: compiled from: Regex.kt */
-    public static final /* synthetic */ class C12802d extends C12236k implements Function1<MatchResult, MatchResult> {
+    public final /* synthetic */ class C12802d extends C12236k implements Function1<MatchResult, MatchResult> {
 
         /* JADX INFO: renamed from: j */
         public static final C12802d f27454j = new C12802d();
@@ -113,9 +94,33 @@ public final class Regex implements Serializable {
         }
     }
 
+    /* JADX INFO: renamed from: kotlin.text.Regex$a, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: Regex.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public static final int access$ensureUnicodeCase(Companion companion, int i) {
+            Objects.requireNonNull(companion);
+            return (i & 2) != 0 ? i | 64 : i;
+        }
+
+        public final String escape(String str) {
+            C12238m.checkNotNullParameter(str, "literal");
+            String strQuote = Pattern.quote(str);
+            C12238m.checkNotNullExpressionValue(strQuote, "Pattern.quote(literal)");
+            return strQuote;
+        }
+    }
+
     public Regex(Pattern pattern) {
         C12238m.checkNotNullParameter(pattern, "nativePattern");
         this.nativePattern = pattern;
+    }
+
+    public final boolean containsMatchIn(CharSequence input) {
+        C12238m.checkNotNullParameter(input, "input");
+        return this.nativePattern.matcher(input).find();
     }
 
     public static /* synthetic */ MatchResult find$default(Regex regex, CharSequence charSequence, int i, int i2, Object obj) {
@@ -125,29 +130,18 @@ public final class Regex implements Serializable {
         return regex.find(charSequence, i);
     }
 
-    public static /* synthetic */ Sequence findAll$default(Regex regex, CharSequence charSequence, int i, int i2, Object obj) {
-        if ((i2 & 2) != 0) {
-            i = 0;
-        }
-        return regex.findAll(charSequence, i);
-    }
-
-    private final Object writeReplace() {
-        String strPattern = this.nativePattern.pattern();
-        C12238m.checkNotNullExpressionValue(strPattern, "nativePattern.pattern()");
-        return new C12800b(strPattern, this.nativePattern.flags());
-    }
-
-    public final boolean containsMatchIn(CharSequence input) {
-        C12238m.checkNotNullParameter(input, "input");
-        return this.nativePattern.matcher(input).find();
-    }
-
     public final MatchResult find(CharSequence input, int startIndex) {
         C12238m.checkNotNullParameter(input, "input");
         Matcher matcher = this.nativePattern.matcher(input);
         C12238m.checkNotNullExpressionValue(matcher, "nativePattern.matcher(input)");
         return C12091h.access$findNext(matcher, startIndex, input);
+    }
+
+    public static /* synthetic */ Sequence findAll$default(Regex regex, CharSequence charSequence, int i, int i2, Object obj) {
+        if ((i2 & 2) != 0) {
+            i = 0;
+        }
+        return regex.findAll(charSequence, i);
     }
 
     public final Sequence<MatchResult> findAll(CharSequence input, int startIndex) {
@@ -158,6 +152,11 @@ public final class Regex implements Serializable {
         StringBuilder sbM834V = C1643a.m834V("Start index out of bounds: ", startIndex, ", input length: ");
         sbM834V.append(input.length());
         throw new IndexOutOfBoundsException(sbM834V.toString());
+    }
+
+    /* JADX INFO: renamed from: toPattern, reason: from getter */
+    public final Pattern getNativePattern() {
+        return this.nativePattern;
     }
 
     public final MatchResult matchEntire(CharSequence input) {
@@ -180,15 +179,16 @@ public final class Regex implements Serializable {
         return strReplaceAll;
     }
 
-    /* JADX INFO: renamed from: toPattern, reason: from getter */
-    public final Pattern getNativePattern() {
-        return this.nativePattern;
-    }
-
     public String toString() {
         String string = this.nativePattern.toString();
         C12238m.checkNotNullExpressionValue(string, "nativePattern.toString()");
         return string;
+    }
+
+    private final Object writeReplace() {
+        String strPattern = this.nativePattern.pattern();
+        C12238m.checkNotNullExpressionValue(strPattern, "nativePattern.pattern()");
+        return new C12800b(strPattern, this.nativePattern.flags());
     }
 
     /* JADX WARN: Illegal instructions before constructor call */

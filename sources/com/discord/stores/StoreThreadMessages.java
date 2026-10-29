@@ -35,8 +35,39 @@ public final class StoreThreadMessages extends StoreV2 {
     private final Map<Long, ThreadState> threads;
     private Map<Long, ThreadState> threadsSnapshot;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadMessages$observeThreadCountAndLatestMessage$1 */
     /* JADX INFO: compiled from: StoreThreadMessages.kt */
-    public static final /* data */ class ThreadState {
+    public final class C65331 extends AbstractC12240o implements Function0<Map<Long, ? extends ThreadState>> {
+        public C65331() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public final Map<Long, ? extends ThreadState> invoke() {
+            return StoreThreadMessages.this.threadsSnapshot;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreThreadMessages$observeThreadCountAndLatestMessage$2 */
+    /* JADX INFO: compiled from: StoreThreadMessages.kt */
+    public final class C65342 extends AbstractC12240o implements Function0<ThreadState> {
+        public final /* synthetic */ long $channelId;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C65342(long j) {
+            super(0);
+            this.$channelId = j;
+        }
+
+        /* JADX WARN: Can't rename method to resolve collision */
+        @Override // kotlin.jvm.functions.Function0
+        public final ThreadState invoke() {
+            return (ThreadState) StoreThreadMessages.this.threadsSnapshot.get(Long.valueOf(this.$channelId));
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreThreadMessages.kt */
+    public final /* data */ class ThreadState {
         private int count;
         private final long guildId;
         private Message mostRecentMessage;
@@ -55,31 +86,6 @@ public final class StoreThreadMessages extends StoreV2 {
             return threadState.copy((i2 & 1) != 0 ? threadState.threadId : j, (i2 & 2) != 0 ? threadState.guildId : j2, (i2 & 4) != 0 ? threadState.parentId : j3, (i2 & 8) != 0 ? threadState.count : i, (i2 & 16) != 0 ? threadState.mostRecentMessage : message);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getThreadId() {
-            return this.threadId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final long getParentId() {
-            return this.parentId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getCount() {
-            return this.count;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Message getMostRecentMessage() {
-            return this.mostRecentMessage;
-        }
-
         public final ThreadState copy(long threadId, long guildId, long parentId, int count, Message mostRecentMessage) {
             return new ThreadState(threadId, guildId, parentId, count, mostRecentMessage);
         }
@@ -95,20 +101,45 @@ public final class StoreThreadMessages extends StoreV2 {
             return this.threadId == threadState.threadId && this.guildId == threadState.guildId && this.parentId == threadState.parentId && this.count == threadState.count && C12238m.areEqual(this.mostRecentMessage, threadState.mostRecentMessage);
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final int getCount() {
             return this.count;
+        }
+
+        public final int getCount() {
+            return this.count;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final Message getMostRecentMessage() {
             return this.mostRecentMessage;
         }
 
+        public final Message getMostRecentMessage() {
+            return this.mostRecentMessage;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final long getParentId() {
             return this.parentId;
+        }
+
+        public final long getParentId() {
+            return this.parentId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getThreadId() {
+            return this.threadId;
         }
 
         public final long getThreadId() {
@@ -145,37 +176,6 @@ public final class StoreThreadMessages extends StoreV2 {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreThreadMessages$observeThreadCountAndLatestMessage$1 */
-    /* JADX INFO: compiled from: StoreThreadMessages.kt */
-    public static final class C65331 extends AbstractC12240o implements Function0<Map<Long, ? extends ThreadState>> {
-        public C65331() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public final Map<Long, ? extends ThreadState> invoke() {
-            return StoreThreadMessages.this.threadsSnapshot;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreThreadMessages$observeThreadCountAndLatestMessage$2 */
-    /* JADX INFO: compiled from: StoreThreadMessages.kt */
-    public static final class C65342 extends AbstractC12240o implements Function0<ThreadState> {
-        public final /* synthetic */ long $channelId;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C65342(long j) {
-            super(0);
-            this.$channelId = j;
-        }
-
-        /* JADX WARN: Can't rename method to resolve collision */
-        @Override // kotlin.jvm.functions.Function0
-        public final ThreadState invoke() {
-            return (ThreadState) StoreThreadMessages.this.threadsSnapshot.get(Long.valueOf(this.$channelId));
-        }
-    }
-
     public /* synthetic */ StoreThreadMessages(StoreMessages storeMessages, StoreChannels storeChannels, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeMessages, storeChannels, (i & 4) != 0 ? ObservationDeckProvider.get() : observationDeck);
     }
@@ -207,34 +207,6 @@ public final class StoreThreadMessages extends StoreV2 {
             markChanged();
         }
         return threadState;
-    }
-
-    @StoreThread
-    private final void updateFromGuild(Guild guild) {
-        List<Channel> listM7849N = guild.m7849N();
-        if (listM7849N != null) {
-            Iterator<T> it = listM7849N.iterator();
-            while (it.hasNext()) {
-                updateFromThread((Channel) it.next());
-            }
-        }
-    }
-
-    @StoreThread
-    private final void updateFromThread(Channel thread) {
-        ThreadState orAddState = getOrAddState(thread);
-        Integer messageCount = thread.getMessageCount();
-        if (messageCount != null) {
-            this.threads.put(Long.valueOf(thread.getId()), ThreadState.copy$default(orAddState, 0L, 0L, 0L, messageCount.intValue(), null, 23, null));
-            markChanged();
-        }
-        if (thread.getLastMessageId() != 0) {
-            Message mostRecentMessage = orAddState.getMostRecentMessage();
-            if (mostRecentMessage == null || mostRecentMessage.getId() != thread.getLastMessageId()) {
-                this.threads.put(Long.valueOf(thread.getId()), ThreadState.copy$default(orAddState, 0L, 0L, 0L, 0, null, 15, null));
-                markChanged();
-            }
-        }
     }
 
     public final Integer getThreadMessageCount(long channelId) {
@@ -403,6 +375,34 @@ public final class StoreThreadMessages extends StoreV2 {
     @StoreThread
     public void snapshotData() {
         this.threadsSnapshot = new HashMap(this.threads);
+    }
+
+    @StoreThread
+    private final void updateFromGuild(Guild guild) {
+        List<Channel> listM7849N = guild.m7849N();
+        if (listM7849N != null) {
+            Iterator<T> it = listM7849N.iterator();
+            while (it.hasNext()) {
+                updateFromThread((Channel) it.next());
+            }
+        }
+    }
+
+    @StoreThread
+    private final void updateFromThread(Channel thread) {
+        ThreadState orAddState = getOrAddState(thread);
+        Integer messageCount = thread.getMessageCount();
+        if (messageCount != null) {
+            this.threads.put(Long.valueOf(thread.getId()), ThreadState.copy$default(orAddState, 0L, 0L, 0L, messageCount.intValue(), null, 23, null));
+            markChanged();
+        }
+        if (thread.getLastMessageId() != 0) {
+            Message mostRecentMessage = orAddState.getMostRecentMessage();
+            if (mostRecentMessage == null || mostRecentMessage.getId() != thread.getLastMessageId()) {
+                this.threads.put(Long.valueOf(thread.getId()), ThreadState.copy$default(orAddState, 0L, 0L, 0L, 0, null, 15, null));
+                markChanged();
+            }
+        }
     }
 
     public StoreThreadMessages(StoreMessages storeMessages, StoreChannels storeChannels, ObservationDeck observationDeck) {

@@ -9,19 +9,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSpotifyButtonClicked.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSpotifyButtonClicked implements AnalyticsSchema, TrackBaseReceiver {
+    private final Boolean isPremium = null;
+    private final Long otherUserId = null;
+    private final CharSequence partyId = null;
+    private final CharSequence source = null;
     private TrackBase trackBase;
     private final CharSequence type = null;
-    private final Boolean isPremium = null;
-    private final CharSequence partyId = null;
-    private final Long otherUserId = null;
-    private final CharSequence source = null;
     private final transient String analyticsSchemaTypeName = "spotify_button_clicked";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -32,6 +26,12 @@ public final /* data */ class TrackSpotifyButtonClicked implements AnalyticsSche
         }
         TrackSpotifyButtonClicked trackSpotifyButtonClicked = (TrackSpotifyButtonClicked) other;
         return C12238m.areEqual(this.type, trackSpotifyButtonClicked.type) && C12238m.areEqual(this.isPremium, trackSpotifyButtonClicked.isPremium) && C12238m.areEqual(this.partyId, trackSpotifyButtonClicked.partyId) && C12238m.areEqual(this.otherUserId, trackSpotifyButtonClicked.otherUserId) && C12238m.areEqual(this.source, trackSpotifyButtonClicked.source);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -33,7 +33,7 @@ public interface InterfaceC2550k0 {
 
     /* JADX INFO: renamed from: b.i.a.c.a3.k0$a */
     /* JADX INFO: compiled from: ShuffleOrder.java */
-    public static class a implements InterfaceC2550k0 {
+    public class a implements InterfaceC2550k0 {
 
         /* JADX INFO: renamed from: a */
         public final Random f5630a;

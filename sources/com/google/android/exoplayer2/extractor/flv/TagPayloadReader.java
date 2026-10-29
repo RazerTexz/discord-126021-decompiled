@@ -10,7 +10,7 @@ public abstract class TagPayloadReader {
     /* JADX INFO: renamed from: a */
     public final InterfaceC3122w f19856a;
 
-    public static final class UnsupportedFormatException extends ParserException {
+    public final class UnsupportedFormatException extends ParserException {
         public UnsupportedFormatException(String str) {
             super(str, null, false, 1);
         }

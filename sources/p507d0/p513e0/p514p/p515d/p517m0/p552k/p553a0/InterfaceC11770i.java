@@ -21,7 +21,7 @@ public interface InterfaceC11770i extends InterfaceC11773l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.i$a */
     /* JADX INFO: compiled from: MemberScope.kt */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public static final /* synthetic */ a f24370a = new a();
@@ -31,7 +31,7 @@ public interface InterfaceC11770i extends InterfaceC11773l {
 
         /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.i$a$a, reason: collision with other inner class name */
         /* JADX INFO: compiled from: MemberScope.kt */
-        public static final class C13328a extends AbstractC12240o implements Function1<C11716e, Boolean> {
+        public final class C13328a extends AbstractC12240o implements Function1<C11716e, Boolean> {
 
             /* JADX INFO: renamed from: j */
             public static final C13328a f24372j = new C13328a();
@@ -59,7 +59,7 @@ public interface InterfaceC11770i extends InterfaceC11773l {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.k.a0.i$b */
     /* JADX INFO: compiled from: MemberScope.kt */
-    public static final class b extends AbstractC11771j {
+    public final class b extends AbstractC11771j {
 
         /* JADX INFO: renamed from: b */
         public static final b f24373b = new b();

@@ -41,7 +41,7 @@ public final class Batched<T> {
     /* JADX INFO: renamed from: com.discord.stores.utilities.Batched$onNext$1 */
     /* JADX INFO: compiled from: Batched.kt */
     @InterfaceC12188e(m10084c = "com.discord.stores.utilities.Batched$onNext$1", m10085f = "Batched.kt", m10086l = {82}, m10087m = "invokeSuspend")
-    public static final class C66361 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    public final class C66361 extends AbstractC12194k implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
         public int label;
 
         public C66361(Continuation continuation) {
@@ -60,7 +60,7 @@ public final class Batched<T> {
         }
 
         @Override // p507d0.p584w.p586i.p587a.AbstractC12184a
-        public final Object invokeSuspend(Object obj) {
+        public final Object invokeSuspend(Object obj) throws Throwable {
             Object coroutine_suspended = C12183c.getCOROUTINE_SUSPENDED();
             int i = this.label;
             if (i == 0) {

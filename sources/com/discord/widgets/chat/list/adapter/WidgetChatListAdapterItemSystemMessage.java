@@ -55,7 +55,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$getSystemMessage$1 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public static final class C81301 extends AbstractC12240o implements Function1<Context, CharSequence> {
+    public final class C81301 extends AbstractC12240o implements Function1<Context, CharSequence> {
         public final /* synthetic */ Function1 $actorRenderContext;
         public final /* synthetic */ String $authorName;
         public final /* synthetic */ Function1 $autoModRenderContext;
@@ -152,7 +152,7 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemSystemMessage$onConfigure$2 */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemSystemMessage.kt */
-    public static final class C81362 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C81362 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ Message $message;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -297,6 +297,11 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
         return C5419R.drawable.ic_group_join;
     }
 
+    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
+    public Subscription getSubscription() {
+        return this.subscription;
+    }
+
     private final CharSequence getSystemMessage(Message message, Context context, String str, int i, Long l, String str2, int i2, String str3, boolean z2, Long l2, Long l3) {
         int i3;
         if (z2) {
@@ -308,11 +313,6 @@ public final class WidgetChatListAdapterItemSystemMessage extends WidgetChatList
             i3 = C5419R.string.guild_automod_system_message_text;
         }
         return new C81301(message, str, str2, new C8134xc3c860c2(i, i2), l, context, str3, new C8131x9a8e51f(i), i3, new C8132x8c0e5d01(context), new C8133x2640c67a(this, message, i, context, l3)).invoke(context);
-    }
-
-    @Override // com.discord.utilities.mg_recycler.MGRecyclerViewHolder
-    public Subscription getSubscription() {
-        return this.subscription;
     }
 
     /* JADX WARN: Can't rename method to resolve collision */

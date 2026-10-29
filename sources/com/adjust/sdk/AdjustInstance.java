@@ -13,63 +13,9 @@ public class AdjustInstance {
     private String gdprPath;
     private List<IRunActivityHandler> preLaunchActionsArray;
     private String pushToken;
+    private String subscriptionPath;
     private Boolean startEnabled = null;
     private boolean startOffline = false;
-    private String subscriptionPath;
-
-    private boolean checkActivityHandler() {
-        return checkActivityHandler(null);
-    }
-
-    private boolean isInstanceEnabled() {
-        Boolean bool = this.startEnabled;
-        return bool == null || bool.booleanValue();
-    }
-
-    private void saveDisableThirdPartySharing(final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.10
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).setDisableThirdPartySharing();
-            }
-        });
-    }
-
-    private void saveGdprForgetMe(final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.9
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).setGdprForgetMe();
-            }
-        });
-    }
-
-    private void savePushToken(final String str, final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.8
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).savePushToken(str);
-            }
-        });
-    }
-
-    private void saveRawReferrer(final String str, final long j, final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.7
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).saveRawReferrer(str, j);
-            }
-        });
-    }
-
-    private void setSendingReferrersAsNotSent(final Context context) {
-        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.11
-            @Override // java.lang.Runnable
-            public void run() {
-                new SharedPreferencesManager(context).setSendingReferrersAsNotSent();
-            }
-        });
-    }
 
     public void addSessionCallbackParameter(final String str, final String str2) {
         if (checkActivityHandler("adding session callback parameter")) {
@@ -109,6 +55,10 @@ public class AdjustInstance {
         }
     }
 
+    private boolean checkActivityHandler() {
+        return checkActivityHandler(null);
+    }
+
     public void disableThirdPartySharing(Context context) {
         if (checkActivityHandler("disable third party sharing")) {
             this.activityHandler.disableThirdPartySharing();
@@ -144,6 +94,11 @@ public class AdjustInstance {
 
     public boolean isEnabled() {
         return !checkActivityHandler() ? isInstanceEnabled() : this.activityHandler.isEnabled();
+    }
+
+    private boolean isInstanceEnabled() {
+        Boolean bool = this.startEnabled;
+        return bool == null || bool.booleanValue();
     }
 
     public void onCreate(AdjustConfig adjustConfig) {
@@ -246,6 +201,42 @@ public class AdjustInstance {
         });
     }
 
+    private void saveDisableThirdPartySharing(final Context context) {
+        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.10
+            @Override // java.lang.Runnable
+            public void run() {
+                new SharedPreferencesManager(context).setDisableThirdPartySharing();
+            }
+        });
+    }
+
+    private void saveGdprForgetMe(final Context context) {
+        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.9
+            @Override // java.lang.Runnable
+            public void run() {
+                new SharedPreferencesManager(context).setGdprForgetMe();
+            }
+        });
+    }
+
+    private void savePushToken(final String str, final Context context) {
+        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.8
+            @Override // java.lang.Runnable
+            public void run() {
+                new SharedPreferencesManager(context).savePushToken(str);
+            }
+        });
+    }
+
+    private void saveRawReferrer(final String str, final long j, final Context context) {
+        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.7
+            @Override // java.lang.Runnable
+            public void run() {
+                new SharedPreferencesManager(context).saveRawReferrer(str, j);
+            }
+        });
+    }
+
     public void sendFirstPackages() {
         if (checkActivityHandler()) {
             this.activityHandler.sendFirstPackages();
@@ -284,6 +275,15 @@ public class AdjustInstance {
         } else {
             this.pushToken = str;
         }
+    }
+
+    private void setSendingReferrersAsNotSent(final Context context) {
+        Util.runInBackground(new Runnable() { // from class: com.adjust.sdk.AdjustInstance.11
+            @Override // java.lang.Runnable
+            public void run() {
+                new SharedPreferencesManager(context).setSendingReferrersAsNotSent();
+            }
+        });
     }
 
     public void setTestOptions(AdjustTestOptions adjustTestOptions) {
@@ -379,6 +379,15 @@ public class AdjustInstance {
         return z2 ? checkActivityHandler(str) : checkActivityHandler(str2);
     }
 
+    public void appWillOpenUrl(Uri uri, Context context) {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        if (!checkActivityHandler()) {
+            new SharedPreferencesManager(context).saveDeeplink(uri, jCurrentTimeMillis);
+        } else {
+            this.activityHandler.readOpenUrl(uri, jCurrentTimeMillis);
+        }
+    }
+
     private boolean checkActivityHandler(String str) {
         if (this.activityHandler != null) {
             return true;
@@ -389,15 +398,6 @@ public class AdjustInstance {
             AdjustFactory.getLogger().error("Adjust not initialized correctly", new Object[0]);
         }
         return false;
-    }
-
-    public void appWillOpenUrl(Uri uri, Context context) {
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        if (!checkActivityHandler()) {
-            new SharedPreferencesManager(context).saveDeeplink(uri, jCurrentTimeMillis);
-        } else {
-            this.activityHandler.readOpenUrl(uri, jCurrentTimeMillis);
-        }
     }
 
     public void setPushToken(String str, Context context) {

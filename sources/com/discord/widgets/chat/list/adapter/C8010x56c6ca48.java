@@ -44,11 +44,11 @@ public final class C8010x56c6ca48 extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
-        public static final class C132771 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class C132771 extends AbstractC12240o implements Function1<View, Unit> {
             public C132771() {
                 super(1);
             }
@@ -88,11 +88,11 @@ public final class C8010x56c6ca48 extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1$2, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
-    public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass2 extends AbstractC12240o implements Function1<Hook, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemApplicationCommand$onConfigure$content$1$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemApplicationCommand.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<View, Unit> {
             public static final AnonymousClass1 INSTANCE = new AnonymousClass1();
 
             public AnonymousClass1() {

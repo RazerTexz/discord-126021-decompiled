@@ -26,8 +26,30 @@ public final class WidgetGifPickerSheet extends AppBottomSheet {
     private Function0<Unit> onCancel;
     private Function0<Unit> onGifSelected;
 
+    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSheet$onViewCreated$1 */
     /* JADX INFO: compiled from: WidgetGifPickerSheet.kt */
-    public static final class Companion {
+    public final class C78901 extends AbstractC12240o implements Function0<Unit> {
+        public C78901() {
+            super(0);
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            Function0 function0 = WidgetGifPickerSheet.this.onGifSelected;
+            if (function0 != null) {
+            }
+            WidgetGifPickerSheet.this.dismiss();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGifPickerSheet.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -55,28 +77,6 @@ public final class WidgetGifPickerSheet extends AppBottomSheet {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.chat.input.gifpicker.WidgetGifPickerSheet$onViewCreated$1 */
-    /* JADX INFO: compiled from: WidgetGifPickerSheet.kt */
-    public static final class C78901 extends AbstractC12240o implements Function0<Unit> {
-        public C78901() {
-            super(0);
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            Function0 function0 = WidgetGifPickerSheet.this.onGifSelected;
-            if (function0 != null) {
-            }
-            WidgetGifPickerSheet.this.dismiss();
-        }
-    }
-
     public WidgetGifPickerSheet() {
         super(false, 1, null);
     }
@@ -87,14 +87,6 @@ public final class WidgetGifPickerSheet extends AppBottomSheet {
             C12238m.throwUninitializedPropertyAccessException("container");
         }
         return view;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    public static /* synthetic */ void setOnCancel$default(WidgetGifPickerSheet widgetGifPickerSheet, Function0 function0, int i, Object obj) {
-        if ((i & 1) != 0) {
-            function0 = null;
-        }
-        widgetGifPickerSheet.setOnCancel(function0);
     }
 
     @Override // com.discord.app.AppBottomSheet
@@ -149,6 +141,14 @@ public final class WidgetGifPickerSheet extends AppBottomSheet {
                 }
             }
         }).commit();
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public static /* synthetic */ void setOnCancel$default(WidgetGifPickerSheet widgetGifPickerSheet, Function0 function0, int i, Object obj) {
+        if ((i & 1) != 0) {
+            function0 = null;
+        }
+        widgetGifPickerSheet.setOnCancel(function0);
     }
 
     public final void setOnCancel(Function0<Unit> onCancel) {

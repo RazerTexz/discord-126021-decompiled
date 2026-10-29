@@ -40,38 +40,6 @@ public class C11341d implements InterfaceC11340c {
         this.f22719c = interfaceC11467u0;
     }
 
-    /* JADX INFO: renamed from: a */
-    public static /* synthetic */ void m9385a(int i) {
-        String str = (i == 3 || i == 4 || i == 5) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
-        Object[] objArr = new Object[(i == 3 || i == 4 || i == 5) ? 2 : 3];
-        if (i == 1) {
-            objArr[0] = "valueArguments";
-        } else if (i == 2) {
-            objArr[0] = "source";
-        } else if (i == 3 || i == 4 || i == 5) {
-            objArr[0] = "kotlin/reflect/jvm/internal/impl/descriptors/annotations/AnnotationDescriptorImpl";
-        } else {
-            objArr[0] = "annotationType";
-        }
-        if (i == 3) {
-            objArr[1] = "getType";
-        } else if (i == 4) {
-            objArr[1] = "getAllValueArguments";
-        } else if (i != 5) {
-            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/annotations/AnnotationDescriptorImpl";
-        } else {
-            objArr[1] = "getSource";
-        }
-        if (i != 3 && i != 4 && i != 5) {
-            objArr[2] = "<init>";
-        }
-        String str2 = String.format(str, objArr);
-        if (i != 3 && i != 4 && i != 5) {
-            throw new IllegalArgumentException(str2);
-        }
-        throw new IllegalStateException(str2);
-    }
-
     @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11340c
     public Map<C11716e, AbstractC11815g<?>> getAllValueArguments() {
         Map<C11716e, AbstractC11815g<?>> map = this.f22718b;
@@ -105,6 +73,38 @@ public class C11341d implements InterfaceC11340c {
         }
         m9385a(3);
         throw null;
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static /* synthetic */ void m9385a(int i) {
+        String str = (i == 3 || i == 4 || i == 5) ? "@NotNull method %s.%s must not return null" : "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+        Object[] objArr = new Object[(i == 3 || i == 4 || i == 5) ? 2 : 3];
+        if (i == 1) {
+            objArr[0] = "valueArguments";
+        } else if (i == 2) {
+            objArr[0] = "source";
+        } else if (i == 3 || i == 4 || i == 5) {
+            objArr[0] = "kotlin/reflect/jvm/internal/impl/descriptors/annotations/AnnotationDescriptorImpl";
+        } else {
+            objArr[0] = "annotationType";
+        }
+        if (i == 3) {
+            objArr[1] = "getType";
+        } else if (i == 4) {
+            objArr[1] = "getAllValueArguments";
+        } else if (i != 5) {
+            objArr[1] = "kotlin/reflect/jvm/internal/impl/descriptors/annotations/AnnotationDescriptorImpl";
+        } else {
+            objArr[1] = "getSource";
+        }
+        if (i != 3 && i != 4 && i != 5) {
+            objArr[2] = "<init>";
+        }
+        String str2 = String.format(str, objArr);
+        if (i != 3 && i != 4 && i != 5) {
+            throw new IllegalArgumentException(str2);
+        }
+        throw new IllegalStateException(str2);
     }
 
     public String toString() {

@@ -14,7 +14,7 @@ public abstract class MemberListRow {
     private final String rowId;
 
     /* JADX INFO: compiled from: MemberListRow.kt */
-    public static final /* data */ class Member extends MemberListRow {
+    public final /* data */ class Member extends MemberListRow {
         private final String avatarUrl;
         private final Integer color;
         private final boolean isApplicationStreaming;
@@ -46,66 +46,6 @@ public abstract class MemberListRow {
             this.userFlags = i;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getUserId() {
-            return this.userId;
-        }
-
-        /* JADX INFO: renamed from: component10, reason: from getter */
-        public final String getPremiumSince() {
-            return this.premiumSince;
-        }
-
-        /* JADX INFO: renamed from: component11, reason: from getter */
-        public final boolean getIsApplicationStreaming() {
-            return this.isApplicationStreaming;
-        }
-
-        /* JADX INFO: renamed from: component12, reason: from getter */
-        public final int getUserFlags() {
-            return this.userFlags;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getIsBot() {
-            return this.isBot;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Integer getTagText() {
-            return this.tagText;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getTagVerified() {
-            return this.tagVerified;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Presence getPresence() {
-            return this.presence;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Integer getColor() {
-            return this.color;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final String getAvatarUrl() {
-            return this.avatarUrl;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final boolean getShowOwnerIndicator() {
-            return this.showOwnerIndicator;
-        }
-
         public final Member copy(long userId, String name, boolean isBot, Integer tagText, boolean tagVerified, Presence presence, @ColorInt Integer color, String avatarUrl, boolean showOwnerIndicator, String premiumSince, boolean isApplicationStreaming, int userFlags) {
             C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
             return new Member(userId, name, isBot, tagText, tagVerified, presence, color, avatarUrl, showOwnerIndicator, premiumSince, isApplicationStreaming, userFlags);
@@ -122,40 +62,100 @@ public abstract class MemberListRow {
             return this.userId == member.userId && C12238m.areEqual(this.name, member.name) && this.isBot == member.isBot && C12238m.areEqual(this.tagText, member.tagText) && this.tagVerified == member.tagVerified && C12238m.areEqual(this.presence, member.presence) && C12238m.areEqual(this.color, member.color) && C12238m.areEqual(this.avatarUrl, member.avatarUrl) && this.showOwnerIndicator == member.showOwnerIndicator && C12238m.areEqual(this.premiumSince, member.premiumSince) && this.isApplicationStreaming == member.isApplicationStreaming && this.userFlags == member.userFlags;
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final String getAvatarUrl() {
             return this.avatarUrl;
+        }
+
+        public final String getAvatarUrl() {
+            return this.avatarUrl;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final Integer getColor() {
+            return this.color;
         }
 
         public final Integer getColor() {
             return this.color;
         }
 
+        /* JADX INFO: renamed from: component11, reason: from getter */
+        public final boolean getIsApplicationStreaming() {
+            return this.isApplicationStreaming;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final boolean getIsBot() {
+            return this.isBot;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getName() {
             return this.name;
+        }
+
+        public final String getName() {
+            return this.name;
+        }
+
+        /* JADX INFO: renamed from: component10, reason: from getter */
+        public final String getPremiumSince() {
+            return this.premiumSince;
         }
 
         public final String getPremiumSince() {
             return this.premiumSince;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Presence getPresence() {
             return this.presence;
+        }
+
+        public final Presence getPresence() {
+            return this.presence;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final boolean getShowOwnerIndicator() {
+            return this.showOwnerIndicator;
         }
 
         public final boolean getShowOwnerIndicator() {
             return this.showOwnerIndicator;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Integer getTagText() {
             return this.tagText;
+        }
+
+        public final Integer getTagText() {
+            return this.tagText;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getTagVerified() {
+            return this.tagVerified;
         }
 
         public final boolean getTagVerified() {
             return this.tagVerified;
         }
 
+        /* JADX INFO: renamed from: component12, reason: from getter */
         public final int getUserFlags() {
             return this.userFlags;
+        }
+
+        public final int getUserFlags() {
+            return this.userFlags;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getUserId() {
+            return this.userId;
         }
 
         public final long getUserId() {
@@ -250,7 +250,7 @@ public abstract class MemberListRow {
     }
 
     /* JADX INFO: compiled from: MemberListRow.kt */
-    public static final /* data */ class RoleHeader extends MemberListRow {
+    public final /* data */ class RoleHeader extends MemberListRow {
         private final int memberCount;
         private final long roleId;
         private final String roleName;
@@ -277,21 +277,6 @@ public abstract class MemberListRow {
             return roleHeader.copy(j, str, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getRoleId() {
-            return this.roleId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getRoleName() {
-            return this.roleName;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getMemberCount() {
-            return this.memberCount;
-        }
-
         public final RoleHeader copy(long roleId, String roleName, int memberCount) {
             C12238m.checkNotNullParameter(roleName, "roleName");
             return new RoleHeader(roleId, roleName, memberCount);
@@ -308,12 +293,27 @@ public abstract class MemberListRow {
             return this.roleId == roleHeader.roleId && C12238m.areEqual(this.roleName, roleHeader.roleName) && this.memberCount == roleHeader.memberCount;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getMemberCount() {
             return this.memberCount;
         }
 
+        public final int getMemberCount() {
+            return this.memberCount;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getRoleId() {
             return this.roleId;
+        }
+
+        public final long getRoleId() {
+            return this.roleId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getRoleName() {
+            return this.roleName;
         }
 
         public final String getRoleName() {
@@ -337,7 +337,7 @@ public abstract class MemberListRow {
     }
 
     /* JADX INFO: compiled from: MemberListRow.kt */
-    public static final /* data */ class StatusHeader extends MemberListRow {
+    public final /* data */ class StatusHeader extends MemberListRow {
         private final int memberCount;
         private final String rowId;
         private final Type type;
@@ -368,6 +368,10 @@ public abstract class MemberListRow {
             this.memberCount = i;
         }
 
+        public final String component1() {
+            return getRowId();
+        }
+
         public static /* synthetic */ StatusHeader copy$default(StatusHeader statusHeader, String str, Type type, int i, int i2, Object obj) {
             if ((i2 & 1) != 0) {
                 str = statusHeader.getRowId();
@@ -379,20 +383,6 @@ public abstract class MemberListRow {
                 i = statusHeader.memberCount;
             }
             return statusHeader.copy(str, type, i);
-        }
-
-        public final String component1() {
-            return getRowId();
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Type getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getMemberCount() {
-            return this.memberCount;
         }
 
         public final StatusHeader copy(String rowId, Type type, int memberCount) {
@@ -412,6 +402,11 @@ public abstract class MemberListRow {
             return C12238m.areEqual(getRowId(), statusHeader.getRowId()) && C12238m.areEqual(this.type, statusHeader.type) && this.memberCount == statusHeader.memberCount;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getMemberCount() {
+            return this.memberCount;
+        }
+
         public final int getMemberCount() {
             return this.memberCount;
         }
@@ -419,6 +414,11 @@ public abstract class MemberListRow {
         @Override // com.discord.utilities.lazy.memberlist.MemberListRow
         public String getRowId() {
             return this.rowId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Type getType() {
+            return this.type;
         }
 
         public final Type getType() {

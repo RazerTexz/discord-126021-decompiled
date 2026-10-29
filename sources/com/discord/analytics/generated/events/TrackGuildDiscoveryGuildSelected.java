@@ -11,19 +11,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildDiscoveryGuildSelected.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildDiscoveryGuildSelected implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private final Long guildId = null;
-    private final CharSequence loadId = null;
     private final Long cardIndex = null;
     private final Long categoryId = null;
+    private final Long guildId = null;
+    private final CharSequence loadId = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "guild_discovery_guild_selected";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackGuildDiscoveryGuildSelected implements Analyt
         }
         TrackGuildDiscoveryGuildSelected trackGuildDiscoveryGuildSelected = (TrackGuildDiscoveryGuildSelected) other;
         return C12238m.areEqual(this.guildId, trackGuildDiscoveryGuildSelected.guildId) && C12238m.areEqual(this.loadId, trackGuildDiscoveryGuildSelected.loadId) && C12238m.areEqual(this.cardIndex, trackGuildDiscoveryGuildSelected.cardIndex) && C12238m.areEqual(this.categoryId, trackGuildDiscoveryGuildSelected.categoryId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -99,21 +99,6 @@ public class GhostViewPort extends ViewGroup implements GhostView {
         return (GhostViewPort) view.getTag(C0658R.id.ghost_view);
     }
 
-    public static void removeGhost(View view) {
-        GhostViewPort ghostView = getGhostView(view);
-        if (ghostView != null) {
-            int i = ghostView.mReferences - 1;
-            ghostView.mReferences = i;
-            if (i <= 0) {
-                ((GhostViewHolder) ghostView.getParent()).removeView(ghostView);
-            }
-        }
-    }
-
-    public static void setGhostView(@NonNull View view, @Nullable GhostViewPort ghostViewPort) {
-        view.setTag(C0658R.id.ghost_view, ghostViewPort);
-    }
-
     @Override // android.view.ViewGroup, android.view.View
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -151,10 +136,25 @@ public class GhostViewPort extends ViewGroup implements GhostView {
     public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
     }
 
+    public static void removeGhost(View view) {
+        GhostViewPort ghostView = getGhostView(view);
+        if (ghostView != null) {
+            int i = ghostView.mReferences - 1;
+            ghostView.mReferences = i;
+            if (i <= 0) {
+                ((GhostViewHolder) ghostView.getParent()).removeView(ghostView);
+            }
+        }
+    }
+
     @Override // androidx.transition.GhostView
     public void reserveEndViewTransition(ViewGroup viewGroup, View view) {
         this.mStartParent = viewGroup;
         this.mStartView = view;
+    }
+
+    public static void setGhostView(@NonNull View view, @Nullable GhostViewPort ghostViewPort) {
+        view.setTag(C0658R.id.ghost_view, ghostViewPort);
     }
 
     public void setMatrix(@NonNull Matrix matrix) {

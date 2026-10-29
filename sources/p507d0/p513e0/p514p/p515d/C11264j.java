@@ -61,7 +61,7 @@ public final class C11264j extends AbstractC11256f<Object> implements InterfaceC
 
     /* JADX INFO: renamed from: d0.e0.p.d.j$a */
     /* JADX INFO: compiled from: KFunctionImpl.kt */
-    public static final class a extends AbstractC12240o implements Function0<InterfaceC11272d<? extends Member>> {
+    public final class a extends AbstractC12240o implements Function0<InterfaceC11272d<? extends Member>> {
         public a() {
             super(0);
         }
@@ -128,7 +128,7 @@ public final class C11264j extends AbstractC11256f<Object> implements InterfaceC
 
     /* JADX INFO: renamed from: d0.e0.p.d.j$b */
     /* JADX INFO: compiled from: KFunctionImpl.kt */
-    public static final class b extends AbstractC12240o implements Function0<InterfaceC11272d<? extends Member>> {
+    public final class b extends AbstractC12240o implements Function0<InterfaceC11272d<? extends Member>> {
         public b() {
             super(0);
         }
@@ -200,7 +200,7 @@ public final class C11264j extends AbstractC11256f<Object> implements InterfaceC
 
     /* JADX INFO: renamed from: d0.e0.p.d.j$c */
     /* JADX INFO: compiled from: KFunctionImpl.kt */
-    public static final class c extends AbstractC12240o implements Function0<InterfaceC11472x> {
+    public final class c extends AbstractC12240o implements Function0<InterfaceC11472x> {
         public final /* synthetic */ String $name;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

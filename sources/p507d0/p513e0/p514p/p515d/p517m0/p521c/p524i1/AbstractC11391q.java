@@ -138,7 +138,7 @@ public abstract class AbstractC11391q extends AbstractC11383l implements Interfa
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.c.i1.q$b */
     /* JADX INFO: compiled from: FunctionDescriptorImpl.java */
-    public static class b implements Function0<List<InterfaceC11329d1>> {
+    public final class b implements Function0<List<InterfaceC11329d1>> {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ List f22949j;
@@ -278,6 +278,11 @@ public abstract class AbstractC11391q extends AbstractC11383l implements Interfa
             this.f22957h = interfaceC11459q0;
             this.f22959j = abstractC11913c0;
             this.f22960k = c11716e;
+        }
+
+        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x.a
+        public InterfaceC11472x build() {
+            return this.f22972w.mo9374c(this);
         }
 
         /* JADX INFO: renamed from: a */
@@ -619,11 +624,6 @@ public abstract class AbstractC11391q extends AbstractC11383l implements Interfa
             }
         }
 
-        @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x.a
-        public InterfaceC11472x build() {
-            return this.f22972w.mo9374c(this);
-        }
-
         public c setHasSynthesizedParameterNames(boolean z2) {
             this.f22970u = Boolean.valueOf(z2);
             return this;
@@ -841,6 +841,225 @@ public abstract class AbstractC11391q extends AbstractC11383l implements Interfa
         this.f22933L = null;
         this.f22930I = interfaceC11472x == null ? this : interfaceC11472x;
         this.f22931J = aVar;
+    }
+
+    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
+        return interfaceC11454o.visitFunctionDescriptor(this, d);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public InterfaceC11459q0 getDispatchReceiverParameter() {
+        return this.f22938r;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public InterfaceC11459q0 getExtensionReceiverParameter() {
+        return this.f22937q;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public InterfaceC11472x getInitialSignatureDescriptor() {
+        return this.f22932K;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b
+    public InterfaceC11321b.a getKind() {
+        InterfaceC11321b.a aVar = this.f22931J;
+        if (aVar != null) {
+            return aVar;
+        }
+        m9424a(19);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public EnumC11476z getModality() {
+        EnumC11476z enumC11476z = this.f22939s;
+        if (enumC11476z != null) {
+            return enumC11476z;
+        }
+        m9424a(13);
+        throw null;
+    }
+
+    public Collection<? extends InterfaceC11472x> getOverriddenDescriptors() {
+        Function0<Collection<InterfaceC11472x>> function0 = this.f22929H;
+        if (function0 != null) {
+            this.f22928G = function0.invoke();
+            this.f22929H = null;
+        }
+        Collection<? extends InterfaceC11472x> collectionEmptyList = this.f22928G;
+        if (collectionEmptyList == null) {
+            collectionEmptyList = Collections.emptyList();
+        }
+        if (collectionEmptyList != null) {
+            return collectionEmptyList;
+        }
+        m9424a(12);
+        throw null;
+    }
+
+    public AbstractC11913c0 getReturnType() {
+        return this.f22936p;
+    }
+
+    public static List<InterfaceC11326c1> getSubstitutedValueParameters(InterfaceC11472x interfaceC11472x, List<InterfaceC11326c1> list, C11914c1 c11914c1) {
+        if (list == null) {
+            m9424a(26);
+            throw null;
+        }
+        if (c11914c1 != null) {
+            return getSubstitutedValueParameters(interfaceC11472x, list, c11914c1, false, false, null);
+        }
+        m9424a(27);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public List<InterfaceC11477z0> getTypeParameters() {
+        List<InterfaceC11477z0> list = this.f22934n;
+        if (list != null) {
+            return list;
+        }
+        throw new IllegalStateException("typeParameters == null for " + this);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public <V> V getUserData(InterfaceC11318a.a<V> aVar) {
+        Map<InterfaceC11318a.a<?>, Object> map = this.f22933L;
+        if (map == null) {
+            return null;
+        }
+        return (V) map.get(aVar);
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public List<InterfaceC11326c1> getValueParameters() {
+        List<InterfaceC11326c1> list = this.f22935o;
+        if (list != null) {
+            return list;
+        }
+        m9424a(17);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public AbstractC11466u getVisibility() {
+        AbstractC11466u abstractC11466u = this.f22940t;
+        if (abstractC11466u != null) {
+            return abstractC11466u;
+        }
+        m9424a(14);
+        throw null;
+    }
+
+    public boolean hasStableParameterNames() {
+        return this.f22926E;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
+    public boolean hasSynthesizedParameterNames() {
+        return this.f22927F;
+    }
+
+    public AbstractC11391q initialize(InterfaceC11459q0 interfaceC11459q0, InterfaceC11459q0 interfaceC11459q1, List<? extends InterfaceC11477z0> list, List<InterfaceC11326c1> list2, AbstractC11913c0 abstractC11913c0, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u) {
+        if (list == null) {
+            m9424a(5);
+            throw null;
+        }
+        if (list2 == null) {
+            m9424a(6);
+            throw null;
+        }
+        if (abstractC11466u == null) {
+            m9424a(7);
+            throw null;
+        }
+        this.f22934n = C12163u.toList(list);
+        this.f22935o = C12163u.toList(list2);
+        this.f22936p = abstractC11913c0;
+        this.f22939s = enumC11476z;
+        this.f22940t = abstractC11466u;
+        this.f22937q = interfaceC11459q0;
+        this.f22938r = interfaceC11459q1;
+        for (int i = 0; i < list.size(); i++) {
+            InterfaceC11477z0 interfaceC11477z0 = list.get(i);
+            if (interfaceC11477z0.getIndex() != i) {
+                throw new IllegalStateException(interfaceC11477z0 + " index is " + interfaceC11477z0.getIndex() + " but position is " + i);
+            }
+        }
+        for (int i2 = 0; i2 < list2.size(); i2++) {
+            InterfaceC11326c1 interfaceC11326c1 = list2.get(i2);
+            if (interfaceC11326c1.getIndex() != i2 + 0) {
+                throw new IllegalStateException(interfaceC11326c1 + "index is " + interfaceC11326c1.getIndex() + " but position is " + i2);
+            }
+        }
+        return this;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isActual() {
+        return this.f22922A;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isExpect() {
+        return this.f22946z;
+    }
+
+    public boolean isExternal() {
+        return this.f22943w;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isHiddenForResolutionEverywhereBesideSupercalls() {
+        return this.f22924C;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isHiddenToOvercomeSignatureClash() {
+        return this.f22923B;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isInfix() {
+        if (this.f22942v) {
+            return true;
+        }
+        Iterator<? extends InterfaceC11472x> it = getOriginal().getOverriddenDescriptors().iterator();
+        while (it.hasNext()) {
+            if (it.next().isInfix()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isInline() {
+        return this.f22944x;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isOperator() {
+        if (this.f22941u) {
+            return true;
+        }
+        Iterator<? extends InterfaceC11472x> it = getOriginal().getOverriddenDescriptors().iterator();
+        while (it.hasNext()) {
+            if (it.next().isOperator()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
+    public boolean isSuspend() {
+        return this.f22925D;
+    }
+
+    public boolean isTailrec() {
+        return this.f22945y;
     }
 
     /* JADX INFO: renamed from: a */
@@ -1080,20 +1299,13 @@ public abstract class AbstractC11391q extends AbstractC11383l implements Interfa
         }
     }
 
-    public static List<InterfaceC11326c1> getSubstitutedValueParameters(InterfaceC11472x interfaceC11472x, List<InterfaceC11326c1> list, C11914c1 c11914c1) {
-        if (list == null) {
-            m9424a(26);
-            throw null;
-        }
+    /* JADX INFO: renamed from: d */
+    public c m9425d(C11914c1 c11914c1) {
         if (c11914c1 != null) {
-            return getSubstitutedValueParameters(interfaceC11472x, list, c11914c1, false, false, null);
+            return new c(this, c11914c1.getSubstitution(), getContainingDeclaration(), getModality(), getVisibility(), getKind(), getValueParameters(), getExtensionReceiverParameter(), getReturnType(), null);
         }
-        m9424a(27);
+        m9424a(22);
         throw null;
-    }
-
-    public <R, D> R accept(InterfaceC11454o<R, D> interfaceC11454o, D d) {
-        return interfaceC11454o.visitFunctionDescriptor(this, d);
     }
 
     /* JADX INFO: renamed from: b */
@@ -1207,218 +1419,6 @@ public abstract class AbstractC11391q extends AbstractC11383l implements Interfa
             }
         }
         return abstractC11391qMo9373b;
-    }
-
-    /* JADX INFO: renamed from: d */
-    public c m9425d(C11914c1 c11914c1) {
-        if (c11914c1 != null) {
-            return new c(this, c11914c1.getSubstitution(), getContainingDeclaration(), getModality(), getVisibility(), getKind(), getValueParameters(), getExtensionReceiverParameter(), getReturnType(), null);
-        }
-        m9424a(22);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public InterfaceC11459q0 getDispatchReceiverParameter() {
-        return this.f22938r;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public InterfaceC11459q0 getExtensionReceiverParameter() {
-        return this.f22937q;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public InterfaceC11472x getInitialSignatureDescriptor() {
-        return this.f22932K;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11321b
-    public InterfaceC11321b.a getKind() {
-        InterfaceC11321b.a aVar = this.f22931J;
-        if (aVar != null) {
-            return aVar;
-        }
-        m9424a(19);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public EnumC11476z getModality() {
-        EnumC11476z enumC11476z = this.f22939s;
-        if (enumC11476z != null) {
-            return enumC11476z;
-        }
-        m9424a(13);
-        throw null;
-    }
-
-    public Collection<? extends InterfaceC11472x> getOverriddenDescriptors() {
-        Function0<Collection<InterfaceC11472x>> function0 = this.f22929H;
-        if (function0 != null) {
-            this.f22928G = function0.invoke();
-            this.f22929H = null;
-        }
-        Collection<? extends InterfaceC11472x> collectionEmptyList = this.f22928G;
-        if (collectionEmptyList == null) {
-            collectionEmptyList = Collections.emptyList();
-        }
-        if (collectionEmptyList != null) {
-            return collectionEmptyList;
-        }
-        m9424a(12);
-        throw null;
-    }
-
-    public AbstractC11913c0 getReturnType() {
-        return this.f22936p;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public List<InterfaceC11477z0> getTypeParameters() {
-        List<InterfaceC11477z0> list = this.f22934n;
-        if (list != null) {
-            return list;
-        }
-        throw new IllegalStateException("typeParameters == null for " + this);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public <V> V getUserData(InterfaceC11318a.a<V> aVar) {
-        Map<InterfaceC11318a.a<?>, Object> map = this.f22933L;
-        if (map == null) {
-            return null;
-        }
-        return (V) map.get(aVar);
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public List<InterfaceC11326c1> getValueParameters() {
-        List<InterfaceC11326c1> list = this.f22935o;
-        if (list != null) {
-            return list;
-        }
-        m9424a(17);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public AbstractC11466u getVisibility() {
-        AbstractC11466u abstractC11466u = this.f22940t;
-        if (abstractC11466u != null) {
-            return abstractC11466u;
-        }
-        m9424a(14);
-        throw null;
-    }
-
-    public boolean hasStableParameterNames() {
-        return this.f22926E;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11318a
-    public boolean hasSynthesizedParameterNames() {
-        return this.f22927F;
-    }
-
-    public AbstractC11391q initialize(InterfaceC11459q0 interfaceC11459q0, InterfaceC11459q0 interfaceC11459q1, List<? extends InterfaceC11477z0> list, List<InterfaceC11326c1> list2, AbstractC11913c0 abstractC11913c0, EnumC11476z enumC11476z, AbstractC11466u abstractC11466u) {
-        if (list == null) {
-            m9424a(5);
-            throw null;
-        }
-        if (list2 == null) {
-            m9424a(6);
-            throw null;
-        }
-        if (abstractC11466u == null) {
-            m9424a(7);
-            throw null;
-        }
-        this.f22934n = C12163u.toList(list);
-        this.f22935o = C12163u.toList(list2);
-        this.f22936p = abstractC11913c0;
-        this.f22939s = enumC11476z;
-        this.f22940t = abstractC11466u;
-        this.f22937q = interfaceC11459q0;
-        this.f22938r = interfaceC11459q1;
-        for (int i = 0; i < list.size(); i++) {
-            InterfaceC11477z0 interfaceC11477z0 = list.get(i);
-            if (interfaceC11477z0.getIndex() != i) {
-                throw new IllegalStateException(interfaceC11477z0 + " index is " + interfaceC11477z0.getIndex() + " but position is " + i);
-            }
-        }
-        for (int i2 = 0; i2 < list2.size(); i2++) {
-            InterfaceC11326c1 interfaceC11326c1 = list2.get(i2);
-            if (interfaceC11326c1.getIndex() != i2 + 0) {
-                throw new IllegalStateException(interfaceC11326c1 + "index is " + interfaceC11326c1.getIndex() + " but position is " + i2);
-            }
-        }
-        return this;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isActual() {
-        return this.f22922A;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isExpect() {
-        return this.f22946z;
-    }
-
-    public boolean isExternal() {
-        return this.f22943w;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isHiddenForResolutionEverywhereBesideSupercalls() {
-        return this.f22924C;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isHiddenToOvercomeSignatureClash() {
-        return this.f22923B;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isInfix() {
-        if (this.f22942v) {
-            return true;
-        }
-        Iterator<? extends InterfaceC11472x> it = getOriginal().getOverriddenDescriptors().iterator();
-        while (it.hasNext()) {
-            if (it.next().isInfix()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isInline() {
-        return this.f22944x;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isOperator() {
-        if (this.f22941u) {
-            return true;
-        }
-        Iterator<? extends InterfaceC11472x> it = getOriginal().getOverriddenDescriptors().iterator();
-        while (it.hasNext()) {
-            if (it.next().isOperator()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11472x
-    public boolean isSuspend() {
-        return this.f22925D;
-    }
-
-    public boolean isTailrec() {
-        return this.f22945y;
     }
 
     public InterfaceC11472x.a<? extends InterfaceC11472x> newCopyBuilder() {

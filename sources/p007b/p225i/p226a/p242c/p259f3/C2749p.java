@@ -26,14 +26,14 @@ public final class C2749p<T> {
     /* JADX INFO: renamed from: d */
     public final CopyOnWriteArraySet<c<T>> f6739d;
 
+    /* JADX INFO: renamed from: g */
+    public boolean f6742g;
+
     /* JADX INFO: renamed from: e */
     public final ArrayDeque<Runnable> f6740e = new ArrayDeque<>();
 
     /* JADX INFO: renamed from: f */
     public final ArrayDeque<Runnable> f6741f = new ArrayDeque<>();
-
-    /* JADX INFO: renamed from: g */
-    public boolean f6742g;
 
     /* JADX INFO: renamed from: b.i.a.c.f3.p$a */
     /* JADX INFO: compiled from: ListenerSet.java */
@@ -46,41 +46,6 @@ public final class C2749p<T> {
     public interface b<T> {
         /* JADX INFO: renamed from: a */
         void mo3037a(T t, C2747n c2747n);
-    }
-
-    /* JADX INFO: renamed from: b.i.a.c.f3.p$c */
-    /* JADX INFO: compiled from: ListenerSet.java */
-    public static final class c<T> {
-
-        /* JADX INFO: renamed from: a */
-        public final T f6743a;
-
-        /* JADX INFO: renamed from: b */
-        public C2747n.b f6744b = new C2747n.b();
-
-        /* JADX INFO: renamed from: c */
-        public boolean f6745c;
-
-        /* JADX INFO: renamed from: d */
-        public boolean f6746d;
-
-        public c(T t) {
-            this.f6743a = t;
-        }
-
-        public boolean equals(@Nullable Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || c.class != obj.getClass()) {
-                return false;
-            }
-            return this.f6743a.equals(((c) obj).f6743a);
-        }
-
-        public int hashCode() {
-            return this.f6743a.hashCode();
-        }
     }
 
     public C2749p(CopyOnWriteArraySet<c<T>> copyOnWriteArraySet, Looper looper, InterfaceC2740g interfaceC2740g, b<T> bVar) {
@@ -176,5 +141,40 @@ public final class C2749p<T> {
         }
         this.f6739d.clear();
         this.f6742g = true;
+    }
+
+    /* JADX INFO: renamed from: b.i.a.c.f3.p$c */
+    /* JADX INFO: compiled from: ListenerSet.java */
+    public final class c<T> {
+
+        /* JADX INFO: renamed from: a */
+        public final T f6743a;
+
+        /* JADX INFO: renamed from: c */
+        public boolean f6745c;
+
+        /* JADX INFO: renamed from: d */
+        public boolean f6746d;
+
+        /* JADX INFO: renamed from: b */
+        public C2747n.b f6744b = new C2747n.b();
+
+        public c(T t) {
+            this.f6743a = t;
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || c.class != obj.getClass()) {
+                return false;
+            }
+            return this.f6743a.equals(((c) obj).f6743a);
+        }
+
+        public int hashCode() {
+            return this.f6743a.hashCode();
+        }
     }
 }

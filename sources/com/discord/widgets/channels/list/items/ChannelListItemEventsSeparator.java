@@ -8,10 +8,7 @@ public final class ChannelListItemEventsSeparator implements ChannelListItem {
     private final int type = 14;
 
     public ChannelListItemEventsSeparator(boolean z2) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(z2);
-        this.key = sb.toString();
+        this.key = "" + getType() + z2;
     }
 
     @Override // com.discord.widgets.channels.list.items.ChannelListItem, com.discord.utilities.mg_recycler.MGRecyclerDataPayload, com.discord.utilities.recycler.DiffKeyProvider

@@ -9,21 +9,15 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNuoTransition.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNuoTransition implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Boolean back = null;
     private final CharSequence flowType = null;
     private final CharSequence fromStep = null;
-    private final CharSequence toStep = null;
-    private final Boolean skip = null;
     private final Float secondsOnFromStep = null;
+    private final Boolean skip = null;
     private final Boolean skipAttempt = null;
-    private final Boolean back = null;
+    private final CharSequence toStep = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "nuo_transition";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -34,6 +28,12 @@ public final /* data */ class TrackNuoTransition implements AnalyticsSchema, Tra
         }
         TrackNuoTransition trackNuoTransition = (TrackNuoTransition) other;
         return C12238m.areEqual(this.flowType, trackNuoTransition.flowType) && C12238m.areEqual(this.fromStep, trackNuoTransition.fromStep) && C12238m.areEqual(this.toStep, trackNuoTransition.toStep) && C12238m.areEqual(this.skip, trackNuoTransition.skip) && C12238m.areEqual(this.secondsOnFromStep, trackNuoTransition.secondsOnFromStep) && C12238m.areEqual(this.skipAttempt, trackNuoTransition.skipAttempt) && C12238m.areEqual(this.back, trackNuoTransition.back);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

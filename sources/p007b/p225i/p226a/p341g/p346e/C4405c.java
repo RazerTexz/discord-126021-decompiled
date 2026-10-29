@@ -109,23 +109,6 @@ public class C4405c extends Drawable {
         paint.setStyle(Paint.Style.STROKE);
     }
 
-    @NonNull
-    /* JADX INFO: renamed from: a */
-    public RectF m6083a() {
-        this.f11633f.set(getBounds());
-        return this.f11633f;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public void m6084b(@Nullable ColorStateList colorStateList) {
-        if (colorStateList != null) {
-            this.f11640m = colorStateList.getColorForState(getState(), this.f11640m);
-        }
-        this.f11643p = colorStateList;
-        this.f11641n = true;
-        invalidateSelf();
-    }
-
     @Override // android.graphics.drawable.Drawable
     public void draw(@NonNull Canvas canvas) {
         if (this.f11641n) {
@@ -186,6 +169,23 @@ public class C4405c extends Drawable {
     public boolean isStateful() {
         ColorStateList colorStateList = this.f11643p;
         return (colorStateList != null && colorStateList.isStateful()) || super.isStateful();
+    }
+
+    @NonNull
+    /* JADX INFO: renamed from: a */
+    public RectF m6083a() {
+        this.f11633f.set(getBounds());
+        return this.f11633f;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void m6084b(@Nullable ColorStateList colorStateList) {
+        if (colorStateList != null) {
+            this.f11640m = colorStateList.getColorForState(getState(), this.f11640m);
+        }
+        this.f11643p = colorStateList;
+        this.f11641n = true;
+        invalidateSelf();
     }
 
     @Override // android.graphics.drawable.Drawable

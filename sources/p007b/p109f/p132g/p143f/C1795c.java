@@ -33,23 +33,6 @@ public class C1795c {
     /* JADX INFO: renamed from: h */
     public boolean f3478h = false;
 
-    /* JADX INFO: renamed from: a */
-    public static C1795c m1124a(float f) {
-        C1795c c1795c = new C1795c();
-        if (c1795c.f3473c == null) {
-            c1795c.f3473c = new float[8];
-        }
-        Arrays.fill(c1795c.f3473c, f);
-        return c1795c;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public C1795c m1125b(@ColorInt int i) {
-        this.f3474d = i;
-        this.f3471a = 1;
-        return this;
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -73,5 +56,22 @@ public class C1795c {
         int iFloatToIntBits = (((iHashCode + (f != 0.0f ? Float.floatToIntBits(f) : 0)) * 31) + this.f3476f) * 31;
         float f2 = this.f3477g;
         return ((((iFloatToIntBits + (f2 != 0.0f ? Float.floatToIntBits(f2) : 0)) * 31) + 0) * 31) + (this.f3478h ? 1 : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public static C1795c m1124a(float f) {
+        C1795c c1795c = new C1795c();
+        if (c1795c.f3473c == null) {
+            c1795c.f3473c = new float[8];
+        }
+        Arrays.fill(c1795c.f3473c, f);
+        return c1795c;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public C1795c m1125b(@ColorInt int i) {
+        this.f3474d = i;
+        this.f3471a = 1;
+        return this;
     }
 }

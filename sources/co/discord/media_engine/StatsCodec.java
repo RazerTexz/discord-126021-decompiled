@@ -26,16 +26,6 @@ public final /* data */ class StatsCodec {
         return statsCodec.copy(i, str);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
     public final StatsCodec copy(int id2, String name) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new StatsCodec(id2, name);
@@ -52,8 +42,18 @@ public final /* data */ class StatsCodec {
         return this.id == statsCodec.id && C12238m.areEqual(this.name, statsCodec.name);
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final int getId() {
         return this.id;
+    }
+
+    public final int getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

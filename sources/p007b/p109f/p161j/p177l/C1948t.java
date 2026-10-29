@@ -24,19 +24,6 @@ public class C1948t implements PooledByteBuffer {
         this.f3953j = i;
     }
 
-    /* JADX INFO: renamed from: a */
-    public synchronized void m1394a() {
-        try {
-            synchronized (this) {
-            }
-        } catch (Throwable th) {
-            throw th;
-        }
-        if (!CloseableReference.m8640y(this.f3954k)) {
-            throw new PooledByteBuffer.ClosedException();
-        }
-    }
-
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public synchronized void close() {
         CloseableReference<InterfaceC1946r> closeableReference = this.f3954k;
@@ -50,6 +37,24 @@ public class C1948t implements PooledByteBuffer {
     @Override // com.facebook.common.memory.PooledByteBuffer
     public synchronized ByteBuffer getByteBuffer() {
         return this.f3954k.m8642u().getByteBuffer();
+    }
+
+    @Override // com.facebook.common.memory.PooledByteBuffer
+    public synchronized boolean isClosed() {
+        return !CloseableReference.m8640y(this.f3954k);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public synchronized void m1394a() {
+        try {
+            synchronized (this) {
+            }
+        } catch (Throwable th) {
+            throw th;
+        }
+        if (!CloseableReference.m8640y(this.f3954k)) {
+            throw new PooledByteBuffer.ClosedException();
+        }
     }
 
     @Override // com.facebook.common.memory.PooledByteBuffer
@@ -71,11 +76,6 @@ public class C1948t implements PooledByteBuffer {
         m1394a();
         C1460d.m527i(Boolean.valueOf(i + i3 <= this.f3953j));
         return this.f3954k.m8642u().mo1369i(i, bArr, i2, i3);
-    }
-
-    @Override // com.facebook.common.memory.PooledByteBuffer
-    public synchronized boolean isClosed() {
-        return !CloseableReference.m8640y(this.f3954k);
     }
 
     @Override // com.facebook.common.memory.PooledByteBuffer

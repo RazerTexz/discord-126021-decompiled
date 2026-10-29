@@ -35,6 +35,13 @@ import com.google.android.material.theme.overlay.MaterialThemeOverlay;
 /* JADX INFO: loaded from: classes3.dex */
 public class MaterialAlertDialogBuilder extends AlertDialog.Builder {
 
+    @Nullable
+    private Drawable background;
+
+    @NonNull
+    @Dimension
+    private final Rect backgroundInsets;
+
     @AttrRes
     private static final int DEF_STYLE_ATTR = C10817R.attr.alertDialogStyle;
 
@@ -44,33 +51,8 @@ public class MaterialAlertDialogBuilder extends AlertDialog.Builder {
     @AttrRes
     private static final int MATERIAL_ALERT_DIALOG_THEME_OVERLAY = C10817R.attr.materialAlertDialogTheme;
 
-    @Nullable
-    private Drawable background;
-
-    @NonNull
-    @Dimension
-    private final Rect backgroundInsets;
-
     public MaterialAlertDialogBuilder(@NonNull Context context) {
         this(context, 0);
-    }
-
-    private static Context createMaterialAlertDialogThemedContext(@NonNull Context context) {
-        int materialAlertDialogThemeOverlay = getMaterialAlertDialogThemeOverlay(context);
-        Context contextWrap = MaterialThemeOverlay.wrap(context, null, DEF_STYLE_ATTR, DEF_STYLE_RES);
-        return materialAlertDialogThemeOverlay == 0 ? contextWrap : new ContextThemeWrapper(contextWrap, materialAlertDialogThemeOverlay);
-    }
-
-    private static int getMaterialAlertDialogThemeOverlay(@NonNull Context context) {
-        TypedValue typedValueResolve = MaterialAttributes.resolve(context, MATERIAL_ALERT_DIALOG_THEME_OVERLAY);
-        if (typedValueResolve == null) {
-            return 0;
-        }
-        return typedValueResolve.data;
-    }
-
-    private static int getOverridingThemeResId(@NonNull Context context, int i) {
-        return i == 0 ? getMaterialAlertDialogThemeOverlay(context) : i;
     }
 
     @Override // androidx.appcompat.app.AlertDialog.Builder
@@ -88,9 +70,27 @@ public class MaterialAlertDialogBuilder extends AlertDialog.Builder {
         return alertDialogCreate;
     }
 
+    private static Context createMaterialAlertDialogThemedContext(@NonNull Context context) {
+        int materialAlertDialogThemeOverlay = getMaterialAlertDialogThemeOverlay(context);
+        Context contextWrap = MaterialThemeOverlay.wrap(context, null, DEF_STYLE_ATTR, DEF_STYLE_RES);
+        return materialAlertDialogThemeOverlay == 0 ? contextWrap : new ContextThemeWrapper(contextWrap, materialAlertDialogThemeOverlay);
+    }
+
     @Nullable
     public Drawable getBackground() {
         return this.background;
+    }
+
+    private static int getMaterialAlertDialogThemeOverlay(@NonNull Context context) {
+        TypedValue typedValueResolve = MaterialAttributes.resolve(context, MATERIAL_ALERT_DIALOG_THEME_OVERLAY);
+        if (typedValueResolve == null) {
+            return 0;
+        }
+        return typedValueResolve.data;
+    }
+
+    private static int getOverridingThemeResId(@NonNull Context context, int i) {
+        return i == 0 ? getMaterialAlertDialogThemeOverlay(context) : i;
     }
 
     @NonNull

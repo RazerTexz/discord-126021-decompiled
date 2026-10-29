@@ -27,8 +27,131 @@ public final class StoreMessageState {
     private final Dispatcher dispatcher;
     private final BehaviorSubject<Map<Long, State>> messageStateSubject;
 
+    /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoiler$1 */
     /* JADX INFO: compiled from: StoreMessageState.kt */
-    public static final /* data */ class State {
+    public final class C62211 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ int $spoilerIndex;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoiler$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreMessageState.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<State, State> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public final State invoke(State state) {
+                C12238m.checkNotNullParameter(state, "currentState");
+                return State.copy$default(state, C12150o0.plus(state.getVisibleSpoilerNodeIndices(), Integer.valueOf(C62211.this.$spoilerIndex)), null, 2, null);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C62211(long j, int i) {
+            super(0);
+            this.$messageId = j;
+            this.$spoilerIndex = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreMessageState.this.updateState(this.$messageId, new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbed$1 */
+    /* JADX INFO: compiled from: StoreMessageState.kt */
+    public final class C62221 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ int $spoilerEmbedIndex;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbed$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreMessageState.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<State, State> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public final State invoke(State state) {
+                C12238m.checkNotNullParameter(state, "currentState");
+                return State.copy$default(state, null, C12136h0.plus(state.getVisibleSpoilerEmbedMap(), C12116o.m10073to(Integer.valueOf(C62221.this.$spoilerEmbedIndex), C12148n0.emptySet())), 1, null);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C62221(long j, int i) {
+            super(0);
+            this.$messageId = j;
+            this.$spoilerEmbedIndex = i;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreMessageState.this.updateState(this.$messageId, new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbedData$1 */
+    /* JADX INFO: compiled from: StoreMessageState.kt */
+    public final class C62231 extends AbstractC12240o implements Function0<Unit> {
+        public final /* synthetic */ String $key;
+        public final /* synthetic */ long $messageId;
+        public final /* synthetic */ int $spoilerEmbedIndex;
+
+        /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbedData$1$1, reason: invalid class name */
+        /* JADX INFO: compiled from: StoreMessageState.kt */
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<State, State> {
+            public AnonymousClass1() {
+                super(1);
+            }
+
+            @Override // kotlin.jvm.functions.Function1
+            public final State invoke(State state) {
+                C12238m.checkNotNullParameter(state, "currentState");
+                Set<String> setEmptySet = state.getVisibleSpoilerEmbedMap().get(Integer.valueOf(C62231.this.$spoilerEmbedIndex));
+                if (setEmptySet == null) {
+                    setEmptySet = C12148n0.emptySet();
+                }
+                return State.copy$default(state, null, C12136h0.plus(state.getVisibleSpoilerEmbedMap(), C12116o.m10073to(Integer.valueOf(C62231.this.$spoilerEmbedIndex), C12150o0.plus(setEmptySet, C62231.this.$key))), 1, null);
+            }
+        }
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C62231(long j, int i, String str) {
+            super(0);
+            this.$messageId = j;
+            this.$spoilerEmbedIndex = i;
+            this.$key = str;
+        }
+
+        @Override // kotlin.jvm.functions.Function0
+        public /* bridge */ /* synthetic */ Unit invoke() {
+            invoke2();
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2() {
+            StoreMessageState.this.updateState(this.$messageId, new AnonymousClass1());
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreMessageState.kt */
+    public final /* data */ class State {
         private final Map<Integer, Set<String>> visibleSpoilerEmbedMap;
         private final Set<Integer> visibleSpoilerNodeIndices;
 
@@ -45,6 +168,14 @@ public final class StoreMessageState {
             this.visibleSpoilerEmbedMap = map;
         }
 
+        public final Set<Integer> component1() {
+            return this.visibleSpoilerNodeIndices;
+        }
+
+        public final Map<Integer, Set<String>> component2() {
+            return this.visibleSpoilerEmbedMap;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ State copy$default(State state, Set set, Map map, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -54,14 +185,6 @@ public final class StoreMessageState {
                 map = state.visibleSpoilerEmbedMap;
             }
             return state.copy(set, map);
-        }
-
-        public final Set<Integer> component1() {
-            return this.visibleSpoilerNodeIndices;
-        }
-
-        public final Map<Integer, Set<String>> component2() {
-            return this.visibleSpoilerEmbedMap;
         }
 
         public final State copy(Set<Integer> visibleSpoilerNodeIndices, Map<Integer, ? extends Set<String>> visibleSpoilerEmbedMap) {
@@ -108,168 +231,12 @@ public final class StoreMessageState {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoiler$1 */
-    /* JADX INFO: compiled from: StoreMessageState.kt */
-    public static final class C62211 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ int $spoilerIndex;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoiler$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreMessageState.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<State, State> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public final State invoke(State state) {
-                C12238m.checkNotNullParameter(state, "currentState");
-                return State.copy$default(state, C12150o0.plus(state.getVisibleSpoilerNodeIndices(), Integer.valueOf(C62211.this.$spoilerIndex)), null, 2, null);
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C62211(long j, int i) {
-            super(0);
-            this.$messageId = j;
-            this.$spoilerIndex = i;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreMessageState.this.updateState(this.$messageId, new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbed$1 */
-    /* JADX INFO: compiled from: StoreMessageState.kt */
-    public static final class C62221 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ int $spoilerEmbedIndex;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbed$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreMessageState.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<State, State> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public final State invoke(State state) {
-                C12238m.checkNotNullParameter(state, "currentState");
-                return State.copy$default(state, null, C12136h0.plus(state.getVisibleSpoilerEmbedMap(), C12116o.m10073to(Integer.valueOf(C62221.this.$spoilerEmbedIndex), C12148n0.emptySet())), 1, null);
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C62221(long j, int i) {
-            super(0);
-            this.$messageId = j;
-            this.$spoilerEmbedIndex = i;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreMessageState.this.updateState(this.$messageId, new AnonymousClass1());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbedData$1 */
-    /* JADX INFO: compiled from: StoreMessageState.kt */
-    public static final class C62231 extends AbstractC12240o implements Function0<Unit> {
-        public final /* synthetic */ String $key;
-        public final /* synthetic */ long $messageId;
-        public final /* synthetic */ int $spoilerEmbedIndex;
-
-        /* JADX INFO: renamed from: com.discord.stores.StoreMessageState$revealSpoilerEmbedData$1$1, reason: invalid class name */
-        /* JADX INFO: compiled from: StoreMessageState.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<State, State> {
-            public AnonymousClass1() {
-                super(1);
-            }
-
-            @Override // kotlin.jvm.functions.Function1
-            public final State invoke(State state) {
-                C12238m.checkNotNullParameter(state, "currentState");
-                Set<String> setEmptySet = state.getVisibleSpoilerEmbedMap().get(Integer.valueOf(C62231.this.$spoilerEmbedIndex));
-                if (setEmptySet == null) {
-                    setEmptySet = C12148n0.emptySet();
-                }
-                return State.copy$default(state, null, C12136h0.plus(state.getVisibleSpoilerEmbedMap(), C12116o.m10073to(Integer.valueOf(C62231.this.$spoilerEmbedIndex), C12150o0.plus(setEmptySet, C62231.this.$key))), 1, null);
-            }
-        }
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C62231(long j, int i, String str) {
-            super(0);
-            this.$messageId = j;
-            this.$spoilerEmbedIndex = i;
-            this.$key = str;
-        }
-
-        @Override // kotlin.jvm.functions.Function0
-        public /* bridge */ /* synthetic */ Unit invoke() {
-            invoke2();
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2() {
-            StoreMessageState.this.updateState(this.$messageId, new AnonymousClass1());
-        }
-    }
-
     public StoreMessageState(Dispatcher dispatcher) {
         C12238m.checkNotNullParameter(dispatcher, "dispatcher");
         this.dispatcher = dispatcher;
         BehaviorSubject<Map<Long, State>> behaviorSubjectM11130l0 = BehaviorSubject.m11130l0(C12136h0.emptyMap());
         C12238m.checkNotNullExpressionValue(behaviorSubjectM11130l0, "BehaviorSubject.create(emptyMap())");
         this.messageStateSubject = behaviorSubjectM11130l0;
-    }
-
-    @StoreThread
-    private final void resetState(List<Long> messagesList) {
-        Map<Long, State> mapM11132n0 = this.messageStateSubject.m11132n0();
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : messagesList) {
-            long jLongValue = ((Number) obj).longValue();
-            C12238m.checkNotNullExpressionValue(mapM11132n0, "messageStateMap");
-            if (mapM11132n0.containsKey(Long.valueOf(jLongValue))) {
-                arrayList.add(obj);
-            }
-        }
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        BehaviorSubject<Map<Long, State>> behaviorSubject = this.messageStateSubject;
-        C12238m.checkNotNullExpressionValue(mapM11132n0, "messageStateMap");
-        behaviorSubject.onNext(C12136h0.minus((Map) mapM11132n0, (Iterable) arrayList));
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    @StoreThread
-    private final void updateState(long messageId, Function1<? super State, State> updateFunction) {
-        Map<Long, State> mapM11132n0 = this.messageStateSubject.m11132n0();
-        State state = mapM11132n0.get(Long.valueOf(messageId));
-        if (state == null) {
-            state = new State(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
-        }
-        State stateInvoke = updateFunction.invoke(state);
-        BehaviorSubject<Map<Long, State>> behaviorSubject = this.messageStateSubject;
-        C12238m.checkNotNullExpressionValue(mapM11132n0, "messageStateMap");
-        behaviorSubject.onNext(C12136h0.plus(mapM11132n0, C12116o.m10073to(Long.valueOf(messageId), stateInvoke)));
     }
 
     public final Observable<Map<Long, State>> getMessageState() {
@@ -297,6 +264,25 @@ public final class StoreMessageState {
         resetState(C12145m.listOf(Long.valueOf(message.getId())));
     }
 
+    @StoreThread
+    private final void resetState(List<Long> messagesList) {
+        Map<Long, State> mapM11132n0 = this.messageStateSubject.m11132n0();
+        ArrayList arrayList = new ArrayList();
+        for (Object obj : messagesList) {
+            long jLongValue = ((Number) obj).longValue();
+            C12238m.checkNotNullExpressionValue(mapM11132n0, "messageStateMap");
+            if (mapM11132n0.containsKey(Long.valueOf(jLongValue))) {
+                arrayList.add(obj);
+            }
+        }
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        BehaviorSubject<Map<Long, State>> behaviorSubject = this.messageStateSubject;
+        C12238m.checkNotNullExpressionValue(mapM11132n0, "messageStateMap");
+        behaviorSubject.onNext(C12136h0.minus((Map) mapM11132n0, (Iterable) arrayList));
+    }
+
     public final void revealSpoiler(long messageId, int spoilerIndex) {
         if (spoilerIndex < 0) {
             return;
@@ -317,5 +303,19 @@ public final class StoreMessageState {
             return;
         }
         this.dispatcher.schedule(new C62231(messageId, spoilerEmbedIndex, key));
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    @StoreThread
+    private final void updateState(long messageId, Function1<? super State, State> updateFunction) {
+        Map<Long, State> mapM11132n0 = this.messageStateSubject.m11132n0();
+        State state = mapM11132n0.get(Long.valueOf(messageId));
+        if (state == null) {
+            state = new State(null, 0 == true ? 1 : 0, 3, 0 == true ? 1 : 0);
+        }
+        State stateInvoke = updateFunction.invoke(state);
+        BehaviorSubject<Map<Long, State>> behaviorSubject = this.messageStateSubject;
+        C12238m.checkNotNullExpressionValue(mapM11132n0, "messageStateMap");
+        behaviorSubject.onNext(C12136h0.plus(mapM11132n0, C12116o.m10073to(Long.valueOf(messageId), stateInvoke)));
     }
 }

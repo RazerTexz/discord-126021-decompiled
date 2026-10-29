@@ -10,7 +10,7 @@ public interface InterfaceC12512e<R, T> {
 
     /* JADX INFO: renamed from: i0.e$a */
     /* JADX INFO: compiled from: CallAdapter.java */
-    public static abstract class a {
+    public abstract class a {
         /* JADX INFO: renamed from: a */
         public abstract InterfaceC12512e<?, ?> mo10707a(Type type, Annotation[] annotationArr, C12571y c12571y);
     }

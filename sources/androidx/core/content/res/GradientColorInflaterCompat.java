@@ -120,7 +120,7 @@ public final class GradientColorInflaterCompat {
         return Shader.TileMode.REPEAT;
     }
 
-    public static final class ColorStops {
+    public final class ColorStops {
         public final int[] mColors;
         public final float[] mOffsets;
 

@@ -9,33 +9,27 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNotificationRendered.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNotificationRendered implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Boolean hasCache = null;
-    private final Boolean messageInPushPayload = null;
-    private final Long coldStartDurationMs = null;
-    private final Long cachedRenderDurationMs = null;
     private final Long anyNewerMessagesRenderDurationMs = null;
-    private final Long loadedMessagesRenderDurationMs = null;
-    private final Long fullRenderDurationMs = null;
-    private final Long cacheLoadDurationMs = null;
-    private final Long fullCacheLoadDurationMs = null;
-    private final Long connectionPreOpenDurationMs = null;
-    private final Long connectionOpenDurationMs = null;
-    private final Long connectionResumeDurationMs = null;
-    private final Long onlineDurationMs = null;
-    private final Long firstMessageFetchStartDurationMs = null;
-    private final Long firstMessageFetchEndDurationMs = null;
-    private final CharSequence initialAppState = null;
     private final Long appActiveDurationMs = null;
-    private final Long appInactiveDurationMs = null;
     private final Long appBackgroundedDurationMs = null;
+    private final Long appInactiveDurationMs = null;
+    private final Long cacheLoadDurationMs = null;
+    private final Long cachedRenderDurationMs = null;
+    private final Long coldStartDurationMs = null;
+    private final Long connectionOpenDurationMs = null;
+    private final Long connectionPreOpenDurationMs = null;
+    private final Long connectionResumeDurationMs = null;
+    private final Long firstMessageFetchEndDurationMs = null;
+    private final Long firstMessageFetchStartDurationMs = null;
+    private final Long fullCacheLoadDurationMs = null;
+    private final Long fullRenderDurationMs = null;
+    private final Boolean hasCache = null;
+    private final CharSequence initialAppState = null;
+    private final Long loadedMessagesRenderDurationMs = null;
+    private final Boolean messageInPushPayload = null;
+    private final Long onlineDurationMs = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "notification_rendered";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -46,6 +40,12 @@ public final /* data */ class TrackNotificationRendered implements AnalyticsSche
         }
         TrackNotificationRendered trackNotificationRendered = (TrackNotificationRendered) other;
         return C12238m.areEqual(this.hasCache, trackNotificationRendered.hasCache) && C12238m.areEqual(this.messageInPushPayload, trackNotificationRendered.messageInPushPayload) && C12238m.areEqual(this.coldStartDurationMs, trackNotificationRendered.coldStartDurationMs) && C12238m.areEqual(this.cachedRenderDurationMs, trackNotificationRendered.cachedRenderDurationMs) && C12238m.areEqual(this.anyNewerMessagesRenderDurationMs, trackNotificationRendered.anyNewerMessagesRenderDurationMs) && C12238m.areEqual(this.loadedMessagesRenderDurationMs, trackNotificationRendered.loadedMessagesRenderDurationMs) && C12238m.areEqual(this.fullRenderDurationMs, trackNotificationRendered.fullRenderDurationMs) && C12238m.areEqual(this.cacheLoadDurationMs, trackNotificationRendered.cacheLoadDurationMs) && C12238m.areEqual(this.fullCacheLoadDurationMs, trackNotificationRendered.fullCacheLoadDurationMs) && C12238m.areEqual(this.connectionPreOpenDurationMs, trackNotificationRendered.connectionPreOpenDurationMs) && C12238m.areEqual(this.connectionOpenDurationMs, trackNotificationRendered.connectionOpenDurationMs) && C12238m.areEqual(this.connectionResumeDurationMs, trackNotificationRendered.connectionResumeDurationMs) && C12238m.areEqual(this.onlineDurationMs, trackNotificationRendered.onlineDurationMs) && C12238m.areEqual(this.firstMessageFetchStartDurationMs, trackNotificationRendered.firstMessageFetchStartDurationMs) && C12238m.areEqual(this.firstMessageFetchEndDurationMs, trackNotificationRendered.firstMessageFetchEndDurationMs) && C12238m.areEqual(this.initialAppState, trackNotificationRendered.initialAppState) && C12238m.areEqual(this.appActiveDurationMs, trackNotificationRendered.appActiveDurationMs) && C12238m.areEqual(this.appInactiveDurationMs, trackNotificationRendered.appInactiveDurationMs) && C12238m.areEqual(this.appBackgroundedDurationMs, trackNotificationRendered.appBackgroundedDurationMs);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

@@ -43,7 +43,7 @@ public final class NotificationActions extends BroadcastReceiver {
     private static final String NOTIFICATION_ID = "com.discord.NOTIFICATION_ID";
 
     /* JADX INFO: compiled from: NotificationActions.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -85,6 +85,59 @@ public final class NotificationActions extends BroadcastReceiver {
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
+        }
+    }
+
+    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
+    @RequiresApi(24)
+    public final void enqueue(Context context, Intent intent) throws Throwable {
+        C12238m.checkNotNullParameter(context, "context");
+        C12238m.checkNotNullParameter(intent, "intent");
+        Uri data = intent.getData();
+        if (!C12238m.areEqual(data != null ? data.getAuthority() : null, "action")) {
+            data = null;
+        }
+        if (data != null) {
+            C12238m.checkNotNullExpressionValue(data, "intent.data.takeIf { it?…y == \"action\" } ?: return");
+            String path = data.getPath();
+            if (path != null) {
+                switch (path.hashCode()) {
+                    case -1030684332:
+                        if (path.equals("/channel/mute")) {
+                            enqueueTimedMute(context, intent);
+                            return;
+                        }
+                        break;
+                    case -581403885:
+                        if (path.equals("/message/reply")) {
+                            enqueueDirectReply(context, intent);
+                            return;
+                        }
+                        break;
+                    case 254025278:
+                        if (path.equals("/channel/call/accept")) {
+                            executeCallAction(context, intent, true);
+                            return;
+                        }
+                        break;
+                    case 897701618:
+                        if (path.equals("/message/ack")) {
+                            enqueueAckMessage(context, intent);
+                            return;
+                        }
+                        break;
+                    case 2004820096:
+                        if (path.equals("/channel/call/decline")) {
+                            executeCallAction(context, intent, false);
+                            return;
+                        }
+                        break;
+                }
+            }
+            AppLog appLog = AppLog.f14950g;
+            StringBuilder sbM833U = C1643a.m833U("Unknown work action ");
+            sbM833U.append(data.getPath());
+            Logger.w$default(appLog, sbM833U.toString(), null, 2, null);
         }
     }
 
@@ -216,59 +269,6 @@ public final class NotificationActions extends BroadcastReceiver {
                 WorkManager.getInstance(context).enqueue(oneTimeWorkRequestBuild);
             }
             NotificationClient.clear$default(NotificationClient.INSTANCE, jLongValue, context, false, 4, null);
-        }
-    }
-
-    /* JADX WARN: Failed to restore switch over string. Please report as a decompilation issue */
-    @RequiresApi(24)
-    public final void enqueue(Context context, Intent intent) throws Throwable {
-        C12238m.checkNotNullParameter(context, "context");
-        C12238m.checkNotNullParameter(intent, "intent");
-        Uri data = intent.getData();
-        if (!C12238m.areEqual(data != null ? data.getAuthority() : null, "action")) {
-            data = null;
-        }
-        if (data != null) {
-            C12238m.checkNotNullExpressionValue(data, "intent.data.takeIf { it?…y == \"action\" } ?: return");
-            String path = data.getPath();
-            if (path != null) {
-                switch (path.hashCode()) {
-                    case -1030684332:
-                        if (path.equals("/channel/mute")) {
-                            enqueueTimedMute(context, intent);
-                            return;
-                        }
-                        break;
-                    case -581403885:
-                        if (path.equals("/message/reply")) {
-                            enqueueDirectReply(context, intent);
-                            return;
-                        }
-                        break;
-                    case 254025278:
-                        if (path.equals("/channel/call/accept")) {
-                            executeCallAction(context, intent, true);
-                            return;
-                        }
-                        break;
-                    case 897701618:
-                        if (path.equals("/message/ack")) {
-                            enqueueAckMessage(context, intent);
-                            return;
-                        }
-                        break;
-                    case 2004820096:
-                        if (path.equals("/channel/call/decline")) {
-                            executeCallAction(context, intent, false);
-                            return;
-                        }
-                        break;
-                }
-            }
-            AppLog appLog = AppLog.f14950g;
-            StringBuilder sbM833U = C1643a.m833U("Unknown work action ");
-            sbM833U.append(data.getPath());
-            Logger.w$default(appLog, sbM833U.toString(), null, 2, null);
         }
     }
 

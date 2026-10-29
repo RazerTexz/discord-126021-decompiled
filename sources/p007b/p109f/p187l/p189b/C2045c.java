@@ -18,6 +18,9 @@ public class C2045c implements InterfaceC2047e, C2042b.a {
     /* JADX INFO: renamed from: a */
     public C2042b f4299a;
 
+    /* JADX INFO: renamed from: l */
+    public boolean f4310l;
+
     /* JADX INFO: renamed from: b */
     public InterfaceC2047e.a f4300b = null;
 
@@ -48,9 +51,6 @@ public class C2045c implements InterfaceC2047e, C2042b.a {
     /* JADX INFO: renamed from: k */
     public final RectF f4309k = new RectF();
 
-    /* JADX INFO: renamed from: l */
-    public boolean f4310l;
-
     static {
         new RectF(0.0f, 0.0f, 1.0f, 1.0f);
     }
@@ -63,70 +63,6 @@ public class C2045c implements InterfaceC2047e, C2042b.a {
     /* JADX INFO: renamed from: l */
     public static boolean m1557l(int i, int i2) {
         return (i & i2) != 0;
-    }
-
-    @Override // p007b.p109f.p187l.p189b.InterfaceC2047e
-    /* JADX INFO: renamed from: a */
-    public boolean mo1551a() {
-        this.f4306h.getValues(this.f4308j);
-        float[] fArr = this.f4308j;
-        fArr[0] = fArr[0] - 1.0f;
-        fArr[4] = fArr[4] - 1.0f;
-        fArr[8] = fArr[8] - 1.0f;
-        for (int i = 0; i < 9; i++) {
-            if (Math.abs(this.f4308j[i]) > 0.001f) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public void mo1549b(C2042b c2042b) {
-        float fHypot;
-        C1691a.m981i(C2045c.class, "onGestureUpdate");
-        Matrix matrix = this.f4306h;
-        C2042b c2042b2 = this.f4299a;
-        matrix.set(this.f4305g);
-        C2041a c2041a = c2042b2.f4287a;
-        if (c2041a.f4280b < 2) {
-            fHypot = 1.0f;
-        } else {
-            float[] fArr = c2041a.f4282d;
-            float f = fArr[1] - fArr[0];
-            float[] fArr2 = c2041a.f4283e;
-            float f2 = fArr2[1] - fArr2[0];
-            float[] fArr3 = c2041a.f4284f;
-            float f3 = fArr3[1] - fArr3[0];
-            float[] fArr4 = c2041a.f4285g;
-            fHypot = ((float) Math.hypot(f3, fArr4[1] - fArr4[0])) / ((float) Math.hypot(f, f2));
-        }
-        matrix.postScale(fHypot, fHypot, c2042b2.m1546b(), c2042b2.m1547c());
-        boolean zM1560f = m1560f(matrix, c2042b2.m1546b(), c2042b2.m1547c(), 7) | false;
-        C2041a c2041a2 = c2042b2.f4287a;
-        float fM1545a = c2042b2.m1545a(c2041a2.f4284f, c2041a2.f4280b);
-        C2041a c2041a3 = c2042b2.f4287a;
-        float fM1545a2 = fM1545a - c2042b2.m1545a(c2041a3.f4282d, c2041a3.f4280b);
-        C2041a c2041a4 = c2042b2.f4287a;
-        float fM1545a3 = c2042b2.m1545a(c2041a4.f4285g, c2041a4.f4280b);
-        C2041a c2041a5 = c2042b2.f4287a;
-        matrix.postTranslate(fM1545a2, fM1545a3 - c2042b2.m1545a(c2041a5.f4283e, c2041a5.f4280b));
-        boolean zM1561g = m1561g(matrix, 7) | zM1560f;
-        m1563i();
-        if (zM1561g) {
-            this.f4299a.m1548d();
-        }
-        this.f4310l = zM1561g;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public void mo1550c(C2042b c2042b) {
-        C1691a.m981i(C2045c.class, "onGestureBegin");
-        this.f4305g.set(this.f4306h);
-        RectF rectF = this.f4304f;
-        float f = rectF.left;
-        RectF rectF2 = this.f4302d;
-        this.f4310l = !(f < rectF2.left - 0.001f && rectF.top < rectF2.top - 0.001f && rectF.right > rectF2.right + 0.001f && rectF.bottom > rectF2.bottom + 0.001f);
     }
 
     /* JADX INFO: renamed from: d */
@@ -331,15 +267,6 @@ public class C2045c implements InterfaceC2047e, C2042b.a {
         zoomableDraweeView.invalidate();
     }
 
-    /* JADX INFO: renamed from: j */
-    public void mo1552j() {
-        C1691a.m981i(C2045c.class, ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS_RESET);
-        this.f4299a.f4287a.m1542a();
-        this.f4305g.reset();
-        this.f4306h.reset();
-        m1563i();
-    }
-
     /* JADX INFO: renamed from: k */
     public void m1564k(boolean z2) {
         this.f4301c = z2;
@@ -347,5 +274,78 @@ public class C2045c implements InterfaceC2047e, C2042b.a {
             return;
         }
         mo1552j();
+    }
+
+    /* JADX INFO: renamed from: b */
+    public void mo1549b(C2042b c2042b) {
+        float fHypot;
+        C1691a.m981i(C2045c.class, "onGestureUpdate");
+        Matrix matrix = this.f4306h;
+        C2042b c2042b2 = this.f4299a;
+        matrix.set(this.f4305g);
+        C2041a c2041a = c2042b2.f4287a;
+        if (c2041a.f4280b < 2) {
+            fHypot = 1.0f;
+        } else {
+            float[] fArr = c2041a.f4282d;
+            float f = fArr[1] - fArr[0];
+            float[] fArr2 = c2041a.f4283e;
+            float f2 = fArr2[1] - fArr2[0];
+            float[] fArr3 = c2041a.f4284f;
+            float f3 = fArr3[1] - fArr3[0];
+            float[] fArr4 = c2041a.f4285g;
+            fHypot = ((float) Math.hypot(f3, fArr4[1] - fArr4[0])) / ((float) Math.hypot(f, f2));
+        }
+        matrix.postScale(fHypot, fHypot, c2042b2.m1546b(), c2042b2.m1547c());
+        boolean zM1560f = m1560f(matrix, c2042b2.m1546b(), c2042b2.m1547c(), 7) | false;
+        C2041a c2041a2 = c2042b2.f4287a;
+        float fM1545a = c2042b2.m1545a(c2041a2.f4284f, c2041a2.f4280b);
+        C2041a c2041a3 = c2042b2.f4287a;
+        float fM1545a2 = fM1545a - c2042b2.m1545a(c2041a3.f4282d, c2041a3.f4280b);
+        C2041a c2041a4 = c2042b2.f4287a;
+        float fM1545a3 = c2042b2.m1545a(c2041a4.f4285g, c2041a4.f4280b);
+        C2041a c2041a5 = c2042b2.f4287a;
+        matrix.postTranslate(fM1545a2, fM1545a3 - c2042b2.m1545a(c2041a5.f4283e, c2041a5.f4280b));
+        boolean zM1561g = m1561g(matrix, 7) | zM1560f;
+        m1563i();
+        if (zM1561g) {
+            this.f4299a.m1548d();
+        }
+        this.f4310l = zM1561g;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public void mo1550c(C2042b c2042b) {
+        C1691a.m981i(C2045c.class, "onGestureBegin");
+        this.f4305g.set(this.f4306h);
+        RectF rectF = this.f4304f;
+        float f = rectF.left;
+        RectF rectF2 = this.f4302d;
+        this.f4310l = !(f < rectF2.left - 0.001f && rectF.top < rectF2.top - 0.001f && rectF.right > rectF2.right + 0.001f && rectF.bottom > rectF2.bottom + 0.001f);
+    }
+
+    @Override // p007b.p109f.p187l.p189b.InterfaceC2047e
+    /* JADX INFO: renamed from: a */
+    public boolean mo1551a() {
+        this.f4306h.getValues(this.f4308j);
+        float[] fArr = this.f4308j;
+        fArr[0] = fArr[0] - 1.0f;
+        fArr[4] = fArr[4] - 1.0f;
+        fArr[8] = fArr[8] - 1.0f;
+        for (int i = 0; i < 9; i++) {
+            if (Math.abs(this.f4308j[i]) > 0.001f) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /* JADX INFO: renamed from: j */
+    public void mo1552j() {
+        C1691a.m981i(C2045c.class, ModelAuditLogEntry.CHANGE_KEY_PERMISSIONS_RESET);
+        this.f4299a.f4287a.m1542a();
+        this.f4305g.reset();
+        this.f4306h.reset();
+        m1563i();
     }
 }

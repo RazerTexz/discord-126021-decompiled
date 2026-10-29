@@ -39,8 +39,29 @@ public final class BugReportManager {
     private boolean settingsEnabled;
     private final StoreUser storeUser;
 
+    /* JADX INFO: renamed from: com.discord.utilities.bugreports.BugReportManager$setupSubscriptions$2 */
     /* JADX INFO: compiled from: BugReportManager.kt */
-    public static final class Companion {
+    public final class C67112 extends AbstractC12240o implements Function1<Boolean, Unit> {
+        public C67112() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
+            invoke2(bool);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Boolean bool) {
+            BugReportManager bugReportManager = BugReportManager.this;
+            C12238m.checkNotNullExpressionValue(bool, "isStaff");
+            bugReportManager.setUserIsStaff(bool.booleanValue());
+        }
+    }
+
+    /* JADX INFO: compiled from: BugReportManager.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -67,27 +88,6 @@ public final class BugReportManager {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.bugreports.BugReportManager$setupSubscriptions$2 */
-    /* JADX INFO: compiled from: BugReportManager.kt */
-    public static final class C67112 extends AbstractC12240o implements Function1<Boolean, Unit> {
-        public C67112() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Boolean bool) {
-            invoke2(bool);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Boolean bool) {
-            BugReportManager bugReportManager = BugReportManager.this;
-            C12238m.checkNotNullExpressionValue(bool, "isStaff");
-            bugReportManager.setUserIsStaff(bool.booleanValue());
-        }
-    }
-
     public BugReportManager(SharedPreferences sharedPreferences, StoreUser storeUser) {
         C12238m.checkNotNullParameter(sharedPreferences, "cache");
         C12238m.checkNotNullParameter(storeUser, "storeUser");
@@ -98,21 +98,21 @@ public final class BugReportManager {
         this.settingsEnabled = sharedPreferences.getBoolean(PREFS_SS_BUG_REPORTING_SETTINGS_ENABLED, true);
     }
 
-    private final ScreenshotDetector getScreenshotDetector() {
-        return (ScreenshotDetector) this.screenshotDetector.getValue();
-    }
-
     public final SharedPreferences getCache() {
         return this.cache;
     }
 
-    public final StoreUser getStoreUser() {
-        return this.storeUser;
+    private final ScreenshotDetector getScreenshotDetector() {
+        return (ScreenshotDetector) this.screenshotDetector.getValue();
     }
 
     /* JADX INFO: renamed from: isBugReportSettingEnabled, reason: from getter */
     public final boolean getSettingsEnabled() {
         return this.settingsEnabled;
+    }
+
+    public final StoreUser getStoreUser() {
+        return this.storeUser;
     }
 
     public final boolean isEnabled() {

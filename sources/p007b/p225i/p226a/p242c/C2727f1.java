@@ -157,7 +157,7 @@ public final class C2727f1 extends AbstractC2944u0 {
 
     /* JADX INFO: renamed from: b.i.a.c.f1$a */
     /* JADX INFO: compiled from: ExoPlayerImpl.java */
-    public static final class a implements InterfaceC2910t1 {
+    public final class a implements InterfaceC2910t1 {
 
         /* JADX INFO: renamed from: a */
         public final Object f6684a;
@@ -171,14 +171,14 @@ public final class C2727f1 extends AbstractC2944u0 {
         }
 
         @Override // p007b.p225i.p226a.p242c.InterfaceC2910t1
-        /* JADX INFO: renamed from: a */
-        public AbstractC2832o2 mo2931a() {
-            return this.f6685b;
+        public Object getUid() {
+            return this.f6684a;
         }
 
         @Override // p007b.p225i.p226a.p242c.InterfaceC2910t1
-        public Object getUid() {
-            return this.f6684a;
+        /* JADX INFO: renamed from: a */
+        public AbstractC2832o2 mo2931a() {
+            return this.f6685b;
         }
     }
 
@@ -301,170 +301,6 @@ public final class C2727f1 extends AbstractC2944u0 {
         return c2964w1.f7951f == 3 && c2964w1.f7958m && c2964w1.f7959n == 0;
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: A */
-    public List mo2879A() {
-        AbstractC4493a<Object> abstractC4493a = AbstractC4523p.f12045k;
-        return C4508h0.f12012l;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: B */
-    public int mo2880B() {
-        if (mo2900f()) {
-            return this.f6657F.f7948c.f5733b;
-        }
-        return -1;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: C */
-    public int mo2881C() {
-        int iM2905h0 = m2905h0();
-        if (iM2905h0 == -1) {
-            return 0;
-        }
-        return iM2905h0;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: E */
-    public void mo2882E(final int i) {
-        if (this.f6679v != i) {
-            this.f6679v = i;
-            ((C2732b0.b) this.f6666i.f7083q.mo2954a(11, i, 0)).m2965b();
-            this.f6667j.m3035b(8, new C2749p.a() { // from class: b.i.a.c.k
-                @Override // p007b.p225i.p226a.p242c.p259f3.C2749p.a
-                public final void invoke(Object obj) {
-                    ((InterfaceC3128y1.c) obj).mo240L(i);
-                }
-            });
-            m2923r0();
-            this.f6667j.m3034a();
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: F */
-    public void mo2883F(@Nullable SurfaceView surfaceView) {
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: G */
-    public int mo2884G() {
-        return this.f6657F.f7959n;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: H */
-    public C2836p2 mo2885H() {
-        return this.f6657F.f7955j.f6329d;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: I */
-    public int mo2886I() {
-        return this.f6679v;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: J */
-    public long mo2887J() {
-        if (mo2900f()) {
-            C2964w1 c2964w1 = this.f6657F;
-            InterfaceC2530a0.a aVar = c2964w1.f7948c;
-            c2964w1.f7947b.mo3327h(aVar.f5732a, this.f6669l);
-            return C2738e0.m2992M(this.f6669l.m3332a(aVar.f5733b, aVar.f5734c));
-        }
-        AbstractC2832o2 abstractC2832o2Mo2888K = mo2888K();
-        if (abstractC2832o2Mo2888K.m3331q()) {
-            return -9223372036854775807L;
-        }
-        return abstractC2832o2Mo2888K.m3330n(mo2881C(), this.f7863a).m3340b();
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: K */
-    public AbstractC2832o2 mo2888K() {
-        return this.f6657F.f7947b;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: L */
-    public Looper mo2889L() {
-        return this.f6674q;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: M */
-    public boolean mo2890M() {
-        return this.f6680w;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: N */
-    public long mo2891N() {
-        if (this.f6657F.f7947b.m3331q()) {
-            return this.f6659H;
-        }
-        C2964w1 c2964w1 = this.f6657F;
-        if (c2964w1.f7957l.f5735d != c2964w1.f7948c.f5735d) {
-            return c2964w1.f7947b.m3330n(mo2881C(), this.f7863a).m3340b();
-        }
-        long j = c2964w1.f7963r;
-        if (this.f6657F.f7957l.m2593a()) {
-            C2964w1 c2964w2 = this.f6657F;
-            AbstractC2832o2.b bVarMo3327h = c2964w2.f7947b.mo3327h(c2964w2.f7957l.f5732a, this.f6669l);
-            long jM3334c = bVarMo3327h.m3334c(this.f6657F.f7957l.f5733b);
-            j = jM3334c == Long.MIN_VALUE ? bVarMo3327h.f7341m : jM3334c;
-        }
-        C2964w1 c2964w3 = this.f6657F;
-        return C2738e0.m2992M(m2913m0(c2964w3.f7947b, c2964w3.f7957l, j));
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: Q */
-    public void mo2892Q(@Nullable TextureView textureView) {
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: S */
-    public C2835p1 mo2893S() {
-        return this.f6655D;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: T */
-    public long mo2894T() {
-        return C2738e0.m2992M(m2903g0(this.f6657F));
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: U */
-    public long mo2895U() {
-        return this.f6676s;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: a */
-    public void mo2896a() {
-        C2964w1 c2964w1 = this.f6657F;
-        if (c2964w1.f7951f != 1) {
-            return;
-        }
-        C2964w1 c2964w1M3566e = c2964w1.m3566e(null);
-        C2964w1 c2964w1M3567f = c2964w1M3566e.m3567f(c2964w1M3566e.f7947b.m3331q() ? 4 : 2);
-        this.f6681x++;
-        ((C2732b0.b) this.f6666i.f7083q.mo2956c(0)).m2965b();
-        m2924s0(c2964w1M3567f, 1, 1, false, false, 5, -9223372036854775807L, -1);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: c */
-    public C2998x1 mo2897c() {
-        return this.f6657F.f7960o;
-    }
-
     /* JADX INFO: renamed from: d0 */
     public void m2898d0(InterfaceC3128y1.c cVar) {
         C2749p<InterfaceC3128y1.c> c2749p = this.f6667j;
@@ -476,7 +312,7 @@ public final class C2727f1 extends AbstractC2944u0 {
     }
 
     /* JADX INFO: renamed from: e0 */
-    public final C2835p1 m2899e0() {
+    public final C2835p1 m2899e0() throws CloneNotSupportedException {
         AbstractC2832o2 abstractC2832o2Mo2888K = mo2888K();
         C2831o1 c2831o1 = abstractC2832o2Mo2888K.m3331q() ? null : abstractC2832o2Mo2888K.m3330n(mo2881C(), this.f7863a).f7355p;
         if (c2831o1 == null) {
@@ -615,21 +451,9 @@ public final class C2727f1 extends AbstractC2944u0 {
         return bVarM3344a.m3345a();
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: f */
-    public boolean mo2900f() {
-        return this.f6657F.f7948c.m2593a();
-    }
-
     /* JADX INFO: renamed from: f0 */
     public C2576b2 m2901f0(C2576b2.b bVar) {
         return new C2576b2(this.f6666i, bVar, this.f6657F.f7947b, mo2881C(), this.f6678u, this.f6666i.f7085s);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: g */
-    public long mo2902g() {
-        return C2738e0.m2992M(this.f6657F.f7964s);
     }
 
     /* JADX INFO: renamed from: g0 */
@@ -640,29 +464,6 @@ public final class C2727f1 extends AbstractC2944u0 {
         return c2964w1.f7948c.m2593a() ? c2964w1.f7965t : m2913m0(c2964w1.f7947b, c2964w1.f7948c, c2964w1.f7965t);
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: h */
-    public void mo2904h(int i, long j) {
-        AbstractC2832o2 abstractC2832o2 = this.f6657F.f7947b;
-        if (i < 0 || (!abstractC2832o2.m3331q() && i >= abstractC2832o2.mo2557p())) {
-            throw new IllegalSeekPositionException(abstractC2832o2, i, j);
-        }
-        this.f6681x++;
-        if (mo2900f()) {
-            Log.w("ExoPlayerImpl", "seekTo ignored because an ad is playing");
-            C2803h1.d dVar = new C2803h1.d(this.f6657F);
-            dVar.m3271a(1);
-            C2727f1 c2727f1 = ((C2962w) this.f6665h).f7945a;
-            c2727f1.f6664g.mo2955b(new RunnableC2632c0(c2727f1, dVar));
-            return;
-        }
-        int i2 = this.f6657F.f7951f != 1 ? 2 : 1;
-        int iMo2881C = mo2881C();
-        C2964w1 c2964w1M2911l0 = m2911l0(this.f6657F.m3567f(i2), abstractC2832o2, m2907i0(abstractC2832o2, i, j));
-        ((C2732b0.b) this.f6666i.f7083q.mo2962i(3, new C2803h1.g(abstractC2832o2, i, C2738e0.m2981B(j)))).m2965b();
-        m2924s0(c2964w1M2911l0, 0, 1, true, true, 1, m2903g0(c2964w1M2911l0), iMo2881C);
-    }
-
     /* JADX INFO: renamed from: h0 */
     public final int m2905h0() {
         if (this.f6657F.f7947b.m3331q()) {
@@ -670,12 +471,6 @@ public final class C2727f1 extends AbstractC2944u0 {
         }
         C2964w1 c2964w1 = this.f6657F;
         return c2964w1.f7947b.mo3327h(c2964w1.f7948c.f5732a, this.f6669l).f7340l;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: i */
-    public InterfaceC3128y1.b mo2906i() {
-        return this.f6654C;
     }
 
     @Nullable
@@ -694,35 +489,6 @@ public final class C2727f1 extends AbstractC2944u0 {
             j = abstractC2832o2.m3330n(i, this.f7863a).m3339a();
         }
         return abstractC2832o2.m3328j(this.f7863a, this.f6669l, i, C2738e0.m2981B(j));
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: j */
-    public boolean mo2908j() {
-        return this.f6657F.f7958m;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: k */
-    public void mo2909k(final boolean z2) {
-        if (this.f6680w != z2) {
-            this.f6680w = z2;
-            ((C2732b0.b) this.f6666i.f7083q.mo2954a(12, z2 ? 1 : 0, 0)).m2965b();
-            this.f6667j.m3035b(9, new C2749p.a() { // from class: b.i.a.c.n
-                @Override // p007b.p225i.p226a.p242c.p259f3.C2749p.a
-                public final void invoke(Object obj) {
-                    ((InterfaceC3128y1.c) obj).mo236D(z2);
-                }
-            });
-            m2923r0();
-            this.f6667j.m3034a();
-        }
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: l */
-    public long mo2910l() {
-        return 3000L;
     }
 
     /* JADX INFO: renamed from: l0 */
@@ -786,25 +552,10 @@ public final class C2727f1 extends AbstractC2944u0 {
         return c2964w1M3568g;
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: m */
-    public int mo2912m() {
-        if (this.f6657F.f7947b.m3331q()) {
-            return 0;
-        }
-        C2964w1 c2964w1 = this.f6657F;
-        return c2964w1.f7947b.mo2554b(c2964w1.f7948c.f5732a);
-    }
-
     /* JADX INFO: renamed from: m0 */
     public final long m2913m0(AbstractC2832o2 abstractC2832o2, InterfaceC2530a0.a aVar, long j) {
         abstractC2832o2.mo3327h(aVar.f5732a, this.f6669l);
         return j + this.f6669l.f7342n;
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: n */
-    public void mo2914n(@Nullable TextureView textureView) {
     }
 
     /* JADX INFO: renamed from: n0 */
@@ -872,12 +623,6 @@ public final class C2727f1 extends AbstractC2944u0 {
         this.f6657F.f7964s = 0L;
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: o */
-    public C2788y mo2916o() {
-        return C2788y.f6954j;
-    }
-
     /* JADX INFO: renamed from: o0 */
     public void m2917o0(InterfaceC3128y1.c cVar) {
         C2749p<InterfaceC3128y1.c> c2749p = this.f6667j;
@@ -893,12 +638,6 @@ public final class C2727f1 extends AbstractC2944u0 {
         }
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: p */
-    public void mo2918p(InterfaceC3128y1.e eVar) {
-        m2917o0(eVar);
-    }
-
     /* JADX INFO: renamed from: p0 */
     public final void m2919p0(int i, int i2) {
         for (int i3 = i2 - 1; i3 >= i; i3--) {
@@ -907,17 +646,8 @@ public final class C2727f1 extends AbstractC2944u0 {
         this.f6653B = this.f6653B.mo2543a(i, i2);
     }
 
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: q */
-    public int mo2920q() {
-        if (mo2900f()) {
-            return this.f6657F.f7948c.f5734c;
-        }
-        return -1;
-    }
-
     /* JADX INFO: renamed from: q0 */
-    public void m2921q0(boolean z2, int i, int i2) {
+    public void m2921q0(boolean z2, int i, int i2) throws CloneNotSupportedException {
         C2964w1 c2964w1 = this.f6657F;
         if (c2964w1.f7958m == z2 && c2964w1.f7959n == i) {
             return;
@@ -926,11 +656,6 @@ public final class C2727f1 extends AbstractC2944u0 {
         C2964w1 c2964w1M3565d = c2964w1.m3565d(z2, i);
         ((C2732b0.b) this.f6666i.f7083q.mo2954a(1, z2 ? 1 : 0, i)).m2965b();
         m2924s0(c2964w1M3565d, 0, i2, false, false, 5, -9223372036854775807L, -1);
-    }
-
-    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
-    /* JADX INFO: renamed from: r */
-    public void mo2922r(@Nullable SurfaceView surfaceView) {
     }
 
     /* JADX INFO: renamed from: r0 */
@@ -962,7 +687,7 @@ public final class C2727f1 extends AbstractC2944u0 {
     }
 
     /* JADX INFO: renamed from: s0 */
-    public final void m2924s0(final C2964w1 c2964w1, final int i, final int i2, boolean z2, boolean z3, final int i3, long j, int i4) {
+    public final void m2924s0(final C2964w1 c2964w1, final int i, final int i2, boolean z2, boolean z3, final int i3, long j, int i4) throws CloneNotSupportedException {
         Pair pair;
         int i5;
         final C2831o1 c2831o1;
@@ -1248,6 +973,281 @@ public final class C2727f1 extends AbstractC2944u0 {
     }
 
     @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: A */
+    public List mo2879A() {
+        AbstractC4493a<Object> abstractC4493a = AbstractC4523p.f12045k;
+        return C4508h0.f12012l;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: B */
+    public int mo2880B() {
+        if (mo2900f()) {
+            return this.f6657F.f7948c.f5733b;
+        }
+        return -1;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: C */
+    public int mo2881C() {
+        int iM2905h0 = m2905h0();
+        if (iM2905h0 == -1) {
+            return 0;
+        }
+        return iM2905h0;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: E */
+    public void mo2882E(final int i) {
+        if (this.f6679v != i) {
+            this.f6679v = i;
+            ((C2732b0.b) this.f6666i.f7083q.mo2954a(11, i, 0)).m2965b();
+            this.f6667j.m3035b(8, new C2749p.a() { // from class: b.i.a.c.k
+                @Override // p007b.p225i.p226a.p242c.p259f3.C2749p.a
+                public final void invoke(Object obj) {
+                    ((InterfaceC3128y1.c) obj).mo240L(i);
+                }
+            });
+            m2923r0();
+            this.f6667j.m3034a();
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: F */
+    public void mo2883F(@Nullable SurfaceView surfaceView) {
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: G */
+    public int mo2884G() {
+        return this.f6657F.f7959n;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: H */
+    public C2836p2 mo2885H() {
+        return this.f6657F.f7955j.f6329d;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: I */
+    public int mo2886I() {
+        return this.f6679v;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: J */
+    public long mo2887J() {
+        if (mo2900f()) {
+            C2964w1 c2964w1 = this.f6657F;
+            InterfaceC2530a0.a aVar = c2964w1.f7948c;
+            c2964w1.f7947b.mo3327h(aVar.f5732a, this.f6669l);
+            return C2738e0.m2992M(this.f6669l.m3332a(aVar.f5733b, aVar.f5734c));
+        }
+        AbstractC2832o2 abstractC2832o2Mo2888K = mo2888K();
+        if (abstractC2832o2Mo2888K.m3331q()) {
+            return -9223372036854775807L;
+        }
+        return abstractC2832o2Mo2888K.m3330n(mo2881C(), this.f7863a).m3340b();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: K */
+    public AbstractC2832o2 mo2888K() {
+        return this.f6657F.f7947b;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: L */
+    public Looper mo2889L() {
+        return this.f6674q;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: M */
+    public boolean mo2890M() {
+        return this.f6680w;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: N */
+    public long mo2891N() {
+        if (this.f6657F.f7947b.m3331q()) {
+            return this.f6659H;
+        }
+        C2964w1 c2964w1 = this.f6657F;
+        if (c2964w1.f7957l.f5735d != c2964w1.f7948c.f5735d) {
+            return c2964w1.f7947b.m3330n(mo2881C(), this.f7863a).m3340b();
+        }
+        long j = c2964w1.f7963r;
+        if (this.f6657F.f7957l.m2593a()) {
+            C2964w1 c2964w2 = this.f6657F;
+            AbstractC2832o2.b bVarMo3327h = c2964w2.f7947b.mo3327h(c2964w2.f7957l.f5732a, this.f6669l);
+            long jM3334c = bVarMo3327h.m3334c(this.f6657F.f7957l.f5733b);
+            j = jM3334c == Long.MIN_VALUE ? bVarMo3327h.f7341m : jM3334c;
+        }
+        C2964w1 c2964w3 = this.f6657F;
+        return C2738e0.m2992M(m2913m0(c2964w3.f7947b, c2964w3.f7957l, j));
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: Q */
+    public void mo2892Q(@Nullable TextureView textureView) {
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: S */
+    public C2835p1 mo2893S() {
+        return this.f6655D;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: T */
+    public long mo2894T() {
+        return C2738e0.m2992M(m2903g0(this.f6657F));
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: U */
+    public long mo2895U() {
+        return this.f6676s;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: a */
+    public void mo2896a() throws CloneNotSupportedException {
+        C2964w1 c2964w1 = this.f6657F;
+        if (c2964w1.f7951f != 1) {
+            return;
+        }
+        C2964w1 c2964w1M3566e = c2964w1.m3566e(null);
+        C2964w1 c2964w1M3567f = c2964w1M3566e.m3567f(c2964w1M3566e.f7947b.m3331q() ? 4 : 2);
+        this.f6681x++;
+        ((C2732b0.b) this.f6666i.f7083q.mo2956c(0)).m2965b();
+        m2924s0(c2964w1M3567f, 1, 1, false, false, 5, -9223372036854775807L, -1);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: c */
+    public C2998x1 mo2897c() {
+        return this.f6657F.f7960o;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: f */
+    public boolean mo2900f() {
+        return this.f6657F.f7948c.m2593a();
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: g */
+    public long mo2902g() {
+        return C2738e0.m2992M(this.f6657F.f7964s);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: h */
+    public void mo2904h(int i, long j) throws CloneNotSupportedException {
+        AbstractC2832o2 abstractC2832o2 = this.f6657F.f7947b;
+        if (i < 0 || (!abstractC2832o2.m3331q() && i >= abstractC2832o2.mo2557p())) {
+            throw new IllegalSeekPositionException(abstractC2832o2, i, j);
+        }
+        this.f6681x++;
+        if (mo2900f()) {
+            Log.w("ExoPlayerImpl", "seekTo ignored because an ad is playing");
+            C2803h1.d dVar = new C2803h1.d(this.f6657F);
+            dVar.m3271a(1);
+            C2727f1 c2727f1 = ((C2962w) this.f6665h).f7945a;
+            c2727f1.f6664g.mo2955b(new RunnableC2632c0(c2727f1, dVar));
+            return;
+        }
+        int i2 = this.f6657F.f7951f != 1 ? 2 : 1;
+        int iMo2881C = mo2881C();
+        C2964w1 c2964w1M2911l0 = m2911l0(this.f6657F.m3567f(i2), abstractC2832o2, m2907i0(abstractC2832o2, i, j));
+        ((C2732b0.b) this.f6666i.f7083q.mo2962i(3, new C2803h1.g(abstractC2832o2, i, C2738e0.m2981B(j)))).m2965b();
+        m2924s0(c2964w1M2911l0, 0, 1, true, true, 1, m2903g0(c2964w1M2911l0), iMo2881C);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: i */
+    public InterfaceC3128y1.b mo2906i() {
+        return this.f6654C;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: j */
+    public boolean mo2908j() {
+        return this.f6657F.f7958m;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: k */
+    public void mo2909k(final boolean z2) {
+        if (this.f6680w != z2) {
+            this.f6680w = z2;
+            ((C2732b0.b) this.f6666i.f7083q.mo2954a(12, z2 ? 1 : 0, 0)).m2965b();
+            this.f6667j.m3035b(9, new C2749p.a() { // from class: b.i.a.c.n
+                @Override // p007b.p225i.p226a.p242c.p259f3.C2749p.a
+                public final void invoke(Object obj) {
+                    ((InterfaceC3128y1.c) obj).mo236D(z2);
+                }
+            });
+            m2923r0();
+            this.f6667j.m3034a();
+        }
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: l */
+    public long mo2910l() {
+        return 3000L;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: m */
+    public int mo2912m() {
+        if (this.f6657F.f7947b.m3331q()) {
+            return 0;
+        }
+        C2964w1 c2964w1 = this.f6657F;
+        return c2964w1.f7947b.mo2554b(c2964w1.f7948c.f5732a);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: n */
+    public void mo2914n(@Nullable TextureView textureView) {
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: o */
+    public C2788y mo2916o() {
+        return C2788y.f6954j;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: p */
+    public void mo2918p(InterfaceC3128y1.e eVar) {
+        m2917o0(eVar);
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: q */
+    public int mo2920q() {
+        if (mo2900f()) {
+            return this.f6657F.f7948c.f5734c;
+        }
+        return -1;
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
+    /* JADX INFO: renamed from: r */
+    public void mo2922r(@Nullable SurfaceView surfaceView) {
+    }
+
+    @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
     @Nullable
     /* JADX INFO: renamed from: t */
     public PlaybackException mo2925t() {
@@ -1256,7 +1256,7 @@ public final class C2727f1 extends AbstractC2944u0 {
 
     @Override // p007b.p225i.p226a.p242c.InterfaceC3128y1
     /* JADX INFO: renamed from: u */
-    public void mo2926u(boolean z2) {
+    public void mo2926u(boolean z2) throws CloneNotSupportedException {
         m2921q0(z2, 0, 1);
     }
 

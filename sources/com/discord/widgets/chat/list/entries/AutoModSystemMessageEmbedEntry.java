@@ -38,40 +38,7 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
         this.roles = map;
         this.nickOrUsernames = map2;
         this.type = 45;
-        StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append(message.getId());
-        this.key = sb.toString();
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Channel getChannel() {
-        return this.channel;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final Message getMessage() {
-        return this.message;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final StoreMessageState.State getMessageState() {
-        return this.messageState;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final MessageEmbed getEmbed() {
-        return this.embed;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final GuildMember getAuthor() {
-        return this.author;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getAnimateEmojis() {
-        return this.animateEmojis;
+        this.key = "" + getType() + message.getId();
     }
 
     public final Map<Long, GuildRole> component7() {
@@ -101,16 +68,36 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
         return C12238m.areEqual(this.channel, autoModSystemMessageEmbedEntry.channel) && C12238m.areEqual(this.message, autoModSystemMessageEmbedEntry.message) && C12238m.areEqual(this.messageState, autoModSystemMessageEmbedEntry.messageState) && C12238m.areEqual(this.embed, autoModSystemMessageEmbedEntry.embed) && C12238m.areEqual(this.author, autoModSystemMessageEmbedEntry.author) && this.animateEmojis == autoModSystemMessageEmbedEntry.animateEmojis && C12238m.areEqual(this.roles, autoModSystemMessageEmbedEntry.roles) && C12238m.areEqual(this.nickOrUsernames, autoModSystemMessageEmbedEntry.nickOrUsernames);
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getAnimateEmojis() {
         return this.animateEmojis;
+    }
+
+    public final boolean getAnimateEmojis() {
+        return this.animateEmojis;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final GuildMember getAuthor() {
+        return this.author;
     }
 
     public final GuildMember getAuthor() {
         return this.author;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Channel getChannel() {
         return this.channel;
+    }
+
+    public final Channel getChannel() {
+        return this.channel;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
+    public final MessageEmbed getEmbed() {
+        return this.embed;
     }
 
     public final MessageEmbed getEmbed() {
@@ -122,8 +109,18 @@ public final /* data */ class AutoModSystemMessageEmbedEntry extends ChatListEnt
         return this.key;
     }
 
+    /* JADX INFO: renamed from: component2, reason: from getter */
     public final Message getMessage() {
         return this.message;
+    }
+
+    public final Message getMessage() {
+        return this.message;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final StoreMessageState.State getMessageState() {
+        return this.messageState;
     }
 
     public final StoreMessageState.State getMessageState() {

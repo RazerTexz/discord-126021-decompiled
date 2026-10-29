@@ -39,7 +39,7 @@ public final class StoreMessagesMostRecent extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreMessagesMostRecent$observeRecentMessageIds$1 */
     /* JADX INFO: compiled from: StoreMessagesMostRecent.kt */
-    public static final class C62701 extends AbstractC12240o implements Function0<Map<Long, ? extends Long>> {
+    public final class C62701 extends AbstractC12240o implements Function0<Map<Long, ? extends Long>> {
         public C62701() {
             super(0);
         }
@@ -52,40 +52,6 @@ public final class StoreMessagesMostRecent extends StoreV2 {
 
     public /* synthetic */ StoreMessagesMostRecent(StoreChannels storeChannels, ObservationDeck observationDeck, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeChannels, (i & 2) != 0 ? ObservationDeckProvider.get() : observationDeck);
-    }
-
-    @StoreThread
-    private final void mostRecentIdsUpdateFromChannels(ModelChannelUnreadUpdate channelUnreadUpdate) {
-        for (ModelReadState modelReadState : channelUnreadUpdate.getChannelReadStates()) {
-            if (updateMostRecentIds(modelReadState.getChannelId(), modelReadState.getLastMessageId())) {
-                markChanged();
-            }
-        }
-    }
-
-    @StoreThread
-    private final void mostRecentIdsUpdateFromMessage(Message message) {
-        if (updateMostRecentIds(message.getChannelId(), message.getId())) {
-            markChanged();
-        }
-    }
-
-    @StoreThread
-    private final boolean updateMostRecentIds(long channelId, long messageId) {
-        boolean z2 = MessageUtils.compareMessages(this.mostRecentIds.get(Long.valueOf(channelId)), Long.valueOf(messageId)) < 0;
-        if (z2) {
-            this.mostRecentIds.put(Long.valueOf(channelId), Long.valueOf(messageId));
-        }
-        return z2;
-    }
-
-    @StoreThread
-    private final boolean updateParentChannelMostRecentIds(Channel channel) {
-        Channel channel2;
-        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, 2, null) && ChannelUtils.m7673H(channel) && !ChannelUtils.m7686j(channel) && (channel2 = this.storeChannels.getChannel(channel.getParentId())) != null && ChannelUtils.m7693q(channel2)) {
-            return updateMostRecentIds(channel2.getId(), channel.getId());
-        }
-        return false;
     }
 
     public final Map<Long, Long> getMostRecentIds() {
@@ -177,6 +143,22 @@ public final class StoreMessagesMostRecent extends StoreV2 {
         mostRecentIdsUpdateFromChannels(arrayList);
     }
 
+    @StoreThread
+    private final void mostRecentIdsUpdateFromChannels(ModelChannelUnreadUpdate channelUnreadUpdate) {
+        for (ModelReadState modelReadState : channelUnreadUpdate.getChannelReadStates()) {
+            if (updateMostRecentIds(modelReadState.getChannelId(), modelReadState.getLastMessageId())) {
+                markChanged();
+            }
+        }
+    }
+
+    @StoreThread
+    private final void mostRecentIdsUpdateFromMessage(Message message) {
+        if (updateMostRecentIds(message.getChannelId(), message.getId())) {
+            markChanged();
+        }
+    }
+
     public final Observable<Map<Long, Long>> observeRecentMessageIds() {
         return ObservationDeck.connectRx$default(this.observationDeck, new ObservationDeck.UpdateSource[]{this}, false, null, null, new C62701(), 14, null);
     }
@@ -188,6 +170,24 @@ public final class StoreMessagesMostRecent extends StoreV2 {
         HashMap mapSnapshot$default = CollectionExtensionsKt.snapshot$default(this.mostRecentIds, 0, 0.0f, 3, null);
         this.mostRecentIdsSnapshot = mapSnapshot$default;
         Persister.set$default(this.mostRecentIdsCache, mapSnapshot$default, false, 2, null);
+    }
+
+    @StoreThread
+    private final boolean updateMostRecentIds(long channelId, long messageId) {
+        boolean z2 = MessageUtils.compareMessages(this.mostRecentIds.get(Long.valueOf(channelId)), Long.valueOf(messageId)) < 0;
+        if (z2) {
+            this.mostRecentIds.put(Long.valueOf(channelId), Long.valueOf(messageId));
+        }
+        return z2;
+    }
+
+    @StoreThread
+    private final boolean updateParentChannelMostRecentIds(Channel channel) {
+        Channel channel2;
+        if (ForumUtils.canAccessRedesignedForumChannels$default(ForumUtils.INSTANCE, channel.getGuildId(), null, 2, null) && ChannelUtils.m7673H(channel) && !ChannelUtils.m7686j(channel) && (channel2 = this.storeChannels.getChannel(channel.getParentId())) != null && ChannelUtils.m7693q(channel2)) {
+            return updateMostRecentIds(channel2.getId(), channel.getId());
+        }
+        return false;
     }
 
     public StoreMessagesMostRecent(StoreChannels storeChannels, ObservationDeck observationDeck) {

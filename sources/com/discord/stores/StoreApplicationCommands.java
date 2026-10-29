@@ -56,6 +56,9 @@ import p658rx.functions.Func2;
 /* JADX INFO: loaded from: classes2.dex */
 public final class StoreApplicationCommands extends StoreV2 {
     public static final int COMMANDS_LIMIT_PER_REQUEST = 20;
+
+    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
+    public static final Companion INSTANCE = new Companion(null);
     public static final long TYPE_APPLICATION_COMMAND = 2;
     public static final long TYPE_APPLICATION_COMMAND_AUTOCOMPLETE = 4;
     private Map<Long, Integer> applicationCommandIndexes;
@@ -103,9 +106,6 @@ public final class StoreApplicationCommands extends StoreV2 {
     private final StoreGuilds storeGuilds;
     private final StorePermissions storePermissions;
     private final StoreUser storeUsers;
-
-    /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
-    public static final Companion INSTANCE = new Companion(null);
     private static final ObservationDeck.UpdateSource DiscoverCommandsUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreApplicationCommands$Companion$DiscoverCommandsUpdate$1
     };
     private static final ObservationDeck.UpdateSource QueryCommandsUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreApplicationCommands$Companion$QueryCommandsUpdate$1
@@ -117,109 +117,9 @@ public final class StoreApplicationCommands extends StoreV2 {
     private static final ObservationDeck.UpdateSource FrecencyCommandsUpdate = new ObservationDeck.UpdateSource() { // from class: com.discord.stores.StoreApplicationCommands$Companion$FrecencyCommandsUpdate$1
     };
 
-    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final ObservationDeck.UpdateSource getAutocompleteResultsUpdate() {
-            return StoreApplicationCommands.AutocompleteResultsUpdate;
-        }
-
-        public final ObservationDeck.UpdateSource getDiscoverCommandsUpdate() {
-            return StoreApplicationCommands.DiscoverCommandsUpdate;
-        }
-
-        public final ObservationDeck.UpdateSource getFrecencyCommandsUpdate() {
-            return StoreApplicationCommands.FrecencyCommandsUpdate;
-        }
-
-        public final ObservationDeck.UpdateSource getGuildApplicationsUpdate() {
-            return StoreApplicationCommands.GuildApplicationsUpdate;
-        }
-
-        public final ObservationDeck.UpdateSource getQueryCommandsUpdate() {
-            return StoreApplicationCommands.QueryCommandsUpdate;
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final /* data */ class FrecencyRequest {
-        private final List<String> applicationCommandIds;
-        private final Long guildId;
-
-        public FrecencyRequest(Long l, List<String> list) {
-            C12238m.checkNotNullParameter(list, "applicationCommandIds");
-            this.guildId = l;
-            this.applicationCommandIds = list;
-        }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        public static /* synthetic */ FrecencyRequest copy$default(FrecencyRequest frecencyRequest, Long l, List list, int i, Object obj) {
-            if ((i & 1) != 0) {
-                l = frecencyRequest.guildId;
-            }
-            if ((i & 2) != 0) {
-                list = frecencyRequest.applicationCommandIds;
-            }
-            return frecencyRequest.copy(l, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        public final List<String> component2() {
-            return this.applicationCommandIds;
-        }
-
-        public final FrecencyRequest copy(Long guildId, List<String> applicationCommandIds) {
-            C12238m.checkNotNullParameter(applicationCommandIds, "applicationCommandIds");
-            return new FrecencyRequest(guildId, applicationCommandIds);
-        }
-
-        public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (!(other instanceof FrecencyRequest)) {
-                return false;
-            }
-            FrecencyRequest frecencyRequest = (FrecencyRequest) other;
-            return C12238m.areEqual(this.guildId, frecencyRequest.guildId) && C12238m.areEqual(this.applicationCommandIds, frecencyRequest.applicationCommandIds);
-        }
-
-        public final List<String> getApplicationCommandIds() {
-            return this.applicationCommandIds;
-        }
-
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        public int hashCode() {
-            Long l = this.guildId;
-            int iHashCode = (l != null ? l.hashCode() : 0) * 31;
-            List<String> list = this.applicationCommandIds;
-            return iHashCode + (list != null ? list.hashCode() : 0);
-        }
-
-        public String toString() {
-            StringBuilder sbM833U = C1643a.m833U("FrecencyRequest(guildId=");
-            sbM833U.append(this.guildId);
-            sbM833U.append(", applicationCommandIds=");
-            return C1643a.m824L(sbM833U, this.applicationCommandIds, ")");
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$clearAutocompleteResults$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57011 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57011 extends AbstractC12240o implements Function0<Unit> {
         public C57011() {
             super(0);
         }
@@ -239,7 +139,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$clearQueryCommands$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57021 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57021 extends AbstractC12240o implements Function0<Unit> {
         public C57021() {
             super(0);
         }
@@ -259,12 +159,12 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$getApplicationCommandsViaRest$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57031 extends AbstractC12240o implements Function1<List<? extends com.discord.api.commands.ApplicationCommand>, Unit> {
+    public final class C57031 extends AbstractC12240o implements Function1<List<? extends com.discord.api.commands.ApplicationCommand>, Unit> {
         public final /* synthetic */ long $applicationId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$getApplicationCommandsViaRest$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public final /* synthetic */ List $commands;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -406,11 +306,11 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$getApplicationCommandsViaRest$2 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57042 extends AbstractC12240o implements Function1<Error, Unit> {
+    public final class C57042 extends AbstractC12240o implements Function1<Error, Unit> {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$getApplicationCommandsViaRest$2$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass1() {
                 super(0);
             }
@@ -446,7 +346,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$handleDmUserApplication$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57061 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57061 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ User $botUser;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -475,7 +375,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$observeAutocompleteResults$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57071 extends AbstractC12240o implements Function0<Map<String, ? extends Map<String, ? extends CommandAutocompleteState>>> {
+    public final class C57071 extends AbstractC12240o implements Function0<Map<String, ? extends Map<String, ? extends CommandAutocompleteState>>> {
         public C57071() {
             super(0);
         }
@@ -488,7 +388,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$observeDiscoverCommands$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57081 extends AbstractC12240o implements Function0<DiscoverCommands> {
+    public final class C57081 extends AbstractC12240o implements Function0<DiscoverCommands> {
         public C57081() {
             super(0);
         }
@@ -502,7 +402,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$observeFrecencyCommands$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57101 extends AbstractC12240o implements Function0<List<? extends ApplicationCommand>> {
+    public final class C57101 extends AbstractC12240o implements Function0<List<? extends ApplicationCommand>> {
         public final /* synthetic */ long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -520,7 +420,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$observeGuildApplications$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57111 extends AbstractC12240o implements Function0<List<? extends Application>> {
+    public final class C57111 extends AbstractC12240o implements Function0<List<? extends Application>> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -547,7 +447,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$observeQueryCommands$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57121 extends AbstractC12240o implements Function0<List<? extends ApplicationCommand>> {
+    public final class C57121 extends AbstractC12240o implements Function0<List<? extends ApplicationCommand>> {
         public final /* synthetic */ long $channelId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -574,19 +474,19 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestApplicationCommandAutocompleteData$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57131 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57131 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ long $channelId;
         public final /* synthetic */ ApplicationCommandData $data;
         public final /* synthetic */ Long $guildId;
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestApplicationCommandAutocompleteData$1$1, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Error, Unit> {
             public final /* synthetic */ ApplicationCommandValue $option;
 
             /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestApplicationCommandAutocompleteData$1$1$1, reason: invalid class name and collision with other inner class name */
             /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-            public static final class C132481 extends AbstractC12240o implements Function0<Unit> {
+            public final class C132481 extends AbstractC12240o implements Function0<Unit> {
                 public C132481() {
                     super(0);
                 }
@@ -625,7 +525,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
         /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestApplicationCommandAutocompleteData$1$2, reason: invalid class name */
         /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<Void, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<Void, Unit> {
             public static final AnonymousClass2 INSTANCE = new AnonymousClass2();
 
             public AnonymousClass2() {
@@ -686,7 +586,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestApplicationCommands$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57151 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57151 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $applicationId;
         public final /* synthetic */ Long $guildId;
         public final /* synthetic */ int $limit;
@@ -751,7 +651,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestApplicationCommandsQuery$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57161 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57161 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $guildId;
         public final /* synthetic */ String $query;
 
@@ -789,7 +689,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestApplications$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57171 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57171 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ Long $guildId;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -823,7 +723,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestFrecencyCommands$1 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57181 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57181 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $nonce;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -846,7 +746,7 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     /* JADX INFO: renamed from: com.discord.stores.StoreApplicationCommands$requestFrecencyCommands$2 */
     /* JADX INFO: compiled from: StoreApplicationCommands.kt */
-    public static final class C57192 extends AbstractC12240o implements Function0<Unit> {
+    public final class C57192 extends AbstractC12240o implements Function0<Unit> {
         public final /* synthetic */ String $nonce;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -867,8 +767,116 @@ public final class StoreApplicationCommands extends StoreV2 {
         }
     }
 
+    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final ObservationDeck.UpdateSource getAutocompleteResultsUpdate() {
+            return StoreApplicationCommands.AutocompleteResultsUpdate;
+        }
+
+        public final ObservationDeck.UpdateSource getDiscoverCommandsUpdate() {
+            return StoreApplicationCommands.DiscoverCommandsUpdate;
+        }
+
+        public final ObservationDeck.UpdateSource getFrecencyCommandsUpdate() {
+            return StoreApplicationCommands.FrecencyCommandsUpdate;
+        }
+
+        public final ObservationDeck.UpdateSource getGuildApplicationsUpdate() {
+            return StoreApplicationCommands.GuildApplicationsUpdate;
+        }
+
+        public final ObservationDeck.UpdateSource getQueryCommandsUpdate() {
+            return StoreApplicationCommands.QueryCommandsUpdate;
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
+
+    /* JADX INFO: compiled from: StoreApplicationCommands.kt */
+    public final /* data */ class FrecencyRequest {
+        private final List<String> applicationCommandIds;
+        private final Long guildId;
+
+        public FrecencyRequest(Long l, List<String> list) {
+            C12238m.checkNotNullParameter(list, "applicationCommandIds");
+            this.guildId = l;
+            this.applicationCommandIds = list;
+        }
+
+        public final List<String> component2() {
+            return this.applicationCommandIds;
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        public static /* synthetic */ FrecencyRequest copy$default(FrecencyRequest frecencyRequest, Long l, List list, int i, Object obj) {
+            if ((i & 1) != 0) {
+                l = frecencyRequest.guildId;
+            }
+            if ((i & 2) != 0) {
+                list = frecencyRequest.applicationCommandIds;
+            }
+            return frecencyRequest.copy(l, list);
+        }
+
+        public final FrecencyRequest copy(Long guildId, List<String> applicationCommandIds) {
+            C12238m.checkNotNullParameter(applicationCommandIds, "applicationCommandIds");
+            return new FrecencyRequest(guildId, applicationCommandIds);
+        }
+
+        public boolean equals(Object other) {
+            if (this == other) {
+                return true;
+            }
+            if (!(other instanceof FrecencyRequest)) {
+                return false;
+            }
+            FrecencyRequest frecencyRequest = (FrecencyRequest) other;
+            return C12238m.areEqual(this.guildId, frecencyRequest.guildId) && C12238m.areEqual(this.applicationCommandIds, frecencyRequest.applicationCommandIds);
+        }
+
+        public final List<String> getApplicationCommandIds() {
+            return this.applicationCommandIds;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        public final Long getGuildId() {
+            return this.guildId;
+        }
+
+        public int hashCode() {
+            Long l = this.guildId;
+            int iHashCode = (l != null ? l.hashCode() : 0) * 31;
+            List<String> list = this.applicationCommandIds;
+            return iHashCode + (list != null ? list.hashCode() : 0);
+        }
+
+        public String toString() {
+            StringBuilder sbM833U = C1643a.m833U("FrecencyRequest(guildId=");
+            sbM833U.append(this.guildId);
+            sbM833U.append(", applicationCommandIds=");
+            return C1643a.m824L(sbM833U, this.applicationCommandIds, ")");
+        }
+    }
+
     public /* synthetic */ StoreApplicationCommands(StoreGatewayConnection storeGatewayConnection, StorePermissions storePermissions, StoreApplicationCommandFrecency storeApplicationCommandFrecency, StoreGuilds storeGuilds, StoreUser storeUser, StoreExperiments storeExperiments, Dispatcher dispatcher, RestAPI restAPI, ObservationDeck observationDeck, BuiltInCommandsProvider builtInCommandsProvider, NonceGenerator nonceGenerator, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(storeGatewayConnection, storePermissions, storeApplicationCommandFrecency, storeGuilds, storeUser, storeExperiments, dispatcher, (i & 128) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 256) != 0 ? ObservationDeckProvider.get() : observationDeck, (i & 512) != 0 ? new BuiltInCommands() : builtInCommandsProvider, (i & 1024) != 0 ? new NonceGenerator() : nonceGenerator);
+    }
+
+    public final void clearAutocompleteResults() {
+        this.dispatcher.schedule(new C57011());
+    }
+
+    public final void clearQueryCommands() {
+        this.dispatcher.schedule(new C57021());
     }
 
     @StoreThread
@@ -878,190 +886,6 @@ public final class StoreApplicationCommands extends StoreV2 {
 
     private final void getApplicationCommandsViaRest(long applicationId) {
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.getApplicationCommands(applicationId), false, 1, null), (Class<?>) StoreApplicationCommands.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : new C57042()), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C57031(applicationId));
-    }
-
-    @StoreThread
-    private final void handleDiscoverCommandsUpdate(List<? extends ApplicationCommand> commands) {
-        this.isLoadingDiscoveryCommands = false;
-        List mutableList = C12163u.toMutableList((Collection) this.discoverCommands.getCommands());
-        int size = mutableList.size();
-        Long l = this.jumpedApplicationId;
-        if (l != null) {
-            mutableList = C12163u.toMutableList((Collection) commands);
-            Integer num = this.applicationCommandIndexes.get(l);
-            this.currentStartOffset = num != null ? num.intValue() : 0;
-        } else if (this.loadDirectionUp) {
-            ArrayList arrayList = new ArrayList();
-            for (Object obj : commands) {
-                ApplicationCommand applicationCommand = (ApplicationCommand) obj;
-                ArrayList arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(mutableList, 10));
-                Iterator it = mutableList.iterator();
-                while (it.hasNext()) {
-                    arrayList2.add(((ApplicationCommand) it.next()).getId());
-                }
-                if (!arrayList2.contains(applicationCommand.getId())) {
-                    arrayList.add(obj);
-                }
-            }
-            Iterator it2 = C12161s.asReversed(arrayList).iterator();
-            while (it2.hasNext()) {
-                mutableList.add(0, (ApplicationCommand) it2.next());
-            }
-            this.currentStartOffset -= mutableList.size() - size;
-        } else if (this.loadDirectionDown) {
-            ArrayList arrayList3 = new ArrayList();
-            for (Object obj2 : commands) {
-                ApplicationCommand applicationCommand2 = (ApplicationCommand) obj2;
-                ArrayList arrayList4 = new ArrayList(C12149o.collectionSizeOrDefault(mutableList, 10));
-                Iterator it3 = mutableList.iterator();
-                while (it3.hasNext()) {
-                    arrayList4.add(((ApplicationCommand) it3.next()).getId());
-                }
-                if (!arrayList4.contains(applicationCommand2.getId())) {
-                    arrayList3.add(obj2);
-                }
-            }
-            mutableList = C12163u.toMutableList((Collection) C12163u.plus((Collection) mutableList, (Iterable) arrayList3));
-        } else {
-            mutableList = C12163u.toMutableList((Collection) commands);
-            this.currentStartOffset = 0;
-        }
-        List list = mutableList;
-        if ((list.size() + this.currentStartOffset) - 1 == this.numRemoteCommands - 1) {
-            list.addAll(this.builtInCommandsProvider.getBuiltInCommands());
-        }
-        this.currentEndOffset = (list.size() + this.currentStartOffset) - 1;
-        this.discoverCommands = new DiscoverCommands(list, this.currentStartOffset, this.currentEndOffset, this.currentStartOffset > 0 && (list.isEmpty() ^ true), this.currentEndOffset < this.numRemoteCommands - 1, this.jumpedSequenceId, this.jumpedApplicationId, this.loadDirectionUp ? LoadState.JustLoadedUp.INSTANCE : this.loadDirectionDown ? LoadState.JustLoadedDown.INSTANCE : LoadState.JustLoadedAll.INSTANCE);
-        markChanged(DiscoverCommandsUpdate);
-    }
-
-    @StoreThread
-    private final void handleFrecencyCommandsUpdate(String nonce, List<? extends ApplicationCommand> commands) {
-        int iIntValue;
-        FrecencyRequest frecencyRequest = this.frecencyRequests.get(nonce);
-        if (frecencyRequest != null) {
-            this.frecencyRequests.remove(nonce);
-            List<ApplicationCommand> listFlattenSubCommands = StoreApplicationCommandsKt.flattenSubCommands(commands);
-            Map<Long, List<ApplicationCommand>> map = this.frecencyCommands;
-            Long guildId = frecencyRequest.getGuildId();
-            Long lValueOf = Long.valueOf(guildId != null ? guildId.longValue() : 0L);
-            List<String> applicationCommandIds = frecencyRequest.getApplicationCommandIds();
-            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(applicationCommandIds, 10));
-            for (String str : applicationCommandIds) {
-                Integer intOrNull = C12102s.toIntOrNull(str);
-                Object obj = null;
-                if (intOrNull != null && (iIntValue = intOrNull.intValue()) < 0) {
-                    for (Object obj2 : this.builtInCommandsProvider.getBuiltInCommands()) {
-                        Integer intOrNull2 = C12102s.toIntOrNull(((ApplicationCommand) obj2).getId());
-                        if (intOrNull2 != null && intOrNull2.intValue() == iIntValue) {
-                            obj = obj2;
-                            break;
-                        }
-                    }
-                } else {
-                    for (Object obj3 : listFlattenSubCommands) {
-                        if (C12238m.areEqual(((ApplicationCommand) obj3).getId(), str)) {
-                            obj = obj3;
-                            break;
-                        }
-                    }
-                }
-                arrayList.add((ApplicationCommand) obj);
-            }
-            map.put(lValueOf, C12163u.filterNotNull(arrayList));
-            markChanged(FrecencyCommandsUpdate);
-        }
-    }
-
-    @StoreThread
-    private final void handleGuildApplicationsUpdate(List<Application> commands) {
-        this.applications = commands;
-        this.numRemoteCommands = 0;
-        int commandCount = 0;
-        for (Application application : commands) {
-            this.applicationCommandIndexes.put(Long.valueOf(application.getId()), Integer.valueOf(commandCount));
-            commandCount += application.getCommandCount();
-            if (!application.getBuiltIn()) {
-                this.numRemoteCommands = application.getCommandCount() + this.numRemoteCommands;
-            }
-        }
-        markChanged(GuildApplicationsUpdate);
-    }
-
-    @StoreThread
-    private final void handleQueryCommandsUpdate(List<? extends ApplicationCommand> commands) {
-        this.queryCommands.clear();
-        this.queryCommands.addAll(commands);
-        String str = this.query;
-        if (str != null) {
-            List<ApplicationCommand> list = this.queryCommands;
-            List<ApplicationCommand> builtInCommands = this.builtInCommandsProvider.getBuiltInCommands();
-            ArrayList arrayList = new ArrayList();
-            for (Object obj : builtInCommands) {
-                if (C12103t.startsWith(((ApplicationCommand) obj).getName(), str, true)) {
-                    arrayList.add(obj);
-                }
-            }
-            list.addAll(arrayList);
-        }
-        markChanged(QueryCommandsUpdate);
-    }
-
-    private final void requestApplicationCommands(Long guildId, int offset, Long applicationId, int limit) {
-        this.dispatcher.schedule(new C57151(guildId, offset, limit, applicationId));
-    }
-
-    public static /* synthetic */ void requestApplicationCommands$default(StoreApplicationCommands storeApplicationCommands, Long l, int i, Long l2, int i2, int i3, Object obj) {
-        if ((i3 & 2) != 0) {
-            i = 0;
-        }
-        if ((i3 & 4) != 0) {
-            l2 = null;
-        }
-        if ((i3 & 8) != 0) {
-            i2 = 20;
-        }
-        storeApplicationCommands.requestApplicationCommands(l, i, l2, i2);
-    }
-
-    public static /* synthetic */ void requestInitialApplicationCommands$default(StoreApplicationCommands storeApplicationCommands, Long l, Long l2, boolean z2, int i, Object obj) {
-        if ((i & 4) != 0) {
-            z2 = false;
-        }
-        storeApplicationCommands.requestInitialApplicationCommands(l, l2, z2);
-    }
-
-    @StoreThread
-    private final void setAutocompleteState(String commandOptionName, String queryString, CommandAutocompleteState state) {
-        Map<String, CommandAutocompleteState> mapEmptyMap = this.autocompleteOptionResults.get(commandOptionName);
-        if (mapEmptyMap == null) {
-            mapEmptyMap = C12136h0.emptyMap();
-        }
-        if (mapEmptyMap.get(queryString) instanceof CommandAutocompleteState.Choices) {
-            return;
-        }
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        Map<String, CommandAutocompleteState> mapEmptyMap2 = this.autocompleteOptionResults.get(commandOptionName);
-        if (mapEmptyMap2 == null) {
-            mapEmptyMap2 = C12136h0.emptyMap();
-        }
-        linkedHashMap.putAll(mapEmptyMap2);
-        linkedHashMap.put(queryString, state);
-        this.autocompleteOptionResults.put(commandOptionName, linkedHashMap);
-        markChanged(AutocompleteResultsUpdate);
-    }
-
-    private final boolean shouldReturnApplicationCommands(Long channelPermissions) {
-        Long l = this.discoverGuildId;
-        return l == null || (l != null && l.longValue() == 0) || PermissionUtils.can(Permission.USE_APPLICATION_COMMANDS, channelPermissions);
-    }
-
-    public final void clearAutocompleteResults() {
-        this.dispatcher.schedule(new C57011());
-    }
-
-    public final void clearQueryCommands() {
-        this.dispatcher.schedule(new C57021());
     }
 
     public final Map<Long, Application> getApplicationMap() {
@@ -1189,6 +1013,61 @@ public final class StoreApplicationCommands extends StoreV2 {
         this.pendingBotUser = null;
     }
 
+    @StoreThread
+    private final void handleDiscoverCommandsUpdate(List<? extends ApplicationCommand> commands) {
+        this.isLoadingDiscoveryCommands = false;
+        List mutableList = C12163u.toMutableList((Collection) this.discoverCommands.getCommands());
+        int size = mutableList.size();
+        Long l = this.jumpedApplicationId;
+        if (l != null) {
+            mutableList = C12163u.toMutableList((Collection) commands);
+            Integer num = this.applicationCommandIndexes.get(l);
+            this.currentStartOffset = num != null ? num.intValue() : 0;
+        } else if (this.loadDirectionUp) {
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : commands) {
+                ApplicationCommand applicationCommand = (ApplicationCommand) obj;
+                ArrayList arrayList2 = new ArrayList(C12149o.collectionSizeOrDefault(mutableList, 10));
+                Iterator it = mutableList.iterator();
+                while (it.hasNext()) {
+                    arrayList2.add(((ApplicationCommand) it.next()).getId());
+                }
+                if (!arrayList2.contains(applicationCommand.getId())) {
+                    arrayList.add(obj);
+                }
+            }
+            Iterator it2 = C12161s.asReversed(arrayList).iterator();
+            while (it2.hasNext()) {
+                mutableList.add(0, (ApplicationCommand) it2.next());
+            }
+            this.currentStartOffset -= mutableList.size() - size;
+        } else if (this.loadDirectionDown) {
+            ArrayList arrayList3 = new ArrayList();
+            for (Object obj2 : commands) {
+                ApplicationCommand applicationCommand2 = (ApplicationCommand) obj2;
+                ArrayList arrayList4 = new ArrayList(C12149o.collectionSizeOrDefault(mutableList, 10));
+                Iterator it3 = mutableList.iterator();
+                while (it3.hasNext()) {
+                    arrayList4.add(((ApplicationCommand) it3.next()).getId());
+                }
+                if (!arrayList4.contains(applicationCommand2.getId())) {
+                    arrayList3.add(obj2);
+                }
+            }
+            mutableList = C12163u.toMutableList((Collection) C12163u.plus((Collection) mutableList, (Iterable) arrayList3));
+        } else {
+            mutableList = C12163u.toMutableList((Collection) commands);
+            this.currentStartOffset = 0;
+        }
+        List list = mutableList;
+        if ((list.size() + this.currentStartOffset) - 1 == this.numRemoteCommands - 1) {
+            list.addAll(this.builtInCommandsProvider.getBuiltInCommands());
+        }
+        this.currentEndOffset = (list.size() + this.currentStartOffset) - 1;
+        this.discoverCommands = new DiscoverCommands(list, this.currentStartOffset, this.currentEndOffset, this.currentStartOffset > 0 && (list.isEmpty() ^ true), this.currentEndOffset < this.numRemoteCommands - 1, this.jumpedSequenceId, this.jumpedApplicationId, this.loadDirectionUp ? LoadState.JustLoadedUp.INSTANCE : this.loadDirectionDown ? LoadState.JustLoadedDown.INSTANCE : LoadState.JustLoadedAll.INSTANCE);
+        markChanged(DiscoverCommandsUpdate);
+    }
+
     public final void handleDmUserApplication(User botUser) {
         C12238m.checkNotNullParameter(botUser, "botUser");
         if (botUser.getIsBot()) {
@@ -1198,6 +1077,78 @@ public final class StoreApplicationCommands extends StoreV2 {
                 this.pendingBotUser = botUser;
             }
         }
+    }
+
+    @StoreThread
+    private final void handleFrecencyCommandsUpdate(String nonce, List<? extends ApplicationCommand> commands) {
+        int iIntValue;
+        FrecencyRequest frecencyRequest = this.frecencyRequests.get(nonce);
+        if (frecencyRequest != null) {
+            this.frecencyRequests.remove(nonce);
+            List<ApplicationCommand> listFlattenSubCommands = StoreApplicationCommandsKt.flattenSubCommands(commands);
+            Map<Long, List<ApplicationCommand>> map = this.frecencyCommands;
+            Long guildId = frecencyRequest.getGuildId();
+            Long lValueOf = Long.valueOf(guildId != null ? guildId.longValue() : 0L);
+            List<String> applicationCommandIds = frecencyRequest.getApplicationCommandIds();
+            ArrayList arrayList = new ArrayList(C12149o.collectionSizeOrDefault(applicationCommandIds, 10));
+            for (String str : applicationCommandIds) {
+                Integer intOrNull = C12102s.toIntOrNull(str);
+                Object obj = null;
+                if (intOrNull != null && (iIntValue = intOrNull.intValue()) < 0) {
+                    for (Object obj2 : this.builtInCommandsProvider.getBuiltInCommands()) {
+                        Integer intOrNull2 = C12102s.toIntOrNull(((ApplicationCommand) obj2).getId());
+                        if (intOrNull2 != null && intOrNull2.intValue() == iIntValue) {
+                            obj = obj2;
+                            break;
+                        }
+                    }
+                } else {
+                    for (Object obj3 : listFlattenSubCommands) {
+                        if (C12238m.areEqual(((ApplicationCommand) obj3).getId(), str)) {
+                            obj = obj3;
+                            break;
+                        }
+                    }
+                }
+                arrayList.add((ApplicationCommand) obj);
+            }
+            map.put(lValueOf, C12163u.filterNotNull(arrayList));
+            markChanged(FrecencyCommandsUpdate);
+        }
+    }
+
+    @StoreThread
+    private final void handleGuildApplicationsUpdate(List<Application> commands) {
+        this.applications = commands;
+        this.numRemoteCommands = 0;
+        int commandCount = 0;
+        for (Application application : commands) {
+            this.applicationCommandIndexes.put(Long.valueOf(application.getId()), Integer.valueOf(commandCount));
+            commandCount += application.getCommandCount();
+            if (!application.getBuiltIn()) {
+                this.numRemoteCommands = application.getCommandCount() + this.numRemoteCommands;
+            }
+        }
+        markChanged(GuildApplicationsUpdate);
+    }
+
+    @StoreThread
+    private final void handleQueryCommandsUpdate(List<? extends ApplicationCommand> commands) {
+        this.queryCommands.clear();
+        this.queryCommands.addAll(commands);
+        String str = this.query;
+        if (str != null) {
+            List<ApplicationCommand> list = this.queryCommands;
+            List<ApplicationCommand> builtInCommands = this.builtInCommandsProvider.getBuiltInCommands();
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : builtInCommands) {
+                if (C12103t.startsWith(((ApplicationCommand) obj).getName(), str, true)) {
+                    arrayList.add(obj);
+                }
+            }
+            list.addAll(arrayList);
+        }
+        markChanged(QueryCommandsUpdate);
     }
 
     public final boolean hasFetchedApplicationCommands(long applicationId) {
@@ -1249,6 +1200,23 @@ public final class StoreApplicationCommands extends StoreV2 {
     public final void requestApplicationCommandAutocompleteData(Long guildId, long channelId, ApplicationCommandData data) {
         C12238m.checkNotNullParameter(data, "data");
         this.dispatcher.schedule(new C57131(data, channelId, guildId));
+    }
+
+    public static /* synthetic */ void requestApplicationCommands$default(StoreApplicationCommands storeApplicationCommands, Long l, int i, Long l2, int i2, int i3, Object obj) {
+        if ((i3 & 2) != 0) {
+            i = 0;
+        }
+        if ((i3 & 4) != 0) {
+            l2 = null;
+        }
+        if ((i3 & 8) != 0) {
+            i2 = 20;
+        }
+        storeApplicationCommands.requestApplicationCommands(l, i, l2, i2);
+    }
+
+    private final void requestApplicationCommands(Long guildId, int offset, Long applicationId, int limit) {
+        this.dispatcher.schedule(new C57151(guildId, offset, limit, applicationId));
     }
 
     public final void requestApplicationCommandsQuery(Long guildId, String query) {
@@ -1307,6 +1275,13 @@ public final class StoreApplicationCommands extends StoreV2 {
             }
             this.dispatcher.schedule(new C57181(strGenerateNonce));
         }
+    }
+
+    public static /* synthetic */ void requestInitialApplicationCommands$default(StoreApplicationCommands storeApplicationCommands, Long l, Long l2, boolean z2, int i, Object obj) {
+        if ((i & 4) != 0) {
+            z2 = false;
+        }
+        storeApplicationCommands.requestInitialApplicationCommands(l, l2, z2);
     }
 
     public final void requestInitialApplicationCommands(Long guildId, Long applicationId, boolean forDmDiscover) {
@@ -1388,6 +1363,31 @@ public final class StoreApplicationCommands extends StoreV2 {
         C12238m.checkNotNullParameter(commandOptionName, "commandOptionName");
         C12238m.checkNotNullParameter(queryString, "queryString");
         setAutocompleteState(commandOptionName, queryString, CommandAutocompleteState.Loading.INSTANCE);
+    }
+
+    @StoreThread
+    private final void setAutocompleteState(String commandOptionName, String queryString, CommandAutocompleteState state) {
+        Map<String, CommandAutocompleteState> mapEmptyMap = this.autocompleteOptionResults.get(commandOptionName);
+        if (mapEmptyMap == null) {
+            mapEmptyMap = C12136h0.emptyMap();
+        }
+        if (mapEmptyMap.get(queryString) instanceof CommandAutocompleteState.Choices) {
+            return;
+        }
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        Map<String, CommandAutocompleteState> mapEmptyMap2 = this.autocompleteOptionResults.get(commandOptionName);
+        if (mapEmptyMap2 == null) {
+            mapEmptyMap2 = C12136h0.emptyMap();
+        }
+        linkedHashMap.putAll(mapEmptyMap2);
+        linkedHashMap.put(queryString, state);
+        this.autocompleteOptionResults.put(commandOptionName, linkedHashMap);
+        markChanged(AutocompleteResultsUpdate);
+    }
+
+    private final boolean shouldReturnApplicationCommands(Long channelPermissions) {
+        Long l = this.discoverGuildId;
+        return l == null || (l != null && l.longValue() == 0) || PermissionUtils.can(Permission.USE_APPLICATION_COMMANDS, channelPermissions);
     }
 
     @Override // com.discord.stores.StoreV2

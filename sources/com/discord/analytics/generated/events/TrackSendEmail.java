@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackSendEmail.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackSendEmail implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence emailType = null;
+    private TrackBase trackBase;
     private final CharSequence trackingPixelUuid = null;
     private final transient String analyticsSchemaTypeName = "send_email";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackSendEmail implements AnalyticsSchema, TrackBa
         }
         TrackSendEmail trackSendEmail = (TrackSendEmail) other;
         return C12238m.areEqual(this.emailType, trackSendEmail.emailType) && C12238m.areEqual(this.trackingPixelUuid, trackSendEmail.trackingPixelUuid);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

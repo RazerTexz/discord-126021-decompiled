@@ -9,22 +9,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackDeleteGuild.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackDeleteGuild implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long guildId = null;
+    private final Boolean guildIsVip = null;
     private final CharSequence guildName = null;
-    private final Long guildSizeTotal = null;
     private final Long guildNumChannels = null;
+    private final Long guildNumRoles = null;
     private final Long guildNumTextChannels = null;
     private final Long guildNumVoiceChannels = null;
-    private final Long guildNumRoles = null;
-    private final Boolean guildIsVip = null;
+    private final Long guildSizeTotal = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "delete_guild";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -35,6 +29,12 @@ public final /* data */ class TrackDeleteGuild implements AnalyticsSchema, Track
         }
         TrackDeleteGuild trackDeleteGuild = (TrackDeleteGuild) other;
         return C12238m.areEqual(this.guildId, trackDeleteGuild.guildId) && C12238m.areEqual(this.guildName, trackDeleteGuild.guildName) && C12238m.areEqual(this.guildSizeTotal, trackDeleteGuild.guildSizeTotal) && C12238m.areEqual(this.guildNumChannels, trackDeleteGuild.guildNumChannels) && C12238m.areEqual(this.guildNumTextChannels, trackDeleteGuild.guildNumTextChannels) && C12238m.areEqual(this.guildNumVoiceChannels, trackDeleteGuild.guildNumVoiceChannels) && C12238m.areEqual(this.guildNumRoles, trackDeleteGuild.guildNumRoles) && C12238m.areEqual(this.guildIsVip, trackDeleteGuild.guildIsVip);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

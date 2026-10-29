@@ -68,7 +68,7 @@ public final class C1270b extends AbstractC12194k implements Function2<Coroutine
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public final Object invokeSuspend(Object obj) {
+    public final Object invokeSuspend(Object obj) throws Throwable {
         String queryParameter;
         String query;
         C12183c.getCOROUTINE_SUSPENDED();

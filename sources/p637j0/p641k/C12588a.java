@@ -15,7 +15,7 @@ public final class C12588a {
 
     /* JADX INFO: renamed from: j0.k.a$a */
     /* JADX INFO: compiled from: Actions.java */
-    public static final class a<T0, T1, T2, T3, T4, T5, T6, T7, T8> implements Action0, Action1<T0>, Action2<T0, T1>, Action3<T0, T1, T2> {
+    public final class a<T0, T1, T2, T3, T4, T5, T6, T7, T8> implements Action0, Action1<T0>, Action2<T0, T1>, Action3<T0, T1, T2> {
         @Override // p658rx.functions.Action0
         public void call() {
         }

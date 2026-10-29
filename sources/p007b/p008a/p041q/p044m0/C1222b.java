@@ -91,7 +91,7 @@ public final class C1222b extends ScreenCapturerAndroid {
 
     /* JADX INFO: renamed from: b.a.q.m0.b$a */
     /* JADX INFO: compiled from: ScreenCapturer.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }
@@ -125,7 +125,7 @@ public final class C1222b extends ScreenCapturerAndroid {
 
     /* JADX INFO: renamed from: b.a.q.m0.b$c */
     /* JADX INFO: compiled from: ScreenCapturer.kt */
-    public static final class c<T> implements Action1<Long> {
+    public final class c<T> implements Action1<Long> {
         public c() {
         }
 
@@ -137,7 +137,7 @@ public final class C1222b extends ScreenCapturerAndroid {
 
     /* JADX INFO: renamed from: b.a.q.m0.b$d */
     /* JADX INFO: compiled from: ScreenCapturer.kt */
-    public static final class d<T> implements Action1<Throwable> {
+    public final class d<T> implements Action1<Throwable> {
 
         /* JADX INFO: renamed from: j */
         public static final d f1694j = new d();
@@ -160,6 +160,48 @@ public final class C1222b extends ScreenCapturerAndroid {
         this.f1685s = new Rect();
         this.f1686t = new Rect();
         this.f1687u = new Point();
+    }
+
+    @Override // org.webrtc.ScreenCapturerAndroid, org.webrtc.VideoCapturer
+    public synchronized void changeCaptureFormat(int i, int i2, int i3) {
+        m290a(this.f1685s, Math.max(i, i2));
+        m293d(i3);
+    }
+
+    @Override // org.webrtc.ScreenCapturerAndroid
+    public void createVirtualDisplay() {
+        try {
+            super.createVirtualDisplay();
+        } catch (Throwable th) {
+            Logger.e$default(this.f1690x, "ScreenCapturer", "error in createVirtualDisplay", th, null, 8, null);
+        }
+    }
+
+    @Override // org.webrtc.ScreenCapturerAndroid, org.webrtc.VideoCapturer
+    public void dispose() {
+        stopCapture();
+        ThumbnailEmitter thumbnailEmitter = this.f1691y;
+        if (thumbnailEmitter != null) {
+            synchronized (thumbnailEmitter) {
+                thumbnailEmitter.frameDrawer.release();
+                thumbnailEmitter.rectDrawer.release();
+                JniCommon.nativeFreeByteBuffer(thumbnailEmitter.outputByteBuffer);
+                thumbnailEmitter.lastTimestampNs = RecyclerView.FOREVER_NS;
+            }
+        }
+        this.f1681o.release();
+        super.dispose();
+    }
+
+    @Override // org.webrtc.ScreenCapturerAndroid, org.webrtc.VideoCapturer
+    public synchronized void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
+        C12238m.checkNotNullParameter(surfaceTextureHelper, "surfaceTextureHelper");
+        C12238m.checkNotNullParameter(context, "applicationContext");
+        C12238m.checkNotNullParameter(capturerObserver, "capturerObserver");
+        this.f1679m = surfaceTextureHelper;
+        this.f1680n = context;
+        this.f1678l = (NativeCapturerObserver) capturerObserver;
+        super.initialize(surfaceTextureHelper, context, capturerObserver);
     }
 
     /* JADX INFO: renamed from: a */
@@ -225,21 +267,6 @@ public final class C1222b extends ScreenCapturerAndroid {
         }
     }
 
-    @Override // org.webrtc.ScreenCapturerAndroid, org.webrtc.VideoCapturer
-    public synchronized void changeCaptureFormat(int i, int i2, int i3) {
-        m290a(this.f1685s, Math.max(i, i2));
-        m293d(i3);
-    }
-
-    @Override // org.webrtc.ScreenCapturerAndroid
-    public void createVirtualDisplay() {
-        try {
-            super.createVirtualDisplay();
-        } catch (Throwable th) {
-            Logger.e$default(this.f1690x, "ScreenCapturer", "error in createVirtualDisplay", th, null, 8, null);
-        }
-    }
-
     /* JADX INFO: renamed from: d */
     public final void m293d(int i) {
         if (i <= 0) {
@@ -249,33 +276,6 @@ public final class C1222b extends ScreenCapturerAndroid {
             this.f1682p = i;
             this.f1683q = 1000000000 / Math.max(10, i / 2);
         }
-    }
-
-    @Override // org.webrtc.ScreenCapturerAndroid, org.webrtc.VideoCapturer
-    public void dispose() {
-        stopCapture();
-        ThumbnailEmitter thumbnailEmitter = this.f1691y;
-        if (thumbnailEmitter != null) {
-            synchronized (thumbnailEmitter) {
-                thumbnailEmitter.frameDrawer.release();
-                thumbnailEmitter.rectDrawer.release();
-                JniCommon.nativeFreeByteBuffer(thumbnailEmitter.outputByteBuffer);
-                thumbnailEmitter.lastTimestampNs = RecyclerView.FOREVER_NS;
-            }
-        }
-        this.f1681o.release();
-        super.dispose();
-    }
-
-    @Override // org.webrtc.ScreenCapturerAndroid, org.webrtc.VideoCapturer
-    public synchronized void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
-        C12238m.checkNotNullParameter(surfaceTextureHelper, "surfaceTextureHelper");
-        C12238m.checkNotNullParameter(context, "applicationContext");
-        C12238m.checkNotNullParameter(capturerObserver, "capturerObserver");
-        this.f1679m = surfaceTextureHelper;
-        this.f1680n = context;
-        this.f1678l = (NativeCapturerObserver) capturerObserver;
-        super.initialize(surfaceTextureHelper, context, capturerObserver);
     }
 
     @Override // org.webrtc.ScreenCapturerAndroid, org.webrtc.VideoSink

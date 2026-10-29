@@ -4,10 +4,10 @@ package p637j0.p642l.p647e.p649o;
 /* JADX INFO: compiled from: SpmcArrayQueue.java */
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class AbstractC12742l<E> extends AbstractC12740j<E> {
+    private volatile long producerIndex;
 
     /* JADX INFO: renamed from: o */
     public static final long f27340o = C12755y.m10857a(AbstractC12742l.class, "producerIndex");
-    private volatile long producerIndex;
 
     public AbstractC12742l(int i) {
         super(i);

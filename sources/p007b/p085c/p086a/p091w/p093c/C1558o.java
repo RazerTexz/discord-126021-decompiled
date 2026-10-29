@@ -22,9 +22,6 @@ import p007b.p085c.p086a.p095y.p098m.AbstractC1603b;
 /* JADX INFO: loaded from: classes.dex */
 public class C1558o {
 
-    /* JADX INFO: renamed from: a */
-    public final Matrix f2627a = new Matrix();
-
     /* JADX INFO: renamed from: b */
     public final Matrix f2628b;
 
@@ -72,6 +69,9 @@ public class C1558o {
     /* JADX INFO: renamed from: n */
     @Nullable
     public AbstractC1544a<?, Float> f2640n;
+
+    /* JADX INFO: renamed from: a */
+    public final Matrix f2627a = new Matrix();
 
     public C1558o(C1583l c1583l) {
         C1576e c1576e = c1583l.f2729a;

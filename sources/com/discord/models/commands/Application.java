@@ -22,7 +22,7 @@ public final /* data */ class Application {
     private final String name;
 
     /* JADX INFO: compiled from: Application.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 
@@ -47,41 +47,6 @@ public final /* data */ class Application {
         this.builtIn = z2;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getId() {
-        return this.id;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final String getName() {
-        return this.name;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final String getIcon() {
-        return this.icon;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Integer getIconRes() {
-        return this.iconRes;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final int getCommandCount() {
-        return this.commandCount;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final User getBot() {
-        return this.bot;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final boolean getBuiltIn() {
-        return this.builtIn;
-    }
-
     public final Application copy(long id2, String name, String icon, Integer iconRes, int commandCount, User bot, boolean builtIn) {
         C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
         return new Application(id2, name, icon, iconRes, commandCount, bot, builtIn);
@@ -98,28 +63,63 @@ public final /* data */ class Application {
         return this.id == application.id && C12238m.areEqual(this.name, application.name) && C12238m.areEqual(this.icon, application.icon) && C12238m.areEqual(this.iconRes, application.iconRes) && this.commandCount == application.commandCount && C12238m.areEqual(this.bot, application.bot) && this.builtIn == application.builtIn;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final User getBot() {
         return this.bot;
+    }
+
+    public final User getBot() {
+        return this.bot;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final boolean getBuiltIn() {
+        return this.builtIn;
     }
 
     public final boolean getBuiltIn() {
         return this.builtIn;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final int getCommandCount() {
         return this.commandCount;
+    }
+
+    public final int getCommandCount() {
+        return this.commandCount;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final String getIcon() {
+        return this.icon;
     }
 
     public final String getIcon() {
         return this.icon;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Integer getIconRes() {
         return this.iconRes;
     }
 
+    public final Integer getIconRes() {
+        return this.iconRes;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getId() {
         return this.id;
+    }
+
+    public final long getId() {
+        return this.id;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final String getName() {
+        return this.name;
     }
 
     public final String getName() {

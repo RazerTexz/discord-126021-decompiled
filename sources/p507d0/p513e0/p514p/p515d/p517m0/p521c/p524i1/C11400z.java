@@ -83,6 +83,158 @@ public class C11400z extends AbstractC11375h {
         this.f22999s = z2;
     }
 
+    public void createTypeConstructor() {
+        this.f23002v = new C11930i(this, this.f23003w, this.f23004x, this.f23005y);
+        Iterator<InterfaceC11327d> it = getConstructors().iterator();
+        while (it.hasNext()) {
+            ((C11373g) it.next()).setReturnType(getDefaultType());
+        }
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
+    public InterfaceC11344g getAnnotations() {
+        InterfaceC11344g empty = InterfaceC11344g.f22735f.getEMPTY();
+        if (empty != null) {
+            return empty;
+        }
+        m9431a(5);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public InterfaceC11330e getCompanionObjectDescriptor() {
+        return null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11359i
+    public List<InterfaceC11477z0> getDeclaredTypeParameters() {
+        List<InterfaceC11477z0> list = this.f23003w;
+        if (list != null) {
+            return list;
+        }
+        m9431a(15);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public EnumC11333f getKind() {
+        EnumC11333f enumC11333f = this.f22998r;
+        if (enumC11333f != null) {
+            return enumC11333f;
+        }
+        m9431a(8);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public EnumC11476z getModality() {
+        EnumC11476z enumC11476z = this.f23000t;
+        if (enumC11476z != null) {
+            return enumC11476z;
+        }
+        m9431a(7);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public Collection<InterfaceC11330e> getSealedSubclasses() {
+        List listEmptyList = Collections.emptyList();
+        if (listEmptyList != null) {
+            return listEmptyList;
+        }
+        m9431a(19);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public InterfaceC11770i getStaticScope() {
+        InterfaceC11770i.b bVar = InterfaceC11770i.b.f24373b;
+        if (bVar != null) {
+            return bVar;
+        }
+        m9431a(18);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11352h
+    public InterfaceC12008u0 getTypeConstructor() {
+        InterfaceC12008u0 interfaceC12008u0 = this.f23002v;
+        if (interfaceC12008u0 != null) {
+            return interfaceC12008u0;
+        }
+        m9431a(11);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11395u
+    public InterfaceC11770i getUnsubstitutedMemberScope(AbstractC11947g abstractC11947g) {
+        if (abstractC11947g == null) {
+            m9431a(16);
+            throw null;
+        }
+        InterfaceC11770i.b bVar = InterfaceC11770i.b.f24373b;
+        if (bVar != null) {
+            return bVar;
+        }
+        m9431a(17);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public InterfaceC11327d getUnsubstitutedPrimaryConstructor() {
+        return null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public AbstractC11466u getVisibility() {
+        AbstractC11466u abstractC11466u = this.f23001u;
+        if (abstractC11466u != null) {
+            return abstractC11466u;
+        }
+        m9431a(10);
+        throw null;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isActual() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public boolean isCompanionObject() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public boolean isData() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
+    public boolean isExpect() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public boolean isFun() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public boolean isInline() {
+        return false;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11359i
+    public boolean isInner() {
+        return this.f22999s;
+    }
+
+    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
+    public boolean isValue() {
+        return false;
+    }
+
     /* JADX INFO: renamed from: a */
     public static /* synthetic */ void m9431a(int i) {
         String str;
@@ -268,158 +420,6 @@ public class C11400z extends AbstractC11375h {
             default:
                 throw new IllegalArgumentException(str2);
         }
-    }
-
-    public void createTypeConstructor() {
-        this.f23002v = new C11930i(this, this.f23003w, this.f23004x, this.f23005y);
-        Iterator<InterfaceC11327d> it = getConstructors().iterator();
-        while (it.hasNext()) {
-            ((C11373g) it.next()).setReturnType(getDefaultType());
-        }
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p522g1.InterfaceC11338a
-    public InterfaceC11344g getAnnotations() {
-        InterfaceC11344g empty = InterfaceC11344g.f22735f.getEMPTY();
-        if (empty != null) {
-            return empty;
-        }
-        m9431a(5);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public InterfaceC11330e getCompanionObjectDescriptor() {
-        return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11359i
-    public List<InterfaceC11477z0> getDeclaredTypeParameters() {
-        List<InterfaceC11477z0> list = this.f23003w;
-        if (list != null) {
-            return list;
-        }
-        m9431a(15);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public EnumC11333f getKind() {
-        EnumC11333f enumC11333f = this.f22998r;
-        if (enumC11333f != null) {
-            return enumC11333f;
-        }
-        m9431a(8);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public EnumC11476z getModality() {
-        EnumC11476z enumC11476z = this.f23000t;
-        if (enumC11476z != null) {
-            return enumC11476z;
-        }
-        m9431a(7);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public Collection<InterfaceC11330e> getSealedSubclasses() {
-        List listEmptyList = Collections.emptyList();
-        if (listEmptyList != null) {
-            return listEmptyList;
-        }
-        m9431a(19);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public InterfaceC11770i getStaticScope() {
-        InterfaceC11770i.b bVar = InterfaceC11770i.b.f24373b;
-        if (bVar != null) {
-            return bVar;
-        }
-        m9431a(18);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11352h
-    public InterfaceC12008u0 getTypeConstructor() {
-        InterfaceC12008u0 interfaceC12008u0 = this.f23002v;
-        if (interfaceC12008u0 != null) {
-            return interfaceC12008u0;
-        }
-        m9431a(11);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.p524i1.AbstractC11395u
-    public InterfaceC11770i getUnsubstitutedMemberScope(AbstractC11947g abstractC11947g) {
-        if (abstractC11947g == null) {
-            m9431a(16);
-            throw null;
-        }
-        InterfaceC11770i.b bVar = InterfaceC11770i.b.f24373b;
-        if (bVar != null) {
-            return bVar;
-        }
-        m9431a(17);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public InterfaceC11327d getUnsubstitutedPrimaryConstructor() {
-        return null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11458q, p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public AbstractC11466u getVisibility() {
-        AbstractC11466u abstractC11466u = this.f23001u;
-        if (abstractC11466u != null) {
-            return abstractC11466u;
-        }
-        m9431a(10);
-        throw null;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isActual() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public boolean isCompanionObject() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public boolean isData() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11474y
-    public boolean isExpect() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public boolean isFun() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public boolean isInline() {
-        return false;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11359i
-    public boolean isInner() {
-        return this.f22999s;
-    }
-
-    @Override // p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11330e
-    public boolean isValue() {
-        return false;
     }
 
     public void setModality(EnumC11476z enumC11476z) {

@@ -17,6 +17,30 @@ public class NestedScrollingChildHelper {
         this.mView = view;
     }
 
+    public boolean dispatchNestedFling(float f, float f2, boolean z2) {
+        ViewParent nestedScrollingParentForType;
+        if (!isNestedScrollingEnabled() || (nestedScrollingParentForType = getNestedScrollingParentForType(0)) == null) {
+            return false;
+        }
+        return ViewParentCompat.onNestedFling(nestedScrollingParentForType, this.mView, f, f2, z2);
+    }
+
+    public boolean dispatchNestedPreFling(float f, float f2) {
+        ViewParent nestedScrollingParentForType;
+        if (!isNestedScrollingEnabled() || (nestedScrollingParentForType = getNestedScrollingParentForType(0)) == null) {
+            return false;
+        }
+        return ViewParentCompat.onNestedPreFling(nestedScrollingParentForType, this.mView, f, f2);
+    }
+
+    public boolean dispatchNestedPreScroll(int i, int i2, @Nullable int[] iArr, @Nullable int[] iArr2) {
+        return dispatchNestedPreScroll(i, i2, iArr, iArr2, 0);
+    }
+
+    public boolean dispatchNestedScroll(int i, int i2, int i3, int i4, @Nullable int[] iArr) {
+        return dispatchNestedScrollInternal(i, i2, i3, i4, iArr, 0, null);
+    }
+
     private boolean dispatchNestedScrollInternal(int i, int i2, int i3, int i4, @Nullable int[] iArr, int i5, @Nullable int[] iArr2) {
         ViewParent nestedScrollingParentForType;
         int i6;
@@ -74,41 +98,6 @@ public class NestedScrollingChildHelper {
         return this.mTempNestedScrollConsumed;
     }
 
-    private void setNestedScrollingParentForType(int i, ViewParent viewParent) {
-        if (i == 0) {
-            this.mNestedScrollingParentTouch = viewParent;
-        } else {
-            if (i != 1) {
-                return;
-            }
-            this.mNestedScrollingParentNonTouch = viewParent;
-        }
-    }
-
-    public boolean dispatchNestedFling(float f, float f2, boolean z2) {
-        ViewParent nestedScrollingParentForType;
-        if (!isNestedScrollingEnabled() || (nestedScrollingParentForType = getNestedScrollingParentForType(0)) == null) {
-            return false;
-        }
-        return ViewParentCompat.onNestedFling(nestedScrollingParentForType, this.mView, f, f2, z2);
-    }
-
-    public boolean dispatchNestedPreFling(float f, float f2) {
-        ViewParent nestedScrollingParentForType;
-        if (!isNestedScrollingEnabled() || (nestedScrollingParentForType = getNestedScrollingParentForType(0)) == null) {
-            return false;
-        }
-        return ViewParentCompat.onNestedPreFling(nestedScrollingParentForType, this.mView, f, f2);
-    }
-
-    public boolean dispatchNestedPreScroll(int i, int i2, @Nullable int[] iArr, @Nullable int[] iArr2) {
-        return dispatchNestedPreScroll(i, i2, iArr, iArr2, 0);
-    }
-
-    public boolean dispatchNestedScroll(int i, int i2, int i3, int i4, @Nullable int[] iArr) {
-        return dispatchNestedScrollInternal(i, i2, i3, i4, iArr, 0, null);
-    }
-
     public boolean hasNestedScrollingParent() {
         return hasNestedScrollingParent(0);
     }
@@ -130,6 +119,17 @@ public class NestedScrollingChildHelper {
             ViewCompat.stopNestedScroll(this.mView);
         }
         this.mIsNestedScrollingEnabled = z2;
+    }
+
+    private void setNestedScrollingParentForType(int i, ViewParent viewParent) {
+        if (i == 0) {
+            this.mNestedScrollingParentTouch = viewParent;
+        } else {
+            if (i != 1) {
+                return;
+            }
+            this.mNestedScrollingParentNonTouch = viewParent;
+        }
     }
 
     public boolean startNestedScroll(int i) {

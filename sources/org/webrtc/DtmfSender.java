@@ -8,25 +8,15 @@ public class DtmfSender {
         this.nativeDtmfSender = j;
     }
 
+    public boolean canInsertDtmf() {
+        checkDtmfSenderExists();
+        return nativeCanInsertDtmf(this.nativeDtmfSender);
+    }
+
     private void checkDtmfSenderExists() {
         if (this.nativeDtmfSender == 0) {
             throw new IllegalStateException("DtmfSender has been disposed.");
         }
-    }
-
-    private static native boolean nativeCanInsertDtmf(long j);
-
-    private static native int nativeDuration(long j);
-
-    private static native boolean nativeInsertDtmf(long j, String str, int i, int i2);
-
-    private static native int nativeInterToneGap(long j);
-
-    private static native String nativeTones(long j);
-
-    public boolean canInsertDtmf() {
-        checkDtmfSenderExists();
-        return nativeCanInsertDtmf(this.nativeDtmfSender);
     }
 
     public void dispose() {
@@ -49,6 +39,16 @@ public class DtmfSender {
         checkDtmfSenderExists();
         return nativeInterToneGap(this.nativeDtmfSender);
     }
+
+    private static native boolean nativeCanInsertDtmf(long j);
+
+    private static native int nativeDuration(long j);
+
+    private static native boolean nativeInsertDtmf(long j, String str, int i, int i2);
+
+    private static native int nativeInterToneGap(long j);
+
+    private static native String nativeTones(long j);
 
     public String tones() {
         checkDtmfSenderExists();

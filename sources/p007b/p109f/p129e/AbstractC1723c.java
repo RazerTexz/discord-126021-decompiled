@@ -34,24 +34,6 @@ public abstract class AbstractC1723c<T> implements DataSource<T> {
     public final ConcurrentLinkedQueue<Pair<InterfaceC1726f<T>, Executor>> f3158g = new ConcurrentLinkedQueue<>();
 
     @Override // com.facebook.datasource.DataSource
-    /* JADX INFO: renamed from: a */
-    public Map<String, Object> mo1017a() {
-        return this.f3152a;
-    }
-
-    @Override // com.facebook.datasource.DataSource
-    /* JADX INFO: renamed from: b */
-    public synchronized boolean mo1018b() {
-        return this.f3155d != null;
-    }
-
-    @Override // com.facebook.datasource.DataSource
-    /* JADX INFO: renamed from: c */
-    public synchronized boolean mo1019c() {
-        return this.f3153b != 1;
-    }
-
-    @Override // com.facebook.datasource.DataSource
     public boolean close() {
         synchronized (this) {
             if (this.f3154c) {
@@ -71,43 +53,6 @@ public abstract class AbstractC1723c<T> implements DataSource<T> {
             }
             return true;
         }
-    }
-
-    @Override // com.facebook.datasource.DataSource
-    /* JADX INFO: renamed from: d */
-    public synchronized Throwable mo1020d() {
-        return this.f3156e;
-    }
-
-    @Override // com.facebook.datasource.DataSource
-    /* JADX INFO: renamed from: e */
-    public boolean mo1021e() {
-        return false;
-    }
-
-    @Override // com.facebook.datasource.DataSource
-    /* JADX INFO: renamed from: f */
-    public void mo1022f(InterfaceC1726f<T> interfaceC1726f, Executor executor) {
-        Objects.requireNonNull(executor);
-        synchronized (this) {
-            if (this.f3154c) {
-                return;
-            }
-            boolean z2 = true;
-            if (this.f3153b == 1) {
-                this.f3158g.add(Pair.create(interfaceC1726f, executor));
-            }
-            if (!mo1018b() && !mo1019c() && !m1030n()) {
-                z2 = false;
-            }
-            if (z2) {
-                executor.execute(new RunnableC1721a(this, m1024h(), interfaceC1726f, m1030n()));
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: g */
-    public void mo1023g(T t) {
     }
 
     @Override // com.facebook.datasource.DataSource
@@ -249,5 +194,60 @@ public abstract class AbstractC1723c<T> implements DataSource<T> {
     /* JADX INFO: renamed from: n */
     public final synchronized boolean m1030n() {
         return m1025i() && !mo1019c();
+    }
+
+    @Override // com.facebook.datasource.DataSource
+    /* JADX INFO: renamed from: a */
+    public Map<String, Object> mo1017a() {
+        return this.f3152a;
+    }
+
+    @Override // com.facebook.datasource.DataSource
+    /* JADX INFO: renamed from: b */
+    public synchronized boolean mo1018b() {
+        return this.f3155d != null;
+    }
+
+    @Override // com.facebook.datasource.DataSource
+    /* JADX INFO: renamed from: c */
+    public synchronized boolean mo1019c() {
+        return this.f3153b != 1;
+    }
+
+    @Override // com.facebook.datasource.DataSource
+    /* JADX INFO: renamed from: d */
+    public synchronized Throwable mo1020d() {
+        return this.f3156e;
+    }
+
+    @Override // com.facebook.datasource.DataSource
+    /* JADX INFO: renamed from: e */
+    public boolean mo1021e() {
+        return false;
+    }
+
+    @Override // com.facebook.datasource.DataSource
+    /* JADX INFO: renamed from: f */
+    public void mo1022f(InterfaceC1726f<T> interfaceC1726f, Executor executor) {
+        Objects.requireNonNull(executor);
+        synchronized (this) {
+            if (this.f3154c) {
+                return;
+            }
+            boolean z2 = true;
+            if (this.f3153b == 1) {
+                this.f3158g.add(Pair.create(interfaceC1726f, executor));
+            }
+            if (!mo1018b() && !mo1019c() && !m1030n()) {
+                z2 = false;
+            }
+            if (z2) {
+                executor.execute(new RunnableC1721a(this, m1024h(), interfaceC1726f, m1030n()));
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: g */
+    public void mo1023g(T t) {
     }
 }

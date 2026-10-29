@@ -10,7 +10,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 public abstract class EmojiPickerContextType implements Serializable {
 
     /* JADX INFO: compiled from: EmojiPickerContextType.kt */
-    public static final class Chat extends EmojiPickerContextType {
+    public final class Chat extends EmojiPickerContextType {
         public static final Chat INSTANCE = new Chat();
 
         private Chat() {
@@ -19,7 +19,7 @@ public abstract class EmojiPickerContextType implements Serializable {
     }
 
     /* JADX INFO: compiled from: EmojiPickerContextType.kt */
-    public static final class Global extends EmojiPickerContextType {
+    public final class Global extends EmojiPickerContextType {
         public static final Global INSTANCE = new Global();
 
         private Global() {
@@ -28,7 +28,7 @@ public abstract class EmojiPickerContextType implements Serializable {
     }
 
     /* JADX INFO: compiled from: EmojiPickerContextType.kt */
-    public static final /* data */ class Guild extends EmojiPickerContextType {
+    public final /* data */ class Guild extends EmojiPickerContextType {
         private final long guildId;
 
         public Guild(long j) {
@@ -43,11 +43,6 @@ public abstract class EmojiPickerContextType implements Serializable {
             return guild.copy(j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getGuildId() {
-            return this.guildId;
-        }
-
         public final Guild copy(long guildId) {
             return new Guild(guildId);
         }
@@ -57,6 +52,11 @@ public abstract class EmojiPickerContextType implements Serializable {
                 return (other instanceof Guild) && this.guildId == ((Guild) other).guildId;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getGuildId() {
+            return this.guildId;
         }
 
         public final long getGuildId() {

@@ -95,12 +95,6 @@ public final class C12261a {
         this.f25355c = C12272c.m10145z(list2);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final boolean m10101a(C12261a c12261a) {
-        C12238m.checkParameterIsNotNull(c12261a, "that");
-        return C12238m.areEqual(this.f25356d, c12261a.f25356d) && C12238m.areEqual(this.f25361i, c12261a.f25361i) && C12238m.areEqual(this.f25354b, c12261a.f25354b) && C12238m.areEqual(this.f25355c, c12261a.f25355c) && C12238m.areEqual(this.f25363k, c12261a.f25363k) && C12238m.areEqual(this.f25362j, c12261a.f25362j) && C12238m.areEqual(this.f25358f, c12261a.f25358f) && C12238m.areEqual(this.f25359g, c12261a.f25359g) && C12238m.areEqual(this.f25360h, c12261a.f25360h) && this.f25353a.f25980h == c12261a.f25353a.f25980h;
-    }
-
     public boolean equals(Object obj) {
         if (obj instanceof C12261a) {
             C12261a c12261a = (C12261a) obj;
@@ -113,6 +107,12 @@ public final class C12261a {
 
     public int hashCode() {
         return Objects.hashCode(this.f25360h) + ((Objects.hashCode(this.f25359g) + ((Objects.hashCode(this.f25358f) + ((Objects.hashCode(this.f25362j) + ((this.f25363k.hashCode() + ((this.f25355c.hashCode() + ((this.f25354b.hashCode() + ((this.f25361i.hashCode() + ((this.f25356d.hashCode() + ((this.f25353a.hashCode() + 527) * 31)) * 31)) * 31)) * 31)) * 31)) * 31)) * 31)) * 31)) * 31);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final boolean m10101a(C12261a c12261a) {
+        C12238m.checkParameterIsNotNull(c12261a, "that");
+        return C12238m.areEqual(this.f25356d, c12261a.f25356d) && C12238m.areEqual(this.f25361i, c12261a.f25361i) && C12238m.areEqual(this.f25354b, c12261a.f25354b) && C12238m.areEqual(this.f25355c, c12261a.f25355c) && C12238m.areEqual(this.f25363k, c12261a.f25363k) && C12238m.areEqual(this.f25362j, c12261a.f25362j) && C12238m.areEqual(this.f25358f, c12261a.f25358f) && C12238m.areEqual(this.f25359g, c12261a.f25359g) && C12238m.areEqual(this.f25360h, c12261a.f25360h) && this.f25353a.f25980h == c12261a.f25353a.f25980h;
     }
 
     public String toString() {

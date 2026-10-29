@@ -55,6 +55,20 @@ public final class C3928e {
         this.f10457h = bArr;
     }
 
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof C3928e) {
+            return Arrays.equals(this.f10457h, ((C3928e) obj).f10457h);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(this.f10457h);
+    }
+
     /* JADX INFO: renamed from: a */
     public static int m5403a(byte[] bArr, int i, int i2, int i3, List<ParcelUuid> list) {
         while (i2 > 0) {
@@ -90,20 +104,6 @@ public final class C3928e {
         }
         ParcelUuid parcelUuid = f10450a;
         return new ParcelUuid(new UUID(parcelUuid.getUuid().getMostSignificantBits() + (j << 32), parcelUuid.getUuid().getLeastSignificantBits()));
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof C3928e) {
-            return Arrays.equals(this.f10457h, ((C3928e) obj).f10457h);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(this.f10457h);
     }
 
     public final String toString() {

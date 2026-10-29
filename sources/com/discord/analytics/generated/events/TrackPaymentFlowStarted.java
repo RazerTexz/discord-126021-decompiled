@@ -19,22 +19,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPaymentFlowStarted.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPaymentFlowStarted implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackStoreSkuMetadataReceiver, TrackSubscriptionMetadataReceiver, TrackPaymentMetadataReceiver, TrackSourceMetadataReceiver {
+    private final Boolean eligibleForTrial = null;
+    private final Long guildId = null;
+    private final CharSequence loadId = null;
     private TrackBase trackBase;
     private TrackLocationMetadata trackLocationMetadata;
     private TrackPaymentMetadata trackPaymentMetadata;
     private TrackSourceMetadata trackSourceMetadata;
     private TrackStoreSkuMetadata trackStoreSkuMetadata;
     private TrackSubscriptionMetadata trackSubscriptionMetadata;
-    private final CharSequence loadId = null;
-    private final Boolean eligibleForTrial = null;
-    private final Long guildId = null;
     private final transient String analyticsSchemaTypeName = "payment_flow_started";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -45,6 +39,12 @@ public final /* data */ class TrackPaymentFlowStarted implements AnalyticsSchema
         }
         TrackPaymentFlowStarted trackPaymentFlowStarted = (TrackPaymentFlowStarted) other;
         return C12238m.areEqual(this.loadId, trackPaymentFlowStarted.loadId) && C12238m.areEqual(this.eligibleForTrial, trackPaymentFlowStarted.eligibleForTrial) && C12238m.areEqual(this.guildId, trackPaymentFlowStarted.guildId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

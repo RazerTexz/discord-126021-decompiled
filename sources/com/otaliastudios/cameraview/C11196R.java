@@ -7,7 +7,7 @@ import com.discord.C5419R;
 public final class C11196R {
 
     /* JADX INFO: renamed from: com.otaliastudios.cameraview.R$a */
-    public static final class a {
+    public final class a {
         public static final int aac = 2131361806;
         public static final int aacEld = 2131361807;
         public static final int accessibility_action_clickable_span = 2131361830;
@@ -133,7 +133,7 @@ public final class C11196R {
     }
 
     /* JADX INFO: renamed from: com.otaliastudios.cameraview.R$b */
-    public static final class b {
+    public final class b {
         public static final int cameraview_gl_view = 2131558440;
         public static final int cameraview_layout_focus_marker = 2131558441;
         public static final int cameraview_surface_view = 2131558442;
@@ -151,7 +151,9 @@ public final class C11196R {
     }
 
     /* JADX INFO: renamed from: com.otaliastudios.cameraview.R$c */
-    public static final class c {
+    public final class c {
+        public static final int[] CameraView = {C5419R.attr.cameraAudio, C5419R.attr.cameraAudioBitRate, C5419R.attr.cameraAudioCodec, C5419R.attr.cameraAutoFocusMarker, C5419R.attr.cameraAutoFocusResetDelay, C5419R.attr.cameraDrawHardwareOverlays, C5419R.attr.cameraEngine, C5419R.attr.cameraExperimental, C5419R.attr.cameraFacing, C5419R.attr.cameraFilter, C5419R.attr.cameraFlash, C5419R.attr.cameraFrameProcessingExecutors, C5419R.attr.cameraFrameProcessingFormat, C5419R.attr.cameraFrameProcessingMaxHeight, C5419R.attr.cameraFrameProcessingMaxWidth, C5419R.attr.cameraFrameProcessingPoolSize, C5419R.attr.cameraGestureLongTap, C5419R.attr.cameraGesturePinch, C5419R.attr.cameraGestureScrollHorizontal, C5419R.attr.cameraGestureScrollVertical, C5419R.attr.cameraGestureTap, C5419R.attr.cameraGrid, C5419R.attr.cameraGridColor, C5419R.attr.cameraHdr, C5419R.attr.cameraMode, C5419R.attr.cameraPictureFormat, C5419R.attr.cameraPictureMetering, C5419R.attr.cameraPictureSizeAspectRatio, C5419R.attr.cameraPictureSizeBiggest, C5419R.attr.cameraPictureSizeMaxArea, C5419R.attr.cameraPictureSizeMaxHeight, C5419R.attr.cameraPictureSizeMaxWidth, C5419R.attr.cameraPictureSizeMinArea, C5419R.attr.cameraPictureSizeMinHeight, C5419R.attr.cameraPictureSizeMinWidth, C5419R.attr.cameraPictureSizeSmallest, C5419R.attr.cameraPictureSnapshotMetering, C5419R.attr.cameraPlaySounds, C5419R.attr.cameraPreview, C5419R.attr.cameraPreviewFrameRate, C5419R.attr.cameraPreviewFrameRateExact, C5419R.attr.cameraRequestPermissions, C5419R.attr.cameraSnapshotMaxHeight, C5419R.attr.cameraSnapshotMaxWidth, C5419R.attr.cameraUseDeviceOrientation, C5419R.attr.cameraVideoBitRate, C5419R.attr.cameraVideoCodec, C5419R.attr.cameraVideoMaxDuration, C5419R.attr.cameraVideoMaxSize, C5419R.attr.cameraVideoSizeAspectRatio, C5419R.attr.cameraVideoSizeBiggest, C5419R.attr.cameraVideoSizeMaxArea, C5419R.attr.cameraVideoSizeMaxHeight, C5419R.attr.cameraVideoSizeMaxWidth, C5419R.attr.cameraVideoSizeMinArea, C5419R.attr.cameraVideoSizeMinHeight, C5419R.attr.cameraVideoSizeMinWidth, C5419R.attr.cameraVideoSizeSmallest, C5419R.attr.cameraWhiteBalance};
+        public static final int[] CameraView_Layout = {C5419R.attr.layout_drawOnPictureSnapshot, C5419R.attr.layout_drawOnPreview, C5419R.attr.layout_drawOnVideoSnapshot};
         public static final int CameraView_Layout_layout_drawOnPictureSnapshot = 0;
         public static final int CameraView_Layout_layout_drawOnPreview = 1;
         public static final int CameraView_Layout_layout_drawOnVideoSnapshot = 2;
@@ -214,9 +216,12 @@ public final class C11196R {
         public static final int CameraView_cameraVideoSizeMinWidth = 56;
         public static final int CameraView_cameraVideoSizeSmallest = 57;
         public static final int CameraView_cameraWhiteBalance = 58;
+        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
         public static final int ColorStateListItem_alpha = 2;
         public static final int ColorStateListItem_android_alpha = 1;
         public static final int ColorStateListItem_android_color = 0;
+        public static final int[] CoordinatorLayout = {C5419R.attr.keylines, C5419R.attr.statusBarBackground};
+        public static final int[] CoordinatorLayout_Layout = {android.R.attr.layout_gravity, C5419R.attr.layout_anchor, C5419R.attr.layout_anchorGravity, C5419R.attr.layout_behavior, C5419R.attr.layout_dodgeInsetEdges, C5419R.attr.layout_insetEdge, C5419R.attr.layout_keyline};
         public static final int CoordinatorLayout_Layout_android_layout_gravity = 0;
         public static final int CoordinatorLayout_Layout_layout_anchor = 1;
         public static final int CoordinatorLayout_Layout_layout_anchorGravity = 2;
@@ -226,6 +231,8 @@ public final class C11196R {
         public static final int CoordinatorLayout_Layout_layout_keyline = 6;
         public static final int CoordinatorLayout_keylines = 0;
         public static final int CoordinatorLayout_statusBarBackground = 1;
+        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
+        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
         public static final int FontFamilyFont_android_font = 0;
         public static final int FontFamilyFont_android_fontStyle = 2;
         public static final int FontFamilyFont_android_fontVariationSettings = 4;
@@ -243,6 +250,8 @@ public final class C11196R {
         public static final int FontFamily_fontProviderPackage = 4;
         public static final int FontFamily_fontProviderQuery = 5;
         public static final int FontFamily_fontProviderSystemFontFamily = 6;
+        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
+        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
         public static final int GradientColorItem_android_color = 0;
         public static final int GradientColorItem_android_offset = 1;
         public static final int GradientColor_android_centerColor = 7;
@@ -257,15 +266,6 @@ public final class C11196R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
-        public static final int[] CameraView = {C5419R.attr.cameraAudio, C5419R.attr.cameraAudioBitRate, C5419R.attr.cameraAudioCodec, C5419R.attr.cameraAutoFocusMarker, C5419R.attr.cameraAutoFocusResetDelay, C5419R.attr.cameraDrawHardwareOverlays, C5419R.attr.cameraEngine, C5419R.attr.cameraExperimental, C5419R.attr.cameraFacing, C5419R.attr.cameraFilter, C5419R.attr.cameraFlash, C5419R.attr.cameraFrameProcessingExecutors, C5419R.attr.cameraFrameProcessingFormat, C5419R.attr.cameraFrameProcessingMaxHeight, C5419R.attr.cameraFrameProcessingMaxWidth, C5419R.attr.cameraFrameProcessingPoolSize, C5419R.attr.cameraGestureLongTap, C5419R.attr.cameraGesturePinch, C5419R.attr.cameraGestureScrollHorizontal, C5419R.attr.cameraGestureScrollVertical, C5419R.attr.cameraGestureTap, C5419R.attr.cameraGrid, C5419R.attr.cameraGridColor, C5419R.attr.cameraHdr, C5419R.attr.cameraMode, C5419R.attr.cameraPictureFormat, C5419R.attr.cameraPictureMetering, C5419R.attr.cameraPictureSizeAspectRatio, C5419R.attr.cameraPictureSizeBiggest, C5419R.attr.cameraPictureSizeMaxArea, C5419R.attr.cameraPictureSizeMaxHeight, C5419R.attr.cameraPictureSizeMaxWidth, C5419R.attr.cameraPictureSizeMinArea, C5419R.attr.cameraPictureSizeMinHeight, C5419R.attr.cameraPictureSizeMinWidth, C5419R.attr.cameraPictureSizeSmallest, C5419R.attr.cameraPictureSnapshotMetering, C5419R.attr.cameraPlaySounds, C5419R.attr.cameraPreview, C5419R.attr.cameraPreviewFrameRate, C5419R.attr.cameraPreviewFrameRateExact, C5419R.attr.cameraRequestPermissions, C5419R.attr.cameraSnapshotMaxHeight, C5419R.attr.cameraSnapshotMaxWidth, C5419R.attr.cameraUseDeviceOrientation, C5419R.attr.cameraVideoBitRate, C5419R.attr.cameraVideoCodec, C5419R.attr.cameraVideoMaxDuration, C5419R.attr.cameraVideoMaxSize, C5419R.attr.cameraVideoSizeAspectRatio, C5419R.attr.cameraVideoSizeBiggest, C5419R.attr.cameraVideoSizeMaxArea, C5419R.attr.cameraVideoSizeMaxHeight, C5419R.attr.cameraVideoSizeMaxWidth, C5419R.attr.cameraVideoSizeMinArea, C5419R.attr.cameraVideoSizeMinHeight, C5419R.attr.cameraVideoSizeMinWidth, C5419R.attr.cameraVideoSizeSmallest, C5419R.attr.cameraWhiteBalance};
-        public static final int[] CameraView_Layout = {C5419R.attr.layout_drawOnPictureSnapshot, C5419R.attr.layout_drawOnPreview, C5419R.attr.layout_drawOnVideoSnapshot};
-        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
-        public static final int[] CoordinatorLayout = {C5419R.attr.keylines, C5419R.attr.statusBarBackground};
-        public static final int[] CoordinatorLayout_Layout = {android.R.attr.layout_gravity, C5419R.attr.layout_anchor, C5419R.attr.layout_anchorGravity, C5419R.attr.layout_behavior, C5419R.attr.layout_dodgeInsetEdges, C5419R.attr.layout_insetEdge, C5419R.attr.layout_keyline};
-        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
-        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
-        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
 
         private c() {
         }

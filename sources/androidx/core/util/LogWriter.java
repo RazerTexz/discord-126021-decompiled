@@ -8,19 +8,11 @@ import java.io.Writer;
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 @Deprecated
 public class LogWriter extends Writer {
-    private StringBuilder mBuilder = new StringBuilder(128);
     private final String mTag;
+    private StringBuilder mBuilder = new StringBuilder(128);
 
     public LogWriter(String str) {
         this.mTag = str;
-    }
-
-    private void flushBuilder() {
-        if (this.mBuilder.length() > 0) {
-            Log.d(this.mTag, this.mBuilder.toString());
-            StringBuilder sb = this.mBuilder;
-            sb.delete(0, sb.length());
-        }
     }
 
     @Override // java.io.Writer, java.io.Closeable, java.lang.AutoCloseable
@@ -31,6 +23,14 @@ public class LogWriter extends Writer {
     @Override // java.io.Writer, java.io.Flushable
     public void flush() {
         flushBuilder();
+    }
+
+    private void flushBuilder() {
+        if (this.mBuilder.length() > 0) {
+            Log.d(this.mTag, this.mBuilder.toString());
+            StringBuilder sb = this.mBuilder;
+            sb.delete(0, sb.length());
+        }
     }
 
     @Override // java.io.Writer

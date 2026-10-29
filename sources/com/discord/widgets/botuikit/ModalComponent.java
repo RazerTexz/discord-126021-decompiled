@@ -60,10 +60,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class ModalComponent extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(ModalComponent.class, "binding", "getBinding()Lcom/discord/databinding/ViewInteractionModalBinding;", 0)};
+    private static final String EXTRA_OPTIONS = "extra_options";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String EXTRA_OPTIONS = "extra_options";
 
     /* JADX INFO: renamed from: args$delegate, reason: from kotlin metadata */
     private final Lazy args;
@@ -72,8 +72,48 @@ public final class ModalComponent extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private String sentNonce;
 
+    /* JADX INFO: renamed from: com.discord.widgets.botuikit.ModalComponent$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: ModalComponent.kt */
-    public static final class Companion {
+    public final class C72741 extends AbstractC12240o implements Function1<Map<String, ? extends StoreApplicationInteractions.SentInteraction>, Unit> {
+        public C72741() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Map<String, ? extends StoreApplicationInteractions.SentInteraction> map) {
+            invoke2((Map<String, StoreApplicationInteractions.SentInteraction>) map);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Map<String, StoreApplicationInteractions.SentInteraction> map) {
+            StoreApplicationInteractions.SentInteraction sentInteraction;
+            FragmentActivity fragmentActivityM95e;
+            C12238m.checkNotNullParameter(map, "sentInteractions");
+            String str = ModalComponent.this.sentNonce;
+            if (str == null || (sentInteraction = map.get(str)) == null) {
+                return;
+            }
+            int iOrdinal = sentInteraction.getState().ordinal();
+            if (iOrdinal != 1) {
+                if (iOrdinal == 2 && (fragmentActivityM95e = ModalComponent.this.m95e()) != null) {
+                    fragmentActivityM95e.finish();
+                    return;
+                }
+                return;
+            }
+            ModalComponent.this.sentNonce = null;
+            LinearLayout linearLayout = ModalComponent.this.getBinding().f15502d;
+            C12238m.checkNotNullExpressionValue(linearLayout, "binding.error");
+            linearLayout.setVisibility(0);
+            MaterialButton materialButton = ModalComponent.this.getBinding().f15504f;
+            C12238m.checkNotNullExpressionValue(materialButton, "binding.submit");
+            materialButton.setEnabled(true);
+        }
+    }
+
+    /* JADX INFO: compiled from: ModalComponent.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -91,11 +131,11 @@ public final class ModalComponent extends AppFragment {
     }
 
     /* JADX INFO: compiled from: ModalComponent.kt */
-    public static final /* data */ class Options implements Parcelable {
+    public final /* data */ class Options implements Parcelable {
         public static final Parcelable.Creator<Options> CREATOR = new Creator();
         private final InteractionModalCreate modal;
 
-        public static class Creator implements Parcelable.Creator<Options> {
+        public final class Creator implements Parcelable.Creator<Options> {
             /* JADX WARN: Can't rename method to resolve collision */
             @Override // android.os.Parcelable.Creator
             public final Options createFromParcel(Parcel parcel) {
@@ -122,11 +162,6 @@ public final class ModalComponent extends AppFragment {
             return options.copy(interactionModalCreate);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final InteractionModalCreate getModal() {
-            return this.modal;
-        }
-
         public final Options copy(InteractionModalCreate modal) {
             C12238m.checkNotNullParameter(modal, "modal");
             return new Options(modal);
@@ -142,6 +177,11 @@ public final class ModalComponent extends AppFragment {
                 return (other instanceof Options) && C12238m.areEqual(this.modal, ((Options) other).modal);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final InteractionModalCreate getModal() {
+            return this.modal;
         }
 
         public final InteractionModalCreate getModal() {
@@ -170,27 +210,15 @@ public final class ModalComponent extends AppFragment {
         }
     }
 
-    public final /* synthetic */ class WhenMappings {
-        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
-
-        static {
-            StoreApplicationInteractions.SentInteractionState.values();
-            int[] iArr = new int[3];
-            $EnumSwitchMapping$0 = iArr;
-            iArr[StoreApplicationInteractions.SentInteractionState.SUCCESS.ordinal()] = 1;
-            iArr[StoreApplicationInteractions.SentInteractionState.FAILURE.ordinal()] = 2;
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.botuikit.ModalComponent$onViewBound$2 */
     /* JADX INFO: compiled from: ModalComponent.kt */
-    public static final class ViewOnClickListenerC72732 implements View.OnClickListener {
+    public final class ViewOnClickListenerC72732 implements View.OnClickListener {
         public final /* synthetic */ List $components;
         public final /* synthetic */ View $view;
 
         /* JADX INFO: renamed from: com.discord.widgets.botuikit.ModalComponent$onViewBound$2$2, reason: invalid class name */
         /* JADX INFO: compiled from: ModalComponent.kt */
-        public static final class AnonymousClass2 extends AbstractC12240o implements Function1<String, Unit> {
+        public final class AnonymousClass2 extends AbstractC12240o implements Function1<String, Unit> {
             public AnonymousClass2() {
                 super(1);
             }
@@ -210,7 +238,7 @@ public final class ModalComponent extends AppFragment {
 
         /* JADX INFO: renamed from: com.discord.widgets.botuikit.ModalComponent$onViewBound$2$3, reason: invalid class name */
         /* JADX INFO: compiled from: ModalComponent.kt */
-        public static final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
+        public final class AnonymousClass3 extends AbstractC12240o implements Function0<Unit> {
             public AnonymousClass3() {
                 super(0);
             }
@@ -281,43 +309,15 @@ public final class ModalComponent extends AppFragment {
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.botuikit.ModalComponent$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: ModalComponent.kt */
-    public static final class C72741 extends AbstractC12240o implements Function1<Map<String, ? extends StoreApplicationInteractions.SentInteraction>, Unit> {
-        public C72741() {
-            super(1);
-        }
+    public final /* synthetic */ class WhenMappings {
+        public static final /* synthetic */ int[] $EnumSwitchMapping$0;
 
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Map<String, ? extends StoreApplicationInteractions.SentInteraction> map) {
-            invoke2((Map<String, StoreApplicationInteractions.SentInteraction>) map);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Map<String, StoreApplicationInteractions.SentInteraction> map) {
-            StoreApplicationInteractions.SentInteraction sentInteraction;
-            FragmentActivity fragmentActivityM95e;
-            C12238m.checkNotNullParameter(map, "sentInteractions");
-            String str = ModalComponent.this.sentNonce;
-            if (str == null || (sentInteraction = map.get(str)) == null) {
-                return;
-            }
-            int iOrdinal = sentInteraction.getState().ordinal();
-            if (iOrdinal != 1) {
-                if (iOrdinal == 2 && (fragmentActivityM95e = ModalComponent.this.m95e()) != null) {
-                    fragmentActivityM95e.finish();
-                    return;
-                }
-                return;
-            }
-            ModalComponent.this.sentNonce = null;
-            LinearLayout linearLayout = ModalComponent.this.getBinding().f15502d;
-            C12238m.checkNotNullExpressionValue(linearLayout, "binding.error");
-            linearLayout.setVisibility(0);
-            MaterialButton materialButton = ModalComponent.this.getBinding().f15504f;
-            C12238m.checkNotNullExpressionValue(materialButton, "binding.submit");
-            materialButton.setEnabled(true);
+        static {
+            StoreApplicationInteractions.SentInteractionState.values();
+            int[] iArr = new int[3];
+            $EnumSwitchMapping$0 = iArr;
+            iArr[StoreApplicationInteractions.SentInteractionState.SUCCESS.ordinal()] = 1;
+            iArr[StoreApplicationInteractions.SentInteractionState.FAILURE.ordinal()] = 2;
         }
     }
 
@@ -331,12 +331,12 @@ public final class ModalComponent extends AppFragment {
         this.args = C12083g.lazy(new ModalComponent$$special$$inlined$args$1(this, "extra_options"));
     }
 
-    private final ViewInteractionModalBinding getBinding() {
-        return (ViewInteractionModalBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
-    }
-
     public final Options getArgs() {
         return (Options) this.args.getValue();
+    }
+
+    private final ViewInteractionModalBinding getBinding() {
+        return (ViewInteractionModalBinding) this.binding.getValue((Fragment) this, $$delegatedProperties[0]);
     }
 
     @Override // com.discord.app.AppFragment

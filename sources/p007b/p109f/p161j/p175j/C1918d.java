@@ -37,18 +37,6 @@ public class C1918d extends AbstractC1916b implements InterfaceC1706c {
         this.f3890p = 0;
     }
 
-    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
-    /* JADX INFO: renamed from: b */
-    public InterfaceC1923i mo1334b() {
-        return this.f3888n;
-    }
-
-    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
-    /* JADX INFO: renamed from: c */
-    public int mo1330c() {
-        return C2038a.m1541d(this.f3887m);
-    }
-
     @Override // p007b.p109f.p161j.p175j.AbstractC1917c, java.io.Closeable, java.lang.AutoCloseable
     public void close() {
         CloseableReference<Bitmap> closeableReference;
@@ -60,12 +48,6 @@ public class C1918d extends AbstractC1916b implements InterfaceC1706c {
         if (closeableReference != null) {
             closeableReference.close();
         }
-    }
-
-    @Override // p007b.p109f.p161j.p175j.AbstractC1916b
-    /* JADX INFO: renamed from: f */
-    public Bitmap mo1332f() {
-        return this.f3887m;
     }
 
     @Override // com.facebook.imagepipeline.image.ImageInfo
@@ -105,6 +87,24 @@ public class C1918d extends AbstractC1916b implements InterfaceC1706c {
     @Override // p007b.p109f.p161j.p175j.AbstractC1917c
     public synchronized boolean isClosed() {
         return this.f3886l == null;
+    }
+
+    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
+    /* JADX INFO: renamed from: c */
+    public int mo1330c() {
+        return C2038a.m1541d(this.f3887m);
+    }
+
+    @Override // p007b.p109f.p161j.p175j.AbstractC1916b
+    /* JADX INFO: renamed from: f */
+    public Bitmap mo1332f() {
+        return this.f3887m;
+    }
+
+    @Override // p007b.p109f.p161j.p175j.AbstractC1917c
+    /* JADX INFO: renamed from: b */
+    public InterfaceC1923i mo1334b() {
+        return this.f3888n;
     }
 
     public C1918d(CloseableReference<Bitmap> closeableReference, InterfaceC1923i interfaceC1923i, int i, int i2) {

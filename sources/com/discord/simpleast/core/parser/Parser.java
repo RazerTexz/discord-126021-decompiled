@@ -26,7 +26,7 @@ public class Parser<R, T extends Node<R>, S> {
     private final ArrayList<Rule<R, ? extends T, S>> rules;
 
     /* JADX INFO: compiled from: Parser.kt */
-    public static final class ParseException extends RuntimeException {
+    public final class ParseException extends RuntimeException {
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
         public ParseException(String str, CharSequence charSequence, Throwable th) {
             super("Error while parsing: " + str + " \n Source: " + charSequence, th);
@@ -41,6 +41,17 @@ public class Parser<R, T extends Node<R>, S> {
     public Parser(boolean z2) {
         this.enableDebugging = z2;
         this.rules = new ArrayList<>();
+    }
+
+    public final Parser<R, T, S> addRule(Rule<R, ? extends T, S> rule) {
+        C12238m.checkNotNullParameter(rule, "rule");
+        this.rules.add(rule);
+        return this;
+    }
+
+    public final Parser<R, T, S> addRules(Rule<R, ? extends T, S>... newRules) {
+        C12238m.checkNotNullParameter(newRules, "newRules");
+        return addRules(C12139j.asList(newRules));
     }
 
     private final <R, T extends Node<R>, S> void logMatch(Rule<R, T, S> rule, CharSequence source) {
@@ -72,17 +83,6 @@ public class Parser<R, T extends Node<R>, S> {
             list = parser.rules;
         }
         return parser.parse(charSequence, obj, list);
-    }
-
-    public final Parser<R, T, S> addRule(Rule<R, ? extends T, S> rule) {
-        C12238m.checkNotNullParameter(rule, "rule");
-        this.rules.add(rule);
-        return this;
-    }
-
-    public final Parser<R, T, S> addRules(Rule<R, ? extends T, S>... newRules) {
-        C12238m.checkNotNullParameter(newRules, "newRules");
-        return addRules(C12139j.asList(newRules));
     }
 
     public final List<T> parse(CharSequence charSequence, S s2) {

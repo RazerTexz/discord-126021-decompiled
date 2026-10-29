@@ -10,7 +10,7 @@ import p007b.p100d.p104b.p105a.C1643a;
 public class PathParser {
     private static final String LOGTAG = "PathParser";
 
-    public static class ExtractFloatResult {
+    public class ExtractFloatResult {
         public int mEndPosition;
         public boolean mEndWithNegOrDot;
     }
@@ -216,7 +216,7 @@ public class PathParser {
         }
     }
 
-    public static class PathDataNode {
+    public class PathDataNode {
         public float[] mParams;
         public char mType;
 
@@ -611,15 +611,6 @@ public class PathParser {
             arcToBezier(path, (d21 * dCos) - (d22 * dSin), (d22 * dCos) + (d21 * dSin), d6, d8, d3, d5, radians, dAtan2, dAtan3);
         }
 
-        public static void nodesToPath(PathDataNode[] pathDataNodeArr, Path path) {
-            float[] fArr = new float[6];
-            char c = 'm';
-            for (int i = 0; i < pathDataNodeArr.length; i++) {
-                addCommand(path, fArr, c, pathDataNodeArr[i].mType, pathDataNodeArr[i].mParams);
-                c = pathDataNodeArr[i].mType;
-            }
-        }
-
         public void interpolatePathDataNode(PathDataNode pathDataNode, PathDataNode pathDataNode2, float f) {
             this.mType = pathDataNode.mType;
             int i = 0;
@@ -630,6 +621,15 @@ public class PathParser {
                 }
                 this.mParams[i] = (pathDataNode2.mParams[i] * f) + ((1.0f - f) * fArr[i]);
                 i++;
+            }
+        }
+
+        public static void nodesToPath(PathDataNode[] pathDataNodeArr, Path path) {
+            float[] fArr = new float[6];
+            char c = 'm';
+            for (int i = 0; i < pathDataNodeArr.length; i++) {
+                addCommand(path, fArr, c, pathDataNodeArr[i].mType, pathDataNodeArr[i].mParams);
+                c = pathDataNodeArr[i].mType;
             }
         }
 

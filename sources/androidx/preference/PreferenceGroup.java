@@ -42,6 +42,39 @@ public abstract class PreferenceGroup extends Preference {
         int getPreferenceAdapterPosition(String str);
     }
 
+    public class SavedState extends Preference.BaseSavedState {
+        public int mInitialExpandedChildrenCount;
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.PreferenceGroup.SavedState.1
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            /* JADX WARN: Can't rename method to resolve collision */
+            @Override // android.os.Parcelable.Creator
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+
+        public SavedState(Parcel parcel) {
+            super(parcel);
+            this.mInitialExpandedChildrenCount = parcel.readInt();
+        }
+
+        @Override // android.view.AbsSavedState, android.os.Parcelable
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.mInitialExpandedChildrenCount);
+        }
+
+        public SavedState(Parcelable parcelable, int i) {
+            super(parcelable);
+            this.mInitialExpandedChildrenCount = i;
+        }
+    }
+
     public PreferenceGroup(Context context, AttributeSet attributeSet, int i, int i2) {
         super(context, attributeSet, i, i2);
         this.mIdRecycleCache = new SimpleArrayMap<>();
@@ -68,29 +101,6 @@ public abstract class PreferenceGroup extends Preference {
             setInitialExpandedChildrenCount(TypedArrayUtils.getInt(typedArrayObtainStyledAttributes, i4, i4, Integer.MAX_VALUE));
         }
         typedArrayObtainStyledAttributes.recycle();
-    }
-
-    private boolean removePreferenceInt(Preference preference) {
-        boolean zRemove;
-        synchronized (this) {
-            preference.onPrepareForRemoval();
-            if (preference.getParent() == this) {
-                preference.assignParent(null);
-            }
-            zRemove = this.mPreferences.remove(preference);
-            if (zRemove) {
-                String key = preference.getKey();
-                if (key != null) {
-                    this.mIdRecycleCache.put(key, Long.valueOf(preference.getId()));
-                    this.mHandler.removeCallbacks(this.mClearRecycleCacheRunnable);
-                    this.mHandler.post(this.mClearRecycleCacheRunnable);
-                }
-                if (this.mAttachedToHierarchy) {
-                    preference.onDetached();
-                }
-            }
-        }
-        return zRemove;
     }
 
     public void addItemFromInflater(Preference preference) {
@@ -286,6 +296,29 @@ public abstract class PreferenceGroup extends Preference {
         return zRemovePreferenceInt;
     }
 
+    private boolean removePreferenceInt(Preference preference) {
+        boolean zRemove;
+        synchronized (this) {
+            preference.onPrepareForRemoval();
+            if (preference.getParent() == this) {
+                preference.assignParent(null);
+            }
+            zRemove = this.mPreferences.remove(preference);
+            if (zRemove) {
+                String key = preference.getKey();
+                if (key != null) {
+                    this.mIdRecycleCache.put(key, Long.valueOf(preference.getId()));
+                    this.mHandler.removeCallbacks(this.mClearRecycleCacheRunnable);
+                    this.mHandler.post(this.mClearRecycleCacheRunnable);
+                }
+                if (this.mAttachedToHierarchy) {
+                    preference.onDetached();
+                }
+            }
+        }
+        return zRemove;
+    }
+
     public boolean removePreferenceRecursively(@NonNull CharSequence charSequence) {
         Preference preferenceFindPreference = findPreference(charSequence);
         if (preferenceFindPreference == null) {
@@ -313,39 +346,6 @@ public abstract class PreferenceGroup extends Preference {
     public void sortPreferences() {
         synchronized (this) {
             Collections.sort(this.mPreferences);
-        }
-    }
-
-    public static class SavedState extends Preference.BaseSavedState {
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() { // from class: androidx.preference.PreferenceGroup.SavedState.1
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            /* JADX WARN: Can't rename method to resolve collision */
-            @Override // android.os.Parcelable.Creator
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        public int mInitialExpandedChildrenCount;
-
-        public SavedState(Parcel parcel) {
-            super(parcel);
-            this.mInitialExpandedChildrenCount = parcel.readInt();
-        }
-
-        @Override // android.view.AbsSavedState, android.os.Parcelable
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.mInitialExpandedChildrenCount);
-        }
-
-        public SavedState(Parcelable parcelable, int i) {
-            super(parcelable);
-            this.mInitialExpandedChildrenCount = i;
         }
     }
 

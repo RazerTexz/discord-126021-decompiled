@@ -27,7 +27,7 @@ public final class WidgetHubAddNameViewModel extends AbstractC0859d0<AddNameStat
 
     /* JADX INFO: renamed from: com.discord.widgets.hubs.WidgetHubAddNameViewModel$setName$2 */
     /* JADX INFO: compiled from: WidgetHubAddNameViewModel.kt */
-    public static final class C89902 extends AbstractC12240o implements Function1<RestCallState<? extends Void>, Unit> {
+    public final class C89902 extends AbstractC12240o implements Function1<RestCallState<? extends Void>, Unit> {
         public C89902() {
             super(1);
         }

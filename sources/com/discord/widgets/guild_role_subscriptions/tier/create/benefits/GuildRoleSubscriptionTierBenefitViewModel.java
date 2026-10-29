@@ -22,10 +22,10 @@ public final class GuildRoleSubscriptionTierBenefitViewModel extends AbstractC08
     private final String tierName;
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitViewModel.kt */
-        public static final /* data */ class SendResult extends Event {
+        public final /* data */ class SendResult extends Event {
             private final Benefit benefit;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -42,11 +42,6 @@ public final class GuildRoleSubscriptionTierBenefitViewModel extends AbstractC08
                 return sendResult.copy(benefit);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Benefit getBenefit() {
-                return this.benefit;
-            }
-
             public final SendResult copy(Benefit benefit) {
                 C12238m.checkNotNullParameter(benefit, "benefit");
                 return new SendResult(benefit);
@@ -57,6 +52,11 @@ public final class GuildRoleSubscriptionTierBenefitViewModel extends AbstractC08
                     return (other instanceof SendResult) && C12238m.areEqual(this.benefit, ((SendResult) other).benefit);
                 }
                 return true;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final Benefit getBenefit() {
+                return this.benefit;
             }
 
             public final Benefit getBenefit() {
@@ -88,7 +88,7 @@ public final class GuildRoleSubscriptionTierBenefitViewModel extends AbstractC08
     }
 
     /* JADX INFO: compiled from: GuildRoleSubscriptionTierBenefitViewModel.kt */
-    public static final /* data */ class ViewState {
+    public final /* data */ class ViewState {
         private final boolean canSubmitResult;
         private final Long channelId;
         private final String description;
@@ -141,41 +141,6 @@ public final class GuildRoleSubscriptionTierBenefitViewModel extends AbstractC08
             return viewState.copy(z2, str4, str5, num2, emoji2, str6, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final boolean getCanSubmitResult() {
-            return this.canSubmitResult;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getName() {
-            return this.name;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getTierName() {
-            return this.tierName;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Integer getLeadingNameIconResId() {
-            return this.leadingNameIconResId;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Emoji getEmoji() {
-            return this.emoji;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getDescription() {
-            return this.description;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final Long getChannelId() {
-            return this.channelId;
-        }
-
         public final ViewState copy(boolean canSubmitResult, String name, String tierName, @DrawableRes Integer leadingNameIconResId, Emoji emoji, String description, Long channelId) {
             return new ViewState(canSubmitResult, name, tierName, leadingNameIconResId, emoji, description, channelId);
         }
@@ -191,28 +156,63 @@ public final class GuildRoleSubscriptionTierBenefitViewModel extends AbstractC08
             return this.canSubmitResult == viewState.canSubmitResult && C12238m.areEqual(this.name, viewState.name) && C12238m.areEqual(this.tierName, viewState.tierName) && C12238m.areEqual(this.leadingNameIconResId, viewState.leadingNameIconResId) && C12238m.areEqual(this.emoji, viewState.emoji) && C12238m.areEqual(this.description, viewState.description) && C12238m.areEqual(this.channelId, viewState.channelId);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final boolean getCanSubmitResult() {
             return this.canSubmitResult;
+        }
+
+        public final boolean getCanSubmitResult() {
+            return this.canSubmitResult;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final Long getChannelId() {
+            return this.channelId;
         }
 
         public final Long getChannelId() {
             return this.channelId;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final String getDescription() {
             return this.description;
+        }
+
+        public final String getDescription() {
+            return this.description;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final Emoji getEmoji() {
+            return this.emoji;
         }
 
         public final Emoji getEmoji() {
             return this.emoji;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Integer getLeadingNameIconResId() {
             return this.leadingNameIconResId;
         }
 
+        public final Integer getLeadingNameIconResId() {
+            return this.leadingNameIconResId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getName() {
             return this.name;
+        }
+
+        public final String getName() {
+            return this.name;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getTierName() {
+            return this.tierName;
         }
 
         public final String getTierName() {

@@ -25,7 +25,7 @@ public final class C11700a extends AbstractC11702a {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.f.y.a$a */
     /* JADX INFO: compiled from: BuiltInsBinaryVersion.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

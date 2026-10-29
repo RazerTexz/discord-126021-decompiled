@@ -16,24 +16,6 @@ public final /* data */ class ClientStatuses {
         this.mobile = clientStatus3;
     }
 
-    /* JADX INFO: renamed from: a */
-    public final ClientStatus m8149a() {
-        ClientStatus clientStatus = this.desktop;
-        return clientStatus != null ? clientStatus : ClientStatus.OFFLINE;
-    }
-
-    /* JADX INFO: renamed from: b */
-    public final ClientStatus m8150b() {
-        ClientStatus clientStatus = this.mobile;
-        return clientStatus != null ? clientStatus : ClientStatus.OFFLINE;
-    }
-
-    /* JADX INFO: renamed from: c */
-    public final ClientStatus m8151c() {
-        ClientStatus clientStatus = this.web;
-        return clientStatus != null ? clientStatus : ClientStatus.OFFLINE;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -52,6 +34,24 @@ public final /* data */ class ClientStatuses {
         int iHashCode2 = (iHashCode + (clientStatus2 != null ? clientStatus2.hashCode() : 0)) * 31;
         ClientStatus clientStatus3 = this.mobile;
         return iHashCode2 + (clientStatus3 != null ? clientStatus3.hashCode() : 0);
+    }
+
+    /* JADX INFO: renamed from: a */
+    public final ClientStatus m8149a() {
+        ClientStatus clientStatus = this.desktop;
+        return clientStatus != null ? clientStatus : ClientStatus.OFFLINE;
+    }
+
+    /* JADX INFO: renamed from: b */
+    public final ClientStatus m8150b() {
+        ClientStatus clientStatus = this.mobile;
+        return clientStatus != null ? clientStatus : ClientStatus.OFFLINE;
+    }
+
+    /* JADX INFO: renamed from: c */
+    public final ClientStatus m8151c() {
+        ClientStatus clientStatus = this.web;
+        return clientStatus != null ? clientStatus : ClientStatus.OFFLINE;
     }
 
     public String toString() {

@@ -35,7 +35,7 @@ public final class ComponentStateMapper {
 
     /* JADX INFO: renamed from: com.discord.widgets.botuikit.ComponentStateMapper$processComponentsToMessageComponents$1 */
     /* JADX INFO: compiled from: ComponentStateMapper.kt */
-    public static final class C72711 extends AbstractC12240o implements Function2<Integer, Component, Unit> {
+    public final class C72711 extends AbstractC12240o implements Function2<Integer, Component, Unit> {
         public final /* synthetic */ Stack $childComponentsLevelStack;
         public final /* synthetic */ Ref$ObjectRef $childrenComponents;
         public final /* synthetic */ ComponentExperiments $componentExperiments;
@@ -175,7 +175,7 @@ public final class ComponentStateMapper {
     }
 
     /* JADX INFO: compiled from: ComponentStateMapper.kt */
-    public static final /* data */ class ChildComponents {
+    public final /* data */ class ChildComponents {
         private final MessageComponent[] components;
         private int currentComponentInsertionIndex;
         private final int layoutComponentIndex;
@@ -210,26 +210,6 @@ public final class ComponentStateMapper {
             return childComponents.copy(i, layoutComponent, i2, i3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getLayoutComponentIndex() {
-            return this.layoutComponentIndex;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final LayoutComponent getParentLayoutComponent() {
-            return this.parentLayoutComponent;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getCurrentComponentInsertionIndex() {
-            return this.currentComponentInsertionIndex;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final int getTotal() {
-            return this.total;
-        }
-
         public final ChildComponents copy(int layoutComponentIndex, LayoutComponent parentLayoutComponent, int currentComponentInsertionIndex, int total) {
             return new ChildComponents(layoutComponentIndex, parentLayoutComponent, currentComponentInsertionIndex, total);
         }
@@ -249,16 +229,36 @@ public final class ComponentStateMapper {
             return this.components;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final int getCurrentComponentInsertionIndex() {
             return this.currentComponentInsertionIndex;
+        }
+
+        public final int getCurrentComponentInsertionIndex() {
+            return this.currentComponentInsertionIndex;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getLayoutComponentIndex() {
+            return this.layoutComponentIndex;
         }
 
         public final int getLayoutComponentIndex() {
             return this.layoutComponentIndex;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final LayoutComponent getParentLayoutComponent() {
             return this.parentLayoutComponent;
+        }
+
+        public final LayoutComponent getParentLayoutComponent() {
+            return this.parentLayoutComponent;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final int getTotal() {
+            return this.total;
         }
 
         public final int getTotal() {

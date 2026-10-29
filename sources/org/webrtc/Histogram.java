@@ -8,6 +8,10 @@ public class Histogram {
         this.handle = j;
     }
 
+    public void addSample(int i) {
+        nativeAddSample(this.handle, i);
+    }
+
     public static Histogram createCounts(String str, int i, int i2, int i3) {
         return new Histogram(nativeCreateCounts(str, i, i2, i3));
     }
@@ -21,8 +25,4 @@ public class Histogram {
     private static native long nativeCreateCounts(String str, int i, int i2, int i3);
 
     private static native long nativeCreateEnumeration(String str, int i);
-
-    public void addSample(int i) {
-        nativeAddSample(this.handle, i);
-    }
 }

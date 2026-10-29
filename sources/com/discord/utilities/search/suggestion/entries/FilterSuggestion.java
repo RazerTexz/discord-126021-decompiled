@@ -19,7 +19,7 @@ public final /* data */ class FilterSuggestion implements SearchSuggestion {
     private final FilterType filterType;
 
     /* JADX INFO: compiled from: FilterSuggestion.kt */
-    public static final class Companion {
+    public final class Companion {
 
         public final /* synthetic */ class WhenMappings {
             public static final /* synthetic */ int[] $EnumSwitchMapping$0;
@@ -38,6 +38,13 @@ public final /* data */ class FilterSuggestion implements SearchSuggestion {
         private Companion() {
         }
 
+        public final boolean canComplete(CharSequence currentInput, FilterType filterType, SearchStringProvider searchStringProvider) {
+            C12238m.checkNotNullParameter(currentInput, "currentInput");
+            C12238m.checkNotNullParameter(filterType, "filterType");
+            C12238m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
+            return C12106w.contains$default((CharSequence) getStringRepresentation(filterType, searchStringProvider), currentInput, false, 2, (Object) null);
+        }
+
         private final String getStringRepresentation(FilterType filterType, SearchStringProvider searchStringProvider) {
             String fromFilterString;
             int iOrdinal = filterType.ordinal();
@@ -52,13 +59,6 @@ public final /* data */ class FilterSuggestion implements SearchSuggestion {
                 fromFilterString = searchStringProvider.getInFilterString();
             }
             return fromFilterString + MentionUtilsKt.EMOJIS_AND_STICKERS_CHAR;
-        }
-
-        public final boolean canComplete(CharSequence currentInput, FilterType filterType, SearchStringProvider searchStringProvider) {
-            C12238m.checkNotNullParameter(currentInput, "currentInput");
-            C12238m.checkNotNullParameter(filterType, "filterType");
-            C12238m.checkNotNullParameter(searchStringProvider, "searchStringProvider");
-            return C12106w.contains$default((CharSequence) getStringRepresentation(filterType, searchStringProvider), currentInput, false, 2, (Object) null);
         }
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
@@ -79,11 +79,6 @@ public final /* data */ class FilterSuggestion implements SearchSuggestion {
         return filterSuggestion.copy(filterType);
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final FilterType getFilterType() {
-        return this.filterType;
-    }
-
     public final FilterSuggestion copy(FilterType filterType) {
         C12238m.checkNotNullParameter(filterType, "filterType");
         return new FilterSuggestion(filterType);
@@ -99,6 +94,11 @@ public final /* data */ class FilterSuggestion implements SearchSuggestion {
     @Override // com.discord.utilities.search.suggestion.entries.SearchSuggestion
     public SearchSuggestion.Category getCategory() {
         return this.category;
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final FilterType getFilterType() {
+        return this.filterType;
     }
 
     public final FilterType getFilterType() {

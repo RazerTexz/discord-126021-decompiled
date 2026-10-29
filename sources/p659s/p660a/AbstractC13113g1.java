@@ -15,12 +15,6 @@ public abstract class AbstractC13113g1<J extends Job> extends AbstractC13165y im
         this.f27845m = j;
     }
 
-    @Override // p659s.p660a.InterfaceC13169z0
-    /* JADX INFO: renamed from: a */
-    public boolean mo11281a() {
-        return true;
-    }
-
     @Override // p659s.p660a.InterfaceC13130m0
     public void dispose() {
         Object objM11292M;
@@ -45,5 +39,11 @@ public abstract class AbstractC13113g1<J extends Job> extends AbstractC13165y im
     @Override // p659s.p660a.InterfaceC13169z0
     public C13131m1 getList() {
         return null;
+    }
+
+    @Override // p659s.p660a.InterfaceC13169z0
+    /* JADX INFO: renamed from: a */
+    public boolean mo11281a() {
+        return true;
     }
 }

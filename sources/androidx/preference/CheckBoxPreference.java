@@ -32,6 +32,20 @@ public class CheckBoxPreference extends TwoStatePreference {
         this(context, attributeSet, i, 0);
     }
 
+    @Override // androidx.preference.Preference
+    public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
+        super.onBindViewHolder(preferenceViewHolder);
+        syncCheckboxView(preferenceViewHolder.findViewById(android.R.id.checkbox));
+        syncSummaryView(preferenceViewHolder);
+    }
+
+    @Override // androidx.preference.Preference
+    @RestrictTo({RestrictTo.Scope.LIBRARY})
+    public void performClick(View view) {
+        super.performClick(view);
+        syncViewIfAccessibilityEnabled(view);
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     private void syncCheckboxView(View view) {
         boolean z2 = view instanceof CompoundButton;
@@ -51,20 +65,6 @@ public class CheckBoxPreference extends TwoStatePreference {
             syncCheckboxView(view.findViewById(android.R.id.checkbox));
             syncSummaryView(view.findViewById(android.R.id.summary));
         }
-    }
-
-    @Override // androidx.preference.Preference
-    public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
-        super.onBindViewHolder(preferenceViewHolder);
-        syncCheckboxView(preferenceViewHolder.findViewById(android.R.id.checkbox));
-        syncSummaryView(preferenceViewHolder);
-    }
-
-    @Override // androidx.preference.Preference
-    @RestrictTo({RestrictTo.Scope.LIBRARY})
-    public void performClick(View view) {
-        super.performClick(view);
-        syncViewIfAccessibilityEnabled(view);
     }
 
     public CheckBoxPreference(Context context, AttributeSet attributeSet, int i, int i2) {

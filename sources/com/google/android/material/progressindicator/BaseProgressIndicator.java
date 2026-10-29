@@ -32,7 +32,6 @@ import p007b.p225i.p226a.p341g.p348g.AbstractC4420f;
 /* JADX INFO: loaded from: classes3.dex */
 public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec> extends ProgressBar {
     public static final float DEFAULT_OPACITY = 0.2f;
-    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ProgressIndicator;
     public static final int HIDE_INWARD = 2;
     public static final int HIDE_NONE = 0;
     public static final int HIDE_OUTWARD = 1;
@@ -55,39 +54,7 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     private boolean storedProgressAnimated;
     private final Animatable2Compat.AnimationCallback switchIndeterminateModeCallback;
     private int visibilityAfterHide;
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface HideAnimationBehavior {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
-    public @interface ShowAnimationBehavior {
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.progressindicator.BaseProgressIndicator$a */
-    public class RunnableC10955a implements Runnable {
-        public RunnableC10955a() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            BaseProgressIndicator.this.internalShow();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.google.android.material.progressindicator.BaseProgressIndicator$b */
-    public class RunnableC10956b implements Runnable {
-        public RunnableC10956b() {
-        }
-
-        @Override // java.lang.Runnable
-        public void run() {
-            BaseProgressIndicator.this.internalHide();
-            BaseProgressIndicator.this.lastShowStartTime = -1L;
-        }
-    }
+    public static final int DEF_STYLE_RES = C10817R.style.Widget_MaterialComponents_ProgressIndicator;
 
     /* JADX INFO: renamed from: com.google.android.material.progressindicator.BaseProgressIndicator$c */
     public class C10957c extends Animatable2Compat.AnimationCallback {
@@ -119,6 +86,39 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
         }
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface HideAnimationBehavior {
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.progressindicator.BaseProgressIndicator$a */
+    public class RunnableC10955a implements Runnable {
+        public RunnableC10955a() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            BaseProgressIndicator.this.internalShow();
+        }
+    }
+
+    /* JADX INFO: renamed from: com.google.android.material.progressindicator.BaseProgressIndicator$b */
+    public class RunnableC10956b implements Runnable {
+        public RunnableC10956b() {
+        }
+
+        @Override // java.lang.Runnable
+        public void run() {
+            BaseProgressIndicator.this.internalHide();
+            BaseProgressIndicator.this.lastShowStartTime = -1L;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+    public @interface ShowAnimationBehavior {
+    }
+
     public BaseProgressIndicator(@NonNull Context context, @Nullable AttributeSet attributeSet, @AttrRes int i, @StyleRes int i2) {
         super(MaterialThemeOverlay.wrap(context, attributeSet, i, DEF_STYLE_RES), attributeSet, i);
         this.lastShowStartTime = -1L;
@@ -138,60 +138,6 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
         this.isParentDoneInitializing = true;
     }
 
-    @Nullable
-    private AbstractC4420f<S> getCurrentDrawingDelegate() {
-        if (isIndeterminate()) {
-            if (getIndeterminateDrawable() == null) {
-                return null;
-            }
-            return getIndeterminateDrawable().getDrawingDelegate();
-        }
-        if (getProgressDrawable() == null) {
-            return null;
-        }
-        return getProgressDrawable().getDrawingDelegate();
-    }
-
-    private void internalHide() {
-        ((AbstractC4419e) getCurrentDrawable()).setVisible(false, false, true);
-        if (isNoLongerNeedToBeVisible()) {
-            setVisibility(4);
-        }
-    }
-
-    private void internalShow() {
-        if (this.minHideDelay > 0) {
-            this.lastShowStartTime = SystemClock.uptimeMillis();
-        }
-        setVisibility(0);
-    }
-
-    private boolean isNoLongerNeedToBeVisible() {
-        return (getProgressDrawable() == null || !getProgressDrawable().isVisible()) && (getIndeterminateDrawable() == null || !getIndeterminateDrawable().isVisible());
-    }
-
-    private void registerAnimationCallbacks() {
-        if (getProgressDrawable() != null && getIndeterminateDrawable() != null) {
-            getIndeterminateDrawable().getAnimatorDelegate().mo6125d(this.switchIndeterminateModeCallback);
-        }
-        if (getProgressDrawable() != null) {
-            getProgressDrawable().registerAnimationCallback(this.hideAnimationCallback);
-        }
-        if (getIndeterminateDrawable() != null) {
-            getIndeterminateDrawable().registerAnimationCallback(this.hideAnimationCallback);
-        }
-    }
-
-    private void unregisterAnimationCallbacks() {
-        if (getIndeterminateDrawable() != null) {
-            getIndeterminateDrawable().unregisterAnimationCallback(this.hideAnimationCallback);
-            getIndeterminateDrawable().getAnimatorDelegate().mo6128g();
-        }
-        if (getProgressDrawable() != null) {
-            getProgressDrawable().unregisterAnimationCallback(this.hideAnimationCallback);
-        }
-    }
-
     public void applyNewVisibility(boolean z2) {
         if (this.isParentDoneInitializing) {
             ((AbstractC4419e) getCurrentDrawable()).setVisible(visibleToUser(), false, z2);
@@ -204,6 +150,20 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     @Nullable
     public Drawable getCurrentDrawable() {
         return isIndeterminate() ? getIndeterminateDrawable() : getProgressDrawable();
+    }
+
+    @Nullable
+    private AbstractC4420f<S> getCurrentDrawingDelegate() {
+        if (isIndeterminate()) {
+            if (getIndeterminateDrawable() == null) {
+                return null;
+            }
+            return getIndeterminateDrawable().getDrawingDelegate();
+        }
+        if (getProgressDrawable() == null) {
+            return null;
+        }
+        return getProgressDrawable().getDrawingDelegate();
     }
 
     public int getHideAnimationBehavior() {
@@ -249,6 +209,20 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
         }
     }
 
+    private void internalHide() {
+        ((AbstractC4419e) getCurrentDrawable()).setVisible(false, false, true);
+        if (isNoLongerNeedToBeVisible()) {
+            setVisibility(4);
+        }
+    }
+
+    private void internalShow() {
+        if (this.minHideDelay > 0) {
+            this.lastShowStartTime = SystemClock.uptimeMillis();
+        }
+        setVisibility(0);
+    }
+
     @Override // android.view.View
     public void invalidate() {
         super.invalidate();
@@ -270,6 +244,10 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
             view = (View) parent;
         }
         return false;
+    }
+
+    private boolean isNoLongerNeedToBeVisible() {
+        return (getProgressDrawable() == null || !getProgressDrawable().isVisible()) && (getIndeterminateDrawable() == null || !getIndeterminateDrawable().isVisible());
     }
 
     @Override // android.widget.ProgressBar, android.view.View
@@ -325,6 +303,18 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
     public void onWindowVisibilityChanged(int i) {
         super.onWindowVisibilityChanged(i);
         applyNewVisibility(false);
+    }
+
+    private void registerAnimationCallbacks() {
+        if (getProgressDrawable() != null && getIndeterminateDrawable() != null) {
+            getIndeterminateDrawable().getAnimatorDelegate().mo6125d(this.switchIndeterminateModeCallback);
+        }
+        if (getProgressDrawable() != null) {
+            getProgressDrawable().registerAnimationCallback(this.hideAnimationCallback);
+        }
+        if (getIndeterminateDrawable() != null) {
+            getIndeterminateDrawable().registerAnimationCallback(this.hideAnimationCallback);
+        }
     }
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
@@ -474,6 +464,16 @@ public abstract class BaseProgressIndicator<S extends BaseProgressIndicatorSpec>
         } else {
             removeCallbacks(this.delayedShow);
             postDelayed(this.delayedShow, this.showDelay);
+        }
+    }
+
+    private void unregisterAnimationCallbacks() {
+        if (getIndeterminateDrawable() != null) {
+            getIndeterminateDrawable().unregisterAnimationCallback(this.hideAnimationCallback);
+            getIndeterminateDrawable().getAnimatorDelegate().mo6128g();
+        }
+        if (getProgressDrawable() != null) {
+            getProgressDrawable().unregisterAnimationCallback(this.hideAnimationCallback);
         }
     }
 

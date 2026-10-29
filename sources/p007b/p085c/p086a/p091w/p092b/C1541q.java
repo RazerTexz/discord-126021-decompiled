@@ -40,6 +40,23 @@ public class C1541q implements InterfaceC1537m, AbstractC1544a.b {
         abstractC1544aMo773a.f2596a.add(this);
     }
 
+    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
+    public Path getPath() {
+        if (this.f2583e) {
+            return this.f2579a;
+        }
+        this.f2579a.reset();
+        if (this.f2580b) {
+            this.f2583e = true;
+            return this.f2579a;
+        }
+        this.f2579a.set(this.f2582d.mo727e());
+        this.f2579a.setFillType(Path.FillType.EVEN_ODD);
+        this.f2584f.m715a(this.f2579a);
+        this.f2583e = true;
+        return this.f2579a;
+    }
+
     @Override // p007b.p085c.p086a.p091w.p093c.AbstractC1544a.b
     /* JADX INFO: renamed from: a */
     public void mo709a() {
@@ -60,22 +77,5 @@ public class C1541q implements InterfaceC1537m, AbstractC1544a.b {
                 }
             }
         }
-    }
-
-    @Override // p007b.p085c.p086a.p091w.p092b.InterfaceC1537m
-    public Path getPath() {
-        if (this.f2583e) {
-            return this.f2579a;
-        }
-        this.f2579a.reset();
-        if (this.f2580b) {
-            this.f2583e = true;
-            return this.f2579a;
-        }
-        this.f2579a.set(this.f2582d.mo727e());
-        this.f2579a.setFillType(Path.FillType.EVEN_ODD);
-        this.f2584f.m715a(this.f2579a);
-        this.f2583e = true;
-        return this.f2579a;
     }
 }

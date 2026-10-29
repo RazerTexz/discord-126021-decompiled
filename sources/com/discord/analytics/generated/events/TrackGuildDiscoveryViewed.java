@@ -12,22 +12,16 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackGuildDiscoveryViewed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackGuildDiscoveryViewed implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
+    private final Long categoryId = null;
     private final CharSequence loadId = null;
     private final Long numGuilds = null;
-    private final Long numGuildsRecommended = null;
     private final Long numGuildsPopular = null;
-    private final List<Long> recommendedGuildIds = null;
-    private final Long categoryId = null;
+    private final Long numGuildsRecommended = null;
     private final CharSequence recommendationsSource = null;
+    private final List<Long> recommendedGuildIds = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
     private final transient String analyticsSchemaTypeName = "guild_discovery_viewed";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackGuildDiscoveryViewed implements AnalyticsSche
         }
         TrackGuildDiscoveryViewed trackGuildDiscoveryViewed = (TrackGuildDiscoveryViewed) other;
         return C12238m.areEqual(this.loadId, trackGuildDiscoveryViewed.loadId) && C12238m.areEqual(this.numGuilds, trackGuildDiscoveryViewed.numGuilds) && C12238m.areEqual(this.numGuildsRecommended, trackGuildDiscoveryViewed.numGuildsRecommended) && C12238m.areEqual(this.numGuildsPopular, trackGuildDiscoveryViewed.numGuildsPopular) && C12238m.areEqual(this.recommendedGuildIds, trackGuildDiscoveryViewed.recommendedGuildIds) && C12238m.areEqual(this.categoryId, trackGuildDiscoveryViewed.categoryId) && C12238m.areEqual(this.recommendationsSource, trackGuildDiscoveryViewed.recommendationsSource);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

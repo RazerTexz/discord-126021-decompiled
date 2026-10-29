@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackMessageComponentUsed.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackMessageComponentUsed implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
+    private final Long actionType = null;
     private final Long applicationId = null;
     private final Long interactionId = null;
-    private final Long actionType = null;
     private final Long messageId = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "message_component_used";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackMessageComponentUsed implements AnalyticsSche
         }
         TrackMessageComponentUsed trackMessageComponentUsed = (TrackMessageComponentUsed) other;
         return C12238m.areEqual(this.applicationId, trackMessageComponentUsed.applicationId) && C12238m.areEqual(this.interactionId, trackMessageComponentUsed.interactionId) && C12238m.areEqual(this.actionType, trackMessageComponentUsed.actionType) && C12238m.areEqual(this.messageId, trackMessageComponentUsed.messageId);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

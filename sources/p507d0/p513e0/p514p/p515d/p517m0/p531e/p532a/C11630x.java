@@ -33,8 +33,34 @@ public final class C11630x implements InterfaceC11788f {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.e.a.x$a */
     /* JADX INFO: compiled from: JavaIncompatibilityRulesOverridabilityCondition.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        public final boolean doesJavaOverrideHaveIncompatibleValueParameterKinds(InterfaceC11318a interfaceC11318a, InterfaceC11318a interfaceC11318a2) {
+            C12238m.checkNotNullParameter(interfaceC11318a, "superDescriptor");
+            C12238m.checkNotNullParameter(interfaceC11318a2, "subDescriptor");
+            if ((interfaceC11318a2 instanceof C11515f) && (interfaceC11318a instanceof InterfaceC11472x)) {
+                C11515f c11515f = (C11515f) interfaceC11318a2;
+                c11515f.getValueParameters().size();
+                InterfaceC11472x interfaceC11472x = (InterfaceC11472x) interfaceC11318a;
+                interfaceC11472x.getValueParameters().size();
+                List<InterfaceC11326c1> valueParameters = c11515f.getOriginal().getValueParameters();
+                C12238m.checkNotNullExpressionValue(valueParameters, "subDescriptor.original.valueParameters");
+                List<InterfaceC11326c1> valueParameters2 = interfaceC11472x.getOriginal().getValueParameters();
+                C12238m.checkNotNullExpressionValue(valueParameters2, "superDescriptor.original.valueParameters");
+                for (Pair pair : C12163u.zip(valueParameters, valueParameters2)) {
+                    InterfaceC11326c1 interfaceC11326c1 = (InterfaceC11326c1) pair.component1();
+                    InterfaceC11326c1 interfaceC11326c2 = (InterfaceC11326c1) pair.component2();
+                    C12238m.checkNotNullExpressionValue(interfaceC11326c1, "subParameter");
+                    boolean z2 = m9527a((InterfaceC11472x) interfaceC11318a2, interfaceC11326c1) instanceof AbstractC11650k.d;
+                    C12238m.checkNotNullExpressionValue(interfaceC11326c2, "superParameter");
+                    if (z2 != (m9527a(interfaceC11472x, interfaceC11326c2) instanceof AbstractC11650k.d)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         /* JADX INFO: renamed from: a */
@@ -63,32 +89,6 @@ public final class C11630x implements InterfaceC11788f {
             AbstractC11913c0 type2 = interfaceC11326c1.getType();
             C12238m.checkNotNullExpressionValue(type2, "valueParameterDescriptor.type");
             return C11660u.mapToJvmType(C11992a.makeNullable(type2));
-        }
-
-        public final boolean doesJavaOverrideHaveIncompatibleValueParameterKinds(InterfaceC11318a interfaceC11318a, InterfaceC11318a interfaceC11318a2) {
-            C12238m.checkNotNullParameter(interfaceC11318a, "superDescriptor");
-            C12238m.checkNotNullParameter(interfaceC11318a2, "subDescriptor");
-            if ((interfaceC11318a2 instanceof C11515f) && (interfaceC11318a instanceof InterfaceC11472x)) {
-                C11515f c11515f = (C11515f) interfaceC11318a2;
-                c11515f.getValueParameters().size();
-                InterfaceC11472x interfaceC11472x = (InterfaceC11472x) interfaceC11318a;
-                interfaceC11472x.getValueParameters().size();
-                List<InterfaceC11326c1> valueParameters = c11515f.getOriginal().getValueParameters();
-                C12238m.checkNotNullExpressionValue(valueParameters, "subDescriptor.original.valueParameters");
-                List<InterfaceC11326c1> valueParameters2 = interfaceC11472x.getOriginal().getValueParameters();
-                C12238m.checkNotNullExpressionValue(valueParameters2, "superDescriptor.original.valueParameters");
-                for (Pair pair : C12163u.zip(valueParameters, valueParameters2)) {
-                    InterfaceC11326c1 interfaceC11326c1 = (InterfaceC11326c1) pair.component1();
-                    InterfaceC11326c1 interfaceC11326c2 = (InterfaceC11326c1) pair.component2();
-                    C12238m.checkNotNullExpressionValue(interfaceC11326c1, "subParameter");
-                    boolean z2 = m9527a((InterfaceC11472x) interfaceC11318a2, interfaceC11326c1) instanceof AbstractC11650k.d;
-                    C12238m.checkNotNullExpressionValue(interfaceC11326c2, "superParameter");
-                    if (z2 != (m9527a(interfaceC11472x, interfaceC11326c2) instanceof AbstractC11650k.d)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
     }
 

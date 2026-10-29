@@ -42,7 +42,7 @@ public final class C4961a {
 
     /* JADX INFO: renamed from: b.i.e.m.d.a$a */
     /* JADX INFO: compiled from: Detector.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f13225a;

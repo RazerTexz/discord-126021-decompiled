@@ -20,7 +20,7 @@ public class EncodedImage implements RefCounted {
     private final RefCountDelegate refCountDelegate;
     public final int rotation;
 
-    public static class Builder {
+    public class Builder {
         private ByteBuffer buffer;
         private long captureTimeNs;
         private int encodedHeight;

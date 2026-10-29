@@ -43,7 +43,7 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
 
     /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$1 */
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public static final class C75711 extends AbstractC12240o implements Function1<StoreState, Unit> {
+    public final class C75711 extends AbstractC12240o implements Function1<StoreState, Unit> {
         public C75711() {
             super(1);
         }
@@ -61,9 +61,68 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
         }
     }
 
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$editGroup$1 */
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public static final class Companion {
+    public final class C75731 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public final /* synthetic */ ViewState.Valid $viewState;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C75731(ViewState.Valid valid) {
+            super(1);
+            this.$viewState = valid;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "it");
+            ChannelGroupDMSettingsViewModel.this.eventSubject.f27650k.onNext((T) Event.SettingsSaved.INSTANCE);
+            ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel = ChannelGroupDMSettingsViewModel.this;
+            ViewState.Valid valid = this.$viewState;
+            channelGroupDMSettingsViewModel.updateViewState(valid.copy(ChannelSettings.copy$default(valid.getChannelSettings(), channel, false, null, 6, null), IconUtils.getForChannel(channel, null), IconUtils.getForChannel(channel, null)));
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$leaveGroup$1 */
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public final class C75741 extends AbstractC12240o implements Function1<Channel, Unit> {
+        public C75741() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
+            invoke2(channel);
+            return Unit.f27425a;
+        }
+
+        /* JADX WARN: Type inference incomplete: some casts might be missing */
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Channel channel) {
+            C12238m.checkNotNullParameter(channel, "it");
+            ChannelGroupDMSettingsViewModel.this.eventSubject.f27650k.onNext((T) Event.LeaveGroupSuccess.INSTANCE);
+        }
+    }
+
+    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
+    public final class Companion {
         private Companion() {
+        }
+
+        public static /* synthetic */ Observable observeStoreState$default(Companion companion, long j, StoreChannels storeChannels, StoreUserGuildSettings storeUserGuildSettings, int i, Object obj) {
+            if ((i & 2) != 0) {
+                storeChannels = StoreStream.INSTANCE.getChannels();
+            }
+            if ((i & 4) != 0) {
+                storeUserGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
+            }
+            return companion.observeStoreState(j, storeChannels, storeUserGuildSettings);
         }
 
         private final Observable<StoreState> observeStoreState(long channelId, StoreChannels storeChannels, final StoreUserGuildSettings storeUserGuildSettings) {
@@ -84,26 +143,16 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
             return observableM11099Y;
         }
 
-        public static /* synthetic */ Observable observeStoreState$default(Companion companion, long j, StoreChannels storeChannels, StoreUserGuildSettings storeUserGuildSettings, int i, Object obj) {
-            if ((i & 2) != 0) {
-                storeChannels = StoreStream.INSTANCE.getChannels();
-            }
-            if ((i & 4) != 0) {
-                storeUserGuildSettings = StoreStream.INSTANCE.getUserGuildSettings();
-            }
-            return companion.observeStoreState(j, storeChannels, storeUserGuildSettings);
-        }
-
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
         }
     }
 
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public static abstract class Event {
+    public abstract class Event {
 
         /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-        public static final class LeaveGroupSuccess extends Event {
+        public final class LeaveGroupSuccess extends Event {
             public static final LeaveGroupSuccess INSTANCE = new LeaveGroupSuccess();
 
             private LeaveGroupSuccess() {
@@ -112,7 +161,7 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
         }
 
         /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-        public static final class SettingsSaved extends Event {
+        public final class SettingsSaved extends Event {
             public static final SettingsSaved INSTANCE = new SettingsSaved();
 
             private SettingsSaved() {
@@ -129,10 +178,10 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
     }
 
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public static abstract class StoreState {
+    public abstract class StoreState {
 
         /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-        public static final class Invalid extends StoreState {
+        public final class Invalid extends StoreState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -141,7 +190,7 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
         }
 
         /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-        public static final /* data */ class Valid extends StoreState {
+        public final /* data */ class Valid extends StoreState {
             private final Channel channel;
             private final ModelNotificationSettings notificationSettings;
 
@@ -164,16 +213,6 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
                 return valid.copy(channel, modelNotificationSettings);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final Channel getChannel() {
-                return this.channel;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final ModelNotificationSettings getNotificationSettings() {
-                return this.notificationSettings;
-            }
-
             public final Valid copy(Channel channel, ModelNotificationSettings notificationSettings) {
                 C12238m.checkNotNullParameter(channel, "channel");
                 C12238m.checkNotNullParameter(notificationSettings, "notificationSettings");
@@ -191,8 +230,18 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
                 return C12238m.areEqual(this.channel, valid.channel) && C12238m.areEqual(this.notificationSettings, valid.notificationSettings);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final Channel getChannel() {
                 return this.channel;
+            }
+
+            public final Channel getChannel() {
+                return this.channel;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final ModelNotificationSettings getNotificationSettings() {
+                return this.notificationSettings;
             }
 
             public final ModelNotificationSettings getNotificationSettings() {
@@ -225,10 +274,10 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
     }
 
     /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public static abstract class ViewState {
+    public abstract class ViewState {
 
         /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-        public static final class Invalid extends ViewState {
+        public final class Invalid extends ViewState {
             public static final Invalid INSTANCE = new Invalid();
 
             private Invalid() {
@@ -237,7 +286,7 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
         }
 
         /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-        public static final /* data */ class Valid extends ViewState {
+        public final /* data */ class Valid extends ViewState {
             private final ChannelSettings channelSettings;
             private final String editedIconUrl;
             private final boolean hasUnsavedIconChange;
@@ -270,21 +319,6 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
                 return valid.copy(channelSettings, str, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ChannelSettings getChannelSettings() {
-                return this.channelSettings;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final String getOriginalIconUrl() {
-                return this.originalIconUrl;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getEditedIconUrl() {
-                return this.editedIconUrl;
-            }
-
             public final Valid copy(ChannelSettings channelSettings, String originalIconUrl, String editedIconUrl) {
                 C12238m.checkNotNullParameter(channelSettings, "channelSettings");
                 return new Valid(channelSettings, originalIconUrl, editedIconUrl);
@@ -301,6 +335,11 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
                 return C12238m.areEqual(this.channelSettings, valid.channelSettings) && C12238m.areEqual(this.originalIconUrl, valid.originalIconUrl) && C12238m.areEqual(this.editedIconUrl, valid.editedIconUrl);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
+            public final ChannelSettings getChannelSettings() {
+                return this.channelSettings;
+            }
+
             public final ChannelSettings getChannelSettings() {
                 return this.channelSettings;
             }
@@ -313,12 +352,22 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
                 return str != null ? str : IconUtils.INSTANCE.getDefaultForGroupDM(this.channelSettings.getChannel().getId());
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getEditedIconUrl() {
+                return this.editedIconUrl;
+            }
+
             public final String getEditedIconUrl() {
                 return this.editedIconUrl;
             }
 
             public final boolean getHasUnsavedIconChange() {
                 return this.hasUnsavedIconChange;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final String getOriginalIconUrl() {
+                return this.originalIconUrl;
             }
 
             public final String getOriginalIconUrl() {
@@ -356,72 +405,8 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$editGroup$1 */
-    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public static final class C75731 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public final /* synthetic */ ViewState.Valid $viewState;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C75731(ViewState.Valid valid) {
-            super(1);
-            this.$viewState = valid;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "it");
-            ChannelGroupDMSettingsViewModel.this.eventSubject.f27650k.onNext((T) Event.SettingsSaved.INSTANCE);
-            ChannelGroupDMSettingsViewModel channelGroupDMSettingsViewModel = ChannelGroupDMSettingsViewModel.this;
-            ViewState.Valid valid = this.$viewState;
-            channelGroupDMSettingsViewModel.updateViewState(valid.copy(ChannelSettings.copy$default(valid.getChannelSettings(), channel, false, null, 6, null), IconUtils.getForChannel(channel, null), IconUtils.getForChannel(channel, null)));
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.channels.settings.ChannelGroupDMSettingsViewModel$leaveGroup$1 */
-    /* JADX INFO: compiled from: ChannelGroupDMSettingsViewModel.kt */
-    public static final class C75741 extends AbstractC12240o implements Function1<Channel, Unit> {
-        public C75741() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Channel channel) {
-            invoke2(channel);
-            return Unit.f27425a;
-        }
-
-        /* JADX WARN: Type inference incomplete: some casts might be missing */
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Channel channel) {
-            C12238m.checkNotNullParameter(channel, "it");
-            ChannelGroupDMSettingsViewModel.this.eventSubject.f27650k.onNext((T) Event.LeaveGroupSuccess.INSTANCE);
-        }
-    }
-
     public /* synthetic */ ChannelGroupDMSettingsViewModel(long j, RestAPI restAPI, StoreUserGuildSettings storeUserGuildSettings, Observable observable, int i, DefaultConstructorMarker defaultConstructorMarker) {
         this(j, (i & 2) != 0 ? RestAPI.INSTANCE.getApi() : restAPI, (i & 4) != 0 ? StoreStream.INSTANCE.getUserGuildSettings() : storeUserGuildSettings, (i & 8) != 0 ? Companion.observeStoreState$default(INSTANCE, j, null, null, 6, null) : observable);
-    }
-
-    @MainThread
-    private final void handleStoreState(StoreState storeState) {
-        if (C12238m.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
-            updateViewState(ViewState.Invalid.INSTANCE);
-            return;
-        }
-        if (storeState instanceof StoreState.Valid) {
-            StoreState.Valid valid = (StoreState.Valid) storeState;
-            Channel channel = valid.getChannel();
-            ChannelSettings channelSettingsCreateFromNotificationSettings = ChannelSettings.INSTANCE.createFromNotificationSettings(channel, valid.getNotificationSettings());
-            ViewState viewState = getViewState();
-            updateViewState(viewState instanceof ViewState.Valid ? ViewState.Valid.copy$default((ViewState.Valid) viewState, channelSettingsCreateFromNotificationSettings, null, null, 6, null) : new ViewState.Valid(channelSettingsCreateFromNotificationSettings, IconUtils.getForChannel(channel, null), IconUtils.getForChannel(channel, null)));
-        }
     }
 
     @MainThread
@@ -442,6 +427,21 @@ public final class ChannelGroupDMSettingsViewModel extends AbstractC0859d0<ViewS
                 originalIconUrl = valid.getOriginalIconUrl();
             }
             ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(ObservableExtensionsKt.restSubscribeOn$default(this.restApi.editGroupDM(groupId, new RestAPIParams.GroupDM(name, originalIconUrl)), false, 1, null), this, null, 2, null), (Class<?>) ChannelGroupDMSettingsViewModel.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C75731(valid));
+        }
+    }
+
+    @MainThread
+    private final void handleStoreState(StoreState storeState) {
+        if (C12238m.areEqual(storeState, StoreState.Invalid.INSTANCE)) {
+            updateViewState(ViewState.Invalid.INSTANCE);
+            return;
+        }
+        if (storeState instanceof StoreState.Valid) {
+            StoreState.Valid valid = (StoreState.Valid) storeState;
+            Channel channel = valid.getChannel();
+            ChannelSettings channelSettingsCreateFromNotificationSettings = ChannelSettings.INSTANCE.createFromNotificationSettings(channel, valid.getNotificationSettings());
+            ViewState viewState = getViewState();
+            updateViewState(viewState instanceof ViewState.Valid ? ViewState.Valid.copy$default((ViewState.Valid) viewState, channelSettingsCreateFromNotificationSettings, null, null, 6, null) : new ViewState.Valid(channelSettingsCreateFromNotificationSettings, IconUtils.getForChannel(channel, null), IconUtils.getForChannel(channel, null)));
         }
     }
 

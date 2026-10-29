@@ -62,6 +62,150 @@ public final class ScreenShareManager {
     private final BehaviorSubject<Bitmap> thumbnailBitmapSubject;
     private final TooltipManager tooltipManager;
 
+    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$createThumbnailEmitter$1 */
+    /* JADX INFO: compiled from: ScreenShareManager.kt */
+    public final class C70381 extends AbstractC12240o implements Function1<Bitmap, Unit> {
+        public C70381() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Bitmap bitmap) {
+            invoke2(bitmap);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Bitmap bitmap) {
+            C12238m.checkNotNullParameter(bitmap, "thumbnailBitmap");
+            ScreenShareManager.this.thumbnailBitmapSubject.onNext(bitmap);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$startStream$2 */
+    /* JADX INFO: compiled from: ScreenShareManager.kt */
+    public final class C70402 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C70402() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            ScreenShareManager.this.compositeSubscription.m11136a(subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$startStream$3 */
+    /* JADX INFO: compiled from: ScreenShareManager.kt */
+    public final class C70413 extends AbstractC12240o implements Function1<RtcConnection.Metadata, Unit> {
+        public final /* synthetic */ Intent $intent;
+
+        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+        public C70413(Intent intent) {
+            super(1);
+            this.$intent = intent;
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(RtcConnection.Metadata metadata) {
+            invoke2(metadata);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(RtcConnection.Metadata metadata) {
+            ScreenShareManager.this.handleStartStream(this.$intent);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$subscribeToStores$2 */
+    /* JADX INFO: compiled from: ScreenShareManager.kt */
+    public final class C70432 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C70432() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            ScreenShareManager.this.compositeSubscription.m11136a(subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$subscribeToStores$3 */
+    /* JADX INFO: compiled from: ScreenShareManager.kt */
+    public final class C70443 extends AbstractC12240o implements Function1<State, Unit> {
+        public C70443() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(State state) {
+            invoke2(state);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(State state) {
+            ScreenShareManager screenShareManager = ScreenShareManager.this;
+            C12238m.checkNotNullExpressionValue(state, "it");
+            screenShareManager.handleStateUpdate(state);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$uploadScreenSharePreviews$2 */
+    /* JADX INFO: compiled from: ScreenShareManager.kt */
+    public final class C70462 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C70462() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            ScreenShareManager.this.compositeSubscription.m11136a(subscription);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$uploadScreenSharePreviews$3 */
+    /* JADX INFO: compiled from: ScreenShareManager.kt */
+    public final class C70473 extends AbstractC12240o implements Function1<Void, Unit> {
+        public static final C70473 INSTANCE = new C70473();
+
+        public C70473() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
+            invoke2(r1);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Void r1) {
+        }
+    }
+
     /* JADX INFO: compiled from: ScreenShareManager.kt */
     public final class RtcConnectionListener extends RtcConnection.AbstractC5616b {
         public RtcConnectionListener() {
@@ -87,7 +231,7 @@ public final class ScreenShareManager {
     }
 
     /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final /* data */ class State {
+    public final /* data */ class State {
         private final StoreApplicationStreaming.ActiveApplicationStream activeStream;
         private final Long meId;
         private final RtcConnection rtcConnection;
@@ -111,21 +255,6 @@ public final class ScreenShareManager {
             return state.copy(activeApplicationStream, rtcConnection, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final StoreApplicationStreaming.ActiveApplicationStream getActiveStream() {
-            return this.activeStream;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final RtcConnection getRtcConnection() {
-            return this.rtcConnection;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Long getMeId() {
-            return this.meId;
-        }
-
         public final State copy(StoreApplicationStreaming.ActiveApplicationStream activeStream, RtcConnection rtcConnection, Long meId) {
             return new State(activeStream, rtcConnection, meId);
         }
@@ -141,12 +270,27 @@ public final class ScreenShareManager {
             return C12238m.areEqual(this.activeStream, state.activeStream) && C12238m.areEqual(this.rtcConnection, state.rtcConnection) && C12238m.areEqual(this.meId, state.meId);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final StoreApplicationStreaming.ActiveApplicationStream getActiveStream() {
             return this.activeStream;
         }
 
+        public final StoreApplicationStreaming.ActiveApplicationStream getActiveStream() {
+            return this.activeStream;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Long getMeId() {
             return this.meId;
+        }
+
+        public final Long getMeId() {
+            return this.meId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final RtcConnection getRtcConnection() {
+            return this.rtcConnection;
         }
 
         public final RtcConnection getRtcConnection() {
@@ -169,150 +313,6 @@ public final class ScreenShareManager {
             sbM833U.append(this.rtcConnection);
             sbM833U.append(", meId=");
             return C1643a.m819G(sbM833U, this.meId, ")");
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$createThumbnailEmitter$1 */
-    /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final class C70381 extends AbstractC12240o implements Function1<Bitmap, Unit> {
-        public C70381() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Bitmap bitmap) {
-            invoke2(bitmap);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Bitmap bitmap) {
-            C12238m.checkNotNullParameter(bitmap, "thumbnailBitmap");
-            ScreenShareManager.this.thumbnailBitmapSubject.onNext(bitmap);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$startStream$2 */
-    /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final class C70402 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C70402() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            ScreenShareManager.this.compositeSubscription.m11136a(subscription);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$startStream$3 */
-    /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final class C70413 extends AbstractC12240o implements Function1<RtcConnection.Metadata, Unit> {
-        public final /* synthetic */ Intent $intent;
-
-        /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-        public C70413(Intent intent) {
-            super(1);
-            this.$intent = intent;
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(RtcConnection.Metadata metadata) {
-            invoke2(metadata);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(RtcConnection.Metadata metadata) {
-            ScreenShareManager.this.handleStartStream(this.$intent);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$subscribeToStores$2 */
-    /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final class C70432 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C70432() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            ScreenShareManager.this.compositeSubscription.m11136a(subscription);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$subscribeToStores$3 */
-    /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final class C70443 extends AbstractC12240o implements Function1<State, Unit> {
-        public C70443() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(State state) {
-            invoke2(state);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(State state) {
-            ScreenShareManager screenShareManager = ScreenShareManager.this;
-            C12238m.checkNotNullExpressionValue(state, "it");
-            screenShareManager.handleStateUpdate(state);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$uploadScreenSharePreviews$2 */
-    /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final class C70462 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C70462() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            ScreenShareManager.this.compositeSubscription.m11136a(subscription);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.voice.ScreenShareManager$uploadScreenSharePreviews$3 */
-    /* JADX INFO: compiled from: ScreenShareManager.kt */
-    public static final class C70473 extends AbstractC12240o implements Function1<Void, Unit> {
-        public static final C70473 INSTANCE = new C70473();
-
-        public C70473() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Void r1) {
-            invoke2(r1);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Void r1) {
         }
     }
 
@@ -344,6 +344,14 @@ public final class ScreenShareManager {
 
     private final ThumbnailEmitter createThumbnailEmitter() {
         return new ThumbnailEmitter(512, THUMBNAIL_HEIGHT_PX, 300000L, 5000L, null, new C70381(), 16);
+    }
+
+    public final long getChannelId() {
+        return this.channelId;
+    }
+
+    public final Long getGuildId() {
+        return this.guildId;
     }
 
     @MainThread
@@ -392,6 +400,33 @@ public final class ScreenShareManager {
         }
     }
 
+    public final void release() {
+        this.compositeSubscription.unsubscribe();
+    }
+
+    public final void startStream(Intent intent) {
+        C12238m.checkNotNullParameter(intent, "intent");
+        Observable<RtcConnection.Metadata> observableM11100Z = this.storeRtcConnection.observeRtcConnectionMetadata().m11118y(new InterfaceC12589b<RtcConnection.Metadata, Boolean>() { // from class: com.discord.utilities.voice.ScreenShareManager.startStream.1
+            @Override // p637j0.p641k.InterfaceC12589b
+            public final Boolean call(RtcConnection.Metadata metadata) {
+                Long l = metadata != null ? metadata.channelId : null;
+                return Boolean.valueOf(l != null && l.longValue() == ScreenShareManager.this.getChannelId() && C12238m.areEqual(metadata.guildId, ScreenShareManager.this.getGuildId()));
+            }
+        }).m11100Z(1);
+        C12238m.checkNotNullExpressionValue(observableM11100Z, "storeRtcConnection.obser…       }\n        .take(1)");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11100Z, this.appComponent, null, 2, null), (Class<?>) ScreenShareManager.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C70402()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C70413(intent));
+    }
+
+    public final void stopStream() {
+        StoreApplicationStreaming.ActiveApplicationStream activeStream;
+        State state = this.previousState;
+        if (state == null || (activeStream = state.getActiveStream()) == null) {
+            return;
+        }
+        this.storeApplicationStreaming.stopStream(activeStream.getStream().getEncodedStreamKey());
+        this.screenshareIntent = null;
+    }
+
     private final void subscribeToStores() {
         Observable observableM11112r = Observable.m11075i(this.storeApplicationStreaming.observeActiveStream(), this.storeStreamRtcConnection.observeRtcConnection(), StoreUser.observeMe$default(this.storeUser, false, 1, null), new Func3<StoreApplicationStreaming.ActiveApplicationStream, RtcConnection, MeUser, State>() { // from class: com.discord.utilities.voice.ScreenShareManager.subscribeToStores.1
             @Override // p658rx.functions.Func3
@@ -419,41 +454,6 @@ public final class ScreenShareManager {
         });
         C12238m.checkNotNullExpressionValue(observableM11082A, "thumbnailBitmapSubject\n …>()\n          }\n        }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.restSubscribeOn$default(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11082A, this.appComponent, null, 2, null), false, 1, null), (Class<?>) ScreenShareManager.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C70462()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), C70473.INSTANCE);
-    }
-
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    public final void release() {
-        this.compositeSubscription.unsubscribe();
-    }
-
-    public final void startStream(Intent intent) {
-        C12238m.checkNotNullParameter(intent, "intent");
-        Observable<RtcConnection.Metadata> observableM11100Z = this.storeRtcConnection.observeRtcConnectionMetadata().m11118y(new InterfaceC12589b<RtcConnection.Metadata, Boolean>() { // from class: com.discord.utilities.voice.ScreenShareManager.startStream.1
-            @Override // p637j0.p641k.InterfaceC12589b
-            public final Boolean call(RtcConnection.Metadata metadata) {
-                Long l = metadata != null ? metadata.channelId : null;
-                return Boolean.valueOf(l != null && l.longValue() == ScreenShareManager.this.getChannelId() && C12238m.areEqual(metadata.guildId, ScreenShareManager.this.getGuildId()));
-            }
-        }).m11100Z(1);
-        C12238m.checkNotNullExpressionValue(observableM11100Z, "storeRtcConnection.obser…       }\n        .take(1)");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11100Z, this.appComponent, null, 2, null), (Class<?>) ScreenShareManager.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C70402()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C70413(intent));
-    }
-
-    public final void stopStream() {
-        StoreApplicationStreaming.ActiveApplicationStream activeStream;
-        State state = this.previousState;
-        if (state == null || (activeStream = state.getActiveStream()) == null) {
-            return;
-        }
-        this.storeApplicationStreaming.stopStream(activeStream.getStream().getEncodedStreamKey());
-        this.screenshareIntent = null;
     }
 
     public ScreenShareManager(AppComponent appComponent, long j, Long l, StoreApplicationStreaming storeApplicationStreaming, StoreRtcConnection storeRtcConnection, StoreStreamRtcConnection storeStreamRtcConnection, StoreUser storeUser, RestAPI restAPI, ImageEncoder imageEncoder, TooltipManager tooltipManager, int i, DefaultConstructorMarker defaultConstructorMarker) {

@@ -59,162 +59,6 @@ public class AppCompatTextHelper {
         AppCompatDrawableManager.tintDrawable(drawable, tintInfo, this.mView.getDrawableState());
     }
 
-    private static TintInfo createTintInfo(Context context, AppCompatDrawableManager appCompatDrawableManager, int i) {
-        ColorStateList tintList = appCompatDrawableManager.getTintList(context, i);
-        if (tintList == null) {
-            return null;
-        }
-        TintInfo tintInfo = new TintInfo();
-        tintInfo.mHasTintList = true;
-        tintInfo.mTintList = tintList;
-        return tintInfo;
-    }
-
-    private void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4, Drawable drawable5, Drawable drawable6) {
-        if (drawable5 != null || drawable6 != null) {
-            Drawable[] compoundDrawablesRelative = this.mView.getCompoundDrawablesRelative();
-            TextView textView = this.mView;
-            if (drawable5 == null) {
-                drawable5 = compoundDrawablesRelative[0];
-            }
-            if (drawable2 == null) {
-                drawable2 = compoundDrawablesRelative[1];
-            }
-            if (drawable6 == null) {
-                drawable6 = compoundDrawablesRelative[2];
-            }
-            if (drawable4 == null) {
-                drawable4 = compoundDrawablesRelative[3];
-            }
-            textView.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable5, drawable2, drawable6, drawable4);
-            return;
-        }
-        if (drawable == null && drawable2 == null && drawable3 == null && drawable4 == null) {
-            return;
-        }
-        Drawable[] compoundDrawablesRelative2 = this.mView.getCompoundDrawablesRelative();
-        if (compoundDrawablesRelative2[0] != null || compoundDrawablesRelative2[2] != null) {
-            TextView textView2 = this.mView;
-            Drawable drawable7 = compoundDrawablesRelative2[0];
-            if (drawable2 == null) {
-                drawable2 = compoundDrawablesRelative2[1];
-            }
-            Drawable drawable8 = compoundDrawablesRelative2[2];
-            if (drawable4 == null) {
-                drawable4 = compoundDrawablesRelative2[3];
-            }
-            textView2.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable7, drawable2, drawable8, drawable4);
-            return;
-        }
-        Drawable[] compoundDrawables = this.mView.getCompoundDrawables();
-        TextView textView3 = this.mView;
-        if (drawable == null) {
-            drawable = compoundDrawables[0];
-        }
-        if (drawable2 == null) {
-            drawable2 = compoundDrawables[1];
-        }
-        if (drawable3 == null) {
-            drawable3 = compoundDrawables[2];
-        }
-        if (drawable4 == null) {
-            drawable4 = compoundDrawables[3];
-        }
-        textView3.setCompoundDrawablesWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
-    }
-
-    private void setCompoundTints() {
-        TintInfo tintInfo = this.mDrawableTint;
-        this.mDrawableLeftTint = tintInfo;
-        this.mDrawableTopTint = tintInfo;
-        this.mDrawableRightTint = tintInfo;
-        this.mDrawableBottomTint = tintInfo;
-        this.mDrawableStartTint = tintInfo;
-        this.mDrawableEndTint = tintInfo;
-    }
-
-    private void setTextSizeInternal(int i, float f) {
-        this.mAutoSizeTextHelper.setTextSizeInternal(i, f);
-    }
-
-    private void updateTypefaceAndStyle(Context context, TintTypedArray tintTypedArray) {
-        String string;
-        this.mStyle = tintTypedArray.getInt(C0051R.styleable.TextAppearance_android_textStyle, this.mStyle);
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 28) {
-            int i2 = tintTypedArray.getInt(C0051R.styleable.TextAppearance_android_textFontWeight, -1);
-            this.mFontWeight = i2;
-            if (i2 != -1) {
-                this.mStyle = (this.mStyle & 2) | 0;
-            }
-        }
-        int i3 = C0051R.styleable.TextAppearance_android_fontFamily;
-        if (!tintTypedArray.hasValue(i3) && !tintTypedArray.hasValue(C0051R.styleable.TextAppearance_fontFamily)) {
-            int i4 = C0051R.styleable.TextAppearance_android_typeface;
-            if (tintTypedArray.hasValue(i4)) {
-                this.mAsyncFontPending = false;
-                int i5 = tintTypedArray.getInt(i4, 1);
-                if (i5 == 1) {
-                    this.mFontTypeface = Typeface.SANS_SERIF;
-                    return;
-                } else if (i5 == 2) {
-                    this.mFontTypeface = Typeface.SERIF;
-                    return;
-                } else {
-                    if (i5 != 3) {
-                        return;
-                    }
-                    this.mFontTypeface = Typeface.MONOSPACE;
-                    return;
-                }
-            }
-            return;
-        }
-        this.mFontTypeface = null;
-        int i6 = C0051R.styleable.TextAppearance_fontFamily;
-        if (tintTypedArray.hasValue(i6)) {
-            i3 = i6;
-        }
-        final int i7 = this.mFontWeight;
-        final int i8 = this.mStyle;
-        if (!context.isRestricted()) {
-            final WeakReference weakReference = new WeakReference(this.mView);
-            try {
-                Typeface font = tintTypedArray.getFont(i3, this.mStyle, new ResourcesCompat.FontCallback() { // from class: androidx.appcompat.widget.AppCompatTextHelper.1
-                    @Override // androidx.core.content.res.ResourcesCompat.FontCallback
-                    public void onFontRetrievalFailed(int i9) {
-                    }
-
-                    @Override // androidx.core.content.res.ResourcesCompat.FontCallback
-                    public void onFontRetrieved(@NonNull Typeface typeface) {
-                        int i9;
-                        if (Build.VERSION.SDK_INT >= 28 && (i9 = i7) != -1) {
-                            typeface = Typeface.create(typeface, i9, (i8 & 2) != 0);
-                        }
-                        AppCompatTextHelper.this.onAsyncTypefaceReceived(weakReference, typeface);
-                    }
-                });
-                if (font != null) {
-                    if (i < 28 || this.mFontWeight == -1) {
-                        this.mFontTypeface = font;
-                    } else {
-                        this.mFontTypeface = Typeface.create(Typeface.create(font, 0), this.mFontWeight, (this.mStyle & 2) != 0);
-                    }
-                }
-                this.mAsyncFontPending = this.mFontTypeface == null;
-            } catch (Resources.NotFoundException | UnsupportedOperationException unused) {
-            }
-        }
-        if (this.mFontTypeface != null || (string = tintTypedArray.getString(i3)) == null) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT < 28 || this.mFontWeight == -1) {
-            this.mFontTypeface = Typeface.create(string, this.mStyle);
-        } else {
-            this.mFontTypeface = Typeface.create(Typeface.create(string, 0), this.mFontWeight, (this.mStyle & 2) != 0);
-        }
-    }
-
     public void applyCompoundDrawablesTints() {
         if (this.mDrawableLeftTint != null || this.mDrawableTopTint != null || this.mDrawableRightTint != null || this.mDrawableBottomTint != null) {
             Drawable[] compoundDrawables = this.mView.getCompoundDrawables();
@@ -234,6 +78,17 @@ public class AppCompatTextHelper {
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void autoSizeText() {
         this.mAutoSizeTextHelper.autoSizeText();
+    }
+
+    private static TintInfo createTintInfo(Context context, AppCompatDrawableManager appCompatDrawableManager, int i) {
+        ColorStateList tintList = appCompatDrawableManager.getTintList(context, i);
+        if (tintList == null) {
+            return null;
+        }
+        TintInfo tintInfo = new TintInfo();
+        tintInfo.mHasTintList = true;
+        tintInfo.mTintList = tintList;
+        return tintInfo;
     }
 
     public int getAutoSizeMaxTextSize() {
@@ -635,11 +490,156 @@ public class AppCompatTextHelper {
         setCompoundTints();
     }
 
+    private void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4, Drawable drawable5, Drawable drawable6) {
+        if (drawable5 != null || drawable6 != null) {
+            Drawable[] compoundDrawablesRelative = this.mView.getCompoundDrawablesRelative();
+            TextView textView = this.mView;
+            if (drawable5 == null) {
+                drawable5 = compoundDrawablesRelative[0];
+            }
+            if (drawable2 == null) {
+                drawable2 = compoundDrawablesRelative[1];
+            }
+            if (drawable6 == null) {
+                drawable6 = compoundDrawablesRelative[2];
+            }
+            if (drawable4 == null) {
+                drawable4 = compoundDrawablesRelative[3];
+            }
+            textView.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable5, drawable2, drawable6, drawable4);
+            return;
+        }
+        if (drawable == null && drawable2 == null && drawable3 == null && drawable4 == null) {
+            return;
+        }
+        Drawable[] compoundDrawablesRelative2 = this.mView.getCompoundDrawablesRelative();
+        if (compoundDrawablesRelative2[0] != null || compoundDrawablesRelative2[2] != null) {
+            TextView textView2 = this.mView;
+            Drawable drawable7 = compoundDrawablesRelative2[0];
+            if (drawable2 == null) {
+                drawable2 = compoundDrawablesRelative2[1];
+            }
+            Drawable drawable8 = compoundDrawablesRelative2[2];
+            if (drawable4 == null) {
+                drawable4 = compoundDrawablesRelative2[3];
+            }
+            textView2.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable7, drawable2, drawable8, drawable4);
+            return;
+        }
+        Drawable[] compoundDrawables = this.mView.getCompoundDrawables();
+        TextView textView3 = this.mView;
+        if (drawable == null) {
+            drawable = compoundDrawables[0];
+        }
+        if (drawable2 == null) {
+            drawable2 = compoundDrawables[1];
+        }
+        if (drawable3 == null) {
+            drawable3 = compoundDrawables[2];
+        }
+        if (drawable4 == null) {
+            drawable4 = compoundDrawables[3];
+        }
+        textView3.setCompoundDrawablesWithIntrinsicBounds(drawable, drawable2, drawable3, drawable4);
+    }
+
+    private void setCompoundTints() {
+        TintInfo tintInfo = this.mDrawableTint;
+        this.mDrawableLeftTint = tintInfo;
+        this.mDrawableTopTint = tintInfo;
+        this.mDrawableRightTint = tintInfo;
+        this.mDrawableBottomTint = tintInfo;
+        this.mDrawableStartTint = tintInfo;
+        this.mDrawableEndTint = tintInfo;
+    }
+
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public void setTextSize(int i, float f) {
         if (AutoSizeableTextView.PLATFORM_SUPPORTS_AUTOSIZE || isAutoSizeEnabled()) {
             return;
         }
         setTextSizeInternal(i, f);
+    }
+
+    private void setTextSizeInternal(int i, float f) {
+        this.mAutoSizeTextHelper.setTextSizeInternal(i, f);
+    }
+
+    private void updateTypefaceAndStyle(Context context, TintTypedArray tintTypedArray) {
+        String string;
+        this.mStyle = tintTypedArray.getInt(C0051R.styleable.TextAppearance_android_textStyle, this.mStyle);
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 28) {
+            int i2 = tintTypedArray.getInt(C0051R.styleable.TextAppearance_android_textFontWeight, -1);
+            this.mFontWeight = i2;
+            if (i2 != -1) {
+                this.mStyle = (this.mStyle & 2) | 0;
+            }
+        }
+        int i3 = C0051R.styleable.TextAppearance_android_fontFamily;
+        if (!tintTypedArray.hasValue(i3) && !tintTypedArray.hasValue(C0051R.styleable.TextAppearance_fontFamily)) {
+            int i4 = C0051R.styleable.TextAppearance_android_typeface;
+            if (tintTypedArray.hasValue(i4)) {
+                this.mAsyncFontPending = false;
+                int i5 = tintTypedArray.getInt(i4, 1);
+                if (i5 == 1) {
+                    this.mFontTypeface = Typeface.SANS_SERIF;
+                    return;
+                } else if (i5 == 2) {
+                    this.mFontTypeface = Typeface.SERIF;
+                    return;
+                } else {
+                    if (i5 != 3) {
+                        return;
+                    }
+                    this.mFontTypeface = Typeface.MONOSPACE;
+                    return;
+                }
+            }
+            return;
+        }
+        this.mFontTypeface = null;
+        int i6 = C0051R.styleable.TextAppearance_fontFamily;
+        if (tintTypedArray.hasValue(i6)) {
+            i3 = i6;
+        }
+        final int i7 = this.mFontWeight;
+        final int i8 = this.mStyle;
+        if (!context.isRestricted()) {
+            final WeakReference weakReference = new WeakReference(this.mView);
+            try {
+                Typeface font = tintTypedArray.getFont(i3, this.mStyle, new ResourcesCompat.FontCallback() { // from class: androidx.appcompat.widget.AppCompatTextHelper.1
+                    @Override // androidx.core.content.res.ResourcesCompat.FontCallback
+                    public void onFontRetrievalFailed(int i9) {
+                    }
+
+                    @Override // androidx.core.content.res.ResourcesCompat.FontCallback
+                    public void onFontRetrieved(@NonNull Typeface typeface) {
+                        int i9;
+                        if (Build.VERSION.SDK_INT >= 28 && (i9 = i7) != -1) {
+                            typeface = Typeface.create(typeface, i9, (i8 & 2) != 0);
+                        }
+                        AppCompatTextHelper.this.onAsyncTypefaceReceived(weakReference, typeface);
+                    }
+                });
+                if (font != null) {
+                    if (i < 28 || this.mFontWeight == -1) {
+                        this.mFontTypeface = font;
+                    } else {
+                        this.mFontTypeface = Typeface.create(Typeface.create(font, 0), this.mFontWeight, (this.mStyle & 2) != 0);
+                    }
+                }
+                this.mAsyncFontPending = this.mFontTypeface == null;
+            } catch (Resources.NotFoundException | UnsupportedOperationException unused) {
+            }
+        }
+        if (this.mFontTypeface != null || (string = tintTypedArray.getString(i3)) == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT < 28 || this.mFontWeight == -1) {
+            this.mFontTypeface = Typeface.create(string, this.mStyle);
+        } else {
+            this.mFontTypeface = Typeface.create(Typeface.create(string, 0), this.mFontWeight, (this.mStyle & 2) != 0);
+        }
     }
 }

@@ -45,57 +45,6 @@ public class GpsStatusWrapper extends GnssStatusCompat {
         this.mCachedSatellite = null;
     }
 
-    private static int getConstellationFromPrn(int i) {
-        if (i > 0 && i <= 32) {
-            return 1;
-        }
-        if (i >= 33 && i <= 64) {
-            return 2;
-        }
-        if (i > 64 && i <= 88) {
-            return 3;
-        }
-        if (i <= 200 || i > 235) {
-            return (i < 193 || i > 200) ? 0 : 4;
-        }
-        return 5;
-    }
-
-    private GpsSatellite getSatellite(int i) {
-        GpsSatellite gpsSatellite;
-        synchronized (this.mWrapped) {
-            if (i < this.mCachedIteratorPosition) {
-                this.mCachedIterator = this.mWrapped.getSatellites().iterator();
-                this.mCachedIteratorPosition = -1;
-            }
-            while (true) {
-                int i2 = this.mCachedIteratorPosition;
-                if (i2 >= i) {
-                    break;
-                }
-                this.mCachedIteratorPosition = i2 + 1;
-                if (!this.mCachedIterator.hasNext()) {
-                    this.mCachedSatellite = null;
-                    break;
-                }
-                this.mCachedSatellite = this.mCachedIterator.next();
-            }
-            gpsSatellite = this.mCachedSatellite;
-        }
-        return (GpsSatellite) Preconditions.checkNotNull(gpsSatellite);
-    }
-
-    private static int getSvidFromPrn(int i) {
-        int constellationFromPrn = getConstellationFromPrn(i);
-        if (constellationFromPrn == 2) {
-            return i + 87;
-        }
-        if (constellationFromPrn != 3) {
-            return constellationFromPrn != 5 ? i : i - 200;
-        }
-        return i - 64;
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -126,6 +75,22 @@ public class GpsStatusWrapper extends GnssStatusCompat {
         return getSatellite(i).getSnr();
     }
 
+    private static int getConstellationFromPrn(int i) {
+        if (i > 0 && i <= 32) {
+            return 1;
+        }
+        if (i >= 33 && i <= 64) {
+            return 2;
+        }
+        if (i > 64 && i <= 88) {
+            return 3;
+        }
+        if (i <= 200 || i > 235) {
+            return (i < 193 || i > 200) ? 0 : 4;
+        }
+        return 5;
+    }
+
     @Override // androidx.core.location.GnssStatusCompat
     public int getConstellationType(int i) {
         if (Build.VERSION.SDK_INT < 24) {
@@ -137,6 +102,30 @@ public class GpsStatusWrapper extends GnssStatusCompat {
     @Override // androidx.core.location.GnssStatusCompat
     public float getElevationDegrees(int i) {
         return getSatellite(i).getElevation();
+    }
+
+    private GpsSatellite getSatellite(int i) {
+        GpsSatellite gpsSatellite;
+        synchronized (this.mWrapped) {
+            if (i < this.mCachedIteratorPosition) {
+                this.mCachedIterator = this.mWrapped.getSatellites().iterator();
+                this.mCachedIteratorPosition = -1;
+            }
+            while (true) {
+                int i2 = this.mCachedIteratorPosition;
+                if (i2 >= i) {
+                    break;
+                }
+                this.mCachedIteratorPosition = i2 + 1;
+                if (!this.mCachedIterator.hasNext()) {
+                    this.mCachedSatellite = null;
+                    break;
+                }
+                this.mCachedSatellite = this.mCachedIterator.next();
+            }
+            gpsSatellite = this.mCachedSatellite;
+        }
+        return (GpsSatellite) Preconditions.checkNotNull(gpsSatellite);
     }
 
     @Override // androidx.core.location.GnssStatusCompat
@@ -157,6 +146,17 @@ public class GpsStatusWrapper extends GnssStatusCompat {
     @Override // androidx.core.location.GnssStatusCompat
     public int getSvid(int i) {
         return Build.VERSION.SDK_INT < 24 ? getSatellite(i).getPrn() : getSvidFromPrn(getSatellite(i).getPrn());
+    }
+
+    private static int getSvidFromPrn(int i) {
+        int constellationFromPrn = getConstellationFromPrn(i);
+        if (constellationFromPrn == 2) {
+            return i + 87;
+        }
+        if (constellationFromPrn != 3) {
+            return constellationFromPrn != 5 ? i : i - 200;
+        }
+        return i - 64;
     }
 
     @Override // androidx.core.location.GnssStatusCompat

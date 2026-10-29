@@ -10,10 +10,10 @@ import p007b.p225i.p226a.p288f.p313h.p316c.C3472u;
 /* JADX INFO: compiled from: com.google.android.gms:play-services-auth@@19.0.0 */
 /* JADX INFO: loaded from: classes3.dex */
 public final class zzz extends AbstractSafeParcelable {
-    public static final Parcelable.Creator<zzz> CREATOR = new C3472u();
 
     /* JADX INFO: renamed from: j */
     public final Credential f20584j;
+    public static final Parcelable.Creator<zzz> CREATOR = new C3472u();
 
     public zzz(Credential credential) {
         this.f20584j = credential;

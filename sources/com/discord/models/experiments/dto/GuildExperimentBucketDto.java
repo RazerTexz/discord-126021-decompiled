@@ -18,38 +18,10 @@ public final /* data */ class GuildExperimentBucketDto {
     private final List<IntRange> positions;
 
     /* JADX INFO: compiled from: GuildExperimentDto.kt */
-    public static final class Parser {
+    public final class Parser {
         public static final Parser INSTANCE = new Parser();
 
         private Parser() {
-        }
-
-        private final IntRange parsePosition(final Model.JsonReader jsonReader) throws IOException {
-            final Ref$IntRef ref$IntRef = new Ref$IntRef();
-            ref$IntRef.element = -1;
-            final Ref$IntRef ref$IntRef2 = new Ref$IntRef();
-            ref$IntRef2.element = -1;
-            jsonReader.nextObject(new Action1<String>() { // from class: com.discord.models.experiments.dto.GuildExperimentBucketDto$Parser$parsePosition$1
-                @Override // p658rx.functions.Action1
-                public final void call(String str) throws IOException {
-                    if (str != null) {
-                        int iHashCode = str.hashCode();
-                        if (iHashCode != 101) {
-                            if (iHashCode == 115 && str.equals("s")) {
-                                Ref$IntRef ref$IntRef3 = ref$IntRef;
-                                ref$IntRef3.element = jsonReader.nextInt(ref$IntRef3.element);
-                                return;
-                            }
-                        } else if (str.equals("e")) {
-                            Ref$IntRef ref$IntRef4 = ref$IntRef2;
-                            ref$IntRef4.element = jsonReader.nextInt(ref$IntRef4.element);
-                            return;
-                        }
-                    }
-                    jsonReader.skipValue();
-                }
-            });
-            return new IntRange(ref$IntRef.element, ref$IntRef2.element);
         }
 
         /* JADX WARN: Type inference failed for: r2v0, types: [T, java.util.List] */
@@ -82,12 +54,44 @@ public final /* data */ class GuildExperimentBucketDto {
             });
             return new GuildExperimentBucketDto(ref$IntRef.element, (List) ref$ObjectRef.element);
         }
+
+        private final IntRange parsePosition(final Model.JsonReader jsonReader) throws IOException {
+            final Ref$IntRef ref$IntRef = new Ref$IntRef();
+            ref$IntRef.element = -1;
+            final Ref$IntRef ref$IntRef2 = new Ref$IntRef();
+            ref$IntRef2.element = -1;
+            jsonReader.nextObject(new Action1<String>() { // from class: com.discord.models.experiments.dto.GuildExperimentBucketDto$Parser$parsePosition$1
+                @Override // p658rx.functions.Action1
+                public final void call(String str) throws IOException {
+                    if (str != null) {
+                        int iHashCode = str.hashCode();
+                        if (iHashCode != 101) {
+                            if (iHashCode == 115 && str.equals("s")) {
+                                Ref$IntRef ref$IntRef3 = ref$IntRef;
+                                ref$IntRef3.element = jsonReader.nextInt(ref$IntRef3.element);
+                                return;
+                            }
+                        } else if (str.equals("e")) {
+                            Ref$IntRef ref$IntRef4 = ref$IntRef2;
+                            ref$IntRef4.element = jsonReader.nextInt(ref$IntRef4.element);
+                            return;
+                        }
+                    }
+                    jsonReader.skipValue();
+                }
+            });
+            return new IntRange(ref$IntRef.element, ref$IntRef2.element);
+        }
     }
 
     public GuildExperimentBucketDto(int i, List<IntRange> list) {
         C12238m.checkNotNullParameter(list, "positions");
         this.bucket = i;
         this.positions = list;
+    }
+
+    public final List<IntRange> component2() {
+        return this.positions;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
@@ -99,15 +103,6 @@ public final /* data */ class GuildExperimentBucketDto {
             list = guildExperimentBucketDto.positions;
         }
         return guildExperimentBucketDto.copy(i, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final int getBucket() {
-        return this.bucket;
-    }
-
-    public final List<IntRange> component2() {
-        return this.positions;
     }
 
     public final GuildExperimentBucketDto copy(int bucket, List<IntRange> positions) {
@@ -124,6 +119,11 @@ public final /* data */ class GuildExperimentBucketDto {
         }
         GuildExperimentBucketDto guildExperimentBucketDto = (GuildExperimentBucketDto) other;
         return this.bucket == guildExperimentBucketDto.bucket && C12238m.areEqual(this.positions, guildExperimentBucketDto.positions);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final int getBucket() {
+        return this.bucket;
     }
 
     public final int getBucket() {

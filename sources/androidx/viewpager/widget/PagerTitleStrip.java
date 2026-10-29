@@ -24,6 +24,7 @@ import java.util.Locale;
 /* JADX INFO: loaded from: classes.dex */
 @ViewPager.DecorView
 public class PagerTitleStrip extends ViewGroup {
+    private static final int[] ATTRS = {R.attr.textAppearance, R.attr.textSize, R.attr.textColor, R.attr.gravity};
     private static final float SIDE_ALPHA = 0.6f;
     private static final int TEXT_SPACING = 16;
     public TextView mCurrText;
@@ -40,7 +41,6 @@ public class PagerTitleStrip extends ViewGroup {
     private boolean mUpdatingPositions;
     private boolean mUpdatingText;
     private WeakReference<PagerAdapter> mWatchingAdapter;
-    private static final int[] ATTRS = {R.attr.textAppearance, R.attr.textSize, R.attr.textColor, R.attr.gravity};
     private static final int[] TEXT_ATTRS = {R.attr.textAllCaps};
 
     public class PageListener extends DataSetObserver implements ViewPager.OnPageChangeListener, ViewPager.OnAdapterChangeListener {
@@ -94,7 +94,7 @@ public class PagerTitleStrip extends ViewGroup {
         }
     }
 
-    public static class SingleLineAllCapsTransform extends SingleLineTransformationMethod {
+    public class SingleLineAllCapsTransform extends SingleLineTransformationMethod {
         private Locale mLocale;
 
         public SingleLineAllCapsTransform(Context context) {
@@ -113,10 +113,6 @@ public class PagerTitleStrip extends ViewGroup {
 
     public PagerTitleStrip(@NonNull Context context) {
         this(context, null);
-    }
-
-    private static void setSingleLineAllCaps(TextView textView) {
-        textView.setTransformationMethod(new SingleLineAllCapsTransform(textView.getContext()));
     }
 
     public int getMinHeight() {
@@ -210,6 +206,10 @@ public class PagerTitleStrip extends ViewGroup {
         int i2 = (i << 24) | (this.mTextColor & ViewCompat.MEASURED_SIZE_MASK);
         this.mPrevText.setTextColor(i2);
         this.mNextText.setTextColor(i2);
+    }
+
+    private static void setSingleLineAllCaps(TextView textView) {
+        textView.setTransformationMethod(new SingleLineAllCapsTransform(textView.getContext()));
     }
 
     public void setTextColor(@ColorInt int i) {

@@ -9,25 +9,19 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackFriendSuggestionSkipped.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackFriendSuggestionSkipped implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
-    private final Long suggestedUserId = null;
-    private final CharSequence platformType = null;
+    private final Long existingRelationshipType = null;
     private final Boolean isNonMutual = null;
     private final Boolean isReverseSuggestion = null;
-    private final Long existingRelationshipType = null;
-    private final Long userAllowedInSuggestions = null;
-    private final Boolean userConsents = null;
-    private final Boolean userIsDiscoverable = null;
     private final Long otherUserAllowedInSuggestions = null;
     private final Boolean otherUserConsents = null;
     private final Boolean otherUserDiscoverable = null;
+    private final CharSequence platformType = null;
+    private final Long suggestedUserId = null;
+    private TrackBase trackBase;
+    private final Long userAllowedInSuggestions = null;
+    private final Boolean userConsents = null;
+    private final Boolean userIsDiscoverable = null;
     private final transient String analyticsSchemaTypeName = "friend_suggestion_skipped";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -38,6 +32,12 @@ public final /* data */ class TrackFriendSuggestionSkipped implements AnalyticsS
         }
         TrackFriendSuggestionSkipped trackFriendSuggestionSkipped = (TrackFriendSuggestionSkipped) other;
         return C12238m.areEqual(this.suggestedUserId, trackFriendSuggestionSkipped.suggestedUserId) && C12238m.areEqual(this.platformType, trackFriendSuggestionSkipped.platformType) && C12238m.areEqual(this.isNonMutual, trackFriendSuggestionSkipped.isNonMutual) && C12238m.areEqual(this.isReverseSuggestion, trackFriendSuggestionSkipped.isReverseSuggestion) && C12238m.areEqual(this.existingRelationshipType, trackFriendSuggestionSkipped.existingRelationshipType) && C12238m.areEqual(this.userAllowedInSuggestions, trackFriendSuggestionSkipped.userAllowedInSuggestions) && C12238m.areEqual(this.userConsents, trackFriendSuggestionSkipped.userConsents) && C12238m.areEqual(this.userIsDiscoverable, trackFriendSuggestionSkipped.userIsDiscoverable) && C12238m.areEqual(this.otherUserAllowedInSuggestions, trackFriendSuggestionSkipped.otherUserAllowedInSuggestions) && C12238m.areEqual(this.otherUserConsents, trackFriendSuggestionSkipped.otherUserConsents) && C12238m.areEqual(this.otherUserDiscoverable, trackFriendSuggestionSkipped.otherUserDiscoverable);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

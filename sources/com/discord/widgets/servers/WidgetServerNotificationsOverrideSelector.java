@@ -58,8 +58,72 @@ public final class WidgetServerNotificationsOverrideSelector extends AppFragment
     private SettingsChannelListAdapter channelsAdapter;
     private final BehaviorSubject<String> filterPublisher;
 
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotificationsOverrideSelector$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetServerNotificationsOverrideSelector.kt */
-    public static final class Companion {
+    public final class C91671 extends AbstractC12240o implements Function1<Editable, Unit> {
+        public C91671() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
+            invoke2(editable);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Editable editable) {
+            C12238m.checkNotNullParameter(editable, "editable");
+            WidgetServerNotificationsOverrideSelector.this.filterPublisher.onNext(editable.toString());
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotificationsOverrideSelector$onViewBound$2 */
+    /* JADX INFO: compiled from: WidgetServerNotificationsOverrideSelector.kt */
+    public final class C91682 extends AbstractC12240o implements Function1<Long, Unit> {
+        public C91682() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
+            invoke(l.longValue());
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j) {
+            Context context = WidgetServerNotificationsOverrideSelector.this.getContext();
+            if (context != null) {
+                WidgetChannelNotificationSettings.Companion companion = WidgetChannelNotificationSettings.INSTANCE;
+                C12238m.checkNotNullExpressionValue(context, "it");
+                WidgetChannelNotificationSettings.Companion.launch$default(companion, context, j, false, 4, null);
+            }
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotificationsOverrideSelector$onViewBoundOrOnResume$1 */
+    /* JADX INFO: compiled from: WidgetServerNotificationsOverrideSelector.kt */
+    public final class C91691 extends AbstractC12240o implements Function1<List<? extends CategoricalDragAndDropAdapter.Payload>, Unit> {
+        public C91691() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(List<? extends CategoricalDragAndDropAdapter.Payload> list) {
+            invoke2(list);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(List<? extends CategoricalDragAndDropAdapter.Payload> list) {
+            SettingsChannelListAdapter settingsChannelListAdapterAccess$getChannelsAdapter$p = WidgetServerNotificationsOverrideSelector.access$getChannelsAdapter$p(WidgetServerNotificationsOverrideSelector.this);
+            C12238m.checkNotNullExpressionValue(list, "it");
+            settingsChannelListAdapterAccess$getChannelsAdapter$p.setData(C12163u.toMutableList((Collection) list));
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerNotificationsOverrideSelector.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -111,70 +175,6 @@ public final class WidgetServerNotificationsOverrideSelector extends AppFragment
 
         public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotificationsOverrideSelector$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetServerNotificationsOverrideSelector.kt */
-    public static final class C91671 extends AbstractC12240o implements Function1<Editable, Unit> {
-        public C91671() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Editable editable) {
-            invoke2(editable);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Editable editable) {
-            C12238m.checkNotNullParameter(editable, "editable");
-            WidgetServerNotificationsOverrideSelector.this.filterPublisher.onNext(editable.toString());
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotificationsOverrideSelector$onViewBound$2 */
-    /* JADX INFO: compiled from: WidgetServerNotificationsOverrideSelector.kt */
-    public static final class C91682 extends AbstractC12240o implements Function1<Long, Unit> {
-        public C91682() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Long l) {
-            invoke(l.longValue());
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j) {
-            Context context = WidgetServerNotificationsOverrideSelector.this.getContext();
-            if (context != null) {
-                WidgetChannelNotificationSettings.Companion companion = WidgetChannelNotificationSettings.INSTANCE;
-                C12238m.checkNotNullExpressionValue(context, "it");
-                WidgetChannelNotificationSettings.Companion.launch$default(companion, context, j, false, 4, null);
-            }
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.servers.WidgetServerNotificationsOverrideSelector$onViewBoundOrOnResume$1 */
-    /* JADX INFO: compiled from: WidgetServerNotificationsOverrideSelector.kt */
-    public static final class C91691 extends AbstractC12240o implements Function1<List<? extends CategoricalDragAndDropAdapter.Payload>, Unit> {
-        public C91691() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(List<? extends CategoricalDragAndDropAdapter.Payload> list) {
-            invoke2(list);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(List<? extends CategoricalDragAndDropAdapter.Payload> list) {
-            SettingsChannelListAdapter settingsChannelListAdapterAccess$getChannelsAdapter$p = WidgetServerNotificationsOverrideSelector.access$getChannelsAdapter$p(WidgetServerNotificationsOverrideSelector.this);
-            C12238m.checkNotNullExpressionValue(list, "it");
-            settingsChannelListAdapterAccess$getChannelsAdapter$p.setData(C12163u.toMutableList((Collection) list));
         }
     }
 

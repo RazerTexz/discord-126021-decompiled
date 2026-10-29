@@ -60,20 +60,6 @@ public final class C2666j extends View implements SubtitleView.InterfaceC10760a 
         this.f6348o = 0.08f;
     }
 
-    @Override // com.google.android.exoplayer2.p505ui.SubtitleView.InterfaceC10760a
-    /* JADX INFO: renamed from: a */
-    public void mo2758a(List<C2578b> list, C2667k c2667k, float f, int i, float f2) {
-        this.f6344k = list;
-        this.f6347n = c2667k;
-        this.f6346m = f;
-        this.f6345l = i;
-        this.f6348o = f2;
-        while (this.f6343j.size() < list.size()) {
-            this.f6343j.add(new C2670n(getContext()));
-        }
-        invalidate();
-    }
-
     /* JADX WARN: Code duplicated, block: B:192:0x04a7  */
     /* JADX WARN: Code duplicated, block: B:193:0x04a9  */
     /* JADX WARN: Code duplicated, block: B:195:0x04ac  */
@@ -416,5 +402,19 @@ public final class C2666j extends View implements SubtitleView.InterfaceC10760a 
             fM479U1 = fM479U1;
             c2666j = this;
         }
+    }
+
+    @Override // com.google.android.exoplayer2.p505ui.SubtitleView.InterfaceC10760a
+    /* JADX INFO: renamed from: a */
+    public void mo2758a(List<C2578b> list, C2667k c2667k, float f, int i, float f2) {
+        this.f6344k = list;
+        this.f6347n = c2667k;
+        this.f6346m = f;
+        this.f6345l = i;
+        this.f6348o = f2;
+        while (this.f6343j.size() < list.size()) {
+            this.f6343j.add(new C2670n(getContext()));
+        }
+        invalidate();
     }
 }

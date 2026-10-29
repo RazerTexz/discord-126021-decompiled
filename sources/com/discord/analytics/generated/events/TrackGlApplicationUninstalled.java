@@ -9,9 +9,9 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackGlApplicationUninstalled.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackGlApplicationUninstalled implements AnalyticsSchema, TrackBaseReceiver, TrackDispatchBaseReceiver {
-    private final transient String analyticsSchemaTypeName = "gl_application_uninstalled";
     private TrackBase trackBase;
     private TrackDispatchBase trackDispatchBase;
+    private final transient String analyticsSchemaTypeName = "gl_application_uninstalled";
 
     @Override // com.discord.api.science.AnalyticsSchema
     /* JADX INFO: renamed from: d, reason: from getter */

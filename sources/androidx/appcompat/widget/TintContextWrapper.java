@@ -12,10 +12,10 @@ import java.util.ArrayList;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
 public class TintContextWrapper extends ContextWrapper {
-    private static final Object CACHE_LOCK = new Object();
-    private static ArrayList<WeakReference<TintContextWrapper>> sCache;
     private final Resources mResources;
     private final Resources.Theme mTheme;
+    private static ArrayList<WeakReference<TintContextWrapper>> sCache;
+    private static final Object CACHE_LOCK = new Object();
 
     private TintContextWrapper(@NonNull Context context) {
         super(context);
@@ -29,6 +29,32 @@ public class TintContextWrapper extends ContextWrapper {
         Resources.Theme themeNewTheme = vectorEnabledTintResources.newTheme();
         this.mTheme = themeNewTheme;
         themeNewTheme.setTo(context.getTheme());
+    }
+
+    @Override // android.content.ContextWrapper, android.content.Context
+    public AssetManager getAssets() {
+        return this.mResources.getAssets();
+    }
+
+    @Override // android.content.ContextWrapper, android.content.Context
+    public Resources getResources() {
+        return this.mResources;
+    }
+
+    @Override // android.content.ContextWrapper, android.content.Context
+    public Resources.Theme getTheme() {
+        Resources.Theme theme = this.mTheme;
+        return theme == null ? super.getTheme() : theme;
+    }
+
+    @Override // android.content.ContextWrapper, android.content.Context
+    public void setTheme(int i) {
+        Resources.Theme theme = this.mTheme;
+        if (theme == null) {
+            super.setTheme(i);
+        } else {
+            theme.applyStyle(i, true);
+        }
     }
 
     private static boolean shouldWrap(@NonNull Context context) {
@@ -61,32 +87,6 @@ public class TintContextWrapper extends ContextWrapper {
             TintContextWrapper tintContextWrapper2 = new TintContextWrapper(context);
             sCache.add(new WeakReference<>(tintContextWrapper2));
             return tintContextWrapper2;
-        }
-    }
-
-    @Override // android.content.ContextWrapper, android.content.Context
-    public AssetManager getAssets() {
-        return this.mResources.getAssets();
-    }
-
-    @Override // android.content.ContextWrapper, android.content.Context
-    public Resources getResources() {
-        return this.mResources;
-    }
-
-    @Override // android.content.ContextWrapper, android.content.Context
-    public Resources.Theme getTheme() {
-        Resources.Theme theme = this.mTheme;
-        return theme == null ? super.getTheme() : theme;
-    }
-
-    @Override // android.content.ContextWrapper, android.content.Context
-    public void setTheme(int i) {
-        Resources.Theme theme = this.mTheme;
-        if (theme == null) {
-            super.setTheme(i);
-        } else {
-            theme.applyStyle(i, true);
         }
     }
 }

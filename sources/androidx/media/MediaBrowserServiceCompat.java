@@ -61,17 +61,17 @@ public abstract class MediaBrowserServiceCompat extends Service {
     @RestrictTo({RestrictTo.Scope.LIBRARY})
     public static final int RESULT_PROGRESS_UPDATE = 1;
     public static final String SERVICE_INTERFACE = "android.media.browse.MediaBrowserService";
+    public static final String TAG = "MBServiceCompat";
     public ConnectionRecord mCurConnection;
     private MediaBrowserServiceImpl mImpl;
     public MediaSessionCompat.Token mSession;
-    public static final String TAG = "MBServiceCompat";
     public static final boolean DEBUG = Log.isLoggable(TAG, 3);
     public final ConnectionRecord mConnectionFromFwk = new ConnectionRecord(MediaSessionManager.RemoteUserInfo.LEGACY_CONTROLLER, -1, -1, null, null);
     public final ArrayList<ConnectionRecord> mPendingConnections = new ArrayList<>();
     public final ArrayMap<IBinder, ConnectionRecord> mConnections = new ArrayMap<>();
     public final ServiceHandler mHandler = new ServiceHandler();
 
-    public static final class BrowserRoot {
+    public final class BrowserRoot {
         public static final String EXTRA_OFFLINE = "android.service.media.extra.OFFLINE";
         public static final String EXTRA_RECENT = "android.service.media.extra.RECENT";
         public static final String EXTRA_SUGGESTED = "android.service.media.extra.SUGGESTED";
@@ -98,37 +98,6 @@ public abstract class MediaBrowserServiceCompat extends Service {
         }
     }
 
-    public class ConnectionRecord implements IBinder.DeathRecipient {
-        public final MediaSessionManager.RemoteUserInfo browserInfo;
-        public final ServiceCallbacks callbacks;
-        public final int pid;
-        public final String pkg;
-        public BrowserRoot root;
-        public final Bundle rootHints;
-        public final HashMap<String, List<Pair<IBinder, Bundle>>> subscriptions = new HashMap<>();
-        public final int uid;
-
-        public ConnectionRecord(String str, int i, int i2, Bundle bundle, ServiceCallbacks serviceCallbacks) {
-            this.pkg = str;
-            this.pid = i;
-            this.uid = i2;
-            this.browserInfo = new MediaSessionManager.RemoteUserInfo(str, i, i2);
-            this.rootHints = bundle;
-            this.callbacks = serviceCallbacks;
-        }
-
-        @Override // android.os.IBinder.DeathRecipient
-        public void binderDied() {
-            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() { // from class: androidx.media.MediaBrowserServiceCompat.ConnectionRecord.1
-                @Override // java.lang.Runnable
-                public void run() {
-                    ConnectionRecord connectionRecord = ConnectionRecord.this;
-                    MediaBrowserServiceCompat.this.mConnections.remove(connectionRecord.callbacks.asBinder());
-                }
-            });
-        }
-    }
-
     public interface MediaBrowserServiceImpl {
         Bundle getBrowserRootHints();
 
@@ -148,8 +117,8 @@ public abstract class MediaBrowserServiceCompat extends Service {
     @RequiresApi(21)
     public class MediaBrowserServiceImplApi21 implements MediaBrowserServiceImpl {
         public Messenger mMessenger;
-        public final List<Bundle> mRootExtrasList = new ArrayList();
         public MediaBrowserService mServiceFwk;
+        public final List<Bundle> mRootExtrasList = new ArrayList();
 
         @RequiresApi(21)
         public class MediaBrowserServiceApi21 extends MediaBrowserService {
@@ -619,7 +588,7 @@ public abstract class MediaBrowserServiceCompat extends Service {
         }
     }
 
-    public static class Result<T> {
+    public class Result<T> {
         private final Object mDebug;
         private boolean mDetachCalled;
         private int mFlags;
@@ -718,7 +687,7 @@ public abstract class MediaBrowserServiceCompat extends Service {
     }
 
     @RequiresApi(21)
-    public static class ResultWrapper<T> {
+    public class ResultWrapper<T> {
         public MediaBrowserService.Result mResultFwk;
 
         public ResultWrapper(MediaBrowserService.Result result) {
@@ -966,19 +935,11 @@ public abstract class MediaBrowserServiceCompat extends Service {
         void onLoadChildren(String str, List<MediaBrowserCompat.MediaItem> list, Bundle bundle, Bundle bundle2) throws RemoteException;
     }
 
-    public static class ServiceCallbacksCompat implements ServiceCallbacks {
+    public class ServiceCallbacksCompat implements ServiceCallbacks {
         public final Messenger mCallbacks;
 
         public ServiceCallbacksCompat(Messenger messenger) {
             this.mCallbacks = messenger;
-        }
-
-        private void sendRequest(int i, Bundle bundle) throws RemoteException {
-            Message messageObtain = Message.obtain();
-            messageObtain.what = i;
-            messageObtain.arg1 = 2;
-            messageObtain.setData(bundle);
-            this.mCallbacks.send(messageObtain);
         }
 
         @Override // androidx.media.MediaBrowserServiceCompat.ServiceCallbacks
@@ -1014,6 +975,14 @@ public abstract class MediaBrowserServiceCompat extends Service {
                 bundle3.putParcelableArrayList(MediaBrowserProtocol.DATA_MEDIA_ITEM_LIST, list instanceof ArrayList ? (ArrayList) list : new ArrayList<>(list));
             }
             sendRequest(3, bundle3);
+        }
+
+        private void sendRequest(int i, Bundle bundle) throws RemoteException {
+            Message messageObtain = Message.obtain();
+            messageObtain.what = i;
+            messageObtain.arg1 = 2;
+            messageObtain.setData(bundle);
+            this.mCallbacks.send(messageObtain);
         }
     }
 
@@ -1379,6 +1348,37 @@ public abstract class MediaBrowserServiceCompat extends Service {
         }
         this.mSession = token;
         this.mImpl.setSessionToken(token);
+    }
+
+    public class ConnectionRecord implements IBinder.DeathRecipient {
+        public final MediaSessionManager.RemoteUserInfo browserInfo;
+        public final ServiceCallbacks callbacks;
+        public final int pid;
+        public final String pkg;
+        public BrowserRoot root;
+        public final Bundle rootHints;
+        public final int uid;
+        public final HashMap<String, List<Pair<IBinder, Bundle>>> subscriptions = new HashMap<>();
+
+        public ConnectionRecord(String str, int i, int i2, Bundle bundle, ServiceCallbacks serviceCallbacks) {
+            this.pkg = str;
+            this.pid = i;
+            this.uid = i2;
+            this.browserInfo = new MediaSessionManager.RemoteUserInfo(str, i, i2);
+            this.rootHints = bundle;
+            this.callbacks = serviceCallbacks;
+        }
+
+        @Override // android.os.IBinder.DeathRecipient
+        public void binderDied() {
+            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() { // from class: androidx.media.MediaBrowserServiceCompat.ConnectionRecord.1
+                @Override // java.lang.Runnable
+                public void run() {
+                    ConnectionRecord connectionRecord = ConnectionRecord.this;
+                    MediaBrowserServiceCompat.this.mConnections.remove(connectionRecord.callbacks.asBinder());
+                }
+            });
+        }
     }
 
     public void notifyChildrenChanged(@NonNull String str, @NonNull Bundle bundle) {

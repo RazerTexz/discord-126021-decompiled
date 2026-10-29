@@ -16,11 +16,17 @@ public final class LruCacheKt {
     /* JADX INFO: Add missing generic type declarations: [V, K] */
     /* JADX INFO: renamed from: androidx.core.util.LruCacheKt$lruCache$1 */
     /* JADX INFO: compiled from: LruCache.kt */
-    public static final class C02641<K, V> extends AbstractC12240o implements Function2<K, V, Integer> {
+    public final class C02641<K, V> extends AbstractC12240o implements Function2<K, V, Integer> {
         public static final C02641 INSTANCE = new C02641();
 
         public C02641() {
             super(2);
+        }
+
+        /* JADX WARN: Multi-variable type inference failed */
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Integer invoke(Object obj, Object obj2) {
+            return Integer.valueOf(invoke2(obj, obj2));
         }
 
         /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
@@ -29,18 +35,12 @@ public final class LruCacheKt {
             C12238m.checkNotNullParameter(v, "$noName_1");
             return 1;
         }
-
-        /* JADX WARN: Multi-variable type inference failed */
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Integer invoke(Object obj, Object obj2) {
-            return Integer.valueOf(invoke2(obj, obj2));
-        }
     }
 
     /* JADX INFO: Add missing generic type declarations: [V, K] */
     /* JADX INFO: renamed from: androidx.core.util.LruCacheKt$lruCache$2 */
     /* JADX INFO: compiled from: LruCache.kt */
-    public static final class C02652<K, V> extends AbstractC12240o implements Function1<K, V> {
+    public final class C02652<K, V> extends AbstractC12240o implements Function1<K, V> {
         public static final C02652 INSTANCE = new C02652();
 
         public C02652() {
@@ -57,7 +57,7 @@ public final class LruCacheKt {
     /* JADX INFO: Add missing generic type declarations: [V, K] */
     /* JADX INFO: renamed from: androidx.core.util.LruCacheKt$lruCache$3 */
     /* JADX INFO: compiled from: LruCache.kt */
-    public static final class C02663<K, V> extends AbstractC12240o implements Function4<Boolean, K, V, V, Unit> {
+    public final class C02663<K, V> extends AbstractC12240o implements Function4<Boolean, K, V, V, Unit> {
         public static final C02663 INSTANCE = new C02663();
 
         public C02663() {
@@ -80,7 +80,7 @@ public final class LruCacheKt {
     /* JADX INFO: Add missing generic type declarations: [V, K] */
     /* JADX INFO: renamed from: androidx.core.util.LruCacheKt$lruCache$4 */
     /* JADX INFO: compiled from: LruCache.kt */
-    public static final class C02674<K, V> extends LruCache<K, V> {
+    public final class C02674<K, V> extends LruCache<K, V> {
         public final /* synthetic */ Function1<K, V> $create;
         public final /* synthetic */ int $maxSize;
         public final /* synthetic */ Function4<Boolean, K, V, V, Unit> $onEntryRemoved;
@@ -117,13 +117,6 @@ public final class LruCacheKt {
         }
     }
 
-    public static final <K, V> LruCache<K, V> lruCache(int i, Function2<? super K, ? super V, Integer> function2, Function1<? super K, ? extends V> function1, Function4<? super Boolean, ? super K, ? super V, ? super V, Unit> function4) {
-        C12238m.checkNotNullParameter(function2, "sizeOf");
-        C12238m.checkNotNullParameter(function1, "create");
-        C12238m.checkNotNullParameter(function4, "onEntryRemoved");
-        return new C02674(function2, function1, function4, i);
-    }
-
     public static /* synthetic */ LruCache lruCache$default(int i, Function2 function2, Function1 function1, Function4 function4, int i2, Object obj) {
         if ((i2 & 2) != 0) {
             function2 = C02641.INSTANCE;
@@ -134,6 +127,13 @@ public final class LruCacheKt {
         if ((i2 & 8) != 0) {
             function4 = C02663.INSTANCE;
         }
+        C12238m.checkNotNullParameter(function2, "sizeOf");
+        C12238m.checkNotNullParameter(function1, "create");
+        C12238m.checkNotNullParameter(function4, "onEntryRemoved");
+        return new C02674(function2, function1, function4, i);
+    }
+
+    public static final <K, V> LruCache<K, V> lruCache(int i, Function2<? super K, ? super V, Integer> function2, Function1<? super K, ? extends V> function1, Function4<? super Boolean, ? super K, ? super V, ? super V, Unit> function4) {
         C12238m.checkNotNullParameter(function2, "sizeOf");
         C12238m.checkNotNullParameter(function1, "create");
         C12238m.checkNotNullParameter(function4, "onEntryRemoved");

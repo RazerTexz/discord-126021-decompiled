@@ -6,13 +6,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackNetworkInformationDurations.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackNetworkInformationDurations {
-    private final Long durationConnectionTypeWifi = null;
+    private final Long durationConnectionTypeBluetooth = null;
     private final Long durationConnectionTypeCellular = null;
     private final Long durationConnectionTypeEthernet = null;
-    private final Long durationConnectionTypeBluetooth = null;
+    private final Long durationConnectionTypeNone = null;
     private final Long durationConnectionTypeOther = null;
     private final Long durationConnectionTypeUnknown = null;
-    private final Long durationConnectionTypeNone = null;
+    private final Long durationConnectionTypeWifi = null;
     private final Long durationEffectiveConnectionSpeed2g = null;
     private final Long durationEffectiveConnectionSpeed3g = null;
     private final Long durationEffectiveConnectionSpeed4g = null;

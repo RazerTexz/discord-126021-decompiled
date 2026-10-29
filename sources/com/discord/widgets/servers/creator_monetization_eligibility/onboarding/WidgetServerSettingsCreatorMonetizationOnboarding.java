@@ -96,41 +96,9 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
-    /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        private final CharSequence formatRejectionCooldown(Context context, CreatorMonetizationEligibilityRequirements.Rejection rejection, Clock clock) {
-            long time = rejection.getCanReapplyAt().getTime() - clock.currentTimeMillis();
-            if (time <= 0) {
-                return null;
-            }
-            return MillisecondsFormatter.INSTANCE.formatDurationInMillis(context, time);
-        }
-
-        public static /* synthetic */ CharSequence formatRejectionCooldown$default(Companion companion, Context context, CreatorMonetizationEligibilityRequirements.Rejection rejection, Clock clock, int i, Object obj) {
-            if ((i & 2) != 0) {
-                clock = ClockFactory.get();
-            }
-            return companion.formatRejectionCooldown(context, rejection, clock);
-        }
-
-        public final void launch(Context context, long guildId) {
-            C12238m.checkNotNullParameter(context, "context");
-            Intent intent = new Intent();
-            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            C0870j.m156d(context, WidgetServerSettingsCreatorMonetizationOnboarding.class, intent);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$configureCreateRequestState$4 */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class C94304 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C94304 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public C94304() {
             super(1);
         }
@@ -143,7 +111,7 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
 
         /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$configureCreateRequestState$4$1, reason: invalid class name */
         /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-        public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+        public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
             public AnonymousClass1() {
                 super(1);
             }
@@ -170,7 +138,7 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$onViewBoundOrOnResume$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class C94341 extends AbstractC12240o implements Function1<ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState, Unit> {
+    public final class C94341 extends AbstractC12240o implements Function1<ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState, Unit> {
         public C94341() {
             super(1);
         }
@@ -192,7 +160,7 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$onViewBoundOrOnResume$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class C94352 extends AbstractC12240o implements Function1<ServerSettingsCreatorMonetizationOnboardingViewModel.Event, Unit> {
+    public final class C94352 extends AbstractC12240o implements Function1<ServerSettingsCreatorMonetizationOnboardingViewModel.Event, Unit> {
         public C94352() {
             super(1);
         }
@@ -207,6 +175,38 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
         public final void invoke2(ServerSettingsCreatorMonetizationOnboardingViewModel.Event event) throws Throwable {
             C12238m.checkNotNullParameter(event, "it");
             WidgetServerSettingsCreatorMonetizationOnboarding.this.handleEvent(event);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public static /* synthetic */ CharSequence formatRejectionCooldown$default(Companion companion, Context context, CreatorMonetizationEligibilityRequirements.Rejection rejection, Clock clock, int i, Object obj) {
+            if ((i & 2) != 0) {
+                clock = ClockFactory.get();
+            }
+            return companion.formatRejectionCooldown(context, rejection, clock);
+        }
+
+        private final CharSequence formatRejectionCooldown(Context context, CreatorMonetizationEligibilityRequirements.Rejection rejection, Clock clock) {
+            long time = rejection.getCanReapplyAt().getTime() - clock.currentTimeMillis();
+            if (time <= 0) {
+                return null;
+            }
+            return MillisecondsFormatter.INSTANCE.formatDurationInMillis(context, time);
+        }
+
+        public final void launch(Context context, long guildId) {
+            C12238m.checkNotNullParameter(context, "context");
+            Intent intent = new Intent();
+            intent.putExtra("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            C0870j.m156d(context, WidgetServerSettingsCreatorMonetizationOnboarding.class, intent);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
@@ -374,6 +374,11 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
         return ((Number) this.guildId.getValue()).longValue();
     }
 
+    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
+    public LoggingConfig getLoggingConfig() {
+        return (LoggingConfig) getViewModel().withViewState(new C9433x9aac34d0(this));
+    }
+
     private final ServerSettingsCreatorMonetizationOnboardingViewModel getViewModel() {
         return (ServerSettingsCreatorMonetizationOnboardingViewModel) this.viewModel.getValue();
     }
@@ -386,6 +391,23 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
 
     public static final void launch(Context context, long j) {
         INSTANCE.launch(context, j);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBound(View view) {
+        C12238m.checkNotNullParameter(view, "view");
+        super.onViewBound(view);
+        setActionBarDisplayHomeAsUpEnabled(true);
+        setActionBarTitle(C5419R.string.guild_settings_role_subscriptions_title);
+    }
+
+    @Override // com.discord.app.AppFragment
+    public void onViewBoundOrOnResume() {
+        super.onViewBoundOrOnResume();
+        Observable<ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
+        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetServerSettingsCreatorMonetizationOnboarding.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94341());
+        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), (Class<?>) WidgetServerSettingsCreatorMonetizationOnboarding.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94352());
     }
 
     private final List<EligibilityChecklistView.Requirement> toChecklistRequirements(CreatorMonetizationEligibilityRequirements creatorMonetizationEligibilityRequirements) {
@@ -417,31 +439,9 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
         return C12147n.listOf((Object[]) requirementArr);
     }
 
-    @Override // com.discord.app.AppFragment, com.discord.app.AppLogger.InterfaceC5455a
-    public LoggingConfig getLoggingConfig() {
-        return (LoggingConfig) getViewModel().withViewState(new C9433x9aac34d0(this));
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBound(View view) {
-        C12238m.checkNotNullParameter(view, "view");
-        super.onViewBound(view);
-        setActionBarDisplayHomeAsUpEnabled(true);
-        setActionBarTitle(C5419R.string.guild_settings_role_subscriptions_title);
-    }
-
-    @Override // com.discord.app.AppFragment
-    public void onViewBoundOrOnResume() {
-        super.onViewBoundOrOnResume();
-        Observable<ServerSettingsCreatorMonetizationOnboardingViewModel.ViewState> observableM11112r = getViewModel().observeViewState().m11112r();
-        C12238m.checkNotNullExpressionValue(observableM11112r, "viewModel\n        .obser…  .distinctUntilChanged()");
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(observableM11112r, this, null, 2, null), (Class<?>) WidgetServerSettingsCreatorMonetizationOnboarding.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94341());
-        ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.bindToComponentLifecycle$default(getViewModel().listenForEvents(), this, null, 2, null), (Class<?>) WidgetServerSettingsCreatorMonetizationOnboarding.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : null), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C94352());
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$configureCreateRequestState$3 */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class C94293 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C94293 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C94293 INSTANCE = new C94293();
 
         public C94293() {
@@ -463,7 +463,7 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$toChecklistRequirements$2 */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class C94372 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C94372 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ CreatorMonetizationEligibilityRequirements $this_toChecklistRequirements;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -487,7 +487,7 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$toChecklistRequirements$3 */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class C94383 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C94383 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public static final C94383 INSTANCE = new C94383();
 
         public C94383() {
@@ -509,7 +509,7 @@ public final class WidgetServerSettingsCreatorMonetizationOnboarding extends App
 
     /* JADX INFO: renamed from: com.discord.widgets.servers.creator_monetization_eligibility.onboarding.WidgetServerSettingsCreatorMonetizationOnboarding$toChecklistRequirements$1 */
     /* JADX INFO: compiled from: WidgetServerSettingsCreatorMonetizationOnboarding.kt */
-    public static final class C94361 extends AbstractC12240o implements Function1<RenderContext, Unit> {
+    public final class C94361 extends AbstractC12240o implements Function1<RenderContext, Unit> {
         public final /* synthetic */ CreatorMonetizationEligibilityRequirements $this_toChecklistRequirements;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

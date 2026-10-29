@@ -16,7 +16,7 @@ public final /* data */ class HubDomainArgs implements Parcelable {
     private final String email;
     private final List<DomainGuildInfo> guildInfos;
 
-    public static class Creator implements Parcelable.Creator<HubDomainArgs> {
+    public final class Creator implements Parcelable.Creator<HubDomainArgs> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // android.os.Parcelable.Creator
         public final HubDomainArgs createFromParcel(Parcel parcel) {
@@ -45,6 +45,10 @@ public final /* data */ class HubDomainArgs implements Parcelable {
         this.guildInfos = list;
     }
 
+    public final List<DomainGuildInfo> component2() {
+        return this.guildInfos;
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     public static /* synthetic */ HubDomainArgs copy$default(HubDomainArgs hubDomainArgs, String str, List list, int i, Object obj) {
         if ((i & 1) != 0) {
@@ -54,15 +58,6 @@ public final /* data */ class HubDomainArgs implements Parcelable {
             list = hubDomainArgs.guildInfos;
         }
         return hubDomainArgs.copy(str, list);
-    }
-
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final String getEmail() {
-        return this.email;
-    }
-
-    public final List<DomainGuildInfo> component2() {
-        return this.guildInfos;
     }
 
     public final HubDomainArgs copy(String email, List<DomainGuildInfo> guildInfos) {
@@ -85,6 +80,11 @@ public final /* data */ class HubDomainArgs implements Parcelable {
         }
         HubDomainArgs hubDomainArgs = (HubDomainArgs) other;
         return C12238m.areEqual(this.email, hubDomainArgs.email) && C12238m.areEqual(this.guildInfos, hubDomainArgs.guildInfos);
+    }
+
+    /* JADX INFO: renamed from: component1, reason: from getter */
+    public final String getEmail() {
+        return this.email;
     }
 
     public final String getEmail() {

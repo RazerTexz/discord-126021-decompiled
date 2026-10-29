@@ -10,6 +10,8 @@ import p007b.p109f.p161j.p175j.EnumC1920f;
 /* JADX INFO: compiled from: ProducerContext.java */
 /* JADX INFO: loaded from: classes3.dex */
 public interface InterfaceC2020x0 {
+    String getId();
+
     /* JADX INFO: renamed from: a */
     Map<String, Object> mo1443a();
 
@@ -30,8 +32,6 @@ public interface InterfaceC2020x0 {
 
     /* JADX INFO: renamed from: g */
     InterfaceC1896k mo1449g();
-
-    String getId();
 
     /* JADX INFO: renamed from: h */
     void mo1450h(EnumC1920f enumC1920f);

@@ -26,46 +26,6 @@ public final /* data */ class StageCallRichPresencePartyData {
         this.audienceSize = j5;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final long getStageInstanceId() {
-        return this.stageInstanceId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final boolean getUserIsSpeaker() {
-        return this.userIsSpeaker;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final boolean getGuildIsPartnered() {
-        return this.guildIsPartnered;
-    }
-
-    /* JADX INFO: renamed from: component6, reason: from getter */
-    public final boolean getGuildIsVerified() {
-        return this.guildIsVerified;
-    }
-
-    /* JADX INFO: renamed from: component7, reason: from getter */
-    public final long getSpeakerCount() {
-        return this.speakerCount;
-    }
-
-    /* JADX INFO: renamed from: component8, reason: from getter */
-    public final long getAudienceSize() {
-        return this.audienceSize;
-    }
-
     public final StageCallRichPresencePartyData copy(long stageInstanceId, long channelId, boolean userIsSpeaker, long guildId, boolean guildIsPartnered, boolean guildIsVerified, long speakerCount, long audienceSize) {
         return new StageCallRichPresencePartyData(stageInstanceId, channelId, userIsSpeaker, guildId, guildIsPartnered, guildIsVerified, speakerCount, audienceSize);
     }
@@ -81,32 +41,72 @@ public final /* data */ class StageCallRichPresencePartyData {
         return this.stageInstanceId == stageCallRichPresencePartyData.stageInstanceId && this.channelId == stageCallRichPresencePartyData.channelId && this.userIsSpeaker == stageCallRichPresencePartyData.userIsSpeaker && this.guildId == stageCallRichPresencePartyData.guildId && this.guildIsPartnered == stageCallRichPresencePartyData.guildIsPartnered && this.guildIsVerified == stageCallRichPresencePartyData.guildIsVerified && this.speakerCount == stageCallRichPresencePartyData.speakerCount && this.audienceSize == stageCallRichPresencePartyData.audienceSize;
     }
 
+    /* JADX INFO: renamed from: component8, reason: from getter */
     public final long getAudienceSize() {
         return this.audienceSize;
+    }
+
+    public final long getAudienceSize() {
+        return this.audienceSize;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
     }
 
     public final long getChannelId() {
         return this.channelId;
     }
 
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final long getGuildId() {
         return this.guildId;
+    }
+
+    public final long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component5, reason: from getter */
+    public final boolean getGuildIsPartnered() {
+        return this.guildIsPartnered;
     }
 
     public final boolean getGuildIsPartnered() {
         return this.guildIsPartnered;
     }
 
+    /* JADX INFO: renamed from: component6, reason: from getter */
     public final boolean getGuildIsVerified() {
         return this.guildIsVerified;
+    }
+
+    public final boolean getGuildIsVerified() {
+        return this.guildIsVerified;
+    }
+
+    /* JADX INFO: renamed from: component7, reason: from getter */
+    public final long getSpeakerCount() {
+        return this.speakerCount;
     }
 
     public final long getSpeakerCount() {
         return this.speakerCount;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final long getStageInstanceId() {
         return this.stageInstanceId;
+    }
+
+    public final long getStageInstanceId() {
+        return this.stageInstanceId;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final boolean getUserIsSpeaker() {
+        return this.userIsSpeaker;
     }
 
     public final boolean getUserIsSpeaker() {

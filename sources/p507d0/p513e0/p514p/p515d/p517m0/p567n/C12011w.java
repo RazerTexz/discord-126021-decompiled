@@ -18,7 +18,7 @@ public final class C12011w extends AbstractC12009v implements InterfaceC11933j {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.n.w$a */
     /* JADX INFO: compiled from: flexibleTypes.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

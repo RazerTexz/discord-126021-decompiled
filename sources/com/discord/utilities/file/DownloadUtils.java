@@ -27,10 +27,10 @@ public final class DownloadUtils {
     public static final DownloadUtils INSTANCE = new DownloadUtils();
 
     /* JADX INFO: compiled from: DownloadUtils.kt */
-    public static abstract class DownloadState {
+    public abstract class DownloadState {
 
         /* JADX INFO: compiled from: DownloadUtils.kt */
-        public static final class Completed extends DownloadState {
+        public final class Completed extends DownloadState {
             private final File file;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -46,7 +46,7 @@ public final class DownloadUtils {
         }
 
         /* JADX INFO: compiled from: DownloadUtils.kt */
-        public static final class Failure extends DownloadState {
+        public final class Failure extends DownloadState {
             private final Exception exception;
 
             /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -62,7 +62,7 @@ public final class DownloadUtils {
         }
 
         /* JADX INFO: compiled from: DownloadUtils.kt */
-        public static final class InProgress extends DownloadState {
+        public final class InProgress extends DownloadState {
             private final float progress;
 
             public InProgress(float f) {
@@ -86,6 +86,14 @@ public final class DownloadUtils {
     private DownloadUtils() {
     }
 
+    public static /* synthetic */ Observable downloadFile$default(Context context, String str, String str2, File file, int i, Object obj) {
+        if ((i & 8) != 0) {
+            file = context.getCacheDir();
+            C12238m.checkNotNullExpressionValue(file, "context.cacheDir");
+        }
+        return downloadFile(context, str, str2, file);
+    }
+
     @RequiresPermission(conditional = GoogleSmartLockManager.SET_DISCORD_ACCOUNT_DETAILS, value = "android.permission.WRITE_EXTERNAL_STORAGE")
     public static final Observable<DownloadState> downloadFile(Context context, final String fileUrl, final String fileName, final File downloadDirectory) {
         C12238m.checkNotNullParameter(context, "context");
@@ -96,7 +104,7 @@ public final class DownloadUtils {
 
             /* JADX INFO: renamed from: com.discord.utilities.file.DownloadUtils$downloadFile$1$1, reason: invalid class name */
             /* JADX INFO: compiled from: DownloadUtils.kt */
-            public static final class AnonymousClass1 extends AbstractC12240o implements Function1<ResponseBody, Unit> {
+            public final class AnonymousClass1 extends AbstractC12240o implements Function1<ResponseBody, Unit> {
                 public final /* synthetic */ Emitter $emitter;
 
                 /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -152,13 +160,5 @@ public final class DownloadUtils {
         }, Emitter.BackpressureMode.BUFFER);
         C12238m.checkNotNullExpressionValue(observableM11080o, "Observable.create({ emit….BackpressureMode.BUFFER)");
         return observableM11080o;
-    }
-
-    public static /* synthetic */ Observable downloadFile$default(Context context, String str, String str2, File file, int i, Object obj) {
-        if ((i & 8) != 0) {
-            file = context.getCacheDir();
-            C12238m.checkNotNullExpressionValue(file, "context.cacheDir");
-        }
-        return downloadFile(context, str, str2, file);
     }
 }

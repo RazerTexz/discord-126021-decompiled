@@ -34,8 +34,47 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
     private final AppComponent asyncDiffSubscriptionScope;
     private final PublishSubject<UpdateRequest<T, VH>> updateRequestsSubject = PublishSubject.m11133k0();
 
+    /* JADX INFO: renamed from: com.discord.utilities.recycler.DiffCreator$subscribeToAsyncUpdateRequests$2 */
     /* JADX INFO: compiled from: DiffCreator.kt */
-    public static final /* data */ class UpdateRequest<T, VH extends RecyclerView.ViewHolder> {
+    public final class C68482 extends AbstractC12240o implements Function1<Subscription, Unit> {
+        public C68482() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
+            invoke2(subscription);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(Subscription subscription) {
+            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
+            DiffCreator.this.asyncDiffSubscription = subscription;
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.utilities.recycler.DiffCreator$subscribeToAsyncUpdateRequests$3 */
+    /* JADX INFO: compiled from: DiffCreator.kt */
+    public final class C68493 extends AbstractC12240o implements Function1<Pair<? extends UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult>, Unit> {
+        public C68493() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
+            invoke((Pair) obj);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(Pair<UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult> pair) {
+            UpdateRequest<T, VH> updateRequestComponent1 = pair.component1();
+            DiffCreator.this.setItemsAndDispatchUpdate(updateRequestComponent1.getAdapter(), updateRequestComponent1.getSetItems(), updateRequestComponent1.getNewItems(), pair.component2());
+        }
+    }
+
+    /* JADX INFO: compiled from: DiffCreator.kt */
+    public final /* data */ class UpdateRequest<T, VH extends RecyclerView.ViewHolder> {
         private final RecyclerView.Adapter<VH> adapter;
         private final T newItems;
         private final T oldItems;
@@ -49,6 +88,22 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
             this.setItems = function1;
             this.oldItems = t;
             this.newItems = t2;
+        }
+
+        public final RecyclerView.Adapter<VH> component1() {
+            return this.adapter;
+        }
+
+        public final Function1<T, Unit> component2() {
+            return this.setItems;
+        }
+
+        public final T component3() {
+            return this.oldItems;
+        }
+
+        public final T component4() {
+            return this.newItems;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -66,22 +121,6 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
                 obj2 = updateRequest.newItems;
             }
             return updateRequest.copy(adapter, function1, obj, obj2);
-        }
-
-        public final RecyclerView.Adapter<VH> component1() {
-            return this.adapter;
-        }
-
-        public final Function1<T, Unit> component2() {
-            return this.setItems;
-        }
-
-        public final T component3() {
-            return this.oldItems;
-        }
-
-        public final T component4() {
-            return this.newItems;
         }
 
         public final UpdateRequest<T, VH> copy(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
@@ -142,50 +181,20 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
         }
     }
 
-    /* JADX INFO: renamed from: com.discord.utilities.recycler.DiffCreator$subscribeToAsyncUpdateRequests$2 */
-    /* JADX INFO: compiled from: DiffCreator.kt */
-    public static final class C68482 extends AbstractC12240o implements Function1<Subscription, Unit> {
-        public C68482() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Subscription subscription) {
-            invoke2(subscription);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(Subscription subscription) {
-            C12238m.checkNotNullParameter(subscription, Traits.Payment.Type.SUBSCRIPTION);
-            DiffCreator.this.asyncDiffSubscription = subscription;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.utilities.recycler.DiffCreator$subscribeToAsyncUpdateRequests$3 */
-    /* JADX INFO: compiled from: DiffCreator.kt */
-    public static final class C68493 extends AbstractC12240o implements Function1<Pair<? extends UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult>, Unit> {
-        public C68493() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(Object obj) {
-            invoke((Pair) obj);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(Pair<UpdateRequest<T, VH>, ? extends DiffUtil.DiffResult> pair) {
-            UpdateRequest<T, VH> updateRequestComponent1 = pair.component1();
-            DiffCreator.this.setItemsAndDispatchUpdate(updateRequestComponent1.getAdapter(), updateRequestComponent1.getSetItems(), updateRequestComponent1.getNewItems(), pair.component2());
-        }
-    }
-
     public DiffCreator(AppComponent appComponent) {
         this.asyncDiffSubscriptionScope = appComponent;
         if (appComponent != null) {
             subscribeToAsyncUpdateRequests(appComponent);
         }
+    }
+
+    public final DiffUtil.DiffResult calculateDiffResult(T oldItems, T newItems) {
+        C12238m.checkNotNullParameter(oldItems, "oldItems");
+        C12238m.checkNotNullParameter(newItems, "newItems");
+        if (isExpensiveDiff(oldItems, newItems)) {
+            return null;
+        }
+        return DiffUtil.calculateDiff(createDiffUtilCallback(oldItems, newItems), true);
     }
 
     /* JADX WARN: Type inference failed for: r0v0, types: [com.discord.utilities.recycler.DiffCreator$createDiffUtilCallback$1] */
@@ -211,6 +220,31 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
                 return oldItems.size();
             }
         };
+    }
+
+    public final void dispatchDiffUpdates(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
+        C12238m.checkNotNullParameter(adapter, "adapter");
+        C12238m.checkNotNullParameter(setItems, "setItems");
+        C12238m.checkNotNullParameter(oldItems, "oldItems");
+        C12238m.checkNotNullParameter(newItems, "newItems");
+        setItemsAndDispatchUpdate(adapter, setItems, newItems, calculateDiffResult(oldItems, newItems));
+    }
+
+    @MainThread
+    public final void dispatchDiffUpdatesAsync(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
+        C12238m.checkNotNullParameter(adapter, "adapter");
+        C12238m.checkNotNullParameter(setItems, "setItems");
+        C12238m.checkNotNullParameter(oldItems, "oldItems");
+        C12238m.checkNotNullParameter(newItems, "newItems");
+        if (this.asyncDiffSubscriptionScope == null) {
+            throw new IllegalStateException("to use async diffs, provide an asyncDiffSubscriptionScope");
+        }
+        Subscription subscription = this.asyncDiffSubscription;
+        if (subscription == null || subscription.isUnsubscribed()) {
+            subscribeToAsyncUpdateRequests(this.asyncDiffSubscriptionScope);
+        }
+        PublishSubject<UpdateRequest<T, VH>> publishSubject = this.updateRequestsSubject;
+        publishSubject.f27650k.onNext(new UpdateRequest<>(adapter, setItems, oldItems, newItems));
     }
 
     private final boolean isExpensiveDiff(T oldItems, T newItems) {
@@ -257,39 +291,5 @@ public final class DiffCreator<T extends List<? extends DiffKeyProvider>, VH ext
         });
         C12238m.checkNotNullExpressionValue(observableM11083G, "updateRequestsSubject\n  …ms)\n          )\n        }");
         ObservableExtensionsKt.appSubscribe(ObservableExtensionsKt.ui$default(observableM11083G, asyncDiffSubscriptionScope, null, 2, null), (Class<?>) DiffCreator.class, (58 & 2) != 0 ? null : null, (Function1<? super Subscription, Unit>) ((58 & 4) != 0 ? null : new C68482()), (Function1<? super Error, Unit>) ((58 & 8) != 0 ? null : null), (Function0<Unit>) ((58 & 16) != 0 ? ObservableExtensionsKt.C68791.INSTANCE : null), (Function0<Unit>) ((58 & 32) != 0 ? ObservableExtensionsKt.C68802.INSTANCE : null), new C68493());
-    }
-
-    public final DiffUtil.DiffResult calculateDiffResult(T oldItems, T newItems) {
-        C12238m.checkNotNullParameter(oldItems, "oldItems");
-        C12238m.checkNotNullParameter(newItems, "newItems");
-        if (isExpensiveDiff(oldItems, newItems)) {
-            return null;
-        }
-        return DiffUtil.calculateDiff(createDiffUtilCallback(oldItems, newItems), true);
-    }
-
-    public final void dispatchDiffUpdates(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
-        C12238m.checkNotNullParameter(adapter, "adapter");
-        C12238m.checkNotNullParameter(setItems, "setItems");
-        C12238m.checkNotNullParameter(oldItems, "oldItems");
-        C12238m.checkNotNullParameter(newItems, "newItems");
-        setItemsAndDispatchUpdate(adapter, setItems, newItems, calculateDiffResult(oldItems, newItems));
-    }
-
-    @MainThread
-    public final void dispatchDiffUpdatesAsync(RecyclerView.Adapter<VH> adapter, Function1<? super T, Unit> setItems, T oldItems, T newItems) {
-        C12238m.checkNotNullParameter(adapter, "adapter");
-        C12238m.checkNotNullParameter(setItems, "setItems");
-        C12238m.checkNotNullParameter(oldItems, "oldItems");
-        C12238m.checkNotNullParameter(newItems, "newItems");
-        if (this.asyncDiffSubscriptionScope == null) {
-            throw new IllegalStateException("to use async diffs, provide an asyncDiffSubscriptionScope");
-        }
-        Subscription subscription = this.asyncDiffSubscription;
-        if (subscription == null || subscription.isUnsubscribed()) {
-            subscribeToAsyncUpdateRequests(this.asyncDiffSubscriptionScope);
-        }
-        PublishSubject<UpdateRequest<T, VH>> publishSubject = this.updateRequestsSubject;
-        publishSubject.f27650k.onNext(new UpdateRequest<>(adapter, setItems, oldItems, newItems));
     }
 }

@@ -14,18 +14,18 @@ public final /* data */ class MediaSource implements Parcelable {
     /* JADX INFO: renamed from: CREATOR, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
-    /* JADX INFO: renamed from: j, reason: from kotlin metadata */
-    public final Uri progressiveMediaUri;
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public final String featureTag;
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final MediaType mediaType;
 
+    /* JADX INFO: renamed from: j, reason: from kotlin metadata */
+    public final Uri progressiveMediaUri;
+
     /* JADX INFO: renamed from: com.discord.player.MediaSource$a, reason: from kotlin metadata */
     /* JADX INFO: compiled from: MediaSource.kt */
-    public static final class Companion implements Parcelable.Creator<MediaSource> {
+    public final class Companion implements Parcelable.Creator<MediaSource> {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
         }
 

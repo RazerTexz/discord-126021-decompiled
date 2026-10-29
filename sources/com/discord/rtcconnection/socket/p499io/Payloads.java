@@ -17,7 +17,7 @@ public final class Payloads {
     public static final Payloads INSTANCE = new Payloads();
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class ClientDisconnect {
+    public final /* data */ class ClientDisconnect {
 
         @InterfaceC4913b("user_id")
         private final long userId;
@@ -33,11 +33,6 @@ public final class Payloads {
             return clientDisconnect.copy(j);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getUserId() {
-            return this.userId;
-        }
-
         public final ClientDisconnect copy(long userId) {
             return new ClientDisconnect(userId);
         }
@@ -47,6 +42,11 @@ public final class Payloads {
                 return (other instanceof ClientDisconnect) && this.userId == ((ClientDisconnect) other).userId;
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final long getUserId() {
+            return this.userId;
         }
 
         public final long getUserId() {
@@ -63,7 +63,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Description {
+    public final /* data */ class Description {
 
         @InterfaceC4913b("audio_codec")
         private final String audioCodec;
@@ -90,6 +90,10 @@ public final class Payloads {
             this.mode = str4;
         }
 
+        public final List<Integer> component1() {
+            return this.secretKey;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Description copy$default(Description description, List list, String str, String str2, String str3, String str4, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -113,30 +117,6 @@ public final class Payloads {
             return description.copy(list, str5, str6, str7, str4);
         }
 
-        public final List<Integer> component1() {
-            return this.secretKey;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getMediaSessionId() {
-            return this.mediaSessionId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getAudioCodec() {
-            return this.audioCodec;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getVideoCodec() {
-            return this.videoCodec;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final String getMode() {
-            return this.mode;
-        }
-
         public final Description copy(List<Integer> secretKey, String mediaSessionId, String audioCodec, String videoCodec, String mode) {
             C12238m.checkNotNullParameter(secretKey, "secretKey");
             C12238m.checkNotNullParameter(audioCodec, "audioCodec");
@@ -156,12 +136,27 @@ public final class Payloads {
             return C12238m.areEqual(this.secretKey, description.secretKey) && C12238m.areEqual(this.mediaSessionId, description.mediaSessionId) && C12238m.areEqual(this.audioCodec, description.audioCodec) && C12238m.areEqual(this.videoCodec, description.videoCodec) && C12238m.areEqual(this.mode, description.mode);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getAudioCodec() {
             return this.audioCodec;
         }
 
+        public final String getAudioCodec() {
+            return this.audioCodec;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getMediaSessionId() {
             return this.mediaSessionId;
+        }
+
+        public final String getMediaSessionId() {
+            return this.mediaSessionId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final String getMode() {
+            return this.mode;
         }
 
         public final String getMode() {
@@ -170,6 +165,11 @@ public final class Payloads {
 
         public final List<Integer> getSecretKey() {
             return this.secretKey;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final String getVideoCodec() {
+            return this.videoCodec;
         }
 
         public final String getVideoCodec() {
@@ -204,7 +204,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Hello {
+    public final /* data */ class Hello {
 
         @InterfaceC4913b("heartbeat_interval")
         private final long heartbeatIntervalMs;
@@ -227,16 +227,6 @@ public final class Payloads {
             return hello.copy(j, i);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final long getHeartbeatIntervalMs() {
-            return this.heartbeatIntervalMs;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getServerVersion() {
-            return this.serverVersion;
-        }
-
         public final Hello copy(long heartbeatIntervalMs, int serverVersion) {
             return new Hello(heartbeatIntervalMs, serverVersion);
         }
@@ -252,8 +242,18 @@ public final class Payloads {
             return this.heartbeatIntervalMs == hello.heartbeatIntervalMs && this.serverVersion == hello.serverVersion;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final long getHeartbeatIntervalMs() {
             return this.heartbeatIntervalMs;
+        }
+
+        public final long getHeartbeatIntervalMs() {
+            return this.heartbeatIntervalMs;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getServerVersion() {
+            return this.serverVersion;
         }
 
         public final int getServerVersion() {
@@ -273,7 +273,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Identify {
+    public final /* data */ class Identify {
 
         @InterfaceC4913b("server_id")
         private final String serverId;
@@ -298,6 +298,10 @@ public final class Payloads {
             this.token = str3;
             this.video = z2;
             this.streams = list;
+        }
+
+        public final List<Stream> component6() {
+            return this.streams;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -327,35 +331,6 @@ public final class Payloads {
             return identify.copy(str, j2, str4, str5, z3, list);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getServerId() {
-            return this.serverId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final long getUserId() {
-            return this.userId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getSessionId() {
-            return this.sessionId;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final String getToken() {
-            return this.token;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getVideo() {
-            return this.video;
-        }
-
-        public final List<Stream> component6() {
-            return this.streams;
-        }
-
         public final Identify copy(String serverId, long userId, String sessionId, String token, boolean video, List<Stream> streams) {
             C12238m.checkNotNullParameter(serverId, "serverId");
             C12238m.checkNotNullParameter(sessionId, "sessionId");
@@ -375,8 +350,18 @@ public final class Payloads {
             return C12238m.areEqual(this.serverId, identify.serverId) && this.userId == identify.userId && C12238m.areEqual(this.sessionId, identify.sessionId) && C12238m.areEqual(this.token, identify.token) && this.video == identify.video && C12238m.areEqual(this.streams, identify.streams);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final String getServerId() {
             return this.serverId;
+        }
+
+        public final String getServerId() {
+            return this.serverId;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final String getSessionId() {
+            return this.sessionId;
         }
 
         public final String getSessionId() {
@@ -387,12 +372,27 @@ public final class Payloads {
             return this.streams;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final String getToken() {
             return this.token;
         }
 
+        public final String getToken() {
+            return this.token;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final long getUserId() {
             return this.userId;
+        }
+
+        public final long getUserId() {
+            return this.userId;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getVideo() {
+            return this.video;
         }
 
         public final boolean getVideo() {
@@ -438,7 +438,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Incoming {
+    public final /* data */ class Incoming {
 
         @InterfaceC4913b("d")
         private final JsonElement data;
@@ -462,16 +462,6 @@ public final class Payloads {
             return incoming.copy(i, jsonElement);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getOpcode() {
-            return this.opcode;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final JsonElement getData() {
-            return this.data;
-        }
-
         public final Incoming copy(int opcode, JsonElement data) {
             C12238m.checkNotNullParameter(data, "data");
             return new Incoming(opcode, data);
@@ -488,8 +478,18 @@ public final class Payloads {
             return this.opcode == incoming.opcode && C12238m.areEqual(this.data, incoming.data);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final JsonElement getData() {
             return this.data;
+        }
+
+        public final JsonElement getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getOpcode() {
+            return this.opcode;
         }
 
         public final int getOpcode() {
@@ -513,7 +513,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Outgoing {
+    public final /* data */ class Outgoing {
 
         @InterfaceC4913b("d")
         private final Object data;
@@ -537,16 +537,6 @@ public final class Payloads {
             return outgoing.copy(i, obj);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getOpcode() {
-            return this.opcode;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Object getData() {
-            return this.data;
-        }
-
         public final Outgoing copy(int opcode, Object data) {
             C12238m.checkNotNullParameter(data, "data");
             return new Outgoing(opcode, data);
@@ -563,8 +553,18 @@ public final class Payloads {
             return this.opcode == outgoing.opcode && C12238m.areEqual(this.data, outgoing.data);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Object getData() {
             return this.data;
+        }
+
+        public final Object getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getOpcode() {
+            return this.opcode;
         }
 
         public final int getOpcode() {
@@ -588,13 +588,13 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Protocol {
+    public final /* data */ class Protocol {
         private final List<CodecInfo> codecs;
         private final ProtocolInfo data;
         private final String protocol;
 
         /* JADX INFO: compiled from: Payloads.kt */
-        public static final /* data */ class CodecInfo {
+        public final /* data */ class CodecInfo {
             private final String name;
 
             @InterfaceC4913b("payload_type")
@@ -637,31 +637,6 @@ public final class Payloads {
                 return codecInfo.copy(str, i4, str3, i5, num);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getName() {
-                return this.name;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getPriority() {
-                return this.priority;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getType() {
-                return this.type;
-            }
-
-            /* JADX INFO: renamed from: component4, reason: from getter */
-            public final int getPayloadType() {
-                return this.payloadType;
-            }
-
-            /* JADX INFO: renamed from: component5, reason: from getter */
-            public final Integer getRtxPayloadType() {
-                return this.rtxPayloadType;
-            }
-
             public final CodecInfo copy(String name, int priority, String type, int payloadType, Integer rtxPayloadType) {
                 C12238m.checkNotNullParameter(name, ModelAuditLogEntry.CHANGE_KEY_NAME);
                 C12238m.checkNotNullParameter(type, "type");
@@ -679,20 +654,45 @@ public final class Payloads {
                 return C12238m.areEqual(this.name, codecInfo.name) && this.priority == codecInfo.priority && C12238m.areEqual(this.type, codecInfo.type) && this.payloadType == codecInfo.payloadType && C12238m.areEqual(this.rtxPayloadType, codecInfo.rtxPayloadType);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final String getName() {
                 return this.name;
+            }
+
+            public final String getName() {
+                return this.name;
+            }
+
+            /* JADX INFO: renamed from: component4, reason: from getter */
+            public final int getPayloadType() {
+                return this.payloadType;
             }
 
             public final int getPayloadType() {
                 return this.payloadType;
             }
 
+            /* JADX INFO: renamed from: component2, reason: from getter */
             public final int getPriority() {
                 return this.priority;
             }
 
+            public final int getPriority() {
+                return this.priority;
+            }
+
+            /* JADX INFO: renamed from: component5, reason: from getter */
             public final Integer getRtxPayloadType() {
                 return this.rtxPayloadType;
+            }
+
+            public final Integer getRtxPayloadType() {
+                return this.rtxPayloadType;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
+            public final String getType() {
+                return this.type;
             }
 
             public final String getType() {
@@ -723,7 +723,7 @@ public final class Payloads {
         }
 
         /* JADX INFO: compiled from: Payloads.kt */
-        public static final /* data */ class ProtocolInfo {
+        public final /* data */ class ProtocolInfo {
             private final String address;
             private final String mode;
             private final int port;
@@ -749,21 +749,6 @@ public final class Payloads {
                 return protocolInfo.copy(str, i, str2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final String getAddress() {
-                return this.address;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getPort() {
-                return this.port;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final String getMode() {
-                return this.mode;
-            }
-
             public final ProtocolInfo copy(String address, int port, String mode) {
                 C12238m.checkNotNullParameter(address, "address");
                 C12238m.checkNotNullParameter(mode, "mode");
@@ -781,12 +766,27 @@ public final class Payloads {
                 return C12238m.areEqual(this.address, protocolInfo.address) && this.port == protocolInfo.port && C12238m.areEqual(this.mode, protocolInfo.mode);
             }
 
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final String getAddress() {
                 return this.address;
             }
 
+            public final String getAddress() {
+                return this.address;
+            }
+
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final String getMode() {
                 return this.mode;
+            }
+
+            public final String getMode() {
+                return this.mode;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getPort() {
+                return this.port;
             }
 
             public final int getPort() {
@@ -818,6 +818,10 @@ public final class Payloads {
             this.codecs = list;
         }
 
+        public final List<CodecInfo> component3() {
+            return this.codecs;
+        }
+
         /* JADX WARN: Multi-variable type inference failed */
         public static /* synthetic */ Protocol copy$default(Protocol protocol, String str, ProtocolInfo protocolInfo, List list, int i, Object obj) {
             if ((i & 1) != 0) {
@@ -830,20 +834,6 @@ public final class Payloads {
                 list = protocol.codecs;
             }
             return protocol.copy(str, protocolInfo, list);
-        }
-
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getProtocol() {
-            return this.protocol;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final ProtocolInfo getData() {
-            return this.data;
-        }
-
-        public final List<CodecInfo> component3() {
-            return this.codecs;
         }
 
         public final Protocol copy(String protocol, ProtocolInfo data, List<CodecInfo> codecs) {
@@ -867,8 +857,18 @@ public final class Payloads {
             return this.codecs;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final ProtocolInfo getData() {
             return this.data;
+        }
+
+        public final ProtocolInfo getData() {
+            return this.data;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getProtocol() {
+            return this.protocol;
         }
 
         public final String getProtocol() {
@@ -895,7 +895,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Ready {
+    public final /* data */ class Ready {
         private final String ip;
         private final int port;
         private final int ssrc;
@@ -908,6 +908,10 @@ public final class Payloads {
             this.port = i2;
             this.ip = str;
             this.streams = list;
+        }
+
+        public final List<Stream> component4() {
+            return this.streams;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -927,25 +931,6 @@ public final class Payloads {
             return ready.copy(i, i2, str, list);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getSsrc() {
-            return this.ssrc;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getPort() {
-            return this.port;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getIp() {
-            return this.ip;
-        }
-
-        public final List<Stream> component4() {
-            return this.streams;
-        }
-
         public final Ready copy(int ssrc, int port, String ip, List<Stream> streams) {
             C12238m.checkNotNullParameter(ip, "ip");
             C12238m.checkNotNullParameter(streams, "streams");
@@ -963,12 +948,27 @@ public final class Payloads {
             return this.ssrc == ready.ssrc && this.port == ready.port && C12238m.areEqual(this.ip, ready.ip) && C12238m.areEqual(this.streams, ready.streams);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getIp() {
             return this.ip;
         }
 
+        public final String getIp() {
+            return this.ip;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final int getPort() {
             return this.port;
+        }
+
+        public final int getPort() {
+            return this.port;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final int getSsrc() {
+            return this.ssrc;
         }
 
         public final int getSsrc() {
@@ -1006,7 +1006,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Resume {
+    public final /* data */ class Resume {
 
         @InterfaceC4913b("server_id")
         private final String serverId;
@@ -1035,21 +1035,6 @@ public final class Payloads {
             return resume.copy(str, str2, str3);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getToken() {
-            return this.token;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getSessionId() {
-            return this.sessionId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final String getServerId() {
-            return this.serverId;
-        }
-
         public final Resume copy(String token, String sessionId, String serverId) {
             C12238m.checkNotNullParameter(token, "token");
             C12238m.checkNotNullParameter(sessionId, "sessionId");
@@ -1068,12 +1053,27 @@ public final class Payloads {
             return C12238m.areEqual(this.token, resume.token) && C12238m.areEqual(this.sessionId, resume.sessionId) && C12238m.areEqual(this.serverId, resume.serverId);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final String getServerId() {
             return this.serverId;
         }
 
+        public final String getServerId() {
+            return this.serverId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final String getSessionId() {
             return this.sessionId;
+        }
+
+        public final String getSessionId() {
+            return this.sessionId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getToken() {
+            return this.token;
         }
 
         public final String getToken() {
@@ -1100,7 +1100,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class SessionUpdate {
+    public final /* data */ class SessionUpdate {
 
         @InterfaceC4913b("media_session_id")
         private final String mediaSessionId;
@@ -1116,11 +1116,6 @@ public final class Payloads {
             return sessionUpdate.copy(str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getMediaSessionId() {
-            return this.mediaSessionId;
-        }
-
         public final SessionUpdate copy(String mediaSessionId) {
             return new SessionUpdate(mediaSessionId);
         }
@@ -1130,6 +1125,11 @@ public final class Payloads {
                 return (other instanceof SessionUpdate) && C12238m.areEqual(this.mediaSessionId, ((SessionUpdate) other).mediaSessionId);
             }
             return true;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getMediaSessionId() {
+            return this.mediaSessionId;
         }
 
         public final String getMediaSessionId() {
@@ -1150,7 +1150,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Speaking {
+    public final /* data */ class Speaking {
         public static final int NOT_SPEAKING = 0;
         public static final int SPEAKING = 1;
         private final Integer delay;
@@ -1183,26 +1183,6 @@ public final class Payloads {
             return speaking.copy(i, num, num2, l);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getSsrc() {
-            return this.ssrc;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Integer getSpeaking() {
-            return this.speaking;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Integer getDelay() {
-            return this.delay;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getUserId() {
-            return this.userId;
-        }
-
         public final Speaking copy(int ssrc, Integer speaking, Integer delay, Long userId) {
             return new Speaking(ssrc, speaking, delay, userId);
         }
@@ -1218,16 +1198,36 @@ public final class Payloads {
             return this.ssrc == speaking.ssrc && C12238m.areEqual(this.speaking, speaking.speaking) && C12238m.areEqual(this.delay, speaking.delay) && C12238m.areEqual(this.userId, speaking.userId);
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Integer getDelay() {
             return this.delay;
+        }
+
+        public final Integer getDelay() {
+            return this.delay;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final Integer getSpeaking() {
+            return this.speaking;
         }
 
         public final Integer getSpeaking() {
             return this.speaking;
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getSsrc() {
             return this.ssrc;
+        }
+
+        public final int getSsrc() {
+            return this.ssrc;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final Long getUserId() {
+            return this.userId;
         }
 
         public final Long getUserId() {
@@ -1261,7 +1261,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Stream {
+    public final /* data */ class Stream {
         private final Boolean active;
 
         @InterfaceC4913b("max_bitrate")
@@ -1281,7 +1281,7 @@ public final class Payloads {
         private final String type;
 
         /* JADX INFO: compiled from: Payloads.kt */
-        public static final /* data */ class MaxResolution {
+        public final /* data */ class MaxResolution {
             private final int height;
             private final ResolutionType type;
             private final int width;
@@ -1306,21 +1306,6 @@ public final class Payloads {
                 return maxResolution.copy(resolutionType, i, i2);
             }
 
-            /* JADX INFO: renamed from: component1, reason: from getter */
-            public final ResolutionType getType() {
-                return this.type;
-            }
-
-            /* JADX INFO: renamed from: component2, reason: from getter */
-            public final int getWidth() {
-                return this.width;
-            }
-
-            /* JADX INFO: renamed from: component3, reason: from getter */
-            public final int getHeight() {
-                return this.height;
-            }
-
             public final MaxResolution copy(ResolutionType type, int width, int height) {
                 C12238m.checkNotNullParameter(type, "type");
                 return new MaxResolution(type, width, height);
@@ -1337,12 +1322,27 @@ public final class Payloads {
                 return C12238m.areEqual(this.type, maxResolution.type) && this.width == maxResolution.width && this.height == maxResolution.height;
             }
 
+            /* JADX INFO: renamed from: component3, reason: from getter */
             public final int getHeight() {
                 return this.height;
             }
 
+            public final int getHeight() {
+                return this.height;
+            }
+
+            /* JADX INFO: renamed from: component1, reason: from getter */
             public final ResolutionType getType() {
                 return this.type;
+            }
+
+            public final ResolutionType getType() {
+                return this.type;
+            }
+
+            /* JADX INFO: renamed from: component2, reason: from getter */
+            public final int getWidth() {
+                return this.width;
             }
 
             public final int getWidth() {
@@ -1380,51 +1380,6 @@ public final class Payloads {
             this.maxBitrate = num5;
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final String getType() {
-            return this.type;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final String getRid() {
-            return this.rid;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final Integer getMaxFrameRate() {
-            return this.maxFrameRate;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Integer getQuality() {
-            return this.quality;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final Integer getSsrc() {
-            return this.ssrc;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final Integer getRtxSsrc() {
-            return this.rtxSsrc;
-        }
-
-        /* JADX INFO: renamed from: component7, reason: from getter */
-        public final MaxResolution getMaxResolution() {
-            return this.maxResolution;
-        }
-
-        /* JADX INFO: renamed from: component8, reason: from getter */
-        public final Boolean getActive() {
-            return this.active;
-        }
-
-        /* JADX INFO: renamed from: component9, reason: from getter */
-        public final Integer getMaxBitrate() {
-            return this.maxBitrate;
-        }
-
         public final Stream copy(String type, String rid, Integer maxFrameRate, Integer quality, Integer ssrc, Integer rtxSsrc, MaxResolution maxResolution, Boolean active, Integer maxBitrate) {
             return new Stream(type, rid, maxFrameRate, quality, ssrc, rtxSsrc, maxResolution, active, maxBitrate);
         }
@@ -1440,36 +1395,81 @@ public final class Payloads {
             return C12238m.areEqual(this.type, stream.type) && C12238m.areEqual(this.rid, stream.rid) && C12238m.areEqual(this.maxFrameRate, stream.maxFrameRate) && C12238m.areEqual(this.quality, stream.quality) && C12238m.areEqual(this.ssrc, stream.ssrc) && C12238m.areEqual(this.rtxSsrc, stream.rtxSsrc) && C12238m.areEqual(this.maxResolution, stream.maxResolution) && C12238m.areEqual(this.active, stream.active) && C12238m.areEqual(this.maxBitrate, stream.maxBitrate);
         }
 
+        /* JADX INFO: renamed from: component8, reason: from getter */
         public final Boolean getActive() {
             return this.active;
+        }
+
+        public final Boolean getActive() {
+            return this.active;
+        }
+
+        /* JADX INFO: renamed from: component9, reason: from getter */
+        public final Integer getMaxBitrate() {
+            return this.maxBitrate;
         }
 
         public final Integer getMaxBitrate() {
             return this.maxBitrate;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final Integer getMaxFrameRate() {
             return this.maxFrameRate;
+        }
+
+        public final Integer getMaxFrameRate() {
+            return this.maxFrameRate;
+        }
+
+        /* JADX INFO: renamed from: component7, reason: from getter */
+        public final MaxResolution getMaxResolution() {
+            return this.maxResolution;
         }
 
         public final MaxResolution getMaxResolution() {
             return this.maxResolution;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Integer getQuality() {
             return this.quality;
+        }
+
+        public final Integer getQuality() {
+            return this.quality;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final String getRid() {
+            return this.rid;
         }
 
         public final String getRid() {
             return this.rid;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final Integer getRtxSsrc() {
             return this.rtxSsrc;
         }
 
+        public final Integer getRtxSsrc() {
+            return this.rtxSsrc;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final Integer getSsrc() {
             return this.ssrc;
+        }
+
+        public final Integer getSsrc() {
+            return this.ssrc;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final String getType() {
+            return this.type;
         }
 
         public final String getType() {
@@ -1524,7 +1524,7 @@ public final class Payloads {
     }
 
     /* JADX INFO: compiled from: Payloads.kt */
-    public static final /* data */ class Video {
+    public final /* data */ class Video {
 
         @InterfaceC4913b("audio_ssrc")
         private final int audioSsrc;
@@ -1545,6 +1545,10 @@ public final class Payloads {
             this.rtxSsrc = i3;
             this.userId = l;
             this.streams = list;
+        }
+
+        public final List<Stream> component5() {
+            return this.streams;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -1570,30 +1574,6 @@ public final class Payloads {
             return video.copy(i, i5, i6, l2, list);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final int getAudioSsrc() {
-            return this.audioSsrc;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final int getVideoSsrc() {
-            return this.videoSsrc;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final int getRtxSsrc() {
-            return this.rtxSsrc;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final Long getUserId() {
-            return this.userId;
-        }
-
-        public final List<Stream> component5() {
-            return this.streams;
-        }
-
         public final Video copy(int audioSsrc, int videoSsrc, int rtxSsrc, Long userId, List<Stream> streams) {
             return new Video(audioSsrc, videoSsrc, rtxSsrc, userId, streams);
         }
@@ -1609,8 +1589,18 @@ public final class Payloads {
             return this.audioSsrc == video.audioSsrc && this.videoSsrc == video.videoSsrc && this.rtxSsrc == video.rtxSsrc && C12238m.areEqual(this.userId, video.userId) && C12238m.areEqual(this.streams, video.streams);
         }
 
+        /* JADX INFO: renamed from: component1, reason: from getter */
         public final int getAudioSsrc() {
             return this.audioSsrc;
+        }
+
+        public final int getAudioSsrc() {
+            return this.audioSsrc;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
+        public final int getRtxSsrc() {
+            return this.rtxSsrc;
         }
 
         public final int getRtxSsrc() {
@@ -1621,8 +1611,18 @@ public final class Payloads {
             return this.streams;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final Long getUserId() {
             return this.userId;
+        }
+
+        public final Long getUserId() {
+            return this.userId;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        public final int getVideoSsrc() {
+            return this.videoSsrc;
         }
 
         public final int getVideoSsrc() {

@@ -10,9 +10,6 @@ public final class C5058j {
     /* JADX INFO: renamed from: a */
     public static final int[] f13548a = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
 
-    /* JADX INFO: renamed from: b */
-    public static final C5058j[] f13549b = m7102a();
-
     /* JADX INFO: renamed from: c */
     public final int f13550c;
 
@@ -25,9 +22,12 @@ public final class C5058j {
     /* JADX INFO: renamed from: f */
     public final int f13553f;
 
+    /* JADX INFO: renamed from: b */
+    public static final C5058j[] f13549b = m7102a();
+
     /* JADX INFO: renamed from: b.i.e.s.b.j$a */
     /* JADX INFO: compiled from: Version.java */
-    public static final class a {
+    public final class a {
 
         /* JADX INFO: renamed from: a */
         public final int f13554a;
@@ -43,7 +43,7 @@ public final class C5058j {
 
     /* JADX INFO: renamed from: b.i.e.s.b.j$b */
     /* JADX INFO: compiled from: Version.java */
-    public static final class b {
+    public final class b {
 
         /* JADX INFO: renamed from: a */
         public final int f13556a;

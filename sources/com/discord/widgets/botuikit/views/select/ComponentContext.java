@@ -22,31 +22,6 @@ public final /* data */ class ComponentContext implements Serializable {
         this.applicationId = j3;
     }
 
-    /* JADX INFO: renamed from: component1, reason: from getter */
-    public final Long getGuildId() {
-        return this.guildId;
-    }
-
-    /* JADX INFO: renamed from: component2, reason: from getter */
-    public final long getMessageId() {
-        return this.messageId;
-    }
-
-    /* JADX INFO: renamed from: component3, reason: from getter */
-    public final long getChannelId() {
-        return this.channelId;
-    }
-
-    /* JADX INFO: renamed from: component4, reason: from getter */
-    public final Long getMessageFlags() {
-        return this.messageFlags;
-    }
-
-    /* JADX INFO: renamed from: component5, reason: from getter */
-    public final long getApplicationId() {
-        return this.applicationId;
-    }
-
     public final ComponentContext copy(Long guildId, long messageId, long channelId, Long messageFlags, long applicationId) {
         return new ComponentContext(guildId, messageId, channelId, messageFlags, applicationId);
     }
@@ -62,20 +37,45 @@ public final /* data */ class ComponentContext implements Serializable {
         return C12238m.areEqual(this.guildId, componentContext.guildId) && this.messageId == componentContext.messageId && this.channelId == componentContext.channelId && C12238m.areEqual(this.messageFlags, componentContext.messageFlags) && this.applicationId == componentContext.applicationId;
     }
 
+    /* JADX INFO: renamed from: component5, reason: from getter */
     public final long getApplicationId() {
         return this.applicationId;
+    }
+
+    public final long getApplicationId() {
+        return this.applicationId;
+    }
+
+    /* JADX INFO: renamed from: component3, reason: from getter */
+    public final long getChannelId() {
+        return this.channelId;
     }
 
     public final long getChannelId() {
         return this.channelId;
     }
 
+    /* JADX INFO: renamed from: component1, reason: from getter */
     public final Long getGuildId() {
         return this.guildId;
     }
 
+    public final Long getGuildId() {
+        return this.guildId;
+    }
+
+    /* JADX INFO: renamed from: component4, reason: from getter */
     public final Long getMessageFlags() {
         return this.messageFlags;
+    }
+
+    public final Long getMessageFlags() {
+        return this.messageFlags;
+    }
+
+    /* JADX INFO: renamed from: component2, reason: from getter */
+    public final long getMessageId() {
+        return this.messageId;
     }
 
     public final long getMessageId() {

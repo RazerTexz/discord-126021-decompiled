@@ -21,7 +21,7 @@ public final class MediaViewHolder extends StageCallViewHolder {
 
     /* JADX INFO: renamed from: com.discord.widgets.voice.fullscreen.stage.MediaViewHolder$onConfigure$2 */
     /* JADX INFO: compiled from: StageCallViewHolder.kt */
-    public static final class C105572 extends AbstractC12240o implements Function1<View, Unit> {
+    public final class C105572 extends AbstractC12240o implements Function1<View, Unit> {
         public final /* synthetic */ StageCallItem.MediaItem $item;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

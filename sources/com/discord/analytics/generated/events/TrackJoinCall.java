@@ -10,19 +10,13 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackJoinCall.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackJoinCall implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long channelId = null;
     private final Long channelType = null;
     private final Long messageId = null;
-    private final List<Long> recipientIds = null;
     private final List<Long> participantIds = null;
+    private final List<Long> recipientIds = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "join_call";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -33,6 +27,12 @@ public final /* data */ class TrackJoinCall implements AnalyticsSchema, TrackBas
         }
         TrackJoinCall trackJoinCall = (TrackJoinCall) other;
         return C12238m.areEqual(this.channelId, trackJoinCall.channelId) && C12238m.areEqual(this.channelType, trackJoinCall.channelType) && C12238m.areEqual(this.messageId, trackJoinCall.messageId) && C12238m.areEqual(this.recipientIds, trackJoinCall.recipientIds) && C12238m.areEqual(this.participantIds, trackJoinCall.participantIds);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

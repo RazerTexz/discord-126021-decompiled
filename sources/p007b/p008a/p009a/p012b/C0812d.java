@@ -33,18 +33,39 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: loaded from: classes.dex */
 public final class C0812d extends AppDialog {
 
-    /* JADX INFO: renamed from: j */
-    public static final /* synthetic */ KProperty[] f279j = {C1643a.m846d0(C0812d.class, "binding", "getBinding()Lcom/discord/databinding/SingleValuePropPremiumUpsellDialogBinding;", 0)};
-
     /* JADX INFO: renamed from: k, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
 
     /* JADX INFO: renamed from: l, reason: from kotlin metadata */
     public final FragmentViewBindingDelegate binding;
 
+    /* JADX INFO: renamed from: j */
+    public static final /* synthetic */ KProperty[] f279j = {C1643a.m846d0(C0812d.class, "binding", "getBinding()Lcom/discord/databinding/SingleValuePropPremiumUpsellDialogBinding;", 0)};
+
+    /* JADX INFO: renamed from: b.a.a.b.d$b, reason: from kotlin metadata */
+    /* JADX INFO: compiled from: SingleValuePropPremiumUpsellDialog.kt */
+    public final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+        }
+
+        /* JADX INFO: renamed from: a */
+        public final void m117a(FragmentManager fragmentManager, AnalyticsTracker.PremiumUpsellType premiumUpsellType, @DrawableRes int i, String str, String str2, String str3, String str4, String str5) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            C12238m.checkNotNullParameter(premiumUpsellType, "premiumUpsellType");
+            C0812d c0812d = new C0812d();
+            Bundle bundle = new Bundle();
+            bundle.putInt("extra_image_drawable_res", i);
+            bundle.putString("extra_header_text", str);
+            bundle.putString("extra_body_text", str2);
+            c0812d.setArguments(bundle);
+            c0812d.show(fragmentManager, C0812d.class.getName());
+            AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, premiumUpsellType, null, null, new Traits.Source(str3, str4, str5, null, null, 24, null), 6, null);
+        }
+    }
+
     /* JADX INFO: renamed from: b.a.a.b.d$a */
     /* JADX INFO: compiled from: java-style lambda group */
-    public static final class a implements View.OnClickListener {
+    public final class a implements View.OnClickListener {
 
         /* JADX INFO: renamed from: j */
         public final /* synthetic */ int f282j;
@@ -78,30 +99,9 @@ public final class C0812d extends AppDialog {
         }
     }
 
-    /* JADX INFO: renamed from: b.a.a.b.d$b, reason: from kotlin metadata */
-    /* JADX INFO: compiled from: SingleValuePropPremiumUpsellDialog.kt */
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-        }
-
-        /* JADX INFO: renamed from: a */
-        public final void m117a(FragmentManager fragmentManager, AnalyticsTracker.PremiumUpsellType premiumUpsellType, @DrawableRes int i, String str, String str2, String str3, String str4, String str5) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            C12238m.checkNotNullParameter(premiumUpsellType, "premiumUpsellType");
-            C0812d c0812d = new C0812d();
-            Bundle bundle = new Bundle();
-            bundle.putInt("extra_image_drawable_res", i);
-            bundle.putString("extra_header_text", str);
-            bundle.putString("extra_body_text", str2);
-            c0812d.setArguments(bundle);
-            c0812d.show(fragmentManager, C0812d.class.getName());
-            AnalyticsTracker.premiumUpsellViewed$default(AnalyticsTracker.INSTANCE, premiumUpsellType, null, null, new Traits.Source(str3, str4, str5, null, null, 24, null), 6, null);
-        }
-    }
-
     /* JADX INFO: renamed from: b.a.a.b.d$c */
     /* JADX INFO: compiled from: SingleValuePropPremiumUpsellDialog.kt */
-    public static final /* synthetic */ class c extends C12236k implements Function1<View, C1025p1> {
+    public final /* synthetic */ class c extends C12236k implements Function1<View, C1025p1> {
 
         /* JADX INFO: renamed from: j */
         public static final c f284j = new c();

@@ -40,7 +40,7 @@ public final class C12328c extends C12333h {
 
     /* JADX INFO: renamed from: f0.e0.k.c$a */
     /* JADX INFO: compiled from: BouncyCastlePlatform.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
     }

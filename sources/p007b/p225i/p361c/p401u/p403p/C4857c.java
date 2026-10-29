@@ -42,12 +42,6 @@ import p007b.p225i.p361c.p407x.InterfaceC4896h;
 /* JADX INFO: loaded from: classes3.dex */
 public class C4857c {
 
-    /* JADX INFO: renamed from: a */
-    public static final Pattern f12989a = Pattern.compile("[0-9]+s");
-
-    /* JADX INFO: renamed from: b */
-    public static final Charset f12990b = Charset.forName(Constants.ENCODING);
-
     /* JADX INFO: renamed from: c */
     public final Context f12991c;
 
@@ -56,6 +50,12 @@ public class C4857c {
 
     /* JADX INFO: renamed from: e */
     public final InterfaceC4836a<InterfaceC4803d> f12993e;
+
+    /* JADX INFO: renamed from: a */
+    public static final Pattern f12989a = Pattern.compile("[0-9]+s");
+
+    /* JADX INFO: renamed from: b */
+    public static final Charset f12990b = Charset.forName(Constants.ENCODING);
 
     /* JADX INFO: renamed from: f */
     public final C4859e f12994f = new C4859e();

@@ -20,7 +20,7 @@ public enum LeadingIdentifier {
     private final Character identifier;
 
     /* JADX INFO: compiled from: Autocompletable.kt */
-    public static final class Companion {
+    public final class Companion {
         private Companion() {
         }
 

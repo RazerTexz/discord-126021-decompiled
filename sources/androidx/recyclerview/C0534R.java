@@ -7,7 +7,7 @@ import com.discord.C5419R;
 public final class C0534R {
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$attr */
-    public static final class attr {
+    public final class attr {
         public static final int alpha = 2130968635;
         public static final int fastScrollEnabled = 2130969339;
         public static final int fastScrollHorizontalThumbDrawable = 2130969340;
@@ -36,7 +36,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$color */
-    public static final class color {
+    public final class color {
         public static final int androidx_core_ripple_material_light = 2131099679;
         public static final int androidx_core_secondary_text_default_material_light = 2131099680;
         public static final int notification_action_color_filter = 2131100115;
@@ -49,7 +49,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$dimen */
-    public static final class dimen {
+    public final class dimen {
         public static final int compat_button_inset_horizontal_material = 2131165325;
         public static final int compat_button_inset_vertical_material = 2131165326;
         public static final int compat_button_padding_horizontal_material = 2131165327;
@@ -84,7 +84,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$drawable */
-    public static final class drawable {
+    public final class drawable {
         public static final int notification_action_background = 2131232491;
         public static final int notification_bg = 2131232492;
         public static final int notification_bg_low = 2131232493;
@@ -103,7 +103,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$id */
-    public static final class id {
+    public final class id {
         public static final int accessibility_action_clickable_span = 2131361830;
         public static final int accessibility_custom_action_0 = 2131361831;
         public static final int accessibility_custom_action_1 = 2131361832;
@@ -178,7 +178,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$integer */
-    public static final class integer {
+    public final class integer {
         public static final int status_bar_notification_info_maxnum = 2131427355;
 
         private integer() {
@@ -186,7 +186,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$layout */
-    public static final class layout {
+    public final class layout {
         public static final int custom_dialog = 2131558460;
         public static final int notification_action = 2131558626;
         public static final int notification_action_tombstone = 2131558627;
@@ -200,7 +200,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$string */
-    public static final class string {
+    public final class string {
         public static final int status_bar_notification_info_overflow = 2131895909;
 
         private string() {
@@ -208,7 +208,7 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$style */
-    public static final class style {
+    public final class style {
         public static final int TextAppearance_Compat_Notification = 2131952217;
         public static final int TextAppearance_Compat_Notification_Info = 2131952218;
         public static final int TextAppearance_Compat_Notification_Line2 = 2131952220;
@@ -222,10 +222,13 @@ public final class C0534R {
     }
 
     /* JADX INFO: renamed from: androidx.recyclerview.R$styleable */
-    public static final class styleable {
+    public final class styleable {
+        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
         public static final int ColorStateListItem_alpha = 2;
         public static final int ColorStateListItem_android_alpha = 1;
         public static final int ColorStateListItem_android_color = 0;
+        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
+        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
         public static final int FontFamilyFont_android_font = 0;
         public static final int FontFamilyFont_android_fontStyle = 2;
         public static final int FontFamilyFont_android_fontVariationSettings = 4;
@@ -243,6 +246,8 @@ public final class C0534R {
         public static final int FontFamily_fontProviderPackage = 4;
         public static final int FontFamily_fontProviderQuery = 5;
         public static final int FontFamily_fontProviderSystemFontFamily = 6;
+        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
+        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
         public static final int GradientColorItem_android_color = 0;
         public static final int GradientColorItem_android_offset = 1;
         public static final int GradientColor_android_centerColor = 7;
@@ -257,6 +262,7 @@ public final class C0534R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
+        public static final int[] RecyclerView = {android.R.attr.orientation, android.R.attr.clipToPadding, android.R.attr.descendantFocusability, C5419R.attr.fastScrollEnabled, C5419R.attr.fastScrollHorizontalThumbDrawable, C5419R.attr.fastScrollHorizontalTrackDrawable, C5419R.attr.fastScrollVerticalThumbDrawable, C5419R.attr.fastScrollVerticalTrackDrawable, C5419R.attr.layoutManager, C5419R.attr.reverseLayout, C5419R.attr.spanCount, C5419R.attr.stackFromEnd};
         public static final int RecyclerView_android_clipToPadding = 1;
         public static final int RecyclerView_android_descendantFocusability = 2;
         public static final int RecyclerView_android_orientation = 0;
@@ -269,12 +275,6 @@ public final class C0534R {
         public static final int RecyclerView_reverseLayout = 9;
         public static final int RecyclerView_spanCount = 10;
         public static final int RecyclerView_stackFromEnd = 11;
-        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, C5419R.attr.alpha};
-        public static final int[] FontFamily = {C5419R.attr.fontProviderAuthority, C5419R.attr.fontProviderCerts, C5419R.attr.fontProviderFetchStrategy, C5419R.attr.fontProviderFetchTimeout, C5419R.attr.fontProviderPackage, C5419R.attr.fontProviderQuery, C5419R.attr.fontProviderSystemFontFamily};
-        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, C5419R.attr.font, C5419R.attr.fontStyle, C5419R.attr.fontVariationSettings, C5419R.attr.fontWeight, C5419R.attr.ttcIndex};
-        public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
-        public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
-        public static final int[] RecyclerView = {android.R.attr.orientation, android.R.attr.clipToPadding, android.R.attr.descendantFocusability, C5419R.attr.fastScrollEnabled, C5419R.attr.fastScrollHorizontalThumbDrawable, C5419R.attr.fastScrollHorizontalTrackDrawable, C5419R.attr.fastScrollVerticalThumbDrawable, C5419R.attr.fastScrollVerticalTrackDrawable, C5419R.attr.layoutManager, C5419R.attr.reverseLayout, C5419R.attr.spanCount, C5419R.attr.stackFromEnd};
 
         private styleable() {
         }

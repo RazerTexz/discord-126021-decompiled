@@ -13,23 +13,17 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPremiumFeatureUsage.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPremiumFeatureUsage implements AnalyticsSchema, TrackBaseReceiver, TrackLocationMetadataReceiver, TrackSourceMetadataReceiver {
-    private TrackBase trackBase;
-    private TrackLocationMetadata trackLocationMetadata;
-    private TrackSourceMetadata trackSourceMetadata;
+    private final CharSequence applicationName = null;
     private final CharSequence featureName = null;
     private final CharSequence featureTier = null;
     private final Long guildId = null;
-    private final Long rtcConnectionId = null;
-    private final Long mediaSessionId = null;
     private final Boolean inOverlay = null;
-    private final CharSequence applicationName = null;
+    private final Long mediaSessionId = null;
+    private final Long rtcConnectionId = null;
+    private TrackBase trackBase;
+    private TrackLocationMetadata trackLocationMetadata;
+    private TrackSourceMetadata trackSourceMetadata;
     private final transient String analyticsSchemaTypeName = "premium_feature_usage";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -40,6 +34,12 @@ public final /* data */ class TrackPremiumFeatureUsage implements AnalyticsSchem
         }
         TrackPremiumFeatureUsage trackPremiumFeatureUsage = (TrackPremiumFeatureUsage) other;
         return C12238m.areEqual(this.featureName, trackPremiumFeatureUsage.featureName) && C12238m.areEqual(this.featureTier, trackPremiumFeatureUsage.featureTier) && C12238m.areEqual(this.guildId, trackPremiumFeatureUsage.guildId) && C12238m.areEqual(this.rtcConnectionId, trackPremiumFeatureUsage.rtcConnectionId) && C12238m.areEqual(this.mediaSessionId, trackPremiumFeatureUsage.mediaSessionId) && C12238m.areEqual(this.inOverlay, trackPremiumFeatureUsage.inOverlay) && C12238m.areEqual(this.applicationName, trackPremiumFeatureUsage.applicationName);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

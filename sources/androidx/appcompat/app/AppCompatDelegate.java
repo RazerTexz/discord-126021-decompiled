@@ -46,9 +46,9 @@ public abstract class AppCompatDelegate {
     public static final int MODE_NIGHT_UNSPECIFIED = -100;
     public static final int MODE_NIGHT_YES = 2;
     public static final String TAG = "AppCompatDelegate";
+    private static int sDefaultNightMode = -100;
     private static final ArraySet<WeakReference<AppCompatDelegate>> sActivityDelegates = new ArraySet<>();
     private static final Object sActivityDelegatesLock = new Object();
-    private static int sDefaultNightMode = -100;
 
     @Retention(RetentionPolicy.SOURCE)
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
@@ -62,6 +62,10 @@ public abstract class AppCompatDelegate {
         }
     }
 
+    public abstract void addContentView(View view, ViewGroup.LayoutParams layoutParams);
+
+    public abstract boolean applyDayNight();
+
     private static void applyDayNightToActiveDelegates() {
         synchronized (sActivityDelegatesLock) {
             Iterator<WeakReference<AppCompatDelegate>> it = sActivityDelegates.iterator();
@@ -74,54 +78,6 @@ public abstract class AppCompatDelegate {
         }
     }
 
-    @NonNull
-    public static AppCompatDelegate create(@NonNull Activity activity, @Nullable AppCompatCallback appCompatCallback) {
-        return new AppCompatDelegateImpl(activity, appCompatCallback);
-    }
-
-    public static int getDefaultNightMode() {
-        return sDefaultNightMode;
-    }
-
-    public static boolean isCompatVectorFromResourcesEnabled() {
-        return VectorEnabledTintResources.isCompatVectorFromResourcesEnabled();
-    }
-
-    public static void removeActivityDelegate(@NonNull AppCompatDelegate appCompatDelegate) {
-        synchronized (sActivityDelegatesLock) {
-            removeDelegateFromActives(appCompatDelegate);
-        }
-    }
-
-    private static void removeDelegateFromActives(@NonNull AppCompatDelegate appCompatDelegate) {
-        synchronized (sActivityDelegatesLock) {
-            Iterator<WeakReference<AppCompatDelegate>> it = sActivityDelegates.iterator();
-            while (it.hasNext()) {
-                AppCompatDelegate appCompatDelegate2 = it.next().get();
-                if (appCompatDelegate2 == appCompatDelegate || appCompatDelegate2 == null) {
-                    it.remove();
-                }
-            }
-        }
-    }
-
-    public static void setCompatVectorFromResourcesEnabled(boolean z2) {
-        VectorEnabledTintResources.setCompatVectorFromResourcesEnabled(z2);
-    }
-
-    public static void setDefaultNightMode(int i) {
-        if (i != -1 && i != 0 && i != 1 && i != 2 && i != 3) {
-            Log.d(TAG, "setDefaultNightMode() called with an unknown mode");
-        } else if (sDefaultNightMode != i) {
-            sDefaultNightMode = i;
-            applyDayNightToActiveDelegates();
-        }
-    }
-
-    public abstract void addContentView(View view, ViewGroup.LayoutParams layoutParams);
-
-    public abstract boolean applyDayNight();
-
     @Deprecated
     public void attachBaseContext(Context context) {
     }
@@ -133,10 +89,19 @@ public abstract class AppCompatDelegate {
         return context;
     }
 
+    @NonNull
+    public static AppCompatDelegate create(@NonNull Activity activity, @Nullable AppCompatCallback appCompatCallback) {
+        return new AppCompatDelegateImpl(activity, appCompatCallback);
+    }
+
     public abstract View createView(@Nullable View view, String str, @NonNull Context context, @NonNull AttributeSet attributeSet);
 
     @Nullable
     public abstract <T extends View> T findViewById(@IdRes int i);
+
+    public static int getDefaultNightMode() {
+        return sDefaultNightMode;
+    }
 
     @Nullable
     public abstract ActionBarDrawerToggle.Delegate getDrawerToggleDelegate();
@@ -156,6 +121,10 @@ public abstract class AppCompatDelegate {
 
     public abstract void invalidateOptionsMenu();
 
+    public static boolean isCompatVectorFromResourcesEnabled() {
+        return VectorEnabledTintResources.isCompatVectorFromResourcesEnabled();
+    }
+
     public abstract boolean isHandleNativeActionModesEnabled();
 
     public abstract void onConfigurationChanged(Configuration configuration);
@@ -174,13 +143,44 @@ public abstract class AppCompatDelegate {
 
     public abstract void onStop();
 
+    public static void removeActivityDelegate(@NonNull AppCompatDelegate appCompatDelegate) {
+        synchronized (sActivityDelegatesLock) {
+            removeDelegateFromActives(appCompatDelegate);
+        }
+    }
+
+    private static void removeDelegateFromActives(@NonNull AppCompatDelegate appCompatDelegate) {
+        synchronized (sActivityDelegatesLock) {
+            Iterator<WeakReference<AppCompatDelegate>> it = sActivityDelegates.iterator();
+            while (it.hasNext()) {
+                AppCompatDelegate appCompatDelegate2 = it.next().get();
+                if (appCompatDelegate2 == appCompatDelegate || appCompatDelegate2 == null) {
+                    it.remove();
+                }
+            }
+        }
+    }
+
     public abstract boolean requestWindowFeature(int i);
+
+    public static void setCompatVectorFromResourcesEnabled(boolean z2) {
+        VectorEnabledTintResources.setCompatVectorFromResourcesEnabled(z2);
+    }
 
     public abstract void setContentView(@LayoutRes int i);
 
     public abstract void setContentView(View view);
 
     public abstract void setContentView(View view, ViewGroup.LayoutParams layoutParams);
+
+    public static void setDefaultNightMode(int i) {
+        if (i != -1 && i != 0 && i != 1 && i != 2 && i != 3) {
+            Log.d(TAG, "setDefaultNightMode() called with an unknown mode");
+        } else if (sDefaultNightMode != i) {
+            sDefaultNightMode = i;
+            applyDayNightToActiveDelegates();
+        }
+    }
 
     public abstract void setHandleNativeActionModesEnabled(boolean z2);
 

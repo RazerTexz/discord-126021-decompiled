@@ -9,16 +9,10 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackLfgBrowserExited.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final Long duration = null;
     private final Long numGroups = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "lfg_browser_exited";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -29,6 +23,12 @@ public final /* data */ class TrackLfgBrowserExited implements AnalyticsSchema, 
         }
         TrackLfgBrowserExited trackLfgBrowserExited = (TrackLfgBrowserExited) other;
         return C12238m.areEqual(this.duration, trackLfgBrowserExited.duration) && C12238m.areEqual(this.numGroups, trackLfgBrowserExited.numGroups);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

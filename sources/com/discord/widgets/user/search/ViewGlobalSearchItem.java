@@ -36,7 +36,7 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
 
     /* JADX INFO: renamed from: com.discord.widgets.user.search.ViewGlobalSearchItem$onConfigure$2 */
     /* JADX INFO: compiled from: ViewGlobalSearchItem.kt */
-    public static final class C103142 extends AbstractC12240o implements Function1<User, CharSequence> {
+    public final class C103142 extends AbstractC12240o implements Function1<User, CharSequence> {
         public final /* synthetic */ int $discrimColor;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -62,15 +62,6 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
 
     public /* synthetic */ ViewGlobalSearchItem(Context context, AttributeSet attributeSet, int i, int i2, DefaultConstructorMarker defaultConstructorMarker) {
         this(context, (i2 & 2) != 0 ? null : attributeSet, (i2 & 4) != 0 ? 0 : i);
-    }
-
-    private final CharSequence toStyledText(WidgetGlobalSearchModel.MatchedResult matchedResult, String str) {
-        if (matchedResult.getFirstMatchIndex() < 0) {
-            return str;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(matchedResult.getValue());
-        spannableStringBuilder.setSpan(new StyleSpan(1), matchedResult.getFirstMatchIndex(), matchedResult.getFilterLength() + matchedResult.getFirstMatchIndex(), 17);
-        return spannableStringBuilder;
     }
 
     public final void configure(WidgetGlobalSearchModel.ItemDataPayload itemDataPayload) {
@@ -166,6 +157,15 @@ public final class ViewGlobalSearchItem extends ConstraintLayout {
         TextView textView10 = this.binding.f15446b;
         C12238m.checkNotNullExpressionValue(textView10, "binding.itemDescriptionTv");
         textView10.setAllCaps(true);
+    }
+
+    private final CharSequence toStyledText(WidgetGlobalSearchModel.MatchedResult matchedResult, String str) {
+        if (matchedResult.getFirstMatchIndex() < 0) {
+            return str;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(matchedResult.getValue());
+        spannableStringBuilder.setSpan(new StyleSpan(1), matchedResult.getFirstMatchIndex(), matchedResult.getFilterLength() + matchedResult.getFirstMatchIndex(), 17);
+        return spannableStringBuilder;
     }
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -14,23 +14,20 @@ public abstract class AbstractC3242q<T> {
     /* JADX INFO: renamed from: a */
     public final int f9279a;
 
-    /* JADX INFO: renamed from: b */
-    public final TaskCompletionSource<T> f9280b = new TaskCompletionSource<>();
-
     /* JADX INFO: renamed from: c */
     public final int f9281c;
 
     /* JADX INFO: renamed from: d */
     public final Bundle f9282d;
 
+    /* JADX INFO: renamed from: b */
+    public final TaskCompletionSource<T> f9280b = new TaskCompletionSource<>();
+
     public AbstractC3242q(int i, int i2, Bundle bundle) {
         this.f9279a = i;
         this.f9281c = i2;
         this.f9282d = bundle;
     }
-
-    /* JADX INFO: renamed from: a */
-    public abstract void mo4006a(Bundle bundle);
 
     /* JADX INFO: renamed from: b */
     public final void m4008b(zzp zzpVar) {
@@ -51,6 +48,9 @@ public abstract class AbstractC3242q<T> {
         }
         this.f9280b.f20845a.m6024s(t);
     }
+
+    /* JADX INFO: renamed from: a */
+    public abstract void mo4006a(Bundle bundle);
 
     /* JADX INFO: renamed from: d */
     public abstract boolean mo4007d();

@@ -14,7 +14,7 @@ import p507d0.p592z.p594d.C12238m;
 public abstract class OutgoingPayload {
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class ApplicationCommandRequest extends OutgoingPayload {
+    public final class ApplicationCommandRequest extends OutgoingPayload {
         private final boolean applications;
         private final List<String> commandIds;
         private final long guildId;
@@ -70,7 +70,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class CallConnect extends OutgoingPayload {
+    public final class CallConnect extends OutgoingPayload {
         private final long channelId;
 
         public CallConnect(long j) {
@@ -80,7 +80,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class CreateStream {
+    public final class CreateStream {
         private final long channelId;
         private final Long guildId;
         private final String preferredRegion;
@@ -112,7 +112,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class DeleteStream extends OutgoingPayload {
+    public final class DeleteStream extends OutgoingPayload {
         private final String streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -128,7 +128,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class ForumUnreadsRequest extends OutgoingPayload {
+    public final class ForumUnreadsRequest extends OutgoingPayload {
         private final long channelId;
         private final long guildId;
         private final List<ForumUnreadsRequestThread> threads;
@@ -156,7 +156,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class ForumUnreadsRequestThread {
+    public final class ForumUnreadsRequestThread {
         private final long ackMessageId;
         private final long threadId;
 
@@ -175,7 +175,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final /* data */ class GuildMembersRequest extends OutgoingPayload {
+    public final /* data */ class GuildMembersRequest extends OutgoingPayload {
         private final List<Long> guildId;
         private final Integer limit;
         private final boolean presences;
@@ -190,18 +190,8 @@ public abstract class OutgoingPayload {
             return this.guildId;
         }
 
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        private final String getQuery() {
-            return this.query;
-        }
-
         private final List<Long> component3() {
             return this.userIds;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        private final Integer getLimit() {
-            return this.limit;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -227,11 +217,6 @@ public abstract class OutgoingPayload {
             return guildMembersRequest.copy(list, str2, list3, num2, z2);
         }
 
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getPresences() {
-            return this.presences;
-        }
-
         public final GuildMembersRequest copy(List<Long> guildId, String query, List<Long> userIds, Integer limit, boolean presences) {
             C12238m.checkNotNullParameter(guildId, "guildId");
             return new GuildMembersRequest(guildId, query, userIds, limit, presences);
@@ -248,8 +233,23 @@ public abstract class OutgoingPayload {
             return C12238m.areEqual(this.guildId, guildMembersRequest.guildId) && C12238m.areEqual(this.query, guildMembersRequest.query) && C12238m.areEqual(this.userIds, guildMembersRequest.userIds) && C12238m.areEqual(this.limit, guildMembersRequest.limit) && this.presences == guildMembersRequest.presences;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        private final Integer getLimit() {
+            return this.limit;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
         public final boolean getPresences() {
             return this.presences;
+        }
+
+        public final boolean getPresences() {
+            return this.presences;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        private final String getQuery() {
+            return this.query;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -300,7 +300,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class GuildSubscriptions extends OutgoingPayload {
+    public final class GuildSubscriptions extends OutgoingPayload {
         private final Boolean activities;
         private final Map<Long, List<List<Integer>>> channels;
         private final List<Long> members;
@@ -349,7 +349,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class GuildSubscriptionsUpdate extends OutgoingPayload {
+    public final class GuildSubscriptionsUpdate extends OutgoingPayload {
         private final Boolean activities;
         private final Map<Long, List<List<Integer>>> channels;
         private final long guildId;
@@ -400,7 +400,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class Identify extends OutgoingPayload {
+    public final class Identify extends OutgoingPayload {
         private final long capabilities;
         private final IdentifyClientState clientState;
         private final boolean compress;
@@ -423,7 +423,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class IdentifyClientState {
+    public final class IdentifyClientState {
         private final Map<Long, String[]> guildHashes;
         private final long highestLastMessageId;
         private final int readStateVersion;
@@ -455,7 +455,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class Resume extends OutgoingPayload {
+    public final class Resume extends OutgoingPayload {
         private final int seq;
         private final String sessionId;
         private final String token;
@@ -469,7 +469,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class StreamPing extends OutgoingPayload {
+    public final class StreamPing extends OutgoingPayload {
         private final String streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -485,7 +485,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final /* data */ class VoiceStateUpdate extends OutgoingPayload {
+    public final /* data */ class VoiceStateUpdate extends OutgoingPayload {
         private final Long channelId;
         private final Long guildId;
         private final String preferredRegion;
@@ -523,36 +523,6 @@ public abstract class OutgoingPayload {
             return voiceStateUpdate.copy(l, l3, z5, z6, z7, str);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getSelfMute() {
-            return this.selfMute;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getSelfDeaf() {
-            return this.selfDeaf;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getSelfVideo() {
-            return this.selfVideo;
-        }
-
-        /* JADX INFO: renamed from: component6, reason: from getter */
-        public final String getPreferredRegion() {
-            return this.preferredRegion;
-        }
-
         public final VoiceStateUpdate copy(Long guildId, Long channelId, boolean selfMute, boolean selfDeaf, boolean selfVideo, String preferredRegion) {
             return new VoiceStateUpdate(guildId, channelId, selfMute, selfDeaf, selfVideo, preferredRegion);
         }
@@ -568,24 +538,54 @@ public abstract class OutgoingPayload {
             return C12238m.areEqual(this.guildId, voiceStateUpdate.guildId) && C12238m.areEqual(this.channelId, voiceStateUpdate.channelId) && this.selfMute == voiceStateUpdate.selfMute && this.selfDeaf == voiceStateUpdate.selfDeaf && this.selfVideo == voiceStateUpdate.selfVideo && C12238m.areEqual(this.preferredRegion, voiceStateUpdate.preferredRegion);
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Long getChannelId() {
             return this.channelId;
+        }
+
+        public final Long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
         }
 
         public final Long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component6, reason: from getter */
         public final String getPreferredRegion() {
             return this.preferredRegion;
+        }
+
+        public final String getPreferredRegion() {
+            return this.preferredRegion;
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        public final boolean getSelfDeaf() {
+            return this.selfDeaf;
         }
 
         public final boolean getSelfDeaf() {
             return this.selfDeaf;
         }
 
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getSelfMute() {
             return this.selfMute;
+        }
+
+        public final boolean getSelfMute() {
+            return this.selfMute;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getSelfVideo() {
+            return this.selfVideo;
         }
 
         public final boolean getSelfVideo() {
@@ -653,7 +653,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final /* data */ class VoiceStateUpdateNoPreferredRegion extends OutgoingPayload {
+    public final /* data */ class VoiceStateUpdateNoPreferredRegion extends OutgoingPayload {
         private final Long channelId;
         private final Long guildId;
         private final boolean selfDeaf;
@@ -691,31 +691,6 @@ public abstract class OutgoingPayload {
             return voiceStateUpdateNoPreferredRegion.copy(l, l3, z5, z6, z4);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        public final Long getGuildId() {
-            return this.guildId;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        public final Long getChannelId() {
-            return this.channelId;
-        }
-
-        /* JADX INFO: renamed from: component3, reason: from getter */
-        public final boolean getSelfMute() {
-            return this.selfMute;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        public final boolean getSelfDeaf() {
-            return this.selfDeaf;
-        }
-
-        /* JADX INFO: renamed from: component5, reason: from getter */
-        public final boolean getSelfVideo() {
-            return this.selfVideo;
-        }
-
         public final VoiceStateUpdateNoPreferredRegion copy(Long guildId, Long channelId, boolean selfMute, boolean selfDeaf, boolean selfVideo) {
             return new VoiceStateUpdateNoPreferredRegion(guildId, channelId, selfMute, selfDeaf, selfVideo);
         }
@@ -731,20 +706,45 @@ public abstract class OutgoingPayload {
             return C12238m.areEqual(this.guildId, voiceStateUpdateNoPreferredRegion.guildId) && C12238m.areEqual(this.channelId, voiceStateUpdateNoPreferredRegion.channelId) && this.selfMute == voiceStateUpdateNoPreferredRegion.selfMute && this.selfDeaf == voiceStateUpdateNoPreferredRegion.selfDeaf && this.selfVideo == voiceStateUpdateNoPreferredRegion.selfVideo;
         }
 
+        /* JADX INFO: renamed from: component2, reason: from getter */
         public final Long getChannelId() {
             return this.channelId;
+        }
+
+        public final Long getChannelId() {
+            return this.channelId;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        public final Long getGuildId() {
+            return this.guildId;
         }
 
         public final Long getGuildId() {
             return this.guildId;
         }
 
+        /* JADX INFO: renamed from: component4, reason: from getter */
         public final boolean getSelfDeaf() {
             return this.selfDeaf;
         }
 
+        public final boolean getSelfDeaf() {
+            return this.selfDeaf;
+        }
+
+        /* JADX INFO: renamed from: component3, reason: from getter */
         public final boolean getSelfMute() {
             return this.selfMute;
+        }
+
+        public final boolean getSelfMute() {
+            return this.selfMute;
+        }
+
+        /* JADX INFO: renamed from: component5, reason: from getter */
+        public final boolean getSelfVideo() {
+            return this.selfVideo;
         }
 
         public final boolean getSelfVideo() {
@@ -800,7 +800,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final class WatchStream extends OutgoingPayload {
+    public final class WatchStream extends OutgoingPayload {
         private final String streamKey;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
@@ -823,7 +823,7 @@ public abstract class OutgoingPayload {
     }
 
     /* JADX INFO: compiled from: Outgoing.kt */
-    public static final /* data */ class PresenceUpdate extends OutgoingPayload {
+    public final /* data */ class PresenceUpdate extends OutgoingPayload {
         private final List<Activity> activities;
         private final Boolean afk;
         private final Long since;
@@ -833,23 +833,8 @@ public abstract class OutgoingPayload {
             this(str, (i & 2) != 0 ? Long.valueOf(ClockFactory.get().currentTimeMillis()) : l, (i & 4) != 0 ? C12147n.emptyList() : list, (i & 8) != 0 ? Boolean.FALSE : bool);
         }
 
-        /* JADX INFO: renamed from: component1, reason: from getter */
-        private final String getStatus() {
-            return this.status;
-        }
-
-        /* JADX INFO: renamed from: component2, reason: from getter */
-        private final Long getSince() {
-            return this.since;
-        }
-
         private final List<Activity> component3() {
             return this.activities;
-        }
-
-        /* JADX INFO: renamed from: component4, reason: from getter */
-        private final Boolean getAfk() {
-            return this.afk;
         }
 
         /* JADX WARN: Multi-variable type inference failed */
@@ -883,6 +868,21 @@ public abstract class OutgoingPayload {
             }
             PresenceUpdate presenceUpdate = (PresenceUpdate) other;
             return C12238m.areEqual(this.status, presenceUpdate.status) && C12238m.areEqual(this.since, presenceUpdate.since) && C12238m.areEqual(this.activities, presenceUpdate.activities) && C12238m.areEqual(this.afk, presenceUpdate.afk);
+        }
+
+        /* JADX INFO: renamed from: component4, reason: from getter */
+        private final Boolean getAfk() {
+            return this.afk;
+        }
+
+        /* JADX INFO: renamed from: component2, reason: from getter */
+        private final Long getSince() {
+            return this.since;
+        }
+
+        /* JADX INFO: renamed from: component1, reason: from getter */
+        private final String getStatus() {
+            return this.status;
         }
 
         public int hashCode() {

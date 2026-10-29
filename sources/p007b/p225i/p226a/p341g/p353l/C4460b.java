@@ -21,7 +21,7 @@ public class C4460b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.b$a */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class a implements InterfaceC4459a {
+    public final class a implements InterfaceC4459a {
         @Override // p007b.p225i.p226a.p341g.p353l.InterfaceC4459a
         /* JADX INFO: renamed from: a */
         public C4461c mo6181a(float f, float f2, float f3) {
@@ -31,7 +31,7 @@ public class C4460b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.b$b */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class b implements InterfaceC4459a {
+    public final class b implements InterfaceC4459a {
         @Override // p007b.p225i.p226a.p341g.p353l.InterfaceC4459a
         /* JADX INFO: renamed from: a */
         public C4461c mo6181a(float f, float f2, float f3) {
@@ -41,7 +41,7 @@ public class C4460b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.b$c */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class c implements InterfaceC4459a {
+    public final class c implements InterfaceC4459a {
         @Override // p007b.p225i.p226a.p341g.p353l.InterfaceC4459a
         /* JADX INFO: renamed from: a */
         public C4461c mo6181a(float f, float f2, float f3) {
@@ -51,7 +51,7 @@ public class C4460b {
 
     /* JADX INFO: renamed from: b.i.a.g.l.b$d */
     /* JADX INFO: compiled from: FadeModeEvaluators.java */
-    public static class d implements InterfaceC4459a {
+    public final class d implements InterfaceC4459a {
         @Override // p007b.p225i.p226a.p341g.p353l.InterfaceC4459a
         /* JADX INFO: renamed from: a */
         public C4461c mo6181a(float f, float f2, float f3) {

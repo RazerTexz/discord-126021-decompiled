@@ -13,17 +13,17 @@ public final /* data */ class TrackTextCopied implements AnalyticsSchema, TrackB
     private final CharSequence type = null;
     private final transient String analyticsSchemaTypeName = "text_copied";
 
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this != other) {
             return (other instanceof TrackTextCopied) && C12238m.areEqual(this.type, ((TrackTextCopied) other).type);
         }
         return true;
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

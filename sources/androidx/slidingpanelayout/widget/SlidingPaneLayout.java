@@ -63,74 +63,6 @@ public class SlidingPaneLayout extends ViewGroup {
     private int mSliderFadeColor;
     private final Rect mTmpRect;
 
-    public class AccessibilityDelegate extends AccessibilityDelegateCompat {
-        private final Rect mTmpRect = new Rect();
-
-        public AccessibilityDelegate() {
-        }
-
-        private void copyNodeInfoNoChildren(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat2) {
-            Rect rect = this.mTmpRect;
-            accessibilityNodeInfoCompat2.getBoundsInParent(rect);
-            accessibilityNodeInfoCompat.setBoundsInParent(rect);
-            accessibilityNodeInfoCompat2.getBoundsInScreen(rect);
-            accessibilityNodeInfoCompat.setBoundsInScreen(rect);
-            accessibilityNodeInfoCompat.setVisibleToUser(accessibilityNodeInfoCompat2.isVisibleToUser());
-            accessibilityNodeInfoCompat.setPackageName(accessibilityNodeInfoCompat2.getPackageName());
-            accessibilityNodeInfoCompat.setClassName(accessibilityNodeInfoCompat2.getClassName());
-            accessibilityNodeInfoCompat.setContentDescription(accessibilityNodeInfoCompat2.getContentDescription());
-            accessibilityNodeInfoCompat.setEnabled(accessibilityNodeInfoCompat2.isEnabled());
-            accessibilityNodeInfoCompat.setClickable(accessibilityNodeInfoCompat2.isClickable());
-            accessibilityNodeInfoCompat.setFocusable(accessibilityNodeInfoCompat2.isFocusable());
-            accessibilityNodeInfoCompat.setFocused(accessibilityNodeInfoCompat2.isFocused());
-            accessibilityNodeInfoCompat.setAccessibilityFocused(accessibilityNodeInfoCompat2.isAccessibilityFocused());
-            accessibilityNodeInfoCompat.setSelected(accessibilityNodeInfoCompat2.isSelected());
-            accessibilityNodeInfoCompat.setLongClickable(accessibilityNodeInfoCompat2.isLongClickable());
-            accessibilityNodeInfoCompat.addAction(accessibilityNodeInfoCompat2.getActions());
-            accessibilityNodeInfoCompat.setMovementGranularities(accessibilityNodeInfoCompat2.getMovementGranularities());
-        }
-
-        public boolean filter(View view) {
-            return SlidingPaneLayout.this.isDimmed(view);
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
-            accessibilityEvent.setClassName(SlidingPaneLayout.class.getName());
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
-            AccessibilityNodeInfoCompat accessibilityNodeInfoCompatObtain = AccessibilityNodeInfoCompat.obtain(accessibilityNodeInfoCompat);
-            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompatObtain);
-            copyNodeInfoNoChildren(accessibilityNodeInfoCompat, accessibilityNodeInfoCompatObtain);
-            accessibilityNodeInfoCompatObtain.recycle();
-            accessibilityNodeInfoCompat.setClassName(SlidingPaneLayout.class.getName());
-            accessibilityNodeInfoCompat.setSource(view);
-            Object parentForAccessibility = ViewCompat.getParentForAccessibility(view);
-            if (parentForAccessibility instanceof View) {
-                accessibilityNodeInfoCompat.setParent((View) parentForAccessibility);
-            }
-            int childCount = SlidingPaneLayout.this.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View childAt = SlidingPaneLayout.this.getChildAt(i);
-                if (!filter(childAt) && childAt.getVisibility() == 0) {
-                    ViewCompat.setImportantForAccessibility(childAt, 1);
-                    accessibilityNodeInfoCompat.addChild(childAt);
-                }
-            }
-        }
-
-        @Override // androidx.core.view.AccessibilityDelegateCompat
-        public boolean onRequestSendAccessibilityEvent(ViewGroup viewGroup, View view, AccessibilityEvent accessibilityEvent) {
-            if (filter(view)) {
-                return false;
-            }
-            return super.onRequestSendAccessibilityEvent(viewGroup, view, accessibilityEvent);
-        }
-    }
-
     public class DisableLayerRunnable implements Runnable {
         public final View mChildView;
 
@@ -235,6 +167,48 @@ public class SlidingPaneLayout extends ViewGroup {
         }
     }
 
+    public class LayoutParams extends ViewGroup.MarginLayoutParams {
+        public Paint dimPaint;
+        public boolean dimWhenOffset;
+        public boolean slideable;
+        public float weight;
+        private static final int[] ATTRS = {R.attr.layout_weight};
+
+        public LayoutParams() {
+            super(-1, -1);
+            this.weight = 0.0f;
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+            this.weight = 0.0f;
+        }
+
+        public LayoutParams(@NonNull ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+            this.weight = 0.0f;
+        }
+
+        public LayoutParams(@NonNull ViewGroup.MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+            this.weight = 0.0f;
+        }
+
+        public LayoutParams(@NonNull LayoutParams layoutParams) {
+            super((ViewGroup.MarginLayoutParams) layoutParams);
+            this.weight = 0.0f;
+            this.weight = layoutParams.weight;
+        }
+
+        public LayoutParams(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+            super(context, attributeSet);
+            this.weight = 0.0f;
+            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, ATTRS);
+            this.weight = typedArrayObtainStyledAttributes.getFloat(0, 0.0f);
+            typedArrayObtainStyledAttributes.recycle();
+        }
+    }
+
     public interface PanelSlideListener {
         void onPanelClosed(@NonNull View view);
 
@@ -243,7 +217,8 @@ public class SlidingPaneLayout extends ViewGroup {
         void onPanelSlide(@NonNull View view, float f);
     }
 
-    public static class SavedState extends AbsSavedState {
+    public class SavedState extends AbsSavedState {
+        public boolean isOpen;
         public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.ClassLoaderCreator<SavedState>() { // from class: androidx.slidingpanelayout.widget.SlidingPaneLayout.SavedState.1
             @Override // android.os.Parcelable.Creator
             public SavedState[] newArray(int i) {
@@ -261,7 +236,6 @@ public class SlidingPaneLayout extends ViewGroup {
                 return new SavedState(parcel, null);
             }
         };
-        public boolean isOpen;
 
         public SavedState(Parcelable parcelable) {
             super(parcelable);
@@ -279,7 +253,7 @@ public class SlidingPaneLayout extends ViewGroup {
         }
     }
 
-    public static class SimplePanelSlideListener implements PanelSlideListener {
+    public class SimplePanelSlideListener implements PanelSlideListener {
         @Override // androidx.slidingpanelayout.widget.SlidingPaneLayout.PanelSlideListener
         public void onPanelClosed(View view) {
         }
@@ -295,83 +269,6 @@ public class SlidingPaneLayout extends ViewGroup {
 
     public SlidingPaneLayout(@NonNull Context context) {
         this(context, null);
-    }
-
-    private boolean closePane(View view, int i) {
-        if (!this.mFirstLayout && !smoothSlideTo(0.0f, i)) {
-            return false;
-        }
-        this.mPreservedOpenState = false;
-        return true;
-    }
-
-    private void dimChildView(View view, float f, int i) {
-        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
-        if (f > 0.0f && i != 0) {
-            int i2 = (((int) ((((-16777216) & i) >>> 24) * f)) << 24) | (i & ViewCompat.MEASURED_SIZE_MASK);
-            if (layoutParams.dimPaint == null) {
-                layoutParams.dimPaint = new Paint();
-            }
-            layoutParams.dimPaint.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_OVER));
-            if (view.getLayerType() != 2) {
-                view.setLayerType(2, layoutParams.dimPaint);
-            }
-            invalidateChildRegion(view);
-            return;
-        }
-        if (view.getLayerType() != 0) {
-            Paint paint = layoutParams.dimPaint;
-            if (paint != null) {
-                paint.setColorFilter(null);
-            }
-            DisableLayerRunnable disableLayerRunnable = new DisableLayerRunnable(view);
-            this.mPostedRunnables.add(disableLayerRunnable);
-            ViewCompat.postOnAnimation(this, disableLayerRunnable);
-        }
-    }
-
-    private boolean openPane(View view, int i) {
-        if (!this.mFirstLayout && !smoothSlideTo(1.0f, i)) {
-            return false;
-        }
-        this.mPreservedOpenState = true;
-        return true;
-    }
-
-    /* JADX WARN: Code duplicated, block: B:9:0x001c  */
-    private void parallaxOtherViews(float f) {
-        boolean z2;
-        boolean zIsLayoutRtlSupport = isLayoutRtlSupport();
-        LayoutParams layoutParams = (LayoutParams) this.mSlideableView.getLayoutParams();
-        if (!layoutParams.dimWhenOffset) {
-            z2 = false;
-        } else if ((zIsLayoutRtlSupport ? ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin : ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) <= 0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = getChildAt(i);
-            if (childAt != this.mSlideableView) {
-                float f2 = 1.0f - this.mParallaxOffset;
-                int i2 = this.mParallaxBy;
-                this.mParallaxOffset = f;
-                int i3 = ((int) (f2 * i2)) - ((int) ((1.0f - f) * i2));
-                if (zIsLayoutRtlSupport) {
-                    i3 = -i3;
-                }
-                childAt.offsetLeftAndRight(i3);
-                if (z2) {
-                    float f3 = this.mParallaxOffset;
-                    dimChildView(childAt, zIsLayoutRtlSupport ? f3 - 1.0f : 1.0f - f3, this.mCoveredFadeColor);
-                }
-            }
-        }
-    }
-
-    private static boolean viewIsOpaque(View view) {
-        return view.isOpaque();
     }
 
     public boolean canScroll(View view, boolean z2, int i, int i2, int i3) {
@@ -406,6 +303,14 @@ public class SlidingPaneLayout extends ViewGroup {
         return (layoutParams instanceof LayoutParams) && super.checkLayoutParams(layoutParams);
     }
 
+    private boolean closePane(View view, int i) {
+        if (!this.mFirstLayout && !smoothSlideTo(0.0f, i)) {
+            return false;
+        }
+        this.mPreservedOpenState = false;
+        return true;
+    }
+
     @Override // android.view.View
     public void computeScroll() {
         if (this.mDragHelper.continueSettling(true)) {
@@ -414,6 +319,31 @@ public class SlidingPaneLayout extends ViewGroup {
             } else {
                 this.mDragHelper.abort();
             }
+        }
+    }
+
+    private void dimChildView(View view, float f, int i) {
+        LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+        if (f > 0.0f && i != 0) {
+            int i2 = (((int) ((((-16777216) & i) >>> 24) * f)) << 24) | (i & ViewCompat.MEASURED_SIZE_MASK);
+            if (layoutParams.dimPaint == null) {
+                layoutParams.dimPaint = new Paint();
+            }
+            layoutParams.dimPaint.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_OVER));
+            if (view.getLayerType() != 2) {
+                view.setLayerType(2, layoutParams.dimPaint);
+            }
+            invalidateChildRegion(view);
+            return;
+        }
+        if (view.getLayerType() != 0) {
+            Paint paint = layoutParams.dimPaint;
+            if (paint != null) {
+                paint.setColorFilter(null);
+            }
+            DisableLayerRunnable disableLayerRunnable = new DisableLayerRunnable(view);
+            this.mPostedRunnables.add(disableLayerRunnable);
+            ViewCompat.postOnAnimation(this, disableLayerRunnable);
         }
     }
 
@@ -1003,6 +933,46 @@ public class SlidingPaneLayout extends ViewGroup {
         return true;
     }
 
+    private boolean openPane(View view, int i) {
+        if (!this.mFirstLayout && !smoothSlideTo(1.0f, i)) {
+            return false;
+        }
+        this.mPreservedOpenState = true;
+        return true;
+    }
+
+    /* JADX WARN: Code duplicated, block: B:9:0x001c  */
+    private void parallaxOtherViews(float f) {
+        boolean z2;
+        boolean zIsLayoutRtlSupport = isLayoutRtlSupport();
+        LayoutParams layoutParams = (LayoutParams) this.mSlideableView.getLayoutParams();
+        if (!layoutParams.dimWhenOffset) {
+            z2 = false;
+        } else if ((zIsLayoutRtlSupport ? ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin : ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin) <= 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt != this.mSlideableView) {
+                float f2 = 1.0f - this.mParallaxOffset;
+                int i2 = this.mParallaxBy;
+                this.mParallaxOffset = f;
+                int i3 = ((int) (f2 * i2)) - ((int) ((1.0f - f) * i2));
+                if (zIsLayoutRtlSupport) {
+                    i3 = -i3;
+                }
+                childAt.offsetLeftAndRight(i3);
+                if (z2) {
+                    float f3 = this.mParallaxOffset;
+                    dimChildView(childAt, zIsLayoutRtlSupport ? f3 - 1.0f : 1.0f - f3, this.mCoveredFadeColor);
+                }
+            }
+        }
+    }
+
     @Override // android.view.ViewGroup, android.view.ViewParent
     public void requestChildFocus(View view, View view2) {
         super.requestChildFocus(view, view2);
@@ -1133,45 +1103,75 @@ public class SlidingPaneLayout extends ViewGroup {
         }
     }
 
-    public static class LayoutParams extends ViewGroup.MarginLayoutParams {
-        private static final int[] ATTRS = {R.attr.layout_weight};
-        public Paint dimPaint;
-        public boolean dimWhenOffset;
-        public boolean slideable;
-        public float weight;
+    private static boolean viewIsOpaque(View view) {
+        return view.isOpaque();
+    }
 
-        public LayoutParams() {
-            super(-1, -1);
-            this.weight = 0.0f;
+    public class AccessibilityDelegate extends AccessibilityDelegateCompat {
+        private final Rect mTmpRect = new Rect();
+
+        public AccessibilityDelegate() {
         }
 
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
-            this.weight = 0.0f;
+        private void copyNodeInfoNoChildren(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat2) {
+            Rect rect = this.mTmpRect;
+            accessibilityNodeInfoCompat2.getBoundsInParent(rect);
+            accessibilityNodeInfoCompat.setBoundsInParent(rect);
+            accessibilityNodeInfoCompat2.getBoundsInScreen(rect);
+            accessibilityNodeInfoCompat.setBoundsInScreen(rect);
+            accessibilityNodeInfoCompat.setVisibleToUser(accessibilityNodeInfoCompat2.isVisibleToUser());
+            accessibilityNodeInfoCompat.setPackageName(accessibilityNodeInfoCompat2.getPackageName());
+            accessibilityNodeInfoCompat.setClassName(accessibilityNodeInfoCompat2.getClassName());
+            accessibilityNodeInfoCompat.setContentDescription(accessibilityNodeInfoCompat2.getContentDescription());
+            accessibilityNodeInfoCompat.setEnabled(accessibilityNodeInfoCompat2.isEnabled());
+            accessibilityNodeInfoCompat.setClickable(accessibilityNodeInfoCompat2.isClickable());
+            accessibilityNodeInfoCompat.setFocusable(accessibilityNodeInfoCompat2.isFocusable());
+            accessibilityNodeInfoCompat.setFocused(accessibilityNodeInfoCompat2.isFocused());
+            accessibilityNodeInfoCompat.setAccessibilityFocused(accessibilityNodeInfoCompat2.isAccessibilityFocused());
+            accessibilityNodeInfoCompat.setSelected(accessibilityNodeInfoCompat2.isSelected());
+            accessibilityNodeInfoCompat.setLongClickable(accessibilityNodeInfoCompat2.isLongClickable());
+            accessibilityNodeInfoCompat.addAction(accessibilityNodeInfoCompat2.getActions());
+            accessibilityNodeInfoCompat.setMovementGranularities(accessibilityNodeInfoCompat2.getMovementGranularities());
         }
 
-        public LayoutParams(@NonNull ViewGroup.LayoutParams layoutParams) {
-            super(layoutParams);
-            this.weight = 0.0f;
+        public boolean filter(View view) {
+            return SlidingPaneLayout.this.isDimmed(view);
         }
 
-        public LayoutParams(@NonNull ViewGroup.MarginLayoutParams marginLayoutParams) {
-            super(marginLayoutParams);
-            this.weight = 0.0f;
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+            super.onInitializeAccessibilityEvent(view, accessibilityEvent);
+            accessibilityEvent.setClassName(SlidingPaneLayout.class.getName());
         }
 
-        public LayoutParams(@NonNull LayoutParams layoutParams) {
-            super((ViewGroup.MarginLayoutParams) layoutParams);
-            this.weight = 0.0f;
-            this.weight = layoutParams.weight;
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            AccessibilityNodeInfoCompat accessibilityNodeInfoCompatObtain = AccessibilityNodeInfoCompat.obtain(accessibilityNodeInfoCompat);
+            super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompatObtain);
+            copyNodeInfoNoChildren(accessibilityNodeInfoCompat, accessibilityNodeInfoCompatObtain);
+            accessibilityNodeInfoCompatObtain.recycle();
+            accessibilityNodeInfoCompat.setClassName(SlidingPaneLayout.class.getName());
+            accessibilityNodeInfoCompat.setSource(view);
+            Object parentForAccessibility = ViewCompat.getParentForAccessibility(view);
+            if (parentForAccessibility instanceof View) {
+                accessibilityNodeInfoCompat.setParent((View) parentForAccessibility);
+            }
+            int childCount = SlidingPaneLayout.this.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childAt = SlidingPaneLayout.this.getChildAt(i);
+                if (!filter(childAt) && childAt.getVisibility() == 0) {
+                    ViewCompat.setImportantForAccessibility(childAt, 1);
+                    accessibilityNodeInfoCompat.addChild(childAt);
+                }
+            }
         }
 
-        public LayoutParams(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-            super(context, attributeSet);
-            this.weight = 0.0f;
-            TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(attributeSet, ATTRS);
-            this.weight = typedArrayObtainStyledAttributes.getFloat(0, 0.0f);
-            typedArrayObtainStyledAttributes.recycle();
+        @Override // androidx.core.view.AccessibilityDelegateCompat
+        public boolean onRequestSendAccessibilityEvent(ViewGroup viewGroup, View view, AccessibilityEvent accessibilityEvent) {
+            if (filter(view)) {
+                return false;
+            }
+            return super.onRequestSendAccessibilityEvent(viewGroup, view, accessibilityEvent);
         }
     }
 

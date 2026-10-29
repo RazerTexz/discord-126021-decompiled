@@ -48,11 +48,11 @@ public final class C8099xf0292a2b extends AbstractC12240o implements Function1<R
 
     /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$configureReplyInteraction$content$1$1, reason: invalid class name */
     /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-    public static final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
+    public final class AnonymousClass1 extends AbstractC12240o implements Function1<Hook, Unit> {
 
         /* JADX INFO: renamed from: com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage$configureReplyInteraction$content$1$1$1, reason: invalid class name and collision with other inner class name */
         /* JADX INFO: compiled from: WidgetChatListAdapterItemMessage.kt */
-        public static final class C132791 extends AbstractC12240o implements Function1<View, Unit> {
+        public final class C132791 extends AbstractC12240o implements Function1<View, Unit> {
             public C132791() {
                 super(1);
             }

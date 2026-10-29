@@ -42,8 +42,28 @@ public class WidgetGuildJoin extends AppFragment {
     private final FragmentViewBindingDelegate binding;
     private final LoggingConfig loggingConfig;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildJoin$onViewBound$1 */
     /* JADX INFO: compiled from: WidgetGuildJoin.kt */
-    public static final class Companion {
+    public final class C87171 extends AbstractC12240o implements Function1<TextView, Unit> {
+        public C87171() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            C12238m.checkNotNullParameter(textView, "it");
+            WidgetGuildJoin.this.handleGuildJoin();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildJoin.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -60,7 +80,7 @@ public class WidgetGuildJoin extends AppFragment {
     }
 
     /* JADX INFO: compiled from: WidgetGuildJoin.kt */
-    public static final class ToolbarButton extends WidgetGuildJoin {
+    public final class ToolbarButton extends WidgetGuildJoin {
         public ToolbarButton() {
             super(0, 1, null);
         }
@@ -76,26 +96,6 @@ public class WidgetGuildJoin extends AppFragment {
                 return;
             }
             window.setSoftInputMode(36);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guilds.join.WidgetGuildJoin$onViewBound$1 */
-    /* JADX INFO: compiled from: WidgetGuildJoin.kt */
-    public static final class C87171 extends AbstractC12240o implements Function1<TextView, Unit> {
-        public C87171() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
-            invoke2(textView);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(TextView textView) {
-            C12238m.checkNotNullParameter(textView, "it");
-            WidgetGuildJoin.this.handleGuildJoin();
         }
     }
 

@@ -41,24 +41,6 @@ public final /* data */ class TrackGuildAutomodFeedback implements AnalyticsSche
         this.analyticsSchemaTypeName = "guild_automod_feedback";
     }
 
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: a, reason: from getter */
-    public TrackGuild getTrackGuild() {
-        return this.trackGuild;
-    }
-
-    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
-    /* JADX INFO: renamed from: c */
-    public void mo7508c(TrackGuild trackGuild) {
-        this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
-
     public boolean equals(Object other) {
         if (this == other) {
             return true;
@@ -68,6 +50,18 @@ public final /* data */ class TrackGuildAutomodFeedback implements AnalyticsSche
         }
         TrackGuildAutomodFeedback trackGuildAutomodFeedback = (TrackGuildAutomodFeedback) other;
         return C12238m.areEqual(this.decisionId, trackGuildAutomodFeedback.decisionId) && C12238m.areEqual(this.messageId, trackGuildAutomodFeedback.messageId) && C12238m.areEqual(this.messageContent, trackGuildAutomodFeedback.messageContent) && C12238m.areEqual(this.feedbackType, trackGuildAutomodFeedback.feedbackType) && C12238m.areEqual(this.content, trackGuildAutomodFeedback.content);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: a, reason: from getter */
+    public TrackGuild getTrackGuild() {
+        return this.trackGuild;
     }
 
     public int hashCode() {
@@ -81,6 +75,12 @@ public final /* data */ class TrackGuildAutomodFeedback implements AnalyticsSche
         int iHashCode4 = (iHashCode3 + (charSequence4 != null ? charSequence4.hashCode() : 0)) * 31;
         CharSequence charSequence5 = this.content;
         return iHashCode4 + (charSequence5 != null ? charSequence5.hashCode() : 0);
+    }
+
+    @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
+    /* JADX INFO: renamed from: c */
+    public void mo7508c(TrackGuild trackGuild) {
+        this.trackGuild = trackGuild;
     }
 
     public String toString() {

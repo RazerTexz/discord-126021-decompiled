@@ -12,10 +12,10 @@ import androidx.work.impl.model.WorkSpecDao;
 /* JADX INFO: loaded from: classes.dex */
 @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
 public class StopWorkRunnable implements Runnable {
-    private static final String TAG = Logger.tagWithPrefix("StopWorkRunnable");
     private final boolean mStopInForeground;
     private final WorkManagerImpl mWorkManagerImpl;
     private final String mWorkSpecId;
+    private static final String TAG = Logger.tagWithPrefix("StopWorkRunnable");
 
     public StopWorkRunnable(@NonNull WorkManagerImpl workManagerImpl, @NonNull String str, boolean z2) {
         this.mWorkManagerImpl = workManagerImpl;

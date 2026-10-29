@@ -9,18 +9,12 @@ import p507d0.p592z.p594d.C12238m;
 /* JADX INFO: compiled from: TrackPasswordAction.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final /* data */ class TrackPasswordAction implements AnalyticsSchema, TrackBaseReceiver {
-    private TrackBase trackBase;
     private final CharSequence action = null;
-    private final Boolean isSuccess = null;
     private final CharSequence compliance = null;
     private final Boolean isCompliant = null;
+    private final Boolean isSuccess = null;
+    private TrackBase trackBase;
     private final transient String analyticsSchemaTypeName = "password_action";
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
-    }
 
     public boolean equals(Object other) {
         if (this == other) {
@@ -31,6 +25,12 @@ public final /* data */ class TrackPasswordAction implements AnalyticsSchema, Tr
         }
         TrackPasswordAction trackPasswordAction = (TrackPasswordAction) other;
         return C12238m.areEqual(this.action, trackPasswordAction.action) && C12238m.areEqual(this.isSuccess, trackPasswordAction.isSuccess) && C12238m.areEqual(this.compliance, trackPasswordAction.compliance) && C12238m.areEqual(this.isCompliant, trackPasswordAction.isCompliant);
+    }
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
     }
 
     public int hashCode() {

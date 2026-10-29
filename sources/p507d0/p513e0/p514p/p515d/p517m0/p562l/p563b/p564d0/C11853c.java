@@ -2,6 +2,7 @@ package p507d0.p513e0.p514p.p515d.p517m0.p562l.p563b.p564d0;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import p507d0.p513e0.p514p.p515d.p517m0.p518b.InterfaceC11282b;
 import p507d0.p513e0.p514p.p515d.p517m0.p521c.InterfaceC11325c0;
@@ -23,11 +24,11 @@ public final class C11853c extends AbstractC11879o implements InterfaceC11282b {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.d0.c$a */
     /* JADX INFO: compiled from: BuiltInsPackageFragmentImpl.kt */
-    public static final class a {
+    public final class a {
         public a(DefaultConstructorMarker defaultConstructorMarker) {
         }
 
-        public final C11853c create(C11713b c11713b, InterfaceC11905o interfaceC11905o, InterfaceC11325c0 interfaceC11325c0, InputStream inputStream, boolean z2) throws IOException {
+        public final C11853c create(C11713b c11713b, InterfaceC11905o interfaceC11905o, InterfaceC11325c0 interfaceC11325c0, InputStream inputStream, boolean z2) throws IllegalAccessException, IOException, InvocationTargetException {
             C12238m.checkNotNullParameter(c11713b, "fqName");
             C12238m.checkNotNullParameter(interfaceC11905o, "storageManager");
             C12238m.checkNotNullParameter(interfaceC11325c0, "module");

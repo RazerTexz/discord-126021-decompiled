@@ -22,56 +22,26 @@ public abstract class AbstractC2108d implements Closeable, Flushable {
     /* JADX INFO: renamed from: l */
     public InterfaceC2114j f4466l;
 
-    /* JADX INFO: renamed from: b.g.a.b.d$a */
-    /* JADX INFO: compiled from: JsonGenerator.java */
-    public enum a {
-        AUTO_CLOSE_TARGET(true),
-        AUTO_CLOSE_JSON_CONTENT(true),
-        FLUSH_PASSED_TO_STREAM(true),
-        QUOTE_FIELD_NAMES(true),
-        QUOTE_NON_NUMERIC_NUMBERS(true),
-        ESCAPE_NON_ASCII(false),
-        WRITE_NUMBERS_AS_STRINGS(false),
-        WRITE_BIGDECIMAL_AS_PLAIN(false),
-        STRICT_DUPLICATE_DETECTION(false),
-        IGNORE_UNKNOWN(false);
-
-        private final boolean _defaultState;
-        private final int _mask = 1 << ordinal();
-
-        a(boolean z2) {
-            this._defaultState = z2;
-        }
-
-        /* JADX INFO: renamed from: f */
-        public static int m1667f() {
-            a[] aVarArrValues = values();
-            int i = 0;
-            for (int i2 = 0; i2 < 10; i2++) {
-                a aVar = aVarArrValues[i2];
-                if (aVar._defaultState) {
-                    i |= aVar._mask;
-                }
-            }
-            return i;
-        }
-
-        /* JADX INFO: renamed from: g */
-        public boolean m1668g(int i) {
-            return (i & this._mask) != 0;
-        }
-
-        /* JADX INFO: renamed from: h */
-        public int m1669h() {
-            return this._mask;
-        }
-    }
-
     static {
         C2146h<EnumC2117m> c2146hM1734a = C2146h.m1734a(EnumC2117m.values());
         f4464j = c2146hM1734a;
         f4465k = c2146hM1734a.m1735b(EnumC2117m.CAN_WRITE_FORMATTED_NUMBERS);
         c2146hM1734a.m1735b(EnumC2117m.CAN_WRITE_BINARY_NATIVELY);
+    }
+
+    @Override // java.io.Closeable, java.lang.AutoCloseable
+    public abstract void close() throws IOException;
+
+    /* JADX INFO: renamed from: a */
+    public final void m1647a(int i, int i2, int i3) {
+        if (i2 < 0 || i2 + i3 > i) {
+            throw new IllegalArgumentException(String.format("invalid argument(s) (offset=%d, length=%d) for input array of %d element", Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i)));
+        }
+    }
+
+    /* JADX INFO: renamed from: q */
+    public void m1661q(byte[] bArr) throws IOException {
+        mo1660n(C2106b.f4452b, bArr, 0, bArr.length);
     }
 
     /* JADX INFO: renamed from: A */
@@ -129,13 +99,6 @@ public abstract class AbstractC2108d implements Closeable, Flushable {
         mo1654e(obj);
     }
 
-    /* JADX INFO: renamed from: a */
-    public final void m1647a(int i, int i2, int i3) {
-        if (i2 < 0 || i2 + i3 > i) {
-            throw new IllegalArgumentException(String.format("invalid argument(s) (offset=%d, length=%d) for input array of %d element", Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i)));
-        }
-    }
-
     /* JADX INFO: renamed from: b */
     public abstract AbstractC2108d mo1648b(a aVar);
 
@@ -150,9 +113,6 @@ public abstract class AbstractC2108d implements Closeable, Flushable {
 
     /* JADX INFO: renamed from: c0 */
     public abstract void mo1651c0() throws IOException;
-
-    @Override // java.io.Closeable, java.lang.AutoCloseable
-    public abstract void close() throws IOException;
 
     /* JADX INFO: renamed from: d */
     public abstract boolean mo1652d(a aVar);
@@ -192,11 +152,6 @@ public abstract class AbstractC2108d implements Closeable, Flushable {
     /* JADX INFO: renamed from: n */
     public abstract void mo1660n(C2105a c2105a, byte[] bArr, int i, int i2) throws IOException;
 
-    /* JADX INFO: renamed from: q */
-    public void m1661q(byte[] bArr) throws IOException {
-        mo1660n(C2106b.f4452b, bArr, 0, bArr.length);
-    }
-
     /* JADX INFO: renamed from: s */
     public abstract void mo1662s(boolean z2) throws IOException;
 
@@ -211,4 +166,49 @@ public abstract class AbstractC2108d implements Closeable, Flushable {
 
     /* JADX INFO: renamed from: y */
     public abstract void mo1666y(String str) throws IOException;
+
+    /* JADX INFO: renamed from: b.g.a.b.d$a */
+    /* JADX INFO: compiled from: JsonGenerator.java */
+    public enum a {
+        AUTO_CLOSE_TARGET(true),
+        AUTO_CLOSE_JSON_CONTENT(true),
+        FLUSH_PASSED_TO_STREAM(true),
+        QUOTE_FIELD_NAMES(true),
+        QUOTE_NON_NUMERIC_NUMBERS(true),
+        ESCAPE_NON_ASCII(false),
+        WRITE_NUMBERS_AS_STRINGS(false),
+        WRITE_BIGDECIMAL_AS_PLAIN(false),
+        STRICT_DUPLICATE_DETECTION(false),
+        IGNORE_UNKNOWN(false);
+
+        private final boolean _defaultState;
+        private final int _mask = 1 << ordinal();
+
+        a(boolean z2) {
+            this._defaultState = z2;
+        }
+
+        /* JADX INFO: renamed from: f */
+        public static int m1667f() {
+            a[] aVarArrValues = values();
+            int i = 0;
+            for (int i2 = 0; i2 < 10; i2++) {
+                a aVar = aVarArrValues[i2];
+                if (aVar._defaultState) {
+                    i |= aVar._mask;
+                }
+            }
+            return i;
+        }
+
+        /* JADX INFO: renamed from: g */
+        public boolean m1668g(int i) {
+            return (i & this._mask) != 0;
+        }
+
+        /* JADX INFO: renamed from: h */
+        public int m1669h() {
+            return this._mask;
+        }
+    }
 }

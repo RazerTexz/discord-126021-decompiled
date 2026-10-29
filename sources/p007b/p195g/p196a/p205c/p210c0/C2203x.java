@@ -108,6 +108,78 @@ public class C2203x extends AbstractC2165b implements Serializable {
         f4759l = abstractC2168c;
     }
 
+    /* JADX INFO: renamed from: g0 */
+    public Class<?> m1933g0(Class<?> cls) {
+        if (cls == null || C2342d.m2184p(cls)) {
+            return null;
+        }
+        return cls;
+    }
+
+    /* JADX INFO: renamed from: h0 */
+    public InterfaceC2214f<?> m1934h0(AbstractC2394l<?> abstractC2394l, AbstractC2175b abstractC2175b, AbstractC2360j abstractC2360j) {
+        InterfaceC2214f c2225j;
+        InterfaceC2070c0 interfaceC2070c0 = (InterfaceC2070c0) abstractC2175b.mo1818b(InterfaceC2070c0.class);
+        InterfaceC2381g interfaceC2381g = (InterfaceC2381g) abstractC2175b.mo1818b(InterfaceC2381g.class);
+        InterfaceC2213e interfaceC2213e = null;
+        if (interfaceC2381g != null) {
+            if (interfaceC2070c0 == null) {
+                return null;
+            }
+            Class<? extends InterfaceC2214f<?>> clsValue = interfaceC2381g.value();
+            Objects.requireNonNull(abstractC2394l._base);
+            c2225j = (InterfaceC2214f) C2342d.m2175g(clsValue, abstractC2394l.m2265b());
+        } else {
+            if (interfaceC2070c0 == null) {
+                return null;
+            }
+            InterfaceC2070c0.b bVarUse = interfaceC2070c0.use();
+            InterfaceC2070c0.b bVar = InterfaceC2070c0.b.NONE;
+            if (bVarUse == bVar) {
+                C2225j c2225j2 = new C2225j();
+                c2225j2.m1966g(bVar, null);
+                return c2225j2;
+            }
+            c2225j = new C2225j();
+        }
+        InterfaceC2380f interfaceC2380f = (InterfaceC2380f) abstractC2175b.mo1818b(InterfaceC2380f.class);
+        if (interfaceC2380f != null) {
+            Class<? extends InterfaceC2213e> clsValue2 = interfaceC2380f.value();
+            Objects.requireNonNull(abstractC2394l._base);
+            interfaceC2213e = (InterfaceC2213e) C2342d.m2175g(clsValue2, abstractC2394l.m2265b());
+        }
+        if (interfaceC2213e != null) {
+            interfaceC2213e.mo1947b(abstractC2360j);
+        }
+        InterfaceC2214f interfaceC2214fMo1950b = c2225j.mo1950b(interfaceC2070c0.use(), interfaceC2213e);
+        InterfaceC2070c0.a aVarInclude = interfaceC2070c0.include();
+        if (aVarInclude == InterfaceC2070c0.a.EXTERNAL_PROPERTY && (abstractC2175b instanceof C2177c)) {
+            aVarInclude = InterfaceC2070c0.a.PROPERTY;
+        }
+        InterfaceC2214f interfaceC2214fMo1951c = interfaceC2214fMo1950b.mo1954f(aVarInclude).mo1951c(interfaceC2070c0.property());
+        Class<?> clsDefaultImpl = interfaceC2070c0.defaultImpl();
+        if (clsDefaultImpl != InterfaceC2070c0.c.class && !clsDefaultImpl.isAnnotation()) {
+            interfaceC2214fMo1951c = interfaceC2214fMo1951c.mo1952d(clsDefaultImpl);
+        }
+        return interfaceC2214fMo1951c.mo1949a(interfaceC2070c0.visible());
+    }
+
+    /* JADX INFO: renamed from: i0 */
+    public final boolean m1935i0(Class<?> cls, Class<?> cls2) {
+        if (cls.isPrimitive()) {
+            return cls == C2342d.m2190v(cls2);
+        }
+        return cls2.isPrimitive() && cls2 == C2342d.m2190v(cls);
+    }
+
+    /* JADX INFO: renamed from: j0 */
+    public C2370t m1936j0(String str, String str2) {
+        if (str.isEmpty()) {
+            return C2370t.f5029j;
+        }
+        return (str2 == null || str2.isEmpty()) ? C2370t.m2227a(str) : C2370t.m2228b(str, str2);
+    }
+
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Type inference failed for: r0v0, types: [java.util.Set] */
     /* JADX WARN: Type inference failed for: r0v1, types: [java.util.Set] */
@@ -709,14 +781,6 @@ public class C2203x extends AbstractC2165b implements Serializable {
         return strValue;
     }
 
-    /* JADX INFO: renamed from: g0 */
-    public Class<?> m1933g0(Class<?> cls) {
-        if (cls == null || C2342d.m2184p(cls)) {
-            return null;
-        }
-        return cls;
-    }
-
     @Override // p007b.p195g.p196a.p205c.AbstractC2165b
     /* JADX INFO: renamed from: h */
     public InterfaceC2081i.d mo1784h(AbstractC2175b abstractC2175b) {
@@ -741,54 +805,6 @@ public class C2203x extends AbstractC2165b implements Serializable {
         return new InterfaceC2081i.d(strPattern, cVarShape, strLocale, strTimezone, new InterfaceC2081i.b(iOrdinal, iOrdinal2), interfaceC2081i.lenient().m1613f());
     }
 
-    /* JADX INFO: renamed from: h0 */
-    public InterfaceC2214f<?> m1934h0(AbstractC2394l<?> abstractC2394l, AbstractC2175b abstractC2175b, AbstractC2360j abstractC2360j) {
-        InterfaceC2214f c2225j;
-        InterfaceC2070c0 interfaceC2070c0 = (InterfaceC2070c0) abstractC2175b.mo1818b(InterfaceC2070c0.class);
-        InterfaceC2381g interfaceC2381g = (InterfaceC2381g) abstractC2175b.mo1818b(InterfaceC2381g.class);
-        InterfaceC2213e interfaceC2213e = null;
-        if (interfaceC2381g != null) {
-            if (interfaceC2070c0 == null) {
-                return null;
-            }
-            Class<? extends InterfaceC2214f<?>> clsValue = interfaceC2381g.value();
-            Objects.requireNonNull(abstractC2394l._base);
-            c2225j = (InterfaceC2214f) C2342d.m2175g(clsValue, abstractC2394l.m2265b());
-        } else {
-            if (interfaceC2070c0 == null) {
-                return null;
-            }
-            InterfaceC2070c0.b bVarUse = interfaceC2070c0.use();
-            InterfaceC2070c0.b bVar = InterfaceC2070c0.b.NONE;
-            if (bVarUse == bVar) {
-                C2225j c2225j2 = new C2225j();
-                c2225j2.m1966g(bVar, null);
-                return c2225j2;
-            }
-            c2225j = new C2225j();
-        }
-        InterfaceC2380f interfaceC2380f = (InterfaceC2380f) abstractC2175b.mo1818b(InterfaceC2380f.class);
-        if (interfaceC2380f != null) {
-            Class<? extends InterfaceC2213e> clsValue2 = interfaceC2380f.value();
-            Objects.requireNonNull(abstractC2394l._base);
-            interfaceC2213e = (InterfaceC2213e) C2342d.m2175g(clsValue2, abstractC2394l.m2265b());
-        }
-        if (interfaceC2213e != null) {
-            interfaceC2213e.mo1947b(abstractC2360j);
-        }
-        InterfaceC2214f interfaceC2214fMo1950b = c2225j.mo1950b(interfaceC2070c0.use(), interfaceC2213e);
-        InterfaceC2070c0.a aVarInclude = interfaceC2070c0.include();
-        if (aVarInclude == InterfaceC2070c0.a.EXTERNAL_PROPERTY && (abstractC2175b instanceof C2177c)) {
-            aVarInclude = InterfaceC2070c0.a.PROPERTY;
-        }
-        InterfaceC2214f interfaceC2214fMo1951c = interfaceC2214fMo1950b.mo1954f(aVarInclude).mo1951c(interfaceC2070c0.property());
-        Class<?> clsDefaultImpl = interfaceC2070c0.defaultImpl();
-        if (clsDefaultImpl != InterfaceC2070c0.c.class && !clsDefaultImpl.isAnnotation()) {
-            interfaceC2214fMo1951c = interfaceC2214fMo1951c.mo1952d(clsDefaultImpl);
-        }
-        return interfaceC2214fMo1951c.mo1949a(interfaceC2070c0.visible());
-    }
-
     /* JADX WARN: Code duplicated, block: B:11:0x0016  */
     @Override // p007b.p195g.p196a.p205c.AbstractC2165b
     /* JADX INFO: renamed from: i */
@@ -807,14 +823,6 @@ public class C2203x extends AbstractC2165b implements Serializable {
             return null;
         }
         return c2370tMo1804a._simpleName;
-    }
-
-    /* JADX INFO: renamed from: i0 */
-    public final boolean m1935i0(Class<?> cls, Class<?> cls2) {
-        if (cls.isPrimitive()) {
-            return cls == C2342d.m2190v(cls2);
-        }
-        return cls2.isPrimitive() && cls2 == C2342d.m2190v(cls);
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2165b
@@ -836,14 +844,6 @@ public class C2203x extends AbstractC2165b implements Serializable {
             name = abstractC2188i.mo1820d().getName();
         }
         return name.equals(aVarM1593a._id) ? aVarM1593a : new InterfaceC2067b.a(name, aVarM1593a._useInput);
-    }
-
-    /* JADX INFO: renamed from: j0 */
-    public C2370t m1936j0(String str, String str2) {
-        if (str.isEmpty()) {
-            return C2370t.f5029j;
-        }
-        return (str2 == null || str2.isEmpty()) ? C2370t.m2227a(str) : C2370t.m2228b(str, str2);
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2165b
@@ -965,13 +965,6 @@ public class C2203x extends AbstractC2165b implements Serializable {
             return null;
         }
         return new C2174a0(C2370t.m2227a(interfaceC2085k.property()), interfaceC2085k.scope(), interfaceC2085k.generator(), false, interfaceC2085k.resolver());
-    }
-
-    public Object readResolve() {
-        if (this.f4760m == null) {
-            this.f4760m = new C2346h<>(48, 48);
-        }
-        return this;
     }
 
     @Override // p007b.p195g.p196a.p205c.AbstractC2165b
@@ -1106,5 +1099,12 @@ public class C2203x extends AbstractC2165b implements Serializable {
             bVarM1619b = bVar.m1619b(InterfaceC2094p.a.NON_EMPTY);
         }
         return bVarM1619b;
+    }
+
+    public Object readResolve() {
+        if (this.f4760m == null) {
+            this.f4760m = new C2346h<>(48, 48);
+        }
+        return this;
     }
 }

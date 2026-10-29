@@ -8,14 +8,6 @@ public abstract class VisibilityPropagation extends TransitionPropagation {
     private static final String PROPNAME_VIEW_CENTER = "android:visibilityPropagation:center";
     private static final String[] VISIBILITY_PROPAGATION_VALUES = {PROPNAME_VISIBILITY, PROPNAME_VIEW_CENTER};
 
-    private static int getViewCoordinate(TransitionValues transitionValues, int i) {
-        int[] iArr;
-        if (transitionValues == null || (iArr = (int[]) transitionValues.values.get(PROPNAME_VIEW_CENTER)) == null) {
-            return -1;
-        }
-        return iArr[i];
-    }
-
     @Override // androidx.transition.TransitionPropagation
     public void captureValues(TransitionValues transitionValues) {
         View view = transitionValues.view;
@@ -36,6 +28,14 @@ public abstract class VisibilityPropagation extends TransitionPropagation {
     @Override // androidx.transition.TransitionPropagation
     public String[] getPropagationProperties() {
         return VISIBILITY_PROPAGATION_VALUES;
+    }
+
+    private static int getViewCoordinate(TransitionValues transitionValues, int i) {
+        int[] iArr;
+        if (transitionValues == null || (iArr = (int[]) transitionValues.values.get(PROPNAME_VIEW_CENTER)) == null) {
+            return -1;
+        }
+        return iArr[i];
     }
 
     public int getViewVisibility(TransitionValues transitionValues) {

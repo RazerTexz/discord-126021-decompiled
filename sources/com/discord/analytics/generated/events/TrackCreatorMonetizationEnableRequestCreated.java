@@ -11,10 +11,16 @@ import com.discord.api.science.AnalyticsSchema;
 /* JADX INFO: compiled from: TrackCreatorMonetizationEnableRequestCreated.kt */
 /* JADX INFO: loaded from: classes.dex */
 public final class TrackCreatorMonetizationEnableRequestCreated implements AnalyticsSchema, TrackBaseReceiver, TrackGuildReceiver, TrackCreatorMonetizationEnableRequestReceiver {
-    private final transient String analyticsSchemaTypeName = "creator_monetization_enable_request_created";
     private TrackBase trackBase;
     private TrackCreatorMonetizationEnableRequest trackCreatorMonetizationEnableRequest;
     private TrackGuild trackGuild;
+    private final transient String analyticsSchemaTypeName = "creator_monetization_enable_request_created";
+
+    @Override // com.discord.api.science.AnalyticsSchema
+    /* JADX INFO: renamed from: d, reason: from getter */
+    public String getAnalyticsSchemaTypeName() {
+        return this.analyticsSchemaTypeName;
+    }
 
     @Override // com.discord.analytics.generated.traits.TrackGuildReceiver
     /* JADX INFO: renamed from: a, reason: from getter */
@@ -26,11 +32,5 @@ public final class TrackCreatorMonetizationEnableRequestCreated implements Analy
     /* JADX INFO: renamed from: c */
     public void mo7508c(TrackGuild trackGuild) {
         this.trackGuild = trackGuild;
-    }
-
-    @Override // com.discord.api.science.AnalyticsSchema
-    /* JADX INFO: renamed from: d, reason: from getter */
-    public String getAnalyticsSchemaTypeName() {
-        return this.analyticsSchemaTypeName;
     }
 }

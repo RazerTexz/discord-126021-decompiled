@@ -30,16 +30,6 @@ public final class FakeDrag {
         motionEventObtain.recycle();
     }
 
-    private void beginFakeVelocityTracker() {
-        VelocityTracker velocityTracker = this.mVelocityTracker;
-        if (velocityTracker != null) {
-            velocityTracker.clear();
-        } else {
-            this.mVelocityTracker = VelocityTracker.obtain();
-            this.mMaximumVelocity = ViewConfiguration.get(this.mViewPager.getContext()).getScaledMaximumFlingVelocity();
-        }
-    }
-
     @UiThread
     public boolean beginFakeDrag() {
         if (this.mScrollEventAdapter.isDragging()) {
@@ -55,6 +45,16 @@ public final class FakeDrag {
         }
         addFakeMotionEvent(this.mFakeDragBeginTime, 0, 0.0f, 0.0f);
         return true;
+    }
+
+    private void beginFakeVelocityTracker() {
+        VelocityTracker velocityTracker = this.mVelocityTracker;
+        if (velocityTracker != null) {
+            velocityTracker.clear();
+        } else {
+            this.mVelocityTracker = VelocityTracker.obtain();
+            this.mMaximumVelocity = ViewConfiguration.get(this.mViewPager.getContext()).getScaledMaximumFlingVelocity();
+        }
     }
 
     @UiThread

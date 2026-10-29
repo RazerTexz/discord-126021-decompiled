@@ -37,7 +37,7 @@ public final class ContactSyncFriendSuggestionListAdapter extends MGRecyclerAdap
     private final int spacing;
 
     /* JADX INFO: compiled from: ContactSyncFriendSuggestionListAdapter.kt */
-    public static final class ItemFriendSuggestion extends MGRecyclerViewHolder<ContactSyncFriendSuggestionListAdapter, WidgetContactSyncViewModel.Item> {
+    public final class ItemFriendSuggestion extends MGRecyclerViewHolder<ContactSyncFriendSuggestionListAdapter, WidgetContactSyncViewModel.Item> {
         private final ViewSelectableFriendSuggestionBinding binding;
 
         /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */

@@ -12,8 +12,8 @@ import p007b.p100d.p104b.p105a.C1643a;
 
 /* JADX INFO: loaded from: classes.dex */
 public final class LocaleListCompat {
-    private static final LocaleListCompat sEmptyLocaleList = create(new Locale[0]);
     private LocaleListInterface mImpl;
+    private static final LocaleListCompat sEmptyLocaleList = create(new Locale[0]);
 
     private LocaleListCompat(LocaleListInterface localeListInterface) {
         this.mImpl = localeListInterface;
@@ -22,6 +22,10 @@ public final class LocaleListCompat {
     @NonNull
     public static LocaleListCompat create(@NonNull Locale... localeArr) {
         return Build.VERSION.SDK_INT >= 24 ? wrap(new LocaleList(localeArr)) : new LocaleListCompat(new LocaleListCompatWrapper(localeArr));
+    }
+
+    public boolean equals(Object obj) {
+        return (obj instanceof LocaleListCompat) && this.mImpl.equals(((LocaleListCompat) obj).mImpl);
     }
 
     public static Locale forLanguageTagCompat(String str) {
@@ -68,6 +72,10 @@ public final class LocaleListCompat {
         return create(localeArr);
     }
 
+    public Locale get(int i) {
+        return this.mImpl.get(i);
+    }
+
     @NonNull
     @Size(min = 1)
     public static LocaleListCompat getAdjustedDefault() {
@@ -83,20 +91,6 @@ public final class LocaleListCompat {
     @NonNull
     public static LocaleListCompat getEmptyLocaleList() {
         return sEmptyLocaleList;
-    }
-
-    @RequiresApi(24)
-    @Deprecated
-    public static LocaleListCompat wrap(Object obj) {
-        return wrap((LocaleList) obj);
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof LocaleListCompat) && this.mImpl.equals(((LocaleListCompat) obj).mImpl);
-    }
-
-    public Locale get(int i) {
-        return this.mImpl.get(i);
     }
 
     @Nullable
@@ -134,6 +128,12 @@ public final class LocaleListCompat {
     @Nullable
     public Object unwrap() {
         return this.mImpl.getLocaleList();
+    }
+
+    @RequiresApi(24)
+    @Deprecated
+    public static LocaleListCompat wrap(Object obj) {
+        return wrap((LocaleList) obj);
     }
 
     @NonNull

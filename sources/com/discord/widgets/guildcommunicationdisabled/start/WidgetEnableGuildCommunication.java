@@ -58,29 +58,9 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
     private final Clock clock;
     private Subscription communicationDisabledCountdownSubscription;
 
-    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public final void launch(long userId, long guildId, FragmentManager fragmentManager) {
-            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
-            WidgetEnableGuildCommunication widgetEnableGuildCommunication = new WidgetEnableGuildCommunication();
-            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_USER_ID", userId);
-            bundleM832T.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
-            widgetEnableGuildCommunication.setArguments(bundleM832T);
-            widgetEnableGuildCommunication.show(fragmentManager, WidgetEnableGuildCommunication.class.getSimpleName());
-            AnalyticsTracker.INSTANCE.viewedEnableCommunicationModal(guildId, userId);
-        }
-
-        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$configureCommunicationDisabledTimer$1 */
     /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
-    public static final class C85651 extends AbstractC12240o implements Function1<Long, Unit> {
+    public final class C85651 extends AbstractC12240o implements Function1<Long, Unit> {
         public final /* synthetic */ long $communicationDisabledTimestampMs;
         public final /* synthetic */ CharSequence $username;
 
@@ -110,7 +90,7 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$configureCommunicationDisabledTimer$2 */
     /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
-    public static final class C85662 extends AbstractC12240o implements Function1<Subscription, Unit> {
+    public final class C85662 extends AbstractC12240o implements Function1<Subscription, Unit> {
         public C85662() {
             super(1);
         }
@@ -130,7 +110,7 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$handleEnableGuildCommunication$1 */
     /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
-    public static final class C85671 extends AbstractC12240o implements Function1<Void, TrackNetworkMetadataReceiver> {
+    public final class C85671 extends AbstractC12240o implements Function1<Void, TrackNetworkMetadataReceiver> {
         public final /* synthetic */ long $guildId;
         public final /* synthetic */ long $userId;
 
@@ -149,7 +129,7 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
 
     /* JADX INFO: renamed from: com.discord.widgets.guildcommunicationdisabled.start.WidgetEnableGuildCommunication$handleEnableGuildCommunication$2 */
     /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
-    public static final class C85682 extends AbstractC12240o implements Function1<Void, Unit> {
+    public final class C85682 extends AbstractC12240o implements Function1<Void, Unit> {
         public C85682() {
             super(1);
         }
@@ -166,6 +146,26 @@ public final class WidgetEnableGuildCommunication extends AppDialog {
             Context context = WidgetEnableGuildCommunication.this.getContext();
             Context context2 = WidgetEnableGuildCommunication.this.getContext();
             C0876m.m170h(context, context2 != null ? C1107b.m216h(context2, C5419R.string.guild_enable_communication_success, new Object[0], null, 4) : null, 0, null, 12);
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetEnableGuildCommunication.kt */
+    public final class Companion {
+        private Companion() {
+        }
+
+        public final void launch(long userId, long guildId, FragmentManager fragmentManager) {
+            C12238m.checkNotNullParameter(fragmentManager, "fragmentManager");
+            WidgetEnableGuildCommunication widgetEnableGuildCommunication = new WidgetEnableGuildCommunication();
+            Bundle bundleM832T = C1643a.m832T("com.discord.intent.extra.EXTRA_USER_ID", userId);
+            bundleM832T.putLong("com.discord.intent.extra.EXTRA_GUILD_ID", guildId);
+            widgetEnableGuildCommunication.setArguments(bundleM832T);
+            widgetEnableGuildCommunication.show(fragmentManager, WidgetEnableGuildCommunication.class.getSimpleName());
+            AnalyticsTracker.INSTANCE.viewedEnableCommunicationModal(guildId, userId);
+        }
+
+        public /* synthetic */ Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 

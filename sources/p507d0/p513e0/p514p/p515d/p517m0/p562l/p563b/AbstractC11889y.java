@@ -26,7 +26,7 @@ public abstract class AbstractC11889y {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.y$a */
     /* JADX INFO: compiled from: ProtoContainer.kt */
-    public static final class a extends AbstractC11889y {
+    public final class a extends AbstractC11889y {
 
         /* JADX INFO: renamed from: d */
         public final C11678c f24694d;
@@ -89,7 +89,7 @@ public abstract class AbstractC11889y {
 
     /* JADX INFO: renamed from: d0.e0.p.d.m0.l.b.y$b */
     /* JADX INFO: compiled from: ProtoContainer.kt */
-    public static final class b extends AbstractC11889y {
+    public final class b extends AbstractC11889y {
 
         /* JADX INFO: renamed from: d */
         public final C11713b f24699d;

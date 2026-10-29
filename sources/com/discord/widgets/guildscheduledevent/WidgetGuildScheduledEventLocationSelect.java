@@ -50,10 +50,10 @@ import p658rx.Subscription;
 /* JADX INFO: loaded from: classes2.dex */
 public final class WidgetGuildScheduledEventLocationSelect extends AppFragment {
     public static final /* synthetic */ KProperty[] $$delegatedProperties = {C1643a.m846d0(WidgetGuildScheduledEventLocationSelect.class, "binding", "getBinding()Lcom/discord/databinding/WidgetGuildScheduledEventLocationSelectBinding;", 0)};
+    private static final String GUILD_SCHEDULED_EVENT_LOCATION_SELECT_REQUEST_KEY = "GUILD_SCHEDULED_EVENT_LOCATION_SELECT_REQUEST_KEY";
 
     /* JADX INFO: renamed from: Companion, reason: from kotlin metadata */
     public static final Companion INSTANCE = new Companion(null);
-    private static final String GUILD_SCHEDULED_EVENT_LOCATION_SELECT_REQUEST_KEY = "GUILD_SCHEDULED_EVENT_LOCATION_SELECT_REQUEST_KEY";
 
     /* JADX INFO: renamed from: binding$delegate, reason: from kotlin metadata */
     private final FragmentViewBindingDelegate binding;
@@ -72,8 +72,67 @@ public final class WidgetGuildScheduledEventLocationSelect extends AppFragment {
     /* JADX INFO: renamed from: viewModel$delegate, reason: from kotlin metadata */
     private final Lazy viewModel;
 
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect$onResume$1 */
     /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelect.kt */
-    public static final class Companion {
+    public final /* synthetic */ class C88981 extends C12236k implements Function1<WidgetGuildScheduledEventLocationSelectViewModel.ViewState, Unit> {
+        public C88981(WidgetGuildScheduledEventLocationSelect widgetGuildScheduledEventLocationSelect) {
+            super(1, widgetGuildScheduledEventLocationSelect, WidgetGuildScheduledEventLocationSelect.class, "configureUI", "configureUI(Lcom/discord/widgets/guildscheduledevent/WidgetGuildScheduledEventLocationSelectViewModel$ViewState;)V", 0);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildScheduledEventLocationSelectViewModel.ViewState viewState) {
+            invoke2(viewState);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(WidgetGuildScheduledEventLocationSelectViewModel.ViewState viewState) {
+            C12238m.checkNotNullParameter(viewState, "p1");
+            ((WidgetGuildScheduledEventLocationSelect) this.receiver).configureUI(viewState);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect$onViewBound$4 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelect.kt */
+    public final class C89024 extends AbstractC12240o implements Function2<Long, String, Unit> {
+        public C89024() {
+            super(2);
+        }
+
+        @Override // kotlin.jvm.functions.Function2
+        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
+            invoke(l.longValue(), str);
+            return Unit.f27425a;
+        }
+
+        public final void invoke(long j, String str) {
+            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
+            WidgetGuildScheduledEventLocationSelect.this.getViewModel().selectChannel(j);
+        }
+    }
+
+    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect$onViewBound$5 */
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelect.kt */
+    public final class C89035 extends AbstractC12240o implements Function1<TextView, Unit> {
+        public C89035() {
+            super(1);
+        }
+
+        @Override // kotlin.jvm.functions.Function1
+        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
+            invoke2(textView);
+            return Unit.f27425a;
+        }
+
+        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
+        public final void invoke2(TextView textView) {
+            C12238m.checkNotNullParameter(textView, "it");
+            WidgetGuildScheduledEventLocationSelect.this.navigateNext();
+        }
+    }
+
+    /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelect.kt */
+    public final class Companion {
         private Companion() {
         }
 
@@ -133,65 +192,6 @@ public final class WidgetGuildScheduledEventLocationSelect extends AppFragment {
             iArr3[guildScheduledEventEntityType2.ordinal()] = 1;
             iArr3[guildScheduledEventEntityType.ordinal()] = 2;
             iArr3[guildScheduledEventEntityType3.ordinal()] = 3;
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect$onResume$1 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelect.kt */
-    public static final /* synthetic */ class C88981 extends C12236k implements Function1<WidgetGuildScheduledEventLocationSelectViewModel.ViewState, Unit> {
-        public C88981(WidgetGuildScheduledEventLocationSelect widgetGuildScheduledEventLocationSelect) {
-            super(1, widgetGuildScheduledEventLocationSelect, WidgetGuildScheduledEventLocationSelect.class, "configureUI", "configureUI(Lcom/discord/widgets/guildscheduledevent/WidgetGuildScheduledEventLocationSelectViewModel$ViewState;)V", 0);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(WidgetGuildScheduledEventLocationSelectViewModel.ViewState viewState) {
-            invoke2(viewState);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(WidgetGuildScheduledEventLocationSelectViewModel.ViewState viewState) {
-            C12238m.checkNotNullParameter(viewState, "p1");
-            ((WidgetGuildScheduledEventLocationSelect) this.receiver).configureUI(viewState);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect$onViewBound$4 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelect.kt */
-    public static final class C89024 extends AbstractC12240o implements Function2<Long, String, Unit> {
-        public C89024() {
-            super(2);
-        }
-
-        @Override // kotlin.jvm.functions.Function2
-        public /* bridge */ /* synthetic */ Unit invoke(Long l, String str) {
-            invoke(l.longValue(), str);
-            return Unit.f27425a;
-        }
-
-        public final void invoke(long j, String str) {
-            C12238m.checkNotNullParameter(str, "<anonymous parameter 1>");
-            WidgetGuildScheduledEventLocationSelect.this.getViewModel().selectChannel(j);
-        }
-    }
-
-    /* JADX INFO: renamed from: com.discord.widgets.guildscheduledevent.WidgetGuildScheduledEventLocationSelect$onViewBound$5 */
-    /* JADX INFO: compiled from: WidgetGuildScheduledEventLocationSelect.kt */
-    public static final class C89035 extends AbstractC12240o implements Function1<TextView, Unit> {
-        public C89035() {
-            super(1);
-        }
-
-        @Override // kotlin.jvm.functions.Function1
-        public /* bridge */ /* synthetic */ Unit invoke(TextView textView) {
-            invoke2(textView);
-            return Unit.f27425a;
-        }
-
-        /* JADX INFO: renamed from: invoke, reason: avoid collision after fix types in other method */
-        public final void invoke2(TextView textView) {
-            C12238m.checkNotNullParameter(textView, "it");
-            WidgetGuildScheduledEventLocationSelect.this.navigateNext();
         }
     }
 
@@ -325,11 +325,11 @@ public final class WidgetGuildScheduledEventLocationSelect extends AppFragment {
         return ((Number) this.guildId.getValue()).longValue();
     }
 
-    private final GuildScheduledEventDirectoryAssociationViewModel getHubViewModel() {
-        return (GuildScheduledEventDirectoryAssociationViewModel) this.hubViewModel.getValue();
+    private static /* synthetic */ void getHubViewModel$annotations() {
     }
 
-    private static /* synthetic */ void getHubViewModel$annotations() {
+    private final GuildScheduledEventDirectoryAssociationViewModel getHubViewModel() {
+        return (GuildScheduledEventDirectoryAssociationViewModel) this.hubViewModel.getValue();
     }
 
     private final WidgetGuildScheduledEventLocationSelectViewModel getViewModel() {
