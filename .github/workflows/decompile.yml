@@ -45,7 +45,8 @@ jobs:
           git commit -m "chore: decompile"
           git push "https://x:${{ github.token }}@github.com/${{ github.repository }}" HEAD:main
 
-      - uses: actions/upload-artifact@main
+      - name: Upload
+        uses: actions/upload-artifact@main
         with:
           name: ${{ github.job }}
           path: |
