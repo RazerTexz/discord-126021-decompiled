@@ -3,18 +3,12 @@ on: [push, workflow_dispatch]
 
 jobs:
   decompile:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Set up Java
-        uses: actions/setup-java@v5
-        with:
-          java-version: 25
-          distribution: temurin
-
       - name: Download JADX
-        uses: dawidd6/action-download-artifact@v27
+        uses: dawidd6/action-download-artifact@master
         with:
           repo: skylot/jadx
           branch: master
@@ -24,7 +18,7 @@ jobs:
 
       - name: Decompile
         run: |
-          curl -fsSLOJ https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk
+          curl -LOJ https://maven.aliucord.com/releases/com/discord/discord/126021/discord-126021.apk
           sh */bin/jadx \
             --fs-case-sensitive \
             --respect-bytecode-access-modifiers \
@@ -53,7 +47,7 @@ jobs:
           git push "https://x:${{ github.token }}@github.com/${{ github.repository }}" HEAD:main
 
       - name: Upload
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@main
         with:
           name: ${{ github.job }}
           path: |
