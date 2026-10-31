@@ -27,7 +27,7 @@ jobs:
             --no-inline-kotlin-lambda \
             --no-move-inner-classes \
             -j "$(nproc)" \
-            -d "${{ github.job }}" \
+            -d . \
             discord-126021.apk || true
 
           find . -type f -name "*.java" -exec sed -i "/@Metadata(\|@kotlin.Metadata(\|import kotlin.Metadata/d" {} +
