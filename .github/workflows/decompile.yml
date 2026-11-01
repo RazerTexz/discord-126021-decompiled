@@ -25,7 +25,6 @@ jobs:
             --no-inline-anonymous \
             --no-inline-methods \
             --no-inline-kotlin-lambda \
-            --no-move-inner-classes \
             -j "$(nproc)" \
             -d . \
             discord-126021.apk || true
